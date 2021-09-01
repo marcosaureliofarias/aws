@@ -1,0 +1,9 @@
+<% Rys::Feature.on('custom_builtin_role') do %>
+  <h3><%= l('custom_builtin_role.users_with_membership') %></h3>
+<% end %>
+<%= render 'projects/settings/members', local_assigns %>
+
+<% Rys::Feature.on('custom_builtin_role') do %>
+  <%= render partial: 'projects/settings/custom_builtin_role/users' %>
+<% end %>
+

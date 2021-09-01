@@ -1,0 +1,13 @@
+# Example configuration sidekiq for EasyCloud
+if Rails.env.production?
+  config.active_job.queue_adapter = :sidekiq
+
+  redis_namespace = Rails.root.join("..").basename.to_s
+  Sidekiq.configure_server do |config|
+    config.redis = { url: 'redis://127.0.0.1:6379/1', namespace: redis_namespace }
+  end
+
+  Sidekiq.configure_client do |config|
+    config.redis = { url: 'redis://127.0.0.1:6379/1', namespace: redis_namespace }
+  end
+end

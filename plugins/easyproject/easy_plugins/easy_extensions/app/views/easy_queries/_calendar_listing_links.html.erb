@@ -1,0 +1,53 @@
+<%
+  hide_period ||= false
+  day ||= calendar.startdt
+  url ||= update_my_page_module_view_path
+  block_name ||= ''
+  page_module ||= nil
+%>
+
+<div class="easy-calendar-listing-links next-prev-links">
+  <%= link_to '', '#', title: l("title_timelog_calendar_prev.#{calendar.period}"), class: "#{modul_uniq_id}calendar-nextprev-links easy-cal-prev prev", data: { dir: 'prev' } %>
+  <% unless hide_period %>
+    <span class="period easy-calendar-title"><%= "#{(day+(11-day.cwday)%7).cweek} / " if period.to_sym == :week && day.cwday == calendar.first_wday %><%= month_name(calendar.month) %> <%= calendar.year %></span>
+  <% end %>
+  <%= link_to '', '#', title: l("title_timelog_calendar_next.#{calendar.period}"), class: "#{modul_uniq_id}calendar-nextprev-links easy-cal-next next", data: { dir: 'next' } %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    $(".<%= modul_uniq_id %>calendar-nextprev-links").click(function (evt) {
+      var start_date;
+      evt.preventDefault();
+
+      if ($(this).data('dir') === 'prev')
+        start_date = '<%= calendar.prev_start_date %>';
+      else
+        start_date = '<%= calendar.next_start_date %>';
+
+      $('<%= modul_uniq_id %>calendar-start-date').val(start_date);
+      var data = '';
+      <% unless page_module %>
+      data = $('#query_form').data('serialized-url');
+      <% end %>
+      <% if @project %>
+      data += '&' + $.param({project_id: '<%= @project.id %>'});
+      <% end %>
+
+      data += ('&' + $.param({
+        uuid: '<%= page_module && page_module.uuid %>',
+        start_date: start_date,
+        period: '<%= calendar.period %>'
+      }));
+
+      $.ajax({
+        url: '<%= raw url %>',
+        type: 'post',
+        data: data,
+        success: function (data) {
+          $('#<%= modul_uniq_id %>calendar-container').html(data);
+        }
+      });
+    });
+  });
+</script>

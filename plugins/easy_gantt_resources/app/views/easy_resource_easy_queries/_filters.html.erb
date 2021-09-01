@@ -1,0 +1,22 @@
+<%
+  modul_uniq_id ||= ''
+  block_name ||= ''
+  filters ||= query.filters_for_select
+
+  filter_groups = {
+    nil => l(:label_easy_gantt_allocations),
+    'user' => l(:label_user_plural)
+  }
+  if EasySetting.value(:easy_gantt_resources_show_groups)
+    filter_groups['group'] = l(:label_group_plural)
+  end
+  filter_groups['issue'] = l(:label_issue_plural)
+%>
+
+<div id="easy-gantt-resource-filters">
+  <%= render 'easy_queries/filters', query: query,
+                                     modul_uniq_id: modul_uniq_id,
+                                     block_name: block_name,
+                                     filters: filters,
+                                     filter_groups: filter_groups %>
+</div>

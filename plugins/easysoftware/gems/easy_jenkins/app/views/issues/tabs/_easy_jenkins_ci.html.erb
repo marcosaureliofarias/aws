@@ -1,0 +1,37 @@
+<% return unless @issue.present? %>
+
+<% if User.current.allowed_to?(:manage_easy_jenkins_pipelines, @project) %>
+  <%= form_tag run_project_easy_jenkins_pipelines_path(@project), method: :get, id: 'easy_jenkins_pipelines_form', remote: true do |f| %>
+    <fieldset>
+      <legend><%= l('easy_jenkins.pipeline_plural') %></legend>
+      <p>
+        <%= select_tag :pipeline_id, options_from_collection_for_select(EasyJenkins::Pipeline.for_issue(@issue, @project), :id, :external_name) %>
+        <%= submit_tag l('easy_jenkins.run_pipeline'), id: 'submit-easy-jenkins-pipelines-form', class: 'button button-secondary icon-play' %>
+      </p>
+      <%= hidden_field_tag 'issue_id', @issue.id %>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<fieldset>
+<div class="tab-easy-jenkins-ci-content">
+    <%= render partial: 'easy_jenkins_pipelines/history', locals: { issue: @issue }  %>
+</div>
+</fieldset>
+
+<%= late_javascript_tag do %>
+  EASY.schedule.late(function() {
+    $('#submit-easy-jenkins-pipelines-form').on('click', function(e) {
+      e.preventDefault();
+
+      var historyUrl = "<%= history_project_easy_jenkins_pipelines_path(@project, issue_id: @issue.id) %>";
+      var form = $('form#easy_jenkins_pipelines_form');
+      form.submit();
+
+      setTimeout(function(){
+        $.get( historyUrl, function(data) {});
+      }, 3000);
+
+    });
+  });
+<% end %>

@@ -1,0 +1,11 @@
+<% unless @mail_template.email_header.blank? %>
+  <% content_for :email_header do %>
+    <%= textilizable(@mail_template.email_header, :only_path => false) %>
+  <% end %>
+<% end %>
+<% unless @mail_template.email_footer.blank? %>
+  <% content_for :email_footer do %>
+    <%= textilizable(@mail_template.email_footer, :only_path => false) %>
+  <% end %>
+<% end %>
+<%= textilizable(@mail_template.mail_body_html, :only_path => false) %>

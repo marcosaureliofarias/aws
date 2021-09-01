@@ -1,0 +1,454 @@
+<%
+  load_params = query.to_params
+  load_params[:key] = User.current.api_key
+  load_params[:format] = 'json'
+
+  settings ||= {}
+
+
+  paths = {
+    rootPath: home_path,
+    issues_path: issues_path,
+    issue_path: issue_path('__issueId', key: User.current.api_key, format: :json),
+    user_allocation_data_path: easy_scheduler_user_allocation_data_path(format: :json),
+    tasksDataPath: EasyScheduler.filtered_entities_data_path(query, load_params),
+    taskPath: EasyScheduler.entity_path(query),
+    save_allocation_path: easy_scheduler_save_path(key: User.current.api_key, format: :json),
+    issuesDataPath: easy_scheduler_issues_data_path(key: User.current.api_key, format: :json),
+    timelogNewPath: new_easy_time_entry_path(format: :js, modal: true),
+    usersPath: easy_autocomplete_path('principals'),
+    modals: {
+        newEntityPath: easy_scheduler_combine_modal_path,
+        salesActivityModalPath: easy_scheduler_easy_entity_activity_modal_path
+    },
+    queries: {
+      edit: edit_easy_query_path(id: '__queryId__'),
+      destroy: easy_query_path(id: '__queryId__'),
+      load_users_for_query: easy_query_load_users_for_copy_path(easy_query_id: '__queryId__')
+    },
+    issues: {
+      inline_edit_data_sources: {
+        status: easy_autocomplete_path('allowed_issue_statuses', issue_id: '__issueID__'),
+        priority: easy_autocomplete_path('issue_priorities'),
+        assignee: easy_autocomplete_path('assignable_users', issue_id: '__issueID__'),
+        milestone: easy_autocomplete_path('assignable_versions', issue_id: '__issueID__')
+      }
+    },
+  }
+  permissions = {}
+  easy_plugins = {}
+
+  if EasyScheduler.easy_attendances?
+    easy_plugins[:easy_attendances] = true
+    paths[:easy_attendance_path] = easy_attendance_path('__entityId', key: User.current.api_key, format: :json)
+    paths[:easy_attendance_approval_save_path] = approval_save_easy_attendances_path
+    settings[:easy_attendance_activities] = EasyAttendanceActivity.sorted.map { |activity| activity.attributes }
+  end
+
+  if EasyScheduler.easy_calendar?
+    easy_plugins[:easy_calendar] = true
+    paths[:meetingFeed] = easy_calendar_ics_path(format: 'json')
+    paths[:holidayFeed] = easy_calendar_feed_path(enabled_calendars: ['easy_holiday_calendar'], format: :json)
+    paths[:meeting_path] = easy_meeting_path('__entityId', key: User.current.api_key, format: :json)
+    paths[:meetingModals] = easy_meeting_path('__entityId')
+    paths[:icalSyncUrl] = sync_easy_icalendar_path('__entityId')
+  end
+
+  if EasyScheduler.easy_entity_activities?
+    easy_plugins[:easy_entity_activities] = true
+    paths[:easy_entity_activity_path] = easy_entity_activity_path('__entityId', key: User.current.api_key, format: :json)
+  end
+
+  if EasyScheduler.easy_crm?
+    easy_plugins[:easy_crm] = true
+  end
+%>
+
+<script type="text/javascript">
+  window.EasyCalendar = window.EasyCalendar || {};
+  EasyCalendar.schedulerSettings = <%= {
+    platform: EasyScheduler.platform,
+    easyRedmine: EasyScheduler.easy_extensions?,
+    plugins: ['scheduler', 'active_links', 'agenda_view', 'year_view', 'key_nav', ('url' if !easy_page_context), 'locale', 'localstorage','toolModal'],
+    container: container_id,
+    isManager: !!settings['manager'],
+    displayFrom: settings['display_from'] || '6:00',
+    displayTo: settings['display_to'] || '20:00',
+    range_type: settings['range_type'] || 'manual',
+    ignoreWeekends: settings['show_weekends'] == '0',
+    selectedUserIds: settings['selected_user_ids'],
+    reloadSelectedUsers: settings['reload_assignees'],
+    taskType: query.entity.model_name.plural,
+    _settings: settings,
+    defaultToolbarZoom: settings['default_toolbar_zoom'],
+    easyPlugins: easy_plugins,
+    paths: paths,
+    permissions: permissions,
+    currentUserId: User.current.id,
+    defaultQueryParams: load_params,
+    availableCalendars: {
+      allocation: true,
+      meeting: true,
+      easy_attendance: true,
+      easy_entity_activity: true,
+      ical_event: true,
+      easy_holiday_event: true
+    },
+    labels: {
+      everythingSaved: l('easy_scheduler.notice_everything_saved'),
+      notice_issue_successfully_created: l('easy_scheduler.notice_issue_successfully_created', issue_subject: '__issueSubject__'),
+      notice_successful_update: l('easy_scheduler.notice_successful_update'),
+      notice_notifications_sent: l('easy_scheduler.notice_notifications_sent'),
+      more: l(:label_more),
+      errorPermissionDeleteMissing: l('easy_scheduler.error_permission_delete_missing'),
+      errorOutOfTaskLimits: l('easy_scheduler.error_out_of_task_limits'),
+      errorIsNotInFiltered: l('easy_scheduler.error_not_in_filtered'),
+      errorIssueRequired: l('easy_scheduler.error_issue_is_required'),
+      titleRemainingTime: l('easy_scheduler.title_remaining_time'),
+      saveAndClose: l('easy_scheduler.label_save_and_close'),
+      tabs:{
+        details: l('easy_scheduler.label_tab_details'),
+        comments: l('easy_scheduler.label_tab_comments'),
+        description: l('easy_scheduler.label_tab_description'),
+        attachments: l('easy_scheduler.label_tab_attachments')
+      },
+      entityTitle: {
+        meeting: l('easy_scheduler.label_meeting'),
+        allocation: l('easy_scheduler.label_allocation'),
+        issue: l('easy_scheduler.label_issue'),
+        easy_attendance: l('easy_scheduler.label_attendance'),
+        easy_entity_activity: l('easy_scheduler.label_sales_activity'),
+        ical_event: l(:label_ical_event)
+      },
+      issueErrors: {
+        estimatedHours: l('easy_scheduler.error_invalid_estimated_hours'),
+        invalidDate: l('easy_scheduler.error_invalid_date'),
+        invalidStartDate: l('easy_scheduler.error_invalid_start_date'),
+        invalidDueDate: l('easy_scheduler.error_invalid_due_date'),
+        errorInThePast: l('easy_scheduler.error_in_the_past'),
+      },
+      warnings: {
+        salesActivityWarning: l('easy_scheduler.sales_activity_warning')
+      },
+      unalocableDeclaimer: l('easy_scheduler.unalocable_declaimer')
+    },
+    templates:{
+      modalTab:
+      # language=HTML
+      %{
+        <div class="tabs tab-container">
+          <ul>
+            {{#tabs}}
+              <li>
+                <a data-tab-id="tab-{{tabSelector}}" href="javascript:void(0)" class="tab-selector {{#selected}}selected{{/selected}}" >{{tabName}}</a>
+              </li>
+            {{/tabs}}
+          </ul>
+        </div>
+      },
+      taskSaveLog:
+        # language=HTML
+        %{<br>#{t(:label_issue)} {{subject}}:
+          {{#estimated_hours}}
+            #{t(:text_journal_set_to,label:l(:field_estimated_hours),value:'{{estimated_hours}}')}
+            {{#assigned_to_id}} + {{/assigned_to_id}}
+          {{/estimated_hours}}
+          {{#assigned_to_id}}
+            #{t(:text_journal_set_to,label:l(:field_assigned_to),value:'{{assigneeName}}')}
+          {{/assigned_to_id}}
+        },
+      allocationText:
+        # language=HTML
+        %{
+        <div class="easy-calendar__event-data">
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:label_issue)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{name}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_assigned_to)}:</span>
+            <span class="easy-calendar__event-attribute-value"><img class="gravatar" src="{{avatar_url}}" title="{{assigneeName}}" alt="image" width="16px" height="20px">{{assigneeName}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_from)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{startDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_to)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{endDate}}</span>
+          </div>
+        </div>},
+      meetingText:
+        # language=HTML
+        %{
+        <div class="easy-calendar__event-data">
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:label_meeting)}</span>
+            <span class="easy-calendar__event-attribute-value">{{name}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_easy_entity_activity_attendees)}:</span>
+            <span class="easy-calendar__event-attribute-value">
+              {{#users}}
+                <img class="gravatar" src="{{avatar_url}}" title="{{assigneeName}}" alt="image" width="16px" height="20px">
+              {{/users}}
+            </span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_from)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{startDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_to)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{endDate}}</span>
+          </div>
+          {{#location}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_place_name)}:</span>
+              <span class="easy-calendar__event-attribute-value">{{location}}</span>
+            </div>
+          {{/location}}
+      </div>},
+      salesActivityText:
+        # language=HTML
+        %{<div class="easy-calendar__event-data">
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l('easy_scheduler.label_sales_activity')}</span>
+            <span class="easy-calendar__event-attribute-value">{{name}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_from)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{startDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_to)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{endDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_assigned_to)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{#users}}<img class="gravatar" src="{{avatar_url}}" title="{{assigneeName}}" alt="image" width="16px" height="20px">{{assigneeName}}{{/users}}</span>
+          </div>
+        </div>},
+      issueDetailsContent:
+        # language=HTML
+        %{<div id="tab-detail" class="easy-calendar__event-detail tab-content-container">
+          <div class="easy-calendar__event-data">
+          {{#status}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_status)}:</span>
+              <span class="easy-calendar__event-attribute-value">
+                <span class="multieditable editable" data-name="issue[status_id]" data-value="{{statusID}}" data-type="select"
+                 data-source="{{issueInlineEditPath_Status}}" tabindex="-1">
+                  {{status}}
+                </span>
+              </span>
+            </div>
+          {{/status}}
+          {{#priority}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_priority)}:</span>
+              <span class="easy-calendar__event-attribute-value">
+                <span class="multieditable editable" data-name="issue[priority_id]" data-value="{{priorityID}}"
+                data-type="select" data-source="{{issueInlineEditPath_Priority}}" tabindex="-1">
+                  {{priority}}
+                </span>
+              </span>
+            </div>
+          {{/priority}}
+          {{#assigneeName}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_assigned_to)}:</span>
+              <span class="easy-calendar__event-attribute-value">
+                <span class="multieditable editable" data-name="issue[assigned_to_id]"
+                data-value="{{assigneeID}}" data-type="select"
+                data-source="{{issueInlineEditPath_Assignee}}" tabindex="-1">
+                  <span class="easy-calendar__event-attribute-value">
+                    {{#assigneeAvatarUrl}}
+                      <img class="gravatar" src="{{assigneeAvatarUrl}}" title="{{assigneeName}}"
+                      alt="image" width="16px" height="20px">
+                    {{/assigneeAvatarUrl}}
+                    {{assigneeName}}
+                  </span>
+                </span>
+              </span>
+            </div>
+          {{/assigneeName}}
+          {{#authorName}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_author)}:</span>
+              <span class="easy-calendar__event-attribute-value">
+                <img class="gravatar" src="{{authorAvatarUrl}}" title="{{authorName}}" alt="image" width="16px" height="20px">
+                {{authorName}}
+              </span>
+            </div>
+          {{/authorName}}
+          {{#estimatedHours}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_estimated_hours)}:</span>
+                <span class="easy-calendar__event-attribute-value">
+                  {{#estimatePermissionEditable}}
+                    <span class="multieditable editable" data-type="hours" data-name="issue[estimated_hours]"
+                    data-value="{{estimatedHours}}" tabindex="-1">
+                  {{/estimatePermissionEditable}}
+                      {{estimatedHours}}
+                  {{#estimatePermissionEditable}}
+                    </span>
+                  {{/estimatePermissionEditable}}
+                </span>
+            </div>
+          {{/estimatedHours}}
+          {{#spentHours}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:label_spent_time)}:</span>
+              <span class="easy-calendar__event-attribute-value">{{spentHours}}</span>
+            </div>
+          {{/spentHours}}
+          {{#tracker}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_tracker)}:</span>
+              <span class="easy-calendar__event-attribute-value">{{tracker}}</span>
+            </div>
+          {{/tracker}}
+          {{#project}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_project)}:</span>
+              <span class="easy-calendar__event-attribute-value">{{project}}</span>
+            </div>
+          {{/project}}
+          {{#dueDate}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_due_date)}:</span>
+              <span class="easy-calendar__event-attribute-value">
+                <span class="multieditable editable" data-name="issue[due_date]" data-type="dateui" data-value="{{dueDate}}" tabindex="-1">
+                  {{dueDate}}
+                </span>
+              </span>
+            </div>
+          {{/dueDate}}
+          {{#startDate}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_start_date)}:</span>
+              <span class="easy-calendar__event-attribute-value">
+                <span class="multieditable editable" data-name="issue[start_date]" data-type="dateui" data-value="{{startDate}}" tabindex="-1">
+                  {{startDate}}
+                </span>
+              </span>
+            </div>
+          {{/startDate}}
+          {{#fixedVersion}}
+            <div class="easy-calendar__event-attribute">
+              <span class="easy-calendar__event-attribute-label">#{l(:field_fixed_version)}:</span>
+              <span class="easy-calendar__event-attribute-value">
+                <span class="multieditable editable" data-name="issue[fixed_version_id]" data-value="1"
+                data-type="select" data-source="{{issueInlineEditPath_Milestone}}" tabindex="-1">
+                  {{fixedVersion}}
+                </span>
+              </span>
+            </div>
+          {{/fixedVersion}}
+          </div>
+          {{#commentsPermission}}
+          <div class="easy-calendar__event-update">
+            <span class="easy-calendar__event-attribute-label">#{l('easy_scheduler.label_add_comment')}:</span>
+            <textarea id="comment" rows="4" cols="50"></textarea>
+          </div>
+          {{/commentsPermission}}
+        </div>},
+      issueCommentsContent:
+        # language=HTML
+        %{<div id="tab-comments" class="easy-calendar__event-comments hidden tab-content-container">
+            {{#comments}}
+              <div class="journal-details-container">
+                <h5 class="journal-byline"><a class="user active" title="#{l('title_user_detail')}" target="_blank" href="/users/{{userID}}/profile">{{userName}}</a>
+                <span class="journal-timestamp">{{date}}</span></h5>
+                <div id="journal-{{notesID}}-notes" class="wiki  editable">
+                  {{notes}}
+                </div>
+              </div>
+          {{/comments}}
+         </div>},
+         attachmentsContent:
+        # language=HTML
+        %{<div id="tab-attachments" class="easy-calendar__event-attachments hidden tab-content-container">
+            {{#attachments}}
+              <table style="border-collapse: collapse;" class="list attachments context-menu-container">
+                <tbody>
+                  <tr class="hascontextmenu context-menu-selection cm-last">
+                    <td class="doc-td-title name">
+                      <a title="#{l('title_download_attachment')}" target="_blank" class="icon icon-attachment" href="{{attachmentUrl}}">{{attachmentName}}</a>
+                      <span class="size">({{attachmentSize}})</span>
+                    </td>
+                    <td><span class="author">{{userName}} {{date}}</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            {{/attachments}}
+         </div>},
+      attendanceText:
+        # language=HTML
+        %{<div class="easy-calendar__event-data">
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:project_module_easy_attendances)}</span>
+            <span class="easy-calendar__event-attribute-value">{{name}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_from)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{startDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_to)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{endDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_user)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{#users}}<img class="gravatar" src="{{avatar_url}}" title="{{assigneeName}}" alt="image" width="16px" height="20px">{{assigneeName}}{{/users}}</span>
+          </div>
+        </div>},
+      icalEventText:
+        # language=HTML
+        %{<div class="easy-calendar__event-data">
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_from)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{startDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l('easy_scheduler.label_calendar_url_name')}:</span>
+            <span class="easy-calendar__event-attribute-value">{{icalName}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_period_to)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{endDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:label_ical_event)}</span>
+            <span class="easy-calendar__event-attribute-value">{{name}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_synchronized_at)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{syncDate}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_user)}:</span>
+            <span class="easy-calendar__event-attribute-value">
+              {{#users}}
+                <img class="gravatar" src="{{avatar_url}}" title="{{assigneeName}}" alt="image" width="16px" height="20px">
+                {{assigneeName}}
+              {{/users}}
+            </span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_place_name)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{location}}</span>
+          </div>
+          <div class="easy-calendar__event-attribute">
+            <span class="easy-calendar__event-attribute-label">#{l(:field_all_day)}:</span>
+            <span class="easy-calendar__event-attribute-value">{{allDay}}</span>
+          </div>
+        </div>
+        <div class="easy-calendar__modal-external-sync"><a data-remote="true" class="button-positive icon icon-refresh {{icalSyncClass}}" href={{icalSyncUrl}}>Sync</a></div>}
+    }
+    }.to_json.html_safe %>;
+  // EasyCalendar.schedulerSettings2 = EasyCalendar.schedulerSettings2 || {};
+  //      plugins: ['scheduler', 'minical', 'locale_de'],
+  //      container: 'scheduler_calendar_2',
+</script>

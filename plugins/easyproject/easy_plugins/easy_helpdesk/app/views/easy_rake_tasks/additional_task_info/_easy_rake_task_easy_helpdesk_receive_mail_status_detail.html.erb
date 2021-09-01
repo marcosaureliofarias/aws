@@ -1,0 +1,11 @@
+<% details.each do |detail| %>
+  <tr>
+    <td>
+      <%= format_time(detail.easy_rake_task_info.finished_at) %>
+    </td>
+    <td>
+      <% caption = detail.caption.presence || '-' %>
+      <%= link_to_function caption, "$.get('#{j url_for(detail.detail_url(task))}', '', function(data) {$('#ajax-modal').html(data); showModal('ajax-modal', '90%');})", :title => caption %>
+    </td>
+  </tr>
+<% end %>

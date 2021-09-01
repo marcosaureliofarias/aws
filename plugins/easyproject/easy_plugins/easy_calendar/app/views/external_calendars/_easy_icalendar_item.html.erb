@@ -1,0 +1,6 @@
+<span id="icalendar_<%= ical.id %>_<%= modul_uniq_id %>">
+  <%= hidden_field_tag "#{block_name}[icalendars][]", ical.id %>
+  <span id="icalendar_<%= ical.id %>_<%= modul_uniq_id %>_name"><%= ical.name %></span>
+  <%= link_to '', sync_easy_icalendar_path(ical), remote: true, class: "icon icon-refresh", title: l(:button_update) if !ical.in_progress? %>
+  <%= link_to '', 'javascript:void(0);', onclick: 'removeIcalendar(event);', class: "icon icon-del", title: l(:button_delete) %>
+</span>

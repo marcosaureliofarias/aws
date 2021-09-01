@@ -1,0 +1,31 @@
+<ul>
+  <%= call_hook(:view_users_context_menu_top, {:user => @user, :users => @users, :back_url => back_url, :ids => @user_ids }) %>
+
+  <%= content_tag :li, context_menu_link(l(:button_edit), @user ? edit_user_path(@user) : bulk_edit_users_path(:ids => params[:ids]), :class => 'icon icon-edit') -%>
+
+  <%= content_tag :li, context_menu_link(l(:button_lock), bulk_update_users_path(:ids => params[:ids], :back_url => back_url, :user => {:status => User::STATUS_LOCKED}),
+    :class => 'icon icon-lock',
+    :method => :put,
+    :data => {:confirm => l(:text_are_you_sure)}
+  ) if !(@user && (@user.locked? || !@user.logged?)) && !Array(params[:ids]).include?(User.current.id.to_s) -%>
+
+  <%= content_tag :li, context_menu_link(l(:button_unlock), bulk_update_users_path(:ids => params[:ids], :back_url => back_url, :user => {:status => User::STATUS_ACTIVE}),
+    :class => 'icon icon-unlock',
+    :method => :put,
+    :data => {:confirm => l(:text_are_you_sure)}
+  ) if !(@user && (@user.active? || !@user.logged?)) -%>
+
+  <%= content_tag :li, context_menu_link(l(:field_anonymize), bulk_anonymize_users_path(ids: params[:ids], back_url: back_url),
+    class: 'icon icon-lock',
+    method: :post,
+    data: {confirm: l(:text_are_you_sure)}
+  ) if User.current.admin? && !(@user && !@user.logged?) -%>
+
+  <%= content_tag :li, context_menu_link(l(:button_delete), bulk_destroy_users_path(:ids => params[:ids], :back_url => back_url),
+    :class => 'icon icon-del',
+    :method => :delete,
+    :data => {:confirm => l(:text_are_you_sure)}
+  ) if !(@user && !@user.logged?) && !Array(params[:ids]).include?(User.current.id.to_s) -%>
+
+  <%= call_hook(:view_users_context_menu_bottom, {:user => @user, :users => @users, :back_url => back_url, :ids => @user_ids }) %>
+</ul>

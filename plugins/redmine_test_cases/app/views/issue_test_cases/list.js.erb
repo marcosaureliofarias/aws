@@ -1,0 +1,18 @@
+var m = $("#ajax-modal");
+m.html("<%= j render(template: 'issue_test_cases/list', formats: [:html]) %>");
+showModal(m[0].id);
+var closeButton = {
+  text: "<%=j l(:button_close) -%>",
+  title: "<%=j l(:button_close) -%>",
+  click: function() {hideModal()},
+  'class': 'button'
+};
+var submitButton = {
+  text: "<%=j l(:button_add) -%>",
+  title: "<%=j l(:button_add) -%>",
+  click: function() {$(this).find('form').submit();},
+  'class': 'button-positive'
+};
+m.dialog('option', {
+  buttons: [closeButton, submitButton]
+});

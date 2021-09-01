@@ -1,0 +1,23 @@
+<%
+  version_tab = settings_project_path(@project, :tab => 'versions')
+  form_options = {:free_search_options => {:free_search_element_to_update => 'versions', :free_search_url => version_tab},
+    :easy_query_clear_url => settings_project_path(@project, :tab => 'versions', :set_filter => 0),
+    :easy_query_apply_url => settings_project_path(@project, :tab => 'versions', :set_filter => 1)}
+%>
+
+<%= render @query, :easy_query_name => l(:label_version), :options => {:back_url => version_tab, :disable_sort => true}, :groups_url => {:tab => 'versions'}, :form_options => form_options %>
+
+<% content_for (:easy_page_layout_service_box_primary_actions) do %>
+  <%= link_to_if_authorized l(:label_version_new), {:controller => 'versions', :action => 'new', :project_id => @project }, :class => 'button-positive icon icon-add'  %>
+<% end %>
+<% content_for (:easy_page_layout_service_box) do %>
+  <% if @project.versions.any? %>
+    <%= link_to l(:label_close_versions), close_completed_project_versions_path(@project), :method => :put, :class => 'button-2 icon icon-lock' %>
+  <% end %>
+<% end %>
+<% content_for (:sidebar) do %>
+  <% sidebar = render(:partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project}) -%>
+  <%= sidebar unless sidebar.blank? -%>
+<% end %>
+
+<%= context_menu({:controller =>'context_menus', :action => 'versions', :project_id => @project }, '#versions') -%>

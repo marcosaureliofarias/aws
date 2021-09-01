@@ -1,0 +1,66 @@
+en:
+  easy_sso_saml_client:
+    plugin_name: "Easy sso saml client"
+    plugin_description: ""
+    button_generate_certificate: Generate / Renew
+    heading_settings: SAML Settings
+    label_assertion_consumer_service_url: Assertion consumer service url
+    label_issuer: Issuer
+    label_single_logout_service_url: label_single_logout_service_url
+    label_idp_sso_target_url: SAML endpoint
+    label_idp_cert_fingerprint: Certificate fingerprint
+    label_idp_cert: Certificate
+    label_name: Name
+    label_name_identifier_format: Identifier format
+    label_idp_slo_target_url: label_idp_slo_target_url
+    label_idp_settings:  SAML identity provider (IDP) settings
+    label_debug: Debug
+    label_validation: Response validation
+    label_onthefly_creation: Onthefly creation
+    label_login_button: Sign in button
+    label_metadata_url: Metadata URL
+    label_login_url: Login URL
+    label_sp_certificate: Certificate
+    label_use_sp_certificate: Use SP certificate
+    label_name_identifier_value: Identifier value
+    label_my_settings: My (SP-Service Provider) settings
+    label_attribute_mappings: Attribute mappings
+    label_attribute_mappings_azure: Use Azure mappings
+    label_attribute_mapping_login: Login
+    label_attribute_mapping_mail: Mail
+    label_attribute_mapping_firstname: First name
+    label_attribute_mapping_lastname: Last name
+    text_assertion_consumer_service_url: The URL at which the SAML assertion should be received. If not provided, defaults to the OmniAuth callback URL (typically http://example.com/auth/saml/callback). Optional.
+    text_issuer: The name of your application. Some identity providers might need this to establish the identity of the service provider requesting the login. Required.
+    text_single_logout_service_url: The SLS (logout) callback URL
+    text_idp_sso_target_url: The URL to which the authentication request should be sent. This would be on the identity provider. Required.
+    text_idp_cert_fingerprint: The SHA1 fingerprint of the certificate, e.g. "90:CC:16:F0:8D:...". This is provided from the identity provider when setting up the relationship. This option or :idp_cert or :idp_cert_fingerprint_validator MUST be present.
+    text_idp_cert: The identity provider's certificate in PEM format. Takes precedence over the fingerprint option below. This option or :idp_cert_fingerprint or :idp_cert_fingerprint_validator must be present.
+    text_name_identifier_format: Used during SP-initiated SSO. Describes the format of the username required by this application. If you need the email address, use "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress". See http://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf section 8.3 for other options. Note that the identity provider might not support all options. If not specified, the IdP is free to choose the name identifier format used in the response. Optional.
+    text_idp_slo_target_url: The URL to which the single logout request and response should be sent. This would be on the identity provider. Optional.
+    text_name_identifier_value: Which %{app_name} user's field is used as name_identifier_value in SAML
+    text_attribute_mappings: Type name of attribute from SAML service for user's binding. If you don't know, use debug mode.
+    text_debug: Check it only for debugging purpose. After sign in it will show a debug page.
+    text_validation: Perform SAML response validation. You should disable it for debugging purpose. Keep checked in a production.
+    text_onthefly_creation: Allow automatically creation of authenticated users.
+    text_login_button: Show sign in button on log in screen.
+    text_metadata_url: The service provider metadata used to ease configuration of the SAML SP in the IdP. Send this URL to the administrator of the IdP.
+    text_my_settings: Current application settings for your IDP. These settings cannot be modified.
+    text_use_sp_certificate: The Service Provider will sign the request/responses with its private key. The Identity Provider will validate the sign of the received request/responses with the public x509 cert of the Service Provider.
+    text_debug_no_errors: No errors.
+    text_debug_invalid_response: SAML Document is not decrypted.
+    heading_debug_saml_ok: Yeah! You can disable debug mode, %{user}.
+    heading_debug_saml_fail: Oh no! Keep debugging.
+    heading_debug_user_cannot_be_created: User cannot be created, because
+    heading_debug_errors_in_saml: Errors in SAML Response
+    heading_debug_user_identificator: User identificator from SAML
+    heading_debug_user_attributes: User attributes from SAML
+    heading_debug_mapped_attributes: Mapped attributes
+    heading_debug_decoded_response: Decoded SAML Response
+    heading_debug_raw_response: RAW SAML Response
+
+  rys_features:
+    easy_sso_saml_client:
+      title: "SAML Service provider"
+      description: "A SAML service provider is a system entity that receives and accepts authentication assertions in conjunction with a single sign-on (SSO) profile of the Security Assertion Markup Language (SAML)."
+

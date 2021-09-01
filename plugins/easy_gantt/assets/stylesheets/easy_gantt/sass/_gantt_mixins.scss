@@ -1,0 +1,11 @@
+@mixin gantt-relation($color){
+  .gantt_line_wrapper div {
+    border: 1px solid $color;
+  }
+  .gantt_link_arrow {
+    border-color: $color;
+  }
+  &:hover .gantt_line_wrapper div {
+    box-shadow: 0 0 5px 0 $color;
+  }
+}

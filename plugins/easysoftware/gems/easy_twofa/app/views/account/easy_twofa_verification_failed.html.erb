@@ -1,0 +1,27 @@
+<div class="easy-twofa-verification easy-twofa-select-scheme--login">
+  <h2><%= l('easy_twofa.twofa_verification_failed') %></h2>
+
+  <p>
+    <%= l('easy_twofa.verification_failed_contact_administrator') %>
+  </p>
+
+  <div class="flash error">
+    <ul>
+      <% @easy_twofa_scheme.last_verification_status.errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <p>
+    <% if session[:easy_twofa_selection] == 1 %>
+      <%= link_to l('easy_twofa.select_scheme'), easy_twofa_select_scheme_account_path, class: 'button' %>
+    <% else %>
+      <%= link_to l(:button_login), signin_path, class: 'button' %>
+    <% end %>
+  </p>
+</div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_twofa' %>
+<% end %>

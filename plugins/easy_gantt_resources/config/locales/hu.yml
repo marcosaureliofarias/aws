@@ -1,0 +1,170 @@
+---
+hu:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: Allokáció már létezik
+  button_hide_planned_tasks: Tervezett feladatok elrejtése
+  button_top_menu_easy_gantt_resources: Erőforrás-menedzsment
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: új Erőforrás-menedzsment nézet az Easy Ganttban
+  easy_gantt_resources_plugin_name: Erőforrás-menedzsment
+  easy_gantt_resources:
+    allocator:
+      evenly: Egyenletesen (lassú)
+      from_end: Végétől
+      from_start: Elejétől
+      future_evenly: Jövőben, egyenletesen
+      label_allocator: Kiosztó
+    buttons:
+      button_project_menu: Erőforrás-menedzsment
+      rm_hide_reservations: Foglalások elrejtése
+      rm_hide_tasks: Feladatok
+      rm_reservations: Foglalások
+      rm_with_milestones: Mérföldkövek megjelenítése
+      rm_with_projects: Projektek megjelenítése
+    context:
+      heading_allocator_setting: Allokátor beállítása
+      label_maximal_hours: Maximális órák/napok
+      pseudo_even_allocation: Látszólagos allokáció
+      text_setting_for: Beállítás ehhez
+    errors:
+      assigned_to_is_blank: Be kell állítani felhatalmazottat
+      estimated_hours_is_blank: A becsült órák nem érvényesek
+      issue_is_closed: Feladat lezárva
+      negative_allocation: 'negatív kiosztott óraszámokat okoz ezen a napon: %{date}'
+      no_rights_for_allocation: Nincsen jogosultsága az allokáláshoz %{issue}
+      non_member_assignee: Ez a %{issue} feladat a %{project} projekthez tartozik
+        és %{assignee}  nem tagja a projektnek
+      over_allocation: több allokált órával rendelkezik, mint amennyi lehetséges %{date}
+        napon
+      project_is_baseline: Projekt alapterv
+      save_error: A "%{name}" feladat [%{allocations}] allokációi %{assignee} nincsenek
+        mentve %{reason} miatt
+      start_or_due_is_required: A kezdés vagy az esedékesség dátumának megadása kötelező
+    event_types:
+      generic: Esemény
+      holiday: Szabadnapok
+      meeting: Értekezlet
+    global_resource_title: Globális Erőforrás-menedzsment
+    label_events: Események
+    label_other_allocations_sum: Nem látható feladatok allokációja
+    label_reservations_sum: Foglalások allokációja
+    label_whole_day: Egész nap
+    legend:
+      day_custom_allocation: kézileg beállított allokáció
+      day_over_allocation: A felhasználó egy meghatározott napon túlterhelt
+      full_allocations: a felhasználónak megfelelő mennyiségű munkája van
+      no_allocations: a felhasználóra nincsenek feladatok kiosztva
+      over_allocations: a felhasználó túlterhelt
+      reservation: foglalás
+      some_allocations: a felhasználónak még van szabad kapacitása
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: Erőforrás-menedzsment
+    text_easy_resources_footer: Redmine Erőforrás kezelőt az Easy tartja fenn
+    title_rm_short: EK
+  easy_pages:
+    modules:
+      easy_gantt_resources: Erőforrás-menedzsment
+      personal_easy_gantt_resources: Személyes Erőforrás-menedzsment
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: Erőforrás-menedzsment
+        description: Tovább a Globális Erőforrás-menedzsmenthez
+  easy_query:
+    name:
+      easy_resource_easy_query: Erőforrás-menedzsment
+  error_allocation_uniqueness: Erőforrás már létezik
+  error_epm_resource_already_active: A lap modul a lapon már aktív
+  error_invalid_dates: Projektek megjelenítése
+  error_resources_not_authorized: Az erőforrások nem lettek mentve, Önnek nincs jogosultsága
+    a módosításokhoz
+  field_advance_hours_definition: Kézi munkaóra beállítás
+  field_advance_hours_per_days: Napi órák beállítása
+  field_assigned_to_admin: Adminisztrátor
+  field_assigned_to_created_on: Létrehozva
+  field_assigned_to_email: E-mail
+  field_assigned_to_firstname: Keresztnév
+  field_assigned_to_lastname: Vezetéknév
+  field_assigned_to_login: Bejelentkezés
+  field_assigned_to_status: Állapot
+  field_change_allocator_enabled: Allokátor megváltoztatása
+  field_decimal_allocation: Decimális allokáció
+  field_default_allocator: Alapértelmezett allokátor
+  field_easy_gantt_show_task_latest_due: Az utolsó határidő megjelenítése
+  field_hide_planned_tasks_enabled: Tervezett feladatok gombjának elrejtése
+  field_hide_unassigned: Nem kiosztottak elrejtése
+  field_hours_per_day: Órák egy napon
+  field_resource_allocator: Forrás allokátor
+  field_show_groups: Csoportok megjelenítése
+  field_show_total_project_allocations: Az összes projekt allokáció megjelenítése
+  field_watchdog_enabled: Védelem (watchdog)
+  heading_easy_gantt_resources_index: Erőforrások
+  help_easy_gantt_resources_users_estimated_ratios: A feladatok becsült óraszáma szorzásra
+    kerül a felhasználóknál ezzel az értékkel az erőforrástervezésnél
+  help_easy_gantt_resources_users_hours_limits: A felhasználó napi munkaóráinak allokálható
+    része korlátozva van ezzel az értékkel
+  help_easy_gantt_resources_users_hours_limits_blank: Hagyja üresen, hogy az alapértelmezett
+    értékért
+  label_easy_gantt_allocations: Allokációk
+  label_easy_gantt_period: Időszak
+  label_easy_gantt_resources_get_from_users: felhasználókból számol
+  label_easy_gantt_resources_get_from_users_for_all_groups: Minden felhasználó záma
+  label_easy_gantt_resources_global_query_filters: Globális alapértelmezett szűrők
+  label_easy_gantt_resources_groups_holidays_enabled: Szabadságok engedélyezése csoportok
+    számára
+  label_easy_gantt_resources_groups_selection: Csoportos kiválasztás
+  label_easy_gantt_resources_hours_from_calendar: Naptári órák
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: Naptári órák minden
+    felhasználótól
+  label_easy_gantt_resources_new_reservation: Új foglalás
+  label_easy_gantt_resources_reservation_enabled: Foglalások engedélyezése
+  label_easy_gantt_resources_settings: Erőforrás beállítások
+  label_easy_gantt_resources_show_free_capacities: Szabad kapacitások megjelenítése
+  label_easy_gantt_resources_user_unassigned: Kiosztásra vár
+  label_easy_gantt_resources_users_estimated_ratios: Becsült időarány
+  label_easy_gantt_resources_users_hours_limits: Napi munkaóra limit
+  label_easy_gantt_resources_users_selection: Felhasználók kiválasztása
+  label_easy_gantt_resources_with_projects: Projekt kiosztások megjelenítése alapértelmezésben
+  label_easy_meeting_easy_resource_dont_allocate: Nem osztja ki
+  project_module_easy_gantt: Easy Gantt
+  text_easy_gantt_resources_advance_hours_definition: A munkaórákat a hét minden napjára
+    be lehet állítani
+  text_easy_gantt_resources_advance_hours_per_days: Maximális kiosztható napi munkaórák
+  text_easy_gantt_resources_change_allocator_enabled: Kiosztás módosításának engedélyezése
+    feladatszerkesztéskor
+  text_easy_gantt_resources_change_default_allocator: Teljesítmény szempontjából,
+    ennek az opciónak a megváltoztatása nem fogja befolyásolni a jelenlegi alapértelmezett
+    allokációkat a feladaton
+  text_easy_gantt_resources_decimal_allocation: Az órák decimális értékek alapján
+    lesznek kiosztva (0.5)
+  text_easy_gantt_resources_default_allocator: A becsült idő, hogyan lesz allokálva.
+    (Ha egyenlő arányban, az lassú lehet)
+  text_easy_gantt_resources_default_zoom: Globális Erőforrás-menedzsment alapértelmezett
+    nézete
+  text_easy_gantt_resources_groups_holidays_enabled: A csoporthoz tartozó tagok szabadnapjai
+    csökkentik az allokációt. 
+  text_easy_gantt_resources_hide_planned_tasks_enabled: '"Tervezett feladatok elrejtése"
+    gomb megjelenítése az erőforrástervezőben'
+  text_easy_gantt_resources_hours_per_day: Maximum allokálható órák egy napon
+  text_easy_gantt_resources_overloaded_assigned: 'Ez a feladat túlterhelést okoz:
+    %{errors}. Módosíthat itt: %{link}.'
+  text_easy_gantt_resources_reservation_enabled: Óraszám foglalás engedélyezése felhasználókon. 
+  text_easy_gantt_resources_show_free_capacities: Átkapcsolás engedélyezése az allokált
+    órák megjelenítéséről a szabad kapacitásokra
+  text_easy_gantt_resources_show_groups: Csoportok megjelenítése a globális Erőforrás-menedzsmenten
+  text_easy_gantt_resources_show_total_project_allocations: Összes allokált óra megjelenítése
+    a projekt erőforrás-menedzsment moduljánál
+  text_easy_gantt_resources_watchdog_enabled: Felhasználó túlterheltségének figyelése
+    feladatszerkesztéskor
+  text_easy_gantt_resources_with_projects: Kapcsolja be a "Projektekkel" opciót a
+    globális erőforrás kezelőben alapértelmezésként
+  text_easy_meeting_easy_resource_dont_allocate: Az értekezletek nem csökkentik az
+    erőforrás-menedzsment allokációját 
+  title_easy_gantt_personal_resources: Saját erőforrások
+  title_easy_gantt_resources_settings: Easy Erőforrás-menedzsment
+  title_easy_gantt_resources_users_settings: Egyedi felhasználói beállítások

@@ -1,0 +1,93 @@
+<%= stylesheet_link_tag "redmine_re.css", :media => 'all' %>
+<h3> <%= link_to_function "Coverage Statistics", "Effect.toggle('cov_stat')" %></h3>
+<div id="cov_stat">
+<h4>Overall Coverage</h4>
+<% issuecount = Issue.find(:all).count %>
+<% issues_wo_artifacts = ReRealization.issues_without_artifacts.count %>
+<% coverage = (issuecount != 0 ? (100 - (issues_wo_artifacts.to_f/issuecount.to_f) * 100).round(2) : "-") %>
+<table class="list">
+  <tr class="<%= case coverage; when 0..50 then "coverage_critical" when 51..80 then "coverage_normal" when 81..100 then "coverage_good"  end;  %>">
+    <td><%= t(:issuecount) %> <%= issuecount%></td>
+    <td><%= t(:issues_wo_artifacts) %>  <%= issues_wo_artifacts%></td>
+    <td><%= t(:artifact_issue_coverage) %> <%= coverage %>%</td>
+  </tr>
+</table>
+
+<% Project.find(:all).each do |project| %>
+    <% issues_wo_artifacts = ReRealization.issues_without_artifacts_by_project(project).count %>
+    <% issuecount = Issue.where(project_id: project.id).count %>
+    <% coverage = (issuecount != 0 ? (100 - (issues_wo_artifacts.to_f/issuecount.to_f) * 100).round(2): "-") %>
+    <h4><%= project.name %></h4>
+  <table class="list">
+  <tr class="<%= case coverage; when 0..50 then "coverage_critical" when 51..80 then "coverage_normal" when 81..100 then "coverage_good"  end;  %>">
+    <td><%= t(:issuecount) %> <%= issuecount %></td>
+    <td><%= t(:issues_wo_artifacts) %>  <%= issues_wo_artifacts%></td>
+    <td><%= t(:artifact_issue_coverage) %> <%= coverage %>%</td>
+  </tr>
+</table>
+<% end %>
+
+</div>
+<h3><%= link_to_function "Critical Tickets", "Effect.toggle('crit_tickets')" %></h3>
+<div id="crit_tickets" >
+<% Project.find(:all).each do |project| %>
+<% tickets_with_end_overdue = Issue.tickets_with_end_overdue(project) %>
+<h4><%= link_to_function project.name, "Effect.toggle('#{project.name}')" %></h4>
+ <div id="<%=project.name%>">
+    <% unless  tickets_with_end_overdue.blank?  %>
+<table class="list">
+  <thead>
+  <tr>
+    <th colspan="3"><%= t(:ticketend_overdue) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr style="font-weight: bold;">
+    <td width="45%"><%= t(:subject) %></td>
+    <td><%= t(:status) %></td>
+    <td><%= t(:dates) %></td>
+  </tr>
+
+
+  <% tickets_with_end_overdue.each do |ticket| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to '#'+ticket.id.to_s+' '+ticket.subject, issue_path(ticket) %></td>
+        <td><%= IssueStatus.find(ticket.status_id).name %></td>
+        <td><%= ticket.start_date.to_s %> until <%= ticket.due_date.to_s %> (Done: <%= ticket.done_ratio %>%) </td>
+
+      </tr>
+  <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+    <% tickets_with_start_overdue = Issue.tickets_with_start_overdue(project) %>
+  <% unless tickets_with_start_overdue.blank? %>
+<table class="list">
+  <thead>
+  <tr>
+    <th colspan="3"><%= t(:ticketstart_overdue) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr style="font-weight: bold;">
+    <td width="45%"><%= t(:subject) %></td>
+    <td><%= t(:status) %></td>
+    <td><%= t(:dates) %></td>
+  </tr>
+
+  <% Issue.tickets_with_start_overdue(project).each do |ticket| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td><%= link_to '#'+ticket.id.to_s+' '+ticket.subject, issue_path(ticket) %></td>
+        <td><%= IssueStatus.find(ticket.status_id).name %></td>
+        <td><%= ticket.start_date.to_s %> until <%= ticket.due_date.to_s %> (Done: <%= ticket.done_ratio %>%) </td>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<% end %>
+     </div>
+<% end %>
+</div>

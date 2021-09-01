@@ -1,0 +1,354 @@
+---
+zh:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: 邮件主体（超文本标记语言）
+        body_plain: 邮件正文（纯文本）
+        issue_status_id: 任务状态
+        mailboxes: 使用邮箱：
+        reply_to: 回复
+        sender: 寄件人
+        subject: 主题
+    models:
+      easy_helpdesk_mail_template: 邮件模板
+  aggregated_periods:
+    half-yearly: 半年
+    quarterly: 季度
+    yearly: 每年
+  button_easy_helpdesk_add_domain_name: 添加邮件或邮件域名
+  button_easy_helpdesk_add_mail_template: 添加邮件模板
+  button_easy_helpdesk_add_mailbox: 添加邮箱
+  button_easy_helpdesk_add_project: 添加项目
+  button_easy_helpdesk_add_project_from_sidebar: 添加到 Help desk
+  button_easy_helpdesk_add_signature: 添加签名
+  button_easy_helpdesk_add_sla: 添加一个SLA
+  button_easy_helpdesk_all_mail_templates_index: 全部e-mail 模板
+  button_easy_helpdesk_all_mailboxes_index: 全部的邮箱
+  button_easy_helpdesk_all_projects_index: 所有的Help desk 事项
+  button_easy_helpdesk_mail_templates_index: 模板列表
+  button_easy_helpdesk_mailboxes_index: 邮箱列表
+  button_easy_helpdesk_projects_index: 项目列表
+  button_easy_helpdesk_reports_index: 报表
+  button_easy_helpdesk_settings_index: Help desk 设置
+  confirm_edit_remaining_hours: 此项的值由系统后台计算, 确定要手动编辑么?
+  easy_helpdesk_author: 易软件
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_name: Help desk
+  easy_helpdesk_plugin_description: "- 复杂的帮助桌面解决方案"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Help desk
+    modules:
+      easy_helpdesk_create_mail_template_button: 创建邮件模板按钮
+      easy_helpdesk_create_mailbox_button: 创建邮箱按钮
+      easy_helpdesk_mailboxes: Help desk 邮箱
+      easy_helpdesk_mailtemplates: Help desk 邮件模板
+      easy_helpdesk_project_query: 筛选Help desk事项
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Easy helpdesk  邮件模板
+        description: Easy helpdesk邮件模板
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Easy helpdesk 邮箱
+        description: 查看 Easy helpdesk邮箱
+    easy_helpdesk:
+      index:
+        caption: Helpdesk
+        description: 查看 Helpdesk控制台
+  easy_query:
+    name:
+      easy_helpdesk_project_query: 服务台 - 项目
+      easy_helpdesk_report_monthly_query: Help desk - 月度报表
+      easy_helpdesk_report_yearly_query: Help desk - 年度报表
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: 服务台私人过滤器项目
+        easy_helpdesk_report_monthly_query: Help desk月度报表中的私人筛选器
+        easy_helpdesk_report_yearly_query: Help desk年度报表中的私用筛选器
+      public:
+        easy_helpdesk_project_query: 公共项目的过滤器服务台
+        easy_helpdesk_report_monthly_query: Help desk月度报表中的公用筛选器
+        easy_helpdesk_report_yearly_query: Help desk年度报表中的公用筛选器
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Help desk - 计算总小时数
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Help desk - 自动更新任务单
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Help Desk - 接收邮件
+      settings:
+        imap:
+          allow_override: 允许重写值
+          allow_override_example: 例：跟踪，优先级 - 这些属性应该覆盖的邮件
+          application_section_label: 其他设置
+          category_example: 例如：分类 - 将有新的任务类别类别
+          email_section_label: 邮箱设置
+          folder: 夹
+          folder_example: IMAP文件夹阅读（默认值：INBOX）
+          folders: 未读文件夹
+          folders_example: 'IMAP未读邮件夹 (每行一封) (默认目录: INBOX, 用"/" 来选择文件夹, 如:inbox/sales)'
+          host: 服务器主机
+          host_example: 例：mail.company.com
+          label: IMAP
+          move_on_failure: 失败时移动到
+          move_on_failure_example: 移动被忽略的邮件文件夹邮箱
+          move_on_success: '成功时移动到:'
+          move_on_success_example: 移动已成功接收到文件夹邮箱的邮件，否则将被删除
+          no_permission_check: 没有用户的权限检查
+          password: 密码
+          password_example: 例如：secretPassword的
+          port: 端口
+          port_example: 例：143
+          priority_example: 例如： - 新的任务的优先级高
+          project_example: 例：205  - 新的任务将被创建以项目ID 205
+          sender_mail: 发送人
+          sender_mail_example: '示例: support@company.com'
+          ssl: SSL
+          ssl_example: 使用SSL认证
+          status_example: 例如：新 - 新任务新状态
+          tracker_example: 例如：错误 - 新的任务将跟踪问题
+          unknown_user: 未知的用户
+          unknown_user_example: 接受 - 匿名用户将被用于创造 - 用户将被从邮件创建混凝土登录 - 用户将使用
+          use_custom_sender: 使用另外的帐号发送
+          username: 用户
+          username_example: 例：accessuser@domain.com
+        pop3:
+          allow_override: 允许重写值
+          allow_override_example: 例：跟踪，优先级 - 这些属性应该覆盖的邮件
+          apop: APOP
+          apop_example: 使用APOP认证
+          application_section_label: 其他设置
+          category_example: 例如：分类 - 将有新的任务类别类别
+          delete_unprocessed: 删除未经处理的
+          delete_unprocessed_example: 删除不能被处理的邮件
+          email_section_label: 邮箱设置
+          host: 主持人
+          host_example: 例：mail.company.com
+          label: POP3
+          no_permission_check: 没有用户的权限检查
+          password: 密码
+          password_example: 例如：secretPassword的
+          port: 端口
+          port_example: 例：110
+          priority_example: 例如： - 新的任务的优先级高
+          project_example: 例：205  - 新的任务将被创建以项目ID 205
+          sender_mail: 发送人
+          sender_mail_example: support@company.com
+          status_example: 例如：新 - 新任务新状态
+          tracker_example: 例如：错误 - 新的任务将跟踪问题
+          unknown_user: 未知的用户
+          unknown_user_example: 接受 - 匿名用户将被用于创造 - 用户将被从邮件创建混凝土登录 - 用户将使用
+          use_custom_sender: 使用另外一帐号发送
+          username: 用户
+          username_example: 例：accessuser@domain.com
+  error_update_easy_setting_helpdesk: 无法保存设置
+  field_aggregated_hours: 累计 Help desk 小时数
+  field_aggregated_hours_period: 累计的时间区段
+  field_aggregated_hours_remaining: 剩余的 Help desk 小时数
+  field_aggregated_hours_start_date: 开始累计的日期
+  field_automatically_issue_closer_enable: 启用Help desk 任务单自动更新
+  field_default_for_mailbox: 默认邮箱
+  field_easy_helpdesk_has_sla: 有SLA
+  field_easy_helpdesk_need_reaction: 需要回应?
+  field_easy_helpdesk_project_keyword: 项目关键词
+  field_easy_helpdesk_project_matching:
+    domain_name: 邮件或邮件域名
+    email_field_from: 取自字段
+    email_field_to: 从现场拍摄到
+  field_easy_helpdesk_project_monthly_hours: 约定的Help desk每月小时数
+  field_easy_helpdesk_project_sla:
+    blank_keyword: SLA 名称丢失
+    hours_to_response: 响应时间(小时)
+    hours_to_solve: 解决HelpDesk的时间要求(?小时内)
+    keyword: 关键词
+    title: SLA的名称
+  field_easy_helpdesk_project_spent_time_current_month: HelpDesk工作小时数 (当月)
+  field_easy_helpdesk_project_spent_time_last_month: Help Desk工作小时数(前一月)
+  field_easy_helpdesk_project_spent_time_total: 在HelpDesk上总工作时间
+  field_easy_reopen_at: 重新开启时间
+  field_easy_response_date_time: SLA (响应)
+  field_easy_time_to_solve_paused_at: SLA 暂停时间
+  field_email_footer: 邮件页脚
+  field_email_header: 邮件标题
+  field_hours_mode_from: SLA的工作时间
+  field_hours_to_response: SLA (响应)
+  field_hours_to_solve: SLA (方案)
+  field_is_under_helpdesk: 是在 Help desk内
+  field_issue_closer_done_issue_status: 变更状态为
+  field_issue_closer_done_issue_user: 分配给
+  field_issue_closer_inactive_interval: 并且在?天内没有更新
+  field_issue_closer_observe_issue_status_id: 状态为
+  field_monitor_due_date: 监控Help Desk工作单到截止日期
+  field_monitor_spent_time: 监控HelpDesk工作单的花费时间
+  field_monthly_hours: 约定的每月Help desk 小时数
+  field_use_working_time: 按工作时间计算 SLA 数目
+  heading_easy_helpdesk_index: Help Desk
+  heading_easy_helpdesk_mail_templates_edit: 编辑邮件模板
+  heading_easy_helpdesk_mail_templates_index: 邮件模板
+  heading_easy_helpdesk_mail_templates_new: 新邮件模板
+  heading_easy_helpdesk_mail_templates_show: 详细的邮件模板
+  heading_easy_helpdesk_mailboxes_edit: 编辑信箱
+  heading_easy_helpdesk_mailboxes_index: 邮箱
+  heading_easy_helpdesk_mailboxes_new: 新的邮箱
+  heading_easy_helpdesk_projects_edit: 编辑项目
+  heading_easy_helpdesk_projects_index: 项目
+  heading_easy_helpdesk_projects_new: 新项目
+  heading_easy_helpdesk_projects_show: 项目详情
+  heading_easy_helpdesk_reports_index: Help desk - 报表
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: 预付工作小时数的月度报表
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: 预付工作小时数的年度报表
+  heading_easy_helpdesk_settings: 设置
+  issue_closer_inactive_interval_units:
+    days: 天
+    hours: 小时
+  label_automatically_issue_closer: 自动更新任务单, 当任务单符合以下条件
+  label_copy_settings_sla_from_project: 从项目复制SLA设置
+  label_easy_hekodesk_additional_task_info_received_emails: 处理的邮件
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: 当月Heldpesk工作小时数
+  label_easy_helpdesk_actual_budget_to_spend: 剩余小时数
+  label_easy_helpdesk_aggregated_from_last_period: 从上一时间区段开如累计
+  label_easy_helpdesk_alerts: 警报设置
+  label_easy_helpdesk_allow_custom_sender: 允许自定义发送(按项目)
+  label_easy_helpdesk_allow_override: 启用任务属性更新
+  label_easy_helpdesk_client_response_status: 在客户回应后, 更改状态为
+  label_easy_helpdesk_domain_name: 邮件域
+  label_easy_helpdesk_emails: 邮件设置 - 页眉和页脚
+  label_easy_helpdesk_enable_email_footer: 更改这个项目的邮件页脚吗？
+  label_easy_helpdesk_enable_email_header: 更改这个项目的邮件页首？
+  label_easy_helpdesk_hours_comulated: 累计小时数
+  label_easy_helpdesk_hours_comulated_range: 从 %{from} 到 %{to}
+  label_easy_helpdesk_hours_per_month: 当月工作小时数
+  label_easy_helpdesk_ignore_cc: 忽略收到的邮件中的抄送人
+  label_easy_helpdesk_mail_signature: Help desk - 签名
+  label_easy_helpdesk_matching: 邮件或域的设置
+  label_easy_helpdesk_message_above_variables: 任务备注显示在邮件模板上方
+  label_easy_helpdesk_need_reaction: 需要回应!
+  label_easy_helpdesk_project_helpdesk_tab: Help desk
+  label_easy_helpdesk_project_managed_by_helpdesk: Help desk设置
+  label_easy_helpdesk_project_plural: Help desk 项目
+  label_easy_helpdesk_projects_sla_working_time_calendar: SLA工作天数
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: 在任务重新开启后, 重置SLA
+  label_easy_helpdesk_sender: 发送人
+  label_easy_helpdesk_sender_current_user: 当前登陆用户
+  label_easy_helpdesk_sender_is_user: 发送人为已登陆用户
+  label_easy_helpdesk_sender_mailbox_address: 邮箱地址
+  label_easy_helpdesk_sender_redmine_default: 默认来自邮件通知
+  label_easy_helpdesk_signature: 签名
+  label_easy_helpdesk_signature_name: 签名人
+  label_easy_helpdesk_skip_ignored_emails_headers_check: 允许自动生成邮件
+  label_easy_helpdesk_sla: SLA设置 - 设置解决一个Help desk工作单的 优先级, 时间
+  label_easy_helpdesk_sla_start_states: 计算状态为?的任务单的 SLA
+  label_easy_helpdesk_sla_stop_states: 任务单状态为?时暂停SLA
+  label_filter_group_easy_helpdesk_project_query: 服务台 - 项目
+  label_filter_group_easy_helpdesk_report_monthly_query: Help desk -报表
+  label_filter_group_easy_helpdesk_report_query: Help desk - 报表
+  label_filter_group_easy_helpdesk_report_yearly_query: Help desk - 报表
+  label_filter_show_spent_time_current_month_equal_to_zero: HelpDesk上工作小时数(当月)为0 .
+  label_filter_show_spent_time_last_month_equal_to_zero: HelpDesk上工作小时数(前一个月)为0 .
+  label_issue_bottom_from_easy_helpdesk: 创建任务服务台（%{easy_helpdesk_mailbox_username}）
+  label_prepaid_this_month: 每月约定小时数
+  label_sla_calendar_settings: 日程设置
+  permission_manage_easy_helpdesk: 管理Help desk
+  permission_manage_easy_helpdesk_project: 管理Help desk 项目
+  project_module_easy_helpdesk: Help desk
+  setting_easy_helpdesk_custom_sender: Help desk 发送人
+  text_easy_helpdesk_change_default_sender: 此设置不会变影响邮件回复给谁.
+  text_easy_helpdesk_custom_sender: 重写默认的HelpDesk发送人. 如要关闭此功能请保留为空.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: 当前受理人
+    date: 当前日期
+    spent_time: 在此任务上所用的时间
+    task_closed_on: 任务关闭于(日期)
+    task_description: 任务描述
+    task_done_ratio: 任务完成率
+    task_due_date: 任务截止日期
+    task_estimated_hours: 任务预计用时
+    task_history: 此任务的所有历史评论
+    task_id: 当前任务ID
+    task_id_without_hash: 当前任务ID(不带 "-")
+    task_last_journal: 此任务的上一个公开评论
+    task_note: 此任务的上一条评论
+    task_priority: 任务优先级
+    task_project: 项目名
+    task_public_url: 任务公开URL
+    task_start_date: 任务状态
+    task_status: 任务状态
+    task_subject: 当前任务标题
+    task_tracker: 任务追踪
+    user_first_name: 当前用户名
+    user_last_name: 当前用户的姓
+    user_name: 当前用户全名
+    user_signature: 当前用户签名
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - '标题和邮件正文可以包含动态文本:'
+  - "%task_id% (用来替换当前任务 ID)"
+  - "%task_subject% (用来替换当前任务标题)"
+  - "%task_note% (用来替换任务上一个备注)"
+  - "%task_history% (替代任务全部公开的评论记录)"
+  - "%time_spent% (替代任务所用时间)"
+  - "%assignee% (替代当前受理人)"
+  - "%user_signature% (替代当前用户签名)"
+  - "%date% (替代当前日期)"
+  - "%task_tracker% (替代任务追踪者)"
+  - "%task_project% (替代项目名)"
+  - "%task_description% (替代任务描述)"
+  - "%task_status% (替代任务状态)"
+  - "%task_priority% (替代任务优先级)"
+  - "%task_estimated_hours% (替代任务预计小时数)"
+  - "%task_done_ratio% (替代任务完成率)"
+  - "%task_public_url% (替代任务公开URL)"
+  - "%task_closed_on% (替代任务关闭日期)"
+  - "%task_due_date% (替代任务截止日期)"
+  - "%task_start_date% (替代任务开始日期)"
+  - "%user_name% (替代当前用户全名)"
+  - "%user_first_name% (替代当前用户名)"
+  - "%user_last_name% (替代当前用户姓)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: '标题和邮件下方可以包含动态文本:'
+  text_easy_helpdesk_mail_template_issue_status_id: 允许绑定一个邮箱模板，以一个特定的任务状态
+  text_easy_helpdesk_mail_template_replacement_for: 替代
+  text_easy_helpdesk_mail_template_reply_to: "（先生示例） - 这里不允许"
+  text_easy_helpdesk_mail_template_reply_to2: 字段“回复”和“发件人”从邮箱模板，以保持内部沟通的一个问题
+  text_easy_helpdesk_non_default_mailboxes_warning_below: 你应该将这些邮箱分配到项目中。如果你不这样做，未知收到的邮件将不会被处理！
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 这些邮箱没有默认的项目：
+  text_easy_helpdesk_projects_alerts_list: 已完成配置的警报列表：
+  text_easy_helpdesk_projects_alerts_list_to_edit: 需要设置收件人的警报的列表：
+  text_easy_helpdesk_projects_is_default: 如果是未知发送人的邮件, 则任务单将由这里创建.
+  text_easy_helpdesk_projects_keyword_description: 如果邮件标题包含已定义的字符串, 任务单将分给此项目. 关键词须区分大小写.
+  text_easy_helpdesk_projects_keywords: 如果邮件主题中包含已定义的字符串，特别是优先级和到期日期将需要设置(*表示任何主题).
+    保留空白则表示将手动设置 SLA .
+  text_easy_helpdesk_projects_monitor_due_date: 如果有一Help dest 工作单违反了SLA  - 在SLA中定义的期限内没有解决.
+    则预定义的警报，会向您发送一个电子邮件通知.
+  text_easy_helpdesk_projects_monitor_spent_time: 如果在特定月份总花费的时间超过了该月预付费的时间, 则这个预定义的警报会向您发送一个电子邮件通知，
+  text_easy_helpdesk_projects_new_priority: 如果关键词不明确, SLA将按优先级来设置.
+  text_easy_helpdesk_projects_priority: SLA将依据优先级选择
+  text_easy_helpdesk_projects_sla_hours_to_response: 从收到工作单邮件到开始行动间允许的最大时间
+  text_easy_helpdesk_projects_sla_hours_to_solve: 解决一个HelpDesk工作单(Close一个工作单)的最大时间限制
+  text_easy_rake_task_helpdesk_issue_closer_failed: '有 (%{count}个 (共%{total}) 个) 任务没有更新:'
+  text_isseu_closer_close_notice: HelpDesk将自动更新任务
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: SLA：反应应该是%{time}
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: SLA：救灾者必须以%{time}
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: "，SLA：解决应该是%{time}"
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: SLA：决心必须是%{time}
+  title_easy_helpdesk_add_project_from_sidebar: 点此添加项目到HelpDesk
+  title_easy_helpdesk_allow_custom_sender: 按项目显示自定义发送设置
+  title_easy_helpdesk_allow_override: 允许从消息来重写任务属性
+  title_easy_helpdesk_client_response_status: 通过邮件做更新时, 选择任务单将要变更到的状态.
+  title_easy_helpdesk_ignore_cc: 收到的邮件中, 抄送人会被添加为观察人, 向其发送外发邮件和自动回复邮件. 此选项可禁用此功能.
+  title_easy_helpdesk_message_above_variables: 模板化消息将在模板变量上
+  title_easy_helpdesk_sender: 在"发送自" (From) 区域的人
+  title_easy_helpdesk_sender_current_user: 当前登陆的用户
+  title_easy_helpdesk_sender_is_user: 发送自谁将填写是此登陆的用户
+  title_easy_helpdesk_sender_mailbox_address: 邮件地址来自邮箱
+  title_easy_helpdesk_sender_redmine_default: 默认发送邮件地址
+  title_easy_helpdesk_skip_ignored_emails_headers_check: '警告: HelpDesk将从其它系统接收邮件,
+    可能导致不准确的邮件来往!'
+  title_easy_helpdesk_sla_start_states: 在SLA测量由于上面的设置暂停之后, 又重新开始时, 选择状态.
+  title_easy_helpdesk_sla_stop_states: 当SLA没有被测量时选择状态. 如, 关闭的任务单或在等待客户回应时.
+  title_sla_waiting_for_client: SLA暂停
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: 禁用- 在任务关闭, SLA停止之后. 如果任务重新开启, SLA仍将从其原来开始创建的时间开始计算.
+    enabled: 启用 -在任务关闭SLA停止之后. 当任务重新开启时, SLA从重新开启听时间计算.

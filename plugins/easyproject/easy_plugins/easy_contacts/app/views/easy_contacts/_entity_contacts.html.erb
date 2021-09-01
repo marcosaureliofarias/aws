@@ -1,0 +1,68 @@
+<%
+project ||= nil; module_name = "entity_#{entity.class.name.underscore}_#{entity.id}_easy_contacts"
+back_url ||= polymorphic_path(entity)
+edit_avatar ||= false
+%>
+<div id="<%= module_name + '_container' %>">
+  <%= toggling_container(module_name,  User.current, {:heading => l(:label_easy_contacts),:wrapping_heading_element_classes => 'icon icon-group'}) do %>
+    <div class="button-group contextual easy-contacts-display-changer">
+      <a class="button icon-slab <%= display == :tile ? 'pressed' : '' %>" data-display="slab" title="<%= l(:title_issue_contacts_display_changer_tile) %>"></a>
+      <a class="button icon-bullet-list <%= display == :list ? 'pressed' : '' %>" data-display="list" title="<%= l(:title_issue_contacts_display_changer_list) %>"></a>
+    </div>
+    <div class="clear"></div>
+    <div>
+      <% if display == :list %>
+        <% query = EasyContactQuery.new(:name => 'c_query', :project_id => project); query.set_entity_scope(entity.easy_contacts.visible) %>
+        <%= render :partial => 'easy_queries/easy_query_entities_list', :locals => {:query => query, :entities => query.entities, :options => {:hascontextmenu => true, :disable_sort => true} } -%>
+        <%= context_menu context_menus_easy_contacts_path({:project_id => project, :back_url => back_url}), '#'+module_name -%>
+      <% else %>
+        <% if entity.easy_contacts.one?; easy_contact = entity.easy_contacts.first %>
+          <div class="contextual">
+            <%= link_to_google_map(easy_contact.address, :name => '') %>
+            <%= link_to('', polymorphic_path([:edit, project, easy_contact], :back_url => back_url), :class => 'icon-edit', :title => l(:title_easy_contact_type_edit)) if easy_contact.editable? %>
+            <%= link_to('', remove_from_entity_easy_contact_path(easy_contact, {:entity_type => entity.class.name, :entity_id => entity, :back_url => back_url}), :method => :delete, :class => 'icon-del', :title => l(:title_remove_easy_contact_from_entity)) if easy_contact.visible? %>
+            <%= call_hook(:view_entity_contacts_reference_buttons, {:entity => entity, :easy_contact => easy_contact}) %>
+          </div>
+
+          <%= content_tag(:h4, link_to(easy_contact, polymorphic_path([project, easy_contact])), :class => 'entity-detail-easy-contact-name') %>
+          <%= render(:partial => 'easy_contacts/detail', :locals => {:easy_contact => easy_contact, :edit_avatar => edit_avatar}) %>
+
+        <% else %>
+
+          <div class="">
+            <% entity.easy_contacts.each do |easy_contact| %>
+              <div class="<%= cycle('splitcontentleft', 'splitcontentright') %>">
+                <div class="contextual">
+                  <%= link_to_google_map(easy_contact.address, :name => '') %>
+                  <%= link_to('', polymorphic_path([:edit, project, easy_contact], :back_url => back_url), :class => 'icon-edit', :title => l(:title_easy_contact_type_edit)) if easy_contact.editable? %>
+                  <%= link_to('', remove_from_entity_easy_contact_path(easy_contact, {:entity_type => entity.class.name, :entity_id => entity, :back_url => back_url}), :method => :delete, :class => 'icon-del', :title => l(:title_remove_easy_contact_from_entity)) if easy_contact.deletable? %>
+                  <%= call_hook(:view_entity_contacts_reference_buttons, {:entity => entity, :easy_contact => easy_contact}) %>
+                </div>
+                <%= content_tag(:h4, link_to(easy_contact, polymorphic_path([project, easy_contact])), :class => 'entity-detail-easy-contact-name') %>
+                <%= render(:partial => 'easy_contacts/detail', :locals => {:easy_contact => easy_contact, :edit_avatar => edit_avatar}) %>
+              </div>
+            <% end -%>
+          </div>
+          <div class="clear"></div>
+        <% end -%>
+      <% end -%>
+    </div>
+  <% end -%>
+</div>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    $(".easy-contacts-display-changer a").click(function(e) {
+      $.get('<%=j toggle_display_easy_contacts_path(:back_url => back_url) %>', {'display': $(e.target).data().display, 'entity_type': '<%=j entity.class.name %>', 'entity_id': '<%= entity.id %>'}, function(data) {
+        $('#<%= module_name + '_container' %>').replaceWith(data);
+        // reinitialize inline edit after reload
+        $('.multieditable-container', $('#<%= module_name %>')).each(function() {
+          initInlineEditForContainer(this);
+        });
+      });
+    });
+  });
+</script>

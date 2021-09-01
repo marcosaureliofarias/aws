@@ -1,0 +1,40 @@
+@import "easy_extensions/common_assets";
+
+.icon-project-flag {
+  width: $gap-const;
+  height: $gap-const;
+  @extend %border-radius-infinite;
+  @extend %color-box-base;
+  display: inline-flex;
+  &-green {
+    @extend %color-box-positive;
+  }
+
+  &-yellow {
+    @include color-box($color-palette-13);
+  }
+
+  &-red {
+    @extend %color-box-negative;
+  }
+}
+.flag_cf {
+  & > label {
+    padding: calc(0.5*#{$gap} + 1px) $gap calc(0.5*#{$gap} + 1px) 0;
+    display: inline-flex !important;
+    align-items: center;
+    input[type=radio] {
+      margin-right: .5*$gap;
+    }
+  }
+}
+.editable-flag {
+  display: inline-flex;
+  align-items: center;
+  flex-grow: 1;
+  & > label {
+    display: inline-flex;
+    align-items: center;
+    margin-right: $gap;
+  }
+}

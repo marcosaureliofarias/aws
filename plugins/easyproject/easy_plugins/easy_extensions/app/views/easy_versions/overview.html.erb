@@ -1,0 +1,10 @@
+<% title l(:title_milestones_overview) %>
+
+<%= render_easy_page_bottom_buttons(overview_layout_easy_versions_path(t: params[:t])) if @page_editable %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <% if User.current.allowed_to_globally?(:manage_global_versions) %>
+    <%= link_to l(:label_version_new), new_easy_version_path, class: 'button-positive icon icon-add' %>
+    <%= link_to l(:label_easy_versions_top_menu), easy_versions_path , class: 'button icon icon-list' %>
+  <% end %>
+<% end %>

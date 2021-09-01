@@ -1,0 +1,24 @@
+<p>
+  <label><%= l(:label_timeentry_time_watcher_before) %></label>
+  <label class="inline">
+    <%= l(:label_timeentry_time_watcher_before_from) %>
+    <%= select_tag('period_from', hourstimecheck_collection_for_select_options(@settings[:period_from], :first_option => ['','']), :onchange => "disable_select_options('#period_from', '#period_to', false);", :class => 'inline') -%>
+    <%= l(:label_timeentry_time_watcher_before_to) %>
+    <%= select_tag('period_to', hourstimecheck_collection_for_select_options(@settings[:period_to], :first_option => ['','']), :onchange => "disable_select_options('#period_to', '#period_from', true);", :class => 'inline') -%>
+    <%= l(:label_timeentry_time_watcher_middle) %>
+    <%= text_field_tag 'hours', @settings[:hours], {:maxlength => 4, :size => 3} %>
+    <%= l(:label_timeentry_time_watcher_after) %>
+  </label>
+</p>
+<script type="text/javascript">
+  function disable_select_options(from, to, reversed) {
+    var source = $(from);
+    var destination = $(to);
+    var source_value = source.val();
+    var options = destination.find('option');
+
+    for(var i = 0; i < options.length; i++) {
+      options[i].disabled = (reversed ? options[i].value >= source_value : options[i].value <= source_value) ? true : false;
+    }
+  };
+</script>

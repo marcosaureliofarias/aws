@@ -1,0 +1,6 @@
+<%= javascript_include_tag('easy_jqplot', defer: true) %>
+<script type="text/javascript">
+  EASY.schedule.require(function () {
+    $.easy.easy_chart.prototype.i18n = {noData: '#{j l(:label_no_data)}'}
+  }, jQueryPluginGetter("easy_chart"));
+</script>

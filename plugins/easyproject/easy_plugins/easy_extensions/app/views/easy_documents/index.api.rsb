@@ -1,0 +1,5 @@
+api.array :documents do
+  @documents.each do |document|
+    EasySwagger::Document.render_api(document, self, api)
+  end
+end

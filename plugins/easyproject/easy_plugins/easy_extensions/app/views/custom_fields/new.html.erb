@@ -1,0 +1,10 @@
+<% unless request.xhr? %>
+  <%= custom_field_title @custom_field %>
+<% end %>
+
+<%= labelled_form_for :custom_field, @custom_field, :url => custom_fields_path, :html => {:id => 'custom_field_form', :class => 'form-box'} do |f| %>
+  <div id="custom_field_form_container">
+    <%= render :partial => 'form' %>
+  </div>
+  <%= hidden_field_tag 'type', @custom_field.type %>
+<% end %>

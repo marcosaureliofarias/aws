@@ -1,0 +1,16 @@
+$("div.tab-easy-entity-activity-content tbody tr.entity-activity__form").remove();
+$("div.tab-easy-entity-activity-content tbody tr").toggle(true);
+<%= fields_for @easy_entity_activity, remote: true do |f| %>
+var prev = $(".<%= dom_id(@easy_entity_activity)%>").first().prev();
+if(prev.length == 0) {
+  prev = $(".<%= dom_id(@easy_entity_activity)%>").parent();
+  $(".<%= dom_id(@easy_entity_activity)%> tr").hide();
+  $(".<%= dom_id(@easy_entity_activity)%>").append("<%= j render(:partial => '/easy_entity_activities/form', locals: {f: f}) %>");
+} else {
+  $(".<%= dom_id(@easy_entity_activity)%> tr").hide();
+  $(".<%= dom_id(@easy_entity_activity)%>").append("<%= j render(:partial => '/easy_entity_activities/form', locals: {f: f}) %>");
+}
+<% end %>
+
+$('.tab-easy-entity-activity-content form').attr('action', "<%= easy_entity_activity_path(@easy_entity_activity) %>");
+$('.tab-easy-entity-activity-content form').attr('method', 'patch');

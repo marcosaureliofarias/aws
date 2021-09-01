@@ -1,0 +1,8 @@
+(() => {
+  <% if @is_toolbar %>
+    const container = document.querySelector("<%= EasySchedulerQuickController::CSS_SIDEBAR_SELECTOR %>");
+  <% else %>
+    const container = document.querySelector("<%= EasySchedulerQuickController::CSS_SELECTOR %>");
+  <% end %>
+  $(container).html(`<%=j render(template: 'easy_scheduler_quick/setting', formats: [:html]) %>`);
+})();

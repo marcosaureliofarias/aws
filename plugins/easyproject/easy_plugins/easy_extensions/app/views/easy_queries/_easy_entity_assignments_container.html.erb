@@ -1,0 +1,93 @@
+<%
+   referenced_entities_count ||= query.entity_count
+   heading = "#{options[:heading]} (#{referenced_entities_count})"
+   options ||= {}
+   options[:referenced_entities_count] ||= referenced_entities_count
+   modul_uniq_id ||= options[:module_name]
+   block_name ||= options[:referenced_collection_name]
+   options[:collapsed] ||= false
+%>
+<% if referenced_entities_count > 0 %>
+  <div id="<%= options[:module_name] %>_container" class="entity_references_container easy-dropper-target easy-drop-issue" data-drop-action="<%= source_entity.class.name.underscore %>" data-entity-id="<%= source_entity.id %>" data-issue-show="1">
+      <%= render_module_easy_box(options[:module_name], (heading+':').html_safe, {icon: entity_css_icon(referenced_entity_type), default: options[:collapsed], remember: options[:remember]}) do |m| %>
+        <% m.heading_links do %>
+          <%= link_to('', 'javascript:void(0)', :class => 'icon-slab output-switch-button', :data => {:output => 'tiles'}, :title => l(:title_easy_card_display_changer_tile)) %>
+          <%= link_to('', 'javascript:void(0)', :class => 'icon-bullet-list output-switch-button', :data => {:output => 'list'}, :title => l(:title_easy_card_display_changer_list)) %>
+          <a href="javascript:void(0);" class="icon icon-edit settings-button"></a>
+        <% end if User.current.admin? %>
+
+          <div class="assignments-settings" style="display: none;">
+            <%= form_tag('javascript:void(0)') do %>
+              <%= render 'easy_queries/columns', query: query, block_name: block_name, modul_uniq_id: modul_uniq_id %>
+              <div class="form-actions">
+                <%= link_to(User.current.admin? ? l(:button_save) : l(:button_apply), 'javascript:void(0)', class: 'button-positive button-save') %>
+              </div>
+            <% end %>
+          </div>
+          <div class="assignments-container">
+            <!--AJAX loaded-->
+          </div>
+
+        <% if options[:context_menus_path] && respond_to?(options[:context_menus_path]) %>
+          <%= context_menu(send(options[:context_menus_path], {:project_id => options[:project], :back_url => original_url}), "##{options[:module_name]}_container") -%>
+        <% end %>
+      <% end %>
+  </div>
+
+  <script type="text/javascript">
+    EASY.schedule.late(function(){
+      var current_output = '<%= query.outputs.first %>';
+
+      function reload(output, save) {
+        save = typeof save == 'undefined' ? false : save;
+        $.ajax('<%= raw easy_entity_assignments_path(query.to_params.except(:outputs).merge({project_id: project, hide_remove_entity_link: options[:hide_remove_entity_link]})) %>', {
+          method: save ? 'POST' : 'GET',
+          data: {
+            source_entity_type: '<%= source_entity.class.name %>',
+            source_entity_id: '<%= source_entity.id %>',
+            referenced_collection_name: '<%= options[:referenced_collection_name] %>',
+            column_names: $('#<%= modul_uniq_id %>selected_columns').val(),
+            output: output,
+            save: save
+          }
+        }).done(function(data){
+          var $container = $('#<%= options[:module_name] %>_container .assignments-container')
+          $container.html(data);
+          current_output = output;
+          document.querySelectorAll('.autoscroll').forEach(autoscroll => {
+            new PerfectScrollbar(autoscroll, {
+              includePadding: true,
+              suppressScrollY: true,
+              useSelectionScroll: true
+            });
+          });
+          $('.multieditable-container').each(function () {
+            initInlineEditForContainer(this);
+          });
+          $container.trigger("easy_assignments_new_dom");
+        });
+      }
+      EASY.modalSelector.selectAllOptions('<%= modul_uniq_id %>selected_columns');
+
+        if ($('#<%= options[:module_name] %>').is(':hidden')) {
+          $("#<%= options[:module_name] %>_container .module-heading").on( "click", function() {
+            if ($('#<%= options[:module_name] %>').is(':visible'))
+              reload(<%= raw query.outputs.map(&:to_s) %>, false);
+          });
+        } else {
+          reload(<%= raw query.outputs.map(&:to_s) %>, false);
+        }
+
+      $('#<%= options[:module_name] %>_container').on('click', '.output-switch-button', function(evt){
+        EASY.modalSelector.selectAllOptions('<%= modul_uniq_id %>selected_columns');
+        reload($(this).data('output'), false);
+      }).on('click', '.settings-button', function(evt){
+        $('#<%= options[:module_name] %>_container .assignments-settings').toggle();
+        ERUI.document.trigger( "erui_interface_change_vertical" );
+      }).on('click', '.assignments-settings .button-save', function(evt) {
+        EASY.modalSelector.selectAllOptions('<%= modul_uniq_id %>selected_columns');
+        reload(current_output, true);
+      });
+    });
+  </script>
+<% end %>

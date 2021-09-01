@@ -1,0 +1,4 @@
+<tr class="attribute">
+  <th><%= l(:label_agile_sprint) %>:</th>
+  <td><%= link_to(issue.easy_sprint.name, easy_agile_board_url(issue.easy_sprint.project_id, sprint_id: issue.easy_sprint_id), title: issue.easy_sprint.name) %></td>
+</tr>

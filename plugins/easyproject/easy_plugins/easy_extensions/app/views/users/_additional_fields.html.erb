@@ -1,0 +1,23 @@
+<% if user.safe_attribute_names.include?('easy_lesser_admin') %>
+  <div id="easy_lesser_admin_container">
+    <p><%= form.check_box :easy_lesser_admin, disabled: (user == User.current), onchange: '$(\'#easy_lesser_admin_permissions_container\').toggle(this.checked)' %></p>
+    <% if user.safe_attribute_names.include?('easy_lesser_admin_permissions') %>
+      <span id="easy_lesser_admin_permissions_container" style="<%= 'display:none;' unless user.easy_lesser_admin? -%>">
+        <p><%= l(:label_easy_lesser_admin_for) %></p>
+        <% easy_lesser_admin_permissions.each do |lesser_perm_text, lesser_perm| %>
+          <p>
+            <%= check_box_tag 'user[easy_lesser_admin_permissions][]', lesser_perm.to_s, user.easy_lesser_admin_permissions && user.easy_lesser_admin_permissions.detect{|p| p.to_s == lesser_perm.to_s}, id: "user_easy_lesser_admin_permissions_#{lesser_perm}", disabled: (user == User.current) %>
+            <%= label_tag "user_easy_lesser_admin_permissions_#{lesser_perm}", lesser_perm_text, class: 'inline' %>
+          </p>
+        <% end %>
+      </span>
+    <% end %>
+  </div>
+<% end %>
+
+<% if (templates = EasyPageTemplate.joins(:page_definition).where(easy_pages: {page_name: 'my-page'}).pluck(:template_name, :id)).any? %>
+  <p>
+    <%= label_tag :page_template_id, l(:label_select_my_page_template) %>
+    <%= select_tag :page_template_id, options_for_select(templates, params[:page_template_id].to_i), prompt: l(:label_select_page_template) %>
+  </p>
+<% end %>

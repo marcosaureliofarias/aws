@@ -1,0 +1,10 @@
+<% if @errors.any? %>
+  showFlashMessage("error", "<%= @errors.join('<br/>').html_safe %>");
+<% else %>
+  var origin = $("#el-<%= @issue.id %>");
+  // Qtip could be active be window never hide
+  // because there will be new qtip content
+  // origin.qtip("hide");
+  origin.replaceWith("<%=j render('easy_agile_board/issue', issue: @issue, sprint_project: @easy_sprint.project, attach_allowed_statuses: EasySetting.value('easy_agile_use_workflow_on_sprint', @project)) %>");
+  initAgileBoardTooltip("#el-<%= @issue.id %>");
+<% end %>

@@ -1,0 +1,4 @@
+<% tc_options = {:heading => l(:sidebar_project_family_info), :container_html => {:class => 'members'}, :wrapping_heading_element_classes => 'project-family-info'} %>
+<%= toggling_container('sidebar-project-family-info', User.current, tc_options) do %>
+  <%= render :partial => 'sidebar/project_family_info', :locals => { :project => @project } %>
+<% end %>

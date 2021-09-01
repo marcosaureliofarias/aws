@@ -1,0 +1,42 @@
+$('#ajax-modal').html("<%=j(render(template: 'easy_attendances/approval', formats: [:html])) %>");
+showModal('ajax-modal', '80%');
+
+var approveButton = {
+  text:"<%=j l(:button_approve, scope: :easy_attendance) %>",
+  click: function () {
+    $(this).find('form').append($("<input>").attr("type", "hidden").attr("name", "approve").val(1)).submit()
+  },
+  'class': 'button-positive'
+};
+
+var rejectButton = {
+  text:"<%=j l(:button_reject, scope: :easy_attendance) %>",
+  click: function () {
+    $(this).find('form').append($("<input>").attr("type", "hidden").attr("name", "approve").val(0)).submit()
+  },
+  'class': 'button-negative'
+};
+
+var closeButton = {
+  text: "<%=j l(:button_close) -%>",
+  click: function() {$(this).dialog('close');},
+  'class': 'button'
+};
+
+var buttons = [closeButton]
+
+<% if @approve == 0 %>
+  buttons.unshift(rejectButton);
+<% elsif @approve == 1 %>
+  buttons.unshift(approveButton);
+<% else %>
+  buttons.unshift(rejectButton);
+  buttons.unshift(approveButton);
+<% end %>
+
+
+$("#ajax-modal").find(".submit-buttons").remove();
+
+$("#ajax-modal").dialog('option', {
+  buttons: buttons }
+);

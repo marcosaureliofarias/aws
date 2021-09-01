@@ -1,0 +1,34 @@
+<% back_url = url_for(easy_crm_settings_global_path(tab: 'others')) %>
+<%= field_set_tag l(:label_easy_crm_case_default_values) do %>
+  <div>
+    <%= form_tag(save_global_easy_crm_settings_path(back_url: back_url), class: 'tabular settings', method: :put) do %>
+      <p>
+        <%= hidden_field_tag 'easy_setting[easy_crm_use_items]', '0', id: nil %>
+        <%= check_box_tag 'easy_setting[easy_crm_use_items]', '1', EasySetting.value('easy_crm_use_items') %>
+        <%= label_tag 'easy_setting[easy_crm_use_items]', l(:label_easy_crm_use_items) %>
+      </p>
+
+      <p>
+        <%= hidden_field_tag 'easy_setting[easy_crm_case_query_includes_descendants]', '0', id: nil %>
+        <%= check_box_tag 'easy_setting[easy_crm_case_query_includes_descendants]', '1', EasySetting.value('easy_crm_case_query_includes_descendants') %>
+        <%= label_tag 'easy_setting[easy_crm_case_query_includes_descendants]', l(:label_easy_crm_case_query_includes_descendants) %>
+      </p>
+
+      <p>
+        <%= hidden_field_tag 'easy_setting[show_easy_entity_activity_on_crm_case]', '0', :id => nil %>
+        <%= check_box_tag 'easy_setting[show_easy_entity_activity_on_crm_case]', '1', EasySetting.value('show_easy_entity_activity_on_crm_case') %>
+        <%= label_tag('easy_setting_show_easy_entity_activity_on_crm_case', l(:setting_show_easy_entity_activity_on_crm_case)) %>
+      </p>
+
+      <p>
+        <%= hidden_field_tag 'easy_setting[show_description_on_crm_case]', '0', :id => nil %>
+        <%= check_box_tag 'easy_setting[show_description_on_crm_case]', '1', EasySetting.value('show_description_on_crm_case') %>
+        <%= label_tag('easy_setting_show_description_on_crm_case', l(:setting_show_description_on_crm_case)) %>
+      </p>
+
+      <div class="form-actions">
+        <%= submit_tag l(:button_save), class: 'button-positive' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

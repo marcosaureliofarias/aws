@@ -1,0 +1,4 @@
+<span <%= 'style="display: none;"'.html_safe unless EasyPdfTheme.count > 1 %>>
+  <%= l(:label_with_theme) %>
+  <%= select_tag 'easy_pdf_theme', options_for_select(EasyPdfTheme.all.collect{|t| [t.easy_system_flag? ? l(:label_default) : t.name, t.id]}, selected: EasyPdfTheme.default.try(:id).to_s), style: 'width: auto;' %>
+</span>

@@ -1,0 +1,582 @@
+---
+cs:
+  activerecord:
+    models:
+      easy_mail_campaign_easy_contact: Kontakt
+  administration:
+    label_easy_contact: Uživatelská pole - kontakty
+    label_easy_contact_group: Uživatelská pole - skupiny
+    label_easy_contact_type: Typ kontaktu
+  button_assign_to_me: Přidat k oblíbeným
+  button_easy_contact_by_easy_query: Kontakty podle uložených filtrů
+  button_easy_contact_homepage: Zobrazit vše
+  button_easy_contact_new: Nový kontakt
+  button_easy_contact_show_contact_on_google_map: Zobrazit v Google mapě
+  button_easy_entity_attribute_vcard_map: Nastavení mapování vCard
+  button_new_easy_contact_csv_import: Nový CSV import kontaktů
+  button_ok_continue_import: V pořádku - importovat
+  button_reasign_and_delete_easy_contact: Přeřadit a smazat typ
+  button_remove_from_me: Odebrat z oblíbených kontaktů
+  button_remove_from_project: Odebrat z projektových kontaktů
+  button_save_contact_and_add_reference: Uložit a přidat nový provázaný kontakt
+  button_show_contact_account: Účty
+  button_show_contact_corporate: Společnosti
+  button_show_contact_personal: Lidé
+  custom_field_names:
+    easy_contacts_city:
+      label: Město
+    easy_contacts_country:
+      label: Země
+    easy_contacts_email:
+      label: E-mail
+    easy_contacts_organization:
+      label: Organizace
+    easy_contacts_postal_code:
+      label: PSČ
+    easy_contacts_region:
+      label: Kraj
+    easy_contacts_street:
+      label: Ulice
+    easy_contacts_telephone:
+      label: Telefon
+  easy_contact_action:
+    action: Akce
+    add_note: Přidat komentář
+    add_to_contact: Provázat kontakt
+    add_to_global: Přidat ke globálním kontaktům
+    add_to_group: Přidat do skupiny
+    add_to_project: Přidat k projektu
+    add_to_user: Přidat k osobním kontaktům
+    destroy: Odstranit
+    edit: Upravit
+    refresh: Aktualizovat
+    send_mail: Poslat kontakt e-mailem
+  easy_contact_country_select:
+    ABW: Aruba
+    AFG: Afganistán
+    AGO: Angola
+    AIA: Anguilla
+    ALA: Alandské ostrovy
+    ALB: Albánie
+    AND: Andorra
+    ANT: Nizozemské Antily
+    ARE: Spojené Arabské Emiráty
+    ARG: Argentina
+    ARM: Arménie
+    ASC: Ascension
+    ASM: American Samoa
+    ATA: Antarktida
+    ATF: Francouzská jižní území
+    ATG: Antigua a Barbuda
+    AUS: Austrálie
+    AUT: Rakousko
+    AZE: Azerbajdžán
+    BDI: Burundi
+    BEL: Belgie
+    BEN: Benin
+    BES: Bonaire, Sint Eustatius a Saba
+    BFA: Burkina Faso
+    BGD: Bangladéž
+    BGR: Bulharsko
+    BHR: Bahrajn
+    BHS: Bahamy
+    BIH: Bosna a Hercegovina
+    BLM: Saint Barthélemy
+    BLR: Bělorusko
+    BLZ: Belize
+    BMU: Bermudy
+    BOL: Bolívie
+    BRA: Brazílie
+    BRB: Barbados
+    BRN: Brunei Darussalam
+    BTN: Bhútán
+    BVT: Bouvet Island
+    BWA: Botswana
+    CAF: Central African Republic
+    CAN: Kanada
+    CCK: Cocos (Keeling) Islands
+    CHE: Švýcarsko
+    CHL: Chile
+    CHN: Čína
+    CIV: Pobřeží slonoviny
+    CMR: Kamerun
+    COD: Demokratická republika Kongo
+    COG: Kongo
+    COK: Cookovy ostrovy
+    COL: Kolumbie
+    COM: Comoros
+    CPV: Cape Verde
+    CRI: Kostarika
+    CUB: Kuba
+    CUW: Curaçao
+    CXR: Vánoční ostrov
+    CYM: Kajmanské Ostrovy
+    CYP: Kypr
+    CZE: Česká republika
+    DEU: Německo
+    DGA: Diego Garcia
+    DJI: Djibouti
+    DMA: Dominika
+    DNK: Dánsko
+    DOM: Dominikánská republika
+    DRC: Demokratická republika Kongo
+    DZA: Alžírsko
+    ECU: Ekvádor
+    EGY: Egypt
+    ERI: Eritrea
+    ESH: Západní Sahara
+    ESP: Španělsko
+    EST: Estonsko
+    ETH: Etiopie
+    FIN: Finsko
+    FJI: Fidži
+    FLK: Falklandské ostrovy (Malvíny)
+    FRA: Francie
+    FRO: Faerské ostrovy
+    FSM: Federativní státy Mikronésie
+    GAB: Gabon
+    GBR: Velká Británie
+    GEO: Gruzie
+    GGY: Guernsey
+    GHA: Ghana
+    GIB: Gibraltar
+    GIN: Guinea
+    GLP: Guadeloupe
+    GMB: Gambie
+    GNB: Guinea-Bissau
+    GNQ: Rovníková Guinea
+    GRC: Řecko
+    GRD: Grenada
+    GRL: Grónsko
+    GTM: Guatemala
+    GUF: Francouzská Guyana
+    GUM: Guam
+    GUY: Guyana
+    HKG: Hong Kong
+    HMD: Heardův ostrov a McDonaldovy ostrovy
+    HND: Honduras
+    HRV: Chorvatsko
+    HTI: Haiti
+    HUN: Maďarsko
+    IDN: Indonésie
+    IMN: Isle Of Man
+    IND: Indie
+    IOT: Britské území v Indickém oceánu
+    IRL: Irsko
+    IRN: Íránská islámská republika
+    IRQ: Irák
+    ISL: Island
+    ISR: Izrael
+    ITA: Itálie
+    JAM: Jamaica
+    JEY: Jersey
+    JOR: Jordán
+    JPN: Japonsko
+    KAZ: Kazachstán
+    KEN: Keňa
+    KGZ: Kyrgyzstán
+    KHM: Kambodža
+    KIR: Kiribati
+    KNA: Svatý Kryštof a Nevis
+    KOR: Severním Korea
+    KWT: Kuvajt
+    LAO: Laoské lidově demokratické republiky
+    LBN: Libanon
+    LBR: Libérie
+    LBY: Lybie
+    LCA: Saint Lucia
+    LIE: Lichtenštejnsko
+    LKA: Srí Lanka
+    LSO: Lesotho
+    LTU: Litva
+    LUX: Lucembursko
+    LVA: Litva
+    MAC: Macau
+    MAF: Saint Martin (francouzská část)
+    MAR: Maroko
+    MCO: Monaco
+    MDA: Moldávie
+    MDG: Madagaskar
+    MDV: Maledivy
+    MEX: Mexiko
+    MHL: Marshallovy ostrovy
+    MKD: Makedonie
+    MLI: Mali
+    MLT: Malta
+    MMR: Myanmar
+    MNE: Černá Hora
+    MNG: Mongolsko
+    MNP: Severní Mariany
+    MOZ: Mozambik
+    MRT: Mauritánie
+    MSR: Montserrat
+    MTQ: Martinique
+    MUS: Mauritius
+    MWI: Malawi
+    MYS: Malajsie
+    MYT: Mayotte
+    NAM: Namibie
+    NCL: Nová Kaledonie
+    NER: Niger
+    NFK: Norfolk Island
+    NGA: Nigérie
+    NIC: Nikaragua
+    NIU: Niue
+    NLD: Nizozemsko
+    NOR: Norsko
+    NPL: Nepál
+    NRU: Nauru
+    NZL: Nový Zéland
+    OMN: Omán
+    PAK: Pakistán
+    PAN: Panama
+    PCN: Pitcairn
+    PER: Peru
+    PHL: Filipíny
+    PLW: Palau
+    PNG: Papua Nová Guinea
+    POL: Polsko
+    PRI: Portoriko
+    PRK: Jížní Korea
+    PRT: Portugalsko
+    PRY: Paraguay
+    PSE: Palestinská okupovaná území
+    PYF: Francouzská Polynésie
+    QAT: Katar
+    REU: Réunion
+    ROM: Rumunsko
+    ROU: Rumunsko
+    RUS: Ruská federace
+    RWA: Rwanda
+    SAU: Saudská Arábie
+    SDN: Sudán
+    SEN: Senegal
+    SGP: Singapore
+    SGS: Jižní Georgie a Jižní Sandwichovy ostrovy
+    SHN: Svatá Helena
+    SJM: Svalbard and Jan Mayen
+    SLB: Šalamounovy ostrovy
+    SLE: Sierra Leone
+    SLV: El Salvador
+    SMR: San Maríno
+    SOM: Somálsko
+    SPM: Saint Pierre and Miquelon
+    SRB: Srbsko
+    SSD: Jižní Súdán
+    STP: Sao Tome a Principe
+    SUR: Surinam
+    SVK: Slovensko
+    SVN: Slovinsko
+    SWE: Švédsko
+    SWZ: Svazijsko
+    SXM: Sint Maarten (holandská část)
+    SYC: Seychely
+    SYR: Syrská arabská republika
+    TAA: Tristan da Cunha
+    TCA: Turks and Caicos Islands
+    TCD: Čad
+    TGO: Togo
+    THA: Thajsko
+    TJK: Tadžikistán
+    TKL: Tokelau
+    TKM: Turkmenistán
+    TLS: Východní Timor
+    TMP: Východní Timor
+    TON: Tonga
+    TTO: Trinidad a Tobago
+    TUN: Tunisko
+    TUR: Turecko
+    TUV: Tuvalu
+    TWN: Tchaj-wan
+    TZA: Tanzánie
+    UGA: Uganda
+    UKR: Ukrajina
+    UMI: United States Minor Outlying Islands
+    URY: Uruguay
+    USA: Spojené Státy Americké
+    UZB: Uzbekistán
+    VAT: Vatikán (Svatý stolec)
+    VCT: Svatý Vincent a Grenadiny
+    VEN: Venezuela
+    VGB: Britské Panenské ostrovy
+    VIR: Americké Panenské ostrovy
+    VNM: Vietnam
+    VUT: Vanuatu
+    WLF: Wallis and Futuna
+    WSM: Samoa
+    XCA: Kanárské ostrovy
+    XET: Východní Timor
+    XSB: Svatý Bartoloměj
+    XSE: Svatý Eustach
+    YEM: Jemen
+    ZAF: Jižní Afrika
+    ZMB: Zambie
+    ZWE: Zimbabwe
+  easy_contact_toolbar_label_search: Hledej
+  easy_contact_types:
+    account: Účet
+    corporate: Organizace
+    personal: Osobní
+  easy_contacts_plugin_author: Easy Software
+  easy_contacts_plugin_author_url: http://www.easyproject.cz/
+  easy_contacts_plugin_description: "- adresář kontaktů"
+  easy_contacts_plugin_name: Kontakty
+  easy_contacts_toolbar:
+    contact_all_delete: Smazat
+    contact_delete: Odebrat ze skupiny
+    contact_edit: Upravit
+    contact_edit_save: Uložit
+    contact_exit: Zpět
+    contact_new_save: Uložit
+    group_delete: Smazat
+    group_edit: Upravit
+    group_edit_save: Uložit
+    group_exit: Zrušit
+    group_new: Nová skupina
+    group_new_save: Uložit
+    new_contact: Nový kontakt
+    projectgroup_new: Nová skupina
+  easy_lookup:
+    easy_contact:
+      label: Kontakty
+  easy_pages:
+    module_category:
+      contacts: Kontakty
+    modules:
+      easy_contact_create_button: Tlačítko vytvořit kontakt
+      easy_contact_query: Kontakty z filtru
+      easy_contacts_create_new: Nový kontakt
+      group_of_contacts_button: Tlačítko skupina kontaktů
+      import_contacts_button: Tlačítko importovat kontakty
+      my_contacts_button: Tlačítko moje kontakty
+      project_contacts_overview: Projektové kontakty
+      user_contacts_overview: Oblíbené kontakty
+  easy_proposer:
+    easy_contacts:
+      new:
+        caption: Vytvořit nový kontakt
+        description: Vytvořit nový kontakt
+  easy_query:
+    button_apply:
+      easy_contact: Filtruj kontakty
+      easy_contact_group: Filtruj skupiny
+    easy_lookup:
+      name:
+        easy_contact_group:
+          default: Vyberte skupiny kontaktů
+        easy_contact:
+          default: Vyberte kontakty
+    name:
+      easy_contact_group_query: Skupiny kontaktů
+      easy_contact_query: Kontakty
+    sidebar_filters:
+      personal:
+        easy_contact_group_project_query: Osobní filtry nad projektovými skupinami
+          kontaktů
+        easy_contact_group_query: Osobní filtry nad skupinami kontaktů
+        easy_contact_group_user_query: Osobní filtry nad mými skupinami kontaktů
+        easy_contact_query: Osobní filtry nad kontakty
+      public:
+        easy_contact_group_project_query: Veřejné filtry nad projektovými skupinami
+          kontaktů
+        easy_contact_group_query: Veřejné filtry nad skupinami kontaktů
+        easy_contact_group_user_query: Veřejné filtry nad mými skupinami kontaktů
+        easy_contact_query: Veřejné filtry nad kontakty
+  easy_user_type_visible_contact_types: Viditelné typy kontaktů
+  error_can_not_delete_easy_contact_type: Nelze odstranit, protože existují kontakty
+    vytvořené s tímto typem.
+  error_contact_already_assigned: Kontakt je již přiřazen.
+  error_easy_contact_could_not_merge: Nepodařilo se sjednotit kontakty
+  error_import_data_integrity: Vyskytlo se %{count} chyb v importovaných datech, prosím
+    překontrolujte data.
+  error_import_file_encoding: Problém s importovaným souborem( možná jste zvolili
+    špatné kódování)
+  error_import_file_malformed: Soubor pro import nemá správný formát CSV souboru.
+  error_import_file_missing: Chybí soubor pro import
+  error_no_contacts_select: Nevybrali jste žádné kontakty
+  error_no_groups_select: Nevybrali jste žádné skupiny
+  error_no_projects_select: Nevybrali jste žádné projekty
+  error_no_recipients_select: Nevybrali jste žádného příjemce
+  field_assigned_to_id: Přiřazeno
+  field_author_id: Autor
+  field_author_note: Komentáře
+  field_contact_groups: Skupiny
+  field_contact_name: Zobrazované jméno
+  field_csv_has_headers: Na prvním řádku jsou názvy sloupců
+  field_easy_contact: Kontakt
+  field_easy_contact_author_note: Popis
+  field_easy_contact_from_eu: Z EU
+  field_easy_contact_group: Skupina
+  field_easy_contact_group_entity: Osobní skupiny
+  field_easy_contact_group_entity_type: Typ skupiny
+  field_easy_contact_group_parent: Skupina nadřazeného kontaktu
+  field_easy_contact_group_root: Skupina vrchního kontaktu
+  field_easy_contact_parent: Nadřazený kontakt
+  field_easy_contact_private: Soukromý kontakt
+  field_easy_contact_root: Vrchní kontakt
+  field_easy_contact_type: Typ kontaktu
+  field_easy_contacts: Kontakty
+  field_easy_contacts_parent: Nadřazený kontakt
+  field_easy_contacts_visibility: Viditelnost kontaktů
+  field_group_name: Zobrazované jméno
+  field_group_type: Typ skupiny
+  field_icon_path: Ikonka
+  field_is_global: Je globální?
+  field_main_easy_contact: Hlavní kontakt
+  field_parent_id: Nadřazený kontakt
+  field_project_group: Projektové skupiny
+  field_type_name: Název
+  filter:
+    global_groups: Globalní skupiny
+    personal_groups: Osobní skupiny
+    project_groups: Projektové skupiny
+  header_text_of_mail: Tento kontakt Vám doporučuje uživatel '%{user}'.
+  heading_easy_contacts_toolbar: Kontakty
+  help_fields_limit_visibility_settings: Zvolte uživatele, kteří můžou vidět obsah
+    pole. Nechte prázdné pro deaktivaci speciální viditelnosti.
+  label_account_name: Název účtu
+  label_add_subcontact: Nový provázaný kontakt
+  label_assign_to_contact: Přidat ke kontaktu
+  label_assign_to_issue: Přidat k úkolu
+  label_assign_to_me: Přidat k oblíbeným
+  label_assign_to_project: Přidat k projektu
+  label_attribute_of_easy_contacts: "%{name} kontaktu"
+  label_bulk_edit_selected_contacts: Hromadně upravit vybrané kontakty
+  label_change_easy_contact_type_to: Změnit typ na
+  label_contact_references: Provázání s kontakty
+  label_contact_references_to_account: Propojení s účty
+  label_contact_references_to_corporate: Provázání s organizacemi
+  label_contact_references_to_personal: Provázání s kontakty
+  label_contacts_attribute: Atribut
+  label_contacts_groups: Skupiny kontaktu
+  label_contacts_main_crm_cases: Vlastní obchodní případy
+  label_corporate_name: Název firmy
+  label_country_select: Výběr státu
+  label_easy_contact: Kontakt
+  label_easy_contact_add_sub_contact: Přidat pod-kontakt
+  label_easy_contact_change_avatar: Změnit avatar
+  label_easy_contact_client_custom_fields: Uživatelská pole klienta
+  label_easy_contact_country_select: Výběr státu
+  label_easy_contact_easy_contact_groups: Skupiny kontaktů
+  label_easy_contact_encoding_chooser: Výběr kódování vizitky
+  label_easy_contact_fields_settings: Nastavení polí
+  label_easy_contact_global: Globální kontakty
+  label_easy_contact_group: Správa skupin
+  label_easy_contact_groups: Správa skupin
+  label_easy_contact_is_global_false: Kontakt není globální
+  label_easy_contact_is_global_true: Kontakt je globální
+  label_easy_contact_is_my: Kontakt je v oblíbených
+  label_easy_contact_is_not_my: Kontakt není v oblíbených
+  label_easy_contact_is_private_false: Kontakt neni soukromý
+  label_easy_contact_is_private_true: Kontakt je soukromý
+  label_easy_contact_issues: 'Úkoly:'
+  label_easy_contact_note: Komentáře ke kontaktu
+  label_easy_contact_parent_contact_plural: Nadřazené kontakty
+  label_easy_contact_parent_group: Nadřazená skupina
+  label_easy_contact_personal: Oblíbené
+  label_easy_contact_plural: Kontakty
+  label_easy_contact_principals: 'Uživatelé:'
+  label_easy_contact_projects: 'Projekty:'
+  label_easy_contact_queries_plural: Kontakty
+  label_easy_contact_references: Provázané kontakty
+  label_easy_contact_references_groups: Skupiny kontaktů
+  label_easy_contact_root_contact: Vrchní kontakt
+  label_easy_contact_sub_contact: Pod-kontakt
+  label_easy_contact_sub_contact_plural: Pod-kontakty
+  label_easy_contact_type: Je organizace?
+  label_easy_contact_type_edit: Upravit typ kontaktu
+  label_easy_contact_type_new: Nový typ kontaktu
+  label_easy_contact_types: Typy kontaktů
+  label_easy_contact_used_in_type: Použito v
+  label_easy_contacts: Kontakty
+  label_easy_contacts_add_non_primary_custom_fields: Přidat další vlastnosti
+  label_easy_contacts_add_non_primary_custom_fields_select: Vyberte vlastnost...
+  label_easy_contacts_import: Importovat kontakty
+  label_easy_contacts_name: Jméno kontaktu
+  label_easy_contacts_reg_no_query: Předvyplnit údaje podle IČ
+  label_easy_contacts_settings: Nastavení kontaktů
+  label_easy_contacts_validate_vat_no: Zkontrolovat DIČ (EU)
+  label_easy_contacts_visibility_all: Všechny kontakty
+  label_easy_contacts_visibility_assigned: Kontakty přiřazeny uživateli
+  label_easy_contacts_visibility_author: Kontakty vytvořeny uživatelem
+  label_easy_contacts_visibility_own: Kontakty vytvořeny uživatelem a nebo přiřazeny
+    uživateli
+  label_edit_contact_field_settings: Nastavení pole %{name}
+  label_filter_group_easy_contact_group_query: Skupina kontaktů
+  label_filter_group_easy_contact_query: Kontakt
+  label_new_import_file_toggling_button: Jiný soubor/nastavení
+  label_personal_name: Jméno
+  label_project_easy_contact_groups: Projektové skupiny
+  label_project_easy_contacts: Projektové kontakty
+  label_show_easy_contacts: Zobrazit kontakty
+  menu_easy_contacts: Kontakty
+  modal_labels:
+    cancel: Zrušit
+    mail: Odeslat vybraným
+  modal_query:
+    groups: Přiřadit ke skupinám
+    mail: Odeslat e-mailem
+    projects: Přiřadit k projektům
+  modal_titles:
+    cancel: Zavřít
+    mail: Odeslat vybraným uživatelům vybrané kontakty.
+  notice_easy_contact_successful_create: Kontakt %{id} vytvořen.
+  notice_failed_to_save_contacts: Nelze uložit kontakty.
+  notice_successfull_contacts_import: Kontakty byly úspěšně importovány
+  notice_successfully_assignable_easy_contacts: Vybrané kontakty (%{count})  byly
+    přiřazeny
+  notice_successfully_remove: Kontakt byl odebrán ze skupiny - %{ecg}
+  notice_successfully_send_by_mail: Vybrané kontakty (%{count}) byly odeslány
+  permission_add_note_easy_contact_groups: Přidávání komentářů ke skupinám
+  permission_add_note_easy_contacts: Přidávání komentářů ke kontaktům
+  permission_anonymize_easy_contacts: Anonymizovat kontakty
+  permission_assign_easy_contacts: Přiřazování kontaktů
+  permission_assign_to_project: Možnost přidávat/odebírat kontakty k projektům
+  permission_delete_assigned_easy_contacts: Mazat přiřazené kontakty
+  permission_delete_author_easy_contacts: Mazat vlastní kontakty
+  permission_delete_easy_contact_groups: Smazat skupiny kontaktů
+  permission_delete_easy_contact_types: Smazat typy kontaktů
+  permission_delete_easy_contacts: Smazat kontakty
+  permission_edit_contact_note: Upravovat komentáře u kontaktů
+  permission_manage_assigned_easy_contacts: Spravovat přiřazené kontakty
+  permission_manage_author_easy_contacts: Spravovat vlastní kontakty
+  permission_manage_easy_contact_groups: Správa skupin kontaktů
+  permission_manage_easy_contact_types: Spravovat typy kontaktů
+  permission_manage_easy_contacts: Správa kontaktů
+  permission_view_easy_contacts: Prohlížení kontaktů
+  project_contacts_overview:
+    header: Přehled kontaktů na projektu
+    warning_easy_contacts_disabled: Na projektu chybí modul kontakty !
+  project_default_page:
+    easy_contacts: Kontakty
+  project_module_easy_contacts: Kontakty
+  search_field_placeholders:
+    easy_contacts: Hledej v kontaktech
+  setting_easy_carddav_enabled: Povolit carddav
+  text_are_you_sure_easy_contact_destroy: SMAZÁNÍ KONTAKTU! Tato akce nenávratně smaže
+    kontakt. Jsi si jistý ?
+  text_easy_contact_missing_comments: Kontakt nikdo neokomentoval
+  text_easy_contacts_encoding_help: Pokud používáte systém Windows, pak pravděpodobně
+    'windows-1250', jinak 'UTF-8'
+  text_easy_contacts_import_help: Prosím vyberte CSV soubor, ze kterého chcete exportovat
+    a vyberte z dostupných kódování, to, ve kterém je soubor uložen.
+  text_easy_contacts_import_preview: |-
+    Prosím prohlédněte si data zobrazená níže, pokud jste spokojeni, kliknutím na import, data uložíte.
+    Pokud spokojeni nejste, zkuste prosím jiný soubor, případně jiné nastavení.
+  title_easy_contact_assign: Přiřazení kontaktů do skupin
+  title_easy_contact_groups_edit: Upravit skupinu
+  title_easy_contact_mailer: Kontakty - %{contact_name}
+  title_easy_contact_type_delete: Smazat kontakt
+  title_easy_contact_type_edit: Upravit kontakt
+  title_easy_contact_type_new: Nový kontakt
+  title_easy_contacts_in_group: Kontakty ve skupině
+  title_easy_modal_selector_trigger:
+    easy_contact: Kliknutím můžete vybrat kontakty ze seznamu.
+    easy_contact_group: Kliknutím můžete vybrat skupiny kontaktů ze seznamu.
+  title_issue_contacts_display_changer_list: Zobrazit kontakty v řádcích
+  title_issue_contacts_display_changer_slab: Zobrazit kontakty v dlaždicích
+  title_issue_contacts_display_changer_tile: Zobrazit kontakty v dlaždicích
+  title_maybe_you_can: Možná chcete vytvořit kontakt
+  title_other_formats_links_vcf: Export do vCard
+  title_reasign_easy_contact: 'Přeřadit kontakt: %{contact}'
+  title_remove_easy_contact_from_entity: Odebrat kontakt

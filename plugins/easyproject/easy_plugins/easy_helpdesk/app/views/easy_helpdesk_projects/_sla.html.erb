@@ -1,0 +1,70 @@
+<div class="nested-fields">
+  <%= toggling_fieldset( f.object.title.presence || l(:'field_easy_helpdesk_project_sla.blank_keyword'), :legend_class => 'icon icon-reorder') do %>
+    <p>
+      <%= f.label :title, l(:'field_easy_helpdesk_project_sla.title') %>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :keyword, l(:'field_easy_helpdesk_project_sla.keyword') %>
+      <%= f.text_field :keyword %>
+      <br/>
+      <em class="help-block"><%= l(:text_easy_helpdesk_projects_keywords) %></em>
+    </p>
+    <p>
+      <%= f.label :priority_id %>
+      <%= f.select :priority_id, IssuePriority.active.collect { |p| [p.name, p.id] }, :include_blank => true %>
+      <br/>
+      <em class="help-block" style='<%= 'display: none;' if f.object.keyword.present? %>'><%= l(f.object.new_record? ? :text_easy_helpdesk_projects_new_priority : :text_easy_helpdesk_projects_priority) %></em>
+    </p>
+    <p>
+      <%= f.label :hours_to_response, l(:'field_easy_helpdesk_project_sla.hours_to_response') %>
+      <%= f.text_field :hours_to_response, :size => 5 %>
+      <br/>
+      <em class="help-block"><%= l(:text_easy_helpdesk_projects_sla_hours_to_response) %></em>
+    </p>
+
+    <p>
+      <%= f.label :hours_to_solve, l(:'field_easy_helpdesk_project_sla.hours_to_solve') %>
+      <%= f.text_field :hours_to_solve, :size => 5 %>
+      <br/>
+      <em class="help-block"><%= l(:text_easy_helpdesk_projects_sla_hours_to_solve) %></em>
+    </p>
+    <div class="sla_more" style="display: none">
+      <% if @easy_helpdesk_project && @easy_helpdesk_project.project %>
+          <p>
+            <%= f.label :tracker_id %>
+            <%= f.select :tracker_id, @easy_helpdesk_project.project.trackers.collect { |t| [t.name, t.id] }, :include_blank => true %>
+          </p>
+      <% end %>
+      <div class='sla-working-time'>
+        <p>
+          <span>
+          <%= f.check_box :use_working_time, :class => 'use-working-time-checkbox' %>
+          <%= f.label :use_working_time %>
+          </span>
+        </p>
+
+        <div class='sla-working-time-container'>
+          <p>
+            <%= f.label :hours_mode_from %>
+            <%= f.select :hours_mode_from, hourstimecheck_collection_for_select_options(f.object.hours_mode_from, :include_24 => true), {}, :class => 'inline' -%>
+            <%= f.select :hours_mode_to, hourstimecheck_collection_for_select_options(f.object.hours_mode_to, :include_24 => true), {}, :class => 'inline' -%>
+          </p>
+
+          <p>
+            <%= f.label :easy_user_working_time_calendar_id, l(:label_easy_helpdesk_projects_sla_working_time_calendar) %>
+            <%= f.select :easy_user_working_time_calendar_id, EasyUserWorkingTimeCalendar.templates.collect { |p| [p.name, p.id] }, :include_blank => true %>
+          </p>
+          <p>
+            <%= link_to(l(:label_sla_calendar_settings), easy_user_working_time_calendars_path, :class => 'button') if User.current.admin? %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <p>
+      <%= link_to_remove_association l(:button_delete), f, :class => 'icon icon-del button push-right', :title => l(:button_delete) %>
+      <%= link_to l(:label_more), 'javascript:void(0)', :onclick => '$(this).hide().parent().prev().show();$(document).trigger("erui_interface_change_vertical");', :class => 'icon icon-add button', :title => l(:label_more) %>
+    </p>
+    <%= f.hidden_field :position %>
+  <% end %>
+</div>

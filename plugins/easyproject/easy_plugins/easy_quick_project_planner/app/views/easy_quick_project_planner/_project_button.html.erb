@@ -1,0 +1,5 @@
+<% if User.current.allowed_to?(:quick_planner, project) %>
+  <% content_for :easy_page_layout_service_box do %>
+    <%= link_to l(:label_quick_planning), quick_planner_path(project), :class => 'button-positive icon icon-lightning' %>
+  <% end -%>
+<% end -%>

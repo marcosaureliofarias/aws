@@ -1,0 +1,8 @@
+<% locking_time = User.locking_time %>
+<% if User.current.easy_lesser_admin_for?('users') && @user.blocked_at && (locking_time == 0 || (@user.blocked_at + locking_time) > Time.now) %>
+  <%= link_to l('security_user_lock.label_unblock_user'),
+              unblock_user_path(id: @user.id),
+              method: :patch,
+              data: { confirm: user_lock_l('text_are_you_sure') },
+              class: 'button icon-unlock' %>
+<% end %>

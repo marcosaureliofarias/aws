@@ -1,0 +1,10 @@
+<% if @easy_contacts.size > 1 %>
+<% else %>
+  li = $("#easy_contact_<%= @easy_contacts.first.id %>_<%= @entity.class.name.underscore %>_<%= @entity.id %>");
+  ul = li.closest('ul');
+  if (ul.children().length > 1) {
+    li.remove();
+  } else {
+    ul.closest('div.easy-contact-reference-container').remove();
+  }
+<% end %>

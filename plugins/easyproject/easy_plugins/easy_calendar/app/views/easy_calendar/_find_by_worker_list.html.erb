@@ -1,0 +1,11 @@
+<table class="list">
+  <tbody>
+    <% users.each do |user| %>
+      <tr class="<%= user.css_classes %>">
+        <td class="name">
+          <%= link_to(avatar(user, :style => :small, :no_link => true) + user.name, easy_calendar_path(:user_ids => [user.id]), :title => user.name) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

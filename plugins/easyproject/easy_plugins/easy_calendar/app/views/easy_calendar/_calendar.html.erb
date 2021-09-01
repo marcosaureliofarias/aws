@@ -1,0 +1,60 @@
+<% users ||= [] %>
+<% easy_autocomplete_options_for_users ||={} %>
+<div class="easy-calendar-container" id="easy-calendar-container_<%= cal_id %>">
+
+  <div class="easy-calendar-header">
+    <div class="toolbar">
+      <div class="easy-calendar-actions">
+        <%= render partial: 'easy_calendar/zoom_buttons', locals: {settings: settings} -%>
+      </div>
+      <div class="easy-cal-date-selection easy-calendar-listing-links">
+        <a class="easy-cal-prev prev"><span>&lt;</span></a>
+        <span class="easy-cal-title easy-calendar-title"></span>
+        <a class="easy-cal-next next"><span>&gt;</span></a>
+      </div>
+    </div>
+    <% if true || modul_uniq_id.present? %>
+      <div class="splitcontent easy-calendar-filters">
+        <div class="easy-cal-calendar-selection">
+          <%= autocomplete_field_tag("#{cal_id}-calendar-select", EasyCalendar::AdvancedCalendar.allowed_registered_calendars.map{|id, klass| [l(klass.label), id.to_s]}, Array(settings[:enabled_calendars]), {html_options: {placeholder: l(:placeholder_easy_calendar_select)}}) %>
+        </div>
+        <div class="easy-cal-user-selection">
+          <%= easy_select_tag("#{cal_id}-user-select", {}, nil, easy_autocomplete_path('users_in_meeting_calendar'), :root_element => 'users', :html_options => {:class => 'user_select', :placeholder => l(:button_show_user_calendar)}, :easy_autocomplete_options => easy_autocomplete_options_for_users ) %>
+          <span class="easy-cal-selected-users"></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div id="<%= cal_id %>" class="easy-calendar-fc">
+    <div class="easy-calendar-export">
+      <label class="icon icon-ics"><%= l(:label_easy_calendar_ical_export_url) %></label>:
+      <% ([OpenStruct.new(name: l(:label_me), id: User.current.id)] + users).each do |user| %>
+        <%= link_to(user.name, easy_calendar_get_ics_path(user_id: user.id), remote: true) %>&nbsp;&nbsp;
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render :partial => 'easy_meetings/header_scripts' %>
+
+<script type="text/javascript">
+  <%
+  default_column_format = { month: 'dddd', week: "ddd, #{to_js_date_format(short_date_format)}", day: "dddd, #{to_js_date_format(short_date_format)}" }.merge(settings[:default_column_format] || {})
+  %>
+  EASY.schedule.late(function () {
+    initEasyAutocomplete();
+    $("#<%= cal_id %>").easyCalendar({
+      enabledCalendars: <%= (settings[:enabled_calendars] || []).to_json.html_safe %>,
+      calendarTypes: <%= EasyCalendar::AdvancedCalendar::calendars_data(self)::to_json.html_safe %>,
+      moduleId: <%= modul_uniq_id.sub('module_inside_', '').to_json.html_safe %>,
+      minTime: <%= (settings[:display_from] || 0).to_json.html_safe %>,
+      maxTime: <%= (settings[:display_to] || 24).to_json.html_safe %>,
+      users: <%= (users.collect{|u| {id: u.id, name: u.name}}).to_json.html_safe %>,
+      defaultView: <%= (settings[:default_view] || 'month').to_json.html_safe %>,
+      firstDay: <%= (EasyExtensions::Calendars::Calendar.first_wday || 1).to_json.html_safe %>,
+      columnFormat: <%= default_column_format.to_json.html_safe %>,
+      height: <%= (settings[:height] || 740).to_json.html_safe %>,
+      aspectRatio: <%= (settings[:aspectRatio] || 1.35).to_json.html_safe %>
+    });
+  });
+</script>

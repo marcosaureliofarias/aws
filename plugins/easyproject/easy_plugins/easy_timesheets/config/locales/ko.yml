@@ -1,0 +1,72 @@
+---
+ko:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: 이 기간에는 다른 타임시트가 있습니다.
+  button_copy_easy_time_sheet: 새로운 타임시트에 행 복사
+  button_easy_timesheet_by_easy_query: 저장된 필터에 의한 타임시트
+  button_easy_timesheet_delete_with_time_entries: 행과 소요시간 삭제
+  button_easy_timesheet_delete_without_time_entries: 행만 삭제
+  button_easy_timesheets_approve: 승인
+  button_easy_timesheets_lock: 잠금
+  button_easy_timesheets_new_row: 신규 행
+  button_easy_timesheets_reject: 거부
+  button_easy_timesheets_unlock: 잠금 해제
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: 개인 성명서 - 시간표
+        description: 시간표 확인
+  easy_query:
+    name:
+      easy_timesheet_query: 타임쉬트
+  easy_timesheets_date_must_be_first_day_of_week: 주간의 첫째날이어야 합니다. (%{day})
+  easy_timesheets_periods:
+    day: 주간
+    month: 월간
+    week: 주간
+  easy_timesheets_plugin_name: 타임쉬트
+  error_timesheet_invalid_time_entries: 잘못된 시간 입력사항때문에 타임쉬트를 생성할 수 없습니다.:%{errors}
+  field_easy_timesheet_period: 기간
+  heading_easy_timesheets_edit: 타임쉬트 편집
+  heading_easy_timesheets_new: 신규 타임쉬트
+  heading_easy_timesheets_show: 타임쉬트 %{start_date} - %{end_date}
+  label_easy_timesheet: 타임쉬트
+  label_easy_timesheet_approved: 승인?
+  label_easy_timesheet_approved_by: 의한 승인
+  label_easy_timesheet_end_date: 마지막 날
+  label_easy_timesheet_lock_description: 승인/거부 이유
+  label_easy_timesheet_lock_prompt: 승인 이유
+  label_easy_timesheet_locked_at: 승인/거부
+  label_easy_timesheet_rejected_by: 의한 거부
+  label_easy_timesheet_unlock_prompt: 거부 이유
+  label_easy_timesheets: 타임쉬트
+  label_filter_group_easy_timesheet_query: 타임 쉬트
+  permission_create_easy_timesheets_for_other_user: 다른 사용자를 위한  타임 쉬트 생성
+  permission_edit_easy_timesheets: 타임 쉬트 편집
+  permission_edit_own_easy_timesheets: 자신의 타임 쉬트 편집
+  permission_view_easy_timesheets: 타임 쉬트 보기
+  project_module_easy_timesheets: 타임 쉬트
+  text_easy_timesheet_destroy_cell_are_you_sure: 정말로 소요 시간을 삭제하시겠습니까?
+  text_easy_timesheet_destroy_row_are_you_sure: 당신은 타임 쉬트 행을 삭제 할려고 합니다. 이 행에서 소요
+    시간을 자동적으로 삭제해서는 안됩니다. 계속 진행하시겠습니까?
+  text_easy_timesheet_prompt_text: 시간 추가
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: 시작일이 선택한 주간의 시작
+    부분에 자동으로 정렬됩니다
+  text_time_sheet_copy_from: 행은 타임 쉬트 %{entity}에서 자동으로 채워집니다.
+  text_warning_after_time_sheet_copied: 행에서 적어도 하나의 셀을 저장하지 않으면 행을 잃게 됩니다.
+  title_easy_timesheet_destroy: 타임 쉬트 제거
+  title_easy_timesheet_edit_with_period: "%{period} 타임 쉬트 편집"
+  title_easy_timesheet_new_with_period: 신규 %{period} 타임 쉬트
+  title_easy_timesheet_show: 타임 쉬트 보기
+  title_next_time_sheet: 따르는 %{user} 의 타임 쉬트 보기
+  title_previous_time_sheet: "%{user} 의 이전 타임 쉬트 보기"
+  validation_entry_already_exists: "(%{start_date})와 (%{end_date}) 사이에 이미 존재하는 타임
+    쉬트"
+  validation_greater_than_start_date: "(%{end_date})는 시작일 (%{start_date}) 보다 뒤에  있어야 합니다."
+  validation_timesheet_cant_destroy_time_entries: 어떤 시간 항목은 소멸되지 않아야 합니다.
+  validation_week_period: 기간  (%{start_date}) 와 (%{end_date}) 는 한 주(a week)여야 합니다.

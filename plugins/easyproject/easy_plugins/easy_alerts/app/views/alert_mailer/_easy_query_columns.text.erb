@@ -1,0 +1,6 @@
+<% if query %>
+  <% columns = query.inline_columns %>
+  <% columns.each do |column| %>
+    <%= column.caption %>: <%= entity_attribute(report.entity, column) %>
+  <% end %>
+<% end %>

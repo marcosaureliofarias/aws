@@ -1,0 +1,7 @@
+<fieldset>
+  <legend><%= l(:label_page_module_chart_settings) %>:</legend>
+  <p>
+    <%= label_tag "#{block_name}[autorefresh]", l(:label_page_module_chart_autorefresh_before) %>
+    <%= text_field_tag "#{block_name}[autorefresh]", settings['autorefresh'] || '0', :size => 5 %> <%= l(:label_page_module_chart_autorefresh_after) %>
+  </p>
+</fieldset>

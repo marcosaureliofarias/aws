@@ -1,0 +1,291 @@
+<%
+   settings ||= {}
+   settings = settings.merge(query.chart_settings)
+   if settings['primary_renderer'].blank?
+     settings['primary_renderer'] = settings.dig('chart_settings', 'primary_renderer') || 'line'
+   end
+   block_name ||= ''
+   base_block_name = block_name
+   if block_name.blank?
+     period_zoom_name = 'period_zoom'
+     block_name = 'chart_settings'
+   else
+     period_zoom_name = "#{block_name}[period_zoom]"
+     block_name = "#{block_name}[chart_settings]"
+   end
+   page_module ||= nil
+
+   onclick_settings = settings['onclick'] || {}
+   onclick_possible_targets = ['current', 'blank', 'modal']
+%>
+<div id="<%= modul_uniq_id %>_chart_options_container" class="tabular chart-options-container">
+  <p class="chart-type-select">
+    <%= label_tag modul_uniq_id + '_chart_primary_renderer_list', l(:label_page_module_chart_renderer_choice) %>
+    <% %w(line bar pie).each do |type| %>
+      <%= radio_button_tag "#{block_name}[primary_renderer]", type, settings['primary_renderer'] == type, id: modul_uniq_id + '_chart_primary_renderer_'+type, class: 'chart_primary_renderer_type serialize' %>
+      <%= label_tag modul_uniq_id + '_chart_primary_renderer_'+type, l('label_page_module_chart_renderer.'+type), class: 'inline' %>
+    <% end %>
+  </p>
+
+  <div id="<%= modul_uniq_id %>_chart_primary_renderer_container">
+    <p>
+      <%= label_tag "#{block_name}[axis_x_column]", l(:label_page_module_chart_axis_x) %>
+      <%= select_tag "#{block_name}[axis_x_column]", options_for_groupable_columns(query, settings['axis_x_column']), id: modul_uniq_id + 'chart_axis_x_column', class: 'serialize' %>
+    </p>
+
+    <p>
+      <%= label_tag modul_uniq_id + '_chart_axis_y_type_sum', l(:label_page_module_chart_axis_y) %>
+
+      <%= radio_button_tag "#{block_name}[axis_y_type]", 'count', settings['axis_y_type'] == 'count', id: modul_uniq_id + '_chart_axis_y_type_count', class: 'serialize' %>
+      <%= label_tag modul_uniq_id + '_chart_axis_y_type_count', l(:label_page_module_chart_axis_y_count), class: 'inline' %>
+      <% if query.sumable_columns.present? %>
+        <br>
+        <%
+          # Default is first one
+          settings['axis_y_type'] ||= query.enabled_aggregations.first
+        %>
+        <% query.enabled_aggregations.each do |aggregation| %>
+          <%
+            element_id = (modul_uniq_id + '_chart_axis_y_type_' + aggregation)
+            label_text = l("label_#{aggregation}_of", default: ["label_page_module_chart_axis_y_#{aggregation}".to_sym])
+          %>
+          <%= radio_button_tag "#{block_name}[axis_y_type]", aggregation, (settings['axis_y_type'] == aggregation), id: element_id, class: 'serialize' %>
+          <%= label_tag element_id, label_text, class: 'inline' %>
+        <% end %>
+        <br>
+        <%= select_tag "#{block_name}[axis_y_column]", options_for_sumable_columns(query, settings['axis_y_column']), class: 'serialize' %>
+        <% cumulative_style = ['line', 'bar'].include?(settings['primary_renderer']) ? '' : 'display:none;' %>
+        <br>
+        <span id="<%= modul_uniq_id %>_chart_settings_cumulative" style="<%= cumulative_style %>">
+          <%= radio_button_tag "#{block_name}[cumulative]", '0', (settings['cumulative'] != '1'), id: modul_uniq_id + '_cumulative_0' %>
+          <%= label_tag modul_uniq_id + '_cumulative_0', l(:label_page_module_chart_periodical) %>
+          <%= radio_button_tag "#{block_name}[cumulative]", '1', (settings['cumulative'] == '1'), id: modul_uniq_id + '_cumulative_1' %>
+          <%= label_tag modul_uniq_id + '_cumulative_1', l(:label_page_module_chart_cumulative) %>
+        </span>
+        <script>
+          EASY.schedule.late(function () {
+            $("#<%= modul_uniq_id %>_chart_options_container input.chart_primary_renderer_type").change(function () {
+              if ($(this).val() === 'pie') {
+                $('#<%= modul_uniq_id %>_chart_settings_cumulative').hide();
+              } else {
+                $('#<%= modul_uniq_id %>_chart_settings_cumulative').show();
+              }
+            });
+          });
+        </script>
+    <% end %>
+    </p>
+
+    <%= toggling_fieldset( l(:label_additional_options), collapsed: false) do %>
+      <p>
+        <%= label_tag modul_uniq_id + '_chart_y_label', l(:label_page_module_chart_y_label) %>
+        <% if page_module %>
+          <% keys = block_name.scan(/\[([^\]]+)\]/).flatten %>
+          <% keys << 'y_label' %>
+          <%= page_module_settings_text_field_tag(page_module, keys, class: 'serialize') %>
+        <% else %>
+          <%= text_field_tag "#{block_name}[y_label]", settings['y_label'], class: 'serialize' %>
+      <% end %>
+      </p>
+
+      <% if query.sumable_columns.present? %>
+        <p>
+          <%= label_tag modul_uniq_id + '_chart_secondary_axis_y_column', l(:label_page_module_chart_axis_y2) %>
+          <%= select_tag "#{block_name}[secondary_axis_y_column]", options_for_sumable_columns(query, settings['secondary_axis_y_column']), class: 'serialize', prompt: '(' + l(:label_none) + ')' %>
+        </p>
+      <% end %>
+
+      <% if query.date_columns.any? %>
+        <p>
+          <%= label_tag "#{block_name}[period_column]", l(:label_page_module_chart_time_window) %>
+          <%= select_tag "#{block_name}[period_column]", options_for_date_columns(query, settings['period_column']), prompt: '('+ l(:label_page_module_chart_time_window_disabled)+')', id: modul_uniq_id + 'chart_period_column', disabled: query.chart_grouped_by_date_column?, class: 'serialize' %>
+          <em id="<%= modul_uniq_id %>chart_period_disabled_label" style="<%= 'display: none' unless query.chart_grouped_by_date_column? %>"><%= l(:text_chart_period_disabled) %></em>
+        </p>
+        <p class="chart-options--period-zoom" style="<%= 'display: none;' unless settings['period_column'].presence || query.date_columns.detect{|c| c.name.to_s == settings['axis_x_column']} %>">
+          <%= label_tag period_zoom_name, l(:label_page_module_default_period) %>
+          <%= select_tag period_zoom_name, options_for_select(query.all_periods.collect{|period| [query_period_zoom_name(period), period]}, query.period_zoom), class: 'serialize' %>
+        </p>
+      <% end %>
+
+      <% if query.sumable_columns.present? %>
+      <div class="chart-bar-options" style="<%= 'display: none' if settings['primary_renderer'] != 'bar' %>">
+        <p>
+          <%= label_tag "#{block_name}[bar_direction]", l(:label_page_module_chart_bar_direction) %>
+          <%= select_tag "#{block_name}[bar_direction]", options_for_select([[l(:label_page_module_chart_bar_direction_vertical), 'vertical'], [l(:label_page_module_chart_bar_direction_horizontal), 'horizontal']], settings['bar_direction']), class: 'serialize' %>
+        </p>
+
+        <p>
+          <%= label_tag "#{block_name}[bar_limit]", l(:label_page_module_chart_bar_limit) %>
+          <%= text_field_tag "#{block_name}[bar_limit]", settings['bar_limit'].to_i, class: 'serialize' %>
+        </p>
+
+        <% if !options[:secondary_query] %>
+          <%
+            # Long tail make sense only with some kind of limit
+            # This could work with any type of chart
+          %>
+          <p>
+            <%= label_tag "#{block_name}[long_tail]", l(:label_long_tail) %>
+            <%= hidden_field_tag "#{block_name}[long_tail]", '0', id: nil %>
+            <%= check_box_tag "#{block_name}[long_tail]", '1', (settings['long_tail'] == '1'), class: 'serialize' %>
+            <em><%= l(:text_long_tail_chart_help) %></em>
+          </p>
+        <% end %>
+
+        <p>
+          <%= label_tag "#{block_name}[bar_reverse_order]", l('label_reverse_order') %>
+          <%= hidden_field_tag "#{block_name}[bar_reverse_order]", '0', id: nil %>
+          <%= check_box_tag "#{block_name}[bar_reverse_order]", '1', (settings['bar_reverse_order'] == '1'), class: 'serialize' %>
+        </p>
+
+        <p>
+          <%= label_tag "#{block_name}[bar_sort_by_axis_x]", l('label_sort_by_axis_x') %>
+          <%= hidden_field_tag "#{block_name}[bar_sort_by_axis_x]", '0', id: nil %>
+          <%= check_box_tag "#{block_name}[bar_sort_by_axis_x]", '1', (settings['bar_sort_by_axis_x'] == '1'), class: 'serialize' %>
+        </p>
+      </div>
+      <% end %>
+
+      <div id="<%= modul_uniq_id %>_chart_legend_container" style="<%= 'display: none' if settings['primary_renderer'] != 'pie' %>">
+        <p>
+          <%= label_tag "#{block_name}[legend_enabled]", l('label_legend_enabled', scope: [:charts]) %>
+          <%= hidden_field_tag "#{block_name}[legend_enabled]", '0', id: nil %>
+          <%= check_box_tag "#{block_name}[legend_enabled]", '1', settings['legend_enabled'] == '1', onchange: "$('##{modul_uniq_id}_chart_legend').toggle()", class: 'serialize' %>
+        </p>
+
+        <div id="<%= modul_uniq_id %>_chart_legend" style="<%= 'display: none' if settings['legend_enabled'] != '1' %>">
+          <p>
+            <%= label_tag "#{block_name}[legend][location]", l('label_legend_location', scope: [:charts]) %>
+            <%= select_tag "#{block_name}[legend][location]", options_for_select([
+                                                                                   [l('nw', scope: [:charts, :legend, :location]), 'nw'],
+                                                                                   [l('ne', scope: [:charts, :legend, :location]), 'ne'],
+                                                                                   [l('e', scope: [:charts, :legend, :location]), 'e'],
+                                                                                   [l('s', scope: [:charts, :legend, :location]), 's']
+                                                                                 ], settings['legend'] && settings['legend']['location']), class: 'serialize' %>
+          </p>
+        </div>
+      </div>
+    <% end #toggling_fieldset %>
+
+    <% if EasyExtensions.chart_onclick_enabled && page_module && !options[:secondary_query] %>
+      <%
+        url_builder_id = "#{modul_uniq_id}_url_builder"
+        help_table_id = "#{modul_uniq_id}_url_builder_help_table"
+        tab_id = page_module&.tab_id || 0
+
+        tokens = [
+          # { name: 'index', desc: l('text_chart_onclicks.index') },
+          { name: 'name', desc: l('text_chart_onclicks.name') },
+          { name: 'raw_name', desc: l('text_chart_onclicks.raw_name') },
+          { name: 'value', desc: l('text_chart_onclicks.value') },
+          { name: 'second_value', desc: l('text_chart_onclicks.second_value') }
+        ]
+
+        easy_url_builder_js = {
+          paramsTable: 'afterParent',
+          I18n: {
+            name: l(:field_name),
+            value: l(:field_value),
+            parse: l(:label_parse)
+          }
+        }
+
+        easy_chart_onlick_help_js = {
+          tabId: tab_id,
+          tokens: tokens
+        }
+      %>
+
+      <%= toggling_fieldset(l(:label_on_click), collapsed: true) do %>
+        <p>
+          <%= label_tag "#{block_name}[onclick][target]", l(:label_target) %>
+          <%= select_tag "#{block_name}[onclick][target]", options_for_select(onclick_possible_targets, onclick_settings['target']) %>
+        </p>
+
+        <p>
+          <%= label_tag "#{block_name}[onclick][url]", l(:label_url) %>
+          <%= text_area_tag "#{block_name}[onclick][url]", onclick_settings['url'], class: 'auto-expand', id: url_builder_id %>
+        </p>
+
+        <table id="<%= help_table_id %>" class="help">
+        </table>
+
+        <script>
+          EASY.schedule.late(() => {
+            // Builder
+            //
+            const builder = $("#<%= url_builder_id %>").easyUrlBuilder(<%= easy_url_builder_js.to_json.html_safe %>);
+            builder.easyUrlBuilder("registerPageBeforeSave", "<%= page_module.uuid %>");
+
+            // Builder help
+            //
+            const help = $("#<%= help_table_id %>").easyChartOnlickHelp(<%= easy_chart_onlick_help_js.to_json.html_safe %>);
+
+            <% if EasyExtensions.global_filters_enabled %>
+              <% if params[:modal_edit] %>
+                <%
+                  settings = page_module.page_tab&.settings
+
+                  if settings && settings['global_filters'].is_a?(Hash)
+                    global_filters = settings['global_filters']
+                  else
+                    global_filters = {}
+                  end
+                %>
+
+                help.easyChartOnlickHelp("fromSavedGlobalFilters", <%= global_filters.to_json.html_safe %>);
+              <% else %>
+                help.easyChartOnlickHelp("fromExistingGlobalFilters");
+              <% end %>
+
+            <% end %>
+          });
+        </script>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<% if page_module %>
+  <%# render :partial => 'easy_queries/easy_query_chart', :locals => {:easy_query => query, :block_name => block_name, :settings => settings, :page_module => page_module, :autostart_chart_rendering => false} %>
+<% end %>
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    var date_columns = JSON.parse('<%= raw query.date_columns.collect{|c| c.name.to_s}.to_json %>');
+    $("#<%= modul_uniq_id %>_chart_options_container input.chart_primary_renderer_type").change(function () {
+      var el = $("#<%= modul_uniq_id %>_chart_options_container .chart-bar-options");
+      el.toggle($(this).is(':checked') && $(this).val() === 'bar');
+      el = $("#<%= modul_uniq_id %>_chart_legend_container");
+      el.toggle($(this).is(':checked') && $(this).val() === 'pie');
+
+      $(document).trigger('erui_interface_change_vertical');
+    });
+
+    function set_period_column_value(axis_x_value) {
+      var $period_column = $('#<%= modul_uniq_id %>chart_period_column');
+      var $period_zoom = $('#<%= modul_uniq_id %>_chart_options_container .chart-options--period-zoom');
+      var $disabled_notice = $('#<%= modul_uniq_id %>chart_period_disabled_label');
+      if( date_columns.indexOf( axis_x_value ) > -1 ) {
+        $period_column.val( axis_x_value );
+        $period_column.prop('disabled', true);
+        $disabled_notice.show();
+        $period_zoom.show();
+      } else {
+        if( $period_column.prop('disabled') ) {
+          $period_column.val( '' );
+          $period_zoom.hide();
+        }
+        $period_column.prop('disabled', false);
+        $disabled_notice.hide();
+      }
+    }
+
+    $('#<%= modul_uniq_id %>chart_axis_x_column').change(function(evt){
+      set_period_column_value( $(this).val() );
+    });
+    $('#<%= modul_uniq_id %>chart_period_column').change(function(evt){
+      $('#<%= modul_uniq_id %>_chart_options_container .chart-options--period-zoom').toggle( $(this).val() !== '' );
+    });
+  });
+
+</script>

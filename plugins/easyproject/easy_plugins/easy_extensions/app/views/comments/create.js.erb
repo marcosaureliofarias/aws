@@ -1,0 +1,6 @@
+<% if @comment.new_record? %>
+  $("#ajax-modal > form").prepend("<%=j error_messages_for(@comment) %>");
+<% else %>
+  hideModal();
+  $("#<%=j params[:element_to_update] || 'note-comments' %>").append("<%=j render(:partial => 'common/comment', :locals => {:comment => @comment, :entity => @comment.commented}) -%>")
+<% end %>

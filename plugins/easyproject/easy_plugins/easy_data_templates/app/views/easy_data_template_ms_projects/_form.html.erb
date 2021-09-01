@@ -1,0 +1,20 @@
+<%= hidden_field_tag 'easy_data_template[is_public]', '1' %>
+<p>
+  <%= f.text_field :name, required: true, label: l(:label_easy_data_template_name) %>
+</p>
+<% if @datatemplate.attachments.size <= 0 %>
+  <p>
+    <%= label_tag :import_file, l(:label_easy_data_template_import_file), class: 'required' %>
+    <%= file_field_tag 'attachments[0][file]', size: 30, id: 'import_file' %>
+  </p>
+  <p>
+    <%= l(:text_easy_data_template_ms_project_upload_file).html_safe %>
+  </p>
+<% end %>
+<p>
+  <%= label_tag 'easy_data_template[settings][summaries_as_milestones]', l(:label_import_summaries_as_milestones) %>
+  <%= hidden_field_tag 'easy_data_template[settings][summaries_as_milestones]', '0', id: nil %>
+  <%= check_box_tag 'easy_data_template[settings][summaries_as_milestones]', '1', @datatemplate.settings['summaries_as_milestones'] == '1' %>
+</p>
+  
+<%= late_javascript_tag "$('#easy_data_template_name').focus();" %>

@@ -1,0 +1,27 @@
+<% if easy_sprint_settings = easy_sprint.capacity_attribute.presence %>
+    <% capacity_units = easy_sprint_settings == 'estimated_hours' ? l(:label_f_hour_short, value: nil) : 'SP' %>
+    <% sum_easy_agile_rating = easy_sprint.sum_easy_agile_rating %>
+    <div id="capacity" class="easy-entity-details-sidebar-attributes">
+      <table class="highlight">
+        <tr>
+          <td title="<%= l(:"field_#{easy_sprint_settings}") %>">
+            <%= easy_sprint.capacity.to_f %> <%= capacity_units %>
+          </td>
+          <th class="highlight-desc">
+            <label><%= l(:field_sprint_capacity) %></label>
+          </th>
+        </tr>
+        <tr>
+          <td title="<%= l(:"field_#{easy_sprint_settings}") %>" id="current-load" class="<%= (easy_sprint.capacity < sum_easy_agile_rating) ? ' color-negative' : ' color-positive' %>">
+            <span class="load-value">
+              <%= sum_easy_agile_rating %>
+            </span>
+            <%= capacity_units %>
+          </td>
+          <th class="highlight-desc">
+            <label><%= l(:label_current_load) %></label>
+          </th>
+        </tr>
+      </table>
+    </div>
+<% end %>

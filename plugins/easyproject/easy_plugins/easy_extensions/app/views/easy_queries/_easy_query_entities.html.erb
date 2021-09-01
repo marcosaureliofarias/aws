@@ -1,0 +1,73 @@
+<%
+  block_name ||= ''; uniq_id ||= ''; attributes ||= {}; selected_values ||= []
+  user ||= User.current
+  modal_selector = (options[:modal_selector].to_s == 'true')
+  show_ending_buttons = options[:show_ending_buttons]
+  easy_query = present(easy_query, block_name: block_name, modul_uniq_id: uniq_id, options: options)
+  entities ||= easy_query.entities(fetch: true)
+  ending_buttons_always_visible = options[:ending_buttons_always_visible]
+%>
+<% easy_query_entity_list(entities) do |entity, level| %>
+  <% if entity.is_a?(SimpleDelegator)
+    entity_class = entity.__getobj__.class
+  else
+    entity_class = entity.class
+  end %>
+  <tr id="entity-<%= entity.id %>"
+      class="
+        easy-entity-list__item
+        <%= dom_id(entity) %>
+        <%= ' hascontextmenu' if easy_query.has_contextmenu? || modal_selector %>
+        <%= easy_query.entity_css_classes(entity, level: level, uniq_prefix: nil, display_tree: easy_query.display_as_tree?, inline_editable: !modal_selector) %>
+        <%= ' context-menu-selection' if modal_selector && selected_values && selected_values.detect{|a, _| a == entity.id.to_s } %>
+        <%= ' selectable' if modal_selector %><%= ' easy-to-do-list-source' if entity.is_a?(Issue) %>
+        <%= easy_query_custom_formatting_css(easy_query, entity) if EasySetting.value('show_easy_custom_formatting') %>
+      "
+      <%= detect_hide_elements(uniq_id, user) %> data-url="<%= url_to_entity(entity, format: 'json') %>">
+    <%# TODO zavisi na pravech easy_cache ['easy_que easy_query_row', entity, block_name, I18n.locale], !block_name.blank? do %>
+    <% if modal_selector %>
+      <td class="easy-entity-list__item-checkbox easy-entity-list__item-checkbox--modal checkbox hide-when-print">
+        <%= entity_modal_selector_checker(entity, selected_values, options[:multiple]) %>
+      </td>
+    <% end %>
+    <%= content_tag :td, easy_query.has_contextmenu? ? check_box_tag('ids[]', entity.id, false, id: nil) : '', class: 'easy-entity-list__item-checkbox checkbox hide-when-print' %>
+    <td class="easy-entity-list__item-actions easy-entity-list__item-actions--beginning easy-query-additional-beginning-buttons hide-when-print"><span class="hide-when-print"><%= easy_query_additional_beginning_buttons(easy_query, entity, options) %></span></td>
+    <% easy_query.inline_columns.each do |column| %>
+      <% # #value is setting #css_classes %>
+      <% value = column.value(entity, params: params) %>
+        <td class="<%= "easy-entity-list__item-attribute #{column.css_classes}"%>" rowspan="<%= column.full_rows_column? ? 2 : 1 %>">
+          <div class="easy-entity-list__item-attribute-label" style="display: none"><%= column.caption %></div>
+          <div class="easy-entity-list__item-attribute-content"><%= format_html_entity_attribute(entity_class, column, value, entity: entity, allow_avatar: easy_query.show_avatars?, editable: options[:editable]) %></div>
+        </td>
+    <% end %>
+    <% if !modal_selector || show_ending_buttons %>
+      <% buttons = easy_query_additional_ending_buttons(easy_query, entity, options) %>
+      <td class="easy-entity-list__item-actions easy-entity-list__item-actions--ending easy-query-additional-ending-buttons <%= 'hide-when-print' unless show_ending_buttons %>">
+        <div class="ending-buttons-fixed <%= 'ending-buttons-fixed--visible' if ending_buttons_always_visible %> <%= 'hidden' if buttons.blank? %>">
+          <%= buttons %>
+        </div>
+      </td>
+    <% end %>
+    <%# end %>
+  </tr>
+  <% easy_query.block_columns.each do |column| %>
+    <% if (text = format_html_entity_attribute(entity.class, column, column.value(entity, params: params), entity: entity)) && text.present? %>
+      <tr class="easy-entity-list__item--block <%= current_cycle  %>
+                <%= easy_query.entity_css_classes(entity, level: level, uniq_prefix: nil, display_tree: easy_query.display_as_tree?, inline_editable: !modal_selector) %>
+                " data-url="<%= url_to_entity(entity, format: 'json') %>">
+        <% if modal_selector %>
+          <td class="easy-entity-list__item-placeholder hide-when-print"></td>
+        <% end %>
+        <%= content_tag :td, '', class: 'checkbox hide-when-print easy-entity-list__item-checkbox' %>
+        <td class="easy-entity-list__item-actions easy-entity-list__item-actions--beginning easy-query-additional-beginning-buttons hide-when-print"></td>
+        <% colspan = easy_query.inline_columns.size %>
+        <% colspan += 1 unless modal_selector %>
+        <td colspan="<%= colspan %>" class="<%= column.css_classes %> easy-entity-list__item-attribute">
+          <div class="easy-entity-list__item-attribute-label" style="display: none"><%= column.caption %></div>
+          <div class="easy-entity-list__item-attribute-content"><%= text %></div>
+        </td>
+      </tr>
+    <% end %>
+  <% end #block columns %>
+<% end #entities %>
+<%= easy_query_summary_row(easy_query, attributes[:sums] || {}, :bottom, options) if easy_query.grouped? %>

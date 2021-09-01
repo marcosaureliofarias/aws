@@ -1,0 +1,103 @@
+<%
+  back_url = params[:back_url].presence || original_url || easy_attendances_path(tab: params[:tab].presence)
+  modul_uniq_id ||= ''
+  item_uniq_id ||= ''
+%>
+<%= error_messages_for easy_attendance -%>
+<%= error_messages_for(easy_attendance.time_entry) if easy_attendance.time_entry -%>
+<div class="hidden warning" id="easy_attendance_confirm_over_limit_vacation" >
+  <p id="warning_message"></p>
+  <p>
+    <%= f.label :confirmation, l(:label_easy_attendance_confirm_over_limit_vacation) %>
+    <%= f.check_box :confirmation %>
+  </p>
+</div>
+<%= hidden_field_tag(:back_url, back_url) -%>
+<%= hidden_field_tag(:modul_uniq_id, modul_uniq_id) %>
+<%= hidden_field_tag(:item_uniq_id, item_uniq_id) %>
+<div class="easy-attendance-advanced-datetime-fields <%= 'with-time-select' if EasySetting.value(:easy_attendance_use_time_select) %>">
+  <%= call_hook :view_easy_attendances_form_top, {:easy_attendance => easy_attendance, :back_url => back_url, :f => f} %>
+
+  <div class="easy-attendance-advanced-user-fields tabular">
+    <%= call_hook :view_easy_attendances_form_right_top, {:easy_attendance => easy_attendance, :back_url => back_url, :f => f} %>
+    <p class="easy-attendance__activity-select">
+      <%= f.label :easy_attendance_activity_id %>
+      <%= f.select :easy_attendance_activity_id, easy_attendance_activities_for_select(@easy_attendance), { include_blank: true }, { data: { url: change_activity_easy_attendances_path } } %>
+    </p>
+
+    <div id="easy_attendance_form_fields_container">
+      <% if easy_attendance.easy_attendance_activity %>
+        <%= render(partial: 'easy_attendances/form_fields',
+                   locals: { activity: easy_attendance.easy_attendance_activity,
+                             easy_attendance: easy_attendance }) %>
+      <% else %>
+        <%= f.hidden_field(:arrival) %>
+        <%= f.hidden_field(:departure) %>
+      <% end %>
+    </div>
+
+    <% if User.current.allowed_to?(:edit_easy_attendances, nil, :global => true) %>
+      <p class="user-select">
+        <%= f.label(:user_id, l(:label_user)) %>
+        <% users = User.active.non_system_flag.easy_type_internal.sorted.to_a
+           users.unshift(f.object.user) if f.object.user && !users.include?(f.object.user) %>
+        <% if f.object.new_record? %>
+          <%= autocomplete_field_tag("#{f.object_name}[user_id][]", users.map{ |u| [u.name, u.id] }, @user_ids || Array(f.object.user_id), { select_first_value: true, jquery_auto_complete_options: { appendTo: '#ajax-modal' }.to_json }) %>
+        <% else %>
+          <%= f.select(:user_id, users.map{|u| [u.name, u.id]}) -%>
+        <% end -%>
+      </p>
+    <% end %>
+
+    <% if EasyGlobalTimeEntrySetting.value('timelog_comment_editor_enabled', User.current.roles) %>
+      <p class="text_area">
+        <%= f.text_area(:description) %>
+        <%= wikitoolbar_for('easy_attendance_description') %>
+      </p>
+    <% else %>
+      <p>
+        <%= f.label(:description, l(:field_description)) %>
+        <%= f.text_field(:description, :size => 100) %>
+      </p>
+    <% end -%>
+    <%= call_hook :view_easy_attendances_form_right_bottom, {:easy_attendance => easy_attendance, :back_url => back_url, :f => f} %>
+  </div>
+  <%= call_hook :view_easy_attendances_form_bottom, {:easy_attendance => easy_attendance, :back_url => back_url, :f => f} %>
+</div>
+<div class="clear"></div>
+
+<script type="text/javascript">
+  EASY.utils.checkVacationLimit = function(form, submitter) {
+      $.getJSON({
+        url: '<%= j(check_vacation_limit_easy_attendances_path) %>',
+        type: "POST",
+        data: $(form).serialize(),
+        success: function (data) {
+          if (!data['is_valid']) {
+            $('#warning_message').html(data['message']);
+            $('#easy_attendance_confirm_over_limit_vacation').show();
+            $('.easy-calendar__modal-button').prop('disabled', false);
+          } else {
+            var form = $('#easy_attendance_confirm_over_limit_vacation').closest('form');
+            $('#easy_attendance_confirm_over_limit_vacation').hide();
+            if(submitter){
+              form.attr('is_valid', 'true');
+              $('#easy_attendance_confirm_over_limit_vacation').closest('form').removeAttr('data-submitted');
+              form.submit();
+            }
+          }
+        }
+      });
+    };
+  EASY.schedule.late(function () {
+    var form = $('#easy_attendance_confirm_over_limit_vacation').closest('form');
+    form.attr('is_valid', 'false');
+    form.submit(function () {
+      const isInSchedulerModal = !!$(this).closest(".tab-easy_attendance-content").length;
+      if (this.getAttribute('is_valid') === 'false') {
+        EASY.utils.checkVacationLimit(this, !isInSchedulerModal);
+        return false;
+      }
+    })
+  });
+</script>

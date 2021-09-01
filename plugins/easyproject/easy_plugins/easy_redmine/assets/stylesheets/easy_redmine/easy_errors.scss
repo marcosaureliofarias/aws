@@ -1,0 +1,46 @@
+@import 'common_assets';
+//@include loadFontFace--non-rails('Material Icons','../easy_fonts/../easy_fonts/EasyMaterialIcons-Regular','Material Icons','MaterialIcons-Regular',normal,normal);
+@font-face{
+  font-family:"Material Icons";
+  src:local("Material Icons"),local("MaterialIcons-Regular"),
+  url("/plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont.woff2") format("woff2"),
+  url("/plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont.woff") format("woff"),
+  url("/plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont.ttf") format("truetype"),
+  url("/plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont.svg") format("svg");
+}
+@import '../../../../easy_extensions/assets/stylesheets/easy_extensions/components/typography';
+@import "../../../../easy_extensions/assets/stylesheets/easy_icons";
+@import "layouts/errors";
+@import "../../../../easy_extensions/assets/stylesheets/easy_extensions/components/buttons";
+body{
+  margin: 0;
+  hr {
+    color: $color-main;
+    opacity: 1 !important;
+  }
+  .server-admin-user {
+    #instruction {
+      a {
+        color: #ae1400;
+      }
+    }
+    #message-box {
+      textarea {
+        max-width: 320px;
+        width: 100%;
+      }
+    }
+    .button, input[name="commit"] {
+      border-color: $color-text !important;
+      margin-bottom: 10px !important;
+    }
+  }
+  //&.status-402, &.status-500, &.status-502, &.status-404, &.status-307{
+  //  #wrapper{
+  //    @include respond-to(min-menu-collapse) {
+  //      background: #023fa9 url('../../../images/login-bg.jpg') no-repeat bottom right !important;
+  //      background-size: 100% auto;
+  //    }
+  //  }
+  //}
+}

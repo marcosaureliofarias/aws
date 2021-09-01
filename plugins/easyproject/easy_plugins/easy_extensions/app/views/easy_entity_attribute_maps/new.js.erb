@@ -1,0 +1,9 @@
+var newTr = $("#easy_entity_attribute_new");
+if (newTr[0]) {
+  newTr.effect("highlight");
+} else {
+  var container = $("table#easy_entity_attribute_maps tfoot");
+  container.closest('table').show();
+  container.html("<%=j render(:template => 'easy_entity_attribute_maps/new', :formats => [:html]) %>");
+  container.find('select:first').focus();
+}

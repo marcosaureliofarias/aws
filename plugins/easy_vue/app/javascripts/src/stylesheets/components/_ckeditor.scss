@@ -1,0 +1,17 @@
+.ck {
+  &-toolbar,&-editor__editable {
+    min-width: initial;
+    max-width: initial;
+  }
+  &-editor__editable {
+    height: auto;
+    max-height: 600px;
+    min-height: 100px;
+  }
+
+  @media only screen and (max-width: $breakpoint--small) {
+    &-sticky-panel {
+      display: none;
+    }
+  }
+}

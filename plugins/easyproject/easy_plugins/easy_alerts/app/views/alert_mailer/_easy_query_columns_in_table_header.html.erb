@@ -1,0 +1,7 @@
+<% if query %>
+  <% columns = query.inline_columns %>
+  <th></th>
+  <% columns.each do |column| %>
+    <%= easy_query_column_header(query, column, {disable_sort: true}) %>
+  <% end %>
+<% end %>

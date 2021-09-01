@@ -1,0 +1,27 @@
+<%
+  query_modul_uniq_id = "#{modul_uniq_id}_#{key}_query"
+%>
+
+<%= toggling_fieldset(heading, collapsed: true) do %>
+  <%= form.fields_for(key) do |query_form| %>
+    <%= query_form.hidden_field :set_filter, value: '1' %>
+
+    <%= render_with_fallback partial: 'filters', prefixes: query, locals: {
+        query: query,
+        modul_uniq_id: query_modul_uniq_id,
+        block_name: query_form.object_name
+    } %>
+
+    <% if EasyExtensions.global_filters_enabled %>
+      <h5><%= l(:label_global_filters) %> (<%= heading %>)</h5>
+
+      <%= render 'easy_page_modules/global_filters', modul_uniq_id: query_modul_uniq_id,
+                                                     block_name: query_form.object_name,
+                                                     page_params: page_params,
+                                                     query_params: query_form.object.current_settings,
+                                                     query: query,
+                                                     page_module: page_module,
+                                                     no_heading: true %>
+    <% end %>
+  <% end %>
+<% end %>

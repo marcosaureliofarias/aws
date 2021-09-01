@@ -1,0 +1,41 @@
+<% if EasyExtensions.global_filters_enabled %>
+  <%
+    saved_filters = (query_params && query_params['global_filters'])
+    saved_filters = EasyExtensions::GlobalFilters.prepare_query_filters(saved_filters)
+    no_heading ||= false
+  %>
+
+  <% if page_params[:modal_edit] %>
+
+    <% saved_filters.each do |filter_id, attributes| %>
+      <% attributes.each do |key, value| %>
+        <%= hidden_field_tag "#{block_name}[global_filters][#{filter_id}][#{key}]", value %>
+      <% end %>
+    <% end %>
+
+  <% else %>
+    <%
+      available_global_filters ||= available_global_filters_for_query(query)
+      div_id = "#{modul_uniq_id}-query-global-filters"
+      tab_id = page_module.tab_id || 0
+    %>
+
+    <div id="<%= div_id %>" class="query-global-filters" data-tab-id="<%= tab_id %>">
+      <% if !no_heading %>
+        <h3><%= l(:label_global_filters) %></h3>
+      <% end %>
+      <table class="filters-table"><tbody></tbody></table>
+    </div>
+
+    <script>
+      EASY.schedule.late(function(){
+        $("#<%= div_id %>").queryGlobalFilters(<%= {
+          tabId: tab_id,
+          blockName: block_name,
+          globalFilters: saved_filters,
+          availableFilters: available_global_filters
+        }.to_json.html_safe %>)
+      }, 0)
+    </script>
+  <% end %>
+<% end %>

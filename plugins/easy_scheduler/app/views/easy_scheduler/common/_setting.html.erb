@@ -1,0 +1,88 @@
+<%
+  if !defined?(show_filters)
+    show_filters = true
+  end
+%>
+
+<div class="form-box tabular scheduler-settings">
+  <p class="type">
+    <legend><%= l('easy_scheduler.label_scheduler_type') %></legend>
+
+    <label class="inline radio">
+      <%= radio_button_tag "#{scheduler_settings_name}[scheduler_type]", 'personal', (scheduler_settings['scheduler_type'] != 'manager') %>
+      <%= l('easy_scheduler.label_personal_view') %>
+    </label>
+
+    <label class="inline radio">
+      <%= radio_button_tag "#{scheduler_settings_name}[scheduler_type]", 'manager', (scheduler_settings['scheduler_type'] == 'manager') %>
+      <%= l('easy_scheduler.label_manager_view') %>
+    </label>
+  </p>
+
+  <p class="range">
+    <legend><%= l('easy_scheduler.label_calendar_display_range') %></legend>
+
+    <label class="inline radio">
+      <%= radio_button_tag "#{scheduler_settings_name}[range_type]", 'automatic', (scheduler_settings['range_type'] != 'manual'),
+                           onclick: "$('##{block_name}_display_range').addClass('hidden')" %>
+      <%= l('easy_scheduler.label_from_working_calendar') %>
+    </label>
+
+    <label class="inline radio">
+      <%= radio_button_tag "#{scheduler_settings_name}[range_type]", 'manual', (scheduler_settings['range_type'] == 'manual'),
+                           onclick: "$('##{block_name}_display_range').removeClass('hidden')" %>
+      <%= l('easy_scheduler.label_manual') %>
+    </label>
+  </p>
+
+  <p id=<%="#{block_name}_display_range" %> class="<%= scheduler_settings['range_type'] != 'manual' ? 'hidden' : '' %>">
+    <label><%= l('easy_scheduler.label_calendar_display_range') %></label>
+    <%= text_field_tag "#{scheduler_settings_name}[display_from]", scheduler_settings[:display_from].presence || '06:00' , size: 3, type: 'time' %>
+    <%= text_field_tag "#{scheduler_settings_name}[display_to]", scheduler_settings[:display_to].presence || '22:00', size: 3, type: 'time' %>
+  </p>
+
+  <p class="show-weekends">
+    <label class="inline radio">
+      <%= hidden_field_tag "#{scheduler_settings_name}[show_weekends]", '0' %>
+      <%= check_box_tag "#{scheduler_settings_name}[show_weekends]", '1', scheduler_settings['show_weekends'].to_boolean %>
+      <%= l('easy_scheduler.label_show_weekends') %>
+    </label>
+  </p>
+  <div class="filters">
+    <p>
+      <%= label_tag(l(:label_saved_query_name)) %>
+      <%= text_field_tag("#{scheduler_settings_name}[filter_name]", scheduler_settings['filter_name']) %>
+    </p>
+    <p>
+      <label><%= l('easy_scheduler.label_users_and_groups') %></label>
+      <%= autocomplete_field_tag "#{query_settings_name}[settings][selected_principal_ids][]",
+                                 easy_autocomplete_path('principals', include_peoples: 'subordinates'),
+                                 selected_principal_options,
+                                 rootElement: 'users',
+                                 id: "#{block_name}_principal_ids",
+                                 preload: false %>
+    </p>
+  </div>
+
+  <% if EasyScheduler.easy_calendar? %>
+    <span class="external-calendars">
+      <%= render 'external_calendars/easy_icalendar_settings',
+                                                            icalendars: icalendars,
+                                                            block_name: scheduler_settings_name,
+                                                            modul_uniq_id: modul_uniq_id
+      %>
+    </span>
+  <% end %>
+
+
+  <% if show_filters %>
+    <span class="query-settings">
+      <%= render 'easy_scheduler/common/query_settings',
+                query: query,
+                query_settings_name: query_settings_name,
+                modul_uniq_id: modul_uniq_id,
+                block_name: block_name %>
+    </span>
+  <% end %>
+
+</div>

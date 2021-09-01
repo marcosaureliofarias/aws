@@ -1,0 +1,52 @@
+<%
+options ||= Hash.new;
+query_form_project = @project unless query.dont_use_project
+back_url ||= url_for({:project_id => query_form_project, :t => params[:t], :set_filter => '1', :tab => params[:tab], :query_id => params[:query_id]})
+modul_uniq_id ||= ''
+query_form_url ||= {:controller => 'easy_queries', :action => 'new', :type => query.type, :project_id => query_form_project, :set_filter => '1', :back_url => back_url}
+easy_query_apply_url ||= url_for({:project_id => query_form_project, :t => params[:t], :set_filter => '1'})
+easy_query_clear_url ||= {:set_filter => 0, :project_id => query_form_project}
+free_search_options ||= {}
+additional_hidden_fields ||= {}
+if !defined?(additional_elements_to_serialize) || additional_elements_to_serialize.blank?
+  additional_elements_to_serialize = 'null';
+  end
+if !defined?(show_free_search) && options[:page_module].nil?
+  show_free_search = !query.searchable_columns.blank?
+  end
+-%>
+
+<%= form_tag(query_form_url, :id => "#{options[:modul_uniq_id]}query_form", :method => :get, :'data-serialized-url' => j(query.to_params.to_param), :class => 'easy-query-form') do -%>
+  <div class="query-form-addtional-hidden-fields">
+    <%= hidden_field_tag(:set_filter, '1')-%>
+    <%= hidden_field_tag(:project_id, @project.identifier, id: nil) if @project %>
+    <%= hidden_field_tag(:type, query.type, :class => 'serialize')-%>
+    <%= hidden_field_tag(:t, params[:t]) -%>
+    <%= hidden_field_tag(:back_url, back_url) -%>
+    <%= hidden_field_tag(:sort, @sort_criteria.to_param, class: 'serialize') -%>
+    <% additional_hidden_fields.each do |key, value| %>
+      <%= hidden_field_tag(key.to_s, value.to_s, :id => nil, :class => 'serialize') -%>
+    <% end %>
+  </div>
+
+  <div id="<%= modul_uniq_id -%>query_form_content" class="easy-query-filter-container <%= 'with-freetext' if show_free_search -%>">
+    <%= render :partial => 'easy_queries/easy_query_index_form',
+               :locals => { :query => query, :filter_active => @filter_active, :query_heading => (query.new_record? ? easy_query_name : h(query.name)), :modul_uniq_id => options[:modul_uniq_id], :options => options, :back_url => back_url, :entity_count => @entity_count, :show_free_search => show_free_search,
+                            :free_search_options => {:free_search_options => free_search_options, :query => query, :modul_uniq_id => options[:modul_uniq_id]}} %>
+
+    <% if options[:page_module].nil? %>
+      <p id="<%= options[:modul_uniq_id] -%>filter_buttons" class="form-actions filter-buttons" style="display: none;">
+        <%= link_to_function l(query.entity.name.underscore, :scope => [:easy_query,:button_apply], :default => l(:button_apply) ), "EASY.query.applyFilters('#{easy_query_apply_url}', '#{options[:modul_uniq_id]}', #{additional_elements_to_serialize})", :class => 'icon icon-checked apply-link button-positive', :title => l(:title_apply_projectquery) -%>
+        <%= link_to l(:button_clear_projectquery), easy_query_clear_url, :class => 'icon icon-reload clear-link button-negative', :title => l(:title_clear_projectquery) -%>
+        <% if query.display_save_button && query.new_record? && User.current.allowed_to?(:save_queries, @project, :global => true) -%>
+          <%= link_to_function l(:button_save_projectquery), "EASY.query.applyFilters($('##{options[:modul_uniq_id]}query_form').attr('action'), '#{options[:modul_uniq_id]}', $('##{options[:modul_uniq_id]}query_form .query-form-addtional-hidden-fields input:hidden').serialize())", :class => 'icon icon-save save-link button', :title => l(:title_save_projectquery), :back_url => back_url -%>
+        <% end -%>
+      </p>
+
+      <%= easy_query_form_buttons_bottom(query, options) -%>
+    <% end -%>
+  </div>
+<% end -%>
+<%= error_messages_for 'query' -%>
+<% ### PAGE CUSTOMS ########################################################## -%>
+<% html_title(query.new_record? ? easy_query_name : query.name) -%>

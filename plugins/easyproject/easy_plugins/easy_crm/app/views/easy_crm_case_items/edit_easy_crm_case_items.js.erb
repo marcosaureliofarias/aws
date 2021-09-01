@@ -1,0 +1,3 @@
+$('#easy_crm_case_items_container').html('<%= j(render :partial => 'easy_crm_case_items/edit', :formats => [:html], :locals => {:easy_crm_case => @easy_crm_case, :project => @project, :open_modal => params[:open_modal]}) %>');
+EASY.utils.openTogglingContainer($('#expander_easy_crm_case_items_toggler'), 'easy_crm_case_items_toggler');
+initEasyAutocomplete();

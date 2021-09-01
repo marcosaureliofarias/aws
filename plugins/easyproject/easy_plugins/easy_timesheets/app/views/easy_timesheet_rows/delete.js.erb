@@ -1,0 +1,24 @@
+$("#ajax-modal").html("<%=j form_tag(delete_row_easy_timesheet_path(@easy_timesheet, :row_id => @row), {:method => 'delete', :remote => true}) {l(:text_easy_timesheet_destroy_row_are_you_sure)} -%>");
+showModal("ajax-modal", '600px');
+$("#ajax-modal").dialog("option", {
+  title: "<%= l(:text_are_you_sure) -%>",
+  buttons: [
+    {
+      text: "<%=j l(:button_close) -%>",
+      click: function() {$(this).dialog('close');},
+      'class': 'button'
+    },
+    {
+      text:"<%=j l(:button_easy_timesheet_delete_with_time_entries) -%>",
+      click: function() {var frm =$(this).find('form'); frm.append("<%=j hidden_field_tag(:destroy_time_entries, true) -%>"); frm.submit(); $(this).dialog('close');},
+      'class': 'button-3'
+    },
+    {
+      text:"<%=j l(:button_easy_timesheet_delete_without_time_entries) -%>",
+      click: function() {$(this).find('form').submit(); $(this).dialog('close');},
+      'class': 'button-positive'
+    }
+  ]
+})
+
+$(".ui-dialog-title").prepend("<i class=\"icon-warning xl-icon icon-blinking fast\" style=\"line-height:0; position:absolute\">&nbsp;</i><span style=\"padding:0 15px\">&nbsp;</span>")

@@ -1,0 +1,3 @@
+<span><%= link_to(report.alert.name, {:controller => 'alerts', :action => 'show', :id => report.alert.id, :only_path => false}, :title => l(:title_alerts_show_alert, :alertname => report.alert.name)) -%></span>
+<span><%= link_to(report.entity.family_name, {:controller => 'projects', :action => 'show', :id => report.entity_id, :only_path => false}, :title => l(:title_alerts_report_entity_project, :entityname => report.entity.family_name)) -%></span>
+<span><%= l(:label_easy_alerts_project_estimated_hours_report, :current_percentage => report.entity.percentage_of_time_spending, :sum_time_entries => easy_format_hours(report.entity.sum_time_entries), :sum_estimated_hours => easy_format_hours(report.entity.sum_estimated_hours)).html_safe -%></span>

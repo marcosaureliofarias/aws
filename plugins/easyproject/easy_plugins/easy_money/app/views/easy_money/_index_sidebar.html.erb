@@ -1,0 +1,34 @@
+<% if @project %>
+  <div class="project-index-sidebar">
+    <%= call_hook(:view_easy_money_project_index_sidebar_top, :project => @project) %>
+    <div class="box">
+      <%= render :partial => 'sidebar/project_family_info_container', :locals => { :project => @project } %>
+    </div>
+    <%= call_hook(:view_easy_money_project_index_sidebar_bottom, :project => @project) %>
+  </div>
+<% else %>
+    <%= link_to(l(:label_easy_money_project_cache), {:controller => 'easy_money_project_caches', :action => 'index', :set_filter => '0'}, :class => 'button icon icon-money-portfolio', :title => l(:label_easy_money_project_cache)) if User.current.allowed_to?(:view_easy_money, nil, :global => true) %>
+    <%= call_hook(:view_easy_money_cash_flow_link) %>
+    <%= link_to_if User.current.allowed_to_globally?(:view_easy_money), l(:button_easy_money_issues_budget), easy_money_issues_budget_path, title: l(:button_easy_money_issues_budget), class: 'button icon icon-money' %>
+    <% if Redmine::Plugin.installed?(:easy_crm) %>
+      <%= link_to_if User.current.allowed_to_globally?(:view_easy_money), l(:button_easy_money_crm_cases_budget), easy_money_crm_cases_budget_path, title: l(:button_money_easy_crm_cases_budget), class: 'button icon icon-money' %>
+    <% end %>
+    <%= render_menu_more(nil, @project, :menu_more_class => 'menu-more-sidebar', :menu_expander_class => 'button icon icon-add') do %>
+      <ul>
+        <% [:expected_expenses, :other_expenses, :expected_revenues, :other_revenues].each do |money| %>
+          <% if User.current.allowed_to_globally?(:"easy_money_show_#{money.to_s.singularize}", {}) %>
+            <li>
+              <%= link_to(l("label_easy_money_#{money}"), send("easy_money_#{money}_path",{:set_filter => 0}), :title => l("label_easy_money_#{money}")) %>
+            </li>
+          <% end %>
+        <% end -%>
+        <% [:travel_costs, :travel_expenses].each do |money| %>
+          <% if User.current.allowed_to_globally?(:"easy_money_show_#{money.to_s.singularize}", {}) && EasyMoneySettings.where(:name => "use_#{money}", :value => '1').exists? %>
+            <li>
+              <%= link_to(l("label_easy_money_#{money}"), send("easy_money_#{money}_path",{:set_filter => 0}), :title => l("label_easy_money_#{money}")) %>
+            </li>
+          <% end %>
+        <% end -%>
+      </ul>
+    <% end -%>
+<% end %>

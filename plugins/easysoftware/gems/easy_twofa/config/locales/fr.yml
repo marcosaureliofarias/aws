@@ -1,0 +1,77 @@
+---
+fr:
+  easy_twofa:
+    activate_scheme: Activer %{name}
+    address: Adresse
+    authentificate: Authentifier
+    code_was_resend: Le code a été renvoyé
+    continue: Continuer
+    device_will_be_rememberd_for_x_days: Cet appareil sera gardé en mémoire pendant %{count}
+      jours
+    disable_scheme: Désactiver %{name}
+    disabled: Désactivé
+    disabling_twofa: Désactivation de l'authentification à 2 facteurs
+    enabled_scheme: Modèle activé
+    expired_at: Expiré à
+    global_settings: Paramètres généraux
+    http_method: Méthode HTTP
+    mode: Mode
+    optional: Facultatif
+    plain_key: Clé simple
+    please_enter_verification_key: Veuillez entrer la clé de vérification
+    plugin_name: Easy Twofa
+    plugin_name_long: Authentification à 2 facteurs Easy
+    provider: Fournisseur
+    remember_device: Mémoriser l'appareil
+    remembered_devices: Appareils mémorisés
+    required: Requis
+    scheme_is_active: "%{name} est actif"
+    schemes:
+      sms:
+        errors:
+          missing_provider: Il manque le fournisseur d'authentification par sms
+          missing_telephone: Le téléphone est manquant
+        name: SMS
+        providers:
+          custom:
+            body: Texte du message
+            name: Personnalisé
+            telephone: Téléphone
+          messagebird:
+            name: MessageBird
+        small_description: S'authentifier à l'aide du numéro SMS. Vous devez avoir
+          un numéro de téléphone configuré.
+      totp:
+        disable_title: Désactiver le TOTP
+        name: TOTP
+        setup_info: Scannez ce code QR ou entrez la clé texte simple dans une application
+          TOTP (par ex. Google Authenticator, Authy, Duo Mobile) et entrez le code
+          dans le champ ci-dessous pour activer l'authentification à 2 facteurs.
+        setup_title: Configurer le TOTP
+        small_description: S'authentifier à l'aide de l'algorithme mot de passe à
+          usage unique temporaire en utilisant une application TOTP (par ex. Google
+          Authenticator, ...).
+    select_scheme: Sélectionner le modèle
+    select_scheme_is_required: L'authentification à 2 facteurs est requise. Afin de
+      continuer, veuillez sélectionner le modèle que vous utiliserez. Vous pouvez
+      le modifier plus tard dans votre profil.
+    send_new_code: Envoyer un nouveau code
+    setting_enabled_schemes_info: Au moins un modèle doit être sélectionné. Si aucun
+      modèle n'est sélectionné, tous sont activés.
+    successfully_disabled: Bien désactivé
+    successfully_verified: Bien vérifié
+    telephone_cf: Champ personnalisé du téléphone
+    text_activation: Le modèle sélectionné n'est pas encore activé. Vous devez d'abord
+      le vérifier afin d'éviter les complications lors de la connexion.
+    text_disable: Le modèle est toujours actif. Veuillez vérifier qu'il s'agit bien
+      de vous. Contactez l'administrateur si vous ne pouvez faire cela.
+    too_much_attempts: Trop de tentatives
+    twofa: Authentification à 2 facteurs
+    twofa_is_required: L'authentification à 2 facteurs est requise
+    twofa_verification_failed: La vérification de l'authentification à 2 facteurs
+      a échoué
+    twofa_was_saved: L'authentification a 2 facteurs a été enregistrée
+    user_agent: Utilisateur-Agent
+    verification_failed_contact_administrator: L'authentification à 2 facteurs n'a
+      pas pu être vérifiée. Veuillez contacter l'administrateur.
+    verify_code: Vérifier le code

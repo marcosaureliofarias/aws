@@ -1,0 +1,182 @@
+---
+es:
+  easy_mindmup:
+    button_add_child: Añadir hijo
+    button_add_parent: Añadir matriz
+    button_add_sibling: Añadir hermano
+    button_all_icons: Iconos
+    button_collapse: Minimizar
+    button_collapse_all: Minimizar todo
+    button_cut: Cortar
+    button_edit_data: Editar datos
+    button_expand: Expandir
+    button_expand_all: Expandir todo
+    button_expand_collapse: Expandir/Minimizar
+    button_hotkeys: Atajos
+    button_legend: Leyenda
+    button_one_side: Un lado
+    button_paste: Pegar
+    button_project_menu: Easy MindMap
+    button_redo: Rehacer
+    button_remove_node: Eliminar nodo
+    button_show_links: Mostrar enlaces
+    button_undo: Deshacer
+    error_create: no se ha podido crear
+    error_delete: no se ha podido borrar
+    error_update: no se ha podido actualizar
+    errors:
+      no_rest_api: REST API está deshabilitado. Habilítalo en Administración.
+      not_subtaskable: La tarea "%{task_name}" no puede ser una subtarea debido a
+        los ajustes de su tipo de tarea
+    free:
+      button_upgrade: Consigue la versión completa
+      feature_coloring: Colorear nodos por propiedad
+      feature_context_menu: Cambiar propiedades de nodo por menú de contexto
+      feature_dnd_property: Cambiar propiedades de nodo con arrastrar y soltar
+      feature_filtering: Filtrar nodos por propiedad
+      header_not_available: Disponible solo en la versión completa
+    hotkeys:
+      info_mac_metakey: En Mac OSX, las teclas Ctrl y Cmd se pueden utilizar para
+        los accesos directos marcados con Ctrl a continuación; aunque algunos navegadores
+        no permiten ciertos atajos de teclado. Así, por ejemplo, si Cmd+Esp no funciona
+        en tu navegador, prueba Ctrl+Esp.
+      keyboard:
+      - title: Manipulación de nodo
+        hotkeys:
+        - hotkey: Enter
+          info: Añadir hermano
+        - hotkey: Shift+Enter
+          info: Añadir hermano por encima o salto de línea (al renombrar nodo)
+        - hotkey: Tab o Insertar
+          info: Añadir hijo
+        - hotkey: Shift+Tab
+          info: Insertar matriz
+        - hotkey: Espacio
+          info: Renombrar nodo
+        - hotkey: Shift+Espacio
+          info: Editar datos nodo
+        - hotkey: Retroceso o Borrar
+          info: Eliminar nodo
+        - hotkey: Ctrl+Arriba/Abajo
+          info: Mover nodo arriba/abajo
+      - title: Editando
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Guardar
+        - hotkey: Ctrl+X o C
+          info: Cortar
+        - hotkey: Ctrl+C o Y
+          info: Copiar
+        - hotkey: Ctrl+V o P
+          info: Pegar
+        - hotkey: U o Ctrl+Z
+          info: Deshacer
+        - hotkey: R o Ctrl+Y o Ctrl+Shift+Z
+          info: Rehacer
+      - title: Selección
+        hotkeys:
+        - hotkey: Flechas
+          info: Seleccionar el nodo arriba/abajo/izquierda/derecha del seleccionado
+            actualmente
+        - hotkey: Shift + Flechas
+          info: Añadir nodo encima/debajo/a la derecha/a la izquierda de la selección
+            (útil para seleccionar múltiples hermanos)
+        - hotkey: "{"
+          info: Multiselección del nodo actual y todo el subárbol de debajo
+        - hotkey: "["
+          info: Multiselección solo del subárbol bajo el nodo actual (no el nodo en
+            sí)
+        - hotkey: "="
+          info: Multiselección de todos los hermanos del nodo actual (que tienen la
+            misma matriz)
+        - hotkey: "."
+          info: Cancelar multiselección y seleccionar solo el nodo actual de nuevo
+        - hotkey: 1 - 9
+          info: 'Seleccionar todos los nódulos de un nivel concreto (ej.: 1 selecciona
+            todos los nodos de primer nivel)'
+      - title: Navegación y pantalla
+        hotkeys:
+        - hotkey: "/ o F"
+          info: Modo minimizar o desplegar (plegar o desplegar hijos)
+        - hotkey: Ctrl + o Z
+          info: Acercar
+        - hotkey: Ctrl - o Shift Z
+          info: Alejar
+        - hotkey: Esc, 0, Ctrl+0
+          info: Restablecer visualización de mapa – seleccionar nodo raíz y traerlo
+            al centro de la pantalla
+      mouse:
+      - action: Mover el mapa
+        gesture: hacer clic y arrastrar el nodo central, hacer clic y arrastrar el
+          nodo o desplazar con el trackpad/touchpad.
+      - action: Seleccionar un nodo
+        gesture: pulsar o hacer clic encima
+      - action: Seleccionar múltiples nodos
+        gesture: Shift+clic
+      - action: Reordenar nodos
+        gesture: arrastrar un nodo entre sus hermanos, en horizontal cerca de la posición
+          de reordenación. Se mostrará una punta de flecha negra al reordenar.
+      - action: Posicionar manualmente un nodo
+        gesture: simplemente arrastra un nodo hasta que no se muestre el punto de
+          flecha para reordenar. Para forzar la posición manual incluso cuando se
+          muestra la flecha de reordenación, mantén pulsada la tecla Mayús mientras
+          arrastras. Ten en cuenta que los hijos del nodo raíz se pueden mover en
+          cualquier dirección, pero los nodos de nivel inferior solo se pueden posicionar
+          en la dirección de su matriz en relación con la raíz.
+      - action: Renombrar un nodo
+        gesture: Haz doble clic o toca dos veces sobre él
+      - action: Mostrar menú de contexto con operaciones
+        gesture: 'Haz clic en el botón derecho sobre un nodo (en el ratón) o toca
+          dos veces sobre el fondo, o mantén presionado sobre un nodo: mostrar (en
+          dispositivos táctiles)'
+      - action: Cambiar matriz del nodo
+        gesture: arrastra y suelta un nodo sobre otro nodo (no se permite soltar de
+          forma circular, de modo que no puedes soltar un nodo sobre uno de sus hijos
+          o descendientes)
+      - action: Abrir asunto o proyecto en una pestaña individua
+        gesture: Alt+clic
+      title_key_shortcuts: Operaciones en teclado
+      title_mouse_shortcuts: Operaciones de ratón y contacto
+      title_shortcuts: Atajos
+    info_all_saved: Todo se ha guardado correctamente
+    info_any_failed: 'No se han podido realizar algunas solicitudes:'
+    info_no_permission: No tienes permiso para realizar esta acción
+    label_color_by: Color por
+    label_go_to: Ir a
+    label_hide_unused: Ocultar los que no se han usado
+    label_less: Menos
+    label_or: o
+    label_save_progress: Espera, se están guardando todas las entidades
+    label_show_unused: Mostrar los que no se han usado
+    label_tooltip_display_info: La leyenda muestra todos los estados, pero puede que
+      no se te permita utilizar algunos.
+    last_state_modal:
+      label_differencies: Diferencias en el servidor
+      message_changed: tienen diferentes atributos (navegador => servidor) ({{changes}})
+      message_missing: no se encuentra en la matriz "{{from}}"
+      message_moved: es hijo de "{{to}}", no de "{{from}}"
+      message_present: está presente como hijo "{{to}}"
+      text_reload_appeal: "¿Deseas recargar estado desde el servidor?"
+      title: El último estado del cliente del Mind map es diferente del estado del
+        servidor
+    reload_modal:
+      label_errors: Errores
+      text_reload_appeal: "¿Deseas ignorar los elementos no guardados y recargar datos
+        desde el servidor?"
+      title: No se ha podido guardar MindMap correctamente
+    save_info:
+      at: a las
+      autosaved: Guardado automáticamente
+      loaded: Cargado
+      saved: Guardado
+    stored_modal:
+      button_local: Versión local
+      button_server: Versión del servidor
+      text_load_appeal: "¿Quieres cargarlo? ¿O quieres cargar el estado reciente desde
+        el servidor?"
+      title: Se ha encontrado una versión local no guardada
+    title_node_changed: Este nodo ha sido modificado y se guardará
+    warning_delete_node: "¿Seguro que deseas eliminar el nodo {{name}} y todos sus
+      descendientes?"
+    warning_delete_nodes: "¿Seguro que deseas eliminar estos nodos y todos sus descendientes?"
+    warning_not_saved: no se ha guardado correctamente

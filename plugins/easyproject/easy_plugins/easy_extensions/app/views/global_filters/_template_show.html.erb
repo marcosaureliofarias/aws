@@ -1,0 +1,24 @@
+<%
+  current_tab = easy_page_context[:page_params][:current_tab]
+
+  saved_global_filters = current_tab.settings['global_filters']
+  saved_global_filters = {} unless saved_global_filters.is_a?(Hash)
+%>
+
+<% saved_global_filters.each do |filter_id, filter_options| %>
+  <div class="global-filter">
+    <span class="global-filter__name">
+      <%= EasyExtensions::GlobalFilters.get_translated_name(filter_options['name']) %>
+    </span>
+    <div class="global-filter__field">
+    </div>
+  </div>
+<% end %>
+
+<% if current_tab.settings['global_currency'] == '1' %>
+  <div class="global-filter">
+    <span class="global-filter__name"><%= l(:label_easy_currency) %></span>
+    <div class="global-filter__field">
+    </div>
+  </div>
+<% end %>

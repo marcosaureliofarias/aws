@@ -1,0 +1,21 @@
+<%= title l('easy_service_manager.service_manager') %>
+
+<%= form_tag easy_service_manager_apply_path, class: 'tabular' do %>
+  <%= hidden_field_tag 'token', params[:token] %>
+
+  <p>
+    <%= label_tag 'token', l('easy_service_manager.token') %>
+    <%= params[:token].truncate(10) %>
+  </p>
+
+  <p>
+    <%= label_tag 'value', l('easy_service_manager.internal_user_limit') %>
+    <%= @service.value['value'] %>
+  </p>
+
+  <div class="form-actions">
+    <%= link_to l(:button_cancel), home_path, class: 'button' %>
+    <%= link_to l(:button_back), easy_service_manager_path, class: 'button' %>
+    <%= submit_tag l(:button_apply), class: 'button-1' %>
+  </div>
+<% end %>

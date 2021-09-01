@@ -1,0 +1,6 @@
+<p>
+  <span class="my-page-issue-query-select-label"><%= l(:label_my_page_issue_row_count) -%></span>
+  <% settings["row_limit"] ||= 10 %>
+  <span class="my-page-issue-query-select"><%= text_field_tag("#{block_name}[row_limit]", settings["row_limit"].to_i, size: 5, min: 0, max: page_module.max_row_limit) -%></span>
+  <em class="help"><%= l(:text_page_module_max_row_limit, limit: page_module.max_row_limit) %></em>
+</p>

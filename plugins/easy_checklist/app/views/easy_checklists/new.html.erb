@@ -1,0 +1,8 @@
+<div class="easy-content-page">
+  <%= title l(:label_easy_checklist) %>
+  <%= render :partial => 'easy_checklists/easy_checklist_form', :locals => { :options => { :include_cocoon => true, :display_link_to_remove_item_association => true } } %>
+</div>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_checklists/sidebar_links' %>
+<% end %>

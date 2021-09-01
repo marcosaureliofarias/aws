@@ -1,0 +1,30 @@
+module EasyBaseline
+  module IssuesHelperPatch
+
+    def self.included(base)
+      base.extend(ClassMethods)
+      base.send(:include, InstanceMethods)
+
+      base.class_eval do
+
+        alias_method_chain :issue_heading, :easy_baseline
+
+      end
+    end
+
+    module InstanceMethods
+
+      def issue_heading_with_easy_baseline(issue)
+        issue_heading_without_easy_baseline(issue)
+      end
+
+    end
+
+    module ClassMethods
+
+    end
+
+  end
+
+end
+RedmineExtensions::PatchManager.register_helper_patch 'IssuesHelper', 'EasyBaseline::IssuesHelperPatch'

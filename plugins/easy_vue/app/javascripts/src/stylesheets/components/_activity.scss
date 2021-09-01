@@ -1,0 +1,23 @@
+&__activity {
+  width: 100%;
+  &-item{
+    @extend %signature;
+    padding: $gap 0;
+    border-bottom: 1px solid rgba($color-border, .5);
+  }
+
+  &-item__type, &-item__name {
+    text-transform: capitalize;
+  }
+
+  &-item__name {
+    color: seagreen;
+  }
+
+  &-item__date {
+    font-style: italic;
+    color: $color-text--muted;
+    font-size: 15px;
+  }
+
+}

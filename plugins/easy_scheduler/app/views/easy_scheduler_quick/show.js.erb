@@ -1,0 +1,12 @@
+(() => {
+  <% if @is_toolbar %>
+    $("#easy_servicebar_component").easySlidingPanel({trigger: '#easy_scheduler_toolbar_trigger'});
+    const container = document.querySelector("<%= EasySchedulerQuickController::CSS_SIDEBAR_SELECTOR %>");
+  <% else %>
+    // $(".easy-calendar-upcoming__calendar-trigger").toggleClass('open');
+    // $(".easy-calendar-upcoming__calendar-content").toggleClass('open');
+
+    const container = document.querySelector("<%= EasySchedulerQuickController::CSS_SELECTOR %>");
+  <% end %>
+  $(container).html(`<%=j render(template: 'easy_scheduler_quick/show', formats: [:html]) %>`);
+})()

@@ -1,0 +1,9 @@
+<ul>
+<% if @test_case_issue_execution && !@test_case_issue_execution.new_record? %>
+  <li><%= link_to l(:button_edit), edit_polymorphic_path([@project, @test_case_issue_execution]), title: l(:button_edit), class: 'icon icon-edit button' %></li>
+<% end %>
+  <li><%= link_to l(:label_test_cases), polymorphic_path([@project, :test_cases], set_filter: '1'), title: l(:label_test_cases), class: 'icon icon-folder button' %></li>
+  <li>
+    <%= link_to l(:label_test_case_issue_executions), polymorphic_path([@project, :test_case_issue_executions], set_filter: '1'), title: l(:label_test_case_issue_executions), class: 'icon icon-folder button' %>
+  </li>
+</ul>

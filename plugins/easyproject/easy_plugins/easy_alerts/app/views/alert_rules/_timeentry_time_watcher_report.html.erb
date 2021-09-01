@@ -1,0 +1,2 @@
+<div class="alerts-report-entity-name"><%= link_to(report.entity.name, { :controller => 'users', :action => 'show', :id => report.entity_id}) if report.entity-%></div>
+<div class="alerts-report-entity-watch"><%= l(:label_timeentry_time_watcher_report, :from => report.alert.rule_settings[:period_from], :to => report.alert.rule_settings[:period_to]) %></div>

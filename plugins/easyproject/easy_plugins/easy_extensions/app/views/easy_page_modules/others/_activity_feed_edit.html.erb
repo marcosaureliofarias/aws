@@ -1,0 +1,85 @@
+<% author = @easy_page_modules_data[block_name][:author] %>
+<% selected_projects =  @easy_page_modules_data[block_name][:selected_projects] %>
+<% available_global_filters = @easy_page_modules_data[block_name][:available_global_filters] %>
+<% all_event_types = EasyActivity.all_visible_event_types(User.current) %>
+<% all_event_types = all_event_types.map{|u| [l("label_#{u.singularize}_plural"), u]} %>
+
+<div class="clear tabular" id="<%= block_name %>">
+  <p>
+    <label class="my-page-issue-query-select-label"><%= l(:label_easy_activity_feed_my_page_row_count) -%></label>
+    <% settings['row_limit'] ||= 10 %>
+    <span class="my-page-issue-query-select"><%= text_field_tag("#{block_name}[row_limit]", settings["row_limit"].to_i, :size => 5) -%></span>
+  </p>
+  <% settings['activity_scope'] ||= ['all'] %>
+  <fieldset>
+    <legend>
+      <%= l(:label_easy_activity_feed_displayed_activities) %>
+    </legend>
+    <p>
+      <%= label_tag "#{block_name}[author_id]", l(:label_user) %>
+      <%= autocomplete_field_tag("#{block_name}[author_id]",
+                                 easy_autocomplete_path('users'),
+                                 [id: author.try(:id), value: author.try(:name)],
+                                 rootElement: 'users',
+                                 id: "#{block_name}_author_id",
+                                 preload: false,
+                                 multiple: false) %>
+    </p>
+    <p>
+      <%= radio_button_tag "#{block_name}[activity_scope][]", 'all', settings['activity_scope'] == ['all'], :onchange => "$('##{block_name}_scope_options').hide();" %>
+      <%= label_tag "#{block_name}[activity_scope]__all", l(:label_easy_activity_feed_all_activity) %>
+    </p>
+    <p>
+      <%= radio_button_tag "#{block_name}[activity_scope][]", 'selected', settings['activity_scope'] == ['selected'], :onchange => "$('##{block_name}_scope_options').show();$('##{block_name}_scope_event_types').show();$('##{block_name}_scope_projects').show();" %>
+      <%= label_tag "#{block_name}[activity_scope]__selected", l(:label_easy_activity_feed_selected_activity) %>
+    </p>
+    <p>
+      <%= radio_button_tag "#{block_name}[activity_scope][]", 'selected_event_types', settings['activity_scope'] == ['selected_event_types'], :onchange => "$('##{block_name}_scope_options').show();$('##{block_name}_scope_event_types').show();$('##{block_name}_scope_projects').hide();" %>
+      <%= label_tag "#{block_name}[activity_scope]__selected_event_types", l(:label_easy_activity_feed_all_projects_selected_activity) %>
+    </p>
+    <p>
+      <%= radio_button_tag "#{block_name}[activity_scope][]", 'selected_projects', settings['activity_scope'] == ['selected_projects'], :onchange => "$('##{block_name}_scope_options').show();$('##{block_name}_scope_event_types').hide();$('##{block_name}_scope_projects').show();" %>
+      <%= label_tag "#{block_name}[activity_scope]__selected_projects", l(:label_easy_activity_feed_all_activity_selected_activity) %>
+    </p>
+  </fieldset>
+
+  <div id="<%= block_name %>_scope_options">
+    <fieldset id="<%= block_name %>_scope_projects">
+      <legend>
+        <%= l(:label_easy_activity_feed_select_projects) %>
+      </legend>
+      <%= autocomplete_field_tag("#{block_name}[projects][]",
+                                 easy_autocomplete_path('visible_projects'),
+                                 selected_projects,
+                                 rootElement: 'projects',
+                                 id: "projects_for_#{block_name}",
+                                 preload: false) %>
+    </fieldset>
+
+    <fieldset id="<%= block_name %>_scope_event_types">
+      <legend>
+        <%= l(:label_easy_activity_feed_select_activities) %>
+      </legend>
+      <div>
+        <% all_event_types.each do |event_type| %>
+          <%= check_box_tag "#{block_name}[selected_event_types][]", event_type[1], (settings['selected_event_types']) ? settings['selected_event_types'].include?(event_type[1]) : false, :id => "#{block_name}_selected_event_types__#{event_type[1]}" %> <%= label_tag "#{block_name}[selected_event_types]__#{event_type[1]}", event_type[0] %>
+          <br />
+        <% end %>
+      </div>
+    </fieldset>
+  </div>
+
+  <div>
+    <%= render 'easy_page_modules/global_filters',
+               modul_uniq_id: block_name,
+               block_name: block_name,
+               page_params: page_params,
+               query_params: settings,
+               available_global_filters: available_global_filters,
+               page_module: page_module %>
+  </div>
+</div>
+
+<%= late_javascript_tag do %>
+  $('#<%= block_name %> input[type=radio]:checked').trigger('change');
+<% end %>

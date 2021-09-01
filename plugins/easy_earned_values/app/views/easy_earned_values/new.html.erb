@@ -1,0 +1,12 @@
+<%= title l(:label_new_easy_earned_value) %>
+
+<%= form_for @easy_earned_value, as: 'easy_earned_value', url: project_easy_earned_values_path(@project, @easy_earned_value) do |f| %>
+  <%= error_messages_for @easy_earned_value %>
+
+  <%= render 'form', f: f %>
+
+  <div class="form-actions">
+    <%= link_to l(:button_back), settings_project_path(@project, 'easy_earned_values'), class: 'button' %>
+    <%= submit_tag l(:button_create), class: 'button-positive' %>
+  </div>
+<% end %>

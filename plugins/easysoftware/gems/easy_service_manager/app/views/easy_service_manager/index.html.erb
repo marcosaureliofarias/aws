@@ -1,0 +1,13 @@
+<%= title l('easy_service_manager.service_manager') %>
+
+<%= form_tag easy_service_manager_verify_path, class: 'tabular' do %>
+  <p>
+    <%= label_tag 'token', l('easy_service_manager.token') %>
+    <%= text_area_tag 'token' %>
+  </p>
+
+  <div class="form-actions">
+    <%= link_to l(:button_cancel), home_path, class: 'button' %>
+    <%= submit_tag l('easy_service_manager.verify'), class: 'button-1' %>
+  </div>
+<% end %>

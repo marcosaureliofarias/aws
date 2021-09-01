@@ -1,0 +1,9 @@
+<%= title l(:label_easy_currency_settings) -%>
+
+<%= render_tabs @tabs %>
+
+<% ### PAGE CUSTOMS ##########################################################  %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_currencies/sidebar_links' %>
+<% end %>

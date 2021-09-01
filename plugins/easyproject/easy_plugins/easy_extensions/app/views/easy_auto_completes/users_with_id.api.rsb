@@ -1,0 +1,16 @@
+additional_select_options ||= []
+
+api.array :users do
+  additional_select_options.each do |name, val|
+    api.user do
+      api.id val.to_s
+      api.value name.to_s
+    end
+  end
+  @users.each do |user|
+    api.user do
+      api.id user.id
+      api.value user.name
+    end
+  end
+end

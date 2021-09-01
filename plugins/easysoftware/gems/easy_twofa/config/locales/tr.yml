@@ -1,0 +1,72 @@
+---
+tr:
+  easy_twofa:
+    activate_scheme: "%{name} öğesini etkinleştir"
+    address: Adres
+    authentificate: Kimlik doğulaması
+    code_was_resend: Kod tekrar gönderildi
+    continue: Devam et
+    device_will_be_rememberd_for_x_days: Bu cihaz %{count} gün boyunca hatırlanacak
+    disable_scheme: "%{name} öğesini devre dışı bırak"
+    disabled: Devre dışı
+    disabling_twofa: İki faktörlü kimlik doğrulamayı devre dışı bırakma
+    enabled_scheme: Etkin şema
+    expired_at: 'Son kullanma tarihi:'
+    global_settings: Genel Ayarlar
+    http_method: HTTP yöntemi
+    mode: Mod
+    optional: İsteğe bağlı
+    plain_key: Düz anahtar
+    please_enter_verification_key: Lütfen doğrulama anahtarını girin
+    plugin_name: Easy Twofa
+    plugin_name_long: Easy İki Faktörlü kimlik doğrulama
+    provider: Sağlayıcı
+    remember_device: Cihazı hatırla
+    remembered_devices: Hatırlanan cihazlar
+    required: Gerekli
+    scheme_is_active: "%{name} aktif"
+    schemes:
+      sms:
+        errors:
+          missing_telephone: Telefon eksik
+        name: SMS
+        providers:
+          custom:
+            body: Mesaj metni
+            name: Özel
+            telephone: Telefon
+          messagebird:
+            name: MessageBird
+        small_description: SMS numarasını kullanarak doğrulayın. Telefon numarası
+          girmeniz gerekir.
+      totp:
+        disable_title: TOTP'yi devre dışı bırak
+        name: TOTP
+        setup_info: Bu QR kodunu tarayın veya düz metin anahtarını bir TOTP uygulamasına
+          girin (örneğin, Google Authenticator, Authy, Duo Mobile) ve iki faktörlü
+          kimlik doğrulamayı etkinleştirmek için aşağıdaki alana kodu girin.
+        setup_title: TOTP ayarla
+        small_description: TOTP uygulamasını kullanarak Time-One-One-Password Password
+          algoritmasıyla doğrulayın (ör. Google Authenticator, ...).
+    select_scheme: Şema seç
+    select_scheme_is_required: İki faktörlü kimlik doğrulaması gerekiyor. Devam etmek
+      için lütfen kullanacağınız şemayı seçiniz. Daha sonra profilinizde değiştirebilirsiniz.
+    send_new_code: Yeni kod gönder
+    setting_enabled_schemes_info: En az bir şema seçilmelidir. Hiçbir şema seçilmezse
+      tümü etkindir.
+    successfully_disabled: Başarıyla devre dışı bırakıldı
+    successfully_verified: Başarıyla doğrulandı
+    telephone_cf: Telefon özel alanı
+    text_activation: Seçilen şema henüz aktif değil. Giriş sırasında herhangi bir karışıklığı
+      önlemek için önce bunu doğrulamanız gerekir.
+    text_disable: Şema hala aktif. Lütfen kendin olduğunu doğrula. Bunu yapamazsan Yönetici ile
+      irtibata geç.
+    too_much_attempts: Çok fazla deneme
+    twofa: İki faktörlü kimlik doğrulama
+    twofa_is_required: İki faktörlü kimlik doğrulama gerekli
+    twofa_verification_failed: İki faktörlü kimlik doğrulama başarısız oldu
+    twofa_was_saved: İki faktörlü kimlik doğrulama kaydedildi
+    user_agent: Kullanıcı-aracı
+    verification_failed_contact_administrator: İki faktörlü kimlik doğrulama başarısız.
+      Lütfen Yönetici ile iletişime geçin.
+    verify_code: Doğrulama kodu

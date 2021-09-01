@@ -1,0 +1,3 @@
+class EasyDataTemplateUser < EasyDataTemplate
+
+end

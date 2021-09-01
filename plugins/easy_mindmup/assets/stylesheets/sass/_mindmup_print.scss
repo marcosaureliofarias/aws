@@ -1,0 +1,47 @@
+@media print{
+  .gravatar{
+    max-width: 100%;
+    height: auto;
+    -webkit-border-radius: px2rem(5000px);
+    -moz-border-radius: px2rem(5000px);
+    border-radius: px2rem(5000px);
+    .mindmup-node-icons & {
+      max-height: 20px !important;
+      margin-left: 0 !important;
+      margin-bottom: -20px !important;
+    }
+  }
+}
+
+.mindmup__print{
+  &-area{
+    &--compact{
+      position: relative;
+    }
+    &--stripped{
+      border-left: px2rem(2px) solid #e6e6e6;
+    }
+    .mapjs-node{
+      box-sizing: border-box;
+    }
+    & .mindmup-node-add-button{
+      display: none;
+    }
+    .gravatar {
+      max-height: 20px !important;
+      margin-left: 0 !important;
+      margin-bottom: -20px !important;
+    }
+  }
+  &-strip{
+    position: relative;
+    border: px2rem(1px) solid #e6e6e6;
+    overflow: hidden;
+    white-space: nowrap;
+    break-inside: avoid;
+    margin-left: px2rem(-1px);
+    display: inline-block;
+    background-color: #ffffff;
+    border-left: 0;
+  }
+}

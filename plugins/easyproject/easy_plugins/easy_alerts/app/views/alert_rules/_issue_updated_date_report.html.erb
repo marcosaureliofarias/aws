@@ -1,0 +1,3 @@
+<div class="alerts-report-entity-name"><%= link_to(report.entity.subject, issue_url(report.entity_id)) if report.entity -%></div>
+<div class="alerts-report-entity-watch"><%= l(:label_updated_time, time_tag(report.entity.updated_on)) if report.entity -%></div>
+

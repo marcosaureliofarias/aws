@@ -1,0 +1,69 @@
+<%= labelled_form_for(:project, :project, url: bulk_modules_projects_path, html: { id: 'bulk_modules_form', class: 'form-box' }) do |f| %>
+
+  <%= back_url_hidden_field_tag %>
+
+  <% projects_with_perm.each do |project| %>
+    <%= hidden_field_tag 'ids[]', project.id %>
+  <% end %>
+
+  <% if projects_without_perm.any? %>
+    <p class="warning"><%= l('notice_manage_modules.projects_without_perm', projects: projects_without_perm.join(', ')) %></p>
+  <% end %>
+
+  <p>
+    <%= radio_button_tag(:method, :enable_module, true, onchange: 'window.manageModules.toggleOption(this)') %>
+    <%= label_tag(:method_enable_module, l('notice_manage_modules.methods.enable'), class: 'radio inline') %>
+
+    <%= radio_button_tag(:method, :overwrite, false, onchange: 'window.manageModules.toggleOption(this)') %>
+    <%= label_tag(:method_overwrite, l('notice_manage_modules.methods.overwrite'), class: 'radio inline') %>
+
+    <%= radio_button_tag(:method, :disable_module, false, onchange: 'window.manageModules.toggleOption(this)') %>
+    <%= label_tag(:method_disable_module, l('notice_manage_modules.methods.disable'), class: 'radio inline') %>
+  </p>
+
+  <p id="warning_enable_module" class="warning_manage_modules">
+    <em class="help"> <%= l('notice_manage_modules.warnings.enable') %> </em>
+  </p>
+  <p id="warning_overwrite" class="warning_manage_modules hidden">
+    <em class="help"> <%= l('notice_manage_modules.warnings.overwrite') %> </em>
+  </p>
+  <p id="warning_disable_module" class="warning_manage_modules hidden">
+    <em class="help"> <%= l('notice_manage_modules.warnings.disable') %> </em>
+  </p>
+
+  <fieldset id='project_modules'>
+    <legend><%= l(:text_select_projects_modules) %> <span><%= check_all_links 'project_modules' %></span></legend>
+    <ul class="cols-5">
+      <% Redmine::AccessControl.available_project_modules.each do |m| %>
+        <li>
+          <label class="floating">
+            <%= check_box_tag 'module_names[]', m, false, id: nil -%>
+            <%= l_or_humanize(m, prefix: "project_module_") %>
+          </label>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_submit), class: 'button-positive', data: { confirm: l(:text_are_you_sure) } %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+    if (!window.manageModules) {
+        window.manageModules = {
+            showDbOptions: function(name) {
+                $("#warning_" + name).show();
+                $("#warning_" + name + " input").prop("disabled", false);
+            },
+            toggleOption: function (input) {
+                this.hideDbOptions();
+                this.showDbOptions(input.value);
+            },
+            hideDbOptions: function () {
+                $(".warning_manage_modules").hide();
+            }
+        };
+    }
+</script>

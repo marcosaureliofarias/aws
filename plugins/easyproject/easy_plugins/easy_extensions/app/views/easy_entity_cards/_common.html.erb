@@ -1,0 +1,55 @@
+<% entity_count = easy_entity_card.options[:referenced_entities_count]
+   card_size_class = case entity_count
+   when 0, 1
+     'size-10'
+   when 2
+     'size-5'
+   when 3
+     'size-33 size-s-5'
+   else
+     'size-33 size-s-5 size-xl-25'
+   end
+%>
+
+<div class="easy-entity-card-container splitcontentleft <%= card_size_class -%>">
+  <div class="easy-entity-card" id="<%= easy_entity_card.options[:module_name] %>_card_<%= easy_entity_card.entity.id %>">
+    <div class="contextual easy-entity-card-actions">
+      <%= easy_entity_card.link_to_entity_contextual_links %>
+      <%= link_to(content_tag(:span, l(:title_remove_referenced_entity_from_entity, :source_entity => easy_entity_card.source_entity.to_s), :class => 'tooltip'), {
+        :controller => 'easy_entity_cards', :action => 'destroy',
+        :source_entity_type => easy_entity_card.source_entity.class.name, :source_entity_id => easy_entity_card.source_entity,
+        :referenced_collection_name => easy_entity_card.options[:referenced_collection_name],
+        :referenced_entity_type => easy_entity_card.entity.class.name, :referenced_entity_id => easy_entity_card.entity,
+        :module_name => easy_entity_card.options[:module_name]},
+                  :method => :delete, :remote => true, :class => 'icon icon-unlink',
+                  :title => l(:title_remove_referenced_entity_from_entity, :source_entity => easy_entity_card.source_entity.to_s)) if !options[:hide_remove_entity_link] %>
+      <%= easy_entity_card.contextual_links %>
+      <%= call_hook(:view_easy_entity_cards_common_bottom_links, :easy_entity_card => easy_entity_card) %>
+    </div>
+
+    <%= easy_entity_card.avatar %>
+    <h4>
+      <%= easy_entity_card.link_to_entity %>
+    </h4>
+
+    <div class="easy-entity-card-detail">
+      <%= easy_entity_card.detail.to_s %>
+    </div>
+
+    <% if easy_entity_card.footer? %>
+      <div>
+        <hr/>
+        <div class="splitcontent">
+          <div class="splitcontentleft">
+            <%= easy_entity_card.footer_left %>
+          </div>
+          <div class="splitcontentright contextual">
+            <%= easy_entity_card.footer_right %>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <%= easy_entity_card.footer_bottom %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,454 @@
+---
+ar:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: الإعدادات
+      easy_helpdesk_mail_template:
+        body_html: نص رسالة البريد (HTML)
+        body_plain: نص رسالة البريد (نص صريح)
+        issue_status_id: حالة المهمة
+        mailboxes: استخدام لصندوق البريد
+        reply_to: الرد على
+        sender: الراسل
+        subject: موضوع
+      easy_helpdesk_project_matching:
+        domain_name: اسم النطاق
+      easy_helpdesk_project_sla:
+        base: SLA
+    models:
+      easy_helpdesk_mail_template: "قالب رسالة البريد\r\n\r\n "
+  aggregated_periods:
+    half-yearly: نصف سنوي
+    quarterly: ربع سنوي
+    yearly: سنوي
+  button_easy_helpdesk_add_domain_name: إضافة البريد أو النطاق
+  button_easy_helpdesk_add_mail_template: إضافة قالب البريد
+  button_easy_helpdesk_add_mailbox: إضافة صندوق بريد
+  button_easy_helpdesk_add_project: إضافة مشروع
+  button_easy_helpdesk_add_project_from_sidebar: إضافة لمكتب المساعدة
+  button_easy_helpdesk_add_signature: إضافة توقيع
+  button_easy_helpdesk_add_sla: إضافة SLA
+  button_easy_helpdesk_all_mail_templates_index: كل قوالب الرسائل الإلكترونية
+  button_easy_helpdesk_all_mailboxes_index: كل صناديق البريد
+  button_easy_helpdesk_all_projects_index: كل مشروعات مكتب المساعدة
+  button_easy_helpdesk_mail_templates_index: قائمة القوالب
+  button_easy_helpdesk_mailboxes_index: قائمة صناديق البريد
+  button_easy_helpdesk_projects_index: قائمة المشروعات
+  button_easy_helpdesk_reports_index: تقارير
+  button_easy_helpdesk_settings_index: إعدادات مكتب المساعدة
+  confirm_edit_remaining_hours: هذا الحقل محسوب على الخلفية، هل تريد تعديله يدويًا؟
+  easy_helpdesk_author: برنامج Easy
+  easy_helpdesk_name: مكتب المساعدة
+  easy_helpdesk_plugin_description: حل مكتب المساعدة المعقد
+  easy_pages:
+    module_category:
+      easy_helpdesk: مكتب المساعدة
+    modules:
+      easy_helpdesk_create_mail_template_button: زر إنشاء قالب رسالة إلكترونية 
+      easy_helpdesk_create_mailbox_button: زر إنشاء صندوق البريد
+      easy_helpdesk_mailboxes: صناديق بريد مكتب المساعدة
+      easy_helpdesk_mailtemplates: قوالب بريد مكتب المساعدة
+      easy_helpdesk_project_query: مشروعات مكتب المساعدة من الفلاتر
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: قوالب بريد مكتب المساعدة
+        description: قوالب بريد مكتب المساعدة
+    easy_helpdesk_mailboxes:
+      index:
+        caption: صناديق بريد مكتب المساعدة
+        description: عرض صناديق بريد مكتب المساعدة
+    easy_helpdesk:
+      index:
+        caption: مكتب المساعدة
+        description: عرض لوحة التحكم في مكتب المساعدة
+  easy_query:
+    name:
+      easy_helpdesk_project_query: مكتب المساعدة - المشروعات
+      easy_helpdesk_report_monthly_query: "مكتب المساعدة - شهري\r\n\r\n "
+      easy_helpdesk_report_yearly_query: مكتب المساعدة - تقارير سنوية
+      easy_sla_event_query: أحداث Sla
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: الفلاتر الخاصة على المشروعات في مكتب المساعدة
+        easy_helpdesk_report_monthly_query: الفلاتر الخاصة على التقارير الشهرية في
+          مكتب المساعدة
+        easy_helpdesk_report_yearly_query: الفلاتر الخاصة على التقارير السنوية في
+          مكتب المساعدة
+      public:
+        easy_helpdesk_project_query: الفلاتر العامة على المشروعات في مكتب المساعدة
+        easy_helpdesk_report_monthly_query: الفلاتر العامة على التقارير الشهرية في
+          مكتب المساعدة
+        easy_helpdesk_report_yearly_query: الفلاتر العامة على التقارير السنوية في
+          مكتب المساعدة
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: مكتب المساعدة - حساب الساعات المتراكمة
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: مكتب المساعدة - تحديث التذاكر تلقائيًا
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: مكتب المساعدة - استقبال الرسائل الإلكترونية
+      settings:
+        imap:
+          allow_override: تفعيل تحديث مواصفات المهمة
+          allow_override_example: 'مثال: متتبع، أولوية - هذه المواصفات ميكن تغييرها
+            بالبريد'
+          application_section_label: إعدادات أخرى
+          category_example: "مثال: الفئة - مهام جديدة سيكون لها فئة\r\n\r\nفئة"
+          email_section_label: إعدادات صندوق البريد
+          folder: حافظة
+          folder_example: 'حافظة IMAP لقراءة (الأساسي: صندوق الوارد، لاختيار الحافظة
+            استخدام "/" مثال: صندوق الوارد/المبيعات)'
+          folders: الحافظات للقراءة
+          folders_example: 'حافظات IMAP للقراءة (واحد في كل سطر) (أساسي: صندوق الوارد،
+            لاختيار حافظة استخدم "/" مثال: صندوق الوارد/مبيعات)'
+          host: مضيف
+          host_example: مثال: mail.company.com
+          label: IMAP
+          move_on_failure: فشل النقل إلى
+          move_on_failure_example: نقل الرسائل التي تم إهمالها لحافظة صندوق البريد
+          move_on_success: نجاح النقل إلى
+          move_on_success_example: نقل الرسائل التي لم يتم استقبالها بنجاح  لحافظة
+            صندوق البريد، وإلا سيتم حذفها
+          no_permission_check: لا يوجد تدقيق لتصاريح المستخدم
+          no_permission_check_example: ''
+          password: كلمة المرور
+          password_example: مثال: secretpassword‌
+          port: منفذ
+          port_example: 'مثال: 143'
+          priority_example: 'مثال: مرتفع - تحصل مهام جديدة على أولوية مرتفعة'
+          project_example: 'مثال: 205 - مهام جديدة يتم إنشاؤها لمشروع ID 205'
+          sender_mail: الراسل
+          sender_mail_example: مثال: support@company.com
+          ssl: SSL
+          ssl_example: استخدم تفويض SSL 
+          status_example: 'مثال: جديد - تحصل مهام جديدة على حالة جديد'
+          tracker_example: 'مثال: مشكلة - تحصل مهام جديدة على مشكلة متتبع'
+          unknown_user: مستخدم غير معروف
+          unknown_user_example: قبول - يتم استخدام مستخدم غير معروف؛ إنشاء - يتم إنشاء
+            مستخدم جديد من البريد؛ تسجيل دخول ملموس - يتم استخدام هذا المستخدم
+          use_custom_sender: استخدم راسل مختلف
+          username: مستخدم
+          username_example: مثال: accessuser@domain.com
+        pop3:
+          allow_override: تفعيل تحديث مواصفات المهمة
+          allow_override_example: 'مثال: متتبع، أولوية - هذه المواصفات يمكن تغييرها
+            بالبريد'
+          apop: APOP
+          apop_example: استخدم تفويض APOP
+          application_section_label: إعدادات أخرى
+          category_example: 'مثال: فئة - تحصل مهام جديدة على فئة الفئة'
+          delete_unprocessed: حذف غير المعالج
+          delete_unprocessed_example: حذف الرسائل التي لا يمكن معالجتها
+          email_section_label: إعدادات صندوق البريد
+          host: المضيف
+          host_example: مثال: mail.company.com
+          label: POP3
+          no_permission_check: لا يوجد تدقيق لتصاريح المستخدم
+          no_permission_check_example: ''
+          password: كلمة المرور
+          password_example: مثال: secretpassword‌
+          port: منفذ
+          port_example: 'مثال: 110'
+          priority_example: 'مثال: مرتفع - سيكون للمهام الجديدة أولوية مرتفعة'
+          project_example: "مثال: 205 - المهام الجديدة يتم إنشاؤها للمشروع \r\n\r\nID
+            205"
+          sender_mail: الراسل
+          sender_mail_example: support@company.com
+          status_example: 'مثال: جديد - المهام جديدة تأخذ الحالة جديدة'
+          tracker_example: 'مثال: مشكلة - سيكون للمهام الجديدة مشكلة متتبع'
+          unknown_user: مستخدم غير معروف
+          unknown_user_example: اقبل - يتم استخدام مستخدم مجهول؛ إنشاء - يتم إنشاء
+            المستخدم من البريد؛ تسجيل دخول ملموس - يتم استخدام هذا المستخدم
+          use_custom_sender: استخدم راسل مختلف
+          username: مستخدم
+          username_example: مثال: accessuser@domain.com
+  error_easy_helpdesk_project_sla_hours_fields_empty: الحقول "ساعات للإجابة" و""ساعات
+    للحل" لا يمكن تركهما فارغين. يرجى تعبئة أي منهما.
+  error_easy_sla_hours_mode_greater_than: "%{title} %{to} ينبغي أن يكون أكبر من %{from}"
+  error_update_easy_setting_helpdesk: الإعداد لم يتم حفظه
+  field_aggregated_hours: ساعات مكتب المساعدة المتراكمة
+  field_aggregated_hours_period: الفترة المتراكمة
+  field_aggregated_hours_remaining: الساعات المتبقية لمكتب المساعدة
+  field_aggregated_hours_start_date: تاريخ بداية التراكم
+  field_automatically_issue_closer_enable: تفعيل التحديث التلقائي للتذكرة؟
+  field_date_to_response: SLA (تاريخ الاستجابة)
+  field_date_to_solve: SLA (تاريخ الحل)
+  field_default_for_mailbox: أساسي لصندوق البريد
+  field_easy_helpdesk_has_sla: له SLA
+  field_easy_helpdesk_hours_to_response_before_expired: الساعات للاستجابة
+  field_easy_helpdesk_hours_to_solve_before_expired: الساعات للحل
+  field_easy_helpdesk_ignorate_suspend_statuses: إنشاء أحداث SLA من كل الحالات
+  field_easy_helpdesk_mail_template: 'إرسال البريد الإلكتروني السريع للمستهلك من القالب:'
+  field_easy_helpdesk_need_reaction: هل تحتاج للتفاعل؟
+  field_easy_helpdesk_project_keyword: كلمة المفتاح للمشروع
+  field_easy_helpdesk_project_matching:
+    domain_name: البريد أو النطاق
+    email_field_from: مأخوذ من الحقل من 
+    email_field_to: مأخوذ من الحقل إلى
+  field_easy_helpdesk_project_monthly_hours: الساعات الشهرية المتعاقد عليها من مكتب
+    المساعدة
+  field_easy_helpdesk_project_sla:
+    blank_keyword: اسم SLA غير موجود
+    hours_to_response: ساعات الإجابة
+    hours_to_solve: الساعات حتى الحل
+    keyword: الكلمة المفتاح لSLA
+    title: اسم SLA
+  field_easy_helpdesk_project_spent_time_current_month: ساعات العمل على HD (هذا الشهر)
+  field_easy_helpdesk_project_spent_time_last_month: ساعات العمل على HD (الشهر السابق)
+  field_easy_helpdesk_project_spent_time_total: إجمالي الوقت المستغرق على HD
+  field_easy_helpdesk_ticket_owner: صاحب التذكرة
+  field_easy_reopen_at: إعادة الفتح في
+  field_easy_response_date_time: SLA (استجابة)
+  field_easy_time_to_solve_paused_at: تم إيقاف SLA عند
+  field_email_footer: تذييل الرسالة الإلكترونية
+  field_email_header: عنوان الرسالة الإلكترونية
+  field_first_response: الاستجابة الأولى
+  field_has_easy_sla_event: له أحداث SLA
+  field_hide_sla_data: إخفاء بيانات SLA
+  field_hours_mode_from: ساعات عمل SLA
+  field_hours_to_response: SLA (استجابة)
+  field_hours_to_solve: SLA (الحل)
+  field_is_under_helpdesk: تحت مكتب المساعدة
+  field_issue_closer_done_issue_status: تغيير الحالة إلى
+  field_issue_closer_done_issue_user: والإحالة إلى
+  field_issue_closer_inactive_interval: ولا يوجد تحديث في الداخل
+  field_issue_closer_observe_issue_status_id: في الحالة
+  field_monitor_due_date: مراقبة تاريخ انتهاء تذاكر الدعم
+  field_monitor_spent_time: مراقبة الوقت المستغرق لتذاكر الدعم
+  field_monthly_hours: الساعات الشهرية المتعاقد عليها لمكتب المساعدة
+  field_occurence_time: زمن التكرار
+  field_sla_resolve: حل SLA
+  field_sla_resolve_fulfilment: تحقيق حل SLA
+  field_sla_response: استجابة SLA
+  field_sla_response_fulfilment: تحقيق الاستجابة SLA
+  field_use_working_time: عدد SLA بناءًا على وقت العمل
+  heading_easy_helpdesk_index: مكتب المساعدة
+  heading_easy_helpdesk_mail_templates_edit: تعديل قالب البريد
+  heading_easy_helpdesk_mail_templates_index: قوالب البريد
+  heading_easy_helpdesk_mail_templates_new: قالب البريد الجديد
+  heading_easy_helpdesk_mail_templates_show: تفاصيل قالب البريد
+  heading_easy_helpdesk_mailboxes_edit: تعديل صندوق البريد
+  heading_easy_helpdesk_mailboxes_index: صناديق بريد مكتب المساعدة
+  heading_easy_helpdesk_mailboxes_new: صندوق بريد جديد
+  heading_easy_helpdesk_projects_edit: تعديل المشروع
+  heading_easy_helpdesk_projects_index: مشروعات مكتب المساعدة
+  heading_easy_helpdesk_projects_new: مشروع مكتب المساعدة الجديد
+  heading_easy_helpdesk_projects_show: تفاصيل المشروع
+  heading_easy_helpdesk_reports_index: مكتب المساعدة - التقارير
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: التقرير الشهري للساعات المدفوعة
+    مقدمًا
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: التقرير السنوي للساعات المدفوعة
+    مقدمًا
+  heading_easy_helpdesk_settings: الإعدادات
+  hint_automatically_issue_closer_enable: ''
+  issue_closer_inactive_interval_units:
+    days: الأيام
+    hours: ساعات
+  label_automatically_issue_closer: التحديث التلقائي للتذاكر حينما تكون
+  label_copy_settings_sla_from_project: نسخ إعدادات SLA من المشروع
+  label_easy_hekodesk_additional_task_info_received_emails: الرسائل المعالجة
+  label_easy_helpdesk: مكتب المساعدة
+  label_easy_helpdesk_actual_budget: ساعات مكتب المساعدة للإنفاق هذا الشهر
+  label_easy_helpdesk_actual_budget_to_spend: الساعات المتبقية
+  label_easy_helpdesk_aggregated_from_last_period: متراكم من الفترة السابقة
+  label_easy_helpdesk_alerts: إعدادات التنبيهات
+  label_easy_helpdesk_allow_custom_sender: السماح بتخصيص الراسل (لكل مشروع)
+  label_easy_helpdesk_allow_override: تفعيل تحديث مواصفات المهمة
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: تغيير حقول التذكرة
+    notify: إرسال البريد الإلكتروني من القالب
+  label_easy_helpdesk_client_response_status: تغيير الحالة بعد إجابة العميل على
+  label_easy_helpdesk_domain_name: نطاق البريد
+  label_easy_helpdesk_emails: إعدادات البريد - العنوان والتذييل
+  label_easy_helpdesk_enable_email_footer: تغيير التذييل لهذا المشروع؟
+  label_easy_helpdesk_enable_email_header: تغيير العنوان لهذا المشروع؟
+  label_easy_helpdesk_hours_comulated: الساعات المتراكمة
+  label_easy_helpdesk_hours_comulated_range: من %{from} إلى %{to}
+  label_easy_helpdesk_hours_per_month: الساعات التي تم العمل خلالها هذا الشهر
+  label_easy_helpdesk_ignore_cc: إغفال حقل إرسال نسخة إلى من الرسائل الإلكترونية الواردة
+  label_easy_helpdesk_mail_signature: مكتب المساعدة - التوقيع
+  label_easy_helpdesk_matching: الراسائل الإلكترونية، والنطاقات، وكلمات المفتاح المعالجة
+    في هذا المشروع
+  label_easy_helpdesk_message_above_variables: تعليق على المهمة معروض أعلى قالب الرسائل
+  label_easy_helpdesk_need_reaction: هل تحتاج للتفاعل!
+  label_easy_helpdesk_project_helpdesk_tab: مكتب المساعدة
+  label_easy_helpdesk_project_managed_by_helpdesk: إعدادات مكتب المساعدة
+  label_easy_helpdesk_project_plural: مشروعات مكتب المساعدة
+  label_easy_helpdesk_projects_sla_working_time_calendar: أيام عمل SLA
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: إعداد SLA على الوضع الأساسي
+    لعد إعادة فتح المهمة
+  label_easy_helpdesk_sender: الراسل
+  label_easy_helpdesk_sender_current_user: المستخدم الحالي الذي سجل الدخول
+  label_easy_helpdesk_sender_is_user: الراسل هو مستخدم مسجل الدخول
+  label_easy_helpdesk_sender_mailbox_address: عنوان صندوق البريد
+  label_easy_helpdesk_sender_redmine_default: الأساسي من إخطار البريد
+  label_easy_helpdesk_signature: التوقيع
+  label_easy_helpdesk_signature_name: اسم التوقيع
+  label_easy_helpdesk_skip_ignored_emails_headers_check: قبول الرسائل المصدرة تلقائيًا
+  label_easy_helpdesk_sla: إعدادات SLA - الأولويات، والوقت لحل التذكرة
+  label_easy_helpdesk_sla_start_states: عد SLA للتذكرة حينما تكون الحالة
+  label_easy_helpdesk_sla_stop_states: تعليق SLA للتذكرة حينما تكون الحالة
+  label_easy_sla_event: حدث SLA
+  label_easy_sla_events: أحداث SLA
+  label_easy_sla_events_reports: تقارير SLA
+  label_filter_group_easy_helpdesk_project_query: مكتب المساعدة - المشروع
+  label_filter_group_easy_helpdesk_report_monthly_query: مكتب المساعدة - تقرير
+  label_filter_group_easy_helpdesk_report_query: مكتب المساعدة - تقرير
+  label_filter_group_easy_helpdesk_report_yearly_query: مكتب المساعدة - تقرير
+  label_filter_group_easy_sla_event_query: حدث SLA
+  label_filter_show_spent_time_current_month_equal_to_zero: الساعات التي تم العمل
+    فيها على HD (هذا الشهر) هوصفر
+  label_filter_show_spent_time_last_month_equal_to_zero: ساعات العمل على HD (الشهر
+    السابق) هو صفر
+  label_issue_bottom_from_easy_helpdesk: تم الإنشاء بمعرفة مكتب المساعدة (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: الساعات الشهرية المتعاقد عليها‌
+  label_sla_calendar_settings: إعدادات التقويم
+  label_tab_sla_events: أحداث SLA
+  permission_manage_easy_helpdesk: إدارة مكتب المساعدة
+  permission_manage_easy_helpdesk_project: إدارة مشروعات مكتب المساعدة
+  permission_manage_easy_sla_events: إدارة أحداث SLA
+  permission_view_easy_helpdesk_sla: عرض SLA على المهام
+  permission_view_easy_sla_events: عرض أحداث SLA
+  project_module_easy_helpdesk: مكتب المساعدة
+  setting_easy_helpdesk_custom_sender: راسل مكتب المساعدة
+  text_easy_helpdesk_change_default_sender: هذا الإعداد لن يغير حقل الرد على
+  text_easy_helpdesk_custom_sender: تعديل راسل مكتب المساعدة الأساسي. ابقه فارغًا
+    لإيقاف هذه الخاصية.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: المحال إليه الحالي
+    author: المؤلف الحالي
+    date: التاريخ الحالي
+    mail_to: إرسال بالبريد إلى
+    spent_time: الوقت المستغر على المهمة
+    task_closed_on: المهمة مقفلة في التاريخ
+    task_description: وصف المهمة
+    task_done_ratio: نسبة المهمة التي تمت
+    task_due_date: تاريخ تسليم المهمة
+    task_estimated_hours: الساعات المقدرة للمهمة
+    task_history: تاريخ كل التعليقات على المهمة
+    task_id: الرقم التعريفي للمهمة الحالية
+    task_id_without_hash: الرقم التعريفي للمهمة الحالية بدون علامة الشباك
+    task_last_journal: آخر تعليق عام على المهمة
+    task_note: آخر تعليق على المهمة
+    task_priority: أولوية المهمة
+    task_project: "اسم المشروع\r\n\r\n "
+    task_public_url: الرابط العام للمهمة
+    task_start_date: تاريخ بداية المهمة
+    task_status: حالة المهمة
+    task_subject: موضوع المهمة الحالية
+    task_tracker: متتبع المهمة
+    user_first_name: الاسم الأول للمستخدم الحالي
+    user_last_name: الاسم الأخير للمستخدم الحالي
+    user_name: الاسم الكامل للمستخدم الحالي
+    user_signature: "توقيع المستخدم الحالي\r\n\r\n "
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'يمكن أن يحتوي نص الرسالة والموضوع على نص ديناميكي:'
+  - "%task_id% (استبدال للرقم التعريفي للمهمة الحالية)"
+  - "%task_subject% (استبدال موضوع المهمة الحالية)"
+  - "%task_note%  (استبدال آخر تعليق على المهمة)"
+  - "%task_history%  (استبدال تاريخ كل التعليقات غير الخاصة على المهمة)"
+  - "%time_spent% (استبدال الوقت المستغرق على المهمة)"
+  - "%assignee%  (استبدال المحال إليه الحالي)"
+  - "%user_signature% (استبدال توقيع المستخدم الحالي)"
+  - "%date% (استبدال التاريخ الحالي)"
+  - "%task_tracker% (استبدال متتبع المهمة)"
+  - "%task_project% (استبدال اسم المشروع)"
+  - "%task_description% (استبدال وصف المهمة)"
+  - "%task_status% (استبدال حالة المهمة)"
+  - "%task_priority% (استبدال أولوية المهمة)"
+  - "%task_estimated_hours% (استبدال الساعات المقدرة للمهمة)"
+  - "%task_done_ratio%  (استبدال نسبة ما تم من المهمة)"
+  - "%task_public_url% (استبدال رابط المهمة العام)"
+  - "%task_closed_on% (استبدال المهمة المغلقة على التاريخ)"
+  - "%task_due_date% (استبدال لتاريخ تسليم المهمة)"
+  - "%task_start_date% (استبدال تاريخ بداية المهمة)"
+  - "%user_name% (استبدال الاسم الكامل للمستخدم الحالي)"
+  - "%user_first_name% (استبدال الاسم الأول للمستخدم الحالي)"
+  - "%user_last_name% (استبدال الاسم الأخير للمستخدم الحالي)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'يمكن أن يحتوي الموضوع ونص
+    الرسالة على نص ديناميكي:'
+  text_easy_helpdesk_mail_template_issue_status_id: يسمح لربط قالب صندوق البريد بحالة
+    مهمة معينة. وباختيار الحالة الأساسية (التي يتم من خلالها إنشاء المهام)، هذا القالب
+    يستخدم كرد تلقائي بعد إنشاء المهمة من البريد الإلكتروني.
+  text_easy_helpdesk_mail_template_replacement_for: استبدال مقابل
+  text_easy_helpdesk_mail_template_reply_to: "(السيد مثال) - البريد ليس مسموحًا به
+    هنا"
+  text_easy_helpdesk_mail_template_reply_to2: حقول "الرد على" و"الراسل" مأخوذة من
+    قالب صندوق البريد من أجل الحفاظ على الاتصالات داخل مهمة واحدة.
+  text_easy_helpdesk_mailbox_too_long_to_process: صندوق البريد هذا يأخذ وقتًا طويلًا
+    للمعالجة - بدون الرد من الخادم. من المحتمل أن يكون السبب العدد الكبير للرسائل
+    الإلكترونية في صندوق البريد. يرجى مسح الرسائل القديمة من الحافظات التي يستخدمها
+    مكتب المساعدة. كما يجب التحقق من سياسات الأمان للدخول المتكرر للتطبيقات الخارجية
+    في جهاز الخادم الخاص ببريدك.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: ينبغي عليك إحالة صناديق
+    البريد هذه للمشروعات. وإذا لم تقم بذلك، فلن تتم معالجة الرسائل الواردة!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'صناديق البريد هذه ليس لها
+    مشروع أساسي:'
+  text_easy_helpdesk_projects_alerts_list: 'قائمة بالتنبيهات المشكلة:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'قائمة بالتنبيهات التي تحتاج لوجود
+    مجموعة من المتلقين:'
+  text_easy_helpdesk_projects_is_default: إذا وصل بريد إلكتروني من الراسل المجهول،
+    سيتم إنشاء التذكرة هنا.
+  text_easy_helpdesk_projects_keyword_description: إذا كان موضوع البريد يحتاج إلى
+    شريط تعريف، ستتم إحالة التذكرة لهذا المشروع. وكلمة المفتاح هي الحساسية للحالة.
+  text_easy_helpdesk_projects_keywords: إذا كان موضوع الرسالة يحتوي على شريط معرف،
+    فيتم تحديد الأولوية الخاصة وتاريخ التسليم (*يعني كل موضوع). واتركه فارغًا لتحديد
+    SLA للتذاكر المنشأة يدويًا.
+  text_easy_helpdesk_projects_monitor_due_date: هذا التنبيه المعرف مسبقًا سيرسل لك
+    إخطار عبر البريد الإلكتروني، إذا خرقت التذكرة SLA - لم يتم الحل خالا الفترة المعرفة
+    في SLA
+  text_easy_helpdesk_projects_monitor_spent_time: هذا التنبيه المعرف مسبقا سيرسل لك
+    عبر البريد الإلكتروني إخطارًا إذا كان إجمالي الوقت المستغرق في التقويم الخاص الشهري
+    يتعدى ساعات الدعم المدفوعة مسبقًا
+  text_easy_helpdesk_projects_new_priority: إذا كانت الكلمات المفتاح غير محددة، سيتم
+    ضبط SLA وفقًا للأولوية المختارة.
+  text_easy_helpdesk_projects_priority: سيتم إعداد SLA وفقًا للأولوية المختارة
+  text_easy_helpdesk_projects_sla_hours_to_response: الحد الأقصى للزمن المسموح به
+    قبل البدء في العمل على التذكرة (تغيير الحالة الأولى)
+  text_easy_helpdesk_projects_sla_hours_to_solve: الحد الأقصى للوقت المطلوب لحل التذكرة
+    (حالة مغلقة)
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'بعض المهام (%{count}/%{total})
+    لا يمكن تحديثه:'
+  text_easy_rake_task_helpdesk_issue_closer_updated: "%{updated_count} تم التحديث/
+    %{notified_count} البريد الإلكتروني للمستهلك"
+  text_isseu_closer_close_notice: هذه المهمة تم تحديثها تلقائيًا من قبل مكتب المساعدة
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: الإجابة
+    ينبغي أن تكون حتى %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: الإجابة
+    ينبغي أن تكون حتى %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: الإجابة ينبغي
+    أن تكون حتى %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: الإجابة
+    ينبغي أن تكون حتى %{time}'
+  text_mailbox_delete_confirmation: 'أنت على وشك حذف صندوق البريد. حذف صندوق البريد
+    قد يتسبب في المشكلات التالية: - التذاكر التي يتم إنشاؤها عبر صندوق البريد هذا
+    لن تكون قادرة على استخدام القوالب. هل أنت متأكد من أنك تريد الاستمرار؟'
+  title_easy_helpdesk_add_project_from_sidebar: اضغط لإضافة مشروع لمكتب المساعدة
+  title_easy_helpdesk_allow_custom_sender: اسمح لتخصيص الإعدادات الخاصة بالراسل لكل
+    مشروع
+  title_easy_helpdesk_allow_override: السماح بتعديل مواصفات المهمة من الرسالة
+  title_easy_helpdesk_client_response_status: اختر حالة تغيير التذكرة بعد تحديثها
+    عبر البريد الإلكتروني
+  title_easy_helpdesk_ignore_cc: عند استقبال رسالة إلكترونية، تتم إضافة كل عناوين
+    البريد الإلكتروني في حقل إرسال نسخة إلى إلى المراقبين، والبريد الإلكتروني الخارجي
+    والرد التلقائي يتم إرساله لهم، وهذا الخيار يعطل ذلك.
+  title_easy_helpdesk_message_above_variables: قالب الرسالة يكون أعلى متغيرات القالب
+  title_easy_helpdesk_sender: من سيكون في حقل "من"
+  title_easy_helpdesk_sender_current_user: المستخدم المسجل دخوله حاليًا
+  title_easy_helpdesk_sender_is_user: حقل "من" سيدخله مستخدم
+  title_easy_helpdesk_sender_mailbox_address: عنوان البريد الإلكتروني من صندوق البريد
+  title_easy_helpdesk_sender_redmine_default: الحذف الأساسي لعنوان البريد الإلكتروني
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'تحذير: سيتلقى مكتب المساعدة
+    الرسائل البريدية من أنظمة أخرى وقد يتسبب في تبادل لا نهائي لرسائل البريد!'
+  title_easy_helpdesk_sla_start_states: اختر الحالات، حينما يتم استئناف قياس SLA بعد
+    التوقف وفق الإعداد السابق
+  title_easy_helpdesk_sla_stop_states: اختر الحالات التي لا يتم فيها قياس SLA. على
+    سبيل المثال، حينما تنتظر إجابة من العميل.
+  title_sla_waiting_for_client: SLA معلق
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: إيقاف - بعد أغلاق المهمة يتوقف SLA. وعند إعادة فتح المهمة، يتم حساب
+      SLA بداية من الوقت الذي تم إنشاؤه فيه
+    enabled: تفعيل - بعد إغلاق المهمة، يتوقف SLA. وعند إعادة فتح المهمة، يتم حساب
+      SLA من الوقت الذي تم إعادة فتحه فيه.

@@ -1,0 +1,12 @@
+$('#ajax-modal').html("<%= j(render(template: 'easy_action_sequence_templates/index', formats: [:html])) %>");
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+    buttons: [
+        {
+            text: '<%=j l(:button_cancel) %>',
+            click: function () {
+                $(this).dialog('close');
+            }, 'class': 'button'
+        }
+    ]
+});

@@ -1,0 +1,12 @@
+<%
+module_id ||= 'easy_helpdesk_mailbox_container'
+%>
+
+<div class="box" id="<%= module_id %>">
+  <h3 class="icon icon-stack">
+    <%= l(:heading_easy_helpdesk_mailboxes_index) + " (#{tasks.size}/#{tasks_count})" -%>
+  </h3>
+  <div>
+    <%= render :partial => 'easy_rake_tasks/index', :locals => {:tasks => tasks} %>
+  </div>
+</div>

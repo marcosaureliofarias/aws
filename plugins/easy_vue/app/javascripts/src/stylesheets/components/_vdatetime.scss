@@ -1,0 +1,85 @@
+.vdatetime{
+  position: relative;
+  width: 100%;
+
+  &--clear {
+    display: none;
+    margin-right: .25*$gap;
+    position: absolute;
+    cursor: pointer;
+    right: 2px;
+    top: -2px;
+  }
+  &_wrapper {
+    position: relative;
+    width: 100%;
+    &:hover {
+      .vdatetime--clear {
+        display: block;
+      }
+    }
+  }
+
+  &-popup{
+    @include popup;
+    width: 25 * $gap !important;
+    user-select: none;
+    &__header{
+      background: $color-background;
+      padding: 2*$gap 1.5*$gap;
+      color: $color-text;
+    }
+    &__date{
+      display: none;
+    }
+    &__year {
+      text-align: center;
+      font-size: 1.5rem;
+      color: $color-text;
+    }
+    &__header {
+      padding: .75*$gap;
+    }
+    &__actions{
+      padding: 0 $gap;
+      &__button{
+        font-size: .8rem;
+        color: $color-text;
+        &--confirm{
+          color: $color-positive;
+        }
+      }
+    }
+  }
+  &-calendar{
+    &__navigation{
+      padding: 0 1.5*$gap;
+    }
+    &__month{
+      padding: 0 $gap;
+      &__day,&__weekday{
+        font-size: .8rem;
+      }
+      &__day{
+        &--selected{
+          &,&:hover{
+            & > span > span{
+              background: $color-positive;
+              color: $color-front;
+            }
+          }
+        }
+        &--weeknumber {
+          opacity: 1;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  &-overlay{
+    @include popup__backdrop;
+    background: transparent;
+    transition: none;
+    z-index: $popup__z-index--backdrop;
+  }
+}

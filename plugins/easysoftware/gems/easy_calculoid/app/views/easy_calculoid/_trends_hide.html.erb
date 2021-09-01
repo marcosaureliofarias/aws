@@ -1,0 +1,7 @@
+<% if Rys::Feature.active?('easy_calculoid') && settings[:hidden].to_s.to_boolean %>
+  <script type="application/javascript">
+    EASY.schedule.main(() => {
+      $("#module_<%= page_module.uuid.dasherize %>").hide();
+    });
+  </script>
+<% end %>

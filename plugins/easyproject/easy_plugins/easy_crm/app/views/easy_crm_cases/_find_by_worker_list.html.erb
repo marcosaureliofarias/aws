@@ -1,0 +1,15 @@
+<table class="list">
+  <tbody>
+    <% users.each do |user| %>
+      <tr class="<%= user.css_classes %>">
+        <td class="name">
+          <%= link_to(avatar(user, :style => :small, :no_link => true) + user.name, easy_crm_cases_path(:set_filter => 1, :assigned_to_id => user.id, :is_canceled => '0', :is_finished => '0'), :title => l(:label_show_assigned_issues, :username => user.name)) %>
+        </td>
+        <td class="buttons">
+          <%= link_to(EasyCrmCase.human_attribute_name(:need_reaction), easy_crm_cases_path(:set_filter => 1, :assigned_to_id => user.id, :need_reaction => 1), :title => EasyCrmCase.human_attribute_name(:need_reaction), :class => 'button') %>
+          <%= link_to(l(:label_issues_after_due_date), easy_crm_cases_path(:set_filter => 1, :assigned_to_id => user.id, :next_action => 'after_due_date'), :title => l(:label_issues_after_due_date), :class => 'button') %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

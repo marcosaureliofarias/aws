@@ -1,0 +1,201 @@
+---
+ar:
+  easy_printable_templates_categories:
+    easy_wbs: Easy WBS
+  easy_query:
+    name:
+      easy_wbs_easy_issue_query: Easy WBS
+  easy_wbs:
+    button_actions: الإجراءات الأخرى
+    button_add_child: إضافة تابع
+    button_add_comment: إضافة تعليق
+    button_add_parent: إضافة أصلي
+    button_add_sibling: إضافة طفل
+    button_all_icons: أيقونات
+    button_budget: ميزانية مفتوحة
+    button_collapse: تقليص
+    button_collapse_all: تقليص/تمديد
+    button_cut: قطع
+    button_display: عرض الإعدادات
+    button_edit_data: تعديل البيانات
+    button_expand: تمديد
+    button_expand_all: تمديد الكل
+    button_expand_collapse: تمديد/تقليص
+    button_legend: دليل
+    button_one_side: جانب واحد
+    button_paste: لصق
+    button_project_menu: Easy WBS
+    button_redo: إعادة
+    button_remove_comment: إزالة تعليق
+    button_remove_node: إزالة عقدة
+    button_show_links: عرض العلاقات
+    button_undo: إلغاء
+    edit_issue: تعديل المهمة
+    error_create: لا يمكن إنشاؤه
+    error_delete: لا يمكن حذفه
+    error_update: لا يمكن تحديثه
+    errors:
+      not_subtaskable: المهمة "%{task_name}" لا يمكن جعلها مهمة فرعية بسبب إعدادات
+        المتتبع الخاص بها
+    free:
+      button_upgrade: احصل على الإصدار الكامل
+      button_upgrade_href: https://www.easyredmine.com/redmine-wbs-plugin
+      feature_coloring: العقد الملونة بحسب الخاصية
+      feature_context_menu: تغيير خصائص العقد
+      feature_filtering: فلترة العقد بحسب الخصائص
+      header_not_available: متوفر فقط بالإصدار الكامل
+      text_not_available: متوفر فقط بالإصدار الكامل على Easy WBS.
+    hotkeys:
+      info_mac_metakey: على Mac OSX، يمكن استخدام مفاتيح Ctrl وCmd للاختصارات المكتوب
+        عليها Ctrl فيميا يلي، وبعض المتصفحات تمنع استخدام بعض المفاتيح مع بعضها. لذا
+        على سبيل المثال، إن لم ينجح الاختصار Cmd + Space في متصفحك، فجرب استخدام Ctrl
+        + Space
+      keyboard:
+      - title: تغيير العقدة
+        hotkeys:
+        - hotkey: إدخال
+          info: Add Sibling
+        - hotkey: Shift+Enter
+          معلومات: 'إضافة تابع في الأعلى، أو خط فاصل (عند إعادة تسمية العقدة) '
+        - hotkey: المس أو أدخل
+          info: إضافة تابع
+        - hotkey: Shift+Tab
+          info: إدخال أصلي
+        - hotkey: مسافة
+          info: إعادة تسمية العقدة
+        - hotkey: Shift+Space
+          معلومات: تعديل بيانات العقدة
+        - hotkey: Backspace or Delete
+          معلومات: إزالة العقدة
+        - hotkey: Ctrl+Up/Down
+          معلومات: نقل العقدة للأعلى/أسفل
+      - title: تعديل
+        hotkeys:
+        - hotkey: Ctrl+S
+          معلومات: حفظ
+        - hotkey: Ctrl+X or C
+          info: قطع
+        - hotkey: Ctrl+C or Y
+          info: نسخ
+        - hotkey: Ctrl+V or P
+          info: لصق
+        - hotkey: U or Ctrl+Z
+          info: إلغاء
+        - hotkey: R or Ctrl+Y or Ctrl+Shift+Z
+          info: إعادة الإجراء
+      - title: اختيار
+        hotkeys:
+        - hotkey: مفاتيح الأسهم
+          info: " اختر العقدة أعلى/أسفل/ يسار/يمين من المختارة حاليًا "
+        - hotkey: Shift + مفاتيح الأسهم
+          info: " إضافة العقدة أعلى/أسفل/ يسار/يمين من الاختيار (مفيد لاختيار تابعين
+            متعددين"
+        - hotkey: "{"
+          info: 'اختر عقد متعددة من العقدة الحالية وكل شجرة الفروع المندرجة تحتها '
+        - hotkey: "["
+          info: 'اختر فقط التوابع الفرعية تحت العقدة الحالية (ليس العقدة نفسها) '
+        - hotkey: "="
+          info: 'اختر كل التوابع المندرجة تحت العقدة الحالية (والتي لها نفس الأصل) '
+        - hotkey: "."
+          info: 'قم بإلغاء الاختيار المتعدد واختر فقط العقدة الحالية مرة أخرى '
+        - hotkey: 1 - 9
+          info: 'اختر كل العقد في مستو معين (مثل 1 يختار كل العقد في المستوى الأول) '
+      - title: التحول والشاشة
+        hotkeys:
+        - hotkey: "/ or F"
+          info: 'تمديد أو تقليص العقدة (تطبيق أو فك التوابع) '
+        - hotkey: Ctrl + or Z
+          info: تقريب
+        - hotkey: Ctrl - or Shift Z
+          info: تصغير
+        - hotkey: Esc, 0, Ctrl+0
+          info: 'إعادة ضبط عرض الخريطة – اختر العقدة الجذر واحضرها إلى مركز '
+      mouse:
+      - action: نقل الخريطة
+        gesture: " اضغط واسحب العقدة الوسطى اضغط واسحب الخلفية أو انزل بلوحة التتبع/لوحة
+          اللمس "
+      - action: 'اختر عقدة '
+        gesture: المسها أو اضغط عليها
+      - action: اختر عقدًا متعددة
+        gesture: Shift+click
+      - action: أعد ترتيب العقد
+        gesture: " اسحب عقدة من بين تابعيها، واضغط أفقيًا بالقرب من موضع إعادة الترتيب.
+          وسيظهر سهم أسود يشير إلى موضع إعادة الترتيب . "
+      - action: 'حدد موضع العقدة يدويًا '
+        gesture: اسحب العقدة حتى يتوقف السهم المشير لإعادة الترتيب عن الظهور. ولفرض
+          التحكم اليدوي في الموضع حتى مع ظهور إشارة سهم إعادة الترتيب، اضغط واستمر
+          في الضغط على Shift مع السحب. ويرجى ملاحظة أن التوابع للعقدة الجذر يمكن سحبها
+          في أي اتجاه، ولكن العقد ذات المستويات المنخفضة، يمكن وضعها فقط في اتجاه
+          العقدة الأصلية بالنسبة للجذر
+      - action: 'إعادة تسمية العقدة '
+        gesture: 'اضغط عليها مرتين أو المسها مرتين '
+      - action: عرض قائمة السياق مع العمليات
+        gesture: " اضغط بالزر الأيمن من الماوس على العقدة أو المس مرتين الخلفية، أو
+          اضغط لوقت طويل على العقدة: عرض (على الأجهزة التي تعمل باللمس) "
+      - action: 'تغيير العقدة الأصلية '
+        gesture: " سحب وإنزال عقدة على عقدة أخرى (النقاط الدائرية غير مسموح بها، لذا
+          \ لا يمكنك إنزال عقدة على أي من توابعها أو ما يندرج تحتها) "
+      - action: فتح المهمة أو المشروع في نافذة منفصلة
+        gesture: Alt+click
+      title_key_shortcuts: عمليات لوحة المفاتيح
+      title_mouse_shortcuts: عمليات الماوس واللمس
+      title_shortcuts: الاختصارات
+    info_all_saved: تم حفظ كل شيء بنجاح
+    info_any_failed: بعض الطلبات لم تنجح
+    info_no_permission: ليس لديك التصاريح اللازمة للقيام بذلك
+    label_additional_data: "بيانات إضافية\r\n\r\n "
+    label_all: الكل
+    label_basic_data: بيانات أساسية
+    label_budget: ميزانية
+    label_color_by: اللون بحسب
+    label_currency: العملة
+    label_detail_budget_issue: ميزانية المهمة
+    label_detail_budget_project: ميزانية المشروع
+    label_go_to: اذهب إلى
+    label_money_negative_value: سلبي
+    label_money_neutral_value: متعادل
+    label_money_positive_value: إيجابي
+    label_or: أو
+    label_planned_costs: إجمالي التكاليف المخطط لها
+    label_planned_profit: الربح المخطط له
+    label_planned_revenue: الدخول المخطط لها
+    label_real_costs: إجمالي التكاليف
+    label_real_profit: الربح الحقيقي
+    label_real_revenue: الدخول الحقيقية
+    label_show: عرض
+    label_spent_time_ratio: نسبة الوقت المستغرق
+    label_task_cumulative: إدراج ميزانيات المهام الفرعية
+    last_state_modal:
+      label_differencies: الاختلافات على الخادم
+      message_changed: مواصفات مختلفة (متصفح => خادم) ({{changes}})
+      message_missing: مفقود من الأصلي "{{from}}"
+      message_moved: طفل "{{to}}"، وليس "{{from}}"
+      message_present: موجود كتابع ل"{{to}}"
+      text_reload_appeal: هل تريد إعادة تحميل الحالة من الخادم؟
+      title: آخر حالة للعميل في WBS مختلفة عن حالة الخادم
+    name_an_entity_first: "اذكر اسم الكيان أولًا‌\r\n\r\n "
+    reload_modal:
+      label_errors: الأخطاء
+      text_reload_appeal: هل تريد إغفال البنود غير المحفوظة وإعادة تحميل البيانات
+        من الخادم؟
+      title: لم ينجح WBS في الحفظ بشكل جيد
+    stored_modal:
+      text_load_appeal: هل تريد إعادة تحميله؟ بدلًا من الحالة النشطة من الخادم؟
+      title: تم العثور على الحالة غير المحفوظة
+    text_issue_not_saved: لم يتم حفظ المهمة. احفظها أولًا.
+    title_save_and_open_modal: هذا الزر سيقوم بحفظ البيانات وفتح تفاصيل المهمة
+    title_save_and_open_project_modal: هذا الزر سيحفظ البيانات ويفتح تفاصيل المشروع
+    warning_delete_node: هل تريد فعلًا حذف العقدة {{name}} وكل ما يندرج تحتها؟
+    warning_not_saved: لم يتم الحفظ بشكل صحيح
+  heading_easy_wbs_issues: Easy WBS
+  label_easy_wbs: Easy WBS
+  label_filter_group_easy_wbs_easy_issue_query: المهام
+  label_filter_group_easy_wbs:
+    easy_issue_query: المهام
+  permission_edit_easy_wbs: تعديل WBS
+  permission_view_easy_wbs: عرض WBS
+  project_default_page:
+    easy_wbs: Easy WBS
+  project_module_easy_wbs: Easy WBS
+  text_easy_wbs_print_easy_wbs_current: عرض Easy WBS الحالي (يعمل فقط من الصفحة التي
+    يتم فيها تحميل Easy WBS

@@ -1,0 +1,9 @@
+<% if Rys::Feature.active?('easy_watchers_list_autocomplete') %>
+  <% available_watcher_groups ||= watchable.available_groups.first(EasyWatchersListAutocomplete.setting(:watchers_groups_limit).to_i) %>
+  <% available_watcher_users ||= watchable.addable_watcher_users.first(EasyWatchersListAutocomplete.setting(:watchers_users_limit).to_i) %>
+  <%= render partial: 'easy_watchers_list_autocomplete/watchers_avatar_and_checkbox_with_groups', locals: { watchable: watchable, project: project, object_name: object_name, available_watcher_groups: available_watcher_groups, available_watcher_users: available_watcher_users } %>
+<% else %>
+  <% available_watcher_groups ||= nil %>
+  <% available_watcher_users ||= nil %>
+  <%= render partial: 'easy_watchers_list_autocomplete/watchers_avatar_and_checkbox_with_groups_original', locals: { watchable: watchable, project: project, object_name: object_name, available_watcher_groups: available_watcher_groups, available_watcher_users: available_watcher_users } %>
+<% end %>

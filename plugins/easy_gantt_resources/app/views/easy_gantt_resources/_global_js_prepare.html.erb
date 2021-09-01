@@ -1,0 +1,19 @@
+<script type="text/javascript">
+  window.ysy = window.ysy || {};
+  ysy.settings = ysy.settings || {};
+  EasyGem.extend(true, ysy.settings, <%= {
+    defaultZoom:  EasySetting.value(:easy_gantt_resources_default_zoom),
+    hoursPerDay: 8,
+    resourceWithProjects: EasySetting.value(:easy_gantt_resources_with_projects),
+    defaultAllocator: EasySetting.value(:easy_gantt_resources_default_allocator),
+    paths: {
+      issuePOST: issues_path(:format => 'json', :key => User.current.api_key),
+      issuePUT: issue_path(':issueID', :format => 'json', :key => User.current.api_key)
+    },
+    openedUser: (params[:open_user_id].to_i if params[:open_user_id].present?),
+    labels: {}
+  }.to_json.html_safe %>);
+  ysy.settings.nonWorkingWeekDays = ysy.settings.nonWorkingWeekDays || [];
+  ysy.view = ysy.view || {};
+  ysy.view.templates = EasyGem.extend(ysy.view.templates, {});
+</script>

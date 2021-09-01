@@ -1,0 +1,6 @@
+<p>
+  <label class="inline">
+    <%= check_box_tag 'easy_user_type[settings][]', :hide_sla_data, @easy_user_type.settings.include?(:hide_sla_data) %>
+    <%= l(:field_hide_sla_data) %>
+  </label>
+</p>

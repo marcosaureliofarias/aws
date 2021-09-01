@@ -1,0 +1,10 @@
+class ReTask < ActiveRecord::Base
+  INITIAL_COLOR="#ff0000"
+
+  acts_as_re_artifact
+
+  has_many :re_subtasks, -> { order(:position) }, :inverse_of => :re_task, :dependent => :destroy, :autosave => true
+
+  accepts_nested_attributes_for :re_subtasks, :allow_destroy => true,
+    :reject_if => proc { |attributes| attributes['name'].blank? && attributes['solution'].blank? }
+end

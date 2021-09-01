@@ -1,0 +1,8 @@
+<%= title l(:heading_easy_crm_case_edit) %>
+<div id="update">
+  <%= render partial: 'edit', locals: {easy_crm_case: @easy_crm_case, project: @project, time_entry: @time_entry} %>
+</div>
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+  <%= javascript_include_tag 'easy_crm', defer: true %>
+<% end %>

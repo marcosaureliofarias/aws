@@ -1,0 +1,17 @@
+<% open_modal ||= false %>
+<div id="easy_crm_case_items_errors_container"><%= error_messages_for(@easy_crm_case).html_safe %></div>
+<%= form_for(easy_crm_case, :url => update_items_easy_crm_case_path(easy_crm_case), :remote => true, :method => :put) do |f| %>
+  <%= render :partial => 'easy_crm_case_items/easy_crm_case_items', :locals => {:easy_crm_case => easy_crm_case, :project => project} %>
+  <div class="form-actions">
+    <%= link_to_add_association l(:button_easy_crm_add_item), f, :easy_crm_case_items, class: 'button icon icon-add',
+                                data: {
+                                    'association-insertion-node' => '.easy_crm_case_items-association-insertion-node',
+                                    'association-insertion-position' => 'append'
+                                },
+                                partial: 'easy_crm_case_items/easy_crm_case_item', render_options: { locals: { easy_crm_case: easy_crm_case } } %>
+
+    <%= f.submit l(:button_save), class: 'button-positive' %>
+    <%= link_to l(:button_cancel), easy_crm_case_path(easy_crm_case), class: 'button-negative' %>
+    <%= call_hook(:view_easy_crm_case_items_buttons, easy_crm_case: easy_crm_case, f: f, open_modal: open_modal) %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+.easy-tutor{
+  &__link-list{
+    color:$color-text !important;
+    display:flex;
+    flex-wrap:wrap;
+    font-size:1.125em;
+    list-style:none;
+    margin-bottom:$gap;
+    margin-top:$gap;
+    padding:0;
+    & > li{
+      flex-basis: 50%;
+      margin: 0;
+      & > a{
+        display: block;
+        margin-left: .5*$gap;
+        margin-right: .5*$gap;
+        padding-top: .5*$gap;
+        padding-bottom: .5*$gap;
+        & > img{
+          margin-right: $gap;
+          width: 2*$gap;
+        }
+      }
+    }
+  }
+}

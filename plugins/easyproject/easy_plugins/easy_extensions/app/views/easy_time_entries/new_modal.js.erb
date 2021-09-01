@@ -1,0 +1,65 @@
+<%
+  close_modal ||= false
+  day = @time_entry.spent_on
+%>
+<% if close_modal %>
+  EASY.modalSelector.closeModal();
+  var dayCell = $("#timelog-calendar-form-<%= "#{params[:page_module_uuid]}_#{day} .day-time-entry" %>")
+  if (dayCell.length > 0) {
+    dayCell.html("<%=j render partial: 'easy_time_entries/calendar_item', locals: { day: day, sum_of_day: TimeEntry.where(user_id: @time_entry.user.id, spent_on: day).sum(:hours) } %>");
+  }
+<% else %>
+  var modalId = "ajax-modal";
+  var modal = document.getElementById(modalId);
+  if(!modal) {
+    modal = document.createElement("div");
+    modal.style.display="none";
+    modal.id = modalId;
+    document.body.appendChild(modal);
+  }
+  $(modal).html("<%= j render(partial: 'bulk_time_entries/form', locals: { modal: true }) %>");
+  showModal(modal.id, 750);
+  easyDatePicker('#spent_on', false);
+  var $modal = $('#' + modal.id);
+  $modal.dialog('option', {
+    buttons: [
+      {
+        text: '<%=j l(:button_create) %>',
+        click: function() {
+          $(this).parent().find('.ui-dialog-buttonpane button.modal-submit').prop('disabled', true);
+          fillFormTextAreaFromCKEditor('modal_time_entry_comment');
+          $(this).find('form:first').submit();
+        }, 'class': 'button-positive modal-submit'
+      },
+      {
+        text: '<%=j l(:button_cancel) %>',
+        click: function() {$(this).dialog('close');}, 'class': 'button'
+      }
+    ],
+    beforeClose: function (event, ui) {
+      $modal.off('change', '#project_id')
+      $modal.off('change', '#issue_id')
+      $modal.off('change', '.timeentry-activity')
+    }
+  });
+
+  $modal.find('#time_entry_hours').focus();
+  commentId = $modal.find('.spent_on')[0].id;
+
+  $modal.off('change', '#project_id').on('change', '#project_id', function(event){
+    fillFormTextAreaFromCKEditor(commentId);
+    if (event.target.value !== '') {
+      $.get('<%= j new_easy_time_entry_path(project_changed: '1', modal: true, format: 'js').html_safe %>', $(event.target.form).serialize());
+    }
+  });
+  $modal.off('change', '#issue_id').on('change', '#issue_id', function(event){
+    fillFormTextAreaFromCKEditor(commentId);
+    $.get('<%= j new_easy_time_entry_path(issue_changed: '1', modal: true, format: 'js', project_id: @project).html_safe %>', $(event.target.form).serialize());
+  });
+  $modal.off('change', '.timeentry-activity').on('change', '.timeentry-activity', function(event){
+    fillFormTextAreaFromCKEditor(commentId);
+    fillCustomFieldsFormTextAreasFromCKEditor(this.closest('form'));
+    $.get('<%= j new_easy_time_entry_path(activity_changed: '1', modal: true, format: 'js', project_id: @project).html_safe %>', $(event.target.form).serialize());
+  });
+  initEasyAutocomplete();
+<% end %>

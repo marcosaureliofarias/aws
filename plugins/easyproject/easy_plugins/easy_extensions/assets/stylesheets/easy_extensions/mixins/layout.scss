@@ -1,0 +1,127 @@
+//----------------------------------------
+// Hidden placeholders
+//----------------------------------------
+%hidden{
+  display: none;
+}
+//----------------------------------------
+// Float placeholders
+//----------------------------------------
+%floatleft{
+  float: left;
+}
+%floatright{
+  float: right;
+}
+//----------------------------------------
+// Absolute layout placeholders
+//----------------------------------------
+%absolute{
+  @include respond-to(screen-only){
+    position: absolute;
+  }
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+//----------------------------------------
+// Fixed layout placeholders
+//----------------------------------------
+%fixed{
+  @extend %compositor-layer;
+  @include respond-to(screen-only){
+    position: fixed; //@#@)&!__@!@~!
+  }
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+%fixed-maincol{
+  @extend %fixed;
+  left: 0;
+  right: $servicebar-width;
+  .left-menu-opened &{
+	left: $leftmenu-width;
+  }
+  #sidebar + #content &{
+    right: $servicebar-width + $sidebar-width - 2;
+  }
+}
+%fixed-bottom{
+  @extend %fixed;
+  top: auto;
+  bottom: 0;
+}
+%fixed-top{
+  @extend %fixed;
+  top: 0;
+  bottom: auto;
+}
+%fixed-right{
+  @extend %fixed;
+  left: 0;
+  right: auto;
+}
+%fixed-right{
+  @extend %fixed;
+  left: auto;
+  right: 0;
+}
+//----------------------------------------
+// Grid placeholders
+//----------------------------------------
+%splitcontent{
+  //overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  @include respond-to(min-small-screen) {
+    margin-left: -0.5*$box-margin;
+    margin-right: -0.5*$box-margin;
+  }
+  & > div,& > li{
+    position: relative;
+    @include respond-to(min-small-screen) {
+      float: left;
+      width: 50%;
+      padding-left:0.5*$box-margin;
+      padding-right:0.5*$box-margin;
+      &:only-child {
+        width: 100%;
+      }
+    }
+    @include respond-to(max-small-screen) {
+      width: 100%;
+    }
+	@extend %box-sizing-border-box;
+  }
+  #simple, #details {
+    &_list_container, &_chart_container {
+      padding-left: $box-margin;
+      padding-right: $box-margin;
+    }
+  }
+  & > span{
+    @include respond-to(min-small-screen) {
+      float: left;
+      width: 50%;
+      padding-left:2px;
+      padding-right: 2px;
+      &:first-child{
+        padding-left:0.5*$box-margin;
+      }
+      &:last-child{
+        padding-right:0.5*$box-margin;
+      }
+    }
+    @extend %box-sizing-border-box;
+  }
+  &.fake-responsive, #sidebar &,#easy_grid_sidebar &{
+    & > div{
+      width: 100%;
+      float: none;
+    }
+  }
+}

@@ -1,0 +1,690 @@
+---
+ru:
+  activerecord:
+    attributes:
+      re_artifact_properties:
+        acceptance_criteria: Критерии приемлемости
+        created_by: Кто создаёт
+        parent: Артефакт-родитель
+        updated_by: Кто обновляет
+      re_artifact_relationship:
+        relation_type: Тип отношения
+        sink: Целевой артефакт
+        source: Исходный артефакт
+        source_id: Исходный артефакт
+    errors:
+      models:
+        re_artifact_relationship:
+          attributes:
+            source_id:
+              re_the_specified_relation_already_exists: Выбранное отношение уже существует
+    models:
+      re_artifact_properties: Артефакт
+      re_artifact_relationship: Отношение
+  add_issue_to_requirement: Добавить связанную задачу
+  artifact_issue_coverage: 'Охват задачи/артефакта:'
+  artifactcount: Кол-во артефактов
+  artifacts_wo_issues: Кол-во артефактов, не привязанных к задачам
+  comments: Комментарии
+  conflict: Конфликт
+  connect_issue: Привязать задачу
+  dates: Даты
+  datetime:
+    formats:
+      short: "%m/%d/%y, %H:%M"
+  dependency: Зависимость
+  field_re_artifact: артефакт поля
+  field_re_artifact_properties:
+    created_by: 'Кто создаёт:'
+    name: 'Имя:'
+    parent: 'Артефакт-родитель:'
+    project: 'Проект:'
+    updated_by: 'Кто обновляет:'
+  field_subtasks: Подзадачи
+  general_visualization_settings: Общие настройки визуализации
+  implementation_of: Выполнение
+  issue_menue_visualization: Задачи
+  issuecount: Кол-во задач
+  issues_wo_artifacts: Кол-во задач, не привязанных к артефактам
+  label_any: любые
+  label_asc: по возрастанию
+  label_attachments: Вложения
+  label_desc: по убыванию
+  label_is_me: это я
+  label_is_not_me: это не я
+  label_re_artifact_baseline: Изменить базовую линию
+  label_re_artifact_baseline_modal: Требования к базовой модальности
+  label_re_artifact_baseline_new: Создать базовый уровень
+  label_re_artifact_properties_plural: Артефакты
+  label_re_artifact_property_plural: Артефакты
+  label_redmine_re_artifact_custom_field_plural: требования
+  label_some: некоторые
+  main_tab: Главная вкладка
+  new_comment: Новый комментарий
+  new_comment_text: 'Текст комментария:'
+  open_requirements: Открытые требования
+  own_rating: Мой рейтинг
+  parentchild: Родитель/потомок
+  part_of: В составе
+  permission_administrate_requirements: Администрировать требования
+  permission_edit_requirements: Редактировать требования
+  permission_view_requirements: Просматривать требования
+  progress: Ход выполнения
+  project: Проект
+  project_module_requirements: Требования
+  rating: Рейтинг
+  rating_average: Средний рейтинг
+  rationale: Обоснование
+  re_404_artifact_not_found: Не удалось найти артефакт (или ID артефакта)
+  re_404_artifact_not_found_or_project_missing: Артефакт не найден, и ID проекта не
+    был доставлен
+  re_404_invalid_project_id: Не удалось найти проект (или ID проекта) или проект недействителен
+  re_actors: Субъекты
+  re_add_associated_requirements: Добавить связанные артефакты
+  re_add_secondary_actor: Добавить второстепенный субъект
+  re_administrate: Администрирование
+  re_alias_name: Имя отношения
+  re_apply_filter: Применить фильтр
+  re_are_you_sure: Вы уверены?
+  re_artifact: Артефакт
+  re_artifact_attributes: Атрибуты артефакта
+  re_artifact_baseline_deleted: База успешно удалена
+  re_artifact_baseline_destroy: Удалить базовый уровень
+  re_artifact_baseline_edit: "%{key} изменен с %{value} на %{new_value}"
+  re_artifact_baseline_revert: Возврат к базовой линии
+  re_artifact_baseline_reverted: Успешно возвращен к базовой линии %{baseline}
+  re_artifact_comments_count: Кол-во комментариев
+  re_artifact_configuration: Конфигурация артефакта
+  re_artifact_create: Создать новый артефакт требований
+  re_artifact_created_by: Создал(-а)
+  re_artifact_description: Описание
+  re_artifact_details: Детали артефакта
+  re_artifact_export: artifact_export
+  re_artifact_history: история
+  re_artifact_id: Номер
+  re_artifact_name: Имя
+  re_artifact_order: Порядок отображения артефактов
+  re_artifact_priority: Приоритет
+  re_artifact_properties_attachment_missing: Вложение отсутствует.
+  re_artifact_properties_created: Артефакт создан
+  re_artifact_properties_diff_added: "%{key} изменен на %{new_value}"
+  re_artifact_properties_diff_changed: "%{key} изменен с %{value} на %{new_value}"
+  re_artifact_properties_diff_deleted: "%{key} удален (значение было %{value})"
+  re_artifact_properties_import: импорт артефактов
+  re_artifact_properties_import_invalid_extension: Недопустимое расширение вложения.
+  re_artifact_properties_import_success: импорт артефакта выполнен успешно.
+  re_artifact_properties_import_with_errors: Импорт артефактов завершен с ошибками:%
+    {errors}.
+  re_artifact_properties_not_enought_chars: Минимум символов %d
+  re_artifact_properties_to_many_chars: Максимум символов %d
+  re_artifact_properties_updated: Свойства артефакта обновлены
+  re_artifact_properties_validates_presence_of_artifact: К этим свойствам артефакта
+    пока не привязан ни один артефакт
+  re_artifact_properties_validates_presence_of_created_by: Поле «Создал(-а)» не может
+    быть пустым.
+  re_artifact_properties_validates_presence_of_name: Введите имя артефакта.
+  re_artifact_properties_validates_presence_of_parent: Родительский  артефакт для
+    данного артефакта не задан
+  re_artifact_properties_validates_presence_of_project: Нет проекта, связанного с
+    этим артефактом.
+  re_artifact_properties_validates_presence_of_updated_by: Поле «Обновил(-а)» не может
+    быть пустым.
+  re_artifact_properties_validates_uniqueness_of_artifact: Артефакт, связанный с этими
+    свойствами артефакта, должен быть уникальным
+  re_artifact_properties_validates_uniqueness_of_name: Это имя уже используется для
+    другого артефакта.
+  re_artifact_properties_version: 'Версия #%{version}'
+  re_artifact_properties_version_revert: Вернуться к версии
+  re_artifact_properties_version_reverted: 'Успешно возвращен к версии #%{version}'
+  re_artifact_rating_average: Средний рейтинг
+  re_artifact_related_content: Сопутствующий контент
+  re_artifact_relationships: Отношение
+  re_artifact_relationships_incoming: Входящие отношения
+  re_artifact_relationships_outgoing: Исходящие отношения
+  re_artifact_responsible: Ответственный
+  re_artifact_responsibles: Ответственные
+  re_artifact_type: Тип
+  re_artifact_type_description: Описание типа артефакта
+  re_artifact_type_description_configuration: Настройка описания типа артефакта %{artifact_type}
+  re_artifact_updated_by: Обновил(-а)
+  re_artifacts: Артефакты
+  re_asscociated_requirements: Требования
+  re_associated_issues: Связанные задачи
+  re_at: в
+  re_attachment: Вложение
+  re_attachment_deleted: Вложение %{name} удалено
+  re_attachment_file: Файл
+  re_attachment_no_file_error: Выберите файл.
+  re_attachment_not_deleted: Не удалось удалить вложение %{name}
+  re_attachment_not_found: Не удалось найти и удалить вложение %{id}
+  re_attachment_priority: Приоритет
+  re_attachment_saved: Вложение сохранено
+  re_attachment_size_greater_zero: Размер файл должен быть больше 0 байт!
+  re_attachment_validation_error: 'Ошибка вложения: %{msg}'
+  re_baselines: Исходные условия
+  re_by: ''
+  re_cancel: Отменить
+  re_cannnot_delete_project_artifact: Этот артефакт является артефактом проекта, поэтому
+    не может быть удалён. Чтобы удалить проект, воспользуйтесь
+  re_change_request: Изменить запрос
+  re_changed_by: Изменено
+  re_child_artifacts: Артефакты-потомки
+  re_children: Потомки
+  re_color: Цвет
+  re_common_attributes: Общие атрибуты
+  re_common_linked_artifacts: Связанные артефакты
+  re_conf_add_relation: Добавить отношение
+  re_conf_add_status: добавить статус
+  re_conf_alias_name: Тип артефактов можно переименовать в соответствии с принятым
+    процессом управления требованиями
+  re_conf_artifact_directed: Управляемый
+  re_conf_artifact_display_order: Используйте функцию перетаскивания для изменения
+    порядка отображения  (например, на боковой панели или на странице индекса)
+  re_conf_artifact_in_use: Использовать (показывать) этот тип артефактов в данном
+    проекте (существующие артефакты не будут удалены)?
+  re_conf_color: Цветовой код артефакта во всём приложении. Удобно для визуализации
+  re_conf_directed: Управляемый
+  re_conf_display_order: Порядок отображения
+  re_conf_fields: Настроить настраиваемые поля для этого типа артефактов
+  re_conf_internal_name: Внутреннее имя
+  re_conf_show_in_visualization: Будет ли этот тип связи отображаться на диаграммах
+    по умолчанию
+  re_configs_saved: Конфигурация сохранена
+  re_configure: Настроить
+  re_configure_fields_treebar: Настроить поля %{artifact_type}
+  re_configure_plugin: Настройки требований
+  re_confirm: Подтвердить
+  re_confirm_deletion_by_choosing: Подтвердите удаление, выбрав нужную опцию ниже
+  re_conflict: Конфликт
+  re_conflict_relation_type: Конфликт
+  re_connected_nodes: Связанные узлы
+  re_contains: Содержит
+  re_continue_here: Дополнительную информацию см. здесь
+  re_create: Создать
+  re_create_a_new: Создать
+  re_create_baseline: Создать базовый уровень
+  re_create_below: Создать артефакт на том же уровне...
+  re_create_child: Содать потомка
+  re_create_in: Создать артефакт в...
+  re_create_new: Создать новый
+  re_create_new_artifacts: Создать новые артефакты
+  re_create_new_relation: Создать новое отношение
+  re_create_new_relation_prompt: пожалуйста, добавьте хотя бы один тип отношений
+  re_create_new_relationship: Создать новое отношение
+  re_create_re_attachment: Создать новое вложение
+  re_create_re_goal: Создать цель
+  re_create_re_processword: Создать новое  слово состояния
+  re_create_re_rationale: Создать новое обоснование
+  re_create_re_requirement: Создать требование
+  re_create_re_scenario: Создать сценарий
+  re_create_re_section: Создать новый раздел
+  re_create_re_subtask: Создать новую подзадачу
+  re_create_re_task: Создать новую задачу
+  re_create_re_use_case: Создать новый прецедент
+  re_create_re_user_profile: Создать новый профиль пользователя
+  re_create_re_vision: Создать новую общую концепцию
+  re_create_re_workarea: Создать новую рабочую область
+  re_create_relation: создать отношение с...
+  re_create_wiki_page_for_re_artifact: Создать новую wiki-страницу
+  re_created_by: Создал(-а)
+  re_creating_a_new: Создание нового
+  re_data_expansion: Данные
+  re_delete: Удалить
+  re_delete_and_move_children: Удалить артефакт и переместить потомков
+  re_delete_artifact: Удалить артефакт
+  re_delete_confirm: Вы действительно хотите удалить %{what}?
+  re_delete_project_artifact: Удалить артефакт проекта
+  re_delete_project_artifact_error: Артефакт проекта не может быть удалён.
+  re_delete_recursively: Удалить рекурсивно
+  re_delete_subtask: удалить
+  re_delete_use_case_expansion: Удалить
+  re_delete_use_case_step: Удалить
+  re_delete_use_case_step_expansion: Удалить
+  re_deleted_artifact_and_children: Артефакт и все его потомки удалены.
+  re_deleted_artifact_and_moved_children: Потомки добавлены к артефакту-родителю,
+    и артефакт удалён.
+  re_dependency: Зависимость
+  re_dependency_relation_type: Зависимость
+  re_description_fieldset: Описание артефакта
+  re_description_of_plugin_usage: "<h2>Создание артефакта</h2><ul><li>Начните с создания
+    артефактов. Щёлкните правой кнопкой мыши по верхнему объекту в дереве слева. Выберите
+    тип артефакта, например, «Раздел», «Требование» и «Запрос на изменение». После
+    сохранения все созданные артефакты будут отображаться в дереве слева.</li><li>Кроме
+    того, можно щёлкнуть правой кнопкой мыши по любому из артефактов в дереве для
+    добавления новых артефактов. Используйте опцию «создать артефакт в» для создания
+    артефакта на следующем уровне дерева или «создать артефакт на том же уровне».</li></ul><h2>Структура</h2><ul><li>Для
+    изменения порядка или структуры артефактов используйте функцию перетаскивания.
+    Дерево представляет структуру документа с требованиями (технического задания).</li><li>Вы
+    можете создать отношения трассировки между артефактами:<ul><li>Используйте функцию
+    редактирования артефакта в разделе «отношения». Выберите тип трассировки при помощи
+    зависимой кнопки. Когда вы начнёте вводить имя, появятся артефакты и будет создано
+    отношение. Все трассировки можно посмотреть в правом верхнем углу.</li><li>Создать
+    отношение трассировки можно путём перетаскивания артефакта из дерева в поля «трассировка
+    из» / «трассировка в».</li></ul></li></ul><h2>Создание отношения между задачами</h2><ul><li>Функция
+    «Связать задачи» позволяет связывать задачи, которые автоматически привязываются
+    к выбранному артефакту</li><li>Функция редактирования задач и артефактов позволяет
+    создавать отношения вручную</li></ul>"
+  re_description_updated_successfully: Описание обновлено
+  re_diagrams: Диаграммы
+  re_directed: направлено
+  re_display_order: Порядок отображения
+  re_drag_list_items_to_reorder_artifacts: Чтобы изменить порядок, выберите артефакт
+    из списка и перетяните на новое место. Заданный порядок будет действовать на всех
+    вкладках плагина «Требования».
+  re_edit: Редактировать
+  re_edit_artifact_type_description: Редактировать описание для  артефакта "%{artifact_type}"
+  re_edit_default_description: Редактировать описание по умолчанию
+  re_editor_for: Пожалуйста, подождите, редактор для
+  re_ends_with: Конец
+  re_enhanced_filter: Расширенный фильтр
+  re_equals: Равно
+  re_exception_expansion: Исключение
+  re_expansion_description: Описание
+  re_expansion_type: Тип
+  re_export: Экспорт
+  re_export_error: Ошибка экспорта. Убедитесь, что у вас установлен Pandoc, а в настройках
+    задан выходной формат.
+  re_export_format_configuration: Настройка формата экспорта
+  re_extension_description: Описание
+  re_extension_type: Тип
+  re_field_configuration: Настройка полей для типа артефакта %{artifact_type}
+  re_fields: Поля
+  re_filter: Фильтр
+  re_filter_apply: Применить
+  re_filter_order: Порядок
+  re_filter_related_issues: Смежные задачи
+  re_filter_save: Сохранить
+  re_filter_save_and_apply: Сохранить и применить
+  re_filter_sink_artifacts: Целевые
+  re_filter_source_artifacts: Исходные
+  re_find_secondary_actor: Найти второстеп. субъект
+  re_first_use: Вы впервые используете плагин «Требования»
+  re_from: от
+  re_goal: Цель
+  re_goal_default_description: "<p>Цели можно использовать в качестве требований высшего
+    уровня или для структуризации требований. Некоторые подходы предусматривают использование
+    целей для RE в целом, особенно для понимания требований.</p> <p>Цели могут стать
+    хорошей отправной точкой для регистрации намерений участников проекта. Цели не
+    обязательно должны быть полностью достижимыми или измеримыми. Цели можно рассматривать
+    как черновик требований. Вы можете использовать цели для выявления и устранения
+    конфликтующих намерений. Следует помнить, что цель является уточнением общей концепции.
+    [Alexander 2009, стр. 51]</p>"
+  re_goal_deleted: Цель %{name} удалена
+  re_goal_not_deleted: Не удалось удалить цель %{name}
+  re_goal_not_found: Не удалось найти и удалить цель %{id}
+  re_goal_priority: Приоритет
+  re_goal_saved: Цель сохранена
+  re_goals: Цели
+  re_greater_than: Больше чем
+  re_hide: скрыть
+  re_import_description_of_usage: "<h4> Поля </ h4> <ul> <li> id - идентификатор артефакта
+    </ li> <li> artifact_type (обязательно) <ul> <li> ReSection </ li> <li> ReRequirement
+    </ li> <li > ReChangeRequest </li> </ul> </ li> <li> project_id (обязательно)
+    - идентификатор проекта </ li> <li> parent_id - идентификатор родительского артефакта
+    </ li> <li> name (обязательно) - имя артефакта </ li> <li> responsible_id - идентификатор
+    пользователя </ li> <li> status - имя статуса </ li> <li> description - описание
+    артефакта </ li> <li> acceptance_criteria - критерии принятия артефакта </ li>
+    < li> issue_ids - идентификаторы задач, разделенные запятой </ li> <li> dependency_ids
+    - идентификаторы артефактов, разделенные запятой </ li> <li> conflict_ids - идентификаторы
+    артефактов, разделенные запятой </ li> </ ul>"
+  re_incoming_relationship_count: Входящие
+  re_index: Плагин «Требования»
+  re_insert_pr_after: вставить проблему
+  re_insert_st_after: вставить подзадачу
+  re_insert_st_before: вставить
+  re_insert_va_after: вставить вариант
+  re_is_being_loaded: загружается...
+  re_last_update: последнее обновление
+  re_lesser_than: Меньше чем
+  re_link_to_configure: Или настройте плагин
+  re_linked_artifact: Связанный артефакт
+  re_linked_artifact_name: Имя связанного артефакта
+  re_linked_artifact_type: Тип связанного артефакта
+  re_linked_artifacts: Связанные артефакты
+  re_linked_artifacts_count: Связанные артефакты
+  re_more: больше
+  re_my_artifacts: Мои артефакты
+  re_netmap: Сетевой график
+  re_new_re_attachment: Вложение
+  re_new_re_goal: Цель
+  re_new_re_processword: Новое  слово состояния процесса
+  re_new_re_rationale: Новое обоснование
+  re_new_re_requirement: Требование
+  re_new_re_scenario: Сценарий
+  re_new_re_section: Раздел
+  re_new_re_subtask: Подзадача
+  re_new_re_task: Задача
+  re_new_re_use_case: Новый прецедент
+  re_new_re_user_profile: Профиль пользователя
+  re_new_re_vision: Общая концепция
+  re_new_re_workarea: Рабочая область
+  re_no_one_line_view_existent: 'Шаблон отсутствует: определение для One_line_view
+    пока не задано'
+  re_no_responsible_user_defined: Не определён ответственный пользователь
+  re_none_specific: Не задано
+  re_of_type: тип
+  re_other_expansion: Другое
+  re_outgoing_relationship_count: Исходящие
+  re_pandoc_error_first: Плагин «Требования» использует
+  re_pandoc_error_second: для экспорта артефактов в другие форматы. Убедитесь, что
+    у вас установлен  конвертер Pandoc.
+  re_parent: Родитель
+  re_parentchild: Родитель/потомок
+  re_part_of: В составе
+  re_please_choose: выберите значение
+  re_please_select_visualization_type: Выберите тип визуализации данных.
+  re_plugin_configuration: Настройки требований
+  re_plugin_description: Описание плагина
+  re_preparing_deletion: Подготовка к удалению
+  re_preview_wiki_page_for_re_artifact: 'Предпросмотр wiki-страницы:'
+  re_primary_actor: Основной субъект
+  re_priority_responsible: Приоритет и ответственные
+  re_processword: Слово состояния процесса
+  re_processword_default_description: "<p>Слова состояния нужны для использования
+    синтаксического шаблона требований. Здесь можно указать синонимы слова и дать
+    точное определение термина.</p>"
+  re_processword_deleted: Слово состояния процесса %{name} удалено
+  re_processword_not_deleted: Не удалось удалить слово состояния процесса %{name}
+  re_processword_priority: Приоритет
+  re_processword_saved: Слово состояния процесса сохранено
+  re_processword_specific_attributes: Особые атрибуты слова состояния
+  re_processword_synonyms: Синонимы
+  re_processword_validation_error: 'Ошибка слова состояния процесса: %{msg}'
+  re_project_was_setup: Ваша база данных была только что настроена
+  re_query_name: Имя
+  re_query_settings: Настройки
+  re_query_visibility_me: только мне
+  re_query_visibility_public: всем
+  re_query_visibility_roles: кому видно
+  re_rationale: Обоснование
+  re_rationale_default_description: "<p>Используйте обоснования для  управления требованиями
+    или другими артефактами.</p> <p>Решения в отношении требований зачастую основаны
+    на скрытых допущениях. Обоснования позволяют чётко выразить допущения и пересмотреть
+    решения. Также допущения помогают определить приоритет требований и защитить их
+    от удаления.</p>"
+  re_rationale_deleted: Обоснование %{name} удалено
+  re_rationale_not_deleted: Не удалось удалить %{name} обоснование
+  re_rationale_not_found: Не удалось найти и удалить обоснование %{id}
+  re_rationale_saved: Обоснование сохранено
+  re_rationale_specific_attributes: Особые атрибуты обоснования
+  re_redmine_project_administration: Администрированием проектов Easy Redmine
+  re_refinement: Уточнение
+  re_related_diagrams: Связанные диаграммы
+  re_related_issues: Задачи
+  re_related_test_case: Тестовый случай
+  re_related_test_cases: Тестовые случаи
+  re_relation_management_pane: Всегда показывать панель управления связями
+  re_relation_saved: Отношение сохранено
+  re_relation_saved_error: Не удалось сохранить отношение
+  re_relation_sucessfull_created: Отношение %{relation_type} между %{source_name}
+    и %{sink_name} создано
+  re_relation_type: Тип отношения
+  re_relationship: Отношение
+  re_relationship_configuration: Конфигурация отношения
+  re_relationship_create_error: Не удалось создать отношение
+  re_relationship_visualization: Визуализация
+  re_remove: удалить
+  re_requirement: Требование
+  re_requirement_default_description: "<p>Управление самым важным артефактом.</p>
+    <p>Если вывести требования из сценариев, вам не придётся ничего придумывать, поскольку
+    артефакты лягут в основу всех требований. Новые требования можно получить от участников
+    путём наблюдения и опросов. Совещания лучше всего подходят для выявления групповых
+    требований. [Pohl 2008, стр. 183], [Alexander 2009, стр. 260 стр. 315]</p>"
+  re_requirement_priority: Приоритет
+  re_requirement_saved: Требование сохранено
+  re_requirements: Требования
+  re_requirements_overview: Обзор требований
+  re_save: Сохранить
+  re_scenario: Сценарий
+  re_scenario_default_description: "<p>Управление сценариями для отображения процессов
+    в системе, настройки обоснования и контекста задач / подзадач. </p>"
+  re_scenario_priority: Приоритет
+  re_scenario_saved: Сценарий сохранён
+  re_scroll_to_top: Пролистать наверх
+  re_secondary_actor: Второстепенные субъекты
+  re_section: Раздел
+  re_section_default_description: "<p>Используйте разделы, чтобы структурировать требования
+    в дереве слева.</p> <p>Структуризация требований по разделам обеспечивает возможность
+    управления артефактами и их контекстной информацией. Существует множество эталонных
+    структур требований. Например, вы можете использовать стандарт IEEE 1233-1998,
+    определяющий структуру технических требований к системе (SyRS), или стандарт  IEEE
+    830-1998, определяющий структуру технических требований к программному обеспечению
+    (SRS). <!-- Источник: [Pohl 2008, стр. 251 - 253] --></p>"
+  re_section_deleted: Раздел %{name} удалён.
+  re_section_not_deleted: Не удалось удалить раздел %{name}.
+  re_section_not_found: Не удалось найти раздел %{id}.
+  re_section_priority: Приоритет
+  re_section_saved: Раздел сохранён
+  re_select_all: Выбрать всё
+  re_select_artifact: Выбрать артефакт
+  re_set_parent: Задать родительский артефакт
+  re_settings_display_requirement_id_description: Отобразить идентификатор требования
+    в виде дерева
+  re_settings_have_to_save: 'Вы не сохранили настройки: нажмите на «Сохранить» перед
+    тем,  как закрыть страницу!'
+  re_settings_have_to_save_again: Система обновлена. Проверьте конфигурацию. Нажмите
+    на «Сохранить» перед тем, как закрыть страницу!
+  re_settings_project_hierarchy: иерархия проекта
+  re_settings_project_hierarchy_description: разрешить подключение задач из других
+    проектов
+  re_settings:
+    project_hierarchy_types:
+      all: все проекты
+      descendants: подпроекты
+      hierarchy: дерево проекта
+      none: нет
+      все: все проекты
+      иерархия: дерево проекта
+      нет: нет
+      потомки: подпроекты
+  re_show: Показать
+  re_show_goals: Показать цели
+  re_show_in_visualization: Показать в визуализации
+  re_show_relationships: Показать отношения
+  re_show_subtasks: Показать подзадачи
+  re_show_tasks: Показать задачи
+  re_show_wiki_page_for_re_artifact: Wiki-страница
+  re_shows_after_reload: отобразится после перезагрузки страницы
+  re_sink_artifact: Целевой артефакт
+  re_sink_artifact_name: Выберите тип визуализации данных.
+  re_sink_artifact_type: Тип целевого артефакта
+  re_source_artifact: Исходный артефакт
+  re_source_artifact_name: Имя исходного артефакта
+  re_source_artifact_type: Тип исходного артефакта
+  re_space_tree: Древовидная диаграмма
+  re_specification_overview: Дерево требований
+  re_st_position_not_allowed: Недопустимая позиция подзадачи
+  re_st_type_not_allowed: Недопустимый тип подзадачи
+  re_stakeholders: Участники
+  re_starts_with: Начало
+  re_status: статус
+  re_status_alias_name: имя
+  re_status_color: цвет
+  re_status_configuration: конфигурация состояния
+  re_status_internal_name: внутреннее имя
+  re_structuring_elements: Структурирующие элементы
+  re_subtask: Подзадача
+  re_subtask_default_description: "<p>При помощи этого инструмента можно создать подзадачу,
+    но удобнее сначала создать задачу, а потом добавить подзадачу на странице задачи.</p>"
+  re_subtask_deleted: Подзадача %{name} удалена
+  re_subtask_name: Имя
+  re_subtask_not_deleted: Не удалось удалить подзадачу %{name}
+  re_subtask_not_found: Не удалось найти и удалить подзадачу %{id}
+  re_subtask_priority: Приоритет
+  re_subtask_problem: Проблема
+  re_subtask_saved: Подзадача %{name} сохранена
+  re_subtask_solution: Решение
+  re_subtask_type: Тип
+  re_subtask_variant: Вариант
+  re_subtasks: Подзадачи
+  re_subtasks_not_valid: Подзадачи недействительны!
+  re_subtasks_saved: Подзадачи сохранены
+  re_sunburst: Круговая диаграмма
+  re_system_step: системный шаг
+  re_system_steps: Системные шаги
+  re_task: Задача
+  re_task_and_subtasks_saved: Задача и подзадачи сохранены
+  re_task_attributes: Особые атрибуты задачи
+  re_task_default_description: "<p>Подход Лауэсена к разработке требований на основе
+    задач (он очень похож на прецеденты Кокбёрна) описан <a href='http://www.itu.dk/~slauesen/SorenReqs.html'>на
+    его сайта</a>.<br /> Главное, разобраться с принципом двух колонок, когда в одной
+    колонке указывается запрос клиента на решение проблемы, а во второй — возможное
+    решение.</p> <p>Задачи не разделяются по принципу того, кто и что делает. Закрытие
+    задачи означает, что у неё есть чётко определённое время начала и конца. Хорошей
+    начальной точкой является некое событие, происходящее в мире пользователя, например,
+    звонок клиента. Под конечной точкой понимается такой момент, когда никаких действий
+    в отношении задачи сделать нельзя, и пользователь может заслуженно отдохнуть.
+    [Lauesen 2011, стр. 34]</p>"
+  re_task_deleted: Задача %{name}} удалена
+  re_task_difficult: Сложная
+  re_task_difficulties: Сложности
+  re_task_end: Завершение
+  re_task_frequency: Частота
+  re_task_not_deleted: Не удалось удалить задачу %{name}
+  re_task_not_found: Не удалось найти и удалить задачу %{id}
+  re_task_priority: Приоритет
+  re_task_saved: Задача сохранена
+  re_task_specific_attributes: Особые атрибуты задачи
+  re_task_start: Начало
+  re_tasks: Задачи
+  re_text_artifact_added: Артефакт %{id} добавлен пользователем %{author}.
+  re_text_artifact_updated: Артефакт %{id} был обновлён пользователем %{author}.
+  re_text_artifact_updated_new_comment: "%{author} добавил(-а) новый комментарий:"
+  re_to: в
+  re_traces_from: Трассировка из
+  re_traces_to: Трассировка в
+  re_tree_loading: Загрузка древовидной структуры...
+  re_tree:
+    mode:
+      unknown: Неизвестный режим.
+    node:
+      closed: 'Узел #{node_id} закрыт.'
+      opened: 'Узел #{node_id} открыт.'
+  re_treefilter: Фильтр
+  re_type: Тип
+  re_uc_add: добавить
+  re_uc_add_below: добавить ниже
+  re_uc_dialog: диалоговое окно
+  re_uc_insert: добавить
+  re_uc_system: Система
+  re_uc_user: Пользователь
+  re_unsaved: не сохранено
+  re_unselect_all: Отменить выбор
+  re_update_description: Обновить описание
+  re_update_difficult: Обновить сложности
+  re_update_plugin_description: Обновить описание плагина
+  re_updated_at: Обновлено
+  re_use: Активный
+  re_use_case: Прецедент
+  re_use_case_abstract_overview: Абстрактный прецедент
+  re_use_case_and_steps_saved: Прецедент и все шаги сохранены
+  re_use_case_attributes: Особые атрибуты варианта использования
+  re_use_case_default_description: "<p>Шаблон прецедента согласно определению, данному
+    в книге Кокбёрна «Современные методы описания функциональных требований к системам».</p>"
+  re_use_case_deleted: Вариант использования %{name} удалён
+  re_use_case_expansion: Расширение
+  re_use_case_expansions: Расширения варианта использования
+  re_use_case_function: Функция
+  re_use_case_level: Уровень
+  re_use_case_low: Низкий
+  re_use_case_not_deleted: Не удалось удалить вариант использования %{name}
+  re_use_case_not_found: Не удалось найти и удалить вариант использования %{id}
+  re_use_case_overview: Обзор
+  re_use_case_postcondition: Постусловие
+  re_use_case_precondition: Предусловие
+  re_use_case_primary_actor: Основной субъект
+  re_use_case_saved: Вариант использования сохранён
+  re_use_case_secondary_actors: Дополнительные субъекты
+  re_use_case_specific_attributes: Атрибуты сценария
+  re_use_case_step: Шаг
+  re_use_case_steps: Шаги сценария использования
+  re_use_case_trigger: Триггер
+  re_use_case_user_goal: Цель пользователя
+  re_user_defined_fields: Пользовательские поля
+  re_user_profile: Профиль пользователя
+  re_user_profile_default_description: "<p>Используйте пользовательские профили для
+    описания пользователей.</p><p>Очень важно описать участников проекта при помощи
+    пользовательских профилей, поскольку все требования исходят от людей. Таким образом,
+    вам следует выявить и описать всех, кто задействован в проекте. [Alexander 2009,
+    стр. 28]</p>"
+  re_user_profile_deleted: Профиль пользователя %{name} удалён
+  re_user_profile_not_deleted: Не удалось удалить профиль пользователя %{name}
+  re_user_profile_not_found: Не удалось найти и удалить профиль пользователя %{id}
+  re_user_profile_priority: Приоритет
+  re_user_profile_saved: Профиль пользователя сохранён
+  re_user_step: шаг пользователя
+  re_user_steps: Шаги пользователя
+  re_vision: Общая концепция
+  re_vision_default_description: "<p>Общая концепция проекта. Этот артефакт позволяет
+    описывать идеи в синтаксисе wiki-разметки.</p> <p>Используйте общую концепцию
+    для описания основной цели проекта. Концепция должна быть чёткой и простой, чтобы
+    основная цель была понятна каждому. [Alexander 2009, S 53]</p>"
+  re_vision_deleted: Версия %{name} удалена.
+  re_vision_not_deleted: Не удалось удалить версию %{name}.
+  re_vision_not_found: Не удалось найти версию %{id}.
+  re_vision_priority: Приоритет
+  re_vision_saved: Общая концепция сохранена
+  re_visualitation_deep_graph_explain: макс. кол-во шагов итерации 0 = выключено
+  re_visualization_config: Настроить
+  re_visualization_show: Визуализация
+  re_visualization_show_graph: показать в виде графика
+  re_visualization_show_netmap: показать в виде сетевого графика
+  re_visualization_show_sunburst: показать в виде круговой диаграммы
+  re_visualization_size: Масштаб визуализации (в пикселях)
+  re_visualization_type: Тип визуализации
+  re_was_created: создано
+  re_was_updated: обновлено
+  re_what_will_be_deleted: Если вы удалите этот артефакт, отношения, перечисленные
+    ниже, тоже будут удалены.
+  re_wiki_page_available_after_save: Вы можете привязать wiki-страницу после сохранения
+  re_wiki_page_for_artifact: Wiki-страница
+  re_will_delete_artifact_and_all_children: Выбор этой опции приведёт к удалению артефакта
+    (%{name}) и отношений (перечисленных выше). Кроме того, будут удалены все артефакты-потомки
+    и их потомки (перечисленные выше), а также все отношения-потомки с другими артефактами.
+    Перепроверьте всё ещё раз, прежде чем выбирать этот вариант.
+  re_will_delete_artifact_and_move_children: При выборе этой опции все артефакты-потомки
+    данного артефакта (перечисленные выше) будут прикреплены к артефакту-родителю
+    (%{parent}). После этого  артефакт (%{name}) и все его отношения с другими артефактами
+    будут удалены.
+  re_will_delete_artifact_and_relations: Выбор этой опции удалит артефакт (%{name})
+    и его отношения (перечислены выше).
+  re_workarea: Рабочая область
+  re_workarea_default_description: "<p>Используйте рабочую область для структуризации
+    задач. Рабочая область позволяет хранить в одном месте артефакты, которые относятся
+    к одной «зоне» (например, это может быть комната, компания или отдел).</p>"
+  re_workarea_deleted: Рабочая область %{name} удалена.
+  re_workarea_not_deleted: Не удалось удалить рабочую область %{name}.
+  re_workarea_not_found: Не удалось найти рабочую область %{id}.
+  re_workarea_priority: Приоритет
+  re_workarea_saved: Рабочая область сохранена
+  re_you_asked_for_deleting_the_following_artifact: Вы хотите удалить следующий артефакт
+  ReArtifactRelationship: Отношение требования
+  ReAttachment: Вложение
+  ReChangeRequest: Запрос на изменение
+  redmine_re_plugin_author: Easy Software Ltd
+  redmine_re_plugin_author_url: http://www.easyredmine.com
+  redmine_re_plugin_description: ''
+  redmine_re_plugin_name: Плагин «Требования  Easy»
+  refinement: Уточнение
+  ReGoal: Цель
+  relations: Отношения
+  relationship: Отношение
+  ReProcessword: Слово состояния процесса
+  requirement_progress: Ход выполнения требования
+  Requirements: Требования
+  requirements_artifact: Артефакт требований
+  ReRationale: Обоснование
+  ReRequirement: Требование
+  ReScenario: Сценарий
+  ReSection: Раздел
+  ReSubtask: Подзадача
+  ReTask: Задача
+  ReUseCase: Вариант использования
+  ReUserProfile: Профиль пользователя
+  ReVision: Общая концепция
+  ReWorkarea: Рабочая область
+  status: Статус
+  subject: Тема
+  ticketend_overdue: Заявки с истёкшим сроком предоставления поддержки
+  ticketstart_overdue: Заявки с просроченной датой начала рассмотрения
+  todo: Открыть заявки

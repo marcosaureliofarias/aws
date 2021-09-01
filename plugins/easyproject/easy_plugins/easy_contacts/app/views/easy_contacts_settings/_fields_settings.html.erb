@@ -1,0 +1,27 @@
+<div class="autoscroll">
+  <table class="list reorder">
+    <thead>
+      <tr>
+        <th><%= l(:label_contacts_attribute) %></th>
+        <th><%= l(:label_group_plural) %></th>
+        <th><%= l(:label_user_plural) %></th>
+        <th><%= l(:label_easy_user_type_plural) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% EasyContact::SPECIAL_VISIBILITY_FIELD_NAMES.each do |field_name| %>
+      <% fields_settings = EasyContacts::FieldsSettings.new(EasyContact, field_name) %>
+        <tr>
+          <td><%= link_to(fields_settings.field_label, edit_field_easy_contacts_setting_path(field_id: field_name)) %></td>
+          <td><%= fields_settings.groups.map(&:name).join(', ').presence || '---' %></td>
+          <td><%= fields_settings.users.map(&:name).join(', ').presence || '---' %></td>
+          <td><%= fields_settings.easy_user_types.pluck(:name).join(', ').presence || '---' %></td>
+          <td class="buttons">
+            <%= link_to(l(:button_edit), edit_field_easy_contacts_setting_path(field_id: field_name), class: 'icon-only icon-edit') %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

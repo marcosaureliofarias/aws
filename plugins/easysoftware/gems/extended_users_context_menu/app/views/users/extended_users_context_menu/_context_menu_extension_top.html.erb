@@ -1,0 +1,28 @@
+<% Rys::Feature.on('extended_users_context_menu') do %>
+  <li class="folder">
+    <a href="#" class="submenu icon icon-issue-status" onclick="return false;"><%= l('extended_users_context_menu.add_to_group') %></a>
+    <ul>
+      <% Group.givable.sorted.each do |group| %>
+        <li><%= context_menu_link group, add_users_to_group_users_path(ids: params[:ids], back_url: back_url, user: { group_id: group.id }), method: :put %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li class="folder">
+    <a href="#" class="submenu icon icon-time-add" onclick="return false;">
+      <%= l(:label_easy_user_working_time_calendar_change_calendar) %>
+    </a>
+    <ul>
+      <% EasyUserWorkingTimeCalendar.templates.collect {|c| [c.translated_name, c.id.to_s] }.each do |calendar| %>
+        <li>
+          <%= context_menu_link(
+                  calendar[0],
+                  bulk_calendar_to_user_path(ids: params[:ids], back_url: back_url, calendar_id: calendar[1]),
+                  method: :put,
+                  data: { confirm: l(:text_are_you_sure) }
+              ) %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>
+

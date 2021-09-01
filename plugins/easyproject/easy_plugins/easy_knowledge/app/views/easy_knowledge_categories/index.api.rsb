@@ -1,0 +1,16 @@
+api.array :easy_knowledge_globals, api_meta(:total_count => @entity_count, :offset => @offset, :limit => @limit) do
+  @easy_knowledge_categories.each do |easy_knowledge_category|
+    api.easy_knowledge_category do
+      api.id easy_knowledge_category.id
+      api.name easy_knowledge_category.name
+      api.entity_id easy_knowledge_category.entity_id
+      api.entity_type easy_knowledge_category.entity_type
+      api.parent_id easy_knowledge_category.parent_id
+
+      api.author(:id => easy_knowledge_category.author_id, :name => easy_knowledge_category.author.name)
+      api.created_on easy_knowledge_category.created_on
+      api.updated_on easy_knowledge_category.updated_on
+      api.description easy_knowledge_category.description
+    end
+  end
+end

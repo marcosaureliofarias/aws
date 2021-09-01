@@ -1,0 +1,18 @@
+<%
+  modul_uniq_id ||= controller_name + '_' + action_name;
+  wrapping_heading_element ||= 'h2'
+-%>
+<% if !@query && grouped.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <% grouped.each_key do |group| %>
+    <div class="box doc-group">
+      <%= toggling_container("#{modul_uniq_id}_#{SecureRandom.hex(10)}", User.current, {:heading => (group.is_a?(Date) && format_date(group) || h(group)), :wrapping_heading_element=> wrapping_heading_element, :wrapping_heading_element_classes => 'icon icon-folder doc-group-heading'}) do %>
+        <%= render :partial => 'documents/document_category_custom_field', :locals => {:category => group} %>
+        <%= render :partial => 'documents/document', :collection => grouped[group] %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= call_hook :view_documents_bottom %>

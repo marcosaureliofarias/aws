@@ -1,0 +1,19 @@
+<% if easy_page_modules_data[:top_users_utilizations].any? %>
+  <table>
+    <tr>
+      <th><%= l(:label_user) %></th>
+      <th><%= l(:field_hours) %></th>
+    </tr>
+
+    <% easy_page_modules_data[:top_users_utilizations].each do |user| %>
+      <tr>
+        <td><%= link_to_user user %></td>
+        <td><%= user.resources_hours.to_f %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="nodata">
+    <%= l(:label_no_data) %>
+  </p>
+<% end %>

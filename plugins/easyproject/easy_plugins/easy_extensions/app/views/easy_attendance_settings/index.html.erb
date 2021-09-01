@@ -1,0 +1,28 @@
+<%= breadcrumb([link_to(l(:label_easy_attendance_plural), easy_attendances_overview_path, title: l(:label_easy_attendance_plural)), link_to(l(:heading_easy_attendance_settings_index, scope: :easy_attendance), easy_attendance_settings_path, title: l(:heading_easy_attendance_settings_index, scope: :easy_attendance))]) %>
+<%= call_hook(:view_easy_attendances_settings_index_top, {}) %>
+<h2><%= l(:heading_easy_user_working_time_calendar_index) %></h2>
+<%= render :partial => 'easy_user_working_time_calendars/list' %>
+<h2><%= l(:label_easy_attendance_categories) %></h2>
+<%= render :partial => 'easy_attendance_activities/list' %>
+<h2><%= l(:heading_easy_attendance_settings_index, scope: :easy_attendance) %></h2>
+<%= call_hook(:view_easy_attendances_settings_index_top, {}) %>
+<%= form_tag(plugin_settings_easy_attendance_settings_path(@plugin)) do %>
+<%= render :partial => 'easy_attendances/settings' %>
+<%= call_hook(:view_easy_attendances_settings_index_bottom, {}) %>
+<div class="form-actions">
+  <%= submit_tag l(:button_apply), :class => 'button-positive' %>
+</div>
+<% end %>
+
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_attendance_settings_index, scope: :easy_attendance)) -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_attendances/sidebar_links' %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do -%>
+  <%= link_to(l(:button_easy_user_working_time_calendars_new), { :controller => 'easy_user_working_time_calendars', :action => 'new'}, :class => 'button-positive', :title => l(:title_easy_user_working_time_calendars_new)) -%>
+<% end -%>

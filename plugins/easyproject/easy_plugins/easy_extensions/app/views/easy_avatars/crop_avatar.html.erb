@@ -1,0 +1,21 @@
+<%= content_tag :h2,  l(:label_avatar)%>
+<%= form_tag(crop_easy_avatar_path, :multipart => true) do %>
+  <div class="box gray-background">
+    <%= avatar(@entity, :style => :original, :no_link => true) %>
+    <div class="clear"></div>
+    <%= hidden_field_tag(:entity_id, @entity.id) %>
+    <%= hidden_field_tag(:entity_type, @entity.class.name) %>
+    <%= hidden_field_tag(:crop_x) %>
+    <%= hidden_field_tag(:crop_y) %>
+    <%= hidden_field_tag(:crop_width) %>
+    <%= hidden_field_tag(:crop_height) %>
+    <%= back_url_hidden_field_tag %>
+  </div>
+
+  <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  <%= link_to l(:button_back), params[:back_url], :class => 'button' %>
+<% end %>
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'jquery.color.js', defer: true %>
+  <%= javascript_include_tag 'avatarcrop.js', defer: true %>
+<% end %>

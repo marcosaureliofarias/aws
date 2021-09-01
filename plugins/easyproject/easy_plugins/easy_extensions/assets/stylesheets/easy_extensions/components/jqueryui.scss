@@ -1,0 +1,414 @@
+button.ui-datepicker-trigger{
+  //@extend %button-reset;
+  @extend %material-icon; //@extend %easy-icon;
+  font-size: 1.125em;
+  //input + &,
+  //select + &,
+  //textarea + & {
+  //  display: inline-block;
+  //  vertical-align: middle;
+  //  margin-left: 0.5*$gap;
+  //  line-height: $tab-height;
+  //}
+}
+.ui{
+  &-state-default{
+    list-style: none;
+    &, .ui-widget-content &, .ui-widget-header &{
+      @extend %jqui-default-state;
+    }
+  }
+  &-state{
+    &-hover{
+      background: none;
+    }
+    &-active {
+      background: $color-foreground !important;
+    }
+  }
+  &-draggable{
+    &-dragging{
+      &.movable-list-item{
+        max-width: $sidebar-width - 5*$box-padding !important;
+        z-index: z($z-priority, draggable) !important;
+      }
+      &.dmsf-draggable{
+        display: table-row;
+        padding: 0;
+        &:before{
+          display: none;
+        }
+      }
+      &.ui-dialog{
+        &:before{
+          display: none;
+        }
+      }
+      display: inline-block;
+      @include icon-parent(draggable);
+      padding: 0 0.5*$gap 0 2*$gap;
+      &:before{
+        line-height: 1em;
+        margin-top: -0.5em;
+        position: absolute;
+        top: 50%;
+        left: 0.5*$gap;
+      }
+    }
+  }
+  &-accordion{
+    & &-content{
+      padding: $box-padding;
+    }
+    & &-header{
+      margin-top: -1px;
+    }
+  }
+  &-widget {
+    @extend %base-font;
+    &-content {
+      color: inherit;
+      border-color: $color-border !important;
+      background: $color-foreground;
+      a{
+        &.button-positive{
+          color: $button-positive-color;
+        }
+      }
+      &.ui-progressbar {
+        background: rgba($color-text,0.2);
+      }
+    }
+    &-overlay{
+      background: $modal__color--backdrop;
+      opacity: $modal__opacity--backdrop;
+      background: $color-background;
+      opacity: 0.9;
+      top: $topmenu-height;
+      overflow: auto;
+    }
+    &-header{
+      background: mix($color-background,$color-foreground);
+      border-color: $color-border;
+      //margin: -1px -1px 0;
+      color: $color-text;
+      a{
+        color: $color-main;
+      }
+      .autoscroll &{
+        border-left: none;
+        border-right: none;
+        margin: 0;
+      }
+      &.ui-progressbar-value {
+        background: rgba($color-text,0.5);
+      }
+    }
+    &-shadow{
+      box-shadow: 0px 0px 4px $black;
+    }
+  }
+  &-menu{
+    max-width: $media-collapse-small;
+    z-index: 2;
+    & &-item{
+      padding: .75*$gap $gap;
+      margin: 0;
+      border-left: none !important;
+      border-right: none !important;
+      border-top: 1px solid $color-border-minor;
+      border-bottom: 1px solid $color-border-minor;
+      margin-top: -1px;
+      //@extend %truncate;
+
+      @extend %flex;
+      @extend %align-items-center;
+      &:last-child{
+        margin-bottom: -1px;
+      }
+      a{
+        color: $color-text;
+      }
+      small{
+        opacity: .5;
+        line-height: 1;
+      }
+    }
+  }
+  &-autocomplete{
+    &-category{
+      $divider-background: mix($color-background, $color-foreground);
+      background: $divider-background;
+      border-color: $divider-background;
+      padding: .75*$gap $gap;
+      margin: 0;
+      a{
+        text-transform: uppercase;
+        @include small;
+        font-weight: bold;
+      }
+      &:hover, &.ui-state-focus{
+        background: $divider-background !important;
+        border-color: $divider-background !important;
+        & + .ui-menu-item{
+          border-top-color: $divider-background !important;
+        }
+      }
+      small{
+        display: none;
+      }
+      & + .ui-menu-item{
+        border-top-color: $divider-background;
+        }
+      }
+    &-pseudo_category{
+      color: $color-links;
+      font-size: 1.1em;
+    }
+
+    &-menu-fixed {
+      position: fixed;
+    }
+
+    &:hover {
+      a.ui-menu-item-wrapper {
+        border-color: transparent;
+      }
+    }
+    a.ui-menu-item-wrapper {
+      border-color: transparent;
+      width: 100%;
+    }
+  }
+  &-resizable{
+    &-w,&-e{
+      top: 20%;
+      height: 60%;
+    }
+    &-n,&-s{
+      left: 20%;
+      width: 60%;
+    }
+    &-handle{
+      @extend %border-radius-infinite;
+      background: $color-border;
+    }
+
+  }
+  &-progressbar{
+    height: 0.5*$gap - 2;
+  }
+  &-dialog{
+    @extend %box;
+    @extend %compositor-layer;
+    overflow: visible !important;
+    position: absolute;
+    padding: 0 !important;
+    margin-top: $topmenu-height + $gap;
+    margin-bottom: $gap;
+    z-index: z($z-priority, modal);
+    //background: mix(mix($color-background,$color-foreground),$color-foreground);
+    @include respond-to(min-menu-collapse){
+      margin-right: $servicebar-width;
+    }
+    .easy-freetext-search{
+      position: relative;
+      margin-bottom: $box-padding;
+      input{
+        @extend %input-block;
+      }
+      [class*='icon']{
+        @extend %input-button-absolute;
+      }
+    }
+    &-content{
+      padding: $box-padding !important;
+      max-height: 75vh !important;
+      @include respond-to(max-medium-screen){
+        max-height: 65vh !important;
+      }
+      h3.title {
+        display: none;
+      }
+      a{
+        color: $color-links;
+      }
+    }
+    & &-button{
+      &pane{
+        @extend %form-actions;
+        position: static !important;
+        margin-top: 0;
+        button{
+          margin: 0;
+          &+button{
+            margin-left: 3px;
+          }
+          &.button{
+            @include button($button-base-background,$button-base-color,$button-height);
+          }
+          &.button-positive, &.button-positive{
+            @include button($button-positive-background,$button-positive-color,$button-height);
+          }
+          &+a{
+            margin-left: 3px;
+          }
+        }
+
+      }
+      &set{
+        float: none !important;
+      }
+    }
+    &-title{
+      width: 97% !important;
+      &bar{
+        margin-bottom: 0;
+        border: none;
+        border-bottom: 1px solid $color-border-minor;
+        background: $color-foreground;
+        color: $color-text;
+        padding: $gap $box-padding !important;
+        .tabs{
+          margin-top: 0;
+          & > ul{
+            padding: 0;
+          }
+        }
+        &-close{
+          top: 50% !important;
+          right: 0.5*$gap !important;
+          margin: 0 !important;
+          margin-top: -17px !important;
+          height: 34px !important;
+          width: 34px !important;
+          background: none !important;
+          border: none !important;
+          &>.ui-icon{
+            @extend %control-close;
+            background: none !important;
+            margin: 0 !important;
+            top: 0px !important;
+            left: 0px !important;
+            height: 20px !important;
+            width: 20px !important;
+            @extend %rotate-45cw;
+            &:before,&:after{
+              //border-color: $white;
+            }
+            &:hover{
+              &:before,&:after{
+                //border-color: $color-important;
+              }
+            }
+          }
+          &>.ui-text{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  &-datepicker{
+    z-index: z($z-priority,ajax) !important;
+    padding: 0;
+    table{
+      margin-bottom: 0;
+    }
+    &-month,&-year{
+      min-width: 0;
+      margin: 3px !important;
+    }
+    &-week{
+      &-col{
+        text-align: center;
+        @include small;
+        background: $color-uberlight;
+        tbody &{
+          border-right: 1px solid $color-border-minor !important;
+        }
+      }
+    }
+    & &-today{
+      a{
+        background: $color-important !important;
+        color: $color-foreground !important;
+      }
+    }
+    & &-current-day{
+      a{
+        background: $color-positive !important;
+        color: $color-foreground !important;
+      }
+    }
+    &-calendar{
+      thead{
+        tr{
+          border-bottom: 1px solid $color-border-minor;
+        }
+      }
+      td{
+        a{
+          width: 1.5em;
+          line-height: 1.5em;
+          text-align: center;
+          background: none !important;
+          border-color: transparent !important;
+          padding: 0 !important;
+          margin: 0.2em !important;
+          @include small;
+          @extend %border-radius-infinite;
+          &:hover{
+            background: $color-positive !important;
+            color: $color-foreground !important;
+          }
+        }
+      }
+    }
+    &-buttonpane{
+      margin: 0 !important;
+    }
+    &-prev,&-next{
+      background: none !important;
+      border: none !important;
+      &, &-hover{
+        top: $gap - 2px !important;
+        @include respond-to(max-small-screen) {
+          top: $gap + 2px !important;
+        }
+      }
+      span{
+        display: none !important;
+      }
+    }
+    &-prev{
+      @extend %control-arrow-prev;
+      &, &-hover{
+        left: .25*$box-padding !important;
+      }
+    }
+    &-next{
+      @extend %control-arrow-next;
+      &, &-hover{
+        right: .25*$box-padding !important;
+      }
+    }
+  }
+  &-autocomplete {
+    max-width: $form-field-max-width !important;
+    max-height: 50vh;
+    overflow: auto;
+    @include respond-to(max-small-screen) {
+      left: 10px !important;
+      right: 10px !important;
+      width: auto !important;
+    }
+  }
+  &-front{
+    //z-index: z($z-priority,modal);
+    &.ui-autocomplete{
+      z-index: z($z-priority,modal) + 50;
+    }
+  }
+
+}

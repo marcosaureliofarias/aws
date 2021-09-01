@@ -1,0 +1,92 @@
+<% include_calendar_headers_tags %>
+<% include_filters_bottom_tags %>
+<% heads_for_wiki_formatter %>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta charset="utf-8">
+  <%= call_hook :view_layouts_base_html_head_top %>
+  <title><%= html_title %></title>
+  <meta name="description" content="<%= EasyExtensions::EasyProjectSettings.app_name %>">
+  <meta name="keywords" content="issue,bug,tracker,<%= EasyExtensions::EasyProjectSettings.app_name %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="application-name" content="<%= EasyExtensions::EasyProjectSettings.app_name %>">
+  <meta name="msapplication-config" content="browserconfig.xml">
+  <meta name="theme-color" content="#0080e6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%= csrf_meta_tag %>
+  <%= javascript_tag('window.measureTools = {start: window.performance.now()};') if Rails.env.development? %>
+  <% content_for :body_bottom do %>
+      <%= stylesheet_link_tag 'rtl', media: 'all' if l(:direction) == 'rtl' %>
+      <%= stylesheet_link_tag 'easy_print', media: 'print' %>
+  <% end %>
+  <%= stylesheet_link_tag 'easy_jquery_ui/jquery-ui.css' %>
+  <%= javascript_tag('window.measureTools.afterCss = window.performance.now();') if Rails.env.development? %>
+  <%= render 'layouts/brand_html_header' %>
+  <%= javascript_heads %>
+  <% unless /^en/.match?(momentjs_locale) %>
+    <%= javascript_include_tag("moment_locales/moment_#{momentjs_locale}.js", defer: true) %>
+  <% end %>
+  <%= javascript_include_tag("easy_cable.js", defer: true) if EasyExtensions::EasyProjectSettings.enable_action_cable %>
+  <%= call_hook :view_layouts_base_html_head %>
+  <script type="application/javascript">
+      <%
+        lang_keys = {
+          titleInlineEditable: l(:title_inline_editable),
+          titleInlineEditableAll: l(:title_inline_editable_all),
+          buttonSave: l(:button_save),
+          buttonCancel: l(:button_cancel),
+          buttonClear: l(:button_clear),
+          meetingDestroyConfirmation: l(:text_meeting_destroy_confirmation),
+          meetingAccept: l(:button_meeting_accept),
+          meetingDecline: l(:button_meeting_decline),
+          textWarnLeavingUnsaved: l(:text_warn_on_leaving_unsaved),
+          meetingEdit: l(:button_edit),
+          textPleaseFillName: l(:text_please_fill_name),
+          fieldPossibleValues: l(:field_possible_values),
+          labelFilterPlural: l(:label_filter_plural),
+          labelNoFiltersDetected: l(:label_no_filters_detected),
+          labelLoading: l(:label_loading),
+          labelChangePreviousPeriod: l(:label_change_to_previous_period),
+          labelCopied: l(:label_copied),
+          labelLatest: l(:label_latest),
+          buttonAdd: l(:button_add),
+          buttonGoTo: l(:easy_agile_board_button_go_to),
+          buttonCreate: l(:button_create),
+          saveSuccess: l(:notice_successful_create)
+        }
+
+        time_zone = User.current.time_zone.presence || ActiveSupport::TimeZone[Setting.default_users_time_zone] || ActiveSupport::TimeZone["UTC"]
+        current_user = {
+          id: User.current.id,
+          login: User.current.login,
+          logged: User.current.logged?,
+          firstname: User.current.firstname,
+          lastname: User.current.lastname,
+          mail: User.current.mail,
+          avatar_url: avatar_url,
+          time_zone: (time_zone ? Time.now.in_time_zone(time_zone) : Time.now.localtime).utc_offset / 60,
+          time_zone_identifier: time_zone.tzinfo.identifier
+        }
+
+        easy_settings = { chart_numbers_format: EasySetting.value(:chart_numbers_format) }
+      %>
+    window.easySettings = <%= easy_settings.to_json.html_safe %>;
+    window.momentjsFormat = '<%= j momentjs_date_format %>';
+    window.urlPrefix = '<%= j get_easy_absolute_uri_for.to_s %>';
+    window.I18n = <%= lang_keys.to_json.html_safe %>;
+    (function () {
+      window.EASY = window.EASY || {};
+      var current = <%= current_user.to_json.html_safe %>;
+      current.firstName = current.firstname;
+      current.lastName = current.lastname;
+      window.EASY.currentUser = current;
+      window.easyClasses = {User: {current: current}};
+    })();
+  </script>
+  <%= javascript_tag('window.measureTools.beforeCustomHeader = window.performance.now();') if Rails.env.development? %>
+
+  <%= render 'layouts/module_urls' %>
+  <%= yield :header_tags %>
+  <%= javascript_tag('window.measureTools.afterHeader = window.performance.now();') if Rails.env.development? %>
+</head>

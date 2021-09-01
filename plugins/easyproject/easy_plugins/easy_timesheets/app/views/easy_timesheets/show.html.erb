@@ -1,0 +1,33 @@
+<%= render_timesheets_breadcrumb %>
+
+<p class="contextual">
+  <%= link_to(l(:button_easy_timesheets_approve), resolve_lock_easy_timesheet_path(@easy_timesheet, 'true'), :class => 'icon icon-lock timesheet-locking button-positive', :data => {:confirmation => l(:text_are_you_sure), :prompt => l(:label_easy_timesheet_lock_prompt)}, :method => 'post') if !@easy_timesheet.locked? && @easy_timesheet.can_lock? -%>
+  <%= link_to(l(:button_easy_timesheets_reject), resolve_lock_easy_timesheet_path(@easy_timesheet, 'false'), :class => 'icon icon-unlock timesheet-locking button-negative', :data => {:confirmation => l(:text_are_you_sure), :prompt => l(:label_easy_timesheet_unlock_prompt)}, :method => 'post') if @easy_timesheet.locked? && @easy_timesheet.can_unlock? -%>
+  <%= link_to(l(:button_copy_easy_time_sheet), new_easy_timesheet_path({:copy_from_id => @easy_timesheet.id}), :class => 'icon icon-copy button') if User.current.allowed_to_globally?({:controller => 'easy_timesheets', :action => 'new'}, {}) && @copy_from.nil? %>
+  <%= call_hook :view_timesheet_show_links, easy_timesheet: @easy_timesheet %>
+</p>
+<%= title l(:label_easy_timesheet) %>
+<% if @copy_from %>
+  <div class="flash warning"><%= l(:text_warning_after_time_sheet_copied) %></div>
+<% end %>
+
+<div class="easy-calendar-listing-links next-prev-links">
+  <span class="easy-calendar-listing-links-prev">
+    <%= link_to(l(:label_previous), @previous, :class => 'prev', :title => l(:title_previous_time_sheet, :user => @easy_timesheet.user)) if @previous -%>
+  </span>
+  <span class="easy-calendar-title easy-cal-title">
+    <%= format_date @easy_timesheet.start_date %> - <%= format_date @easy_timesheet.end_date %> (<%= html_hours(@easy_timesheet.total) -%>)
+  </span>
+  <span class="easy-calendar-listing-links-next">
+    <%= link_to(l(:label_next), @next, :class => 'next', :title => l(:title_next_time_sheet, :user => @easy_timesheet.user)) if @next -%>
+  </span>
+</div>
+
+
+<%= render :partial => 'show', :locals => {:easy_timesheet => @easy_timesheet} %>
+
+<% content_for :body_bottom do -%>
+  <%= render partial: 'easy_timesheets/include_tags' %>
+<% end %>
+
+<%= render :partial => 'easy_timesheets/lock_description_prompt_js' %>

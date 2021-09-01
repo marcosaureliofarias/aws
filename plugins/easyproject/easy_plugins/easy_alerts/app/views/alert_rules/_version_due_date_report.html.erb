@@ -1,0 +1,2 @@
+<div class="alerts-report-entity-name"><%= link_to(report.entity.name, { :controller => 'versions', :action => 'show', :id => report.entity_id}) if report.entity -%></div>
+<div class="alerts-report-entity-watch"><%= time_ago_in_words_ex(report.entity.due_date, l(:label_project_due_date_overdue), l(:label_project_due_date_not_overdue)) if report.entity && !report.entity.due_date.nil? -%></div>

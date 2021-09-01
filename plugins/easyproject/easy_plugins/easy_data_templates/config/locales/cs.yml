@@ -1,0 +1,172 @@
+---
+cs:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: nemůže být prázdný nebo neexistuje
+              empty: nemůže být prázdný nebo neexistuje
+        easy_data_template:
+          attributes:
+            type:
+              blank: nemůže být prázdný nebo neexistuje
+              empty: nemůže být prázdný nebo neexistuje
+  button_easy_data_template_assignment: přiřazení polí
+  button_easy_data_template_edit: Upravit šablonu
+  button_easy_data_template_export_data: Exportovat data
+  button_easy_data_template_import: importovat
+  button_easy_data_template_import_data: Importovat data
+  button_easy_data_template_import_preview: preview
+  button_easy_data_template_new_export: Exportovat CSV
+  button_easy_data_template_new_import: Importovat CSV
+  button_easy_data_template_new_msproject: Importovat z MS Project
+  button_easy_data_template_settings: nastavení
+  button_new_advance_import: Rozšířený import
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Ne
+    xyes: Ano
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: jméno řešitele
+      assigned_to_id: id řešitele
+      assigned_to_lastname: příjmení řešitele
+      assigned_to_login: login řešitele
+      assigned_to_mail: e-mail řešitele
+      author_firstname: jméno autora
+      author_id: id autora
+      author_lastname: příjmení autora
+      author_login: login autora
+      author_mail: e-mail autora
+      description: popis úkolu
+      due_date: termín ukončení úkolu (datum)
+      estimated_hours: odhadovaný čas úkolu (hodiny)
+      id: id úkolu
+      priority_id: id priority
+      priority_name: název priority
+      project_id: id projektu
+      project_name: název projektu
+      start_date: začátek úkolu (datum)
+      subject: předmět úkolu
+      tracker_id: id typu úkolu
+      tracker_name: název typu úkolu
+    Project:
+      description: popis projektu
+      enabled_modules: název modulu
+      id: id projektu
+      is_public: veřejný (A/N)
+      name: název projektu
+      parent_id: id nadřazeného projektu
+      parent_name: název nadřazeného projektu
+      trackers_ids: id typu úkolu
+      trackers_names: název typu úkolu
+    TimeEntry:
+      activity: aktivita
+      activity_id: id aktivity
+      activity_name: název aktivity
+      comments: komentář
+      easy_range_from: vykázáno od
+      easy_range_to: vykázáno do
+      hours: hodiny
+      issue: úkol
+      issue_id: id úkolu
+      issue_subject: nadpis úkolu
+      project: projekt
+      project_id: id projektu
+      project_name: název projektu
+      spent_on: datum
+      user: uživatel
+      user_id: id uživatele
+    User:
+      admin: administrátor (A/N)
+      firstname: jméno uživatele
+      id: id uživatele
+      language: jazyk uživatele
+      lastname: příjmení uživatele
+      login: login uživatele
+      mail: e-mail uživatele
+      password: heslo uživatele
+      send_mail: zaslat log-on e-mailem (A/N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Úkol
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Projekt
+    EasyDataTemplateTimeEntry: Vykázaný čas
+    EasyDataTemplateUser: Uživatel
+  easy_data_templates_plugin_description: "- datové šablony pro import a export dat
+    ve formátu CSV"
+  easy_data_templates_plugin_name: Datové šablony
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Datové šablony
+        description: Spravovat datové šablony
+  error_during_import: Při importu došlo k chybě. Prosím zkontrolujte zadaná data.
+  error_easy_data_template_attachment_not_uploaded: Nebyla nahrána žádná příloha k
+    importu
+  error_easy_data_template_ms_project_not_valid_xml: Přiložený soubor není validní
+    XML z MS Project 2010 a vyšší.
+  field_easy_data_template_allowed_import: Importovat
+  field_easy_do_not_export: Neexportovat
+  label_check_preview: Prosím proveďte kontrolu dat pomocí tlačítka 'Náhled'
+  label_easy_data_template_assignment: Přiřazení polí
+  label_easy_data_template_author_name: Autor
+  label_easy_data_template_edit: Úprava šablony
+  label_easy_data_template_entity_type: Entita
+  label_easy_data_template_export_new: Nová exportní šablona
+  label_easy_data_template_import_file: Importovat soubor
+  label_easy_data_template_import_new: Nová importní šablona
+  label_easy_data_template_import:
+    assignments:
+      all: přiřazené pozice sloupců
+      entity_attribute_name: název sloupce entity
+      file_column_position: pozice sloupce v csv
+      new: Přiřazení pozic sloupců
+    errors:
+      erow: chyba v řádku
+      errors_count: počet chyb
+      errors_rows: chybné řádky
+      errors_rows_count: počet chybných řádků
+      errors_sum: celkem
+      row: číslo chybného řádku
+      show: zobrazit chybné řádky
+    preview:
+      row: číslo řádku
+      table: náhled
+    settings:
+      col_sep: oddělovač polí
+      encoding: kodování
+      import_all: vše nebo nic
+      new: Nastavení
+      preview_rows: počet řádků pro náhled
+      project_template: Použít projektovou šablonu
+      quote_char: oddělovač textu
+      return_headers: první řádek obsahuje název sloupců
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(přiřazen 1 úkolu)"
+    other: "(přiřazen na %{count} úkolech)"
+    zero: "(není přiřazen)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Jméno v MSP
+  label_easy_data_template_ms_project_user_name_in_ep: Jméno v EP
+  label_easy_data_template_name: Název
+  label_easy_data_template_public: veřejný
+  label_easy_data_template_template_type: Typ
+  label_easy_data_template_template_type_export: export
+  label_easy_data_template_template_type_import: import
+  label_easy_data_template_user_name: Vlastník
+  label_easy_data_templates: Datové šablony
+  label_easy_data_templates_choose_project: Vyber projekt
+  label_easy_data_templates_choose_query: Vyber filtr
+  label_easy_data_templates_source_settings: Výběr zdroje dat
+  label_easy_data_templates_target_settings: Výběr cíle dat
+  label_import_summaries_as_milestones: Importovat souhrnné úkoly jako milníky‌
+  notice_easy_data_templates_import_ok: Import proběhl v pořádku.
+  text_easy_data_template_ms_project_upload_file: Soubor musí být ve formátu XML (V
+    Aplikaci MS Project klikněte v horním menu na Soubor -> Uložit jako -> uložit
+    jako typ XML).
+  title_easy_data_templates_apply_to_all_rows: Kliknutím nastavíte tuto hodnotu na
+    všech podobných řádcích.

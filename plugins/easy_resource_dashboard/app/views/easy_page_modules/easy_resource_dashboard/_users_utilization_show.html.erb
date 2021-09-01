@@ -1,0 +1,12 @@
+<%
+  include_jqplot_scripts
+  graph_id = "graph_#{modul_uniq_id}"
+  module_data = @easy_page_modules_data[block_name]
+  max_hours = module_data[:users].map{|u| max_allocable_hours(u, module_data[:from], module_data[:to]) }.reduce(:+).to_f
+%>
+
+<div id="<%= graph_id %>"></div>
+
+<%= render partial: 'easy_resource_dashboard/switch_period', locals: {page_module: page_module} %>
+<%= render partial: 'easy_resource_dashboard/utilization_chart', locals: {graph_id: graph_id, hours: module_data[:hours], max_hours: max_hours} %>
+

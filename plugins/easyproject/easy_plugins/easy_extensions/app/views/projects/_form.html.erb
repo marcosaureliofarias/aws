@@ -1,0 +1,252 @@
+<% simple_form ||= false %>
+<%= error_messages_for 'project' %>
+<div>
+  <div class="splitcontent">
+    <div class="splitcontentleft tabular size-6">
+      <p>
+        <%= f.text_field :name, :required => true, :autofocus => true %>
+        <em class="help"><%= l(:text_caracters_maximum, 255) %></em>
+      </p>
+      <% if @project.allowed_parents_scope.any? %>
+        <p>
+          <%= label(:project, :parent_id, l(:field_parent)) %><%= parent_project_select_tag(@project) %>
+        </p>
+      <% else %>
+        <%= f.hidden_field(:parent_id) %>
+      <% end -%>
+
+      <p class="description">
+        <%= f.text_area :description, :rows => 8, :class => 'wiki-edit' %>
+        <%= wikitoolbar_for 'project_description' %>
+      </p>
+
+      <% if EasySetting.value('project_display_identifiers') -%>
+        <p>
+          <%= f.text_field :identifier, :required => true, :size => 60, :disabled => @project.identifier_frozen?, :maxlength => Project::IDENTIFIER_MAX_LENGTH %>
+          <% unless @project.identifier_frozen? %>
+            <em class="help">
+              <%= l(:text_length_between, :min => 1, :max => Project::IDENTIFIER_MAX_LENGTH) %> <%= l(:text_project_identifier_info).html_safe %>
+            </em>
+          <% end %>
+        </p>
+      <% end -%>
+
+      <p style="display:none">
+        <%= f.text_field :homepage %>
+      </p>
+
+      <p class="project-author">
+        <%= f.select :author_id, User.active.non_system_flag.easy_type_internal.sorted.collect { |u| [u.name, u.id] }, :include_blank => true %>
+      </p>
+
+      <% unless EasySetting.value('project_calculate_start_date') %>
+        <p>
+          <%= f.text_field :easy_start_date, :size => 10 %><%= calendar_for('project_easy_start_date') %>
+        </p>
+      <% end %>
+
+      <% unless EasySetting.value('project_calculate_due_date') %>
+        <p>
+          <%= f.text_field :easy_due_date, :size => 10 %><%= calendar_for('project_easy_due_date') %>
+        </p>
+      <% end %>
+
+      <% if @project.safe_attribute?('default_version_id') && (default_version_options = project_default_version_options(@project)).present? %>
+        <p><%= f.select :default_version_id, project_default_version_options(@project), :include_blank => true %></p>
+      <% end %>
+
+      <% if @project.safe_attribute?('default_assigned_to_id') && (default_assigned_to_options = project_default_assigned_to_options(@project)).present? %>
+        <p><%= f.select :default_assigned_to_id, default_assigned_to_options, include_blank: true %></p>
+      <% end %>
+
+      <% activated = EasyCurrency.activated.to_a %>
+      <% if activated.any? %>
+        <p>
+          <%= f.select 'easy_currency_code', options_from_collection_for_select(activated, :iso_code, :name, @project.easy_currency_code || activated.detect{ |c| c.is_default? }.try(:iso_code)), :label => l(:field_currency) %>
+        </p>
+      <% end %>
+      <p class="easy-tag-list-field">
+        <%= label_tag 'project_tag_list', l(:label_easy_tags) %>
+        <%= easy_tag_list_autocomplete_field_tag @project, 'project', id: 'project_tag_list' %>
+      </p>
+
+      <% unless simple_form %>
+        <p>
+          <%= f.check_box :is_public %>
+          <em class="info"><%= Setting.login_required? ? l(:text_project_is_public_non_member) : l(:text_project_is_public_anonymous) %></em>
+        </p>
+
+        <p>
+          <%= f.check_box :is_planned %>
+          <em><%= l(:text_project_is_planned) %></em>
+        </p>
+      <% end %>
+
+      <% if @project.status == Project::STATUS_PLANNED %>
+        <p id="send_all_planned_emails_container" style="display:none">
+          <%= f.check_box :send_all_planned_emails %>
+        </p>
+      <% end %>
+
+      <% if @project.safe_attribute? 'inherit_members' %>
+        <p class="inheritance-option">
+          <%= f.check_box :inherit_members %>
+        </p>
+      <% end %>
+
+      <%= f.hidden_field :easy_is_easy_template %>
+
+      <% unless simple_form %>
+        <p>
+          <label class="checkbox inline" for="easy_setting_issue_private_note_as_default">
+            <%= hidden_field_tag('easy_setting[issue_private_note_as_default]', '0', :id => nil) -%>
+            <%= check_box_tag('easy_setting[issue_private_note_as_default]', '1', EasySetting.value('issue_private_note_as_default', @project)) -%><%= l(:setting_issue_private_note_as_default) %>
+          </label>
+        </p>
+
+        <p>
+          <label class="checkbox inline" for="easy_setting_issue_copy_notes_to_parent">
+            <%= hidden_field_tag('easy_setting[issue_copy_notes_to_parent]', '0', :id => nil) -%>
+            <%= check_box_tag('easy_setting[issue_copy_notes_to_parent]', '1', EasySetting.value('issue_copy_notes_to_parent', @project)) -%><%= l(:setting_issue_copy_notes_to_parent) %>
+          </label>
+        </p>
+      <% end %>
+
+      <% if EasyProjectPriority.active.any? %>
+        <p>
+          <%= f.label :easy_priority_id, l(:field_priority) %>
+          <%= f.collection_select :easy_priority_id, EasyProjectPriority.active.sorted, :id, :name, include_blank: true %>
+        </p>
+      <% end %>
+
+      <%= call_hook(:view_projects_form, :project => @project, :form => f) %>
+    </div>
+    <div class="splitcontentright size-4">
+      <%= call_hook(:view_projects_form_above_custom_fields, :project => @project, :form => f) %>
+
+      <div id="form-project-custom-fields" class="tabular">
+        <%= render :partial => 'projects/form_project_custom_fields', :locals => {:custom_field_values => @project.visible_custom_field_values.sort_by { |i| i.custom_field.position }, :project => @project} -%>
+      </div>
+
+      <% unless @project_custom_fields.empty? %>
+        <%= toggling_fieldset l(:label_project_custom_fields), :id => 'project_custom_field_ids' do %>
+          <ul class="cols-2">
+            <% @project_custom_fields.each do |custom_field| %>
+              <li><label class="inline" id="project_issue_custom_fields">
+                <%
+                  attributes = {'id' => "project_custom_field_ids_#{custom_field.id}", 'toggle-url' => toggle_project_custom_fields_path(:id => @project.try(:id), :new_custom_field_id => custom_field.id)}
+                  attributes['disabled'] = 'disabled' if custom_field.is_for_all?
+                %>
+                <%= check_box_tag 'project_custom_field_ids[]', custom_field.id, (@project.all_project_custom_fields.include?(custom_field)), attributes -%>
+                <%= custom_field.translated_name %>
+              </label></li>
+            <% end %>
+          </ul>
+          <%= hidden_field_tag 'project_custom_field_ids[]', '' %>
+          <div class="toolbar" toggle-url="<%= toggle_project_custom_fields_path(:id => @project.try(:id)) %>"><%= check_all_links 'project_custom_field_ids' %></div>
+        <% end %>
+      <% end %>
+      <% if @project.new_record? %>
+        <%= toggling_fieldset l(:label_module_plural), :id => 'project_enabled_module_names' do %>
+          <ul class="cols-2">
+            <% Redmine::AccessControl.available_project_modules.each do |m| %>
+              <li><label class="inline">
+                <%= check_box_tag 'project[enabled_module_names][]', m, @project.module_enabled?(m),
+                                  :id => "project_enabled_module_names_#{m}" -%>
+                <%= l_or_humanize(m, :prefix => "project_module_") %>
+              </label></li>
+            <% end %>
+          </ul>
+          <%= hidden_field_tag 'project[enabled_module_names][]', '' %>
+          <div class="toolbar"><%= check_all_links 'project_enabled_module_names' %></div>
+        <% end %>
+      <% end %>
+      <% unless @trackers.empty? %>
+        <%= toggling_fieldset l(:label_tracker_plural), :id => 'project_tracker_ids' do %>
+          <ul class="cols-2">
+            <% @trackers.sort_by(&:name).each do |tracker| %>
+              <li><label class="inline">
+                <%= check_box_tag 'project[tracker_ids][]', tracker.id, @project.trackers.to_a.include?(tracker), :id => nil %>
+                <% if @issue_trackers_count && @issues_by_tracker && (@issue_trackers_count[tracker] || 0) > 0 %>
+                  <%= tracker %>
+                  (<%= link_to l(:label_project_copy_tracker_issues, :count => @issue_trackers_count[tracker]), {:controller => 'issues', :action => 'bulk_edit', :ids => @issues_by_tracker[tracker].collect(&:id), :back_url => original_url}, :title => l(:title_project_copy_tracker_issues) %>
+                  )
+                <% else %>
+                  <%= tracker %>
+                <% end %>
+              </label></li>
+            <% end %>
+          </ul>
+          <%= hidden_field_tag 'project[tracker_ids][]', '' %>
+          <div class="toolbar"><%= check_all_links 'project_tracker_ids' %></div>
+    <% end %>
+      <% end %>
+      <% unless @issue_custom_fields.empty? %>
+        <%= toggling_fieldset l(:label_custom_field_plural), :id => 'project_issue_custom_field_ids' do %>
+          <ul class="cols-2">
+            <% @issue_custom_fields.sort_by(&:name).each do |custom_field| %>
+              <li><label class="floating">
+                <%= check_box_tag 'project[issue_custom_field_ids][]', custom_field.id, (@project.all_issue_custom_fields.include? custom_field),
+                                  :disabled => (custom_field.is_for_all? ? "disabled" : nil),
+                                  :id => nil %>
+                <%= custom_field.translated_name %>
+              </label></li>
+            <% end %>
+          </ul>
+          <%= hidden_field_tag 'project[issue_custom_field_ids][]', '' %>
+          <div class="toolbar"><%= check_all_links 'project_issue_custom_field_ids' %></div>
+        <% end %>
+      <% end %>
+      <%= call_hook(:view_projects_form_below_relations, :project => @project, :form => f) %>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<% unless @project.identifier_frozen? %>
+  <% content_for :header_tags do %>
+    <%= javascript_include_tag 'project_identifier', defer: true %>
+  <% end %>
+<% end %>
+
+<%= javascript_include_tag 'easy_project_form', defer: true %>
+
+<% if !User.current.admin? && @project.inherit_members? && @project.parent && User.current.member_of?(@project.parent) %>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      $("#project_inherit_members").on('change', function () {
+        if (!$(this).is(':checked')) {
+          if (!confirm("<%= j(l(:text_own_membership_delete_confirmation)) %>")) {
+            $("#project_inherit_members").attr("checked", true);
+          }
+        }
+      });
+    });
+  </script>
+<% end %>
+
+<% if !@project.new_record? %>
+  <%= content_for(:easy_page_layout_service_box) do %>
+    <div class="project-action-container">
+      <% if @project.easy_is_easy_template? %>
+        <%= link_to(l(:button_create_project_from_template), {:controller => 'templates', :action => 'show_create_project', :id => @project}, :class => 'button icon icon-add', :title => l(:title_button_template_create_project)) if Project.allowed_to_create_project_from_template? -%>
+        <%= link_to_project_new_subtemplate(@project, :class => 'button icon icon-add') if EasyLicenseManager.has_license_limit?(:active_project_limit) && User.current.allowed_to?(:add_subprojects, @project) && User.current.allowed_to?(:create_project_template, @project) -%>
+      <% else %>
+        <% if User.current.allowed_to?(:archive_project, @project) %>
+          <%= link_to_project_archive(@project, :class => 'button icon icon-archive') if !@project.archived? -%>
+          <%= link_to_project_unarchive(@project, :class => 'button icon icon-unlock') if EasyLicenseManager.has_license_limit?(:active_project_limit) && @project.archived? && (@project.parent.nil? || @project.parent.active?) -%>
+        <% end -%>
+        <% if User.current.allowed_to?(:close_project, @project) %>
+          <%= link_to_project_close(@project, :class => 'button icon icon-lock') if @project.active? -%>
+          <%= link_to_project_reopen(@project, :class => 'button icon icon-unlock') if @project.closed? -%>
+        <% end -%>
+        <%= link_to_project_copy(@project, :class => 'button icon icon-copy') if User.current.allowed_to?(:copy_project, @project) && @project.active? -%>
+        <%= link_to_project_delete(@project, :class => 'button icon icon-del') if User.current.allowed_to?(:delete_project, @project) -%>
+        <% if  EasyLicenseManager.has_license_limit?(:active_project_limit) %>
+          <%= link_to_project_new_subproject(@project, :class => 'button icon icon-add') if User.current.allowed_to?(:add_subprojects, @project) -%>
+          <%= link_to_project_new_template_from_project(@project, :class => 'button button-new-template-from-project icon icon-project') if User.current.allowed_to?(:create_project_template, @project) -%>
+        <% end %>
+      <% end %>
+    </div>
+  <% end -%>
+<% end %>

@@ -1,0 +1,43 @@
+&__shorturl {
+  position: relative;
+  &-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: $gap*25;
+    height: 100%;
+    &-head{
+      
+    }
+  }
+  &-item{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.5);
+    padding-bottom: 15px;
+    input[type="text"] {
+      width: 70%;
+    }
+    & div > i {
+      margin-left: $gap/2;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    &-copy {
+      width: 20%;
+      margin-left: $gap/2;
+      &-checked {
+        margin-left: 0;
+        padding-left: 0;
+      }
+    }
+    &-qrcode {
+      width: 40%;
+    }
+    &-label{
+      font-size: 13px;
+      margin-top: 5px;
+    }
+  }
+}

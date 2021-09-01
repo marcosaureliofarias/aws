@@ -1,0 +1,16 @@
+<% entity_type, project = tab[:entity_type], tab[:project] -%>
+<% valid_from, valid_to = nil, nil
+   form_id = "easy-money-entity-#{entity_type.underscore.dasherize}-rates-form" -%>
+
+<%= form_tag({controller: 'easy_money_rates', action: 'update_rates'}, {id: form_id, class: 'form'}) do -%>
+  <%= hidden_field_tag('project_id', project.id) unless project.nil? -%>
+  <%= hidden_field_tag('valid_from', valid_from) unless valid_from.nil? -%>
+  <%= hidden_field_tag('valid_to', valid_to) unless valid_to.nil? -%>
+  <%= hidden_field_tag('back_url', original_url) -%>
+
+  <%= render :partial => "easy_money_rates/entity_#{entity_type.underscore}_index", locals: {project: project, project_id: (project.nil? ? nil : project.id), valid_from: valid_from, valid_to: valid_to} %>
+  <%= render partial: 'easy_money_rates/save_modal_dialog', locals: {project: project, form_id: form_id} %>
+  <div class="form-actions">
+    <%= link_to_function(l(:button_save), "showEasyMoneySettingSaveDialog()", class: 'save-dialog-submit button-positive', title: l(:title_easy_money_rates_save)) %>
+  </div>
+<% end -%>

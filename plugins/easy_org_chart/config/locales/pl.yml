@@ -1,0 +1,57 @@
+---
+pl:
+  activerecord:
+    attributes:
+      user:
+        supervisor_user_id: Przełożony
+    errors:
+      models:
+        user:
+          attributes:
+            supervisor_user_id:
+              children_exists: istnieją podwładni
+              missing_in_tree: powinny zmajdować się w schemacie organizacyjnym
+              root_changed: powinien być pusty ponieważ użytkownik jest rootem i nie
+                można go przypisać do innego przełożonego
+  button_easy_org_chart_collapse: Zwiń wszystkie
+  button_easy_org_chart_expand: Rozwiń wszystkie
+  button_easy_org_chart_export: Eksportuj
+  easy_org_chart_plugin_author: Easy Software
+  easy_org_chart_plugin_description: ''
+  easy_org_chart_plugin_menu_caption: Schemat organizacyjny
+  easy_org_chart_plugin_name: Schemat organizacyjny
+  easy_org_chart_subordinates_access:
+    direct_subordinates: Bezpośredni podwładni
+    forbidden: Zabroniony
+    subordinates_tree: Drzewo podwładnych
+  easy_pages:
+    modules:
+      org_chart: Schemat organizacyjny
+  field_assigned_to_id_supervisor: Przełożony przypisanej osoby
+  field_author_id_supervisor: Przełożony autora
+  field_easy_org_chart_node_background: 'Styl tła węzła:'
+  field_easy_org_chart_node_background_color: Kolor tła pracownika
+  field_easy_org_chart_node_width: Szerokość węzła
+  field_easy_org_chart_parent_node_background_color: Kolor tła kierownika (węzeł nadrzędny)
+  field_easy_org_chart_root_node_background_color: Kolor tła CEO (węzeł główny)
+  field_easy_org_chart_share_subordinates_access: Udostępnij przełożonemu dostęp podwładnych
+  field_easy_org_chart_show_avatar: Pokaż awatar
+  field_easy_org_chart_show_custom_fields: Pokaż własne pola
+  field_easy_org_chart_show_fields_names: Pokaż nazwy pól
+  field_easy_org_chart_show_user_fields: Pokaż pola natywne
+  field_subordinates_of_supervisor: Podwładni przełożonego
+  field_supervisor: Przełożony
+  label_easy_org_chart_legend_node: Pracownik
+  label_easy_org_chart_legend_parent_node: Kierownik
+  label_easy_org_chart_legend_root_node: CEO
+  label_my_page_org_chart_root_user_id: Wybierz nadrzędną osobę w strukturze organizacyjnej
+  label_my_page_org_chart_vertical_depth: Kompaktowy widok z poziomu
+  label_my_subordinates: Moi podwładni
+  label_my_subordinates_tree: Drzewo moich podwładnych
+  permission_edit_easy_attendance_approval_for_inferiors: Zatwierdzanie/odrzucanie
+    obecności podwładnych
+  title_easy_org_chart: Schemat organizacyjny
+  title_easy_org_chart_drag_for_create: Przeciągnij i upuść użytkowników, aby dodać
+    ich do schematu organizacyjnego.
+  title_easy_org_chart_drop_for_delete: Upuść tutaj, aby usunąć ze schematu organizacyjnego
+  title_easy_org_chart_settings: Ustawienia schematu organizycyjnego

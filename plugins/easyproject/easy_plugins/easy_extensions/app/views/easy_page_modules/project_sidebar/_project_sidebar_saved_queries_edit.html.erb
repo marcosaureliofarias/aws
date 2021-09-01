@@ -1,0 +1,13 @@
+<%= content_tag :h4, l(:label_display) -%>
+<p>
+  <%= hidden_field_tag "#{block_name}[saved_personal_queries]", '', :id => nil %>
+  <%= label_tag "#{block_name}_saved_personal_queries", l('easy_query.sidebar_filters.personal.other') -%>
+  <%= check_box_tag "#{block_name}[saved_personal_queries]", true, settings['saved_personal_queries'] -%>
+</p>
+<% if user.internal_client? %>
+  <p>
+    <%= hidden_field_tag "#{block_name}[saved_public_queries]", '', :id => nil %>
+    <%= label_tag "#{block_name}_saved_public_queries", l('easy_query.sidebar_filters.public.other') -%>
+    <%= check_box_tag "#{block_name}[saved_public_queries]", true, settings['saved_public_queries'] -%>
+  </p>
+<% end %>

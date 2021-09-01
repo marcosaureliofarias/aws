@@ -1,0 +1,22 @@
+<% if @easy_sprint.open? %>
+  $("#ajax-modal").html("<%=j render(partial: 'easy_sprints/form_close', formats: [:html]) %>");
+  showModal('ajax-modal', '30%');
+  var submitButton = {
+    text:"<%=j l(:button_close) %>",
+    title:"<%=j l(:button_close) %>",
+    click: function() { $(this).find('form').submit(); },
+    'class': 'button-positive'
+   }
+  var closeButton = {
+    text: "<%=j l(:button_cancel) %>",
+    title: "<%=j l(:button_cancel) %>",
+    click: function() { $(this).dialog('close'); },
+    'class': 'button'
+  }
+  $("#ajax-modal").dialog('option', {
+    title: "<%=j l(:heading_easy_sprint_close) %>",
+    buttons: [closeButton, submitButton]
+  });
+<% else %>
+  showFlashMessage("error", "<%= l(:error_agile_board_sprint_is_already_closed) %>");
+<% end %>

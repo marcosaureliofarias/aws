@@ -1,0 +1,60 @@
+<% if params[:modal_edit] %>
+  if( $('#easy_module_edit_modal').length == 0 ) {
+    $('body').append('<div id="easy_module_edit_modal" style="display: none;"></div>')
+  }
+  $('#easy_module_edit_modal').html('<%= j(render :partial => @module_partial, :locals => @module_locals) %>');
+  var $heading = $('#easy_module_edit_modal').find('h3.module-heading');
+  $('#easy_module_edit_modal').find('.easy-page-module > .module-toggle-button').remove();
+  EPExtensions.showEasyModal( '#easy_module_edit_modal', {
+    resizable: false,
+    title: $heading.text(),
+    buttons: [
+      // {
+      //   text: '<%=j l(:button_duplicate) %>',
+      //   click: function() {
+      //     PageLayout.cloneModuleWithUrl(this, '<%=j url_for( @module_locals[:page_params][:url_clone_module].merge(uuid: @module_locals[:page_module].uuid, only_path: true) ) %>');
+      //     $(this).dialog('close');
+      //   },
+      //   class: 'button'
+      // },
+      // {
+      //   text: '<%=j l(:button_delete) %>',
+      //   click: function() {
+      //     PageLayout.removeModuleWithUrl(this, '<%= j url_for(@module_locals[:page_params][:url_remove_module].merge(:uuid => @module_locals[:page_module].uuid.underscore)) %>');
+      //     $(this).dialog('close');
+      //   },
+      //   class: 'button'
+      // },
+      {
+        text: '<%=j l(:button_cancel) %>',
+        click: function() {$(this).dialog('close');},
+        class: 'button'
+      },
+      {
+        text: '<%=j l(:button_update) %>',
+        click: function(){
+          PageLayout.prepareSubmitModules();
+          PageLayout.runCallbacks("beforeSave", "<%= params[:uuid] %>");
+          EASY.modalSelector.selectAllOptions('module_inside_modal_<%= @module_locals[:page_module].uuid %>selected_columns');
+          $('#module_<%= @module_locals[:page_module].module_name %>_form').submit();
+        },
+        class: 'button-positive'
+      }
+    ]
+  });
+  $heading.remove();
+<% elsif params[:inline_edit] || params[:with_container] %>
+  var $element = $('#module_<%= params[:uuid] %>');
+  $element.replaceWith('<%= j(render :partial => @module_partial, :locals => @module_locals) %>');
+  $element.parent().trigger('easy_pagemodule_new_dom');
+<% else %>
+  var $element = $('#module_inside_<%= params[:uuid] %>')
+  $element.html('<%= j(render :partial => @module_partial, :locals => @module_locals) %>');
+  $element.trigger('easy_pagemodule_new_dom');
+<% end %>
+
+<% if @module_locals[:page_module].floating? %>
+$('#module_<%= params[:uuid] %>').addClass('push-left');
+<% else %>
+//$('#module_<%= params[:uuid] %>').removeClass('push-left');
+<% end %>

@@ -1,0 +1,34 @@
+<% if project.easy_money_settings.show_price2? -%>
+  <p>
+    <%= f.label :price2, l(:field_easy_money_other_revenue_price2), :for => 'price2' -%>
+    <%= f.text_field :price2, :id => 'price2', :size => 10, :onblur => "computePriceWithVat('price1','price2','vat');" -%>
+    <% if f.object.persisted? && f.object.easy_currency_code != @project.easy_currency_code  %>
+      (<%= format_easy_money_price f.object.price2(@project.easy_currency_code), @project %>)
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :vat, l(:field_easy_money_other_revenue_vat), :for => 'vat' -%>
+    <%= f.text_field :vat, :id => 'vat', :readonly => project.easy_money_settings.vat_disabled?, :size => 3, :maxlength => 6, :value => easy_money_entity.new_record? && easy_money_entity.errors.empty? ? project.easy_money_settings.vat : easy_money_entity.vat -%>%
+    <%= check_box_tag 'use_vat', '1', easy_money_entity.new_record? && easy_money_entity.errors.empty? ? true : easy_money_entity.vat.to_f > 0 -%><%= label_tag 'use_vat', l(:label_easy_money_use_vat), :class => 'inline' -%>
+  </p>
+<% end -%>
+<% if project.easy_money_settings.show_price1? -%>
+  <p>
+    <%= f.label :price1, l(:field_easy_money_other_revenue_price1), :for => 'price1' -%>
+    <% if project.easy_money_settings.show_price2? -%>
+      <%= f.text_field :price1, :id => 'price1', :size => 10, :onblur => "computePriceWithoutVat('price1','price2','vat');" -%>
+    <% else -%>
+      <%= f.text_field :price1, :id => 'price1', :size => 10 -%>
+    <% end -%>
+    <% if f.object.persisted? && f.object.easy_currency_code != @project.easy_currency_code && EasyCurrency[@project.easy_currency_code] %>
+        (<%= format_easy_money_price f.object.price1(@project.easy_currency_code), @project %>)
+    <% end %>
+    <%= call_hook(:view_easy_money_form_entity_price_calculator, easy_money_entity: easy_money_entity, f: f) %>
+  </p>
+<% end -%>
+<% if EasyCurrency.activated.any? %>
+    <p>
+      <%= f.label :easy_currency_code, l(:field_currency) %>
+      <%= f.select :easy_currency_code, options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, f.object.easy_currency_code || @project.easy_currency_code), include_blank: false %>
+    </p>
+<% end %>

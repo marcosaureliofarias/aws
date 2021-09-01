@@ -1,0 +1,11 @@
+$block: #{&};
+&__new-activity-detail {
+  & #{$block}__attribute-step {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  & #{$block}__editorbox {
+    width: 100%;
+    margin-top: $gap;
+  }
+}

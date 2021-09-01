@@ -1,0 +1,23 @@
+<%
+  current_tab = easy_page_context[:page_params][:current_tab]
+%>
+
+<% if current_tab %>
+  <div class="page-tab-settings tabular">
+    <h3><i class="icon icon--page"></i> <%= l(:label_easy_page_tab_settings) %></h3>
+
+    <% if false %>
+      <p>
+        <%= label_tag "page_tabs[#{current_tab.id}][name]", l(:field_name) %>
+        <%= text_field_tag "page_tabs[#{current_tab.id}][name]", current_tab.name %>
+      </p>
+    <% end %>
+
+    <p>
+      <%= label_tag "page_tabs[#{current_tab.id}][mobile_default]", l(:label_default_for_mobile) %>
+      <%= hidden_field_tag "page_tabs[#{current_tab.id}][mobile_default]", '0', id: nil %>
+      <%= check_box_tag "page_tabs[#{current_tab.id}][mobile_default]", '1', current_tab.mobile_default %>
+      <em class="help"><%= l(:text_tab_will_be_mobile_default) %></em>
+    </p>
+  </div>
+<% end %>

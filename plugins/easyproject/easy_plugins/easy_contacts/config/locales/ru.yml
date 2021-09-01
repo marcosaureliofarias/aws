@@ -1,0 +1,593 @@
+---
+ru:
+  activerecord:
+    attributes:
+      easy_contacts:
+        account_manager: Аккаунт-менеджер
+        accounted_by: Ответственный партнёр
+        external_account_manager: Внешний аккаунт-менеджер
+    models:
+      easy_mail_campaign_easy_contact: Контакт
+  administration:
+    label_easy_contact: Пользовательские поля – контакты
+    label_easy_contact_group: Пользовательские поля – группы
+    label_easy_contact_type: Тип контакта
+  attributes:
+    easy_contacts:
+      account_manager: Аккаунт-менеджер
+      external_account_manager: Внешний аккаунт-менеджер
+  button_assign_to_me: Добавить в мои контакты
+  button_easy_contact_by_easy_query: Контакты по фильтру
+  button_easy_contact_homepage: Показать все
+  button_easy_contact_new: Создать контакт
+  button_easy_contact_show_contact_on_google_map: Показать контакт на карте Google
+  button_easy_entity_attribute_vcard_map: Настройки сопоставления VCard
+  button_new_easy_contact_csv_import: Новый импорт контактов из CSV
+  button_ok_continue_import: Хорошо, продолжить импорт
+  button_reasign_and_delete_easy_contact: Переназначить и удалить тип
+  button_remove_from_me: Удалить из избранных контактов
+  button_remove_from_project: Удалить контакты из проекта
+  button_save_contact_and_add_reference: Сохранить и продолжить
+  button_show_contact_account: Учётные записи
+  button_show_contact_corporate: Компании
+  button_show_contact_personal: Люди
+  custom_field_names:
+    easy_contacts_city:
+      label: Город
+    easy_contacts_country:
+      label: Страна
+    easy_contacts_email:
+      label: Эл. почта
+    easy_contacts_organization:
+      label: Организация
+    easy_contacts_postal_code:
+      label: Индекс
+    easy_contacts_region:
+      label: Регион
+    easy_contacts_street:
+      label: Улица
+    easy_contacts_telephone:
+      label: Телефон
+  easy_contact_action:
+    action: Действие
+    add_note: Добавить комментарий
+    add_to_contact: Привязать к контакту
+    add_to_global: Добавить к общим контактам
+    add_to_group: Добавить в группу
+    add_to_project: Добавить к проекту
+    add_to_user: Добавить к личным контактам
+    assign_to_partner: Закрепить за партнёром
+    destroy: Удалить
+    edit: Редактировать
+    refresh: Обновить
+    send_mail: Отправить контакт по эл. почте
+  easy_contact_country_select:
+    ABW: Аруба
+    AFG: Афганистан
+    AGO: Ангола
+    AIA: Ангилья
+    ALA: Аландские острова
+    ALB: Албания
+    AND: Андорра
+    ANT: Нидерландские Антильские Острова
+    ARE: Объединённые Арабские Эмираты
+    ARG: Аргентина
+    ARM: Армения
+    ASM: Американское Самоа
+    ATA: Антарктика
+    ATF: Французские Южные территории
+    ATG: Антигуа и Барбуда
+    AUS: Австралия
+    AUT: Австрия
+    AZE: Азербайджан
+    BDI: Бурунди
+    BEL: Бельгия
+    BEN: Бенин
+    BES: Бонэйр, Синт-Эстатиус и Саба
+    BFA: Буркина-Фасо
+    BGD: Бангладеш
+    BGR: Болгария
+    BHR: Бахрейн
+    BHS: Багамские Острова
+    BIH: Босния и Герцеговина
+    BLM: Сен-Бартелеми
+    BLR: Беларусь
+    BLZ: Белиз
+    BMU: Бермудские Острова
+    BOL: Боливия
+    BRA: Бразилия
+    BRB: Барбадос
+    BRN: Бруней-Даруссалам
+    BTN: Бутан
+    BVT: Остров Буве
+    BWA: Ботсвана
+    CAF: Центральноафриканская Республика
+    CAN: Канада
+    CCK: Кокосовые острова (Килинг)
+    CHE: Швейцария
+    CHL: Чили
+    CHN: Китай
+    CIV: Кот-д'Ивуар
+    CMR: Камерун
+    COD: Конго (Демократическая Республика)
+    COG: Конго
+    COK: Острова Кука
+    COL: Колумбия
+    COM: Коморы
+    CPV: Кабо-Верде
+    CRI: Коста-Рика
+    CUB: Куба
+    CUW: Кюрасао
+    CXR: Остров Рождества
+    CYM: Каймановы Острова
+    CYP: Кипр
+    CZE: Чешская Республика
+    DEU: Германия
+    DJI: Джибути
+    DMA: Доминика
+    DNK: Дания
+    DOM: Доминиканская Республика
+    DRC: Демократическая Республика Конго
+    DZA: Алжир
+    ECU: Эквадор
+    EGY: Египет
+    ERI: Эритрея
+    ESH: Западная Сахара
+    ESP: Испания
+    EST: Эстония
+    ETH: Эфиопия
+    FIN: Финляндия
+    FJI: Фиджи
+    FLK: Фолклендские (Мальвинские) острова
+    FRA: Франция
+    FRO: Фарерские острова
+    FSM: Федеративные Штаты Микронезии
+    GAB: Габон
+    GBR: Великобритания
+    GEO: Грузия
+    GGY: Гернси
+    GHA: Гана
+    GIB: Гибралтар
+    GIN: Гвинея
+    GLP: Гваделупа
+    GMB: Гамбия
+    GNB: Гвинея-Бисау
+    GNQ: Экваториальная Гвинея
+    GRC: Греция
+    GRD: Гренада
+    GRL: Гренландия
+    GTM: Гватемала
+    GUF: Французская Гвинея
+    GUM: Гуам
+    GUY: Гайана
+    HKG: Гонконг
+    HMD: Остров Херд и острова Макдональд
+    HND: Гондурас
+    HRV: Хорватия
+    HTI: Гаити
+    HUN: Венгрия
+    IDN: Индонезия
+    IMN: Остров Мэн
+    IND: Индия
+    IOT: Британская Территория в Индийском Океане
+    IRL: Ирландия
+    IRN: Иран (Исламская Республика)
+    IRQ: Ирак
+    ISL: Исландия
+    ISR: Израиль
+    ITA: Италия
+    JAM: Ямайка
+    JEY: Джерси
+    JOR: Иордания
+    JPN: Япония
+    KAZ: Казахстан
+    KEN: Кения
+    KGZ: Киргизия
+    KHM: Камбоджа
+    KIR: Кирибати
+    KNA: Сент-Китс и Невис
+    KOR: Республика Корея
+    KWT: Кувейт
+    LAO: Лаосская Народно-Демократическая Республика
+    LBN: Ливан
+    LBR: Либерия
+    LBY: Ливийская Арабская Джамахирия
+    LCA: Сент-Люсия
+    LIE: Лихтенштейн
+    LKA: Шри-Ланка
+    LSO: Лесото
+    LTU: Литва
+    LUX: Люксембург
+    LVA: Латвия
+    MAC: Макао
+    MAF: Сен-Мартен (Французские Антильские о-ва)
+    MAR: Марокко
+    MCO: Монако
+    MDA: Молдавия
+    MDG: Мадагаскар
+    MDV: Мальдивы
+    MEX: Мексика
+    MHL: Маршалловы Острова
+    MKD: Северная Македония
+    MLI: Мали
+    MLT: Мальта
+    MMR: Мьянма
+    MNE: Черногория
+    MNG: Монголия
+    MNP: Северные Марианские Острова
+    MOZ: Мозамбик
+    MRT: Мавритания
+    MSR: Монтсеррат
+    MTQ: Мартиника
+    MUS: Маврикий
+    MWI: Малави
+    MYS: Малайзия
+    MYT: Майотта
+    NAM: Намибия
+    NCL: Новая Каледония
+    NER: Нигер
+    NFK: Остров Норфолк
+    NGA: Нигерия
+    NIC: Никарагуа
+    NIU: Ниуэ
+    NLD: Нидерланды
+    NOR: Норвегия
+    NPL: Непал
+    NRU: Науру
+    NZL: Новая Зеландия
+    OMN: Оман
+    PAK: Пакистан
+    PAN: Панама
+    PCN: Питкэрн
+    PER: Перу
+    PHL: Филиппины
+    PLW: Палау
+    PNG: Папуа – Новая Гвинея
+    POL: Польша
+    PRI: Пуэрто-Рико
+    PRK: КНДР
+    PRT: Португалия
+    PRY: Парагвай
+    PSE: Палестина
+    PYF: Французская Полинезия
+    QAT: Катар
+    REU: Реюнион
+    ROM: Румыния
+    ROU: Румыния
+    RUS: Российская Федерация
+    RWA: Руанда
+    SAU: Саудовская Аравия
+    SDN: Судан
+    SEN: Сенегал
+    SGP: Сингапур
+    SGS: Южная Георгия и Южные Сандвичевы Острова
+    SHN: Остров Святой Елены
+    SJM: Шпицберген и Ян-Майен
+    SLB: Соломоновы Острова
+    SLE: Сьерра-Леоне
+    SLV: Сальвадор
+    SMR: Сан-Марино
+    SOM: Сомали
+    SPM: Сен-Пьер и Микелон
+    SRB: Сербия
+    SSD: Южный Судан
+    STP: Сан-Томе и Принсипе
+    SUR: Суринам
+    SVK: Словакия
+    SVN: Словения
+    SWE: Швеция
+    SWZ: Свазиленд
+    SXM: Сен-Мартен (Нидерландские Антилльские острова)
+    SYC: Сейшельские Острова
+    SYR: Сирийская Арабская Республика
+    TCA: Теркс и Кайкос
+    TCD: Чад
+    TGO: Того
+    THA: Таиланд
+    TJK: Таджикистан
+    TKL: Токелау
+    TKM: Туркменистан
+    TLS: Восточный Тимор
+    TMP: Восточный Тимор
+    TON: Тонга
+    TTO: Тринидад и Тобаго
+    TUN: Тунис
+    TUR: Турция
+    TUV: Тувалу
+    TWN: Тайвань
+    TZA: Танзания
+    UGA: Уганда
+    UKR: Украина
+    UMI: Внешние малые острова США
+    URY: Уругвай
+    USA: США
+    UZB: Узбекистан
+    VAT: Ватикан
+    VCT: Сент-Винсент и Гренадины
+    VEN: Венесуэла
+    VGB: Виргинские Острова (Великобритания)
+    VIR: Виргинские Острова (США)
+    VNM: Вьетнам
+    VUT: Вануату
+    WLF: Уоллис и Футуна
+    WSM: Самоа
+    XCA: Канарские острова
+    XET: Восточный Тимор
+    XSB: Сен-Бартелеми
+    XSE: Синт-Эстатиус
+    YEM: Йемен
+    ZAF: Южная Африка
+    ZMB: Замбия
+    ZWE: Зимбабве
+  easy_contact_toolbar_label_search: Поиск
+  easy_contact_types:
+    account: Учётная запись
+    corporate: Компания
+    personal: Личный
+  easy_contacts_plugin_author: Easy Software
+  easy_contacts_plugin_author_url: http://www.easyproject.cz/ru
+  easy_contacts_plugin_description: "– каталог проектных и корпоративных контактов"
+  easy_contacts_plugin_name: Контакты
+  easy_contacts_toolbar:
+    assign_to_contact: Закрепить за контактом
+    assign_to_issue: Привязать к задаче
+    assign_to_project: Закрепить за проектом
+    contact_all_delete: Удалить
+    contact_delete: Удалить из группы
+    contact_edit: Редактировать
+    contact_edit_save: Сохранить
+    contact_exit: Назад
+    contact_new_save: Сохранить
+    group_delete: Удалить
+    group_edit: Редактировать
+    group_edit_save: Сохранить
+    group_exit: Отменить
+    group_new: Создать группу
+    group_new_save: Сохранить
+    new_contact: Создать контакт
+    projectgroup_new: Создать группу
+    wrong_params: Неверные параметры объекта
+  easy_lookup:
+    easy_contact:
+      label: Контакты
+  easy_pages:
+    module_category:
+      contacts: Контакты
+    modules:
+      easy_contact_create_button: Кнопка «Создать контакт»
+      easy_contact_query: Контакты по фильтру
+      easy_contacts_create_new: Создать контакт
+      group_of_contacts_button: Кнопка «Группа контактов»
+      import_contacts_button: Кнопка «Импорт контактов»
+      my_contacts_button: Кнопка «Избранные контакты»
+      project_contacts_overview: Контакты по проекту
+      user_contacts_overview: Избранные контакты
+  easy_proposer:
+    easy_contacts:
+      new:
+        caption: Создать контакт
+        description: Создать новый контакт
+  easy_query:
+    button_apply:
+      easy_contact: Фильтровать контакты
+      easy_contact_group: Фильтровать группы
+    easy_lookup:
+      name:
+        easy_contact_group:
+          default: Выберите группы контактов
+        easy_contact_partner:
+          default: Выбрать партнёра
+        easy_contact:
+          default: Выберите контакты
+    name:
+      easy_contact_group_query: Группы контактов
+      easy_contact_query: Контакты
+    sidebar_filters:
+      personal:
+        easy_contact_group_project_query: Личные фильтры для групп контактов по проекту
+        easy_contact_group_query: Личные фильтры для групп контактов
+        easy_contact_group_user_query: Личные фильтры для моих групп контактов
+        easy_contact_query: Личные фильтры для контактов
+      public:
+        easy_contact_group_project_query: Общие фильтры для групп контактов по проекту
+        easy_contact_group_query: Общие фильтры для групп контактов
+        easy_contact_group_user_query: Общие фильтры для моих групп контактов
+        easy_contact_query: Общие фильтры для контактов
+  easy_user_type_visible_contact_types: Видимые типы контактов
+  error_can_not_delete_easy_contact_type: Тип контактов используется, его нельзя удалить.
+  error_contact_already_assigned: Контакт уже назначен.
+  error_easy_contact_could_not_merge: Не удалось объединить контакты.
+  error_import_data_integrity: В импортированных данных есть ошибки (всего %{count}). Исправьте
+    ошибки.
+  error_import_file_encoding: Не удалось импортировать данные из файла (возможно,
+    вы выбрали неверную кодировку).
+  error_import_file_malformed: Недопустимый формат файла для импорта.
+  error_import_file_missing: Не найден файл для импорта.
+  error_no_contacts_select: Вы не выбрали ни одного контакта.
+  error_no_groups_select: Вы не выбрали ни одной группы.
+  error_no_projects_select: Вы не выбрали ни одного проекта.
+  error_no_recipients_select: Вы не выбрали ни одного получателя.
+  field_assigned_to_id: Закреплено за
+  field_author_id: Автор
+  field_author_note: Комментарии
+  field_contact_groups: Группы контактов
+  field_contact_name: Имя
+  field_csv_has_headers: Заголовки столбцов записываются  в первой строке
+  field_easy_contact: Контакт
+  field_easy_contact_author_note: Описание
+  field_easy_contact_from_eu: Из ЕС
+  field_easy_contact_group: Группа контактов
+  field_easy_contact_group_entity: Личные группы
+  field_easy_contact_group_entity_type: Тип группы
+  field_easy_contact_group_parent: Группа родительского контакта
+  field_easy_contact_group_root: Группа верхнего контакта
+  field_easy_contact_guid: GUID
+  field_easy_contact_parent: Родительский контакт
+  field_easy_contact_private: Личный контакт
+  field_easy_contact_root: Верхний контакт
+  field_easy_contact_type: Тип контакта
+  field_easy_contacts: Контакты
+  field_easy_contacts_parent: Родительский контакт
+  field_easy_contacts_visibility: Видимость контактов
+  field_group_name: Имя
+  field_group_type: Тип группы
+  field_icon_path: Иконка
+  field_is_global: Общий контакт?
+  field_main_easy_contact: Главный контакт
+  field_parent_id: Родитель
+  field_project_group: Группы проектов
+  field_type_name: Имя
+  filter:
+    global_groups: Общие группы
+    personal_groups: Личные группы
+    project_groups: Группы по проекту
+  header_text_of_mail: Этот контакт был отправлен пользователю '%{user}'.
+  heading_easy_contacts_toolbar: Контакты
+  help_fields_limit_visibility_settings: Выберите пользователей, которым будет видно
+    это поле. Оставьте пустым, чтобы отключить функцию особой видимости.
+  label_account_name: Имя учётной записи
+  label_add_subcontact: Создать связанный контакт
+  label_assign_to_contact: Добавить в контакт
+  label_assign_to_issue: Добавить к задаче
+  label_assign_to_me: Добавить в мои контакты
+  label_assign_to_project: Добавить в проект
+  label_attribute_of_easy_contacts: "%{name} контакта"
+  label_bulk_edit_selected_contacts: Массовое редактирование выбранных контактов
+  label_change_easy_contact_type_to: Изменить тип на
+  label_contact_references: Связанные контакты
+  label_contact_references_to_account: Связь с учётными записями
+  label_contact_references_to_corporate: Связь с организациями
+  label_contact_references_to_personal: Связь с контактами
+  label_contacts_attribute: Признак
+  label_contacts_groups: Группы контакта
+  label_contacts_main_crm_cases: Собственные CRM-сделки
+  label_corporate_name: Имя организации
+  label_easy_contact: Контакт
+  label_easy_contact_accounted_by: Ответственный: %{name}
+  label_easy_contact_add_sub_contact: Добавить подконтакт
+  label_easy_contact_assigned_to: Контакт закреплён за
+  label_easy_contact_change_avatar: Изменить аватар
+  label_easy_contact_client_custom_fields: Настраиваемые поля клиента
+  label_easy_contact_country_select: Выбрать страну
+  label_easy_contact_easy_contact_groups: Группы контактов
+  label_easy_contact_encoding_chooser: Выбрать кодировку vcard
+  label_easy_contact_fields_settings: Настройки полей
+  label_easy_contact_global: Общие контакты
+  label_easy_contact_group: Группа контактов
+  label_easy_contact_groups: Управление группами
+  label_easy_contact_is_global_false: Удалить из общих контактов
+  label_easy_contact_is_global_true: Добавить к общим контактам
+  label_easy_contact_is_my: Добавить в «Избранное»
+  label_easy_contact_is_not_my: Удалить из «Избранного»
+  label_easy_contact_is_private_false: Удалить из личных контактов
+  label_easy_contact_is_private_true: Добавить к личным контактам
+  label_easy_contact_issues: 'Задачи:'
+  label_easy_contact_managed_accounts: Управляемые аккаунты
+  label_easy_contact_managed_by_partner: 'Управляется партнёром:'
+  label_easy_contact_note: Примечание  к контакту
+  label_easy_contact_parent_contact_plural: Родительские контакты
+  label_easy_contact_parent_group: Родительская группа
+  label_easy_contact_personal: Избранные контакты
+  label_easy_contact_plural: Контакты
+  label_easy_contact_principals: 'Пользователи:'
+  label_easy_contact_projects: 'Проекты:'
+  label_easy_contact_queries_plural: Контакты
+  label_easy_contact_references: Связанные контакты
+  label_easy_contact_references_groups: Группы контактов
+  label_easy_contact_root_contact: Корневой контакт
+  label_easy_contact_sub_contact: Подконтакт
+  label_easy_contact_sub_contact_plural: Подконтакты
+  label_easy_contact_type: Это компания?
+  label_easy_contact_type_edit: Редактировать тип контакта
+  label_easy_contact_type_new: Создать тип контакта
+  label_easy_contact_types: Типы контактов
+  label_easy_contact_used_in_type: Используется в
+  label_easy_contacts: Контакты
+  label_easy_contacts_add_non_primary_custom_fields: Добавить другие свойства
+  label_easy_contacts_add_non_primary_custom_fields_select: Выберите свойство...
+  label_easy_contacts_import: Импорт контактов
+  label_easy_contacts_name: Имя контакта
+  label_easy_contacts_reg_no_query: Заполнить заранее по рег. номеру
+  label_easy_contacts_settings: Настройки контактов
+  label_easy_contacts_validate_vat_no: Проверить рег. номер плательщика НДС
+  label_easy_contacts_visibility_all: Все контакты
+  label_easy_contacts_visibility_assigned: Контакты закреплены за пользователем
+  label_easy_contacts_visibility_author: Контакты созданы пользователем
+  label_easy_contacts_visibility_own: Контакты созданы или закреплены за пользователем
+  label_edit_contact_field_settings: Настройки поля %{name}
+  label_filter_group_easy_contact_group_query: Группа контактов
+  label_filter_group_easy_contact_query: Контакт
+  label_new_import_file_toggling_button: Другие файлы/настройки
+  label_personal_name: Имя
+  label_project_easy_contact_groups: Группы проектов
+  label_project_easy_contacts: Контакты по проекту
+  label_show_easy_contacts: Показать контакты
+  menu_easy_contacts: Контакты
+  modal_labels:
+    cancel: Отменить
+    mail: Отправить выбранное
+  modal_query:
+    groups: Закрепить за группами
+    mail: Отправить по эл. почте
+    projects: Закрепить за проектами
+  modal_titles:
+    cancel: Закрыть
+    mail: Отправить выбранные контакты выбранным пользователям.
+  notice_easy_contact_successful_create: Контакт %{id} создан.
+  notice_failed_to_save_contacts: Не удалось сохранить контакты.
+  notice_successfull_contacts_import: Контакты успешно импортированы
+  notice_successfully_assignable_easy_contacts: Выбранные контакты (%{count}) закреплены
+  notice_successfully_remove: Контакт удалён из группы %{ecg}
+  notice_successfully_send_by_mail: Выбранные контакты (%{count}) отправлены
+  permission_add_note_easy_contact_groups: Добавлять комментарии к группам
+  permission_add_note_easy_contacts: Добавлять комментарии к контактам
+  permission_anonymize_easy_contacts: Делать контакты анонимными
+  permission_assign_easy_contacts: Отправлять контакты по эл. почте
+  permission_assign_to_project: Добавлять/удалять контакты в проектах
+  permission_delete_assigned_easy_contacts: Удалять закреплённые контакты
+  permission_delete_author_easy_contacts: Удалять свои контакты
+  permission_delete_easy_contact_groups: Удалять группы контактов
+  permission_delete_easy_contact_types: Удалять типы контактов
+  permission_delete_easy_contacts: Удалять контакты
+  permission_edit_contact_note: Редактировать комментарии к контактам
+  permission_manage_assigned_easy_contacts: Управлять закреплёнными контактами
+  permission_manage_author_easy_contacts: Управлять своими контактами
+  permission_manage_easy_contact_groups: Управлять группами контактов
+  permission_manage_easy_contact_types: Управлять типами контактов
+  permission_manage_easy_contacts: Управлять контактами
+  permission_view_easy_contacts: Просматривать контакты
+  project_contacts_overview:
+    header: Список контактов на проекте
+    warning_easy_contacts_disabled: Модуль «Контакты» неактивен в этом проекте
+  project_default_page:
+    easy_contacts: Контакты
+  project_module_easy_contacts: Контакты
+  search_field_placeholders:
+    easy_contacts: Поиск контактов
+  setting_easy_carddav_enabled: Включить carddav
+  text_are_you_sure_easy_contact_destroy: УНИЧТОЖИТЬ КОНТАКТ! Выбрав это действие,
+    вы навсегда удалите контакт. Точно хотите продолжить?
+  text_easy_contact_missing_comments: Комментарии отсутствуют
+  text_easy_contacts_encoding_help: Для пользователей Windows это, скорее всего, —
+    windows-1250, для остальных — UTF-8
+  text_easy_contacts_import_help: Выберите CSV-файл для импорта и кодировку.
+  text_easy_contacts_import_preview: Проверьте данные ниже. Если всё в порядке, нажмите
+    «Импорт», чтобы сохранить данные. Если что-то не так, выберите другой файл или
+    измените настройки.
+  title_easy_contact_assign: Добавить контакт к группе
+  title_easy_contact_groups_edit: Редактировать группу
+  title_easy_contact_mailer: Контакты – %{contact_name}
+  title_easy_contact_type_delete: Удалить контакт
+  title_easy_contact_type_edit: Редактировать контакт
+  title_easy_contact_type_new: Создать контакт
+  title_easy_contacts_in_group: Контакты в группе
+  title_easy_modal_selector_trigger:
+    easy_contact: Нажмите, чтобы выбрать контакт из списка.
+    easy_contact_group: Нажмите, чтобы выбрать группу контактов из списка.
+  title_issue_contacts_display_changer_list: Отобразить контакты в виде списка
+  title_issue_contacts_display_changer_slab: Отобразить контакты  в виде карточек
+  title_issue_contacts_display_changer_tile: Отобразить контакты в виде плитки
+  title_maybe_you_can: Может быть, вы хотите создать новый контакт
+  title_other_formats_links_vcf: Экспорт в vCard
+  title_reasign_easy_contact: 'Переназначить контакт: %{contact}'
+  title_remove_easy_contact_from_entity: Удалить контакт из объекта

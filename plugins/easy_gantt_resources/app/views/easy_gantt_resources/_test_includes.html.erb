@@ -1,0 +1,8 @@
+<%
+   resources_jasmine_tests = [
+       # common tests
+       'allocators',
+       'allocators_corner_cases'
+   ]
+%>
+<%= javascript_include_tag(*resources_jasmine_tests.map { |test| 'easy_gantt_resources/jasmine/' + test }, plugin: 'easy_gantt_resources') %>

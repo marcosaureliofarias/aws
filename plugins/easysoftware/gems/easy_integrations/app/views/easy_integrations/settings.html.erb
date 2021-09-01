@@ -1,0 +1,34 @@
+<h1>asdas</h1>
+
+<% @easy_integrations.each do |entity_klass, easy_integrations| %>
+  <h3><%= entity_klass %></h3>
+
+  <table class="list">
+    <thead>
+    <tr>
+      <th>Active</th>
+      <th class="name">Name</th>
+      <th>When</th>
+      <th>Perform once</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% easy_integrations.each do |easy_integration| %>
+      <tr>
+        <td><%= easy_integration.active %></td>
+        <td><%= easy_integration.name %></td>
+        <td><%= easy_integration.on_create %></td>
+        <td><%= easy_integration.perform_once %></td>
+        <td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_new_easy_integration, scope: :easy_integrations), new_easy_integration_path(service: params[:slug]), title: l(:title_new_easy_integration, scope: :easy_integrations), class: 'icon icon-add button-positive') %>
+<% end %>

@@ -1,0 +1,212 @@
+table.list{
+  font-family:Helvetica,Arial,Sans-Serif;
+  font-size: .9em;
+  border-top: 1px solid $mailer__color--border;
+  border-bottom: 1px solid $mailer__color--border;
+  width: 100%;
+}
+table.list tr:nth-of-type(odd){
+  background: $mailer__color--mixed;
+}
+table.list tr + tr {
+  border-top: 1px solid $mailer__color--mixed;
+}
+table.list th{
+  background: $mailer__color--mixed;
+  border-bottom: 1px solid $mailer__color--border;
+  text-align: left;
+}
+table.list td,table.list th{
+  padding: 5px;
+}
+table.list .project,
+table.list .subject{
+  min-width: 160px;
+}
+table.list .closed_on,
+table.list .created_on,
+table.list .updated_on,
+table.list .due_date,
+table.list .start_date{
+  min-width: 100px;
+}
+table.progress{
+  border: 1px solid $mailer__color--border;
+  border-collapse: collapse;
+}
+table.list td,th{
+  padding: 5px;
+}
+table.progress td{
+  height: 5px;
+  border: 1px solid $mailer__color--border;
+  background: $mailer__color--mixed;
+  padding: 0;
+}
+table.progress td.closed{
+  border-color: $mailer__color--links;
+  background-color: $mailer__color--links;
+}
+.progress-parent{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+a.wiki-anchor {
+  display: none;
+}
+.overdue {
+  color: $mailer__color--negative !important;
+}
+
+.private {
+  color: $mailer__color--negative !important;
+  float: right;
+  line-height: 1.2;
+}
+
+.journal-details-container h4{
+  font-style: italic;
+}
+.journal-details-container .details{
+  font-size: .9em;
+  margin-bottom: $mailer__padding;
+}
+
+.attributes-wrapper{
+  margin-top: 0px;
+  margin-bottom: $mailer__padding;
+}
+
+.attributes{
+  font-family:Helvetica;
+  font-size:14px;
+  color:#505050;
+  line-height: 120%;
+  width: 100%;
+  background-color:$mailer__color--mixed;
+  border:1px solid $mailer__color--border;
+}
+
+.attribute th{
+  width:  auto;
+}
+
+.attributes th, .attributes td{
+  padding: 2px 0.5*$mailer__padding;
+}
+
+.attributes th{
+  width: 25%;
+  font-size: 0.89em;
+  font-weight: normal;
+  text-align: left;
+}
+
+.separator > td{
+  border: none;
+  padding-top: 0.5*$mailer__padding;
+  border-bottom: 1px dashed $mailer__color--border;
+}
+
+.spacer > td{
+  border: none;
+  height: 0.5*$mailer__padding;
+  padding: 0;
+}
+
+.spacer + .spacer > td{
+  border: none;
+  border-top: 1px dashed $mailer__color--border;
+}
+
+.footerActions{
+  text-align: center !important;
+}
+
+.actionButtons{
+  border-collapse: separate !important;
+  margin: auto;
+  font-family:Helvetica;
+  font-size:14px;
+}
+.actionButtons a{
+  color: $mailer__color--front;
+  font-weight: bold;
+}
+.actionButtons td{
+  border: 1px solid $mailer__color--positive;
+  background-color: $mailer__color--positive;
+}
+
+.actionButtons td.negative{
+  background-color: $mailer__color--negative;
+  border-color: $mailer__color--negative;
+}
+
+.actionButtons td a{
+  font-weight: bold !important;
+  display: inline-block;
+  padding: 0.5*$mailer__padding $mailer__padding;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  text-decoration: none !important;
+}
+
+.actionButtons a:link, .actionButtons a:visited, .actionButtons a span {
+  color: $mailer__color--front !important;
+}
+.attachments a{
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.attachments li{
+  margin-bottom: 3px;
+}
+
+.bodyAttributes {
+  font-size:12px !important;
+}
+.bodyAttributes b {
+  width: 30% !important;
+  display: inline-block !important;
+}
+
+.journal {
+  .avatar{
+    display: flex;
+    align-items: center;
+    &-container{
+      border-radius: 500px;
+      margin-right: $gap;
+      overflow: hidden;
+    }
+  }
+  h5{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    margin-bottom: $gap;
+  }
+  .note {
+    overflow: hidden;
+    background: $color-foreground;
+    border: 1px solid $color-border-minor;
+    padding: $retrace;
+    border-radius: 3px;
+    margin-bottom: $gap;
+    //margin-bottom: 0.5*$gap;
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
+      margin-bottom: $gap;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

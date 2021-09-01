@@ -1,0 +1,408 @@
+---
+sk:
+  activerecord:
+    errors:
+      messages:
+        error_contains_invalid_character: obsahuje neplatné znaky‌
+  button_edit_content: Upraviť obsah
+  comment_copied_from: Skopírované z %{source}
+  comment_moved_from: Presunuté z %{source}
+  dmsf: DMS
+  dmsf_and: A
+  dmsf_copy: Kopírovať (%{n})
+  dmsf_new_step: Nový krok
+  dmsf_new_step_or_approver: Nový krok alebo nový schvaľovateľ‌
+  dmsf_or: ALEBO
+  dmsf_webdav_ignore_1b_file_for_authentication: Ignorovať súbor 1b poslaný pre autentifikáciu.
+  dmsf_webdav_ignore_1b_file_for_authentication_info: WebDAV plugin pre Total Commander
+  easy_pages:
+    module_category:
+      easy_dms: Easy DMS
+    modules:
+      dmsf_locked_documents: Moje uzamknuté dokumenty‌
+      dmsf_open_approvals: Moje otvorené schválenia
+  error_at_least_one_revision_must_be_present: Musí existovať aspoň jedna revízia‌
+  error_cannot_renumber_steps: Schvaľovacie kroky nie je možné prečíslovať‌
+  error_cannot_start_workflow: Schvaľovací proces nemôže byť spustený
+  error_contains_invalid_character: obsahuje neplatné znaky
+  error_create_cycle_in_folder_dependency: vytvoriť slučku vo väzbách zložky
+  error_email_to_must_be_entered: Musí byť zadaný príjemca
+  error_empty_note: Musí byť vyplnený komentár
+  error_entry_project_does_not_match_current_project: Zadaný projekt nezodpovedá aktuálnemu
+    projektu‌
+  error_file_can_not_be_created: Nie je možné vytvoriť súbor v cieľovej zložke
+  error_file_commit_require_uploaded_file: Potvrdenie si vyžaduje nahraný súbor‌
+  error_file_is_locked: Súbor je zamknutý‌
+  error_file_storage_directory_does_not_exist: Cieľová zložka neexistuje a nemôže
+    byť vytvorená‌
+  error_file_tmpdir_does_not_exist: Dočasná cesta k súboru neexistuje a nedá sa vytvoriť‌
+  error_folder_cannot_be_copied: Zložku nemožno skopírovať‌
+  error_folder_creation_failed: Vytvorenie zložky zlyhalo
+  error_folder_is_locked: Zložka je zamknutá
+  error_folder_is_not_empty: Zložka nie je prázdna
+  error_folder_title_is_already_used: Názov už existuje
+  error_folder_title_must_be_entered: Musíte zadať názov‌
+  error_lock_exclusively: Nie je možné zamknúť už zamknutý objekt‌
+  error_max_email_filesize_exceeded: Prekročili ste maximálnu veľkosť súboru na odoslanie
+    emailom. ( %{number} MB)
+  error_max_files_exceeded: Bol prekročený limit pre %{number} súčasne stiahnutých
+    súborov‌
+  error_maximum_upload_filecount: Nie je možné nahrať viac ako %{filecount} súborov.
+  error_minimum_filesize: Súbor %{file} má 0 bajtov a nebude pripojený.
+  error_only_user_that_locked_file_can_unlock_it: Súbor môže odomknúť iba používateľ,
+    ktorý súbor zamkol
+  error_only_user_that_locked_folder_can_unlock_it: Nemáte oprávnenie na odomknutie
+    tejto zložky
+  error_parent_folder: Nadradená zložka neexistuje
+  error_parent_locked: Nie je možné zamknúť - nadradený objekt je už zamknutý‌
+  error_resource_locked: Nie je možné zamknúť - zdrojový objekt je zamknutý‌
+  error_resource_or_parent_locked: Nie je možné zamknúť - zdrojový alebo nadradený
+    objekt je zamknutý‌
+  error_target_folder_same: Cieľová zložka a projekt sú rovnaké ako aktuálne
+  error_tmpfile_can_not_be_created: Nie je možné vytvoriť súbor v zložke pre dočasné
+    súbory‌
+  error_unable_delete_dmsf_workflow: Nepodarilo sa odstrániť schvaľovací proces‌
+  error_unlock_parent_locked: Nie je možné odomknúť - nadradený objekt je stále zamknutý‌
+  error_user_has_not_right_delete_file: Používateľ nemá právo odstrániť súbor
+  error_user_has_not_right_delete_folder: Používateľ nemá právo odstrániť zložky
+  error_workflow_assign: Chyba pri priradení
+  error_wrong_zip_encoding: Chybné kódovanie zip súboru
+  field_count: D/L
+  field_dmsf_not_inheritable: Nemôže byť dedené
+  field_dmsf_tree_view: Zobraziť zložky ako stromovú štruktúru
+  field_external_url: URL
+  field_first_at: Prvý
+  field_folder: Zložka
+  field_label_dmsf_workflow: Schvaľovací proces
+  field_label_dmsf_workflow_name: Názov schvaľovacieho procesu‌
+  field_last_at: Posledný
+  field_modified: Dátum
+  field_size: Veľkosť
+  field_target_file: Zdrojový súbor
+  field_target_folder: Cieľová zložka
+  field_target_project: Cieľový projekt
+  field_updated: Dátum
+  field_workflow: Pracovný postup (Workflow)
+  header_minimum_filesize: Chyba súboru.
+  heading_access_downloads_emails: Stiahnuté/Emaily
+  heading_access_first: Prvý
+  heading_access_last: Posledný
+  heading_new_folder: Nová zložka
+  heading_new_revision: Nová revízia
+  heading_revisions: Revízie‌
+  heading_send_documents_by_email: Odoslať dokumenty emailom‌
+  heading_uploaded_files: Nahrané súbory
+  info_changed_by_user: "%{changed} používateľom‌"
+  info_file_locked: Súbor je zamknutý!
+  info_revision: r%{rev}
+  label_act_as_attachable: Ako príloha‌
+  label_action: Akcia
+  label_add_width: Pridať pomocou
+  label_basic_attachments: Prílohy‌
+  label_changed: Zmenené
+  label_created: Vytvorené
+  label_default_notifications: Predvolené notifikácie pre súbory‌
+  label_description: Popis‌
+  label_display_notified_recipients: Zobraziť príjemcu notifikácií
+  label_dmsf: DMS
+  label_dmsf_attachments: DMS Prílohy‌
+  label_dmsf_downloaded: Stiahnuté‌
+  label_dmsf_fast_links: Rýchle odkazy
+  label_dmsf_file: Dokument (DMS)
+  label_dmsf_file_plural: Dokumenty (DMS)
+  label_dmsf_file_revision_access_plural: Prístupy k dokumentom‌
+  label_dmsf_file_revision_plural: Revízie dokumentu
+  label_dmsf_folder: Zložka (DMS)
+  label_dmsf_folder_plural: Zložky
+  label_dmsf_keep_documents_locked: Ponechať dokumenty zamknuté‌
+  label_dmsf_permissions: Povoliť prístup len pre
+  label_dmsf_plural: Kopírovať dokumenty a zložky (%{files} súborov v %{folders} zložkách)
+  label_dmsf_updated: Zmenené
+  label_dmsf_version: Verzia
+  label_dmsf_wokflow_action_approve: Schváliť
+  label_dmsf_wokflow_action_assign: Priradiť schvaľovací proces‌
+  label_dmsf_wokflow_action_delegate: Delegovať na
+  label_dmsf_wokflow_action_reject: Zamietnuť
+  label_dmsf_wokflow_action_start: Začať schvaľovací proces
+  label_dmsf_workflow_add_approver: 'Pridať schvaľovateľa s logickou funkciou:'
+  label_dmsf_workflow_approval: Schválenie‌
+  label_dmsf_workflow_approval_plural: Schválenia
+  label_dmsf_workflow_new: Nový schvaľovací proces‌
+  label_dmsf_workflow_plural: Schvaľovacie procesy‌
+  label_dmsf_workflow_plural_num: Schvaľovacie procesy (%{count})
+  label_dmsf_workflow_step: Krok
+  label_dmsf_workflow_step_plural: Kroky
+  label_document_url: Url
+  label_email_body: Obsah
+  label_email_cc: Kópia (cc)
+  label_email_documents: Dokumenty
+  label_email_from: Od
+  label_email_from_override: Od
+  label_email_reply_to: Komu odpovedať
+  label_email_send: Poslať
+  label_email_subject: Predmet
+  label_email_to: Komu
+  label_empty_trash_bin: Vyprázdniť kôš
+  label_enable_cjk_ngrams: Povoliť generovanie n-gramov pre CJK texty‌
+  label_external: Externý
+  label_file: Súbor
+  label_file_storage_directory: Zložka pre ukladanie súborov
+  label_filename: Názov súboru
+  label_full_text: Full-textové vyhľadávanie‌
+  label_index_database: Index databázy‌
+  label_inherited_permissions: Zdedené oprávnenia
+  label_internal: Interné‌
+  label_last_approver: Posledný schvaľovateľ‌
+  label_last_revision_id: Revízia
+  label_link_from: Odkaz z
+  label_link_name: Názov odkazu‌
+  label_link_to: Odkaz do
+  label_links_only: iba odkazy
+  label_maximum_email_filesize: Maximálna veľkosť prílohy emailu‌
+  label_maximum_files_download: Maximálny počet naraz stiahnutých súborov‌
+  label_mime: Typ
+  label_my_locked_documents: Moje uzamknuté dokumenty
+  label_my_open_approvals: Moje otvorené schválenia‌
+  label_new_content: Nový obsah
+  label_note: Komentár
+  label_notifications: Notifikácie
+  label_notifications_off: Vypnúť notifikácie
+  label_notifications_on: Zapnúť notifikácie
+  label_number_of_documents: Dokumenty
+  label_number_of_folders: Zložky
+  label_or: alebo
+  label_physical_file_delete: Fyzické odstránenie súboru
+  label_public_urls: Verejná URL platná do
+  label_size: Veľkosť
+  label_source_folder: Zdrojová zložka
+  label_source_project: Zdrojový projekt‌
+  label_stem_strategy: "'Stem' stratégia‌"
+  label_stemming_description: Tu kontrolujete ako query parser aplikuje stemming algoritmus.
+    Predvolená hodnota je STEM_NONE. Možné hodnoty sú‌
+  label_stemming_language: Jazyk pre 'Stemming'
+  label_target_folder: Cieľová zložka
+  label_target_project: Cieľový projekt‌
+  label_title: Názov
+  label_title_format: Formát názvu
+  label_tmpdir: Zložka pre dočasné súbory‌
+  label_upload: Nahrať
+  label_user_search_add: Vyhľadajte používateľa, ktorého chcete pridať‌
+  label_webdav: WebDAV
+  label_webdav_disable_versioning: Žiadne vzory súborov verzionovania
+  label_webdav_ignore: Vzory názvov ignorovaných súborov
+  label_webdav_strategy: Webdav stratégia
+  label_webdav_use_project_names: Použiť názvy projektov‌
+  link_author: Autor
+  link_create_folder: Vytvoriť zložku
+  link_details: "%{title} detaily"
+  link_documents: Dokumenty
+  link_edit: Upraviť %{title}
+  link_extension: Ext
+  link_modified: Upravené
+  link_size: Veľkosť
+  link_title: Názov
+  link_trash_bin: Kôš
+  link_user_preferences: Projektové nastavenia DMS
+  link_ver: Ver.
+  link_workflow: Schvaľovací proces
+  locked_documents: Zamknuté dokumenty
+  menu_dmsf: DMS‌
+  message_dmsf_wokflow_note: Váš komentár...
+  note_display_notified_recipients: Používateľ bude informovaný o príjemcoch práve
+    odoslanej emailovej notifikácie.
+  note_dmsf_act_as_attachable: Umožní prikladať dokumenty k objektom napr. k úlohám.
+  note_dmsf_keep_documents_locked: Dokumenty zostanú po schválení zamknuté.
+  note_do_not_stem: Nevykonávať žiadny "stemming".
+  note_global: "(globálny)"
+  note_maximum_email_filesize: Obmedzuje maximálnu veľkosť súboru ktorú je možné odoslať
+    emailom, kde 0 znamená neobmedzené. Číslo je v MB.
+  note_maximum_number_of_files_downloaded: Obmedzuje maximálny počet súborov stiahnutých
+    vo formáte zip alebo odoslaných emailom, kde 0 znamená neobmedzené.
+  note_pass_none_to_disable_stemming: zadajte 'nič' pre vypnutie 'stemmingu'
+  note_possible_values: Možné hodnoty‌
+  note_stem_all: 'Vyhľadajte stemmovacie formy všetkých slov (poznámka: nepridáva
+    sa predpona „Z“).'
+  note_stem_some: Vyhľadávajte stemmovacie formy výrazov s výnimkou tých, ktoré začínajú
+    veľkým písmenom, alebo za nimi nasledujú určité znaky, alebo sa používajú s operátormi,
+    ktorí potrebujú informácie o polohe. Stemmované výrazy majú predponu „Z“.
+  note_stemming_applied: Všimnite si, že stemming algoritmus sa používa iba na slová
+    v pravdepodobnostných poliach - filter boolean výrazov sa nikdy nestemmuje.
+  note_webdav: Webdav je po aktivácii dostupný na %{protocol}://%{domain}/dmsf/webdav/[identifikátor
+    projektu]
+  note_webdav_disable_versioning: Regulárny výraz, ktorý zakazuje vytváranie verzií
+    pre zodpovedajúce súbory. Predvolený vzor sa zhoduje s dočasnými súbormi, ktoré
+    boli vytvorené v MS Office.
+  note_webdav_disabled: WebDAV je vypnutý. Kontaktujte prosím administrátora.
+  note_webdav_ignore: Regulárny výraz pre názvy súborov ktoré budú ignorované pri
+    volaní PUT.
+  note_webdav_strategy: Umožní administrátorovi rozhodnúť, či je webdav len na čítanie
+    alebo aj pre zápis.
+  note_webdav_use_project_names: Použiť názvy projektov namiesto identifikátorov pre
+    názvy zložiek.
+  notice_dmsf_file_restored: Dokument bol úspešne obnovený‌
+  notice_dmsf_folder_restored: Zložka bola úspešne obnovená
+  notice_dmsf_link_restored: Odkaz bol úspešne obnovený‌
+  notice_entries_deleted: Položky boli odstránené‌
+  notice_file_copied: Súbor bol skopírovaný‌
+  notice_file_deleted: Súbory boli odstránené
+  notice_file_locked: Súbor je zamknutý‌
+  notice_file_moved: Súbor bol presunutý
+  notice_file_notifications_activated: Notifikácia súboru boli aktivované‌
+  notice_file_notifications_deactivated: Notifikácia súboru boli deaktivované
+  notice_file_revision_created: Vytvorená nová revízia
+  notice_file_unlocked: Súbor bol odomknutý
+  notice_folder_copied: Zložka bola skopírovaná
+  notice_folder_created: Zložka bola vytvorená
+  notice_folder_deleted: Zložka bola odstránená
+  notice_folder_details_were_saved: Podrobnosti o zložke boli uložené‌
+  notice_folder_locked: Zložka bola úspešne zamknutá
+  notice_folder_notifications_activated: Oznámenia o zložke boli aktivované‌
+  notice_folder_notifications_deactivated: Oznámenia o zložke boli deaktivované‌
+  notice_folder_unlocked: Zložka bola úspešne odomknutá
+  notice_revision_deleted: Revízia bola odstránená
+  notice_revision_obsoleted: Revízia je zastaraná‌
+  notice_workflow_started: Schvaľovací proces bol úspešne zahájený‌
+  notice_your_preferences_were_not_saved: Vaše preferencie neboli uložené‌
+  notice_your_preferences_were_saved: Vaše preferencie boli uložené
+  open_approvals: Procesy na schválenie
+  option_stem_all: Všetko stemovať
+  option_stem_none: Nič nestemovať (predvolené)
+  option_stem_some: Niektoré stemovať
+  option_version_custom: Používateľské
+  option_version_major: Hlavná
+  option_version_minor: Podružná‌
+  option_version_same: Rovnaká‌
+  parent_directory: Nadradená zložka
+  permission_display_system_folders: Zobraziť systémové zložky
+  permission_email_documents: Posielať dokumenty e-mailom‌
+  permission_file_approval: Schválenie súboru‌
+  permission_file_delete: Odstrániť dokumenty
+  permission_file_manipulation: Manipulácia so súbormi
+  permission_folder_manipulation: Manipulácia so zložkami
+  permission_force_file_unlock: Vynútiť odomknutie súboru‌
+  permission_manage_workflows: Spravovať schvaľovacie procesy
+  permission_user_preferences: Nastavenie používateľa‌
+  permission_view_dmsf_file_revision_accesses: Zobraziť stiahnuté dokumenty v prehľade
+    aktivít
+  permission_view_dmsf_file_revisions: Zobraziť revízií v prehľade aktivít‌
+  permission_view_dmsf_files: Zobraziť dokumenty
+  permission_view_dmsf_folders: Prezerať dokumenty
+  project_module_dmsf: DMS
+  select_option_activated: Aktivované‌
+  select_option_deactivated: Deaktivované
+  select_option_default: Predvolený‌
+  select_option_webdav_readonly: Iba na čítanie‌
+  select_option_webdav_readwrite: Čítanie/Zápis
+  submit_save: Uložiť
+  text_dmsf_fast_links_info: Pri vytváraní odkazov budete môcť zadať priamo ID cieľovej
+    zložky za účelom zrýchlenia procesu vytvárania odkazov.
+  text_email_doc_deleted: práve odstránil dokumenty projektu‌
+  text_email_doc_deleted_subject: Dokumenty boli odstránené
+  text_email_doc_follows: takto‌
+  text_email_doc_updated: práve aktualizoval(a) dokumenty projektu
+  text_email_doc_updated_subject: Dokumenty boli aktualizované
+  text_email_finished_approved: Schvaľovací proces '%{name}' priradený k dokumentu
+    '%{filename}' bol práve ukončený a dokument je schválený.
+  text_email_finished_delegated: Schvaľovací proces '%{name}' priradený k dokumentu
+    '%{filename}' bol delegovaný, pretože '%{notice}' a od Vás sa očakáva schválenie
+    v aktuálnom schvaľovacom kroku.
+  text_email_finished_rejected: Schvaľovací proces '%{name}' priradený k dokumentu
+    '%{filename}' bol ukončený a dokument bol zamietnutý, pretože '%{notice}'.
+  text_email_finished_step: Schvaľovací proces '%{name}' priradený k dokumentu '%{filename}'
+    práve ukončil jeden zo schvaľovacích krokov a od Vás sa očakáva schválenie v ďalšom
+    schvaľovacom kroku.
+  text_email_finished_step_short: Schvaľovací proces '%{name}' priradený k dokumentu
+    '%{filename}' práve ukončil jeden zo schvaľovacích krokov.
+  text_email_from_override: Aktuálne prihlásený používateľ‌
+  text_email_started: Schvaľovací proces '%{name}' priradený k dokumentu '%{filename}'
+    bol zahájený a od Vás sa očakáva schválenie aktuálneho kroku.
+  text_email_subject_approved: schválený
+  text_email_subject_delegated: delegovaný‌
+  text_email_subject_rejected: zamietnutý‌
+  text_email_subject_requires_approval: vyžaduje Vaše schválenie‌
+  text_email_subject_started: spustený
+  text_email_subject_updated: aktualizované‌
+  text_email_to_proceed: Pre schválenie kliknite na zaškrtávaciu ikonu vedľa dokumentu
+    v
+  text_email_to_see_history: Pre zobrazenie histórie schvaľovacieho procesu kliknite
+    na stav dokumentu v
+  text_email_to_see_status: Pre zobrazenie aktuálneho stavu schvaľovacieho procesu
+    kliknite na stav dokumentu v
+  text_enable_cjk_ngrams: 'Ak je povolené, sekvencie  znakov CJK sú rozdelené do jednotlivých
+    znakov alebo skupín znakov. Znaky si nesú informáciu o svojej pozícii. Znaky písané
+    latinkou sú rozdelené normálne do slov. Zodpovedajúce premeny prostredia musia
+    byť použité pri indexácii. napr .: XAPIAN_CJK_NGRAM = true ruby plugins / redmine_dmsf
+    / extra / xapian_indexer.rb -fv'
+  text_memcached_servers: Podporovaný je iba jeden server. Ak je prázdny, potom je
+    cache zakázaný. Po tejto zmene je potrebné aplikáciu reštartovať!
+  text_not_empty: Zložka nie je prázdna.
+  text_stemming_info: 'Toto kontroluje, ako parser použije stemovací algoritmus. Predvolená
+    hodnota STEM_NONE. Možné hodnoty sú: STEM_NONE - neaplikujte žiadny stemming,
+    STEM_SOME - Použije stemovanie pre výrazy okrem tých, ktoré začínajú veľkým písmenom
+    alebo sú nasledované určitýmy znaky (''/ @ <> = * [{"'') alebo sú použité s operátormi,
+    ktoré vyžadujú informáciu o pozícii. Stemované výrazy začínajú písmenom ''Z'',
+    STEM_ALL - Hľadaj stemové výrazy vo všetkých slovách (prefix ''Z'' nie je pridaný)'
+  text_title_format: 'Formát názvu súboru pre stiahnutie (%t - názov, %f - súbor,
+    %d - dátum, %v - verzia, %i - ID, %r - revízia). Napr .: %t_%v'
+  title_approval: Schválenie
+  title_approved: Schválené
+  title_assigned: Priradené
+  title_assignment: Priradenie
+  title_check_for_restore_or_delete: Vybrať na obnovenie alebo odstránenie
+  title_check_for_zip_download_or_email: Vybrať na stiahnutie ako zip alebo emailom
+  title_check_uncheck_all_for_restore_or_delete: O(d)značiť všetky k odstráneniu alebo
+    obnove‌
+  title_check_uncheck_all_for_zip_download_or_email: O(d)značiť všetky pre zip, stiahnutie
+    alebo poslanie e-mailom
+  title_copy: Kopírovať
+  title_copy_or_move: Kopírovať/Presunúť
+  title_create_link: Vytvoriť symbolický odkaz
+  title_delegation: Delegovať
+  title_delete: Odstrániť
+  title_delete_checked: Odstrániť označené
+  title_delete_revision: Odstrániť revíziu
+  title_dmsf_workflow_log: História schvaľovacieho procesu
+  title_download: Stiahnuť
+  title_download_checked: Stiahnuť vybrané ako Zip
+  title_download_entries: História sťahovania
+  title_filename_for_download: Názov Zip archívu na stiahnutie
+  title_items: položky
+  title_lock_file: Zamknite súbor, aby ste zabránili zmenám ostatných členov
+  title_lock_folder: Zamknite, aby ste zabránili zmenám ostatných členov
+  title_locked_by_user: Zamknuté používateľom %{user}
+  title_none: Žiadny
+  title_notifications_active: Notifikácie sú aktívne
+  title_notifications_active_deactivate: 'Notifikácie sú aktívne: Deaktivovať'
+  title_notifications_not_active_activate: 'Notifikácie nie sú aktívne: Aktivovať'
+  title_obsolete: Zastarané
+  title_obsolete_revision: Označiť revíziu ako zastaranú
+  title_rejected: Zamietnutý
+  title_rejection: Zamietnutie
+  title_restore: Obnoviť
+  title_restore_checked: Obnoviť vybrané
+  title_save_preferences: Uložiť nastavenia
+  title_send_checked_by_email: Zaslať vybrané emailom‌
+  title_start: Spustenie
+  title_title_version_version_download: "%{title} verzia %{version} stiahnuť"
+  title_total_size_of_all_files: Celková veľkosť všetkých súborov v tejto zložke
+  title_unlock_file: Odomknite súbor, aby ste povolili zmeny pre ostatných členov
+  title_unlock_folder: Odomknite a povoľte zmeny pre ostatných členov
+  title_waiting_for_approval: Čaká sa na schválenie
+  user_is_not_project_member: Nie ste členom projektu
+  warning_email_notifications: Notifikačný email poslaný na používateľa %{to}
+  warning_file_already_locked: Súbor je už zamknutý
+  warning_file_not_locked: Súbor nie je zamknutý
+  warning_file_notifications_already_activated: Notifikácie súboru sú už aktivované
+  warning_file_notifications_already_deactivated: Notifikácie súboru sú už deaktivované
+  warning_folder_already_locked: Táto zložka je už uzamknutá
+  warning_folder_not_locked: Zložku sa bohužiaľ nepodarilo zamknúť
+  warning_folder_notifications_already_activated: Oznámenia o zložkách sú už aktivované
+  warning_folder_notifications_already_deactivated: Oznámenia o zložkách sú už deaktivované
+  warning_no_entries_selected: Nie je nič vybrané
+  warning_no_project_to_copy_file_to: Neexistuje projekt, do ktorého môžete kopírovať
+  warning_no_project_to_copy_folder_to: Neexistuje projekt, do ktorého môžete kopírovať
+  warning_one_of_files_locked: Jeden zo súborov je zamknutý
+  warning_some_entries_were_not_deleted: 'Niektoré položky neboli odstránené: %{entries}'
+  warning_some_files_were_not_commited: 'Niektoré súbory sa neuložili z dôvodu chýb
+    pri validácii: %{files}'
+  warning_xapian_not_available: Xapian nie je dostupný

@@ -1,0 +1,5 @@
+<%= render @query, options: { hascontextmenu: false, additional_tagged_url_options: { kanban_backlog: true }, show_columns_criteria: false, show_sort_criteria: false, show_group_by_criteria: false, show_settings_criteria: false, show_free_search: false }, form_options: { free_search_options: { free_search_url: output_data_easy_queries_path(@query.to_params.merge(output: 'agile_backlog', format: :json)) } } %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'easy_kanban/sidebar', locals: { project: @project, easy_sprint: nil } %>
+<% end %>

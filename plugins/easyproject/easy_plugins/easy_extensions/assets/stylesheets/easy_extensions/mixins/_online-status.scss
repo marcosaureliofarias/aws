@@ -1,0 +1,39 @@
+%status-circle{
+  @extend %pseudo-before;
+  display: inline-block;
+  &:before {
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    width: .75*$gap;
+    height: .75*$gap;
+    z-index: 1;
+    color: $white;
+    border: 2px solid $white;
+    @extend %border-radius-infinite;
+  }
+}
+
+%online-status{
+  &.status{
+    &--on{
+      @extend %status-circle;
+      &:before{
+        background: $color-positive;
+      }
+    }
+    &--away{
+      @extend %status-circle;
+      &:before{
+        background: $gray;
+      }
+    }
+    &--dnd{
+      @extend %status-circle;
+      &:before {
+        background: $color-negative;
+      }
+    }
+  }
+}

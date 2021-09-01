@@ -1,0 +1,36 @@
+Rys::Patcher.add('IssuesController') do
+  # apply_if_plugins :easy_extensions
+
+  included do
+    before_action :easy_d3_add_flash_notice, only: [:show]
+  end
+
+  instance_methods do
+    def show
+      Rys::Feature.on('easy_d3.issue.show') do
+        @easy_d3_test_1 = 'Test 2'
+      end
+
+      super
+    end
+
+    private
+
+      def easy_d3_add_flash_notice
+        if Rys::Feature.active?('easy_d3.issue.show', 'easy_d3.project.show')
+          flash.now[:notice] = 'Features are activated'
+        end
+      end
+  end
+
+  instance_methods(feature: 'easy_d3.issue.show') do
+    def show
+      @easy_d3_test_2 = 'Test 2'
+
+      super
+    end
+  end
+
+  class_methods do
+  end
+end

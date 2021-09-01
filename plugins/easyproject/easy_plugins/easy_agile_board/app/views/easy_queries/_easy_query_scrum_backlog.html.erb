@@ -1,0 +1,43 @@
+<div id="sticky_agile_backlog_autocomplete">
+  <div class="sticky_agile_backlog_autocomplete_wrap sticky">
+    <label for="backlog_query_q"><%= l('easy_agile_board.label_search_tasks_for_backlog') + ': ' %></label><%= text_field_tag('easy_query_q', '', id: 'backlog_query_q') %>
+    <%= link_to('', easy_agile_board_populate_path(id: @project, sprint_id: @easy_sprint), remote: true, format: :js, title: l(:label_create_task_for_backlog), class: 'button-positive icon-add') %>
+  </div>
+</div>
+<div class="agile__backlog"></div>
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    var $backlog_query_q = $('#backlog_query_q');
+
+    $backlog_query_q.keydown(function (e) {
+      if (e.keyCode === 13) {
+        getAgileData($backlog_query_q.serializeArray());
+      }
+    });
+
+    window.getAgileData = function(data) {
+      EasyGem.loadModule("easyAgile", function (agile) {
+        agile.backlogLoader(".agile__backlog", '<%= raw output_data_easy_queries_path(@query.to_params.merge(output: 'scrum_backlog', project_id: @query.project, format: :json)) %>', data);
+      });
+    };
+
+    getAgileData($backlog_query_q.serializeArray());
+    var $search = $("#sticky_agile_backlog_autocomplete");
+    var autoCompletes = [];
+
+    window.easyView.sticky.add($search.find(".sticky_agile_backlog_autocomplete_wrap:visible").css({
+      textAlign: "center"
+    }), {
+      topOffset: 30,
+      startOffset: 0,
+      onCloneCreated: function ($clone) {
+        if (autoCompletes.indexOf($clone) !== -1)return;
+        autoCompletes.push($clone);
+        window.easyUtils.autocomplete($clone, function () {
+          getData($clone.find("input").serializeArray());
+        });
+      },
+      bottomBreak: -5000
+    });
+  });
+</script>

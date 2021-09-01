@@ -1,0 +1,124 @@
+<h2 id="easy_sprint_head">
+  <%= easy_sprint_head(@project, @easy_sprint, agile_action: 'burndown_chart', previous_easy_sprint: @easy_sprint.previous_easy_sprint{|scope| scope.without_due_date }, next_easy_sprint: @easy_sprint.next_easy_sprint{|scope| scope.without_due_date }) %>
+</h2>
+
+<div id="agile_board_container">
+  <%#= render partial: 'easy_agile_board/coworkers', locals: {project: @project, easy_sprint: @easy_sprint, coworkers: @coworkers} %>
+  <h5><%= l(:label_easy_agile_board_chart_burndown) %></h5>
+  <div class="sprint-container" data-sprint_id="<%= @easy_sprint.id %>" id="sprint_burndown_chart"></div>
+  <div class="sprint-container" data-sprint_id="<%= @easy_sprint.id %>" id="sprint_done_tasks_chart"></div>
+
+  <h5><%= l(:label_easy_scrum_board_sprint_history_chart) %></h5>
+  <div id="project_sprints_chart"></div>
+</div>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'easy_agile_board/sidebar', locals: { project: @project, easy_sprint: @easy_sprint, agile_action: 'burndown_chart', show_sprint_button_in_primary_actions: true } %>
+<% end %>
+
+<% include_jqplot_scripts %>
+
+<% content_for :body_bottom do %>
+  <script type="text/javascript">
+    EASY.schedule.require(function (c3) {
+      c3.generate({
+        bindto: '#project_sprints_chart',
+        oninit: EASY.utils.EasyChartsOnInit,
+        data: {
+          json: <%= raw @sprints_chart_data.to_json %>,
+          keys: {
+            x: 'name',
+            value: ['planned', 'actual']
+          },
+          names: {
+            planned: '<%= l(:field_is_planned) %>',
+            actual: '<%= l(:label_chart_real) %>'
+          },
+          type: 'line'
+        },
+        axis: {
+          x: {
+            type: 'category',
+            height: 50
+          },
+          y: {
+            padding: {
+              top: 0.1,
+              bottom: 0.1,
+              unit: 'ratio'
+            }
+          }
+        }
+      });
+
+    <% if @done_tasks_data.any? %>
+      c3.generate({
+        bindto: '#sprint_done_tasks_chart',
+        oninit: EASY.utils.EasyChartsOnInit,
+        data: {
+          json: <%= raw @done_tasks_data.to_json %>,
+          keys: {
+            x: 'name',
+            value: ['issues_done']
+          },
+          names: {
+            issues_done: '<%= l(:label_easy_agile_board_chart_issues_completed) %>'
+          },
+          type: 'bar'
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%Y-%m-%d'
+            },
+            height: 50
+          },
+          y: {
+            padding: {
+              top: 0.1,
+              bottom: 0.1,
+              unit: 'ratio'
+            }
+          }
+        }
+      });
+    <% end %>
+
+    <% if @burndown_data.any? %>
+      c3.generate({
+        bindto: '#sprint_burndown_chart',
+        oninit: EASY.utils.EasyChartsOnInit,
+        data: {
+          json: <%= raw @burndown_data.to_json %>,
+          keys: {
+            x: 'name',
+            value: <%= raw @burndown_labels.keys.to_json %>
+          },
+          names: <%= raw @burndown_labels.to_json %>,
+          type: 'line'
+        },
+        axis: {
+          x: {
+            type: 'timeseries',
+            tick: {
+              format: '%Y-%m-%d'
+            },
+            height: 50
+          },
+          y: {
+            padding: {
+              top: 0.1,
+              bottom: 0.1,
+              unit: 'ratio'
+            }
+          }
+        }
+      });
+
+      <% end %>
+    }, 'c3');
+  </script>
+<% end %>
+
+<%= late_javascript_tag("showFlashMessage('error', '#{@error.html_safe}');") if @error %>

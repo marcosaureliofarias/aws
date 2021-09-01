@@ -1,0 +1,2 @@
+<div class="alerts-report-entity-name"><%= link_to(report.entity.name, { :controller => 'versions', :action => 'show', :id => report.entity_id}) if report.entity -%></div>
+<div class="alerts-report-entity-watch"><%= l(:label_alert_condition_was_satisfied) %></div>

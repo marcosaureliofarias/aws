@@ -1,0 +1,32 @@
+<% unless @events_by_day.empty? %>
+  <div id="activity" class="users-activity">
+    <div class="users-activity-root">
+      <h3><%= link_to l(:label_activity), :controller => 'activities', :action => 'index', :id => nil, :user_id => @user, :from => @events_by_day.keys.first %></h3>
+      <% if EasyAttendance.enabled? %>
+        <div class="at-work">
+          <% if @user.is_in_work? %>
+            <%= content_tag(:strong, l(:text_easy_attendance_user_detail_online_at)) %>: <span class="icon icon-time-add"><%= format_time(@user.current_attendance.arrival, false) %></span>
+          <% else %>
+            <% if @user.last_today_attendance && !@user.last_today_attendance.departure.nil? %>
+              <%= content_tag(:strong, l(:text_easy_attendance_user_detail_offline_at)) %>: <span class="icon icon-time"><%= format_time(@user.last_today_attendance.departure, false) %></span>
+            <% else %>
+              <%= l(:text_easy_attendance_user_detail_no_data_today) %>
+            <% end -%>
+            <%= link_to('', {:controller => 'easy_attendances', :action => 'new_notify_after_arrived', :user_id => @user }, :remote => true, :class => 'icon icon-add', :title => l(:label_easy_attendance_user_arrival_add_notify_title)) %>
+            <div id="easy_attendance_user_arrival_notify_form" style="display:none">
+            </div>
+          <% end -%>
+        </div>
+      <% end -%>
+    </div>
+    <%= render :partial => 'easy_activities/module_list_activity', locals: {events: @events_by_day} %>
+  </div>
+  <% easy_other_formats_links(utm_content: 'user_activities') do |f| %>
+    <%= f.link_to 'Atom', :url => {:controller => 'activities', :action => 'index', :id => nil, :user_id => @user, :key => User.current.rss_key} %>
+  <% end %>
+  <% content_for :header_tags do %>
+    <%= auto_discovery_link_tag(:atom, :controller => 'activities', :action => 'index', :user_id => @user, :format => :atom, :key => User.current.rss_key) %>
+  <% end %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% end %>

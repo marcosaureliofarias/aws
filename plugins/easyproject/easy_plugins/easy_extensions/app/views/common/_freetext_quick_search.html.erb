@@ -1,0 +1,150 @@
+<%
+free_search_options ||= {}
+modul_uniq_id ||= ''
+modal_selector ||= false
+free_search_field_placeholder ||= free_search_options[:placeholder] || ''
+free_search_update_counts ||= free_search_options.fetch(:free_search_update_counts, true)
+free_search_field_name ||= free_search_options[:free_search_field_name] || 'entity_q'
+free_search_before_function ||= free_search_options[:free_search_before_function] || ''
+free_search_after_function ||= free_search_options[:free_search_after_function] || '' #=>  JS function which has been executed after searching is done
+free_search_after_done ||= free_search_options[:free_search_after_done] || ''
+free_search_params ||= free_search_options[:free_search_params] || 'easy_query_q'
+free_search_ajax_type ||= free_search_options[:free_search_ajax_type] || 'GET'
+free_search_always_fire = free_search_options[:free_search_always_fire].nil? ? false : free_search_options[:free_search_always_fire]
+if defined?(query)
+  easy_query_entity_controller ||= query.easy_query_entity_controller || query.entity.name.underscore.pluralize
+  free_search_element_to_update ||= free_search_options[:free_search_element_to_update] || query.entity.name.underscore.pluralize
+  free_search_url ||= free_search_options[:free_search_url] || url_for(controller: easy_query_entity_controller, action: 'index', only_path: true)
+end
+free_search_element_to_update ||= free_search_options[:free_search_element_to_update] # HTML container with list of entities which to be updated
+free_search_url ||= free_search_options[:free_search_url] # AJAX url
+free_search_reset_type ||= free_search_options[:free_search_reset_type] || :empty_search
+free_search_reset_custom_js ||= free_search_options[:free_search_reset_custom_js] # reset JS
+free_search_ajax_parameters ||= free_search_options[:free_search_ajax_parameters] || {}
+free_search_additional_parameters ||= free_search_options[:free_search_additional_parameters] || {}
+free_search_delete_pagination ||= !(free_search_options[:delete_pagination] == false)
+%>
+<div id="easy-freetext-search-<%= free_search_field_name %>" class="easy-freetext-search">
+  <%= search_field_tag(free_search_field_name, params[free_search_field_name], :id => free_search_field_name, :size => 30, :placeholder => free_search_field_placeholder) %>
+  <a href="#" class="icon-magnifier" id="<%= free_search_field_name %>_button"></a>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      var f_do_ajax = window.<%= "entities_#{free_search_field_name}_freetext_search_do_ajax".camelcase %> = function () {
+        <%= free_search_before_function.html_safe %>
+        var url = '<%= free_search_url.to_s.html_safe %>';
+        var ajax_params = {};
+        <% if free_search_ajax_parameters.present? %>
+        ajax_params = <%=raw free_search_ajax_parameters %>;
+        <% else %>
+        ajax_params['set_filter'] = 1;
+        ajax_params['<%= free_search_params %>'] = $('#<%= free_search_field_name %>').val();
+        <% end -%>
+        <% if defined?(query) %>
+        var tableData = $('#<%= free_search_element_to_update %>').find("table.list").data();
+        var queryHasContextMenu = false;
+        if (tableData) {
+          var queryHasContextMenu = tableData.hascontextmenu;
+        }
+        var queries = EASY.query.getFiltersForURL('<%= modul_uniq_id %>');
+        if (queries !== '&&') {
+          if (url.indexOf('?') >= 0) {
+            url += '&';
+          } else {
+            url += '?';
+          }
+          url += queries;
+        }
+
+        <% if free_search_additional_parameters.present? %>
+        ajax_params['view_options'] = <%=raw free_search_additional_parameters.to_json %>;
+        <% else %>
+        ajax_params['view_options'] = {};
+        if (queryHasContextMenu)
+          ajax_params['view_options']['hascontextmenu'] = true;
+        <% end %>
+        <% end %>
+
+        $.ajax({'url': url, 'data': ajax_params, 'type': '<%= free_search_ajax_type %>'}).done(function (data) {
+          <% if modal_selector %>
+          $('#easy_modal').html(data);
+          var wrapping_element = $('#<%= free_search_element_to_update %>');
+          <% else %>
+          var wrapping_element = $('#<%= free_search_element_to_update %>');
+          wrapping_element.html(data);
+          <% end %>
+          <% if free_search_update_counts %>
+            var eqi_tr_count = wrapping_element.find('table:first > tbody > tr').length;
+            $("#easy-query-heading-count").html(eqi_tr_count);
+          <% end %>
+          $(".infinite-scroll-load-next-page-trigger-container").remove();
+          <% if free_search_delete_pagination %>
+          $(".pagination").remove();
+          <% end %>
+          if (typeof(window.easyQueryGroupLoader) === 'function') {
+            window.easyQueryGroupLoader();
+          }
+          <%= free_search_after_done.html_safe %>
+          initEasyInlineEdit();
+          EASY.contextMenu.reloadInit();
+          $(document).trigger("easy-query:after-search");
+        });
+
+        <%= free_search_after_function.html_safe %>
+      };
+
+      var f = window.<%= "entities_#{free_search_field_name}_freetext_search".camelcase %> = function () {
+        if ($('#<%= free_search_field_name %>').val().length >= 1) {
+          f_do_ajax();
+        } else {
+          <% case free_search_reset_type.to_sym %>
+          <% when :location_reload %>
+          $.get(window.location, {}, function (data) {
+            $('#content').html(data);
+          });
+          <% when :clear %>
+          $('#<%= free_search_element_to_update %>').html('');
+          <% when :custom_js %>
+          f_do_ajax();
+          <% when :empty_search %>
+          f_do_ajax();
+          <% end %>
+        }
+      };
+      $("#<%= free_search_field_name %>_button").click(function (event) {
+        f();
+      });
+
+      var delayTimer;
+      $("#<%= free_search_field_name %>").keypress(function (event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+        }
+      });
+      $("#<%= free_search_field_name %>").keyup(function (event) {
+        if ($('#<%= free_search_field_name %>').val().length > 0) {
+          if ($("#<%= free_search_field_name %>_button").hasClass('icon-false'))
+            $("#<%= free_search_field_name %>_button").removeClass('icon-false').addClass('icon-magnifier');
+        } else {
+          $("#<%= free_search_field_name %>_button").removeClass('icon-magnifier').addClass('icon-false');
+        }
+
+        function delayedSearch() {
+          clearTimeout(delayTimer);
+          if (event.keyCode !== 13) {
+            delayTimer = setTimeout(function () {
+              f();
+            }, 1000);
+          }
+        }
+
+        <% if free_search_always_fire %>
+        delayedSearch();
+        <% end %>
+
+        if (event.keyCode === 13) {
+          f();
+        }
+      });
+    });
+  </script>
+</div>

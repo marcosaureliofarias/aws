@@ -1,0 +1,13 @@
+<% if params.key?(:for_dialog) %>
+  <%= hidden_field_tag 'issue[easy_sprint_id]', issue && issue.easy_sprint_id %>
+  <%= hidden_field_tag 'issue[target_backlog]', issue && issue.target_backlog, { class: 'target_backlog_field' } %>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#issue-list .new-issue').delegate('#create-issue-button, #issue-dialog-button', 'click', function() {
+        var val = $(".ui-dialog-buttonpane input[name='target_backlog']:checked").val();
+        $('.target_backlog_field').val(val);
+      });
+    });
+  </script>
+<% end %>

@@ -1,0 +1,4 @@
+<%= l(:text_meeting_updated, :author => h(@easy_meeting.author), :name => h(@easy_meeting.name)) %>
+<%= l(:field_start_time) %>: <%= format_date(@user.user_time_in_zone(@easy_meeting.start_time).try(:to_date)) %> <%= @user.user_time_in_zone(@easy_meeting.start_time).try(:strftime, '%H:%M') unless @easy_meeting.all_day? %>
+<%= l(:field_end_time) %>: <%= format_date(@user.user_time_in_zone(@easy_meeting.end_time).try(:to_date)) %> <%= @user.user_time_in_zone(@easy_meeting.end_time).try(:strftime, '%H:%M') unless @easy_meeting.all_day? %>
+<%= l(:label_invitations) %>: <%= [@easy_meeting.users.collect(&:name), @easy_meeting.external_mails].flatten.delete_if{|x| x.blank?}.join(', ') %>

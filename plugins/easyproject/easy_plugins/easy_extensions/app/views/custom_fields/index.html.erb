@@ -1,0 +1,23 @@
+<%= title l(:label_custom_field_plural) %>
+
+<% if @custom_fields_by_type.present? %>
+  <%= render_custom_fields_tabs(@custom_fields_by_type.keys) %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<% ### PAGE CUSTOMS ##########################################################  -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_custom_field_new), new_custom_field_path(:selected => params[:tab] || 'IssueCustomField'), :class => 'icon icon-add button-positive' %>
+<% end %>
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $(document).on("click", ".tabs a", function (event) {
+      var newLink = document.querySelector("#sidebar a.button-positive");
+      var href = newLink.href.replace(/(.*)selected=([a-zA-Z]*)/, "$1");
+      newLink.href = href + "selected=" + event.target.id.replace("tab-", "");
+    })
+  });
+</script>
+

@@ -1,0 +1,41 @@
+<% if @query.display_as_tree? %>
+  <div id="projects-index">
+    <%= render partial: 'easy_queries/easy_query_index', locals: { query: @query, easy_query_name: l(:label_project_index), show_free_search: true, free_search_options: {free_search_url: admin_projects_path} } %>
+    <% if @query.valid? %>
+      <% presenter = present(@query) %>
+      <% presenter.outputs.each do |o| %>
+        <% if o.key.to_s == 'list' %>
+          <div id="projects" class="project-tree">
+            <% if @projects.empty? %>
+              <%= content_tag(:p, l(:label_no_data), class: 'nodata') %>
+            <% else %>
+              <%= render partial: 'admin/projects', locals: { query: @query, projects: @projects } %>
+            <% end %>
+          </div>
+
+          <% if @entity_pages %>
+            <span class="pagination" style="display:none;">
+              <%= pagination_links_full @entity_pages, @entity_count %>
+            </span>
+          <% end %>
+        <% else %>
+          <%= o.render_data %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= render @query, easy_query_name: project_heading(@project, l(:label_project_index)) %>
+<% end %>
+
+<%= context_menu context_menus_projects_path(back_url: admin_projects_path) %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render_menu :admin_projects_easy_page_layout_service_box -%>
+<% end %>
+
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag('projectindex', defer: true) %>
+<% end %>

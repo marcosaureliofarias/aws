@@ -1,0 +1,1 @@
+<%= report.alert.name -%> - <%= l(:label_timeentry_time_watcher_report, :from => report.alert.rule_settings[:period_from], :to => report.alert.rule_settings[:period_to]) -%> - <%= url_for(:controller => 'users', :action => 'show', :id => report.entity_id, :only_path => false) -%>

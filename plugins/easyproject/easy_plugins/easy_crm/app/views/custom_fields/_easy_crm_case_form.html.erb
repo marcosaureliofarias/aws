@@ -1,0 +1,13 @@
+<fieldset class="box" id="custom_field_easy_crm_case_status_ids"><legend><%=l(:heading_easy_crm_case_status_index)%></legend>
+  <% EasyCrmCaseStatus.sorted.each do |status| %>
+    <%= check_box_tag "custom_field[easy_crm_case_status_ids][]",
+      status.id,
+      (@custom_field.easy_crm_case_statuses.include? status),
+      :id => "custom_field_easy_crm_case_status_ids_#{status.id}" %>
+    <label class="no-css" for="custom_field_easy_crm_case_status_ids_<%=status.id%>">
+      <%= status.name %>
+    </label>
+  <% end %>
+  <%= hidden_field_tag "custom_field[easy_crm_case_status_ids][]", '' %>
+  <p><%= check_all_links 'custom_field_easy_crm_case_status_ids' %></p>
+</fieldset>

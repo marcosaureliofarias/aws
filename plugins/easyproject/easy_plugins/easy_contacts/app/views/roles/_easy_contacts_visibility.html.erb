@@ -1,0 +1,3 @@
+<% unless @role.anonymous? %>
+  <p class="view_easy_contacts_shown"><%= form.select :easy_contacts_visibility, Role::EASY_CONTACTS_VISIBILITY_OPTIONS.collect { |v| [l(v.last), v.first] } %></p>
+<% end %>

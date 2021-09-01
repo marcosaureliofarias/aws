@@ -1,0 +1,9 @@
+<% url_options ||= {}; html_options ||= {}; hide_period ||= false %>
+
+<div class="easy-calendar-listing-links next-prev-links">
+  <%= link_to '', {:start_date => calendar.prev_start_date, :t => params[:t], :tab => params[:tab]}.merge(url_options), {:title => l("title_timelog_calendar_prev.#{period}"), :class => 'prev'}.merge(html_options) -%>
+  <% unless hide_period %>
+    <span class="period"><%= "#{calendar.startdt.cweek} / " if period.to_sym == :week %><%= month_name(calendar.month) unless period.to_sym == :year -%> <%= calendar.year -%></span>
+  <% end %>
+  <%= link_to '', {:start_date => calendar.next_start_date, :t => params[:t], :tab => params[:tab]}.merge(url_options), {:title => l("title_timelog_calendar_next.#{period}"), :class => 'next'}.merge(html_options) -%>
+</div>

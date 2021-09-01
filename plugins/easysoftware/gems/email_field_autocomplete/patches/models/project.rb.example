@@ -1,0 +1,27 @@
+Rys::Patcher.add('Project') do
+  apply_if_plugins :easy_extensions
+
+  included do
+    # has_many :things
+
+    after_commit :email_field_autocomplete_ensure_something, if: -> { Rys::Feature.active?('email_field_autocomplete.project') }
+  end
+
+  instance_methods do
+    private
+
+      def email_field_autocomplete_ensure_something
+        puts 'Features are activated'
+      end
+
+  end
+
+  instance_methods(feature: 'email_field_autocomplete.project') do
+    def to_s
+      "I'am cool " + super
+    end
+  end
+
+  class_methods do
+  end
+end

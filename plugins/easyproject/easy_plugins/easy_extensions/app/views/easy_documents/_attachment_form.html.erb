@@ -1,0 +1,5 @@
+<%= form_tag({ :controller => 'documents', :action => 'add_attachment', :id => document }, :multipart => true, :id => 'document_form' ) do %>
+  <div class="gray-background box">
+    <%= render(:partial => 'attachments/form', :locals => {:container => document}) %>
+  </div>
+<% end %>

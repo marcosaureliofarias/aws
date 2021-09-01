@@ -1,0 +1,121 @@
+&__attachments {
+  margin-top: $gap;
+  &-item {
+    display: flex;
+    margin-bottom: $gap;
+    align-items: center;
+    position: relative;
+
+    &:hover {
+      background: rgba($color-background__button, 0.5);
+    }
+
+    &-thumb {
+      display: block;
+      overflow: hidden;
+      width: 80px;
+      height: 60px;
+      background: rgba($color-background__button, 0.5);
+      margin-right: $gap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 2.5em;
+    }
+
+    &-name,
+    &-size {
+      display: block;
+    }
+    &-size {
+      font-size: 12px;
+      a {
+        font-size: 16px;
+        align-items: center;
+        &:hover {
+          text-decoration: none;
+        }
+        &:first-of-type {
+          margin-right: $gap;
+        }
+      }
+    }
+    &-name {
+      font-weight: bold;
+    }
+
+    &-created {
+      font-style: italic;
+      color: $color-text--muted;
+      font-size: 12px;
+      margin: 0;
+    }
+
+    &-delete,
+    &-download,
+    &-tab,
+    &-url,
+    &-edit,
+    &-version,
+    &-revert {
+      color: $color-text--muted;
+      cursor: pointer;
+    }
+
+    &-delete {
+      position: absolute;
+      right: 0;
+      font-size: 16px;
+    }
+
+    &-info {
+    }
+
+    @media only screen and (max-width: $breakpoint--small) {
+      &-delete,
+      &-download,
+      &-tab,
+      &-url,
+      &-edit,
+      &-version,
+      &-revert {
+        font-size: 18px;
+      }
+
+      &-name {
+        padding-right: 2 * $gap;
+      }
+
+      &-delete {
+        top: -0.5 * $gap;
+      }
+    }
+  }
+  &-dropzone {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    border: 1px dashed #000;
+    background-color: $color-background__button;
+    padding: 12px;
+    margin-bottom: 6px;
+    p {
+      margin-bottom: 0;
+    }
+    .dropzone {
+      &-info {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      &-uploading {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+  &-dropzone.dragover {
+    border-color: orange;
+  }
+}

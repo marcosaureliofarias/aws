@@ -1,0 +1,4 @@
+present(@easy_query) do |presenter|
+  chart_output = presenter.outputs.detect{|o| o.key == 'chart'}
+  chart_output.render_json_data(api) if chart_output
+end

@@ -1,0 +1,71 @@
+<%= title l('easy_calendar.label_calendar_link') %>
+
+<div class="icalendar-link text-center">
+  <p class="">
+    <img class="icalendar-link__qr">
+  </p>
+
+  <p>
+    <label class="inline">
+      <%= check_box_tag 'url[with_meetings]', 'with_meetings', true, disabled: true %>
+      <%= l('easy_scheduler.label_meeting_plural') %>
+    </label>
+
+    <label class="inline">
+      <%= check_box_tag 'url[with_attendance]', 'with_attendance', true, disabled: true %>
+      <%= l('easy_scheduler.label_attendance') %>
+    </label>
+
+    <label class="inline">
+      <%= check_box_tag 'url[with_custom_allocations]', 'with_custom_allocations' %>
+      <%= l('easy_scheduler.label_allocation_plulal') %>
+    </label>
+
+    <label class="inline">
+      <%= check_box_tag 'url[with_easy_entity_activities]', 'with_easy_entity_activities' %>
+      <%= l('easy_scheduler.label_sales_activity_plural') %>
+    </label>
+  </p>
+
+  <p>
+    <%= text_field_tag '', @link, readonly: true,
+                                  class: 'icalendar-link__ics-link text-center',
+                                  style: 'max-width: initial',
+                                  onclick: 'this.select()' %>
+  </p>
+</div>
+
+<script>
+  (() => {
+    let baseLink = "<%=raw @link %>"
+    const icalendarLink = document.querySelector(".icalendar-link")
+    const inputs = icalendarLink.querySelectorAll("input[type='checkbox']")
+    const qrImage = icalendarLink.querySelector(".icalendar-link__qr")
+    const icsLink = icalendarLink.querySelector(".icalendar-link__ics-link")
+
+    const generateUrl = () => {
+      let link = baseLink
+
+      inputs.forEach(input => {
+        if (!input.disabled && input.checked) {
+          link += `&${input.value}=1`
+        }
+      })
+
+      let qrUrl = "<%=j easy_qr_path(t: '__t__', size: 400).html_safe %>"
+      qrUrl = qrUrl.replace("__t__", encodeURIComponent(link))
+      qrImage.src = qrUrl
+
+      icsLink.value = link
+
+      // easyUtils.clipboard.copy(link)
+      // showModalFlashMessage("notice", I18n.labelCopied)
+    }
+
+    inputs.forEach(checkbox => {
+      checkbox.addEventListener("change", () => { generateUrl() })
+    })
+
+    generateUrl()
+  })();
+</script>

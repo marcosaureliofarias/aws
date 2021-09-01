@@ -1,0 +1,140 @@
+<% issue ||= @issue; object_name ||= 'issue'; modul_uniq_id ||= ''; project ||= @project; projects ||= nil;
+priorities ||= @priorities; allowed_statuses ||= @allowed_statuses
+projects_ajax_url ||= url_for({ :controller => 'easy_issues', :action => :dependent_fields, :id => issue, :format => 'js' })
+issue_ajax_path ||= update_issue_form_path(project, issue)
+unless defined?(select_project)
+  select_project = controller_name == 'easy_issues' || (project && EasySetting.value('display_project_field_on_issue_detail', project))
+  end
+%>
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    //nejdriv unbind, aby se eventy nehromadily - pripadne presunout jinam - ale zase prehlednost... :)
+    $("<%= '#' + modul_uniq_id + 'issue-form' %>").off('change', '.issue_onchange_reload').
+            on('change', '.issue_onchange_reload', function(e) {
+      if (!(typeof CKEDITOR === 'undefined'))
+        for (instance in CKEDITOR.instances)
+          CKEDITOR.instances[instance].updateElement();
+      $.ajax({url: "<%= j(issue_ajax_path).html_safe %>", type: 'post', data: $(this).closest('form').serialize()});
+    });
+  });
+</script>
+
+<%= labelled_fields_for object_name, issue do |f| %>
+  <div class="tabular box">
+    <%= toggling_container("issue-updatable-attributes-heading-#{params[:format]}", User.current, {:heading => l(:label_issue_updatable_attributes_heading), :wrapping_heading_element_classes => ' icon icon-workflow', :container_html => {:class => 'attributes'}, :default_button_state => local_assigns[:default_button_state]}) do  %>
+      <%= call_hook(:view_issues_form_details_top, { :issue => issue, :form => f, :project => project, :issue_ajax_path => issue_ajax_path }) %>
+        <%= hidden_field_tag 'form_update_triggered_by', '' %>
+      <% if (!project || params[:issue_first_controller] == 'easy_issues' || select_project) && (!project || project && !project.easy_is_easy_template?) %>
+        <p class="attribute">
+          <% selected_project_value = (project.nil? ? {:name => '', :id => ''} : {:name => project.name, :id => project.id}) %>
+          <% from_params_without_fields = params.to_unsafe_hash.slice(:issue).to_param unless project %>
+          <%= label_tag 'issue[project_id]', l(:field_project), required: true %><%= easy_select_tag(
+            'issue[project_id]', selected_project_value, projects.nil? ? nil : project_tree_options_for_select(projects, {:selected => project}),
+            easy_autocomplete_path('add_issue_projects'),
+            {:onchange => "$.ajax({url: '#{(j projects_ajax_url).html_safe}', type: 'post', data: '#{from_params_without_fields.to_s}&' + $('#issue_project_id').closest('form').serialize()})", :html_options => {:id => 'issue_project_id'}, :root_element => 'projects', :wrapper_html_options => {:class => 'block'}}) -%>
+        </p>
+      <% elsif project %>
+        <%= hidden_field_tag 'issue[project_id]', project.id, id: nil %>
+      <% end %>
+      <% if project %>
+        <% if (issue.safe_attribute?('tracker_id') || issue.tracker_id_changed?) && issue.allowed_target_trackers.count > 1 %>
+          <%= content_tag(:p, f.select(:tracker_id, trackers_options_for_select(issue), {:required => true}, {:tabindex => 40, :class => 'issue_onchange_reload block'}), :class =>'attribute') %>
+        <% end %>
+        <% if issue.safe_attribute?('assigned_to_id') && (issue.tracker.nil? || !issue.tracker.easy_distributed_tasks?) %>
+          <p class="attribute">
+            <% required_assignee = issue.required_attribute?('assigned_to_id') %>
+            <%= label_tag 'issue[assigned_to_id]', l(:field_assigned_to), required: required_assignee %>
+            <%= easy_autocomplete_tag 'issue[assigned_to_id]',
+                                      { name: issue.assigned_to&.name, id: issue.assigned_to&.id },
+                                      easy_autocomplete_path('assignable_principals_issue', issue_id: issue.id, project_id: project.id, required: required_assignee),
+                                      preload: false,
+                                      required: required_assignee,
+                                      root_element: 'users',
+                                      html_options: { tabindex: 50, class: 'issue_onchange_reload block', id: 'assigned_to_id' },
+                                      force_autocomplete: true,
+                                      easy_autocomplete_options: {
+                                          no_button: true,
+                                          auto_focus: false,
+                                          widget: 'catcomplete',
+                                          activate_on_input_click: true,
+                                          delay: 50,
+                                          minLength: 0
+                                      } %>
+          </p>
+        <% end %>
+        <% if issue.safe_attribute?('category_id') && issue.project && issue.project.issue_categories.any? %>
+          <p class="select-with-button">
+            <%= f.select :category_id, issue_category_tree_options_for_select(issue.project.issue_categories, :selected => issue.category_id), {:include_blank => true, :required => issue.required_attribute?('category_id')}, {:tabindex => 60, :class => 'block'} %>
+          </p>
+        <% end %>
+        <% if issue.safe_attribute? 'priority_id' %>
+          <p class="attribute"><%= f.select :priority_id, (priorities.collect {|p| [p.name, p.id]}), {:required => true}, {:tabindex => 70, :class => 'issue_onchange_reload block'} %></p>
+        <% end %>
+        <% if issue.safe_attribute?('status_id') %>
+          <% allowed_statuses_count = allowed_statuses.count %>
+          <% if allowed_statuses_count > 1 %>
+            <p class="attribute">
+              <%= f.select :status_id, (allowed_statuses.collect {|p| [p.name, p.id]}), {:required => true}, {:tabindex => 80, :class => 'issue_onchange_reload block'} -%>
+            </p>
+          <% elsif allowed_statuses_count == 1 %>
+            <%= f.hidden_field(:status_id, :value => allowed_statuses.first.id) %>
+          <% end %>
+        <% end %>
+        <% if issue.project && issue.safe_attribute?('fixed_version_id') && issue.assignable_versions.any? %>
+          <p class="attribute">
+            <%= f.select :fixed_version_id, version_options_for_select(issue.assignable_versions, issue.fixed_version), {:include_blank => true, :required => issue.required_attribute?('fixed_version_id')}, {:tabindex => 90, :class => 'issue_onchange_reload block'} %>
+          </p>
+        <% end %>
+        <%= f.hidden_field(:old_fixed_version_id, :value => issue.fixed_version.id) unless issue.fixed_version.nil? %>
+        <% if params[:subtask_for_id].nil? && issue.project && issue.safe_attribute?('parent_issue_id') && !in_mobile_view? %>
+          <p class="attribute easy-autocomplete-parent_id">
+            <% if issue.parent_issue
+              parent_val = EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(issue.parent_issue, :display_name => :subject)
+              end %>
+            <% parent_val ||= {} %>
+            <%= label_tag :parent_issue_id, l(:field_parent_issue), required: issue.required_attribute?('parent_issue_id') %><%= easy_modal_selector_field_tag('Issue', 'link_with_subject', "#{object_name}[parent_issue_id]", "#{object_name}_parent_issue_id", parent_val, :multiple => false, :url => {:modal_project_id => issue.project.id, :parent_selection => true}) %>
+          </p>
+        <% else %>
+          <%= hidden_field_tag('subtask_for_id', params[:subtask_for_id]) if params[:subtask_for_id] %>
+        <% end %>
+        <% if issue.safe_attribute? 'start_date' %>
+          <p class="attribute" id="start_date_area"><%= f.date_field :start_date, :size => 10, :required => issue.required_attribute?('start_date'), :tabindex => 110 %><%= calendar_for("#{object_name}_start_date") %></p>
+        <% end %>
+        <% if issue.safe_attribute? 'due_date' %>
+          <p class="attribute" id="due_date_area"><%= f.date_field :due_date, :size => 10, :required => issue.required_attribute?('due_date'), :tabindex => 120 %><%= calendar_for("#{object_name}_due_date") %></p>
+        <% end %>
+        <% if issue.safe_attribute? 'easy_email_to' %>
+            <p class="attribute" id="easy_email_to_area"><%= f.text_area :easy_email_to, class: 'auto-expand', required: issue.required_attribute?('easy_email_to'), tabindex: 130, placeholder: call_hook(:placeholder_email_autocomplete) %></p>
+        <% end %>
+        <% if issue.safe_attribute? 'easy_email_cc' %>
+            <p class="attribute" id="easy_email_cc_area"><%= f.text_area :easy_email_cc, class: 'auto-expand', label: :field_email_cc, required: issue.required_attribute?('easy_email_cc'), tabindex: 140, placeholder: call_hook(:placeholder_email_autocomplete) %></p>
+        <% end %>
+        <% if project.module_enabled?(:time_tracking) && issue.safe_attribute?('estimated_hours') && (issue.tracker.nil? || !issue.tracker.easy_distributed_tasks?) %>
+          <p class="attribute"><%= f.text_field :estimated_hours, :size => 5, :required => issue.required_attribute?('estimated_hours'), :tabindex => 150, :placeholder => l(:field_hours) %></p>
+        <% end %>
+        <p class="attribute easy-tag-list-field">
+          <%= label_tag 'issue_tag_list', l(:label_easy_tags) %>
+          <%= easy_tag_list_autocomplete_field_tag issue, 'issue', id: 'issue_tag_list' %>
+        </p>
+        <% if EasySetting.value('enable_private_issues') && issue.safe_attribute?('is_private') %>
+          <p class="attribute">
+            <%= f.check_box :is_private, :no_label => true, :tabindex => 160 -%><%= label_tag "#{object_name}_is_private", l(:field_is_private) -%>
+          </p>
+        <% end %>
+        <% if issue.project && issue.project.module_enabled?(:time_tracking) && issue.safe_attribute_names.include?('activity_id') %>
+          <div class="attribute" id="<%= "#{modul_uniq_id}issue-time-entry-activity-container" %> ">
+            <%= render :partial => 'timelog/time_entry_activity', :locals => { :tag_name_prefix => "#{object_name}", :entity => issue, :activity_collection => issue.project.activities_per_role(User.current, 'xAll'), :container_id => "#{modul_uniq_id}issue-time-entry-activity-container", :project => issue.project, :options => {:hide_role_select => true}} -%>
+          </div>
+        <% end %>
+        <% if issue.tracker && issue.tracker.easy_send_invitation? %>
+          <p class="attribute">
+            <%= check_box_tag("#{object_name}[should_send_invitation_update]", 1, true) %><%= label_tag "#{object_name}_should_send_invitation_update", l(:lable_should_send_invitation_update) %>
+          </p>
+        <% end %>
+
+        <%= call_hook(:view_issues_form_details_bottom, { :issue => issue, :form => f, :project => project }) %>
+
+      <% end %>
+    <% end -%>
+  </div>
+<% end %>

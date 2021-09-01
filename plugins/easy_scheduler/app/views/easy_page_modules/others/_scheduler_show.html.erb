@@ -1,0 +1,36 @@
+<%
+  query = easy_page_modules_data[:query]
+  scheduler_settings = easy_page_modules_data[:scheduler_settings]
+  tagged_queries = easy_page_modules_data[:tagged_queries]
+%>
+<a class="easy-calendar__mobile-header-toggler hidden"><i class="icon-settings"></i></a>
+<span class="entity-array easy-calendar__tagged_queries">
+  <% if tagged_queries.present? %>
+    <% query.settings['tagged_icon'] = 'icon-home' %>
+    <% query.name = scheduler_settings['filter_name'].presence || l(:label_tasks_title, scope: :easy_scheduler) %>
+    <% tagged_queries.unshift query %>
+    <% tagged_queries.each do |query| %>
+      <% query_class = ['icon', query.settings['tagged_icon'], query.settings['tagged_color'],'tagged_query'].compact.join(' ') %>
+      <%= link_to tagged_query_heading(query, false),
+                                'javascript:void(0)',
+                                data: { 
+                                    scheduler_data_path: EasyScheduler.filtered_entities_data_path(query),
+                                    selected_principal_ids: query.settings['selected_principal_ids'],
+                                    query_name: query.name.presence || query.class.translated_name,
+                                    entity_type: query.entity.model_name.plural,
+                                    entity_count: query.entity_count,
+                                    editable: query.id && query.editable_by?(User.current),
+                                    query_id: query.id || 'default'
+                                },
+                                class: query_class %>
+    <% end %>
+  <% end %>
+</span>
+
+<%= render template: 'easy_scheduler/index',
+           layout: false,
+           locals: {
+             query: query,
+             settings: scheduler_settings,
+             container_id: "scheduler_calendar_#{page_module.uuid}"
+           } %>

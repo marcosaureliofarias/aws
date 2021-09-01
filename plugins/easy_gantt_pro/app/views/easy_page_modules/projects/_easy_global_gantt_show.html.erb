@@ -1,0 +1,10 @@
+<% if easy_page_modules_data[:query].nil? %>
+  <p>
+    <%= l(:label_easy_page_module_settings_missing) %>
+  </p>
+<% else %>
+  <span class="after-apply-global-filters-module-need-reloading"></span>
+  <%= render 'easy_gantt/index', project: nil,
+                                 show_query: false,
+                                 query: easy_page_modules_data[:query] %>
+<% end %>

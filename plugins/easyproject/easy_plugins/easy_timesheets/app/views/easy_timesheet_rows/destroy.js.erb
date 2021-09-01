@@ -1,0 +1,10 @@
+<% if flash.any? %>
+  <% flash.each do |type, message| %>
+    showFlashMessage("<%= type %>", "<%= message %>");
+  <% end %>
+<% else %>
+  $("#<%= @row.dom_id %>").fadeOut(function() {$(this).remove()});
+  <%= render_tfoot_updater %>
+  var head = "<%= j format_date @easy_timesheet.start_date %> - <%= j format_date @easy_timesheet.end_date %> (<%= j html_hours(@easy_timesheet.total_hours) -%>)";
+  $('span.easy-calendar-title.easy-cal-title').html(head);
+<% end %>

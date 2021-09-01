@@ -1,0 +1,114 @@
+#context-menu{ /// todo sjednotit s menu-tooltip
+  position: absolute;
+  z-index: z($z-priority,context-menu);
+  @include small;
+  padding: 0;
+  border: none;
+  @extend %menu-tooltip;
+  &>ul{
+    position: static;
+    max-width: 0.5*$servicebar-component-width;
+  }
+  li.folder>ul {
+    left: 99%;
+    min-width: 100%;
+    //max-width: 100%;
+    overflow: visible;
+    top: 0;
+  }
+  ul ul, li:hover ul ul {
+    visibility: hidden;
+  }
+  li:hover ul,
+  li:hover li:hover ul {
+    visibility: visible;
+  }
+  input,.easy-autocomplete-tag{
+    border: none;
+    padding: 0;
+    width: auto;
+    font-size: inherit;
+    background: none;
+    color: $color-text;
+    display: block;
+    min-width: 0;
+    width: 100%;
+    line-height: $base-line-height;
+    height: $font-size*$base-line-height;
+    @extend %box-shadow-none;
+    &:focus{
+      outline: none;
+    }
+    button{
+      color: $color-text;
+      padding: 0;
+      margin-right: -0.5*$gap - 1;
+    }
+    @include placeholder{
+      color: $color-main;
+    }
+  }
+  &.reverse{
+    &-submenu{
+      &-x{
+        li.folder>ul {
+          right: 99%;
+          left: auto;
+        }
+      }
+    }
+  }
+  .main_menu__settings{
+    margin-right: 0;
+    &:before {
+      display: none;
+    }
+    &:after {
+      right: $gap;
+    }
+    a {
+      display: block !important;
+      @include icon-parent(settings);
+      &:before {
+        position: absolute;
+        left: 0;
+        width: 3*$gap-const;
+        text-align: center;
+      }
+    }
+  }
+}
+tr.context-menu-selection{
+  @extend %table-list-row-hover;
+}
+.context-menu-submenu-autocomplete {
+  li.context-menu-autocomplete {
+    position: initial !important;
+  }
+  .ui {
+    &-menu {
+      &.ui-autocomplete {
+        padding: 0 !important;
+      }
+      &:after {
+        border: 0 !important;
+      }
+      &-item {
+        padding: .75*$gap $gap !important;
+        border-top: 1px solid $color-border-minor !important;
+        border-bottom: 1px solid $color-border-minor !important;
+
+        &:hover {
+          & > div {
+            border: 0;
+            background: $menu__background--hover;
+            color: $color-text;
+          }
+        }
+      }
+    }
+    &-front {
+      //z-index: -1;
+    }
+  }
+}

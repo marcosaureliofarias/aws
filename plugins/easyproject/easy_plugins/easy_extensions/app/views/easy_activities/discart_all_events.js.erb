@@ -1,0 +1,5 @@
+$("#easy_servicebar_component_body").html("");
+var activities_trigger = $("a#easy_activity_feed_trigger");
+activities_trigger.removeClass('change-color-event');
+$('span', activities_trigger).remove();
+showFlashMessage('notice', '<%= l(:text_easy_activity_feed_all_events_discarted) %>').delay(5000).fadeOut();

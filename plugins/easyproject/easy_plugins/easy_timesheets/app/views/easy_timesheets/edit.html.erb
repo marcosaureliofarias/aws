@@ -1,0 +1,18 @@
+<%= title l(:title_easy_timesheet_edit_with_period, period: l(@easy_timesheet.period, scope: [:easy_timesheets_periods]).downcase) %>
+
+<%= labelled_form_for(@easy_timesheet, :html => {:id => 'easy_timesheet_form', :class => 'tabular'}) do |f| %>
+  <%= error_messages_for @easy_timesheet %>
+
+  <div class="box" id="easy_timesheet_form_container">
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  </div>
+
+  <p class="buttons">
+    <%= f.submit(l(:button_update), :class => 'button-positive', :title => l(:button_update)) %>
+  </p>
+
+<% end %>
+
+<% content_for :body_bottom do -%>
+  <%= render partial: 'easy_timesheets/include_tags' %>
+<% end %>

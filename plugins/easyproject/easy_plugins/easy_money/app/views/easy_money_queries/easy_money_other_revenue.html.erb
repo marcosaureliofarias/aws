@@ -1,0 +1,13 @@
+<%= render :partial => 'easy_queries/easy_query_index', :locals => {:query => @query, :easy_query_name => l(:label_easy_money_other_revenues)} %>
+
+<% if @entities.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <%= render :partial => 'easy_queries/easy_query_entities_list', :locals => {query: @query, entities: @entities, entity_pages: @entity_pages, entity_count: @entity_count, options: {hascontextmenu: true}} -%>
+<% end %>
+
+<%= render(:partial => 'easy_queries/easy_query_export_format_links', :locals => {:query => @query}) -%>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= context_menu({:controller =>'context_menus', :action => 'easy_money_other_revenues', :money_entity_type => @money_entity_type }, '#easy_money_other_revenues') -%>

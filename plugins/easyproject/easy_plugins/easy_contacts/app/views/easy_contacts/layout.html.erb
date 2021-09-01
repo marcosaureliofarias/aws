@@ -1,0 +1,21 @@
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :easy_page_layout_service_box do %>
+
+  <% if params[:back_url] %>
+    <%= link_to(l(:button_back), params[:back_url], :class => 'button') -%>
+  <% else %>
+    <%= link_to( l(:button_easy_contact_homepage), {:controller => 'easy_contacts', :action => 'index', :filter => 0, :back_url => ({:controller => 'easy_contacts', :project_id => @project} if @project)}, :class => 'button' ) if session[:contacts_filter] && session[:contacts_filter] != '0' -%>
+  <% end %>
+
+  <%= link_to(l(:title_easy_contact_type_new), new_polymorphic_path([@project, :easy_contact]), :class => 'button-positive icon icon-add') if User.current.allowed_to_manage_easy_contacts? -%>
+  <%= link_to( l(:label_easy_contact_personal), easy_contacts_path(:filter => 2), :class => 'button icon icon-fav') if @project.nil? -%>
+  <%= link_to l(:label_easy_contact_group), polymorphic_path([@project, :easy_contact_groups]), :class => 'button  icon icon-group' if User.current.allowed_to_globally?(:manage_easy_contact_groups, {})  -%>
+  <%= link_to l(:label_easy_contacts_import), import_preview_easy_contacts_path, :class => 'button icon icon-import' if User.current.allowed_to_manage_easy_contacts?  -%>
+
+<% end %>
+<%= context_menu context_menus_easy_contacts_path(:project_id => @project) -%>
+
+<%= render(:partial => 'export_vcard_encoding_selector') %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<%end%>

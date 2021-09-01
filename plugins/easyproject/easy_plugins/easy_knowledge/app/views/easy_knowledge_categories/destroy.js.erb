@@ -1,0 +1,5 @@
+$("#ajax-modal").html("<%= j render(:template => 'easy_knowledge_categories/destroy', :formats => [:html]) %>");
+title = $("#ajax-modal h2").text();
+ $("#ajax-modal h2").remove();
+EASY.modalSelector.showModal();
+$("#ajax-modal").dialog("option","title", title);

@@ -1,0 +1,45 @@
+EasyGem.schedule.require(function (EasyCalendar) {
+  EasyCalendar.manager.registerPlugin("locale", function (instance) {
+    instance.scheduler.locale = <%={
+          date:{
+            month_full: t('date.month_names')[1,12],
+            month_short: t('date.abbr_month_names')[1,12],
+            day_full: t('date.day_names'),
+            day_short: t('date.abbr_day_names')
+          },
+          labels:{
+            new_event: t(:label_new),
+            icon_save: t(:button_save),
+            button_save_with_meeting: I18n.t(:button_save_with_meeting, scope: [:easy_scheduler]),
+            icon_cancel: t(:button_cancel),
+            icon_details: t(:button_edit),
+            icon_edit: t(:button_edit),
+            icon_delete: t(:button_delete),
+            icon_delete_further: I18n.t(:label_delete_further, scope: [:easy_scheduler]),
+            icon_link: t(:label_go_to_entity, scope: [:easy_scheduler]),
+            icon_copy_calendar_url: t(:label_copy_calendar_to_clipboard, scope: [:easy_scheduler]),
+            icon_log_time: I18n.t(:button_log_time),
+            button_approve: t(:button_approve, scope: [:easy_attendance]),
+            button_reject: t(:button_reject, scope: [:easy_attendance]),
+            button_attendance_overview: t(:attendance_overview, scope: [:easy_attendance]),
+            date: t(:label_date),
+            year_tab: t(:label_year),
+            description: t(:field_description),
+
+            drag_to_create: I18n.t(:drag_to_create, scope: [:easy_scheduler]),
+            drag_to_move: I18n.t(:drag_to_move, scope: [:easy_scheduler]),
+            confirm_deleting: t(:text_are_you_sure),
+            text_yes: t(:general_text_Yes),
+            text_no: t(:general_text_No),            
+            successful_delete: t(:notice_successful_delete),
+            text_ical_event: t(:label_ical_event),
+            label_private_event: t('easy_calendar.label_private_event'),
+            contract_date: t(:field_easy_crm_case_contract_date),
+            next_action: t(:field_easy_crm_case_next_action)
+          }
+         }.to_json.html_safe %>
+  });
+}, function () {
+  return window.EasyCalendar;
+});
+

@@ -1,0 +1,6 @@
+<%= error_messages_for @easy_room %>
+
+<div class="tabular">
+  <p><%= f.text_field :name, :required => true, :size => 60 %></p>
+  <p><%= f.number_field :capacity, :size => 3, :step => 1, :min => 1 %></p>
+</div>

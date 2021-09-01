@@ -1,0 +1,13 @@
+var m = $("#ajax-modal");
+m.html("<%= j render(template: 'test_case_issue_executions/show', formats: [:html]) %>");
+m.find('.buttons').remove();
+showModal(m[0].id, '80%');
+var closeButton = {
+  text: "<%=j l(:button_close) -%>",
+  title: "<%=j l(:button_close) -%>",
+  click: function() {hideModal()},
+  'class': 'button'
+};
+m.dialog('option', {
+  buttons: [closeButton]
+});

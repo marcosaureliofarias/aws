@@ -1,0 +1,29 @@
+<p><%= f.check_box :special_visibility %></p>
+<%= content_tag(:span, class: 'custom_fields_easy_custom_permissions', style: ('display:none;' unless custom_field.special_visibility_enabled?)) do %>
+  <fieldset class="box tabular">
+    <legend><%= l(:label_custom_field_special_visibility) %></legend>
+    <p>
+      <em class="help"><%= l(:help_allow_easy_custom_field_visibility) %></em>
+    </p>
+    <p>
+      <%= f.auto_complete(:allowed_easy_user_type_ids, EasyUserType.sorted.pluck(:name, :id), { multiple: true, label: l(:label_easy_user_type_plural) }) %>
+    </p>
+
+    <p>
+      <%= f.auto_complete(:allowed_group_ids, Group.active.sorted.map { |p| [p.name, p.id] }, { multiple: true, label: l(:label_group_plural) }) %>
+    </p>
+
+    <p>
+      <%= f.auto_complete(:allowed_user_ids, User.active.sorted.map { |p| [p.name, p.id] }, { multiple: true, label:  l(:label_user_plural) }) %>
+    </p>
+  </fieldset>
+<% end %>
+
+<script type="text/javascript">
+    EASY.schedule.late(function(){
+        $("#custom_field_special_visibility").change(function(e){
+            $(".custom_fields_easy_custom_permissions").toggle($(this).is(":checked"));
+            $( document ).trigger( "erui_interface_change_vertical" );
+        });
+    });
+</script>

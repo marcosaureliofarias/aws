@@ -1,0 +1,627 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      re_artifact_properties:
+        created_by: Criando usuário
+        parent: Item pai
+        updated_by: Atualizando usuário
+      re_artifact_relationship:
+        relation_type: Tipo de relação
+        sink: Item destino
+        source: Item fonte
+        source_id: Item fonte
+    errors:
+      models:
+        re_artifact_relationship:
+          attributes:
+            source_id:
+              re_the_specified_relation_already_exists: A relação especificada já
+                existe
+    models:
+      re_artifact_properties: Item
+      re_artifact_relationship: Relação
+  add_issue_to_requirement: Adicionar tarefa relacionada
+  artifact_issue_coverage: Cobertura de Tarefa/Item
+  artifactcount: Número de itens
+  artifacts_wo_issues: Número de itens não conectados com alguma tarefa
+  comments: Comentários
+  conflict: Conflito
+  connect_issue: Conectar tarefa
+  dates: Datas
+  datetime:
+    formats:
+      short: "%m/%d/%y, %H:%M"
+  dependency: Dependência
+  field_re_artifact: Campo do item
+  field_re_artifact_properties:
+    created_by: 'Criando Usuário:'
+    name: 'Nome:'
+    parent: 'Item pai:'
+    project: 'Projeto:'
+    updated_by: 'Atualizando Usuário:'
+  field_subtasks: Subtarefas
+  general_visualization_settings: Configurações de visualização geral
+  implementation_of: Implementação de
+  issue_menue_visualization: Tarefas
+  issuecount: Número de tarefas
+  issues_wo_artifacts: Número de tarefas não conectadas com algum item
+  label_any: qualquer
+  label_asc: crescente
+  label_attachments: Anexos
+  label_desc: decrescente
+  label_is_me: sou eu
+  label_is_not_me: não sou eu
+  label_re_artifact_properties_plural: Itens
+  label_some: algumas
+  main_tab: Aba principal
+  new_comment: Novo comentário
+  new_comment_text: 'Texto do comentário:'
+  open_requirements: Abrir requisitos
+  own_rating: Sua avaliação
+  parentchild: Pai-filho
+  part_of: Parte de
+  progress: Progresso
+  project: Projeto
+  rating: Avaliação
+  rating_average: Média de avaliação
+  rationale: Razão
+  re_404_artifact_not_found: O item (ou ID do item) não foi encontrado
+  re_404_artifact_not_found_or_project_missing: Nenhum item pôde ser encontrado e
+    nenhum ID de projeto foi fornecido
+  re_404_invalid_project_id: O projeto (ou ID de projeto) não pôde ser encontrado
+    ou é inválido
+  re_actors: Atores
+  re_add_associated_requirements: Adicionar itens relacionados
+  re_add_secondary_actor: Adicionar ator secundário
+  re_administrate: Administração
+  re_alias_name: Nome da relação
+  re_apply_filter: Aplicar filtro
+  re_are_you_sure: Tem certeza?
+  re_artifact: Item
+  re_artifact_attributes: Atributos do item
+  re_artifact_comments_count: Número de comentários
+  re_artifact_configuration: Configuração de item
+  re_artifact_created_by: Criado por
+  re_artifact_description: Descrição
+  re_artifact_details: Detalhes do item
+  re_artifact_id: "#"
+  re_artifact_name: Nome
+  re_artifact_order: Ordem de exibição dos itens
+  re_artifact_priority: Prioridade
+  re_artifact_properties_created: Item criado
+  re_artifact_properties_not_enought_chars: Mínimo de caracteres %d
+  re_artifact_properties_to_many_chars: Máximo de caracteres %d
+  re_artifact_properties_updated: Propriedades do item atualizado
+  re_artifact_properties_validates_presence_of_artifact: Nenhum item está associado
+    com essas propriedades de item
+  re_artifact_properties_validates_presence_of_created_by: '"Criado por" não poder
+    estar em branco'
+  re_artifact_properties_validates_presence_of_name: Incluir o nome do item.
+  re_artifact_properties_validates_presence_of_parent: Esse item parece não possuir
+    um item pai definido
+  re_artifact_properties_validates_presence_of_project: Não existe projeto associado
+    a esse item.
+  re_artifact_properties_validates_presence_of_updated_by: '"Atualizado por" não pode
+    estar em branco'
+  re_artifact_properties_validates_uniqueness_of_artifact: O item associado com essas
+    propriedades de item precisa ser único
+  re_artifact_properties_validates_uniqueness_of_name: Esse nome já é usado por outro
+    item.
+  re_artifact_rating_average: Média de avaliação
+  re_artifact_related_content: Conteúdo relacionado
+  re_artifact_relationships: Relação
+  re_artifact_relationships_incoming: Relações de entrada
+  re_artifact_relationships_outgoing: Relações de saída
+  re_artifact_responsible: Responsável
+  re_artifact_responsibles: Responsáveis
+  re_artifact_type: Tipo
+  re_artifact_type_description: Descrição do tipo de item
+  re_artifact_type_description_configuration: Configuração da descrição do tipo de
+    item %{artifact_type}
+  re_artifact_updated_by: Atualizado por
+  re_artifacts: Itens
+  re_asscociated_requirements: Requisitos
+  re_associated_issues: Tarefas relacionadas
+  re_at: em
+  re_attachment: Anexar arquivo
+  re_attachment_deleted: O arquivo anexado %{name} foi apagado
+  re_attachment_file: Arquivo
+  re_attachment_no_file_error: Por favor selecione um arquivo!
+  re_attachment_not_deleted: O arquivo anexado %{name} não pôde ser apagado
+  re_attachment_not_found: Não foi encontrado um arquivo anexado com id %{id} para
+    apagar
+  re_attachment_priority: Prioridade
+  re_attachment_saved: Arquivo anexado salvo com sucesso
+  re_attachment_size_greater_zero: O tamanho do arquivo deve ser >0 bytes!
+  re_attachment_validation_error: 'Falha ao anexar arquivo: %{msg}'
+  re_by: por
+  re_cancel: Cancelar
+  re_cannnot_delete_project_artifact: Esse item é um item de projeto que não pode
+    ser apagado. Para excluir o projeto, por favor use
+  re_changed_by: Modificado por
+  re_child_artifacts: Item filho
+  re_children: Filho
+  re_color: Cor
+  re_common_attributes: Atributos comuns
+  re_common_linked_artifacts: Itens relacionados
+  re_conf_add_relation: Adicionar relação
+  re_conf_alias_name: Você pode dar outro nome para esse item para atender o processo
+    de gerenciamento de requisitos
+  re_conf_artifact_directed: Dirigido
+  re_conf_artifact_display_order: Usar "Arrastar e Soltar" para modificar a ordem
+    de exibição (ex. no menu lateral ou índice de página)
+  re_conf_artifact_in_use: Deseja usar (mostrar) esse tipo de item nesse projeto (itens
+    existentes não serão apagados)?
+  re_conf_color: O código de cor do item em todo o aplicativo. Isto é especialmente
+    útil na visualização
+  re_conf_directed: Dirigido
+  re_conf_display_order: Ordem de exibição
+  re_conf_fields: Configurar campos customizados do tipo de item
+  re_conf_internal_name: Nome interno
+  re_conf_show_in_visualization: Definir se o tipo de relação é exibido por padrão
+  re_configs_saved: Configuração salva com sucesso
+  re_configure: Configurar
+  re_configure_fields_treebar: Configurar campos do %{artifact_type}
+  re_configure_plugin: Configurações de Requisitos
+  re_confirm: Confirmar
+  re_confirm_deletion_by_choosing: Por favor confirmar exclusão escolhendo uma opção
+    abaixo
+  re_conflict: Conflito
+  re_conflict_relation_type: Conflito
+  re_connected_nodes: Nós conectados
+  re_contains: Contém
+  re_continue_here: Para maiores informações continue aqui
+  re_create: Criar
+  re_create_a_new: Criar novo
+  re_create_below: Criar item no mesmo nível de...
+  re_create_child: Criar filho
+  re_create_in: Criar item abaixo de...
+  re_create_new: Criar novo
+  re_create_new_artifacts: Criar novos ítens
+  re_create_new_relation: Criar uma nova relação
+  re_create_new_relationship: Criar nova relação
+  re_create_re_attachment: Criar um novo arquivo anexado
+  re_create_re_goal: Criar um objetivo
+  re_create_re_processword: Criar novo comando
+  re_create_re_rationale: Criar uma nova razão
+  re_create_re_requirement: Criar requisito
+  re_create_re_scenario: Criar cenário
+  re_create_re_section: Criar nova seção
+  re_create_re_subtask: Criar uma nova subtarefa
+  re_create_re_task: Criar uma nova tarefa
+  re_create_re_use_case: Criar um novo caso de uso
+  re_create_re_user_profile: Criar um novo perfil de usuário
+  re_create_re_vision: Criar uma nova declaração de Visão
+  re_create_re_workarea: Criar nova workarea
+  re_create_relation: criar relação com...
+  re_create_wiki_page_for_re_artifact: Criar nova página Wiki
+  re_created_by: Criado por
+  re_creating_a_new: Criando um novo
+  re_data_expansion: Dados
+  re_delete: Apagar
+  re_delete_and_move_children: Apagar item e mover filho
+  re_delete_artifact: Apagar item
+  re_delete_confirm: Realmente deseja apagar %{what}?
+  re_delete_project_artifact: Apagar item de projeto
+  re_delete_project_artifact_error: O item de projeto não pode ser apagado.
+  re_delete_recursively: Apagar recursivamente
+  re_delete_subtask: apagar
+  re_delete_use_case_expansion: Apagar
+  re_delete_use_case_step: Apagar
+  re_delete_use_case_step_expansion: Apagar
+  re_deleted_artifact_and_children: Exclusão de item e todos seus filhos com sucesso.
+  re_deleted_artifact_and_moved_children: Anexados com sucesso todos os itens filhos
+    para o pai e item apagado.
+  re_dependency: Dependência
+  re_dependency_relation_type: Dependência
+  re_description_fieldset: Descrição do item
+  re_description_of_plugin_usage: <h2>Criar itens</h2><ul><li>Comece a criar itens
+    clicando com o botão da direita no objeto superior da árvore da esquerda. Você
+    pode selecionar entre tipos de itens como "Seção", "Requisito" e "Modificar pedido".
+    Após salvar, você encontrará os itens que criou na árvore da esquerda.</li><li>Você
+    pode também clicar com o botão direito em qualquer item da árvore para adicionar
+    novos outros. Use "criar item embaixo" para criar um item no nível seguinte da
+    árvore ou "criar item no mesmo nível".</li></ul><h2>Estrutura</h2><ul><li>Você
+    pode arrastar e soltar qualquer item da árvore para reordenar ou reestruturar
+    seus itens RE. A árvore representa a estrutura do seu documento de requisitos.</li><li>Você
+    pode criar direcionamentos entre itens<ul><li>Editando um item e usando a seção
+    "relações". Selecione o tipo de relação com o botão direito e digite um nome.
+    Os itens vão aparecer e será possível criar um link. Você encontrará todos os
+    direcionamentos na seção superior direita.</li><li>Você poderá também criar direcionamentos
+    arrastando e soltando um item da árvore nas seções direcionado de/direcionando
+    para.</li></ul></li></ul><h2>Conectando tarefas</h2><ul><li>Você pode usar o link
+    Conectar tarefa para criar uma tarefa que ficará linkada automaticamente ao item
+    selecionado.</li><li>Você também pode editar tarefas e itens para criar links
+    manualmente</li></ul>
+  re_description_updated_successfully: Descrição foi atualizada com sucesso
+  re_diagrams: Diagramas
+  re_directed: dirigido
+  re_display_order: Ordem de exibição
+  re_drag_list_items_to_reorder_artifacts: Arraste os itens da lista para reorganizar
+    os itens. A ordem configurada será usada em todos os lugares no plugin de requisitos.
+  re_edit: Editar
+  re_edit_artifact_type_description: Editar descrição por item %{artifact_type}"
+  re_edit_default_description: Editar descrição básica
+  re_editor_for: Aguarde o editor para
+  re_ends_with: Finaliza com
+  re_enhanced_filter: Filtro avançado
+  re_equals: Igual a
+  re_exception_expansion: Exceção
+  re_expansion_description: Descrição
+  re_expansion_type: Tipo
+  re_export: Exportar
+  re_export_error: Erro durante exportação. Por favor certifique-se que o pandoc está
+    instalado e um formato de saída está configurado.
+  re_export_format_configuration: Exportar configuração de formato
+  re_extension_description: Descrição
+  re_extension_type: Tipo
+  re_field_configuration: Configuração dos campos por tipo de item %{artifact_type}
+  re_fields: Campos
+  re_filter: Filtro
+  re_filter_apply: Aplicar
+  re_filter_order: Ordem
+  re_filter_related_issues: Tarefas relacionadas
+  re_filter_save: Salvar
+  re_filter_save_and_apply: Salvar & aplicar
+  re_filter_sink_artifacts: Destino
+  re_filter_source_artifacts: Fonte
+  re_find_secondary_actor: Encontrar ator secundário
+  re_first_use: Essa é a primeira vez que está usando o plugin de Requisitos
+  re_from: a partir de
+  re_goal: Objetivo
+  re_goal_default_description: "<p>Você pode usar objetivos como requisitos de alto
+    nível ou para estruturar seus requisitos. Também é possível utilizar objetivos
+    para todo o RE, principalmente para o entendimento dos requisitos.</p> <p>Os objetivos
+    são bons pontos de partida para lembrar as intenções de seus investidores. Objetivos
+    não precisam ser completamente alcançáveis ou mensuráveis. Objetivos podem ser
+    tratados como rascunhos dos requisitos. Você pode usar os objetivos para descobrir
+    conflitos entre as intenções dos investidores e resolvê-los. Isso pode ajudar
+    você a estabelecer um acordo geral entre seus investidores. Você deve procurar
+    que o objetivo aperfeiçoe uma declaração de visão.[Alexander 2009, S. 51]</p>"
+  re_goal_deleted: O Objetivo %{name} foi apagado
+  re_goal_not_deleted: O Objetivo %{name} não pôde ser apagado
+  re_goal_not_found: Não foi encontrado um objetivo com id %{id} para apagar
+  re_goal_priority: Prioridade
+  re_goal_saved: Objetivo salvo com sucesso
+  re_goals: Objetivos
+  re_greater_than: Maior que
+  re_hide: ocultar
+  re_incoming_relationship_count: Entrada
+  re_index: Plugin de requisito
+  re_insert_pr_after: inserir problema
+  re_insert_st_after: inserir subtarefa
+  re_insert_st_before: inserir
+  re_insert_va_after: inserir variante
+  re_is_being_loaded: está carregando...
+  re_last_update: última atualização
+  re_lesser_than: Menor que
+  re_link_to_configure: Ou configure o plugin
+  re_linked_artifact: Itens relacionados
+  re_linked_artifact_name: Nome do item relacionado
+  re_linked_artifact_type: Tipo de item relacionado
+  re_linked_artifacts: Itens relacionados
+  re_linked_artifacts_count: Itens relacionados
+  re_more: mais
+  re_my_artifacts: Meus itens
+  re_netmap: Mapa de rede
+  re_new_re_attachment: Anexar arquivo
+  re_new_re_goal: Objetivo
+  re_new_re_processword: Novo comando
+  re_new_re_rationale: Nova razão
+  re_new_re_requirement: Requisito
+  re_new_re_scenario: Cenário
+  re_new_re_section: Seção
+  re_new_re_subtask: Subtarefa
+  re_new_re_task: Tarefa
+  re_new_re_use_case: Novo caso de uso
+  re_new_re_user_profile: Perfil de usuário
+  re_new_re_vision: Declaração de Visão
+  re_new_re_workarea: Workarea
+  re_no_one_line_view_existent: 'Modelo está faltando: Nenhum One_line_view definido
+    ainda'
+  re_no_responsible_user_defined: Nenhum responsável definido
+  re_none_specific: Nenhuma especificação
+  re_of_type: do tipo
+  re_other_expansion: Outros
+  re_outgoing_relationship_count: Saída
+  re_pandoc_error_first: Usos do plugin de requisitos
+  re_pandoc_error_second: exportar dados de item para formatos diferentes. Por favor
+    certifique-se que o pandoc está instalado.
+  re_parent: Pai
+  re_parentchild: Pai-filho
+  re_part_of: Parte de
+  re_please_choose: por favor escolha
+  re_please_select_visualization_type: Por favor selecione como visualizar seus dados
+    escolhendo o tipo de visualização.
+  re_plugin_configuration: Configurações dos requisitos
+  re_plugin_description: Descrição do plugin
+  re_preparing_deletion: Preparando exclusão
+  re_preview_wiki_page_for_re_artifact: 'Pré-visualização de página Wiki:'
+  re_primary_actor: Ator primário
+  re_priority_responsible: Prioridade e responsabilidades
+  re_processword: Comando
+  re_processword_default_description: "<p>Comandos são necessários para o uso de modelos
+    sintáticos de requisitos.É possível definir sinônimos para a palavra e deixar
+    uma definição correta do termo aqui.</p>"
+  re_processword_deleted: O comando %{name} foi apagado
+  re_processword_not_deleted: O comando %{name} não pôde ser apagado
+  re_processword_priority: Prioridade
+  re_processword_saved: Comando salvo com sucesso
+  re_processword_specific_attributes: Atributos específicos do comando
+  re_processword_synonyms: Sinônimos
+  re_processword_validation_error: 'Erro de comando: %{msg}'
+  re_project_was_setup: Acabo de configurar sua base de dados
+  re_query_name: Nome
+  re_query_settings: Definições
+  re_query_visibility_me: Somente eu
+  re_query_visibility_public: público
+  re_query_visibility_roles: para
+  re_rationale: Razão
+  re_rationale_default_description: "<p>Use razões para justificar seus requisitos
+    ou outros itens.</p> <p>Decisões sobre requisitos e planejamento quase sempre
+    são baseadas em suposições ocultas. Revelar essas suposições por meio de uma razão
+    permite que haja revisão das decisões. Razões ajudam a priorizar requisitos e
+    também os protegem de serem removidos.</p>"
+  re_rationale_deleted: A razão %{name} foi apagada
+  re_rationale_not_deleted: A razão %{name} não pôde ser apagada
+  re_rationale_not_found: Não foi encontrada uma razão com id %{id} para apagar
+  re_rationale_saved: Razão salva com sucesso
+  re_rationale_specific_attributes: Atributos específicos da razão
+  re_redmine_project_administration: Administração de projeto do Easy Redmine
+  re_refinement: Refinamento
+  re_related_diagrams: Diagramas relacionados
+  re_related_issues: Tarefas
+  re_relation_management_pane: Sempre mostrar o painel de gerenciamento de relações
+  re_relation_saved: Relação salva com sucesso
+  re_relation_saved_error: Relação não foi salva com sucesso
+  re_relation_sucessfull_created: '"%{relation_type}"-relação criada com sucesso de
+    %{source_name} para %{sink_name}'
+  re_relation_type: Tipo de relação
+  re_relationship: Relação
+  re_relationship_configuration: Configuração de relação
+  re_relationship_create_error: Relação não pôde ser criada
+  re_relationship_visualization: Visualização
+  re_remove: remover
+  re_requirement: Requisito
+  re_requirement_default_description: "<p>Para gerenciar o item mais importante do
+    RE.</p> <p>Derivar requisitos de cenários ajuda a prevenir a invenção de requisitos,
+    porque os itens devem ser básicos para todos os requisitos. É possível obter novos
+    requisitos de investidores individuais com a ajuda de entrevistas e observação.
+    Workshops são as melhores opções para descobrir requisitos de grupos. [Pohl 2008,
+    S. 183], [Alexander 2009, S.260 S. 315]</p>"
+  re_requirement_priority: Prioridade
+  re_requirement_saved: Requisito salvo com sucesso
+  re_requirements: Requisitos
+  re_requirements_overview: Visão geral dos Requisitos
+  re_save: Salvar
+  re_scenario: Cenário
+  re_scenario_default_description: "<p>Gerenciando cenários para mostrar processos
+    no seu sistema, identificar motivos e prover contexto para tarefas e subtarefas.</p>"
+  re_scenario_priority: Prioridade
+  re_scenario_saved: Cenário salvo com sucesso
+  re_scroll_to_top: Rolar para topo
+  re_secondary_actor: Ator(es) secundário(s)
+  re_section: Seção
+  re_section_default_description: "<p>Use seções para estruturar seus requisitos na
+    árvore da esquerda.</p> <p>Você deve estruturar seus requisitos em seções porque
+    ajuda a manter todos os seus itens e seus contextos-informações gerenciáveis.
+    Existem muitas referências de estruturas para requisitos. Por exemplo, você pode
+    usar o IEEE Standard 1233-1998 que define uma estrutura para uma especificação
+    de requisito de sistema (SyRS) ou o IEEE Standard 830-1998 que define uma estrutura
+    para uma especificação de requisitos de software (SRS). <!-- Extraído de: [Pohl
+    2008, S. 251 - 253] --></p>"
+  re_section_deleted: A seção %{name} foi apagada com sucesso.
+  re_section_not_deleted: A seção %{name}  não pôde ser apagada.
+  re_section_not_found: Não foi encontrada seção com id %{id}.
+  re_section_priority: Prioridade
+  re_section_saved: Seção salva com sucesso
+  re_select_all: Selecionar tudo
+  re_select_artifact: Selecionar item
+  re_set_parent: Configurar item pai
+  re_settings_have_to_save: 'Nenhuma configuração salva: Você precisa clicar em salvar
+    antes de sair desta página!'
+  re_settings_have_to_save_again: O sistema foi atualizado! Por favor cheque a configuração.
+    Você precisa clicar em salvar antes de sair desta página!
+  re_show: Mostrar
+  re_show_goals: Mostrar objetivos
+  re_show_in_visualization: Exibir
+  re_show_relationships: Mostrar relações
+  re_show_subtasks: Mostrar subtarefas
+  re_show_tasks: Mostrar tarefas
+  re_show_wiki_page_for_re_artifact: Página Wiki
+  re_shows_after_reload: será mostrado após recarregamento da página
+  re_sink_artifact: Item destino
+  re_sink_artifact_name: Nome do item destino
+  re_sink_artifact_type: Tipo do item destino
+  re_source_artifact: Item fonte
+  re_source_artifact_name: Nome do item fonte
+  re_source_artifact_type: Tipo do item fonte
+  re_space_tree: Espaço da árvore
+  re_specification_overview: Árvore de requisitos
+  re_st_position_not_allowed: Esta posição de subtarefa não é permitida
+  re_st_type_not_allowed: Este tipo de subtarefa não é permitido
+  re_stakeholders: Investidores
+  re_starts_with: Iniciar com
+  re_structuring_elements: Elementos estruturantes
+  re_subtask: Subtarefa
+  re_subtask_default_description: "<p>Apesar de ser possível criar uma subtarefa com
+    essa ferramenta, é mais conveniente que você crie uma Tarefa e adicione subtarefas
+    pelo visualizador de tarefas.</p>"
+  re_subtask_deleted: A subtarefa %{name} foi apagada
+  re_subtask_name: Nome
+  re_subtask_not_deleted: A subtarefa %{name} não pôde ser apagada
+  re_subtask_not_found: Não foi encontrada uma subtarefa com id %{id} para apagar
+  re_subtask_priority: Prioridade
+  re_subtask_problem: Problema
+  re_subtask_saved: Subtarefa %{name} salva com sucesso
+  re_subtask_solution: Solução
+  re_subtask_type: Tipo
+  re_subtask_variant: Variante
+  re_subtasks: Subtarefas
+  re_subtasks_not_valid: Subtarefas não são válidas!
+  re_subtasks_saved: Subtarefas salvas com sucesso
+  re_sunburst: Vetorial
+  re_system_step: etapa do sistema
+  re_system_steps: Etapas do sistema
+  re_task: Tarefa
+  re_task_and_subtasks_saved: Tarefa e subtarefas salvas com sucesso
+  re_task_attributes: Atributos específicos da tarefa
+  re_task_default_description: <p>Se você não tem familiaridade com o uso da abordagem
+    Baseada em Tarefas de Lauesen''s para o RE - é bastante similar aos famosos Casos
+    de Uso por Cockburn - simplesmente <a href='http://www.itu.dk/~slauesen/SorenReqs.html'>veja
+    seu website</a>.<br /> O mais importante é que você reconheça o princípio de solução
+    de demanda que vem junto com as duas colunas da abordagem.</p> <p>Tarefas não
+    fazem distinção de quem faz o quê. Fechamento de tarefa significa que sua tarefa
+    tem início e ponto final bem definidos. Um bom início é algo que aconteça no mundo
+    do usuário, uma ligação de um cliente, por exemplo. Um bom ponto final é quando
+    não há mais nada que possa ser feito sobre o caso no momento - o usuário merece
+    um "coffee break". [Lauesen 2011, S. 34]</p>
+  re_task_deleted: A tarefa %{name}} foi apagada
+  re_task_difficult: Dificuldade
+  re_task_difficulties: Dificuldades
+  re_task_end: Fim
+  re_task_frequency: Frequência
+  re_task_not_deleted: A tarefa %{name} não pôde ser apagada
+  re_task_not_found: Não foi encontrada uma tarefa com id %{id} para apagar
+  re_task_priority: Prioridade
+  re_task_saved: Tarefa salva com sucesso
+  re_task_specific_attributes: Atributos específicos da tarefa
+  re_task_start: Início
+  re_tasks: Tarefas
+  re_text_artifact_added: Item %{id} foi adicionado por %{author}
+  re_text_artifact_updated: Item %{id} foi atualizado por %{author}.
+  re_text_artifact_updated_new_comment: 'Novo comentário adicionado por %{author}:'
+  re_to: até
+  re_traces_from: Direcionado de
+  re_traces_to: Direciona para
+  re_tree_loading: Árvore está carregando...
+  re_treefilter: Filtro
+  re_type: Tipo
+  re_uc_add: adicionar
+  re_uc_add_below: adicionar abaixo
+  re_uc_dialog: diálogo
+  re_uc_insert: adicionar
+  re_uc_system: Sistema
+  re_uc_user: Usuário
+  re_unsaved: não salvo
+  re_unselect_all: Desselecionar tudo
+  re_update_description: Descrição de atualização
+  re_update_difficult: Atualizar dificuldades
+  re_update_plugin_description: Atualizar descrição do plugin
+  re_updated_at: Atualizado
+  re_use: Ativar
+  re_use_case: Caso de uso
+  re_use_case_abstract_overview: Resumo da visão geral
+  re_use_case_and_steps_saved: Caso de uso e todas as etapas salvas com sucesso
+  re_use_case_attributes: Atributos específicos de caso de uso
+  re_use_case_default_description: "<p>Modelo de Caso de Uso como aparece no livro
+    Writing effective Use-Cases de Cockburn.</p>"
+  re_use_case_deleted: Caso de uso %{name} foi apagado
+  re_use_case_expansion: Expansão
+  re_use_case_expansions: Expansões de caso de uso
+  re_use_case_function: Função
+  re_use_case_level: Nível
+  re_use_case_low: Abaixo
+  re_use_case_not_deleted: Caso de uso %{name} não pôde ser apagado
+  re_use_case_not_found: Não foi encontrado um caso de uso com id %{id} para apagar
+  re_use_case_overview: Visão geral
+  re_use_case_postcondition: Pós-condição
+  re_use_case_precondition: Precondição
+  re_use_case_primary_actor: Ator primário
+  re_use_case_saved: Caso de uso salvo com sucesso
+  re_use_case_secondary_actors: Ator(es) secundário(s)
+  re_use_case_specific_attributes: Atributos específicos de caso de uso
+  re_use_case_step: Etapa
+  re_use_case_steps: Etapas do caso de uso
+  re_use_case_trigger: Gatilho
+  re_use_case_user_goal: Objetivo de usuário
+  re_user_defined_fields: Campos definidos por usuário
+  re_user_profile: Perfil de usuário
+  re_user_profile_default_description: "<p>Você pode usar perfis de usuário para descrever
+    seus usuários.</p><p>Descrever o investidor com perfis de usuário é muito importante
+    porque todos os requisitos vêm de pessoas. Portanto, você deve descobrir e documentar
+    todos os investidores que estão envolvidos em seu projeto. [Alexander 2009, S
+    28]</p>"
+  re_user_profile_deleted: O perfil de usuário  %{name} foi apagado
+  re_user_profile_not_deleted: O perfil de usuário  %{name} não pôde ser apagado
+  re_user_profile_not_found: Não foi encontrado um perfil de usuário com id %{id}
+    para apagar
+  re_user_profile_priority: Prioridade
+  re_user_profile_saved: Perfil de usuário salvo com sucesso
+  re_user_step: etapa do usuário
+  re_user_steps: Etapas do usuário
+  re_vision: Declaração de Visão
+  re_vision_default_description: "<p>Uma declaração da visão para seu projeto. Descreva
+    ideias em sintaxe  e estilo Wiki com este ítem.</p> <p> Você deve usar a declaração
+    de visão para descrever o propósito básico do seu projeto. A visão deve ser clara
+    e simples para que todos sejam capazes de entender este propósito. [Alexander
+    2009, S 53]</p>"
+  re_vision_deleted: A revisão %{name} foi apagada com sucesso.
+  re_vision_not_deleted: A revisão %{name} não pôde ser apagada.
+  re_vision_not_found: Não foi encontrada revisão com id %{id}
+  re_vision_priority: Prioridade
+  re_vision_saved: Visão salva com sucesso
+  re_visualitation_deep_graph_explain: max. iteration steps 0 = disabled
+  re_visualization_config: Configurar
+  re_visualization_show: Visualização
+  re_visualization_show_graph: mostrar como gráfico
+  re_visualization_show_netmap: mostrar como mapa de rede
+  re_visualization_show_sunburst: mostrar como vetorial
+  re_visualization_size: Tamanho da visualização (em pixels)
+  re_visualization_type: Tipo de visualização
+  re_was_created: foi criado
+  re_was_updated: foi atualizado
+  re_what_will_be_deleted: Se você apagar esse item, as relações listadas abaixo também
+    serão apagadas.
+  re_wiki_page_available_after_save: Você pode conectar uma página Wiki após salvar
+  re_wiki_page_for_artifact: Página Wiki
+  re_will_delete_artifact_and_all_children: Escolhendo essa opção, irá apagar o item
+    (%{name}) e as relações (listadas acima). Adicionalmente, todos seus filhos (listados
+    acima), assim como cada relação de cada filho com outros itens, serão apagados.
+    Talvez queira avaliar melhor antes de escolher essa opção.
+  re_will_delete_artifact_and_move_children: Escolhendo essa opção, irá anexar todos
+    os filhos desse item (listados acima) para o pai do item (%{parent}). Em seguinda,
+    o item (%{name}) e todas suas relações com outros itens serão apagadas.
+  re_will_delete_artifact_and_relations: Escolhendo essa opção, irá apagar o item
+    (%{name}) e suas relações (listadas acima).
+  re_workarea: Workarea
+  re_workarea_default_description: "<p>Uma workarea pode ser utilizada para estruturar
+    algumas tarefas. Isto vai proporcionar uma capacidade de manter itens que atuam
+    na mesma área juntos (p. ex. uma sala, uma empresa ou um departmento).</p>"
+  re_workarea_deleted: A reworkarea %{name} foi apagada com sucesso.
+  re_workarea_not_deleted: A reworkarea %{name} não pôde ser apagada.
+  re_workarea_not_found: Não foi encontrada reworkarea com id %{id}.
+  re_workarea_priority: Prioridade
+  re_workarea_saved: Workarea salva com sucesso
+  re_you_asked_for_deleting_the_following_artifact: Você pediu a exclusão dos seguintes
+    itens
+  ReArtifactRelationship: Relação de requisito
+  ReAttachment: Anexar arquivo
+  ReChangeRequest: Modificar requerimento
+  redmine_re_plugin_author: Easy Software Ltd
+  redmine_re_plugin_author_url: http://www.easyredmine.com
+  redmine_re_plugin_description: ''
+  redmine_re_plugin_name: Plugin de Requisitos Easy
+  refinement: Refinamento
+  ReGoal: Objetivo
+  relations: Relações
+  relationship: Relação
+  ReProcessword: Comando
+  requirement_progress: Progresso do requerimento
+  Requirements: Requisitos
+  ReRationale: Razão
+  ReRequirement: Requisito
+  ReScenario: Cenário
+  ReSection: Seção
+  ReSubtask: Subtarefa
+  ReTask: Tarefa
+  ReUseCase: Caso de uso
+  ReUserProfile: Perfil de usuário
+  ReVision: Declaração de Visão
+  ReWorkarea: Workarea
+  status: Situação
+  subject: Assunto
+  ticketend_overdue: Tickets com prazo de vencimento atrasados
+  ticketstart_overdue: Tickets com data de início atrasados
+  todo: Tickets abertos

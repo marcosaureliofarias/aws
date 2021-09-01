@@ -1,0 +1,31 @@
+<%= title(l(:heading_easy_short_urls_index)) unless request.xhr? %>
+<table class="list">
+  <thead>
+  <tr>
+    <th><%= EasyShortUrl.human_attribute_name(:shortcut) %></th>
+    <th><%= EasyShortUrl.human_attribute_name(:valid_to) %></th>
+    <th><%= l(:field_entity) %></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @easy_short_urls.each do |easy_short_url| %>
+    <tr>
+      <td><%= text_field_tag '', easy_shortcut_url(easy_short_url.shortcut) %></td>
+      <td><%= format_date(easy_short_url.valid_to) %></td>
+      <td>
+        <% if easy_short_url.entity %>
+          <%= link_to_entity(easy_short_url.entity) %>
+        <% else %>
+          <%= link_to(easy_short_url.source_url, easy_short_url.source_url) %>
+        <% end %>
+      </td>
+      <td class="buttons">
+        <%= link_to('', easy_short_url_path(easy_short_url), :class => 'icon icon-magnifier', :remote => true) %>
+        <%= link_to('', easy_short_url_path(easy_short_url, :format => :qr), :class => 'icon icon-qr', :remote => true) %>
+        <%= link_to('', easy_short_url_path(easy_short_url), :class => 'icon icon-del', :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :title => l(:button_delete)) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

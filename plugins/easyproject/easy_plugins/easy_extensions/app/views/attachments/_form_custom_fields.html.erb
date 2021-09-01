@@ -1,0 +1,7 @@
+<% if attachment.present? %>
+  <span class="tabular">
+    <% attachment.custom_field_values.each do |value| %>
+      <span class="field-container"><%= custom_field_tag_with_label "#{tag_name}[#{attachment_id}]", value %></span>
+    <% end %>
+  </span>
+<% end %>

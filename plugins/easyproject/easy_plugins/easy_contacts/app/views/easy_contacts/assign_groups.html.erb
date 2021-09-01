@@ -1,0 +1,10 @@
+<%= content_tag :h2, l(:title_easy_contact_assign) %>
+
+<%= form_tag( {:controller => :easy_contacts, :action => :assign!} ) do %>
+  <% @contacts.each do |contact| %>
+    <%= hidden_field_tag 'contacts[]', contact %>
+  <%end%>
+  <p><%= contact_group_select_tag(@contact) -%></p>
+
+  <p><%= submit_tag l(:button_update) %></p>
+<%end%>

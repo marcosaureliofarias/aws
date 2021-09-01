@@ -1,0 +1,32 @@
+<% if false # extended timesheets :monthly uses own method; not needed %>
+  <% if f.object.available_periods.count > 1 %>
+    <p>
+      <%= f.select(:period, f.object.available_periods.map{|i| [l(i, :scope => [:easy_timesheets_periods]), i.to_s]}, :label => :field_easy_timesheet_period) -%>
+    </p>
+  <% end -%>
+<% end %>
+<% if User.current.allowed_to_globally?(:add_timeentries_for_other_users, {}) %>
+  <p>
+    <%= label_tag('easy_timesheet_user_id_autocomplete', l(:field_user)) %>
+    <%= easy_autocomplete_tag(
+      'easy_timesheet[user_id]',
+      { name: f.object.user.try(:name), id: f.object.user_id },
+      easy_autocomplete_path('internal_users'),
+      root_element: 'users',
+      html_options: {
+        id: "easy_timesheet_user_id"
+        }
+      ) %>
+  </p>
+<% end %>
+<p class="easy-timesheet-periods-form-fields">
+  <%= f.text_field :start_date, size: 10, onchange: "changeEasyTimesheetPeriodField(this.value, '#{@easy_timesheet.period.to_s}')" %>
+  <%= calendar_for('easy_timesheet_start_date') %>
+</p>
+<p>
+  <%= f.text_field :end_date, size: 10, disabled: true, label: l(:label_easy_timesheet_end_date)%>
+  <%= calendar_for('easy_timesheet_end_date') -%>
+</p>
+<p>
+  <span class="help-block hint"><%=l :text_easy_timesheet_start_date_will_align_to_beginning_of_period -%></span>
+</p>

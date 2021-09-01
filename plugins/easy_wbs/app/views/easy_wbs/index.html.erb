@@ -1,0 +1,242 @@
+<%
+  data_path_params = @query.to_params.merge(key: User.current.api_key, format: 'json')
+  data_path = project_easy_wbs_index_path(@project, data_path_params)
+  with_extensions = EasyMindmup.easy_extensions?
+  with_sidebar = false
+  with_money = EasyWbs.easy_money?(@project)
+  if with_sidebar
+    sidebar_loader = {
+      subtype: :wbs,
+      id:'WBS classic',
+      data: {
+          lang: wbs_translations,
+          paths: {
+              # home_path: (home_path=='/')?home_path:(home_path+'/'),
+              home_path: home_path,
+              issue_path: issue_path('__issueId',key: User.current.api_key,format: :json),
+              project_path: project_path('__projectId',key: User.current.api_key,format: :json),
+              easy_issue_form_fields: url_for(controller: :easy_issues, action: :form_fields, id: '__issueId',format: :json, project_id: nil, key: User.current.api_key),
+              easy_issue_project_form_fields: url_for(controller: :easy_issues, action: :form_fields, format: :json, project_id: '__projectId', key: User.current.api_key),
+              user_json: user_path('__userId',key: User.current.api_key,format: :json),
+              user_html: user_path('__userId'),
+              user_profile_html: profile_user_path('__userId'),
+              issue_available_values_no_id: url_for(controller: :easy_issues, action: :form_fields_v2, project_id: "__projectID", id: nil, format: "json")
+          }
+      }.to_json.to_s
+  # there should be String value in key data - it is faster to interop with dart part
+    }
+  else
+    sidebar_loader = nil
+  end
+%>
+
+<div id="easy_wbs" class="<%= with_extensions ? 'easy' : 'redmine' %>
+    wbs clear">
+
+  <%= render 'easy_queries/easy_query_index',
+              query: @query,
+              easy_query_name: l(:heading_easy_wbs_issues),
+              wrapper_class: '',
+              options: { show_custom_formatting: false, show_free_search: false } %>
+
+  <div id="wbs_cont" class="clear mindmup-cont">
+    <div id="wbs_menu" class="mindmup__menu">
+      <div class="push-left">
+        <div class="mindmup__legend-container">
+          <div class="mindmup__legend-header">
+            <label class="mindmup__legend-label"><%= l(:button_legend, :scope => [:easy_wbs]) %>:
+              <select class="mindmup-color-select">
+                <option value="tracker" selected><%= l(:field_tracker) %></option>
+                <option value="progress"><%= l(:field_done_ratio) %></option>
+                <option value="priority"><%= l(:field_priority) %></option>
+                <option value="status"><%= l(:field_status) %></option>
+                <option value="assignee"><%= l(:field_assigned_to) %></option>
+                <option value="milestone"><%= l(:field_version) %></option>
+                <option value="spentTimeRatio"><%= l(:label_spent_time_ratio, :scope => [:easy_wbs]) %></option>
+              </select>
+            </label>
+            <div class="mindmup__legend-toggler legend-toggler push-right">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--legend mindmup__legend-trigger"><span class="tip"><%= l(:button_legend, :scope => [:easy_wbs]) %></span></a>
+            </div>
+          </div>
+          <div class="mindmup-legend mindmup__legend-body"></div>
+        </div>
+        <div class="mindmup__menu-group mindmup__menu-group--tooltiped mindmup__menu-item mindmup__menu-group-display">
+          <a href="javascript:void(0)" class="button button-2 easy-mindmup__icon easy-mindmup__icon--display"><span><%= l(:button_display, :scope => [:easy_wbs]) %></span></a>
+          <ul>
+            <li class="show-links-toggler">
+              <a href="javascript:void(0)" class="menu__toggler"><%= l(:button_show_links, :scope => [:easy_wbs]) %></a>
+            </li>
+            <li class="all-icon-toggler">
+              <a href="javascript:void(0)" class="menu__toggler"><%= l(:button_all_icons, :scope => [:easy_wbs]) %></a>
+            </li>
+            <li class="toggleOneSide">
+              <a href="javascript:void(0)" class="menu__toggler"><%= l(:button_one_side, :scope => [:easy_wbs]) %></a>
+            </li>
+            <li class="mindmup-expand-all">
+              <a href="javascript:void(0)" class="mindmup-button-collapse-all menu__toggler"><%= l(:button_collapse_all, :scope => [:easy_wbs]) %></a>
+            </li>
+            <li class="mindmup__legend-cont-toggler">
+              <a href="javascript:void(0)" class="menu__toggler"><%= l(:button_legend, :scope => [:easy_mindmup]) %></a>
+            </li>
+            <li class="mindmup__menu-group mindmup__menu-group--tooltiped mindmup__menu-item mindmup__money-tooltip hidden">
+              <a href="javascript:void(0)" class="menu__toggler money_cumulative-tasks"><%= l(:label_task_cumulative, :scope => [:easy_wbs]) %></a>
+            </li>
+          </ul>
+        </div>
+        <% if with_extensions && with_money %>
+          <div id="wbs_budget" class="mindmup__menu-group mindmup__menu-group--tooltiped hidden">
+            <label class="mindmup__menu_budget-label"> <%= l(:label_show, :scope => [:easy_wbs]) %>:</label>
+            <select id="money_type" name="money_type" class="mindmup__menu_budget-select">
+              <option value="real_profit"><%= l(:label_real_profit, :scope => [:easy_wbs]) %></option>
+              <option value="planned_profit"><%= l(:label_planned_profit, :scope => [:easy_wbs]) %></option>
+              <option value="real_costs"><%= l(:label_real_costs, :scope => [:easy_wbs]) %></option>
+              <option value="planned_costs"><%= l(:label_planned_costs, :scope => [:easy_wbs]) %></option>
+              <option value="real_revenue"><%= l(:label_real_revenue, :scope => [:easy_wbs]) %></option>
+              <option value="planned_revenue"><%= l(:label_planned_revenue, :scope => [:easy_wbs]) %></option>
+            </select>
+            <label class="mindmup__menu_budget-label"> <%= l(:label_currency, :scope => [:easy_wbs]) %>:</label>
+            <select id="money_currency" name="money_currency" class="mindmup__menu_budget-select">
+            </select>
+          </div>
+        <% end %>
+      </div>
+      <div class="mindmup__menu_addons">
+        <div class="mindmup__menu-group mindmup__menu-group--sizing mindmup__menu-item">
+          <ul>
+            <li class="scaleUp">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--zoom_in"></a>
+            </li>
+            <li class="resetView">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--refresh_view"></a>
+            </li>
+            <li class="scaleDown">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--zoom_out"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="push-right">
+        <% if with_extensions && with_money %>
+          <div class="mindmup__menu-item money-toggler">
+            <a href="javascript:void(0)" class="button button-2 easy-mindmup__icon easy-mindmup__icon--money"><span><%= l(:field_predicted_cost) %></span></a>
+          </div>
+        <% end %>
+        <div class="mindmup__menu-group mindmup__menu-group--tooltiped mindmup__menu-item">
+          <a href="javascript:void(0)" class="button button-2 easy-mindmup__icon easy-mindmup__icon--settings"><span><%= l(:button_actions, :scope => [:easy_wbs]) %></span></a>
+          <ul>
+            <li class="undo mindmup-button-undo">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--undo"><%= l(:button_undo, :scope => [:easy_wbs]) %></a>
+            </li>
+            <li class="redo mindmup-button-redo">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--redo"><%= l(:button_redo, :scope => [:easy_wbs]) %></a>
+            </li>
+            <% unless EasyMindmup.easy_printable_templates? %>
+              <li class="mindmup-button-print">
+                <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--print"><%= l(:button_export) %></a>
+              </li>
+            <% end %>
+            <li class="cut">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--cut"><%= l(:button_cut, :scope => [:easy_wbs]) %></a>
+            </li>
+            <li class="copy">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--copy"><%= l(:button_copy) %></a>
+            </li>
+            <li class="paste">
+              <a href="javascript:void(0)" class="easy-mindmup__icon easy-mindmup__icon--paste"><%= l(:button_paste, :scope => [:easy_wbs]) %></a>
+            </li>
+          </ul>
+        </div>
+        <div class="mindmup__menu-item save mindmup__menu-save">
+          <a href="javascript:void(0)" class="button button-positive easy-mindmup__icon easy-mindmup__icon--save"><span><%= l(:button_save) %></span></a>
+          <div class="mindmup__menu-save--tooltip"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="container" class="mindmup-container" style="min-height: 600px;width: 100%;">
+      <div class="link-edit-widget">
+        <div class="link-edit-type-actual"></div>
+      </div>
+      <%= render 'easy_mindmup/hotkeys' %>
+    </div>
+    <% if with_sidebar %>
+      <%= content_for :sidebar do %>
+        <mindmup-sidebar id="easyWbsSidebar"></mindmup-sidebar>
+        <script type="application/javascript">
+          window.EASY = window.EASY || {};
+          window.EASY.easyWbsSidebarData = <%= sidebar_loader.to_json.html_safe %>;
+        </script>
+      <% end %>
+    <% end %>
+
+  <% if EasyMindmup.easy_printable_templates? %>
+    <%
+      # Prepare options for selection
+      # - easy_wbs category should be first
+      # - select first option on easy_wbs category if this category contains only one option
+      wbs_category = EasyPrintableTemplate.category_caption('easy_wbs')
+      options = { wbs_category => [] }
+      back_url = Addressable::URI.unescape(request.fullpath)
+      print_template_url = preview_easy_printable_template_path(':id', entity_type: 'Project', entity_id: @project.try(:id), back_url: back_url)
+
+      templates = EasyPrintableTemplate.pluck(:name, :category, :id)
+      templates.each do |name, category, id|
+        key = EasyPrintableTemplate.category_caption(category)
+        options[key] ||= []
+        options[key] << [name, id]
+      end
+
+      if options[wbs_category].size == 1
+        selected_key = options[wbs_category].first
+        prompt = false
+      else
+        selected_key = nil
+        prompt = true
+      end
+    %>
+
+    <span id="easy_mindmup__print_controls">
+      <%= select_tag :print, grouped_options_for_select(options, selected_key, prompt: prompt), class: 'mindmup__print-template-selector', style: 'width: auto' %>
+      <a class="button button-2 easy-mindmup__icon easy-mindmup__icon--print mindmup__print-button"><%= l(:button_print) %></a>
+    </span>
+
+    <!--
+    <label title="<%#= l('easy_mindmup.title.print_fit') %>">
+      <%#= l('easy_mindmup.button.print_fit') %>
+      <input type="checkbox" id="print_fit_checkbox" checked>
+    </label>
+    -->
+
+  <% end %>
+  </div>
+</div>
+
+<%= render 'easy_mindmup/includes' %>
+<% if with_sidebar
+  render 'easy_front_end/easy_front_end', plugin: :easy_wbs
+end %>
+<%= render 'easy_wbs/includes' %>
+<%= content_for :body_bottom do %>
+  <%= render 'easy_mindmup/js_prepare' %>
+  <%= render 'easy_mindmup/test_includes' if params[:jasmine] %>
+  <%= render 'easy_wbs/js_prepare' %>
+  <%= render 'easy_wbs/test_includes' if params[:jasmine] %>
+
+  <script type="application/javascript">
+    (function () {
+      window.easyMindMupSetting.paths.data = "<%= data_path.html_safe %>";
+      window.easyMindMupSetting.paths.print = "<%= print_template_url.html_safe if print_template_url %>";
+      var settings = window.easyMindMupSetting;
+      delete window.easyMindMupSetting;
+      EASY.schedule.require(function () {
+        new window.easyMindMupClasses.WbsMain(settings);
+      }, "jQuery", function () {
+        return window.easyMindMupClasses && window.easyMindMupClasses.WbsMain;
+      })
+    })();
+  </script>
+<% end %>
+
+<%= yield :body_bottom unless with_extensions %>
+<%= call_hook :estimate_time_calculation %>

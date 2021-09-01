@@ -1,0 +1,96 @@
+.flash{
+  font-size:1em;
+  .modal & {
+    position: fixed !important;
+    z-index: z($z-priority,modal) + 2;
+    right: $box-padding;
+    left: $box-padding;
+    top: 2.125*$box-padding;
+  }
+  &.notice{
+    @extend %flash-success;
+  }
+  &.warning{
+    @extend %flash-warning;
+  }
+  &.error{
+    @extend %flash-error;
+  }
+  & + div{
+	margin-top: 0;
+  }
+  &.fixed{
+    right: $servicebar-width + $box-margin !important;
+    left: $box-margin;
+    top: $topmenu-height + $gap !important;
+    .modal-opened &{
+      left: 12.5%;
+      right: 12.5% !important;
+    }
+  }
+  #main > &{
+    margin: $box-margin $box-margin 0;
+  }
+}
+#errorExplanation{
+  font-size:1.25em;
+  @extend %flash-error;
+}
+#conflict{
+  @extend %flash-warning;
+  p{
+    padding-left: 0;
+  }
+  label {
+    display: block;
+  }
+}
+.nodata{
+  @extend %flash-info;
+  .tab-content &{
+    &:first-child{
+      margin-top: $box-padding;
+    }
+  }
+}
+span.nodata{
+  display: inline-block;
+}
+.info{
+  @extend %flash-info;
+  padding: $gap;
+  display: block;
+  margin-top: $gap;
+  @include small;
+  width: auto;
+  max-width: 1.5*$form-field-max-width;
+  overflow-wrap: break-word;
+  &:before{
+    display: none;
+  }
+}
+
+//.help-block{
+//  @extend %flash-info; // todo samostatne
+//  padding: $gap;
+//  display: block;
+//  margin-top: $gap;
+//  @include small;
+//  &:before{
+//    display: none;
+//  }
+//}
+//.help-inline{
+//  @extend %flash-info; // todo samostatne
+//  padding: 0 0.5*$gap;
+//  display: inline-block;
+//  margin: 0;
+//  @include small;
+//  &:before{
+//    display: none;
+//  }
+//}
+
+.warning{
+  @extend %flash-warning;
+}

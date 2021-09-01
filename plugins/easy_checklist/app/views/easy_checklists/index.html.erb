@@ -1,0 +1,13 @@
+<%= render @query, :easy_query_name => l(:label_easy_checklist_templates), :options => { :hascontextmenu => false } %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_checklist_templates_index)) -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_checklists/sidebar_links' %>
+<% end %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class} -%>
+<% end -%>

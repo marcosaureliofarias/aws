@@ -1,0 +1,98 @@
+<% more_attributes_collapsed = !toggle_button_expanded?('hide_more_attributes_easy_contact', User.current, false)
+   edit_avatar ||= false %>
+<% is_favorite = User.current.easy_contact_ids.include?(@easy_contact.id) %>
+<div id="entity-info" class="easy-contact multieditable-container entity-detail-header" data-url="<%= easy_contact_path(easy_contact, :format => 'json') %>">
+  <div id="contact-detail-container" class="easy-entity-details">
+    <h2>
+      <% avatar = (easy_contact.easy_avatar_url.present? || easy_contact.easy_avatar) ? avatar(easy_contact, :style => :small) : content_tag(:span, '', :class => 'easy-contact-default-avatar avatar-container ' + entity_css_icon(easy_contact)) %>
+      <% if edit_avatar && @easy_contact.editable? %>
+          <%= avatar %>
+          <%= link_to(polymorphic_path([:change_avatar, @project, easy_contact], {:back_url => original_url}), :remote => true, :class => 'avatar-edit', :title => l(:label_easy_contact_change_avatar)) do %>
+              <%= content_tag(:span, '', :class => 'icon icon-edit', :title => l(:label_easy_contact_change_avatar)) %>
+          <% end -%>
+      <% else %>
+          <%= avatar %>
+      <% end -%>
+
+      <%= @easy_contact.name -%>
+      <span class="easy-entity-status-icons">
+        <% if is_favorite %>
+            <%= link_to('', remove_from_entity_easy_contact_path(@easy_contact, :project_id => @project, :entity_type => 'User', :entity_id => User.current.id), :method => :delete, :class => 'icon-fav icon', :title => l(:button_remove_from_me) + ': ' + l(:label_easy_contact_is_my)) -%>
+        <% else %>
+            <%= link_to('', assign_entities_easy_contacts_path(:ids => @easy_contact, :project_id => @project, :entity_type => 'User', :entity_ids => [User.current.id]), :method => :post, :class => 'icon-fav-off icon', :title => l(:label_easy_contact_is_not_my) + ': ' + l(:button_assign_to_me)) -%>
+        <% end -%>
+        <% if @easy_contact.global? %>
+            <%= link_to('', easy_contact_path(@easy_contact, {:easy_contact => {:is_global => false}}), :method => :put, :class => 'icon-group icon', :title => l(:label_easy_contact_is_global_true) + ' -> ' + l(:label_easy_contact_is_global_false)) -%>
+        <% end -%>
+        <% if @easy_contact.private? %>
+            <%= link_to('', easy_contact_path(@easy_contact, {:easy_contact => {:private => false}}), :method => :put, :class => 'icon-eye icon', :title => l(:label_easy_contact_is_private_true) + ' -> ' +  l(:label_easy_contact_is_private_false)) -%>
+        <% end -%>
+      </span>
+      <%= call_hook :view_easy_contact_header_icons_bottom, {:easy_contact => easy_contact} %>
+    </h2>
+    <div class="easy-entity-details-header-attributes<%= ' open' unless more_attributes_collapsed %>">
+      <table class="attributes">
+        <tbody>
+          <tr>
+            <% if EasyContact.assigned_to_id_field_visible? %>
+              <th><%= EasyContact.human_attribute_name(:account_manager) %>:</th>
+              <td>
+              <span class="<%= 'multieditable' if @easy_contact.safe_attribute?('assigned_to_id') %>"
+                    data-name="easy_contact[assigned_to_id]"
+                    data-type="select"
+                    data-value="<%= @easy_contact.assigned_to_id %>"
+                    data-source="<%= j easy_autocomplete_path('assignable_users', :entity_type => 'EasyContact', entity_id: @easy_contact.id) %>">
+                        <%= @easy_contact.assigned_to ? link_to_user(@easy_contact.assigned_to) : '-' %>
+              </span>
+              </td>
+            <% end %>
+            <% if EasyContact.author_id_field_visible? %>
+              <th><%= EasyContact.human_attribute_name(:author_id) %>:</th>
+              <td>
+                <%= @easy_contact.author ? link_to_user(@easy_contact.author) : '-' %>
+              </td>
+            <% end %>
+          </tr>
+          <% if EasyContact.external_assigned_to_id_field_visible? && EasyUserType.easy_type_partner.any? %>
+            <tr>
+              <th><%= EasyContact.human_attribute_name(:external_account_manager) %>:</th>
+              <td>
+              <span class="<%= 'multieditable' if @easy_contact.safe_attribute?('external_assigned_to_id') %>"
+                    data-name="easy_contact[external_assigned_to_id]"
+                    data-type="select"
+                    data-value="<%= @easy_contact.external_assigned_to_id %>"
+                    data-source="<%= j easy_autocomplete_path('assignable_users', :entity_type => 'EasyContact', entity_id: @easy_contact.id, :external => true) %>">
+                        <%= @easy_contact.external_assigned_to ? link_to_user(@easy_contact.external_assigned_to) : '-' %>
+              </span>
+              </td>
+            </tr>
+          <% end %>
+          <%= call_hook :view_easy_contact_details_header_bottom, {easy_contact: easy_contact} %>
+        </tbody>
+      </table>
+      <hr/>
+      <div id="crm_contact_detail_custom_fields" class="custom-fields">
+        <%= render_show_entity_custom_fields(@easy_contact, @easy_contact.grouped_custom_field_values(easy_contact.visible_custom_field_values_without_empty_primary), 'two_columns', inline_editable: @easy_contact.editable?) -%>
+        <%= render_more_attributes_button('hide_more_attributes_easy_contact', User.current.id, more_attributes_collapsed) %>
+      </div>
+    </div>
+    <% if @easy_contact.child? %>
+      <%= render_module_easy_box('easy_contact_parents_inner', l(:label_easy_contact_parent_contact_plural), icon: 'icon-tracker', class: {container: 'easy-contact-parents'}) do |m| %>
+        <div class="autoscroll">
+          <%= render_contacts_ancestors_tree(@contacts_tree.select{|contact| contact.lft < @easy_contact.lft}) %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if !@easy_contact.leaf? %>
+      <%= render_module_easy_box('easy_contact_childs_inner', l(:label_easy_contact_sub_contact_plural), icon: 'icon-tracker', class: {container: 'easy-contact-childs'}) do |m| %>
+        <div class="autoscroll">
+          <%= render_contacts_descendants_tree(@contacts_tree.select{|contact| contact.lft > @easy_contact.lft}) %>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+
+  <%= call_hook :view_easy_contact_header_info_bottom, {:easy_contact => easy_contact} %>
+</div>

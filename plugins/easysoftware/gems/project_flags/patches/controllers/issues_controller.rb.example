@@ -1,0 +1,37 @@
+Rys::Patcher.add('IssuesController') do
+
+  included do
+    before_action :project_flags_add_flash_notice, only: [:show]
+  end
+
+  instance_methods do
+    def show
+      Rys::Feature.on('project_flags.issue.show') do
+        @project_flags_test_1 = 'Test 2'
+      end
+
+      super
+    end
+
+    private
+
+      def project_flags_add_flash_notice
+        if Rys::Feature.active?('project_flags.issue.show', 'project_flags.project.show')
+          flash.now[:notice] = 'Features are activated'
+        end
+      end
+  end
+
+
+  instance_methods(feature: 'project_flags.issue.show') do
+    def show
+      @project_flags_test_2 = 'Test 2'
+
+      super
+    end
+  end
+
+  class_methods do
+  end
+
+end

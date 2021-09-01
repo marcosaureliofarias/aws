@@ -1,0 +1,4 @@
+<%= labelled_form_for [@project, baseline], html: { id: 'baseline-form', remote: true } do |f| %>
+  <p><%= f.text_field :name, size: 80, required: true %></p>
+  <p><%= f.text_field :description, size: 80 %></p>
+<% end %>

@@ -1,0 +1,11 @@
+# This file define all features
+#
+# Rys::Feature.for_plugin(<%= camelized_modules %>::Engine) do
+#   Rys::Feature.add('<%= dotted_name %>.project.show')
+#   Rys::Feature.add('<%= dotted_name %>.issue.show')
+#   Rys::Feature.add('<%= dotted_name %>.time_entries.show')
+# end
+
+Rys::Feature.for_plugin(<%= camelized_modules %>::Engine) do
+  Rys::Feature.add('<%= dotted_name %>')
+end

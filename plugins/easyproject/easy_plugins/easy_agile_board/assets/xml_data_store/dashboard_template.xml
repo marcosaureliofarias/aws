@@ -1,0 +1,1271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<easy_xml_data>
+    <easy-page-templates type="array">
+        <easy-page-template>
+            <id type="integer">51</id>
+            <template-name>Agile Dashboard</template-name>
+            <description></description>
+            <easy-page>easy-sprint-overview</easy-page>
+            <is_default type="xsd:boolean">true</is_default>
+        </easy-page-template>
+    </easy-page-templates>
+    <easy-page-template-tabs type="array">
+        <easy-page-template-tab>
+            <id type="integer">71</id>
+            <page-template-id type="integer">51</page-template-id>
+            <position type="integer">1</position>
+            <name>Tab 1</name>
+            <settings>
+            </settings>
+        </easy-page-template-tab>
+    </easy-page-template-tabs>
+    <easy-page-template-modules type="array">
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>4d4945dd-9956-495a-aebf-fd4b2abe138c</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasySprintQuery
+use_query_to_compare: 'false'
+name: Open Sprints
+description: Sprint's we working on
+easy_icon: icon-split
+color: palette-20
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- name
+- project
+- due_date
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '0'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: due_date
+  axis_y_type: sum
+  axis_y_column: capacity
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+compere_to_previous_period: '0'
+operator: "&gt;"
+easy_query_type_to_compare: EasySprintQuery
+type_to_compare: sum
+column_to_sum_to_compare: capacity
+type: count
+column_to_sum: capacity
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  fields:
+  - ''
+  - closed
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    closed: "="
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    closed:
+    - '0'
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>15842ea0-0234-4bda-9f68-9adf7bec1756</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>middle-left</easy-page-zone>
+            <easy-page-module>EpmLineChartQuery</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+query_name: Velocity - closing SP in time
+set_filter: '1'
+query_type: '2'
+outputs:
+- chart
+row_limit: '10'
+fields:
+- easy_sprint_id
+- status_id
+operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  easy_sprint_id: "*"
+  status_id: c
+values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  easy_sprint_id:
+  - ''
+  status_id:
+  - ''
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- project
+- subject
+- assigned_to
+- due_date
+- status
+- done_ratio
+- total_estimated_hours
+- total_spent_estimated_timeentries
+group_by:
+- ''
+show_sum_row: '1'
+load_groups_opened: '1'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: closed_on
+  axis_y_type: sum
+  axis_y_column: easy_story_points
+  y_label: ''
+  secondary_axis_y_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+  additional_queries: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    '0': !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+      easy_query_type: ''
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '5'
+    - '4'
+    kanban_group_statuses:
+    - '9'
+    - '10'
+    - '2'
+    - '3'
+    - '4'
+    - '6'
+    - '7'
+    - '8'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+cache_on: ''
+cache_for_days: ''
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>688c46f0-fa6e-4718-abf0-df47cb87b438</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>middle-right</easy-page-zone>
+            <easy-page-module>EpmPieChartQuery</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+query_name: Open SP by Sprint
+set_filter: '1'
+query_type: '2'
+outputs:
+- chart
+row_limit: '10'
+fields:
+- status_id
+operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  status_id: o
+values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  status_id:
+  - ''
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- subject
+- status
+- assigned_to
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: pie
+  axis_x_column: issue_easy_sprint_relation.easy_sprint
+  axis_y_type: sum
+  axis_y_column: easy_story_points
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '4'
+    - '5'
+    - '2'
+    kanban_group_statuses:
+    - '2'
+    - '6'
+    - '3'
+    - '9'
+    - '10'
+    - '8'
+    - '7'
+    - '4'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+cache_on: ''
+cache_for_days: ''
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>5ebd115d-bab8-47fb-8780-034440d736d0</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasySprintQuery
+use_query_to_compare: 'false'
+name: Open Story Points
+description: Trends - Tasks
+easy_icon: icon-list
+color: palette-7
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- name
+- project
+- due_date
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '0'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: due_date
+  axis_y_type: sum
+  axis_y_column: capacity
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+compere_to_previous_period: '0'
+operator: "&gt;"
+easy_query_type_to_compare: EasyIssueQuery
+type_to_compare: sum
+column_to_sum_to_compare: estimated_hours
+type: sum
+column_to_sum: story_points_closed_false
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  fields:
+  - ''
+  - closed
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    closed: "="
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    closed:
+    - '0'
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>b16d65bb-1d28-4cab-b7c4-4f0d9283a1bd</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+use_query_to_compare: 'false'
+name: Velocity this month
+description: Closed story points this month
+easy_icon: icon-issue-update
+color: palette-6
+type: sum
+column_to_sum: easy_story_points
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  fields:
+  - easy_sprint_id
+  - closed_on
+  - status_id
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    easy_sprint_id: "*"
+    closed_on: date_period_1
+    status_id: c
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    easy_sprint_id:
+    - ''
+    closed_on: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+      period: current_month
+      period_days2: ''
+      period_days: ''
+      from: ''
+      to: ''
+    status_id:
+    - ''
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- subject
+- status
+- assigned_to
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: assigned_to
+  axis_y_type: sum
+  axis_y_column: estimated_hours
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '4'
+    - '5'
+    - '2'
+    kanban_group_statuses:
+    - '2'
+    - '6'
+    - '3'
+    - '9'
+    - '10'
+    - '8'
+    - '7'
+    - '4'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+compere_to_previous_period: '1'
+operator: "&gt;"
+easy_query_type_to_compare: EasyIssueQuery
+type_to_compare: sum
+column_to_sum_to_compare: estimated_hours
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>1f4add5c-cac2-422a-b0e8-621fe974867f</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+use_query_to_compare: 'false'
+name: Closed Story Points
+description: Closed story points -  all  sprints
+easy_icon: icon-bullet-list
+color: palette-28
+type: sum
+column_to_sum: easy_story_points
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  fields:
+  - easy_sprint_id
+  - status_id
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    easy_sprint_id: "*"
+    status_id: c
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    easy_sprint_id:
+    - ''
+    status_id:
+    - ''
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- subject
+- status
+- assigned_to
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: assigned_to
+  axis_y_type: sum
+  axis_y_column: estimated_hours
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '4'
+    - '5'
+    - '2'
+    kanban_group_statuses:
+    - '2'
+    - '6'
+    - '3'
+    - '9'
+    - '10'
+    - '8'
+    - '7'
+    - '4'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+compere_to_previous_period: '0'
+operator: "&gt;"
+easy_query_type_to_compare: EasyIssueQuery
+type_to_compare: sum
+column_to_sum_to_compare: estimated_hours
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>05a42e56-b086-4054-8875-ac78fb398f86</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmEasySprintQuery</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+set_filter: '1'
+query_type: '2'
+query_name: Open sprints by project's
+outputs:
+- list
+row_limit: '1000'
+fields:
+- closed
+operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  closed: "="
+values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  closed:
+  - '0'
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- name
+- version
+- goal
+- due_date
+- capacity
+- story_points_closed_false
+- story_points_closed_true
+group_by:
+- project
+show_sum_row: '1'
+load_groups_opened: '0'
+show_avatars: '0'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_y_type: sum
+  axis_y_column: capacity
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>73159fbc-9cb6-4ef0-949d-d4b4b88be4b1</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmBarChartQuery</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+query_name: Estimated vs. Spent time - open sprints
+set_filter: '1'
+query_type: '2'
+outputs:
+- chart
+row_limit: '10'
+fields:
+- easy_sprint_id
+- status_id
+operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  easy_sprint_id: "*"
+  status_id: "*"
+values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  easy_sprint_id:
+  - ''
+  status_id:
+  - ''
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- project
+- subject
+- assigned_to
+- due_date
+- status
+- done_ratio
+- total_estimated_hours
+- total_spent_estimated_timeentries
+group_by:
+- ''
+show_sum_row: '1'
+load_groups_opened: '1'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: bar
+  axis_x_column: issue_easy_sprint_relation.easy_sprint
+  axis_y_type: sum
+  axis_y_column: estimated_hours
+  y_label: Estimated / Spent time
+  secondary_axis_y_column: spent_hours
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+  additional_queries: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    '0': !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+      easy_query_type: ''
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '5'
+    - '4'
+    kanban_group_statuses:
+    - '9'
+    - '10'
+    - '2'
+    - '3'
+    - '4'
+    - '6'
+    - '7'
+    - '8'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+cache_on: ''
+cache_for_days: ''
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>f384c0e7-23be-43d7-bdc4-db305d4532f5</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+use_query_to_compare: 'false'
+name: 'Remaing time - Open Issues '
+description: 'Remaining time form Open Issues '
+easy_icon: icon-slab
+color: palette-1
+type: sum
+column_to_sum: remaining_timeentries
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  fields:
+  - status_id
+  - easy_sprint_id
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id: o
+    easy_sprint_id: "*"
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id:
+    - ''
+    easy_sprint_id:
+    - ''
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- subject
+- status
+- assigned_to
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: assigned_to
+  axis_y_type: sum
+  axis_y_column: estimated_hours
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '4'
+    - '5'
+    - '2'
+    kanban_group_statuses:
+    - '2'
+    - '6'
+    - '3'
+    - '9'
+    - '10'
+    - '8'
+    - '7'
+    - '4'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+compere_to_previous_period: '0'
+operator: "&gt;"
+easy_query_type_to_compare: EasyIssueQuery
+type_to_compare: sum
+column_to_sum_to_compare: estimated_hours
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>71f8dc72-48a8-48be-bcd3-c97eda1e9779</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+use_query_to_compare: 'false'
+name: 'Estimate - Open Issues '
+description: 'Estimated time form Open Issues '
+easy_icon: icon-move
+color: palette-20
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- subject
+- status
+- assigned_to
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: assigned_to
+  axis_y_type: sum
+  axis_y_column: estimated_hours
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '4'
+    - '5'
+    - '2'
+    kanban_group_statuses:
+    - '2'
+    - '6'
+    - '3'
+    - '9'
+    - '10'
+    - '8'
+    - '7'
+    - '4'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+compere_to_previous_period: '0'
+operator: "&gt;"
+easy_query_type_to_compare: EasyIssueQuery
+type_to_compare: sum
+column_to_sum_to_compare: estimated_hours
+type: sum
+column_to_sum: estimated_hours
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  fields:
+  - ''
+  - status_id
+  - easy_sprint_id
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id: o
+    easy_sprint_id: "*"
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id:
+    - ''
+    easy_sprint_id:
+    - ''
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>003ff0bc-6770-4802-9bfe-edc85f4644ec</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+use_query_to_compare: 'false'
+name: 'Estimate - Closed Issues '
+description: 'Estimated time form Closed Issues '
+easy_icon: icon-bullet-list
+color: palette-9
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- subject
+- status
+- assigned_to
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: assigned_to
+  axis_y_type: sum
+  axis_y_column: estimated_hours
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '4'
+    - '5'
+    - '2'
+    kanban_group_statuses:
+    - '2'
+    - '6'
+    - '3'
+    - '9'
+    - '10'
+    - '8'
+    - '7'
+    - '4'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+compere_to_previous_period: '0'
+operator: "&gt;"
+easy_query_type_to_compare: EasyIssueQuery
+type_to_compare: sum
+column_to_sum_to_compare: estimated_hours
+type: sum
+column_to_sum: estimated_hours
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  fields:
+  - ''
+  - status_id
+  - easy_sprint_id
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id: c
+    easy_sprint_id: "*"
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id:
+    - ''
+    easy_sprint_id:
+    - ''
+</settings>
+        </easy-page-template-module>
+        <easy-page-template-module>
+            <entity-id type="integer" nil="true"/>
+            <tab-id type="integer">71</tab-id>
+            <tab type="integer">1</tab>
+            <created-at type="dateTime">2018-03-09T08:39:18Z</created-at>
+            <updated-at type="dateTime">2018-03-09T08:39:18Z</updated-at>
+            <id>b711cb67-d6e5-4b6c-b5f1-bbe588d25f82</id>
+            <easy-page-template>51</easy-page-template>
+            <easy-page-zone>top-left</easy-page-zone>
+            <easy-page-module>EpmTrends</easy-page-module>
+            <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+easy_query_type: EasyIssueQuery
+use_query_to_compare: 'false'
+name: 'Spent Time - Closed Issues '
+description: 'Spent time form Closed Issues '
+easy_icon: icon-checked-circle
+color: palette-34
+outputs:
+- list
+sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  '0':
+  - ''
+  - ''
+  '1':
+  - ''
+  - ''
+  '2':
+  - ''
+  - ''
+column_names:
+- subject
+- status
+- assigned_to
+group_by:
+- ''
+show_sum_row: '0'
+load_groups_opened: '0'
+show_avatars: '1'
+chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  primary_renderer: line
+  axis_x_column: assigned_to
+  axis_y_type: sum
+  axis_y_column: estimated_hours
+  y_label: ''
+  secondary_axis_y_column: ''
+  period_column: ''
+  bar_direction: vertical
+  bar_limit: '0'
+  bar_reverse_order: '0'
+  legend_enabled: '0'
+  legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    location: nw
+  onclick: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    url: ''
+    target: current
+period_zoom: month
+settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  period: month
+  report_group_by:
+  - ''
+  - ''
+  report_sum_column:
+  - ''
+  kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    kanban_group: ''
+    kanban_group_trackers:
+    - '1'
+    - '3'
+    - '4'
+    - '5'
+    - '2'
+    kanban_group_statuses:
+    - '2'
+    - '6'
+    - '3'
+    - '9'
+    - '10'
+    - '8'
+    - '7'
+    - '4'
+    main_attribute: ''
+    summable_column: ''
+    avatar_attribute: ''
+    date_details:
+    - ''
+    icon_details:
+    - ''
+    default_swimlane: ''
+compere_to_previous_period: '0'
+operator: "&gt;"
+easy_query_type_to_compare: EasyIssueQuery
+type_to_compare: sum
+column_to_sum_to_compare: estimated_hours
+type: sum
+column_to_sum: spent_hours
+query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+  set_filter: '1'
+  fields:
+  - ''
+  - status_id
+  - easy_sprint_id
+  query_type: '2'
+  query_name: name of filter
+  row_limit: '10'
+  operators: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id: c
+    easy_sprint_id: "*"
+  values: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+    status_id:
+    - ''
+    easy_sprint_id:
+    - ''
+</settings>
+        </easy-page-template-module>
+    </easy-page-template-modules>
+</easy_xml_data>

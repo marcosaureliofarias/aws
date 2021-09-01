@@ -1,0 +1,23 @@
+<% details_scope = EasyRakeTaskInfoDetailReceiveMail.preload(:easy_rake_task_info, :reference).joins(:easy_rake_task_info).where(["#{EasyRakeTaskInfo.table_name}.easy_rake_task_id = ?", task]).where(status: status).order("#{EasyRakeTaskInfo.table_name}.finished_at DESC") %>
+<% details = details_scope.limit(10).to_a %>
+<div class="box">
+<%= toggling_container("easy_rake_task_info_detail_receive_mail_status_#{status}", User.current, {:heading => "#{l(:field_status)}: #{EasyRakeTaskInfoDetailReceiveMail.status_caption(status)} (#{details_scope.count})", :wrapping_heading_element => 'h4', :default_button_state => false}) do %>
+  <%= hidden_field_tag('offset', '10', :id => "easy_rake_task_info_detail_receive_mail_status_#{status}_offset") %>
+  <div class="autoscroll">
+    <table id="easy_rake_task_info_detail_receive_mail_status_<%= status -%>_table" class="list">
+      <thead>
+        <tr>
+          <th><%= l(:field_created_on) -%></th>
+          <th><%= l(:field_subject) -%></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_detail', :locals => {:task => task, :details => details} %>
+      </tbody>
+    </table>
+  </div>
+  <div class="toolbar">
+    <%= link_to_function(l(:button_load_additional_records), "$.post('#{j(url_for({:controller => 'easy_rake_tasks', :action => 'easy_rake_task_easy_helpdesk_receive_mail_status_detail', :id => task, :status => status}))}', $('#easy_rake_task_info_detail_receive_mail_status_#{status}_offset').serialize(), function(data){$('easy_rake_task_info_detail_receive_mail_status_#{status}_table').html(data)})", :class => 'icon icon-add button', :title => l(:button_load_additional_records)) %>
+  </div>
+<% end %>
+</div>

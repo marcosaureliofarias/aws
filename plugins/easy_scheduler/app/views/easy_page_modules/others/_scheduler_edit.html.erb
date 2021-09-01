@@ -1,0 +1,19 @@
+<%
+  page_modules_data = @easy_page_modules_data[block_name]
+
+  scheduler_settings = (settings['scheduler_settings'] || {})
+  scheduler_settings_name = "#{block_name}[scheduler_settings]"
+  query_settings_name = "#{block_name}[query_settings]"
+  query = page_modules_data[:query]
+  selected_principal_options = (page_modules_data[:selected_principal_options] || [])
+  icalendars = page_modules_data[:icalendars]
+%>
+
+<%= render 'easy_scheduler/common/setting', scheduler_settings: scheduler_settings,
+                                            scheduler_settings_name: scheduler_settings_name,
+                                            query_settings_name: query_settings_name,
+                                            query: query,
+                                            selected_principal_options: selected_principal_options,
+                                            icalendars: icalendars,
+                                            block_name: block_name,
+                                            modul_uniq_id: modul_uniq_id %>

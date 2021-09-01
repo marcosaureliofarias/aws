@@ -1,0 +1,145 @@
+//refs 199359
+@media only print {
+  .tablesaw-cell{
+    &-content{
+      max-width: initial !important;
+    }
+    &-label{
+      display: none !important;
+    }
+  }
+}
+@media only screen {
+@import "../vendor/tablesaw/tablesaw.stackonly";
+.tablesaw{
+  //visibility: hidden;
+  opacity: 0;
+  &--loaded{
+    //visibility: visible;
+    opacity: 1;
+  }
+  &-stack {
+    td, th {
+      &.text-right {
+        text-align: right;
+      }
+    }
+  }
+  @include respond-to(max-small-screen){
+    thead{
+      display: none;
+    }
+    & > tbody > tr {
+      padding: .5*$gap;
+      display: block;
+      overflow: hidden;
+      & + tr{
+        margin-top: -1px;
+      }
+      & > td{
+        padding: 0 !important;
+        text-align: left;
+        word-break: break-word;
+        @include display(flex);
+      }
+      &[class*=idnt] > td{
+        &.subject, &.name, &.subject, &.name{
+          padding-left: 0 !important;
+        }
+      }
+      &.group{
+        &:after{
+          display: none !important;
+        }
+        @include display(flex !important);
+        .checkbox{
+          display: inline-block !important;
+        }
+        td{
+          width: auto !important;
+        }
+        .tablesaw-cell{
+          &-content{
+            max-width: initial !important;
+          }
+          &-label{
+            display: none !important;
+          }
+        }
+        & ~ tr{
+          position: relative;
+          & > td{
+            .icon-edit{
+              display: none;
+            }
+            &:nth-of-type(n+6){
+              display: none;
+            }
+          }
+          &:hover{
+            & > td{
+              &:nth-of-type(n+6){
+                @include display(flex);
+              }
+            }
+            &:after{
+              display: none;
+            }
+          }
+          &:after{
+            content: '+';
+            display: block;
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: $box-padding;
+            height: $box-padding;
+            text-align: center;
+            background: $color-foreground;
+            border: 1px solid $color-border-minor;
+            z-index: 1;
+
+          }
+        }
+      }
+    }
+    &.list tr td{
+
+      //& + td{
+      //  border-top: 1px solid rgba($color-border,.5);
+      //}
+    }
+    .hide-when-print, .hidden{
+      display: none !important;
+    }
+    table.progress{
+      td{
+        display: table-cell;
+        & > .tablesaw-cell-label,
+        & > .tablesaw-cell-content{
+          display: none;
+        }
+      }
+    }
+    &-cell{
+
+      &-content, &-label{
+        padding: .25*$gap .5*$gap;
+        text-align: left;
+      }
+      &-content{
+      }
+      &-label{
+        font-size: 10px;
+        &, a{
+          color: $color-text !important;
+        }
+        font-weight: normal;
+        .affix-cell-wrap{
+          display: none;
+        }
+      }
+    }
+  }
+}
+}

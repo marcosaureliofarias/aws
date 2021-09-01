@@ -1,0 +1,35 @@
+<h2><%= @easy_entity_action.name %></h2>
+
+<div class="box">
+  <%= call_hook(:view_show_easy_entity_actions_assignment_entities, {easy_entity_action: @easy_entity_action}) %>
+  <h3 class="icon icon-filter"><%= l(:heading_easy_entity_actions_show_filters) %></h3>
+  <%= render :partial => 'easy_queries/easy_query_filters_list', :locals => {:query => @query} %>
+</div>
+
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <div class="box">
+      <h3 class="icon icon-tracker"><%= l(:heading_easy_entity_actions_next_entities) %>
+        - <%= link_to(l(:button_easy_entity_actions_query), @query.path, :class => 'icon icon-filter', :title => l(:button_easy_entity_actions_query), :target => '_blank') %></h3>
+
+      <div class="autoscroll">
+        <%= render :partial => 'easy_queries/easy_query_entities_list', :locals => {:query => @query, :entities => @query.entities(:limit => 10), :options => {:eea_beginning_buttons => true}} -%>
+      </div>
+    </div>
+  </div>
+
+  <div class="splitcontentright">
+    <div class="box">
+      <h3 class="icon icon-tracker"><%= l(:heading_easy_entity_actions_history_entities) %></h3>
+
+      <div class="autoscroll">
+        <%= render :partial => 'easy_queries/easy_query_entities_list', :locals => {:query => @query, :entities => @easy_entity_action.histories.preload(:entity).order(:created_at => :desc).limit(10).collect(&:entity).flatten.compact.uniq} -%>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:heading_easy_entity_actions_edit), edit_easy_entity_action_path(@easy_entity_action), :title => l(:heading_easy_entity_actions_edit), :class => 'icon icon-edit button-positive') %>
+<% end %>

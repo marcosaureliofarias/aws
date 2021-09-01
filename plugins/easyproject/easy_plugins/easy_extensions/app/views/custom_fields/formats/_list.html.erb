@@ -1,0 +1,15 @@
+<p>
+  <%= f.text_area :possible_values, :value => @custom_field.possible_values.to_a.join("\n"), :rows => 15 %>
+  <em class="info"><%= l(:text_custom_field_possible_values_info) %></em>
+</p>
+<p><%= f.text_field(:default_value) %></p>
+<p><%= f.text_field :url_pattern, :label => :label_link_values_to %></p>
+<p><%= edit_tag_style_tag f, :type => 'list', :multiple => @custom_field.multiple? %></p>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $('input#custom_field_multiple').click(function() {
+      $('select#custom_field_edit_tag_style option[value="autocomplete"]').prop({'disabled': !this.checked, 'selected': false});
+    });
+  });
+</script>

@@ -1,0 +1,14 @@
+<div class="nested-fields">
+  <p>
+    <%= f.label :domain_name, l(:'field_easy_helpdesk_project_matching.domain_name') %>
+    <%= link_to_remove_association '', f, :class => 'icon icon-del button-icon push-right', :title => l(:button_delete) %>
+    <span class="splitcontent">
+      <span>
+        <%= f.text_field :domain_name %>
+      </span>
+      <span>
+        <%= f.select :email_field, [[l(:'field_easy_helpdesk_project_matching.email_field_from'), EasyHelpdeskProjectMatching::EMAIL_FIELD_FROM], [l(:'field_easy_helpdesk_project_matching.email_field_to'), EasyHelpdeskProjectMatching::EMAIL_FIELD_TO]] %>
+      </span>
+    </span>
+  </p>
+</div>

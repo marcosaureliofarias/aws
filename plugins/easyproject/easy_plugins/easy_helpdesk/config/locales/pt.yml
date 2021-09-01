@@ -1,0 +1,177 @@
+---
+pt:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: Corpo mail (HTML)
+        body_plain: Corpo da mensagem (texto simples)
+        issue_status_id: Status do problema
+        mailboxes: 'Use a caixa de correio:'
+        reply_to: Responder para
+        sender: Remetente
+        subject: Assunto
+    models:
+      easy_helpdesk_mail_template: Modelo de correio
+  button_easy_helpdesk_add_domain_name: Adicione mail ou domínio
+  button_easy_helpdesk_add_mail_template: Adicionar modelo de correio
+  button_easy_helpdesk_add_mailbox: Adicionar caixa de correio
+  button_easy_helpdesk_add_project: Adicionar projeto
+  button_easy_helpdesk_add_sla: Adicionar SLA
+  button_easy_helpdesk_mail_templates_index: Lista de modelos
+  button_easy_helpdesk_mailboxes_index: Lista de caixas de correio
+  button_easy_helpdesk_projects_index: Lista de projetos
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_plugin_description: "- Posto de solução complexa Ajuda"
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - projetos
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Filtros privadas em projetos de Helpdesk
+      public:
+        easy_helpdesk_project_query: Filtros públicas sobre projetos em Helpdesk
+  easy_rake_tasks:
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - mails que recebem
+      settings:
+        imap:
+          allow_override: Permitir para substituir valores
+          allow_override_example: 'Exemplo: prioridade tracker, - esses atributos
+            devem ser substituir por correio'
+          application_section_label: Outras configurações
+          category_example: 'Exemplo: Categoria - novas tarefas terá categoria Categoria'
+          email_section_label: Configurações da caixa postal
+          folder: Dobrador
+          folder_example: 'IMAP pasta de ler (padrão: CAIXA)'
+          host: Anfitrião
+          host_example: 'Exemplo: mail.company.com'
+          label: IMAP
+          move_on_failure: Em jogada falha em
+          move_on_failure_example: mover e-mails que tem sido ignorado a pasta Caixa
+            de Correio
+          move_on_success: Em movimento sucesso no
+          move_on_success_example: mover e-mails que foram recebidos com êxito à caixa
+            de correio de pasta, o resto vai ser excluído
+          no_permission_check: Sem permissões do usuário verificar
+          password: Senha
+          password_example: 'Exemplo: secretpassword'
+          port: Porta
+          port_example: 'Exemplo: 143'
+          priority_example: 'Exemplo: Alta - novas tarefas terão prioridade alta'
+          project_example: 'Exemplo: 205 - novas tarefas serão criadas para o projeto
+            ID 205'
+          ssl: SSL
+          ssl_example: Use a autenticação de SSL
+          status_example: 'Exemplo: New - novas tarefas terá status de Novo'
+          tracker_example: 'Exemplo: Bug - novas tarefas terá Bug Tracker'
+          unknown_user: Usuário desconhecido
+          unknown_user_example: aceitar - usuário anônimo será usado; criar - usuário
+            será criado a partir de e-mail; logon concreto - este usuário será utilizado
+          username: Usuário
+          username_example: 'Exemplo: accessuser@domain.com'
+        pop3:
+          allow_override: Permitir para substituir valores
+          allow_override_example: 'Exemplo: prioridade tracker, - esses atributos
+            devem ser substituir por correio'
+          apop: APOP
+          apop_example: Use autenticação APOP
+          application_section_label: Outras configurações
+          category_example: 'Exemplo: Categoria - novas tarefas terá categoria Categoria'
+          delete_unprocessed: Excluir não transformados
+          delete_unprocessed_example: Excluir mails que não podem ser processados
+          email_section_label: Configurações da caixa postal
+          host: Anfitrião
+          host_example: 'Exemplo: mail.company.com'
+          label: POP3
+          no_permission_check: Sem permissões do usuário verificar
+          password: Senha
+          password_example: 'Exemplo: secretpassword'
+          port: Porta
+          port_example: 'Exemplo: 110'
+          priority_example: 'Exemplo: Alta - novas tarefas terão prioridade alta'
+          project_example: 'Exemplo: 205 - novas tarefas serão criadas para o projeto
+            ID 205'
+          status_example: 'Exemplo: New - novas tarefas terá status de Novo'
+          tracker_example: 'Exemplo: Bug - novas tarefas terá Bug Tracker'
+          unknown_user: Usuário desconhecido
+          unknown_user_example: aceitar - usuário anônimo será usado; criar - usuário
+            será criado a partir de e-mail; logon concreto - este usuário será utilizado
+          username: Usuário
+          username_example: 'Exemplo: accessuser@domain.com'
+  field_default_for_mailbox: Padrão para a caixa postal
+  field_easy_helpdesk_project_matching:
+    domain_name: Mail ou domínio
+    email_field_from: é retirado do campo do
+    email_field_to: é retirado de campo para
+  field_easy_helpdesk_project_sla:
+    hours_to_response: Horas para resposta
+    hours_to_solve: Horas para resolver
+    keyword: Palavra chave
+  field_email_footer: Rodapé Correio
+  field_email_header: Cabeçalho da mensagem
+  field_hours_mode_from: SLA horas de trabalho
+  field_monitor_due_date: Monitorar tickets de suporte data de vencimento
+  field_monitor_spent_time: Tickets de suporte do monitor passou um tempo
+  field_monthly_hours: Pré-pagos horas de suporte
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: Editar modelo de correio
+  heading_easy_helpdesk_mail_templates_index: Modelos de correio
+  heading_easy_helpdesk_mail_templates_new: Modelo novo e-mail
+  heading_easy_helpdesk_mail_templates_show: Detalhe do modelo de correio
+  heading_easy_helpdesk_mailboxes_edit: Caixa de edição
+  heading_easy_helpdesk_mailboxes_index: Caixas de correio
+  heading_easy_helpdesk_mailboxes_new: Nova caixa de correio
+  heading_easy_helpdesk_projects_edit: Edite projeto
+  heading_easy_helpdesk_projects_index: Projetos
+  heading_easy_helpdesk_projects_new: Novo projeto
+  heading_easy_helpdesk_projects_show: Detalhe de projeto
+  label_easy_hekodesk_additional_task_info_received_emails: Mails processados
+  label_easy_helpdesk_alerts: Alertas definições
+  label_easy_helpdesk_domain_name: Domínio de correio
+  label_easy_helpdesk_emails: Configurações de correio - cabeçalho e rodapé
+  label_easy_helpdesk_enable_email_footer: Alterar rodapé para este projeto?
+  label_easy_helpdesk_enable_email_header: Alterar cabeçalho para este projeto?
+  label_easy_helpdesk_matching: Configurações de e-mail ou domínio
+  label_easy_helpdesk_sla: Definições de SLA - prioridades, o tempo para resolver
+    um bilhete
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - projeto
+  label_issue_bottom_from_easy_helpdesk: Tarefa foi criada a partir de helpdesk (%{easy_helpdesk_mailbox_username})
+  text_easy_helpdesk_mail_template_issue_status_id: Permite ligar um modelo de caixa
+    de correio para um status tarefa específica
+  text_easy_helpdesk_mail_template_reply_to: "(Exemplo Mr.) - correio não é permitido
+    aqui"
+  text_easy_helpdesk_mail_template_reply_to2: Campos "Responder a" e "Remetente" são
+    tomadas a partir do modelo de caixa de correio, a fim de manter a comunicação
+    dentro de uma questão
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Você deve atribuir essas
+    caixas de correio para os projetos. Se você não fizer isso, desconhecidos e-mails
+    recebidos não serão processados!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Estas caixas de correio não
+    tem projeto padrão:'
+  text_easy_helpdesk_projects_alerts_list: 'Lista de alertas:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Lista de alertas que precisa configurar
+    um e-mail de notificação obrigatória (será aberto em uma janela em branco):'
+  text_easy_helpdesk_projects_keywords: Se o sujeito mail contém string definida,
+    especial prioridade e data de vencimento será definido. (* Significa que cada
+    assunto)
+  text_easy_helpdesk_projects_monitor_due_date: Este alerta predefinido irá enviar-lhe
+    e-mail de notificação, se um bilhete violados SLA - não foi resolvido dentro do
+    período definido no SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Este alerta predefinido irá enviar-lhe
+    e-mail de notificação se o tempo gasto total em determinado mês exeeds hora pré-pagos
+    de apoio
+  text_easy_helpdesk_projects_sla_hours_to_response: O máximo de tempo necessário
+    a partir de e-mail recebido para o início da realização.
+  text_easy_helpdesk_projects_sla_hours_to_solve: O máximo de tempo para resolver
+    a questão. Ajuda bilhete Desk pode ser visualizado em um gráfico de Gantt - se
+    75% do tempo para resolver o bilhete é mais - bilhete é colorido em laranja, se
+    o bilhete é ao longo do tempo devido - bilhete é colorido em vermelho.
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: a resposta
+    deve ser a %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: resposta
+    deve ser %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: determinação
+    deve ser %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: determinação
+    deve ser a %{time}'

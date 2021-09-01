@@ -1,0 +1,61 @@
+.easy-calendar{
+  &__task{
+    width: 24%;
+    box-sizing: border-box;
+    border: 1px solid $color-print;
+    &-list{
+      background: none;
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0;
+    }
+    &s{
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-end: 3;
+    }
+  }
+  &__calendar-cont{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    &:before{
+      display: none;
+    }
+    div.dhx_scale_holder_now{
+      background-color: none;
+    }
+  }
+  &-legend{
+    display: none;
+  }
+  &__wrapper{
+    margin-bottom: $gap;
+  }
+}
+
+.dhx_scale_hour,.dhx_cal_header,.dhx_cal_header,.dhx_scale_bar,.dhx_scale_holder,.dhx_cal_data,.dhx_scale_holder_now,div.dhx_multi_day,.easy-calendar-legend {
+  border-color: $color-print !important;
+  border-top-color: $color-print !important;
+  border-bottom-color: $color-print !important;
+  border-right-color: $color-print !important;
+  //background-color: #000000 !important;
+}
+div.dhx_cal_data{
+  height: auto !important;
+}
+.dhx_cal_container{
+  page-break-inside:avoid;
+}
+.easy-calendar__day-cell {
+  background-image: linear-gradient($color-print 1px, transparent 1px),linear-gradient($color-print 1px, transparent 1px) !important;
+}
+.easy-calendar__calendar-listing{
+  display: none;
+}
+.easy-calendar__split{
+  display: block;
+}

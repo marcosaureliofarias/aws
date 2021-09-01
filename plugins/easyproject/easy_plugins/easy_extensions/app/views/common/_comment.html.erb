@@ -1,0 +1,17 @@
+<div class="message" id="<%= dom_id(comment) %>">
+  <%= avatar(comment.author, :style => :small) -%>
+  <div class="message-body">
+    <% unless comment.new_record? %>
+      <div class="contextual">
+        <%= link_to('', remove_comment_path(comment, {:entity_type => comment.commented_type, :entity_id => comment.commented_id}), :class => 'icon-del', :data => {:confirm => l(:text_are_you_sure)},:remote => true, :method => :delete, :title => l(:button_delete)) if User.current.allowed_to_globally?(:manage_comments, {}) || (User.current.allowed_to_globally?(:delete_own_comments, {}) && User.current.id == comment.author_id) -%>
+      </div>
+    <% end -%>
+    <div class="message-authoring">
+      <%= link_to_user(comment.author) -%>
+      <%= content_tag(:span, format_time(comment.created_on)) %>
+    </div>
+    <div class="description wiki">
+      <%= textilizable(comment.comments) %>
+    </div>
+  </div>
+</div>

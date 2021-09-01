@@ -1,0 +1,30 @@
+<% if @categories_to_render.include?(:entity) %>
+  <h2><%= l(:"label_easy_knowledge_index_#{@entity.class.name.downcase}", :default => l(:label_easy_knowledge_index_global)) -%></h2>
+  <%= render :partial => 'easy_knowledge_categories/index', :locals => {easy_knowledge_categories: @easy_knowledge_entity_categories} %>
+<% end %>
+
+<% if @categories_to_render.include?(:globals) %>
+  <h2><%= l(:label_easy_knowledge_index_global) -%></h2>
+  <%= render :partial => 'easy_knowledge_categories/index', :locals => {easy_knowledge_categories: @easy_knowledge_categories} %>
+<% end %>
+
+<% if @categories_to_render.include?(:no_category) %>
+  <div class="contextual" id="easy_knowledge_categories_uncategory_entities_freetext">
+    <%= render(:partial => 'common/freetext_quick_search', :locals => {:free_search_element_to_update => 'easy_knowledge_categories_uncategory_entities'}) %>
+  </div>
+
+  <h3><%= l(:label_easy_knowledge_story_unclassified) -%></h3>
+
+  <div id="easy_knowledge_categories_uncategory_entities">
+    <%= render @query, :options => {:go_to_url => {:controller => 'easy_knowledge_stories', :action => 'show'}, :allow_avatar => true, :render_index => false} %>
+  </div>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+    <%= render :partial => 'sidebar_links' -%>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% include_knowledge_headers_tags %>
+<%= context_menu context_menus_easy_knowledge_stories_path(:back_url => url_for({})) %>

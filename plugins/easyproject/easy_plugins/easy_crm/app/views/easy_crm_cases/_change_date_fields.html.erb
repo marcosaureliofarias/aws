@@ -1,0 +1,27 @@
+<% name = (field_name == 'next_action' ? "easy_crm_case[#{field_name}][date]" : "easy_crm_case[#{field_name}]") %>
+<p>
+  <label><%= l("field_easy_crm_case_#{field_name}") %></label>
+  <span class="bulk-type-right-group">
+    <span class="bulk_type_setting block">
+      <%= radio_button_tag "easy_crm_case[#{field_name}_type]", 'unchanged', true, :onchange => "$('#easy_crm_case_#{field_name}_change').attr('value', '');$('#easy_crm_case_#{field_name}_change_by').attr('value', '');" %>
+      <label class="bulk-type-label-1 inline" for="easy_crm_case_<%= field_name %>_type_unchanged" ><%= l(:label_no_change) %></label>
+    </span>
+    <span class="bulk_type_setting block">
+      <%= radio_button_tag "easy_crm_case[#{field_name}_type]", 'change', false, data: {disables: "#easy_crm_case_#{field_name}_change_by"} %>
+      <label class="bulk-type-label-2 inline" for="easy_crm_case_<%= field_name %>_type_change"><%= l(:label_change_to) %></label>
+      <%= text_field_tag name, '', :id => "easy_crm_case_#{field_name}_change", :size => 10, :onchange => "$('#easy_crm_case_#{field_name}_type_change').click();" %>
+      <%= calendar_for("easy_crm_case_#{field_name}_change") %>
+      <% if field_name == 'next_action' %>
+        <%= render(:partial => 'common/form_field_time_select', :locals => {:field_name_prefix => 'easy_crm_case', :attribute => 'next_action'}) %>
+        <% box = check_box_tag('easy_crm_case[all_day]', '1', false, :onchange => '$(".time-select-next_action").prop("disabled", $(this).prop("checked"));') %>
+        <%= label_tag('easy_crm_case_all_day', box + l(:field_all_day), :class => 'checkbox inline') %>
+      <% end %>
+    </span>
+    <span class="bulk_type_setting block">
+      <%= radio_button_tag "easy_crm_case[#{field_name}_type]", 'change_by', false, data: {disables: "#easy_crm_case_#{field_name}_change"} %>
+      <label class="bulk-type-label-2 inline" for="easy_crm_case_<%= field_name %>_type_change_by"><%= l(:label_move) %></label>
+      <%= number_field_tag "easy_crm_case[#{field_name}]", '', :id => "easy_crm_case_#{field_name}_change_by", :size => 2, :onchange => "$('#easy_crm_case_#{field_name}_type_change_by').prop('checked',true);" %>&nbsp;<label class="no-css"><%= l(:label_days) %></label>
+
+    </span>
+  </span>
+</p>

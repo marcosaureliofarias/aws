@@ -1,0 +1,24 @@
+$("#ajax-modal").html("<%= j render(:template => 'easy_entity_attribute_maps/index', :formats => [:html]) -%>");
+showModal('ajax-modal', '90%');
+<% if params[:url].present? %>
+$("#ajax-modal").dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_close) %>',
+      click: function() {$(this).dialog("close");},
+      'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_submit) %>',
+      click: function() {
+        <% if params[:remote].present? %>
+        $.ajax({url: '<%= params[:url] %>', type: '<%= params[:method] || 'GET' %>'});
+        hideModal();
+        <% else %>
+        $('form#entity_map_form').submit();
+        <% end %>
+      }, 'class': 'button-positive', disabled: <%= !@easy_entity_attribute_maps.any? %>, id: 'easy_entity_attribute_map_submit_button'
+    }
+  ]
+});
+<% end %>

@@ -1,0 +1,21 @@
+api.array :easy_contacts, api_meta(:total_count => @entity_count, :offset => @offset, :limit => @limit) do
+  @easy_contacts.each do |easy_contact|
+    api.easy_contact do
+      api.id easy_contact.id
+      api.easy_contact_type(:id => easy_contact.easy_contact_type.id) do
+        api.name(easy_contact.easy_contact_type.name)
+      end
+      api.firstname easy_contact.firstname
+      api.lastname easy_contact.lastname
+      api.assigned_to(id: easy_contact.assigned_to_id, name: easy_contact.assigned_to.name) if easy_contact.assigned_to
+      if easy_contact.external_assigned_to && EasyUserType.easy_type_partner.any?
+        api.external_assigned_to(id: easy_contact.external_assigned_to_id, name: easy_contact.external_assigned_to.name)
+      end
+      api.easy_external_id easy_contact.easy_external_id
+      api.guid easy_contact.guid
+      api.created_on easy_contact.created_on
+      api.updated_on easy_contact.updated_on
+      render_api_custom_values easy_contact.custom_field_values, api
+    end
+  end
+end

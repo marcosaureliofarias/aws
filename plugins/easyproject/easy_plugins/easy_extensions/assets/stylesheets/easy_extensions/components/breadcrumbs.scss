@@ -1,0 +1,20 @@
+.breadcrumb{
+  border: 1px solid $breadcrumb-color-border;
+  background: $breadcrumb-color-foreground;
+  //padding-top: $gap;
+  @include small;
+  text-align: center;
+  & > a,& > span{
+    @include breadcrumb__child;
+  }
+  & > .separator{
+    @include breadcrumb__separator(px2rem(-10px));
+  }
+  & + .easy-content-page{
+    margin-top: -$gap - px2rem(1px);
+  }
+  .easy-content-page > &{
+    margin: -1px (-$box-padding - px2rem(1px)) $box-padding;
+  }
+  //@extend %clearfix;
+}

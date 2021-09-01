@@ -1,0 +1,146 @@
+%entity-list{
+  @extend %box-inside;
+  //margin: 0 -1-$gap;
+}
+%entity-array{
+  //margin-top: -0.125em;
+  &>a,&>span{
+	@extend %tag;
+  }
+  &>span{
+    &.separator{
+      display: none;
+    }
+  }
+}
+%entity-count{
+  //&:before{
+	//content: " - ";
+  //}
+  //& + &{
+  //  & > span{
+  //    font-weight: normal;
+  //    @include small;
+  //  }
+  //  &:before{
+  //    content: " / ";
+  //    font-weight: normal;
+  //    @include small;
+  //  }
+  //}
+  //@extend %badge;
+}
+%entity-sidebar-info{
+  border: 1px solid $color-border;
+  background: $color-border-minor;
+  margin-bottom: $gap;
+  padding: $gap;
+  position: relative;
+  table.highlight{
+    overflow: hidden;
+    tr{
+      & > td,& > th{
+        padding-bottom: $gap;
+      }
+      & + tr{
+        border-top: 1px solid $color-border;
+        & > td, & > th{
+          padding-top: $gap;
+        }
+      }
+      &:last-child{
+        & > td,& > th{
+          padding-bottom: 0;
+        }
+        & > td {
+          max-width: 9*$gap + 4;
+        }
+      }
+    }
+
+    .bigger, .big{
+      vertical-align: middle;
+      width: 45%;
+      white-space: nowrap;
+      .hours {
+        white-space: normal;
+      }
+    }
+    label{
+      padding: 0 0.5*$gap;
+      font-weight: normal;
+      display: inline-block;
+      cursor: default ;
+    }
+  }
+}
+
+
+
+%entity-header{
+  p.floating{
+    @extend %truncate;
+	cursor: default;
+  }
+}
+%entity-header-avatar{
+
+  //width: $avatar-width-big;
+  //float: left;
+  &+div{
+	//margin-left: $avatar-width-big;
+  }
+  .avatar-container{
+	//float: none;
+	//margin-bottom: $gap;
+	//text-align: center;
+  }
+}
+%entity-header-attributes{
+  @extend %box-inside;
+	table{
+	  width: 100%;
+	  th{
+		font-size: 0.9em;
+		text-align: right;
+		padding-right: $gap;
+		font-weight: normal;
+		background: none;
+		border: none;
+	  }
+	  td{
+		&>span{
+		  &:first-child{
+			font-weight: bold;
+		  }
+		}
+	  }
+	}
+}
+%entity-update{
+  //margin: 0 -1-$gap -1-$gap -1-$gap;
+  @extend %box-inset;
+}
+
+
+
+@mixin entity-detail($separator){
+  @extend %entity-detail;
+  &#{$separator}header{
+	@extend %entity-header;
+  }
+  &#{$separator}avatar{
+	@extend %entity-header-avatar;
+  }
+  &#{$separator}attributes{
+	@extend %entity-header-attributes;
+  }
+  &#{$separator}progress{
+	margin-right: $gap;
+	table{
+	  width: 100% !important;
+	}
+  }
+}
+
+

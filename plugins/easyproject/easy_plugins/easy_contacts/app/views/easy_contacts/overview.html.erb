@@ -1,0 +1,11 @@
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= render_easy_page_bottom_buttons(easy_contacts_layout_path(t: params[:t])) if User.current.allowed_to_manage_easy_contacts? || @page_editable %>
+
+<%= render(:partial => 'service_box_partial', locals: { project: @project }) %>
+<%= context_menu context_menus_easy_contacts_path(:project_id => @project) -%>
+
+<%= render(:partial => 'export_vcard_encoding_selector') %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<% end %>

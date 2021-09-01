@@ -1,0 +1,16 @@
+<% back_url ||= original_url -%>
+<div class="easy-calendar-actions">
+  <% if User.current.allowed_to_globally?(:use_easy_attendances) %>
+    <% if !easy_attendance.new_record? && easy_attendance.arrival.localtime.to_date == Date.today %>
+      <%= link_to(content_tag(:span, l(:'easy_attendance.description.departure'), :class => 'tooltip'), departure_easy_attendance_path(easy_attendance, :back_url => back_url), :class => 'icon icon-export button') %>
+    <% else %>
+      <%= link_to(content_tag(:span, l(:'easy_attendance.description.arrival'), :class => 'tooltip'), arrival_easy_attendances_path(:arrival_at => Date.today, :back_url => back_url), :class => 'icon icon-export button', :remote => true) %>
+    <% end %>
+    <%= link_to(content_tag(:span, l(:advanced_settings, :scope => :easy_attendance), :class => 'tooltip'),
+      {:controller => 'easy_attendances', :action => 'new', :back_url => back_url, :attendance => {:user_id => user.id}},
+      :title => l(:advanced_settings, :scope => [:easy_attendance, :title]),
+      :class => 'icon icon-calendar button',
+      :remote => true) -%>
+  <% end %>
+  <%= link_to(content_tag(:span, l(:link_to_easy_attendance, :scope => [:easy_attendance]), :class => 'tooltip'), easy_attendances_path(:tab => 'list', :back_url => back_url), :class => 'icon icon-list button') %>
+</div>

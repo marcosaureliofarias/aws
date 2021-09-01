@@ -1,0 +1,75 @@
+.modal{
+  top: 0 !important;
+  position: fixed !important;
+  margin-top: $box-padding !important;
+  @extend %compositor-layer;
+  @include respond-to(max-small-screen) {
+    margin-top: 0 !important;
+  }
+  &-opened{
+    //#main,#easy_servicebar{
+      // @extend %blur;
+    //}
+    .ui-widget-overlay{
+      z-index: z($z-priority,modal) - 1;
+      opacity: 0.6;
+    }
+  }
+  z-index: z($z-priority,modal) !important;
+  .tabular {
+    p {
+      @include respond-to(max-small-screen) {
+        @include flex-wrap(wrap);
+        .input-append {
+          flex-grow: 1;
+          width: 100;
+          max-width: 100%;
+          span[class*="delimiter"] {
+            width: auto;
+          }
+        }
+        .easy-autocomplete-tag, select, textarea, .easy-lookup-values-wrapper, input[type="text"] {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.ui-dialog {
+  @include respond-to(max-medium-screen) {
+    width: 100% !important;
+    left: -1px !important;
+  }
+  &-content {
+    max-height: 70vh !important;
+    @extend %box-sizing-border-box;
+    @include respond-to(max-medium-screen){
+      max-height: 65vh !important;
+    }
+    .form-actions {
+      @extend %box-sizing-border-box;
+      width: 100% !important;
+    }
+  }
+}
+
+.is-mobile-device.modal-opened {
+  overflow-y: hidden;
+  .modal.ui-dialog {
+    position: fixed;
+    top: 0 !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    width: 100% !important;
+    #ajax-modal {
+      overflow: auto;
+      //max-height: calc(100vh - 114px) !important;
+      max-height: 75vh !important;
+      box-sizing: border-box;
+      height: auto !important;;
+    }
+  }
+}

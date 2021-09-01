@@ -1,0 +1,38 @@
+<% close_modal ||= false %>
+<% if close_modal %>
+  EASY.modalSelector.closeModal();
+<% else %>
+  showModal('ajax-modal', 750);
+  $('#ajax-modal').html("<%= j(render_flash_messages) + j(render :partial => 'bulk_time_entries/form', :locals => {:modal => true}) %>");
+
+  var modalHeight = 350;
+
+  if ($('#ajax-modal input[id^=time_entry_custom_field_values]').length > 0) {
+    var customFieldsCount = $('#ajax-modal input[id^=time_entry_custom_field_values]').length;
+    modalHeight += Math.round((customFieldsCount/2)) * 30;
+  }
+
+  $('#ajax-modal').dialog({
+    title: '<%= l(:label_bulk_time_entries) %>',
+    minHeight: modalHeight,
+    buttons: [
+      {
+        text: '<%=j l(:button_cancel).html_safe %>',
+        click: function() {
+          $(this).dialog('close');
+        },
+        'class': 'button'
+      },
+      {
+        text: '<%=j l(:button_save).html_safe %>',
+        click: function() {
+          $(this).next().find('button.modal-submit').prop('disabled', true);
+          fillFormTextAreaFromCKEditor('modal_time_entry_comment');
+          $(this).find('form:first').submit();
+        },
+        'class': 'button-positive modal-submit'
+      }
+    ]
+  });
+  initEasyAutocomplete();
+<% end %>

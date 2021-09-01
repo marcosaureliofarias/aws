@@ -1,0 +1,374 @@
+---
+pt-BR:
+  activerecord:
+    errors:
+      messages:
+        error_contains_invalid_character: Contém caracteres inválidos
+  comment_copied_from: Copiado de %{source}
+  comment_moved_from: Moved from %{source}
+  dmsf: Easy DMS
+  dmsf_and: E
+  dmsf_new_step: Passo novo
+  dmsf_new_step_or_approver: New step or New approver
+  dmsf_or: OU
+  easy_pages:
+    module_category:
+      easy_dms: Easy DMS
+    modules:
+      dmsf_locked_documents: My locked documents
+      dmsf_open_approvals: My open approvals
+  error_at_least_one_revision_must_be_present: Deve existir pelo menos uma revisão
+  error_cannot_renumber_steps: Steps can't be renumbered
+  error_cannot_start_workflow: Workflow não pode ser iniciado
+  error_contains_invalid_character: Contém caracteres inválidos
+  error_create_cycle_in_folder_dependency: Dependência entre pastas
+  error_email_to_must_be_entered: Destinatário não pode ficar em branco
+  error_empty_note: No caso de reprovação o preenchimento do camo notas é obrigatório
+  error_entry_project_does_not_match_current_project: Projeto de entrada não corresponde
+    ao projeto atual
+  error_file_can_not_be_created: O arquivo não pode ser criado
+  error_file_commit_require_uploaded_file: É necessário carregar um arquivo
+  error_file_is_locked: Arquivo está bloqueado
+  error_file_storage_directory_does_not_exist: O diretório de armazenamento de arquivo
+    não existe e não pode ser criado
+  error_file_tmpdir_does_not_exist: Temporary file path doesn't exist and can't be
+    created
+  error_folder_cannot_be_copied: Pasta não pode ser copiada
+  error_folder_creation_failed: Erro na criação da pasta
+  error_folder_is_locked: Pasta está bloqueada
+  error_folder_is_not_empty: Pasta não está vazia
+  error_folder_title_is_already_used: Título já utilizado
+  error_folder_title_must_be_entered: Título deve ser digitado
+  error_lock_exclusively: Unable to lock exclusively an already-locked resource
+  error_max_email_filesize_exceeded: You've exceeded the maximum filesize for sending
+    via email. (%{number} MB)
+  error_max_files_exceeded: Limite %{number} para arquivo baixados automaticamente
+  error_maximum_upload_filecount: No more than %{filecount} file(s) can be uploaded.
+  error_minimum_filesize: The file %{file} is 0 bytes and will not be attached.
+  error_only_user_that_locked_file_can_unlock_it: Apenas o usuário que bloqueou o
+    arquivo pode desbloqueá-lo
+  error_only_user_that_locked_folder_can_unlock_it: Você não está autorizado a desbloquear
+    esta pasta
+  error_parent_folder: A pasta de pai não existe
+  error_parent_locked: Unable to complete lock - resource parent is locked
+  error_resource_locked: Unable to complete lock - resource is locked
+  error_resource_or_parent_locked: Unable to complete lock - resource (or parent)
+    is locked
+  error_target_folder_same: Target folder and project are the same as current
+  error_tmpfile_can_not_be_created: Files can't be created in temporary file path
+    directory
+  error_unable_delete_dmsf_workflow: Unable to delete the workflow
+  error_unlock_parent_locked: Unlock failed - resource parent is locked
+  error_user_has_not_right_delete_file: Usuário não possui permissão para excluir
+    arquivos
+  error_user_has_not_right_delete_folder: Usuário não possui permissão para excluir
+    pastas
+  error_workflow_assign: An error occured while assigning
+  error_wrong_zip_encoding: Wrong Zip encoding
+  field_dmsf_not_inheritable: Not inheritable
+  field_dmsf_tree_view: Navigate folders in a tree
+  field_external_url: URL
+  field_folder: Pasta
+  field_label_dmsf_workflow: Workflow de aprovação
+  field_label_dmsf_workflow_name: Nome do workflow de aprovação
+  field_target_file: Arquivo fonte
+  field_target_folder: Pasta de destino
+  field_target_project: Projeto de destino
+  header_minimum_filesize: File Error.
+  heading_access_downloads_emails: Downloads/Emails
+  heading_access_first: First
+  heading_access_last: Last
+  heading_new_folder: Nova Pasta
+  heading_new_revision: Nova revisão
+  heading_revisions: Revisões
+  heading_send_documents_by_email: Enviar documentos por e-mail
+  heading_uploaded_files: Arquivos enviados
+  info_changed_by_user: "%{changed} por"
+  info_file_locked: Arquivo bloqueado!
+  info_revision: r%{rev}
+  label_act_as_attachable: Act as attachable
+  label_action: Ação
+  label_basic_attachments: Basic Attachments
+  label_changed: Alterado
+  label_created: Criado
+  label_default_notifications: Notificações padrões de arquivo
+  label_description: Descrição
+  label_display_notified_recipients: Display notified recipients
+  label_dmsf_attachments: DMS Attachments
+  label_dmsf_downloaded: Easy DMS document downloaded
+  label_dmsf_fast_links: Fast links
+  label_dmsf_file_plural: Arquivos Documentos
+  label_dmsf_file_revision_access_plural: Acessos aos documentos
+  label_dmsf_file_revision_plural: Revisões de documentos
+  label_dmsf_folder_plural: Pastas
+  label_dmsf_keep_documents_locked: Keep documents locked
+  label_dmsf_plural: Copy Easy DMS files and folders (%{files} files in %{folders}
+    folders)
+  label_dmsf_updated: Easy DMS document updated
+  label_dmsf_version: Versão
+  label_dmsf_wokflow_action_approve: Aprovar
+  label_dmsf_wokflow_action_assign: Atribuir workflow de aprovação
+  label_dmsf_wokflow_action_delegate: Atribuir para
+  label_dmsf_wokflow_action_reject: Reprovar
+  label_dmsf_wokflow_action_start: Iniciar workflow
+  label_dmsf_workflow_add_approver: 'Adicionar uma nova função lógica de aprovação:'
+  label_dmsf_workflow_approval: Approval
+  label_dmsf_workflow_approval_plural: Approvals
+  label_dmsf_workflow_new: Nova aprovação de fluxo de trabalho
+  label_dmsf_workflow_plural: Fluxos de trabalho de aprovação
+  label_dmsf_workflow_plural_num: Workflows de aprovação(%{count})
+  label_dmsf_workflow_step: Passo
+  label_dmsf_workflow_step_plural: Steps
+  label_document_url: Url
+  label_email_body: Descrição
+  label_email_cc: CC
+  label_email_documents: Easy DMS
+  label_email_from: Remetente
+  label_email_from_override: From
+  label_email_reply_to: Reply-to
+  label_email_send: Enviar
+  label_email_subject: Assunto
+  label_email_to: Destinatário
+  label_enable_cjk_ngrams: Enable generation of n-grams from CJK text
+  label_external: Externo
+  label_file: Arquivo
+  label_file_storage_directory: Diretório de armazenamento de arquivos
+  label_filename: Nome do arquivo
+  label_full_text: Full-text search
+  label_index_database: Index database
+  label_last_approver: Last approver
+  label_last_revision_id: Revision
+  label_link_from: Link desde
+  label_link_name: Nome do link
+  label_link_to: Link to
+  label_links_only: links only
+  label_maximum_email_filesize: Maximum email attachment size
+  label_maximum_files_download: Máximo de download de arquivos
+  label_mime: Extensão do arquivo
+  label_my_locked_documents: Meus documentos bloqueados
+  label_my_open_approvals: Minhas aprovações abertas
+  label_new_content: Novo conteúdo
+  label_note: Observação
+  label_notifications: Notificações
+  label_notifications_off: Desativar notificações
+  label_notifications_on: Ativar notificações
+  label_number_of_documents: Documentos
+  label_number_of_folders: Pastas
+  label_or: ou
+  label_physical_file_delete: Physical file delete
+  label_public_urls: Public URLs valid to
+  label_size: Tamanho
+  label_source_folder: Pasta fonte
+  label_source_project: Source project
+  label_stem_strategy: Stem strategy
+  label_stemming_language: Stemming Language
+  label_target_folder: Target folder
+  label_target_project: Target project
+  label_title: Taxonomia
+  label_title_format: Title format
+  label_tmpdir: Temporary file path
+  label_upload: Carregar
+  label_user_search_add: Search for user to add
+  label_webdav: WebDAV
+  label_webdav_disable_versioning: No versioning files patterns
+  label_webdav_ignore: Ignored files patterns
+  label_webdav_strategy: Webdav strategy
+  label_webdav_use_project_names: Use project name for project folder
+  link_author: Autor
+  link_create_folder: Criar pasta
+  link_details: "%{title} detalhes"
+  link_documents: Easy DMS
+  link_edit: Editar %{title}
+  link_extension: Ext
+  link_modified: Última modificação
+  link_size: Tamanho do arquivo
+  link_title: Taxonomia
+  link_trash_bin: Lixeira
+  link_user_preferences: 'Configurações: Documentos'
+  link_ver: Revisão
+  link_workflow: Workflow
+  locked_documents: Documentos bloqueados
+  menu_dmsf: Easy DMS
+  message_dmsf_wokflow_note: Sua observação...
+  note_display_notified_recipients: The user will be informed about all recipients
+    of just sent the email notification.
+  note_dmsf_act_as_attachable: Allows to attach documents to objects e.g. issues.
+  note_dmsf_keep_documents_locked: Documents will be kept locked when approved
+  note_global: "(global)"
+  note_maximum_email_filesize: Limits maximum filesize that can be sent via email.
+    0 means unlimited. Number is in MB.
+  note_maximum_number_of_files_downloaded: Limite máximo de arquivos para download
+    ou envio por e-mail de uma única vez.
+  note_pass_none_to_disable_stemming: pass 'none' to disable stemming
+  note_possible_values: Valores possíveis
+  note_webdav: Webdav once enabled can be found at %{protocol}://%{domain}/dmsf/webdav/[project
+    identifier]
+  note_webdav_disable_versioning: A regular expression that disables versioning for
+    matching files.
+  note_webdav_ignore: A regular expresion with filenames to ignore by PUT requests.
+  note_webdav_strategy: Enables the administrator to decide if webdav is a read-only
+    or read-write platform for end users.
+  note_webdav_use_project_names: Use project names instead of project identifier for
+    project folders.
+  notice_dmsf_file_restored: O documento foi restaurado com sucesso
+  notice_dmsf_folder_restored: A pasta foi restaurada com sucesso
+  notice_dmsf_link_restored: O link foi restaurado com sucesso
+  notice_entries_deleted: Deletado com sucesso
+  notice_file_copied: Arquivo copiado
+  notice_file_deleted: Arquivo excluído
+  notice_file_locked: Arquivo bloqueado
+  notice_file_moved: Arquivo movido
+  notice_file_notifications_activated: Notificações de arquivo ativadas
+  notice_file_notifications_deactivated: Notificações de arquivo desativadas
+  notice_file_revision_created: Revisão do arquivo criado
+  notice_file_unlocked: Arquivo desbloqueado
+  notice_folder_copied: Pasta copiada
+  notice_folder_created: Pasta criada
+  notice_folder_deleted: Pasta deletada
+  notice_folder_details_were_saved: Pasta atualizada
+  notice_folder_locked: A pasta foi bloqueada com sucesso
+  notice_folder_notifications_activated: Notificações da pasta ativas
+  notice_folder_notifications_deactivated: Notificações da pasta desativadas
+  notice_folder_unlocked: A pasta foi desbloqueada com sucesso
+  notice_revision_deleted: Revisão deletada
+  notice_revision_obsoleted: Revision obsoleted
+  notice_workflow_started: Workflow de aprovação foi iniciado com êxito
+  notice_your_preferences_were_not_saved: Your preferences were not saved
+  notice_your_preferences_were_saved: Suas atualizações foram salvas
+  open_approvals: Aprovações abertas
+  option_stem_all: Stem all
+  option_stem_none: Stem none (default)
+  option_stem_some: Stem some
+  option_version_custom: Personalizado
+  option_version_major: Major
+  option_version_minor: Minor
+  option_version_same: Same
+  parent_directory: Parent Directory
+  permission_display_system_folders: Display system folders
+  permission_email_documents: Email documents
+  permission_file_approval: File approval
+  permission_file_delete: Delete documents
+  permission_file_manipulation: File manipulation
+  permission_folder_manipulation: Folder manipulation
+  permission_force_file_unlock: Force file unlock
+  permission_manage_workflows: Manage workflows
+  permission_user_preferences: User preferences
+  permission_view_dmsf_file_revision_accesses: View downloads in Activity stream
+  permission_view_dmsf_file_revisions: View revisions in Activity stream
+  permission_view_dmsf_files: View documents
+  permission_view_dmsf_folders: Browse documents
+  project_module_dmsf: Easy DMS
+  select_option_activated: Ativado
+  select_option_deactivated: Desativado
+  select_option_default: Padrão
+  select_option_webdav_readonly: Read-only
+  select_option_webdav_readwrite: Read/Write
+  submit_save: Salvar
+  text_dmsf_fast_links_info: You will be able to manually enter a target folder's
+    ID when creating links in order to speed up the process of creating links.
+  text_email_doc_deleted: deletou os documentos da área
+  text_email_doc_deleted_subject: Exclusão de documentos
+  text_email_doc_follows: as follows
+  text_email_doc_updated: atualizou os documentos da área
+  text_email_doc_updated_subject: Documentos atualizados
+  text_email_finished_approved: O workflow de aprovação'%{name}' definido para o documento
+    '%{filename}' foi finalizado e o documento foi aprovado.
+  text_email_finished_delegated: O workflow de aprovação '%{name}' definido para o
+    documento '%{filename}' foi atribuido pois '%{notice}' e está aguardando a sua
+    aprovação na etapa atual.
+  text_email_finished_rejected: O workflow de aprovação '%{name}' definido para o
+    documento '%{filename}' foi finalizado e o documento foi reprovado devido a '%{notice}'.
+  text_email_finished_step: O workflow de aprovação '%{name}' definido para o documento
+    '%{filename}' foi aprovado na etapa anterior e está aguardando a sua aprovação
+    na etapa atual.
+  text_email_finished_step_short: O workflow de aprovação '%{name}' definido para
+    o documento '%{filename}' foi aprovado em uma das suas etapas de aprovação.
+  text_email_from_override: The user currently logged in
+  text_email_started: O workflow de aprovação '%{name}' definido para o documento
+    '%{filename}' foi iniciado e está aguardando a sua aprovação na etapa atual.
+  text_email_subject_approved: aprovado
+  text_email_subject_delegated: atribuído para
+  text_email_subject_rejected: reprovado
+  text_email_subject_requires_approval: requer sua aprovação
+  text_email_subject_started: iniciado
+  text_email_subject_updated: atualizado
+  text_email_to_proceed: Para dar continuidade ao fluxo, clique no íncone ao lado
+    do documento
+  text_email_to_see_history: Para visualizar o histórico de workflow de aprovação
+    clique no status do workflow disponível ao lado do documento
+  text_email_to_see_status: Para visualizar o status atual do workflow de aprovação,
+    clique no status de fluxo de trabalho do documento
+  text_enable_cjk_ngrams: 'With this enabled, spans of CJK characters are split into
+    unigrams and bigrams, with the unigrams carrying positional information. Non-CJK
+    characters are split into words as normal. The corresponding option needs to have
+    been used at index time. e.g: XAPIAN_CJK_NGRAM=true ruby plugins/redmine_dmsf/extra/xapian_indexer.rb
+    -fv'
+  text_stemming_info: 'This controls how the query parser will apply the stemming
+    algorithm. The default value is STEM_NONE. The possible values are: STEM_NONE
+    -  Don''t perform any stemming, STEM_SOME - Search for stemmed forms of terms
+    except for those which start with a capital letter, or are followed by certain
+    characters (currently:''/@<>=*[{"''), or are used with operators which need positional
+    information. Stemmed terms are prefixed with ''Z'', STEM_ALL - Search for stemmed
+    forms of all words (note: no ''Z'' prefix is added).'
+  text_title_format: 'Document title format for download (%t - title, %f - file, %d
+    - date, %v - version, %i - ID, %r - revision). Example: %t_%v'
+  title_approval: Aprovado
+  title_approved: Aprovado
+  title_assigned: Atribuído
+  title_assignment: Inclusão do Documento
+  title_check_for_restore_or_delete: Marcar para restaurar ou deletar
+  title_check_for_zip_download_or_email: Marcar para download ou enviar por e-mail
+  title_copy: Copiar
+  title_copy_or_move: Copiar / Mover
+  title_create_link: Create a symbolic link
+  title_delegation: Delegation
+  title_delete: Deletar
+  title_delete_checked: Excluir documento ou arquivo selecionado
+  title_delete_revision: Revisão deletada
+  title_dmsf_workflow_log: Approval Workflow Log
+  title_download: Download
+  title_download_checked: Download em arquivo compactado
+  title_download_entries: Download entries
+  title_filename_for_download: Nome do arquivo utilizado para for download ou arquivo
+    compactado
+  title_items: Itens
+  title_lock_file: Clique aqui para impedir alterações por outro usuário
+  title_lock_folder: Clique aqui para impedir alterações por outros usuários
+  title_locked_by_user: Bloqueado por %{user}
+  title_none: None
+  title_notifications_active: Notificações Ativas
+  title_notifications_active_deactivate: 'Notificações ativas: Desativar'
+  title_notifications_not_active_activate: 'Notificações não ativas: Ativar'
+  title_obsolete: Obsolete
+  title_obsolete_revision: Obsolete revision
+  title_rejected: Rejeitado
+  title_rejection: Rejection
+  title_restore: Restaurar
+  title_restore_checked: Restaurar pasta ou arquivo
+  title_save_preferences: Salvar preferências
+  title_send_checked_by_email: Enviar por e-mail
+  title_start: Iniciado
+  title_title_version_version_download: "%{title} revisão %{version} download"
+  title_total_size_of_all_files: Total size of all files under this folder
+  title_unlock_file: Clique aqui para permitir alterações por outro usuário
+  title_unlock_folder: Clique aqui para desbloquear e permitir alterações por outros
+    usuários
+  title_waiting_for_approval: Aguardando aprovação
+  user_is_not_project_member: You are not a member of the project
+  warning_email_notifications: Email notifications sent to %{to}
+  warning_file_already_locked: Arquivo já bloqueado
+  warning_file_not_locked: Arquivo não bloqueado
+  warning_file_notifications_already_activated: Notificações de arquivo ativadas
+  warning_file_notifications_already_deactivated: Notificações de arquivo já desativadas
+  warning_folder_already_locked: Esta pasta já está bloqueada
+  warning_folder_not_locked: A pasta não pode ser bloqueada
+  warning_folder_notifications_already_activated: Notificações de pasta atualizadas
+  warning_folder_notifications_already_deactivated: Pasta de notificações já desactivada
+  warning_no_entries_selected: É necessário selecionar um arquivo ou pasta
+  warning_no_project_to_copy_file_to: No project to copy file to
+  warning_no_project_to_copy_folder_to: No project to copy folder to
+  warning_one_of_files_locked: Um dos arquivos bloqueados
+  warning_some_entries_were_not_deleted: 'Não foi possível excluir os seguintes arquivos:
+    %{entries}'
+  warning_some_files_were_not_commited: 'O(s) arquivo(s) não foram salvos: %{files}'
+  warning_xapian_not_available: Xapian not available

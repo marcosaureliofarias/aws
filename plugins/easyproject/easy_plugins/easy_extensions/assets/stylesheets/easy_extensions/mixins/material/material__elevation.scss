@@ -1,0 +1,52 @@
+/// Gives a elevated depth effect.
+/// @param {Number} $depth - depth level (between 1 and 5)
+/// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+/// @requires {function} top-shadow
+/// @requires {function} bottom-shadow
+$shade-width: .25*$gap;
+@mixin material__elevation($depth) {
+  @if $depth < 1 {
+    box-shadow: none;
+  } @else if $depth > 10 {
+    @warn "Invalid $depth `#{$depth}` for mixin `elevation`.";
+  } @else {
+    @include box-shadow((material__elevation--shadow_bottom($depth), material__elevation--shadow_top($depth)));
+  }
+}
+
+%material__elevation--depth_1{
+  @include material__elevation(1);
+}
+%material__elevation--depth_2{
+  @include material__elevation(2);
+}
+%material__elevation--depth_3{
+  @include material__elevation(3);
+}
+%material__elevation--depth_4{
+  @include material__elevation(4);
+}
+%material__elevation--depth_5{
+  @include material__elevation(5);
+}
+%material__elevation--depth_6{
+  @include material__elevation(6);
+}
+%material__elevation--depth_7{
+  @include material__elevation(7);
+}
+%material__elevation--depth_8{
+  @include material__elevation(8);
+}
+%material__elevation--depth_9{
+  @include material__elevation(9);
+}
+%material__elevation--depth_10{
+  @include material__elevation(10);
+}
+%material__elevation--inline_down{
+  @include box-shadow(0px 1px+.5*$shade-width .5*$shade-width (-.5*$shade-width) rgba($black,0.125));
+}
+%material__elevation--inline_up{
+  @include box-shadow(0px (-(1px+.5*$shade-width)) .5*$shade-width (-.5*$shade-width) rgba($black,0.125));
+}

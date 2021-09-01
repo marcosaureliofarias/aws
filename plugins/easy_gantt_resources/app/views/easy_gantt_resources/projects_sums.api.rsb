@@ -1,0 +1,14 @@
+api.easy_resource_data do
+  api.resources_start_date @period[:from]
+  api.resources_end_date @period[:to]
+
+  api.array :projects do
+    @resources_sums.each do |project_id, allocations|
+      api.project do
+        api.id project_id
+        api.resources_sums allocations
+      end
+    end
+  end
+
+end

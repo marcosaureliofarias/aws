@@ -1,0 +1,29 @@
+<%
+  if attachments.present? || container.has_attachments?
+    heading = options[:do_not_show_header].nil? && (options[:label] || l(:label_issue_attachments_heading)) + " (#{attachments.count.to_s})" || nil
+    box_options = {
+      toggle: !!options[:enable_toggling],
+      icon: heading && 'icon-attachment',
+      class: {container: "attachment-links #{options[:do_not_show_context_menu] && 'do_not_'}show_context_menu"}
+    }
+%>
+  <%= render_module_easy_box("attachments_li_nks_#{dom_id(container)}_#{options[:toggling_uniq_id]}", heading, box_options) do |m| %>
+    <% m.heading_links do %>
+      <%= link_to('', container_attachments_edit_path(container), class: 'icon icon-edit', title: l(:label_edit_attachments)) %>
+      <% if attachments.size == 1 %>
+        <%= link_to_attachment(attachments.first, text: '', title: l(:button_download), class: 'icon icon-download', download: true) %>
+      <% else %>
+        <%= link_to(attachments_bulk_download_as_zip_path(ids: attachments.map(&:id)), method: :get, class: 'icon icon-downloads') do %>
+          <span class="tooltip"><%= l(:button_download_as_zip) %></span>
+        <% end %>
+      <% end %>
+    <% end if options[:do_not_show_header].nil? && attachments.any?(&:editable?) %>
+
+    <%= render :partial => 'attachments/link_rows', :locals => {:attachments => attachments, :options => options, :thumbnails => thumbnails, :container => container} -%>
+
+  <% end %>
+
+  <% unless options[:do_not_show_context_menu] %>
+    <%= context_menu url_for(:controller => 'context_menus', :action => 'versioned_attachments', :back_url => original_url), '.attachment-links.show_context_menu table.attachments' -%>
+  <% end %>
+<% end %>

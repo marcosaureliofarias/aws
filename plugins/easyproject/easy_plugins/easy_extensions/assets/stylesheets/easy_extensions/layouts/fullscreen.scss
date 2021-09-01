@@ -1,0 +1,72 @@
+.fullscreen{
+  @extend %fixed;
+  z-index: z($z-priority,fullscreen) !important;
+  //padding: 0 !important;
+  margin: 0 !important;
+  @extend %border-radius-none;
+  overflow-y: auto;
+  background-color: $color-background;
+  &__trigger {
+    @extend %box-sizing-border-box;
+    border-left: 1px solid $servicebar-border;
+    line-height: .5*$servicebar-width;
+    width: .5*$servicebar-width;
+    padding: 0;
+    @extend #back_to_top;
+    bottom: 0 !important;
+    left: auto;
+    right: 0;
+    position: fixed;
+    cursor: pointer;
+    z-index: z($z-priority,topmenu) + 1;
+    .left-menu-opened & {
+      display: none;
+    }
+    a {
+      &:before{
+        font-size: 1.5em;
+      }
+      &.icon-fullscreen-exit {
+        display: none;
+      }
+    }
+    &_active {
+      border-top: none;
+      z-index: z($z-priority,fullscreen) + 1;
+      background-color: $color-negative;
+      a {
+        &.icon-fullscreen {
+          display: none;
+          &-exit.icon {
+            //line-height: 50px;
+            //width: 50px;
+            font-size: $box-padding;
+            @extend %flex;
+            @extend %align-items-center;
+            //justify-content: flex-start;
+            color: $color-negative;
+            &:before {
+              line-height: 50px;
+              width: 50px;
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+    @include respond-to(max-menu-collapse) {
+      display: none;
+    }
+    @include respond-to(max-medium-screen) {
+      display: none;
+    }
+  }
+  &#content {
+    position: absolute;
+    bottom: initial;
+    transform: none;
+  }
+  &#content #wbs_menu {
+    top: 0 !important;
+  }
+}

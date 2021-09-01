@@ -1,0 +1,133 @@
+%journal-message{
+  overflow: hidden;
+  background: $color-foreground;
+  border: 1px solid $color-border;
+  padding: $gap; //$gap $box-padding;
+  @extend %border-radius-small;
+  //margin: 0 $gap;
+  margin-bottom: 0.5*$gap;
+  p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+}
+%journal-details-container{
+  //margin-left: $gap + $journal-avatar-width;
+  padding: 0.5*$gap 0;
+  position: relative;
+  //border: 1px solid $journal-border;
+  .wiki{
+    @extend %journal-message;
+    clear: both;
+	margin: $gap 0;
+    &.editable{
+      &:after{
+        display: none;
+      }
+    }
+    &.journal-preview{
+        border: 0px;
+    }
+  }
+  //@include triangle-left(0.6*$gap, $journal-foreground, $journal-border);
+  &:before,&:after{
+	// top: 0.5*$journal-avatar-width - 0.3*$gap;
+  }
+  h4{
+    font-size: inherit;
+  }
+  .details{
+    clear: left;
+	@include smaller;
+	margin-top: 0.5*$gap;
+  }
+}
+%journal-toolbar{
+  @include small;
+  line-height: 2*$gap;
+  padding: 0 0.5*$gap;
+  float: right;
+  position: relative;
+  &>a{
+    @extend %tooltip-left;
+    @extend %button-link;
+  }
+  .menu-more{
+    display: none;
+    @extend %menu-tooltip;
+    ul{
+      right: 100%;
+      bottom: -10%;
+      @include triangle-right(0.5*$gap, $tooltip-background, $tooltip-border, 85%);
+    }
+    //margin-left: -100%;
+    //@extend %tooltip-triangle-right;
+  }
+}
+%journal-details-toggler{
+  //@extend %border-radius-large;
+  opacity: 0.75;
+  //border: 1px solid $color-border;
+  //width: 1.5*$gap;
+  line-height: 2*$gap;
+  display: inline-block;
+  white-space: nowrap;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+  margin-left: $gap;
+  &:before{
+    content: "... ";
+  }
+  .open &{
+    &:before{
+      //content: "-";
+    }
+  }
+  &:hover{
+    opacity: 1;
+  }
+}
+%journal{
+  position: relative;
+  margin-bottom: $gap;
+  padding-top: $gap;
+  //overflow-x: hidden;
+  //overflow-y: visible;
+  margin: 0 (-$box-padding);
+  padding: $gap $box-padding;
+  //border-top: 1px solid $color-border-minor;
+  //background: $color-highlight; //rgba(mix($color-foreground,$color-background),1) !important;
+  @extend %clearfix;
+  &.hidden + &{
+    //border-top: none;
+  }
+  span.private{
+    color: $color-negative;
+  }
+  .avatar-container {
+	width: $journal-avatar-width;
+	float: left;
+    margin-left: 0;
+	//clear: both;
+    & ~ i{
+      position: absolute;
+        left: $box-padding;
+        top: $journal-avatar-width + $gap;
+      //clear: left;
+      width: $journal-avatar-width;
+      margin-top: $gap;
+      text-align: center;
+        &.private-notes-lock-icon{
+          color: $color-negative;
+        }
+    }
+  }
+  ul.details{
+    @extend %list-reset;
+  }
+}

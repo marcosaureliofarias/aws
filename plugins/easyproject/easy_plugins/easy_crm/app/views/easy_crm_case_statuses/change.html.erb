@@ -1,0 +1,14 @@
+<h2><%= @easy_crm_case_status.name %></h2>
+
+<%= form_tag(original_url) do %>
+  <div id="change-easy-crm-cases-status" class="gray-background border-radius-3">
+    <p>
+      <%= l(:label_change_crm_cases_status_explanation) -%>
+      <%= select_tag('easy_crm_case_status_to_id', options_from_collection_for_select(@easy_crm_case_statuses, 'id', 'name')) -%>
+    </p>
+  </div>
+  <p class="buttons">
+    <%= submit_tag l(:button_change_easy_crm_cases_status) %>
+    <%= link_to(l(:button_back), params[:back_url] || {:action => 'index'}, :class => 'button') %>
+  </p>
+<% end -%>

@@ -1,0 +1,11 @@
+<div id="easy_checklists_container">
+  <% if entity %>
+    <% entity.easy_checklists.preload(:easy_checklist_items).each do |easy_checklist| %>
+      <%= render :partial => 'easy_checklists/easy_checklist', :locals => { :easy_checklist => easy_checklist, :entity => entity} %>
+    <% end %>
+  <% end %>
+</div>
+
+<%= javascript_tag do %>
+  <%= render :partial => 'easy_checklists/add_item_delete_buttons', locals: { entity: entity }, formats: [:js] %>
+<% end %>

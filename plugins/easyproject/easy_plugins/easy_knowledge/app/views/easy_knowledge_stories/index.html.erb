@@ -1,0 +1,26 @@
+<%= breadcrumb_story -%>
+
+<%= render @query, :easy_query_name =>  l(:label_easy_knowledge_categories), :options => {:go_to_url => {:controller => 'easy_knowledge_stories', :action => 'show'}, :allow_avatar => true}, :form_options => {:free_search_options => {:free_search_after_function => "$('.other-formats').remove()"}} %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:label_easy_knowledge_stories)) -%>
+
+<%= content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:label_easy_knowledge_new_story), new_polymorphic_path([@project, :easy_knowledge_story]), :class => 'button-positive icon icon-add') if @can[:create_global_stories] || @can[:create_project_stories] -%>
+<% end %>
+
+<%= content_for :easy_page_layout_service_box do %>
+  <% if params[:favorited] %>
+    <%= link_to(l(:button_show_all_stories), easy_knowledge_stories_path(:set_filter => 0), :class => 'icon icon-fav button') %>
+  <% else %>
+    <%= link_to(l(:button_show_favorite_stories), easy_knowledge_stories_path(:set_filter => 1, :favorited => 1), :class => 'icon icon-star button-positive') %>
+  <% end -%>
+  <%= link_to(l(:label_easy_knowledge_manage_categories), easy_knowledge_categories_path, :title => l(:label_easy_knowledge_manage_categories), :class => 'icon icon-bulb button') if @can[:manage_global_categories] -%>
+  <%= link_to(l(:button_easy_knowledge_back_to_overview), easy_knowledge_overview_path, :class => 'button-2 icon icon-arrow', :title => l(:button_easy_knowledge_back_to_overview)) if User.current.allowed_to_globally?(:read_global_stories) -%>
+<% end %>
+
+<%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} %>
+
+<% include_knowledge_headers_tags %>
+<%= context_menu context_menus_easy_knowledge_stories_path(:project_id => @project, :back_url => url_for({})) %>

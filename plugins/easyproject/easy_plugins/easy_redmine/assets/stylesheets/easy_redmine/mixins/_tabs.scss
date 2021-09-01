@@ -1,0 +1,22 @@
+%tab-a {
+  display: inline-block;
+  font-size: $font-size--menu;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+@mixin tab-ul($color-background, $color-border, $color-text, $tab-height, $gap, $color-active) {
+  @extend %tab-ul;
+  @extend %list-style-none;
+
+  border-bottom: inherit;
+
+  & > li {
+    @include tab-li($color-background, $color-border, $color-text, $tab-height, $gap, $color-active);
+  }
+}

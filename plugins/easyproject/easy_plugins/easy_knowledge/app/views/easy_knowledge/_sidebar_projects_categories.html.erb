@@ -1,0 +1,46 @@
+<% uniq_prefix = "#{controller_name}_#{action_name}_" %>
+<% open = toggle_open_css_row((uniq_prefix + 'projects-0'), User.current) %>
+<% is_open = (open == ' open') %>
+<div id="project_categories" class="list-group-item">
+  <div class="category-group-title <%= open %> list-heading">
+    <span class="expander <%= 'expanded' if is_open %>" alt="Expander" title="<%=l :collapse_expand %>" onclick="EASY.knowledge.toggleTreeVisibility('<%= uniq_prefix -%>', 'projects', '0', '<%= User.current.id -%>', true, this.parentNode);">&nbsp;</span>
+    <%= content_tag :h4, l(:label_easy_knowledge_index_project) -%>
+  </div>
+  <%- active_parents = [] -%>
+  <ul id="<%= uniq_prefix + 'projects-0' -%>" <%= "style='display: none;'".html_safe unless is_open %> class="link-list">
+    <%- @grouped_projects.each do |project| -%>
+      <% to_delete = 0 %>
+      <%- active_parents.each do |parent| -%>
+        <%- if !project.is_descendant_of?(parent) -%>
+          <% to_delete += 1 %>
+          </ul></li>
+        <%- end -%>
+      <%- end -%>
+      <% to_delete.times{ active_parents.pop } %>
+
+  <% open = toggle_open_css_row(uniq_prefix + 'parentproject-' + project.id.to_s, User.current) %>
+  <% is_open = (open == ' open') %>
+  <li class="project-list link-list-item">
+
+      <% if project.easy_knowledge_categories.any? %>
+        <span class="expander <%= 'expanded' if is_open %>" alt="Expander" title="<%=l :collapse_expand %>" onclick="EASY.knowledge.toggleTreeVisibility('<%= uniq_prefix -%>', 'parentproject', '<%= project.id.to_s %>', '<%= User.current.id -%>', true, this.parentNode);">&nbsp;</span>
+      <% end %>
+      <%= link_to(project.name, {:controller => 'easy_knowledge_projects', :action => 'index', :project_id => project}, :title => l(:label_easy_knowledge_manage_project_category), :class => 'easy-knowledge-project-link') -%>
+
+
+    <% if project.easy_knowledge_categories.any? %>
+      <% ul_options = { :id => uniq_prefix + 'parentproject-' + project.id.to_s, :class => 'category-list'} %>
+      <% ul_options[:style] = 'display: none;' unless is_open %>
+
+      <%= easy_knowledge_project_categories_tree(project.easy_knowledge_categories.where(:parent_id => nil), ul_options) %>
+    <% end %>
+
+  <%- if project.leaf? -%>
+    </li>
+  <%- else -%>
+    <%- active_parents << project -%>
+    <ul class="project-list">
+    <%- end -%>
+  <%- end -%>
+</ul>
+</div>

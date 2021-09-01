@@ -1,0 +1,41 @@
+<%= error_messages_for @type %>
+<%= hidden_field_tag('back_url', params[:back_url]) unless params[:back_url].blank? %>
+
+<p><%= f.text_field :type_name, required: true %></p>
+<p><%= f.easy_icon_select(:icon_path) %></p>
+<p><%= f.check_box :is_default %></p>
+<%= call_hook :view_easy_contact_type_header_bottom, {easy_contact_type: f.object, form: f} %>
+
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <%= toggling_fieldset l(:field_core_fields) do %>
+      <p>
+        <% EasyContactType::CORE_FIELDS.each do |field| %>
+          <label class="block">
+            <%= check_box_tag 'easy_contact_type[core_fields][]', field, f.object.core_fields.include?(field), id: nil %>
+            <%= l("field_#{field}".sub(/_id$/, '')) %>
+          </label>
+        <% end %>
+      </p>
+
+      <%= hidden_field_tag 'easy_contact_type[core_fields][]', '' %>
+    <% end %>
+  </div>
+
+  <div class="splitcontentright">
+    <%= toggling_fieldset l(:label_custom_field_plural) do %>
+      <% EasyContactCustomField.sorted.each do |field| %>
+        <label class="block">
+          <%= check_box_tag 'easy_contact_type[custom_field_ids][]', field.id, f.object.custom_fields.to_a.include?(field), id: nil %>
+          <%= field.name %>
+        </label>
+      <% end %>
+
+      <%= hidden_field_tag 'easy_contact_type[custom_field_ids][]', '' %>
+    <% end %>
+  </div>
+</div>
+
+
+
+

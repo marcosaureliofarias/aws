@@ -1,0 +1,2 @@
+<div class="alerts-report-entity-name"><%= link_to(report.entity.subject, issue_url(report.entity_id)) if report.entity -%></div>
+<div class="alerts-report-entity-watch"><%= l(:label_easy_alerts_helpdesk_monitor_hours_to_response_report, :due_time => format_time(report.entity.easy_response_date_time)).html_safe if report.entity && report.entity.easy_response_date_time -%></div>

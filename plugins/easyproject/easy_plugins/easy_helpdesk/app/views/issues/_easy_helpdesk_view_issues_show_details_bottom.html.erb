@@ -1,0 +1,28 @@
+<% if issue.disabled_core_fields.exclude?('easy_helpdesk_ticket_owner_id') %>
+  <hr />
+  <div class="attributes helpdesk">
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <div class="attribute">
+          <div class="label"><%= l(:field_easy_helpdesk_ticket_owner) %>:</div>
+          <div class="value">
+            <span class="<%= 'multieditable' if issue.safe_attribute?('easy_helpdesk_ticket_owner_id') %>"
+                  data-name="issue[easy_helpdesk_ticket_owner_id]"
+                  data-type="select"
+                  data-value="<%= issue.easy_helpdesk_ticket_owner_id %>"
+                  data-source="<%= j easy_autocomplete_path('assignable_users', issue_id: issue.id) %>">
+                      <%= issue.easy_helpdesk_ticket_owner_id ? link_to_user(issue.easy_helpdesk_ticket_owner) : '-' %>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="splitcontentright"></div>
+    </div>
+  </div>
+<% end %>
+<% if issue.display_easy_helpdesk_info? %>
+  <hr />
+  <div class="easy-helpdesk-info">
+    <%= render_issue_easy_helpdesk_info(issue) %>
+  </div>
+<% end %>

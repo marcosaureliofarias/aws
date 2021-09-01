@@ -1,0 +1,38 @@
+<%= form_for @project,
+             :url => {:action => 'modules', :id => @project},
+             :html => {:id => 'modules-form', :class => 'form-box',
+                       :method => :post} do |f| %>
+  <%= back_url_hidden_field_tag %>
+  <% if defined?(rendering_in_modal) %>
+    <%= hidden_field_tag 'rendering_in_modal', '1' %>
+  <% end %>
+  <fieldset id='enabled_modules'>
+    <legend><%= l(:text_select_project_modules) %> <span><%= check_all_links 'enabled_modules' %></span></legend>
+    <ul class="cols-5">
+      <% Redmine::AccessControl.available_project_modules.each do |m| %>
+        <li>
+          <label class="floating"><%= check_box_tag 'enabled_module_names[]', m, @project.module_enabled?(m), :id => nil -%>
+            <%= l_or_humanize(m, :prefix => "project_module_") %></label></li>
+      <% end %>
+    </ul>
+  </fieldset>
+  <% if !defined?(rendering_in_modal) %>
+    <div class="tabular">
+      <p id="default_project_page_container">
+        <%= render :partial => 'projects/settings/default_project_page', :locals => {:enabled_module_names => @project.enabled_module_names, :selected => EasySetting.value('default_project_page', @project)} %>
+      </p>
+    </div>
+
+    <div>
+      <p>
+        <%= f.check_box :easy_has_custom_menu, :onchange => "$.post('#{j easy_custom_menu_toggle_project_path(@project)}', $('#modules-form').serialize())" %>
+        <%= f.label :easy_has_custom_menu, l(:field_easy_has_custom_menu) %>
+      </p>
+    </div>
+
+    <div id="easy_custom_project_menu_container" style="<%= 'display:none' if !@project.easy_has_custom_menu? %>">
+      <%= render :partial => 'easy_custom_project_menus/index', :locals => {:project => @project, :easy_custom_project_menus => @project.easy_custom_project_menus.sorted} %>
+    </div>
+  <% end %>
+  <div class="form-actions"><%= submit_tag l(:button_save), :id => 'save-project-modules', :class => 'button-positive' -%></div>
+<% end %>

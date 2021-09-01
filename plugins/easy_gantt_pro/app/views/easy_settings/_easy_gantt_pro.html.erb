@@ -1,0 +1,51 @@
+<% # Its a hook only !!! %>
+<% if User.current.admin %>
+<p>
+  <%= form.label :fixed_delay, l(:field_easy_gantt_fixed_delay) %>
+  <span id="recalculate-fixed-delay" style="padding:7px 0;display:inline-block">
+    <%= link_to l(:label_easy_gantt_recalculate_fixed_delay), easy_gantt_recalculate_fixed_delay_path, data: { confirm: l(:warning_easy_gantt_recalculate_fixed_delay) } %>
+  </span>
+</p>
+<% end %>
+
+<p>
+  <%= form.label l(:label_easy_gantt_critical_path) %>
+
+  <label class="radio block">
+    <%= form.radio_button :critical_path, 'disabled' %>
+    <%= l('easy_gantt.critical_path.disabled') %>
+  </label>
+
+  <label class="radio block">
+    <%= form.radio_button :critical_path, 'last' %>
+    <%= l('easy_gantt.critical_path.last') %>
+    <em>(<%= l('easy_gantt.critical_path.last_text') %>)</em>
+  </label>
+
+  <label class="radio block">
+    <%= form.radio_button :critical_path, 'longest' %>
+    <%= l('easy_gantt.critical_path.longest') %>
+    <em>(<%= l('easy_gantt.critical_path.longest_text') %>)</em>
+  </label>
+</p>
+
+<p>
+  <%= form.label l(:label_show_lowest_progress_tasks) %>
+  <%= form.check_box :show_lowest_progress_tasks %>
+  <br>
+  <em class="small"><%= l(:text_show_lowest_progress_tasks) %></em>
+</p>
+
+<p>
+  <%= form.label l(:label_show_spent_time_progress_tasks) %>
+  <%= form.check_box :spent_time_ratio_on_tasks %>
+  <br>
+  <em class="small"><%= l(:text_show_spent_time_progress_tasks) %></em>
+</p>
+
+<p>
+  <%= form.label l(:label_show_project_milestones) %>
+  <%= form.check_box :show_project_milestones %>
+  <br>
+  <em class="small"><%= l(:text_show_project_milestones) %></em>
+</p>

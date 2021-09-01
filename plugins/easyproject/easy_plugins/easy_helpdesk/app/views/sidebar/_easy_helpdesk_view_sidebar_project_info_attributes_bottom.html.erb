@@ -1,0 +1,52 @@
+<% if ehp = EasyHelpdeskProject.where(:project_id => project.id).first %>
+  <% if ehp.created_at %>
+    <tr>
+      <td><%= format_date(ehp.created_at) -%></td>
+      <th><%= content_tag(:label, l(:field_created_at))%></th>
+    </tr>
+  <% end %>
+
+  <% if project.module_enabled?(:time_tracking) && User.current.allowed_to?(:view_time_entries, project) && ehp.aggregated_hours %>
+    <tr>
+      <td><%= l(:label_easy_helpdesk_hours_comulated_range, :from => format_date(ehp.initial_date << 1), :to => format_date(ehp.initial_date - 1)) -%></td>
+      <th><%= content_tag(:label, "#{l(:label_easy_helpdesk_hours_comulated)}").html_safe %></th>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td><%= ehp.easy_helpdesk_project_matching.collect{|m| m.domain_name_with_email_field}.join(', ') -%></td>
+    <th><%= content_tag(:label, "#{l(:'field_easy_helpdesk_project_matching.domain_name')}") %></th>
+  </tr>
+
+  <% if project.module_enabled?(:time_tracking) && User.current.allowed_to?(:view_time_entries, project) %>
+    <tr>
+      <td><%= easy_format_hours(ehp.monthly_hours || 0) -%>
+      <th><%= content_tag(:label, "#{l(:label_prepaid_this_month)}".html_safe) %></th>
+    </tr>
+
+    <% if ehp.aggregated_hours %>
+      <tr>
+        <td><%= easy_format_hours(ehp.aggregated_from_last_period) -%></td>
+        <th><%= content_tag(:label, "#{l(:label_easy_helpdesk_aggregated_from_last_period)}".html_safe) %></th>
+      </tr>
+      <tr>
+        <td><%= easy_format_hours(ehp.aggregated_hours_remaining || 0) -%></td>
+        <th><%= content_tag(:label, "#{l(:label_easy_helpdesk_actual_budget)}".html_safe) %></th>
+      </tr>
+    <% end %>
+
+    <tr>
+      <% spent_time_classes = []
+         spent_time_classes << 'overdrawn' if ehp.spent_time_current_month > (ehp.monthly_hours || 0) %>
+      <td><%= easy_format_hours(ehp.spent_time_current_month) -%></td>
+      <th><%= content_tag(:label, "#{l(:label_easy_helpdesk_hours_per_month)}:".html_safe, :class => spent_time_classes.join(' ')) %></th>
+    </tr>
+
+    <tr>
+      <% budget_to_spent_classes = ['button', 'icon', 'icon-time']
+         spent_time_classes << 'overdrawn' if ehp.remaining_hours < 0 %>
+      <td><%= easy_format_hours(ehp.remaining_hours) -%></td>
+      <th><%= content_tag(:label, "#{l(:label_easy_helpdesk_actual_budget_to_spend)}:".html_safe, :class => spent_time_classes.join(' ')) %></th>
+    </tr>
+  <% end %>
+<% end %>

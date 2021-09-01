@@ -1,0 +1,13 @@
+<%= title l(:heading_easy_button_new) %>
+
+<%= form_for(@easy_button, html: { id: 'easy_button_form' }) do |f| %>
+  <%= error_messages_for f.object %>
+
+  <div id="easy_button_container">
+    <%= render 'form', easy_button: f.object %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_create), :class => 'button-positive' %>
+  </div>
+<% end %>

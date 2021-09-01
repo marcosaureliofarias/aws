@@ -1,0 +1,65 @@
+<hr>
+<p>
+  <%= hidden_field_tag('easy_page[strict_show_permissions]', '0', id: nil) %>
+  <%= check_box_tag('easy_page[strict_show_permissions]', '1', @page.strict_show_permissions?, onchange: 'document.getElementById("permission-fields-show").classList.toggle("hidden")') %>
+  <%= label_tag('easy_page_strict_show_permissions', l(:label_easy_page_strict_show_permissions)) %>
+</p>
+<div id="permission-fields-show" class="<%= 'hidden' unless @page.strict_show_permissions? %>">
+  <p>
+    <%= label_tag 'easy_page_permitted_show_easy_user_type_ids', l(:label_easy_user_type_plural) %>
+    <%= autocomplete_field_tag('easy_page[permitted_show_easy_user_type_ids][]',
+                               EasyUserType.sorted.map {|type| [type.name, type.id] },
+                               @page.permitted_show_easy_user_type_ids,
+                               multiple: true,
+                               include_blank: true,
+                               rootElement: 'easy_user_types',
+                               html_options: { id: 'easy_page_easy_user_type_ids_show' }) %>
+  </p>
+  <p>
+    <%= label_tag 'easy_page_permitted_show_principal_ids', l(:label_meeting_users_and_groups) %>
+    <%= autocomplete_field_tag('easy_page[permitted_show_principal_ids][]',
+                               easy_autocomplete_path('principals'),
+                               @page.permitted_show_principals.map {|principal| { value: principal.name, id: principal.id } },
+                               multiple: true,
+                               include_blank: true,
+                               preload: false,
+                               rootElement: 'users',
+                               html_options: { id: 'easy_page_principal_ids_show' }) %>
+  </p>
+  <p>
+    <em class="help"><%= l(:label_easy_page_strict_show_permissions_help) %></em>
+  </p>
+</div>
+
+<hr>
+<p>
+  <%= hidden_field_tag('easy_page[strict_permissions]', '0', id: nil) %>
+  <%= check_box_tag('easy_page[strict_permissions]', '1', @page.strict_permissions?, onchange: 'document.getElementById("permission-fields-edit").classList.toggle("hidden")') %>
+  <%= label_tag('easy_page_strict_permissions', l(:label_easy_page_strict_permissions)) %>
+</p>
+<div id="permission-fields-edit" class="<%= 'hidden' unless @page.strict_permissions? %>">
+  <p>
+    <%= label_tag 'easy_page_permitted_easy_user_type_ids', l(:label_easy_user_type_plural) %>
+    <%= autocomplete_field_tag('easy_page[permitted_easy_user_type_ids][]',
+                               EasyUserType.sorted.map {|type| [type.name, type.id] },
+                               @page.permitted_easy_user_type_ids,
+                               multiple: true,
+                               include_blank: true,
+                               rootElement: 'easy_user_types',
+                               html_options: { id: 'easy_page_easy_user_type_ids_edit' }) %>
+  </p>
+  <p>
+    <%= label_tag 'easy_page_permitted_principal_ids', l(:label_meeting_users_and_groups) %>
+    <%= autocomplete_field_tag('easy_page[permitted_principal_ids][]',
+                               easy_autocomplete_path('principals'),
+                               @page.permitted_principals.map {|principal| { value: principal.name, id: principal.id } },
+                               multiple: true,
+                               include_blank: true,
+                               preload: false,
+                               rootElement: 'users',
+                               html_options: { id: 'easy_page_principal_ids_edit' }) %>
+  </p>
+  <p>
+    <em class="help"><%= l(:label_easy_page_strict_permissions_help) %></em>
+  </p>
+</div>

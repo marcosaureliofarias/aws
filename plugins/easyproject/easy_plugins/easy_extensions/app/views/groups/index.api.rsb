@@ -1,0 +1,5 @@
+api.array :groups, api_meta(:total_count => @groups.count) do
+  @groups.each do |group|
+    render_api_group(api, group)
+  end
+end

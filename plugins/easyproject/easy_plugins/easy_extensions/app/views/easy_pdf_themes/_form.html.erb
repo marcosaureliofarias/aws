@@ -1,0 +1,53 @@
+<%= error_messages_for 'pdf_theme' %>
+
+<div class="box">
+  <div id="easy_pdf_fields" style="margin-bottom: 30px;">
+    <p><% if theme.easy_system_flag? %>
+        <%= l(:field_name) %> <%= l(:label_default) %>
+      <% else %>
+        <%= f.text_field :name, required: true %>
+      <% end %></p>
+    <p><%= f.check_box(:is_default) %></p>
+  </div>
+
+  <%= label_tag('easy_pdf_theme_header_style', "#{l(:label_header_style)} *", :class => 'inline required floatleft') %>
+  <div id="easy_pdf_theme_header_style">
+    <div class='splitcontentleft'>
+      <%= label_tag('easy_pdf_theme_header_hex_color', l(:field_header_color), :class => 'inline') %>
+      <div id="header_colorpicker"></div>
+      <%= text_field_tag 'easy_pdf_theme[header_hex_color]', theme.header_hex_color, id: 'header_color' %>
+    </div>
+    <div class='splitcontentright'>
+      <%= label_tag('easy_pdf_theme_header_font_hex_color', l(:field_header_font_color), :class => 'inline') %>
+      <div id="header_font_colorpicker"></div>
+      <%= text_field_tag 'easy_pdf_theme[header_font_hex_color]', theme.header_font_hex_color, id: 'header_font_color' %>
+    </div>
+    <div class="clear"></div>
+
+    <div id="pdf_preview" style="margin-top: 30px; margin-bottom: 30px;">
+      <%= label_tag('header_style_preview', l(:label_preview), :class => 'inline') %>
+      <div id="header_style_preview"><%= l(:label_string) %></div>
+    </div>
+  </div>
+
+  <%= label_tag('pdf_theme_logo_form', l(:label_logo), :class => 'floatleft') %>
+  <div class="pdf_theme_logo_form">
+    <div class="logo-preview">
+      <% if theme.attachments.any? %>
+        <img src="<%= url_for(:controller => 'attachments', :action => 'download', :id => theme.attachments.first) %>"/>
+        <%= link_to image_tag('delete.png'), attachment_path(theme.attachments.first), :data => {:confirm => l(:text_are_you_sure)}, :method => :delete, :class => 'delete', :title => l(:button_delete) %>
+      <% elsif theme.easy_system_flag? %>
+        <img src="<%= EasyPdfTheme.default_logo_image %>"/>
+      <% end %>
+    </div>
+    <div class="attachments-container">
+      <%= file_field_tag 'easy_pdf_theme[logo]', title: l(:button_select_file) %>
+    </div>
+  </div>
+</div>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'farbtastic', :plugin => 'easy_extensions', defer: true %>
+  <%= javascript_include_tag 'easy_pdf_themes', :plugin => 'easy_extensions', defer: true %>
+  <%= stylesheet_link_tag 'farbtastic/farbtastic', :plugin => 'easy_extensions' %>
+<% end %>

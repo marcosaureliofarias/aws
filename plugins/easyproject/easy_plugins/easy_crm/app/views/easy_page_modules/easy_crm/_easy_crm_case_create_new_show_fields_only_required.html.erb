@@ -1,0 +1,45 @@
+<%= labelled_fields_for "#{block_name}easy_crm_case", easy_crm_case do |f| %>
+  <%= hidden_field_tag('back_url', params[:back_url], id: nil) if params[:back_url] %>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <div class="box">
+        <%= content_tag :h3, l(:label_issue_static_attributes_heading) %>
+
+        <% if easy_crm_case.safe_attribute? 'name' %>
+          <p style="<%= 'display:none;' if shown_fields.exclude?(:name) %>">
+            <%= f.text_field :name, placeholder: EasyCrmCase.human_attribute_name(:name), class: "entity-subject required block}" %>
+          </p>
+        <% end %>
+
+        <% if easy_crm_case.safe_attribute? 'description' %>
+          <p style="<%= 'display:none;' if shown_fields.exclude?(:description) %>">
+            <%= f.text_area(:description, cols: 60, rows: 10, class: 'wiki-edit', no_label: true) %>
+            <%= wikitoolbar_for(block_name+'easy_crm_case_description') %>
+          </p>
+        <% end %>
+
+        <div id="easy-crm-case-attachments-container" style="<%= 'display:none;' if shown_fields.exclude?(:attachments) %>">
+          <%= render partial: 'attachments/form', locals: {container: easy_crm_case} %>
+        </div>
+      </div>
+    </div>
+    <div class="splitcontentright" id="<%= "#{block_name}_updatable_attributes_container" %>">
+      <%= render partial: 'easy_page_modules/easy_crm/easy_crm_case_create_new_updatable_attributes',
+                 locals: {
+                     f: f,
+                     block_name: block_name,
+                     shown_fields: shown_fields,
+                     only_selected: only_selected,
+                     easy_crm_case: easy_crm_case,
+                     custom_field_values: custom_field_values,
+                     shown_custom_field_ids: shown_custom_field_ids
+                 } %>
+    </div>
+  </div>
+
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+  <%= javascript_include_tag 'easy_crm', defer: true %>
+<% end %>

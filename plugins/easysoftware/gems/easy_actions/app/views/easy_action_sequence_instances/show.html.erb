@@ -1,0 +1,27 @@
+<%= easy_breadcrumb([
+                        link_to(l(:heading_easy_action_sequences, scope: :easy_actions),
+                                easy_action_sequences_path,
+                                title: l(:heading_easy_action_sequences, scope: :easy_actions)),
+                        link_to(l(:heading_easy_action_sequence_instances, scope: :easy_actions),
+                                easy_action_sequence_instances_path,
+                                title: l(:heading_easy_action_sequence_instances, scope: :easy_actions)),
+                        link_to(@entity.id,
+                                easy_action_sequence_instance_path(@entity),
+                                title: @entity.id),
+                    ]) %>
+
+<%= title("#{@entity.name} - #{@entity.status}") %>
+
+<%= render partial: 'easy_action_sequence_templates/chart', locals: {
+    easy_action_sequence_template: @entity.easy_action_sequence.template,
+    current_state:                 @entity.current_state } %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do %>
+  <%= link_to(l(:button_check_state, scope: :easy_actions),
+              check_state_easy_action_sequence_instance_path(@entity),
+              method: :post,
+              title:  l(:button_check_state, scope: :easy_actions),
+              class:  'icon icon-reload button-positive') %>
+<% end %>

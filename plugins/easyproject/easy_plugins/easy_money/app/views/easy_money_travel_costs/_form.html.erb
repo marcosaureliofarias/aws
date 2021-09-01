@@ -1,0 +1,57 @@
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <%= f.text_field :name, :class => 'block', :placeholder => l(:field_easy_money_travel_cost_name) -%>
+    </p>
+    <div>
+      <%= f.text_area :description, :class => 'wiki-edit' -%>
+      <%= wikitoolbar_for('easy_money_description') %>
+    </div>
+  </div>
+  <div class="splitcontentright tabular">
+    <%= render partial: 'easy_money/form_select_entity', locals: { f: f, project: project } %>
+    <p>
+      <%= f.label l(:field_easy_money_travel_cost_spent_on) -%>
+      <%= f.text_field :spent_on, :size => 10 -%><%= calendar_for('easy_money_spent_on') -%>
+    </p>
+
+    <p>
+      <%= f.label :price_per_unit, l(:field_easy_money_price_per_unit), :for => 'price_per_unit' -%>
+      <%= f.text_field :price_per_unit, :id => 'price_per_unit', :size => 10,
+        :onblur => "javascript:computeMul('price_per_unit','metric_units','price1');" -%>
+    </p>
+
+    <p>
+      <%= f.label :metric_units, l(:field_easy_money_metric_units), :for => 'metric_units' -%>
+      <%= f.text_field :metric_units, :id => 'metric_units', :size => 10,
+        :onblur => "javascript:computeMul('price_per_unit','metric_units','price1');" -%>
+      <%= project.easy_money_settings.travel_metric_unit %>
+    </p>
+
+    <p>
+      <%= f.label :price1, l(:field_easy_money_travel_cost_price1), :for => 'price1' -%>
+      <%= f.text_field :price1, :id => 'price1', :size => 10 -%>
+    </p>
+
+    <p>
+      <%= f.label :easy_currency_code, l(:field_currency) %>
+      <%= f.select :easy_currency_code, options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, f.object.easy_currency_code || @project.easy_currency_code), include_blank: false %>
+    </p>
+
+    <p class="easy-tag-list-field">
+      <%= label_tag 'easy_money_tag_list', l(:label_easy_tags) %>
+      <%= easy_tag_list_autocomplete_field_tag travel_cost, 'easy_money', id: 'easy_money_tag_list' %>
+    </p>
+    <% travel_cost.visible_custom_field_values.each do |custom_value| -%>
+      <p>
+        <%= custom_field_tag_with_label :easy_money, custom_value %>
+      </p>
+    <% end -%>
+
+    <div id="easy-money-attachments-container">
+      <%= content_tag :strong, l(:label_easy_money_attachments) -%>
+      <%= render :partial => 'attachments/form', :locals => {:container => travel_cost} %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,77 @@
+<%
+  prepare_easy_page_for_render
+  layout_style ||= easy_page_context[:layout_style] || 'easy_page_layouts/two_column_header_first_wider'
+  tabs = easy_page_context[:page_params][:tabs]
+  current_tab = easy_page_context[:page_params][:current_tab]
+  edit = easy_page_context[:page_params][:edit]
+  page = easy_page_context[:page_params][:page]
+  template = easy_page_context[:page_params][:page_template]
+%>
+
+<!DOCTYPE html>
+<html lang="<%= current_language %>">
+<%= render :partial => 'layouts/base_html_header' %>
+<body class="<%= body_css_classes %> easy-page-content-page">
+  <div id="wrapper">
+    <div id="wrapper2">
+      <div id="wrapper3">
+
+        <%= render 'layouts/base_body_header', render_sidebar: false %>
+
+        <div id="main" class="easy-page-content<%= edit ? ' edit' : ' show' %>">
+          <%= render :partial => 'layouts/easy_project_header' %>
+          <%= render_easy_page_editable_tabs %>
+          <div id="content">
+            <div class="easy-page-toolbar">
+              <%= render :partial => 'easy_page_layout/easy_page_layout_before_main', :locals => {:page_params => easy_page_context[:page_params], :page_modules => easy_page_context[:page_modules]} -%>
+              <%= yield :easy_page_layout_content %>
+            </div>
+            <%= render_flash_messages %>
+            <%= yield %>
+            <div id="easy_jquery_tabs_panels" class="panel-container">
+
+              <% unless easy_page_context[:page_params][:tabs] && easy_page_context[:page_params][:tabs].count > 0 %>
+                <div id="easy_jquery_tab_panel-0" class="easy_jquery_tab" >
+                  <%= render 'global_filters/show_or_edit', local_assigns %>
+                  <%= render :partial => "layouts/#{layout_style}", :locals => {:edit => edit}%>
+                </div>
+              <% end %>
+
+              <% easy_page_context[:page_params][:tabs].each do |tab| %>
+                <div id="easy_jquery_tab_panel-<%= tab.id %>" class="easy_jquery_tab" >
+                <% if tab == current_tab %>
+                  <%= render 'easy_page_tabs/show_or_edit', local_assigns %>
+                  <%= render 'global_filters/show_or_edit', local_assigns %>
+                  <%= render :partial => "layouts/#{layout_style}", :locals => {:edit => edit} %>
+                <% end %>
+                </div>
+              <% end if easy_page_context[:page_params][:tabs] %>
+
+            </div>
+
+            <%= call_hook :view_layouts_base_content %>
+
+            <% if content_for?(:easy_page_layout_service_box_bottom) -%>
+              <div id="easy-page-layout-service-box-bottom">
+                <%= yield :easy_page_layout_service_box_bottom_primary %>
+                <%= yield :easy_page_layout_service_box_bottom %>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+
+      </div>
+
+      <%= render(:partial => 'layouts/base_body_footer_wrapper') %>
+    </div>
+  </div>
+  <%#= javascript_include_tag 'page_layout', :plugin => 'easy_extensions' %>
+  <%#= javascript_include_tag 'easy_page' %>
+  <% if easy_page_context[:page_params][:edit] %>
+    <%#= javascript_include_tag 'jquery.easytabs.js', :plugin => 'easy_extensions' %>
+    <%= javascript_tag("EASY.schedule.late(function() {PageLayout.initEditableTabs({activeID: #{current_tab ? current_tab.id : 0 }, elementID: 'main'})});") if !tabs.blank? %>
+  <% end -%>
+  <%= call_hook :view_layouts_base_body_bottom %>
+  <%= yield :body_bottom %>
+</body>
+</html>

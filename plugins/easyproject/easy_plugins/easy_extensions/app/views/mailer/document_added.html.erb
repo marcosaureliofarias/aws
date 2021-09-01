@@ -1,0 +1,8 @@
+<%= textilizable(@document, :description, :only_path => false) %>
+<%  content_for :email_prefooter do %>
+    <ul class="attachments">
+      <li>
+        <%= link_to(@document.title, @document_url) %> (<%= @document.category.name %>)<br />
+      </li>
+    </ul>
+<% end %>

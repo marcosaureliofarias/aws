@@ -1,0 +1,34 @@
+@mixin flash($background,$icon){
+  $local-background: mix($background,$color-foreground, 25);
+  @extend %flash;
+  background: $local-background;
+  border: 1px solid rgba($background,1);
+  color: $color-text;
+  a{
+    color: $color-text;
+    text-decoration: underline;
+  }
+  &:before{
+    @include flash-icon($icon, $background);
+    //opacity: 0.75;
+  }
+  &>.icon-close{
+    color: $color-text;
+  }
+}
+
+%flash-success{
+  @include flash($color-positive,notice);
+}
+%flash-notice{
+  @include flash($color-highlight,warning);
+}
+%flash-warning{
+  @include flash($color-important,warning);
+}
+%flash-error{
+  @include flash($color-negative,error);
+}
+%flash-info{
+  @include flash($color-text-muted,notice);
+}

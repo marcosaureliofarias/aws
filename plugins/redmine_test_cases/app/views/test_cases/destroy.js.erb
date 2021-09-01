@@ -1,0 +1,4 @@
+<% @test_cases.each do |test_case| %>
+//document.getElementById("<%#= dom_id(test_case) %>").remove();
+document.getElementById("entity-<%= test_case.id %>").remove();
+<% end %>

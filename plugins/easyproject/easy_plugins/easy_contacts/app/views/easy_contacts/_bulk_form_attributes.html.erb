@@ -1,0 +1,90 @@
+<%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] -%>
+<%= @easy_contacts.collect {|i| hidden_field_tag('ids[]', i.id, id: nil)}.join("\n").html_safe %>
+
+<div class="splitcontent tabular">
+
+  <div class="splitcontentleft">
+
+    <p>
+      <label for='easy_contact_type_id'><%= l(:label_easy_contact_type, scope: :administration) %></label>
+      <%= select_tag('easy_contact[type_id]', easy_bulk_options_for_select(EasyContactType.all.collect{|easy_type_contact| [easy_type_contact.name, easy_type_contact.id]}, @easy_contact_params['type_id']), :onchange => "$.post('#{j(url_for({ :action => :update_bulk_form }))}', $('#bulk_edit_form').serialize());") %>
+    </p>
+
+    <%= content_tag :p do %>
+            <%= label_tag 'easy_contact[assigned_to_id]', EasyContact.human_attribute_name(:account_manager) %>
+            <%= easy_autocomplete_tag 'easy_contact[assigned_to_id]',
+                { name: l(:label_no_change_option), id: '' },
+                easy_autocomplete_path('assignable_principals_easy_contact', move: true),
+                preload: false,
+                root_element: 'users',
+                html_options: { tabindex: 50, class: 'block', id: 'easy_contact_assigned_to_id' },
+                force_autocomplete: true,
+                easy_autocomplete_options: {
+                  no_button: true,
+                  auto_focus: false,
+                  widget: 'catcomplete',
+                  activate_on_input_click: true,
+                  delay: 50,
+                  minLength: 0
+                } %>
+    <% end %>
+
+    <% if EasyUserType.easy_type_partner.any? %>
+      <%= content_tag :p do %>
+            <%= label_tag 'easy_contact[external_assigned_to_id]', EasyContact.human_attribute_name(:external_account_manager) %>
+            <%= easy_autocomplete_tag 'easy_contact[external_assigned_to_id]',
+                { name: l(:label_no_change_option), id: '' },
+                easy_autocomplete_path('assignable_principals_easy_contact', move: true, external: true),
+                preload: false,
+                root_element: 'users',
+                html_options: { tabindex: 50, class: 'block', id: 'easy_contact_external_assigned_to_id' },
+                force_autocomplete: true,
+                easy_autocomplete_options: {
+                  no_button: true,
+                  auto_focus: false,
+                  widget: 'catcomplete',
+                  activate_on_input_click: true,
+                  delay: 50,
+                  minLength: 0
+                } %>
+        <% end %>
+    <% end %>
+
+    <p>
+      <label for='easy_contact_easy_contact_references'><%= l(:label_easy_contact_references) %></label>
+      <%= easy_bulk_modal_selector_field_tag('EasyContact', 'link_with_name', 'easy_contact_references', 'easy_contact_reference_id', EasyExtensions::FieldFormats::EasyLookup.entity_ids_to_lookup_values('EasyContact', @easy_contact_params['easy_contact_references']), :url => {:contact_type => @easy_contact.type_id}, :hide_create_contact => true, :class => 'block') %>
+    </p>
+
+    <p>
+      <label for='easy_contact_group_ids'><%= l(:field_contact_groups) %></label>
+      <%= easy_bulk_modal_selector_field_tag('EasyContactGroup', 'link_with_name', 'easy_contact[easy_contact_group_ids]', 'easy_contact_group_id', EasyExtensions::FieldFormats::EasyLookup.entity_ids_to_lookup_values('EasyContactGroup', @easy_contact_params['easy_contact_group_ids']), :url => {:contact_type => @easy_contact.type_id}, :class => 'block') -%>
+    </p>
+
+    <% if @safe_attributes.include?('is_global') %>
+      <p>
+        <label for='easy_contact_is_global'><%= l(:field_is_global) %></label>
+        <%= easy_bulk_boolean_select_tag('easy_contact[is_global]', @easy_contact_params['is_global']) %>
+      </p>
+    <% end %>
+
+    <% if @safe_attributes.include?('private') && @easy_contacts.all? {|contact| contact.author_id == User.current.id } %>
+      <p>
+        <label for='easy_contact_private'><%= l(:field_easy_contact_private) %></label>
+        <%= easy_bulk_boolean_select_tag('easy_contact[private]', @easy_contact_params['private']) %>
+      </p>
+    <% end %>
+
+    <% @custom_fields.each do |custom_field| %>
+      <p>
+        <label class="<%= 'required' if custom_field.is_required? %>"><%= custom_field.translated_name %></label>
+        <%= custom_field_tag_for_bulk_edit('easy_contact', custom_field, @easy_contacts, @easy_contact_params[:custom_field_values][custom_field.id.to_s], :label_none => :label_no_change_option) %>
+      </p>
+    <% end %>
+
+  </div>
+
+</div>
+
+<div class="form-actions">
+  <%= submit_tag l(:button_submit), :class => 'button-positive' %>
+</div>

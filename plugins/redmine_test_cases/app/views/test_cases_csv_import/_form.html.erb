@@ -1,0 +1,11 @@
+<%= hidden_field_tag(:type, f.object.class.name) -%>
+<p>
+  <%= f.text_field(:name, :required => true) %>
+</p>
+<p>
+  <% if @available_entity_types.present? %>
+    <%= f.select(:entity_type, options_for_select(@available_entity_types.map{|t| [l("label_#{t.underscore}", :default => h(t)), t]}, f.object.entity_type), :required => true) %>
+  <% else %>
+    <%= f.hidden_field(:entity_type, :value => f.object.entity_type) %>
+  <% end %>
+</p>

@@ -1,0 +1,19 @@
+<%
+  field_name_prefix ||= nil
+  name = field_name_prefix ? "#{field_name_prefix}[#{attribute}][time]" : "#{attribute}[time]"
+  entity ||= nil
+  value ||= nil
+  user = entity.try(:user) || User.current
+  if entity
+    from_value = user.user_time_in_zone(entity && entity.send(attribute))
+  else
+    from_value = value
+  end
+%>
+
+<% if EasySetting.value(:easy_attendance_use_time_select) %>
+  <%= select_time from_value, :minute_step => 15, :ignore_date => true, :ampm => Setting.time_format != '%H:%M', :prefix => name, :class => "time-select time-select-#{attribute}" -%>
+<% else %>
+  <% from_value = (from_value ? from_value.strftime('%H:%M') : '') %>
+  <%= tag(:input, :type => 'time', :value => from_value, :placeholder => from_value.presence || '00:00', :name => name, :class => "time-select time-select-#{attribute}", :size => 3) %>
+<% end -%>

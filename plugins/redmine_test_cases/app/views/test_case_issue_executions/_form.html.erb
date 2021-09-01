@@ -1,0 +1,49 @@
+<%= back_url_hidden_field_tag %>
+<%= hidden_field_tag :report_issue, false %>
+<%= labelled_fields_for :test_case_issue_execution, test_case_issue_execution do |f| %>
+  <% if test_case_issue_execution.safe_attribute?('test_case') %>
+  <p>
+    <%= label_tag :test_case, l(:label_test_case) %><%= f.object.test_case.name %>
+    <%= hidden_field_tag :test_case_id, f.object.test_case_id %>
+  </p>
+  <% end %>
+  <% if test_case_issue_execution.safe_attribute?('issue_id') %>
+    <p>
+      <label class="required" for="issue_test_cases"><%= l(:field_issue) %></label>
+      <span class="value">
+        <% issue = test_case_issue_execution.issue %>
+        <%= autocomplete_field_tag 'test_case_issue_execution[issue_id]', issues_autocomplete_test_cases_path(project_id: @project, format: :json), issue.nil? ? [] : [{id: issue.id, value: "#{issue.id} #{issue.subject}"}], id: 'issue_test_cases', preload: false, show_toggle_button: true, multiple: false  %>
+      </span>
+      <em class='help'>
+        <%= l(:test_case_issue_execution_info) %>
+      </em>
+    </p>
+  <% end %>
+  <% if TestCaseIssueExecutionResult.active.any? %>
+  <p>
+    <%= f.select :result_id, TestCaseIssueExecutionResult.active.sorted.collect{|res| [res.name, res.id]}, label: ::TestCaseIssueExecution.human_attribute_name(:result), include_blank: true %>
+  </p>
+  <% end %>
+  <% if test_case_issue_execution.safe_attribute?('author_id') %>
+  <p>
+    <label class="required" for="author_test_cases"><%= l(:field_author) %></label>
+    <span class="value">
+      <% author = test_case_issue_execution.author %>
+      <%= autocomplete_field_tag 'test_case_issue_execution[author_id]', authors_autocomplete_test_case_issue_executions_path(format: :json), author.nil? ? [] : [{id: test_case_issue_execution.author_id, value: test_case_issue_execution.author.name}], id: 'author_test_cases', preload: false, show_toggle_button: true, multiple: false  %>
+    </span>
+  </p>
+  <% end %>
+  <% custom_field_values = test_case_issue_execution.visible_custom_field_values %>
+  <% custom_field_values.each do |value| %>
+  <p>
+    <%= custom_field_tag_with_label :test_case_issue_execution, value %>
+  </p>
+  <% end %>
+    <% if f.object.safe_attribute?('comments') %>
+        <p>
+          <%= f.text_area :comments, :cols => 60, :rows => (f.object.comments.blank? ? 10 : [[10, f.object.comments.length / 50].max, 100].min), accesskey: accesskey(:edit), class: 'wiki-edit', label: l(:field_comments) %>
+          <%= wikitoolbar_for 'test_case_issue_execution_comments' %>
+        </p>
+    <% end %>
+  <p id="attachments_form"><label><%= l(:label_attachment_plural) %></label><%= render :partial => 'attachments/form', :locals => {:container => test_case_issue_execution} %></p>
+<% end %>

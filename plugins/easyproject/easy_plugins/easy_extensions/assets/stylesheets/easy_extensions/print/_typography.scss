@@ -1,0 +1,93 @@
+
+
+/* Defining all page breaks */
+a {
+  page-break-inside:avoid
+}
+blockquote {
+  page-break-inside: avoid;
+}
+
+img { page-break-inside:avoid;
+  page-break-after:avoid; }
+
+table, pre { page-break-inside:avoid }
+ul, ol, dl  { page-break-before:avoid }
+
+body{
+  -webkit-print-color-adjust:exact;
+  font-size: 10pt;
+  color: $color-print--text !important;
+  &.action-show #wrapper{
+    //font-size: 1.5em;
+  }
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+  color: $color-print--text !important;
+  page-break-after:avoid;
+  page-break-inside:avoid
+}
+a{
+  color: $color-print--text;
+}
+hr{
+  border-bottom-color: $color-print;
+}
+.easy-entity-details-header-attributes{
+  @extend %print_bg_hack_minor !optional;
+  padding: .5*$gap;
+}
+.hide-when-print{
+  @extend %display_none;
+}
+.hidden{
+  @extend %display_none;
+}
+.wiki{
+  margin: $gap 0;
+}
+.attribute{
+  .label{
+    float: left;
+    width: 35%;
+  }
+}
+.attendance-user-status{
+  @extend %display_none;
+}
+.big {
+  font-size: 1.2em;
+}
+.bigger {
+  font-size: 1.4em;
+}
+h1 {
+  font-size: 1.8em;
+}
+
+.clear{
+  @extend %clearfix;
+}
+.link-list{
+  padding: 0;
+  margin: $gap 0;
+  &-item{
+    display: flex;
+    align-items: center;
+    margin-bottom: $gap;
+    input{
+      margin-right: $gap;
+    }
+  }
+}
+.push-right{
+  float: right;
+}
+
+.action-show #header h1{
+  @extend %h4;
+}
+
+.easy-entity-details-header h2{
+  @extend %h1;
+}

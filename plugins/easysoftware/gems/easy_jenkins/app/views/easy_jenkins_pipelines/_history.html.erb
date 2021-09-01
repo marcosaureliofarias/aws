@@ -1,0 +1,30 @@
+<% if EasyJenkins::Job.any? %>
+  <div id="easy-journal-history">
+    <% EasyJenkins::Job.for_issue(issue).ordered.each do |job| %>
+      <div id="change-1" class="journal">
+        <div class="journal-details-container">
+          <div>
+            <span>
+              <a class="button-small <%= job.icon_css_class %>"></a>
+            </span>
+
+            <span>
+              <span style='margin-left: 10px;'><a target="_blank" rel="noopener noreferrer" href="<%= job.url %>"><%= job.external_name %></a></span>
+              <span class="journal-timestamp"><%= job.timestamp_to_s %></span>
+            </span>
+          </span>
+          <div id="journal-1-notes" class="wiki  editable">
+            <p><%= job.to_s %></p>
+
+            <% if job.result.present? %>
+              <%= simple_format(job.result) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

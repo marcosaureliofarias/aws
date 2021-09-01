@@ -1,0 +1,68 @@
+<%
+  distance ||= 0
+  invisible_class = 'issue-solution-row-invisible ' if !solution.in_easy_calculation?
+  level = solution.issue.easy_level
+%>
+<tr class="issue-solution-row <%= invisible_class.to_s %>phase-project-<%= phase.project.id %> <%= 'idnt' if level > 0 %> <%= "idnt-#{level}" %>" data-url="<%= issue_path(solution.issue, :format => 'json') %>">
+  <% if @calculation.show_phases? %>
+    <td class="entity"></td>
+  <% end -%>
+  <td class="entity hide-when-print">
+    <span class="reorder-handler">
+      <%= render_reorder_handle(easy_calculation_order_path(@calculation.project, {:distance => distance, :solution => {:id => solution.issue.id, :type => 'issue'}}), 'move_to') %>
+    </span>
+  </td>
+  <td class="entity solution-entity name">
+    <span class='entity entity-solution'><%= link_to(solution, issue_path(solution.issue)) %></span>
+  </td>
+  <td class='hide-when-print'>
+    <% if solution.issue.project.fixed_activity? %>
+      <span class="solution-editable" data-source="<%= easy_autocomplete_path('time_entry_activities', :include_blank => true) %>" data-value="<%= solution.activity.try(:id) %>" data-name="issue[activity_id]" data-type="select">
+        <%= solution.activity %>
+      </span>
+    <% end %>
+  </td>
+  <td class="text-right">
+    <span class="calculation-unit-editable"
+          data-value='<%= solution.hours %>,<%= solution.unit.to_s %>'
+          data-name="issue[estimated_hours],issue[calculation_unit]">
+      <% if solution.unit && !solution.unit.empty? %>
+        <%= format_locale_number(solution.hours || 0) %>&nbsp;<%= solution.unit.to_s %>
+      <% else %>
+        <%= easy_format_hours(solution.hours || 0) %>
+      <% end %>
+    </span>
+  </td>
+  <td class="text-right <%= 'custom-rate' if solution.issue.calculation_rate %>">
+    <span class='solution-editable' data-value="<%= solution.hour_rate %>" data-name="issue[calculation_rate]">
+      <%= format_easy_calculation_price(solution.hour_rate, @calculation.project) %>
+    </span>
+  </td>
+
+  <td class="text-right <%= 'hide-when-print' if phase.solution_discount_sum.zero? %>">
+    <span class="calculation-discount-editable"
+          data-value='<%= solution.issue.calculation_discount %>,<%= solution.discount_percent? %>'
+          data-name='issue[calculation_discount],issue[calculation_discount_is_percent],issue[calculation_discount_is_percent]'>
+      <%= format_easy_calculation_price(-solution.discount_price, @calculation.project) %>
+      <% if solution.discount_percent.try(:>, 0) %>
+        (<%= solution.discount_percent %> %)
+      <% end %>
+    </span>
+  </td>
+
+  <td class="text-right"><%= format_easy_calculation_price(solution.discounted_price, @calculation.project) if solution.discounted_price.try(:>, 0) %></td>
+
+  <% if solution.issue.in_easy_calculation? %>
+    <% if User.current.allowed_to_globally?(:remove_issue_from_easy_calculation, {}) %>
+      <td class="calculation-item-actions easy-query-additional-ending-buttons hide-when-print">
+        <%= link_to('', remove_issue_easy_calculation_item_path(solution.issue), :class => 'icon icon-remove destroy-calculation') %>
+      </td>
+    <% end %>
+  <% else %>
+    <% if User.current.allowed_to_globally?(:add_issue_to_easy_calculation, {}) %>
+      <td class="calculation-item-actions easy-query-additional-ending-buttons hide-when-print">
+        <%= link_to('', add_issue_easy_calculation_item_path(solution.issue), :class => 'icon icon-add add-calculation') %>
+      </td>
+    <% end %>
+  <% end %>
+</tr>

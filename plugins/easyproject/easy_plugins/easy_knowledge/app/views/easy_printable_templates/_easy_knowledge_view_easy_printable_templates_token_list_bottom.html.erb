@@ -1,0 +1,23 @@
+<%
+  available_tokens = %w(id name description author version created_on updated_on)
+%>
+
+<tr><td colspan="2"><%= l(:label_easy_knowledge) %>:</td></tr>
+
+<% available_tokens.each do |token_name| %>
+  <tr>
+    <td>
+      <%= easy_printable_template_link_to_add_token "%easy_knowledge_story_#{token_name}%", f, l("field_easy_knowledge_story_#{token_name}") %>
+    </td>
+    <td>
+      <%= l("field_easy_knowledge_story_#{token_name}", :default => '') %>
+    </td>
+  </tr>
+<% end %>
+
+<% EasyKnowledgeStoryCustomField.visible.sorted.each do |cf| %>
+    <tr>
+      <td><%= easy_printable_template_link_to_add_token("%easy_knowledge_story_cf_#{cf.id}%", f, cf.name) -%></td>
+      <td><%= cf.name -%></td>
+    </tr>
+<% end %>

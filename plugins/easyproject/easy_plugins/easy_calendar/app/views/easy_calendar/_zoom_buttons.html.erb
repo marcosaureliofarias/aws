@@ -1,0 +1,5 @@
+<% view = settings[:default_view] || 'month' %>
+<a class="icon icon-calendar-month button easy-cal-month <%= 'pressed' if view == 'month' %>"><span class="tooltip"><%= l(:button_gantt_zoom_month) %></span></a>
+<a class="icon icon-calendar-week button easy-cal-week <%= 'pressed' if view == 'agendaWeek' %>"><span class="tooltip"><%= l(:button_gantt_zoom_week) %></span></a>
+<a class="icon icon-calendar-day button easy-cal-day <%= 'pressed' if view == 'agendaDay' %>"><span class="tooltip"><%= l(:button_gantt_zoom_day) %></span></a>
+<%= call_hook :view_easy_calendar_top_buttons, {settings: settings} %>

@@ -1,0 +1,56 @@
+<div>
+  Pridat sloupce
+</div>
+<div class="autoscroll">
+  <table class="list preview">
+    <thead>
+      <tr>
+        <th></th>
+        <% allowed_columns_array = allowed_columns_for_import_for_select(datatemplate) %>
+        <% datatemplate.settings['selected_columns'].each do |column_name| %>
+          <th>
+            <%= select_tag 'easy_data_template[settings][selected_columns][]', options_for_select(allowed_columns_array, column_name) %>
+            <%= link_to_remote '',
+              {:url => {:controller => 'easy_data_templates_export', :action => 'export_settings', :id => @datatemplate},
+              :with => 'Form.serialize(\'easy_data_templates_form\')',
+              :update => 'easy_data_templates_export_preview_container'},
+              :title => '', :class => 'icon icon-del' %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% idx = 0 %>
+      <% datarows.each do |row_values, entity| %>
+        <tr>
+          <td>
+            <% if entity.valid? %>
+              <%= image_tag('true.png', :plugin => 'easy_extensions') -%>
+            <% else %>
+              <%= image_tag('false.png', :plugin => 'easy_extensions') -%>
+              <div class="entity-errors-container">
+                <div class="entity-errors-more"><%= link_to_function(l(:label_more), "EASY.utils.toggleDiv('entity_#{entity.object_id}', -110)") -%></div>
+                <div id="entity_<%= entity.object_id -%>" class="entity-errors" style="display:none">
+                  <div>
+                    <%= entity.errors.full_messages.join('<br />').html_safe %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </td>
+          <%
+          if row_values['project'] && row_values['project'][:founded_value].is_a?(Project)
+            tp = row_values['project'][:founded_value]
+          else
+            tp = target_project
+          end
+        %>
+          <% row_values.each do |column_name, column_values| %>
+            <td><%= show_import_preview_value(column_name, column_values, tp, idx) %></td>
+          <% end %>
+          <% idx += 1 %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

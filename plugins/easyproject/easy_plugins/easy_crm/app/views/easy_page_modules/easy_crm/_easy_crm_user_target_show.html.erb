@@ -1,0 +1,54 @@
+<% include_jqplot_scripts %>
+<% zoom = params[:period] || settings[:period] %>
+<div id="<%= modul_uniq_id %>_chart_options" style="margin:auto" class=" toolbar">
+  <div class="easy-chart-listing-links next-prev-links">
+    <%= link_to('', 'javascript:void(0)', class: 'prev change-date', title: "<< #{l(:label_previous)}", data: {value: -1}) %>
+    <span class="period chart-title-<%= page_module.uuid %>">
+    </span>
+    <%= link_to('', 'javascript:void(0)', class: ' next change-date', title: "#{l(:label_next)} >>", data: {value: 1}) %>
+  </div>
+  <div class="button-group">
+    <%= link_to(l(:button_gantt_zoom_month), '#', class: "change-period button icon icon-calendar-month #{ zoom == 'month' ? 'button-1' : 'button-2' }", title: l(:button_gantt_zoom_month), data: {value: 'month'}) %>
+    <%= link_to(l(:button_gantt_zoom_quarter), '#', class: "change-period button icon icon-calendar-quarter #{ zoom == 'quarter' ? 'button-1' : 'button-2' }", title: l(:button_gantt_zoom_quarter), data: {value: 'quarter'}) %>
+    <%= link_to(l(:button_gantt_zoom_year), '#', class: "change-period icon button icon-calendar-year #{ zoom == 'year' ? 'button-1' : 'button-2' }", title: l(:button_gantt_zoom_year), data: {value: 'year'}) %>
+  </div>
+</div>
+<div id="<%= modul_uniq_id %>_chart" data-renderchart="true" data-uuid="<%= page_module.uuid %>"></div>
+
+<script type="text/javascript">
+
+  EASY.schedule.require(function () {
+
+    $('#<%= modul_uniq_id %>_chart').easy_chart({
+      dataUrl: '<%= url_for(:controller => 'easy_crm_charts', :action => 'user_compare_chart', :uuid => page_module.uuid, :format => 'json') %>',
+      dataParams: {
+        uuid: '<%= page_module.uuid %>',
+        period: '<%= params[:period] %>',
+        shift: '0'
+      }
+    });
+
+    $('#<%= modul_uniq_id %>_chart_options .change-period').on('click', function () {
+      var $chart_obj = $('#<%= modul_uniq_id %>_chart');
+      $chart_obj.easy_chart('setDataParam', 'shift', '0');
+      $chart_obj.easy_chart('setDataParam', 'period', $(this).data('value'));
+      $chart_obj.easy_chart('reload');
+      var $this = this.parentElement.querySelectorAll('.button-1');
+      $($this).switchClass('button-1','button-2');
+      $(this).switchClass('button-2', 'button-1');
+    });
+    $('#<%= modul_uniq_id %>_chart_options .change-date').on('click', function () {
+      var shift = parseInt($(this).data('value'));
+      var $chart_obj = $('#<%= modul_uniq_id %>_chart');
+      var val = parseInt($chart_obj.easy_chart('getDataParam', 'shift'));
+      if (isNaN(val)) {
+        val = shift;
+      } else {
+        val += shift;
+      }
+      $chart_obj.easy_chart('setDataParam', 'shift', val);
+      $chart_obj.easy_chart('reload');
+    });
+  }, jQueryPluginGetter("easy_chart"));
+
+</script>

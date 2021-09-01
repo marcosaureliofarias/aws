@@ -1,0 +1,6 @@
+<% if easy_contact.unused_non_primary_custom_fields.present? %>
+    <p>
+      <%= label_tag(:non_primary_custom_fields, l(:label_easy_contacts_add_non_primary_custom_fields)) %>
+      <%= select_tag :non_primary_custom_fields, content_tag(:option, l(:label_easy_contacts_add_non_primary_custom_fields_select)) + options_for_select(easy_contact.unused_non_primary_custom_fields.collect{|p| [p.name, p.id]}), { :id => 'non-primary-custom-fields-select' } -%>
+    </p>
+<% end %>

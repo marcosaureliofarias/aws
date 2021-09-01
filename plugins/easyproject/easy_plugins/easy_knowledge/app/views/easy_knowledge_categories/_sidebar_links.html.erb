@@ -1,0 +1,17 @@
+<% if User.current.allowed_to_globally?(:view_easy_knowledge) %>
+  <%= link_to l(:label_easy_knowledge_new_story), new_polymorphic_path([@project, :easy_knowledge_story]), class: 'button-2 icon icon-add' if @project ? User.current.allowed_to?(:create_project_stories, @project) :  User.current.allowed_to_globally?(:create_global_stories) -%>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <% if @project %>
+      <%= link_to l(:label_easy_knowledge_new_project_category), new_project_easy_knowledge_project_path(@project), class: 'button-positive icon icon-add', title: l(:title_easy_knowledge_new_category) if User.current.allowed_to?(:manage_project_categories, @project) -%>
+    <% else %>
+      <%= link_to l(:label_easy_knowledge_new_personal_category), new_easy_knowledge_user_path, class: 'button-positive icon icon-add', title: l(:title_easy_knowledge_new_category) if !(controller_name == 'easy_knowledge_globals') && User.current.allowed_to_globally?(:manage_own_personal_categories) -%>
+      <%= link_to l(:label_easy_knowledge_new_global_category), new_easy_knowledge_global_path, class: 'button-positive icon icon-add', title: l(:title_easy_knowledge_new_category) if !(controller_name == 'easy_knowledge_users') && User.current.allowed_to_globally?(:manage_global_categories) -%>
+    <% end %>
+  <% end %>
+<% end %>
+<%= link_to(l(:label_easy_knowledge_manage_categories), project_easy_knowledge_projects_path(@project), title: l(:label_easy_knowledge_manage_categories), class: 'icon icon-bulb button') if @project && User.current.allowed_to?(:manage_project_categories, @project) -%>
+<%= link_to(l(:label_easy_knowledge_stories_all), easy_knowledge_stories_path({set_filter: 0}), class: 'icon icon-adressbook button') -%>
+<%= link_to(easy_knowledge_overview_path, class: 'button-2 icon icon-arrow', title: l(:button_easy_knowledge_back_to_overview)) do -%>
+  <%= l(:button_easy_knowledge_back_to_overview) %>
+<% end if User.current.allowed_to_globally?(:view_easy_knowledge) -%>
+<div id="easy_knowledge_tree_view_sidebar"></div>

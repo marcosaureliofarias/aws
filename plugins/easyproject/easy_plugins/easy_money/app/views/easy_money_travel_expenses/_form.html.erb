@@ -1,0 +1,70 @@
+<% recomp_js = "javascript:computeDateDiff('spent_on','spent_on_to','days_count');computeMul('price_per_day','days_count','price1');" %>
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <%= f.text_field :name, :class => 'block', :placeholder => l(:field_easy_money_travel_expense_name) -%>
+    </p>
+    <div>
+      <%= f.text_area :description, :class => 'wiki-edit' -%>
+      <%= wikitoolbar_for('easy_money_description') %>
+    </div>
+  </div>
+  <div class="splitcontentright tabular">
+    <%= render partial: 'easy_money/form_select_entity', locals: { f: f, project: project } %>
+    <p>
+      <%= f.label l(:field_easy_money_travel_expense_spent_on_from) -%>
+      <%= f.text_field :spent_on, :id => 'spent_on', :size => 10,
+        :onchange => recomp_js -%><%= calendar_for('spent_on') -%>
+    </p>
+
+    <p>
+      <% spent_on_to_val = (travel_expense.new_record? && travel_expense.spent_on_to.nil?) ? travel_expense.spent_on : travel_expense.spent_on_to %>
+      <%= f.label l(:field_easy_money_travel_expense_spent_on_to) -%>
+      <%= f.text_field :spent_on_to, :id => 'spent_on_to', :size => 10,
+        :onchange => recomp_js, :value => spent_on_to_val -%><%= calendar_for('spent_on_to') -%>
+      <%= f.hidden_field :days_count, :name => nil, :id => 'days_count', :value => '1' -%>
+    </p>
+
+    <p>
+      <%= f.label :user_id, l(:field_easy_money_travel_expenses_user), for: 'user_id_expenses' %>
+      <%= autocomplete_field_tag("#{f.object_name}[user_id]",
+                                 easy_autocomplete_path('principals'),
+                                 [{ value: travel_expense.user.try(:name), id: travel_expense.user.try(:id) }],
+                                 multiple: false,
+                                 include_blank: true,
+                                 rootElement: 'users',
+                                 html_options: { id: 'user_id_expenses' }) %>
+    </p>
+
+    <p>
+      <%= f.label :price_per_day, l(:field_easy_money_price_per_day), :for => 'price_per_day' -%>
+      <%= f.text_field :price_per_day, :id => 'price_per_day', :size => 10, :onblur => recomp_js -%>
+    </p>
+
+    <p>
+      <%= f.label :price1, l(:field_easy_money_travel_expense_price1), :for => 'price1' -%>
+      <%= f.text_field :price1, :id => 'price1', :size => 10 -%>
+    </p>
+
+    <p>
+      <%= f.label :easy_currency_code, l(:field_currency) %>
+      <%= f.select :easy_currency_code, options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, f.object.easy_currency_code || @project.easy_currency_code), include_blank: false %>
+    </p>
+
+    <p class="easy-tag-list-field">
+      <%= label_tag 'easy_money_tag_list', l(:label_easy_tags) %>
+      <%= easy_tag_list_autocomplete_field_tag travel_expense, 'easy_money', id: 'easy_money_tag_list' %>
+    </p>
+    <% travel_expense.visible_custom_field_values.each do |custom_value| -%>
+      <p>
+        <%= custom_field_tag_with_label :easy_money, custom_value %>
+      </p>
+    <% end -%>
+
+    <div id="easy-money-attachments-container">
+      <%= content_tag :strong, l(:label_easy_money_attachments) -%>
+      <%= render :partial => 'attachments/form', :locals => {:container => travel_expense} %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

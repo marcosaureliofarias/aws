@@ -1,0 +1,9 @@
+var ruleForm = $('#alert-context-rule-form');
+var issueSpecificMailOptions = $('#cbx_alerts_mail_options_issue_specific');
+<% if @alert.rule.nil? %>
+  ruleForm.empty();
+  issueSpecificMailOptions.toggle(false);
+<% else %>
+  ruleForm.html('<%= j(render :partial => @alert.rule.get_settings_form) %>');
+  issueSpecificMailOptions.toggle(<%= @alert.rule.issue_provided?.to_s %>);
+<% end %>

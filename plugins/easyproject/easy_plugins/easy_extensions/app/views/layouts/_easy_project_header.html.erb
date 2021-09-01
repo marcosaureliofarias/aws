@@ -1,0 +1,41 @@
+<% if @project && display_main_menu?(@project) %>
+  <div id="header" class="easy-dropper-target easy-drop-project" data-drop-action="project" data-project-id="<%= @project.id %>">
+    <ul id="main_menu_top_project">
+      <%= render_easy_menu(:easy_project_top_menu, @project, {:no_container => true, :optional_project => @project}) %>
+    </ul>
+    <h1 class="<%= 'project-child' if @project.child? %>"><%= project_header_breadcrump(@issue) %></h1>
+
+    <div class="clear"></div>
+    <div id="main_menu_scroll_buttons" style="display:none">
+      <a href="javascript:EASY.utils.moveMenuLeft();"><i class="icon-arrow-left"></i></a>
+      <a href="javascript:EASY.utils.moveMenuRight();"><i class="icon-arrow"></i></a>
+    </div>
+    <div id="main-menu">
+      <%= render_easy_custom_project_menu(@project) %>
+      <% content_for :body_bottom do %>
+        <script type="text/javascript">
+          EASY.schedule.late(function () {
+            new PerfectScrollbar("#main-menu", {
+              wheelSpeed: 40,
+              suppressScrollY: true,
+              useBothWheelAxes: true,
+              swipePropagation: false,
+              useKeyboard: false
+            });
+          });
+        </script>
+      <% end %>
+    </div>
+    <ul id="mobile-actions">
+      <%= render_easy_menu(:easy_project_top_menu, @project, {:no_container => true, :optional_project => @project}) if @project && display_main_menu?(@project) %>
+      <li><%= yield(:easy_page_layout_service_box_primary_actions) %></li>
+    </ul>
+  </div>
+  <% unless @project.active? %>
+    <p class="flash warning"><span class="icon icon-lock"><%= l(:text_project_closed) %></span>
+      <% if !@project.easy_is_easy_template? && User.current.allowed_to?(:close_project, @project) %>
+        <%= link_to l(:button_reopen), reopen_project_path(@project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'icon icon-unlock', :title => l(:button_reopen) %>
+      <% end %>
+    </p>
+  <% end %>
+<% end -%>

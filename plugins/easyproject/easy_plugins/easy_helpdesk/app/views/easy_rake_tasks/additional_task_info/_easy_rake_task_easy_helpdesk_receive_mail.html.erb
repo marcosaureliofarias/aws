@@ -1,0 +1,8 @@
+<h3><%= l(:label_easy_hekodesk_additional_task_info_received_emails) -%></h3>
+
+<%= render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_details', :locals => {:task => task, :status => EasyRakeTaskInfoDetailReceiveMail::STATUS_UNKNOWN} %>
+<%= render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_details', :locals => {:task => task, :status => EasyRakeTaskInfoDetailReceiveMail::STATUS_NOT_PROCESSED_AND_DELETED} %>
+<%= render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_details', :locals => {:task => task, :status => EasyRakeTaskInfoDetailReceiveMail::STATUS_NOT_PROCESSED_AND_LEFT_ON_SERVER} %>
+<%= render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_details', :locals => {:task => task, :status => EasyRakeTaskInfoDetailReceiveMail::STATUS_CANNOT_BE_PROCESSED} %>
+<%= render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_details', :locals => {:task => task, :status => EasyRakeTaskInfoDetailReceiveMail::STATUS_RECEIVED} %>
+<%= render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_details', :locals => {:task => task, :status => EasyRakeTaskInfoDetailReceiveMail::STATUS_PROCESSED_AND_DELETED} %>

@@ -1,0 +1,109 @@
+.vue-modal__custom-field {
+  width: calc(100% - #{2*$gap});
+  position: relative;
+  //&--in-popup {  //necessary?
+  //  width: calc(50% - #{2*$gap});
+  //}
+  &.text {
+    width: calc(100% - #{2*$gap});
+    & > .vue-modal__editorbox {
+      width: 100%;
+    }
+  }
+
+  &.cf-multiple-required-editable {
+    .vue-modal__headline--static:hover {
+      border: 1px dashed darken($color-background__atributes, 40%) !important;
+    }
+  }
+
+  &-label {
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-bottom: $gap/2;
+  }
+
+  & > .maps {
+    position: absolute;
+    right: 1.75 * $gap;
+    top: $gap/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  &.easy_google_map_address {
+    #{$block}__headline--static,
+    input {
+      padding-right: 1.5 * $gap;
+    }
+
+    .editable-input__wrapper {
+      padding-right: 3 * $gap;
+    }
+  }
+
+  &--text-wrapper {
+    padding: $gap $gap/4;
+    border: 1px solid transparent;
+    border-bottom: 1px solid $color-border;
+    cursor: pointer;
+    width: 100%;
+    min-height: $input-height;
+    height: calc(#{3*$input-height} - 7px) !important; //ep default -7px compact -1px, er default -1px compact +4px
+    overflow-y: auto;
+    pre, p {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+    }
+  }
+
+  //&.vue-modal__attribute {
+  //  padding-right: $gap;
+  //}
+}
+
+.vue-modal__custom-fields {
+  display: flex;
+  flex-wrap: wrap;
+  background: $color-background__atributes;
+  margin: 0 (-$padding-modal-main) 0 (-$padding-modal-main);
+  padding: $gap $padding-modal-main 2*$gap $padding-modal-main;
+  @media only screen and (min-width: $breakpoint--small) {
+    margin: 0 (-$padding-modal-main) 0 (-$padding-modal-main - $left-offset);
+    padding: $gap $padding-modal-main 2*$gap (.5*($left-offset + $padding-modal-main - $width-heading-icon) - $input-padding);
+  }
+  &--right,
+  &--left {
+    width: 50%;
+    @media only screen and (max-width: $breakpoint--small) {
+      width: 100%;
+    }
+  }
+  &--right {
+    .vue-modal__custom-field {
+      @media only screen and (min-width: $breakpoint--small) {
+        margin-left: 2*$gap;
+      }
+    }
+  }
+}
+
+.custom-fields__button-panel {
+  text-align: center;
+  margin: (-$gap - 1) (-$padding-modal-main) 0 (-$padding-modal-main - $left-offset);
+  @media only screen and (max-width: $breakpoint--small) {
+    margin-left: -$padding-modal-main;
+  }
+
+  & > button {
+    padding: 0 $gap/2;
+    outline: none;
+    border: 1px solid $color-border;
+  }
+}

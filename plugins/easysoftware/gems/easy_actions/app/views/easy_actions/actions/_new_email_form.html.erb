@@ -1,0 +1,11 @@
+<%= form.fields_for :action_settings, entity.action do |f| %>
+  <p>
+    <%= f.text_field :subject, class: 'required' %>
+  </p>
+  <p>
+    <%= f.text_field :to, class: 'required' %>
+  </p>
+  <p>
+    <%= f.text_area :body, class: 'required' %>
+  </p>
+<% end %>

@@ -1,0 +1,25 @@
+<%
+  block_name = 'easy_scheduler'
+  modul_uniq_id = 'easy_scheduler'
+  scheduler_settings_name = "#{block_name}[scheduler_settings]"
+  query_settings_name = "#{block_name}[query_settings]"
+%>
+
+<%= form_tag easy_scheduler_quick_save_setting_path, remote: true do %>
+  <%= hidden_field_tag :is_toolbar, @is_toolbar %>
+  <%= hidden_field_tag 'easy_scheduler[query_settings][active_query_klass]', 'EasySchedulerEasyQuery' %>
+  <%= render 'easy_scheduler/common/setting', scheduler_settings: @scheduler_settings,
+                                              scheduler_settings_name: scheduler_settings_name,
+                                              query_settings_name: query_settings_name,
+                                              query: @query,
+                                              selected_principal_options: @selected_principal_options,
+                                              icalendars: @preparation.icalendars,
+                                              block_name: block_name,
+                                              modul_uniq_id: modul_uniq_id,
+                                              show_filters: false %>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), class: 'button-positive' %>
+    <%= link_to l(:button_cancel), easy_scheduler_quick_show_path(is_toolbar: @is_toolbar), class: 'button', remote: true %>
+  </div>
+<% end %>

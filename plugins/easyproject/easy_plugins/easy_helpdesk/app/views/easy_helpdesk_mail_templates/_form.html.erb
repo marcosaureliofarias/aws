@@ -1,0 +1,39 @@
+<%= fields_for(@easy_helpdesk_mail_template) do |f| %>
+  <p>
+    <label for="name" class="required"><%= EasyHelpdeskMailTemplate.human_attribute_name(:name) %>*</label>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :mailboxes %>
+    <%= select_tag 'easy_helpdesk_mail_template[mailbox_ids]', options_for_select(EasyRakeTaskEasyHelpdeskReceiveMail.active.all.collect{|m| [m.caption, m.id]}, :selected => @easy_helpdesk_mail_template.mailboxes.pluck(:id)), :include_blank => true %>
+    <span class="help-block"><em><%= l(:text_easy_helpdesk_mail_template_reply_to2) %></em></span>
+  </p>
+  <p>
+    <%= f.label :is_default, l(:label_default) %>
+    <%= f.check_box :is_default %>
+  </p>
+  <p>
+    <%= f.label :issue_status_id %>
+    <%= f.select :issue_status_id, IssueStatus.order(:position).map{|t| [t.name, t.id]}, {:include_blank => true} %>
+    <span class="help-block"><em><%= l(:text_easy_helpdesk_mail_template_issue_status_id) %></em></span>
+  </p>
+  <p>
+    <label for="name" class="required"><%= EasyHelpdeskMailTemplate.human_attribute_name(:subject) %>*</label>
+    <%= f.text_field :subject, :size => nil %>
+  </p>
+  <p>
+    <span class="help-block"><em>
+      <%= l(:text_easy_helpdesk_mail_template_dynamic_text_heading) %>
+      <%= easy_helpdesk_replacable_tokens_info %>
+    </em></span>
+  </p>
+  <p>
+    <%= f.label :body_html %>
+    <%= f.text_area :body_html %>
+    <%= wikitoolbar_for('easy_helpdesk_mail_template_body_html', preview_text_path, {:toolbar => 'Full'}) %>
+  </p>
+  <p>
+    <%= f.label :body_plain %>
+    <%= f.text_area :body_plain, :cols => 60, :rows => 8, :class => 'block' %>
+  </p>
+<% end %>

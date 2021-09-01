@@ -1,0 +1,59 @@
+<%= title(l(:heading_easy_sso, scope: :easy_sso)) %>
+<fieldset>
+  <legend><%= l(:heading_identity_providers, scope: :easy_sso) %></legend>
+  <% if EasyExtensions::IdentityProviders.registered.any? %>
+    <table class="list">
+      <% EasyExtensions::IdentityProviders.registered.each do |name, config| %>
+        <tr>
+          <td><%= config.show_path ? link_to(config.title, config.show_path) : config.title %></td>
+          <td><%= config.description %></td>
+          <td>
+            <%= link_to(l(:button_edit), config.settings_path(back_url: easy_sso_path), class: 'button button-positive icon icon-edit',
+                  data: (EasyExtensions::IdentityProviders.selected == name ? { confirm:  l(:confirm_edit_selected_idp, scope: :easy_sso) } : nil)) %>
+          </td>
+          <td>
+            <% unless config.checked? %>
+              <%= link_to l(:label_authorization_check, scope: :easy_sso), root_url.chomp('/') + config.login_path, class: 'button button-positive icon icon-edit' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</fieldset>
+<fieldset>
+  <legend><%= l(:label_settings, scope: :easy_sso) %></legend>
+  <%= form_tag(easy_sso_settings_path) do %>
+    <div class="box tabular">
+      <p>
+        <%= label_tag 'easy_setting[selected_identity_provider_name]', l(:label_enable_sso, scope: :easy_sso) %>
+        <%= select_tag 'easy_setting[selected_identity_provider_name]', options_for_select([[l(:label_no_sso_idp, scope: :easy_sso), '']] + EasyExtensions::IdentityProviders.checked.map { |name, idp| [idp.title, name] }, EasyExtensions::IdentityProviders.selected) %>
+        <em class="help"><%= l(:text_enable_sso, scope: :easy_sso) %></em>
+      </p>
+      <p class="buttons">
+        <%= submit_tag l(:button_update), class: 'button-positive' %>
+      </p>
+    </div>
+  <% end %>
+</fieldset>
+<fieldset>
+  <legend><%= l(:heading_identity_service_for, scope: :easy_sso) %></legend>
+  <table class="list">
+    <% if EasyExtensions::IdentityServices.registered.any? %>
+      <% EasyExtensions::IdentityServices.registered.each do |name, config| %>
+        <tr>
+          <td><%= config.show_path ? link_to(config.title, config.show_path) : config.title %></td>
+          <td><%= config.description %></td>
+          <td><%= link_to(l(:button_edit), config.settings_path(back_url: easy_sso_path), class: 'button button-positive icon icon-edit') %></td>
+        </tr>
+      <% end %>
+    <% else %>
+    <% end %>
+  </table>
+</fieldset>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do %>
+  <%= call_hook(:view_easy_sso_index_sidebar) %>
+<% end %>

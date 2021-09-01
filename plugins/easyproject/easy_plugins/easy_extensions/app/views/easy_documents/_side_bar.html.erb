@@ -1,0 +1,26 @@
+<% content_for :easy_page_layout_service_box do %>
+  <% if User.current.allowed_to?(:add_documents, @project, global: true) %>
+    <div class="primary-actions">
+      <%= link_to(l(:label_document_new), documents_new_path, class: 'button-positive icon icon-add') -%>
+    </div>
+  <% end %>
+<% end -%>
+
+<% content_for :sidebar do %>
+  <div id="documents-sidebar-order-box" class="box">
+    <h3 class="icon icon-reorder">
+      <%= l(:label_group_by, '') -%>
+    </h3>
+    <%= form_tag(documents_path, method: :get) do %>
+      <div class="order">
+        <label><%= radio_button_tag 'sort_by', 'category', (@sort_by == 'category'), onclick: 'this.form.submit();' %> <%= l(:field_category) %></label>
+        <label><%= radio_button_tag 'sort_by', 'date', (@sort_by == 'date'), onclick: 'this.form.submit();' %> <%= l(:label_date) %></label>
+        <label><%= radio_button_tag 'sort_by', 'title', (@sort_by == 'title'), onclick: 'this.form.submit();' %> <%= l(:field_title) %></label>
+        <label><%= radio_button_tag 'sort_by', 'author', (@sort_by == 'author'), onclick: 'this.form.submit();' %> <%= l(:field_author) %></label>
+        <label><%= radio_button_tag 'sort_by', 'project', (@sort_by == 'project'), onclick: 'this.form.submit();' %> <%= l(:field_project) %></label>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render partial: 'sidebar/saved_easyqueries_by_type', locals: {query_class: @query.class, project: @project} %>
+<% end %>

@@ -1,0 +1,58 @@
+local_assigns[:api].easy_crm_case do
+  local_assigns[:api].id easy_crm_case.id
+  local_assigns[:api].name easy_crm_case.name
+
+  local_assigns[:api].easy_crm_case_status_id easy_crm_case.easy_crm_case_status_id # Backward compatibility
+  %i(easy_crm_case_status assigned_to author project main_easy_contact).each do |reference|
+    value = easy_crm_case.send(reference)
+    local_assigns[:api].__send__(reference, {id: value.id, name: value.to_s}) if value
+  end
+
+  if easy_crm_case.external_assigned_to && EasyUserType.easy_type_partner.any?
+    local_assigns[:api].external_assigned_to(id: easy_crm_case.external_assigned_to_id, name: easy_crm_case.external_assigned_to.to_s)
+  end
+
+  %i(description contract_date email telephone price currency next_action).each do |attribute|
+    value = easy_crm_case.send(attribute)
+    local_assigns[:api].__send__(attribute, value) if value
+  end
+
+  %i(need_reaction is_canceled is_finished lead_value probability).each do |attribute|
+    value = easy_crm_case.send(attribute)
+    local_assigns[:api].__send__(attribute, value)
+  end
+
+  local_assigns[:api].easy_external_id easy_crm_case.easy_external_id
+
+  local_assigns[:api].created_at easy_crm_case.created_at
+  local_assigns[:api].updated_at easy_crm_case.updated_at
+
+  render_api_custom_values(easy_crm_case.visible_custom_field_values, local_assigns[:api])
+
+  local_assigns[:api].array :attachments do
+    easy_crm_case.attachments.each do |attachment|
+      render_api_attachment(attachment, local_assigns[:api])
+    end
+  end if include_in_api_response?('attachments')
+
+  local_assigns[:api].array :journals do
+    @journals.each do |journal|
+      render_api_journal(journal, local_assigns[:api])
+    end
+  end if include_in_api_response?('journals') && !@journals.nil?
+
+  local_assigns[:api].array :watchers do
+    easy_crm_case.watcher_users.each do |user|
+      local_assigns[:api].user id: user.id, name: user.name
+    end
+  end if include_in_api_response?('watchers') && User.current.allowed_to?(:view_easy_crm_case_watchers, easy_crm_case.project)
+
+  call_hook(:helper_easy_crm_case_api, { api: local_assigns[:api], easy_crm_case: easy_crm_case })
+
+  local_assigns[:api].array :easy_crm_case_items do
+    easy_crm_case.easy_crm_case_items.each do |easy_crm_case_item|
+      render_api_easy_crm_case_item(local_assigns[:api], easy_crm_case_item)
+    end
+  end
+
+end

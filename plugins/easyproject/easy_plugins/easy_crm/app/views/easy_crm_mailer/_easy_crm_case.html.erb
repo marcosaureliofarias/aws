@@ -1,0 +1,69 @@
+<% content_for :email_heading do %>
+    <h1 class="issue-detail-header">
+      <%= link_to(easy_crm_case.to_s, easy_crm_case_url) -%>
+    </h1>
+<% end %>
+<% show_attachments ||= false %>
+<div id="crm-detail">
+  <div class="attributes-wrapper">
+    <table class="attributes"><tbody>
+    <tr class="spacer"><td colspan="4"></td></tr>
+    <%= issue_fields_table_rows do |rows|
+
+      rows.left EasyCrmCase.human_attribute_name(:account_manager), (easy_crm_case.assigned_to ? link_to_user(easy_crm_case.assigned_to, :only_path => false) : '-')
+      if EasyUserType.easy_type_partner.any?
+        rows.right EasyCrmCase.human_attribute_name(:external_account_manager), (easy_crm_case.external_assigned_to ? link_to_user(easy_crm_case.external_assigned_to, :only_path => false) : '-')
+      end
+
+      rows.left EasyCrmCase.human_attribute_name(:contract_date), format_date(easy_crm_case.contract_date)
+      rows.right EasyCrmCase.human_attribute_name(:easy_crm_case_status), easy_crm_case.easy_crm_case_status.name
+
+      rows.left EasyCrmCase.human_attribute_name(:price), format_price(easy_crm_case.price, easy_crm_case.currency)
+      rows.right EasyCrmCase.human_attribute_name(:email), easy_crm_case.email
+
+      rows.left EasyCrmCase.human_attribute_name(:author_id), (easy_crm_case.author ? link_to_user(easy_crm_case.author, :only_path => false) : '-')
+      rows.right EasyCrmCase.human_attribute_name(:telephone), easy_crm_case.telephone
+    end %>
+    <tr class="spacer"><td colspan="4"></td></tr>
+    <% if easy_crm_case.custom_field_values.any? %>
+        <tr class="spacer"><td colspan="4"></td></tr>
+        <% easy_crm_case.visible_custom_field_values.each do |c| %>
+            <tr class="attribute">
+              <th class="label">
+                <%= content_tag :span,  h(c.custom_field.translated_name) +':'  -%>
+              </th>
+              <td class="value" colspan="3">
+                <%= content_tag :span, show_value(c) -%>
+              </td>
+            </tr>
+        <% end %>
+        <tr class="spacer"><td colspan="4"></td></tr>
+    <% end %>
+    </tbody></table>
+  </div>
+  <div class="description">
+    <%= textilizable(easy_crm_case, :description, {:only_path => false}) -%>
+  </div>
+  <% if show_attachments && easy_crm_case.attachments.any? %>
+    <%  content_for :email_prefooter do %>
+      <h4>
+        <%=l :label_issue_attachments_heading %>
+      </h4>
+      <ul class="attachments">
+        <% easy_crm_case.attachments.each do |attachment| %>
+            <li>
+              <%= link_to_attachment(attachment, {:download => true, :only_path => false}) %>
+              <i>(<%= number_to_human_size(attachment.filesize) %>)</i>
+              <%= " - v#{attachment.version}" %>
+              <% unless attachment.description.blank? %>
+                  <p style="padding-left:10px">
+                    <%= " - #{attachment.description}" %>
+                  </p>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+
+</div>

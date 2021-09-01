@@ -1,0 +1,53 @@
+---
+th:
+  activerecord:
+    attributes:
+      user:
+        supervisor_user_id: หัวหน้า
+    errors:
+      models:
+        user:
+          attributes:
+            supervisor_user_id:
+              children_exists: มีผู้ใต้บังคับบัญชา
+              missing_in_tree: ควรอยู่ในแผนผังองค์กร
+              root_changed: ควรเว้นว่างเนื่องจากผู้ใช้เป็นรูทและไม่สามารถมอบหมายให้หัวหน้างานคนอื่นได้
+  button_easy_org_chart_collapse: ย่อทั้งหมด
+  button_easy_org_chart_expand: ขยายทั้งหมด
+  button_easy_org_chart_export: ส่งออก
+  easy_org_chart_plugin_author: Easy Software
+  easy_org_chart_plugin_menu_caption: แผนผังองค์กร
+  easy_org_chart_plugin_name: แผนผังองค์กร
+  easy_org_chart_subordinates_access:
+    direct_subordinates: ผู้ใต้บังคับบัญชาสายตรง
+    forbidden: ต้องห้าม
+    subordinates_tree: แผนภูมิต้นไม้ผู้ใต้บังคับบัญชา
+  easy_pages:
+    modules:
+      org_chart: แผนผังองค์กร
+  field_assigned_to_id_supervisor: หัวหน้างานของผู้รับมอบหมาย
+  field_author_id_supervisor: หัวหน้างานของผู้เขียน
+  field_easy_org_chart_node_background: 'ลักษณะพื้นหลังของโหนด:'
+  field_easy_org_chart_node_background_color: สีพื้นหลังของพนักงาน
+  field_easy_org_chart_node_width: ความกว้างโหนด
+  field_easy_org_chart_parent_node_background_color: สีพื้นหลังของผู้จัดการ (โหนดหลัก)
+  field_easy_org_chart_root_node_background_color: สีพื้นหลังของ CEO (รูทโหนด)
+  field_easy_org_chart_share_subordinates_access: แชร์การเข้าถึงผู้ใต้บังคับบัญชากับหัวหน้างาน
+  field_easy_org_chart_show_avatar: แสดงรูปประจำตัว
+  field_easy_org_chart_show_custom_fields: แสดงฟิลด์ที่กำหนดเอง
+  field_easy_org_chart_show_fields_names: แสดงชื่อฟิลด์
+  field_easy_org_chart_show_user_fields: แสดงฟิลด์ดั้งเดิม
+  field_subordinates_of_supervisor: ผู้ใต้บังคับบัญชาของหัวหน้างาน
+  field_supervisor: หัวหน้า
+  label_easy_org_chart_legend_node: พนักงาน
+  label_easy_org_chart_legend_parent_node: ผู้จัดการ
+  label_easy_org_chart_legend_root_node: ผู้บริหารสูงสุด
+  label_my_page_org_chart_root_user_id: เลือกรูทของโครงสร้างองค์กร
+  label_my_page_org_chart_vertical_depth: แสดงผลแบบย่อจากระดับ
+  label_my_subordinates: ผู้ใต้บังคับบัญชาของฉัน
+  label_my_subordinates_tree: แผนภูมิต้นไม้ของผู้ใต้บังคับบัญชาของฉัน
+  permission_edit_easy_attendance_approval_for_inferiors: อนุมัติ/ปฏิเสธการเข้าร่วมสำหรับผู้ใต้บังคับบัญชา
+  title_easy_org_chart: แผนผังองค์กร
+  title_easy_org_chart_drag_for_create: เพิ่มผู้ใช้ไปยังแผนผังองค์กรผ่านการลากและวาง
+  title_easy_org_chart_drop_for_delete: วางที่นี่เพื่อลบออกจากแผนผังองค์กร
+  title_easy_org_chart_settings: ตั้งค่าแผนผังองค์กร

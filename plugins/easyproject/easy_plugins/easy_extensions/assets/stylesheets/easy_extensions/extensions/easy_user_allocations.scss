@@ -1,0 +1,253 @@
+$size: 24px;
+%resalloc-grid{
+  @include graphic-bg-grid(transparent, $color-border-minor, $size, $size - 2);
+}
+%resalloc-line{
+  height: auto;
+  margin-top: 0;
+  background: none;
+  & > span{
+    border: none;
+    display: inline-block;
+    width: $size - 2;
+    text-align: center;
+    line-height: $size - 4;
+    height: $size - 4;
+    margin: 1px;
+    vertical-align: top;
+    padding: 0;
+    background: $color-uberlight;
+    &.weekend, &.weekend ~ &:nth-of-type(5n+1), &.weekend ~ &:nth-of-type(5n+2){
+      background: mix($color-foreground,$color-background);
+    }
+  }
+}
+div > div.resalloc{
+
+  border: 1px solid $color-border;
+  margin-left: -$box-padding - 1;
+  margin-right: -$box-padding - 1;
+  &-buttons{
+    margin: 0 (-$box-padding);
+    padding: 0.5*$box-padding $box-padding;
+    .button-group, .button, .button-positive{
+      margin-bottom: 0 !important;
+    }
+  }
+  .todayLine{
+    z-index: 5;
+  }
+  &.overview{
+    .user-list{
+      & > li.name {
+        border-bottom: 1px solid $color-border-minor;
+        height: auto;
+      }
+    }
+    table.grid-body{
+      margin-top: -1px;
+      margin-left: -1px;
+      tr{
+        &:hover{
+          background: $color-highlight;
+        }
+        & > td{
+          border-color: $color-border-minor;
+          & > div{
+            line-height: $size - 3 - 4;
+            font-weight: bold;
+            &>span{
+              color: $color-text;
+            }
+          }
+          background: none !important;
+          &.under{
+            color: $color-positive;
+          }
+          &.over{
+            color: $color-negative;
+          }
+        }
+      }
+    }
+  }
+  .calendar{
+    .row{
+      height: $size - 2;
+      .column{
+        border: none;
+        overflow: visible;
+        @extend %pseudo-before;
+        &:before{
+          top: 0;
+          bottom: 0;
+          left: -1px;
+          border-left: 1px solid $color-border-minor;
+        }
+        &>span{
+          border: none;
+          color: rgba($color-text,1) !important;
+        }
+      }
+    }
+  }
+  div.weekend-highlight {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border-left: 23px solid rgba($gray,0.3);
+    z-index: 0;
+  }
+  div.month-container{
+    @extend %pseudo-before;
+    &:before{
+      top: 0;
+      bottom: 0;
+      left: -1px;
+      border-left: 1px solid $color-border-minor;
+    }
+  }
+  div.grid{
+    &-body{
+      @extend %resalloc-grid;
+    }
+    &-header{
+      border-top: none;
+      background: $color-foreground;
+      height: 43px;
+      border-bottom: 1px solid $color-border-minor;
+      font-size: $font-size;
+      @extend %resalloc-grid;
+      div.days,div.month{
+        &>span{
+          color: rgba($color-text,1) !important;
+          background: $color-foreground;
+        }
+      }
+      div.days{
+        @extend %resalloc-line;
+        & > span{
+          line-height: $size;
+        }
+      }
+      div.month{
+        border-left: none;
+        //border-bottom: 1px solid $color-border-minor;
+      }
+    }
+  }
+  div.user{
+    &-allocation{
+      @extend %resalloc-line;
+    }
+  }
+  div.worm{
+    @extend %resalloc-line;
+    margin: -1px;
+    border-color: $color-important;
+    height: $size - 3 !important;
+    & > span{
+      line-height: $size - 5;
+      height: $size - 5;
+      background: none;
+    }
+    .ui-resizable-handle{
+      top: 25%;
+      height: 50%;
+      background: $color-important;
+      display: none !important;
+    }
+    &:hover{
+      .ui-resizable-handle{
+        display: block !important;
+      }
+    }
+    &.readonly{
+      border-color: $color-border;
+    }
+    &.overshot{
+      background: rgba($color-important,0.2);
+    }
+    &.planned{
+      background: rgba($color-positive,0.2);
+    }
+  }
+  div.drop-area{
+    margin: -1px 0;
+    &.dropping{
+      border-color: $color-text;
+    }
+    &.hover{
+      border-style: dashed !important;
+    }
+  }
+  ul.task-list{
+    &>li{
+      padding-left: 1.5*$box-padding;
+      background-position-x: 0.5*$box-padding - 1 !important;
+      border: 1px solid transparent;
+      border-left: none !important;
+      border-right: none !important;
+      line-height: $size - 3 !important;
+      height: $size - 3 !important;
+      margin-bottom: -1px;
+    }
+  }
+  .user{
+    &-list{
+      &-container{
+        border-right: 1px solid $color-border;
+        margin-top: 0 !important;
+        padding-top: 43px;
+        background: $color-foreground;
+        margin-left: -1px;
+      }
+      border-top: 1px solid $color-border-minor !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      & > li{
+        border-bottom: 1px solid $color-border-minor;
+        &>a{
+          display: block;
+          background: $color-uberlight;
+          padding-left: $box-padding + 1 !important;
+          @extend %pseudo-after;
+          position: relative;
+          &:after{
+            border-top: 1px solid $color-border-minor;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+      a{
+        color: $color-main !important;
+        line-height: $size - 3 !important;
+        height: $size - 3 !important;
+        padding: 0 !important;
+        //display: inline-block;
+      }
+    }
+  }
+  &-legend{
+    @extend %exports;
+    label{
+      @extend %exports-label;
+    }
+    padding-left: $box-padding;
+    padding-right: $box-padding;
+  }
+}
+#arrows{
+  @extend %control-menu-buttons;
+  top: 60%;
+  position: absolute;
+  span{
+    top: auto !important;
+    background: none !important;
+    &.move-right-arrow{
+      right: $box-padding !important;
+    }
+  }
+}

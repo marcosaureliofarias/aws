@@ -1,0 +1,4 @@
+<% if User.current.allowed_to?(:easy_money_manage_expected_revenue, project) %>
+    <%= link_to '', {controller: 'easy_money_expected_revenues', action: 'inline_edit', project_id: project.id, easy_money: {entity_type: entity_type, entity_id: entity_id}, easy_currency_code: easy_currency_code}, class: 'icon icon-edit button-icon', title: l(:button_edit), data: {remote: true} %>
+<% end -%>
+<%= link_to format_easy_money_price(sum_expected_revenues, project, easy_currency_code), {controller: 'easy_money_expected_revenues', action: 'index', project_id: project.id, easy_money: {entity_type: entity_type, entity_id: entity_id}, easy_currency_code: easy_currency_code}, title: l(:title_easy_money_project_expected_revenues), class: 'expected-revenue-index-link index-link' %>

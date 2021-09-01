@@ -1,0 +1,30 @@
+<div class=" tabular settings currency">
+<%= form_tag({:controller => 'easy_currencies_exchange_rates', :action => 'update_settings'}, class: 'form-box') do %>
+
+    <p>
+      <%= label_tag 'easy_setting[easy_currency_exchange_rates][day_of_month]', l(:easy_currency_settings_day_of_month) %>
+      <%= number_field_tag 'easy_setting[easy_currency_exchange_rates][day_of_month]', @easy_currency_settings['day_of_month'] %>
+    </p>
+    <p>
+      <%= label_tag 'easy_setting[easy_currency_exchange_rates][start]', l(:easy_currency_settings_start) %>
+      <%= number_field_tag 'easy_setting[easy_currency_exchange_rates][start]', @easy_currency_settings['start'] %>
+    </p>
+    <p>
+      <%= label_tag 'easy_setting[easy_currency_exchange_rates][end]', l(:easy_currency_settings_end) %>
+      <%= number_field_tag 'easy_setting[easy_currency_exchange_rates][end]', @easy_currency_settings['end'] %>
+    </p>
+    <p>
+      <%= label_tag 'easy_setting[easy_currency_exchange_rates][locked_after_months]', l(:easy_currency_settings_locked_after_months) %>
+      <%= number_field_tag 'easy_setting[easy_currency_exchange_rates][locked_after_months]', @easy_currency_settings['locked_after_months'] %>
+    </p>
+    <p>
+      <%= label_tag 'easy_setting[easy_currency_exchange_rates][show_ECB_rates]', l(:easy_currency_settings_show_ECB_rates) %>
+      <%= check_box_tag 'easy_setting[easy_currency_exchange_rates][show_ECB_rates]', 1, @easy_currency_settings['show_ECB_rates'] %>
+    </p>
+    <div class="form-actions">
+      <%= submit_tag l(:button_save), :class => 'button-positive' -%> &nbsp;
+    </div>
+    <div class="clear"></div>
+
+<% end -%>
+</div>

@@ -1,0 +1,27 @@
+<%
+  unless defined?(easy_earned_values)
+    easy_earned_values = @easy_earned_values
+  end
+
+  unless defined?(easy_earned_value)
+    easy_earned_value = @easy_earned_value
+  end
+
+  grouped_options = easy_earned_values.map{|ev| [ev.name, ev.type_name, ev.id] }.group_by(&:second)
+%>
+
+<p id="select_easy_earned_value">
+  <!-- <%= l(:label_easy_earned_value) %>: -->
+  <%= select_tag 'select_easy_earned_value', grouped_options_for_select(grouped_options, easy_earned_value.try(:id), prompt: true) %>
+</p>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $("#select_easy_earned_value select").on("change", function(){
+      if (this.value) {
+        window.location = "<%= easy_earned_value_path(':id') %>".replace(":id", this.value)
+      }
+    });
+  });
+</script>
+

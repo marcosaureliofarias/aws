@@ -1,0 +1,15 @@
+<%# this is just _easy_query without easy_entity_assignments %>
+<%
+  entities ||= @entities; entity_pages ||= @entity_pages; entity_count ||= @entity_count;
+  easy_query_name ||= easy_query.new_record? ? easy_query.default_name : easy_query.name
+  block_name ||= 'easy_query'; container_id ||= easy_query.entity.name.pluralize.underscore;
+  modul_uniq_id ||= container_id
+  groups_url ||= {params: request.query_parameters.except('group_to_load')}
+  options ||= {}; form_options ||= {}
+  options[:hascontextmenu] = false if !options.key?(:hascontextmenu)
+%>
+<% presenter = present(easy_query, entities: entities, entity_pages: entity_pages, entity_count: entity_count, container_id: container_id, modul_uniq_id: modul_uniq_id, block_name: block_name, groups_url: groups_url, source_entity: source_entity, options: options) %>
+
+<% presenter.outputs.each do |o| %>
+  <%= o.render_data %>
+<% end %>

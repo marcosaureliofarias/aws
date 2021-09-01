@@ -1,0 +1,17 @@
+$("#ajax-modal").html("<%= j(render(:template => 'easy_entity_imports/edit', :formats => [:html])) %>");
+$("#ajax-modal p.buttons").remove();
+
+EASY.modalSelector.showModal();
+$("#ajax-modal").dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_close) %>',
+      click: function() {$(this).dialog("close");},
+      'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_update) %>',
+      click: function() {$(this).find('form').submit()}, 'class': 'button-positive'
+    }
+  ]
+});

@@ -1,0 +1,214 @@
+---
+th:
+  button_print: พิมพ์
+  button_project_menu_easy_gantt: Easy Gantt
+  button_top_menu_easy_gantt: Global Gantt
+  button_use_actual_delay: ใช้ความล่าช้าที่เกิดขึ้นจริง
+  easy_gantt_toolbar:
+    day: วัน
+    month: เดือน
+    week: สัปดาห์
+  easy_gantt:
+    button:
+      close_all: ปิดทั้งหมด
+      close_all_parent_issues: ปิดภารกิจหลักทั้งหมด
+      create_baseline: Baselines
+      critical_path: Critical path
+      day_zoom: วัน
+      delayed_project_filter: โครงการล่าช้าเท่านั้น
+      jump_today: ข้ามไปยังวันนี้
+      load_sample_data: โหลดข้อมูลตัวอย่าง
+      month_zoom: เดือน
+      print_fit: พอดีกับหน้า
+      problem_finder: ปัญหา
+      reload: โหลดซ้ำ (บันทึก)
+      remove_delay: ลบความล่าช้า
+      resource_management: จัดการทรัพยากร
+      tool_panel: เครื่องมือ
+      week_zoom: สัปดาห์
+    critical_path:
+      disabled: ปิดใช้งาน
+      last: ล่าสุด
+      last_text: ภารกิจที่ไม่ควรล่าช้า
+      longest: ยาวที่สุด
+      longest_text: แสดงลำดับภารกิจที่ยาวที่สุด
+    errors:
+      change_link_length: ความล่าช้าระหว่าง {{source_task}} และ {{target_task}} ได้รับการเปลี่ยนเป็นความยาวขั้นต่ำ
+        {{minim_link_length}}
+      duplicate_link: ไม่สามารถสร้างลิงค์ที่ซ้ำกัน
+      fresh_milestone: ไม่สามารถเพิ่มภารกิจในเหตุการณ์สำคัญที่ไม่ได้บันทึก บันทึกเหตุการณ์สำคัญก่อน
+      integrity:
+        ends_too_late: สายเกินไป
+        gantt_is_too_long: กราฟ Gantt กว้างเกินไป (มากกว่า {{limit }} วัน)
+        out_of_limits: บางเอนทิตี้ถูกละเว้น เนื่องจากเกินขีดจำกัดจาก {{minLimit}}
+          ถึง {{maxLimit}}
+        starts_too_early: เริ่มเร็วเกินไป
+        truncated: ตัดทอน
+      link_target_new: ไม่สามารถสร้างลิงก์ไปยังภารกิจที่ไม่ได้บันทึก บันทึกการเปลี่ยนแปลงก่อน
+      link_target_readonly: ภารกิจเป้าหมายแบบอ่านอย่างเดียว
+      loop_link: ไม่สามารถสร้างลิงค์แบบวนซ้ำ
+      no_rest_api: Easy Gantt ต้องเปิดใช้งาน REST API. เปิดใช้งานใน จัดการ -> ตั้งค่า
+        -> API -> เปิดใช้งาน REST web service
+      overdue: ควรจะเสร็จในอนาคตหรือควรจะปิดไปแล้ว
+      overmile: ควรเสร็จในวันที่ %{effective_date} เพื่อเก็บเหตุการณ์สำคัญ
+      progress_date_overdue: ตามหลังกำหนดเวลาอยู่ %{days} วัน
+      project_link: ไม่สามารถสร้างลิงก์ไปยังโครงการ
+      reservation_for_unassignee: ไม่สามารถสร้างการจองสำหรับผู้ที่ไม่ได้รับมอบหมาย
+      save_gantt: กรุณาบันทึก Gantt ก่อนออก
+      short_delay: ควรจะนานกว่านี้ %{diff} วัน
+      subproject_precedes_parent: โครงการย่อยนำหน้าโครงการหลัก
+      too_short: มีจำนวนวันไม่เพียงพอสำหรับเวลาที่คาดไว้ %{rest} ชั่วโมง
+      unsaved_parent: ไม่สามารถเพิ่มภารกิจให้กับหลักที่ไม่ได้บันทึกไว้ บันทึกการเปลี่ยนแปลงก่อน
+      unsupported_link_type: ไม่รองรับประเภทของลิงก์
+    gateway:
+      entity_save_failed: "%{entityType} %{entityName} ไม่สามารถบันทึกได้เนื่องจากข้อผิดพลาด"
+      send_failed: คำขอล้มเหลว
+    label_pro_upgrade: อัพเกรดเป็นเวอร์ชั่น PRO
+    legend:
+      heading: Gantt Chart Legend
+      heading_tips: เคล็ดลับและคำแนะนำ
+      label_dates_calculated: วันที่เริ่มต้นและวันครบกำหนดจะถูกคำนวณจากภารกิจ
+      label_dates_set_manually: วันที่เริ่มต้นและวันครบกำหนดจะถูกกำหนดด้วยตนเอง
+      label_milestone: เหตุการณ์สำคัญ
+      label_milestone_shared: เหตุการณ์สำคัญที่ถูกแชร์
+      label_project: โครงการ
+      label_project_done: การแสดงภาพของโครงการเมื่อแล้วเสร็จ (% done)
+      label_project_problem: โครงการที่มีปัญหา
+      label_relation_fixed: ความสัมพันธ์ที่ถูกล็อค (คงที่)
+      label_relation_unfixed: ความสัมพันธ์ที่ไม่ถูกล็อค (ยืดหยุ่น)
+      label_relations_handle: ตัวจัดการสำหรับวาดภาพความสัมพันธ์
+      label_task: ภารกิจ
+      label_task_delay: ตัวเลขแสดงความล่าช้า - จำนวนวันระหว่างภารกิจ. ตัวเลขในวงเล็บแสดงถึงความล่าช้าซึ่งจะส่งผลต่อวันหยุดสุดสัปดาห์และวันหยุดพักผ่อน
+      label_task_done: การแสดงภาพของภารกิจเมื่อแล้วเสร็จ (% done)
+      label_task_due_missing: ภารกิจที่ไม่ได้ตั้งค่าวันที่ครบกำหนด
+      label_task_movers: ตัวจัดการสำหรับการเลื่อนวันที่เริ่มต้น / วันที่ครบกำหนด
+      label_task_parent_dates_missing: หลักของภารกิจนี้ไม่ได้ตั้งค่าวันที่เริ่มต้นและวันครบกำหนด
+      label_task_problem: ภารกิจที่มีปัญหา
+      label_task_start_missing: ภารกิจที่ไม่ได้ตั้งค่าวันที่เริ่มต้น
+      label_today: การแสดงภาพของวันปัจจุบัน
+      notice_due_date_set: ไม่ได้ตั้งค่าวันที่เริ่มต้น, ตั้งค่าวันที่ครบกำหนด
+      notice_future_due_date: หากคุณเลื่อนโครงการด้วยวันที่เริ่มต้นในอดีต, วันที่ใหม่จะเหมือนกับวันที่ครบกำหนด
+        - ระยะเวลาโครงการจะเป็น 1 วัน
+      notice_future_start_date: หากคุณเลื่อนวันที่เริ่มต้นไปในอนาคต, วันที่ครบกำหนดจะถูกกำหนดเป็นวันเดียวกับวันที่เริ่มต้น
+        - ระยะเวลาของโครงการจะเป็น 1 วัน
+      notice_move_expanded_project: ไม่สามารถเลื่อนโครงการที่ถูกขยายแล้ว - โครงการที่ถูกยุบแล้ว,
+        รีเฟรชหน้า แล้วค่อยเลื่อนโครงการ
+      notice_past_due_date: หากคุณเลื่อนโครงการ, วันที่เริ่มต้นจะถูกตั้งเป็นวันปัจจุบัน
+        (วันนี้)
+      notice_past_start_date: หากคุณย้ายวันที่เริ่มต้นไปเป็นอดีต, วันที่ครบกำหนดจะถูกตั้งค่าเป็นวันปัจจุบัน
+        (วันนี้)
+      notice_project_needs_task: ไม่สามารถเลื่อนและบันทึกโครงการได้ หากไม่มีภารกิจอย่างน้อยหนึ่งภารกิจ. เพิ่มภารกิจในโครงการหรือโครงการย่อยเพื่อให้สามารถเลื่อนได้
+      notice_start_date_set: กำหนดวันที่เริ่มต้นแล้ว, ไม่ได้กำหนดวันที่ครบกำหนด
+    link_dir:
+      link_end: เป็นก่อนหน้านี้
+      link_start: ดังต่อไปนี้
+    popup:
+      add_task:
+        heading: เพิ่มคุณสมบัติภารกิจ
+        text: คุณสมบัติของภารกิจ/เหตุการณ์สำคัญใหม่มีให้บริการเฉพาะใน Easy Gantt PRO
+          <a href="https://www.easyredmine.com/easy-gantt-upgrade-to-pro">ตรวจสอบเพื่ออัพเดต!</a>
+      baseline:
+        heading: คุณสมบัติของBaselines
+        text: คุณสมบัติพื้นฐานมีให้บริการเฉพาะใน Easy Gantt PRO <a href="https://www.easyredmine.com/easy-gantt-upgrade-to-pro">ตรวจสอบเพื่ออัพเดต!</a>
+      critical:
+        heading: คุณสมบัติของCritical path
+        text: คุณสมบัติของแพทสำคัญมีให้บริการเฉพาะใน Easy Gantt PRO <a href="https://www.easyredmine.com/easy-gantt-upgrade-to-pro">ตรวจสอบเพื่ออัพเดต!</a>
+      resource:
+        easy_text: ไม่ได้ติดตั้งปลั๊กอินการจัดการทรัพยากร - กดรับ <a href="https://www.easyredmine.com/pricing-buy">ที่นี่!</a>
+        heading: คุณสมบัติการจัดการทรัพยากร
+        text: คุณสมบัติการจัดการทรัพยากรมีให้เฉพาะใน <a href="https://www.easyredmine.com/">
+          Easy Redmine</a>
+    reload_modal:
+      label_errors: ข้อผิดพลาด
+      text_reload_appeal: คุณต้องการเพิกเฉยรายการที่ไม่ได้บันทึกและโหลดข้อมูลจากเซิร์ฟเวอร์อีกครั้งหรือไม่?
+      title: Gantt ไม่สามารถบันทึกได้อย่างถูกต้อง
+    sample_global_free:
+      text: ข้อมูลตัวอย่างไม่สามารถปิดได้ Gantt over all projects มีเฉพาะในเวอร์ชั่น
+        PRO 
+      video:
+        text: ที่นี่คุณสามารถเห็นคุณสมบัติส่วนใหญ่ของ Gantt over all projects
+        title: ตัวอย่างวิดีโอของ Gantt over all projects
+        video_id: zd3M0KYxcXM
+    sample:
+      close_label: ปิดหน้าต่างนี้และโหลดข้อมูลโครงการจริง
+      header: ข้อมูลตัวอย่างถูกโหลด!
+      text: เราได้จัดทำข้อมูลตัวอย่างเพื่อให้คุณลองใช้คุณสมบัติของ Easy Gantt ทั้งหมดโดยไม่ต้องเครียด เราต้องการสนับสนุนให้คุณดูคู่มือวิดีโอที่แสดงการปรับแต่งที่เป็นประโยชน์
+        การปิดหน้าต่างนี้จะโหลดข้อมูลโครงการจริง
+      video_label: ดูวิดีโอแนะนำ
+      video:
+        text: ที่นี่คุณสามารถเห็นคุณสมบัติส่วนใหญ่ของโมดูล Gantt นี้
+        title: วิดีโอตัวอย่าง
+        video_id: UHgqfsrD59Q
+    scheme_by:
+      label_by_priority: ตามลำดับความสำคัญ
+      label_by_status: ตามสถานะ
+      label_by_tracker: ตามตัวติดตาม
+    text_blocker_milestone: เหตุการณ์สำคัญกำลังบล็อคภารกิจที่จะเลื่อนไปหลังจากวันนี้
+    text_blocker_move_end: อย่างน้อยหนึ่งภารกิจจะถูกเลื่อนออกไปหากเลื่อนไปหลังจากวันนี้
+    text_blocker_move_pre: ภารกิจที่มีความสัมพันธ์ได้บล็อคการเลื่อนภารกิจไปหลังจากวันนี้
+    title:
+      button_test: ปุ่มทดสอบ (สำหรับการทดสอบเท่านั้น)
+      day_zoom: ซูมวัน
+      jump_today: แสดงไทม์ไลน์ของวันนี้
+      month_zoom: ซูมเดือน
+      print_fit: ปรับขนาด Gantt เป็นหนึ่งหน้า
+      week_zoom: ซูมสัปดาห์
+  easy_printable_templates_categories:
+    easy_gantt: Easy Gantt
+  easy_query:
+    name:
+      easy_gantt_easy_issue_query: Easy Gantt
+      easy_gantt_easy_project_query: Global Gantt
+  error_easy_gantt_view_permission: คุณไม่ได้รับอนุญาตให้ดู Easy Gantt
+  error_epm_easy_gantt_already_active: Easy Gantt ในหน้าเปิดใช้งานอยู่แล้ว
+  error_small_screen: ขนาดหน้าจอของอุปกรณ์ของคุณเล็กเกินไปที่จะแสดงแผนภูมิ Gantt
+  error_start_date_before_end_date: วันที่สิ้นสุดต้องมากกว่าวันที่เริ่มต้น
+  field_easy_gantt_default_zoom: ซูมเริ่มต้น
+  field_easy_gantt_fixed_delay: แก้ไขความล่าช้า
+  field_easy_gantt_relation_delay_in_workdays: ความสัมพันธ์ล่าช้าในวันทำงาน
+  field_easy_gantt_show_holidays: แสดงวันหยุด
+  field_easy_gantt_show_project_progress: แสดงความคืบหน้าของโครงการ
+  field_easy_gantt_show_task_soonest_start: แสดงที่เริ่มต้นเร็วที่สุด
+  field_keep_link_delay_in_drag: ลิงค์คงที่ล่าช้าในระหว่างการลาก
+  field_relation: ความสัมพันธ์
+  heading_delay_popup: กำหนดความล่าช้าในวัน
+  heading_demo_feature_popup: เร็วๆ นี้
+  heading_easy_gantts_issues: ฟรี Easy Gantt
+  label_easy_gantt: Easy Gantt
+  label_easy_gantt_critical_path: Critical path
+  label_easy_gantt_global: Global
+  label_easy_gantt_issue_loaded: โหลดภารกิจทั้งหมดแล้ว
+  label_easy_gantt_load: โหลด
+  label_easy_gantt_next_level_close: ปิดระดับถัดไป
+  label_easy_gantt_next_level_open: เปิดระดับถัดไป
+  label_easy_gantt_recalculate_fixed_delay: คำนวณความล่าช้าคงที่ใหม่
+  label_easy_gantt_settings: ตั้งค่า Gantt
+  label_filter_group_easy_gantt_easy_issue_query: ฟิลด์ของภารกิจ
+  label_finish_to_finish: เสร็จสิ้นถึงเสร็จสิ้น
+  label_not_available: ไม่ว่าง
+  label_parent_issue_plural: ภารกิจหลัก
+  label_start_to_finish: เริ่มต้นถึงเสร็จสิ้น
+  label_start_to_start: เริ่มต้นถึงเริ่มต้น
+  link_easy_gantt_plugin: https://www.easyredmine.com/easy-gantt-upgrade-to-pro
+  notice_easy_gantt_fixed_delay_recalculated: การแก้ไขความล่าช้าในความสัมพันธ์ทั้งหมดถูกคำนวณใหม่
+  permission_edit_easy_gantt: แก้ไข  Easy Gantt  ในโครงการ
+  permission_edit_global_easy_gantt: แก้ไข global Gantt
+  permission_edit_personal_easy_gantt: แก้ไข Easy Gantt ส่วนตัว
+  permission_view_easy_gantt: ดู  Easy Gantt ในโครงการ
+  permission_view_global_easy_gantt: ดู global Gantt
+  permission_view_personal_easy_gantt: ดู  Easy Gantt ส่วนตัว
+  project_default_page:
+    easy_gantt: Easy Gantt
+  project_module_easy_gantt: Gantt
+  text_demo_feature_popup: คุณสมบัตินี้จะสามารถใช้ได้เร็วๆนี้
+  text_easy_gantt_fixed_delay: คงความล่าช้าของความสัมพันธ์ให้คงที่เมื่อภารกิจถูกดึง
+  text_easy_gantt_footer: Redmine Gantt powered by Easy
+  text_easy_gantt_keep_link_delay_in_drag: คงความล่าช้าของความสัมพันธ์ให้คงที่ในขณะที่ภารกิจถูกดึงกลับมา
+  text_easy_gantt_print_easy_gantt_current: แสดง Easy Gantt ปัจจุบัน (ใช้ได้เฉพาะจากหน้าเว็บที่โหลด
+    Easy Gantt)
+  text_easy_gantt_relation_delay_in_workdays: ไม่ต้องนับวันทำงานที่ไม่เกี่ยวข้องกับความล่าช้า
+  text_easy_gantt_show_holidays: แสดงวันหยุดจากปฏิทินของผู้ใช้ปัจจุบัน
+  text_easy_gantt_show_project_progress: แสดงเปอร์เซ็นต์ที่เสร็จสมบูรณ์บนแถบของโครงการ
+    (อาจโหลดได้ช้า)
+  text_easy_gantt_show_task_soonest_start: แสดงวันที่ต่ำสุดที่ถูกต้องสำหรับภารกิจทีถูกกำหนดโดยความสัมพันธ์หรือหลัก
+  title_easy_gantt_settings: ตั้งค่า Gantt

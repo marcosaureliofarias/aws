@@ -1,0 +1,58 @@
+<% Rys::Feature.on('security_user_lock') do %>
+  <fieldset class="box tabular">
+    <legend><%= user_lock_l('title') %></legend>
+
+    <p>
+      <%= label_tag :easy_setting_enable_lock_user, user_lock_l('enable') %>
+      <%= hidden_field_tag('easy_setting[enable_lock_user]', '0', id: nil) %>
+      <%= check_box_tag('easy_setting[enable_lock_user]', '1', EasySetting.value('enable_lock_user').to_boolean) %>
+    </p>
+
+    <div id="lock_user">
+      <p>
+        <%= label_tag :easy_setting_user_login_attempts, user_lock_l('lock_after') %>
+        <%= number_field_tag 'easy_setting[user_login_attempts]', EasySetting.value('user_login_attempts'), size: 3, min: 0 %>
+        <%= user_lock_l('attempts') %>
+      </p>
+
+      <div id="lock_user_settings">
+        <p>
+          <%= label_tag('easy_setting[user_locking_time]', user_lock_l('time')) %>
+          <%= number_field_tag 'easy_setting[user_locking_time]', EasySetting.value('user_locking_time'), size: 3, min: 0 %>
+          <%= select_tag('easy_setting[user_login_period]', options_for_select(%w(minutes hours days).map{|p| [user_lock_l(p), p]}, EasySetting.value('user_login_period'))) %>
+        </p>
+        <p>
+          <em class="info"><%= user_lock_l('warning_manually') %></em>
+        </p>
+
+        <p>
+          <%= label_tag('easy_setting[message_to_locked_user]', user_lock_l('message')) %>
+          <%= text_area_tag 'easy_setting[message_to_locked_user]', EasySetting.value('message_to_locked_user') %>
+        </p>
+
+        <p>
+          <%= label_tag :easy_setting_lock_admins_to_notify, user_lock_l('notify_admins') %>
+          <span>
+            <%= hidden_field_tag('easy_setting[notify_all_admins]', '0', id: nil) %>
+            <%= check_box_tag('easy_setting[notify_all_admins]', '1', EasySetting.value('notify_all_admins').to_boolean) %>
+            <%= label_tag('easy_setting_notify_all_admins', user_lock_l('all_administrators')) %>
+            <br>
+            <%= autocomplete_field_tag 'easy_setting[lock_admins_to_notify][]',
+                                       easy_autocomplete_path('admin_users'),
+                                       EasySetting.value('lock_admins_to_notify'),
+                                       id: 'easy_setting_lock_admins_to_notify',
+                                       rootElement: 'users' %>
+
+          </span>
+        </p>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <script type="application/javascript">
+      EASY.schedule.late(function () {
+          EASY.security_user_lock.init_settings();
+      });
+  </script>
+<% end %>

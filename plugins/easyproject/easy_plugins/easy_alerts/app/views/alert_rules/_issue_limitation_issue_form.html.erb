@@ -1,0 +1,7 @@
+<% project = Project.find_by_id(@settings[:project_id]) unless @settings[:project_id].blank?
+issues = project.issues.visible.order(:subject).all unless project.blank?
+issues ||= Array.new -%>
+<%= label_tag 'issue_ids[]',  l(:label_alerts_issue_select_before) -%>
+<%= select_tag('issue_ids[]', options_for_select(issues.collect {|i| [i.subject, i.id.to_s]}, :selected => @settings[:issue_ids]), :multiple => (Array(@settings[:issue_ids]).size > 1), :id => 'alerts-select-issues') %>
+<%= link_to_function '', "toggleMultiSelect($('#alerts-select-issues'));", :class => 'toggle-bullet textcon-plus' %>
+<%= l(:label_alerts_issue_select_after) -%>

@@ -1,0 +1,6 @@
+<% if @error %>
+alert("<%= j @error.html_safe %>");
+<% else %>
+$("#easy_entity_import_mappings .splitcontentleft").html("<%= j(render(partial: 'easy_entity_imports/previews/' + @easy_entity_import.preview_path, locals: {easy_entity_import: @easy_entity_import})) %>");
+showEasyEntityPreview();
+<% end %>

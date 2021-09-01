@@ -1,0 +1,11 @@
+<%= link_to "#{l(:button_check_all)} / #{l(:button_uncheck_all)}", 'javascript:void(0)',
+                                                      onclick: %q{toggleCheckboxesBySelector('input.cbx-project')},
+                                                      title: "#{l(:button_check_all)}/#{l(:button_uncheck_all)}",
+                                                      class: 'icon icon-checked'
+%>
+
+<%= link_to "#{l(:button_check_rootprojects)} / #{l(:button_uncheck_rootprojects)}", 'javascript:void(0)',
+                                                      onclick: %q{toggleCheckboxesBySelector('input.cbx-root-project')},
+                                                      title: "#{l(:button_check_rootprojects)} / #{l(:button_uncheck_rootprojects)}",
+                                                      class: 'icon icon-checked'
+%>

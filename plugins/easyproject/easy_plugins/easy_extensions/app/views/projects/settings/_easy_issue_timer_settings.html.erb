@@ -1,0 +1,8 @@
+<%= form_tag(easy_issue_timers_settings_path, :method => :put, :class => 'settings form-box', :id => 'easy_issue_timers_settings_form') do %>
+  <%= hidden_field_tag(:project_id, @project.id) %>
+  <%= render(:partial => 'easy_issue_timers/form', :locals => {
+    :setting => EasySetting.value(:easy_issue_timer_settings, @project),
+    :statuses => IssueStatus.sorted
+  }) %>
+<% end -%>
+

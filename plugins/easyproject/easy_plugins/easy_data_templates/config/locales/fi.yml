@@ -1,0 +1,164 @@
+---
+fi:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: ei voi olla tyhjä tai ei ole olemassa
+              empty: ei voi olla tyhjä tai ei ole olemassa
+        easy_data_template:
+          attributes:
+            type:
+              blank: ei voi olla tyhjä tai ei ole olemassa
+              empty: ei voi olla tyhjä tai ei ole olemassa
+  button_easy_data_template_assignment: alan tehtävät
+  button_easy_data_template_edit: Muokkaa mallia
+  button_easy_data_template_export_data: Vie tiedot
+  button_easy_data_template_import: tuoda
+  button_easy_data_template_import_data: Tuo tiedot
+  button_easy_data_template_import_preview: esikatselu
+  button_easy_data_template_new_export: Vie CSV
+  button_easy_data_template_new_import: Tuo CSV
+  button_easy_data_template_new_msproject: Tuo MS Project
+  button_easy_data_template_settings: säätö
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Ei
+    xyes: Kyllä
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: nimi ratkaisija
+      assigned_to_id: id ratkaisija
+      assigned_to_lastname: Sukunimi ratkaisija
+      assigned_to_login: kirjaudu ratkaisija
+      assigned_to_mail: e-mail ratkaisija
+      author_firstname: tekijän nimi
+      author_id: id kirjailija
+      author_lastname: sukunimi
+      author_login: kirjaudu kirjailija
+      author_mail: e-mail kirjailija
+      description: kuvaus tehtävän
+      due_date: End of tehtävän (päivämäärä)
+      estimated_hours: arvioitu tehtävän aika (tuntia)
+      id: tehtävän id
+      priority_id: id prioriteetti
+      priority_name: prioriteetti otsikko
+      project_id: id hanke
+      project_name: Hankkeen nimi
+      start_date: alussa tehtävän (päivämäärä)
+      subject: tehtävän aihe
+      tracker_id: id tehtävän tyyppi
+      tracker_name: nimi tehtävän tyyppi
+    Project:
+      description: hankkeen kuvaus
+      enabled_modules: Moduulin nimi
+      id: id hanke
+      is_public: julkinen (/ N)
+      name: Hankkeen nimi
+      parent_id: id vanhempi projekti
+      parent_name: nimi emoyhtiön hankkeen
+      trackers_ids: id tehtävän tyyppi
+      trackers_names: nimi tehtävän tyyppi
+    TimeEntry:
+      activity: toiminta
+      activity_id: id toiminta
+      activity_name: Toiminnan nimi
+      comments: kommentti
+      easy_range_from: raportoitu
+      easy_range_to: raportoitu
+      hours: kello
+      issue: tehtävä
+      issue_id: tehtävän id
+      issue_subject: tehtävän otsikko
+      project: hanke
+      project_id: id hanke
+      project_name: Hankkeen nimi
+      spent_on: päivämäärä
+      user: käyttäjä
+      user_id: Käyttäjätunnuksen
+    User:
+      admin: Administrator (/ N)
+      firstname: Käyttäjätunnus
+      id: Käyttäjätunnuksen
+      language: käyttäjän kieli
+      lastname: sukunimi käyttäjän
+      login: Käyttäjän kirjautuminen
+      mail: sähköpostin käyttäjille
+      password: salasana
+      send_mail: log-on lähettää sähköpostia (/ N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Tehtävä
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Hanke
+    EasyDataTemplateTimeEntry: Raportoitu aika
+    EasyDataTemplateUser: Käyttäjä
+  easy_data_templates_plugin_author: Easy Software
+  easy_data_templates_plugin_author_url: http://www.easyredmine.com
+  easy_data_templates_plugin_description: "- Tietojen malleja tuoda ja viedä tietoja
+    CSV-muodossa"
+  easy_data_templates_plugin_name: Data mallit
+  error_during_import: Kun tuot virhe. Tarkista syötetyt tiedot.
+  error_easy_data_template_attachment_not_uploaded: Kirjattu mitään lisä tuoda
+  error_easy_data_template_ms_project_not_valid_xml: Liitetiedosto ei ole kelvollinen
+    XML MS Project 2010 ja uudemmat.
+  field_easy_data_template_allowed_import: Tuoda
+  label_check_preview: Tarkista tiedot käyttämällä "Esikatselu"
+  label_easy_data_template_assignment: Kenttä tehtävät
+  label_easy_data_template_author_name: Kirjoittaja
+  label_easy_data_template_edit: Muokkaaminen mallit
+  label_easy_data_template_entity_type: Entity
+  label_easy_data_template_export_new: Uudet vienti malli
+  label_easy_data_template_import_file: Tuo tiedosto
+  label_easy_data_template_import_new: Uusi tuonti malli
+  label_easy_data_template_import:
+    assignments:
+      all: määritetty asento sarakkeet
+      entity_attribute_name: sarakkeen nimi yhteisöt
+      file_column_position: asema sarakkeen csv
+      new: Tehtävä sarake kannat
+    errors:
+      erow: virhe rivillä
+      errors_count: virheiden määrän
+      errors_rows: viallinen linjat
+      errors_rows_count: määrä virheellisiä rivejä
+      errors_sum: yhteensä
+      row: väärä rivinumero
+      show: näyttää virheellisiä rivejä
+    preview:
+      row: rivinumero
+      table: esikatselu
+    settings:
+      col_sep: erottimena
+      encoding: koodaus
+      import_all: Kaikki tai ei mitään
+      new: Säätö
+      preview_rows: Rivien esikatsella
+      project_template: Käytä suunnittelumallia
+      quote_char: erotin tekstin
+      return_headers: Ensimmäinen rivi sisältää sarakkeen nimen
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Sidotut yhteen tehtävään)"
+    other: "(Sidotut ja %{count} tehtävät)"
+    zero: "(Ei määritelty)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Nimi pk
+  label_easy_data_template_ms_project_user_name_in_ep: Nimi EP
+  label_easy_data_template_name: Nimi
+  label_easy_data_template_public: julkinen
+  label_easy_data_template_template_type: Tyyppi
+  label_easy_data_template_template_type_export: vienti
+  label_easy_data_template_template_type_import: tuoda
+  label_easy_data_template_user_name: Omistaja
+  label_easy_data_templates: Data mallit
+  label_easy_data_templates_choose_project: Valitse projekti
+  label_easy_data_templates_choose_query: Valitse suodatin
+  label_easy_data_templates_source_settings: Valitse tietolähde
+  label_easy_data_templates_target_settings: Kohdeosoitteen tiedot
+  notice_easy_data_templates_import_ok: Tuo oli hieno.
+  text_easy_data_template_ms_project_upload_file: Tiedoston tulee olla XML-muodossa
+    (MS Project ylhäältä valikosta Tiedosto -> Tallenna nimellä -> Save as type XML).
+  title_easy_data_templates_apply_to_all_rows: Klikkaa asettaa tämän arvon kaikilla
+    samantapainen.

@@ -1,0 +1,7 @@
+@import "easy_extensions/common_assets";
+<% if Redmine::Plugin.installed?(:easy_project_com) %>
+@import "easy_project_com/extensions/easy_calculation";
+<% else %>
+@import "../../../easy_extensions/assets/stylesheets/easy_extensions/extensions/easy_calculation";
+<% end %>
+

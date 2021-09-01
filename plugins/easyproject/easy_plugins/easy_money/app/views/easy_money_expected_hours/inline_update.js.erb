@@ -1,0 +1,4 @@
+<%= hourly_total_with_currency = @entity.expected_hours&.hours.to_f * @entity.easy_money.easy_money_settings.expected_payroll_expense_rate(@current_easy_currency_code) %>
+$("#expected-hours").html('<%= j(render partial: 'easy_money_expected_hours/inline_show', locals: { project: @project, expected_hours: @entity.easy_money.sum_expected_hours, entity_type: @entity_type, entity_id: @entity_id, easy_money: @entity.easy_money, easy_currency_code: @current_easy_currency_code, hourly_total_with_currency: hourly_total_with_currency }) %>');
+renderExpectedPayrollExpenses();
+renderExpectedProfit();

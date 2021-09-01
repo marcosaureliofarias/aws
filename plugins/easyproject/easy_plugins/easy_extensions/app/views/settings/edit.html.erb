@@ -1,0 +1,21 @@
+<h2><%= l(:label_settings) %></h2>
+
+<%= render_settings_error @setting_errors %>
+
+<%= render_tabs administration_settings_tabs %>
+
+<script type="text/javascript">
+	EASY.schedule.late(function(){
+		EASY.shortcut.add('Alt+Shift+S', function() {
+			var tabs = ['general', 'display', 'authentication', 'projects', 'issues', 'notifications', 'mail_handler'];
+			for (var i = 0; i < tabs.length; i++) {
+				if($('#tab-content-' + tabs[i]) && $('#tab-content-' + tabs[i]).is(':visible')) {
+					$('#tab-content-' + tabs[i] + ' input[type=submit]').click();
+				}
+			}
+		});
+	});
+</script>
+
+
+<% html_title(l(:label_settings), l(:label_administration)) -%>

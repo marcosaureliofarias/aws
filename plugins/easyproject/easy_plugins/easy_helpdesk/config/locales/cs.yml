@@ -1,0 +1,441 @@
+---
+cs:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Nastavení
+      easy_helpdesk_mail_template:
+        body_html: Zpráva (HTML)
+        body_plain: Zpráva (TEXT)
+        issue_status_id: Stav úkolu
+        mailboxes: 'Použij pro schránku:'
+        reply_to: Odpověď komu
+        sender: Odesílatel
+        subject: Předmět
+      easy_helpdesk_project_matching:
+        domain_name: Doména
+      easy_helpdesk_project_sla:
+        base: SLA
+    models:
+      easy_helpdesk_mail_template: Emailová šablona
+  aggregated_periods:
+    half-yearly: Pololetně
+    quarterly: Kvartálně
+    yearly: Ročně
+  button_easy_helpdesk_add_domain_name: Přidej email nebo doménu
+  button_easy_helpdesk_add_mail_template: Přidej šablonu
+  button_easy_helpdesk_add_mailbox: Přidej schránku
+  button_easy_helpdesk_add_project: Přidej projekt
+  button_easy_helpdesk_add_project_from_sidebar: Přidat do Helpdesku
+  button_easy_helpdesk_add_signature: Přidej podpis
+  button_easy_helpdesk_add_sla: Přidej SLA
+  button_easy_helpdesk_all_mail_templates_index: Všechny e-mailové šablony
+  button_easy_helpdesk_all_mailboxes_index: Všechny schránky
+  button_easy_helpdesk_all_projects_index: Všechny helpdeskové projekty
+  button_easy_helpdesk_mail_templates_index: Přehled šablon
+  button_easy_helpdesk_mailboxes_index: Přehled schránek
+  button_easy_helpdesk_projects_index: Přehled projektů
+  button_easy_helpdesk_reports_index: Reporty
+  button_easy_helpdesk_settings_index: Nastavení
+  confirm_edit_remaining_hours: Toto pole je počítáno na pozadí, opravdu ho chcete
+    upravit manuálně?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Helpdesk
+  easy_helpdesk_plugin_description: "- jednoduchý proces správy požadavků od klientů"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Helpdesk
+    modules:
+      easy_helpdesk_create_mail_template_button: Tlačítko vytvoření emailové šablony
+      easy_helpdesk_create_mailbox_button: Tlačítko vytvoření emailové schránky
+      easy_helpdesk_mailboxes: Helpdesk emailové schránky
+      easy_helpdesk_mailtemplates: Helpdesk emailové šablony
+      easy_helpdesk_project_query: Helpdesk projekty z filtru
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Mailové šablony helpdesku
+        description: Mailové šablony helpdesku
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Schránky helpdesku
+        description: Zobrazit mailové šablony helpdesku
+    easy_helpdesk:
+      index:
+        caption: Helpdesk
+        description: Zobrazit přehled helpdesku
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - projekty
+      easy_helpdesk_report_monthly_query: Helpdesk - měsíční reporty
+      easy_helpdesk_report_yearly_query: Helpdesk - roční reporty
+      easy_sla_event_query: SLA události
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Osobní filtry nad projekty v Helpdesku
+        easy_helpdesk_report_monthly_query: Osobní filtry měsíčních reportů v Helpdesku
+        easy_helpdesk_report_yearly_query: Osobní filtry ročních reportů v Helpdesku
+      public:
+        easy_helpdesk_project_query: Veřejné filtry nad projekty v Helpdesku
+        easy_helpdesk_report_monthly_query: Veřejné filtry měsíčních reportů v Helpdesku
+        easy_helpdesk_report_yearly_query: Veřejné filtry ročních reportů v Helpdesku
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Helpdesk - výpočet agregovaných hodin
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Helpdesk - automatické aktualizace úkolů
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - příjem mailů
+      settings:
+        imap:
+          allow_override: Povolit přepsání hodnot
+          allow_override_example: 'Příklad: typ úkolu, priorita - tyto atributy mohou
+            být přepsány podle mailu'
+          application_section_label: Ostatní nastavení
+          category_example: 'Příklad: kategorie - úkoly se budou zakládat s kategorií
+            kategorie'
+          email_section_label: Nastavení emailu
+          folder: Složka
+          folder_example: 'IMAP složka ke čtení (default: INBOX, pro nastavení složek
+            použijte oddělovač "." příklad: inbox.obchod)'
+          folders: Složky ke čtení
+          folders_example: 'IMAP složky pro výběr (jeden záznam na řádek) (výchozí:
+            INBOX, pro zvolení složky použijte "/" např.: inbox/sales)'
+          host: Host
+          host_example: 'Příklad: mail.company.com'
+          label: IMAP
+          move_on_failure: Složka pro chyby
+          move_on_failure_example: přesuň emaily, které byly ignorovány do složky
+            MAILBOX
+          move_on_success: Složka pro úspěch
+          move_on_success_example: přesuň emaily, které byly úspěšně přijaty do složky
+            MAILBOX, jinak budou smazány
+          no_permission_check: Nekontrolovat uživatelský práva
+          no_permission_check_example: ''
+          password: Heslo
+          password_example: 'Příklad: secretpassword'
+          port: Port
+          port_example: 'Příklad: 143'
+          priority_example: 'Příklad: Vysoká - úkoly se budou zakládat s prioritou
+            vysoká'
+          project_example: 'Příklad: 205 - úkoly se budou zakládat do projektu s ID
+            205'
+          sender_mail: Odesílatel
+          sender_mail_example: 'Příklad: support@company.com'
+          ssl: SSL
+          ssl_example: Použij SSL autentizaci
+          status_example: 'Příklad: Nový - úkoly se budou zakládat se stavem nový'
+          tracker_example: 'Příklad: bug - úkoly se budou zakládat s typem úkolů bug'
+          unknown_user: Neznámý uživatel
+          unknown_user_example: accept - použije se anonymní uživatel; create - založí
+            uživatele z mailu; konkrétní login - úkol se založí pod tímto uživatelem
+          use_custom_sender: Použij jiného odesílatele
+          username: Uživatel
+          username_example: 'Příklad: accessuser@domain.com'
+        pop3:
+          allow_override: Povolit přepsání hodnot
+          allow_override_example: 'Příklad: typ úkolu, priorita - tyto atributy mohou
+            být přepsány podle mailu'
+          apop: APOP
+          apop_example: Použij APOP autentizaci
+          application_section_label: Ostatní nastavení
+          category_example: 'Příklad: kategorie - úkoly se budou zakládat s kategorií
+            kategorie'
+          delete_unprocessed: Smazat nezpracováné
+          delete_unprocessed_example: Smazat emaily, které nemůžou být zpracovány
+          email_section_label: Nastavení emailu
+          host: Host
+          host_example: 'Příklad: mail.company.com'
+          label: POP3
+          no_permission_check: Nekontrolovat uživatelský práva
+          no_permission_check_example: ''
+          password: Heslo
+          password_example: 'Příklad: secretpassword'
+          port: Port
+          port_example: 'Příklad: 110'
+          priority_example: 'Příklad: Vysoká - úkoly se budou zakládat s prioritou
+            vysoká'
+          project_example: 'Příklad: 205 - úkoly se budou zakládat do projektu s ID
+            205'
+          sender_mail: Odesílatel
+          sender_mail_example: support@company.com
+          status_example: 'Příklad: Nový - úkoly se budou zakládat se stavem Nový'
+          tracker_example: 'Příklad: Bug - úkoly se budou zakládat s typem úkolů Bug'
+          unknown_user: Neznámý uživatel
+          unknown_user_example: accept - použije se anonymní uživatel; create - založí
+            uživatele z mailu; konkrétní login - úkol se založí pod tímto uživatelem
+          use_custom_sender: Použij jiného odesílatele
+          username: Uživatel
+          username_example: 'Příklad: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: pole "Hodin do převzetí" a "Hodin
+    do vyřešení" nesmí ostat prázdné‌
+  error_easy_sla_hours_mode_greater_than: "%{title} %{to} musí být vyšší než %{from}"
+  error_update_easy_setting_helpdesk: Nastavení nelze uložit
+  field_aggregated_hours: Agregované hodiny
+  field_aggregated_hours_period: Agregované období
+  field_aggregated_hours_remaining: Zbývající hodiny
+  field_aggregated_hours_start_date: Agregovaný začátek
+  field_automatically_issue_closer_enable: Povolit automatické uzavírání úkolů?
+  field_date_to_response: SLA (datum převzetí)
+  field_date_to_solve: SLA (datum vyřešení)
+  field_default_for_mailbox: Výchozí pro schránku
+  field_easy_helpdesk_has_sla: Má SLA
+  field_easy_helpdesk_hours_to_response_before_expired: Hodin do reakce
+  field_easy_helpdesk_hours_to_solve_before_expired: Hodin do vyřešení
+  field_easy_helpdesk_ignorate_suspend_statuses: Vytvářet události SLA ze všech stavů
+  field_easy_helpdesk_mail_template: 'Poslat zákazníkovi rychlý email ze šablony:'
+  field_easy_helpdesk_need_reaction: Reagovat?
+  field_easy_helpdesk_project_keyword: Klíčové slovo
+  field_easy_helpdesk_project_matching:
+    domain_name: Email nebo doména
+    email_field_from: se bere z políčka OD
+    email_field_to: se bere z políčka KOMU
+  field_easy_helpdesk_project_monthly_hours: Předplacené hodiny
+  field_easy_helpdesk_project_sla:
+    blank_keyword: Chybějící klíčové slovo
+    hours_to_response: Hodin do převzetí
+    hours_to_solve: Hodin do vyřešení
+    keyword: Klíčové slovo
+    title: Název
+  field_easy_helpdesk_project_spent_time_current_month: Odpracováno hodin na HD (tento
+    měsíc)
+  field_easy_helpdesk_project_spent_time_last_month: Odpracováno hodin na HD (minulý
+    měsíc)
+  field_easy_helpdesk_project_spent_time_total: Celkový odpracovaný čas
+  field_easy_helpdesk_ticket_owner: Vlastník tiketu
+  field_easy_reopen_at: Znovu otevřeno
+  field_easy_response_date_time: SLA (převzetí)
+  field_easy_time_to_solve_paused_at: SLA pozastaveno
+  field_email_footer: Patička emailu
+  field_email_header: Hlavička emailu
+  field_first_response: První reakce
+  field_has_easy_sla_event: Má události SLA
+  field_hide_sla_data: Skrýt SLA data
+  field_hours_mode_from: SLA pracovní hodiny
+  field_hours_to_response: SLA (převzetí)
+  field_hours_to_solve: SLA (vyřešení)
+  field_is_under_helpdesk: Helpdeskové
+  field_issue_closer_done_issue_status: do stavu
+  field_issue_closer_done_issue_user: s uživatelem
+  field_issue_closer_inactive_interval: ", nebyly zaktualizovány více než"
+  field_issue_closer_observe_issue_status_id: jsou ve stavu
+  field_monitor_due_date: Kontroluj datum a čas dokončení
+  field_monitor_spent_time: Kontroluj celkové čerpání hodin
+  field_monthly_hours: Předplacené hodiny na měsíc
+  field_occurence_time: Čas výskytu‌
+  field_sla_resolve: Hodin do vyřesení
+  field_sla_resolve_fulfilment: Hodin k vyřešení - plnění
+  field_sla_response: Hodin k převzetí
+  field_sla_response_fulfilment: Hodin k převzetí - plnění
+  field_use_working_time: Počítat SLA podle pracovního času
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: Úprava emailové šablony
+  heading_easy_helpdesk_mail_templates_index: Přehled emailových šablon
+  heading_easy_helpdesk_mail_templates_new: Nová emailová šablona
+  heading_easy_helpdesk_mail_templates_show: Detail emailové šablony
+  heading_easy_helpdesk_mailboxes_edit: Detail schránky
+  heading_easy_helpdesk_mailboxes_index: Schránky pro helpdesk
+  heading_easy_helpdesk_mailboxes_new: Nová schránka
+  heading_easy_helpdesk_projects_edit: Úprava projektu
+  heading_easy_helpdesk_projects_index: Helpdeskové projekty
+  heading_easy_helpdesk_projects_new: Nový helpdeskový projekt
+  heading_easy_helpdesk_projects_show: Detail projektu
+  heading_easy_helpdesk_reports_index: Helpdesk - reporty
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Měsíční souhrn odpracovaných
+    hodin
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Roční souhrn odpracovaných hodin
+  heading_easy_helpdesk_settings: Nastavení
+  hint_automatically_issue_closer_enable: ''
+  issue_closer_inactive_interval_units:
+    days: dny
+    hours: hodiny
+  label_automatically_issue_closer: Automaticky aktualizuje ukoly, které
+  label_copy_settings_sla_from_project: Kopírovat nastavení SLA z projektu
+  label_easy_hekodesk_additional_task_info_received_emails: Zpracované emaily
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: Zbývající hodiny pro tento měsíc
+  label_easy_helpdesk_actual_budget_to_spend: Zbývající hodiny
+  label_easy_helpdesk_aggregated_from_last_period: Přenesené z předešlého období
+  label_easy_helpdesk_alerts: Nastavení výstrah
+  label_easy_helpdesk_allow_custom_sender: Povolit vlastního odesílatele
+  label_easy_helpdesk_allow_override: Povolit přepsání hodnot
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: Změna polí na tiketeu
+    notify: Poslat email ze šablony
+  label_easy_helpdesk_client_response_status: Změnit stav po odpovědi klienta na
+  label_easy_helpdesk_domain_name: Email doména
+  label_easy_helpdesk_emails: Nastavení emailů - hlavička a patička
+  label_easy_helpdesk_enable_email_footer: Změnit patičku pro tento projekt?
+  label_easy_helpdesk_enable_email_header: Změnit hlavičku pro tento projekt?
+  label_easy_helpdesk_hours_comulated: Hodiny shromážděné
+  label_easy_helpdesk_hours_comulated_range: od %{from} do %{to}
+  label_easy_helpdesk_hours_per_month: Odpracováno tento měsíc
+  label_easy_helpdesk_ignore_cc: Ignorovat CC přijatých emailů
+  label_easy_helpdesk_mail_signature: Helpdesk - podpis
+  label_easy_helpdesk_matching: Nastavení emailu nebo domény
+  label_easy_helpdesk_message_above_variables: Komentář k úkolu je nad šablonou e-mailu
+  label_easy_helpdesk_need_reaction: Reagovat!
+  label_easy_helpdesk_project_helpdesk_tab: Helpdesk
+  label_easy_helpdesk_project_managed_by_helpdesk: Nastavení helpdesku
+  label_easy_helpdesk_project_plural: Helpdeskové projekty
+  label_easy_helpdesk_projects_sla_working_time_calendar: Pracovní dny
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: Počítat dobu trvání SLA od
+    znovuotevření úkolu
+  label_easy_helpdesk_sender: Odesílatel
+  label_easy_helpdesk_sender_current_user: Přihlášený uživatel
+  label_easy_helpdesk_sender_is_user: Odesílatelem je přihlášený uživatel
+  label_easy_helpdesk_sender_mailbox_address: Adresa emailové schránky
+  label_easy_helpdesk_sender_redmine_default: Výchozí z e-mailové notifikace
+  label_easy_helpdesk_signature: Podpis
+  label_easy_helpdesk_signature_name: Název podpisu
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Přijímat automaticky generované
+    maily
+  label_easy_helpdesk_sla: Nastavení SLA - priority, čas do vyřešení úkolu
+  label_easy_helpdesk_sla_start_states: Počítat SLA úkolu ve stavech
+  label_easy_helpdesk_sla_stop_states: Pozastavit SLA úkolu ve stavech
+  label_easy_sla_event: SLA událost
+  label_easy_sla_events: SLA události
+  label_easy_sla_events_reports: SLA reporty
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - projekt
+  label_filter_group_easy_helpdesk_report_monthly_query: Helpdesk - report
+  label_filter_group_easy_helpdesk_report_query: Helpdesk - report
+  label_filter_group_easy_helpdesk_report_yearly_query: Helpdesk - report
+  label_filter_group_easy_sla_event_query: SLA událost
+  label_filter_show_spent_time_current_month_equal_to_zero: Odpracováno hodin na HD
+    (tento měsíc) je rovno 0
+  label_filter_show_spent_time_last_month_equal_to_zero: Odpracováno hodin na HD (minulý
+    měsíc) je rovno 0
+  label_issue_bottom_from_easy_helpdesk: Úkol byl vytvořen z helpdesku (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Předplaceno tento měsíc
+  label_sla_calendar_settings: Nastavení kalendářů
+  label_tab_sla_events: SLA události
+  permission_manage_easy_helpdesk: Spravovat helpdesk
+  permission_manage_easy_helpdesk_project: Spravovat projekty helpdesku
+  permission_manage_easy_sla_events: Spravovat SLA události
+  permission_view_easy_helpdesk_sla: Zobrazit SLA na tiketech
+  permission_view_easy_sla_events: Zobrazit SLA události
+  project_module_easy_helpdesk: Helpdesk
+  setting_easy_helpdesk_custom_sender: Helpdeskový odesílatel
+  text_easy_helpdesk_change_default_sender: Toto nastavení nezmění pole 'Odpověď komu'
+  text_easy_helpdesk_custom_sender: Přepsat výchozího helpdeskového odesílatele. Pro
+    deaktivaci této funkce zanechte prázdné.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: jméno řešitele
+    author: aktuální autor
+    date: aktuální datum
+    mail_to: email komu‌
+    spent_time: celkový vykázaný čas
+    task_closed_on: úkol uzavřen
+    task_description: popis úkolu
+    task_done_ratio: "% hotovo úkolu"
+    task_due_date: datum dokončení úkolu
+    task_estimated_hours: odhadovaný čas úkolu
+    task_history: historii všech komentářových aktualizací
+    task_id: ID úkolu
+    task_id_without_hash: příslušné ID úkolu bez mřížky
+    task_last_journal: poslední veřejný komentář úkolu
+    task_note: text poslední aktualizace
+    task_priority: příslušnou prioritu úkolu
+    task_project: příslušný název projektu úkolu
+    task_public_url: příslušnou veřejnou url úkolu
+    task_start_date: příslušný začátek úkolu
+    task_status: příslušný stav úkolu
+    task_subject: příslušný název úkolu
+    task_tracker: příslušný typ úkolu
+    user_first_name: jméno aktuálního uživatele
+    user_last_name: příjmení aktuálního uživatele
+    user_name: celé jméno aktuálního uživatele
+    user_signature: podpis uživatele
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Předmět a zpráva může obsahovat dynamický text:'
+  - "%task_id% (nahradí se za příslušný ID úkolu)"
+  - "%task_subject% (nahradí se za příslušný název úkolu)"
+  - "%task_note% (nahradí se za text poslední aktualizace)"
+  - "%task_history% (nahradí se za historii všech komentářových aktualizací)"
+  - "%time_spent% (nahradí se za celkový vykázaný čas)"
+  - "%assignee% (nahradí se za jméno řešitele)"
+  - "%user_signature% (nahradí se za podpis uživatele)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Předmět a zpráva může obsahovat
+    dynamický text:'
+  text_easy_helpdesk_mail_template_issue_status_id: Umožňuje svázat šablonu s konkrétním
+    stavem úkolu. Výběrem stavu, ve kterém se úkoly vytvářejí, bude šablona použita
+    jako automatická odpověď po vytvoření úkolu z e-mailu.
+  text_easy_helpdesk_mail_template_replacement_for: nahradí se za
+  text_easy_helpdesk_mail_template_reply_to: "(Mr. Example) - email sem nepište"
+  text_easy_helpdesk_mail_template_reply_to2: Položky "Odesílatel" a "Odpověď komu"
+    jsou převzaty z vybrané šablony aby se komunikace držela v jednom úkolu
+  text_easy_helpdesk_mailbox_too_long_to_process: Tato schránka se zpracovává příliš
+    dlouho bez jakékoliv odozvy ze serveru. Je to pravděpodobne způsobeno příliš mnoho
+    zprávami ve schránce. Odstraňte prosím staré zprávy ze zložek, které jsou napojeny
+    na Help desk. Zároveň zkontrolujte bezpečnostní pravidla pro opakovaný přístup
+    externích aplikací do vašeho mail serveru.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Přiřaďte tyto schránky do
+    jednotlivých projektů. Pokud tak neučiníte, tak neznámé příchozí emaily nebudou
+    zpracovány!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Tyto schránky nemají nastaveny
+    výchozí projekt:'
+  text_easy_helpdesk_projects_alerts_list: 'Seznam výstrah:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Seznam výstrah, které potřebují
+    nastavit notifikační email (bude otevřeno v novém okně):'
+  text_easy_helpdesk_projects_is_default: Pokud přijde email od neznámého odesílatele,
+    tak se úkol založí do tohoto projektu.
+  text_easy_helpdesk_projects_keyword_description: Pokud předmět emailu obsahuje definované
+    klíčové slovo, bude tiket přiřazen tomuto projektu. Klíčové slovo je case-sensitive.
+  text_easy_helpdesk_projects_keywords: Pokud předmět emailu obsahuje definované slovo,
+    tak daná priorita a datum a čas bude nastaveno. (* znamená jakýkoliv předmět)
+  text_easy_helpdesk_projects_monitor_due_date: Tato přednastavená výstraha pošle
+    email pokud úkol není vyřešen v rámci intervalu SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Tato přednastavená výstraha pošle
+    email pokud na projektu jsou překročeny měsíční předplacené hodiny
+  text_easy_helpdesk_projects_new_priority: Pokud nejsou uvedena klíčová slova, SLA
+    se nastaví podle zvolené priority
+  text_easy_helpdesk_projects_priority: SLA se nastaví podle zvolené priority
+  text_easy_helpdesk_projects_sla_hours_to_response: Maximální potřebný čas od přijmutí
+    emailu k začátku realizace.
+  text_easy_helpdesk_projects_sla_hours_to_solve: Maximální potřebný čas k vyřešení
+    úkolu. Úkoly z helpdesku můžou být zobrazeny v Ganttu - jestliže čas do vyřešení
+    úkolu je na 75% bude úkol oranžový, jestliže je úkol po termínu bude červený.
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Některé úkoly (%{count}/%{total})
+    nebyly uloženy:'
+  text_easy_rake_task_helpdesk_issue_closer_updated: '%{updated_count} <small class="help">aktualizováno</small>
+    / %{notified_count} <small class="help">poslaný email zákazníkovi</small>'
+  text_isseu_closer_close_notice: Tento úkol byl automaticky aktualizován helpdeskem
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: reakce
+    měla být do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: reakce
+    musí být do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: vyřešení
+    mělo být do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: vyřešení
+    musí být do %{time}'
+  text_mailbox_delete_confirmation: Chystáte se smazat emailovou schránku. Smazání
+    schránky může způsobit, že na tiketech, které byli vytvořeny z této schránky již
+    nebude možné odeslat email ze šablony. Skutečně si přejete pokračovat?
+  title_easy_helpdesk_add_project_from_sidebar: Kliknutím přidáte projekt do helpdesku
+  title_easy_helpdesk_allow_custom_sender: Umožnit nastavení vlastního odesílatele
+    podle projektu
+  title_easy_helpdesk_allow_override: Povolit úpravu úkolu ze zprávy
+  title_easy_helpdesk_client_response_status: Zvolte, na který stav se úkol změní,
+    když je aktualizován e-mailem.
+  title_easy_helpdesk_ignore_cc: Po přijetí emailu se všechny emaily v CC automaticky
+    přidají do sledujích, externího emailu úkolu a odešle se jim automatická odpověď,
+    tato možnost toto chování ruší.
+  title_easy_helpdesk_message_above_variables: Předdefinovaná zpráva bude nad předdefinovanými
+    proměnými
+  title_easy_helpdesk_sender: 'Kdo bude v poli "od":'
+  title_easy_helpdesk_sender_current_user: Právě přihlášený uživatel
+  title_easy_helpdesk_sender_is_user: Pole 'od' bude přihlášený uživatel
+  title_easy_helpdesk_sender_mailbox_address: Emailová adresa ze schránky
+  title_easy_helpdesk_sender_redmine_default: Výchozí odesílací e-mailová adresa
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'VAROVÁNÍ: Helpdesk bude
+    přijímat e-maily z jiných systémů, což může vést k nekonečné výměně e-mailů!'
+  title_easy_helpdesk_sla_start_states: Vyberte stavy, když je obnoveno měření SLA
+    po tom, co bylo přerušeno nastavením výše.
+  title_easy_helpdesk_sla_stop_states: Vyberte stavy, když se neměří SLA. Například
+    uzavřené úkoly nebo když čekáte na odpověď klienta.
+  title_sla_waiting_for_client: Čekání na klienta
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Zakázáno - po uzavření úkolu je SLA zastaveno. Když úkol znovu otevřete,
+      SLA se počítá od okamžiku, kdy byl původně vytvořen
+    enabled: Povoleny - poté, co úkol je uzavřen, SLA se zastaví. Když je úkol znovu
+      otevřen, SLA se počítá od okamžiku, kdy byl znovu otevřen

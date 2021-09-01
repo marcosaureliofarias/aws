@@ -1,0 +1,31 @@
+<% default_entity_name = entity_type.capitalize.gsub('_', ' ') %>
+<div id="entity_mapping_for_<%= entity_type %>" class="easy_xml_data__entity_mapping <%= hidden ? 'hidden' : '' %>">
+  <h2><%= l("label_#{entity_type}_mapping", default: default_entity_name + ' ' + l(:label_mapping)) %></h2>
+
+  <table class="list">
+    <thead>
+      <tr>
+        <% if entity_type == 'user' %>
+          <th><%= l(:field_login) %></th>
+        <% end %>
+        <th><%= l(:field_name) %></th>
+        <th><%= l(:label_map_to) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% entities_for_mapping.each do |entity_for_mapping| %>
+        <tr>
+          <% if entity_type == 'user' %>
+            <td><%= entity_for_mapping[:login] %></td>
+          <% end %>
+          <td><%= entity_for_mapping[:name] %></td>
+          <% mapping_options = existing_entities.map { |existing_entity| [existing_entity.name, existing_entity.id] } %>
+          <td><%= select_tag(
+            "map[#{entity_type}][#{entity_for_mapping[:id]}]",
+            options_for_select(entity_for_mapping[:match].blank? ? ([["--- #{l('option_map_to_new_' + entity_type, default: l(:label_map_to_new) + ' ' + default_entity_name)} ---" , '']] + mapping_options) : mapping_options, entity_for_mapping[:match])) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

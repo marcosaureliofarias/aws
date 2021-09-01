@@ -1,0 +1,16 @@
+<div class="tabs tab-container">
+  <ul>
+    <% cl1 = (action_name == 'edit' ? 'selected' : nil)%>
+    <%= content_tag :li, link_to(l(:label_status_transitions), workflows_edit_path(:role_id => @roles, :tracker_id => @trackers), :class => cl1), :class => cl1%>
+    <% cl1 = (action_name == 'permissions' ? 'selected' : nil)%>
+    <%= content_tag :li, link_to(l(:label_fields_permissions), workflows_permissions_path(:role_id => @roles, :tracker_id => @trackers), :class => cl1), :class => cl1%>
+    <% if Redmine::Plugin.installed? :easy_crm %>
+        <% cl1 = (action_name == 'crm_permissions' ? 'selected' : nil)%>
+        <%= content_tag :li, link_to(l(:label_crm_fields_permissions), workflows_crm_permissions_path, :class => cl1), :class => cl1%>
+    <% end %>
+  </ul>
+  <div class="tabs-buttons" style="display:none;">
+    <button class="tab-left" type="button" onclick="EASY.utils.moveTabLeft(this);"></button>
+    <button class="tab-right" type="button" onclick="EASY.utils.moveTabRight(this);"></button>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+
+.mx {
+  &-calendar {
+    border-color: $color-border-minor !important;
+    &-content {
+      height: auto !important;
+    }
+    &-time {
+      background: $color-background !important;
+    }
+  }
+  &-input{
+    color: $color-text !important;
+  }
+  &-btn{
+    color: $color-text !important;
+  }
+  &-time{
+    background: $color-foreground !important;
+    border-color: $color-border-minor !important;
+    &-header, &-column{
+      border-color: $color-border-minor !important;
+    }
+    &-item{
+      &:hover{
+        background: $color-background !important;
+        color: $color-positive !important;
+      }
+      &.disabled{
+        color: $color-text !important;
+        background: transparent !important;
+      }
+    }
+  }
+  &-datepicker {
+    width: 100% !important;
+    &-header, &-footer{
+      border-color: $color-border-minor !important;
+    }
+    &-content{
+      background: $color-foreground !important;
+      color: $color-text !important;
+    }
+    &-popup {
+      .cell {
+        text-align: center;
+        &.active{
+          background: $color-positive;
+        }
+        &.today,&.today:hover{
+          background: $color-background !important;
+          color: $color-positive !important;
+          font-weight: bold;
+        }
+        &.active,&.active:hover{
+          background: $color-positive !important;
+          color: $color-foreground !important;
+        }
+        &.not-current-month{
+          color: $color-text-muted !important;
+        }
+        &:hover{
+          background: $color-background !important;
+        }
+      }
+      button, .cell{
+        &:hover{
+          color: $color-positive !important;
+        }
+      }
+    }
+    &-content{
+      color: $color-text;
+
+    }
+  }
+}

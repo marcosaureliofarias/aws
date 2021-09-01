@@ -1,0 +1,5 @@
+api.array :easy_contact_types do
+  @types.each do |type|
+    render_api_easy_contact_type(api, type)
+  end
+end

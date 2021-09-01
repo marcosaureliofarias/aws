@@ -1,0 +1,6 @@
+<h3 class="title"><%= l(:label_member_new) %></h3>
+
+<%= form_for @member, as: :membership, url: project_memberships_path(@project), remote: true, method: :post,
+             html: { class: 'form-box', id: 'modal-dialog-add-members' } do |form| %>
+  <%= render('members/new_form', project: @project, form: form) %>
+<% end %>

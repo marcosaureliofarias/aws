@@ -1,0 +1,7 @@
+<% if @changesets.present? %>
+  <div id="issue-changesets" class="box">
+    <%= render 'issues/changesets', changesets: @changesets %>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

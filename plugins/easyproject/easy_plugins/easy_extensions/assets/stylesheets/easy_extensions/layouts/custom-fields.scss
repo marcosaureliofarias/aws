@@ -1,0 +1,72 @@
+.cf{
+  &-datetime{
+    &-date{
+      input{
+        margin-left: -.5*$gap  - 1;
+      }
+    }
+  }
+}
+
+input.amount_cf {
+  padding-right: 50px !important;
+}
+.amount {
+  &-cf-wrapper {
+    position: relative;
+  }
+  &-type-currency {
+    position: absolute;
+    line-height: calc(#{$form-field-height} - 4px);
+    padding: 0 .5*$gap;
+    margin: 2px 2px 0 0;
+    right: 0;
+    background: $color-foreground;
+  }
+}
+
+
+label.text_cf {
+  float: none !important;
+  .tabular.fake-responsive .custom-field > & {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+label.text_cf ~ [class*=cke_editor], label.text_cf + textarea.wiki-edit {
+  max-width: initial !important;
+  @include respond-to(min-small-screen) {
+    width: calc(100% + #{$tabular-offset});
+    margin-left: -$tabular-offset;
+    box-sizing: border-box;
+  }
+  @include respond-to(min-medium-screen) {
+    padding: 0 $gap $gap $gap;
+  }
+  .tabular.fake-responsive .custom-field > & {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+label.text_cf + .jstBlock {
+  @include respond-to(min-small-screen) {
+    width: calc(100% + #{$tabular-offset});
+    margin-left: -$tabular-offset;
+  }
+  @include respond-to(min-medium-screen) {
+    padding: $gap;
+  }
+  .tabular.fake-responsive & {
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+  }
+  .jstEditor {
+    & textarea {
+      width: 100% !important;
+      max-width: initial;
+    }
+  }
+}

@@ -1,0 +1,2 @@
+<td class="columns-heading"><label><%= l(:field_currency) %></label></td>
+<td><%= select_tag 'easy_currency_code', options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, query.easy_currency_code), include_blank: true %></td>

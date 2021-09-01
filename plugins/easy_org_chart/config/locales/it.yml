@@ -1,0 +1,56 @@
+---
+it:
+  activerecord:
+    attributes:
+      user:
+        supervisor_user_id: Supervisore
+    errors:
+      models:
+        user:
+          attributes:
+            supervisor_user_id:
+              children_exists: subordinati esistenti
+              missing_in_tree: deve trovarsi nell’organigramma
+              root_changed: deve essere vuoto perchè l’utente è radice e non può essere
+                assegnato ad un altro supervisore.
+  button_easy_org_chart_collapse: Comprimi tutto
+  button_easy_org_chart_expand: Espandi tutto
+  button_easy_org_chart_export: Esporta
+  easy_org_chart_plugin_description: ''
+  easy_org_chart_plugin_menu_caption: Organigramma
+  easy_org_chart_plugin_name: Easy - Organigramma
+  easy_org_chart_subordinates_access:
+    direct_subordinates: Subordinati diretti
+    forbidden: Non consentito
+    subordinates_tree: Albero dipendenti
+  easy_pages:
+    modules:
+      org_chart: Organigramma
+  field_assigned_to_id_supervisor: Supervisore dell’assegnatario
+  field_author_id_supervisor: Supervisore dell’autore
+  field_easy_org_chart_node_background: 'Stile sfondo del nodo:'
+  field_easy_org_chart_node_background_color: Colore sfondo del dipendente
+  field_easy_org_chart_node_width: Larghezza nodo
+  field_easy_org_chart_parent_node_background_color: Colore sfondo del responsanbile (Nodo
+    padre)
+  field_easy_org_chart_root_node_background_color: Colore sfondo del CEO (Nodo radice)
+  field_easy_org_chart_share_subordinates_access: Condividi accesso dipendenti al supervisore
+  field_easy_org_chart_show_avatar: Mostra Avatar
+  field_easy_org_chart_show_custom_fields: Mostra campi personalizzati
+  field_easy_org_chart_show_fields_names: Mostra nomi dei campi
+  field_easy_org_chart_show_user_fields: Mostra campi nativi
+  field_subordinates_of_supervisor: Dipendenti di supervisore
+  field_supervisor: Supervisore
+  label_easy_org_chart_legend_node: Dipendente
+  label_easy_org_chart_legend_parent_node: Responsabile
+  label_easy_org_chart_legend_root_node: CEO
+  label_my_page_org_chart_root_user_id: Seleziona la radice dell’organigramma
+  label_my_page_org_chart_vertical_depth: Visualizzazione compatta da livello
+  label_my_subordinates: I miei dipendenti
+  label_my_subordinates_tree: Albero dei miei dipendenti
+  permission_edit_easy_attendance_approval_for_inferiors: Modifica approvazione di
+    partecipazione per dipendenti
+  title_easy_org_chart: Organigramma
+  title_easy_org_chart_drag_for_create: Aggiungi utenti all’organigramma tramite trascinamento.
+  title_easy_org_chart_drop_for_delete: Rilascia qui per rimuovere dall’organigramma
+  title_easy_org_chart_settings: Impostazioni organigramma

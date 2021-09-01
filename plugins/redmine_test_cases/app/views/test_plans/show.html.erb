@@ -1,0 +1,23 @@
+<%= title @test_plan.name %>
+<div class="issue">
+  <div class="attributes">
+    <%= issue_fields_rows do |rows| %>
+      <% rows.left ::TestPlan.human_attribute_name(:name), @test_plan.name %>
+      <% rows.right ::TestPlan.human_attribute_name(:author_id), link_to_user(@test_plan.author) %>
+    <% end %>
+    <%= render_half_width_custom_fields_rows(@test_plan) %>
+    <%= call_hook(:view_test_plans_show_details_bottom, :test_plan => @test_plan) %>
+  </div>
+
+  <%= render_full_width_custom_fields_rows(@test_plan) %>
+
+  <%= render_easy_entity_assignments(@test_plan,
+                                     ::TestCase,
+                                     easy_query_class: TestCaseQuery,
+                                     heading: l(:label_test_cases)) %>
+
+</div>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'test_plans/sidebar' %>
+<% end %>

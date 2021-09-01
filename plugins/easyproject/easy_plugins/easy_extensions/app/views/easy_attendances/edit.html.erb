@@ -1,0 +1,17 @@
+<%= title l(:edit, :scope => :easy_attendance, :date => format_date(@easy_attendance.arrival)) -%>
+<% back_url = params[:back_url].presence || easy_attendances_path %>
+<%= form_for(@easy_attendance) do |f| %>
+  <%= render(partial: 'form', locals: {f: f, easy_attendance: @easy_attendance, modul_uniq_id: ''}) -%>
+  <div class="form-actions">
+    <%= f.submit(l(:button_save), class: 'button-positive easy-calendar__modal-button') -%>
+    <%= link_to(l(:button_cancel), back_url, class: 'button') -%>
+    <%= link_to(l(:button_delete), easy_attendance_path(f.object, {back_url: back_url}), method: :delete, data: {confirm: l(:text_are_you_sure)}, class: 'icon icon-del button-negative') if f.object.can_delete? %>
+  </div>
+<% end -%>
+
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    EASY.journals.collapseUnnecessary();
+    EASY.initEasyAttendanceActivityChanger();
+  });
+</script>

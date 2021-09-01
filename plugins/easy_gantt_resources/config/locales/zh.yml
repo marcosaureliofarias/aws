@@ -1,0 +1,131 @@
+---
+zh:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: 已存分配方案
+  button_hide_planned_tasks: 不显示已计划的任务
+  button_top_menu_easy_gantt_resources: 资源管理
+  easy_gantt_resources:
+    allocator:
+      evenly: 均衡分配(慢)
+      from_end: 从任务到期日往前分配
+      from_start: 从任务开始日安排
+      future_evenly: 未来均衡分配
+      label_allocator: 分配器
+    buttons:
+      button_project_menu: 资源管理
+      rm_with_milestones: 显示里程碑
+      rm_with_projects: 显示项目
+    context:
+      heading_allocator_setting: 分配设置
+      label_maximal_hours: 最大工作时(天)数
+      pseudo_even_allocation: 不(伪)均衡的分派
+      text_setting_for: 对以下的设置
+    errors:
+      assigned_to_is_blank: 必需设置被指派人
+      estimated_hours_is_blank: 预估的小时数无效
+      issue_is_closed: 问题已关闭
+      negative_allocation: 在%{date}, 可分配的时间已经为负
+      no_rights_for_allocation: 你无权分配问题:%{issue}
+      non_member_assignee: '问题: %{issue}属于项目:%{project} , 且用户 %{assignee}不是该项目的成员'
+      over_allocation: 在%{date}可能有更多可以分配的时间
+      project_is_baseline: 项目为原始时间线(进度)
+      save_error: '问题 "%{name}" 的指派: [%{allocations}](被分配人: %{assignee}) 不能保存.  原因:
+        %{reason}'
+      start_or_due_is_required: 必须有开始和交付日期
+    event_types:
+      generic: 事件
+      holiday: 假日
+      meeting: 会议
+    global_resource_title: 通用资源管理
+    label_events: 事件
+    label_other_allocations_sum: 不可视问题的分配
+    label_whole_day: 整天
+    legend:
+      day_custom_allocation: 手动调整分配
+      day_over_allocation: 在某些日期, 用户工作量过多
+      full_allocations: 用户已有较好的工作量
+      no_allocations: 用户没有分配工作
+      over_allocations: 用户工作量过多
+      some_allocations: 用户有空闲
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: 资源管理
+    text_easy_resources_footer: Redmine 资源管理由Easy软件开发
+    title_rm_short: RM
+  easy_pages:
+    modules:
+      easy_gantt_resources: 资源管理
+      personal_easy_gantt_resources: 个性化资源管理
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: 资源管理
+        description: 转到资源管理
+  easy_query:
+    name:
+      easy_resource_easy_query: Resource management
+  error_allocation_uniqueness: 该资源已经存在
+  error_epm_resource_already_active: 该页的页面模块已经生效
+  error_invalid_dates: 无效的日期
+  error_resources_not_authorized: 不能保存资源, 你没有权限编辑这些资源
+  field_advance_hours_definition: 手动小时数的定义
+  field_advance_hours_per_days: 调整每天小时数
+  field_assigned_to_admin: 管理员
+  field_assigned_to_created_on: 创建时间
+  field_assigned_to_email: E-mail
+  field_assigned_to_firstname: 姓
+  field_assigned_to_lastname: 名
+  field_assigned_to_login: 登陆
+  field_assigned_to_status: 状态
+  field_change_allocator_enabled: 更改分派
+  field_decimal_allocation: 十进制分配
+  field_default_allocator: 默认的工作进度分派方式
+  field_hide_planned_tasks_enabled: 不显示已计划任务按钮
+  field_hide_unassigned: 隐藏未分配的
+  field_hours_per_day: 每天小时数
+  field_resource_allocator: 资源分配
+  field_show_groups: 显示分组
+  field_show_total_project_allocations: 显示总项目分派
+  field_watchdog_enabled: 监督
+  help_easy_gantt_resources_users_estimated_ratios: 分配给用户的工作所需时间(评估值) 要乘以这个常数
+  help_easy_gantt_resources_users_hours_limits: 这一分配中用户每天工作时数由这一数值限定
+  help_easy_gantt_resources_users_hours_limits_blank: 保留空白则视为使用默认值
+  label_easy_gantt_allocations: 分配
+  label_easy_gantt_period: 时间区间
+  label_easy_gantt_resources_get_from_users: 从用户开始计算
+  label_easy_gantt_resources_get_from_users_for_all_groups: 计算全部用户的值
+  label_easy_gantt_resources_global_query_filters: 通用默认过滤器
+  label_easy_gantt_resources_groups_selection: 按组选择
+  label_easy_gantt_resources_hours_from_calendar: 按日程表统计小时数
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: 计算全部用户在日程表的小时数
+  label_easy_gantt_resources_settings: 资源设置
+  label_easy_gantt_resources_show_free_capacities: 显示空闲的
+  label_easy_gantt_resources_users_estimated_ratios: 评估时间的比例
+  label_easy_gantt_resources_users_hours_limits: 每天小时数上限
+  label_easy_gantt_resources_users_selection: 选择用户
+  label_easy_gantt_resources_with_projects: 显示默认方式下的项目配置
+  label_easy_meeting_easy_resource_dont_allocate: 不分配
+  project_module_easy_gantt: Easy Gantt & Resource Management
+  text_easy_gantt_resources_advance_hours_definition: 这周每天能够规定的小时数
+  text_easy_gantt_resources_advance_hours_per_days: 这周每天最多可分配小时 数
+  text_easy_gantt_resources_change_allocator_enabled: 在任务被编辑时允许变更任务分配
+  text_easy_gantt_resources_change_default_allocator: 由于性能的原因, 该选项的变更不会影响任务的当前默认分配
+  text_easy_gantt_resources_decimal_allocation: 分配小时数精确到小数点后的位数
+  text_easy_gantt_resources_default_allocator: 怎么评估要分配的任务的小时数(均衡的分配可以会导致进度缓慢)
+  text_easy_gantt_resources_default_zoom: 通用资源管理默认使用的时间单位
+  text_easy_gantt_resources_hide_planned_tasks_enabled: 在资源管理界面显示"不显示已计划任务"的按钮
+  text_easy_gantt_resources_hours_per_day: 每天最大分配时数
+  text_easy_gantt_resources_overloaded_assigned: 此任务给 %{errors}的分配过量. 请在%{link}上进行更改.
+  text_easy_gantt_resources_show_free_capacities: 在资源管理界显示空闲的时数而不是已分配的任务小时数
+  text_easy_gantt_resources_show_groups: 在通用资源管理界面显示分组
+  text_easy_gantt_resources_show_total_project_allocations: 在项目资源管理中显示总的分配小时数
+  text_easy_gantt_resources_watchdog_enabled: 在任务编辑时查看工作过量的被分配人
+  text_easy_gantt_resources_with_projects: 在通用资源生管理以默认的方式开启“项目”选项
+  text_easy_meeting_easy_resource_dont_allocate: 会议将不能让资源管理器内的可分配小时数下降
+  title_easy_gantt_personal_resources: 我的资源
+  title_easy_gantt_resources_settings: Easy软件开发的资源管理插件
+  title_easy_gantt_resources_users_settings: 用户的个别设置

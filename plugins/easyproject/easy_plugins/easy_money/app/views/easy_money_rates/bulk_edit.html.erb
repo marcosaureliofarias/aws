@@ -1,0 +1,60 @@
+<%
+  required_rate_type = EasyMoneySettings.find_settings_by_name('rate_type', @project)
+  available_rate_types = required_rate_type == 'all' ? EasyMoneyRateType.rate_type_cache : EasyMoneyRateType.rate_type_cache.find_all{|rate_type| rate_type.name == required_rate_type}
+  options_for_easy_currency = EasyCurrency.activated.map{|easy_currency| [easy_currency.name, easy_currency.iso_code]}
+%>
+
+<div class="contextual">
+  <ul id="bulk-selection">
+    <% @users.each do |user| %>
+        <%= content_tag 'li', link_to_user(user) %>
+    <% end %>
+  </ul>
+</div>
+<h2><%= l(:label_bulk_edit_selected_users) %></h2>
+<%= form_tag(url_for(action: 'bulk_update'), id: 'bulk_edit_form', class: 'form-box') do %>
+    <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+    <%= hidden_field_tag('project_id', @project.id) if @project %>
+
+    <% @users.each do |user| %>
+        <%= hidden_field_tag('ids[]', user.id, id: nil) %>
+    <% end %>
+
+    <div class="splitcontent tabular">
+      <div class="splitcontentleft">
+        <% available_rate_types.each do |easy_money_rate| %>
+          <p>
+            <%= label_tag "easy_money_rate_#{easy_money_rate.id}", easy_money_rate.translated_name %>
+            <%= hidden_field_tag "easy_money_rate[][rate_type_id]", easy_money_rate.id %>
+            <%= text_field_tag "easy_money_rate[][unit_rate]", '0.0', size: 5, id: "easy_money_rate_#{easy_money_rate.id}" %>
+            <label>
+              <input type="checkbox" data-disable-target="easy_money_rate_<%= easy_money_rate.id %>">
+              <%= l :label_ignore_changes %>
+            </label>
+          </p>
+        <% end %>
+        <% if options_for_easy_currency.any? %>
+            <p>
+              <%= label_tag :easy_currency_code, l(:label_easy_currency) %>
+              <%= select_tag :easy_currency_code, options_for_select(options_for_easy_currency, @project.try(:easy_currency_code)) %>
+            </p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l(:button_submit), :class => 'button-positive' %>
+    </div>
+<% end %>
+
+<script>
+    EASY.schedule.main(function () {
+        document.querySelectorAll('[data-disable-target]').forEach(function(checkbox){
+            var target = document.getElementById(checkbox.dataset.disableTarget);
+
+            checkbox.addEventListener('change', function(){
+                target.disabled = checkbox.checked;
+            })
+        })
+    });
+</script>

@@ -1,0 +1,3 @@
+<% @easy_attendances.each do |activity, attendances| %>
+  <%= render :partial => 'approval_list', :collection => attendances, :as => 'easy_attendance' %>
+<% end %>

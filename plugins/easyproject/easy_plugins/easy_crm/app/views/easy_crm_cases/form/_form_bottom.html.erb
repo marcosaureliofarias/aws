@@ -1,0 +1,9 @@
+<% if easy_crm_case.new_record? && EasySetting.value('easy_crm_use_items', project) %>
+  <div id="easy_crm_case_items_container">
+    <%= toggling_container('easy-crm-items-heading', User.current, {:heading => l(:heading_easy_crm_case_item_index), :wrapping_heading_element_classes => 'icon icon-reorder'}) do  %>
+    <div class="autoscroll">
+      <%= render :partial => 'easy_crm_case_items/easy_crm_case_items', :locals => {:easy_crm_case => easy_crm_case, :project => project} %>
+    </div>
+    <% end %>
+  </div>
+<% end %>

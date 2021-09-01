@@ -1,0 +1,173 @@
+---
+nl:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: kan niet leeg zijn of bestaat niet
+              empty: kan niet leeg zijn of bestaat niet
+        easy_data_template:
+          attributes:
+            type:
+              blank: kan niet leeg zijn of bestaat niet
+              empty: kan niet leeg zijn of bestaat niet
+  button_easy_data_template_assignment: veldtoewijzingen
+  button_easy_data_template_edit: Sjabloon bewerken
+  button_easy_data_template_export_data: Gegevens exporteren
+  button_easy_data_template_import: importeren
+  button_easy_data_template_import_data: Gegevens importeren
+  button_easy_data_template_import_preview: voorbeeld
+  button_easy_data_template_new_export: CSV exporteren
+  button_easy_data_template_new_import: CSV importeren
+  button_easy_data_template_new_msproject: Importeren van MS Project
+  button_easy_data_template_settings: aanpassing
+  button_new_advance_import: Geavanceerde import
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Nee
+    xyes: Ja
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: naam oplosser
+      assigned_to_id: id oplosser
+      assigned_to_lastname: achternaam oplosser
+      assigned_to_login: login oplosser
+      assigned_to_mail: e-mail oplosser
+      author_firstname: naam auteur
+      author_id: id auteur
+      author_lastname: achternaam
+      author_login: login auteur
+      author_mail: e-mail de auteur
+      description: beschrijving van de taak
+      due_date: Einde van taak (datum)
+      estimated_hours: Geschatte taaktijd (uren)
+      id: taak id
+      priority_id: id prioriteit
+      priority_name: titel prioriteit
+      project_id: id project
+      project_name: projectnaam
+      start_date: begin van de taak (datum)
+      subject: onderwerp van de taak
+      tracker_id: taaksoort id
+      tracker_name: de naam van de taaksoort
+    Project:
+      description: beschrijving van het project
+      enabled_modules: modulenaam
+      id: id project
+      is_public: openbaar (Opmerking auteur)
+      name: projectnaam
+      parent_id: id hoofdproject
+      parent_name: naam van het hoofdproject
+      trackers_ids: id taaksoort
+      trackers_names: naam van de taaksoort
+    TimeEntry:
+      activity: activiteit
+      activity_id: id activiteiten
+      activity_name: naam van activiteit
+      comments: opmerking
+      easy_range_from: gerapporteerd van
+      easy_range_to: gerapporteerd aan
+      hours: klok
+      issue: taak
+      issue_id: id taak
+      issue_subject: titel taak
+      project: project
+      project_id: id project
+      project_name: projectnaam
+      spent_on: datum
+      user: gebruiker
+      user_id: id gebruiker
+    User:
+      admin: Beheerder (Opmerking auteur)
+      firstname: gebruikersnaam
+      id: gebruikersid
+      language: taal gebruiker
+      lastname: achternaam van de gebruiker
+      login: Login gebruiker
+      mail: E-mail gebruikers
+      password: wachtwoord
+      send_mail: aanmelden om e-mail te verzenden (Opmerking auteur)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Taak
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Project
+    EasyDataTemplateTimeEntry: Gerapporteerde tijd
+    EasyDataTemplateUser: Gebruiker
+  easy_data_templates_plugin_author: Easy Software
+  easy_data_templates_plugin_author_url: http://www.easyredmine.com
+  easy_data_templates_plugin_description: "- Gegevenssjablonen om gegevens in CSV-formaat
+    te importeren en exporteren"
+  easy_data_templates_plugin_name: Data templates
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Data sjablonen
+        description: Beheer data sjablonen
+  error_during_import: Wanneer u importeert treedt de fout op. Controleer de ingevoerde
+    gegevens.
+  error_easy_data_template_attachment_not_uploaded: Is opgenomen en geen toevoeging
+    om te importeren
+  error_easy_data_template_ms_project_not_valid_xml: Het toegevoegde bestand is geen
+    geldig XML van MS Project 2010 of hoger.
+  field_easy_data_template_allowed_import: Importeren
+  label_check_preview: Controleer de gegevens door de ´Voorvertoning´ te gebruiken
+  label_easy_data_template_assignment: Veldtoewijzingen
+  label_easy_data_template_author_name: Auteur
+  label_easy_data_template_edit: Sjablonen bewerken
+  label_easy_data_template_entity_type: Entiteit
+  label_easy_data_template_export_new: Nieuw exporteersjabloon
+  label_easy_data_template_import_file: Bestand importeren
+  label_easy_data_template_import_new: Nieuw importeersjabloon
+  label_easy_data_template_import:
+    assignments:
+      all: toegewezen kolomposities
+      entity_attribute_name: kolomnaamentiteiten
+      file_column_position: positie van het kolom in csv
+      new: Toegewezen kolomposities
+    errors:
+      erow: fout in de lijn
+      errors_count: aantal fouten
+      errors_rows: foute lijnen
+      errors_rows_count: aantal foute lijnen
+      errors_sum: tezamen
+      row: incorrect lijnnummer
+      show: foute lijnen tonen
+    preview:
+      row: Lijnnummer
+      table: voorvertoning
+    settings:
+      col_sep: veldscheidingsteken
+      encoding: encoderen
+      import_all: Alles of niets
+      new: Aanpassing
+      preview_rows: Aantal lijnen voor de voorvertoning
+      project_template: Gebruik een designsjabloon
+      quote_char: scheidingstekst
+      return_headers: eerste lijn bevat de naam van de kolom
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Aan een taak toegewezen)"
+    other: "(Aan %{count} taken toegewezen)"
+    zero: "(Niet toegewezen)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Naam in MSP
+  label_easy_data_template_ms_project_user_name_in_ep: Interne naam
+  label_easy_data_template_name: Naam
+  label_easy_data_template_public: openbaar
+  label_easy_data_template_template_type: Soort
+  label_easy_data_template_template_type_export: exporteren
+  label_easy_data_template_template_type_import: importeren
+  label_easy_data_template_user_name: Eigenaar
+  label_easy_data_templates: Gegevensjablonen
+  label_easy_data_templates_choose_project: Project kiezen
+  label_easy_data_templates_choose_query: Filter kiezen
+  label_easy_data_templates_source_settings: Gegevensbron selecteren
+  label_easy_data_templates_target_settings: Selecteren van de doelgegevens
+  notice_easy_data_templates_import_ok: Importeren is gelukt.
+  text_easy_data_template_ms_project_upload_file: Het bestand moet in XML-formaat
+    zijn (in MS Project vanaf het bovenste menu, klik op Bestand - Opslaan als - Opslaan
+    als XML-type).
+  title_easy_data_templates_apply_to_all_rows: Klik om deze waarde op alle vergelijkbare
+    lijnen te zetten.

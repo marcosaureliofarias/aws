@@ -1,0 +1,5 @@
+<%= fields_for('easy_entity_import[settings]', nil, {:builder => Redmine::Views::LabelledFormBuilder}) do |f| %>
+  <p>
+    <%= f.text_field(:root, :value => easy_entity_import.settings['root'], :label => l(:field_easy_entity_xml_import_root_node)) %>
+  </p>
+<% end %>

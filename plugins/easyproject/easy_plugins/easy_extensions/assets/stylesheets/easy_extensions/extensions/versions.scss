@@ -1,0 +1,50 @@
+.version{
+  &-article{
+    .progress-bar{
+      @include respond-to(max-medium-screen){
+        margin: $gap 0;
+      }
+    }
+  }
+  &-list{
+    a{
+      @extend %tag;
+    }
+  }
+  &-item{
+    &-header{
+      h3{
+        @include respond-to(min-medium-screen){
+          margin: 1.4*$gap 0;
+        }
+      }
+    }
+  }
+}
+
+#roadmap_filters {
+  line-height: 2;
+  .icon-toggler{
+    @extend %eq-toggler;
+  }
+  &.open .icon-toggler{
+    @extend %eq-toggler-open;
+  }
+}
+
+#tab-content-versions{
+  padding-top: $box-padding;
+}
+
+#status_by{
+  &_select{
+    float: right;
+    height: 25px;
+    line-height: 25px;
+    margin-top: -6px;
+    width: 55%;
+  }
+  .nodata{
+    margin-bottom: 0;
+  }
+}

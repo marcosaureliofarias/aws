@@ -1,0 +1,38 @@
+<% easy_agile_editable = local_assigns.fetch(:easy_agile_editable, false) %>
+<hr/>
+<div class="attributes">
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <div class="attribute">
+        <div class="label"><%= l(:label_agile_sprint) %>:</div>
+        <div class="value">
+          <%= content_tag(:span,
+                          class: easy_agile_editable ? 'multieditable' : '',
+                          data: { name: 'issue[easy_sprint_id]',
+                                  value: issue.easy_sprint_id,
+                                  type: 'select', source: easy_autocomplete_path('all_sprint_array', issue_id: issue) }
+              ) do %>
+            <% unless issue.easy_sprint.nil? %>
+              <%= link_to(issue.easy_sprint.name,
+                          easy_agile_board_path(issue.easy_sprint.project.id, sprint_id: issue.easy_sprint.id),
+                          title: issue.easy_sprint.name) %>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="splitcontentright">
+      <div class="attribute">
+        <div class="label"><%= l(:label_agile_story_points) %>:</div>
+        <div class="value">
+          <%= content_tag(:span,
+                          class: easy_agile_editable ? 'multieditable' : '',
+                          data: { name: 'issue[easy_story_points]', value: issue.easy_story_points, type: 'text' }
+              ) do %>
+            <%= issue.easy_story_points %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

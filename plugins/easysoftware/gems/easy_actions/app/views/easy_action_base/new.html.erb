@@ -1,0 +1,18 @@
+<%# title(l(:heading_new_easy_action_sequence, scope: :easy_actions)) unless request.xhr? %>
+<%= entity_form_with(@entity) do |f| %>
+
+  <%= error_messages_for @entity %>
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+
+  <div class="box tabular">
+    <div id="<%= @entity.class.base_class.model_name.param_key %>_container">
+      <%= render partial: 'form', locals: { entity: @entity } %>
+    </div>
+  </div>
+
+  <% unless request.xhr? %>
+    <div class="form-actions">
+      <%= f.submit l(:button_create), class: 'button-positive' %>
+    </div>
+  <% end %>
+<% end %>

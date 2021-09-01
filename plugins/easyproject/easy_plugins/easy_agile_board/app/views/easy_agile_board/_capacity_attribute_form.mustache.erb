@@ -1,0 +1,6 @@
+<form class="edit_issue" id="edit_issue_{{id}}" action="/issues/{{id}}" accept-charset="UTF-8" data-remote="true" method="post">
+  <label title="<%= l('field_' + capacity_attribute)%>" class="inline" for="<%= capacity_attribute %>">
+    <input type="text" name="issue[<%= capacity_attribute %>]" value="{{easy_agile_rating}}" id="<%= capacity_attribute %>">
+  </label>
+  <input type="submit" name="commit" value="Save" class="button-positive">
+</form>

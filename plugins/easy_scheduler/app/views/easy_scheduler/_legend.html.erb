@@ -1,0 +1,27 @@
+<p class="easy-calendar-legend legend ">
+  <% if EasyScheduler.easy_calendar? %>
+    <span class="push-right">
+      <%= link_to l(:label_easy_calendar_ical_export_url),
+                  easy_scheduler_icalendar_link_path(key: User.current.api_key),
+                  class: 'icon icon-ics',
+                  remote: true %>
+    </span>
+  <% end %>
+  <span class="easy-calendar-legend__main" data-legend="not_legend_item">
+    <span style="cursor: pointer" data-legend="allocation" class="easy-calendar-legend__item easy-calendar-legend__scheduler--issue"><%= l(:label_issue) %></span>
+    <span style="cursor: pointer" data-legend="meeting" class="easy-calendar-legend__item easy-calendar-legend__scheduler--meeting"><%= l(:label_meeting) %></span>
+    <span style="cursor: pointer" data-legend="easy_attendance" class="easy-calendar-legend__item easy-calendar-legend__scheduler--attendance"><%= l(:label_easy_attendance_plural) %></span>
+    <button type="button" class="button-mini easy-calendar-legend__scheduler--show_button hidden" data-legend="not_legend_item">...</button><br/>
+    <span class="easy-calendar-legend__scheduler--entity_others">
+      <span style="cursor: pointer" data-legend="easy_entity_activity" class="easy-calendar-legend__item easy-calendar-legend__scheduler--entity_activity"><%= l('easy_scheduler.label_sales_activity') %></span>
+      <span style="cursor: pointer" data-legend="easy_holiday_event" class="easy-calendar-legend__item easy-calendar-legend__scheduler--holiday_event"><%= l('easy_scheduler.label_holiday') %></span>
+      <span style="cursor: pointer" data-legend="ical_event" class="tooltip easy-calendar-legend__item easy-calendar-legend__scheduler--ical_event"><%= l(:label_ical_event) %></span>
+    </span>
+
+  </span>
+  <span class="easy-calendar-legend__year">
+    <span class="easy-calendar-legend__item easy-calendar-legend__scheduler--low"><%= l('easy_scheduler.label_underallocation') %></span>
+    <span class="easy-calendar-legend__item easy-calendar-legend__scheduler--high"><%= l('easy_scheduler.label_good_allocation') %></span>
+    <span class="easy-calendar-legend__item easy-calendar-legend__scheduler--over"><%= l('easy_scheduler.label_overallocation') %></span>
+  </span>
+</p>

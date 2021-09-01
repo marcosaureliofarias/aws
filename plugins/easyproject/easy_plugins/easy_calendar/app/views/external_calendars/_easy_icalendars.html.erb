@@ -1,0 +1,18 @@
+<%= toggling_fieldset l(:label_icalendars) do %>
+  <%= hidden_field_tag :tab, 'external_calendars' %>
+  <div id="easy_icalendars_container" class="box tabular">
+    <%= form.fields_for :easy_icalendars do |calendar| %>
+      <div class="nested-fields">
+        <%= toggling_fieldset(calendar.object.name, class: 'easy-user-icalendars') do %>
+          <%= render 'external_calendars/easy_icalendar_fields', f: calendar %>
+        <% end %>
+      </div>
+    <% end %>
+    <div style="float:right;">
+      <%= link_to_add_association l(:label_add_external_calendar), form, :easy_icalendars, partial: 'external_calendars/easy_icalendar_fields', render_options: {locals: { wrapp:true }}, class: 'button icon icon-add' %>
+    </div>
+  </div>
+  <% content_for :header_tags do %>
+    <%= easy_cocoon_tags %>
+  <% end %>
+<% end %>

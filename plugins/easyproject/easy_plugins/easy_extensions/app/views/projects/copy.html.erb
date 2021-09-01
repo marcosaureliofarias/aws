@@ -1,0 +1,107 @@
+<% disabled_modules = EasyExtensions::EasyProjectSettings.disabled_features[:modules]
+source_project_and_descendants =  @source_project.self_and_descendants.non_templates.sorted %>
+
+<h2><%=l(:label_project_new)%></h2>
+
+<%= labelled_form_for @project, :url => { :action => 'copy' }, :html => {:id => 'project-form', :class => 'form-box'} do |f| %>
+
+    <%= render :partial => 'form', :locals => { :f => f } %>
+
+    <%= toggling_fieldset l(:button_copy) do %>
+      <label class="inline"><%= check_box_tag 'only[]', 'easy_page_modules', true, id: nil %> <%= l(:label_easy_page_user_modules, :pagename => '') %></label>
+
+      <% if @source_project.descendants.non_templates.any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'subprojects', true, id: 'checkbox_subprojects' %> <%= l(:label_subproject_plural) %> (<%= @source_project.descendants.non_templates.count %>)</label>
+      <% end %>
+
+      <label class="inline"><%= check_box_tag 'only[]', 'members', true, id: nil %> <%= l(:label_member_plural) %> (<%= source_project_and_descendants.to_a.sum{|p| p.members.count} %>)</label>
+
+      <label class="inline"><%= check_box_tag 'only[]', 'versions', true, id: nil %> <%= l(:label_version_plural) %> (<%= source_project_and_descendants.to_a.sum{|p| p.versions.count} %>)</label>
+
+      <% if !disabled_modules.include?('issue_tracking') && source_project_and_descendants.has_module(:issue_tracking).any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'issues', true, id: nil %> <%= l(:label_issue_plural) %> (<%= source_project_and_descendants.to_a.sum{|p| p.issues.count} %>)</label>
+      <% end %>
+
+      <label class="inline"><%= check_box_tag 'only[]', 'issue_categories', true, id: nil %> <%= l(:label_issue_category_plural) %> (<%= source_project_and_descendants.to_a.sum{|p| p.issue_categories.count} %>)</label>
+
+      <% if !disabled_modules.include?('issue_tracking') && source_project_and_descendants.has_module(:issue_tracking).any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'easy_queries', true, id: nil %> <%= l(:label_query_plural) %> (<%= source_project_and_descendants.to_a.sum{|p| p.easy_queries.count} %>)</label>
+      <% end %>
+
+      <% if !disabled_modules.include?('boards') && source_project_and_descendants.has_module(:boards).any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'boards', true, id: nil %> <%= l(:label_board_plural) %> (<%= source_project_and_descendants.to_a.sum{|p| p.boards}.count %>)</label>
+      <% end %>
+
+      <% if !disabled_modules.include?('wiki') && source_project_and_descendants.has_module(:wiki).any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'wiki', true, id: nil %> <%= l(:label_wiki_page_plural) %> (<%= @source_project.wiki.nil? ? 0 : @source_project.wiki.pages.count %>)</label>
+      <% end %>
+
+      <% if !disabled_modules.include?('documents') && source_project_and_descendants.has_module(:documents).any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'documents', true, id: nil %> <%= l(:project_module_documents) %>  (<%= source_project_and_descendants.to_a.sum{|p| p.documents.count} %>)</label>
+      <% end %>
+
+      <% if !disabled_modules.include?('time_tracking') && source_project_and_descendants.has_module(:time_tracking).any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'activity', true, id: nil %> <%= l(:enumeration_activities) %></label>
+      <% end %>
+
+      <% if !disabled_modules.include?('news') && source_project_and_descendants.has_module(:news).any? %>
+        <label class="inline"><%= check_box_tag 'only[]', 'news', true, id: nil %> <%= l(:label_news) %> (<%= source_project_and_descendants.to_a.sum{|p| p.news.count} %>)</label>
+      <% end %>
+
+    <% if !disabled_modules.include?('time_tracking') && source_project_and_descendants.has_module(:time_tracking).any? %>
+      <label class="inline"><%= check_box_tag 'only[]', 'time_entries', true, id: nil %> <%= l(:label_spent_time) %> (<%= project_time_entries(source_project_and_descendants).count %>)</label>
+    <% end %>
+
+    <%= call_hook(:view_projects_copy, :source_project_and_descendants => source_project_and_descendants, :disabled_modules => disabled_modules) %>
+      <%= hidden_field_tag 'only[]', '' %>
+    <% end %>
+
+    <% if @subprojects && @subprojects.any? %>
+      <%= toggling_fieldset l(:label_subproject_plural), :class => 'subprojects' do %>
+        <div class="splitcontent">
+          <div class="splitcontent-left tabular size-6">
+            <% new_identifier = @project_identifier %>
+            <% @subprojects.each do |project| -%>
+              <% if Setting.sequential_project_identifiers? && !new_identifier.nil? %>
+                <% new_identifier = new_identifier.to_s.succ %>
+              <% end %>
+              <%= hidden_field_tag 'subprojects[][id]', project.id %>
+              <p class="subproject">
+                <%= label_tag 'subprojects[][name]', l(:field_name), :class => 'required' %>
+                <%= text_field_tag 'subprojects[][name]', project.name, {:size => 50, :id => "project_#{project.id}_name", :class => 'required', :required => 'required'} -%>
+                <em class="help"><%= l(:text_caracters_maximum, 255) %></em>
+              </p>
+              <% if EasySetting.value('project_display_identifiers') -%>
+                <p>
+                  <%= label_tag 'subprojects[][identifier]', l('field_identifier'), :class => 'required' %>
+                  <%= text_field_tag 'subprojects[][identifier]', new_identifier, {:size => 50, :class => 'required', :required => 'required'} -%>
+                  <br />
+                  <em class="help">
+                    <%= l(:text_length_between, :min => 1, :max => Project::IDENTIFIER_MAX_LENGTH) %> <%= l(:text_project_identifier_info).html_safe %>
+                  </em>
+                </p>
+              <% end %>
+            <% end -%>
+          </div>
+        </div>
+      <% end %>
+
+      <script type="text/javascript" charset="utf-8">
+        EASY.schedule.late(function () {
+          $('#checkbox_subprojects').click(function (e) {
+            if (e.target.closest('input[type="checkbox"]').checked == true) {
+              $('fieldset.subprojects input.required').attr('required', 'required');
+            } else {
+              $('fieldset.subprojects input.required').removeAttr('required');
+            }
+          });
+        });
+      </script>
+    <% end %>
+
+
+    <div class="form-actions">
+      <label class="inline"><%= check_box_tag 'notifications', 1, params[:notifications] %> <%= l(:label_project_copy_notifications) %></label><br/>
+      <%= submit_tag l(:button_copy), :class => 'button-positive' %>
+    </div>
+  <% end %>

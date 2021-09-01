@@ -1,0 +1,32 @@
+<% if @story.versions.present? %>
+  <div class="versions">
+    <table class="list">
+      <tr>
+        <th><%= l(:text_scm_command_version) %></th>
+        <th><%= l(:field_updated_at) %></th>
+        <th><%= l(:label_hours_diff) %></th>
+        <th><%= l(:label_easy_knowledge_story_restore_version) %></th>
+      </tr>
+      <% @story.versions.order('id DESC').each do |version| %>
+        <tr>
+          <td><%= version.version %></td>
+          <td><%= format_date(User.current.user_time_in_zone(version.updated_on)) %></td>
+          <td>
+            <% if !@story.version.nil? && @story.version != version.version %>
+              <%= link_to l(:label_hours_diff), easy_knowledge_story_diff_path(@story, current_version: @story.version, compare_version: version.version), remote: true, class: 'button' %>
+            <% end %>
+          </td>
+          <td>
+          <% if @story.editable? && @story.versions.size > 1 && @story.version != version.version %>
+             <%= link_to l(:label_easy_knowledge_story_restore_version), easy_knowledge_story_restore_path(@story.id, version: version.version), class: 'button' %>
+          <% end %>
+          </td>
+      <% end %>
+      </tr>
+    </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+

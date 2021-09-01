@@ -1,0 +1,66 @@
+<%
+  money_entity_type ||= @money_entity_type.to_s
+  project = local_assigns.fetch(:project, nil)
+%>
+<% if project && (User.current.allowed_to?(:easy_money_manage_other_revenue, project) || User.current.allowed_to?(:easy_money_manage_expected_revenue, project) || User.current.allowed_to?(:easy_money_manage_other_expense, project) || User.current.allowed_to?(:easy_money_manage_expected_expense, project)) %>
+  <% easy_money_settings = project.easy_money_settings %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%
+      link_to_params = {
+        action: 'new',
+        easy_money: { entity_type: entity_type, entity_id: entity_id },
+        back_url: params[:back_url]
+      }
+    %>
+    <% if easy_money_settings.revenues_type == 'list' %>
+      <% if money_entity_type.include?('expected') || (money_entity_type.blank? && !User.current.allowed_to?(:easy_money_manage_other_revenue, project)) %>
+        <% if User.current.allowed_to?(:easy_money_manage_expected_revenue, project) && easy_money_settings.show_expected? %>
+          <%= link_to l(:button_easy_money_project_new_revenue),
+                      { controller: 'easy_money_expected_revenues' }.merge(link_to_params),
+                      title: l(:title_easy_money_project_new_revenue),
+                      class: 'button-positive revenue-new-link icon icon-add' %>
+        <% end %>
+      <% else %>
+        <% if User.current.allowed_to?(:easy_money_manage_other_revenue, project) %>
+          <%= link_to l(:button_easy_money_project_new_revenue),
+                      { controller: 'easy_money_other_revenues' }.merge(link_to_params),
+                      title: l(:title_easy_money_project_new_revenue),
+                      class: 'button-positive revenue-new-link icon icon-add' %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if easy_money_settings.expenses_type == 'list' %>
+      <% if money_entity_type.include?('expected') || (money_entity_type.blank? && !User.current.allowed_to?(:easy_money_manage_other_expense, project)) %>
+        <% if User.current.allowed_to?(:easy_money_manage_expected_expense, project) && easy_money_settings.show_expected? %>
+          <%= link_to l(:button_easy_money_project_new_expense),
+                      { controller: 'easy_money_expected_expenses' }.merge(link_to_params),
+                      title: l(:title_easy_money_project_new_expense),
+                      class: 'button-positive expense-new-link icon icon-add' %>
+        <% end %>
+      <% else %>
+        <% if User.current.allowed_to?(:easy_money_manage_other_expense, project) %>
+          <%= link_to l(:button_easy_money_project_new_expense),
+                      { controller: 'easy_money_other_expenses' }.merge(link_to_params),
+                      title: l(:title_easy_money_project_new_expense),
+                      class: 'button-positive expense-new-link icon icon-add' %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if User.current.allowed_to?(:easy_money_settings, project) %>
+    <%= link_to l(:button_easy_money_project_settings),
+                { controller: 'easy_money_settings', action: 'project_settings', project_id: project },
+                title: l(:title_easy_money_settings),
+                class: 'button settings-index-link icon icon-settings' %>
+  <% end %>
+<% end %>
+
+<% if project&.easy_money_settings %>
+  <% if project.module_enabled?('issue_tracking') && project.easy_money_settings.use_easy_money_for_issues? %>
+    <%= link_to l(:button_easy_money_issues_budget), project_easy_money_project_issues_budget_path(project),
+                title: l(:button_easy_money_issues_budget),
+                class: 'button icon icon-money' %>
+  <% end %>
+
+  <%= call_hook(:view_easy_money_sidebar_links_bottom, project: project) %>
+<% end %>

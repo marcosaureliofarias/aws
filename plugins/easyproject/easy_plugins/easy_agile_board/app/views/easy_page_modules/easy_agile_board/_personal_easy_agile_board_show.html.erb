@@ -1,0 +1,25 @@
+<%
+  data = @easy_page_modules_data[block_name]
+  easy_sprint = data[:query].easy_sprint if data[:query]
+%>
+
+<% if data[:query] && data[:project] && easy_sprint %>
+  <div id="agile_board_container" style="align-content: center">
+    <%#= render partial: 'easy_agile_board/coworkers', locals: {project: project, easy_sprint: easy_sprint, coworkers: @coworkers} %>
+
+    <div class="sprint-container" data-sprint_id="<%= easy_sprint.id %>" id="<%= modul_uniq_id %>scrum-sprint-container"></div>
+  </div>
+
+  <script type="text/javascript">
+    EasyGem.loadModule("easyAgile", function (agile) {
+    <%# TODO: disable position changing! %>
+      agile.scrumLoader("#<%= modul_uniq_id %>scrum-sprint-container", '<%= raw output_data_easy_queries_path(data[:query].to_params.merge(output: 'scrum', project_id: data[:project], format: 'json')) %>', '<%= data[:settings]['swimlane'] %>' );
+      <% if easy_sprint.capacity_attribute.present? %>
+        <% overloaded = easy_sprint.capacity < easy_sprint.sum_easy_agile_rating %>
+        $('#module_<%= page_module.uuid.dasherize %> span.module-heading-title').after('<div id="capacity_warning" class="icon-warning red" title="<%= "#{l(:warning_sprint_over_capacity)} #{easy_sprint.sum_easy_agile_rating}/#{easy_sprint.capacity.to_f} " + l("field_#{easy_sprint.capacity_attribute}") %>" <%= raw ' style="display: none;"' unless overloaded %>></div>');
+      <% end %>
+    });
+  </script>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

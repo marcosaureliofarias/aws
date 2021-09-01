@@ -1,0 +1,5 @@
+<% if User.current.allowed_to?(:easy_money_settings, project) %>
+  <li>
+    <%= link_to(l(:button_easy_money_project_settings), project_easy_money_settings_project_settings_path(project, title: l(:title_easy_money_settings), class: 'settings-index-link')) %>
+  </li>
+<% end %>

@@ -1,0 +1,64 @@
+  <p>
+    <%= search_field_tag('principal_search', nil, :class => 'block', :placeholder => l(:label_users_find_by_user)) %>
+  </p>
+
+  <div class="splitcontent">
+    <div class="splitcontentleft size-7">
+
+      <%= late_javascript_tag "observeSearchfield('principal_search', null, '#{ j autocomplete_project_memberships_path(@project, :format => 'js') }')" %>
+
+      <div id="principals_for_new_groups">
+        <%= render(:partial => 'members/easy_principals_for_new_groups', :locals => {:project => @project}) %>
+      </div>
+
+      <div id="principals_for_new_member">
+        <%= render(:partial => 'members/easy_principals_for_new_members', :locals => {:project => @project}) %>
+      </div>
+    </div>
+    <div class="splitcontentright size-3">
+      <div class="roles-selection">
+        <fieldset>
+          <legend>
+            <%= link_to('', 'javascript:void(0)', :onclick => "toggleCheckboxesBySelector('.roles-selection input')", :title => "#{l(:button_check_all)} / #{l(:button_uncheck_all)}", :class => 'icon icon-checked') %>
+            <%= l(:label_role_plural) %>
+          </legend>
+          <% User.current.managed_roles(@project).each do |role| %>
+            <label class="checkbox flex" for="<%= "membership_role_id_#{role.id}" %>">
+              <%= check_box_tag('membership[role_ids][]', role.id, false, id: "membership_role_id_#{role.id}") %>
+              <span>
+                <%= h(role) %>
+                <span title="<%= role.description %>" class="small block">
+                  <%= truncate(role.description, length: 33) %>
+                </span>
+              </span>
+            </label>
+          <% end %>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  (function() {
+    const form = document.getElementById('<%=j form.options[:html][:id] %>');
+    if(!form) return;
+
+    const rolesContainer = form.querySelector('.roles-selection');
+    if(!rolesContainer) return;
+
+    const resolveViewOfDefaultRoles = () => {
+      if (rolesContainer.querySelector('input:checked')) {
+        form.querySelectorAll('span.default-role').forEach((span) => {
+          span.classList.add('hidden');
+        });
+      } else {
+        form.querySelectorAll('span.default-role.hidden').forEach((span) => {
+          span.classList.remove('hidden');
+        });
+      }
+    };
+
+    rolesContainer.addEventListener('click', resolveViewOfDefaultRoles);
+    rolesContainer.addEventListener('membersReloaded', resolveViewOfDefaultRoles);
+  })();
+</script>

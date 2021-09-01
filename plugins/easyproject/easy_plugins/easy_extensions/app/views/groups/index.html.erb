@@ -1,0 +1,52 @@
+<%= title l(:label_group_plural) %>
+
+<% if @groups.any? %>
+  <div class="autoscroll">
+    <table class="list groups">
+    <thead><tr>
+        <th><%=l(:label_group)%></th>
+        <th><%=l(:field_description)%></th>
+        <th><%=l(:field_easy_system_flag)%></th>
+        <th><%=l(:label_user_plural)%></th>
+        <% @groups.first.custom_field_values.each do |c| %>
+          <th><%= c.custom_field.translated_name %></th>
+        <% end %>
+        <th></th>
+      </tr></thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr id="group-<%= group.id %>" class="<%= "builtin" if group.builtin? %>">
+          <td class="name"><%= link_to group, :action => 'edit', :id => group %></td>
+          <td class="description"><%= group.description %></td>
+          <td class="tick"><%= checked_image group.easy_system_flag? -%></td>
+          <td class="user_count"><%= (@user_count_by_group_id[group.id] || 0) unless group.builtin? %></td>
+          <% group.custom_field_values.each do |c| %>
+            <td><%= show_value(c) %></td>
+          <% end %>
+          <td class="buttons"><%=
+            unless group.builtin?
+              if group.users.any? || group.projects.any?
+                link_to l(:button_delete), destroy_confirmation_group_path(group), remote: true, class: 'icon icon-del'
+              else
+                delete_link group 
+              end
+            end
+          %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<span class="pagination" style="display: none"><%= pagination_links_full @group_pages %></span>
+
+<%= render :partial => 'common/infinite_scroll' %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_group_new), new_group_path, :class => 'button-positive' %>
+<% end %>

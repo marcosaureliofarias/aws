@@ -1,0 +1,7 @@
+<%= render(:partial => 'easy_project_attachments/easy_query', :locals => {:query => @query}) -%>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+<% end -%>

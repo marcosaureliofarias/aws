@@ -1,0 +1,21 @@
+<%= title(@attachment.try(:filename) || l(:button_data_import)) %>
+<table class="list">
+  <% output.each do |external_id, imported| %>
+    <tr class="<%= 'has-error' if imported.errors.any? %>">
+      <td><%= l(:text_easy_entity_import_result_key, :key => external_id) %></td>
+      <td>
+        <% if imported.new_record? %>
+          <span class="icon icon-error red">&nbsp;</span>
+          <%= l(:text_easy_entity_imported_fail_entity, :errors => imported.errors.full_messages.join(', ')) %>
+        <% else %>
+          <%=raw l(:text_easy_entity_imported_success_entity, :entity => link_to_entity(imported.to_model)) %>
+          <% if imported.errors.any? %>
+            <p class="icon icon-error red">
+              <%= imported.errors.full_messages.join(', ') %>
+            </p>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

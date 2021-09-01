@@ -1,0 +1,8 @@
+<%= title [l(:label_room_plural), easy_rooms_path], @easy_room.name %>
+
+<%= labelled_form_for @easy_room, :html => {:class => 'form-box'} do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+<% end %>

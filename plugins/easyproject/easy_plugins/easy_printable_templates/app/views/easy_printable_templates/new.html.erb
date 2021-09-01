@@ -1,0 +1,26 @@
+<h2><%= l(:heading_easy_printable_templates_new) -%></h2>
+
+<%= labelled_form_for @easy_printable_template, :html => {:class => 'tabular form-box'} do |f| %>
+  <%= error_messages_for @easy_printable_template %>
+
+  <div>
+    <%= render :partial => 'form', :locals => { :f => f, :continue_to => @continue_to } %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_create), :class => 'button-positive' %>
+    <% if params[:back_url2] || params[:back_url] %>
+      <%= link_to(l(:button_back), params[:back_url2].nil? ? params[:back_url] : params[:back_url2], :class => 'button', :title => l(:button_back)) %>
+    <% end %>
+    <%= link_to_add_association l(:button_easy_printable_templates_add_page), f, :easy_printable_template_pages, :class => 'button', :title => l(:button_easy_printable_templates_add_page), :partial => 'pages' %>
+  </div>
+<% end %>
+
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title l(:heading_easy_printable_templates_new) %>
+
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+<% end %>

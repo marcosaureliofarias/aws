@@ -1,0 +1,16 @@
+
+<%= l(:title_easy_contact_mailer, :contact_name => @contacts.map(&:name).join(', ')) %>
+
+<%=l :header_text_of_mail, :user => @user -%>
+
+<% @contacts.each do |contact| %>
+
+  <%= contact.name %>
+  <%= url_for :controller => 'easy_contacts', :action => 'show', :id => contact, :only_path => false -%>
+  <% contact.visible_custom_field_values.each do |cf| %>
+    <%= cf.custom_field.translated_name %>: <%= cf.value %>
+  <% end %>
+
+  <%= contact.author_note %>
+
+<% end %>

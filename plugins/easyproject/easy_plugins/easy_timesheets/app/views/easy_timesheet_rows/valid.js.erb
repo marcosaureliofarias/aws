@@ -1,0 +1,11 @@
+$("#<%= dom_id(@easy_timesheet) %> tr").removeClass("invalid-row")
+$("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %>").replaceWith("<%=j render(:partial => 'easy_timesheet_rows/row', :locals => {:easy_timesheet => @easy_timesheet, :row => @row}) -%>");
+$("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %>").attr({"data-project-id": '<%= @project.try(:id) -%>', "data-issue-id": '<%= @issue.try(:id) -%>', "data-activity-id": '<%= @activity.try(:id) -%>', "data-over-time": '<%= @over_time %>'})
+<% if @new_row %>
+  if ($("#<%= @new_row.dom_id %>")[0]) {
+    $("#<%= dom_id(@easy_timesheet) %> tr#<%= @new_row.dom_id %>").addClass("invalid-row");
+    $("#<%= dom_id(@easy_timesheet) %> tr#<%= @row.dom_id %>").addClass("invalid-row");
+  }
+<% end %>
+initEasyAutocomplete();
+$("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %> td.<%= params[:focus] %>").find("input, select").first().focus().select();

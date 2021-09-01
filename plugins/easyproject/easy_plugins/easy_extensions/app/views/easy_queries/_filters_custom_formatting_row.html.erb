@@ -1,0 +1,10 @@
+<% filters ||= {} %>
+<div class="row-<%= scheme %>" data-scheme="<%= scheme %>">
+  <fieldset>
+    <legend>
+      <%= link_to 'X', 'javascript:void(0)', class: 'remove_scheme' %>
+      <%= l(:label_scheme_preview) %>: <span class="<%= scheme %>"><%= l(:sample_text) %></span>
+    </legend>
+    <%= render :partial => 'easy_queries/filters', :locals => {:query => query, :block_name => scheme, :query_filters => filters, :modul_uniq_id => scheme, :allow_repeating_filter_values => true} %>
+  </fieldset>
+</div>

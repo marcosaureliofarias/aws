@@ -1,0 +1,6 @@
+<% if @safe_attributes.include?('easy_helpdesk_ticket_owner_id') %>
+  <p class="easy_helpdesk_ticket_owner_id">
+    <label for='issue_easy_helpdesk_ticket_owner_id'><%= l(:field_easy_helpdesk_ticket_owner) %></label>
+    <%= select_tag('issue[easy_helpdesk_ticket_owner_id]', content_tag('option', l(:label_no_change_option), value: '') + content_tag('option', l(:label_nobody), value: 'none', selected: (issue_params[:easy_helpdesk_ticket_owner_id] == 'none')) + principals_options_for_select(@assignables, issue_params[:assigned_to_id])) %>
+  </p>
+<% end %>

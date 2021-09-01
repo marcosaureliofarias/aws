@@ -1,0 +1,175 @@
+<div class="contextual">
+  <ul id="bulk-selection">
+    <% @users.each do |user| %>
+      <%= content_tag 'li', link_to_user(user) %>
+    <% end %>
+  </ul>
+</div>
+<h2><%= l(:label_bulk_edit_selected_users) %></h2>
+
+<% if @saved_users && @unsaved_users.present? %>
+  <div id="errorExplanation">
+    <span>
+      <%= l(:notice_failed_to_save_users,
+        :count => @unsaved_users.size,
+        :total => @saved_users.size,
+        :ids => @unsaved_users.map {|i| "##{i.id}"}.join(', ')) %>
+    </span>
+    <ul>
+      <% bulk_edit_error_messages(@unsaved_users).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= form_tag(bulk_update_users_path, :id => 'bulk_edit_form', :class => 'form-box') do %>
+    <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] -%>
+    <%= @users.collect {|i| hidden_field_tag('ids[]', i.id, id: nil)}.join("\n").html_safe %>
+
+    <div class="splitcontent tabular">
+
+      <div class="splitcontentleft">
+
+        <% if @safe_attributes.include?('language') -%>
+          <p>
+            <label for='user_language'><%= l(:field_language) %></label>
+            <%= select_tag('user[language]', easy_bulk_options_for_select(lang_options_for_select(false), @user_params['language'])) %>
+          </p>
+        <% end %>
+
+        <% if @safe_attributes.include?('easy_user_type_id') %>
+          <p>
+            <label for='user_easy_user_type_id'><%= l(:field_easy_user_type) %></label>
+            <%= select_tag('user[easy_user_type_id]', easy_bulk_options_for_select(easy_user_type_options, @user_params['easy_user_type_id'])) %>
+          </p>
+        <% end %>
+
+        <% if @safe_attributes.include?('easy_system_flag') %>
+          <p>
+            <label for='user_easy_system_flag'><%= l(:field_easy_system_flag) %></label>
+            <%= easy_bulk_boolean_select_tag('user[easy_system_flag]', @user_params['easy_system_flag']) %>
+          </p>
+        <% end %>
+
+        <% @custom_fields.each do |custom_field| %>
+          <p>
+            <label class="<%= 'required' if custom_field.is_required? %>"><%= custom_field.translated_name %></label>
+            <%= custom_field_tag_for_bulk_edit('user', custom_field, @users, @user_params[:custom_field_values][custom_field.id.to_s], :label_none => :label_no_change_option) %>
+          </p>
+        <% end %>
+
+        <% if @safe_attributes.include?('admin') %>
+          <p>
+            <label for='user_admin'><%= l(:field_admin) %></label>
+            <%= easy_bulk_boolean_select_tag('user[admin]', @user_params['admin']) %>
+          </p>
+        <% end %>
+
+        <% if @safe_attributes.include?('easy_lesser_admin') %>
+          <p>
+            <label for='user_easy_lesser_admin'><%= l(:field_easy_lesser_admin) %></label>
+            <%= easy_bulk_boolean_select_tag('user[easy_lesser_admin]', @user_params['easy_lesser_admin'], :onchange => 'if (this.value == "" || this.value == "0") { $(\'#easy_lesser_admin_permissions_container\').hide()} else { $(\'#easy_lesser_admin_permissions_container\').show() }') %>
+          </p>
+          <% if @safe_attributes.include?('easy_lesser_admin_permissions') %>
+            <span id="easy_lesser_admin_permissions_container" style="<%= 'display:none;' unless (@user_params['easy_lesser_admin'] && @user_params['easy_lesser_admin'] == '1') -%>">
+              <p><%= l(:label_easy_lesser_admin_for) %></p>
+              <% easy_lesser_admin_permissions.each do |lesser_perm_text, lesser_perm| %>
+                <p>
+                  <%= check_box_tag 'user[easy_lesser_admin_permissions][]', lesser_perm.to_s, @user_params['easy_lesser_admin_permissions'] && @user_params['easy_lesser_admin_permissions'].detect{|p| p.to_s == lesser_perm.to_s}, :id => "user_easy_lesser_admin_permissions_#{lesser_perm}" %>
+                  <%= label_tag "user_easy_lesser_admin_permissions_#{lesser_perm}", lesser_perm_text, :class => 'inline' %>
+                </p>
+              <% end %>
+            </span>
+          <% end %>
+
+        <% end %>
+
+        <p>
+          <label for='user_mail_notification'><%= l(:field_mail_notification) %></label>
+          <%= select_tag(
+            'user[mail_notification]',
+              easy_bulk_options_for_select(@user_mail_notifications.collect {|o| [l(o.last), o.first]}, @user_params['mail_notification']),
+            :class => 'block',
+            :onchange => '$(".mail-notification").hide();$("#" + this.value).show();'
+            ) %>
+        </p>
+
+        <%= content_tag 'div', :id => 'selected', :class => 'mail-notification', :style => (@user.mail_notification == 'selected' ? '' : 'display:none;') do %>
+          <%= render_project_nested_lists(@projects) do |project|
+            content_tag('label',
+              check_box_tag(
+                'user[notified_project_ids][]',
+                 project.id,
+                 @user.notified_projects_ids.map{|id| id.to_i}.include?(project.id),
+                 :id => nil
+              ) + ' ' + h(project.name)
+            )
+          end %>
+          <%= hidden_field_tag 'user[notified_project_ids][]', '' %>
+          <p><span class="help-block"><%= l(:text_user_mail_option) %></span></p>
+        <% end %>
+
+        <%= content_tag 'div', :id => 'only_my_events', :class => 'mail-notification', :style => (@user.mail_notification == 'only_my_events' ? '' : 'display:none;') do %>
+          <p><span class="help-block"><%= l(:text_user_mail_only_my_events) %></span></p>
+        <% end %>
+
+
+        <%= fields_for 'user[pref]', @user.pref do |pref_fields| %>
+          <p>
+            <label for='user_no_self_notified'><%= l(:label_user_mail_no_self_notified) %></label>
+            <%= pref_fields.select :no_self_notified, easy_bulk_boolean_options(@user_preferences['no_self_notified']) %>
+          </p>
+          <p>
+            <label for='user_no_notified_if_issue_closing'><%= l(:label_user_mail_no_notified_if_issue_closing) %></label>
+            <%= pref_fields.select :no_notified_if_issue_closing, easy_bulk_boolean_options(@user_preferences['no_notified_if_issue_closing']) %>
+          </p>
+          <p>
+            <label for='user_no_notification_ever'><%= l(:label_user_mail_no_notification_ever) %></label>
+            <%= pref_fields.select :no_notification_ever, easy_bulk_boolean_options(@user_preferences['no_notification_ever']) %>
+          </p>
+        <% end %>
+      </div>
+
+      <div class="splitcontentright">
+
+        <%= labelled_fields_for 'user[pref]', @user.pref do |pref_fields| %>
+          <p><%= pref_fields.select :hours_format, easy_bulk_options_for_select([[l(:hours_format_short, value: easy_format_hours(1.5, {no_html: true, format: 'short'})),'short'], [l(:hours_format_long, value: easy_format_hours(1.5, {no_html: true, format: 'long'})),'long']], @user_preferences['hours_format']) %></p>
+          <p><%= pref_fields.select :user_time_entry_setting, easy_bulk_options_for_select([[l('user_time_entry_setting.all'),'all'], [l('user_time_entry_setting.hours'),'hours'], [l('user_time_entry_setting.range'),'range']], @user_preferences['user_time_entry_setting']) %></p>
+          <p><%= pref_fields.select :number_alignment, easy_bulk_options_for_select([[l(:label_align_to_right), '0'], [l(:label_align_to_left), '1']], @user_preferences['number_alignment']) %></p>
+          <p class="long-label"><%= pref_fields.select :hide_mail, easy_bulk_boolean_options(@user_preferences['hide_mail']) %></p>
+          <p><%= pref_fields.select :time_zone, easy_bulk_options_for_select(ActiveSupport::TimeZone.all.collect {|z| [ z.to_s, z.name ]}, @user_preferences['time_zone']) %></p>
+          <p><%= pref_fields.select :comments_sorting, easy_bulk_options_for_select([[l(:label_chronological_order), 'asc'], [l(:label_reverse_chronological_order), 'desc']], @user_preferences['comments_sorting']) %></p>
+          <% if false %>
+          <p><%= pref_fields.select :display_journal_details, easy_bulk_boolean_options(@user_preferences['display_journal_details']) %></p>
+          <% end %>
+          <p class="long-label"><%= pref_fields.select :warn_on_leaving_unsaved, easy_bulk_boolean_options(@user_preferences['warn_on_leaving_unsaved']) %></p>
+          <p><%= pref_fields.select :textarea_font, easy_bulk_boolean_options(@user_preferences['textarea_font_options']) %></p>
+        <% end %>
+
+        <p>
+          <%= label_tag 'user_copy_roles_from', l(:label_user_copy_roles_from) %>
+          <%= select_tag 'user[copy_roles_from]', options_for_select([['', '']] + User.active.sorted.collect{|u| [u.name, u.id]}, @copy_roles_from && @copy_roles_from.id) %>
+        </p>
+
+        <%= call_hook(:view_users_bulk_edit, :user => @user) %>
+        
+        <% auth_sources = AuthSource.all %>
+        <% if auth_sources.any? %>
+          <p>
+            <label for='user_auth_source_id'><%= l(:field_auth_source) %></label>
+            <% auth_source_options = ([[l(:label_internal), '-']] + auth_sources.map { |a| [a.name, a.id] }) %>
+            <%= select_tag('user[auth_source_id]', easy_bulk_options_for_select(auth_source_options, @user_params['auth_source_id'])) %>
+          </p>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l(:button_submit), :class => 'button-positive' %>
+    </div>
+  <% end %>
+

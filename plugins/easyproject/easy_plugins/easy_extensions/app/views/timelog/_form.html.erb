@@ -1,0 +1,20 @@
+<div class="gray-background tabular timelog">
+  <%= labelled_fields_for :time_entry, @time_entry do |f| %>
+    <% if @time_entry.new_record? && params[:project_id] %>
+      <%= hidden_field_tag 'project_id', params[:project_id] %>
+    <% elsif @time_entry.new_record? && params[:issue_id] %>
+      <%= hidden_field_tag 'issue_id', params[:issue_id] %>
+    <% else %>
+      <p>
+        <%= f.select :project_id, project_tree_options_for_select(Project.allowed_to(:log_time).to_a, :selected => @time_entry.project, :include_blank => true), :required => true %>
+      </p>
+    <% end %>
+    <div id="issues-and-time-entry">
+      <%= render :partial => 'timelog/form_issues', :locals => {:f => f, :time_entry => @time_entry, :issue => @issue, :project => @project} %>
+    </div>
+    <% @time_entry.custom_field_values.each do |value| -%>
+      <p><%= custom_field_tag_with_label :time_entry, value -%></p>
+    <% end -%>
+    <%= call_hook(:view_timelog_edit_form_bottom, { :time_entry => @time_entry, :form => f }) -%>
+  <% end -%>
+</div>

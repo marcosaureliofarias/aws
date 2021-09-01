@@ -1,0 +1,35 @@
+<% if easy_helpdesk_mail_templates.blank? %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% else %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_name) -%></th>
+        <th><%= l(:'activerecord.models.easy_helpdesk_mail_template') -%></th>
+        <th><%= l(:'activerecord.attributes.easy_helpdesk_mail_template.subject') -%></th>
+        <th><%= l(:label_default) -%></th>
+        <th><%= l(:'activerecord.attributes.easy_helpdesk_mail_template.issue_status_id') -%></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% easy_helpdesk_mail_templates.each do |easy_helpdesk_mail_template| %>
+        <tr>
+          <td><%= link_to(easy_helpdesk_mail_template.name.to_s, edit_easy_helpdesk_mail_template_path(easy_helpdesk_mail_template, back_url: original_url)) -%></td>
+          <% if mailbox = easy_helpdesk_mail_template.mailboxes.first %>
+            <td><%= link_to(mailbox.caption, edit_easy_helpdesk_mail_template_path(easy_helpdesk_mail_template, :back_url => original_url)) -%></td>
+          <% else %>
+            <td><%= l(:label_none)  -%></td>
+          <% end %>
+          <td><%= easy_helpdesk_mail_template.subject -%></td>
+          <td><%= checked_image easy_helpdesk_mail_template.is_default? -%></td>
+          <td><%= easy_helpdesk_mail_template.issue_status -%></td>
+          <td class="buttons">
+            <%= link_to(l(:button_edit), edit_easy_helpdesk_mail_template_path(easy_helpdesk_mail_template, :back_url => original_url), :class => 'icon icon-edit', :title => l(:button_edit)) %>
+            <%= link_to(l(:button_delete), easy_helpdesk_mail_template_path(easy_helpdesk_mail_template, :back_url => original_url), :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:button_delete)) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

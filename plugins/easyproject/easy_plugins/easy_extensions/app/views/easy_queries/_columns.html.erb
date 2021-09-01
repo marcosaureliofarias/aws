@@ -1,0 +1,33 @@
+<% modul_uniq_id ||= ''; block_name ||= 'easy_query' %>
+<% available_tag_id = "#{modul_uniq_id}available_columns" %>
+<% selected_tag_id = "#{modul_uniq_id}selected_columns" %>
+<table style="border-collapse: collapse; border:0; width: auto" class="columns">
+  <tr>
+    <td style="padding-left:0"><%= select_tag(
+                                     (block_name.blank? ? 'available_columns' : "#{block_name}[available_columns]"),
+                                     options_for_available_columns(query),
+                                     multiple: true, size: 10, id: available_tag_id,
+                                     class: 'easy-query-columns block',
+                                     ondblclick: "EASY.query.addOption($(this.form).find('##{available_tag_id}')[0], $(this.form).find('##{selected_tag_id}')[0]);") %>
+    </td>
+    <td style="vertical-align: middle; text-align: center; width: 5%">
+      <input id="modal_selector_move_column_right_button" type="button" class="button" value="&#8594;"
+             onclick="EASY.query.addOption($(this.form).find('#<%= available_tag_id %>')[0], $(this.form).find('#<%= selected_tag_id %>')[0]);"/><br/>
+      <input id="modal_selector_move_column_left_button" type="button" class="button" value="&#8592;"
+             onclick="EASY.query.removeOption($(this.form).find('#<%= available_tag_id %>')[0], $(this.form).find('#<%= selected_tag_id %>')[0]);"/>
+    </td>
+    <td style="width: 45%"><%= select_tag(
+                                 "#{block_name}[column_names][]",
+                                 options_for_select(query_selected_columns_options(query)),
+                                 id: selected_tag_id, multiple: true, size: 10,
+                                 class: 'easy-query-columns block',
+                                 ondblclick: "EASY.query.removeOption($(this.form).find('##{available_tag_id}')[0], $(this.form).find('##{selected_tag_id}')[0]);") %>
+    </td>
+    <td style="vertical-align: middle; text-align: center; width: 5%">
+      <input type="button" class="button" value="&#8648;" onclick="moveOptionTop($(this.form).find('#<%= selected_tag_id %>')[0]);"/><br/>
+      <input type="button" class="button" value="&#8593;" onclick="moveOptionUp($(this.form).find('#<%= selected_tag_id %>')[0]);"/><br/>
+      <input type="button" class="button" value="&#8595;" onclick="moveOptionDown($(this.form).find('#<%= selected_tag_id %>')[0]);"/><br/>
+      <input type="button" class="button" value="&#8650;" onclick="moveOptionBottom($(this.form).find('#<%= selected_tag_id %>')[0]);"/>
+    </td>
+  </tr>
+</table>

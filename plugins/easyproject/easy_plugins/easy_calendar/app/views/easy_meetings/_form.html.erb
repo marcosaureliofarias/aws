@@ -1,0 +1,265 @@
+<%
+  start_time = User.current.user_time_in_zone(@easy_meeting.start_time)
+  end_time = User.current.user_time_in_zone(@easy_meeting.end_time)
+%>
+<div class="box tabular">
+  <p class="meeting-input"><%= f.text_field :name, required: true %></p>
+  <p>
+    <label><%= l(:field_time) %></label>
+    <span class="input-append inline">
+      <%= text_field_tag 'easy_meeting[start_time][date]', start_time.try(:to_date), size: 13, required: true %>
+      <%= calendar_for('easy_meeting_start_time_date') %>
+      <%= tag(:input, type: 'time',
+                      value: start_time.try(:strftime, '%H:%M'),
+                      name: 'easy_meeting[start_time][time]',
+                      id: 'easy_meeting_start_time_time',
+                      size: 3) %>
+    </span>
+    <span class="meeting-delimiter">-</span>
+    <span class="input-append inline">
+      <%= text_field_tag 'easy_meeting[end_time][date]', end_time.try(:to_date), size: 13 %>
+      <%= calendar_for('easy_meeting_end_time_date') %>
+      <%= tag(:input, type: 'time',
+                      value: end_time.try(:strftime, '%H:%M'),
+                      name: 'easy_meeting[end_time][time]',
+                      id: 'easy_meeting_end_time_time',
+                      size: 3) %>
+    </span>
+    <span class="all-day">
+      <%= hidden_field_tag('easy_meeting[all_day]', '0', id: nil) %>
+      <% box = check_box_tag('easy_meeting[all_day]', '1', @easy_meeting.all_day) %>
+      <%= label_tag('easy_meeting_all_day', box + l(:field_all_day), class: 'checkbox inline') %>
+    </span>
+  </p>
+
+  <p>
+    <%= f.select :priority, easy_meeting_available_priorities %>
+  </p>
+
+  <p>
+    <%= f.select :privacy, easy_meeting_available_privacy %>
+    <em class="block"><%= l(:text_easy_meeting_privacy) %></em>
+  </p>
+
+  <p class="meeting-input">
+    <%= f.text_field(:place_name) %>
+  </p>
+  <% if EasyRoom.any? %>
+    <p class="meeting-room">
+      <%= f.label_for_field :easy_room_id %>
+      <%= text_field_tag nil, f.object.easy_room&.name_with_capacity,
+                         id: :easy_meeting_easy_room_autocomplete %>
+      <%= hidden_field_tag('easy_meeting[easy_room_id]', f.object.easy_room&.id, id: 'easy_meeting_easy_room_id') %>
+      <%= link_to l(:button_check_availability), availability_easy_rooms_path, target: '_blank', class: 'button' %>
+    </p>
+  <% elsif User.current.allowed_to_globally?({ controller: :easy_rooms, action: 'index' }) %>
+    <p>
+      <label></label>
+      <%= link_to l(:label_manage_rooms), easy_rooms_path, target: '_blank', class: 'button' %>
+    </p>
+  <% end %>
+  <p>
+    <label><%= l(:field_project) %></label>
+    <%= easy_select_tag('easy_meeting[project_id]',
+                        { name: @easy_meeting.project.try(:name), id: @easy_meeting.project.try(:id) },
+                        nil,
+                        easy_autocomplete_path('visible_active_projects'),
+                        include_blank: true, root_element: 'projects', html_options: { id: 'easy_meeting_project_id' }) %>
+  </p>
+  <p class="meeting-description">
+    <%= f.text_area :description %>
+  </p>
+  <div id="edit_meeting_repeat_options">
+    <%= render(:partial => 'easy_repeating/simple_form', :locals => {:object => @easy_meeting}) %>
+  </div>
+  <p>
+    <%= f.check_box :big_recurring %>
+    <em class="block"><%= l(:text_easy_meeting_big_recurring) %></em>
+  </p>
+  <% if @easy_meeting.persisted? && (@easy_meeting.easy_is_repeating? || @easy_meeting.easy_repeat_parent.try(:easy_is_repeating?)) %>
+      <div id="delete_repeating_buttons">
+        <p>
+          <%= link_to l(:button_delete_easy_meeting), easy_meeting_path(@easy_meeting), :remote => true, :method => :delete, :data => {:confirm => l(:text_meeting_destroy_confirmation)}, :class => 'button easy-delete-meeting' %>
+          <%= link_to l(:button_delete_current_and_following_repeated_meetings), easy_meeting_path(@easy_meeting, current_and_following: '1'), remote: true, method: :delete, data: {confirm: l(:text_meeting_destroy_confirmation)}, class: 'button easy-delete-meeting' unless @easy_meeting.big_recurring? %>
+          <%= link_to l(:button_delete_all_repeating_easy_meetings), easy_meeting_path(@easy_meeting, :repeating => '1'), :remote => true, :method => :delete, :data => {:confirm => l(:text_meeting_destroy_confirmation)}, :class => 'button easy-delete-meeting' %>
+        </p>
+      </div>
+  <% end %>
+
+  <%= call_hook(:view_easy_meeting_form_attributes_bottom, easy_meeting: @easy_meeting, form: f) %>
+
+  <fieldset>
+    <legend><%= l(:label_invitations) %></legend>
+    <p>
+      <label>
+        <%= l(:label_meeting_users_and_groups) %>
+      </label>
+      <%= easy_select_tag('user_select', {}, nil,
+                          easy_autocomplete_path('grouped_users_in_meeting_calendar', include_groups: true, required: true, used_user_ids: f.object.user_ids),
+                          include_blank: true,
+                          root_element: 'users',
+                          html_options: { id: 'user_select' },
+                          onchange: 'userAdded();',
+                          easy_autocomplete_options: {
+                              activate_on_input_click: true,
+                              widget: 'catcomplete',
+                              delay: 50,
+                              minLength: 0
+                          }) %>
+    </p>
+    <p>
+      <%= f.text_field(:mails) %>
+    </p>
+    <p id="selected-users-entity-array">
+    </p>
+    <p>
+      <%= label_tag :email_notifications, l(:label_meeting_email_settings) %>
+      <% EasyMeeting.email_notifications.keys.each do |type| %>
+        <%= f.radio_button :email_notifications, type %>
+        <%= f.label "email_notifications_#{type}", l("label_email_notifications.#{type}") %>
+      <% end %>
+    </p>
+  </fieldset>
+  <% if !request.xhr? %>
+    <div class="form-actions">
+      <%= f.submit l(:button_save), class: 'button-positive' %>
+      <%= link_to l(:button_cancel), easy_calendar_path, class: 'button' %>
+    </div>
+  <% end %>
+</div>
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    var allDay = $('#easy_meeting_all_day'),
+        times = $('#easy_meeting_start_time_time, #easy_meeting_end_time_time'),
+        usersEntityArray = $("#selected-users-entity-array:not(.entity-array)");
+  EasyGem.schedule.require(function () {
+    $.widget("easy.roomautocomplete", $.ui.autocomplete, {
+      _renderItem: function (ul, item) {
+        if (!item.available) {
+          return $( "<li class='ui-state-disabled'>" )
+            .attr( "data-value", item.value )
+            .append(`<span>${item.label} <i><%= l('easy_page_module.resource_availability.label_unavailable') %></i></span>`)
+            .appendTo( ul );
+        } else {
+          return $( "<li>" )
+            .attr( "data-value", item.value )
+            .append(`<span>${item.label}</span>`)
+            .appendTo( ul );
+        }
+      },
+
+      });
+    }, "jQueryUI");
+
+    <% if @easy_meeting.new_record? %>
+      var project_id = $("#header").attr("data-project-id");
+      if (project_id) {
+        var project_name = $("#header .self").text();
+        $("#easy_meeting_project_id_autocomplete").val(project_name);
+        $("#easy_meeting_project_id").val(project_id);
+      }
+    <% end %>
+
+    function toggleTimeOnAllDay() {
+      times.toggle(!allDay.is(':checked'));
+    }
+    toggleTimeOnAllDay();
+    allDay.change(toggleTimeOnAllDay);
+
+    usersEntityArray.entityArray({
+      inputNames: 'easy_meeting[user_ids][]',
+      entities: <%= @easy_meeting.easy_invitations.collect{|i| {:id => i.user.id, :name => i.user.name, :color => i.color_by_status}}.to_json.html_safe %>
+    });
+
+    <% if @easy_meeting.new_record? %>
+      usersEntityArray.entityArray('add', {id: "<%= User.current.id %>", name: "<%= User.current.name %>"});
+    <% end %>
+
+    window.userAdded = function (event, ui) {
+      var id = $('#user_select').val(),
+          name = $('#user_select_autocomplete').val();
+
+      if (!id.match(/\d+/)) {
+        if(id === 'me') {
+          id = '<%= User.current.id %>';
+          name = '<%= User.current.name %>';
+        }
+        else {
+          return false;
+        }
+      }
+
+      $('#user_select_autocomplete').val('');
+      usersEntityArray.entityArray('add', {id: id, name: name});
+    };
+
+    $('#easy_meeting_easy_room_autocomplete').roomautocomplete({
+      multiple: false,
+      select_first_value: false,
+      preload: false,
+      minLength: 0,
+      source: function( request, response ) {
+        const url = '<%= j easy_autocomplete_path('room_availability_for_date_time', start_time: '__startTime__', end_time: '__endTime__', easy_meeting_id: f.object.id) %>';
+        const startTime = document.querySelector('#easy_meeting_start_time_time').value;
+        const startDate = document.querySelector('#easy_meeting_start_time_date').value;
+        const endTime = document.querySelector('#easy_meeting_end_time_time').value;
+        const endDate = document.querySelector('#easy_meeting_end_time_date').value;
+
+        $.ajax( {
+          url: url.replace('__startTime__', `${startDate}T${startTime}`).replace('__endTime__', `${endDate}T${endTime}`),
+          dataType: "json",
+          data: {
+            term: request.term
+          },
+          success: function( data ) {
+            response(data);
+          }
+        });
+      },
+      select: function (event, ui) {
+        $(this).val(ui.item.value);
+        $('#easy_meeting_easy_room_id').val(ui.item.id);
+        this.lastSelectedValue = this.value;
+      }
+    }).focus(function () {
+      this.lastSelectedValue = this.lastSelectedValue || this.value;
+      $(this).select();
+      $(this).roomautocomplete('search', '')
+    }).blur(function() {
+      if (this.value === '') {
+        $('#easy_meeting_easy_room_id').val('');
+      } else if (this.value !== this.lastSelectedValue) {
+        this.value = this.lastSelectedValue;
+      }
+    });
+
+    var activeDialog = $(".active-dialog");
+    var roomId = activeDialog.attr("data-room-id");
+    var roomName = activeDialog.attr("data-room-name");
+    if (roomId && roomName) {
+      $("#easy_meeting_easy_room_id").val(roomId);
+      $("#easy_meeting_easy_room_autocomplete").val(roomName);
+    }
+
+    function reloadIcons() {
+      usersEntityArray.data('accepted', '<%= @easy_meeting.easy_invitations.where(:accepted => true).pluck(:user_id).to_json %>');
+      usersEntityArray.data('declined', '<%= @easy_meeting.easy_invitations.where(:accepted => false).pluck(:user_id).to_json %>');
+      var inputs = usersEntityArray.find('input');
+      var accepted = JSON.parse(usersEntityArray.data('accepted'));
+      var declined = JSON.parse(usersEntityArray.data('declined'));
+
+      $.each(inputs, function( index, input ) {
+        var value = parseInt($(input).attr('value'));
+        if($.inArray(value, accepted)!==-1) { $(input).parent().addClass('icon icon-true'); }
+        if($.inArray(value, declined)!==-1) { $(input).parent().addClass('icon icon-false'); }
+      });
+    };
+    reloadIcons();
+
+    const startTimeEl = document.getElementById("easy_meeting_start_time_time");
+    const endTimeEl = document.getElementById("easy_meeting_end_time_time");
+    const startDateEl = document.getElementById("easy_meeting_start_time_date");
+    const endDateEl = document.getElementById("easy_meeting_end_time_date");
+    EASY.utils.shiftStartEndTime({startTimeEl, endTimeEl, startDateEl, endDateEl})
+  });
+</script>

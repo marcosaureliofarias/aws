@@ -1,0 +1,170 @@
+&__comment {
+  //margin-top: $gap;
+  padding: $gap 0;
+  border-bottom: 1px solid rgba($color-border, 0.5);
+  position: relative;
+  width: 100%;
+  &s {
+    &__button-panel {
+      margin-top: $gap;
+      text-align: center;
+    }
+  }
+
+  &-body {
+    border: 1px solid $color-border;
+    background: $color-front;
+    padding: $gap;
+    border-radius: $input-radius;
+    overflow-x: auto;
+    p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .emoji {
+    position: absolute;
+    display: flex;
+    bottom: 8px;
+    right: 1px;
+    border-radius: 3px;
+    z-index: 1;
+
+    &__detail {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: .25 * $gap;
+      max-height: 150px;
+      overflow: auto;
+      border-bottom: 1px solid mix($color-border, $color-front, 50%);
+
+      & > span {
+        min-height: 24px;
+        margin: .5*$gap 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      a {
+        padding: .25 * $gap 0;
+      }
+    }
+
+    &__number {
+      font-size: $font-size--small;
+      padding-right: .5 * $gap;
+    }
+    &__box {
+      max-width: 210px;
+      position: relative;
+      box-shadow: $box-shadow;
+      background-color: $color-front;
+      padding: .5 * $gap $gap;
+    }
+    &__button {
+      opacity: .75;
+    }
+
+    &__emoji-icon {
+      font-size: 16px;
+    }
+
+    img.gravatar--emoji {
+      height: auto;
+      width: 10px;
+      margin-right: .5 * $gap;
+    }
+  }
+  &-avatar {
+    position: absolute;
+    left: -$left-offset;
+    width: $left-offset - 1.5*$gap;
+    height: $left-offset - 1.5*$gap;
+    @media only screen and (max-width: $breakpoint--small) {
+      left: 0;
+      top: $gap / 2;
+    }
+  }
+  &-wrapper {
+    @media only screen and (max-width: $breakpoint--small) {
+      margin-top: 3 * $gap;
+      //padding-left: 3 * $gap;
+    }
+  }
+  &-input {
+    margin-bottom: $gap;
+  }
+
+  &-signature {
+    @extend %signature;
+    margin-bottom: 1.25*$gap;
+    padding-right: 1.5*$gap;
+    @media only screen and (max-width: $breakpoint--small) {
+      margin-left: $left-offset - $gap;
+    }
+  }
+
+  &-actions {
+    margin-top: $gap;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: $color-front;
+    font-size: 14px;
+    z-index: 3;
+    top: 15px;
+    right: 15px;
+    box-shadow: $popup__shadow;
+    a {
+      padding: 0.5 * $gap 4 * $gap 0.5 * $gap 4 * $gap;
+      color: $color-text;
+      border-bottom: 1px solid $color-border;
+
+      &:hover {
+        text-decoration: none;
+        background: $color-background__atributes;
+      }
+      &:before {
+        position: absolute;
+        margin-left: -3 * $gap;
+        margin-top: -1px;
+      }
+    }
+    a:last-child {
+      border: 0;
+    }
+  }
+
+  &-button__close {
+    cursor: pointer;
+    position: absolute;
+    left: 450px;
+  }
+  &-add {
+    &-editor {
+      margin-bottom: $gap;
+    }
+
+    &-buttons {
+      min-height: 2 * $gap;
+    }
+  }
+  &-menu-btn {
+    position: absolute;
+    color: $color-text;
+    right: 0;
+    top: 7px;
+    cursor: pointer;
+  }
+
+  .private {
+    color: $color-negative;
+  }
+
+  @media only screen and (max-width: $breakpoint--small) {
+    margin-top: $gap*3;
+  }
+}

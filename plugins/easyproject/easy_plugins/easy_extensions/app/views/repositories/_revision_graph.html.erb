@@ -1,0 +1,20 @@
+<div id="holder" class="revision-graph"></div>
+
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag 'raphael', defer: true %>
+  <%= javascript_include_tag 'revision_graph', defer: true %>
+
+  <%= javascript_tag do %>
+    EASY.schedule.late(function () {
+      function revisionGraphHandler(){
+        drawRevisionGraph(
+          document.getElementById('holder'),
+          <%= commits.to_json.html_safe %>,
+          <%= space %>
+        );
+      }
+      revisionGraphHandler();
+      $(window).resize(revisionGraphHandler);
+    });
+  <% end %>
+<% end %>

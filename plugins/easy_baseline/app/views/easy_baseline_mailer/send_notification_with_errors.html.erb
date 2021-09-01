@@ -1,0 +1,6 @@
+<h1><%= l(:title_baseline_from_project_not_created_with_errors, project_name: @baseline.name) %></h1>
+<ul>
+  <% @errors.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>

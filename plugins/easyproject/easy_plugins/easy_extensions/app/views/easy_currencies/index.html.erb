@@ -1,0 +1,12 @@
+<div class="warning">
+  <%= l(:easy_currency_changing_warning) %>
+</div>
+
+<%= title l(:heading_easy_currency_index) %>
+<%= render :partial => 'easy_currencies/index', :locals => {:easy_currencies => @easy_currencies} %>
+
+<%= render :partial => 'easy_currencies/iso_list', :locals => {} %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= render :partial => 'easy_currencies/sidebar_links' %>
+<% end %>

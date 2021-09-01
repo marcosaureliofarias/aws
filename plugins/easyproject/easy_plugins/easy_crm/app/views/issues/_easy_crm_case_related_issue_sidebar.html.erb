@@ -1,0 +1,5 @@
+<% if User.current.allowed_to?(:view_easy_crms, issue.project) %>
+  <li>
+    <%= link_to(l(:button_easy_crm_related_case), render_assignments_form_on_issue_easy_crm_cases_path(issue_id: issue.id, project_id: issue.project.id), remote: true , class: 'icon icon-crm-1', title: l(:button_easy_crm_related_case)) %>
+  </li>
+<% end %>

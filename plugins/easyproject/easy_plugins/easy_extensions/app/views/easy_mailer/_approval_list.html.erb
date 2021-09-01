@@ -1,0 +1,7 @@
+<tr>
+  <td style='padding: 10px;border: 1px solid black;'><%= format_time(easy_attendance.arrival) %></td>
+  <td style='padding: 10px;border: 1px solid black;'><%= format_time(easy_attendance.departure) %></td>
+  <td style='padding: 10px;border: 1px solid black;'><%= easy_attendance.user.name %></td>
+  <td style='padding: 10px;border: 1px solid black;'><%= easy_attendance.easy_attendance_activity.name %></td>
+  <td style='padding: 10px;border: 1px solid black;'><%= easy_attendance.cancel_waiting? ? l(:label_canceled) : easy_attendance.attendance_status %></td>
+</tr>

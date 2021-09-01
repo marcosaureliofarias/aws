@@ -1,0 +1,10 @@
+<%
+  result = ''
+  result << stylesheet_link_tag('easy_contacts')
+  result << javascript_include_tag('easy_contacts', defer: true)
+  result << render('easy_contacts_toolbar/assignable_entities')
+  result << render('easy_contacts_toolbar/toolbar')
+%>
+$("#easy_servicebar_component_body").html("<%=j result.html_safe %>");
+$("#easy_servicebar_component").easy_contacts_toolbar({trigger: '#easy_contacts_toolbar_trigger'});
+$("#easy_servicebar_component_body input").focus()

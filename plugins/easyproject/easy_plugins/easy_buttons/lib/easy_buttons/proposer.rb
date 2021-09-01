@@ -1,0 +1,1 @@
+EasyExtensions::ActionProposer.add({ controller: 'easy_buttons', action: 'index' })

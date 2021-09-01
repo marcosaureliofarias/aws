@@ -1,0 +1,8 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+<% end %>
+
+<% @queries = ReQuery.visible.order('name ASC') %>
+<h3><%= link_to_function 'Requirements Artifacts: Stored Queries', "Effect.toggle('stored_artifact_queries')" %></h3>
+<%= render 'queries_list', :queries => @queries, :include_project => true,
+                           :container_id => 'stored_artifact_queries' %>

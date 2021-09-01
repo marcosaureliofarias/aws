@@ -1,0 +1,9 @@
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%=
+  if User.current.allowed_to_globally?(:manage_my_page)
+    render_easy_page_bottom_buttons({action: 'page_layout', t: params[:t]})
+  end
+%>
+
+<% html_title(l(:label_my_page)) -%>

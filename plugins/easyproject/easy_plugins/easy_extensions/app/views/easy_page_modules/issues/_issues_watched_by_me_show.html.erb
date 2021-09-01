@@ -1,0 +1,6 @@
+<%= render :partial => 'easy_page_modules/easy_query_show', :locals => local_assigns.merge({ :entities => easy_page_modules_data[:watched_issues], :options => { :disable_sort => true, :hascontextmenu => true } }) %>
+<%= easy_query_context_menu @easy_page_modules_data[block_name][:query], "##{modul_uniq_id}" %>
+
+<% content_for :header_tags do %>
+  <%= auto_discovery_link_tag(:atom, issues_path(:set_filter => 1, :watcher_id => user.id, :format => 'atom', :key => User.current.rss_key), {:title => l(:label_assigned_to_me_issues)}) %>
+<% end %>

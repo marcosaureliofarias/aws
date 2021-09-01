@@ -1,0 +1,21 @@
+<% affected_projects ||= [] %>
+<h3 class="title"><%= l(:label_easy_money_save_options) %></h3>
+<h3><%= l(:label_easy_money_affected_projects) %> (<%= affected_projects.count %>/<%= @affected_projects_count %>)</h3>
+<div class="splitcontent">
+  <% if !affected_projects.blank? %>
+    <ul>
+      <% affected_projects.each_with_index do |project, i| %>
+        <div class="splitcontentleft size-1">
+          <%= link_to project.name, project_path(project) %>
+        </div>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="nodata"><%= l(:label_no_data) -%></p>
+  <% end %>
+</div>
+<div class="splitcontentleft">
+  <% if @affected_projects_count > affected_projects.count %>
+    <%= link_to l(:label_show_all), easy_money_rates_load_affected_projects_path(type: 'global', tab: params[:tab], show_all: true), id: 'button_easy_money_show_all', class: 'button', remote: true %>
+  <% end %>
+</div>

@@ -1,0 +1,73 @@
+<%= form_tag({:action => 'edit', :tab => 'repositories'}, :class => 'form-box') do %>
+
+  <fieldset class="box settings enabled_scm">
+    <legend><%= l(:setting_enabled_scm) %></legend>
+    <%= hidden_field_tag 'settings[enabled_scm][]', '' %>
+    <table>
+      <tr>
+        <th></th>
+        <th><%= l(:text_scm_command) %></th>
+        <th><%= l(:text_scm_command_version) %></th>
+      </tr>
+      <% Redmine::Scm::Base.all.collect do |choice| %>
+        <% scm_class = "Repository::#{choice}".constantize %>
+        <% text, value = (choice.is_a?(Array) ? choice : [choice, choice]) %>
+        <% setting = :enabled_scm %>
+        <% enabled = Setting.send(setting).include?(value) %>
+        <tr>
+          <td class="scm_name">
+            <label>
+              <%= check_box_tag("settings[#{setting}][]", value, enabled, :id => nil) %>
+              <%= text.to_s %>
+            </label>
+          </td>
+          <td>
+            <% if enabled %>
+              <span class="icon <%= (scm_class.scm_available ? 'icon-ok' : 'icon-error') %>"></span>
+              <%= scm_class.scm_command %>
+            <% end %>
+          </td>
+          <td>
+            <%= scm_class.scm_version_string if enabled %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <em class="info"><%= l(:text_scm_config) %></em>
+  </fieldset>
+
+  <fieldset>
+    <p><%= setting_check_box :autofetch_changesets %></p>
+
+    <p>
+      <%= hidden_field_tag('easy_setting[dont_verify_server_cert]', '0', :id => nil) -%>
+      <% box = check_box_tag('easy_setting[dont_verify_server_cert]', '1', EasySetting.value('dont_verify_server_cert')) -%>
+      <%= label_tag('easy_setting_dont_verify_server_cert', box + l(:label_easy_setting_dont_verify_server_cert), :class => 'checkbox inline') %>
+    </p>
+
+    <p><%= setting_check_box :sys_api_enabled,
+                             :onclick =>
+                               "if (this.checked) { $('#settings_sys_api_key').removeAttr('disabled'); } else { $('#settings_sys_api_key').prop('disabled', true); }" %></p>
+
+    <p>
+      <%= setting_label(:sys_api_key) %>
+      <span class="input-append">
+        <%= setting_text_field :sys_api_key,
+                :id       => 'settings_sys_api_key',
+                :disabled => !Setting.sys_api_enabled?,
+                :label => false %>
+        <%= link_to_function content_tag(:span, l(:label_generate_key), :class => 'tooltip'), "if (!$('#settings_sys_api_key').prop('disabled')) { $('#settings_sys_api_key').val(randomKey(20)) }", :class => 'icon-key' %>
+      </span>
+    </p>
+
+    <p><%= setting_text_field :repository_log_display_limit, :size => 6 %></p>
+
+    <p><%= setting_check_box :commit_logs_formatting %></p>
+  </fieldset>
+
+  <%= render :partial => 'repositories/repository_commit_settings', :locals => {:project => nil} %>
+
+  <div class=" form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+<% end %>

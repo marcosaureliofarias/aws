@@ -1,0 +1,10 @@
+<div class="helpdesk_auto_issue_closer_settings" style="<%= 'display:none' if !checked %>">
+  <p>
+    <%= f.label :done_issue_status_id, l(:field_status) %>
+    <%= f.select :done_issue_status_id, options_from_collection_for_select(@issue_statuses, :id, :name, f.object.done_issue_status_id), {} %>
+  </p>
+  <p>
+    <%= f.label :done_issue_user_id, l(:field_assigned_to) %>
+    <%= f.select :done_issue_user_id, options_for_select([[l(:label_no_change_option), '0'], ["(#{l(:field_author)})", '-1'], ["(#{l(:label_nobody)})", nil]].concat(Array(@easy_helpdesk_project.project.try(:assignable_users)).map{|u| [u.name, u.id.to_s]}), f.object.done_issue_user_id), {} %>
+  </p>
+</div>

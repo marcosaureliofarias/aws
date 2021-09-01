@@ -1,0 +1,36 @@
+<% Rys::Feature.on('extended_users_context_menu') do %>
+  <% unless user&.locked? %>
+    <%= content_tag(:li, context_menu_link(
+        l(:field_generate_password),
+        bulk_generate_passwords_path(ids: params[:ids], back_url: back_url, user: { status: User::STATUS_LOCKED }),
+        class: 'icon icon-puzzle',
+        method: :put,
+        data: { confirm: l(:text_are_you_sure) }
+    )) %>
+    <%= content_tag(:li, context_menu_link(
+        l(:field_must_change_passwd),
+        bulk_next_login_passwords_path(ids: params[:ids], back_url: back_url, user: { status: User::STATUS_LOCKED }),
+        class: 'icon icon-puzzle',
+        method: :put,
+        data: { confirm: l(:text_are_you_sure) }
+    )) %>
+  <% end %>
+
+  <% if (templates = EasyPageTemplate.joins(:page_definition).where(easy_pages: { page_name: 'my-page' }).pluck(:template_name, :id)).any? %>
+    <li class="folder">
+      <a href="#" class="submenu icon icon-time-add" onclick="return false;"><%= l(:label_select_page_template) %></a>
+      <ul>
+        <% templates.each do |template| %>
+          <li>
+            <%= context_menu_link(
+                    template[0],
+                    bulk_update_page_template_path(ids: params[:ids], back_url: back_url, page_template_id: template[1]),
+                    method: :put,
+                    data: { confirm: l(:text_are_you_sure) }
+                ) %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+<% end %>

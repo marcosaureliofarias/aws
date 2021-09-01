@@ -1,0 +1,4 @@
+<% selected ||= [] %>
+<%= label_tag :easy_entity_activity_attendees_EasyContact_, l(:label_easy_contacts) %>
+<%= autocomplete_field_tag 'easy_entity_activity_attendees[EasyContact][]', easy_autocomplete_path('easy_contacts_visible_contacts'), selected, rootElement: 'easy_contacts' %>
+<%= late_javascript_tag('initEasyAutocomplete();') %>

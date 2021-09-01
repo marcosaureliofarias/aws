@@ -1,0 +1,26 @@
+<% detail ||= false; unread = news.unread? %>
+<article class="news-article journal message <%= 'unread' if unread -%>">
+  <h3><%= link_to news.title, news_path(news) %></h3>
+  <%= avatar(news.author, :style => :small) -%>
+  <div class="message-body journal-details-container ">
+    <header>
+      <h5 class="message-authoring journal-byline">
+        <span><%= link_to_user(news.author) -%></span>
+        <%= content_tag(:span, format_time(news.created_on)) %>
+        <span class="icon-message <%= unread ? 'red-icon' : 'green-icon' -%>" title="<%= l(:label_unread_entity) if unread %>"></span>
+        <%= call_hook(:view_news_detail_header_bottom, news: news) %>
+      </h5>
+    </header>
+    <div class="description wiki">
+      <% if detail %>
+        <%= textilizable(news.description, {:attachments => news.attachments}) %>
+      <% else %>
+        <% o = '...' << link_to(l(:label_more), news_path(news)) %>
+        <%= truncate_html(textilizable(news.description, {:attachments => news.attachments}), 120, o)%>
+      <% end -%>
+    </div>
+    <div class="details">
+      <%= project_header_breadcrump(news, {:link_tail => true}) %>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,51 @@
+<div class="tabular">
+  <p>
+    <%= label_tag 'mail_subject', l(:label_preview_external_email_mail_subject) %>
+    <%= text_field_tag 'mail_subject', mail_template.mail_subject, :class => 'block' %>
+  </p>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <%= call_hook(:view_easy_external_emails_preview_external_email, { :entity => entity }) %>
+
+      <% if mail_template.mail_replies_to.is_a?(Array) && mail_template.mail_replies_to.size > 1 %>
+        <p>
+          <%= label_tag 'mail_reply_to', l(:label_preview_external_email_mail_reply_to) %>
+          <%= select_tag 'mail_reply_to', options_for_select(mail_template.mail_replies_to.collect{|r| [r, r]}, mail_template.mail_reply_to) %>
+        </p>
+      <% else %>
+        <p>
+          <%= label_tag 'mail_reply_to', l(:label_preview_external_email_mail_reply_to) %>
+          <%= hidden_field_tag 'mail_reply_to', mail_template.mail_reply_to, :id => nil %>
+          <%= text_field_tag 'mail_reply_to', mail_template.mail_reply_to, :disabled => true, :class => 'block' %>
+        </p>
+      <% end %>
+      <p>
+        <%= label_tag 'mail_cc', l(:label_preview_external_email_mail_cc) %>
+        <%= text_field_tag 'mail_cc', mail_template.mail_cc, :class => 'block' %>
+      </p>
+    </div>
+    <div class="splitcontentright">
+      <p>
+        <%= label_tag 'mail_sender', l(:label_preview_external_email_mail_sender) %>
+        <%= text_field_tag 'mail_sender', mail_template.mail_sender, :class => 'block' %>
+      </p>
+      <p>
+        <%= label_tag 'mail_recepient', l(:label_preview_external_email_mail_recepient) %>
+        <%= text_field_tag 'mail_recepient', mail_template.mail_recepient, :class => 'block' %>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="preview-external-email-body">
+  <% unless Setting.plain_text_mail? %>
+    <p>
+      <%= text_area_tag 'mail_body_html', mail_template.mail_body_html, :cols => '70', :rows => '10', :class=> 'block' %>
+      <%= wikitoolbar_for 'mail_body_html', preview_text_path, {:toolbar => 'Full'} %>
+    </p>
+  <% end %>
+  <% if Setting.plain_text_mail? %>
+    <p>
+      <%= text_area_tag 'mail_body_plain', mail_template.mail_body_plain, :cols => '70', :rows => '10', :class=> 'block' %>
+    </p>
+  <% end %>
+</div>

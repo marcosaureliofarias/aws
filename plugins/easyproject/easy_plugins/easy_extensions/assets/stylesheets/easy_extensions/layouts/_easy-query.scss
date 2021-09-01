@@ -1,0 +1,108 @@
+.easy-entity{
+  &-list{
+    &__item-attribute-content {
+      .gravatar {
+        margin-right: $gap;
+      }
+    }
+    @include respond-to(max-small-screen){ // mobile tables
+      &, & > tbody,
+      &__item,
+      &__item-attribute,
+      &__item-actions,
+      &__item-placeholder,
+      &__item-group,
+      &__item-group-name{
+            display: block;
+      }
+
+      & > thead{
+        display: none;
+      }
+      &__item{
+        padding: $gap 0;
+        position: relative;
+        &-actions {
+          display: none;
+        }
+        &+&{
+          margin-top: -1px;
+        }
+        &--block{
+          @include display(flex);
+          @include flex-direction(column);
+          width: 100%;
+          border: none !important;
+          padding: $gap 0;
+        }
+        &-group{
+          @include display(flex);
+          @include flex-wrap(wrap);
+          @include align-items(flex-start);
+          &-control{
+            padding-left: .5*$gap !important;
+            padding-right: .5*$gap !important;
+            display: inline-block !important;
+          }
+          &-name {
+            max-width: 85%;
+            @include display(flex);
+            @include flex-wrap(wrap);
+            @include align-items(center);
+            & .avatar-container {
+              img {
+                height: 2*$gap;
+                width: 2*$gap;
+              }
+            }
+          }
+          &-count {
+            white-space: nowrap;
+            padding-left: 2*$gap;
+          }
+        }
+        &-group &-attribute{
+          width: 100%;
+        }
+        &-placeholder, &-checkbox{
+          display: none;
+        }
+        &[class*=idnt-] > &-attribute{
+          padding-left: 0!important;
+        }
+        &-attribute{
+          @include display(flex !important);
+          padding: 0 !important;
+          text-align: left !important;
+          position: static !important;
+          white-space: normal !important;
+          &:before{
+            left: 0 !important;
+            top: 0 !important;
+            bottom: 0 !important;
+          }
+          &-label{
+            padding: 0 .5*$gap 0 $gap;
+            //font-weight: bold;
+            display: block !important;
+            flex-basis: 30%;
+            width: 30% !important;
+            flex-shrink: 0;
+            @include small;
+          }
+          &-content{
+            padding: 0 $gap 0 .5*$gap;
+            max-width: 70% !important;
+            @include display(flex);
+            @include align-items(center);
+            @include flex-wrap(wrap);
+            flex-grow: 1;
+            .issue, .scheme{
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

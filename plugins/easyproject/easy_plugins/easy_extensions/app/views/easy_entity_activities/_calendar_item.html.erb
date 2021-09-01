@@ -1,0 +1,9 @@
+<div><%= link_to_entity(easy_entity_activity.entity) if easy_entity_activity.entity %>
+<%= format_time(easy_entity_activity.start_time, false) if easy_entity_activity.start_time %>
+<%= format_object(easy_entity_activity.category) %></div>
+<div class="tick"><%= checked_image easy_entity_activity.is_finished? %></div>
+<div class="entity-array">
+  <% easy_entity_activity.easy_entity_activity_attendees.to_a.sort_by(&:to_s).each do |attendee| %>
+    <span><%= link_to_unless(attendee.entity.class.to_s == 'EasyDemoUser', attendee.to_s, attendee.entity) %>  </span>
+  <% end %>
+</div>

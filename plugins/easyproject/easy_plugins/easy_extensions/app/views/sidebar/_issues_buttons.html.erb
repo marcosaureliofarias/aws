@@ -1,0 +1,11 @@
+<% if User.current.allowed_to?(:view_calendar, project, :global => true) %>
+  <%= link_to(l(:label_calendar), _project_calendar_path(project), :class => 'issues-calendar icon icon-calendar button') -%>
+<% end %>
+<% if User.current.allowed_to?(:view_project_activity, project, :global => true) %>
+  <%= link_to(l(:label_overall_activity), {:controller => 'activities', :action => 'index', :project_id => project}, :class => 'issues-activity icon icon-stack button') -%>
+<% end %>
+
+<% toggling_container('issues-buttons', User.current, {:heading =>  l(:sidebar_issues_buttons), :container_html => {:class => 'issues-buttons'}, :wrapping_heading_element_classes => 'icon icon-workflow' }) do %>
+
+<% end -%>
+

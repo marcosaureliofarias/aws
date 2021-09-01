@@ -1,0 +1,6 @@
+<%= labelled_form_for @project, :url => project_path(@project), :html => {:multipart => true, :method => (@project.new_record? ? :post : :put), :id => 'project-form', :class => 'form-box' } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive', :id => 'save-project-info' %>
+  </div>
+<% end %>

@@ -1,0 +1,1 @@
+<%= render(:partial => 'easy_repeating/simple_form', :locals => {:object => issue}) if EasySetting.value('allow_repeating_issues') && User.current.allowed_to?(:edit_repeating_options_on_issue, issue.project) %>

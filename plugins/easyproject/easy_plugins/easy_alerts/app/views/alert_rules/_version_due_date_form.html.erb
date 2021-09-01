@@ -1,0 +1,17 @@
+<%= render(:partial => "alert_rules/date_expiration_form", :locals => { :texts=> {
+      :choose_type => l(:label_choose_type),
+      :choose_type_date_before => l(:label_milestone_due_date_warning_date_before),
+      :choose_type_date_after => l(:label_milestone_due_date_warning_date_after),
+      :choose_type_delta_before => l(:label_milestone_due_date_warning_delta_before),
+      :choose_type_delta_after => l(:label_milestone_due_date_warning_delta_after)
+    } } ) -%>
+
+<p>
+  <%= label_tag 'version_ids[]',  l(:label_milestone_due_date_milestone_select_before) -%>
+  <% selected = @settings[:version_ids].collect(&:to_i) if @settings[:version_ids] -%>
+  <label class="inline">
+  <%= select_tag 'version_ids[]', milestones_for_select(Version.visible.open, Array(selected)), :multiple => (Array(@settings[:version_ids]).size > 1), :id => 'alerts-select-milestones' -%>
+  <%= link_to_function '', "toggleMultiSelect($('#alerts-select-milestones'));", :class => 'toggle-bullet textcon-plus' %>
+  <%= l(:label_milestone_due_date_milestone_select_after) -%></label>
+</p>
+

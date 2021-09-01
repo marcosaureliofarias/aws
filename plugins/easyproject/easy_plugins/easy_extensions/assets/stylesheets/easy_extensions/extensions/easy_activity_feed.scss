@@ -1,0 +1,484 @@
+@mixin header-color-scheme($color,$color-front: $color-foreground) {
+  $color: mix($color, $color-front ,20%);
+  background-color: $color;
+
+  &:after {
+    border-right-color: $color;
+    border-left-color: $color;
+  }
+}
+%activity-event{
+  @extend %journal-message;
+  overflow: visible;
+  & > .issue{
+    @include small;
+    & > .project{
+      clear: both;
+      display: block;
+      margin-top: $gap;
+    }
+    .issue-link{
+      display: block;
+      @extend %truncate;
+    }
+    &.time, .name{
+      display: inline-block;
+      margin-top: px2rem(3px);
+    }
+    .time{
+      float: right;
+    }
+    .avatar-container{
+      margin-right: $gap;
+      float: none;
+    }
+  }
+  dd {
+    margin-left: 0;
+    margin-top: $gap;
+  }
+  margin: 0;
+  & + &{
+    //margin-top: 2*$gap;
+  }
+}
+
+%easy-activity-date {
+  content: attr(data-date);
+  display: block;
+  position: absolute;
+  top: -0.25*$gap - 2.75*$gap-const;
+  width: px2rem(90px);
+  line-height: px2rem(23px);
+  background-color: mix($gray, $color-background, 20%);
+  padding: px2rem(2px) px2rem(4px);
+  font-size: $font-small;
+  z-index: 1;
+  text-align: center;
+  @include respond-to(max-medium-screen) {
+    right: auto;
+    left: calc(-#{$gap-const} - #{$gap}) !important;
+  }
+  .modal & {
+    @include respond-to(max-xlarge-screen) {
+      right: auto;
+      left: -2*$gap !important;
+    }
+  }
+}
+.users-activity {
+  .easy-calendar-listing-links {
+    @extend %flex;
+    @extend %justify-content-center;
+    @extend %align-items-center;
+    @extend %box-sizing-border-box;
+    @include respond-to(max-sidebar-collapse) {
+      flex-wrap: wrap;
+      padding-bottom: 0;
+      margin-bottom: -$box-padding;
+    }
+    .prev, .next {
+      width: auto;
+      min-width: 4*$box-padding;
+      overflow: hidden;
+      height: 3*$box-padding;
+      margin: 0;
+      &:before {
+        border: none;
+      }
+      a {
+        line-height: 3*$box-padding;
+        @extend %flex-grow-1;
+      }
+    }
+    .prev a {
+      text-align: right;
+      padding-right: $box-padding;
+    }
+    .next a {
+      text-align: left;
+      padding-left: $box-padding;
+    }
+  }
+  .users-activity-root {
+    @include respond-to(max-sidebar-collapse){
+      width: 100%;
+      order: -1;
+      box-sizing: border-box;
+    }
+  }
+}
+.easy-activity-feed{
+  &.servicebar-content{
+    #easy_servicebar_component_body &{
+      top: 0;
+    }
+  }
+  //class for activity feed in sidebar
+  &-activity {
+    &-event {
+      @extend %activity-event;
+      &:first-child {
+        margin-top: 4*$gap;
+      }
+    }
+  }
+  //class for activity feed timeline
+  &__activity{
+    &-event{
+      $circle-width: px2rem($gap - px2rem(2px)); //px2rem(10px);
+      $bg: mix($color-foreground, $color-background);
+      text-align: left;
+      @extend %activity-event;
+      background: mix($color-foreground, $color-background);
+      padding: 0;
+      width: calc(50% - 2*#{$gap});
+      position: relative;
+      @include respond-to(max-medium-screen) {
+        margin-left: 2*$gap; //px2rem(30px);
+        margin-top: 3*$gap !important; //px2rem(35px) !important;
+        width: calc(100% - 2*#{$gap});
+      }
+      @include respond-to(max-small-screen) {
+        width: 90%;
+        margin-top: px2rem(25px) !important;
+      }
+      &-wrapper {
+        width: inherit;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin: 2.5*$gap 0;
+        &::after {
+          position: absolute;
+          content: '';
+          display: block;
+          width: px2rem(4px);
+          top: 0;
+          bottom: 0;
+          left: 50%;
+          margin-left: px2rem(-2px);
+          background: mix($gray, $color-background, 20%);
+          @include respond-to(max-medium-screen) {
+            left: 0;
+          }
+          .modal & {
+            @include respond-to(max-xlarge-screen) {
+              left: 0;
+            }
+          }
+        }
+      }
+      @include respond-to(max-medium-screen) {
+        &.new-day {
+          &:not(:first-child) {
+            margin-top: 4*$gap !important;
+          }
+
+          &:first-child {
+            margin-top: 2.875*$gap !important;
+          }
+        }
+      }
+      &:nth-of-type(even) {
+        @include triangle-left(0.5*$gap, $bg, $color-border, 1.75*$gap);
+      }
+      &:nth-of-type(odd) {
+        @include triangle-right(0.5*$gap, $bg, $color-border, 1.75*$gap);
+      }
+      @include respond-to(max-medium-screen) {
+        position: relative !important;
+        &:nth-of-type(odd) {
+          &:before, &:after {
+            right: auto;
+            left: -0.4rem;
+            border-left: none;
+            border-right: 0.4rem solid $bg;
+          }
+          &:before {
+            border-right: 0.4rem solid $color-border;
+          }
+          &:after {
+            left: -0.3333333333rem;
+          }
+        }
+        &-header:after{
+          right: auto;
+          left: -2*$box-padding + 1.6*$circle-width;
+        }
+      }
+      .modal & {
+        @include respond-to(max-xlarge-screen) {
+          &.new-day {
+            &:not(:first-child) {
+              margin-top: 2*$gap + 2*$gap-const !important;
+            }
+
+            &:first-child {
+              margin-top: 2.875*$gap-const !important;
+            }
+          }
+          &:nth-of-type(odd) {
+            &:before, &:after {
+              right: auto;
+              left: -0.4rem;
+              border-left: none;
+              border-right: 0.4rem solid $bg;
+            }
+            &:before {
+              border-right: 0.4rem solid $color-border;
+            }
+            &:after {
+              left: -0.3333333333rem;
+            }
+          }
+          &-header:after{
+            right: auto;
+            left: -2*$box-padding + 1.6*$circle-width;
+          }
+        }
+      }
+      //circles
+      &:nth-of-type(odd) &-header:after {
+        left: auto;
+        right: calc(-2*#{$gap} - .5*#{$circle-width} - 3px);
+        @include respond-to(max-medium-screen) {
+          right: auto;
+          left: calc(-2*#{$gap} - .5*#{$circle-width} - 5px);
+        }
+        .modal & {
+          @include respond-to(max-xlarge-screen) {
+            right: auto;
+            left: calc(-2*#{$gap} - .5*#{$circle-width} - 5px);
+          }
+        }
+      }
+      &:nth-of-type(even) &-header:after {
+        left: calc(-2*#{$gap} - .5*#{$circle-width} - 3px);
+        right: auto;
+        @include respond-to(max-medium-screen) {
+          left: calc(-2*#{$gap} - .5*#{$circle-width} - 5px);
+        }
+        .modal & {
+          @include respond-to(max-xlarge-screen) {
+            left: calc(-2*#{$gap} - .5*#{$circle-width} - 5px);
+          }
+        }
+      }
+      &:nth-of-type(odd) &-header{
+        .tooltip-content {
+          left: 0;
+          right: auto;
+          @include respond-to(max-medium-screen) {
+            left: auto;
+            right: 0;
+          }
+          .modal & {
+            @include respond-to(max-xlarge-screen) {
+              left: auto;
+              right: 0;
+            }
+          }
+        }
+      }
+      &:nth-of-type(even) &-header{
+        .tooltip-content {
+          right: 0;
+          left: auto;
+        }
+      }
+      //New day date in timeline
+      &.new-day:nth-of-type(odd) &-header:before {
+        @extend %easy-activity-date;
+        right: -3*$gap - 3*$gap-const;
+      }
+      &.new-day:nth-of-type(even) &-header:before {
+        @extend %easy-activity-date;
+        left: -3*$gap - 3*$gap-const;
+      }
+      .modal & {
+        @include respond-to(max-xlarge-screen) {
+          margin-left: 2*$gap; //px2rem(30px);
+          margin-top: 3*$gap; //px2rem(35px) !important;
+          width: calc(100% - 2*#{$gap});
+        }
+      }
+      &-header{
+        border-bottom: 1px solid $color-border-minor;
+        padding: .5*$gap .5*$box-padding;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: left;
+        position: static !important;
+        @extend %flex;
+        @include align-items(center);
+        @extend %flex-wrap-wrap;
+        & > div {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .date {
+          margin: 0 $gap/2 0 0;
+          vertical-align: middle;
+        }
+        .time {
+          vertical-align: middle;
+        }
+        .author {
+          margin-right: $gap;
+          .name {
+            margin: 0 0 $gap 0;
+            vertical-align: middle;
+            //@include respond-to(max-small-screen) {
+            //  display: none;
+            //}
+          }
+          .avatar-container {
+            margin: 0 .25*$gap 0 $gap !important;
+          }
+          .gravatar {
+            width: $gap !important;
+          }
+        }
+        .project {
+          margin: 0 $gap 0 0;
+          vertical-align: middle;
+          @extend %flex-grow-1;
+          //@include respond-to(max-small-screen) {
+          //  display: none;
+          //}
+        }
+        > a {
+          vertical-align: middle;
+          width: 100%;
+          padding-top: .25*$gap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          //@include respond-to(max-small-screen) {
+          //  display: none;
+          //}
+        }
+        //circles
+        &:after {
+          content: "";
+          display: block;
+          width: $circle-width;
+          height: $circle-width;
+          border-radius: 50%;
+          position: absolute;
+          top: 1.5*$gap; //-2*$box-padding + 6.5*$circle-width;
+          background: mix($gray, $color-background, 20%);
+          z-index: 1;
+          border: px2rem(4px) solid mix($gray, $color-background, 20%);
+        }
+        @include respond-to(max-xlarge-screen) {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+        &:hover {
+          .tooltip-content {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            bottom: 100%;
+            //top: -2*$gap !important;
+            z-index: 1;
+            a {
+              white-space: normal;
+            }
+          }
+        }
+      }
+      .issue-note {
+        border-bottom: 1px solid #e5e5e5;
+        padding: $gap $gap*2;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        .date {
+          margin: 0 $gap/2 0 0;
+          vertical-align: middle;
+        }
+        .time {
+          vertical-align: middle;
+        }
+        .author {
+          //margin-left: $gap;
+          .name {
+            margin: 0 0 $gap 0;
+            vertical-align: middle;
+            //@include respond-to(max-small-screen) {
+            //  display: none;
+            //}
+          }
+        }
+        .project {
+          margin: 0 $gap 0 0;
+          vertical-align: middle;
+          //@include respond-to(max-small-screen) {
+          //  display: none;
+          //}
+        }
+        > a {
+          vertical-align: middle;
+          //@include respond-to(max-small-screen) {
+          //  display: none;
+          //}
+        }
+        @include respond-to(max-xlarge-screen) {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+      .description-wrapper {
+        background: $color-foreground;
+        padding: $gap;
+        display: block;
+        width: calc(100% - 1.6rem);
+        height: auto;
+        .description {
+          display: block;
+          width: 100%;
+          height: 100%;
+          > i {
+            display: block;
+            width: 100%;
+            height: 100%;
+            word-break: break-all;
+            > span {
+              display: block;
+              overflow: hidden;
+              max-height: px2rem(200px);
+            }
+          }
+        }
+      }
+      &:nth-of-type(odd) {
+        align-self: flex-start;
+      }
+      &:nth-of-type(even) {
+        align-self: flex-end;
+        @include respond-to(max-medium-screen) {
+          align-self: flex-start;
+        }
+        .modal & {
+          @include respond-to(max-xlarge-screen) {
+            align-self: flex-start;
+          }
+        }
+      }
+      @each $entity, $entity-color in $pallete-timeline {
+        &.#{$entity} {
+          @include header-color-scheme($entity-color);
+        }
+      }
+    }
+  }
+  &-group-heading{
+    text-align: center;
+    .servicebar & {
+      color: $color-text;
+    }
+  }
+}

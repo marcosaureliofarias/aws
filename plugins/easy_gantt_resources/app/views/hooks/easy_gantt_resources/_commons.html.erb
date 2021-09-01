@@ -1,0 +1,269 @@
+<%
+  # query ||= @query
+
+  project_resource_path = project ? project_easy_gantt_resources_data_path(project, ':start', ':end', key: User.current.api_key) : ''
+  global_resource_path = global_easy_gantt_resources_data_path(query.to_params.merge(key: User.current.api_key))
+  users_sums_path = easy_gantt_resources_users_sums_path(':variant', ':start', ':end', project_id: project, key: User.current.api_key)
+  is_global_rm = project.nil? #global gantt is redirected off this file, so project.nil? is enough
+
+  paths = {
+    projectResourceUrl: project_resource_path,
+    globalResourceUrl: global_resource_path,
+    updateResourceUrl: easy_gantt_resources_bulk_update_or_create_path(key: User.current.api_key),
+    usersSumsUrl: users_sums_path,
+    otherAllocations: easy_gantt_resources_allocated_issues_path(key: User.current.api_key)
+  }
+
+  if EasySetting.value(:easy_gantt_resources_reservation_enabled)
+    paths[:reservationUpdateOrCreateUrl] = easy_gantt_reservations_bulk_update_or_create_path(project, key: User.current.api_key)
+    paths[:reservationBulkDestroyUrl] = easy_gantt_reservations_bulk_destroy_path(project, key: User.current.api_key)
+  end
+
+  with_reservations = EasySetting.value(:easy_gantt_resources_reservation_enabled) && EasyGantt.easy_gantt_pro?
+%>
+
+<%= content_for :header_tags do %>
+  <%= easy_gantt_include_css('easy_gantt_resources', from_plugin: 'easy_gantt_resources', media: 'all') %>
+<% end %>
+<%= content_for :body_bottom do %>
+  <% with_pipeline = EasyGantt.combine_by_pipeline?(params) %>
+  <% if with_pipeline %>
+    <% if is_global_rm %>
+      <%= javascript_include_tag('easy_gantt_resources/easy_gantt_global_resources') %>
+    <% else %>
+      <%= javascript_include_tag('easy_gantt_resources/easy_gantt_resources') %>
+    <% end %>
+  <% else %>
+    <% easy_gantt_resources_files = [
+            'resource',
+            'rm_classes',
+            'rm_renderer',
+            'rm_loader',
+            'rm_saver',
+            'rm_allocator',
+            'rm_fixed_alloc',
+            'rm_estimated',
+            'rm_events',
+            'rm_milestones',
+            'rm_contextual',
+            'rm_reallocate',
+            'rm_balance',
+            (['rm_reservations', 'rm_reservation_api'] if with_reservations ),
+            'rm_sumrow',
+            (['rm_projects', 'rm_global']    if is_global_rm)
+      ].compact.flatten %>
+    <%= javascript_include_tag(*easy_gantt_resources_files.map { |file| 'easy_gantt_resources/' + file }, plugin: 'easy_gantt_resources') %>
+  <% end %>
+  <% if params[:jasmine] %>
+    <%= render 'easy_gantt_resources/test_includes', project: project %>
+  <% end %>
+  <% other_files = []
+    other_files.push 'rm_planned' if EasySetting.value(:easy_gantt_resources_hide_planned_tasks_enabled) && EasyGantt.easy_extensions?
+    other_files.push 'rm_free_capacity' if EasySetting.value(:easy_gantt_resources_show_free_capacities)
+  %>
+  <%= javascript_include_tag(*other_files.map { |file| 'easy_gantt_resources/' + file }, plugin: with_pipeline ? nil : 'easy_gantt_resources') %>
+  <%= javascript_include_tag('easy_gantt_pro/add_task', plugin: with_pipeline ? nil : 'easy_gantt_pro') if with_reservations && is_global_rm %>
+
+  <%= render 'hooks/easy_gantt_resources/resource_styles' %>
+
+  <script type="text/javascript">
+    window.ysy = window.ysy || {};
+    ysy.settings = ysy.settings || {};
+    EasyGem.extend(true, ysy.settings, <%= {
+      resource_on: (params[:gantt_type] == 'rm'),
+      isResourceManagement: (params[:controller] == 'easy_gantt_resources'),
+      decimalAllocation: EasySetting.value(:easy_gantt_resources_decimal_allocation),
+      hoursOnWeek: EasyGanttResource.hours_on_week,
+      showTotalProjectAllocations: !!EasySetting.value(:easy_gantt_resources_show_total_project_allocations),
+      enableAllocatorChange: !!EasySetting.value(:easy_gantt_resources_change_allocator_enabled),
+      reservationEnabled: with_reservations,
+      paths: paths,
+      labels: {
+        titles: {
+          unassigned: l(:label_easy_gantt_resources_user_unassigned),
+          title_rm: l('easy_gantt_resources.resource_management'),
+          title_rm_short: l('easy_gantt_resources.title_rm_short')
+        },
+        buttons: {},
+        errors2: {
+          assignToNonMember: l('easy_gantt_resources.errors.non_member_assignee')
+        },
+        problems: {
+          underEstimated: l('easy_gantt_resources.errors.under_estimation'),
+          overAllocation: l('easy_gantt_resources.errors.over_allocation'),
+          negativeAllocation: l('easy_gantt_resources.errors.negative_allocation')
+        },
+        eventTypes: {
+          genericEvent: l('easy_gantt_resources.event_types.generic'),
+          easy_holiday_event: l('easy_gantt_resources.event_types.holiday'),
+          meeting: l('easy_gantt_resources.event_types.meeting'),
+          reservation: l('easy_gantt_resources.legend.reservation'),
+          symbols: {
+            easy_holiday_event_short: l('easy_gantt_resources.event_types.symbols.holiday_short'),
+            meeting_short: l('easy_gantt_resources.event_types.symbols.meeting_short'),
+            nonworking_attendance_short: l('easy_gantt_resources.event_types.symbols.nonworking_attendance_short'),
+            unapproved_nonworking_attendance_short: l('easy_gantt_resources.event_types.symbols.unapproved_nonworking_attendance_short')
+          }
+        },
+        legend_colors: [
+          {
+            colorName: 'noAllocations',
+            label: l('easy_gantt_resources.legend.no_allocations'),
+            border: '#cccccc'
+          },
+          {
+            colorName: 'someAllocations',
+            label: l('easy_gantt_resources.legend.some_allocations'),
+            border: '#cccccc'
+          },
+          {
+            colorName: 'fullAllocations',
+            label: l('easy_gantt_resources.legend.full_allocations')
+          },
+          {
+            colorName: 'overAllocations',
+            label: l('easy_gantt_resources.legend.over_allocations')
+          }
+        ],
+        legend_symbols: [
+          {
+            colorName: 'wrong',
+            weight: 'bold',
+            symbol: 'N',
+            label: l('easy_gantt_resources.legend.day_over_allocation')
+          },
+          {
+            colorName: 'fixed',
+            weight: 'bold',
+            symbol: 'N',
+            label: l('easy_gantt_resources.legend.day_custom_allocation')
+          }
+        ],
+        maxHours: l('easy_gantt_resources.context.label_maximal_hours'),
+        estimatedRatio: l(:label_easy_gantt_resources_users_estimated_ratios),
+        warnings: {
+          reservation_for_unassignee: l("easy_gantt.errors.reservation_for_unassignee")
+        }
+      }
+    }.to_json.html_safe %>);
+
+
+    ysy.view = ysy.view || {};
+    ysy.view.templates = ysy.view.templates || {};
+    EasyGem.extend(true, ysy.view.templates, <%= {
+      assigneeTooltip: %{
+        {{#sum}}
+          <h3 class="gantt-tooltip-header">Resources</h3>
+          <div class='gantt-assignee-tooltip-allocations-cont'>
+            {{#allocationSum}}
+            <div class='gantt-assignee-tooltip-allocations-sum'>
+              #{l('easy_gantt_resources.label_allocations_sum')}: {{allocationSum}}h {{#working_hours}}/ {{working_hours}}h{{/working_hours}}
+            </div>
+            <div class='gantt-assignee-tooltip-allocations'>
+              {{#otherAllocations}}
+                <div class='gantt-assignee-tooltip-allocation'>
+                  <a href='#{issues_path}/{{id}}'>{{subject}}</a> {{hours}}h
+                </div>
+              {{/otherAllocations}}
+            </div>
+            {{/allocationSum}}
+            {{#reservationSum}}
+            <div class='gantt-assignee-tooltip-allocations-sum'>
+              #{l('easy_gantt_resources.label_reservations_sum')}: {{reservationSum}}h
+            </div>
+            <div class='gantt-assignee-tooltip-allocations'>
+              {{#otherReservations}}
+                <div class='gantt-assignee-tooltip-allocation'>
+                  {{name}} {{hours}}h
+                </div>
+              {{/otherReservations}}
+            </div>
+            {{/reservationSum}}
+          </div>
+        {{/sum}}
+        {{#days.length}}
+          <h3 class="gantt-tooltip-header gantt-assignee-tooltip-header-events">#{l('easy_gantt_resources.label_events')}</h3>
+        {{/days.length}}
+        {{#days}}
+          <div class='gantt-assignee-tooltip-day-cont' style='display:inline-block;vertical-align:top;'>
+            <div class='gantt-assignee-tooltip-day'>{{date}}</div>
+            <ul>
+              {{#events}}
+                <li>
+                  <div class='gantt-assignee-tooltip-event-name'>{{name}}</div>
+                  <div class='gantt-tooltip-label gantt-assignee-tooltip-event-type'>{{type}}</div>
+                  <div class='gantt-tooltip-label gantt-assignee-tooltip-event-hours'>
+                    {{#hours}}#{l(:field_hours)}: {{hours}}{{/hours}}
+                    {{^hours}}#{l('easy_gantt_resources.label_whole_day')}{{/hours}}
+                  </div>
+                </li>
+              {{/events}}
+            </ul>
+          </div>
+        {{/days}}
+      },
+      resourceLegend: %{
+        {{#resources}}
+          {{#symbols}}
+            <span class="easy-gantt-legend-symbol" style="color:{{color}};font-weight:{{weight}}">{{symbol}}</span>
+            <span class="easy-gantt-legend-symbol-label">{{label}}</span>
+          {{/symbols}}
+          {{#backColors}}
+            <span class="easy-gantt-legend-backcolor gantt-legend-color-square gantt-legend-box-{{colorName}}" style="background-color:{{color}};border-color:{{border}}"></span>
+            <span class="easy-gantt-legend-backcolor-label">{{label}}</span>
+          {{/backColors}}
+        {{/resources}}
+        {{^resources}}
+          {{nonResourceLegend}}
+        {{/resources}}
+      },
+      resourceContextual: %{
+        <h3 class="title">#{l('easy_gantt_resources.context.heading_allocator_setting')}: {{name}}</h3>
+        <div id="gantt_rm_settings_popup" class="tabular">
+          <!--
+            <p>
+              <label for="input_max_allocation">#{l('easy_gantt_resources.context.label_maximal_hours')}:</label>
+              <input id="input_max_allocation" size="2" min="0" max="24" type="number" value="{{maxAllocation}}">
+              <a style="float:right" href="javascript:void(0)" id="pseudo_even_allocation" class="button">
+                #{l('easy_gantt_resources.context.pseudo_even_allocation')}
+              </a>
+            </p>
+            <hr>
+          -->
+          <p>
+          <label for="select_allocator">#{l('easy_gantt_resources.allocator.label_allocator')}:</label>
+          <select id="select_allocator" {{#disabled}}disabled{{/disabled}}>
+            <option value="" {{selected_null}}>#{l(:field_default_allocator)}</option>
+            #{
+              EasyGanttResources.allocators(with_labels: true).map { |(label, name)|
+                %{<option value="#{name}" {{selected_#{name}}}>#{label}</option>}
+              }.join
+            }
+          </select>
+          </p>
+          <hr>
+        </div>
+        <a id="submit_allocator" href="javascript:void(0)" style="float:right" class="button button-positive">#{l(:button_submit)}</a>
+        <a id="reset_allocator" href="javascript:void(0)" class="button">#{l(:button_reset)}</a>
+        {{#isReservation}}
+        <a id="delete_button" href="javascript:void(0)" class="button button-negative">#{l(:button_delete)}</a>
+        {{/isReservation}}
+      },
+      resourceSaveErrors: l('easy_gantt_resources.errors.save_error').gsub('%{', '{{').gsub('}', '}}'),
+      milestoneBlocker: %{
+        <div class="gantt-milestone-icon gantt-rm-milestone" title="#{l(:label_version)} {{milestoneName}}&#10;#{l('easy_gantt.text_blocker_milestone')}" style="left:{{pos_x}}px">
+        </div>
+      },
+      resourceLeftText: %{
+        <div class="gantt_estimated_label"
+             title="#{l(:field_estimated_hours)}: {{estimated}}h{{#withSpent}} #{l(:label_spent_time)}: {{spent}}h{{/withSpent}}"
+             {{#withEvents}}
+               onclick="event.stopPropagation()"
+               ondblclick="ysy.pro.resource.estimated.estimatedChange(event)"
+             {{/withEvents}}>
+          ({{estimated}}{{#withSpent}} -{{spent}}{{/withSpent}})
+        </div>
+      }
+    }.to_json.html_safe %>);
+  </script>
+<% end %>

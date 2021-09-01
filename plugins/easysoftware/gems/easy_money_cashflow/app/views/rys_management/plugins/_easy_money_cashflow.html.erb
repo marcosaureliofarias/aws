@@ -1,0 +1,12 @@
+<%
+ # This setting is available on /rys_management/easy_money_cashflow/edit
+ # All values are stored in EasySettings
+ # Each key have own record
+%>
+
+<p>
+  <% # This value is accesible via `EasyMoneyCashflow.setting(:value)` %>
+  <% #                          or `EasySetting.value(:easy_money_cashflow_value)` %>
+  <%= form.label :value, l('field_value') %>
+  <%= form.text_field :value %>
+</p>

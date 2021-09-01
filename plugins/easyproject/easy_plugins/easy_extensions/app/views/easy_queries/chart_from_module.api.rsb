@@ -1,0 +1,54 @@
+api.array :data do
+  @values.each do |value|
+    api.foo value
+  end
+end
+api.title @easy_query.name
+api.chart_options do
+  api.animate true
+  api.animateReplot true
+  api.seriesDefaults do
+    api.rendererOptions do
+      api.animation do
+        api.speed 200
+      end
+      api.varyBarColor true
+    end
+    api.pointLabels do
+      api.show true
+      api.hideZeros true
+    end
+  end
+  api.array :series do
+    api.foo do
+      api.label 'Lojza'
+      api.renderer @chart_settings['primary_renderer']
+    end
+  end
+  api.axes do
+    api.xaxis do
+      api.ticks @ticks.collect{|group| group.blank? ? l(:label_none) : format_entity_attribute(@easy_query.entity, @easy_query.group_by_column, group).to_s}
+      api.tickOptions({'angle' => -45, 'showGridline' => false})
+    end
+    api.yaxis do
+      api.min(0) if !@values.flatten.detect{|x| x < 0}
+      api.tickOptions({'showGridline' => false})
+      api.label @yaxis_label
+      api.labelOptions({'angle' => -90})
+    end
+  end
+  api.highlighter do
+    api.show true
+    api.tooltipAxes 'y'
+    api.useAxesFormatters true
+    api.formatString '%s'
+  end
+#  api.legend do
+#    api.show true
+#    api.location 'e'
+#    api.placement 'outsideGrid'
+#    api.rendererOptions do
+#      api.numberRows 1 + (@values.size / 5)
+#    end
+#  end
+end

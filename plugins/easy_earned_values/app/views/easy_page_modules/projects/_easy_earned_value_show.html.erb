@@ -1,0 +1,14 @@
+<% if (error = easy_page_modules_data[:error]) %>
+  <p>
+    <strong><%= error %></strong>
+  </p>
+<% else %>
+  <%
+    include_jqplot_scripts
+    include_easy_earned_value_scripts
+
+    easy_earned_value = easy_page_modules_data[:earned_value]
+  %>
+
+  <%= render 'easy_earned_values/graph_or_help', easy_earned_value: easy_earned_value %>
+<% end %>

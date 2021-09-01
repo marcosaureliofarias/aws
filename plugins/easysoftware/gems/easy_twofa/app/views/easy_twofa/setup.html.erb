@@ -1,0 +1,21 @@
+<div class="easy-twofa-setup">
+  <%= title @scheme.t_setup_title %>
+
+  <%= form_tag activation_easy_twofa_path, method: 'POST' do %>
+    <div class="box">
+      <p>
+        <%= @scheme.t_setup_info %>
+      </p>
+
+      <%= render @scheme.setup_partial_path, scheme: @scheme %>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l('easy_twofa.continue'), class: 'button-positive' %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_twofa' %>
+<% end %>

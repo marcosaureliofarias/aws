@@ -1,0 +1,25 @@
+<% @tabs ||= [] %>
+<div id="easy_scheduler_modal_tabs">
+  <div class="tabs tab-container entity-tabs">
+    <ul>
+      <% @tabs.each do |tab| %>
+          <li>
+            <%= link_to tab[:label], 'javascript:void(0)',
+                        onclick: 'EntityTabs.showAjaxTab(this, this.dataset["ajaxUrl"])',
+                        data: { tab_id: "tab-#{tab[:name]}", ajax_url: tab[:ajax_url] } %>
+          </li>
+      <% end %>
+    </ul>
+    <div class="tabs-buttons" style="display:none;">
+      <button class="tab-left" type="button" onclick="EASY.utils.moveTabLeft(this);"></button>
+      <button class="tab-right" type="button" onclick="EASY.utils.moveTabRight(this);"></button>
+    </div>
+  </div>
+  <div class="entity-tabs-content">
+    <% @tabs.each do |tab| %>
+      <div class="tab-<%= tab[:name] %>-content hidden">
+        <%= render tab[:partial], tab[:partial_locals] if tab[:partial] %>
+      </div>
+    <% end %>
+  </div>
+</div>

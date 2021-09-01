@@ -1,0 +1,4 @@
+<% Rys::Feature.on('easy_actions') do %>
+  <%= render partial: 'easy_actions/hooks/sequence_instances', locals: { entity: entity } %>
+  <%= render partial: 'easy_actions/hooks/checks', locals: { entity: entity } %>
+<% end %>

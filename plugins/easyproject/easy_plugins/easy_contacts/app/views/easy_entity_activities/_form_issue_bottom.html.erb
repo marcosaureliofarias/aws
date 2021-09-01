@@ -1,0 +1,4 @@
+<div class="new-easy-activity-attendees easy-contacts">
+  <%= label_tag :easy_entity_activity_attendees_EasyContact_, l(:label_easy_contacts) %>
+  <%= autocomplete_field_tag('easy_entity_activity_attendees[EasyContact][]', easy_autocomplete_path('easy_contacts_visible_contacts'), f.object.easy_contact_attendees, show_toggle_button: true, rootElement: 'easy_contacts', preload: false) %>
+</div>

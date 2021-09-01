@@ -1,0 +1,32 @@
+<% custom_field_values = easy_crm_case.editable_custom_field_values %>
+<% grouped_custom_fields = easy_crm_case.grouped_custom_field_values(custom_field_values) %>
+<% grouped_custom_fields = {nil => grouped_custom_fields[nil]}.merge(grouped_custom_fields.reject{|x,y| x.nil?}) if grouped_custom_fields[nil] %>
+<% grouped_custom_fields.each do |group, cf_values| %>
+    <div class="<%= !easy_crm_case.new_record? ? 'attribute-hidden' : '' %>" style="<%= !easy_crm_case.new_record? ? 'display:none' : '' %>">
+      <%= render_module_easy_box("custom_field_project_group_id_#{group.try!(:id)}", group.try!(:name)) do |m| %>
+          <div id="<%= "custom_field_project_group_id_#{group.try!(:id)}" %>" class="<%= !easy_crm_case.new_record? ? 'splitcontent' : ''%>">
+            <div class="<%= !easy_crm_case.new_record? ? 'splitcontentleft' : ''%>">
+              <% i = 0 %>
+              <% split_on = (cf_values.size / 2.0).ceil - 1 %>
+              <% cf_values.each do |value| %>
+                  <p class="<%= !easy_crm_case.new_record? ? 'attribute-hidden' : '' %>" style="<%= !easy_crm_case.new_record? ? 'display:none' : ''%>">
+                    <%= custom_field_tag_with_label :easy_crm_case, value, (@easy_crm_case.required_attribute?(value.custom_field.id) ? { :required => true } : {}) -%>
+                  </p>
+                  <% if i == split_on -%>
+                      </div>
+                      <div class="<%= !easy_crm_case.new_record? ? 'splitcontentright' : ''%>">
+                  <% end -%>
+                  <% i += 1 -%>
+              <% end -%>
+            </div>
+          </div>
+      <% end -%>
+    </div>
+<% end -%>
+
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    EasyToggler.ensureToggle();
+  });
+</script>

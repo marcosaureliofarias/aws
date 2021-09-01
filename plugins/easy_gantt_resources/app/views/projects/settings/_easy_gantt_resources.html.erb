@@ -1,0 +1,39 @@
+<%
+  default_allocator_options = EasyGanttResources.allocators(with_labels: true)
+
+  default_allocator = EasySetting.value(:easy_gantt_resources_default_allocator, @project)
+  default_watchdog = EasySetting.value(:easy_gantt_resources_watchdog_enabled, @project)
+%>
+
+<%= form_for(:easy_setting, url: easy_setting_path(id: 'easy_gantt_resources'), method: 'PUT', html: { id: 'easy_gantt_resources_form', class: 'form-box' }) do |form| %>
+  <%= hidden_field_tag :back_url, '', id: 'easy_gantt_resources_form_back_url' %>
+  <%= hidden_field_tag :project_id, @project.id %>
+
+  <div class="box tabular">
+    <p>
+      <%= form.label :default_allocator, l(:field_default_allocator) %>
+      <%= form.select :default_allocator, options_for_select(default_allocator_options, default_allocator) %>
+      <br>
+      <em class="small"><%= l(:text_easy_gantt_resources_default_allocator) %></em>
+      <br>
+      <em class="small"><%= l(:text_easy_gantt_resources_change_default_allocator) %></em>
+    </p>
+
+    <p>
+      <%= form.label :watchdog_enabled, l(:field_watchdog_enabled) %>
+      <%= form.check_box :watchdog_enabled, checked: default_watchdog %>
+      <br>
+      <em class="small"><%= l(:text_easy_gantt_resources_watchdog_enabled) %></em>
+    </p>
+  </div>
+
+  <%= form.submit l(:button_update_easy_settings), class: 'button-2' %>
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $("#easy_gantt_resources_form").on("submit", function(){
+      $("#easy_gantt_resources_form_back_url").val(window.location.href);
+    });
+  });
+</script>

@@ -1,0 +1,16 @@
+<p>
+  <%= radio_button_tag(:method, :replace, true, onchange: 'window.EASY.managewarningTabs.toggleOption(this)') %>
+  <%= label_tag(:method_replace, l('notice_apply_template.methods.replace'), class: 'radio inline') %>
+
+  <%= radio_button_tag(:method, :add_tabs, false, onchange: 'window.EASY.managewarningTabs.toggleOption(this)') %>
+  <%= label_tag(:method_add_tabs, l('notice_apply_template.methods.add_tabs'), class: 'radio inline') %>
+</p>
+
+<br>
+<span id="warning_replace" class="warning_manage_tabs">
+  <em class="help"> <%= l('notice_apply_template.warnings.replace') %> </em>
+</span>
+<span id="warning_add_tabs" class="warning_manage_tabs hidden">
+  <em class="help"> <%= l('notice_apply_template.warnings.add_tabs') %> </em>
+</span>
+<br>

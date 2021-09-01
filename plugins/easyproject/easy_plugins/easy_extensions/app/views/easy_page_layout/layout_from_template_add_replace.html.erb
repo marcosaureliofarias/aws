@@ -1,0 +1,23 @@
+<%= title l(:title_easy_page_apply_template) %>
+
+<%= form_tag({controller: 'easy_page_layout', action: params[:post_action]}, class: 'form-box') do |f| %>
+  <div class="box tabular">
+    <% page_template_options = options_for_select(@page.templates.sorted.map { |t| [t.template_name, t.id] }) %>
+
+    <%= render partial: 'layout_from_template_methods' %>
+
+    <%= hidden_field_tag 'back_url', params[:back_url] %>
+    <%= hidden_field_tag 'easy_pages_id', @page.id %>
+    <%= hidden_field_tag 'users[]', params[:user_id] %>
+    <%= hidden_field_tag 'projects[]', params[:project] %>
+
+    <p>
+      <%= label_tag 'page_template_id', l(:label_choose_template) %>
+      <%= select_tag 'page_template_id', page_template_options %>
+    </p>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_submit), class: 'button-positive', data: {confirm: l(:text_are_you_sure)} %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<p>
+  <%= f.label :monthly_hours %>
+  <%= f.text_field :monthly_hours %>
+  <br/>
+  <%= f.check_box :aggregated_hours, :title => l(:field_aggregated_hours) %>
+  <%= f.label :aggregated_hours, :class => 'inline' %>
+</p>
+<div id="aggregated_hours_container" style="<%= 'display: none;' unless f.object.aggregated_hours %>">
+  <% unless f.object.new_record? %>
+    <p>
+      <%= f.label :aggregated_hours_remaining %>
+      <%= f.text_field :aggregated_hours_remaining, :disabled => true %>
+      <%= link_to '',
+        "javascript:$('##{f.object_name}_aggregated_hours_remaining').prop('disabled', false);
+        $('##{f.object_name}_aggregated_hours_remaining').next('a').remove();void(0);", :class => 'icon icon-edit button-icon',
+        :confirm => l(:confirm_edit_remaining_hours), :title => l(:button_reset) %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.label :aggregated_hours_start_date %>
+    <%= f.text_field :aggregated_hours_start_date, :size => 10 %><%= calendar_for("#{f.object_name}_aggregated_hours_start_date") %>
+  </p>
+  <p>
+    <%= f.label :aggregated_hours_period %>
+    <%= f.select :aggregated_hours_period, aggregated_hours_periods %>
+  </p>
+
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    var checkbox = $("#<%= f.object_name %>_aggregated_hours");
+    var container = $('#aggregated_hours_container');
+    checkbox.on('click', function(e) {
+      container.toggle($(e.target).is(':checked'));
+    });
+    container.toggle(checkbox.is(':checked'));
+  });
+</script>

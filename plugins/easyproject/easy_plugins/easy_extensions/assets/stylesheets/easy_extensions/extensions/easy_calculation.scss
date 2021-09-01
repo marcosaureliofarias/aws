@@ -1,0 +1,126 @@
+#easy_calculation{
+  &_bottom{
+    &_desc_container{
+      table{
+        width: 100% !important;
+        @include respond-to(screen-only){
+          width: calc(100% + #{2*$box-padding}) !important;
+          margin-left: -$box-padding;
+        }
+
+        td,th{
+          &:first-child{
+            padding-left: $box-padding;
+          }
+          &:last-of-type{
+            padding-right: $box-padding;
+          }
+        }
+        th{
+          & + th{
+            text-align: center;
+          }
+          &:last-child{
+            text-align: right;
+          }
+        }
+        td{
+          padding: $gap;
+        }
+        tbody{
+          tr{
+            @include small;
+            @include respond-to(screen-only) {
+              border-top: 1px solid $color-border-minor;
+            }
+            @include respond-to(print-only) {
+              border-top: 1px solid lighten($color-print, 80%);
+            }
+            td{
+              & + td{
+                text-align: center;
+              }
+              &:last-child{
+                text-align: right;
+                white-space: nowrap;
+              }
+            }
+            &:last-child td{
+              font-size: 1.25em;
+              &:last-child{
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#calculation{
+  @include respond-to(screen-only){
+    border-bottom: 1px solid $color-border;
+  }
+  @include respond-to(print-only){
+    .solution-entity{
+      font-weight: bold;
+    }
+  }
+  td{
+    &.text-right{
+      white-space: nowrap;
+    }
+  }
+
+  &-header{
+    &_label{
+      line-height: 10mm;
+    }
+    .easy-table-summary {
+      margin-top: 0;
+      margin-bottom: $box-padding;
+      td, th {
+        padding-left: $box-padding;
+        padding-right: $box-padding;
+        border-left: none !important;
+        border-right: none !important;
+        width: 25%;
+      }
+      td {
+        font-weight: bold;
+      }
+      th {
+        @include small;
+        font-weight: normal;
+      }
+      tr {
+        &.compensate {
+          th, td {
+            padding-top: $gap;
+          }
+        }
+        &:first-child {
+          th, td {
+            padding-top: $gap;
+          }
+        }
+        &:last-child {
+          th, td {
+            padding-bottom: $gap;
+          }
+        }
+      }
+    }
+  }
+  &_pdf_logo_container {
+    float: right;
+    margin-left: 10mm;
+    &>img{
+      max-width: 85mm;
+      max-height: 10mm;
+    }
+  }
+  &_title{
+    clear: right;
+  }
+}

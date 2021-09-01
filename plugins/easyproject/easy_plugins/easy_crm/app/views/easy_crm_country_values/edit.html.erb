@@ -1,0 +1,17 @@
+<%= title l(:heading_easy_crm_country_value_edit) %>
+
+<%= form_for([@project, @easy_crm_country_value], html: {multipart: false, id: 'easy_crm_country_value_form', class: 'tabular'}) do |f| %>
+  <%= error_messages_for @easy_crm_country_value %>
+
+  <div class="box">
+    <%= render partial: 'form', locals: {easy_crm_country_value: @easy_crm_country_value} %>
+  </div>
+
+  <p>
+    <%= submit_tag l(:button_update), title: l(:button_update) %>
+  </p>
+<% end %>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'easy_crm_country_values/sidebar' %>
+<% end %>

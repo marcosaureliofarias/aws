@@ -1,0 +1,12 @@
+  <% if @easy_page_modules_data[block_name].blank? %>
+    <%= content_tag :p, l(:label_easy_page_module_settings_missing) -%>
+  <% else %>
+  <p class="icon icon-group contextual easy-contact-module-link">
+    <%= link_to(l(:label_easy_contacts), easy_contacts_path(:project_id => @project, :filter => 2)) %>
+  </p>
+    <%= render :partial => 'easy_queries/easy_query_entities_list', :locals => {query: @easy_page_modules_data[block_name][:query], entities: @easy_page_modules_data[block_name][:contacts], entity_pages: @entity_pages, entity_count: @entity_count, page_module: page_module} -%>
+  <% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<%end%>

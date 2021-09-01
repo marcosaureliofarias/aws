@@ -1,0 +1,3 @@
+<% html_title @page.user_defined_name %>
+
+<%= render_easy_page_bottom_buttons(custom_easy_page_layout_path(@page.identifier, t: params[:t])) if @page_editable %>

@@ -1,0 +1,10 @@
+var $element = $('<%= j(render(
+  :partial => "easy_checklists/easy_checklist_form_append_template_form"
+)) %>');
+$button = $element.find('#append_easy_checklist_template_button').first();
+$('#easy_checklist_form_container span:last').first().append($button);
+$button = $('#easy_checklist_form_container #append_easy_checklist_template_button');
+$button.click();
+$button.remove();
+$('#easy_checklist_form_container input[type=hidden]').remove();
+$('#easy_checklist_form_container .easy-checklist-container:last').find('.nested-fields a').addClass('dynamic');

@@ -1,0 +1,11 @@
+$('#relations').html('<%= j(render :partial => 'issues/relations') %>');
+<% if @relation.errors.empty? %>
+  $('#relation_delay').val('');
+  $('#relation_issue_to_id').val('');
+<% end %>
+<% if @unsaved_errors %>
+  showFlashMessage("error", "<%= j @unsaved_errors %>");
+<% end %>
+$('#new-relation-form').show();
+$('#relation_issue_to_id').focus();
+EASY.contextMenu.reloadInit();

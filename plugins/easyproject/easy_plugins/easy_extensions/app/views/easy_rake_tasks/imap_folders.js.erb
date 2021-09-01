@@ -1,0 +1,14 @@
+<% if @error %>
+  alert('<%= j @error -%>');
+<% else %>
+  $("#ajax-modal").html("<%=j render(partial: 'imap_folder', locals: {folders: @result.map(&:name)}) %>");
+  showModal('ajax-modal', '70%');
+  $('#ajax-modal').dialog("option", {
+    buttons: [
+      {
+        text: '<%=j l(:button_close) %>',
+        click: function() {$(this).dialog('close');}, 'class': 'button'
+      }
+    ]
+  });
+<% end %>

@@ -1,0 +1,6 @@
+<% html_title(l(:label_easy_knowledge_stories)) -%>
+  <% if easy_knowledge_stories_editable? %>
+    <% if User.current.allowed_to_globally?(:stories_assignment, {}) %>
+        <%= render partial: 'easy_knowledge_stories/stories_menu', locals: {back_url: url_for({}), type: 'story'} %>
+    <% end %>
+  <% end %>

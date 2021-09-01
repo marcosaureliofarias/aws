@@ -1,0 +1,30 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+  <%= javascript_include_tag 'jquery.layout.js', defer: true %>
+  <%= javascript_include_tag 'jquery.layout.state.js', defer: true %>
+  <%= javascript_include_tag 'redmine_re.js', defer: true %>
+<% end %>
+
+<div id="infobar" class="ui-layout-west ui-layout-content">
+  <%= render "requirements/treebar" %>
+</div>
+
+<div id='detail_view' class='ui-layout-center'>
+<h2> <%= t(:re_delete_project_artifact) %></h2>
+
+<p>
+  <%= t(:re_you_asked_for_deleting_the_following_artifact) %>: <b><%= @re_artifact_properties.name %></b> (#<%= @re_artifact_properties.id %>).
+  <br />
+  <br />
+  <%= t(:re_cannnot_delete_project_artifact) %>
+  <%= link_to t(:re_redmine_project_administration), :controller => "admin", :action => "projects" %>
+
+
+
+
+</p>
+
+<div style="clear:both;"> </div>
+
+</div>
+

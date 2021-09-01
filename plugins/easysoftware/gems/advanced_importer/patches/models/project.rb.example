@@ -1,0 +1,28 @@
+Rys::Patcher.add('Project') do
+
+  included do
+    # has_many :things
+
+    after_commit :advanced_importer_ensure_something, if: -> { Rys::Feature.active?('advanced_importer.project') }
+  end
+
+  instance_methods do
+
+    private
+
+      def advanced_importer_ensure_something
+        puts 'Features are activated'
+      end
+
+  end
+
+  instance_methods(feature: 'advanced_importer.project') do
+    def to_s
+      "I'am cool " + super
+    end
+  end
+
+  class_methods do
+  end
+
+end

@@ -1,0 +1,7 @@
+<div class="helpdesk_auto_issue_closer_settings" style="<%= 'display:none' if !checked %>">
+  <p>
+    <%= f.select :easy_helpdesk_mail_template_id, options_from_collection_for_select(EasyHelpdeskMailTemplate.all, :id, :name, f.object.easy_helpdesk_mail_template_id), include_blank: true %>
+
+    <em class="help"><%= l(:'activerecord.models.easy_helpdesk_mail_template') %></em>
+  </p>
+</div>

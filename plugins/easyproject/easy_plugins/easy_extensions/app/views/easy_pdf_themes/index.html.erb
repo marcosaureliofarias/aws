@@ -1,0 +1,44 @@
+<%= title l(:label_easy_gantt_theme_plural) %>
+<div class="autoscroll">
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_name) %></th>
+        <th><%= l(:label_header_style) %></th>
+        <th><%= l(:label_logo) %></th>
+        <th><%= l(:field_is_default) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pdf_themes.each do |theme| %>
+        <tr>
+          <td><%= link_to theme.easy_system_flag? ? l(:label_default) : h(theme), edit_easy_pdf_theme_path(theme) %></td>
+          <td>
+            <div id="header_style_preview" style="color: <%= theme.header_font_hex_color %>; background-color: <%= theme.header_hex_color %>;"><%= l(:label_string) %></div>
+          </td>
+          <td class="logo-preview">
+            <% if theme.attachments.any? %>
+              <img src="<%= url_for(:controller => 'attachments', :action => 'download', :id => theme.attachments.first) %>"/>
+            <% elsif theme.easy_system_flag? %>
+              <img src="<%= EasyPdfTheme.default_logo_image %>"/>
+            <% end %>
+          </td>
+          <td>
+            <%= check_box_tag 'default', '', theme.is_default?, disabled: true %>
+          </td>
+          <td class="buttons">
+            <%= link_to l(:button_edit), edit_easy_pdf_theme_path(theme), :class => 'icon icon-edit' %>
+            <%= delete_link easy_pdf_theme_path(theme) unless theme.easy_system_flag? %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_easy_gantt_theme_new), new_easy_pdf_theme_path, :class => 'big button-positive icon icon-add' %>
+<% end %>
+
+<% html_title(l(:label_easy_gantt_theme_plural)) %>

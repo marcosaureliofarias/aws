@@ -1,0 +1,17 @@
+<%= title l(:heading_test_plan_edit) %>
+
+<%= form_for([@project, @test_plan], html: {multipart: true, id: 'test_plan_form', class: 'tabular'}) do |f| %>
+  <%= error_messages_for @test_plan %>
+
+  <div class="box">
+    <%= render partial: 'test_plans/form', locals: {test_plan: @test_plan} %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_update), title: l(:button_update), class: 'button-positive' %>
+  </div>
+<% end %>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'test_plans/sidebar' %>
+<% end %>

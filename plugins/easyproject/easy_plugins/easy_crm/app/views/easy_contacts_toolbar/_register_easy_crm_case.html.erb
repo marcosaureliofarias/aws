@@ -1,0 +1,19 @@
+<script type="text/javascript">
+  EASY.schedule.require(function (registerAssignableEntity) {
+    registerAssignableEntity('easy_crm_case', {
+      dropAction: 'easy_crm_case',
+      url: '<%= j assign_entities_easy_contacts_path(:entity_type => 'EasyCrmCase', :format => 'json') %>',
+      assignToTitle: '<%= j l(:assign_to_crm_case, scope: :easy_contacts_toolbar) %>',
+      ajaxParams: {
+        complete: function () {
+          window.location.reload();
+        }
+      },
+      getAttributes: function (zoneData, itemData) {
+        return {'entity_ids[]': zoneData.entityId, 'ids[]': itemData.easyContactId};
+      }
+    });
+  }, function () {
+    return EASY.contacts && EASY.contacts.registerAssignableEntity;
+  });
+</script>

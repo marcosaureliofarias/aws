@@ -1,0 +1,268 @@
+<% context_project = @target_project || @project %>
+<% project_ids = @issue_params[:project_id] && Array(@issue_params[:project_id]) || @issues.map(&:project_id) %>
+<div class="contextual">
+  <ul id="bulk-selection">
+    <% @issues.each do |issue| %>
+      <%= content_tag 'li', link_to_issue(issue) %>
+    <% end %>
+  </ul>
+</div>
+<h2><%= @copy ? l(:button_copy) : l(:label_bulk_edit_selected_issues) %></h2>
+
+<% if @saved_issues && @unsaved_issues.present? %>
+  <div id="errorExplanation">
+    <span>
+      <%= l(:notice_failed_to_save_issues,
+            :count => @unsaved_issues.size,
+            :total => @saved_issues.size,
+            :ids => @unsaved_issues.map { |i| "##{i.id}" }.join(', ')) %>
+    </span>
+    <ul>
+      <% bulk_edit_error_messages(@unsaved_issues).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_tag(bulk_update_issues_path, :id => 'bulk_edit_form', :class => 'form-box') do %>
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] -%>
+  <%= @issues.collect { |i| hidden_field_tag('ids[]', i.id, id: nil) }.join("\n").html_safe %>
+
+  <div class="splitcontent tabular">
+
+    <div class="splitcontentleft">
+      <p>
+        <label for="issue_project_id"><%= l(:field_project) %></label>
+        <%= easy_select_tag(
+              'issue[project_id]',
+              {:name => @target_project.nil? ? l(:label_no_change_option) : @target_project.name, :id => @target_project.nil? ? '' : @target_project.id},
+              @allowed_projects ? project_tree_options_for_select(@allowed_projects.flatten, {:selected => @target_project}) : nil,
+              easy_autocomplete_path('allowed_target_projects_on_move'),
+              :onchange => "updateBulkEditFrom('#{j(url_for(:action => 'bulk_edit', :format => 'js'))}')",
+              :include_blank => true, :root_element => 'projects', :html_options => {:id => 'issue_project_id'}
+            ) -%>
+      </p>
+      <p>
+        <label for="issue_tracker_id"><%= l(:field_tracker) %></label>
+        <% trackers_for_select = @trackers_no_change_allowed ? '' : content_tag('option', l(:label_no_change_option), :value => '') %>
+        <% trackers_for_select.concat(options_from_collection_for_select(@trackers, :id, :name, @issue_params[:tracker_id])) %>
+        <%= select_tag('issue[tracker_id]', trackers_for_select.html_safe, :onchange => "updateBulkEditFrom('#{j(url_for(:action => 'bulk_edit', :format => 'js'))}')") %>
+      </p>
+
+      <% if @available_statuses.any? %>
+        <p>
+          <label for='issue_status_id'><%= l(:field_status) %></label>
+          <%= select_tag('issue[status_id]', content_tag('option', l(:label_no_change_option), :value => '') + options_from_collection_for_select(@available_statuses, :id, :name, @issue_params[:status_id])) %>
+        </p>
+      <% end %>
+
+      <% if @safe_attributes.include?('priority_id') -%>
+        <p>
+          <label for='issue_priority_id'><%= l(:field_priority) %></label>
+          <%= select_tag('issue[priority_id]', content_tag('option', l(:label_no_change_option), :value => '') + options_from_collection_for_select(IssuePriority.active, :id, :name, @issue_params[:priority_id])) %>
+        </p>
+      <% end %>
+
+      <% if @safe_attributes.include?('author_id') -%>
+        <p>
+          <label for='issue_author_id'><%= l(:field_author) %></label>
+          <%= easy_autocomplete_tag("issue[author_id]",
+                                    { name: l(:label_no_change_option), id: '' },
+                                    easy_autocomplete_path('assignable_principals_issue', project_ids: project_ids, move: true),
+                                    preload: false,
+                                    root_element: 'users',
+                                    html_options: { id: 'issue_author_id' },
+                                    force_autocomplete: true,
+                                    easy_autocomplete_options: {
+                                        activate_on_input_click: true,
+                                        widget: 'catcomplete',
+                                        delay: 50,
+                                        minLength: 0
+
+                                    }) %>
+        </p>
+      <% end %>
+
+      <% if @safe_attributes.include?('assigned_to_id') -%>
+        <p>
+          <label for='issue_assigned_to_id'><%= l(:field_assigned_to) %></label>
+          
+          <%= easy_autocomplete_tag("issue[assigned_to_id]",
+                                    { name: l(:label_no_change_option), id: '' },
+                                    easy_autocomplete_path('assignable_principals_issue', project_ids: project_ids, move: true),
+                                    preload: false,
+                                    root_element: 'users',
+                                    html_options: { id: 'issue_assigned_to_id' },
+                                    force_autocomplete: true,
+                                    easy_autocomplete_options: {
+                                        activate_on_input_click: true,
+                                        widget: 'catcomplete',
+                                        delay: 50,
+                                        minLength: 0
+                                    }) %>
+        </p>
+      <% end %>
+
+      <% if @safe_attributes.include?('category_id') -%>
+        <p>
+          <label for='issue_category_id'><%= l(:field_category) %></label>
+          <%= select_tag('issue[category_id]', content_tag('option', l(:label_no_change_option), :value => '') +
+            content_tag('option', l(:label_none), :value => 'none', :selected => (@issue_params[:category_id] == 'none')) +
+            options_from_collection_for_select(@categories, :id, :name, @issue_params[:category_id])) %>
+        </p>
+      <% end %>
+
+      <% if @safe_attributes.include?('fixed_version_id') -%>
+        <p>
+          <label for='issue_fixed_version_id'><%= l(:field_fixed_version) %></label>
+          <%= select_tag('issue[fixed_version_id]', content_tag('option', l(:label_no_change_option), :value => '') +
+            content_tag('option', l(:label_none), :value => 'none', :selected => (@issue_params[:fixed_version_id] == 'none')) +
+            version_options_for_select(@versions.sort, @issue_params[:fixed_version_id])) %>
+        </p>
+      <% end %>
+
+      <% @custom_fields.each do |custom_field| %>
+        <p>
+          <label class="<%= 'required' if custom_field.is_required? %>"><%= custom_field.translated_name %></label>
+          <%= custom_field_tag_for_bulk_edit('issue', custom_field, @issues, @issue_params[:custom_field_values][custom_field.id.to_s], :label_none => :label_no_change_option) %>
+        </p>
+      <% end %>
+
+      <% if @copy %>
+        <% if Setting.link_copied_issue == 'ask' %>
+          <%= hidden_field_tag 'link_copy', '0', id: nil %>
+          <% box = check_box_tag 'link_copy', '1', params[:link_copy] != '0' %>
+          <%= label_tag 'link_copy', box + l(:label_link_copied_issue), :class => 'checkbox inline' %>
+        <% end %>
+
+        <% if @attachments_present %>
+          <%= hidden_field_tag 'copy_attachments', '0', id: nil %>
+          <% box = check_box_tag 'copy_attachments', '1', params[:copy_attachments] != '0' %>
+          <%= label_tag 'copy_attachments', box + l(:label_copy_attachments), :class => 'checkbox inline' %>
+        <% end %>
+
+        <% if @subtasks_present %>
+          <%= hidden_field_tag 'copy_subtasks', '0', id: nil %>
+          <% box = check_box_tag 'copy_subtasks', '1', params[:copy_subtasks] != '0' %>
+          <%= label_tag 'copy_subtasks', box + l(:label_copy_subtasks), :class => 'checkbox inline' %>
+        <% end %>
+
+        <% if @relations_present %>
+          <%= hidden_field_tag 'copy_relations', '0', id: nil %>
+          <% box = check_box_tag 'copy_relations', '1', params[:copy_relations] != '0' %>
+          <%= label_tag 'copy_relations', box + l(:label_copy_relations), :class => 'checkbox inline' %>
+        <% end %>
+      <% end %>
+
+      <%= call_hook(:view_issues_bulk_edit_details_bottom, {issues: @issues, project: context_project, issue_params: @issue_params}) %>
+    </div>
+
+    <div class="splitcontentright">
+      <% if @time_tracking && @safe_attributes.include?('estimated_hours') %>
+        <p>
+          <label for='issue_estimated_hours'><%= l(:field_estimated_hours) %></label>
+          <%= text_field_tag 'issue[estimated_hours]', '', :size => 3, :placeholder => l(:field_hours), :id => 'issue_estimated_hours' %>
+          <%= content_tag('label', check_box_tag('issue[estimated_hours]', '0', false, :id => nil, :data => {:disables => "##{"issue_estimated_hours"}"}) + l(:button_clear), :class => 'inline') %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('is_private') %>
+        <p>
+          <label for='issue_is_private'><%= l(:field_is_private) %></label>
+          <%= select_tag('issue[is_private]', content_tag('option', l(:label_no_change_option), :value => '') +
+            content_tag('option', l(:general_text_Yes), :value => '1', :selected => (@issue_params[:is_private] == '1')) +
+            content_tag('option', l(:general_text_No), :value => '0', :selected => (@issue_params[:is_private] == '0'))) %>
+        </p>
+      <% end %>
+
+      <% if @safe_attributes.include?('parent_issue_id') && context_project %>
+        <p>
+          <label for='issue_parent_issue_id'><%= l(:field_parent_issue) %></label>
+          <span class="bulk-type-right-group">
+              <%= radio_button_tag 'issue[parent_issue_id_type]', 'unchanged', true %>
+            <label class="bulk-type-label-1 inline" for="issue_parent_issue_id_type_unchanged"><%= l(:label_no_change) %></label>
+
+            <%= radio_button_tag 'issue[parent_issue_id_type]', 'change', false %>
+            <label class="bulk-type-label-2 inline" for="issue_parent_issue_id_type_change"><%= l(:label_change_to) %></label>
+            <%= easy_autocomplete_tag('issue[parent_issue_id]', {:name => '', :id => ''}, easy_autocomplete_path( 'parent_issues', :project_id => context_project), {:root_element => 'parent_issues', :html_options => {:id => 'parent_issue_id'}, :onchange => "$('#issue_parent_issue_id_type_change').attr('checked', true)"}) %>
+            </span>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('start_date') %>
+        <%= render :partial => 'issues/change_date_fields', :locals => {type: 'start_date'} %>
+      <% end %>
+
+      <% if @safe_attributes.include?('due_date') %>
+        <%= render :partial => 'issues/change_date_fields', :locals => {type: 'due_date'} %>
+      <% end %>
+
+      <% if @safe_attributes.include?('done_ratio') && Issue.use_field_for_done_ratio? %>
+        <p>
+          <label for='issue_done_ratio'><%= l(:field_done_ratio) %></label>
+          <%= select_tag 'issue[done_ratio]', options_for_select([[l(:label_no_change_option), '']] + (0..10).to_a.collect { |r| ["#{r*10} %", r*10] }) %>
+        </p>
+      <% end %>
+    </div>
+
+  </div>
+
+  <fieldset>
+    <legend><%= l(:field_notes) %></legend>
+    <%= text_area_tag 'notes', @notes, :cols => 60, :rows => 10, :class => 'wiki-edit' -%>
+    <%= wikitoolbar_for 'notes' unless in_mobile_view? -%>
+  </fieldset>
+
+    <fieldset class="collapsible">
+      <legend onclick="toggleFieldset(this);"><%= l(:label_issue_watchers) -%></legend>
+        <div style="display: none;">
+          <% @watchers.each do |watcher| %>
+            <p class="floating">
+              <%= check_box_tag 'issue[watcher_user_ids][]', watcher.id, false, :id => "issue-watcher-#{watcher.id}" %>
+              <%= label_tag("issue-watcher-#{watcher.id}", watcher.name, :class => 'inline') %>
+            </p>
+          <% end -%>
+        </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <% if @copy %>
+        <%= hidden_field_tag 'copy', '1' %>
+        <%= submit_tag l(:button_copy), :class => @issues.count == 1 ? 'button' : 'button-positive' %>
+        <%= submit_tag l(:button_copy_and_follow), :name => 'follow', :class => @issues.count == 1 ? 'button-positive' : 'button' %>
+      <% elsif @target_project %>
+        <% if @with_repeating_issues %>
+          <label id="update_repeating" for="issue_update_repeat_entity_attributes" class="inline" title="<%= l(:title_update_repeated) %>">
+            <%= check_box_tag('issue[update_repeat_entity_attributes]', '1', true) %><%= l(:label_update_repeated) %>
+          </label>
+          <br/>
+        <% end %>
+        <%= submit_tag l(:button_move), :class => @issues.count == 1 ? 'button' : 'button-positive' %>
+        <%= submit_tag l(:button_move_and_follow), :name => 'follow', :class => @issues.count == 1 ? 'button-positive' : 'button' %>
+      <% else %>
+        <% if User.current.allowed_to?(:edit_without_notifications, @project) %>
+          <% box = check_box_tag 'issue[without_notifications]', '1', params[:without_notifications] %>
+          <%= label_tag 'issue[without_notifications]', box + l(:label_without_notifications), :class => 'checkbox inline' %>
+        <% end %>
+        <% if @with_repeating_issues %>
+          <label id="update_repeating" for="issue_update_repeat_entity_attributes" class="inline" title="<%= l(:title_update_repeated) %>">
+            <%= check_box_tag('issue[update_repeat_entity_attributes]', '1', true) %><%= l(:label_update_repeated) %>
+          </label>
+        <% end %>
+        <br/>
+        <%= submit_tag l(:button_submit), :class => 'button-positive' %>
+      <% end %>
+    </div>
+  <% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $(document).on('change', 'input[data-disables]', function () {
+      if ($(this).prop('checked')) {
+        $($(this).data('disables')).prop('disabled', true);
+        $(this).closest('span').find("input").last().prop('disabled', false);
+      } else {
+        $($(this).data('disables')).prop('disabled', false);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,20 @@
+<%
+  projects_sums_path = easy_gantt_resources_projects_sums_path(':start', ':end', key: User.current.api_key)
+%>
+
+<%= content_for :header_tags do %>
+  <%= easy_gantt_include_css('easy_gantt_resources', from_plugin: 'easy_gantt_resources', media: 'all') %>
+<% end %>
+<%= content_for :body_bottom do %>
+  <%= easy_gantt_include_js('rm_renderer', from_plugin: 'easy_gantt_resources') %>
+  <%= render 'hooks/easy_gantt_resources/resource_styles' %>
+  <script type="text/javascript">
+    window.ysy = window.ysy || {};
+    ysy.settings = ysy.settings || {};
+    EasyGem.extend(true, ysy.settings, {
+      paths: {
+        globalGanttResources: "<%= projects_sums_path.html_safe %>"
+      }
+    });
+  </script>
+<% end %>

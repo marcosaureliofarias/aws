@@ -1,0 +1,266 @@
+@import "../variables";
+.editable-input {
+  @mixin input_icon ($icon,$color){
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    content: $icon !important;
+    width: 2 * $gap;
+    height: $input-height;
+    bottom: 100%;
+    right: -1px;
+    //background: $color-positive;
+    font-family: "Material Icons";
+    line-height: $input-height;
+    border-radius: $input-radius $input-radius 0 0;
+    color: $color;
+    font-size: 15px;
+  }
+  &__backdrop{
+    display: none;
+  }
+  &__wrapper {
+    display: inline-flex;
+    width: 100%;
+    border: 1px solid transparent;
+    height: $input-height;
+    line-height: $input-height;
+    border-radius: $input-radius;
+    font-weight: bold;
+    position: relative;
+    color: $color-text;
+    &:hover:not(.no-hover) {
+      cursor: pointer;
+      border: 1px dashed mix($color-border, $color-text) !important;
+    }
+    &.u-editing{
+      &,&:hover{
+        background: $color-front !important;
+        border: 1px solid $color-border !important;
+        cursor: text;
+      }
+      & > .vs--open {
+        @media only screen and (min-width: $breakpoint--small) {
+          position: relative !important;
+        }
+      }
+    }
+    &.u-showing.required:not(.u-hasValue){
+      border-bottom-color: $color-negative !important;
+      &:before{
+        @include input_icon("\F026",$color-negative);
+        bottom: -1px;
+        right: 0px;
+        font-weight: normal;
+      }
+    }
+    & > label{
+      margin-right: $gap;
+    }
+    input,
+    select,
+    textarea,
+    .vs__dropdown-toggle {
+      background: transparent !important;
+      border-color: transparent !important;
+      outline: none !important;
+      height: 100%;
+      width: 100%;
+      max-width: none;
+      box-sizing: border-box;
+      padding: $input-padding;
+      box-shadow: none;
+    }
+    input,
+    select {
+      line-height: $input-height - 2 * $input-padding;
+      font-weight: bold;
+    }
+    input[type="radio"],
+    input[type="checkbox"]{
+      height: auto;
+      width: auto;
+    }
+    .vdp-datepicker__calendar,
+    .vs__dropdown-menu {
+      font-weight: normal;
+    }
+    &--static {
+      padding-left: $input-padding;
+      &:hover {
+        border-color: $color-background__atributes !important;
+        border-bottom: 1px solid $color-border !important;
+        cursor: auto;
+      }
+    }
+    // Subject can't be shortened, but all other inputs need to be
+    &:not(.editable-input__wrapper--subject) {
+      min-width: 0;
+      & > span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    &.multiple {
+      .vs__selected {
+        border: 1px solid $color-border;
+        margin-right: $gap/2;
+        margin-top: $gap/2;
+        padding: 1px $gap/2;
+        background: $color-front;
+      }
+      .vs__selected + input {
+        position: static;
+        bottom: 0;
+      }
+      &.u-editing input {
+        height: $input-height !important;
+      }
+    }
+
+    & > .bool__wrapper {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      label {
+        padding-right: .5*$gap;
+      }
+      input {
+        width: auto;
+        height: auto;
+      }
+      & > .u-editing.editable-input__wrapper {
+        background: $color-background__atributes !important;
+      }
+      .bool__label--checkbox {
+        width: 100%;
+      }
+    }
+  }
+  &__loader {
+    height: 1.5*$gap;
+    width: 1.5*$gap;
+    position: absolute;
+    top: 8px;
+    right: 3px;
+    display: inline-block;
+    border: 1px solid $color-text;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: rotate 1s linear infinite;
+  }
+
+  &__notice {
+    font-weight: normal;
+    position: absolute;
+    padding: 0 0.5 * $gap;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 0 0 $input-radius $input-radius;
+    background: rgba($color-positive,.75);
+    border: 1px solid $color-positive;
+    color: $color-front;
+    z-index: 3;
+    height: 0;
+    font-size: 0;
+    border-bottom: none;
+    ul,li {
+      margin: 0;
+      line-height: $base-line-height;
+    }
+    ul{
+      margin-top: .5*$gap;
+    }
+    li {
+      margin-bottom: .5*$gap;
+    }
+    &:hover {
+      font-size: 12px;
+      height: auto;
+      border-bottom: 1px solid $color-positive;
+    }
+    &:before {
+      @include input_icon("\F012C", $color-positive);
+    }
+    &--error {
+      background: $color-negative;
+      border-color: $color-negative;
+      &:hover {
+        border-bottom-color: $color-negative;
+      }
+      &:before {
+        color: $color-negative;
+        content: "\F0026" !important;
+      }
+    }
+    &--warning {
+      background: $color-warning;
+      border-color: $color-warning;
+      &:hover {
+        border-bottom-color: $color-warning;
+      }
+      &:before {
+        color: $color-warning;
+        content: "\F026" !important;
+      }
+    }
+  }
+}
+
+.editable-wrapper {
+  padding: 7px;
+  margin: -8px;
+  border: 1px solid transparent;
+  &:hover:not(.no-hover) {
+    cursor: pointer;
+    border: 1px dashed darken($color-border, 25%) !important;
+  }
+}
+.autocomplete {
+  position: relative;
+  &__input {
+  }
+  &__results {
+    overflow-x: scroll;
+    padding: 0;
+    margin: 0;
+    &-wrapper {
+      position: absolute;
+      top: 100%;
+      background: #fff;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 0 1px #666;
+      border-radius: 2px;
+      z-index: 1;
+    }
+    &-item {
+      padding: 3px 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(0, 0, 180, 0.1);
+      }
+      & + & {
+        border-top: 1px solid #eee;
+      }
+    }
+  }
+  &__close {
+    cursor: pointer;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+  }
+  &-multiselect__results {
+    display: flex;
+    width: 300px;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+  }
+}

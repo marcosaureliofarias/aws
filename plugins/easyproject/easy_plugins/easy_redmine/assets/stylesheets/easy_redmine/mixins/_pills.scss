@@ -1,0 +1,18 @@
+%pills-a{
+  display: inline-block;
+  font-size: $font-size--menu;
+  text-decoration: none;
+  padding: 0 $gap;
+  line-height: -2+$tab-height;
+  border: 1px solid $color-border;
+  background-color: $color-background;
+  color: $color-text;
+  font-weight: bold;
+  @extend %border-radius-large;
+  &:hover{
+    background: $color-foreground;
+  }
+  &.selected {
+    background: $color-foreground;
+  }
+}

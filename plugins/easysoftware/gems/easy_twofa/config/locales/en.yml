@@ -1,0 +1,75 @@
+---
+en:
+  easy_twofa:
+    activate_scheme: Activate %{name}
+    address: Address
+    authentificate: Authenticate
+    code_was_resend: Code was resent
+    continue: Continue
+    device_will_be_rememberd_for_x_days: This device will be remembered for %{count}
+      days
+    disable_scheme: Disable %{name}
+    disabled: Disabled
+    disabling_twofa: Disabling Two-factor authentication
+    enabled_scheme: Enabled scheme
+    expired_at: Expired at
+    global_settings: Global settings
+    http_method: HTTP method
+    mode: Mode
+    optional: Optional
+    plain_key: Plain key
+    please_enter_verification_key: Please enter verification key
+    plugin_name: Easy Twofa
+    plugin_name_long: Easy Two-Factor authentication
+    provider: Provider
+    remember_device: Remember device
+    remembered_devices: Remembered devices
+    required: Required
+    scheme_is_active: "%{name} is active"
+    schemes:
+      sms:
+        errors:
+          missing_provider: The provider of sms authentication is missing
+          missing_telephone: Telephone is missing
+        name: SMS
+        providers:
+          custom:
+            body: Message text
+            name: Custom
+            telephone: Telephone
+          messagebird:
+            name: MessageBird
+        small_description: Authenticate using SMS number. You need to have setup telephone
+          number.
+      totp:
+        disable_title: Disable TOTP
+        name: TOTP
+        setup_info: Scan this QR code or enter the plain text key into a TOTP app
+          (e.g. Google Authenticator, Authy, Duo Mobile) and enter the code in the
+          field below to activate two-factor authentication.
+        setup_title: Setup TOTP
+        small_description: Authenticate using Time-based One-Time Password algorithm
+          using TOTP app (e.g. Google Authenticator, ...).
+    select_scheme: Select scheme
+    select_scheme_is_required: Two-factor authentication is required. In order to
+      continue please select scheme you will be using. You can change it later in
+      your profile.
+    send_new_code: Send new code
+    setting_enabled_schemes_info: At least one scheme must be selected. If no scheme
+      is selected all are enabled.
+    successfully_disabled: Successfully disabled
+    successfully_verified: Successfully verified
+    telephone_cf: Telephone custom-field
+    text_activation: The selected scheme is not yet activated. You need to verify
+      it first to avoid complications during login.
+    text_disable: The scheme is still active. Please verify it's you. Contact Administrator
+      if you cannot do this.
+    too_much_attempts: Too many attempts
+    twofa: Two-factor authentication
+    twofa_is_required: Two-factor authentication is required
+    twofa_verification_failed: Two-factor authentication verification failed
+    twofa_was_saved: Two-factor authentication was saved
+    user_agent: User-Agent
+    verification_failed_contact_administrator: Two-factor authentication cannot be
+      verified. Please contact administrator.
+    verify_code: Verify code

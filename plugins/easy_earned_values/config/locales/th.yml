@@ -1,0 +1,55 @@
+---
+th:
+  button_easy_earned_values_reload_planned: วางแผนรีโหลด
+  easy_earned_values:
+    axes:
+      costs: ต้นทุน
+      time: เวลา
+    baseline: Baseline
+    chart_types:
+      bar: แท่ง
+      line: เส้น
+      spline: เส้นโค้ง
+    field_reload_constantly: รีโหลดต่อเนื่อง
+    help_reload_constantly: ข้อมูลถูกโหลดซ้ำอย่างสมบูรณ์จนกว่าการทำงานทุกครั้ง (การดำเนินการนี้อาจใช้เวลานาน)
+    types:
+      estimated_hours:
+        name: ชั่วโมงโดยประมาณ
+        values:
+          ac_long: ต้นทุนจริง (เวลาที่ใช้ไป)
+          ev_long: ค่าที่ได้ (ทำการถ่วงน้ำหนัก%แล้ว, น้ำหนักคือเวลาโดยประมาณ)
+          pv_long: ค่าตามแผน (เวลาโดยประมาณ)
+    use_current_project: ใช้โครงการปัจจุบัน
+    values:
+      ac: ต้นทุนที่แท้จริง
+      cpi: ประสิทธิภาพต้นทุน
+      cpi_help: แสดงจำนวนงานที่เสร็จสมบูรณ์ในโครงการสำหรับทุกหน่วยของค่าใช้จ่าย CPI
+        คำนวณโดยค่าที่ได้/ต้นทุนจริง ค่าที่สูงกว่า 1 หมายถึงโครงการทำงานได้ดีกับงบประมาณ
+      cv: ต้นทุนผันแปร
+      cv_help: ส่วนต่างระหว่างค่าที่ได้และต้นทุนจริง
+      ev: ค่าที่ได้
+      pv: ค่าตามแผน
+      spi: ประสิทธิภาพของกำหนดการ
+      spi_help: แสดงให้เห็นว่าการทำงานจริงเสร็จสิ้นใกล้เคียงกับกำหนดการอย่างไร. SPI
+        คำนวณโดยค่าที่ได้/ค่าตามแผน ค่าที่สูงกว่า 1 หมายถึงโครงการทำงานได้ดีตามกำหนดการ
+      sv: ความผันแปรของกำหนดการ
+      sv_help: นี่เป็นงานที่เสร็จสมบูรณ์เมื่อเทียบกับกำหนดการที่วางแผนไว้ ความผันแปรของกำหนดการคำนวณโดยการคำนวณส่วนต่างระหว่างค่าที่ได้กับค่าตามแผน
+  easy_pages:
+    modules:
+      easy_earned_value: ค่าที่ได้
+  easy_rake_tasks:
+    easy_earned_values_updater:
+      caption: ตัวอัพเดตค่าที่ได้
+  label_easy_earned_value: ค่าที่ได้
+  label_easy_earned_values: ค่าที่ได้
+  label_edit_easy_earned_value: แก้ไขค่าที่ได้
+  label_new_easy_earned_value: ค่าที่ได้ใหม่
+  permission_edit_easy_earned_value: แก้ไขค่าที่ได้รับ
+  permission_edit_easy_earned_values: แก้ไขค่าที่ได้รับ
+  permission_view_easy_earned_value: ดูค่าที่ได้
+  permission_view_easy_earned_values: ดูค่าที่ได้
+  project_module_easy_earned_values: ค่าที่ได้
+  text_easy_earned_values_baseline_disabled: โมดูลพื้นฐานถูกปิดใช้งาน กรุณาเปิดใช้งาน
+  text_easy_earned_values_no_data: ค่าที่ได้รับไม่มีข้อมูล โปรดรอการคำนวณใหม่
+  text_easy_earned_values_not_authorized: คุณไม่ได้รับอนุญาตให้ดูค่าที่ได้รับ
+  text_easy_earned_values_select_ev: เลือกค่าที่ได้รับก่อน

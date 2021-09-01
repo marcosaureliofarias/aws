@@ -1,0 +1,174 @@
+<%
+  available_queries = EasyQuery.constantized_subclasses.select(&:chart_support?)
+  available_queries.map! { |klass| [klass.translated_name, klass.name] }
+  available_queries.sort!
+
+  periods = EasyExtensions::EasyQueryHelpers::PeriodSetting::ALL_PERIODS.each do |period|
+    [query_period_zoom_name(period), period]
+  end
+
+  queries = @easy_page_modules_data[block_name][:queries]
+%>
+
+<%= form.fields_for :config do |config_form| %>
+  <div class="tabular">
+    <p>
+      <%= config_form.label :title, l(:field_title) %>
+      <%= config_form.text_field :title %>
+    </p>
+
+    <p>
+      <%= config_form.label :period_zoom, l(:label_page_module_default_period) %>
+      <%= config_form.select :period_zoom, periods, include_blank: true %>
+    </p>
+
+    <% if queries.any?{|_, q| q.currency_columns? } && EasyCurrency.activated.any? %>
+      <p class="currency">
+        <%= config_form.label :easy_currency_code, l(:field_currency) %>
+        <%= config_form.select :easy_currency_code, EasyCurrency.activated.map {|c| [c.name, c.iso_code] }, include_blank: true %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form.fields_for :queries do |queries_form| %>
+  <% queries.each do |key, query| %>
+    <%= queries_form.fields_for key do |query_form| %>
+      <%= query_form.fields_for :chart_settings do |chart_form| %>
+        <%
+          query_modul_uniq_id = "#{modul_uniq_id}_#{key}"
+          x_columns = query.date_columns.select(&:groupable)
+          x_columns_options = options_for_columns(query, x_columns, chart_form.object.axis_x_column, nil)
+          y_columns_options = options_for_sumable_columns(query, chart_form.object.axis_y_column)
+          is_count_aggregation_checked = (chart_form.object.axis_y_type.blank? || chart_form.object.axis_y_type == 'count')
+          axis_y_column_tag_id = "#{query_modul_uniq_id}_axis_y_column"
+          axis_y_type_onchange = lambda {|value| "document.getElementById('#{axis_y_column_tag_id}').style.display = '#{value}'" }
+        %>
+
+        <% # To prevent load default settings %>
+        <%= query_form.hidden_field :set_filter, value: '1' %>
+
+        <div class="form-box form-fields form-fields--<%= cycle('odd', 'even') %>">
+          <a href="javascript:void(0)" class="push-right button small icon icon-remove easy-query-remove">
+            <%= l(:button_remove) %>
+          </a>
+
+          <div class="tabular">
+            <p>
+              <%= query_form.label :easy_query_type, l(:field_entity) %>
+              <%= query_form.hidden_field :easy_query_type %>
+              <input type="text" value="<%= query.class.translated_name %>" readonly>
+            </p>
+
+            <p>
+              <%= chart_form.label :y_label, l(:field_name) %>
+              <%= chart_form.text_field :y_label, placeholder: l(:label_name_of_data_series) %>
+            </p>
+
+            <p>
+              <%= chart_form.label :axis_x_column, l(:label_page_module_chart_axis_x) %>
+              <%= chart_form.select :axis_x_column, x_columns_options, { include_blank: true } %>
+            </p>
+
+            <p>
+              <%= chart_form.label :axis_y_column, l(:label_page_module_chart_axis_y) %>
+
+              <% # Count section
+                 # No need to select a column for aggregations %>
+              <%= chart_form.radio_button :axis_y_type, 'count',
+                                          checked: is_count_aggregation_checked,
+                                          onchange: axis_y_type_onchange.call('none') %>
+              <%= chart_form.label :axis_y_type, l(:label_page_module_chart_axis_y_count), value: 'count' %>
+
+              <% # Other aggregations
+                 # A column must be selected %>
+              <% query.enabled_aggregations.each do |aggregation| %>
+                <% label_text = l("label_#{aggregation}_of", default: "label_page_module_chart_axis_y_#{aggregation}".to_sym) %>
+
+                <%= chart_form.radio_button :axis_y_type, aggregation,
+                                            onchange: axis_y_type_onchange.call('block') %>
+                <%= chart_form.label :axis_y_type, label_text, value: aggregation %>
+              <% end %>
+
+              <br>
+
+              <% # A column for aggreagtion
+                 # Hide it when count is checked %>
+              <%= chart_form.select :axis_y_column, y_columns_options, {}, { id: axis_y_column_tag_id, class: ('hide' if is_count_aggregation_checked) } %>
+            </p>
+          </div>
+
+          <%= toggling_fieldset(l(:label_filter_plural), collapsed: true) do %>
+            <%= render_with_fallback partial: 'filters', prefixes: query, locals: {
+                query: query,
+                modul_uniq_id: query_modul_uniq_id,
+                block_name: query_form.object_name
+            } %>
+          <% end %>
+
+          <%= toggling_fieldset(l(:label_global_filters), collapsed: true) do %>
+            <%= render 'easy_page_modules/global_filters', modul_uniq_id: query_modul_uniq_id,
+                                                           block_name: query_form.object_name,
+                                                           page_params: page_params,
+                                                           query_params: query_form.object.current_settings,
+                                                           query: query,
+                                                           page_module: page_module,
+                                                           no_heading: true %>
+          <% end %>
+
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= queries_form.fields_for "q#{Time.now.to_i}" do |query_form| %>
+    <div class="form-box form-fields form-fields--<%= cycle('odd', 'even') %>">
+      <div class="tabular">
+        <p>
+          <%= query_form.label :easy_query_type do %>
+            <i class="icon icon-add-action"></i> <%= l(:label_page_module_chart_add_additional_data_serie) %>
+          <% end %>
+          <%= query_form.select :easy_query_type, available_queries, { include_blank: true }, { class: 'easy-query-type' } %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<script>
+  EASY.schedule.late(() => {
+    const allSelects = document.querySelectorAll("#<%= modul_uniq_id %> .easy-query-type")
+    for (const select of allSelects) {
+      select.addEventListener("change", event => {
+        const form = document.querySelector("#<%= modul_uniq_id %> .easy-page-module-form")
+        const formData = new FormData(form)
+        const updateUrl = "<%= update_my_page_module_view_path(form.object.page_module.uuid,
+                                 template: (page_module.is_a?(EasyPageTemplateModule) ? '1' : '0'),
+                                 block_name: block_name,
+                                 edit: true,
+                                 modal_edit: page_params[:modal_edit],
+                                 with_container: false) %>"
+
+        fetch(updateUrl, { method: "POST", body: formData }).
+          then(response => response.text()).
+          then(response => {
+            $("#<%= modul_uniq_id %>").html(response)
+            // module.find(".easy-page-module-form").attr('data-changed', true)
+          }).
+          catch(error => console.error("Error:", error))
+      })
+    }
+
+    const allRemoveLinks = document.querySelectorAll("#<%= modul_uniq_id %> .easy-query-remove")
+    for (const link of allRemoveLinks) {
+      link.addEventListener("click", event => {
+        const formBox = event.target.parentNode
+        const form = formBox.parentNode
+
+        form.dataset.changed = "true"
+        formBox.remove()
+      })
+    }
+
+  })
+</script>

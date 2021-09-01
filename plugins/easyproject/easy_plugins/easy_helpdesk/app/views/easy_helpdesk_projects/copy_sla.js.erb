@@ -1,0 +1,5 @@
+<% @easy_helpdesk_project_sla.each do |sla| %>
+  <%= fields_for "easy_helpdesk_project[easy_helpdesk_project_sla_attributes][#{rand(999999)}]", sla do |f| %>
+    $('.easy_helpdesk_project_sla_container').append("<%= j render(partial: 'easy_helpdesk_projects/sla', locals: {f: f}) %>");
+  <% end %>
+<% end %>

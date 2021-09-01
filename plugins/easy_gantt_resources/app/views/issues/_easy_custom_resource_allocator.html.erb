@@ -1,0 +1,10 @@
+<%=
+  if EasySetting.value(:easy_gantt_resources_change_allocator_enabled) && issue.project && issue.project.module_enabled?('easy_gantt') && issue.safe_attribute?('custom_resource_allocator_name')
+
+    default_allocator_options = EasyGanttResources.allocators(with_labels: true, include_default: true)
+
+    content_tag(:p) {
+      form.select :custom_resource_allocator_name, default_allocator_options, label: l(:field_default_allocator)
+    }
+  end
+%>

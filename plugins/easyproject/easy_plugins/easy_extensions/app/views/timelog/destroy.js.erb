@@ -1,0 +1,11 @@
+<% if @destroyed %>
+  <% if @any_with_attendance %>
+    showFlashMessage('error', "<%= j l(:notice_unable_delete_time_entry_with_attendance) %>");
+  <% else %>
+    <% @time_entries.each do |time_entry| %>
+      document.getElementById("<%= dom_id(time_entry) %>").remove();
+    <% end %>
+  <% end %>
+<% else %>
+  showFlashMessage('error', "<%= j l(:notice_unable_delete_time_entry) %>");
+<% end %>

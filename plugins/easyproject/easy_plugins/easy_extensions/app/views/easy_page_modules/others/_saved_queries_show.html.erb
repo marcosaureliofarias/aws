@@ -1,0 +1,11 @@
+<% settings = @easy_page_modules_data[block_name] %>
+<% if (settings[:private_queries].values + settings[:public_queries].values + settings[:role_queries].values.map(&:values) + settings[:easy_user_type_queries].values).flatten.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {
+                                                                :user => user,
+                                                                :modul_uniq_id => modul_uniq_id,
+                                                                :get_visible_queries => false,
+                                                                :settings => settings
+                                                            }, :collection => settings[:selected], :as => :query_class -%>
+<% end %>

@@ -1,0 +1,30 @@
+<p>
+  <label for="custom_field_is_primary"><%= l(:field_show_on_generals) -%></label>
+  <%= hidden_field_tag 'custom_field[is_primary]', '0' -%>
+  <%= check_box_tag 'custom_field[is_primary]', 1, @custom_field.is_primary? -%>
+</p>
+<p>
+  <label><%= l(:field_visible) %></label>
+  <label class="block radio">
+    <%= radio_button_tag 'custom_field[visible]', 1, @custom_field.visible?, :id => 'custom_field_visible_on',
+      :data => {:disables => '.custom_field_user_type input'} %>
+      <%= l(:label_visibility_public) %>
+  </label>
+  <label class="block radio">
+    <%= radio_button_tag 'custom_field[visible]', 0, !@custom_field.visible?, :id => 'custom_field_visible_off',
+      :data => {:enables => '.custom_field_user_type input'} %>
+    <%= l(:label_visibility_user_types) %>:
+  </label>
+  <label class="custom_field_user_type" title="<%= l(:title_personal_visibility) %>">
+    <%= hidden_field_tag 'custom_field[settings][personal_visibility]', '0' -%>
+    <%= check_box_tag 'custom_field[settings][personal_visibility]', '1', @custom_field.settings[:personal_visibility] == '1' %>
+    <%= l(:label_personal_visibility) -%>
+  </label>
+  <% EasyUserType.sorted.each do |easy_user_type| %>
+    <label class="block checkbox custom_field_user_type" style="padding-left:2em;">
+      <%= check_box_tag 'custom_field[easy_user_type_ids][]', easy_user_type.id, @custom_field.easy_user_types.include?(easy_user_type), :id => nil %>
+      <%= easy_user_type.name %>
+    </label>
+  <% end %>
+  <%= hidden_field_tag 'custom_field[easy_user_type_ids][]', '' %>
+</p>

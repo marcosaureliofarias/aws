@@ -1,0 +1,28 @@
+.jstTabs {
+  & > ul {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    li {
+      height: auto !important;
+      padding-left: .25*$gap;
+      display: flex;
+      align-items: center;
+      a {
+        text-align: left !important;
+        padding: .5*$gap 2*$gap .5*$gap 1px !important;
+        margin-right: $gap;
+      }
+    }
+    .tab-elements {
+      &:before{
+        position: absolute;
+      }
+    }
+    .jstElements {
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 0;
+      height: auto !important;
+    }
+  }
+}

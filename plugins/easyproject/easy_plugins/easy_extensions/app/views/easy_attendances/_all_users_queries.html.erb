@@ -1,0 +1,8 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name -%>
+<% if User.current.internal_client? %>
+  <div class="box">
+    <%= toggling_container(modul_uniq_id, User.current, :heading => l(:sidebar_easy_attendances_all_users_queries)) do %>
+      <%= render(:partial => 'easy_attendances/all_users_queries_toggle_container_content', :locals => {:modul_uniq_id => modul_uniq_id}) %>
+    <% end %>
+  </div>
+<% end %>

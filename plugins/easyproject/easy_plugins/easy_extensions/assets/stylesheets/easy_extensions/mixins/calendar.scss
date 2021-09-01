@@ -1,0 +1,225 @@
+%calendar-line-head{
+  width: 4%;
+  text-align: center;
+  vertical-align: middle;
+  @include small;
+  &~td{
+    width: 13.7142%;
+  }
+  &+td{
+    //border-left: none;
+  }
+}
+%calendar-time-number{
+  float: left;
+  margin: -0.5*$gap (-0.5*$gap) 0 0;
+  padding: 0.5*$gap;
+  line-height: $box-padding;
+  position: relative;
+  text-align: left;
+  @include small;
+  @extend %tooltip-top;
+  & + div,& + p {
+    clear: both;
+  }
+  @include respond-to(max-#{$calendar-collapse}){
+    padding: 0;
+  }
+}
+%calendar-body-element{
+  @extend %box-inside;
+  vertical-align: top;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 0.5*$gap;
+  & > div{
+    &.easy-calendar-inside{
+      position: relative;
+      @include respond-to(max-#{$calendar-collapse}){
+        padding: $gap $box-padding;
+      }
+    }
+  }
+  p{
+	margin: 0;
+  }
+  &.today{
+    background: $color-calendar-background-today;
+  }
+  &.odd,&.weekend{
+    background: $color-calendar-background-weekend;
+  }
+  &.holiday{
+    background: $color-calendar-background-holiday;
+  }
+  &.exception{
+    background: $color-calendar-background-exception;
+  }
+  &.odd{
+    opacity: 0.5;
+    &:hover{
+      opacity: 1;
+    }
+  }
+  &.week-number,&.day-number,&.month-number,&.week-total{
+    //@extend %calendar-head-element;
+    @extend %calendar-line-head;
+    background: rgba(mix($color-background,$color-foreground),0.5);
+    //border-right: 1px solid $color-border-minor !important;
+    @include respond-to(max-#{$calendar-collapse}){
+      border-right: none !important;
+    }
+  }
+  .day-num{
+    @extend %calendar-time-number;
+    & > span.tooltip{
+      bottom: 70%;
+      margin-left: -70%;
+      white-space: nowrap;
+    }
+  }
+  .day-name{
+    @include respond-to(min-#{$calendar-collapse}){
+      display: none;
+    }
+  }
+  .day-content{
+    clear: both;
+    margin-bottom: $gap;
+    min-width: 90px;
+    @include small;
+    @include respond-to(max-#{$calendar-collapse}){
+      margin-top: 2*$gap;
+    }
+  }
+  .calendar-hours-info{
+    position: absolute;
+    left: 50px;
+    @include smaller;
+    line-height: $box-padding;
+    @include respond-to(max-#{$calendar-collapse}){
+      margin-top: -0.5*$gap;
+    }
+    .hours{
+      &:before{
+        content: '(';
+      }
+      &:after{
+        content: ')';
+      }
+    }
+  }
+  .calendar-actions{
+    padding: 0.5*$gap;
+    position: relative;
+    //top: -0.625*$gap;
+    //left: 2*$gap;
+    max-width: calc(100% - #{$gap});
+    z-index: 1;
+    a{
+      opacity: 0;
+      @extend %button-mini-positive;
+      @extend %truncate;
+      @extend %box-sizing-border-box;
+      width: 100%;
+      display: inline;
+      //@extend %tooltip-left;
+    }
+    @include respond-to(max-#{$calendar-collapse}){
+      right: 0.5*$box-padding;
+      top: 0;
+      a{
+        opacity: 1;
+      }
+    }
+
+  }
+  &:hover, &.today{
+    .calendar-actions{
+      a{
+        opacity: 1;
+      }
+    }
+  }
+}
+%calendar-listing-links{
+  @extend %flex;
+  @extend %align-items-stretch;
+  @extend %justify-content-center;
+  line-height: $button-height;
+  text-align: center;
+  float: none !important;
+  padding-bottom: 0.5*$box-padding;
+  &:first-child{
+    padding-top: 0.5*$box-padding;
+  }
+  //@extend %clearfix;
+  @include respond-to(max-sidebar-collapse) {
+    //width: 50%;
+    //@include flex-direction(column);
+    //@include align-items(stretch);
+    //margin-top: $box-padding !important;
+
+    .prev,.next{
+      //order: 9;
+      //width: 25%;
+      @include align-self(center);
+    }
+    //.next{
+    //  margin-top: -1.5*$gap;
+    //}
+  }
+  .prev{
+    @extend %control-arrow-prev;
+    @extend %justify-content-flex-start;
+    margin-right: $gap;
+  }
+  .next{
+    @extend %control-arrow-next;
+    @extend %justify-content-flex-end;
+    margin-left: $gap;
+  }
+
+  & > span {
+    margin-left: $gap;
+    margin-right: $gap;
+  }
+
+  span{
+    &.prev,&.next{
+      opacity: 0.5;
+      &:hover{
+        @include translate(0, 0);
+        cursor: default;
+      }
+    }
+  }
+  a{
+    color: $color-text;
+  }
+  & > .period,& > .easy-cal-title, & > .easy-calendar__calendar-listing-date{
+    @extend %h3;
+    margin: 0;
+    width: auto;
+    line-height: 1.5;
+    //padding: 1.5*$gap 0;
+    display: inline-block;
+    flex-basis: 50%;
+    max-width: 300px;
+    min-width: 200px;
+  }
+}
+%calendar-head-element{
+  //border:none;
+  //background: none;
+  text-align: center;
+  padding: 0.5*$gap 0;
+  //border-left: none;
+  //border-right: none;
+}
+%calendar-row{
+
+}
+%calendar-table-border{
+  border: 1px solid $color-border-minor;
+}

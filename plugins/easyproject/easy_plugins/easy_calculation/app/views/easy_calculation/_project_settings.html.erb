@@ -1,0 +1,23 @@
+<% if @project.module_enabled?(:easy_calculation) %>
+  <%= toggling_fieldset l(:project_module_easy_calculation), :class => 'tabular' do %>
+    <p>
+      <%= form.text_field :calculation_discount, :size => 10 %>
+      <%= form.check_box :calculation_discount_is_percent %>
+    </p>  
+    <p>
+      <% if Redmine::Plugin.installed?(:easy_contacts) %>
+      	<label><%= l(:field_client) %></label>
+        <%= easy_modal_selector_field_tag(
+        	'EasyContact',
+        	'link_with_name',
+        	'project[client_id]',
+        	'project_client_id',
+        	project.client ? {project.client_id => project.client.name} : {},
+        	{:multiple => '0'}
+        ) %>
+      <% else %>
+        <%= form.text_field :client_name %>
+      <% end -%>
+    </p>
+  <% end -%>
+<% end -%>

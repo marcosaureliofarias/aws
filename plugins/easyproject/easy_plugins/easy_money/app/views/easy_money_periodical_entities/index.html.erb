@@ -1,0 +1,9 @@
+<%= render @query, :easy_query_name => l(:label_easy_money_expected_expenses), :options => { :hascontextmenu => false } %>
+
+<%= render(:partial => 'easy_queries/easy_query_export_format_links', :locals => {:query => @query}) -%>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class} -%>
+<% end -%>

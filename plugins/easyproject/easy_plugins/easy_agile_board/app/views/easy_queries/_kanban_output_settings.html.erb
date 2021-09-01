@@ -1,0 +1,164 @@
+<%
+  kanban_groups = query.groupable_columns
+
+  case query.type
+  when 'EasyIssueQuery'
+    kanban_groups.select!{|c| EasyAgileBoard::EasyQueryOutputs::KanbanOutput::ISSUES_AVAILABLE_GROUPS.include?(c.name.to_s) }
+  end
+
+  kanban_groups = kanban_groups.map{|c| [c.caption, c.name.to_s] }
+%>
+
+<div class="splitcontent">
+  <div class="splitcontentleft size-6">
+    <div id="<%= modul_uniq_id %><%= local_assigns[:output].try(:key).to_s %>_options_container" class="tabular kanban-card-settings">
+
+      <%
+        if local_assigns.key?(:easy_setting_name)
+          hide_group_by = true
+          block_name = "easy_setting[#{easy_setting_name}]"
+          kanban_settings ||= EasySetting.value(easy_setting_name, query.project ) || { 'main_attribute' => 'project', 'summable_column' => 'remaining_timeentries', 'avatar_attribute' => 'assigned_to_id' }
+        else
+          hide_group_by = false
+          kanban_settings ||= query.settings['kanban'] || {}
+          block_name = block_name.blank? ? 'settings[kanban]' : "#{block_name}[settings][kanban]"
+        end
+        summable_columns ||= query.available_columns.select(&:sumable?).map{|c| [c.caption, c.name.to_s] }
+        swimlanes_for_autocomplete = query.available_swimlanes.map{|swimlane| [swimlane[:name], swimlane[:value]] }
+      %>
+
+      <% unless hide_group_by %>
+        <p>
+          <%= label_tag "#{block_name}[kanban_group]", l(:label_create_columns_by) %>
+          <span class="value">
+            <%= autocomplete_field_tag("#{block_name}[kanban_group]", kanban_groups, [kanban_settings['kanban_group']] || query.group_by, multiple: false, id: modul_uniq_id + 'kanban_group_by') %>
+          </span>
+          <script type="application/javascript">
+            EASY.schedule.late(function () {
+              $("input#<%= modul_uniq_id %>kanban_group_by").change(function () {
+                $("p.select_values").hide();
+                $("p.select_values." + $("[name='<%= block_name %>[kanban_group]']").val()).show();
+              });
+            });
+          </script>
+        </p>
+        <% if query.type == 'EasyIssueQuery' %>
+          <%
+            trackers = Tracker.visible.sorted
+            issue_statuses = IssueStatus.sorted
+          %>
+          <p class="select_values tracker <%= 'hidden' unless kanban_settings['kanban_group_trackers'] && kanban_settings['kanban_group'] == 'tracker' %>">
+            <%= label_tag "#{block_name}[kanban_group_trackers]", l(:label_kanban_visible_groups) %>
+            <span class="value">
+              <%= autocomplete_field_tag("#{block_name}[kanban_group_trackers][]", trackers.map {|c| [c.name, c.id] }, kanban_settings['kanban_group_trackers'] || trackers.map(&:id) , multiple: true, id: modul_uniq_id + 'kanban_group_trackers') %>
+            </span>
+          </p>
+          <p class="select_values status <%= 'hidden' unless kanban_settings['kanban_group_statuses'] && kanban_settings['kanban_group'] == 'status' %>">
+            <%= label_tag "#{block_name}[kanban_group_statuses]", l(:label_kanban_visible_groups) %>
+            <span class="value">
+              <%= autocomplete_field_tag("#{block_name}[kanban_group_statuses][]", issue_statuses.map {|c| [c.name, c.id] }, kanban_settings['kanban_group_statuses'] || issue_statuses.map(&:id), multiple: true, id: modul_uniq_id + 'kanban_group_statuses') %>
+            </span>
+          </p>
+        <% end %>
+      <% end %>
+      <p>
+        <%= label_tag "#{block_name}[main_attribute]", l(:label_main_attribute) %>
+        <span class="value">
+          <%= autocomplete_field_tag("#{block_name}[main_attribute]", query.main_attribute_options, [kanban_settings['main_attribute']], multiple: false, id: modul_uniq_id + 'kanban_main_attribute', html_options: { data: { for: '.agile__card__subtitle' } }) %>
+        </span>
+      </p>
+      <% if summable_columns.any? %>
+        <p>
+          <%= label_tag "#{block_name}[summable_column]", l(:label_summable_column) %>
+          <span class="value">
+            <%= autocomplete_field_tag("#{block_name}[summable_column]", summable_columns, [kanban_settings['summable_column']], multiple: false, id: modul_uniq_id + 'kanban_summable_column', html_options: { data: { for: '.agile__card__summable' } }) %>
+          </span>
+        </p>
+      <% end %>
+      <%= toggling_fieldset( l(:label_additional_options), collapsed: true) do %>
+        <% if (user_columns = query.user_columns.map{|c| [c.caption, c.name.to_s] }) && user_columns.any? %>
+          <p>
+            <%= label_tag "#{block_name}[avatar_attribute]", l(:label_avatar) %>
+            <span class="value">
+              <%= autocomplete_field_tag("#{block_name}[avatar_attribute]", user_columns , [kanban_settings['avatar_attribute']], multiple: false, id: modul_uniq_id + 'kanban_avatar_attribute', html_options: { data: { for: '.agile__card__avatar' } }) %>
+            </span>
+          </p>
+        <% end %>
+        <% if (date_columns = query.available_columns.select{|x| x.date? }.map{|c| [c.caption, c.name.to_s] }) && date_columns.any? %>
+          <p>
+          <%= label_tag "#{block_name}[date_details]", l(:label_date) %>
+            <span class="value">
+              <%= autocomplete_field_tag("#{block_name}[date_details][]", date_columns, kanban_settings['date_details'], multiple: true, id: modul_uniq_id + 'kanban_date_details', html_options: { data: { for: '.agile__card__dates' } }) %>
+            </span>
+          </p>
+        <% end %>
+        <% if (icon_columns = query.available_columns.select{|x| x.icon }.map{|c| [c.caption, c.name.to_s] }) &&  icon_columns.any? %>
+          <p>
+            <%= label_tag "#{block_name}[icon_details]", l(:field_easy_icon) %>
+            <span class="value">
+              <%= autocomplete_field_tag("#{block_name}[icon_details][]", icon_columns, kanban_settings['icon_details'], multiple: true, id: modul_uniq_id + 'kanban_icon_details', html_options: { data: { for: '.agile__card__icons' } }) %>
+            </span>
+          </p>
+        <% end %>
+        <% unless query.project %>
+          <p>
+            <%= label_tag "#{block_name}[default_swimlane]", l(:label_swimlane) %>
+            <span class="value">
+              <%= select_tag "#{block_name}[default_swimlane]", options_for_select(swimlanes_for_autocomplete, kanban_settings['default_swimlane']), { include_blank: true } %>
+            </span>
+          </p>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+
+  <div class="splitcontentright size-4 text-center">
+    <h3><%= l(:label_preview) %></h3>
+    <div class="agile__item" style="height: 200px; width: 300px; margin: auto;">
+      <div class='agile__card'>
+      <span class='agile__card__summable'>
+        <span class="agile__dash" style="width: 25px; margin-left: 10px"></span>
+      </span>
+
+        <a href='#' target='_blank'>
+          <h3 class='agile__card__title'>
+            <span class="agile__dash"></span>
+          </h3>
+        </a>
+
+        <p class='agile__card__subtitle' style="white-space: normal; margin-top: 10px;">
+          <span class="agile__dash"></span>
+          <span class="agile__dash"></span>
+        </p>
+
+        <div class='agile__card__info'>
+          <div class='agile__card__avatar'>
+            <span class="agile__dash" style="width: 25px; height: 25px; border-radius: 50%"></span>
+          </div>
+
+          <div class='agile__card__dates'>
+            <span class='agile__card__date'>
+              <span class="agile__dash" style="width: 40px"></span>
+            </span>
+          </div>
+
+          <div class='agile__card__icons' >
+            <span class="agile__dash" style="width: 25px;"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  EASY.schedule.late(function(){
+    $(".kanban-card-settings input").mouseenter(function(){
+      $($(this).data('for') + " .agile__dash").addClass('agile__dash--highlight');
+    }).mouseleave(function(){
+      $($(this).data('for') + " .agile__dash").removeClass('agile__dash--highlight');
+    });
+  });
+</script>

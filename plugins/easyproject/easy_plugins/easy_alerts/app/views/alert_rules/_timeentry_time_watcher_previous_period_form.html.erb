@@ -1,0 +1,15 @@
+<p>
+  <label><%= l(:label_timeentry_time_watcher_previous_period_before).html_safe %></label>
+  <label class="inline"><%= select_tag('time_period', options_for_select([[l(:label_day_singular),'day'], [l(:label_week_singular), 'week']], @settings[:time_period]), :class => 'inline') -%>
+  <%= l(:label_equals).html_safe %></label><br>
+  <label class="inline radio">
+    <%= radio_button_tag 'hours_type', 'calendar', (@settings[:hours_type] == 'calendar') || @alert.new_record?, :id => 'cbx_hours_type_calendar' %>
+    <%= l(:label_timeentry_time_watcher_previous_day_before_calendar) %>
+  </label><br>
+  <label class="inline radio">
+    <%= radio_button_tag 'hours_type', 'custom', (@settings[:hours_type] == 'custom'), :id => 'cbx_hours_type_custom' %>
+    <%= l(:label_timeentry_time_watcher_previous_day_before_custom) %>
+    <%= text_field_tag 'custom_hours', @settings[:custom_hours] || 5, :size => 3 %>
+    <%= l(:label_timeentry_time_watcher_previous_day_after_time) %>
+  </label>
+</p>

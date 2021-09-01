@@ -1,0 +1,5 @@
+<% if @error_messages %>
+  showFlashMessage("error", "<%= j @error_messages %>");
+<% else %>
+  window.location.reload();
+<% end %>

@@ -1,0 +1,3 @@
+module EasyButtons
+
+end

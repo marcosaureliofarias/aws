@@ -1,0 +1,89 @@
+---
+sk:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: V tomto období už existuje
+                iný pracovný výkaz
+  button_copy_easy_time_sheet: Kopírovať riadky do nového výkazu
+  button_easy_timesheet_by_easy_query: Pracovné výkazy podľa uložených filtrov‌
+  button_easy_timesheet_delete_with_time_entries: Odstrániť riadok aj zapísaný čas
+  button_easy_timesheet_delete_without_time_entries: Odstrániť iba riadok
+  button_easy_timesheets_approve: Schváliť
+  button_easy_timesheets_lock: Zamknúť
+  button_easy_timesheets_new_row: Nový riadok
+  button_easy_timesheets_reject: Zamietnuť
+  button_easy_timesheets_unlock: Odomknúť
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Osobný výkaz - Pracovné výkazy
+        description: Zobraziť pracovné výkazy
+  easy_query:
+    name:
+      easy_timesheet_query: Pracovné výkazy
+  easy_timesheets_date_must_be_first_day_of_week: Musí byť prvý deň v týždni. (%{day})
+  easy_timesheets_periods:
+    day: Týždenný
+    month: Mesačný
+    week: Mesačný
+  easy_timesheets_plugin_name: Pracovné výkazy
+  error_timesheet_invalid_time_entries: 'Nie je možné vytvoriť pracovný výkaz kvôli
+    neplatným časovým záznamom: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: ID používateľského poľa pre nadčasy‌
+    label_new_monhly_timesheet: Nový mesačný výkaz práce
+    label_overtime: Nadčas
+    label_set_cf_overtime_id_in_rys_plugins: Funkcia nadčasov je aktívna. Vyberte
+      používateľské pole pre nadčasy %{link}.
+  field_easy_timesheet_period: Obdobie
+  heading_easy_timesheets_edit: Úpraviť pracovný výkaz
+  heading_easy_timesheets_new: Nový týždenný výkaz práce‌
+  heading_easy_timesheets_show: Pracovný výkaz %{start_date} - %{end_date}
+  label_easy_timesheet: Pracovný výkaz
+  label_easy_timesheet_approved: Schválené?
+  label_easy_timesheet_approved_by: Schválil
+  label_easy_timesheet_end_date: Dátum ukončenia
+  label_easy_timesheet_lock_description: Dôvod schválenia/zamietnutia‌
+  label_easy_timesheet_lock_prompt: Dôvod na schválenie
+  label_easy_timesheet_locked_at: Schválené/Zamietnuté‌
+  label_easy_timesheet_rejected_by: Zamietol
+  label_easy_timesheet_unlock_prompt: Dôvod zamietnutia‌
+  label_easy_timesheets: Pracovné výkazy
+  label_enable_timesheet_over_time: Povoliť funkciu nadčasov
+  label_enabled_timesheet_periods: Povolené obdobia
+  label_filter_group_easy_timesheet_query: Pracovný výkaz
+  notice_easy_timesheet_both_periods: Ak vyberiete obidve možnosti, niektoré záznamy
+    sa môžu zmiešať alebo nebudú správne fungovať ak sa obdobia prekrývajú.
+  notice_extended_timesheet_period_not_enabled: Výkaz %{period} nie je aktívny‌
+  permission_create_easy_timesheets_for_other_user: Vytvárať pracovný výkaz pre iných
+    používateľov
+  permission_edit_easy_timesheets: Upraviť pracovné výkazy
+  permission_edit_own_easy_timesheets: Upraviť vlastné pracovné výkazy‌
+  permission_view_easy_timesheets: Zobraziť pracovné výkazy
+  project_module_easy_timesheets: Pracovné výkazy
+  text_easy_timesheet_destroy_cell_are_you_sure: Naozaj si prajete odstrániť zapísaný
+    čas?
+  text_easy_timesheet_destroy_row_are_you_sure: Chystáte sa odstrániť riadok z výkazu.
+    Nie je nutné zároveň odstrániť aj zapísaný čas. Čo si želáte vykonať?
+  text_easy_timesheet_prompt_text: Pridať čas
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: Dátum začiatku
+    bude automaticky nastavený na základe začiatku vybraného obdobia
+  text_time_sheet_copy_from: Riadky budú predvyplnené z výkazu %{entity}
+  text_warning_after_time_sheet_copied: Pokiaľ v riadku nebude uložená aspoň jedna
+    hodnota, riadok sa neuloží.
+  title_easy_timesheet_destroy: Odstrániť výkaz
+  title_easy_timesheet_edit_with_period: Upraviť %{period} výkaz
+  title_easy_timesheet_new_with_period: Nový %{period} výkaz
+  title_easy_timesheet_show: Zobraziť výkaz
+  title_next_time_sheet: Zobraziť nasledujúci výkaz používateľa %{user}
+  title_previous_time_sheet: Zobraziť predchádzajúci výkaz používateľa %{user}
+  validation_entry_already_exists: Výkaz medzi (%{start_date}) a (%{end_date}) už
+    existuje
+  validation_greater_than_start_date: "(%{end_date}) musí byť vyšší ako začiatok (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: Niektoré zapísané časy nie je možné
+    odstrániť
+  validation_week_period: Obdobie medzi (%{start_date}) a (%{end_date}) musí byť týždeň

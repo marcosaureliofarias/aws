@@ -1,0 +1,3 @@
+scheduler_api_render_users(api, @users)
+scheduler_api_render_easy_crm_cases(api, @easy_crm_cases, currency: @currency, additional_info: true)
+api.no_more_tasks @per_page_option > @easy_crm_cases.count

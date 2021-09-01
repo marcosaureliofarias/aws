@@ -1,0 +1,24 @@
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <span title="<%= j l(:field_start_date) %>"><%= format_date(project.easy_start_date) %></span>
+    </p>
+    <p>
+      <span title="<%= j l(:field_due_date) %>"><%= format_date(project.easy_due_date) %></span>
+    </p>
+  </div>
+  <div class="splitcontentright">
+    <% if project.module_enabled?(:time_tracking) && User.current.allowed_to?(:view_time_entries, project) -%>
+      <p>
+        <span title="<%= j l(:label_spent_time) %>"><%= easy_format_hours(project.sum_of_visible_timeentries) %></span>
+        /
+        <span title="<%= j l(:field_estimated_hours) %>"><%= easy_format_hours(project.sum_of_issues_estimated_hours) %></span>
+      </p>
+    <% end -%>
+  </div>
+</div>
+<% if project.description.present? %>
+  <p>
+    <span title="<%= j l(:field_description) %>" class="description"><%= Sanitize.clean(project.description, :output => :html).truncate(300).to_s.html_safe %></span>
+  </p>
+<% end %>

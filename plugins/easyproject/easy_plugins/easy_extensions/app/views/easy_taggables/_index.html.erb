@@ -1,0 +1,8 @@
+<div id="entity_tag_list_show_container">
+  <%= render :partial => 'easy_taggables/show', :locals => { :entity => entity } %>
+</div>
+<% if User.current.logged? %>
+  <div id="entity_tag_list_form_container" style="display: none">
+    <%= render :partial => 'easy_taggables/form', :locals => { :entity => entity } %>
+  </div>
+<% end %>

@@ -1,0 +1,153 @@
+<%= call_hook(:view_easy_contacts_form_top, {:form => f, :easy_contact => f.object, :project => @project}) %>
+<%= hidden_field_tag(:project_id, @project.id) if @project %>
+<%= hidden_field_tag(:back_url, params[:back_url]) if params[:back_url] %>
+<%= hidden_field_tag(:return_to_lookup, params[:return_to_lookup]) if params[:return_to_lookup] %>
+<%= f.hidden_field('group_ids', :value => params[:assign_to]) unless params[:assign_to].nil? -%>
+<%= f.hidden_field(:next_contact_reference_id, :value => @easy_contact.next_contact_reference_id)  -%>
+<div class="tabular">
+  <div class="<%= @modal ? '' : 'splitcontent'%>">
+    <div class="<%= @modal ? '' : 'splitcontentleft size-7'%>">
+      <p id="easy_contact_types" >
+        <%= f.label_for_field('easy_contact_type', label: l(:label_easy_contact_type, scope: :administration), required: true) %>
+        <%- EasyContactType.sorted.each do |ect| -%>
+          <%= label_tag "easy_contact_type_id_#{ect.id}", f.radio_button(:type_id, ect.id) + ect.name, :class => 'inline checkbox' -%>
+        <%- end -%>
+      </p>
+      <div id="easy-contact-whisperer"></div>
+
+      <div id="contact-type-attributes">
+        <%= render :partial => 'form_attributes', :locals => {:f => f, :contact => contact} -%>
+      </div>
+    </div>
+    <div class="<%= @modal ? '' : 'splitcontentright size-3'%>">
+      <div id="easy-contact-non-primary-custom-fields-selector">
+        <%= render(:partial => 'easy_contacts/non_primary_custom_fields_toggler', :locals => {:easy_contact => contact}) %>
+      </div>
+
+      <% unless @modal %>
+        <p id="contact_references">
+          <label><%= l(:label_easy_contact_references) %></label>
+          <%= easy_modal_selector_field_tag('EasyContact', 'link_with_name', 'easy_contact_references', 'easy_contact_reference_id', EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(contact.references_by), :url => {:contact_type => contact.type_id}, :hide_create_contact => true, :class => 'block') -%>
+        </p>
+
+        <p id='contact_references_groups'>
+          <label><%= l(:label_easy_contact_references_groups) %></label>
+          <%= easy_modal_selector_field_tag('EasyContactGroup', 'link_with_name', 'easy_contact[easy_contact_group_ids]', 'easy_contact_group_id', EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(contact.easy_contact_groups), :url => {:contact_type => contact.type_id}, :class => 'block') -%>
+        </p>
+      <% end %>
+
+      <p class="easy-tag-list-field">
+        <%= label_tag 'easy_contact_tag_list', l(:label_easy_tags) %>
+        <%= easy_tag_list_autocomplete_field_tag @easy_contact, 'easy_contact', id: 'easy_contact_tag_list' %>
+      </p>
+
+      <p>
+        <% if User.current.id == contact.author_id || User.current.admin? %>
+          <%= f.check_box( :is_global, :onchange => ( "if ($(this).is(':checked')) {$('#assign_to_me').prop('checked', false); $('#assign_to_me').prop('disabled', false)} else {$('#assign_to_me').attr('checked',true); $('#assign_to_me').prop('disabled', true)}" if @project.nil?), :class => 'inline') -%>
+        <% end %>
+
+        <%= f.check_box(:private, :label => :field_easy_contact_private, :class => 'inline') if f.object.new_record? || User.current.id == f.object.author_id %>
+
+        <%= hidden_field_tag(:assign_to_me, '0', :id => nil) %>
+        <%= label_tag :assign_to_me, check_box_tag(:assign_to_me, '1', User.current.easy_contacts.where(:easy_contact_entity_assignments => {:easy_contact_id => contact}).exists?) + l(:label_assign_to_me), :class => 'inline checkbox' -%>
+
+        <% if @project %>
+          <%= label_tag :assign_to_project, check_box_tag(:assign_to_project, '1', true) + l(:label_assign_to_project), :class => 'inline checkbox' -%>
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="box">
+
+  <% if contact.safe_attribute? 'author_note' %>
+    <%= content_tag :p do  %>
+      <% if contact.new_record? %>
+        <%= f.text_area :author_note, :label => l(:field_easy_contact_author_note) -%>
+        <%= wikitoolbar_for('easy_contact_author_note') %>
+      <% else %>
+        <%= f.label :author_note -%>
+        <%= link_to('', {:controller => 'easy_contacts', :action => 'toggle_author_note', :id => contact, :element => 'author_note_container'}, :class => 'icon icon-edit', :title => l(:button_edit), :remote => true, :id => 'description_toggler') %>
+        <span id="author_note_container"></span>
+      <% end %>
+    <% end %>
+  <% end %>
+
+</div>
+
+<% if contact.safe_attribute? 'notes' %>
+  <div class="box">
+    <p class="textarea-editor-container">
+      <%= f.text_area :notes,
+                      :cols => 60,
+                      :rows => 2,
+                      :accesskey => accesskey(:edit),
+                      :class => 'wiki-edit',
+                      :label => l(:field_notes) -%>
+      <%= wikitoolbar_for 'easy_contact_notes', preview_text_path, {:custom => 'height: 100'} -%>
+    </p>
+  </div>
+<% end %>
+
+<% unless @modal %>
+  <div id="easy-contact-attachment-form" class="box">
+    <%= toggling_container("contact-form-attachments", User.current, {:heading => l(:label_issue_attachments_heading), :wrapping_heading_element_classes => ' icon icon-attachment'}) do  %>
+      <%= render :partial => 'attachments/form', :locals => {:container => contact} -%>
+    <% end -%>
+  </div>
+<% end -%>
+
+<%= call_hook(:view_easy_contacts_form_bottom, {:form => f, :easy_contact => f.object, :project => @project}) %>
+
+<%= content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :media => 'all', :plugin => 'easy_contacts' %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    $("#non-primary-custom-fields-select").change(function(event) {
+      var select = $(event.target);
+      if (select.val() !== '') {
+        $.get('<%= j(url_for({:action => 'add_custom_field' })) %>', {'custom_field_id': select.val(), 'entity_type': '<%= contact.class.name %>', 'entity_id': '<%= contact.id %>'});
+      }
+    });
+
+    $("#easy_contact_types input").on('change', function(){
+      $.post("<%= update_form_easy_contacts_path(id: contact.id) %>", $("#easy-contact-form").serialize());
+    });
+
+    $('#easy-contact-form').on('submit', function() {
+      fillFormTextAreaFromCKEditor('easy_contact_author_note');
+    });
+
+    EASY.queryEasyContactsRegNo = function(url, selector) {
+      var reg_no = $(selector).val();
+      url = url + "?reg_no=" + reg_no;
+      $.get(url, function(data) {
+        if (!data.obchodni_firma) return;
+        $('[data-internal-name=easy_contacts_organization]').val(data.obchodni_firma);
+        $('#easy_contact_firstname').val(data.obchodni_firma);
+        var street = data.ulice || '';
+        if (street && data.cp) {
+          street += " " + data.cp;
+          if (data.co) {
+            street += "/" + data.co;
+          }
+        }
+        $('[data-internal-name=easy_contacts_street]').val(street);
+        var city = '';
+        if (data.mestska_cast && data.cast_obce) {
+          city += data.mestska_cast + " " + data.cast_obce;
+        } else {
+          city += data.mestska_cast || data.cast_obce || '';
+        }
+        $('[data-internal-name=easy_contacts_city]').val(city);
+        $('[data-internal-name=easy_contacts_postal_code]').val(data.psc);
+        $('[data-internal-name=easy_contacts_country]').val(data.kod_statu_iso);
+      }).fail(function( data ) {
+        data.status === 503 && showFlashMessage('error', data.statusText, 2000);
+      });
+    };
+  });
+</script>

@@ -1,0 +1,11 @@
+<% if !@easy_invoice.is_template? && @project.module_enabled?(:easy_crm) && @easy_invoice.easy_crm_case.present? %>
+  <%= l :field_easy_crm_case %><br>
+  <% @easy_invoice.easy_crm_cases.each do |crm_case| %>
+    <p id="<%= dom_id(crm_case) %>">
+      <%= link_to crm_case.name, crm_case %>
+      <span class=" link-list-item-actions">
+        <%= link_to '', remove_related_easy_invoice_easy_crm_case_path(crm_case, :invoice_ids => [@easy_invoice], :project_id => @project), :class => 'icon icon-unlink', method: :delete, :data => { :confirm => l(:text_are_you_sure)}, :remote => true, :title => l(:remove_related_crm_case) %>
+      </span>
+    </p>
+  <% end %>
+<% end %>

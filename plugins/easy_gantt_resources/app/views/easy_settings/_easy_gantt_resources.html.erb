@@ -1,0 +1,400 @@
+<%
+  users = User.active.sorted
+  groups = Group.givable.active.sorted.preload(:users)
+
+  if EasyGantt.easy_extensions?
+    users = users.non_system_flag.easy_type_internal
+    groups = groups.non_system_flag
+  end
+
+  users_estimated_ratios = EasySetting.value(:easy_gantt_resources_users_estimated_ratios)
+  users_hours_limits = EasySetting.value(:easy_gantt_resources_users_hours_limits)
+  users_advance_hours_limits = EasySetting.value(:easy_gantt_resources_users_advance_hours_limits)
+
+  case users_advance_hours_limits
+  when Hash
+    # OK
+  when ActionController::Parameters
+    users_advance_hours_limits = users_advance_hours_limits.to_unsafe_h
+  else
+    users_advance_hours_limits = {}
+  end
+
+  users_advance_hours_limits.default = []
+
+  default_zoom_options = [
+    [l('easy_gantt.button.day_zoom'), 'day'],
+    [l('easy_gantt.button.week_zoom'), 'week'],
+    [l('easy_gantt.button.month_zoom'), 'month']
+  ]
+  default_allocator_options = EasyGanttResources.allocators(with_labels: true)
+
+  advance_hours_per_days = Array(form.object.advance_hours_per_days)
+
+  short_day_of_week = lambda { |i| l('date.abbr_day_names')[(i+1)%7][0,2] }
+%>
+
+<%= title l(:title_easy_gantt_resources_settings) %>
+
+<div class="box tabular">
+  <p class="normal-hours-definition default-hours-definition">
+    <%= form.label :hours_per_day, l(:field_hours_per_day) %>
+    <%= form.text_field :hours_per_day, size: 3, required: true %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_hours_per_day) %></em>
+  </p>
+
+  <p class="advance-hours-definition default-hours-definition">
+    <%= form.label :advance_hours_per_days, l(:field_advance_hours_per_days) %>
+    <% 7.times do |i| %>
+      <%= form.label l('date.abbr_day_names')[(i+1)%7] %>: <%= text_field_tag "#{form.object_name}[advance_hours_per_days][]", advance_hours_per_days[i], size: 2 %>&nbsp;
+    <% end %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_advance_hours_per_days) %></em>
+  </p>
+
+  <p>
+    <%= form.label :advance_hours_definition, l(:field_advance_hours_definition) %>
+    <%= form.check_box :advance_hours_definition %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_advance_hours_definition) %></em>
+  </p>
+
+  <p>
+    <%= form.label :default_zoom, l(:field_easy_gantt_default_zoom) %>
+    <%= form.select :default_zoom, options_for_select(default_zoom_options, form.object.default_zoom) %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_default_zoom) %></em>
+  </p>
+
+  <p>
+    <%= form.label :default_allocator, l(:field_default_allocator) %>
+    <%= form.select :default_allocator, options_for_select(default_allocator_options, form.object.default_allocator) %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_default_allocator) %></em>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_change_default_allocator) %></em>
+  </p>
+
+  <p>
+    <%= form.label :change_allocator_enabled, l(:field_change_allocator_enabled) %>
+    <%= form.check_box :change_allocator_enabled %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_change_allocator_enabled) %></em>
+  </p>
+
+  <p>
+    <%= form.label :show_task_soonest_start, l(:field_easy_gantt_show_task_soonest_start) %>
+    <%= form.check_box :show_task_soonest_start %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_show_task_soonest_start) %></em>
+  </p>
+
+  <p>
+    <%= form.label :show_task_latest_due, l(:field_easy_gantt_show_task_latest_due) %>
+    <%= form.check_box :show_task_latest_due %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_show_task_latest_due) %></em>
+  </p>
+
+  <p>
+    <%= form.label :show_free_capacities, l(:label_easy_gantt_resources_show_free_capacities) %>
+    <%= form.check_box :show_free_capacities %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_show_free_capacities) %></em>
+  </p>
+
+  <p>
+    <%= form.label :show_total_project_allocations, l(:field_show_total_project_allocations) %>
+    <%= form.check_box :show_total_project_allocations %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_show_total_project_allocations) %></em>
+  </p>
+
+  <p>
+    <%= form.label :watchdog_enabled, l(:field_watchdog_enabled) %>
+    <%= form.check_box :watchdog_enabled %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_watchdog_enabled) %></em>
+  </p>
+
+  <p>
+    <%= form.label :show_groups, l(:field_show_groups) %>
+    <%= form.check_box :show_groups %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_show_groups) %></em>
+  </p>
+
+  <p>
+    <%= form.label :decimal_allocation, l(:field_decimal_allocation) %>
+    <%= form.check_box :decimal_allocation %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_decimal_allocation) %></em>
+  </p>
+
+  <p>
+    <%= form.label :with_projects, l(:label_easy_gantt_resources_with_projects) %>
+    <%= form.check_box :with_projects %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_with_projects) %></em>
+  </p>
+
+  <p>
+    <%= form.label :reservation_enabled, l(:label_easy_gantt_resources_reservation_enabled) %>
+    <%= form.check_box :reservation_enabled %>
+    <br>
+    <em class="small"><%= l(:text_easy_gantt_resources_reservation_enabled) %></em>
+  </p>
+
+  <% if EasyGantt.easy_extensions? %>
+    <p>
+      <%= form.label :groups_holidays_enabled, l(:label_easy_gantt_resources_groups_holidays_enabled) %>
+      <%= form.check_box :groups_holidays_enabled %>
+      <br>
+      <em class="small"><%= l(:text_easy_gantt_resources_groups_holidays_enabled) %></em>
+    </p>
+
+    <p>
+      <%= form.label :hide_planned_tasks_enabled, l(:field_hide_planned_tasks_enabled) %>
+      <%= form.check_box :hide_planned_tasks_enabled %>
+      <br>
+      <em class="small"><%= l(:text_easy_gantt_resources_hide_planned_tasks_enabled) %></em>
+    </p>
+  <% end %>
+</div>
+
+<% unless EasyGantt.easy_extensions? %>
+  <fieldset class="box">
+    <legend><%= l(:label_easy_gantt_resources_global_query_filters) %></legend>
+
+    <% include_calendar_headers_tags %>
+
+    <script type="application/javascript">
+      EASY.schedule.main(function () {
+        // Query patch
+        // Period filter must be range
+        window._buildFilterRow = window.buildFilterRow;
+        window.buildFilterRow = function (field, operator, values) {
+          _buildFilterRow(field, operator, values);
+          if (field === "period") {
+            var operatorOptions = $("#tr_period td.operator select option");
+            var validOperators = <%= EasyResourceQuery::VALID_PERIOD_OPERATORS.to_s.html_safe %>;
+            operatorOptions.filter(function (i) {
+              return validOperators.indexOf(this.value) < 0;
+            }).remove();
+          }
+        };
+      });
+      EASY.schedule.late(function () {
+        $("form#edit_easy_setting").on("submit", function () {
+          $("#filters-table input, #filters-table select").each(function () {
+            this.name = "easy_setting[default_redmine_filters][" + this.name.replace('[', '][');
+          });
+        });
+      });
+    </script>
+
+    <%=
+      # Not very nice but it works, otherwise QueryHelper must be added to EasySettinController
+      query = EasyResourceQuery.new
+      rm_controller = EasyGanttResourcesController.new
+      rm_controller.params = {}
+      rm_controller.request = request
+      rm_controller.instance_variable_set(:@query, query)
+      rm_controller.render_to_string partial: 'queries/filters', locals: { query: query }
+    %>
+
+    <%= hidden_field_tag 'easy_setting[default_redmine_filters]f[]', '' %>
+  </fieldset>
+<% end %>
+
+<fieldset class="box">
+  <legend><%= l(:title_easy_gantt_resources_users_settings) %></legend>
+
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= l(:field_name) %></th>
+          <th title="<%= l(:help_easy_gantt_resources_users_estimated_ratios) %>"><%= l(:label_easy_gantt_resources_users_estimated_ratios) %></th>
+          <th title="<%= l(:help_easy_gantt_resources_users_hours_limits) %>. <%= l(:help_easy_gantt_resources_users_hours_limits_blank) %>"><%= l(:label_easy_gantt_resources_users_hours_limits) %></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="3">
+            <strong><%= l(:label_user_plural) %></strong>
+          </td>
+          <td>
+            <% if EasyGantt.easy_extensions? %>
+              <%= link_to_function l(:label_easy_gantt_resources_hours_from_calendar_for_all_users), "hoursFromUsersCalendar([#{users.map(&:id).join(',')}])" %>
+            <% end %>
+          </td>
+        </tr>
+        <% users.each do |user| %>
+          <tr id="user-<%= user.id %>">
+            <td><%= link_to_user user %></td>
+            <td class="estimated-ratio">
+              <%= text_field_tag "#{form.object_name}[users_estimated_ratios][#{user.id}]", users_estimated_ratios[user.id.to_s], size: 3 %>
+            </td>
+            <td class="hours-limit">
+              <span class="normal-hours-definition">
+                <%= text_field_tag "#{form.object_name}[users_hours_limits][#{user.id}]", users_hours_limits[user.id.to_s], size: 3 %>
+              </span>
+
+              <span class="advance-hours-definition" style="display: flex;">
+                <% 7.times do |i| %>
+                  <%= form.label short_day_of_week[i] %> <%= text_field_tag "#{form.object_name}[users_advance_hours_limits][#{user.id}][]", users_advance_hours_limits[user.id.to_s][i], size: 2 %>&nbsp;
+                <% end %>
+              </span>
+            </td>
+            <td>
+              <% if EasyGantt.easy_extensions? %>
+                <%= link_to_function l(:label_easy_gantt_resources_hours_from_calendar), "hoursFromUsersCalendar(#{user.id})" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if groups.any? %>
+          <tr>
+            <td colspan="3">
+              <br><br>
+              <strong><%= l(:label_group_plural) %></strong>
+            </td>
+            <td>
+              <%= link_to_function l(:label_easy_gantt_resources_get_from_users_for_all_groups), "recalculateGroupSettingsForAllUsers()" %>
+            </td>
+          </tr>
+        <% end %>
+        <% groups.each do |group| %>
+          <tr>
+            <td><%= link_to_user group %></td>
+            <td class="estimated-ratio">
+              <%= text_field_tag "#{form.object_name}[users_estimated_ratios][#{group.id}]", users_estimated_ratios[group.id.to_s], size: 3 %>
+            </td>
+            <td class="hours-limit">
+              <span class="normal-hours-definition">
+                <%= text_field_tag "#{form.object_name}[users_hours_limits][#{group.id}]", users_hours_limits[group.id.to_s], size: 3 %>
+              </span>
+
+              <span class="advance-hours-definition" style="display: flex;">
+                <% 7.times do |i| %>
+                  <%= form.label short_day_of_week[i] %> <%= text_field_tag "#{form.object_name}[users_advance_hours_limits][#{group.id}][]", users_advance_hours_limits[group.id.to_s][i], size: 2 %>&nbsp
+                <% end %>
+              </span>
+            </td>
+            <td>
+              <% user_ids = group.users.map(&:id).to_json.html_safe %>
+              <%= link_to_function l(:label_easy_gantt_resources_get_from_users), "recalculateGroupSettings(this, #{user_ids})", class: 'recalculate-group-settings' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</fieldset>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    function sum(array) {
+      if (array.length) {
+        var total = 0;
+        for (var i = 0; i < array.length; i++) {
+          total += array[i];
+        }
+        return total;
+      }
+      else {
+        return "";
+      }
+    }
+
+    function avg(array) {
+      if (array.length) {
+        return sum(array) / array.length;
+      }
+      else {
+        return "";
+      }
+    }
+
+    window.hoursFromUsersCalendar = function (usersId) {
+      var url = "<%= easy_gantt_resources_user_calendar_settings_path %>";
+
+      $.getJSON(url, {user_ids: usersId}, function (data) {
+        for (var i = 0; i < data.length; i++) {
+          var userData = data[i];
+          var $userTr = $("#user-" + userData.user_id);
+
+          // Set hours to all inputs
+          $userTr.find(".hours-limit input").val(userData.default_working_hours);
+
+          // Remove weekends from advance definitions
+          var $userLimits = $userTr.find(".hours-limit .advance-hours-definition input");
+          for (var j = 0; j < $userLimits.length; j++) {
+            if (userData.non_working_week_days.indexOf(j + 1) >= 0) {
+              $userLimits[j].value = 0;
+            }
+          }
+
+        }
+      });
+    };
+
+    window.recalculateGroupSettings = function (link, userIds) {
+      // Find group users
+      userIds = userIds.map(function (id) {
+        return "#user-" + id;
+      });
+      var users = $(userIds.join());
+
+      // Get average of estimated ratios
+      var estimatedRatios = users.find(".estimated-ratio input").map(function () {
+        var value = parseFloat(this.value);
+        return isNaN(value) ? 1 : value;
+      });
+
+      // Get sum of hours limit
+      var hourLimits = Array(8).fill(0);
+
+      var defaultHoursLimit = $(".default-hours-definition input, .default-hours-definition input").map(function () {
+        var limit = parseFloat(this.value);
+        return isNaN(limit) ? 8 : limit;
+      });
+
+      var i = 0;
+      users.find(".hours-limit input").each(function () {
+        var limit = parseFloat(this.value);
+        var hours = isNaN(limit) ? defaultHoursLimit[i] : limit;
+
+        hourLimits[i] += hours;
+
+        i = (i + 1) % 8;
+      });
+
+      // Write it
+      var $groupTr = $(link).closest("tr");
+      $groupTr.find(".estimated-ratio input").val(avg(estimatedRatios));
+
+      i = 0;
+      $groupTr.find(".hours-limit input").each(function () {
+        this.value = hourLimits[i];
+        i += 1;
+      });
+    };
+
+    window.recalculateGroupSettingsForAllUsers = function () {
+      $(".recalculate-group-settings").click();
+    };
+
+    $("#easy_setting_advance_hours_definition").on("change", function () {
+      $(".normal-hours-definition").toggle(!this.checked);
+      $(".advance-hours-definition").toggle(this.checked);
+    });
+
+    $("#easy_setting_advance_hours_definition").change();
+  });
+</script>

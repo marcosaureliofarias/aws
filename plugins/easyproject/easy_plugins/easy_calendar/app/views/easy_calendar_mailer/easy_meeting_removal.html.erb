@@ -1,0 +1,25 @@
+<h1><%= l(:title_meeting_removed, name: @name) %></h1>
+<div class="attributes-wrapper">
+  <table class="attributes">
+    <tr class="spacer">
+      <td colspan="4"></td>
+    </tr>
+    <tr>
+      <th class="label">
+        <%= l(:field_start_time) %>:
+      </th>
+      <td class="value">
+        <%= format_date(@start_time.to_date) %> <%= format_time(@start_time, false, @user) unless @all_day %>
+      </td>
+      <th class="label">
+        <%= l(:field_end_time) %>:
+      </th>
+      <td class="value">
+        <%= format_date(@end_time.to_date) %> <%= format_time(@end_time, false, @user) unless @all_day %>
+      </td>
+    </tr>
+    <tr class="spacer">
+      <td colspan="4"></td>
+    </tr>
+  </table>
+</div>

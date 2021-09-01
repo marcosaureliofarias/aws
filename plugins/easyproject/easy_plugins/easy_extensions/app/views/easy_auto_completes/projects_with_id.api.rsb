@@ -1,0 +1,17 @@
+additional_select_options ||= []
+project_ids = @projects.map(&:id) if @self_only
+
+api.array :projects do
+  additional_select_options.each do |name, val|
+    api.project do
+      api.id val.to_s
+      api.value name.to_s
+    end
+  end
+  Project.each_with_easy_level(@projects) do |project, level|
+    api.project do
+      api.value project.family_name(:level => level, :separator => "\302\240\302\273\302\240", :prefix => "\302\240", :self_only => @self_only && project_ids.include?(project.parent_id))
+      api.id project.id
+    end
+  end
+end

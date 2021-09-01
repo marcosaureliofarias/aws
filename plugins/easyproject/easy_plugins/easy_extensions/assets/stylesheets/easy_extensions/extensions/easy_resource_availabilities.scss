@@ -1,0 +1,27 @@
+.resource-availability{
+  td{
+    vertical-align: middle !important;
+    &.available{
+      background: rgba($color-positive,0.1);
+      //border-color: $color-positive !important;
+      .label{
+        color: $color-positive;
+      }
+    }
+    &.unavailable{
+      background: rgba($color-negative,0.1);
+      //border-color: $color-negative !important;
+      .label{
+        color: $color-negative;
+      }
+    }
+    .actions{
+      opacity: 0;
+    }
+    &:hover{
+      .actions{
+        opacity: 1;
+      }
+    }
+  }
+}

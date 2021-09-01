@@ -1,0 +1,14 @@
+<%= title l(:heading_easy_agile_sprint_edit) %>
+<%= form_for [@project, @easy_sprint], html: { class: 'easy-sprint tabular form-box', remote: request.xhr? } do |f| %>
+  <%= error_messages_for @easy_sprint %>
+
+  <div>
+    <%= render partial: 'form', locals: { f: f, project: @project, easy_sprint: @easy_sprint } %>
+  </div>
+
+  <% unless request.xhr? %>
+    <div class="form-actions">
+      <%= f.submit l(:button_update), class: 'button-positive' %>
+    </div>
+  <% end %>
+<% end %>

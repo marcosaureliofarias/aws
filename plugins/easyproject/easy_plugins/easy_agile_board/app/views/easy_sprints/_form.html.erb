@@ -1,0 +1,69 @@
+<%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+<p>
+  <%= f.label :name, class: 'required'  %>
+  <%= f.text_field :name, placeholder: l(:field_sprint_title) , require: true %>
+</p>
+<div class="box">
+  <p class="textarea-editor-container">
+    <%= f.label :goal, l(:label_easy_sprint_goal) %>
+    <%= f.text_area :goal,
+                    cols: 60,
+                    rows: 5,
+                    accesskey: accesskey(:edit),
+                    class: 'wiki-edit',
+                    label: l(:label_easy_sprint_goal),
+                    id:  "#{f.object.id}_goal"
+    %>
+
+    <%= wikitoolbar_for ("#{f.object.id}_goal"), preview_text_path, { custom: 'height: 100' } %>
+  </p>
+</div>
+<p>
+  <%= f.label :start_date, class: 'required' %>
+  <%= f.text_field :start_date, size: 10, id: "#{f.object.id}_easy_sprint_start_date", require: true %>
+  <%= calendar_for("#{f.object.id}_easy_sprint_start_date") %>
+</p>
+<p>
+  <%= f.label :due_date %>
+  <%= f.text_field :due_date, size: 10, id: "#{f.object.id}_easy_sprint_due_date" %>
+  <%= calendar_for("#{f.object.id}_easy_sprint_due_date") %>
+</p>
+<p>
+  <%= f.label :version_id %>
+  <%= f.select :version_id, f.object.project.shared_versions.collect{|v| [v.name, v.id] }, { include_blank: true }, {} %>
+  <em><%= l(:text_easy_agile_board_version) %></em>
+</p>
+<p>
+  <%= f.check_box :cross_project %>
+  <%= f.label :cross_project, l(:field_easy_agile_board_cross_project), class: 'inline' %>
+</p>
+<p>
+  <%= f.label :display_closed_tasks_in_last_n_days, l(:field_easy_agile_board_display_closed_tasks_in_last_n_days) %>
+  <%= f.text_field :display_closed_tasks_in_last_n_days %>&nbsp;<%= l(:label_days) %>
+</p>
+<p>
+  <%
+    summable_column_for_burndown = [[l('easy_agile_issue_rating_mode_names.easy_story_points'), 'easy_story_points'],
+                                    [l('easy_agile_issue_rating_mode_names.estimated_hours'), 'estimated_hours'],
+                                    [l('easy_agile_issue_rating_mode_names.disabled'), '']]
+    selected = f.object.capacity_attribute.to_s
+  %>
+  <%= f.label :summable_column_for_burndown, l(:label_easy_agile_board_chart_burndown) %>
+  <%= f.select(:summable_column_for_burndown, summable_column_for_burndown, selected: selected) %>
+  <em><%= l(:text_capacity_units) %></em>
+</p>
+<p>
+  <%= f.label :capacity, l(:field_sprint_capacity) %>
+  <%= f.text_field :capacity, disabled: selected.blank? %>
+  <em><%= l(:text_easy_sprint_capacity_zero) %></em>
+</p>
+
+<%= call_hook(:view_easy_sprint_form_bottom, form: f) %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    $('#easy_sprint_summable_column_for_burndown').change(function() {
+      $('input#easy_sprint_capacity').prop('disabled', this.value === '');
+    });
+  });
+</script>

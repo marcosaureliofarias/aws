@@ -1,0 +1,12 @@
+$('#ajax-modal').html("<%= j(render_show_view(@entity)) %>");
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+    buttons: [
+        {
+            text: '<%=j l(:button_close) %>',
+            click: function () {
+                $(this).dialog('close');
+            }, 'class': 'button'
+        }
+    ]
+});

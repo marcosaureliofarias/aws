@@ -1,0 +1,5 @@
+<%= labelled_fields_for 'user[pref]', @user.pref do |pref_fields| %>
+  <p>
+    <%= pref_fields.select :hide_sla_data, easy_bulk_boolean_options(@user_preferences['hide_sla_data']) %>
+  </p>
+<% end %>

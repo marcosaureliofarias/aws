@@ -1,0 +1,7 @@
+<% attr = @easy_calculation.send(attribute) %>
+<th class="muted <%= 'hide-when-print' if attr.blank? %>"><%= l(:"calculation.#{attribute}") %></th>
+<td class="<%= 'hide-when-print' if attr.blank? %>">
+  <span class="calculation-header-setting" data-type="text" data-url="<%= easy_calculation_update_path(@project, :format => 'json') %>" data-name="easy_calculation[<%= attribute %>]" data-value="<%= attr.to_s %>">
+    <%= attr.to_s %>
+  </span>
+</td>

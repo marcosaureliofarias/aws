@@ -1,0 +1,3 @@
+class EasyDisabledCustomField < CustomField
+
+end

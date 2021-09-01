@@ -1,0 +1,17 @@
+<% if @journal.private_notes? %>
+    <span class="private">(<%= l(:field_private_notes) %>)</span>
+<% end %>
+<div class="journal-details-container">
+  <h4>
+    <%= l(:text_easy_crm_case_updated, :id => "##{@easy_crm_case.id.to_s}", :user => h(@journal.user)) %>
+  </h4>
+  <% if @journal.visible_details.any? %>
+    <ul class="details">
+      <% details_to_strings(@journal.visible_details, false, :only_path => false, :entity => @easy_crm_case).each do |string| %>
+        <li><%= string -%></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= content_tag('div', textilizable(@journal, :notes, {:only_path => false}), :id => "journal-#{@journal.id}-notes", :class => "wiki") -%>
+</div>
+<%= render :partial => 'easy_crm_mailer/easy_crm_case', :formats => [:html], :locals => { :easy_crm_case => @easy_crm_case, :users => @users, :easy_crm_case_url => @easy_crm_case_url } %>

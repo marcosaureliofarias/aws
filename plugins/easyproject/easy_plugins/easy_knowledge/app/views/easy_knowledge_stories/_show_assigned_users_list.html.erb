@@ -1,0 +1,7 @@
+<% item = item.entity %>
+<li id="easy_knowledge_story_<%= story.id %>_<%= item.class.name.underscore %>_<%= item.id %>">
+  <%= link_to(item.name, item) %>
+  <% if @story.editable? %>
+    <%= link_to('', polymorphic_path([:remove_from_entity, @project, @story], {:entity_type => item.class.name, :entity_id => item}), :method => :delete, :remote => true, :class => 'icon-del delete', :title => l(:title_remove_easy_knowledge_story_from_entity)) %>
+  <% end -%>
+</li>

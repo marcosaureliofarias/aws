@@ -1,0 +1,12 @@
+api.array :issues do
+  api.issue do
+    api.value "(#{l(:label_no_task)})"
+    api.id 'no_task'
+  end
+  @visible_issues.each do |issue|
+    api.issue do
+      api.value issue.to_s
+      api.id issue.id
+    end
+  end
+end

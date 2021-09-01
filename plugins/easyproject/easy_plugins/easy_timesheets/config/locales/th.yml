@@ -1,0 +1,76 @@
+---
+th:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: มีอีกไทม์ชีทในช่วงเวลานี้
+  button_copy_easy_time_sheet: คัดลอกแถวไปยัง timesheet ใหม่
+  button_easy_timesheet_by_easy_query: Timesheets โดยตัวกรองที่บันทึกไว้
+  button_easy_timesheet_delete_with_time_entries: ลบแถวและเวลาที่ใช้ไป
+  button_easy_timesheet_delete_without_time_entries: ลบแถวเท่านั้น
+  button_easy_timesheets_approve: อนุมัติ
+  button_easy_timesheets_lock: ล็อค
+  button_easy_timesheets_new_row: แถวใหม่
+  button_easy_timesheets_reject: ปฏิเสธ
+  button_easy_timesheets_unlock: ปลดล็อค
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: บัญชีส่วนตัว - Timesheets
+        description: ดู Timesheets
+  easy_query:
+    name:
+      easy_timesheet_query: Timesheets
+  easy_timesheets_date_must_be_first_day_of_week: จะต้องเป็นวันแรกของสัปดาห์ (%{day})
+  easy_timesheets_periods:
+    day: รายสัปดาห์
+    month: รายเดือน
+    week: รายเดือน
+  easy_timesheets_plugin_name: Timesheets
+  error_timesheet_invalid_time_entries: 'ไม่สามารถสร้าง timesheet ได้เพราะรายการเวลาไม่ถูกต้อง:
+    %{errors}'
+  field_easy_timesheet_period: ระยะเวลา
+  heading_easy_timesheets_edit: แก้ไข timesheet
+  heading_easy_timesheets_new: timesheet รายสัปดาห์ใหม่
+  heading_easy_timesheets_show: Timesheet %{start_date} - %{end_date}
+  label_easy_timesheet: timesheet
+  label_easy_timesheet_approved: อนุมัติแล้ว?
+  label_easy_timesheet_approved_by: อนุมัติโดย
+  label_easy_timesheet_end_date: วันที่สิ้นสุด
+  label_easy_timesheet_lock_description: เหตุผลที่อนุมัติ / ปฏิเสธ
+  label_easy_timesheet_lock_prompt: เหตุผลที่อนุมัติ
+  label_easy_timesheet_locked_at: ได้รับการอนุมัติ / ปฏิเสธ
+  label_easy_timesheet_rejected_by: ปฏิเสธโดย
+  label_easy_timesheet_unlock_prompt: เหตุผลที่ปฏิเสธ
+  label_easy_timesheets: Timesheets
+  label_enabled_timesheet_periods: เปิดใช้งานช่วงเวลา
+  label_filter_group_easy_timesheet_query: Timesheet
+  notice_easy_timesheet_both_periods: หากคุณเลือกทั้งสองอย่าง, การบันทึกบางอย่างอาจปนกันหรือทำงานไม่ถูกต้องหากช่วงเวลาคาบเกี่ยวกัน
+  notice_extended_timesheet_period_not_enabled: "%{period} timesheet ไม่ทำงาน"
+  permission_create_easy_timesheets_for_other_user: สร้าง Timesheet สำหรับผู้ใช้รายอื่น
+  permission_edit_easy_timesheets: แก้ไข timesheets
+  permission_edit_own_easy_timesheets: แก้ไข Timesheets ของตัวเอง
+  permission_view_easy_timesheets: ดู timesheets
+  project_module_easy_timesheets: Timesheets
+  text_easy_timesheet_destroy_cell_are_you_sure: คุณต้องการลบเวลาที่ใช้ไปจริงหรือไม่?
+  text_easy_timesheet_destroy_row_are_you_sure: คุณกำลังจะลบแถวของtimesheet คุณไม่จำเป็นต้องลบเวลาที่ใช้ในแถวนี้โดยอัตโนมัติ
+    คุณต้องการจะทำอย่างไรต่อ?
+  text_easy_timesheet_prompt_text: เพิ่มเวลา
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: วันที่เริ่มต้นจะถูกจัดไปยังจุดเริ่มต้นของสัปดาห์ที่เลือกโดยอัตโนมัติ
+  text_time_sheet_copy_from: แถวจะถูกเติมไว้ล่วงหน้าจาก timesheet %{entity}
+  text_warning_after_time_sheet_copied: หากคุณไม่ได้บันทึกเซลล์อย่างน้อยหนึ่งเซลล์ในแถว,
+    แถวจะหายไป
+  title_easy_timesheet_destroy: ลบ timesheet
+  title_easy_timesheet_edit_with_period: แก้ไข %{period} timesheet
+  title_easy_timesheet_new_with_period: " %{period} timesheet ใหม่"
+  title_easy_timesheet_show: แสดง timesheet
+  title_next_time_sheet: แสดง timesheet ต่อไปนี้ของ %{user}
+  title_previous_time_sheet: แสดง timesheet ก่อนหน้าของ %{user}
+  validation_entry_already_exists: Timesheet ระหว่าง (%{start_date}) กับ (%{end_date})
+    มีอยู่แล้ว
+  validation_greater_than_start_date: "(%{end_date}) จะต้องมากกว่าวันที่เริ่มต้น (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: บางรายการเวลาไม่สามารถลบได้
+  validation_week_period: ช่วงระหว่าง (%{start_date}) กับ (%{end_date}) จะต้องเป็นหนึ่งสัปดาห์

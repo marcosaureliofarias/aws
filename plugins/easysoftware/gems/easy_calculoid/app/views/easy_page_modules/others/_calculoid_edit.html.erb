@@ -1,0 +1,43 @@
+<%
+  i18n = {default_value: l(:field_default_value)}.to_json
+  data = (settings['data'] || {}).to_json
+  trends = (settings['trends'] || {}).to_json
+  include_calculoid_tags(settings)
+%>
+
+<fieldset class="tabular calculoid-settings" data-settings="<%= data %>" data-i18n="<%= i18n %>" data-block="<%= block_name %>" data-trends="<%= trends %>">
+  <p>
+    <%= label_tag "#{block_name}_heading", l(:label_heading) %>
+    <%= text_field_tag "#{block_name}[heading]", settings['heading'] || l('easy_pages.modules.calculoid'), title: l(:label_heading) %>
+  </p>
+
+  <p>
+    <%= label_tag "#{block_name}_url", l(:label_url) %>
+    <%= text_field_tag "#{block_name}[url]", settings['url'].presence || EasyCalculoid.setting(:url).to_s, title: l(:label_url), class: 'calculoid-url', onchange: "EASY.reloadCalculoid(this);" %>
+  </p>
+
+  <p>
+    <%= label_tag "#{block_name}_api_key", l(:field_api_key) %>
+    <%= text_field_tag "#{block_name}[api_key]", settings['api_key'].presence || EasyCalculoid.setting(:api_key).to_s, title: l(:field_api_key), class: 'calculoid-api-key', onchange: "EASY.reloadCalculoid(this);" %>
+  </p>
+
+  <p>
+    <%= label_tag "#{block_name}_calc_id", l(:field_id) %>
+    <%= text_field_tag "#{block_name}[calc_id]", settings['calc_id'], title: l(:field_id), class: 'calculoid-id', onchange: "EASY.reloadCalculoid(this);" %>
+    <%= link_to_function('', 'EASY.reloadCalculoid(this);', class: 'icon-reload') %>
+  </p>
+
+  <% if (opts = trend_options(page_module)) %>
+    <% select_options = (opts.size == 1 && opts[nil]) ? options_for_select(opts[nil].to_a) : grouped_options_for_select(opts.to_a) %>
+    <%= select_tag "#{block_name}_trend_uuid", select_options, style: "display: none;", id: nil, title: l(:field_calculoid_trend), class: 'calculator-trend', include_blank: true %>
+  <% end %>
+
+  <div class="calculoid-preview">
+    <span class="calculator-name">
+    </span>
+    <fieldset class="calculator-fields">
+    </fieldset>
+  </div>
+</fieldset>
+
+<%= javascript_include_tag 'easy_calculoid/easy_calculoid', defer: true %>

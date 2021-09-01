@@ -1,0 +1,114 @@
+<% Rys::Feature.on('email_field_autocomplete') do %>
+
+  <style type="text/css">
+    .email_field_autocomplete .easy-taggable-entity {
+      height: 36px;
+      overflow: hidden;
+      resize: none;
+    }
+
+    .email_field_autocomplete .entity-array {
+      display: block
+    }
+  </style>
+
+  <script type="text/javascript">
+    EASY.schedule.late(() => {
+
+      // On select create new entity and add it below input
+      function onSelect(e, ui) {
+        const value = ui ? ui.item.value : e.target.value;
+        if (!value) return;
+        const entityArray = this.parentElement.parentElement.querySelector(".entity-array");
+        const entityInput = entityArray.querySelector("input[type='hidden']");
+        if (!entityArray || !entityInput) return;
+        const entity = createEntity(value);
+        if (!entity) return;
+        // test if entity is already in, and if so, don't add it
+        const newEntity = !entityInput.value.includes(value);
+        if (newEntity) {
+          entityArray.appendChild(entity);
+          entityInput.value += `${value},`;
+        }
+        e.target.value = "";
+        return false;
+      }
+
+      // If there are some values in input when autocomplete is being created, convert them to taggable entities
+      function onCreate() {
+        const value = this.value;
+        if (!value) return;
+        const entityArray = this.parentElement.parentElement.querySelector(".entity-array");
+        const entityInput = entityArray.querySelector("input[type='hidden']");
+        const emailsArray = value.split(",");
+        emailsArray.forEach(email => {
+          if (!email) return;
+          const entity = createEntity(email);
+          entityArray.appendChild(entity);
+          entityInput.value += `${email},`;
+        });
+        this.value = "";
+      }
+
+      // Create entity box
+      function createEntity(value) {
+        const wrapper = document.createElement("span");
+        const deleteBtn = document.createElement("span");
+        deleteBtn.classList.add("icon", "icon-del");
+        wrapper.innerHTML = value;
+        deleteBtn.addEventListener("click", deleteEntity.bind(this, value));
+        wrapper.appendChild(deleteBtn);
+        return wrapper;
+      }
+
+      // Remove entity box
+      function deleteEntity(valueToDelete, e) {
+        let indexToRemove = null;
+        const entityArray = e.target.closest(".entity-array");
+        const entityInput = entityArray.querySelector("input[type='hidden']");
+        const entityList = entityArray.querySelectorAll(":scope > span");
+        entityList.forEach((entity, index) => {
+          if (entity.innerText === valueToDelete) indexToRemove = index;
+        });
+        if (indexToRemove === null) return;
+        entityArray.removeChild(entityList[indexToRemove]);
+        entityInput.value = entityInput.value.replace(`${valueToDelete},`, "");
+      }
+
+      function createAutocomplete(entity, inputName) {
+        if (!entity || !inputName) return;
+        const autocompletePath = "<%= find_email_field_autocomplete_path(format: 'json') %>";
+        entity.closest("form").classList.add("email_field_autocomplete");
+        entity.classList.add("easy-taggable-entity");
+        const taggableEntities = document.querySelectorAll(".easy-taggable-entity");
+        taggableEntities.forEach(taggableEntity => {
+          // On Enter keypress add new entity
+          taggableEntity.addEventListener("keydown", function (e) {
+            if (e.key !== "Enter") return;
+            e.preventDefault();
+            onSelect.call(this, e);
+          });
+        });
+
+        $(entity).easymultiselect({
+          source: autocompletePath,
+          preload: false,
+          select_first_value: false,
+          show_toggle_button: false,
+          inputName: inputName,
+          autocomplete_options: {
+            select: onSelect,
+            create: onCreate
+          }
+        });
+      }
+
+      // get inputs and create autocompletes
+      const email_to = document.querySelector("#easy_email_to_area textarea") || document.querySelector("textarea#issue_easy_email_to");
+      const email_cc = document.querySelector("#easy_email_cc_area textarea") || document.querySelector("textarea#issue_easy_email_cc");
+      createAutocomplete(email_to, "issue[easy_email_to]");
+      createAutocomplete(email_cc, "issue[easy_email_cc]");
+    });
+
+  </script>
+<% end %>

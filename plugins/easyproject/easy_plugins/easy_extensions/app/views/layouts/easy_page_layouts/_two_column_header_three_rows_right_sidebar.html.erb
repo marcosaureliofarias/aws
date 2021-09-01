@@ -1,0 +1,46 @@
+<% edit ||= params[:edit] %>
+<div id="easy_grid">
+  <% if content_for?(:easy_page_zone_right_sidebar) || content_for?(:easy_page_layout_service_box) || content_for?(:easy_page_layout_service_box_primary_actions) %>
+    <div id="easy_grid_sidebar" class="<%= edit ? ' edit' : '' %>">
+      <div id="easy_grid_sidebar_inner" class="<%= edit ? ' edit' : '' %>">
+        <% if content_for?(:easy_page_layout_service_box_primary_actions) %>
+          <div class="primary-actions">
+            <%= yield(:easy_page_layout_service_box_primary_actions) %>
+          </div>
+        <% end -%>
+        <div id="easy_grid_sidebar_content" class="<%= edit ? ' edit' : '' %>">
+          <div class="easy-scroller">
+            <% if content_for?(:easy_page_layout_service_box) or content_for?(:easy_page_layout_service_box_top) %>
+              <div id="easy_page_layout_service_box">
+                <%= yield(:easy_page_layout_service_box_top) %>
+                <%= yield(:easy_page_layout_service_box) %>
+              </div>
+            <% end -%>
+            <%= yield :easy_page_zone_right_sidebar -%>
+          </div>
+        </div>
+        <% unless edit %>
+          <span class="sidebar-control"><a href="javascript:EASY.utils.toggleSidebar();" title="Toggle sidebar"></a></span>
+        <% end -%>
+      </div>
+    </div>
+  <% end -%>
+  <div id="easy_grid_content">
+    <div id="list-top">
+      <%= yield :easy_page_zone_top_left %>
+    </div>
+    <% if content_for?(:easy_page_zone_middle_left) || content_for?(:easy_page_zone_middle_right) %>
+        <div class="splitcontent">
+          <div id="list-left" class="splitcontentleft">
+            <%= yield :easy_page_zone_middle_left %>
+          </div>
+          <div id="list-right" class="splitcontentright">
+            <%= yield :easy_page_zone_middle_right %>
+          </div>
+        </div>
+    <% end -%>
+    <div id="list-bottom">
+      <%= yield :easy_page_zone_bottom_left %>
+    </div>
+  </div>
+</div>

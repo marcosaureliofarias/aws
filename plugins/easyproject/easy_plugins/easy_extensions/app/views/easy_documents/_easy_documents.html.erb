@@ -1,0 +1,13 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name -%>
+
+<% @categories_documents.each_pair do |category, documents| %>
+  <% group_modul_uniq_id = modul_uniq_id + "#{category.hash}_category_#{@sort_by}" %>
+  <div class="box doc-group">
+      <%= toggling_container(group_modul_uniq_id, User.current, {:heading => (category.is_a?(Date) && format_date(category) || h(category)), :default_button_state => !@project.nil?, :wrapping_heading_element=> 'h3', :wrapping_heading_element_classes => 'icon icon-folder doc-group-heading'}) do %>
+        <div>
+            <%= render :partial => 'documents/document_category_custom_field', :locals => {:category => category} %>
+            <%= render :partial => 'documents/index', :locals => {:grouped => documents.group_by(&:project), :category => category.to_s, :wrapping_heading_element => 'h4'} %>
+        </div>
+      <% end %>
+  </div>
+<% end -%>

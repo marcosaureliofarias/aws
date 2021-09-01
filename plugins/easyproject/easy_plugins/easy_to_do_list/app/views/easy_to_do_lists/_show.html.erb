@@ -1,0 +1,14 @@
+<div class="to-do-list ui-widget-content" data-url="<%= easy_to_do_list_path(easy_to_do_list) -%>" data-list-id ="<%= easy_to_do_list.id -%>" >
+  <% if Setting.plugin_easy_to_do_list['enable_more_to_do_lists'] == '1' %>
+    <div class="header ui-widget-header" data-text="<%= j(easy_to_do_list.name) %>">
+      <span class="list-text ui-div-text"><%= textilizable(h(easy_to_do_list.name).to_str) -%></span>
+        <%= link_to_function('', '', title: l(:button_delete), class: 'delete-easy-to-do-list icon-close', :'data-text' => l(:text_are_you_sure)) %>
+    </div>
+  <% end %>
+  <ul class="link-list easy-to-do-list-items-container ui-sortable" style="min-height:20px">
+    <% easy_to_do_list.easy_to_do_list_items.sorted.preload(:entity).each do |easy_to_do_list_item| %>
+      <%= render partial: 'easy_to_do_list_items/show', locals: {easy_to_do_list: easy_to_do_list, easy_to_do_list_item: easy_to_do_list_item} %>
+    <% end %>
+  </ul>
+  <%= render partial: 'easy_to_do_list_items/show', locals: {easy_to_do_list: easy_to_do_list, easy_to_do_list_item: easy_to_do_list.easy_to_do_list_items.build} %>
+</div>

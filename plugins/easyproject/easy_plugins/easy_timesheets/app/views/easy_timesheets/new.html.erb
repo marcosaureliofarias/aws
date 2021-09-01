@@ -1,0 +1,21 @@
+<%= title l(:title_easy_timesheet_new_with_period, period: l(@easy_timesheet.period, scope: [:easy_timesheets_periods]).downcase) %>
+<%= labelled_form_for(@easy_timesheet, :html => {:id => 'easy_timesheet_form', :class => 'tabular form-box'}) do |f| %>
+  <%= error_messages_for @easy_timesheet %>
+  <% if @copy_from %>
+    <%= content_tag(:p, content_tag(:strong, l(:text_time_sheet_copy_from, :entity => @copy_from.to_s), :class => 'icon icon-warning')) %>
+    <%= hidden_field_tag(:copy_from_id, @copy_from.id) %>
+  <% end %>
+
+  <div id="easy_timesheet_form_container">
+    <%= render :partial => 'form', :locals => {:f => f} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit(l(:button_create), :class => 'button-positive', :title => l(:button_create)) %>
+  </div>
+
+<% end %>
+
+<% content_for :body_bottom do -%>
+  <%= render partial: 'easy_timesheets/include_tags' %>
+<% end %>

@@ -1,0 +1,10 @@
+.scheme{
+  @for $i from 1 through length($schemes) {
+    &-#{nth(map_keys($schemes), $i) - 1}{
+      @include color-scheme(nth(map_values($schemes), $i));
+    }
+    &-#{nth(map_keys($schemes), $i)}{
+      @include color-scheme(nth(map_values($schemes), $i),true);
+    }
+  }
+}

@@ -1,0 +1,240 @@
+body.action-login, body.action-easy_support_login, body.action-logout {
+
+  @extend %splash-screen;
+  position: relative !important;
+  overflow: auto !important;
+  margin: 0 !important;
+
+  .menu-easy-new-entity__wrapper{
+    display: none;
+  }
+
+  h1{
+    color: $color-foreground;
+    display: none;
+  }
+  //TODO: remove
+  //blockquote{
+  //  margin: $gap 0 $box-padding;
+  //  padding-bottom: 1.5*$box-padding;
+  //  text-align: left;
+  //  position: relative;
+  //  background: rgba($color-main, .75);
+  //  @if(lightness($color-main) < .2 ){
+  //    border-color: lighten($color-main, 5%);
+  //    &:before {
+  //      color: lighten(rgba($color-main, 0.5), 15%);
+  //    }
+  //  }@else{
+  //    border-color: darken($color-main, 5%);
+  //    &:before {
+  //      color: darken(rgba($color-main, 0.5), 15%);
+  //    }
+  //  }
+  //
+  //  span{
+  //    @include small;
+  //    float: right;
+  //    font-style: italic;
+  //    position: absolute;
+  //    bottom: 0.5*$gap;
+  //    right: $gap;
+  //    color: darken($color-main-border,10%);
+  //  }
+  //  div{
+  //    overflow: hidden;
+  //  }
+  //}
+}
+
+#easy_quote_container{
+  font-size: 1rem;
+  //padding-top: $box-padding;
+  min-height: 4*$box-padding;
+  @media screen and (max-height: 600px) {
+    display: none!important;
+  }
+  span{
+    display: block;
+    margin-top: $gap;
+    font-style: italic;
+  }
+}
+
+#login_form_container{
+  font-size: $font-h4;
+  td{
+    border: none !important;
+    text-align: center;
+    background: none;
+    padding: 2px 0;
+  }
+  a{
+    @include small;
+    color: $color-foreground;
+  }
+  button{
+    @extend %button-positive;
+    margin-top: $gap;
+  }
+  input[type='text'],input[type='password']{
+    padding: .25*$gap .75*$gap ;
+    max-width: 100%;
+    color: $color-text;
+  }
+  .easy-social-login{
+    a{
+      font-size: 3em;
+      margin: .5*$gap;
+      color: $color-foreground;
+      opacity: .5;
+    }
+  }
+}
+#autologin{
+  &_field{
+    text-align: left !important;
+    width: 50%;
+    white-space: nowrap;
+  }
+}
+#lost_password_field{
+  text-align: right !important;
+  width: 50%;
+
+  a{
+    display: block;
+  }
+}
+%login-button{
+  @extend %button-base;
+  @extend %button-large;
+  @extend %material__elevation--depth_1;
+  background: $color-foreground;
+  color: $color-text !important;
+  & > span{
+    color: $color-login-text;
+  }
+  &:hover{
+    background: $button-important-background;
+    color: $button-main-color !important;
+    & > span{
+      color: rgba($button-main-color,.5);
+    }
+    &:before{
+      color: $button-main-color !important;
+    }
+  }
+  &.selected{
+    background: $button-main-background;
+    color: $button-main-color !important;
+    & > span{
+      color: rgba($button-main-color,.5);
+    }
+  }
+}
+.demo-login{
+  padding-top: $gap;
+  text-align: center;
+  &-buttons{
+    a{
+      @extend %login-button;
+      margin-bottom: 0.5*$gap;
+      display: block;
+      text-transform: none;
+      font-size: $font-h4 !important;
+      &.icon{
+        padding-left: 2.75*$box-padding !important;
+      }
+      &:before{
+        font-size: 2.5em !important;
+        left: 1.25*$gap !important;
+        color: $color-main !important;
+        opacity: 1 !important;
+      }
+      span{
+        @include smaller;
+        display: block;
+        font-weight: normal;
+        line-height: 1.125;
+      }
+    }
+  }
+
+  &-tabs {
+    //@include tab-parent(transparent, rgba(white, 0.4), white, $tab-height, $gap, white);
+    & > ul {
+      @extend %flex;
+      @extend %justify-content-center;
+      list-style: none;
+      padding: 0;
+      margin-left: -$gap;
+      margin-right: -$gap;
+      & > li{
+        @extend %flex-grow-1;
+        margin: 0 $gap;
+      }
+    }
+    a{
+      @extend %login-button;
+      padding: .25*$gap 0 !important;
+      text-align: center;
+      width:100%;
+    }
+  }
+
+  &-type-toggle{
+    text-align: center;
+    margin-top: $box-padding;
+    & > a {
+      color: $white;
+    }
+  }
+}
+
+.logout_container {
+  @extend  %flex;
+  @include justify-content(center);
+  @include flex-direction(column);
+  @include align-items(center);
+  width: 100%;
+
+  & > p {
+    margin: .5*$gap;
+  }
+}
+.unsupported {
+  $width: 600px;
+  display: none;
+  @extend %flash-notice;
+  border-color: $color-negative;
+  @extend %box-sizing-border-box;
+  @extend %fixed;
+  position: fixed;
+  width: $width;
+  left: 0;
+  top: $box-padding;
+  bottom: auto;
+  margin: 0 auto;
+  color: $color-text;
+  z-index: z($z-priority, topmenu) + 1;
+  @include respond-to(max-sidebar-collapse) {
+    width: 100%;
+    margin: 0;
+  }
+  &:before {
+    color: $color-negative;
+  }
+  .icon-close {
+    color: $color-text !important;
+    text-decoration: none;
+  }
+  a {
+    color: $color-text !important;
+  }
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .unsupported {
+    display: block;
+  }
+}

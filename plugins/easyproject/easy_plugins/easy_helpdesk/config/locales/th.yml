@@ -1,0 +1,417 @@
+---
+th:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: ตั้งค่า
+      easy_helpdesk_mail_template:
+        body_html: เนื้อหาจดหมาย (HTML)
+        body_plain: เนื้อหาจดหมาย(ข้อความธรรมดา)
+        issue_status_id: สถานะภารกิจ
+        mailboxes: 'ใช้สำหรับกล่องจดหมาย:'
+        reply_to: ตอบกลับถึง
+        sender: ผู้ส่ง
+        subject: เรื่อง
+      easy_helpdesk_project_matching:
+        domain_name: ชื่อโดเมน
+    models:
+      easy_helpdesk_mail_template: เทมเพลตเมล
+  aggregated_periods:
+    half-yearly: รายหกเดือน
+    quarterly: รายไตรมาส
+    yearly: รายปี
+  button_easy_helpdesk_add_domain_name: เพิ่มเมลหรือโดเมน
+  button_easy_helpdesk_add_mail_template: เพิ่มเทมเพลตเมล
+  button_easy_helpdesk_add_mailbox: เพิ่มกล่องจดหมาย
+  button_easy_helpdesk_add_project: เพิ่มโครงการ
+  button_easy_helpdesk_add_project_from_sidebar: เพิ่มไปยัง Help desk
+  button_easy_helpdesk_add_signature: เพิ่มลายเซ็น
+  button_easy_helpdesk_add_sla: เพิ่ม SLA
+  button_easy_helpdesk_all_mail_templates_index: เทมเพลตอีเมลทั้งหมด
+  button_easy_helpdesk_all_mailboxes_index: กล่องจดหมายทั้งหมด
+  button_easy_helpdesk_all_projects_index: โครงการ Help desk ทั้งหมด 
+  button_easy_helpdesk_mail_templates_index: รายการเทมเพลต
+  button_easy_helpdesk_mailboxes_index: รายการกล่องจดหมาย
+  button_easy_helpdesk_projects_index: รายการโครงการ
+  button_easy_helpdesk_reports_index: รายงาน
+  button_easy_helpdesk_settings_index: ตั้งค่า Help desk
+  confirm_edit_remaining_hours: ฟิลด์นี้ถูกคำนวณบนพื้นหลัง คุณแน่ใจหรือไม่ว่าต้องการแก้ไขด้วยตนเอง?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Help desk
+  easy_helpdesk_plugin_description: "- การแก้ปัญหาที่ซับซ้อนของ help desk "
+  easy_pages:
+    module_category:
+      easy_helpdesk: Help desk
+    modules:
+      easy_helpdesk_create_mail_template_button: สร้างปุ่มแม่แบบจดหมาย
+      easy_helpdesk_create_mailbox_button: สร้างปุ่มกล่องจดหมาย
+      easy_helpdesk_mailboxes: กล่องจดหมาย Help desk 
+      easy_helpdesk_mailtemplates: เทมเพลตเมลของ Help desk 
+      easy_helpdesk_project_query: โครงการจากตัวกรอง Help desk 
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: เทมเพลตเมลของ Help desk
+        description: เทมเพลตเมลของ Help desk
+    easy_helpdesk_mailboxes:
+      index:
+        caption: เทมเพลตเมลของ Help desk
+        description: ดูกล่องจดหมายของ Help desk
+    easy_helpdesk:
+      index:
+        caption: Help desk
+        description: ดูแผงควบคุมของ Helpdesk
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Help desk - โครงการ
+      easy_helpdesk_report_monthly_query: Help desk - รายงานประจำเดือน
+      easy_helpdesk_report_yearly_query: Help desk - รายงานประจำปี
+      easy_sla_event_query: เหตุการณ์ Sla
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: ตัวกรองส่วนตัวของโครงการใน Help desk
+        easy_helpdesk_report_monthly_query: ตัวกรองส่วนตัวสำหรับรายงานประจำเดือนใน Help
+          desk
+        easy_helpdesk_report_yearly_query: ตัวกรองส่วนตัวในรายงานประจำปีใน Help Desk
+      public:
+        easy_helpdesk_project_query: ตัวกรองสาธารณะของโครงการใน Help desk
+        easy_helpdesk_report_monthly_query: ตัวกรองสาธารณะสำหรับรายงานประจำเดือนใน
+          Help desk
+        easy_helpdesk_report_yearly_query: ตัวกรองสาธารณะสำหรับรายงานประจำปีใน Help
+          desk
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Help desk - คำนวณชั่วโมงรวม
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Help desk - กำลังอัพเดตตั๋วอัตโนมัติ
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Help desk - ได้รับอีเมล
+      settings:
+        imap:
+          allow_override: เปิดใช้งานการอัพเดตคุณสมบัติของภารกิจ
+          allow_override_example: 'ตัวอย่าง: ตัวติดตามลำดับความสำคัญ - แอตทริบิวต์เหล่านี้สามารถเปลี่ยนแปลงได้ทางเมล'
+          application_section_label: การตั้งค่าอื่น ๆ
+          category_example: 'ตัวอย่าง: หมวดหมู่ - ภารกิจใหม่จะมีหมวดหมู่'
+          email_section_label: การตั้งค่ากล่องจดหมาย
+          folder: โฟลเดอร์
+          folder_example: 'โฟลเดอร์ IMAP ที่จะอ่าน (ค่าเริ่มต้น: INBOX เพื่อเลือกโฟลเดอร์ใช้ตัวอย่าง
+            "/": กล่องจดหมาย / การขาย)'
+          folders: โฟลเดอร์ที่จะอ่าน
+          folders_example: 'โฟลเดอร์ IMAP ที่จะอ่าน (หนึ่งรายการต่อบรรทัด) (ค่าเริ่มต้น:
+            INBOX เพื่อเลือกโฟลเดอร์ใช้ตัวอย่าง "/": กล่องจดหมาย / การขาย)'
+          host: โฮสต์
+          host_example: 'ตัวอย่าง: mail.company.com'
+          label: IMAP
+          move_on_failure: หากล้มเหลวให้ย้ายไปยัง
+          move_on_failure_example: ย้ายอีเมลที่ถูกเพิกเฉยไปยังโฟลเดอร์ MAILBOX
+          move_on_success: หากสำเร็จให้ย้ายไปยัง
+          move_on_success_example: ย้ายอีเมลที่ได้รับเรียบร้อยแล้วไปยังโฟลเดอร์ MAILBOX
+            มิฉะนั้นจะถูกลบ
+          no_permission_check: ไม่มีการตรวจสอบสิทธิ์ของผู้ใช้
+          password: รหัสผ่าน
+          password_example: 'ตัวอย่าง: secretpassword'
+          port: พอร์ต
+          port_example: 'ตัวอย่าง: 143'
+          priority_example: 'ตัวอย่าง: สูง - ภารกิจใหม่จะมีลำดับความสำคัญสูง'
+          project_example: 'ตัวอย่าง: 205 - ภารกิจใหม่จะถูกสร้างขึ้นในโครงการ ID 205'
+          sender_mail: ผู้ส่ง
+          sender_mail_example: 'ตัวอย่าง: support@company.com'
+          ssl: SSL
+          ssl_example: ใช้การรับรองความถูกต้อง SSL
+          status_example: 'ตัวอย่าง: ใหม่ - ภารกิจใหม่จะมีสถานะใหม่'
+          tracker_example: 'ตัวอย่าง: Bug - ภารกิจใหม่จะมี Bug ติดตาม'
+          unknown_user: ผู้ใช้ที่ไม่รู้จัก
+          unknown_user_example: ยอมรับ - ผู้ใช้ที่ไม่ระบุชื่อจะถูกนำมาใช้; สร้าง -
+            ผู้ใช้จะถูกสร้างจากเมล; การเข้าสู่ระบบที่เป็นรูปธรรม - ผู้ใช้รายนี้จะถูกใช้
+          use_custom_sender: ใช้ผู้ส่งอื่น
+          username: ผู้ใช้
+          username_example: 'ตัวอย่าง: accessuser@domain.com'
+        pop3:
+          allow_override: เปิดใช้งานการอัพเดตคุณสมบัติของภารกิจ
+          allow_override_example: 'ตัวอย่าง: ตัวติดตาม, ลำดับความสำคัญ - คุณสมบัติเหล่านี้สามารถเปลี่ยนแปลงได้ทางเมล'
+          apop: APOP
+          apop_example: ใช้การรับรองความถูกต้อง APOP
+          application_section_label: การตั้งค่าอื่นๆ
+          category_example: 'ตัวอย่าง: หมวดหมู่ - ภารกิจใหม่จะมีหมวดหมู่ของหมวดหมู่'
+          delete_unprocessed: ลบที่ยังไม่ได้ประมวลผล
+          delete_unprocessed_example: ลบเมลที่ไม่สามารถประมวลผลได้
+          email_section_label: การตั้งค่ากล่องจดหมาย
+          host: โฮสต์
+          host_example: 'ตัวอย่าง: mail.company.com'
+          label: POP3
+          no_permission_check: ไม่มีการตรวจสอบสิทธิ์ของผู้ใช้
+          password: รหัสผ่าน
+          password_example: 'ตัวอย่าง: secretpassword'
+          port: พอร์ต
+          port_example: 'ตัวอย่าง: 110'
+          priority_example: 'ตัวอย่าง: สูง - ภารกิจใหม่จะมีลำดับความสำคัญสูง'
+          project_example: 'ตัวอย่าง: 205 - ภารกิจใหม่จะถูกสร้างขึ้นในโครงการ ID 205'
+          sender_mail: ผู้ส่ง
+          sender_mail_example: support@company.com
+          status_example: 'ตัวอย่าง: ใหม่ - ภารกิจใหม่จะมีสถานะใหม่'
+          tracker_example: 'ตัวอย่าง: Bug - ภารกิจใหม่จะมี Bug ติดตาม'
+          unknown_user: ผู้ใช้ที่ไม่รู้จัก
+          unknown_user_example: ยอมรับ - ผู้ใช้ที่ไม่ระบุชื่อจะถูกนำมาใช้; สร้าง -
+            ผู้ใช้จะถูกสร้างจากเมล; การเข้าสู่ระบบที่เป็นรูปธรรม - ผู้ใช้รายนี้จะถูกใช้
+          use_custom_sender: ใช้ผู้ส่งอื่น
+          username: ผู้ใช้
+          username_example: 'ตัวอย่าง: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: กรุณากรอกฟิลด์ 'ชั่วโมงในการตอบกลับ'
+    และ 'เวลาในการแก้ไข' อันใดอันหนึ่ง
+  error_update_easy_setting_helpdesk: ไม่สามารถบันทึกการตั้งค่า
+  field_aggregated_hours: รวมชั่วโมงของ Help desk
+  field_aggregated_hours_period: ระยะเวลารวม
+  field_aggregated_hours_remaining: ชั่วโมง Help desk ที่เหลืออยู่
+  field_aggregated_hours_start_date: วันที่เริ่มต้นรวม
+  field_automatically_issue_closer_enable: เปิดใช้งานการอัพเดตตั๋วอัตโนมัติ?
+  field_date_to_response: SLA (วันที่ตอบ)
+  field_date_to_solve: SLA (วันที่แก้ปัญหา)
+  field_default_for_mailbox: ค่าเริ่มต้นสำหรับกล่องจดหมาย
+  field_easy_helpdesk_has_sla: " มี SLA"
+  field_easy_helpdesk_hours_to_response_before_expired: ชั่วโมงที่จะตอบสนอง
+  field_easy_helpdesk_hours_to_solve_before_expired: ชั่วโมงที่จะแก้ปัญหา
+  field_easy_helpdesk_ignorate_suspend_statuses: สร้างเหตุการณ์ SLA จากสถานะทั้งหมด
+  field_easy_helpdesk_mail_template: 'ส่งอีเมลด่วนถึงลูกค้าจากเทมเพลต:'
+  field_easy_helpdesk_need_reaction: ต้องการดำเนินการอีกครั้ง?
+  field_easy_helpdesk_project_keyword: คำสำคัญสำหรับโครงการ
+  field_easy_helpdesk_project_matching:
+    domain_name: เมลหรือโดเมน
+    email_field_from: ถูกนำมาจากฟิลด์ จาก
+    email_field_to: ถูกนำมาจากฟิลด์ ถึง
+  field_easy_helpdesk_project_monthly_hours: Help desk ตามสัญญาชั่วโมงรายเดือน
+  field_easy_helpdesk_project_sla:
+    blank_keyword: ชื่อ SLA หายไป
+    hours_to_response: ชั่วโมงที่จะตอบสนอง
+    hours_to_solve: ชั่วโมงที่จะแก้ปัญหา
+    keyword: คำสำคัญ SLA
+    title: ชื่อของ SLA
+  field_easy_helpdesk_project_spent_time_current_month: ชั่วโมงทำงานใน HD (เดือนนี้)
+  field_easy_helpdesk_project_spent_time_last_month: ชั่วโมงทำงานใน HD (เดือนที่แล้ว)
+  field_easy_helpdesk_project_spent_time_total: เวลาที่ใช้ทั้งหมดใน HD
+  field_easy_helpdesk_ticket_owner: เจ้าของตั๋ว
+  field_easy_reopen_at: เปิดอีกครั้งเมื่อ
+  field_easy_response_date_time: SLA (การตอบสนอง)
+  field_easy_time_to_solve_paused_at: หยุด SLA เมื่อ
+  field_email_footer: ส่วนท้ายของเมล
+  field_email_header: ส่วนหัวของเมล
+  field_first_response: การตอบสนองครั้งแรก
+  field_has_easy_sla_event: มีเหตุการณ์ SLA
+  field_hide_sla_data: ซ่อนข้อมูล SLA
+  field_hours_mode_from: ชั่วโมงทำงาน SLA
+  field_hours_to_response: SLA (ที่ตอบสนอง)
+  field_hours_to_solve: SLA (ที่แก้ปัญหา)
+  field_is_under_helpdesk: อยู่ภายใต้ Help desk
+  field_issue_closer_done_issue_status: เปลี่ยนสถานะเป็น
+  field_issue_closer_done_issue_user: และมอบหมายให้
+  field_issue_closer_inactive_interval: และไม่มีการอัพเดตภายใน
+  field_issue_closer_observe_issue_status_id: ในสถานะ
+  field_monitor_due_date: ตรวจสอบตั๋วสนับสนุนวันที่ครบกำหนด
+  field_monitor_spent_time: ตรวจสอบตั๋วสนับสนุนเวลาที่ใช้ไป
+  field_monthly_hours: Help desk ตามสัญญาชั่วโมงรายเดือน
+  field_occurence_time: เวลาที่ปรากฏ
+  field_sla_resolve: การแก้ปัญหา Sla 
+  field_sla_resolve_fulfilment: แก้ไขการปฏิบัติตาม Sla
+  field_sla_response: การตอบสนองของ Sla
+  field_sla_response_fulfilment: แก้ไขการปฏิบัติตาม Sla
+  field_use_working_time: นับ SLA ตามเวลาทำงาน
+  heading_easy_helpdesk_index: Help desk
+  heading_easy_helpdesk_mail_templates_edit: แก้ไขเทมเพลตเมล
+  heading_easy_helpdesk_mail_templates_index: เทมเพลตเมล
+  heading_easy_helpdesk_mail_templates_new: เทมเพลตเมลใหม่
+  heading_easy_helpdesk_mail_templates_show: รายละเอียดของเทมเพลตเมล
+  heading_easy_helpdesk_mailboxes_edit: แก้ไขกล่องจดหมาย
+  heading_easy_helpdesk_mailboxes_index: กล่องจดหมายของ Help desk 
+  heading_easy_helpdesk_mailboxes_new: กล่องจดหมายใหม่
+  heading_easy_helpdesk_projects_edit: แก้ไขโครงการ
+  heading_easy_helpdesk_projects_index: โครงการของ Help desk
+  heading_easy_helpdesk_projects_new: โครงการใหม่ของ Help desk
+  heading_easy_helpdesk_projects_show: รายละเอียดของโครงการ
+  heading_easy_helpdesk_reports_index: Help desk - รายงาน
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: รายงานประจำเดือนของชั่วโมงที่จ่ายล่วงหน้า
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: รายงานประจำปีของชั่วโมงที่จ่ายล่วงหน้า
+  heading_easy_helpdesk_settings: ตั้งค่า
+  issue_closer_inactive_interval_units:
+    days: วัน
+    hours: ชั่วโมง
+  label_automatically_issue_closer: อัพเดตตั๋วโดยอัตโนมัติเมื่อมี
+  label_copy_settings_sla_from_project: คัดลอกการตั้งค่า SLA จากโครงการ
+  label_easy_hekodesk_additional_task_info_received_emails: จดหมายที่ดำเนินการแล้ว
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: ชั่วโมง Helpdesk ที่จ่ายในเดือนนี้
+  label_easy_helpdesk_actual_budget_to_spend: ชั่วโมงที่เหลือ
+  label_easy_helpdesk_aggregated_from_last_period: สะสมจากงวดสุดท้าย
+  label_easy_helpdesk_alerts: การตั้งค่าการแจ้งเตือน
+  label_easy_helpdesk_allow_custom_sender: อนุญาตผู้ส่งที่กำหนดเอง (ต่อโครงการ)
+  label_easy_helpdesk_allow_override: เปิดใช้งานการอัพเดตคุณสมบัติของภารกิจ
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: เปลี่ยนฟิลด์ตั๋ว
+    notify: ส่งอีเมลจากเทมเพลต
+  label_easy_helpdesk_client_response_status: เปลี่ยนสถานะหลังจากการตอบสนองของลูกค้าเป็น
+  label_easy_helpdesk_domain_name: โดเมนเมล
+  label_easy_helpdesk_emails: การตั้งค่าเมล - ส่วนหัวและส่วนท้าย
+  label_easy_helpdesk_enable_email_footer: เปลี่ยนส่วนท้ายสำหรับโครงการนี้?
+  label_easy_helpdesk_enable_email_header: เปลี่ยนส่วนหัวสำหรับโครงการนี้?
+  label_easy_helpdesk_hours_comulated: ชั่วโมงสะสม
+  label_easy_helpdesk_hours_comulated_range: จาก %{from} ถึง %{to}
+  label_easy_helpdesk_hours_per_month: ชั่วโมงทำงานในเดือนนี้
+  label_easy_helpdesk_ignore_cc: เพิกเฉยต่อ CC ของอีเมลที่ได้รับ
+  label_easy_helpdesk_mail_signature: Help desk - ลายเซ็นต์
+  label_easy_helpdesk_matching: อีเมล, โดเมน, คำหลัก ที่ประมวลผลในโครงการนี้
+  label_easy_helpdesk_message_above_variables: ความคิดเห็นของภารกิจที่แสดงเหนือเทมเพลตเมล
+  label_easy_helpdesk_need_reaction: ต้องตอบสนอง!
+  label_easy_helpdesk_project_helpdesk_tab: Help desk
+  label_easy_helpdesk_project_managed_by_helpdesk: ตั้งค่า Help desk 
+  label_easy_helpdesk_project_plural: โครงการ Help desk 
+  label_easy_helpdesk_projects_sla_working_time_calendar: SLA วันทำการ
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: รีเซ็ต SLA หลังจากเปิดภารกิจอีกครั้ง
+  label_easy_helpdesk_sender: ผู้ส่ง
+  label_easy_helpdesk_sender_current_user: ผู้ใช้ที่เข้าสู่ระบบในปัจจุบัน
+  label_easy_helpdesk_sender_is_user: ผู้ส่งเป็นผู้ใช้ที่เข้าสู่ระบบ
+  label_easy_helpdesk_sender_mailbox_address: ที่อยู่กล่องจดหมาย
+  label_easy_helpdesk_sender_redmine_default: ค่าเริ่มต้นจากการแจ้งเตือนทางอีเมล
+  label_easy_helpdesk_signature: ลายเซ็นต์
+  label_easy_helpdesk_signature_name: ชื่อลายเซ็นต์
+  label_easy_helpdesk_skip_ignored_emails_headers_check: ยอมรับอีเมลที่สร้างอัตโนมัติ
+  label_easy_helpdesk_sla: การตั้งค่า SLA - ลำดับความสำคัญ, เวลาในการแก้ไขตั๋ว
+  label_easy_helpdesk_sla_start_states: นับ SLA สำหรับตั๋วเมื่อมีสถานะเป็น
+  label_easy_helpdesk_sla_stop_states: ระงับ SLA สำหรับตั๋วเมื่อมีสถานะเป็น
+  label_easy_sla_event: เหตุการณ์ Sla
+  label_easy_sla_events: เหตุการณ์ Sla
+  label_easy_sla_events_reports: รายงาน SLA
+  label_filter_group_easy_helpdesk_project_query: Help desk - โครงการ
+  label_filter_group_easy_helpdesk_report_monthly_query: Help desk - รายงาน
+  label_filter_group_easy_helpdesk_report_query: Help desk - รายงาน
+  label_filter_group_easy_helpdesk_report_yearly_query: Help desk - รายงาน
+  label_filter_group_easy_sla_event_query: เหตุการณ์ Sla
+  label_filter_show_spent_time_current_month_equal_to_zero: ชั่วโมงทำงานใน HD (เดือนนี้)
+    เป็นศูนย์
+  label_filter_show_spent_time_last_month_equal_to_zero: ชั่วโมงทำงานใน HD (เดือนที่แล้ว)
+    เป็นศูนย์
+  label_issue_bottom_from_easy_helpdesk: สร้างโดย Help desk (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: ชั่วโมงสัญญารายเดือน
+  label_sla_calendar_settings: ตั้งค่าปฏิทิน
+  label_tab_sla_events: เหตุการณ์ SLA
+  permission_manage_easy_helpdesk: จัดการ Help desk
+  permission_manage_easy_helpdesk_project: จัดการHelp deskโครงการ
+  permission_manage_easy_sla_events: จัดการเหตุการณ์ SLA
+  permission_view_easy_helpdesk_sla: ดู SLA ในภารกิจ
+  permission_view_easy_sla_events: ดูเหตุการณ์ SLA
+  project_module_easy_helpdesk: Help desk
+  setting_easy_helpdesk_custom_sender: ผู้ส่ง Help desk
+  text_easy_helpdesk_change_default_sender: การตั้งค่านี้จะไม่เปลี่ยนฟิลด์การตอบกลับ
+  text_easy_helpdesk_custom_sender: แทนที่ค่าเริ่มต้นของผู้ส่ง Help Desk เว้นว่างไว้เพื่อปิดใช้งานฟังก์ชันนี้
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: ผู้รับมอบหมายปัจจุบัน
+    author: ผู้เขียนปัจจุบัน
+    date: วันที่ปัจจุบัน
+    mail_to: เมลถึง
+    spent_time: เวลาที่ใช้ไปในภารกิจ
+    task_closed_on: ปิดภารกิจเมื่อวันที่
+    task_description: รายละเอียดของภารกิจ
+    task_done_ratio: อัตราความสำเร็จของภารกิจ
+    task_due_date: วันครบกำหนดของภารกิจ
+    task_estimated_hours: ชั่วโมงโดยประมาณของภารกิจ
+    task_history: ประวัติความคิดเห็นทั้งหมดของภารกิจ
+    task_id: ID ภารกิจปัจจุบัน
+    task_id_without_hash: ID ภารกิจปัจจุบันโดยไม่มีแฮช
+    task_last_journal: ความคิดเห็นสาธารณะล่าสุดของภารกิจ
+    task_note: ความคิดเห็นล่าสุดของภารกิจ
+    task_priority: ลำดับความสำคัญของภารกิจ
+    task_project: ชื่อโครงการ
+    task_public_url: url สาธารณะของภารกิจ
+    task_start_date: วันที่เริ่มต้นของภารกิจ
+    task_status: สถานะภารกิจ
+    task_subject: ชื่อของภารกิจปัจจุบัน
+    task_tracker: ตัวติดตามภารกิจ
+    user_first_name: ชื่อของผู้ใช้ปัจจุบัน
+    user_last_name: นามสกุลของผู้ใช้ปัจจุบัน
+    user_name: ชื่อเต็มของผู้ใช้ปัจจุบัน
+    user_signature: ลายเซ็นต์ของผู้ใช้ปัจจุบัน
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - หัวเรื่องและเนื้อหาของอีเมลสามารถมีข้อความหมุนเวียน
+  - "%task_id% (แทนที่ ID ภารกิจปัจจุบัน)"
+  - "%task_subject% (แทนที่ชื่อภารกิจปัจจุบัน)"
+  - "%task_note% (แทนที่ความคิดเห็นล่าสุดของภารกิจ)"
+  - "%task_history% (แทนที่ประวัติความคิดเห็นที่ไม่ใช่แบบส่วนตัวทั้งหมดของภารกิจ)"
+  - "%time_spent% (แทนที่เวลาที่ใช้ไปของภารกิจ)"
+  - "%assignee% (แทนที่ผู้รับมอบหมายปัจจุบัน)"
+  - "%user_signature% (แทนที่ลายเซ็นต์ของผู้ใช้ปัจจุบัน)"
+  - "%date% (แทนที่วันที่ปัจจุบัน)"
+  - "%task_tracker% (แทนที่ตัวติดตามภารกิจ)"
+  - "%task_project% (แทนที่ชื่อโครงการ)"
+  - "%task_description% (แทนที่รายละเอียดภารกิจ)"
+  - "%task_status% (แทนที่สถานะภารกิจ)"
+  - "%task_priority% (แทนที่ลำดับความสำคัญของภารกิจ)"
+  - "%task_estimated_hours% (แทนที่ชั่วโมงโดยประมาณของภารกิจ)"
+  - "%task_done_ratio% (แทนที่อัตราความสำเร็จของภารกิจ)"
+  - "%task_public_url% (แทนที่ url สาธารณะของภารกิจ)"
+  - "%task_closed_on% (แทนที่ภารกิจที่ถูกปิดในวันที่)"
+  - "%task_due_date% (แทนที่วันครบกำหนดของภารกิจ)"
+  - "%task_start_date% (แทนที่วันเริ่มต้นของภารกิจ)"
+  - "%user_name% (แทนที่ชื่อเต็มของผู้ใช้ปัจจุบัน)"
+  - "%user_first_name% (แทนที่ชื่อของผู้ใช้ปัจจุบัน)"
+  - "%user_last_name% (แทนที่นามสกุลของผู้ใช้ปัจจุบัน)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'หัวเรื่องและเนื้อหาของอีเมลสามารถมีข้อความหมุนเวียน:'
+  text_easy_helpdesk_mail_template_issue_status_id: อนุญาตให้ผูกเทมเพลตกล่องจดหมายกับสถานะภารกิจเฉพาะ
+    โดยการเลือกสถานะเริ่มต้น (ซึ่งภารกิจจะถูกสร้างขึ้น) เทมเพลตนี้จะถูกใช้เป็นแบบตอบกลับอัตโนมัติหลังจากที่สร้างภารกิจจากอีเมล
+  text_easy_helpdesk_mail_template_replacement_for: แทนที่สำหรับ
+  text_easy_helpdesk_mail_template_reply_to: "(นายตัวอย่าง) - เมลไม่ได้รับอนุญาตที่นี่"
+  text_easy_helpdesk_mail_template_reply_to2: ฟิลด์ "ตอบกลับ" และ "ผู้ส่ง" ถูกนำมาจากเทมเพลตกล่องจดหมายเพื่อเก็บการสื่อสารภายในภารกิจเดียว
+  text_easy_helpdesk_mailbox_too_long_to_process: กล่องจดหมายนี้ใช้เวลาในการประมวลผลนานเกินไปโดยไม่มีการตอบกลับจากเซิร์ฟเวอร์
+    ซึ่งอาจเกิดจากอีเมลในกล่องจดหมายมีมากเกินไป โปรดลบอีเมลเก่าออกจากโฟลเดอร์ที่ประมวลผลโดย
+    Helpdesk และตรวจสอบนโยบายความปลอดภัยสำหรับการเข้าถึงซ้ำๆจากแอปพลิเคชันภายนอกในเซิร์ฟเวอร์อีเมลของคุณ
+  text_easy_helpdesk_non_default_mailboxes_warning_below: คุณควรกำหนดกล่องจดหมายเหล่านี้ให้กับโครงการ
+    หากคุณทำไม่ได้จดหมายขาเข้าที่ไม่รู้จักจะไม่ถูกประมวลผล!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'กล่องจดหมายเหล่านี้ไม่มีโครงการเริ่มต้น:'
+  text_easy_helpdesk_projects_alerts_list: 'รายการการแจ้งเตือนที่กำหนดค่า:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'รายการเตือนที่ต้องมีชุดผู้รับ:'
+  text_easy_helpdesk_projects_is_default: หากมีอีเมลจากผู้ส่งที่ไม่รู้จักมาถึง, ตั๋วจะถูกสร้างขึ้นที่นี่
+  text_easy_helpdesk_projects_keyword_description: หากหัวเรื่องเมลมีสตริงที่ถูกกำหนด,
+    ตั๋วจะถูกกำหนดให้กับโครงการนี้. คำหลักเป็นกรณีๆไป
+  text_easy_helpdesk_projects_keywords: หากหัวเรื่องของอีเมลมีสตริงที่ถูกกำหนด, ลำดับความสำคัญเฉพาะและวันที่ครบกำหนดจะถูกตั้งค่า
+    (* หมายถึงทุกหัวเรื่อง) เว้นว่างไว้เพื่อตั้งค่า SLA สำหรับตั๋วที่สร้างขึ้นด้วยตนเอง
+  text_easy_helpdesk_projects_monitor_due_date: การแจ้งเตือนที่กำหนดไว้ล่วงหน้านี้จะส่งอีเมลแจ้งเตือนคุณ,
+    หากตั๋วละเมิด SLA - ไม่ได้รับการแก้ไขภายในระยะเวลาที่กำหนดใน SLA
+  text_easy_helpdesk_projects_monitor_spent_time: การแจ้งเตือนที่กำหนดไว้ล่วงหน้านี้จะส่งการแจ้งเตือนทางอีเมลถึงคุณ
+    หากเวลาทั้งหมดที่ใช้ในเดือนตามปฏิทินเกินกว่าจำนวนชั่วโมงที่ชำระล่วงหน้า
+  text_easy_helpdesk_projects_new_priority: หากไม่ได้ระบุคำหลัก, SLA จะถูกตั้งค่าตามลำดับความสำคัญที่เลือก
+  text_easy_helpdesk_projects_priority: SLA จะถูกตั้งค่าตามลำดับความสำคัญที่เลือก
+  text_easy_helpdesk_projects_sla_hours_to_response: ระยะเวลาสูงสุดที่อนุญาตก่อนเริ่มทำงานบนตั๋ว
+    (การเปลี่ยนสถานะครั้งแรก)
+  text_easy_helpdesk_projects_sla_hours_to_solve: จำนวนเวลาสูงสุดในการแก้ไขตั๋ว (สถานะปิด)
+  text_easy_rake_task_helpdesk_issue_closer_failed: ภารกิจบางอย่าง (%{count}/%{total})
+    ไม่สามารถอัพเดต
+  text_easy_rake_task_helpdesk_issue_closer_updated: "%{updated_count} อัพเดต / %{notified_count}
+    อีเมลลูกค้า"
+  text_isseu_closer_close_notice: ภารกิจนี้ได้รับการอัพเดตอัตโนมัติโดยHelp desk
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: ควรได้รับการตอบสนองจนกระทั่ง
+    %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: การตอบสนองจะต้องจนกว่า
+    %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: ควรได้รับการแก้ไขจนกระทั่ง
+    %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: ต้องแก้ไขจนกระทั่ง %{time}'
+  text_mailbox_delete_confirmation: 'คุณกำลังจะลบกล่องจดหมาย การลบกล่องจดหมายอาจทำให้เกิดปัญหาต่อไปนี้:
+    - ตั๋วที่สร้างผ่านกล่องจดหมายนี้จะไม่สามารถใช้เทมเพลตได้อีกต่อไป คุณแน่ใจหรือว่าต้องการดำเนินการต่อ?'
+  title_easy_helpdesk_add_project_from_sidebar: คลิกเพื่อเพิ่มโครงการไปยัง Help desk
+  title_easy_helpdesk_allow_custom_sender: อนุญาตให้ตั้งค่าผู้ส่งที่กำหนดเองต่อโครงการ
+  title_easy_helpdesk_allow_override: อนุญาตให้แทนที่คุณลักษณะภารกิจจากข้อความ
+  title_easy_helpdesk_client_response_status: เลือกสถานะที่จะเปลี่ยนตั๋วเมื่ออัพเดทผ่านอีเมล
+  title_easy_helpdesk_ignore_cc: เมื่อได้รับอีเมล, อีเมลทั้งหมดใน CC จะถูกเพิ่มไปยังผู้สังเกตการณ์,
+    อีเมลภายนอกและการตอบกลับอัตโนมัติจะถูกส่งไปยังพวกเขา, ตัวเลือกนี้จะปิดใช้งาน
+  title_easy_helpdesk_message_above_variables: ข้อความเทมเพลตจะอยู่เหนือตัวแปรเทมเพลต
+  title_easy_helpdesk_sender: ใครจะอยู่ในฟิลด์ 'จาก'
+  title_easy_helpdesk_sender_current_user: ผู้ใช้ที่เข้าสู่ระบบในปัจจุบัน
+  title_easy_helpdesk_sender_is_user: ฟิลด์ 'จาก' จะเป็นผู้ใช้ที่เข้าสู่ระบบ
+  title_easy_helpdesk_sender_mailbox_address: ที่อยู่อีเมลจากกล่องจดหมาย
+  title_easy_helpdesk_sender_redmine_default: ที่อยู่อีเมลที่ปล่อยออกมาเริ่มต้น
+  title_easy_helpdesk_skip_ignored_emails_headers_check: คำเตือน: Help desk จะได้รับอีเมลจากระบบอื่นและอาจทำให้การแลกเปลี่ยนเมลไม่สิ้นสุด!
+  title_easy_helpdesk_sla_start_states: เลือกสถานะ, เมื่อการวัด SLA ทำงานต่อหลังจากหยุดชั่วคราวโดยการตั้งค่าด้านบน
+  title_easy_helpdesk_sla_stop_states: เลือกสถานะเมื่อไม่ได้วัด SLA ตัวอย่าง. เช่น
+    เมื่อคุณกำลังรอการตอบกลับจากลูกค้า
+  title_sla_waiting_for_client: SLA ถูกระงับ
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: ปิดใช้งาน - หลังจากภารกิจถูกปิด SLA จะหยุด เมื่อมีการเปิดภารกิจอีกครั้ง
+      SLA จะถูกนับจากเวลาที่ถูกสร้างขึ้นดั้งเดิม
+    enabled: เปิดใช้งาน - หลังจากที่ภารกิจถูกปิด SLA จะหยุดทำงาน เมื่อภารกิจถูกเปิดอีกครั้ง
+      SLA จะถูกนับจากเวลาที่เปิดใหม่

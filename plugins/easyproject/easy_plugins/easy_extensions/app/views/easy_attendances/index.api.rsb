@@ -1,0 +1,3 @@
+api.array :easy_attendances, api_meta(:total_count => @entity_count, :offset => @offset, :limit => @limit) do
+  render(@attendances, api: api)
+end

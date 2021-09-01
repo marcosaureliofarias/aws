@@ -1,0 +1,15 @@
+<%= render @query, easy_query_name: l(:label_templates_plural),
+                   options: { ending_buttons_always_visible: true },
+                   form_options: { free_search_options: { free_search_url: templates_path } } %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= context_menu templates_context_menu_path(:parent_id => params[:parent_id]) %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class} -%>
+<% end -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:label_import_template), easy_xml_data_import_settings_path(back_url: request.fullpath), remote: true, class: 'icon icon-import button-positive' if (User.current.easy_lesser_admin_for?(:easy_xml_data_import) && Redmine::Plugin.installed?(:easy_data_templates)) -%>
+<% end -%>

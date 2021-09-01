@@ -1,0 +1,6 @@
+<%= title(l(:title_add_test_cases_to_issue)) %>
+<%= form_tag(issue_test_cases_path(@issue)) do %>
+    <div class="tabular">
+      <%= autocomplete_field_tag('test_case_ids[]', autocomplete_test_cases_path(project_id: @project, format: :json, key: User.current.api_key), []) %>
+    </div>
+<% end %>

@@ -1,0 +1,81 @@
+{
+  "issues": [
+    {
+      "subject": "Ascendant",
+      "start_date": "2017-11-20",
+      "due_date": "2017-11-20"
+    },
+    {
+      "subject": "Parent task",
+      "start_date": "2017-11-21",
+      "due_date": "2017-11-30"
+    },
+    {
+      "subject": "Second subtask",
+      "start_date": "2017-11-21",
+      "due_date": "2017-11-24",
+      "parent_issue": 1
+    },
+    {
+      "subject": "First subtask",
+      "start_date": "2017-11-21",
+      "due_date": "2017-11-21",
+      "parent_issue": 1
+    },
+    {
+      "subject": "Third subtask",
+      "start_date": "2017-11-23",
+      "due_date": "2017-11-24",
+      "parent_issue": 1
+    },
+    {
+      "subject": "Forth subtask",
+      "start_date": "2017-11-23",
+      "due_date": "2017-11-30",
+      "parent_issue": 1
+    },
+    {
+      "subject": "Middle man",
+      "start_date": "2017-12-01",
+      "due_date": "2017-12-01"
+    },
+    {
+      "subject": "Descendant",
+      "start_date": "2017-12-01",
+      "due_date": "2017-12-01",
+      "milestone": 0
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Milestone",
+      "due_date": "2017-12-05"
+    }
+  ],
+  "relations": [
+    {
+      "source": 0,
+      "target": 1,
+      "type": "precedes",
+      "delay": 0
+    },
+    {
+      "source": 1,
+      "target": 7,
+      "type": "precedes",
+      "delay": 0
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "type": "precedes",
+      "delay": 1
+    },
+    {
+      "source": 2,
+      "target": 6,
+      "type": "precedes",
+      "delay": 2
+    }
+  ]
+}

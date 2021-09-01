@@ -1,0 +1,184 @@
+---
+fr:
+  easy_mindmup:
+    button_add_child: Ajouter enfant
+    button_add_parent: Ajouter parent
+    button_add_sibling: Ajouter frère/soeur
+    button_all_icons: Icônes
+    button_collapse: Réduire
+    button_collapse_all: Tout réduire
+    button_cut: Couper
+    button_edit_data: Modifier les données
+    button_expand: Développer
+    button_expand_all: Tout développer
+    button_expand_collapse: Développer/Réduire
+    button_hotkeys: Raccourcis
+    button_legend: Légende
+    button_one_side: Un côté
+    button_paste: Coller
+    button_project_menu: Easy MindMup
+    button_redo: Refaire
+    button_remove_node: Retirer le noeud
+    button_show_links: Afficher les liens
+    button_undo: Annuler
+    error_create: n'a pas pu être créé
+    error_delete: n'a pas pu être supprimé
+    error_update: n'a pas pu être  mis à jour
+    errors:
+      no_rest_api: L’API REST est désactivée. Veuillez l’activer à partir de l’Administration.
+      not_subtaskable: La tâche "%{task_name}" ne peut pas être une sous-tâche à cause
+        du paramètrage de son tracker‌
+    free:
+      button_upgrade: Obtenir la version complète
+      feature_coloring: Coloriage des noeuds par propriété
+      feature_context_menu: Modification des propriétés du noeud via le menu contextuel
+      feature_dnd_property: Modification des propriétés du noeud par glisser-déposer
+      feature_filtering: Filtrage des nœuds par propriété
+      header_not_available: Uniquement disponible dans la version complète
+    hotkeys:
+      info_mac_metakey: Sur Mac OSX, les touches Ctrl et Cmd peuvent être utilisées
+        pour les raccourcis Ctrl notés ci-dessous – certains navigateurs empêchent
+        certaines combinaisons de touches. Donc, par exemple, si Cmd + Espace ne fonctionne
+        pas sur votre navigateur, essayez Ctrl + Espace.
+      keyboard:
+      - title: Manipulation du nœud
+        hotkeys:
+        - hotkey: Entrer
+          info: Ajouter frère
+        - hotkey: Maj+Entrée
+          info: Ajouter frères au -dessus du saut de ligne (quand vous renommez le
+            nœud)
+        - hotkey: Tab ou Insér.
+          info: Ajouter enfant
+        - hotkey: Maj+Tab
+          info: Insérer parent
+        - hotkey: Espace
+          info: Renommer le nœud
+        - hotkey: Maj+Espace
+          info: Modifier les données du nœud
+        - hotkey: Retour ou Suppr.
+          info: Supprimer le nœud
+        - hotkey: Ctrl+Haut/Bas
+          info: Déplacer le nœud vers le haut/bas
+      - title: Modification
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Enregistrer
+        - hotkey: Ctrl+X ou C
+          info: Couper
+        - hotkey: Ctrl+C ou Y
+          info: Copier
+        - hotkey: Ctrl+V ou P
+          info: Coller
+        - hotkey: U ou Ctrl+Z
+          info: Annuler
+        - hotkey: R ou Ctrl+Y ou Ctrl+Maj+Z
+          info: Répéter
+      - title: Sélection
+        hotkeys:
+        - hotkey: Touches flèches
+          info: Sélectionner le nœud en haut/bas/à gauche/droite du nœud actuellement
+            sélectionné
+        - hotkey: Maj + touches flèches
+          info: Ajouter un nœud en haut/en bas/à gauche/à droite de la sélection (utile
+            pour les frères à sélection multiple)
+        - hotkey: "{"
+          info: Sélection multiple du nœud actuel et du sous-arbre au complet en-dessous
+        - hotkey: "["
+          info: Sélection multiple uniquement du sous-arbre en-dessous du nœud actuel
+            (pas le nœud lui-même)
+        - hotkey: "="
+          info: Sélection multiple de tous les frères du nœud actuel (qui ont le même
+            parent)
+        - hotkey: "."
+          info: Annuler la sélection multiple et sélectionner uniquement le nœud actuel
+            de nouveau
+        - hotkey: 1 - 9
+          info: Sélectionner tous les nœuds d’un niveau particulier (par ex. 1 sélectionne
+            tous les nœuds du premier niveau)
+      - title: Navigation et écran
+        hotkeys:
+        - hotkey: "/ ou F"
+          info: Développer ou réduire le nœud (plier ou déplier les enfants)
+        - hotkey: Ctrl + ou Z
+          info: Zoom avant
+        - hotkey: Ctrl - ou Shift Z
+          info: Zoom arrière
+        - hotkey: Esc, 0, Ctrl+0
+          info: Réinitialiser la vue par carte – sélectionner le nœud racine et le
+            déplacer au centre de l’écran
+      mouse:
+      - action: Déplacer la carte
+        gesture: cliquer et glisser le nœud central, cliquer et déplacer l’arrière-plan
+          ou faire défiler avec le pave tactile.
+      - action: Sélectionner un nœud
+        gesture: appuyer ou cliquer dessus
+      - action: Sélectionner plusieurs nœuds
+        gesture: Maj+clic
+      - action: Réorganiser les nœuds
+        gesture: glisser u nœud entre ses frères, fermer horizontalement à la position
+          de réorganisation. Une pointe de flèche noire apparaît lors de la réorganisation.
+      - action: Positionner manuellement un nœud
+        gesture: glisser un nœud jusqu’à ce que la pointe de la flèche pour la réorganisation
+          n’apparaisse plus. Pour forcer la position manuelle même quand la pointe
+          de flèche de réorganisation apparaît, appuyer sur Maj pendant le déplacement.
+          Veuillez noter que les enfants du nœud racine peuvent être déplacés dans
+          n’importe quelle direction, mais les nœuds de niveau inférieur ne peuvent
+          être places que dans la direction du parent par rapport à la racine.
+      - action: Renommer un nœud
+        gesture: Double-cliquer ou faire un appui double
+      - action: Afficher le menu contextuel avec les opérations
+        gesture: 'Faire un clic droit sur un nœud (avec la souris) ou un double appui
+          sur l’arrière-plan, ou un appui long sur un nœud : afficher (sur les appareils
+          tactiles)'
+      - action: Changer le nœud parent
+        gesture: glisser et déposer un nœud sur un autre nœud (les glissements circulaires
+          ne sont pas autorisés, vous ne pouvez donc pas déposer un nœud sur un de
+          ses enfants ou descendants)
+      - action: Ouvrir la tâche ou le projet dans une fenêtre séparée
+      title_key_shortcuts: Manœuvres du clavier
+      title_mouse_shortcuts: Manœuvres de la souris et manœuvre tactiles
+      title_shortcuts: Raccourcis
+    info_all_saved: Tout a bien été enregistré
+    info_any_failed: 'Certaines des demandes ont échoué :'
+    info_no_permission: Vous ne disposez pas des autorisations nécessaires pour faire
+      cela
+    label_color_by: Couleur par
+    label_go_to: Aller à
+    label_hide_unused: Masquer les inutilisés
+    label_less: Moins
+    label_or: ou
+    label_save_progress: Veuillez patienter, toutes les entités sont en cours d'enregistrement
+    label_show_unused: Voir les inutilisés
+    label_tooltip_display_info: La légende affiche tous les statuts, mais il se peut
+      que vous ne puissiez pas en utiliser certains.
+    last_state_modal:
+      label_differencies: Différences sur le serveur
+      message_changed: ont des attributs différents (navigateur =>serveur) ({{changes}})
+      message_missing: est manquant du parent "{{from}}"
+      message_moved: est enfant de "{{to}}", pas"{{from}}"
+      message_present: est présent en tant qu'enfant de "{{to}}"
+      text_reload_appeal: Souhaitez-vous recharger l'état à partir du serveur ?
+      title: Le dernier état du client de Mind map est différent de l'état du serveur
+    reload_modal:
+      label_errors: Erreurs
+      text_reload_appeal: Souhaitez-vous ignorer les éléments non enregistrés et recharger
+        les données à partir du serveur ?
+      title: Mind map n'a pas pu être correctement enregistré
+    save_info:
+      at: à
+      autosaved: Enregistré automatiquement
+      loaded: Chargé
+      saved: Enregistré
+    stored_modal:
+      button_local: Version locale
+      button_server: Version serveur
+      text_load_appeal: Voulez-vous le charger? Ou voulez-vous charger un nouvel état
+        à partir du serveur ?
+      title: Une version locale non enregistrée a été trouvée
+    title_node_changed: Ce nœud a été modifié et sera enregistré
+    warning_delete_node: Voulez-vous vraiment supprimer le nœud {{name}} et tous ses
+      descendants ?
+    warning_delete_nodes: Voulez-vous vraiment supprimer ces noeuds et tous leurs descendants
+      ?
+    warning_not_saved: n’est pas correctement enregistré

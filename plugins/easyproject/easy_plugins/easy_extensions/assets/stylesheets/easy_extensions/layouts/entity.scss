@@ -1,0 +1,301 @@
+.easy-entity{
+  &-overview{
+    margin-bottom: $box-padding;
+  }
+  &-details{
+    .avatar-container{
+      margin: -0.2% $box-padding 0 0;
+      & + .avatar-edit{
+        display: none;
+        position: absolute;
+        left: .5*$box-padding;
+        top: .25*$box-padding;
+        background: rgba($color-foreground, .8);
+        @extend %button-link;
+      }
+      &:hover{
+        & + .avatar-edit{
+          display: inline-block;
+        }
+      }
+      &~h2{
+        padding-top: 1.5*$gap;
+      }
+    }
+    .avatar-edit:hover{
+      display: inline-block;
+    }
+    &-header{
+      & > h2{
+        @extend h1;
+        font-size: $font-h2;
+        //margin-top: 0;
+        margin-bottom: $box-padding;
+        position: relative;
+        .icon-{
+          &fav,&fav-off{
+            margin-left: $gap;
+            //float: right;
+            color: $color-important;
+            //position: absolute;
+            right: 0;
+            order: 3;
+          }
+        }
+        .multiedit-on-h2{
+          margin-right: 5*$gap;
+          @extend %flex-grow-1;
+          @include respond-to(max-small-screen){
+            margin-right: 3.5*$gap;
+          }
+        }
+        .contextual {
+          order: 2;
+          margin-left: auto;
+          margin-top: 0;
+        }
+      }
+      .issue-detail-header {
+        @extend %flex;
+        @extend %flex-direction-row;
+        @extend %align-items-center;
+      }
+      @include respond-to(max-small-screen){
+        .avatar-container{
+          text-align: center;
+          margin: 0;
+          margin-right: $gap;
+          float: none;
+        }
+        .issue-detail-header {
+          margin: $gap 0;
+        }
+      }
+    }
+    &-header{
+      @extend %clearfix;
+      .contextual{
+        margin-top: $box-padding;
+        @include respond-to(max-small-screen){
+          display: none;
+        }
+      }
+      &-attributes{
+        clear: both;
+        margin: 0 (-$box-padding);
+        //margin-bottom: $box-padding;
+        padding: $gap $box-padding;
+        border-top: 1px solid $color-border;
+        border-bottom: 1px solid $color-border;
+        margin-bottom: -1px;
+        height: 3.5*$gap + 12; //
+        line-height:2*$gap;
+        overflow: hidden;
+        @extend %attributes;
+        @extend %pseudo-after;
+        &.open{
+          height: auto;
+        }
+        .avatar-container{
+          margin-left: 0;
+        }
+        padding-bottom: 2.5*$gap +3 !important; // adds space for toggler
+        &:after{
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 0.5*$gap;
+          @include gradient-vertical(rgba($form-background,0),$form-background);
+          border-bottom: 2.5*$gap  solid $form-background; // adds space for toggler
+          z-index: 0;
+        }
+        .more-attributes-toggler{
+          //&-wrapper {
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 60px;
+            margin-left: -31px;
+            z-index: 2;
+          //}
+        }
+        .multieditable-parent{
+          border: 1px solid transparent;
+          margin-right: $box-padding;
+          .icon-edit{
+            //right: auto;
+            //left: -2.3em;
+          }
+        }
+        //li{
+        //  $height: $journal-avatar-width;
+        //  //overflow: hidden;
+        //  display: inline-block !important;
+        //  line-height: $height;
+        //  @include small;
+        //  vertical-align: middle;
+        //  padding-right: $box-padding;
+        //  &~li{
+        //    padding-left: $box-padding;
+        //    position: relative;
+        //    @extend %pseudo-before;
+        //    @include respond-to(min-small-screen){
+        //      //&:before{
+        //      //  border-left: 1px solid $color-border-minor;
+        //      //  top: 5px;
+        //      //  bottom: 5px;
+        //      //  left: 0;
+        //      //}
+        //    }
+        //    label{
+        //      margin-right: 0.5*$gap;
+        //    }
+        //  }
+        //
+        //}
+      }
+    }
+    &-progress{
+      table{
+        margin: ($gap + 1) 0;
+      }
+    }
+    &-description{
+      margin: 0 (-$box-padding) -1px;
+      padding: $box-padding;
+      border-top: 1px solid $color-border;
+      border-bottom: 1px solid $color-border;
+      background: $color-foreground;
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    &-sidebar{
+      &-attributes{
+        @extend %entity-sidebar-info;
+        &-buttons {
+          ul {
+            padding: 0;
+            margin: 0 0 2*$gap;
+          }
+          li {
+            list-style: none;
+            margin-bottom: 2px;
+            a {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+
+    .easy-contextual{
+      text-align: right;
+      position: absolute;
+      padding: 0 .25*$gap;
+      right: $box-padding;
+      margin-top: -$box-padding + px2rem(1px);
+      background: $color-foreground;
+      //border: 1px solid $color-border-minor;
+      //border-top-color: $color-border;
+      border-bottom: none;
+      z-index: 1;
+      a{
+        @extend %button-link;
+        @extend %tooltip-left;
+      }
+    }
+  }
+  &-update{
+    form{
+      //@extend %form-box;
+      border-top-color: $color-border;
+    }
+    .attachments-container{
+      //margin-top: 4*$gap;
+    }
+    #form-attributes{
+      margin-bottom: $box-margin;
+    }
+  }
+  &-journal{
+    overflow: hidden;
+    padding: 0 $box-padding;
+  }
+  &-card{
+    @extend %card-base;
+    @extend %graphic-bg-boxes;
+    &-actions{
+      //float: right;
+      a{
+        //@extend %button-link;
+        @extend %tooltip-left;
+        @extend %button-icon-only;
+      }
+    }
+    & > h4{
+      float: left;
+      margin-top: 7px;
+      a:before{
+        margin-right: 0.5*$gap;
+        color: $color-text;
+      }
+    }
+    &-detail{
+      overflow: hidden;
+      background: $color-foreground;
+      margin: $gap -0.5*$box-padding -0.5*$box-padding;
+      padding: $box-padding;
+      border-top: 1px solid $color-border-minor;
+      clear: both;
+      @include small;
+
+      .avatar-container ~ &{
+        padding-left: 8.5*$gap;
+      }
+
+      p{
+        margin-bottom: 0;
+        &:nth-of-type(3) ~ p{
+          display: inline-block;
+          margin-right: 0.5*$gap;
+        }
+      }
+      span {
+        display: inline-block;
+        margin-right: .5 * $gap;
+
+        //&::after {
+        //  content: '|';
+        //  margin-left: .5 * $gap;
+        //}
+        //
+        //&:last-child {
+        //  &:after {
+        //    display: none;
+        //  }
+        //}
+      }
+
+      table {
+        th, td {
+          vertical-align: top;
+        }
+      }
+    }
+    &s{
+      &-container{
+        @extend %well;
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+.form-entity{
+  &-watcher{
+    &-role{
+      @include small;
+    }
+  }
+}

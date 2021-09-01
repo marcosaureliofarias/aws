@@ -1,0 +1,202 @@
+.mindmup{
+  &__legend{
+    &-container {
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14), 0 2px 2px rgba(0, 0, 0, 0.05);
+      @extend %box-shadow !optional;
+      @extend %material__elevation--depth_2 !optional;
+      background-color: $mindmup__color--front;
+      position: absolute;
+      top: calc(100% + 2px); //110%;
+      left: 1px; //$mindmup__gap;
+      width: auto; //$legend-width;
+      max-width: 250px;
+      //@include respond-to(max-large-screen) {
+      //  width: px2rem(195px);
+      //}
+      &--hidden {
+        display: none;
+      }
+    }
+    &-label {
+      @include respond-to(max-large-screen) {
+        font-size: 0;
+      }
+    }
+    &-header {
+      align-items: center;
+      background: $mindmup__color--mixed;
+      justify-content: center;
+      padding: $mindmup__gap;
+      @extend %flex;
+      & > label {
+        @extend %flex-grow-1;
+        align-self: center;
+        select {
+          font-size: .89rem;
+        }
+      }
+    }
+    &-toggler {
+      max-height: $mindmup__gap--box + 4;
+      margin-left: $mindmup__gap / 2;
+      a {
+        color: rgba($mindmup__color--text, .5);
+        font-size: 1.5em;
+        line-height: 1;
+        max-height: $mindmup__gap--box + 4;
+        &::before {
+          vertical-align: middle;
+        }
+      }
+      .tip {
+        display: none;
+      }
+      &.active {
+        a {
+          @if map-has-key($icons, 'expand-less') {
+            @include icon-parent('expand-less');
+          }
+        }
+      }
+    }
+    &-body{
+      @extend %background-clip-padding-box !optional;
+      overflow-y: auto;
+      padding: $mindmup__gap $mindmup__gap--box;
+      overflow-x: hidden;
+    }
+    &-info{
+      margin-top: $gap;
+      .tooltip{
+        width: 120px;
+        height: auto;
+        white-space: normal;
+        top: auto;
+        right: auto;
+        padding: $gap;
+        line-height: 1.25;
+        position: fixed;
+      }
+    }
+  }
+  &-color-select {
+    padding: 0 px2rem(12px) 0 px2rem(12px);
+    max-height: px2rem(28px);
+    line-height: 1;
+    text-align: center;
+    @include respond-to(max-small-screen) {
+      min-width: px2rem(150px);
+    }
+  }
+  &-legend{
+    &-color-box{
+      //@include mindmup-scheme($mindmup__border-color--minor);
+      background-color: #E0E0E0;
+      border-color: #E0E0E0;
+      @extend %border-radius-infinite !optional;
+      //&:before{
+      //  content: 'B';
+      //  font-weight: bold;
+      //  display: block;
+      //  text-align: center;
+      //}
+      width: $mindmup__gap--box;
+      height: $mindmup__gap--box;
+      display: inline-block;
+      border-width: px2rem(1px);
+      border-style: solid;
+      vertical-align: middle;
+      margin-right: px2rem(5px);
+      &-assignee {
+        z-index: 1;
+        position: absolute;
+        width: $mindmup__gap;
+        height: $mindmup__gap;
+        margin-left: px2rem(14px);
+        margin-top: px2rem(14px);
+      }
+    }
+    .avatar-container + &-color-box{
+      position: absolute;
+      top: $mindmup__gap / 2;
+      left: $mindmup__gap / 2;
+      transform: scale(0.5);
+    }
+    &-used{
+      margin-top: px2rem(10px);
+      display: inline-block;
+      color: rgba($mindmup__color--text, .5);
+      &-toggle{
+        float: right;
+        margin: px2rem(5px) 0;
+      }
+      &-used--all,
+      &-all--used{
+        display: none;
+      }
+    }
+    &-item{
+      &-cont{
+        cursor: pointer;
+        margin-top: 0.5 * $mindmup__gap;
+        position: relative;
+        .avatar-container{
+          float: none;
+          position: relative;
+          display: inline-block;
+          vertical-align: bottom;
+        }
+      }
+    }
+    .hotkey_link{
+      margin: $mindmup__gap (-$mindmup__gap) 0;
+      padding-top: $mindmup__gap;
+      border-top: px2rem(1px) solid $mindmup__border-color--minor;
+      .easy & a{
+        color: rgba($mindmup__color--text, .5);
+      }
+    }
+    &__filter{
+      &_cont{
+        position: absolute;
+        right: $mindmup__gap;
+        z-index: 1;
+      }
+      &_icon{
+        color: rgba($mindmup__color--text, .4);;
+        font-size: 2em;
+        padding: px2rem(5px);
+      }
+      &_cancel_icon{
+        position: absolute;
+        display: none;
+        color: lighten($mindmup__color--negative, 10);
+        //color: $mindmup__color--negative;
+        font-size: 2em;
+        padding: 0 px2rem(5px) px2rem(5px);
+      }
+      &_cont:hover &_cancel_icon{
+        display: inline;
+      }
+    }
+    &-drag{
+      &-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        cursor: move;
+      }
+      &-avatar {
+        position: absolute;
+        z-index: 5;
+        height: px2rem(20px);
+        width: px2rem(20px);
+        margin-left: px2rem(-12px);
+        margin-top: px2rem(-12px);
+        border-width: px2rem(1px);
+        border-style: solid;
+      }
+    }
+  }
+}

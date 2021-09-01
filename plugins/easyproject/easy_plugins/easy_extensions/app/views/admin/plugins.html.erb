@@ -1,0 +1,23 @@
+<%= title l(:label_plugins) %>
+<p><strong><%= Redmine::Info.versioned_name %></strong></p>
+
+<% if @plugins.any? %>
+  <table class="list plugins">
+    <% @plugins.each do |plugin| %>
+      <tr id="plugin-<%= plugin.id %>">
+        <td class="name">
+          <span class="name"><%=hh plugin.name %></span>
+          <%= content_tag('span', hh(plugin.description), :class => 'description') unless plugin.description.blank? %>
+          <%= content_tag('span', link_to(hh(plugin.url), hh(plugin.url)), :class => 'url') unless plugin.url.blank? %>
+        </td>
+        <%=  content_tag('td', easy_author_url(plugin), :class => 'author')%>
+        <td class="version"><span class="icon"><%= plugin.version_description.blank? ? plugin.version : hh(plugin.version_description) %></span></td>
+        <td class="configure fast-icons"><%= link_to(l(:button_configure), plugin_settings_path(plugin), :class => 'icon icon-settings button-positive', :onclick => (plugin.disabled? ? "alert('#{j l(:error_plugin_is_disabled)}');return false;" : 'return true;')) if plugin.configurable? %></td>
+        <td class="uninstall fast-icons"><%= link_to(l(:button_uninstall), {:controller => 'settings', :action => 'uninstall', :id => plugin.id}, :class => 'button icon icon-del') if false && plugin.should_be_disabled? -%></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+<%= call_hook(:view_admin_plugins_bottom, {}) %>

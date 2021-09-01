@@ -1,0 +1,37 @@
+Rys::Patcher.add('IssuesController') do
+
+  included do
+    before_action :show_last_comments_on_issue_add_flash_notice, only: [:show]
+  end
+
+  instance_methods do
+    def show
+      Rys::Feature.on('show_last_comments_on_issue.issue.show') do
+        @show_last_comments_on_issue_test_1 = 'Test 2'
+      end
+
+      super
+    end
+
+    private
+
+      def show_last_comments_on_issue_add_flash_notice
+        if Rys::Feature.active?('show_last_comments_on_issue.issue.show', 'show_last_comments_on_issue.project.show')
+          flash.now[:notice] = 'Features are activated'
+        end
+      end
+  end
+
+
+  instance_methods(feature: 'show_last_comments_on_issue.issue.show') do
+    def show
+      @show_last_comments_on_issue_test_2 = 'Test 2'
+
+      super
+    end
+  end
+
+  class_methods do
+  end
+
+end

@@ -1,0 +1,13 @@
+<%= raw l(:label_mentioned_email_subject, entity_title: @entity.to_s) %>
+
+<%= @entity_url %>
+
+<%= @user.to_s %>
+<% if (details = (@journal.details || [])).any? %>
+  <% details_to_strings(details, true, only_path: false, entity: @entity).each do |string| %>
+    <%= string %>
+  <% end %>
+<% end %>
+<%= Sanitize.clean(@journal.notes, output: :html) if @journal.notes? %>
+
+                                                      <%= polymorphic_url(@entity, anchor: "change-#{@journal.id}") %>

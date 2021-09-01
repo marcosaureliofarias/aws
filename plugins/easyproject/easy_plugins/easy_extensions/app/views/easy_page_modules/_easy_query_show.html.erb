@@ -1,0 +1,28 @@
+<%
+  include_jqplot_scripts
+
+  unless defined?(load_chart_now)
+    load_chart_now = page_module.cache_on?
+  end
+
+  entities ||= easy_page_modules_data[:entities]
+  query ||= easy_page_modules_data[:query]
+  calendar ||= easy_page_modules_data[:calendar]
+  show_data ||= easy_page_modules_data[:show_data]
+%>
+
+<% if page_module.is_a?(EasyPageZoneModule) && query %>
+  <% presenter = present(query, entities: entities, modul_uniq_id: modul_uniq_id, block_name: block_name, groups_url: group_load_url_for_module(page_module, query), page_module: page_module, user: user, options: { hascontextmenu: true }, load_chart_now: load_chart_now) %>
+  <% if presenter.render_zoom_links? %>
+    <%= render partial: 'easy_queries/zoom_links', locals: {query: query, presenter: presenter, page_module: page_module, modul_uniq_id: modul_uniq_id, block_name: block_name, path_method: :update_my_page_module_view_path, base_url: {uuid: page_module.uuid, block_name: block_name}} %>
+  <% end %>
+  <%= error_messages_for query -%>
+  <%= presenter.outputs.render_data %>
+  <% if presenter.outputs.list? %>
+    <%= easy_query_context_menu query, "##{modul_uniq_id}" %>
+  <% end %>
+<% elsif page_module.is_a?(EasyPageTemplateModule) %>
+  <%= l(:label_easy_page_module_empty, modulename: page_module.module_definition.translated_name).html_safe -%>
+<% else %>
+  <%= l(:label_easy_page_module_settings_missing) %>
+<% end %>

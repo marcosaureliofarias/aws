@@ -1,0 +1,162 @@
+#helpbubble-container-info {
+  min-height: 250px;
+  position: fixed;
+  top: 10px;
+  z-index: 50;
+}
+
+#helpbubble-container-contact {
+  position: fixed;
+  top: 40px;
+  z-index: 50;
+}
+
+#helpbubble-container-info.hide {
+  left: -580px;
+}
+
+#helpbubble-container-info.display {
+  left: 0;
+}
+
+#helpbubble-container-contact.hide {
+  right: -210px;
+}
+
+#helpbubble-container-contact.display {
+  right: 0;
+}
+
+#helpbubble-container-info > div {
+  background-color: #fff;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 1px 3px 10px #888;
+  cursor: pointer;
+  margin-bottom: 10px;
+  min-height: 230px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 620px;
+}
+
+#helpbubble-container-contact > div {
+  background-color: #fff;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 1px 3px 10px #888;
+  cursor: pointer;
+  margin-bottom: 10px;
+  min-height: 230px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  width: 250px;
+}
+
+#helpbubble-container-contact .helpbubble-content {
+  float: right;
+  width: 190px;
+}
+
+#helpbubble-container-info .helpbubble-content {
+  float: left;
+  width: 580px;
+}
+
+.helpbubble-content {
+  cursor: default;
+  height: 100%;
+  margin: 0;
+  padding: 0 10px 0 0;
+  min-height: 560px;
+}
+
+#helpbubble-container-contact div.clicker {
+  border-radius: 10px 0 0 10px;
+  left: 0;
+  overflow: hidden;
+}
+
+#helpbubble-container-info div.clicker {
+  border-radius: 0 10px 10px 0;
+  right: 0;
+}
+
+div.clicker {
+  background-color: #F7F7F7;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 40px;
+}
+
+div.clicker div.clicker-icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+div.helpbubble-info div.clicker-icon {
+  background-image: url(../images/icon-helper-i.png);
+}
+
+div#helpbubble-container-contact div.clicker-icon {
+  background-image: url(../images/icon-helper-post.png);
+}
+
+.helpbubble-info-header, div.clicker-icon {
+  background-color: #E1E1E1;
+  height: 30px;
+}
+
+#helpbubble-container-contact div.clicker-icon {
+  border-radius: 10px 0 0 0;
+}
+
+#helpbubble-container-info div.clicker-icon {
+  border-radius: 0 10px 0 0;
+}
+
+.helpbubble-info-header, div.clicker > div {
+  padding: 5px 10px;
+}
+
+.helpbubble-info-header {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.helpbubble-info-body {
+  padding: 0 10px;
+}
+
+.helpbubble-content > div {
+  padding: 5px 15px;
+}
+
+div.clicker-arrows {
+  background-image: url(../images/1rightarrow.png);
+  background-position: center center;
+  background-repeat: repeat-y;
+  height: 28px;
+  margin: 10px 0;
+}
+
+div.clicker-arrows.active {
+  background-image: url(../images/1leftarrow.png);
+}
+
+div.clicker > div.clicker-desc {
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  bottom: -5%;
+  color: #CCC;
+  //filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  font-size: 180%;
+  font-weight: 700;
+  height: 400px;
+  left: -30px;
+  position: relative;
+  text-align: center;
+  width: 450px;
+  line-height: 35px;
+}

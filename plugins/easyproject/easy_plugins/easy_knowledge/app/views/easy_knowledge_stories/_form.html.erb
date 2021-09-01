@@ -1,0 +1,50 @@
+<% category_position ||= 'right'
+   tree_show ||= false %>
+<%= error_messages_for story -%>
+<div class="<%= category_position == 'right' ? 'splitcontent' : '' %>">
+  <% if category_position == 'right' %>
+  <div class="splitcontentright size-2">
+    <div class="easy-knowledge-stories-form-right-panel">
+      <%= render :partial => 'easy_knowledge_stories/form_knowledge_categories', :locals => {:f => f, :story => story} %>
+    </div>
+  </div>
+  <% end %>
+  <div class="<%= category_position == 'right' ? 'splitcontentleft size-8' : '' %>">
+    <div class="tabular">
+      <%= render(partial: 'easy_knowledge_stories/form_basic_attributes', locals: {f: f, story: story, tree_show: tree_show}) %>
+      <% if story.entity.nil? %>
+        <div id="kb-attachments-container">
+          <%= toggling_container("issue-form-attachments", User.current, {:heading => l(:label_issue_attachments_heading), :wrapping_heading_element_classes => ' icon icon-attachment'}) do  %>
+            <p><%= render :partial => 'attachments/form', :locals => {:container => @story} -%></p>
+          <% end %>
+        </div>
+      <% end -%>
+    </div>
+    <% if story.visible_custom_field_values.any? %>
+      <fieldset class="tabular">
+        <legend><%= l(:label_custom_field_plural) %></legend>
+        <% story.custom_field_values.each do |custom_value| -%>
+          <p>
+            <%= custom_field_tag_with_label :easy_knowledge_story, custom_value %>
+          </p>
+        <% end -%>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+<div class="clear"></div>
+
+<script type="text/javascript">
+  function add_used_tag(tag)
+  {
+    if ($('#easy_knowledge_story_tag_list').val() === "")
+    {
+      $('#easy_knowledge_story_tag_list').val(tag);
+    }
+    else
+    {
+      $('#easy_knowledge_story_tag_list').val($('#easy_knowledge_story_tag_list').val() + ', ' + tag);
+    }
+  }
+</script>

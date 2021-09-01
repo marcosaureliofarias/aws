@@ -1,0 +1,199 @@
+---
+ar:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: المخصصات موجودة بالفعل
+  button_hide_planned_tasks: المهام المخطط لها
+  button_top_menu_easy_gantt_resources: "إدارة الموارد\r\n\r\n "
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: عرض إدارة الموارد الجديدة لEasy Gantt
+  easy_gantt_resources_plugin_name: إدارة الموارد
+  easy_gantt_resources:
+    allocator:
+      evenly: متساوي (بطيء)
+      from_end: من نهاية
+      from_start: من بداية
+      future_evenly: مستقبل بالتساوي
+      future_from_end: مستقبل من نهاية
+      future_from_start: مستقبل من بداية
+      label_allocator: مخصص
+      random: عشوائي
+    buttons:
+      button_project_menu: إدارة الموارد
+      rm_balance: ميزان
+      rm_hide_reservations: إخفاء الحجوزات
+      rm_hide_tasks: المهام
+      rm_reservations: الحجوزات
+      rm_with_milestones: العلامات المميزة
+      rm_with_projects: المشروعات
+    context:
+      heading_allocator_setting: إعدادات المخصص
+      label_maximal_hours: الحد الأقصى للساعات/اليوم
+      pseudo_even_allocation: مخصصات شبه زائفة
+      text_setting_for: إعداد ل
+    errors:
+      allocation_is_not_permitted_on_project: ''
+      assigned_to_is_blank: لابد من تحديد المحال إليه‌
+      estimated_hours_is_blank: الساعات المقدرة غير صحيحة
+      issue_is_closed: المهمة مغلقة
+      negative_allocation: لها رقم سلبي من الساعات المخصصة في %{date}
+      no_rights_for_allocation: ليس لك الحق في المخصصات الخاصة ب%{issue}
+      non_member_assignee: المهمة %{issue} تنتمي إلى المشروع %{project} والمستخدم %{assignee}
+        ليس عضوًا فيه
+      over_allocation: لها ساعات مخصصة أكثر من الممكن في %{date}
+      project_is_baseline: المشروع هو خط الأساس
+      save_error: المخصصات [%{allocations}] الخاصة بالمهمة "%{name}" ل%{assignee}
+        غير محفوظ بسبب: %{reason}
+      start_or_due_is_required: تاريخ البداية أو التسليم مطلوب
+      under_estimation: مقدر تقدير غير كافي. زيادة التقدير بمقدار %{over} ساعات على
+        الأقل.
+    event_types:
+      generic: الحدث
+      holiday: أجازة
+      meeting: اجتماع
+      symbols:
+        holiday_short: "H\r\n\r\n "
+        meeting_short: m
+        nonworking_attendance_short: N
+        unapproved_nonworking_attendance_short: U
+    global_resource_title: إدارة الموارد العالمية
+    label_allocations_sum: مخصصات المهام
+    label_events: الأحداث
+    label_other_allocations_sum: مخصصات المهام غير المرئية
+    label_reservations_sum: مخصصات الحجوزات
+    label_whole_day: "اليوم الكامل\r\n\r\n "
+    legend:
+      day_custom_allocation: مخصصات تم تعديلها يدويًا
+      day_over_allocation: المستخدم محمل بحمل زائد في اليوم المحدد
+      full_allocations: للمستخدم حمل عمل مثالي
+      no_allocations: ليس للمستخدم عمل محال إليه
+      over_allocations: المستخدم محمل بحمل زائد
+      reservation: الحجز
+      some_allocations: للمستخدم سعة غير مستخدمة
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: إدارة الموارد
+    text_easy_resources_footer: إدارة الموارد Redmine التي تمولها Easy
+    title_rm_short: RM
+  easy_gantt:
+    button:
+      rm_reallocate: إعادة التخصيص
+    title:
+      rm_reallocate: إعادة حساب المخصصات على كل مهمة
+  easy_pages:
+    modules:
+      easy_gantt_resources: إدارة الموارد
+      personal_easy_gantt_resources: إدارة الموارد الشخصية
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: إدارة الموارد
+        description: اذهب إلى إدارة الموارد العالمي
+  easy_query:
+    name:
+      easy_light_resource_query: "المخصصات\r\n\r\n "
+      easy_resource_easy_query: إدارة الموارد
+  error_allocation_uniqueness: الموارد موجودة بالفعل
+  error_epm_resource_already_active: برنامج الصفحة على الصفحة نشط بالفعل
+  error_invalid_dates: تواريخ غير صحيحة
+  error_resources_not_authorized: الموار لم يتم حفظها، أنت غير مصرح لك بتعديل كل الموارد
+    المطلوبة.
+  field_advance_hours_definition: تعريف يدوي للساعات
+  field_advance_hours_per_days: ضبط الساعات لكل الأيام
+  field_assigned_to_admin: مدير
+  field_assigned_to_created_on: تم الإنشاء في
+  field_assigned_to_email: بريد إلكتروني
+  field_assigned_to_firstname: الاسم الأول
+  field_assigned_to_lastname: الاسم الأخير
+  field_assigned_to_login: تسجيل الدخول
+  field_assigned_to_status: "الحالة\r\n\r\n "
+  field_change_allocator_enabled: تغيير المخصص
+  field_decimal_allocation: تخصيص عشري
+  field_default_allocator: تخصيص أساسي
+  field_easy_gantt_show_task_latest_due: عرض أحدث تاريخ تسليم
+  field_hide_planned_tasks_enabled: زر التنقل بين المهام المخطط لها
+  field_hide_unassigned: إخفاء غير المحال 
+  field_hours_in_hour: الوقت المقدر
+  field_hours_in_percent: الوقت المقدر
+  field_hours_per_day: الساعات في كل يوم
+  field_max_allocation: 'الحد الأقصى لوقت التخصيص:'
+  field_resource_allocator: مخصص المورد
+  field_show_groups: عرض المجموعات
+  field_show_total_project_allocations: عرض إجمالي مخصصات المشروع
+  field_watchdog_enabled: حراسة
+  heading_easy_gantt_resources_index: الموارد
+  help_easy_gantt_resources_users_estimated_ratios: الوقت المقدر على المهام المحالة
+    للمستخدم مضروب في هذا الثابت في المخصصات
+  help_easy_gantt_resources_users_hours_limits: ساعات العمل اليومية للمستخدم للمخصصات
+    محدودة بهذه القيمة
+  help_easy_gantt_resources_users_hours_limits_blank: يترك فارغًا لاستخدام القيمة
+    الأساسية
+  label_allocated_dates: التواريخ المخصصة
+  label_allocated_hours: الساعات المخصصة
+  label_easy_gantt_allocations: مخصصات
+  label_easy_gantt_original_allocations: مخصصات كاملة
+  label_easy_gantt_period: فترة
+  label_easy_gantt_resources_balance: ميزان
+  label_easy_gantt_resources_get_from_users: العد من المستخدمين
+  label_easy_gantt_resources_get_from_users_for_all_groups: العد من كل المستخدمين
+  label_easy_gantt_resources_global_query_filters: الفلاتر العالمية الأساسية
+  label_easy_gantt_resources_groups_holidays_enabled: تفعيل أيام الأجازات للمجموعات
+  label_easy_gantt_resources_groups_selection: اختيار المجموعات
+  label_easy_gantt_resources_hours_from_calendar: الساعات من التقويم
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: الساعات من التقويم
+    لكل المستخدمين
+  label_easy_gantt_resources_new_reservation: حجز جديد
+  label_easy_gantt_resources_reservation_enabled: تفعيل الحجوزات
+  label_easy_gantt_resources_settings: إعدادات المورد
+  label_easy_gantt_resources_show_free_capacities: الإمكانيات المجانية 
+  label_easy_gantt_resources_user_unassigned: غير محال
+  label_easy_gantt_resources_users_estimated_ratios: نسبة الوقت المقدر
+  label_easy_gantt_resources_users_hours_limits: حد الساعات لكل يوم
+  label_easy_gantt_resources_users_selection: اختيار المستخدمين
+  label_easy_gantt_resources_with_projects: عرض مخصصات المشروع بحسب الأساسي
+  label_easy_meeting_easy_resource_dont_allocate: لا تخصص
+  permission_manage_user_easy_gantt_resources: إدارة نسب المستخدم المقدرة/حدود الساعات
+  project_module_easy_gantt: Easy Gantt & Resource Management
+  text_easy_gantt_resources_advance_hours_definition: يمكن تعريف الساعات لكل يوم من
+    أيام الأسبوع.
+  text_easy_gantt_resources_advance_hours_per_days: الحد الأقصى للساعات المخصصة لكل
+    الأيام في الأسبوع
+  text_easy_gantt_resources_change_allocator_enabled: السماح بتغيير المخصص على تعديل
+    المهمة
+  text_easy_gantt_resources_change_default_allocator: لأسباب تتعلق بالأداء، تغيير
+    هذا الخيار لن يؤثر على المخصصين الأساسيين الحاليين الموجودين على المهام. وللحجوزات،
+    فالمخصص الأساسي يكون دائمًا متساو، ولكن يمكن تغييره بعد إنشاء الحجز.
+  text_easy_gantt_resources_decimal_allocation: تم تخصيص الساعات بالأرقام العشرية
+    (0.5)
+  text_easy_gantt_resources_default_allocator: كيفية تخصيص الساعات المقدرة على المهام.
+    (النوع المتساو قد يكون بطيئًا)
+  text_easy_gantt_resources_default_zoom: التقريب الأساسي لإدارة الموارد العالمية
+  text_easy_gantt_resources_groups_holidays_enabled: يتم تقليل المخصصات إذا كان لأعضاء
+    المجموعة أجازات.
+  text_easy_gantt_resources_hide_planned_tasks_enabled: عرض تبديل "المهام المخطط لها"
+    في إدارة الموارد
+  text_easy_gantt_resources_hours_per_day: الحد الأقصى للساعات التي يمكن تخصيصها في
+    اليوم
+  text_easy_gantt_resources_overloaded_assigned: الساعات المقدرة على هذه المهمة مخصصة
+    على اليوم (الأيام) حيث يكون حمل المخال إليه زائدًا: %{errors}. تحقق من %{link}
+    لعمل التغييرات المناسبة.
+  text_easy_gantt_resources_reservation_enabled: تفعيل حجز الساعات على المستخدمين
+  text_easy_gantt_resources_show_free_capacities: تفعيل تبدييل عرض القدرات المجانية
+    بدلًا من الساعات المخصصة للمهام المحالة على إدارة الموارد.
+  text_easy_gantt_resources_show_groups: عرض المجموعات على إدارة الموارد العالمية
+  text_easy_gantt_resources_show_total_project_allocations: عرض إجمالي الساعات المخصصة
+    على إدارة موارد المشروع
+  text_easy_gantt_resources_watchdog_enabled: مشاهدة زيادة التحميل على المستخدم المحال
+    إليه أثناء تعديل المهمة
+  text_easy_gantt_resources_with_projects: تشغيل خيار "مع المشروعات" على Global RM
+    بشكل أساسي
+  text_easy_gantt_show_task_latest_due: عرض أحدث التواريخ السارية للمهام المعرفة بالعلاقات
+    أو بكونها أصلية
+  text_easy_meeting_easy_resource_dont_allocate: الاجتماع لن يقلل القدرة في إدارة
+    الموارد
+  title_easy_gantt_personal_resources: مواردي
+  title_easy_gantt_resources_settings: إدارة الموارد من Easy
+  title_easy_gantt_resources_users_settings: إعدادات المستخدم الفردي

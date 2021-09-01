@@ -1,0 +1,5 @@
+<%= call_hook :view_layout_footer_top -%>
+<div>
+  <%= link_to(EasyExtensions::EasyProjectSettings.app_link, 'http://' + EasyExtensions::EasyProjectSettings.app_link, :class => 'icon', :target => '_blank') -%>
+</div>
+<%= call_hook :view_layout_footer_bottom -%>

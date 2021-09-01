@@ -1,0 +1,15 @@
+<div id="<%= easy_query.modul_uniq_id %>kanban-placeholder"></div>
+
+<% if output.configured? %>
+  <% swimlane = (local_assigns.has_key?(:page_module) && page_module.settings.dig('settings', 'kanban', 'default_swimlane').presence) ||
+                easy_query.settings.dig('kanban', 'default_swimlane').presence ||
+                EasySetting.value('kanban_output_setting')['default_swimlane']
+  %>
+  <script type="text/javascript">
+    EasyGem.loadModule("easyAgile", function (agile) {
+      agile.kanbanLoader("#<%= easy_query.modul_uniq_id %>kanban-placeholder", '<%= raw output_data_easy_queries_path(easy_query.to_params.merge(output: 'kanban', project_id: @project, format: 'json')) %>', '<%= swimlane %>');
+    });
+  </script>
+<% else %>
+  <div><%= l(:label_no_data) %></div>
+<% end %>

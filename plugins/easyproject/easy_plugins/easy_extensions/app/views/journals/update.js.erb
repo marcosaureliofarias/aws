@@ -1,0 +1,11 @@
+<% if @journal.frozen? %>
+  $("#change-<%= @journal.id %>").remove();
+<% else %>
+  $("#journal-<%= @journal.id %>-notes").replaceWith('<%= j(render_notes(@journal.journalized, @journal, :reply_links => authorize_for('issues', 'edit'), :without_menu => true)) %>');
+  $("#journal-<%= @journal.id %>-notes").show();
+  $("#change-<%= @journal.id %> .private-notes-lock-icon").toggle(<%= @journal.private_notes? %>);
+  $("#journal-<%= @journal.id %>-form").remove();
+<% end %>
+
+EASY.utils.syntaxHighlight();
+<%= call_hook(:view_journals_update_js_bottom, { :journal => @journal }) %>

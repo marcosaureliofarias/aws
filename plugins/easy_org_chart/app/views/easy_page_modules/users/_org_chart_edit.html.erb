@@ -1,0 +1,67 @@
+<%
+  boolean_value = -> settings, setting_name do
+    if setting_name.is_a?(Hash)
+      k,v = setting_name.first
+      value = settings[k].try(:[], v)
+      value = EasySetting.value("easy_org_chart_#{k}").try(:[], v) if value.nil?
+
+      value == '1'
+    else
+      settings[setting_name].nil? ? EasySetting.value("easy_org_chart_#{setting_name}") : settings[setting_name] == '1'
+    end
+  end
+%>
+
+<div class="box tabular">
+  <p>
+    <%= label block_name, :name, l(:field_name) %>
+    <%= text_field block_name, :name, value: settings['name'] || l('easy_pages.modules.org_chart') %>
+  </p>
+  <fieldset>
+    <p>
+      <%= label block_name, :root_user_id, l(:label_my_page_org_chart_root_user_id) %>
+      <%
+        current_root_user_id = settings['root_user_id'].presence || EasyOrgChart::Tree.root.try(:user_id)
+        supervisors = User.sorted.where(id: EasyOrgChart::Tree.supervisor_user_ids)
+      %>
+      <%= select block_name, :root_user_id, options_from_collection_for_select(supervisors, :id, :name, current_root_user_id.to_i) %>
+    </p>
+    <p>
+      <%= label block_name, :vertical_depth, l(:label_my_page_org_chart_vertical_depth) %>
+      <%= select block_name, :vertical_depth, options_for_select(EpmOrgChart::AVAILABLE_VERTICAL_DEPTH_OPTIONS, settings[:vertical_depth].to_i) %>
+    </p>
+    <p>
+      <%= label block_name, :show_fields_names, l("field_easy_org_chart_show_fields_names") %>
+      <label class="inline checkbox">
+        <%= check_box block_name, :show_fields_names, checked: boolean_value.call(settings, :show_fields_names) %>
+      </label>
+    </p>
+    <p>
+      <%= label block_name, :show_avatar, l('field_easy_org_chart_show_avatar') %>
+      <label class="inline checkbox">
+        <%= check_box block_name, :show_avatar, checked: boolean_value.call(settings, :show_avatar) %>
+      </label>
+    </p>
+    <p>
+      <label><%= l(:field_easy_org_chart_show_user_fields) %></label>
+      <label class="inline checkbox">
+        <%= check_box block_name, :show_email, checked: boolean_value.call(settings, :show_email) %>
+        <%= User.human_attribute_name(:mail) %>
+      </label>
+      <label class="inline checkbox">
+        <%= check_box block_name, :show_user_type, checked: boolean_value.call(settings, :show_user_type) %>
+        <%= User.human_attribute_name(:easy_user_type) %>
+      </label>
+    </p>
+    <p>
+      <%= label block_name, :show_custom_fields, l(:field_easy_org_chart_show_custom_fields) %>
+      <% UserCustomField.find_each do |user_cf| %>
+          <label class="inline checkbox">
+            <%= hidden_field_tag "#{block_name}[show_custom_fields][#{user_cf.id}]", '0' %>
+            <%= check_box_tag "#{block_name}[show_custom_fields][#{user_cf.id}]", '1', boolean_value.call(settings, show_custom_fields: user_cf.id.to_s) %>
+            <%= user_cf.name %>
+          </label>
+      <% end %>
+    </p>
+  </fieldset>
+</div>

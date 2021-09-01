@@ -1,0 +1,81 @@
+<% wikitoolbar = @easy_page_modules_data.dig(block_name, :wikitoolbar) %>
+
+<%= hidden_field_tag "#{block_name}[data]", (settings['data'] || {}).to_json, id: "#{block_name}_data" %>
+
+<fieldset>
+  <div class="clear">
+    <p class="floating">
+      <%= label_tag "#{block_name}_language", l(:field_language) %>
+      <%= select_tag "#{block_name}[language]",
+                     options_for_select(languages_options(cache: false), settings['language']),
+                     id: "#{block_name}_language_select" %>
+    </p>
+  </div>
+
+  <div class="clear">
+    <p class="floating">
+      <%= label_tag "#{block_name}_title", l(:label_heading) %>
+      <%= text_field_tag "#{block_name}[title]", settings['title'], id: "#{block_name}_title_input" %>
+    </p>
+  </div>
+
+  <div class="wikitoolbar-wrap">
+    <%= text_area_tag "#{block_name}[text]", settings.dig('data', 'content') || settings['text'], cols: 60, rows: 10, class: 'wiki-edit' %>
+    <%= wikitoolbar_for("#{block_name}_text", preview_text_path, { toolbar: wikitoolbar }) %>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+  (function() {
+    class EpmTranslatableNoticeboard {
+      constructor (blockName, ckEditorInstanceName) {
+        this.dataInput = document.getElementById(`${blockName}_data`);
+        this.data = JSON.parse(this.dataInput.value);
+        this.ckEditorInstance = window.CKEDITOR.instances[ckEditorInstanceName];
+        this.languageSelect = document.getElementById(`${blockName}_language_select`);
+        this.titleInput = document.getElementById(`${blockName}_title_input`);
+        this.currentLanguage = this.languageSelect.value;
+        this.setLanguage(this.currentLanguage);
+
+        this.languageSelect.addEventListener('change', (event) => {
+          this.setLanguage(event.target.value);
+        });
+
+        this.titleInput.addEventListener('change', (event) => {
+          this.data[this.currentLanguage].title = event.target.value;
+        });
+
+        this.ckEditorInstance.on('change', (event) => {
+          this.data[this.currentLanguage].content = event.editor.getData();
+        });
+
+        this.registerBeforeSave();
+      }
+
+      setLanguage (language) {
+        this.currentLanguage = language;
+        this.data[this.currentLanguage] = this.data[this.currentLanguage] || {};
+        const data = this.data[this.currentLanguage];
+        this.ckEditorInstance.setData(data.content || '');
+        this.titleInput.value = data.title || '';
+      }
+
+      registerBeforeSave () {
+        PageLayout.beforeSave("<%= page_module.uuid %>", () => {
+          this.dataInput.value = JSON.stringify(this.data);
+          document.getElementById("module_<%= page_module.module_name %>_form")
+        });
+      }
+    }
+
+    EASY.schedule.require((CKEDITOR) => {
+      CKEDITOR.on('instanceReady', (event) => {
+        const ckEditorInstanceName = '<%=j block_name %>_text';
+        if (event.editor && ckEditorInstanceName === event.editor.name) {
+          new EpmTranslatableNoticeboard("<%=j block_name %>", ckEditorInstanceName);
+          event.removeListener();
+        }
+      })
+    }, "CKEDITOR");
+  })();
+</script>

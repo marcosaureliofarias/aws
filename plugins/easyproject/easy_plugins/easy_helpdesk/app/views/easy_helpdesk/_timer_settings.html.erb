@@ -1,0 +1,29 @@
+<p>
+    <%= f.label :easy_helpdesk_client_response_status, l(:label_easy_helpdesk_client_response_status), :title => l(:title_easy_helpdesk_client_response_status) %>
+    <%= select_tag "#{f.object_name}[easy_helpdesk_client_response_status]",
+      options_for_select(IssueStatus.order(:position).map{|u| [u.name, u.id.to_s]}, EasySetting.value('easy_helpdesk_client_response_status')),
+      :include_blank => true %>
+</p>
+<p>
+    <%= f.label :easy_helpdesk_sla_stop_states, l(:label_easy_helpdesk_sla_stop_states), :title => l(:title_easy_helpdesk_sla_stop_states) %>
+    <%= autocomplete_field_tag(
+      "#{f.object_name}[easy_helpdesk_sla_stop_states][]",
+      IssueStatus.order(:position).map { |u| [u.name, u.id.to_s] },
+      EasySetting.value('easy_helpdesk_sla_stop_states').presence || '0',
+      select_first_value: true) %>
+</p>
+<p>
+    <%= f.label :easy_helpdesk_sla_start_states, l(:label_easy_helpdesk_sla_start_states), :title => l(:title_easy_helpdesk_sla_start_states) %>
+    <%= autocomplete_field_tag(
+      "#{f.object_name}[easy_helpdesk_sla_start_states][]",
+      IssueStatus.order(:position).map { |u| [u.name, u.id.to_s] },
+      EasySetting.value('easy_helpdesk_sla_start_states').presence || '0',
+      select_first_value: true
+      ) %>
+</p>
+<p>
+  <%= label_tag('easy_setting_easy_helpdesk_ignorate_suspend_statuses', l(:field_easy_helpdesk_ignorate_suspend_statuses), title: l(:field_easy_helpdesk_ignorate_suspend_statuses)) %>
+  <%= hidden_field_tag 'easy_setting[easy_helpdesk_ignorate_suspend_statuses]', '0', id: '' %>
+  <%= check_box_tag('easy_setting[easy_helpdesk_ignorate_suspend_statuses]', '1', EasySetting.value(:easy_helpdesk_ignorate_suspend_statuses)) %>
+</p>
+<%= call_hook(:view_helpdesk_timer_settings_footer, { f: f }) %>

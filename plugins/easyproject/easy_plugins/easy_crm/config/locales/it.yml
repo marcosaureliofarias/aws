@@ -1,0 +1,343 @@
+---
+it:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: Corpo del messaggio (HTML)
+        body_plain: Corpo del messaggio (TESTO SEMPLICE)
+        easy_crm_case_status: Stato
+        project: Progetto
+        subject: Oggetto
+      easy_crm_case_status:
+        is_closed: È chiuso?
+        is_default: È predefinito?
+        is_easy_contact_required: Il contatto è richiesto?
+        is_paid: È pagato?
+        is_provisioned: Provisioning eseguito?
+        is_provisioning: Provisioning in corso?
+        is_won: È vinto?
+        name: Nome
+        only_for_admin: Solo per l’amministratore
+        show_in_search_results: Ricercabile?
+      easy_crm_case:
+        account_manager: Account manager
+        accounted_by: Contabilizzato dal partner
+        assigned_to: Assegnato a
+        author: Autore
+        closed_on: Data chiusura
+        contract_date: Data del contratto
+        created_at: Ora creazione
+        currency: Valuta
+        description: Descrizione
+        easy_closed_by: Chiuso da
+        easy_contacts: Contatti
+        easy_crm_case_items:
+          amount: Importo
+          description: Descrizione
+          discount: Sconto
+          easy_crm_case: Caso CRM
+          name: Nome
+          price_per_unit: Prezzo per unità
+          product_code: Codice prodotto
+          total_price: Prezzo totale
+          unit: Unità
+        easy_crm_case_status: Stato
+        email: E-mail
+        external_account_manager: Account manager esterno
+        is_canceled: È annullato?
+        is_finished: È terminato?
+        lead_value: Valore lead
+        main_easy_contact_id: Cliente
+        name: Nome
+        need_reaction: Richiesta di reazione?
+        next_action: Azione successiva
+        price: Prezzo
+        probability: Probabilità
+        project: Progetto
+        send_to_external_mails: Inviare aggiornamento a e-mail esterna?
+        telephone: Telefono
+        updated_at: Ora aggiornamento
+      easy_lead_score:
+        country: Paese
+        created_at: Ora creazione
+        updated_at: Ora aggiornamento
+      easy_user_target:
+        currency: Valuta
+        target: Obiettivo
+        valid_from: Da
+        valid_to: A
+    models:
+      easy_crm_case_mail_template: Modello di e-mail
+      easy_mail_campaign_easy_crm_case: Caso CRM
+  button_change_easy_crm_cases_status: Riassegna ed elimina
+  button_easy_crm_add_item: Aggiungi elemento
+  button_easy_crm_add_mail_template: Aggiungi modello
+  button_easy_crm_add_mailbox: Aggiungi casella di posta
+  button_easy_crm_add_or_create_related_contact: Aggiungi contatto correlato
+  button_easy_crm_add_or_create_related_invoice: Aggiungi fattura correlata
+  button_easy_crm_add_or_create_related_issue: Aggiungi task correlato
+  button_easy_crm_add_related_contact: Assegna contatto
+  button_easy_crm_add_related_invoice: Assegna fattura
+  button_easy_crm_add_related_issue: Assegna task
+  button_easy_crm_add_sales_activity: Aggiungi attività di vendita
+  button_easy_crm_add_status: Aggiungi stato
+  button_easy_crm_country_value_new: Crea nuovo valore
+  button_easy_crm_create_related_contact: Crea nuovo contatto
+  button_easy_crm_create_related_invoice: Crea nuova fattura
+  button_easy_crm_create_related_issue: Crea nuovo task
+  button_easy_crm_merge_cases: Unisci casi CRM
+  button_easy_crm_merge_cases_inteligent_merge: Unisci casi CRM
+  button_easy_crm_merge_cases_quick_merge: Unione rapida di casi CRM
+  button_easy_crm_new_case: Nuovo caso CRM
+  button_easy_crm_related_case: Aggiungi caso CRM correlato
+  button_easy_crm_view_sales_activities: Panoramica attività di vendita
+  button_easy_lead_score_new: Nuovo Easy Lead Score
+  button_easy_user_target_add_all_users_of_type: Aggiungi tutti gli utenti di tipo
+  button_easy_user_target_add_users: Aggiungi utenti
+  button_easy_user_target_add_users_from_group: Aggiungi utenti da gruppo
+  button_manage_user_targets: Gestisci obiettivi utente
+  button_merge_and_follow: Unisci e segui
+  button_set_easy_user_target_currency: Imposta valuta
+  easy_contacts_toolbar:
+    assign_to_crm_case: Assegna a caso crm
+  easy_crm_plugin_author: Easy Software
+  easy_crm_plugin_author_url: http://www.easyproject.cz/en
+  easy_crm_plugin_description: ''
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: Le attività di vendita sono state modificate
+  easy_entity_activity_destroyed: Le attività di vendita sono state eliminate
+  easy_entity_activity_is_planned: "%{category} prevista alle %{time}"
+  easy_entity_activity_was_finished: "%{category} terminata alle %{time}"
+  easy_entity_activity_was_reported: "%{category} segnalata alle %{time}"
+  easy_invoice_already_has_crm_case: La fattura ha già un caso CRM
+  easy_lookup:
+    easy_crm_case:
+      label: Casi CRM
+  easy_mail_template_token:
+    caption:
+      crm_case_id: ID del caso CRM
+      crm_case_name: Nome del caso CRM
+      crm_case_note: Ultimo aggiornamento di registro del caso CRM
+    title:
+      crm_case_id: Clicca per aggiungere l'ID del caso CRM
+      crm_case_name: Clicca per aggiungere il nome (Oggetto) del caso CRM
+      crm_case_note: Clicca per aggiungere il contenuto dell'ultimo aggiornamento
+        di registro del caso CRM
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: Casi CRM per filtro
+      easy_crm_cases_create_new: Nuovo CRM
+      easy_crm_create_easy_crm_case_button: Nuovo pulsante del caso CRM
+      easy_crm_pie_chart_from_custom_field: Grafico a torta personalizzato
+      easy_crm_user_performance: Prestazione del membro
+      easy_crm_user_target: Obiettivi utente
+      easy_entity_activity_crm_case_query: Filtro delle attività di vendita
+    pages_description:
+      easy_crm_overview: Panoramica CRM
+      easy_crm_project_overview: Panoramica progetto CRM
+    pages:
+      easy_crm_overview: Panoramica CRM
+      easy_crm_project_overview: Panoramica del progetto CRM
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: Aggiungi nuovo caso CRM
+        description: Crea un nuovo caso CRM
+    easy_crm_settings:
+      index:
+        caption: Impostazioni CRM
+        description: Gestisci impostazioni CRM
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: Casi CRM
+          related_easy_crm_case: Caso CRM correlato
+    name:
+      easy_crm_case_item_query: Voci del caso CRM
+      easy_crm_case_query: Casi CRM
+      easy_crm_contact_query: Contatti CRM
+      easy_crm_country_value_query: Valori di CRM specifici per Paese
+      easy_lead_score_query: Easy Lead Score
+      easy_user_target_query: Obiettivi utente
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: Filtri privati su casi CRM
+        easy_crm_contact_query: Filtri privati su contatti CRM
+      public:
+        easy_crm_case_query: Filtri pubblici su casi CRM
+        easy_crm_contact_query: Filtri pubblici su contatti CRM
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: Casella di posta CRM
+  error_can_not_delete_easy_crm_status: Questo stato contiene dei casi CRM e non può
+    essere cancellato.
+  error_easy_crm_case_can_not_assign_custom_field: Il caso CRM presente nel campo
+    personalizzato non può essere assegnato, non appartiene a questo progetto.
+  error_easy_crm_case_could_not_merge: Impossibile unire i casi CRM.
+  field_easy_crm_case: Caso CRM
+  field_easy_crm_case_contract_date: Data del contratto
+  field_easy_crm_case_created_date: Data di creazione
+  field_easy_crm_case_next_action: Azione seguente
+  field_easy_crm_cases: Caso CRM
+  field_easy_crm_cases_visibility: Visibilità dei casi CRM
+  field_easy_lead_score: Lead Score
+  heading_easy_crm_case_edit: Modifica caso CRM
+  heading_easy_crm_case_item_index: Elementi del caso CRM
+  heading_easy_crm_case_mail_template_edit: Modifica modello di email
+  heading_easy_crm_case_mail_template_index: Modelli di email
+  heading_easy_crm_case_mail_template_new: Nuovo modello di email
+  heading_easy_crm_case_new: Nuovo caso CRM
+  heading_easy_crm_case_sidebar_filters_by_member: Casi del membro
+  heading_easy_crm_case_status_edit: Modifica lo stato del caso CRM
+  heading_easy_crm_case_status_index: Stati del caso CRM
+  heading_easy_crm_case_status_new: Nuovo stato del caso CRM
+  heading_easy_crm_country_value_new: Nuovo valore di CRM specifico per Paese
+  heading_easy_crm_mailboxes_index: Caselle di posta
+  heading_easy_crm_related_case: Caso CRM correlato
+  heading_easy_crm_related_case_plural: Casi di CRM correlati
+  heading_easy_crm_related_contacts: Contatti correlati
+  heading_easy_crm_related_issues: Task correlati
+  heading_easy_lead_score_edit: Modifica Easy Lead Score
+  heading_easy_lead_score_new: Nuovo Easy Lead Score
+  label_advanced_custom_fields: Campi avanzati personalizzati
+  label_assign_to_easy_crm_case: Assegna a caso CRM
+  label_attribute_of_easy_crm_cases: 'Nome del CRM case: %{name}'
+  label_bulk_edit_selected_easy_crm_case: Modifica multipla dei casi CRM selezionati
+  label_change_crm_cases_status_explanation: 'Cambia lo stato del caso CRM a:'
+  label_chart_target: Obiettivo utente
+  label_crm_currency_rate: Tariffa nella valuta di base
+  label_crm_fields_permissions: Permessi per campi CRM
+  label_easy_contact_customer_business: Business del Cliente (CRM)
+  label_easy_contact_easy_crm_cases: Casi CRM
+  label_easy_contact_indirect_business: Business Indiretto (CRM)
+  label_easy_contact_managed_easy_crm_cases: CRM gestiti
+  label_easy_crm: CRM
+  label_easy_crm_case: CRM
+  label_easy_crm_case_account_manager: Account manager caso CRM
+  label_easy_crm_case_accounted_by: Contabilizzato da %{name}
+  label_easy_crm_case_added: Caso CRM aggiunto
+  label_easy_crm_case_assignee: Caso CRM assegnato a
+  label_easy_crm_case_customer: Cliente
+  label_easy_crm_case_customer_query_group_custom_fields: Cliente avanzati personalizzati
+  label_easy_crm_case_default_values: Valori predefiniti
+  label_easy_crm_case_filters: Filtro
+  label_easy_crm_case_is_associated_to_easy_invoice: Ha un caso CRM associato?
+  label_easy_crm_case_main_contact: Contatto principale
+  label_easy_crm_case_need_reaction: C'è bisogno di una reazione!
+  label_easy_crm_case_new: Nuovo caso CRM
+  label_easy_crm_case_plural: Casi CRM
+  label_easy_crm_case_query_includes_descendants: Mostra casi CRM da tutti i sottoprogetti
+  label_easy_crm_case_searchable_all: Ricerca tutti gli stati CRM
+  label_easy_crm_case_status: Stato del caso CRM
+  label_easy_crm_case_updated: Caso CRM aggiornato
+  label_easy_crm_case_watchers_heading: Collaboratori
+  label_easy_crm_cases: Casi CRM
+  label_easy_crm_cases_merge_into: 'Casi CRM uniti a:'
+  label_easy_crm_cases_visibility_all: Tutti i casi CRM nei progetti dell'utente
+  label_easy_crm_cases_visibility_own: Casi CRM creati da, visionati da o assegnati
+    all’utente
+  label_easy_crm_country_values: Valori di CRM specifici per Paese
+  label_easy_crm_default_account_manager: Account manager per nuovo caso
+  label_easy_crm_default_assignee: Nuovo caso assegnato a
+  label_easy_crm_default_external_account_manager: Account manager esterno per nuovo
+    caso
+  label_easy_crm_find_by_worker: Ricerca collaboratore
+  label_easy_crm_kanban: Visualizzazione kanban
+  label_easy_crm_kanban_columns_name: Nome colonna
+  label_easy_crm_kanban_drop_in: Diminuzione di stato
+  label_easy_crm_kanban_settings: Impostazioni visualizzazione Kanban
+  label_easy_crm_kanban_status_not_uniq: Le colonne kanban devono tracciare differenti
+    stati
+  label_easy_crm_kanban_statuses: Stati colonna
+  label_easy_crm_kanban_sum_column: Campo del totale della colonna
+  label_easy_crm_new_kanban_column: Aggiungi nuova colonna
+  label_easy_crm_project: Progetto CRM
+  label_easy_crm_related_case: Caso CRM correlato
+  label_easy_crm_search_fo_easy_contact: Ricerca contatto
+  label_easy_crm_search_for_easy_invoice: Ricerca fattura
+  label_easy_crm_search_for_issue: Ricerca task
+  label_easy_crm_settings: Impostazioni CRM
+  label_easy_crm_use_items: Utilizza elementi CRM
+  label_easy_lead_score: Easy Lead Score
+  label_easy_lead_scores: Easy Lead Score
+  label_easy_money_sidebar:
+    easy_crm_case: Money per caso CRM
+  label_easy_user_target: Obiettivi utente
+  label_easy_user_target_currency: Valuta
+  label_easy_user_with_targets: Utenti con obiettivi
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: Contatto
+  label_filter_group_easy_crm_contact_query_custom_fields: Campi personalizzati di
+    contatti
+  label_filter_group_easy_crm_main_contact_query: Contatto principale
+  label_filter_group_easy_crm_main_contact_query_custom_fields: Campi personalizzati
+    del contatto principale
+  label_filter_group_easy_user_target_query: Obiettivi utente
+  label_filter_group_sales_activity_additional_filters: Filtro di vendita aggiuntivo
+  label_filter_sales_activity_not_in: Nessuna %{category} in tale periodo
+  label_merge_to_entities:
+    easy_crm_case: caso crm
+  label_page_module_compare: Confronta
+  label_prefix_easy_contacts_query_filter: Contatti
+  label_set_crm_fields_permissions: Imposta i permessi dei campi CRM secondo lo stato
+  label_show_assigned_crm_cases: Mostra i casi CRM assegnati all'utente %{username}.
+  label_statuses_not_selected: Nessuno stati selezionato. Scegline almeno uno.
+  label_unknown_user: Sconosciuto
+  label_use_values_from_crm_case: Utilizza valori da
+  label_validation_only_for_admin: Solo l’amministratore può utilizzare questo stato
+  mail:
+    subject:
+      easy_crm_case_add: Caso CRM di [%{projectname}] aggiunto - %{name}
+      easy_crm_case_edit: Caso CRM di [%{projectname}] aggiornato - %{name} (%{status})
+      my_easy_crm_case_add: ">>> Il mio caso CRM [%{projectname}] aggiunto - %{name}"
+      my_easy_crm_case_edit: ">>> Il mio caso CRM [%{projectname}] aggiornato - %{name}
+        (%{status})"
+  notice_easy_crm_case_successful_create: CRM %{id} creato.
+  notice_easy_crm_update_conflict: Durante la modifica, il caso CRM è stato aggiornato
+    da un altro utente.
+  notice_failed_to_save_easy_crm_cases: 'Impossibile salvare %{count} caso/i CRM dei
+    %{total} selezionati: %{titles}'
+  permission_add_crm_case_notes: Aggiungi note
+  permission_add_easy_crm_case_watchers: Aggiungi osservatori del caso CRM
+  permission_add_easy_crm_cases: Aggiungi casi CRM
+  permission_delete_easy_crm_case_watchers: Cancella osservatori del caso CRM
+  permission_delete_easy_crm_cases: Cancella casi CRM
+  permission_edit_crm_case_notes: Modifica note
+  permission_edit_easy_crm_cases: Modifica casi CRM
+  permission_edit_easy_crm_country_values: Modifica valori dei paesi CRM
+  permission_edit_own_crm_case_notes: Modifica note personali
+  permission_edit_own_easy_crm_cases: Modifica casi CRM personali
+  permission_manage_easy_crm_page: Gestisci pagine CRM
+  permission_manage_easy_crm_settings: Gestisci impostazione CRM
+  permission_manage_easy_lead_scores: Gestisci Easy Lead Score
+  permission_manage_easy_user_targets: Gestisci obiettivi utente
+  permission_view_easy_crm_case_watchers: Visualizza osservatori del caso CRM
+  permission_view_easy_crm_country_values: Visualizza valori dei paesi CRM
+  permission_view_easy_crms: Visualizza casi CRM
+  permission_view_easy_lead_scores: Visualizza Easy Lead Score
+  permission_view_own_easy_crms: Visualizza casi CRM personali
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: Rimuovi
+  remove_related_invoice: Rimuovi Fattura
+  setting_show_description_on_crm_case: Mostra descrizione della voce sul caso CRM
+  setting_show_easy_entity_activity_on_crm_case: Mostra attività di vendita sul caso
+    CRM
+  sidebar_crm_case_button_move: Sposta caso CRM
+  text_are_you_sure_remove_user: Sei sicuro di voler rimuovere l'utente da tutti i
+    trimestri?
+  text_easy_crm_case_updated: Il caso CRM %{id} è stato aggiornato da %{user}.
+  title_easy_crm_case_delete: Elimina caso CRM
+  title_easy_crm_country_value_new: Clicca per creare un nuovo valore specifico per
+    paese
+  title_easy_crm_new_case: Clicca per creare un nuovo caso CRM.
+  title_easy_lead_score_new: Clicca per creare un nuovo Easy Lead Score
+  title_easy_user_target_modal_easy_user_type: Seleziona utenti per tipo
+  title_easy_user_target_modal_group: Seleziona utenti per gruppo
+  title_easy_user_target_remove_user: Rimuovi utente
+  title_kanban_settings: Impostazioni kanban

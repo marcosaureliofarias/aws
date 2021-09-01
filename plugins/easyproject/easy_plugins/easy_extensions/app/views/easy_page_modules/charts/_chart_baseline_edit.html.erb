@@ -1,0 +1,7 @@
+<% baselines = @easy_page_modules_data[block_name][:baselines] %>
+<div class="tabular">
+  <p>
+    <%= label_tag "#{block_name}[easy_chart_baseline_id]", l(:label_chart_baseline) %>
+    <%= select_tag "#{block_name}[easy_chart_baseline_id]", options_for_select(baselines.collect{|b| ["#{b.name} #{b.updated_at.to_date}", b.id]}, settings['easy_chart_baseline_id']), include_blank: true %>
+  </p>
+</div>

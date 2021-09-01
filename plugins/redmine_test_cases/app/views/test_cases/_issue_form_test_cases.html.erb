@@ -1,0 +1,31 @@
+<% if params[:test_case_issue_execution_id].present? %>
+<script type="application/javascript">
+  EASY.schedule.late(function() {
+    $("#issue_description").val("<%= escape_javascript TestCaseIssueExecution.find(params[:test_case_issue_execution_id]).comments %>");
+  });
+</script>
+<% end %>
+
+<% if @issue.safe_attribute?('test_case_ids') && User.current.allowed_to?(:view_test_cases, @project) %>
+  <p>
+    <%= form.label :issue_form_test_cases, l(:label_test_case_plural) %>
+    <%= autocomplete_field_tag 'issue[test_case_ids][]',
+                               autocomplete_test_cases_path(project_id: @project, format: :json, key: User.current.api_key),
+                               ::TestCase.where(id: @issue.test_case_ids).order(:name).collect{|tc| {id: tc.id, value: "#{tc.id} #{tc.name}"}},
+                               id: 'issue_test_cases',
+                               preload: false,
+                               show_toggle_button: true %>
+  </p>
+<% end %>
+
+<% if @issue.safe_attribute?('test_plan_ids') && User.current.allowed_to?(:view_test_plans, @project) %>
+  <p>
+    <%= form.label :issue_form_test_plans, l(:label_test_plans) %>
+    <%= autocomplete_field_tag 'issue[test_plan_ids][]',
+                               autocomplete_test_plans_path(project_id: @project, format: :json, key: User.current.api_key),
+                               ::TestPlan.where(id: @issue.test_plan_ids).order(:name).collect{|tp| {id: tp.id, value: "#{tp.id} #{tp.name}"}},
+                               id: 'issue_test_plans',
+                               preload: false,
+                               show_toggle_button: true %>
+  </p>
+<% end %>

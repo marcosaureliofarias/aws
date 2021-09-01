@@ -1,0 +1,8 @@
+<%= render partial: 'show_as_tree', locals: @data %>
+<% if @project %>
+  <% content_for :easy_page_layout_service_box do %>
+    <%= render partial: 'easy_knowledge_categories/sidebar_links' -%>
+  <% end %>
+<% else %>
+  <%= render partial: 'easy_knowledge/sidebar_content' %>
+<% end %>

@@ -1,0 +1,50 @@
+<% auth_source = f.object %>
+<div id="easy_options_container" style="<%= 'display:none' unless auth_source.onthefly_register? %>">
+  <div class="box tabular">
+    <p>
+      <%= label_tag 'auth_source[easy_options][language]', l(:field_language)  %>
+      <%= select_tag 'auth_source[easy_options][language]', options_for_select(lang_options_for_select, auth_source.easy_options['language']) %>
+    </p>
+    <p>
+      <%= label_tag 'auth_source[easy_options][easy_user_type]', l(:field_easy_user_type)  %>
+      <%= select_tag 'auth_source[easy_options][easy_user_type]', options_for_select(easy_user_type_options, auth_source.easy_options['easy_user_type']) %>
+    </p>
+    <p>
+      <%= label_tag 'auth_source[easy_options][default_my_page_template]', l(:label_select_my_page_template)  %>
+      <%= select_tag 'auth_source[easy_options][default_my_page_template]', options_for_select([['', '']] + EasyPage.find_by(page_name: 'my-page').templates.collect{|p| [p.template_name, p.id.to_s]}, auth_source.easy_options['default_my_page_template'])  %>
+    </p>
+  </div>
+  <div class="box">
+    <h3><%= l(:label_add_default_projects_and_roles) %></h3>
+    <div class="tabular">
+      <p>
+        <%= label_tag 'project_for_role', l(:field_project) %>
+        <%= easy_select_tag('project_for_role', {:name => '', :id => ''}, nil,
+          easy_autocomplete_path('visible_projects'),
+          :html_options => {:id => 'project_for_role'}, :root_element => 'projects') -%>
+      </p>
+      <p>
+        <% Role.givable.to_a.each do |role| %>
+          <label class="floating">
+            <%= check_box_tag 'roles[]', role.id, false, :id => nil -%>
+            <%= role.name %>
+          </label>
+        <% end %>
+      </p>
+      <p class="buttons">
+        <%= link_to_function(l(:button_add_project_and_roles), "$.ajax({url: '#{url_for({:controller => 'auth_sources', :action => 'reload_easy_options_projects_and_roles'})}', type: 'get', data: $('#auth_source_form').serialize()})", :class => 'button', :title => l(:button_add_project_and_roles)) %>
+      </p>
+
+      <div id="projects_and_roles_container" class="tabular">
+        <%= render :partial => 'form_easy_options_projects_and_roles', :locals => {:projects_and_roles => auth_source.easy_options['projects_and_roles'] || {}} %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    $('#auth_source_onthefly_register').on('change', function() {
+      $('#easy_options_container').toggle();
+    });
+  });
+</script>

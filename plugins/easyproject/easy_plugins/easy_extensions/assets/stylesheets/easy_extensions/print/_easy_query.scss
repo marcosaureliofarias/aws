@@ -1,0 +1,33 @@
+%count{
+  &:before{
+    content: '(';
+  }
+  &:after{
+    content: ')';
+  }
+}
+.easy-query{
+  &-heading-count{
+   @extend %count;
+  }
+}
+.count{
+  @extend %count;
+}
+
+.easy-entity-list{
+  &__item-group{
+    background-color: $color-print--accent;
+  }
+  &__item-group ~ &__item .hide-when-print + &__item-attribute{
+    padding-left: $gap;
+  }
+}
+
+.easy-query{
+  &-heading{
+    .entity-array{
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<% content_for :body_bottom do %>
+  <%= easy_cocoon_tags if options[:include_cocoon] %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    var h = $('#content')[0].offsetHeight;
+    var max = 500;
+    $('#easy_checklist_project_ids > ul:first').css({
+      'max-height': h < max ? (h - 50) : max,
+      'overflow': '-moz-scrollbars-vertical',
+      'overflow-y': 'auto'
+    });
+
+    function submitOrAddItem() {
+      var $scope = $(document.activeElement).parents('.easy-checklist-container');
+      if ($scope.length == 0) {
+        $scope = $('#easy_checklist_form_container');
+      }
+      var $selected_input = $(document.activeElement).first();
+      var $last_input = $scope.find("input[type=text]:last").first();
+      var $next_input = $selected_input.closest(".nested-fields").next().find("input[type=text]").first();
+
+      if ($scope.length && typeof $selected_input != 'undefined' && typeof $last_input != 'undefined' && $last_input.attr('id') == $selected_input.attr('id')) {
+        // create new item
+        $scope.find(".easy_checklist_add_item").click();
+        $scope.find("input[type=text]:last").first().focus();
+        return false;
+      } else if ($next_input.length && typeof $selected_input != 'undefined' && typeof $scope != 'undefined') {
+        // select next item
+        $next_input.focus();
+        return false;
+      }
+      return true;
+    }
+
+    function toggleEasyChecklistName() {
+      var $checklistName = $('#easy_checklist_form_container .easy-checklist-name');
+      if ($('#easy_checklist_form_container .easy-checklist-container').length > 1) {
+        $checklistName.show();
+        $checklistName.prop('required', true);
+      } else {
+        $checklistName.hide();
+        $checklistName.prop('required', false);
+      }
+    }
+
+    $('#easy_checklist_form_container').on('cocoon:before-insert', function (e, insertedItem) {
+      $(insertedItem).find("input[type=text]").keypress(function (e) {
+        if (e.which == 13) {
+          e.preventDefault();
+          submitOrAddItem();
+        }
+      });
+    });
+
+    $('#easy_checklist_form_container').on('cocoon:after-insert', function (e, insertedItem) {
+      if (insertedItem.hasClass('easy-checklist-container')) {
+        toggleEasyChecklistName();
+      }
+    });
+
+    $('#easy_checklist_form_container').on('cocoon:after-remove', function (e, insertedItem) {
+      if (insertedItem.hasClass('easy-checklist-container')) {
+        toggleEasyChecklistName()
+      }
+    });
+
+    $('#easy_checklist_form_container .easy_checklist_subject').keypress(function (e) {
+      if (e.which == 13) {
+        e.preventDefault();
+        submitOrAddItem();
+      }
+    });
+  });
+
+</script>

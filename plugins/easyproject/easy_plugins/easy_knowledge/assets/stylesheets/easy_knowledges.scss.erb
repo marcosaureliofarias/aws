@@ -1,0 +1,247 @@
+@import "easy_extensions/common_assets";
+
+.easy-knowledge{
+  &.angular_cont{
+    margin: 0 (-$box-padding);
+    background: mix($color-background, $color-foreground);
+    .box &{
+      border-top: 1px solid $color-border;
+    }
+  }
+  &__column{
+    & + &{
+      border-left: 1px solid $color-border;
+    }
+  }
+  &__story{
+    &-buttons{
+      list-style: none;
+      margin-top: 0;
+    }
+    &-references{
+      padding-bottom: $box-padding;
+    }
+  }
+  &__detail{
+    //margin: 0 (-$box-padding);
+    padding: 0 $box-padding;
+    background: $color-foreground;
+    .easy-entity-details{
+      margin-bottom: $box-padding;
+    }
+    & > h3{
+      @extend %h2;
+    }
+  }
+  material-tab{
+    display: none !important;
+  }
+  .form-box{
+    margin: 0 !important;
+
+  }
+}
+
+// moar love needed below
+
+.easy-table{
+  overflow: hidden;
+  display: block;
+  table{
+    &-row{
+      position: relative;
+      padding-left: $box-padding;
+      display: block;
+      background: $color-foreground;
+      cursor: pointer;
+      @extend %flex;
+      @extend %pseudo-before;
+      &:before{
+        border-top: 1px solid $color-border-minor;
+        left: -50%;
+        right: -50%;
+        z-index: 1;
+      }
+    }
+    &-cell{
+      display: block;
+    }
+  }
+  &__row{
+    @extend %flex;
+    @extend %justify-content-space-between;
+    &_selected, &:hover{
+      @extend %pseudo-after;
+      &:after{
+        background: $color-highlight;
+        left: -50%;
+        right: -50%;
+        top: 0;
+        bottom: 0;
+        z-index: 0;
+      }
+    }
+    &_selected{
+      font-weight: bold;
+    }
+  }
+  &__th{
+    @include small();
+    font-weight: bold;
+  }
+  &__header{
+    display: block;
+    padding-top: $box-padding;
+    border-top: 1px solid $color-border;
+  }
+  &__cell{
+    padding: $gap;
+    z-index: 1;
+    position: relative;
+    &_checkbox{
+      padding: $gap $box-padding;
+      input[type=checkbox]{
+        margin: 0;
+      }
+    }
+    &_string{
+      @extend %flex-grow-1;
+    }
+  }
+}
+
+.layout-panel{
+  &__header{
+    display: block;
+    position: relative;
+  }
+  &__name, &__entity-name{
+    padding: $box-padding;
+    margin: 0;
+    //border-bottom: 1px solid $color-border;
+    line-height: 1.5* $box-padding;
+  }
+  &__icon{
+    &-group{
+      @include translateY(-50%);
+      position: absolute;
+      top: 50%;
+      right: 0;
+      padding: $box-padding;
+      background: mix($color-foreground, $color-background);
+      a,i{
+        padding: 0 .5*$gap;
+        font-size: 1.25em;
+      }
+      i{
+        cursor: pointer;
+      }
+      a{
+        color: $color-text;
+      }
+    }
+
+  }
+}
+
+layout{
+  &-panel{
+    display: block;
+    @extend %flex-grow-1;
+    border-bottom: 1px solid $color-border;
+    margin-bottom: -1px;
+  }
+  &-row{
+    @include display(flex !important);
+  }
+  &-col{
+
+  }
+  @include respond-to(max-menu-collapse){
+    &-row, &-col{
+      height: auto !important;
+      width: auto !important;
+      float: none !important;
+    }
+    &-row{
+      @include flex-direction(column);
+    }
+    &-col{
+      display: block !important;
+      &:last-child{
+        @include order(0);
+      }
+      &:first-child{
+        @include order(99);
+      }
+    }
+  }
+}
+.easy-icon{
+  &_state{
+    &_cannot_save{
+      display: none;
+    }
+  }
+}
+material-progress{
+  display: block !important;
+  easy-table &{
+    position: absolute;
+    width: $box-padding !important;
+    margin-top: -$box-padding - 3;
+    right: 5*$gap;
+  }
+}
+
+.easy_layout{
+  &__col__resize_shuttle{
+    margin-left: -18px;
+    position: fixed;
+    width: 24px;
+    cursor: col-resize;
+    display: block;
+    z-index: 101;
+    @include respond-to(max-menu-collapse){
+      display: none;
+    }
+    &_inner {
+      width: 10px;
+      text-align: center;
+      display: block;
+      position: relative;
+      left: 6px;
+      height: 100%;
+      background-color: $color-border;
+      box-sizing: border-box;
+      padding-top: 8px;
+      font-size: 20px;
+      border-radius: 5px;
+    }
+  }
+}
+
+.full_overlay__wrap{
+  position: fixed;
+  top:0;
+  left:0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background-color: white;
+  z-index: 5000;
+  padding: 2*$box-padding;
+}
+
+.easy-table__icon_tooltip{
+  width: 150px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid silver;
+  position: absolute;
+  z-index: 10000;
+}
+
+partial-content .easy-knowledge__story-buttons{
+  display:none;
+}

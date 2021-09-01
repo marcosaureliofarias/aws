@@ -1,0 +1,102 @@
+<%= labelled_fields_for "#{block_name}easy_contact", easy_contact do |f| %>
+  <%= hidden_field_tag(:back_url, params[:back_url]) if params[:back_url] %>
+  <%= f.hidden_field(:next_contact_reference_id) %>
+
+  <div class="tabular">
+    <div class="<%= 'splitcontent'%>">
+      <div class="<%= 'splitcontentleft size-7'%>">
+        <p id="easy_contact_types" style="<%= 'display:none;' if shown_fields.exclude?(:type_id) %>">
+          <%= f.label_for_field('easy_contact_type', label: l('administration.label_easy_contact_type'), required: true) %>
+          <%- EasyContactType.sorted.each do |ect| %>
+            <%= label_tag "#{block_name}easy_contact_type_id_#{ect.id}", f.radio_button(:type_id, ect.id) + ect.name, class: 'inline' %>
+          <%- end %>
+        </p>
+
+        <div id="<%= "#{block_name}-contact-type-attributes" %>">
+          <%= render partial: 'easy_page_modules/contacts/easy_contact_create_new_form_attributes', locals: {
+              f: f,
+              block_name: block_name,
+              easy_contact: easy_contact,
+              shown_fields: shown_fields,
+              only_selected: only_selected,
+              custom_field_values: custom_field_values,
+              shown_custom_field_ids: shown_custom_field_ids
+          } %>
+        </div>
+      </div>
+      <div class="<%= 'splitcontentright size-3'%>">
+
+        <p id="contact_references" style="<%= 'display:none;' if shown_fields.exclude?(:easy_contact_references) %>">
+          <label><%= l(:label_easy_contact_references) %></label>
+          <%= easy_modal_selector_field_tag('EasyContact', 'link_with_name', 'easy_contact_references', "#{block_name}_easy_contact_reference_id", EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(easy_contact.references_by), url: {contact_type: easy_contact.type_id}, hide_create_contact: true, class: 'block') %>
+        </p>
+
+        <p id='contact_references_groups' style="<%= 'display:none;' if shown_fields.exclude?(:easy_contact_group_ids) %>">
+          <label><%= l(:label_easy_contact_references_groups) %></label>
+          <%= easy_modal_selector_field_tag('EasyContactGroup', 'link_with_name', 'easy_contact[easy_contact_group_ids]', "#{block_name}_easy_contact_group_id", EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(easy_contact.easy_contact_groups), url: {contact_type: easy_contact.type_id}, class: 'block') %>
+        </p>
+
+        <p>
+          <% if User.current.id == easy_contact.author_id || User.current.admin? %>
+            <span style="<%= 'display:none;' if shown_fields.exclude?(:is_global) %>">
+              <%= f.check_box(:is_global, onchange: ("if ($(this).is(':checked')) {$('##{block_name}_assign_to_me').prop('checked', false); $('##{block_name}_assign_to_me').prop('disabled', false)} else {$('##{block_name}_assign_to_me').prop('checked',true); $('##{block_name}_assign_to_me').prop('disabled', true)}" if @project.nil?), class: 'inline') %>
+            </span>
+          <% end %>
+
+          <span style="<%= 'display:none;' if shown_fields.exclude?(:private) %>">
+            <%= f.check_box(:private, label: :field_easy_contact_private, class: 'inline') %>
+          </span>
+
+          <span style="<%= 'display:none;' if shown_fields.exclude?(:assign_to_me) %>">
+            <%= hidden_field_tag(:assign_to_me, '0', id: nil) %>
+            <label><%= check_box_tag(:assign_to_me, '1', User.current.easy_contacts.where(easy_contact_entity_assignments: {easy_contact_id: easy_contact}).exists?, id: "#{block_name}_assign_to_me") %> <%= l(:label_assign_to_me) %></label>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <% if easy_contact.safe_attribute? 'author_note' %>
+      <p  style="<%= 'display:none;' if shown_fields.exclude?(:description) %>">
+        <%= f.text_area :author_note, label: l(:field_easy_contact_author_note) %>
+        <%= wikitoolbar_for(block_name+'easy_contact_author_note') %>
+      </p>
+    <% end %>
+  </div>
+
+  <div id="easy-contact-attachment-form" class="box"  style="<%= 'display:none;' if shown_fields.exclude?(:attachments) %>">
+    <%= toggling_container("#{block_name}-contact-form-attachments", User.current, {heading: l(:label_issue_attachments_heading), wrapping_heading_element_classes: ' icon icon-attachment'}) do %>
+      <%= render partial: 'attachments/form', locals: {container: easy_contact} %>
+    <% end %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+    EASY.schedule.late(function () {
+        $('#easy_contact_firstname, #easy_contact_lastname').keyup(function (event) {
+
+            if ($(event.target).val().length >= 2) {
+                if (key_count_global) {
+                    clearTimeout(key_count_global);
+                }
+                key_count_global = setTimeout(function () {
+                    find_easy_contact(event.target.form)
+                }, 750);
+            }
+
+        });
+
+        $("#easy_contact_types input").on('change', function(){
+            $.post("<%= j update_my_page_new_easy_contact_path(id: easy_contact.id) %>", $("<%= '#'+block_name+'easy_contact_form' %>").serialize());
+        });
+
+        $("<%= '#'+block_name+'easy_contact' %>").on('submit', function() {
+            fillFormTextAreaFromCKEditor(block_name+'easy_contact_author_note')
+        });
+    });
+</script>
+
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag 'easy_contacts', defer: true %>
+<% end %>

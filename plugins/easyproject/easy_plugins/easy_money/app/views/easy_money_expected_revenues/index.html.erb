@@ -1,0 +1,43 @@
+<%= render @query, :easy_query_name => l(:label_easy_money_expected_revenues), :options => {:query_sub_heading => easy_money_sub_heading}, :form_options => {:easy_query_clear_url => {:set_filter => 0, :'easy_money[entity_type]' => @entity_type, :'easy_money[entity_id]' => @entity_id}} %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= context_menu({:controller =>'context_menus', :action => 'easy_money_expected_revenues', :project_id => @project, :money_entity_type => @money_entity_type }, '#easy_money_expected_revenues') -%>
+
+<% if @entity_type && @entity_id %>
+  <script type="application/javascript">
+    EASY.schedule.late(function () {
+      var form = $('#query_form');
+
+      var el1 = $('<input/>')
+          .attr('type', 'hidden')
+          .attr('name', 'easy_money[entity_type]')
+          .addClass('serialize')
+          .val('<%= @entity_type -%>')
+          .appendTo(form);
+
+      var el2 = $('<input/>')
+          .attr('type', 'hidden')
+          .attr('name', 'easy_money[entity_id]')
+          .addClass('serialize')
+          .val('<%= @entity_id -%>')
+          .appendTo(form);
+    });
+  </script>
+<% end %>
+
+<% content_for :header_tags do -%>
+  <%= stylesheet_link_tag 'easy_money' -%>
+  <%= javascript_include_tag 'easy_money', defer: true -%>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'easy_money/index_sidebar' -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+<% end -%>
+
+<% content_for :easy_page_layout_service_box do -%>
+  <%= link_to_easy_money_overview -%>
+  <%= render :partial => 'easy_money/sidebar_entities_links', :locals => { :entity_type => @entity_type || 'Project', :entity_id => @entity_id || @project.id, :project => @project, :money_entity_type => @money_entity_type } if @project %>
+<% end -%>
+

@@ -1,0 +1,19 @@
+<% time_entry = cell.time_entry; cell.row ||= row %>
+<td class='cell-data time-entry-hour <%= @easy_timesheet.cell_css_classes(cell) %>' data-day='<%= cell.spent_on %>' title='<%= @easy_timesheet.day_title(cell.spent_on) %>'>
+  <% if cell.time_entries.blank? || time_entry %> <% time_entry_id = time_entry.try(:id) %>
+    <% if ((time_entry_id.present? && easy_timesheet.editable? && !time_entry.easy_locked?) || (time_entry_id.nil? && easy_timesheet.addable?)) && !cell.readonly? %>
+      <p>
+        <%= text_field_tag('cell', cell.sum_hours, {size: 4, class: 'time-entry-input-hours', data: {time_entry_id: time_entry_id, column: 'hours'}, autocomplete: "off"}) %>
+      </p>
+      <% if EasyTimesheet.wants_comment_inputs? %>
+        <%= text_field_tag("comments[#{time_entry_id}]", time_entry.comments, size: 5, class: 'time-entry-input-comments', data: {time_entry_id: time_entry_id, column: 'comments'}) if time_entry_id %>
+      <% end %>
+    <% else %>
+      <%= format_locale_number(cell.sum_hours) %>
+    <% end -%>
+  <% elsif easy_timesheet.editable? %>
+    <%= link_to(format_locale_number(cell.sum_hours), cell_easy_timesheet_path(easy_timesheet, {row_id: row, cell_id: cell}), remote: true) %>
+  <% else %>
+    <%= format_locale_number(cell.sum_hours) -%>
+  <% end -%>
+</td>

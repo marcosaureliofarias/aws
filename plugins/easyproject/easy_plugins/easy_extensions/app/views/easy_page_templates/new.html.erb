@@ -1,0 +1,36 @@
+<div id="easy-page-template">
+  <h2><%= l(:label_easy_page_template_new, :pagename => @page.translated_name) %></h2>
+  <%= breadcrumb [
+    link_to(l('breadcrumb.label.easy_pages_administration'), { :controller => 'easy_pages', :action => 'index' }, { :title => l('breadcrumb.title.easy_pages_administration') }),
+    link_to(l('breadcrumb.label.easy_page_templates', :pagename => @page.translated_name), {:controller => 'easy_page_templates', :action => 'index', :page_id => @page.id }, { :title => l('breadcrumb.title.easy_page_templates', :pagename => @page.translated_name) }),
+    content_tag(:span, l('breadcrumb.label.easy_page_templates_new'))
+  ] -%>
+
+  <%= form_for(@page_template, :html => {:class => 'tabular form-box'}) do |f| %>
+    <%= error_messages_for @page_template %>
+    <%= f.hidden_field :easy_pages_id, :value => params[:page_id] %>
+
+    <% if @page_template.copy_from_existing? %>
+      <%= f.hidden_field :copy_from_type %>
+      <%= f.hidden_field :copy_from_user_id %>
+      <%= f.hidden_field :copy_from_entity_id %>
+      <%= f.hidden_field :copy_from_template_id %>
+      <%= f.hidden_field :copy_from_tab_id %>
+
+      <p>
+        <label><%= l(:label_copy_from_page) %></label>
+        <!-- TODO: remove inline style -->
+        <span style="line-height: 28px">
+          <%= @page_template.page_definition.translated_name %>
+        </span>
+      </p>
+    <% end %>
+
+    <%= render :partial => 'form', :locals => {:f => f}  %>
+
+    <div class="form-actions"><%= f.submit l(:button_save), :class => 'button-positive' %></div>
+  <% end %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+

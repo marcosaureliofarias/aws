@@ -1,0 +1,14 @@
+<% if @easy_checklist_item.valid? %>
+  $("#easy_checklist<%= @easy_checklist.id %>_items").append("<%=j render @easy_checklist_item -%>");
+
+  var $subject_input = $("#easy_checklist<%= @easy_checklist.id %>_item_form").find('.easy_checklist_subject:first');
+  if ($subject_input.length > 0) {
+    $subject_input.val('');
+    $subject_input.focus();
+  }
+
+  <%= render :partial => 'easy_checklists/update_inline_containers' %>
+  <%= render :partial => 'easy_checklists/add_item_delete_buttons', locals: { entity: @easy_checklist.entity } %>
+<% else %>
+  showFlashMessage('error', "<%= @easy_checklist_item.errors.full_messages.join('<br/>').html_safe %>");
+<% end %>

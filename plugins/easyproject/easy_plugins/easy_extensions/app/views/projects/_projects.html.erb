@@ -1,0 +1,9 @@
+<% if query.grouped? %>
+  <%= render :partial => 'projects/list', :locals => {:projects => projects, :query => query} %>
+<% else %>
+  <%= render :partial => 'projects/projects_query_tree', :locals => {:projects => projects, :query => query} %>
+<% end %>
+
+<p style="display: none;" class="infinite-scroll-load-next-page-trigger-container hide-when-print">
+  <a class="button button-main button-rounded button-outlined infinite-scroll-load-next-page-trigger"><%= l(:button_load_additional_records) %><i class="icon-arrow"></i></a>
+</p>

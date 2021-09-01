@@ -1,0 +1,4 @@
+$('#custom_field_form_container').html('<%= j(render :partial => 'form') %>');
+if($('#custom_field_is_for_all').prop("checked")) {
+  $('#custom_field_project_ids input').prop("disabled", true);
+};

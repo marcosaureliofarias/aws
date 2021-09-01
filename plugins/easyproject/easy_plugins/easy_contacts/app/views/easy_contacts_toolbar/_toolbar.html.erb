@@ -1,0 +1,17 @@
+<div>
+  <%= render(:partial => 'common/freetext_quick_search', :locals => {:free_search_field_placeholder => l(:easy_contacts, :scope => [:search_field_placeholders]), :free_search_options => {:free_search_element_to_update => 'easy_contacts_toolbar_list', :free_search_url => easy_contacts_toolbar_search_path, :free_search_field_name => 'easy_contacts_toolbar_q', :free_search_after_done => "EASY.contacts.initEasyContactsAssignable();", :free_search_reset_type => :clear}}) %>
+</div>
+<div class="clear"></div>
+<div id="easy_contacts_toolbar_content" class="servicebar-content" >
+  <ul id="easy_contacts_toolbar_list" class="link-list ui-widget-content">
+    <%= render(:partial => 'easy_contacts_toolbar/easy_contact', :collection => @easy_contacts) %>
+  </ul>
+</div>
+<div class="servicebar-actions">
+  <%= link_to(l(:new_contact, :scope => [:easy_contacts_toolbar]), new_easy_contact_path, :remote => true, :class => 'icon icon-add button-positive') %>
+</div>
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    EASY.contacts.initEasyContactsAssignable();
+  });
+</script>

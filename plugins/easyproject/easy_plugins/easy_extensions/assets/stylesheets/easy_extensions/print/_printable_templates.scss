@@ -1,0 +1,56 @@
+.easy-printable{
+  &-template-page{
+
+  }
+  &-toolbar-container{
+    text-align: center;
+    margin-bottom: 8px;
+    a, select, input[type="text"]{
+      display: inline-block !important;
+      font-size: 12px;
+      //padding-top: 1px;
+      //padding-bottom: 1px;
+    }
+    select{
+      height: $tab-height;
+      position: relative;
+      top: 1px;
+    }
+    @media print {
+      display: none;
+    }
+  }
+}
+.easy-print-page-fitting {
+  display: inline-block;
+}
+.easy-printable-template-page {
+  padding: 0 $gap;
+  box-sizing: border-box;
+  margin: auto;
+  overflow: visible !important;
+  &.a4 {
+    width: 210mm;
+    min-height: calc(297mm - 20mm);
+    &.landscape {
+      width: 297mm;
+      min-height: calc(210mm - 20mm);
+    }
+  }
+  &.a3 {
+    width: 297mm;
+    min-height: calc(420mm - 20mm);
+    &.landscape {
+      width: 420mm;
+      min-height: calc(297mm - 20mm);
+    }
+  }
+  &.a2 {
+    width: 594mm;
+    min-height: calc(420mm - 20mm);
+   &.landscape {
+      width: 420mm;
+      min-height: calc(594mm - 20mm);
+    }
+  }
+}

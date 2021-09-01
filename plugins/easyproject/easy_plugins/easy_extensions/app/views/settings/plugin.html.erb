@@ -1,0 +1,12 @@
+<%= title [l(:label_plugins), admin_manage_plugins_url], @plugin.name.is_a?(Symbol) ?  l(@plugin.name) : h(@plugin.name) %>
+
+<div id="settings">
+  <%= form_tag({:action => 'plugin'}, :class => 'form-box') do %>
+    <div class="box tabular settings">
+      <%= render :partial => @partial, :locals => {:settings => @settings}%>
+    </div>
+    <div class="form-actions">
+        <%= submit_tag l(:button_apply), :class => 'button-positive' %>
+    </div>
+  <% end %>
+</div>

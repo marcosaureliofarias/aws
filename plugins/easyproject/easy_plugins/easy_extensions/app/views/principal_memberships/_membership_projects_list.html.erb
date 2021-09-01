@@ -1,0 +1,18 @@
+<fieldset>
+  <legend>
+    <%= link_to '', 'javascript:void(0)', onclick: "toggleCheckboxesBySelector('#projects-selection input:enabled:visible')", title: "#{l(:button_check_all)} / #{l(:button_uncheck_all)}", class: 'contextual icon icon-checked' %>
+    <%= l(:label_project_plural) %>
+  </legend>
+
+  <div id='projects-select-actions'>
+    <%= render partial: 'projects/project_selectors_links' %>
+  </div>
+
+  <div id='projects'>
+    <%= render_project_nested_lists(@projects) do |project| %>
+      <div class="project-item <%= "project-#{project.id}" %>" data-name="<%= project.name %>">
+        <%= EasyNestedListProjectWrapper.render project, cbx_name: 'membership[project_ids][]', cbx_options: { disabled: @principal.member_of?(project) } %>
+      </div>
+    <% end %>
+  </div>
+</fieldset>

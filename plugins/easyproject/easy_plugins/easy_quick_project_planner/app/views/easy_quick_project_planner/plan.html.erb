@@ -1,0 +1,63 @@
+<h2><%= l(:label_quick_planning) %></h2>
+
+<% if @project.status != Project::STATUS_PLANNED %>
+  <div id="project-settings-container">
+    <%= render :partial => 'project_settings' %>
+  </div>
+<% end %>
+
+<h3><%= l(:label_issue_plural) %></h3>
+<div id="issues-container">
+  <%= render :partial => 'issues' %>
+</div>
+
+<%= call_hook(:view_quick_project_planner_bottom, {:project => @project}) %>
+
+<% if params.key?(:for_dialog) %>
+  <%= javascript_include_tag 'easy_quick_project_planner', defer: true %>
+  <script type="text/javascript">
+    EASY.schedule.require(function () {
+      $("#issues-container").quickplanner({
+        loadIssuesPath: "<%= quick_planner_issues_path(@project) %>",
+        newIssuePath: "<%= issue_from_gantt_path(@project) %>",
+        createIssuePath: "<%= project_issues_path(@project, :format => 'json') %>",
+        issuesPath: "<%= issues_path %>",
+        newIssueRowPath: "<%= quick_planner_new_issue_reload_path(@project) %>",
+        loadCreatedIssuePath: "<%= quick_planner_load_created_issue_path(@project) %>",
+
+        lang: {
+          createIssue: "<%= l(:button_issue_create) %>",
+          cancel: "<%= l(:button_cancel) %>",
+          confirmDeletion: "<%= l(:text_are_you_sure) %>"
+        },
+
+        holidays: <%= @holidays.collect{|h| {:date => h.holiday_date, :isRepeating => h.is_repeating}}.to_json.html_safe %>
+      });
+    }, jQueryPluginGetter("quickplanner"));
+  </script>
+<% else %>
+  <% content_for :body_bottom do %>
+    <%= javascript_include_tag 'easy_quick_project_planner', defer: true %>
+    <script type="text/javascript">
+      EASY.schedule.require(function () {
+        $("#issues-container").quickplanner({
+          loadIssuesPath: "<%= quick_planner_issues_path(@project) %>",
+          newIssuePath: "<%= issue_from_gantt_path(@project) %>",
+          createIssuePath: "<%= project_issues_path(@project, :format => 'json') %>",
+          issuesPath: "<%= issues_path %>",
+          newIssueRowPath: "<%= quick_planner_new_issue_reload_path(@project) %>",
+          loadCreatedIssuePath: "<%= quick_planner_load_created_issue_path(@project) %>",
+
+          lang: {
+            createIssue     : "<%= l(:button_issue_create) %>",
+            cancel          : "<%= l(:button_cancel) %>",
+            confirmDeletion : "<%= l(:text_are_you_sure) %>"
+          },
+
+          holidays: <%= @holidays.collect{|h| {:date => h.holiday_date, :isRepeating => h.is_repeating}}.to_json.html_safe %>
+        });
+      }, jQueryPluginGetter("quickplanner"));
+    </script>
+  <% end %>
+<% end %>
+<% include_attachment_tags %>

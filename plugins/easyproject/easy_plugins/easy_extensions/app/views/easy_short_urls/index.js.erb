@@ -1,0 +1,15 @@
+$("#ajax-modal").html("<%=j render(:template => 'easy_short_urls/index', :formats => [:html]) %>");
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_add) %>',
+      click: function() {$.get('<%= url_for(new_easy_short_url_path(:format => :js)) %>', {'entity_type': '<%= params[:entity_type] %>', 'entity_id': '<%= params[:entity_id] %>', 'easy_short_url': {'source_url': '<%= params[:source_url] %>'}})}, 'class': 'button-positive'
+    }
+  ],
+  title: '<%= j(l(:heading_easy_short_urls_index)) %>'
+});

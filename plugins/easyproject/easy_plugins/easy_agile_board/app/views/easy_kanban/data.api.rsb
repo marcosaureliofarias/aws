@@ -1,0 +1,20 @@
+api.array :positions do
+  @positions.each do |(entity_id, phase, position)|
+    api.kanban_issue do
+      api.issue_id entity_id
+      api.phase phase
+      api.position position
+    end
+  end
+end
+
+api.workflow_settings do
+  api.possible_phases @possible_phases
+  api.required_attribute_names @use_workflow ? @issue.required_attribute_names(User.current) : []
+  api.read_only_attribute_names @use_workflow ? @issue.read_only_attribute_names(User.current) : []
+end
+
+api.issue render_rsb_to_json(template: 'issues/show')['issue']
+api.issue do
+  api.parent_id @issue.parent_id unless @issue.parent.nil?
+end

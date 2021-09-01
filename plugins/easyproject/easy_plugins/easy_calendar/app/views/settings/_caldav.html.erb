@@ -1,0 +1,5 @@
+<p>
+  <%= hidden_field_tag('easy_setting[easy_caldav_enabled]', '0', :id => nil) -%>
+  <% box = check_box_tag('easy_setting[easy_caldav_enabled]', '1', EasySetting.value('easy_caldav_enabled')) -%>
+  <%= label_tag('easy_setting_easy_caldav_enabled', box + l(:setting_easy_caldav_enabled), :class => 'checkbox inline') %>
+</p>

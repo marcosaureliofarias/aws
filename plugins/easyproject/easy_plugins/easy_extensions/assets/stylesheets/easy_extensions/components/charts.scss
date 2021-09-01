@@ -1,0 +1,259 @@
+.chart{
+  &-wrapper{
+    //display: inline-block;
+    text-align: center;
+    margin-bottom: $box-padding;
+    svg{
+      width: 100%;
+    }
+  }
+  &-gauge{
+    @extend %chart;
+    width: 100%;
+    svg {
+      width: 100%;
+    }
+  }
+  &-grid{
+    text-align: center;
+    .chart{
+      &-wrapper{
+        display: inline-block;
+        width: 300px;
+      }
+    }
+  }
+}
+.easy_query_chart {
+  margin-bottom: $gap;
+  .box &, .easy-content-page &{
+    //margin-left: -$box-padding;
+  }
+
+  @include respond-to(min-sidebar-collapse){
+    .tick{
+      tspan + tspan{
+        display: none;
+      }
+    }
+  }
+  .fake-responsive &{
+    .tick{
+      tspan + tspan{
+        display: none;
+      }
+    }
+  }
+
+  svg {
+    min-height: 300px;
+  }
+
+  .tick.zero line {
+    opacity: 0;
+  }
+}
+.c3{
+  text{
+    fill: $color-text-muted !important; //rgba(darken($color-border, 10%),1) !important;
+  }
+  &-arcs + text {
+    fill: black !important;
+    &.c3-gauge-value {
+      fill: $color-text-muted !important;
+    }
+  }
+  //&-y{
+  //  &grid{
+  //    &:first-child{
+  //      display: none;
+  //    }
+  //  }
+  //}
+  [clip-path]{
+    clip-path: initial !important;
+  }
+  &-bar{
+    stroke: mix($color-foreground,$color-background) !important;
+    stroke-width: 3px !important;
+  }
+  &-axis{
+    &-x{
+      clip-path: initial;
+      path,line,text{
+        @include translateY(.5*$box-padding);
+      }
+      tspan{
+        & + tspan{
+          display: none;
+        }
+      }
+      @include respond-to(max-sidebar-collapse) {
+        & > g:nth-of-type(even) {
+          text {
+            @include translateY($box-padding);
+          }
+        }
+      }
+    }
+    &-y{
+      path,line,text{
+        @include translateX(-.5*$box-padding);
+      }
+      &-label{
+        @include transform(translateX(-.5*$box-padding) rotate(-90deg) !important);
+      }
+    }
+    line,path{
+      stroke: rgba(darken($color-border, 10%),1) !important;
+      opacity: .25;
+    }
+  }
+  &-chart{
+    &-texts{
+      font-size: 1.1em;
+    }
+  }
+  &-texts{
+    &-values{
+      & > .c3-text{
+        fill: $color-text !important;
+      }
+    }
+  }
+  &-grid{
+    opacity: .5;
+  }
+  &-legend{
+    $block: #{&};
+    background: rgba($color-foreground, .8);
+    position: absolute;
+    padding: 0 .5*$gap;
+    &-item{
+      padding: .25*$gap $gap;
+      position: relative;
+      line-height: 1.25;
+      cursor: pointer;
+      &-color{
+        display: inline-block;
+        position: absolute;
+        padding: .4*$gap;
+        display: block;
+        left: 0;
+        top: 50%;
+        margin-top: -.4*$gap;
+      }
+    }
+    &--inset{
+      &-top-left,&-top-right{
+        top: 0;
+        bottom: 0;
+        width: 150px;
+        overflow: auto;
+        #{$block}-item{
+          display: block;
+        }
+      }
+      &-top-left{
+        left: 0;
+      }
+      &-top-right{
+        right: 0;
+      }
+    }
+    &--bottom-null{
+      text-align: center;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      #{$block}-item{
+        white-space: nowrap;
+      }
+    }
+    &--right-null{
+      top: 50%;
+      right: 0;
+      transform: translatey(-50%);
+      width: 25%;
+
+      #{$block}-item{
+        display: inline-block;
+        width: 100%;
+      }
+      &.cols--2{
+        width: 50%;
+        column-count: 2;
+      }
+      &.cols--3{
+        width: 75%;
+        column-count: 3;
+      }
+
+    }
+  }
+  &-tooltip {
+    background: $color-foreground !important;
+    box-shadow: none !important;
+    tr {
+      border-color: $color-border !important;
+    }
+    th {
+      background: $color-background !important;
+      color: $color-text !important;
+    }
+    td {
+      background: $color-foreground !important;
+      color: $color-text !important;
+    }
+  }
+  &.is-rotated {
+    .c3-axis {
+      &-x {
+        path, line, text {
+          @include transform(unset);
+        }
+        &-label {
+          display: none;
+        }
+      }
+      &-y {
+        path,line,text{
+          @include transform(unset);
+        }
+        tspan{
+          & + tspan{
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  &-line {
+    stroke-width: 5px !important;
+  }
+  &-circle {
+    r: 5 !important;
+  }
+  &-bar,&-pie,&-line,&-text{
+    //@for $i from 1 through length($palette) {
+    //  &-#{$i - 1}{
+    //    @include chart-scheme(nth($palette, $i));
+    //  }
+    //}
+  }
+}
+.easy-chart{
+  &-listing-links{
+    @extend %calendar-listing-links;
+    @include align-items(center);
+    @include respond-to(max-sidebar-collapse) {
+      .next {
+        margin-top: 0;
+        @include align-self(center);
+      }
+      .button-group {
+        @include display(flex);
+      }
+    }
+  }
+}

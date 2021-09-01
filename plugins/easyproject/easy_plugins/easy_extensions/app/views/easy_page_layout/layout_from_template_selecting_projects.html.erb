@@ -1,0 +1,23 @@
+<h1><%= l(:heading_layout_from_template_selecting_projects) -%></h1>
+
+<%= form_tag({:controller => 'easy_page_layout', :action => 'layout_from_template_selected_projects'}, :class => 'layout-from-template-selecting-projects-form form-box') do -%>
+  <%= hidden_field_tag 'back_url', params[:back_url] -%>
+  <%= hidden_field_tag 'page_template_id', params[:page_template_id] -%>
+
+  <%= call_hook(:view_layout_from_template_selecting_projects_form_top) %>
+  <%= render partial: 'easy_page_layout/layout_from_template_methods' %>
+
+  <%= render_project_nested_lists(Project.non_templates.visible.sorted) do |project| %>
+
+    <%= EasyNestedListProjectWrapper.render project %>
+
+  <% end -%>
+
+  <div class='form-actions'>
+    <%= render partial: 'projects/project_selectors_links' %>
+    </br>
+    <%= submit_tag l(:button_save), class: 'button-positive' -%>
+    <%= link_to l(:button_back), params[:back_url], class: 'button', title: l(:button_back) -%>
+  </div>
+  
+<% end -%>

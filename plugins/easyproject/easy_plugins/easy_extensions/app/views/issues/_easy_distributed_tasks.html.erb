@@ -1,0 +1,23 @@
+<% if issue.project && issue.tracker && !@copy %>
+  <div id="easy_distributed_tasks" class="box" style="<%= 'display: none;' unless issue.tracker.easy_distributed_tasks? %>">
+    <%= toggling_container('easy_distributed_tasks_toggle_container', User.current, {:heading => l(:field_easy_distributed_tasks), :wrapping_heading_element_classes => ' icon icon-group'}) do  %>
+      <table id="easy_distributed_tasks_table">
+        <thead>
+          <tr>
+            <th class="red"><%= l(:field_estimated_hours) %> *</th>
+            <th class="red"><%= l(:field_assigned_to) %> *</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% issue.easy_distributed_tasks.each do |data| %>
+            <tr>
+              <td><%= number_field_tag 'issue[easy_distributed_tasks][ests][]', data[:est], :size => 10, :id => nil, :step => 'any', :class => 'easy_distributed_task_estimated_hours' %></td>
+              <td><%= select_tag 'issue[easy_distributed_tasks][assigned_to_ids][]', grouped_options_for_select(entity_assigned_to_collection_for_select_options(issue, project), data[:assigned_to_id]), :id => nil, :include_blank => true, :class => 'easy_distributed_task_assigned_to_ids' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+  <%= late_javascript_tag "$('#easy_distributed_tasks').easyDistributedTasks();" %>
+<% end %>

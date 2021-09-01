@@ -1,0 +1,36 @@
+<h2><%= l('rys.rys_plugins') %></h2>
+
+<div class="autoscroll">
+<table class="list">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% RysManagement.all do |plugin| %>
+      <tr>
+        <td><%= plugin.name %></td>
+        <td><%= plugin.description %></td>
+        <td><%= plugin.feature_records_count %></td>
+
+        <td class="buttons text-right">
+          <% if plugin.plugin_active? %>
+            <%= link_to l(:button_edit), rys_management_edit_path(plugin.rys_id), class: 'icon icon-edit' %>
+          <% else %>
+            <%= plugin.deactivated_plugin_html(self) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<h3><%= l('rys_management.other_features') %></h3>
+
+<%= render 'rys_management/features_table', features: RysFeatureRecord.registered_for(nil) %>

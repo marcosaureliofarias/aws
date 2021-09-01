@@ -1,0 +1,70 @@
+<%= back_url_hidden_field_tag %>
+<%= error_messages_for 'version' %>
+
+<div class="tabular splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <%= f.label_for_field(:project_id_autocomplete, :required => true, :label => :field_project) %><%= easy_select_tag(
+                                                                                                           'version[project_id]',
+                                                                                                           {:name => @project.try(:name), :id => @project.try(:id)},
+                                                                                                           nil,
+                                                                                                           easy_autocomplete_path((@project && @project.easy_is_easy_template?) ? 'project_templates' : 'visible_projects'),
+                                                                                                           :include_blank => true, :root_element => 'projects', :html_options => {:id => 'version_project_id'}
+                                                                                                         ) -%>
+    </p>
+    <p>
+      <%= f.text_field :name, :required => true -%> <em class="help"><%= l(:text_caracters_maximum, 60) %></em>
+    </p>
+
+    <p><%= label_tag(:version_description, l(:field_description)) %><%= f.text_area :description, :size => 60, :rows => 10, :accesskey => accesskey(:edit), :class => 'wiki-edit', :no_label => true %>
+      <%= wikitoolbar_for 'version_description' %>
+    </p>
+  </div>
+  <div class="splitcontentright">
+    <% unless @version.new_record? %>
+      <p>
+        <%= f.select :status, Version::VERSION_STATUSES.collect { |s| [l("version_status_#{s}"), s] } -%>
+      </p>
+    <% end %>
+    <% if EasyVersionCategory.active.any? || User.current.admin? %>
+      <p>
+        <%= label_tag(:version_easy_version_category_id, l(:field_easy_version_category_id)) %>
+        <span class="input-append">
+          <%= f.collection_select :easy_version_category_id, EasyVersionCategory.active, :id, :name, :include_blank => true %>
+          <%= link_to('', {:controller => 'enumerations', :action => 'new', :type => 'EasyVersionCategory', :back_url => url_for({:project_id => @project})}, :class => 'icon-add', :title => l(:button_add)) if User.current.allowed_to?({:controller => 'enumrations', :action => 'new'}, nil, :global => true) -%>
+        </span>
+      </p>
+    <% end %>
+    <p>
+      <%= f.date_field :effective_date, :size => 10 -%><%= calendar_for('version_effective_date') -%>
+    </p>
+    <% if false # Issue #211991 %>
+      <% unless @version.new_record? %>
+        <p id="form-checkbox" class="long-label">
+          <%= check_box_tag :update_database, true, false -%> <%= label_tag :update_database, l(:label_version_update_database) -%>
+        </p>
+      <% end %>
+    <% end %>
+    <% @version.visible_custom_field_values.each do |value| %>
+      <p>
+        <%= custom_field_tag_with_label :version, value -%>
+      </p>
+    <% end %>
+    <% if @version.new_record? %>
+      <p>
+        <%= f.check_box :default_project_version, :label => :field_default_version %>
+      </p>
+    <% end %>
+    <p>
+      <%= f.select :sharing, @version.allowed_sharings.collect { |v| [format_version_sharing(v), v] } -%>
+      <span class="milestone-sharing-info help-block">
+        <b><%= l(:label_milestone_sharing_info) -%></b><br/>
+        <span><b><%= format_version_sharing('none') -%></b> - <%= l(:label_milestone_sharing_info_none) -%></span><br/>
+        <span><b><%= format_version_sharing('descendants') -%></b> - <%= l(:label_milestone_sharing_info_descendants) -%></span><br/>
+        <span><b><%= format_version_sharing('hierarchy') -%></b> - <%= l(:label_milestone_sharing_info_hierarchy) -%></span><br/>
+        <span><b><%= format_version_sharing('tree') -%></b> - <%= l(:label_milestone_sharing_info_tree) -%></span><br/>
+        <span><b><%= format_version_sharing('system') -%></b> - <%= l(:label_milestone_sharing_info_system) -%></span>
+      </span>
+    </p>
+  </div>
+</div>

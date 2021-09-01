@@ -1,0 +1,35 @@
+<% queries = EasyScheduler.registered_queries %>
+<p class="<%= queries.length > 1 ? '' : 'hidden' %>">
+  <legend><%= l('easy_scheduler.label_choose_query') %></legend>
+  <% queries.each do |type| %>
+    <label>
+      <%= radio_button_tag "#{query_settings_name}[active_query_klass]", type, query.class == type,
+                           data: {
+                             block_name: block_name,
+                             type: type.to_s,
+                             query_params: query.class == type ? query.to_params : {}
+                           },
+                           onclick: "selectActiveQuery(event);" %>
+      <%= type.translated_name %>
+    </label>
+  <% end %>
+</p>
+<div class="<%= block_name %>-query-filters">
+  <%= render 'easy_scheduler/common/query_filters', query: query,
+                                                    modul_uniq_id: block_name,
+                                                    block_name: query_settings_name %>
+</div>
+
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    window.selectActiveQuery = function (e) {
+      var $elem = $(e.target);
+      var type = $elem.data('type');
+      var block_name = $elem.data('blockName');
+      var data = { type: type, block_name: block_name };
+      $.extend(data, $elem.data('queryParams'));
+      $.get('<%= easy_scheduler_query_filters_path %>', data);
+    }     
+  });
+</script>

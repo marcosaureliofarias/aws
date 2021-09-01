@@ -1,0 +1,33 @@
+<div id="data-template-container">
+  <h2><%= l(:label_easy_data_template_edit) %></h2>
+
+  <%= labelled_form_for(@datatemplate, :as => :easy_data_template, :html => {:multipart => true, :class => 'tabular form-box'}) do |f| %>
+    <%= error_messages_for 'datatemplate' %>
+
+    <%= render :partial => 'form', :locals => {:f => f} %>
+    <%= link_to_attachments @datatemplate, :do_not_show_context_menu => true %>
+
+    <div class="form-actions"><%= f.submit l(:button_update), :class => 'button-positive' %></div>
+  <% end %>
+
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% if EASY_EXTENSIONS_ENABLED %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to(l(:button_easy_data_template_new_msproject), { :controller => 'easy_data_template_ms_projects', :action => 'new' }, :class => 'button-positive') %>
+    <%= link_to(l(:label_easy_data_templates), { :controller => 'easy_data_templates', :action => 'index' }, :class => 'button') %>
+  <% end %>
+<% else %>
+  <% content_for :sidebar do %>
+    <div class="box">
+      <p>
+        <%= link_to(l(:button_easy_data_template_new_msproject), { :controller => 'easy_data_template_ms_projects', :action => 'new' }, :class => 'icon icon-add') %>
+      </p>
+      <p>
+        <%= link_to(l(:label_easy_data_templates), { :controller => 'easy_data_templates', :action => 'index' }, :class => 'icon icon-copy') %>
+      </p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,41 @@
+<h1><%= l(:heading_layout_from_template_selecting_users) -%></h1>
+
+<%= form_tag(easy_page_layout_layout_from_template_selected_users_path, :class => 'layout-from-template-selecting-users-form form-box') do -%>
+  <%= hidden_field_tag 'back_url', params[:back_url] -%>
+  <%= hidden_field_tag 'page_template_id', params[:page_template_id] -%>
+
+  <%= call_hook(:view_layout_from_template_selecting_users_form_top) %>
+  <%= render partial: 'easy_page_layout/layout_from_template_methods' %>
+
+  <fieldset class="notop">
+    <ul class="cols-4 link-list">
+      <% @groups.each do |group| %>
+        <li class="link-list-item">
+          <%= avatar(group, :style => :small, :no_link => true) %>
+          <div class="link-list-item-content">
+            <%= link_to(label_tag("group_id#{group.id}", h(group), :class => 'inline'), easy_page_layout_toggle_members_path(:group_id => group), :remote => true) -%>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+
+  <fieldset>
+    <ul id="layout-from-template-selected-users-list" class="cols-4">
+      <% @users.each do |user| %>
+        <li>
+          <label class="checkbox inline"><%= check_box_tag 'users[]', user.id, false, id: "users_#{user.id}" %> <%= user.name %></label>
+        </li>
+      <% end -%>
+    </ul>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= link_to("#{l(:button_check_all)} / #{l(:button_uncheck_all)}", 'javascript:void(0)', :onclick => %q{toggleCheckboxesBySelector('input[name=\"users[]\"]')},
+                :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", :class => 'icon icon-checked') -%>
+    <br />
+    <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+    <%= link_to(l(:button_back), params[:back_url], :class => 'button', :title => l(:button_back)) -%>
+  </div>
+<% end -%>
+

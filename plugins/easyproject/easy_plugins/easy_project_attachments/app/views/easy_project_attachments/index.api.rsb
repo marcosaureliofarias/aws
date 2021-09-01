@@ -1,0 +1,5 @@
+api.array :attachments, api_meta(:total_count => @easy_contact_count, :offset => @offset, :limit => @limit) do
+  @entities.each do |attachment|
+    render_api_attachment(attachment, api)
+  end
+end

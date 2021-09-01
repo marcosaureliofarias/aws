@@ -1,0 +1,40 @@
+<div class='agile__card {{css_classes}}'>
+  <span class="agile__card__context-menu icon icon-more-vert" data-context-menu="true"></span>
+  <span class='agile__card__summable'>
+    {{#<%= settings['summable_column'] %>}}{{ <%= "#{settings['summable_column']}_int" %> }}{{/<%= settings['summable_column'] %>
+    }}
+    {{^<%= settings['summable_column'] %>}}—{{/<%= settings['summable_column'] %>}}
+  </span>
+  <h3 class='agile__card__title'>{{entity_name}}</h3>
+  <p class='agile__card__subtitle'>{{{<%= settings['main_attribute'] %>}}}</p>
+  {{#showCapacityAttribute}}
+      <div>
+        <label title="<%= settings['capacity_attribute'] == 'easy_story_points' ? 'Story points' : 'Estimate time ' %> " class="inline">
+          <%= settings['capacity_attribute'] == 'easy_story_points' ? 'SP:  ' : 'Hours:  ' %>
+        </label>
+        <div class="agile__capacity__div">
+          <input type="text" name="issue[<%= settings['capacity_attribute'] == 'easy_story_points' ? 'easy_story_points' : 'estimated_hours'%>]" value="{{easy_agile_rating}}" class="agile__capacity__input easy_agile_rating">
+          <button class="button-positive agile__capacity__button">OK</button>
+          <button class="icon icon-close agile__close__button"></button>
+        </div>
+      </div>
+  {{/showCapacityAttribute}}
+  {{^showCapacityAttribute}}
+  <div class='agile__card__info'>
+    <div class='agile__card__avatar'>
+      {{{avatar}}}
+    </div>
+
+    <div class='agile__card__dates'>
+      <% output.columns_from_attributes(settings['date_details'].to_a).each do |col| %>
+          <span class='agile__card__date'>{{<%= col.name %>}}</span>
+      <% end %>
+    </div>
+    <div class='agile__card__icons'>
+      {{#icon_classes}}
+      <i class='{{.}} agile__card__icon'></i>
+      {{/icon_classes}}
+    </div>
+    {{/showCapacityAttribute}}
+  </div>
+</div>

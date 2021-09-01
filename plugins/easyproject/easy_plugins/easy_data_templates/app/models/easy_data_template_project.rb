@@ -1,0 +1,3 @@
+class EasyDataTemplateProject < EasyDataTemplate
+
+end

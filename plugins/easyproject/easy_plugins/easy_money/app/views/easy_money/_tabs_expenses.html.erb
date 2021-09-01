@@ -1,0 +1,21 @@
+<%
+  selected_entity_type ||= 'other_expense'
+  allowed_tabs = {
+    'expected_expense' => project.easy_money_settings.show_expected? && User.current.allowed_to?(:easy_money_manage_expected_expense, project),
+    'other_expense' => User.current.allowed_to?(:easy_money_manage_other_expense, project),
+    'travel_cost' => project.easy_money_settings.use_travel_costs? && User.current.allowed_to?(:easy_money_manage_travel_cost, project),
+    'travel_expense' => project.easy_money_settings.use_travel_expenses? && User.current.allowed_to?(:easy_money_manage_travel_expense, project)
+  }.reject { |_entity_type, allowed| !allowed }.keys
+%>
+<% if allowed_tabs.size > 1 %>
+  <div id="money-type-select" class="tabs">
+    <ul>
+      <% allowed_tabs.each do |entity_type| %>
+        <%= render partial: 'easy_money/tab_item',
+                   locals: { money_type: 'expense',
+                              entity_type: entity_type,
+                              selected: selected_entity_type == entity_type } %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

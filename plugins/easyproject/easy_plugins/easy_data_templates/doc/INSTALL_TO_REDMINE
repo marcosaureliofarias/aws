@@ -1,0 +1,27 @@
+== Redmine - Easy Data Templates plugin
+
+Easy Data Templates - plugin to Redmine (http://www.redmine.org)
+Copyright (C) 2008-2019 Easy Software Ltd
+http://www.easyredmine.com
+
+
+== Requirements
+
+Redmine. See [redmine_root]/doc/INSTALL
+
+== Installation
+
+1. Make sure your Redmine is working.
+   You can found how-to at [redmine_root]/doc/INSTALL.
+
+2. Extract zip package to the Redmine plugins directory ([redmine_root]/plugins).
+
+3. Under the application main directory run:
+     bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+
+4. Start your Redmine application server. E.g. under the application main directory run:
+     bundle exec ruby script/rails server -e production
+
+== References
+
+* http://www.easyredmine.com/support

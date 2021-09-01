@@ -1,0 +1,48 @@
+<%
+   group ||= nil
+   limit ||= controller.per_page_option
+   if group.present?
+     user_scope = User.active.sorted.not_in_group(group).like(params[:q])
+     name_attribute = 'user_ids[]'
+   else
+     user_scope = Principal.active.visible.where(:type => "User").sorted.not_member_of(project).like(params[:q])
+     object_name = 'membership'
+     method = 'user_ids'
+     name_attribute = "#{object_name}[#{method}][]"
+   end
+   principal_count = user_scope.count
+   principal_pages = Redmine::Pagination::Paginator.new principal_count, limit, params['page']
+   principals = user_scope.offset(principal_pages.offset).limit(principal_pages.per_page).preload(easy_user_type: :default_role).to_a
+%>
+<div class="box">
+  <%= toggling_fieldset((toggle_checkboxes_link('#project_principals_members input') + ' ' + l(:label_user_plural)), :id => 'project_principals_members') do %>
+    <div class="objects-selection principals-block-list clear">
+    <%= content_tag(:p, l(:label_no_data), :class => 'nodata') if principals.blank? %>
+      <ul class="link-list" id="principals">
+        <% principals.each do |principal| %>
+          <% default_role = principal&.easy_user_type&.default_role&.name %>
+          <%= content_tag(:li, class: "user-#{principal.id} link-list-item form-entity-watcher-container #{object_name} easy-dropper-target easy-drop-user",
+                               data: { user_id: principal.id, drop_action: 'user' }) do %>
+            <%= check_box_tag name_attribute, principal.id, false, id: "membership_user_id#{principal.id}", class: 'link-list-checkbox' %>
+            <%= avatar(principal, style: :small, no_link: true) %>
+            <div class="form-entity-principal-name link-list-item-content">
+              <%= label_tag("membership_user_id#{principal.id}", h(principal)) %>
+              <span class="default-role block small" title="<%= l(:label_default_role) %>">
+                <%= default_role || l(:label_no_default_role) %>
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <span class="pagination">
+      <%= pagination_links_full(principal_pages, principal_count, :per_page_links => false) do |text, parameters, options| %>
+        <% if group.present? %>
+          <% link_to text, autocomplete_for_user_group_path(group, parameters.merge(:q => params[:q], :format => 'js')), :remote => true %>
+        <% else %>
+          <% link_to text, autocomplete_project_memberships_path(project, parameters.merge(:q => params[:q], :format => 'js')), :remote => true %>
+        <% end %>
+      <% end %>
+    </span>
+  <% end -%>
+</div>

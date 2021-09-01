@@ -1,0 +1,11 @@
+<%= title l(:button_easy_crm_add_or_create_related_invoice) %>
+<div>
+  <%= render :partial => 'common/freetext_quick_search', :locals => {:free_search_options => {
+      :free_search_url => add_or_create_related_easy_invoice_easy_crm_case_path(easy_crm_case),
+      :free_search_element_to_update => 'add_or_create_related_invoice_container', :free_search_params => 'easy_query_q', :placeholder => l(:label_easy_crm_search_for_easy_invoice),
+      :free_search_always_fire => true}} %>
+</div>
+<div class="clear"></div>
+<div id="add_or_create_related_invoice_container">
+  <%= render :partial => 'related_easy_invoices_list', :locals => {:easy_invoices => easy_invoices, :project => project, :easy_crm_case => easy_crm_case} %>
+</div>

@@ -1,0 +1,85 @@
+<%= fields_for :easy_entity_action, easy_entity_action, {builder: EasyExtensions::EasyLabelledFormBuilder} do |f| %>
+  <div class="box tabular">
+    <% if easy_entity_action.new_record? %>
+      <p>
+        <%= label_tag :type, EasyEntityAction.human_attribute_name(:type) %>
+        <%= select_tag :type, options_for_select([[]] + EasyEntityAction.registered_actions.collect { |k, _| [EasyEntityAction.caption(k), k] }, easy_entity_action.class.name),
+                       :onchange => "$.post('#{j easy_entity_action_update_form_path(:format => :js)}', $('#easy_entity_action_form').serialize())" %>
+      </p>
+    <% end %>
+    <% if easy_entity_action.class != EasyEntityAction %>
+      <% if easy_entity_action.new_record? %>
+        <p>
+          <%= f.select :action_name, easy_entity_action.action_names.collect { |a| [easy_entity_action.action_caption(a), a] }, {},
+                       :onchange => "$.post('#{j easy_entity_action_update_form_path(:format => :js)}', $('#easy_entity_action_form').serialize())" %>
+        </p>
+      <% end %>
+      <p>
+        <%= f.text_field :name, class: 'required' %>
+      </p>
+
+      <p>
+        <%= f.check_box :active %>
+      </p>
+
+      <p>
+        <%= f.check_box :use_journal, no_label: true %>
+        <%= f.label :use_journal %>
+      </p>
+
+      <p>
+        <%= f.check_box :repeatedly, no_label: true %>
+        <%= f.label :repeatedly %><em><%= l(:text_easy_entity_action_repeatedly) %></em>
+      </p>
+      <%= call_hook(:view_form_easy_entity_actions_assignment_entities, {easy_entity_action: easy_entity_action, f: f}) %>
+    <% end %>
+  </div>
+  <% if easy_entity_action.class != EasyEntityAction %>
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <div class="box">
+          <h3 class="icon icon-filter"><%= l(:heading_easy_entity_actions_filters) %></h3>
+          <%= hidden_field_tag 'easy_entity_action[easy_query_settings][set_filter]', '1' %>
+          <%= render :partial => 'easy_queries/filters', :locals => {:query => @query, modul_uniq_id: 'primary-filters', :block_name => 'easy_entity_action[easy_query_settings]'} %>
+          <%= call_hook(:view_easy_entity_actions_form_primary_filters_bottom, { :query => @query, :modul_uniq_id => 'primary-filters', :block_name => 'easy_entity_action[easy_query_settings]'}) %>
+        </div>
+      </div>
+      <% if f.object.can_user_define_actions? %>
+        <div class="splitcontentright">
+          <div class="box entity-custom-actions">
+            <h3 class="icon icon-settings"><%= l(:heading_easy_entity_actions_user_defined_action, default: 'Setup your action') %></h3>
+            <%= hidden_field_tag 'easy_entity_action[action_setup][set_filter]', '1' %>
+            <% query = @query.class.new(name: 'Action setup'); query.from_params(f.object.user_actions_to_query_params) %>
+            <%= render partial: 'easy_queries/filters', locals: { query: EasyExtensions::EasyEntityCustomActionQuery.new(query), modul_uniq_id: 'custom-actions', block_name: 'easy_entity_action[user_actions_query_params]', list_multiple: false, select_first_value: false } %>
+          </div>
+          <style>
+            .entity-custom-actions td.operator {
+              display: none
+            }
+          </style>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="box tabular">
+      <%= non_ajax_collapsed_toggling_container('easy_entity_action_executed_as', l(:heading_easy_entity_actions_executed_as), 'icon icon-user') do %>
+        <p>
+          <em><%= l(:text_executed_as) %></em>
+        </p>
+
+        <p>
+          <%= f.radio_button :execute_as, 'author', :id => 'easy_mail_campaign_execute_as_author' %>
+          <%= label_tag 'easy_mail_campaign_execute_as_author', l(:label_execute_as_author), :class => 'inline' %>
+          <%= f.radio_button :execute_as, 'user', :id => 'easy_mail_campaign_execute_as_user' %>
+          <%= label_tag 'easy_mail_campaign_execute_as_user', l(:label_execute_as_user), :class => 'inline' %>
+          <%= f.select :execute_as_user_id, User.active.easy_type_internal.sorted.collect { |u| [u.name, u.id] }, {include_blank: true, no_label: true}, {} %>
+        </p>
+      <% end %>
+    </div>
+    <div class="box tabular">
+      <%= non_ajax_collapsed_toggling_container('easy_entity_action_period_options', l(:heading_easy_entity_actions_period_options), 'icon icon-time') do %>
+        <%= render(:partial => 'common/easy_repeating_period', :locals => {:selected => easy_entity_action.period_options, :form_prefix => 'easy_entity_action[period_options]'}) %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

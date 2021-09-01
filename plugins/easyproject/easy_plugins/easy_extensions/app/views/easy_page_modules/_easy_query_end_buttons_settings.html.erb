@@ -1,0 +1,24 @@
+<%
+  buttons = page_module.settings['easy_query_end_buttons']
+  buttons ||= ['favorite', 'preview', 'edit']
+%>
+
+<fieldset>
+  <legend><%= l(:legend_easy_query_end_buttons_chooser) %></legend>
+
+  <p class="checkbox">
+    <%= hidden_field_tag "#{block_name}[easy_query_end_buttons][]", '' %>
+
+    <% box = check_box_tag("#{block_name}[easy_query_end_buttons][]", 'favorite', buttons.include?('favorite'), id: "#{block_name}_easy_query_end_buttons_favorite") %>
+    <%= label_tag("#{block_name}_easy_query_end_buttons_favorite", box + l(:field_favorited), :class => 'inline checkbox') %>
+
+    <% box = check_box_tag("#{block_name}[easy_query_end_buttons][]", 'preview', buttons.include?('preview'), id: "#{block_name}_easy_query_end_buttons_preview") %>
+    <%= label_tag("#{block_name}_easy_query_end_buttons_preview", box + l(:label_preview), :class => 'inline checkbox') %>
+
+    <% box = check_box_tag("#{block_name}[easy_query_end_buttons][]", 'edit', buttons.include?('edit'), id: "#{block_name}_easy_query_end_buttons_edit") %>
+    <%= label_tag("#{block_name}_easy_query_end_buttons_edit", box + l(:button_edit), :class => 'inline checkbox') %>
+
+    <% box = check_box_tag("#{block_name}[easy_query_end_buttons][]", 'iam_on_it', buttons.include?('iam_on_it'), id: "#{block_name}_easy_query_end_buttons_iam_on_it") %>
+    <%= label_tag("#{block_name}_easy_query_end_buttons_iam_on_it", box + l(:button_easy_issue_timer_play), :class => 'inline checkbox') %>
+  </p>
+</fieldset>

@@ -1,0 +1,23 @@
+<script type="text/javascript">
+  EASY.schedule.require(function (registerAssignableEntity) {
+    registerAssignableEntity('easy_calculation_project_client', {
+      dropAction: 'easy_calculation_project_client',
+      assignToTitle: '<%= j l(:assign_to_project_client, scope: :easy_contacts_toolbar) %>',
+      url: '<%= j project_path(id: '__projectId__') %>',
+      ajaxParams: {
+        complete: function () {
+          window.location.reload();
+        }
+      },
+      getAttributes: function (zoneData, itemData) {
+        this.url = this.url.replace(/__projectId__/, zoneData.projectId);
+        return {
+          'project[client_id]': itemData.easyContactId,
+          '_method': 'PUT'
+        };
+      }
+    });
+  }, function () {
+    return EASY.contacts && EASY.contacts.registerAssignableEntity;
+  });
+</script>

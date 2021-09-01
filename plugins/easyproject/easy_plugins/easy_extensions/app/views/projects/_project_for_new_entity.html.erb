@@ -1,0 +1,23 @@
+<%
+  easy_new_entity_auto_complete_path ||= easy_autocomplete_path((project && project.easy_is_easy_template?) ? 'project_templates' : 'visible_projects')
+  options ||= {}
+%>
+<% if entity_label %>
+  <h3 class="title"><%= l(entity_label.to_sym) %></h3>
+<% end %>
+<%= form_tag(url_for, :method => :get) do %>
+  <div class="box tabular">
+    <p>
+      <%= hidden_field_tag('type', type) %>
+      <%= label_tag('project_id_autocomplete', l(:field_project), :class => 'required') %>
+      <%= easy_autocomplete_tag('project_id',
+        {:name => project.try(:name), :id => project.try(:id)}, easy_new_entity_auto_complete_path,
+        {:root_element => 'projects', :html_options => {:id => 'project_id'}}.merge(options)
+        ) -%>
+    </p>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(initEasyAutocomplete);
+</script>

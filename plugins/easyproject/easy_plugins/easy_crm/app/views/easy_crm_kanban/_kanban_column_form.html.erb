@@ -1,0 +1,41 @@
+<%
+  if setting
+    statuses ||= setting['easy_crm_case_statuses']
+    name ||= setting['name']
+    drop_in ||= setting['drop_in_status'].presence
+    sum_column ||= setting['sum_column']
+  end
+%>
+
+<div class="splitcontent">
+  <div class="splitcontent-left">
+    <%= f.label :name, l(:label_easy_crm_kanban_columns_name) %>
+    <%= f.text_field :name, value: name %>
+  </div>
+  <div class="splitcontent-rigth">
+    <%= f.label :drop_in_status, l(:label_easy_crm_kanban_drop_in) %>
+    <%= f.select :drop_in_status, options_from_collection_for_select(@all_statuses, :id, :name, drop_in) %>
+  </div>
+</div>
+<h3><%= l(:label_easy_crm_kanban_statuses) %></h3>
+<ul class="cols-3">
+  <% @all_statuses.each do |status| %>
+    <li>
+      <% dom_check_box_id = "#{sanitize_to_id("#{f.object_name}[easy_crm_case_statuses][]")}_#{status.id}" %>
+      <% box = check_box_tag "#{f.object_name}[easy_crm_case_statuses][]", status.id, statuses && statuses.include?(status.id.to_s), id: dom_check_box_id %>
+      <%= label_tag "#{sanitize_to_id("#{f.object_name}[easy_crm_case_statuses][]")}_#{status.id}", box + status.name, class: 'inline checkbox', for: dom_check_box_id %>
+    </li>
+  <% end %>
+</ul>
+<h3><%= l(:label_easy_crm_kanban_sum_column) %></h3>
+<ul class="cols-3">
+  <% EasyCrmCaseQuery.new.available_columns.select { |x| x.sumable? }.each do |column| %>
+    <li>
+      <% box = radio_button_tag "#{f.object_name}[sum_column]", column.name, sum_column == column.name.to_s %>
+      <%= label_tag "#{f.object_name}[sum_column]_#{column.name}", box + column.caption(true) %>
+    </li>
+  <% end %>
+</ul>
+<p class="toolbar">
+  <%= link_to l(:button_delete), 'javascript:void(0)', class: 'icon icon-del remove_status button', title: l(:label_agile_remove_status) %>
+</p>

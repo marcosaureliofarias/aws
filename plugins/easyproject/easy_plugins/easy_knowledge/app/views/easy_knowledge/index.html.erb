@@ -1,0 +1,58 @@
+<% modul_uniq_id ||= '' -%>
+
+<h2><%= l(:label_easy_knowledge_index) -%></h2>
+<div id="easy-knowledge-index-container">
+  <% {
+         :query_recommended => :label_easy_knowledge_index_recommended,
+         :query_newest => :label_easy_knowledge_index_news,
+         :query_hot => :label_easy_knowledge_index_topread
+     }.each do |query_key, heading| %>
+    <% id = modul_uniq_id + query_key.to_s %>
+    <div class="box">
+      <%= toggling_container((id + '_container'), User.current, {:heading => l(heading)}) do %>
+        <%= render @dashboard_data[query_key][:query],
+                   :entities => @dashboard_data[query_key][:entities],
+                   :modul_uniq_id => modul_uniq_id,
+                   :container_id => id,
+                   :options => {
+                       :go_to_url => {:controller => 'easy_knowledge_stories', :action => 'show'},
+                       :hascontextmenu => true, :allow_avatar => true, :disable_sort => true,
+                       :render_index => false
+                   }
+        %>
+      <% end -%>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_easy_knowledge_new_story), new_easy_knowledge_story_path, :class => 'button-positive icon icon-add' if @can[:create_global_stories] -%>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:label_easy_knowledge_stories_all), easy_knowledge_stories_path({:set_filter => 0}), :class => 'icon icon-adressbook button') -%>
+  <%= link_to(l(:button_show_favorite_stories), easy_knowledge_stories_path(:set_filter => 1, :favorited => 1), :class => 'icon icon-star button') %>
+  <%= link_to(l(:label_easy_knowledge_manage_user_category), easy_knowledge_users_path, :title => l(:label_easy_knowledge_manage_user_category), :class => 'icon icon-user button') if @can[:manage_own_personal_categories] -%>
+  <%= link_to(l(:label_easy_knowledge_manage_global_category), easy_knowledge_globals_path, :title => l(:label_easy_knowledge_manage_global_category), :class => 'icon icon-bulb button') if @can[:manage_global_categories] -%>
+<% end %>
+
+<% content_for :sidebar do %>
+  <div class="box">
+    <%= toggling_container('easy_knowledge_sidebar_categories_tree', User.current, {:heading =>  l(:label_easy_knowledge_categories)}) do %>
+      <div id="knowledge-categories" class="list-group">
+        <!--AJAX loaded-->
+      </div>
+    <% end -%>
+  </div>
+  <%#= render :partial => 'easy_knowledge/sidebar_tools' -%>
+<% end if @can[:manage_own_personal_categories] || User.current.allowed_to_globally?(:read_global_stories, {}) || User.current.allowed_to_globally?(:manage_global_categories, {}) || User.current.allowed_to_globally?(:manage_project_categories, {}) || User.current.allowed_to_globally?(:read_project_stories, {}) %>
+
+<% include_knowledge_headers_tags %>
+<%= context_menu context_menus_easy_knowledge_stories_path(:back_url => easy_knowledge_path) %>
+
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    $("#knowledge-categories").load('<%= easy_knowledge_sidebar_categories_path %>');
+  });
+</script>

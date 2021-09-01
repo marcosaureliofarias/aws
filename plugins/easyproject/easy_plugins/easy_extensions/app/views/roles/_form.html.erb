@@ -1,0 +1,184 @@
+<%= error_messages_for 'role' %>
+<div class="tabular">
+  <% unless @role.builtin? %>
+    <p><%= f.text_field :name, :required => true %></p>
+  <% end %>
+
+  <p><%= f.text_field :description %></p>
+
+  <% unless @role.builtin? %>
+    <p>
+      <%= f.check_box :assignable %>
+      <%= render partial: 'tooltip_for_role_generals', locals: { name: :assignable } %>
+    </p>
+    <p><%= f.check_box :limit_assignable_users %></p>
+  <% end %>
+
+  <% unless @role.anonymous? %>
+    <p class="view_issues_shown">
+      <%= f.select :issues_visibility, Role::ISSUES_VISIBILITY_OPTIONS.collect { |v| [l(v.last), v.first] } %>
+      <%= render partial: 'tooltip_for_role_generals', locals: { name: :issues_visibility } %>
+    </p>
+<% end %>
+
+  <% unless @role.anonymous? %>
+    <p class="view_time_entries_shown">
+      <%= f.select :time_entries_visibility, Role::TIME_ENTRIES_VISIBILITY_OPTIONS.collect { |v| [l(v.last), v.first] } %>
+      <%= render partial: 'tooltip_for_role_generals', locals: { name: :time_entries_visibility } %>
+    </p>
+<% end %>
+
+  <p>
+    <%= f.select :users_visibility, Role::USERS_VISIBILITY_OPTIONS.collect { |v| [l(v.last), v.first] } %>
+    <%= render partial: 'tooltip_for_role_generals', locals: { name: :users_visibility } %>
+  </p>
+
+  <% unless @role.builtin? %>
+    <p class="manage_members_shown">
+      <label><%= l(:label_member_management) %><%= render partial: 'tooltip_for_role_generals', locals: { name: 'member_management' } %></label>
+      <label class="block">
+        <%= radio_button_tag 'role[all_roles_managed]', 1, @role.all_roles_managed?, :id => 'role_all_roles_managed_on',
+                             :data => {:disables => '.role_managed_role input'} %>
+        <%= l(:label_member_management_all_roles) %>
+      </label>
+      <label class="block">
+        <%= radio_button_tag 'role[all_roles_managed]', 0, !@role.all_roles_managed?, :id => 'role_all_roles_managed_off',
+                             :data => {:enables => '.role_managed_role input'} %>
+        <%= l(:label_member_management_selected_roles_only) %>:
+      </label>
+      <% Role.givable.sorted.each do |role| %>
+        <label class="block role_managed_role" style="padding-left:2em;">
+          <%= check_box_tag 'role[managed_role_ids][]', role.id, @role.managed_roles.to_a.include?(role), :id => nil %>
+          <%= role.name %>
+        </label>
+      <% end %>
+      <%= hidden_field_tag 'role[managed_role_ids][]', '' %>
+  <% end %>
+
+  <% if @role.new_record? && @roles.any? %>
+    <p><label for="copy_workflow_from"><%= l(:label_copy_workflow_from) %></label>
+      <%= select_tag(:copy_workflow_from, content_tag("option") + options_from_collection_for_select(@roles, :id, :name, params[:copy_workflow_from] || @copy_from.try(:id))) %>
+    </p>
+  <% end %>
+
+  <%= call_hook(:view_roles_form_top, {:form => f, :role => @role}) -%>
+
+  <% setable_permissions = @role.setable_permissions %>
+  <% perms_by_group_and_module = group_by_global_and_module(setable_permissions) %>
+  <% perms_by_group_and_module.each do |group, perms_by_module| %>
+    <%= toggling_fieldset(l("label_permissions_#{group}")) do %>
+      <div id="<%= group %>_permissions">
+        <% sorted_permission_keys(perms_by_module).each do |mod| %>
+          <% next if module_perm_disabled?(mod) %>
+          <p class="cols-3">
+            <label><b><%= mod.blank? ? l(:label_project) : l_or_humanize(mod, :prefix => 'project_module_') %></b></label>
+            <% perms_by_module[mod].each do |permission| %>
+              <% next if permission_disabled?(mod, permission) %>
+              <label class="inline checkbox">
+                <%= check_box_tag 'role[permissions][]',
+                                  permission.name,
+                                  (@role.permissions.include? permission.name),
+                                  id: "role_permissions_#{permission.name}",
+                                  data: { shows:      ".#{permission.name}_shown",
+                                          depends_on: permission.depends_on
+                                        } 
+                %>
+                <span style="overflow: auto"><%= l_or_humanize(permission.name, :prefix => 'permission_') %></span>
+                <% if permission.permission_flags.any? %>
+                  <span class="permission-flags">
+                    &nbsp;(<%= permission.permission_flags.collect { |x| content_tag(:span, l("label_permission_flag_#{x}"), :title => l(:"title_permission_flag_#{x}", :class => "permission-flag #{x}")) }.join(', ').html_safe -%>)
+                  </span>
+                <% end %>
+                <% if permission_tooltip = l('permission_tooltip_' + permission.name.to_s, default: nil) %>
+                  <span class="permission-tooltip" style="display: inline-block; padding-left: 10px; padding-right: 10px;">
+                    <span class='icon icon-help-bubble' style="font-size: initial; line-height: initial;"></span>
+                    <span class="tooltip" style="display: none;"><em style="max-width: 300px; display: block;"><%= permission_tooltip %></em></span>
+                  </span>
+                <% end %>
+              </label>
+              
+            <% end %>
+          </p>
+        <% end %>
+        <div class="toolbar"><%= check_all_links group+'_permissions' %></div>
+        <%= hidden_field_tag 'role[permissions][]', '' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div id="role-permissions-trackers" class="view_issues_shown">
+  <h3><%= l(:label_issue_tracking) %></h3>
+  <% permissions = [:view_issues, :add_issues, :edit_issues, :add_issue_notes, :delete_issues] & setable_permissions.collect(&:name) %>
+
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+      <tr>
+        <th><%= l(:label_tracker) %></th>
+        <% permissions.each do |permission| %>
+          <th class="<%= "#{permission}_shown" %>"><%= l("permission_#{permission}") %></th>
+        <% end %>
+        </thead>
+      <tbody>
+      <tr>
+        <td class="name"><b><%= l(:label_tracker_all) %></b></td>
+        <% permissions.each do |permission| %>
+          <td class="<%= "#{permission}_shown" %>">
+            <%= hidden_field_tag "role[permissions_all_trackers][#{permission}]", '0', :id => nil %>
+            <%= check_box_tag "role[permissions_all_trackers][#{permission}]",
+                              '1',
+                              @role.permissions_all_trackers?(permission),
+                              :class => "#{permission}_shown",
+                              :data => {:disables => ".#{permission}_tracker"} %>
+          </td>
+        <% end %>
+      </tr>
+      <% Tracker.sorted.all.each do |tracker| %>
+        <tr>
+          <td class="name"><%= tracker.name %></td>
+          <% permissions.each do |permission| %>
+            <td class="<%= "#{permission}_shown" %>"><%= check_box_tag "role[permissions_tracker_ids][#{permission}][]",
+                                                                       tracker.id,
+                                                                       @role.permissions_tracker_ids?(permission, tracker.id),
+                                                                       :class => "#{permission}_tracker",
+                                                                       :id => "role_permissions_tracker_ids_add_issues_#{tracker.id}" %></td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% permissions.each do |permission| %>
+    <%= hidden_field_tag "role[permissions_tracker_ids][#{permission}][]", '' %>
+  <% end %>
+</div>
+
+<%= call_hook(:view_roles_form_bottom, {:form => f, :role => @role}) -%>
+
+<% if @role && !@role.new_record? && @role.builtin == Role::BUILTIN_ANONYMOUS %>
+  <% content_for :easy_page_layout_service_box do %>
+    <%= link_to l(:button_edit_anonymous_user), {:controller => 'users', :action => 'edit', :id => User.anonymous}, :class => 'button', :title => l(:title_edit_anonymous_user) %>
+  <% end %>
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.main(function(){
+    <%
+      lang_keys = {
+        dependencyEnable: l(:text_permission_dependency_enable, name: "%{name}"),
+        dependencyDisable: l(:text_permission_dependency_disable, name: "%{name}"),
+        textUnsatisfied: l(:text_permission_dependencies_unsatisfied),
+        buttonApply: l(:button_apply),
+        buttonCancel: l(:button_cancel)
+      }
+    %>
+
+    EASY.RolesI18n = <%= lang_keys.to_json.html_safe %>;
+  });
+</script>
+
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag('roles', defer: true) %>
+<% end %>

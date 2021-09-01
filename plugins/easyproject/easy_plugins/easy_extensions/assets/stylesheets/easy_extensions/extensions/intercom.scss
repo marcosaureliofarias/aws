@@ -1,0 +1,14 @@
+#chat-application {
+  @include respond-to(max-menu-collapse) {
+    bottom: $servicebar-height !important;
+  }
+  @include respond-to(max-sidebar-collapse) {
+    bottom: .65*$servicebar-height !important;
+  }
+  @include respond-to(max-small-screen) {
+    display: none !important;
+  }
+  .left-menu-opened & {
+    display: none !important;
+  }
+}

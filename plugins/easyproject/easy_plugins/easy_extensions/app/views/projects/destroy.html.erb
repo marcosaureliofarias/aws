@@ -1,0 +1,28 @@
+<%= title ("#{l(:label_confirmation)}: #{l(:text_project_destroy_title, project: @project_to_destroy)}")%>
+
+<div class='warning text-center'>
+  <p>
+    <%= l(:text_project_destroy_confirmation) %>
+    <%= call_hook(:view_project_destroy_confirmations, project_to_destroy: @project_to_destroy) %>
+
+    <% if @project_to_destroy.descendants.any? %>
+      <br /><%= l(:text_subprojects_destroy_warning, content_tag(:strong, h(@project_to_destroy.descendants.collect{|p| p.to_s}.join(', ')))).html_safe %>
+    <% end %>
+  </p>
+</div>
+  <%= form_tag(project_path(@project_to_destroy), method: :delete, class: 'form-box text-center') do %>
+    <p style="white-space: pre;">
+      <%= l(:text_project_detroy_confirmation_note_html, project: h(@project_to_destroy)).html_safe %>
+    </p>
+    <p>
+      <%= label_for_field :confirm_project_name, label: l(:field_project), required: true %>
+      <%= text_field_tag :confirm_project_name %>
+    </p>
+    <div class="form-actions">
+      <%= label_tag :confirm, class: 'inline checkbox required' do %>
+        <%= check_box_tag :confirm, 1 %> <%= l(:text_project_destroy_title, project: @project_to_destroy) %>
+      <% end %><br/>
+      <%= submit_tag l(:button_delete), class: 'button button-negative' %>
+      <%= link_to l(:button_close), project_path(@project_to_destroy), method: :get, class: 'button' %>
+    </div>
+  <% end %>

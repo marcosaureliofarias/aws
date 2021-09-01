@@ -1,0 +1,116 @@
+<h2><%= @easy_money_periodical_entity.name %></h2>
+
+<div class="box splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      Until today:<%= format_price @easy_money_periodical_entity.current_price %>
+    </p>
+  </div>
+  <div class="splitcontentright">
+    <p>
+      Total :<%= format_price @easy_money_periodical_entity.total_price %>
+    </p>
+  </div>
+</div>
+<div class="clear"></div>
+<div class="box">
+  <%= toggling_container("easy_money_periodical_entity_#{@easy_money_periodical_entity.id}_toggler", User.current, {:heading => l(:label_history), :heading_links =>
+        [link_to_function('', "toggleReports('simple_list_container', 'simple_chart_container', 'chart')", :class => 'icon icon-report', :title => l(:title_change_layout)),
+        link_to_function('', "toggleReports('simple_list_container', 'simple_chart_container', 'table')", :class => 'icon icon-bullet-list', :title => l(:title_change_layout)),
+        link_to_function('', "toggleReports('simple_list_container', 'simple_chart_container', '')", :class => 'icon icon-list', :title => l(:title_change_layout))
+        ], :wrapping_heading_element_classes => 'icon icon-reorder'}) do  %>
+    <div class="splitcontentleft autoscroll" id="simple_list_container">
+      <%= render :partial => 'easy_money_periodical_entity_items/index', :locals => {:easy_money_periodical_entity => @easy_money_periodical_entity, :easy_money_periodical_entity_items => @easy_money_periodical_entity.easy_money_periodical_entity_items.sorted_by_period} %>
+    </div>
+    <div class="splitcontentright autoscroll" id="simple_chart_container">
+      <div id="simple_chart"></div>
+    </div>
+  <% end %>
+</div>
+<div class="clear"></div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= content_for :sidebar do -%>
+  <% if @easy_money_periodical_entity.user_defined_items? %>
+    <%= link_to 'New item', new_easy_money_periodical_entity_easy_money_periodical_entity_item_path(@easy_money_periodical_entity), :class => 'button-positive icon icon-add', :remote => true %>
+  <% end %>
+  <%= link_to 'Overview', easy_money2_project_path(@project.id), :class => 'button' %>
+<% end -%>
+
+<% include_jqplot_scripts %>
+
+<script type="text/javascript">
+  function toggleReports(table_container_id, chart_container_id, layout) {
+    var table_container = $('#' + table_container_id);
+    var chart_container = $('#' + chart_container_id);
+
+    table_container.removeClass('splitcontentleft');
+    chart_container.removeClass('splitcontentright');
+
+    if (layout === 'chart') {
+      chart_container.insertBefore(table_container);
+    } else if (layout === 'table') {
+      table_container.insertBefore(chart_container);
+    } else {
+      table_container.insertBefore(chart_container);
+      table_container.addClass('splitcontentleft');
+      chart_container.addClass('splitcontentright');
+    }
+  }
+
+  EASY.schedule.main(function () {
+    function createBarChart(chart_id, data, ticks, series) {
+      if (data.length === 0 || data[0].length === 0)
+        return;
+      $('#' + chart_id).width(Math.max.apply(Math, [$('#' + chart_id).parent().width() - 15, 300 + (ticks.length * 15)]));
+      var chart = $.jqplot(chart_id, data, {
+        stackSeries: true,
+        height: 400,
+        animate: true,
+        animateReplot: true,
+        seriesDefaults: {
+          renderer: $.jqplot.BarRenderer,
+          rendererOptions: {
+            animation: {
+              speed: 2000
+            },
+            fillToZero: true
+          },
+          pointLabels: {show: true, stackedValue: true, hideZeros: true}
+        },
+        series: series,
+        axes: {
+          xaxis: {
+            renderer: $.jqplot.CategoryAxisRenderer,
+            ticks: ticks,
+            tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+            labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+            tickOptions: {
+              angle: -45, showGridline: false
+            }
+          },
+          yaxis: {
+            tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+            tickOptions: {showGridline: false}
+          }
+        },
+        legend: {
+          show: true,
+          renderer: $.jqplot.EnhancedLegendRenderer,
+          location: 's',
+          placement: 'outsideGrid',
+          rendererOptions: {numberRows: 1 + Math.floor(data.length / 5)}
+        },
+        highlighter: {
+          show: true,
+          tooltipAxes: 'y',
+          useAxesFormatters: true,
+          formatString: '%s <%= l(:label_issue_plural) %>'
+        }
+      });
+    }
+
+    createBarChart('simple_chart', <%= @chart_data.to_json.html_safe %>, <%= @chart_ticks.to_json.html_safe %>, <%= @chart_series.collect{|l| {'label' => j(l)}}.to_json.html_safe %>);
+  });
+</script>

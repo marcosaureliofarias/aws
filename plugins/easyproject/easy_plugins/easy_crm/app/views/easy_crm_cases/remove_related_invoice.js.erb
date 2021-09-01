@@ -1,0 +1,5 @@
+$("#<%= dom_id(@easy_crm_case) %>").remove();
+$("#context-menu").hide();
+<% @easy_invoice_ids.each do |id| %>
+  $("#entity_<%= dom_id(@easy_crm_case) %>_easy_invoices_container #entity-<%= id %>").remove();
+<% end %>

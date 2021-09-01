@@ -1,0 +1,48 @@
+<div id="modal-dialog-add-watchers" class="form-box">
+  <% m = {
+           controller: 'watchers',
+           action: 'autocomplete_for_user',
+           object_type: watched.class.name.underscore,
+           object_id: watchables,
+           q: params[:q],
+           format: 'js'} %>
+  <%= render partial: 'common/freetext_quick_search', locals: { free_search_options: {
+    free_search_url: url_for(m),
+    free_search_update_counts: false,
+    free_search_field_name: :easy_query_q,
+    free_search_element_to_update: 'ajax-modal',
+    placeholder: l(:label_search_for_user_or_group)},
+    freetext_reset: url_for(m.merge({ q: nil, reset: true }))} %>
+
+  <%= content_tag :h3, l(:permission_add_issue_watchers), :class => 'title' -%>
+
+  <div class="clear"></div>
+  <%= form_tag(watched ? watchers_path : watchers_append_path,
+    :remote => true,
+    :method => :post,
+    :id => 'new-watcher-form') do %>
+    <% if watched %>
+      <%= hidden_field_tag 'object_type', watched.class.name.underscore %>
+      <% watchables.each do |object| %>
+        <%= hidden_field_tag 'object_id[]', object.id %>
+      <% end %>
+    <% end %>
+    <%= hidden_field_tag 'project_id', @project.id if @project %>
+    <div id="modal-selector-entities">
+      <%= call_hook(:view_watcher_new_modal_search_top, project: @project, watched: watched ) %>
+        <%= toggling_fieldset(l(:label_group_plural), {id: 'modal_watchers_group_select'}) do %>
+          <div class="groups">
+          <%= render :partial => 'watchers/watchers_avatar_and_checkbox', :locals => {:principals => groups, :entity => watched, :project => @project, :object_name => 'watcher', :method => 'group_ids', :principal_count => @group_count, :principal_pages => @group_pages, :freetext_search_params => m} -%>
+          </div>
+        <% end -%>
+      <%= toggling_fieldset(l(:label_user_plural), {id: 'modal_watchers_user_select'}) do %>
+        <ul class="link-list">
+          <% role_names = @project.try(:grouped_user_role_names, available_watchers) %>
+          <div class="users">
+          <%= render :partial => 'watchers/watchers_avatar_and_checkbox', :locals => {:principals => available_watchers, :entity => watched, :project => @project, :role_names => role_names, :object_name => 'watcher', :method => 'user_ids', :principal_count => @user_count, :principal_pages => @user_pages, :freetext_search_params => m} -%>
+          </div>
+        </ul>
+      <% end -%>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,148 @@
+---
+hu:
+  easy_mindmup:
+    button_add_child: Alfeladat hozzáadása
+    button_add_parent: Szülőfeladat hozzáadása
+    button_add_sibling: Társfeladat hozzáadása
+    button_all_icons: Ikonok
+    button_collapse: Bezár
+    button_collapse_all: Bezár/Kinyit
+    button_cut: Kivág
+    button_edit_data: Adat szerkesztése
+    button_expand: Kinyit
+    button_expand_all: Összes kinyit. 
+    button_expand_collapse: Kinyit/Bezár
+    button_hotkeys: Gyorsgombok
+    button_legend: Magyarázat
+    button_one_side: Egy oldal
+    button_paste: Beilleszt
+    button_redo: Vissza
+    button_remove_node: Csomópont törlése 
+    button_show_links: Függőségek megjelenítése
+    button_undo: Vissza
+    error_create: nem hozható létre
+    error_delete: nem lehet törölni
+    error_update: nem lehet frissíteni
+    errors:
+      no_rest_api: A REST API ki van kapcsolva. Kérjük, engedélyezze az Adminisztrációban. 
+      not_subtaskable: '"%{task_name}" feladat nem lehet alfeladat a feladat típus
+        beállítása miatt.'
+    free:
+      button_upgrade: Szerezze be a Teljes verziót
+      feature_context_menu: Csomópontok tulajdonságainak módosítása kontext menü szerint
+      feature_filtering: Csomópontok szűrése tulajdonságok szerint
+      header_not_available: Csak a Teljes verzióban elérhető
+    hotkeys:
+      info_mac_metakey: Mac OSX rendszerben a Ctrl billentyűs parancsokat használhatja
+        Ctrl és Cmd billentyűkkel is. Néhány böngésző korlátozhatja a gyorsgomb parancsokat.
+        Például, ha a böngészőben nem működik a Cmd+szóköz parancs, akkor próbálja
+        meg a Ctrl+szóközt.
+      keyboard:
+      - title: Ábra szerkesztés
+        hotkeys:
+        - hotkey: Enter
+          info: Feladat hozzáadása
+        - hotkey: Shift+Enter
+          info: Feladat hozzáadása az előző fölé vagy sortörés (ha a feladatnevet
+            szerkeszti)
+        - hotkey: Tab vagy Insert
+          info: Alfeladat hozzáadása
+        - hotkey: Shift+Tab
+          info: Szülőfeladat beszúrása
+        - hotkey: Szóköz
+          info: Ábra átnevezése
+        - hotkey: Shift+Szóköz
+          info: Ábra értékeinek szerkesztése
+        - hotkey: Backspace vagy Delete
+          info: Ábra törlése
+        - hotkey: Ctrl+Fel/Le
+          info: Ábra mozgatása fel/le
+      - title: Szerkesztés
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Mentés
+        - hotkey: Ctrl+X or C
+          info: Kivágás
+        - hotkey: Ctrl+C vagy Y
+          info: Másolás
+        - hotkey: Ctrl+V vagy P
+          info: Beillesztés
+        - hotkey: U vagy Ctrl+Z
+          info: Visszavonás
+        - hotkey: R vagy Ctrl+Y vagy Ctrl+Shift+Z
+          info: Ismét
+      - title: Kijelölés
+        hotkeys:
+        - hotkey: Nyilak
+          info: A kijelölt ábrához képest a fenti/lenti/jobbra/balra lévő ábrákat
+            jelöli ki
+        - hotkey: Shift + Nyilak
+          info: Ábra hozzáadása a kiválasztott ábrához képest fentre/lentre/jobbra/balra
+            (hasznos az egymás melletti feladatok többszörös kijelölésekor)
+        - hotkey: "{"
+          info: 'Többszörös kijelölés: kiválasztja a megjelölt ábrát és az összes
+            alatta lévőt'
+        - hotkey: "["
+          info: 'Többszörös kijelölés: kiválasztja a megjelölt ábra alatt lévő összes
+            ábrát (de magát az ábrát nem)'
+        - hotkey: "="
+          info: 'Többszörös kijelölés: kiválasztja a megjelölt ábra melletti feladatokat
+            (amelyeknek azonos a szülőfeladata)'
+        - hotkey: "."
+          info: Többszörös kijelölés megszüntetése és csak a jelenlegi ábra kiválasztása
+        - hotkey: 1 - 9
+          info: Az összes megadott szinten lévő ábra kijelölése (pl. 1 kijelöli az
+            összes első szinten lévő ábrát)
+      - title: Nézet és képernyőkép módosítás
+        hotkeys:
+        - hotkey: "/ or F"
+          info: Ábrák kinyitása és összezárása (alfeladatok megjelenítése vagy elrejtése)
+        - hotkey: Ctrl + or Z
+          info: Nagyítás
+        - hotkey: Ctrl - or Shift Z
+          info: Kicsinyítés
+        - hotkey: Esc, 0, Ctrl+0
+          info: Képernyőnézet visszaállítása - a főábra kiválasztása, és a képernyő
+            közepére helyezése
+      mouse:
+      - action: Kép mozgatása
+        gesture: Fogja meg az ábrát vagy a hátteret és mozgassa arrébb, vagy az érintőpad
+          (touchpad) segítségével görgesse a képet.
+      - action: Ábra kiválasztása
+        gesture: Kattintson rá
+      - action: Ábrák többszörös kijelölése
+        gesture: Shift+kattintás
+      - action: Ábrák átrendezése
+        gesture: Fogja meg az ábrát a többi között, mozgassa vízszintesen a megfelelő
+          helyre. Egy fekete nyíl mutatja az új helyet.
+      - action: Kézzel igazítsa új helyre az ábrát
+        gesture: Fogja meg az ábrát, húzza olyan helyre, ahol nem jelenik meg a fekete
+          nyíl. Ha a helyen még látszik a nyíl, akkor tartsa lenyomva a Shift gombot.
+          Vegye figyelembe, hogy az alapábra alfeladatait bárhova mozgathatja, de
+          az alatta lévő szinteket már csak a szülőfeladat irányában mozgathatja.
+      - action: Ábra átnevezése
+        gesture: Kattintson duplán a névre
+      - action: Lenyíló lista megnyitása
+        gesture: Jobb egér gombbal kattintson az ábrára vagy duplán a háttérre vagy
+          hosszan az ábrára, ha érintőképernyős eszközt használ
+      - action: Szülőfeladat módosítása
+        gesture: Fogd és vidd módszerrel tegye át az ábrát egy másik ábra alá (körkörös
+          hivatkozás nem engedélyezett, saját alfeladat alá nem húzhatja az ábrát)
+      - action: Feladat vagy projekt megnyitása egy új ablakban
+        gesture: Alt+kattintás
+      title_key_shortcuts: Billentyűzet műveletek
+      title_mouse_shortcuts: Egér műveletek
+      title_shortcuts: Gyorsgombok
+    info_all_saved: Módosítások sikeresen mentve 
+    info_no_permission: Nincs jogosultsága ehhez.
+    label_go_to: Ugrás ide: 
+    label_hide_unused: Nem használtak elrejtése
+    label_tooltip_display_info: A magyarázat az összes állapotot mutatja, de lehetnek
+      közte olyanok, amelyeket nem használhat.
+    save_info:
+      saved: Mentve
+    warning_delete_node: Biztosan törölni akarja a(z) {{name}} elemet és annak alsóbb
+      szintű elemeit?
+    warning_delete_nodes: Biztosan törölni akarja ezeket az elemeket és annak alsóbb
+      szintű elemeit?
+    warning_not_saved: nincs megfelelően mentve

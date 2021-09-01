@@ -1,0 +1,173 @@
+%attributes{
+  @extend %form-box;
+  margin: auto;
+  padding: auto;
+  .highlight{
+    text-align: center;
+    .big, .bigger{
+      font-weight: bold;
+    }
+    label{
+      @include small;
+      margin-bottom: $gap;
+    }
+  }
+}
+
+.attribute {
+  min-height: 22px;
+  margin: 0 -0.5*$gap;
+  padding: 0 0.5*$gap;
+  .tabular & {
+    @extend %tabular-content;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 0;
+    @include respond-to(max-small-screen){
+      padding-left: 0;
+    }
+    & > label:first-child{
+      @extend %tabular-label;
+      &.inline,&.floating,&.block{
+        @extend %reset-tabular-label;
+      }
+    }
+  }
+  @include respond-to(max-sidebar-collapse){
+    //padding-left: 0.5*$gap !important;
+  }
+  clear: both;
+  &__list{
+    ul {
+      margin: $gap 0;
+    }
+    &--tree{
+    }
+  }
+  & > div.value{
+    overflow: hidden;
+    & > span {
+      display: block;
+    }
+    & span.multieditable-parent {
+      @supports (max-width: -moz-fit-content) or (max-width: -webkit-fit-content) {
+          display: block;
+          max-width: -moz-fit-content;    /* Firefox/Gecko */
+          max-width: -webkit-fit-content; /* Chrome */
+      }
+      @supports not ((max-width: -moz-fit-content) or (max-width: -webkit-fit-content)) {
+          @include display(inline-flex);
+      }
+      & > .multieditable {
+        display: block;
+        overflow: hidden;
+      }
+    }
+  }
+  & > div.label{
+    @include respond-to(min-mini-screen){
+      float: left;
+      width: 30%;
+    }
+    clear: left;
+    @include small;
+    font-weight: normal;
+    border-color: transparent !important;
+    background: none;
+    color: $color-text !important;
+    td{
+      padding-left: $gap;
+      padding-right: $gap;
+    }
+  }
+}
+div.attributes {
+  .new_easy_entity_activity & {
+    overflow: auto;
+    th,td{
+      vertical-align: top;
+    }
+  }
+}
+table.attributes {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: $gap;
+  th,td{
+    border: 1px solid transparent;
+    vertical-align: top;
+  }
+  td{
+    width: 35%;
+    padding: 1px 0;
+    padding-left: 0.5*$gap;
+    padding-right: 0.5*$gap;
+  }
+  th{
+    width: 15%;
+    @include smaller;
+    font-weight: normal;
+    border-color: transparent !important;
+    background: none;
+    color: $color-text !important;
+    td{
+      padding-left: $gap;
+      padding-right: $gap;
+    }
+  }
+  @include respond-to(max-small-screen) {
+    &, tbody, thead, tfoot, tr,th,td{
+      display: block;
+      overflow: hidden;
+    }
+    th{
+      clear: left;
+      width: 30% !important;
+      float: left;
+    }
+    td{
+      width: 60% !important;
+      float: right;
+    }
+  }
+  #easy_grid_sidebar & {
+    tr, th, td {
+      display: inherit;
+    }
+    tr {
+      clear: left;
+    }
+    th {
+      float: left;
+      width: 45%;
+      clear: left;
+    }
+    td {
+      width: auto;
+    }
+  }
+}
+
+.more-attributes-toggler{
+  @extend %button-mini;
+  text-align: center;
+  margin-bottom: 0;
+  &:before{
+    margin-right: 0.5*$gap;
+  }
+  &>span{
+    &:last-child{
+      display: none;
+    }
+  }
+  &.open{
+    &>span{
+      &:last-child{
+        display: inline;
+      }
+      &:first-child{
+        display: none;
+      }
+    }
+  }
+}

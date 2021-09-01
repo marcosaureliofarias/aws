@@ -1,0 +1,479 @@
+---
+it:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Impostazioni
+      easy_helpdesk_mail_template:
+        body_html: Corpo del messaggio (HTML)
+        body_plain: Corpo del messaggio (TESTO SEMPLICE)
+        issue_status_id: Stato task
+        mailboxes: 'Utilizza per casella di posta:'
+        reply_to: Rispondi a
+        sender: Mittente
+        subject: Oggetto
+      easy_helpdesk_project_matching:
+        domain_name: Nome dominio
+      easy_helpdesk_project_sla:
+        base: Contratto di servizio
+    models:
+      easy_helpdesk_mail_template: Modello di e-mail
+  aggregated_periods:
+    half-yearly: Semestrale
+    quarterly: Trimestrale
+    yearly: Annuale
+  button_easy_helpdesk_add_domain_name: Aggiungi e-mail o dominio
+  button_easy_helpdesk_add_mail_template: Aggiungi modello di e-mail
+  button_easy_helpdesk_add_mailbox: Aggiungi casella di posta
+  button_easy_helpdesk_add_project: Aggiungi progetto
+  button_easy_helpdesk_add_project_from_sidebar: Aggiungi a Help desk
+  button_easy_helpdesk_add_signature: Aggiungi firma
+  button_easy_helpdesk_add_sla: Aggiungi SLA
+  button_easy_helpdesk_all_mail_templates_index: Tutti i modelli di e-mail
+  button_easy_helpdesk_all_mailboxes_index: Tutte le caselle di posta
+  button_easy_helpdesk_all_projects_index: Tutti i progetti di Help desk
+  button_easy_helpdesk_mail_templates_index: Elenco modelli
+  button_easy_helpdesk_mailboxes_index: Elenco caselle di posta
+  button_easy_helpdesk_projects_index: Elenco progetti
+  button_easy_helpdesk_reports_index: Report
+  button_easy_helpdesk_settings_index: Impostazioni Help desk
+  confirm_edit_remaining_hours: Questo campo è calcolato in background, sei sicuro
+    di volerlo modificare manualmente?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Help desk
+  easy_helpdesk_plugin_description: "- Guida di soluzione complessa Desk"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Help desk
+    modules:
+      easy_helpdesk_create_mail_template_button: Pulsante per creazione modello di
+        email
+      easy_helpdesk_create_mailbox_button: Pulsante per creazione casella di posta
+      easy_helpdesk_mailboxes: Caselle di posta Help desk
+      easy_helpdesk_mailtemplates: Modelli di email Help desk
+      easy_helpdesk_project_query: Progetti Help desk da filtri
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Modelli di email Easy Help Desk
+        description: Modelli di email Easy Help Desk
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Caselle di posta Easy Help Desk
+        description: Visualizza caselle di posta Easy Help Desk
+    easy_helpdesk:
+      index:
+        caption: Help Desk
+        description: Visualizza dashboard di Help Desk
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - progetti
+      easy_helpdesk_report_monthly_query: Help desk - report mensili
+      easy_helpdesk_report_yearly_query: Help desk - report annuali
+      easy_sla_event_query: Eventi SLA
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Filtri privati ​​su progetti in Helpdesk
+        easy_helpdesk_report_monthly_query: FIltri privati su report mensili in Help
+          desk
+        easy_helpdesk_report_yearly_query: FIltri privati su report annuali in Help
+          desk
+      public:
+        easy_helpdesk_project_query: Filtri pubbliche su progetti in Helpdesk
+        easy_helpdesk_report_monthly_query: FIltri pubblici su report mensili in Help
+          desk
+        easy_helpdesk_report_yearly_query: FIltri pubblici su report annuali in Help
+          desk
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Help desk - calcolo ore aggregate
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Help desk - aggiornamento automatico ticketing
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Help desk - ricezione email
+      settings:
+        imap:
+          allow_override: Permette di sostituire i valori
+          allow_override_example: 'Esempio: tracker, priorità. Questi attributi possono
+            essere modificati tramite posta elettronica'
+          application_section_label: Altre impostazioni
+          category_example: 'Esempio: Categoria - nuovi compiti dovrà categoria Categoria'
+          email_section_label: Impostazioni casella di posta
+          folder: Cartella
+          folder_example: 'IMAP cartella da leggere (default: INBOX)'
+          folders: Cartelle da leggere
+          folders_example: 'Cartelle IMAP da leggere (una per linea) (predefinita:
+            POSTA IN ARRIVO; per scegliere la cartella usa "/", esempio: post in arrivo/vendite)'
+          host: Host
+          host_example: 'Esempio: mail.company.com'
+          label: IMAP
+          move_on_failure: In caso di fallimento sposta qui
+          move_on_failure_example: spostare mail che è stato ignorato nella cartella
+            MAILBOX
+          move_on_success: In caso di successo sposta qui
+          move_on_success_example: spostare mail che è stato correttamente ricevuto
+            a cassetta postale della cartella, altrimenti sarà cancellato
+          no_permission_check: Autorizzazioni Non dell'utente verificare
+          no_permission_check_example: ''
+          password: Password
+          password_example: 'Esempio: secretpassword'
+          port: Porta
+          port_example: 'Esempio: 143'
+          priority_example: 'Esempio: Alta - nuovi compiti avrà la priorità alta'
+          project_example: 'Esempio: 205 - nuovi compiti saranno creati al progetto
+            ID 205'
+          sender_mail: Mittente
+          sender_mail_example: 'Esempio: support@company.com'
+          ssl: SSL
+          ssl_example: Utilizza l'autenticazione SSL
+          status_example: 'Esempio: New - nuovi compiti avrà lo stato di New'
+          tracker_example: 'Esempio: Bug - nuovi compiti avranno Segnalazione errori'
+          unknown_user: Utente sconosciuto
+          unknown_user_example: accettare - Utente anonimo verrà utilizzato, creare
+            - utente sarà creata dalla posta, account di accesso in cemento - l'utente
+            sarà utilizzato
+          use_custom_sender: Usa un mittente differente
+          username: Utente
+          username_example: 'Esempio: accessuser@domain.com'
+        pop3:
+          allow_override: Permette di sostituire i valori
+          allow_override_example: 'Esempio: tracker, priorità. Questi attributi possono essere
+            modificati tramite posta elettronica'
+          apop: APOP
+          apop_example: Utilizzare l'autenticazione APOP
+          application_section_label: Altre impostazioni
+          category_example: 'Esempio: Categoria - nuovi compiti dovrà categoria Categoria'
+          delete_unprocessed: Elimina non trasformati
+          delete_unprocessed_example: Cancellare messaggi che non possono essere trattati
+          email_section_label: Impostazioni cassetta postale
+          host: Host
+          host_example: 'Esempio: mail.company.com'
+          label: POP3
+          no_permission_check: Autorizzazioni Non dell'utente verificare
+          no_permission_check_example: ''
+          password: Password
+          password_example: 'Esempio: secretpassword'
+          port: Porta
+          port_example: 'Esempio: 110'
+          priority_example: 'Esempio: Alta - nuovi compiti avrà la priorità alta'
+          project_example: 'Esempio: 205 - nuovi compiti saranno creati al progetto
+            ID 205'
+          sender_mail: Mittente
+          sender_mail_example: support@company.com
+          status_example: 'Esempio: New - nuovi compiti avrà lo stato di New'
+          tracker_example: 'Esempio: Bug - nuovi compiti avranno Segnalazione errori'
+          unknown_user: Utente sconosciuto
+          unknown_user_example: accettare - Utente anonimo verrà utilizzato, creare
+            - utente sarà creata dalla posta, account di accesso in cemento - l'utente
+            sarà utilizzato
+          use_custom_sender: Usa un mittente differente
+          username: Utente
+          username_example: 'Esempio: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: I campi 'Ore di risposta' e
+    'Ore di risoluzione' non possono essere vuoti. Compilarne uno.
+  error_easy_sla_hours_mode_greater_than: "%{title} %{to} deve essere maggiore di
+    %{from}"
+  error_update_easy_setting_helpdesk: L'impostazione non può essere salvata
+  field_aggregated_hours: Aggregato delle ore di Help desk
+  field_aggregated_hours_period: Periodo in aggregato
+  field_aggregated_hours_remaining: Ore di Help desk rimanenti
+  field_aggregated_hours_start_date: Data di inizio per l'aggregazione
+  field_automatically_issue_closer_enable: Abilita l'aggiornamento automatico dei
+    ticket?
+  field_date_to_response: SLA (data di risposta)
+  field_date_to_solve: SLA (data di soluzione)
+  field_default_for_mailbox: Predefinito per casella di posta
+  field_easy_helpdesk_has_sla: Ha SLA
+  field_easy_helpdesk_hours_to_response_before_expired: Ore di risposta
+  field_easy_helpdesk_hours_to_solve_before_expired: Ore di risoluzione
+  field_easy_helpdesk_ignorate_suspend_statuses: Crea eventi SLA da tutti gli stati
+  field_easy_helpdesk_mail_template: 'Invia e-mail veloce al cliente dal modello:'
+  field_easy_helpdesk_need_reaction: C'è bisogno di una reazione?
+  field_easy_helpdesk_project_keyword: Parola chiave per progetto
+  field_easy_helpdesk_project_matching:
+    domain_name: Email o dominio
+    email_field_from: è tratto dal campo FROM
+    email_field_to: è preso dal campo alla
+  field_easy_helpdesk_project_monthly_hours: Ore mensili contattuali di Help desk
+  field_easy_helpdesk_project_sla:
+    blank_keyword: Nome SLA mancante
+    hours_to_response: Ore per rispondere
+    hours_to_solve: Ore per risoluzione
+    keyword: Parola chiave SLA
+    title: Nome SLA
+  field_easy_helpdesk_project_spent_time_current_month: Ore di Help desk lavorate
+    (mese corrente)
+  field_easy_helpdesk_project_spent_time_last_month: Ore di Help desk lavorate (ultimo
+    mese)
+  field_easy_helpdesk_project_spent_time_total: Totale tempo impiegato in H.D.
+  field_easy_helpdesk_ticket_owner: Proprietario ticket
+  field_easy_reopen_at: Riaperto alle
+  field_easy_response_date_time: SLA (risposta)
+  field_easy_time_to_solve_paused_at: SLA messo in pausa alle
+  field_email_footer: Posta piè di pagina
+  field_email_header: Intestazione posta
+  field_first_response: Prima risposta
+  field_has_easy_sla_event: Ha eventi SLA
+  field_hide_sla_data: Nascondi dati SLA
+  field_hours_mode_from: Ore di lavoro SLA
+  field_hours_to_response: SLA (risposta)
+  field_hours_to_solve: SLA (risoluzione)
+  field_is_under_helpdesk: Si trova sotto Help desk
+  field_issue_closer_done_issue_status: Cambia lo stato in
+  field_issue_closer_done_issue_user: e assegna a
+  field_issue_closer_inactive_interval: e non ci sono aggiornamenti da
+  field_issue_closer_observe_issue_status_id: nello stato
+  field_monitor_due_date: Monitoraggio scadenza ticket di assistenza
+  field_monitor_spent_time: Monitoraggio tempo impiegato su ticket di assistenza
+  field_monthly_hours: Ore mensili di Help desk da contratto
+  field_occurence_time: Ora occorrenza
+  field_sla_resolve: Risoluzione SLA
+  field_sla_resolve_fulfilment: Adempimento risoluzione SLA
+  field_sla_response: Risposta SLA
+  field_sla_response_fulfilment: Adempimento risposta SLA
+  field_use_working_time: Conteggio SLA basato sul tempo lavorativo
+  heading_easy_helpdesk_index: Help desk
+  heading_easy_helpdesk_mail_templates_edit: Modifica modello di email
+  heading_easy_helpdesk_mail_templates_index: Modelli di email
+  heading_easy_helpdesk_mail_templates_new: Nuovo modello di email
+  heading_easy_helpdesk_mail_templates_show: Particolare del modello di posta
+  heading_easy_helpdesk_mailboxes_edit: Modifica casella di posta
+  heading_easy_helpdesk_mailboxes_index: Caselle di posta Help desk
+  heading_easy_helpdesk_mailboxes_new: Nuova casella di posta
+  heading_easy_helpdesk_projects_edit: Modifica progetto
+  heading_easy_helpdesk_projects_index: Progetti di Help desk
+  heading_easy_helpdesk_projects_new: Nuovo progetto di Help desk
+  heading_easy_helpdesk_projects_show: Dettaglio del progetto
+  heading_easy_helpdesk_reports_index: Help desk - report
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Report mensile delle ore prepagate
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Report annuale delle ore prepagate
+  heading_easy_helpdesk_settings: Impostazioni
+  hint_automatically_issue_closer_enable: ''
+  issue_closer_inactive_interval_units:
+    days: giorni
+    hours: ore
+  label_automatically_issue_closer: Aggiorna automaticamente i ticket quando sono
+  label_copy_settings_sla_from_project: Copia impostazioni SLA da progetto
+  label_easy_hekodesk_additional_task_info_received_emails: Email processate
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: Ore di Help desk da realizzare mese corrente
+  label_easy_helpdesk_actual_budget_to_spend: Ore rimanenti
+  label_easy_helpdesk_aggregated_from_last_period: Accumulo dall'ultimo periodo
+  label_easy_helpdesk_alerts: Configurazione avvisi
+  label_easy_helpdesk_allow_custom_sender: Consenti mittente personalizzato (per progetto)
+  label_easy_helpdesk_allow_override: Abilita aggiornamento caratteristiche task
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: Modifica campi di ticket
+    notify: Invia messaggio da modello
+  label_easy_helpdesk_client_response_status: Dopo la risposta del cliente, cambia
+    lo stato in
+  label_easy_helpdesk_domain_name: Dominio di posta
+  label_easy_helpdesk_emails: Impostazioni email- intestazione e piè di pagina
+  label_easy_helpdesk_enable_email_footer: Modifica piè di pagina per questo progetto
+  label_easy_helpdesk_enable_email_header: Cambia l'intestazione per questo progetto
+  label_easy_helpdesk_hours_comulated: Ore accumulate
+  label_easy_helpdesk_hours_comulated_range: dal %{from} al %{to}
+  label_easy_helpdesk_hours_per_month: Ore lavorate mese corrente
+  label_easy_helpdesk_ignore_cc: Ignora i CC delle email ricevute
+  label_easy_helpdesk_mail_signature: Help desk - firma
+  label_easy_helpdesk_matching: Email, domini, parole chiave considerate in questo
+    progetto
+  label_easy_helpdesk_message_above_variables: Il commento al task è mostrato sotto
+    il modello di email
+  label_easy_helpdesk_need_reaction: C'è bisogno di una reazione!
+  label_easy_helpdesk_project_helpdesk_tab: Help desk
+  label_easy_helpdesk_project_managed_by_helpdesk: Impostazioni Help desk
+  label_easy_helpdesk_project_plural: Progetti Help desk
+  label_easy_helpdesk_projects_sla_working_time_calendar: Giorni lavorativi secondo
+    SLA
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: Azzera SLA alla riapertura
+    di un task
+  label_easy_helpdesk_sender: Mittente
+  label_easy_helpdesk_sender_current_user: Utente attualmente connesso
+  label_easy_helpdesk_sender_is_user: Il mittente è l'utente attualmente connesso
+  label_easy_helpdesk_sender_mailbox_address: Indirizzo casella di posta
+  label_easy_helpdesk_sender_redmine_default: Predefinito da notifica email
+  label_easy_helpdesk_signature: Firma
+  label_easy_helpdesk_signature_name: Nome firma
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Accetta email autogenerate
+  label_easy_helpdesk_sla: Impostazioni SLA - priorità, tempo di risoluzione di un
+    ticket
+  label_easy_helpdesk_sla_start_states: Considere SLA per il ticket quando lo stato
+    è
+  label_easy_helpdesk_sla_stop_states: Sospendi SLA per il ticket quando lo stato
+    è
+  label_easy_sla_event: Evento SLA
+  label_easy_sla_events: Eventi SLA
+  label_easy_sla_events_reports: Report SLA
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - progetto
+  label_filter_group_easy_helpdesk_report_monthly_query: Help desk - report
+  label_filter_group_easy_helpdesk_report_query: Help desk - report
+  label_filter_group_easy_helpdesk_report_yearly_query: Help desk - report
+  label_filter_group_easy_sla_event_query: Evento SLA
+  label_filter_show_spent_time_current_month_equal_to_zero: Le ore lavorate in H.D.
+    (mese corrente) sono pari a zero
+  label_filter_show_spent_time_last_month_equal_to_zero: Le ore lavorate in H.D. (l'ultimo
+    mese) sono pari a zero
+  label_issue_bottom_from_easy_helpdesk: Il task è stato creato dall'Help desk (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Ore contrattuali mensili
+  label_sla_calendar_settings: Configurazione calendario
+  label_tab_sla_events: Eventi SLA
+  permission_manage_easy_helpdesk: Gestisci Help desk
+  permission_manage_easy_helpdesk_project: Gestisci progetti Help desk
+  permission_manage_easy_sla_events: Gestione eventi SLA
+  permission_view_easy_helpdesk_sla: Visualizza contratto di servizio sui task
+  permission_view_easy_sla_events: Visualizzazione eventi SLA
+  project_module_easy_helpdesk: Help desk
+  setting_easy_helpdesk_custom_sender: Mittente Help desk
+  text_easy_helpdesk_change_default_sender: Questa impostazione non apporta variazioni
+    al campo "rispondi a"
+  text_easy_helpdesk_custom_sender: Escludi mittente Help desk predefinito. Lascia
+    vuoto per disabilitare questa funzione.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: l'incaricato attuale
+    author: autore corrente
+    date: data corrente
+    mail_to: destinatario
+    spent_time: tempo trascorso sul task
+    task_closed_on: task chiuso in data
+    task_description: descrizione del task
+    task_done_ratio: percentuale di completamento task
+    task_due_date: scadenza del task
+    task_estimated_hours: ore previste per il task
+    task_history: cronologia di tutti i commenti al task
+    task_id: l'ID del task corrente
+    task_id_without_hash: l'ID del task corrente senza cancelletto
+    task_last_journal: l'ultimo commento pubblico al task
+    task_note: l'ultimo commento al task
+    task_priority: la priorità del task
+    task_project: il nome del progetto
+    task_public_url: l'URL pubblico del task
+    task_start_date: la data di inizio del task
+    task_status: stato del task
+    task_subject: l'oggetto del task corrente
+    task_tracker: tipo di task
+    user_first_name: il nome dell'utente corrente
+    user_last_name: il cognome dell'utente corrente
+    user_name: il nome completo dell'utente corrente
+    user_signature: la firma dell'utente attuale
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'L''oggetto e il corpo del messaggio possono contenere un testo dinamico:'
+  - "%task_id% (sostituzione dell'ID del task attuale)"
+  - "%task_subject% (sostituzione dell'oggetto del task attuale)"
+  - "%task_note% (sostituzione dell'ultimo commento sul task)"
+  - "%task_history% (sostituzione della cronologia di tutti i commenti non privati
+    del task)"
+  - "%time_spent% (sostituzione del tempo trascorso sul task)"
+  - "%assignee% (sostituzione dell'assegnatario attuale)"
+  - "%user_signature% (sostituzione della firma dell'utente attuale)"
+  - "%date% (sostituzione della data attuale)"
+  - "%task_tracker% (sostituzione del tracker)"
+  - "%task_project% (sostituzione del nome del progetto)"
+  - "%task_description% (sostituzione della descrizione del task)"
+  - "%task_status% (sostituzione dello stato del task)"
+  - "%task_priority% (sostituzione della priorità del task)"
+  - "%task_estimated_hours% (sostituzione delle ore previste per il task)"
+  - "%task_done_ratio% (sostituzione dell'indice di completamento del task)"
+  - "%task_public_url% (sostituzione dell'URL pubblico del task)"
+  - "%task_closed_on% (sostituzione della data di chusura del task)"
+  - "%task_due_date% (sostituzione della scadenza del task)"
+  - "%task_start_date% (sostituzione della data di inizio del task)"
+  - "%user_name% (sostituzione del nome completo dell'utente attuale)"
+  - "%user_first_name% (sostituzione del nome dell'utente attuale)"
+  - "%user_last_name% (sostituzione del cognome dell'utente attuale)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Oggetto e corpo dell''e-mail
+    possono contenere un testo dinamico:'
+  text_easy_helpdesk_mail_template_issue_status_id: Consente di associare un modello
+    di casella di posta a uno specifico stato del task. Selezionando lo stato predefinito
+    (con cui vengono creati i task), questo modello verrà utilizzato come risposta
+    automatica dopo che il task è stato creato dalla posta elettronica.
+  text_easy_helpdesk_mail_template_replacement_for: sostituto per
+  text_easy_helpdesk_mail_template_reply_to: "(Esempio Mr.) - la posta non è permessa qui"
+  text_easy_helpdesk_mail_template_reply_to2: I campi "Rispondi a" e "Mittente" sono
+    prelevati dal modello di casella di posta al fine di mantenere la comunicazione
+    all'interno di un task.
+  text_easy_helpdesk_mailbox_too_long_to_process: Questa casella di posta sta impiegando
+    troppo tempo per essere elaborata, senza alcuna risposta dal server. Probabilmente
+    ciò è causato dal numero eccessivo di e-mail nella casella di posta. Si prega
+    di rimuovere le vecchie e-mail dalla(e) cartella(e) elaborate da Helpdesk. Verificare
+    inoltre eventuali politiche di sicurezza per l'accesso ripetuto di applicazioni
+    esterne al proprio server di posta.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: È necessario assegnare queste
+    cassette postali ai progetti. Se non lo fai, sconosciuti mail in arrivo non saranno
+    oggetto di trattamento!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Queste caselle di posta non
+    contengono progetti predefiniti:'
+  text_easy_helpdesk_projects_alerts_list: 'Elenco di avvisi configurati:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Elenco degli avvisi per cui risulta
+    necessario impostare un destinatario:'
+  text_easy_helpdesk_projects_is_default: Se arrivano e-mail da mittenti sconosciuti,
+    il ticket verrà creato qui.
+  text_easy_helpdesk_projects_keyword_description: Se l'oggetto dell'e-mail contiene
+    una stringa definita, il ticket sarà assegnato a questo progetto. La parola chiave
+    differenzia fra maiusc/minusc.
+  text_easy_helpdesk_projects_keywords: Se l'oggetto dell'e-mail contiene la stringa
+    indicata, saranno impostati una priorità e una scadenza particolari. (Il simbolo
+    * significa che si considererà qualsiasi oggetto). Lasciare vuoto per impostare
+    gli SLA per i ticket creati manualmente.
+  text_easy_helpdesk_projects_monitor_due_date: Questo avviso predefinito invierà
+    una e-mail di notifica se un ticket viola lo SLA poiché non è stato risolto entro
+    il termine indicato dall'accordo.
+  text_easy_helpdesk_projects_monitor_spent_time: Questo avviso predefinito invierà
+    una e-mail di notifica se il tempo trascorso totale registrato in un mese particolare
+    eccede le ore di assistenza pre-pagate.
+  text_easy_helpdesk_projects_new_priority: Se non vengono specificate parole chiave,
+    lo SLA verrà impostato secondo la priorità scelta.
+  text_easy_helpdesk_projects_priority: Lo SLA verrà impostato secondo la priorità
+    scelta
+  text_easy_helpdesk_projects_sla_hours_to_response: Il tempo massimo concesso prima
+    di iniziare a operare su un ticket (primo cambiamento di stato).
+  text_easy_helpdesk_projects_sla_hours_to_solve: Il tempo massimo per risolvere un
+    ticket (con stato su chiuso).
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Alcuni task (%{count}/%{total})
+    non possono essere aggiornati:'
+  text_easy_rake_task_helpdesk_issue_closer_updated: "%{updated_count} <small class=\"help\">aggiornato</small>
+    / %{notified_count} <small class=\"help\">e-mail cliente\r\n</small>"
+  text_isseu_closer_close_notice: Questo task è stato aggiornato automaticamente da
+    Help desk
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: la risposta
+    dovrebbe essere stata ricevuta entro le %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: la risposta
+    deve essere ricevuta entro le %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: la risoluzione
+    dovrebbe essere avvenuta entro le %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: la risoluzione
+    deve avvenire entro le %{time}'
+  text_mailbox_delete_confirmation: Stai per eliminare la casella postale. L'eliminazione
+    della casella postale può causare i seguenti problemi: - I ticket creati tramite
+    questa casella postale non potranno più utilizzare i modelli. Continuare?
+  title_easy_helpdesk_add_project_from_sidebar: Clicca per aggiungere un progetto
+    a Help desk
+  title_easy_helpdesk_allow_custom_sender: Consenti l'impostazione di mittente personalizzato
+    per progetto
+  title_easy_helpdesk_allow_override: Consenti l'esclusione di attributi del task
+    dal messaggio
+  title_easy_helpdesk_client_response_status: Seleziona in quale stato cambierà un
+    ticket quando viene aggiornato via e-mail.
+  title_easy_helpdesk_ignore_cc: Una volta ricevuta l'email, tutti gli indirizzi in
+    CC vengono aggiunti come osservatori, e viene inviata loro un'mail esterna con una
+    risposta automatica. Questa opzione disabilita tale funzione.
+  title_easy_helpdesk_message_above_variables: Il messaggio di modello apparirà al
+    di sopra delle variabili del modello
+  title_easy_helpdesk_sender: Chi apparirà nel campo "da"
+  title_easy_helpdesk_sender_current_user: L'utente attualmente connesso
+  title_easy_helpdesk_sender_is_user: Nel campo "da" apparirà l'utente connesso
+  title_easy_helpdesk_sender_mailbox_address: Indirizzi e-mail da casella di posta
+  title_easy_helpdesk_sender_redmine_default: Indirizzo e-mail di emissione predefinito
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'ATTENZIONE: Help desk riceverà messaggi da
+    altri sistemi e ciò può causare infiniti scambi di messaggi!'
+  title_easy_helpdesk_sla_start_states: Seleziona stati quando la misurazione SLA
+    viene ripresa dopo essere stata interrotta dall'impostazione sopra.
+  title_easy_helpdesk_sla_stop_states: Seleziona stati quando lo SLA non viene misurato.
+    Ad esempio, nel caso di ticket chiusi o quando sei in attesa di una risposta da
+    un cliente.
+  title_sla_waiting_for_client: SLA sospesa
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: 'Disabilitato: dopo la chiusura del task, lo SLA viene interrotto. Quando
+      il task viene riaperto, lo SLA viene calcolato dal momento in cui è stata creato originariamente.'
+    enabled: 'Abilitato: dopo la chiusura del task, lo SLA viene interrotto. Quando
+      il task viene riaperto, lo SLA viene calcolato dal momento in cui è stato riaperto.'

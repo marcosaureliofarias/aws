@@ -1,0 +1,9 @@
+@mixin mindmup-scheme($color){
+  background-color: $color;
+  &.activated {
+    background-color: darken($color, 10%);
+  }
+  @if(luminance($color)<.5){
+    color: $white;
+  }
+}

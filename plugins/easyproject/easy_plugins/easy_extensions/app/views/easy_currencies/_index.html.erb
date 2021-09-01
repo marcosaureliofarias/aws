@@ -1,0 +1,31 @@
+<% if easy_currencies.blank? %>
+    <p class="nodata"><%= l(:label_no_data) -%></p>
+<% else %>
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+      <tr>
+        <th><%= EasyCurrency.human_attribute_name(:name) -%></th>
+        <th><%= EasyCurrency.human_attribute_name(:iso_code) -%></th>
+        <th><%= EasyCurrency.human_attribute_name(:is_default) -%></th>
+        <th><%= EasyCurrency.human_attribute_name(:activated) -%></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% easy_currencies.each do |easy_currency| %>
+          <tr>
+            <td><%= easy_currency.name -%></td>
+            <td><%= easy_currency.iso_code -%></td>
+            <td class="tick"><%= checked_image easy_currency.is_default? %></td>
+            <td class="tick"><%= checked_image easy_currency.activated? %></td>
+            <td class="buttons">
+              <%= link_to(l(:button_edit), edit_easy_currency_path(easy_currency, :back_url => original_url), :class => 'icon icon-edit', :title => l(:button_edit)) %>
+              <%= link_to(l(:button_delete), easy_currency_path(easy_currency, :back_url => original_url), :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:button_delete)) %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

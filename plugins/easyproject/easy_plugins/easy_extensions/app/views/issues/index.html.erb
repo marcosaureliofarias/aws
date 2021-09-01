@@ -1,0 +1,47 @@
+<% view_options = {:go_to_url => {:controller => 'issues', :action => 'show'}, :render_query_tooltip_box => true} %>
+
+<%= render @query, :easy_query_name => project_heading(@project, l(:label_issue_index)), :options => view_options, :form_options => {:free_search_options => {:free_search_after_done => "EASY.utils.initProjectEdit();initEasyAutocomplete();", :free_search_additional_parameters => view_options}} %>
+
+<%= call_hook(:view_issues_index_bottom, { :issues => @issues, :project => @project, :query => @query }) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do %>
+  <%= call_hook(:view_issues_sidebar_issues_bottom) %>
+  <%= call_hook(:view_issues_sidebar_planning_bottom) %>
+  <% if @project %>
+    <div class="box"><%= render :partial => 'sidebar/project_members_container', :locals => {:project => @project} %></div>
+  <% end -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} %>
+  <%= render :partial => 'sidebar/all_users_queries_container' if @project.nil? %>
+  <%= call_hook(:view_issues_sidebar_queries_bottom) %>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= auto_discovery_link_tag(:atom, {:query_id => @query, :format => 'atom', :page => nil, :key => User.current.rss_key}, :title => l(:label_issue_plural)) %>
+  <%= auto_discovery_link_tag(:atom, {:controller => 'journals', :action => 'index', :query_id => @query, :format => 'atom', :page => nil, :key => User.current.rss_key}, :title => l(:label_changes_details)) %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:label_issue_new), {:controller => 'easy_issues', :action => 'new'}, :class => 'button-positive icon icon-add', :accesskey => accesskey(:new_issue)) if !@project && !User.current.easy_user_type_for?(:hide_new_issue_button) %>
+  <% if @project %>
+    <%= call_hook(:view_issues_index_sidebar_primary_actions, :project => @project) %>
+  <% end -%>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_top do %>
+  <% if @project %>
+    <%= render :partial => 'sidebar/project_info', :locals => {:project => @project, :sidebar_highlight => :issues } %>
+  <% end -%>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <% if params[:favorited] %>
+    <%= link_to(l(:button_show_all_issues), @project ? project_issues_path(@project, :set_filter => 0) : issues_path(:set_filter => 0), :class => 'icon icon-fav button') %>
+  <% else %>
+    <%= link_to(l(:button_show_favorite_issues), @project ? project_issues_path(@project, :set_filter => 1, :favorited => 1) : issues_path(:set_filter => 1, :favorited => 1), :class => 'icon icon-star button') %>
+  <% end %>
+  <%= issue_show_in_tree_link %>
+<% end %>
+
+<%= context_menu issues_context_menu_path %>

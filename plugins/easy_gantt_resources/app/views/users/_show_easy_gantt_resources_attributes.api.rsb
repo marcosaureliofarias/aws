@@ -1,0 +1,11 @@
+api, user = local_assigns[:api], local_assigns[:user]
+
+if User.current.allowed_to_globally?(:manage_user_easy_gantt_resources)
+  api.easy_gantt_resources_estimated_ratio user.easy_gantt_resources_estimated_ratio
+  api.easy_gantt_resources_hours_limit     user.easy_gantt_resources_hours_limit
+  api.array :easy_gantt_resources_advance_hours_limits do
+    user.easy_gantt_resources_advance_hours_limits.each do |easy_gantt_resources_advance_hours_limit|
+      api.easy_gantt_resources_advance_hours_limit easy_gantt_resources_advance_hours_limit
+    end if user.easy_gantt_resources_advance_hours_limits&.any?
+  end
+end

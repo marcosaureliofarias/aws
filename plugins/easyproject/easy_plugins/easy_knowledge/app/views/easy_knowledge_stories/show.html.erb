@@ -1,0 +1,128 @@
+<% toggle_button_expanded = toggle_button_expanded?('hide_more_attributes_easy_knowledge_story', User.current, false) %>
+<%= breadcrumb_story(@story, @project) -%>
+<div class="easy-knowledge__detail" id="easy_story_detail">
+  <div class="easy-entity-details knowledge details">
+    <h2><%= avatar(@story.author, style: :small)  %><%= content_tag(:i, '', class: 'icon-fav') if @story.is_favorite? %><%= @story.name -%></h2>
+    <div class="easy-knowledge__story-header entity-detail-header">
+      <div id="knowledge-detail-attributes" class="easy-entity-details-header-attributes<%= ' open' if toggle_button_expanded %>">
+        <table class="attributes">
+          <tbody>
+            <tr>
+              <th><%= l(:field_easy_knowledge_story_author_id) -%>:</th>
+              <td><%= @story.author -%></td>
+              <th><%= l(:field_easy_knowledge_story_storyviews) -%>:</th>
+              <td><%= @story.storyviews -%></td>
+            </tr>
+
+            <tr>
+              <th><%= l(:field_easy_knowledge_story_created_on) -%>:</th>
+              <td><%= format_date(@story.created_on) -%></td>
+              <th><%= l(:field_easy_knowledge_story_updated_on) -%>:</th>
+              <td><%= format_date(@story.updated_on) -%></td>
+            </tr>
+
+            <tr>
+              <th><%= l(:field_easy_knowledge_story_version) -%>:</th>
+              <td><%= @story.version -%></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="small">
+          <%= l(:field_easy_knowledge_story_tags) -%>:
+          <%= render partial: 'easy_taggables/show', locals: { entity: @story } %>
+        </div>
+
+        <% if @story.visible_custom_field_values.any? %>
+          <hr />
+          <table class="attributes">
+            <tbody>
+            <%= render :partial => 'custom_fields/two_columns_list_table', :locals => {:custom_field_values => @story.visible_custom_field_values} %>
+            </tbody>
+          </table>
+        <% end %>
+
+        <%= render_more_attributes_button('hide_more_attributes_easy_knowledge_story', User.current.id, !toggle_button_expanded) %>
+      </div>
+    </div>
+  </div>
+
+  <%= render_easy_knowledge_story @story %>
+
+  <% if @story.references_to.any? -%>
+    <div class="easy-knowledge__story-references">
+      <%= content_tag :h3, l(:label_easy_knowledge_story_references), :class => 'sidebar-style-h3' -%>
+      <%= @story.references_to.collect{|ref| link_to ref.name, easy_knowledge_story_path(ref), title: l(:title_easy_knowledge_show_story)
+      }.join(', ').html_safe -%>
+    </div>
+  <% end -%>
+  <%
+    entity_card_options = {}
+    entity_card_options[:project] = @project
+    entity_card_options[:hide_remove_entity_link] = true if !@story.editable?
+  %>
+
+  <%= render_easy_entity_assignments(@story, Project, entity_card_options.dup) %>
+  <%= render_easy_entity_assignments(@story, Issue, entity_card_options.dup) %>
+  <%= render partial: 'common/entity_tabs', locals: {tabs: render_easy_knowledge_story_tabs(@story), tabs_container: 'easy_story_detail'} %>
+</div>
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:label_easy_knowledge_stories)) -%>
+
+<%= content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to( l(:label_easy_knowledge_edit_story), edit_polymorphic_path([@project, @story]), :class => 'button-positive icon icon-edit', :title => l(:label_easy_knowledge_edit_story) ) if @story.editable? -%>
+  <%= link_to( l(:label_easy_knowledge_new_story), new_polymorphic_path([@project, :easy_knowledge_story]), :class => 'button-positive icon icon-add') if @can[:create_global_stories] || @can[:create_project_stories] -%>
+<% end %>
+
+<%= content_for :easy_page_layout_service_box do %>
+  <%= link_to(easy_knowledge_overview_path, :class => 'button icon icon-back', :title => l(:button_easy_knowledge_back_to_introduction)) do -%>
+    <%= l(:button_easy_knowledge_back_to_introduction) %>
+  <% end if User.current.allowed_to_globally?(:read_global_stories) -%>
+  <% if @story.is_favorite? %>
+    <%= link_to(l(:label_unfavorite), remove_from_favorite_easy_knowledge_story_path(@story), :class => 'icon icon-fav button', :method => :post) %>
+  <% else %>
+    <%= link_to(l(:label_favorite), add_to_favorite_easy_knowledge_story_path(@story), :class => 'icon icon-fav-off button', :method => :post) %>
+  <% end -%>
+  <% if easy_knowledge_stories_editable? %>
+    <% if User.current.allowed_to_globally?(:stories_assignment, {}) %>
+      <%= render_menu_more(nil, nil, :menu_more_class => 'menu-more-sidebar', :menu_expander_class => 'icon icon-add button-2') do %>
+        <%= render partial: 'easy_knowledge_stories/stories_menu', locals: {back_url: url_for({}), type: 'story'} %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= content_for :sidebar do %>
+
+  <%= render :partial => 'easy_taggables/easy_taggables', :locals => { :entity => @story } %>
+
+  <%# allow_change_categories =  || User.current.allowed_to_globally?(:manage_user_stories, {}) %>
+
+  <% @story.easy_knowledge_categories.all.group_by(&:entity_type).each do |entity_type, categories| %>
+    <% entity_type ||= 'global'
+    category_path = "easy_knowledge_#{entity_type.downcase}_path" %>
+    <div class="easy-knowledge-story-categories-list-container box">
+      <%= toggling_container("easy_knowledge_story_#{@story.id}_sidebar_#{entity_type}", User.current, {:heading =>  l(:"label_easy_knowledge_index_#{entity_type.downcase}")}) do %>
+        <ul class="link-list">
+          <% categories.each do |item| %>
+            <li id="easy_knowledge_story_<%= @story.id %>_<%= item.class.name.underscore %>_<%= item.id %>" title="<%= item.entity %>" class="link-list-item">
+              <div class="link-list-item-content">
+                <%= item.self_and_ancestors.collect{|i| link_to(i.name, send(category_path, i))}.join("<span class=\"separator\"> \xc2\xbb </span>").html_safe %>
+                <% if item.stories_deletable? %>
+                  <span class="link-list-item-actions">
+                    <%= link_to('', polymorphic_path([:remove_from_entity, @project, @story], {:entity_type => item.class.name, :entity_id => item}), :method => :delete, :remote => true, :class => 'icon-del delete', :title => l(:title_remove_easy_knowledge_story_from_entity)) %>
+                  </span>
+                <% end -%>
+              </div>
+            </li>
+          <% end -%>
+        </ul>
+      <% end -%>
+    </div>
+
+  <% end -%>
+<% end %>
+
+<% include_knowledge_headers_tags %>
+<% include_attachment_tags %>

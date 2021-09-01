@@ -1,0 +1,8 @@
+$('.tab-easy-entity-activity-content .entity-activity__new').after("<%= j render(:partial => '/easy_entity_activities/item_tr', locals: {easy_entity_activity: @easy_entity_activity}) %>");
+$('.tab-easy-entity-activity-content tbody tr.entity-activity__form').remove();
+
+<%= fields_for @new_easy_entity_activity, remote: true do |f| %>
+$('.tab-easy-entity-activity-content .entity-activity__new').append("<%= j render(:partial => '/easy_entity_activities/form', locals: {f: f}) %>");
+<% end %>
+
+window.showFlashMessage('notice', "<%= l(:notice_successful_create) %>", 1000);

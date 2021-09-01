@@ -1,0 +1,65 @@
+.vdatetime_wrapper{
+  .u-editing &{
+    @include popup__backdrop;
+  }
+}
+.mx {
+  &-calendar {
+    &-content {
+      height: auto !important;
+
+    }
+  }
+  &-icon-calendar {
+    display: none;
+  }
+  &-popup {
+
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    &:after{
+      z-index: -1!important;
+    }
+  }
+  &-time{
+    //background: none !important; //breaking datetime custom fields
+    border: none !important;
+  }
+  &-datepicker {
+    width: 100% !important;
+    &-main{
+      background: none !important;
+      border: none !important;
+    }
+    &-content{
+      @include popup;
+      width: auto !important;
+      max-width: none !important;
+      position: relative !important;
+      transform: translate(-50%, 0);
+      top: 0;
+      @media only screen and (min-width: $breakpoint--small) {
+        position: static !important;
+      }
+    }
+
+    &-header {
+      text-align: center;
+    }
+
+    &-footer{
+      border-color: $color-border !important;
+    }
+
+    &-selected {
+      font-weight: bold;
+    }
+  }
+
+  &-table {
+    thead th {
+      text-align: center;
+    }
+  }
+}

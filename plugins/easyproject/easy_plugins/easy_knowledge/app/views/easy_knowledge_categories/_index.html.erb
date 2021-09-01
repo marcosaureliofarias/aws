@@ -1,0 +1,10 @@
+<% easy_knowledge_categories ||= nil %>
+
+<% if easy_knowledge_categories && easy_knowledge_categories.any? %>
+
+  <% render_easy_knowledge_categories(easy_knowledge_categories, {:show_header => false},
+     lambda{|category| link_to(category.name, send("easy_knowledge_#{(category.entity_type || 'global').downcase}_path", category), :title => l(:title_easy_knowledge_category_stories))},
+     lambda{|category| link_to(l(:button_edit),  send("edit_easy_knowledge_#{(category.entity_type || 'global').downcase}_path", category), :class => 'icon icon-edit', :remote => true, :title => l(:title_easy_knowledge_edit_category)) if category.editable?},
+     lambda{|category| link_to(l(:button_delete), send("easy_knowledge_#{(category.entity_type || 'global').downcase}_path", category), :class => 'icon icon-del', :remote => true, :method => 'delete', :data => {:confirm => l(:text_are_you_sure)}) if category.editable?}) %>
+
+<% end %>

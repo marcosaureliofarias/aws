@@ -1,0 +1,30 @@
+<%= title l(:label_plugins) %>
+<p><strong><%= Redmine::Info.versioned_name %></strong></p>
+
+<%= form_tag({}, :id => 'easy_plugins_form') do -%>
+  <div class="bundeled-plugins">
+    <% @plugin_bundles.each do |bundle| %>
+      <% if @segregated_plugins_hash[bundle] %>
+        <div class="box">
+          <% heading = content_tag(:div, content_tag(:h3, l(bundle, scope: :easy_plugin_bundles).html_safe) + content_tag(:div, (image_tag("manage_plugins/#{bundle.to_s}_icon.png", :plugin => 'easy_extensions', :alt => '', :class => 'push-right') + content_tag(:div, l("bundle_description_#{bundle.to_s}", appname: EasyExtensions::EasyProjectSettings.app_name), :class => 'plugin-bundle-description kicker')))) %>
+          <%= render_module_easy_box('easy_hosting_service_plugin_bundle_' + bundle.to_s, heading.html_safe, {:wrapping_heading_element => 'div', :default_button_state => false}) do %>
+            <%= render :partial => 'plugin_bundle_details', :locals => {:bundle => bundle} %>
+          <% end %>
+          <% if Redmine::Plugin.installed?(:easy_hosting_services) && !EasyHostingServices::EasyMultiTenancy.activated? %>
+            <p class="text-center">
+              <%= call_hook(:view_manage_plugins_bundle_buttons, {:bundle => bundle, :plugins_hash => @segregated_plugins_hash}) unless bundle == :basic %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <% if @segregated_plugins_hash[:other] %>
+    <div class="box">
+      <%= render_module_easy_box('easy_hosting_service_plugin_bundle_other', l(:other, scope: :easy_plugin_bundles), {:default_button_state => false}) do %>
+        <%= render :partial => 'plugin_bundle_details', :locals => {:bundle => :other} %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= call_hook(:view_manage_plugins_form_buttons) %>
+<% end %>

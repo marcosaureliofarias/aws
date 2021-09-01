@@ -1,0 +1,19 @@
+api.easy_money_rates do
+  EasyMoneyRateType.rate_type_cache.each do |rate_type|
+    api.easy_money_rate_type(:id => rate_type.id, :name => rate_type.translated_name) do
+      @users.each do |user|
+        api.easy_money_rate(:id => user.id, :name => user.name) do
+          easy_money_rate = EasyMoneyRate.find_rate(rate_type.id, 'Principal', user.id, @project.try(:id))
+          if easy_money_rate
+            easy_currency_code = @easy_currency_code || easy_money_rate.easy_currency_code
+
+            api.unit_rate easy_money_rate.unit_rate(easy_currency_code)
+            api.easy_currency_code easy_currency_code
+          else
+            api.unit_rate 0.0
+          end
+        end
+      end
+    end
+  end
+end

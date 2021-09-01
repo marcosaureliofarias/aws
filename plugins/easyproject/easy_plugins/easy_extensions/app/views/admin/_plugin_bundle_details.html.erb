@@ -1,0 +1,31 @@
+<div class="autoscroll">
+<table class="list plugins">
+  <thead>
+  <tr>
+    <th></th>
+    <th class="header-42"><%= l(:field_name) %></th>
+    <th class="header-13"><%= l(:field_author) %></th>
+    <% if Redmine::Plugin.installed?(:easy_hosting_services) && !EasyHostingServices::EasyMultiTenancy.activated? %>
+      <th class="header-13"></th>
+      <th class="header-13"></th>
+    <% end %>
+    <th class="header-13"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% (@segregated_plugins_hash[bundle][:active] + @segregated_plugins_hash[bundle][:disabled]).each do |plugin| %>
+    <tr>
+      <%= content_tag(:td, bundle == :basic ? '' : check_box_tag('plugin_names[]', plugin.id, false, :id => nil), :class => 'checkbox hide-when-print') -%>
+      <td class="name" <%= 'style=font-style:italic' if plugin.disabled? %>>
+        <span class="name"><%= hh plugin.name %></span>
+      </td>
+      <%= content_tag('td', easy_author_url(plugin), :class => 'author') %>
+      <td class="configure fast-icons">
+        <%= link_to(l(:button_configure), plugin_settings_path(plugin), :class => 'icon icon-settings button-positive', :onclick => (plugin.disabled? ? "alert('#{j l(:error_plugin_is_disabled)}');return false;" : 'return true;')) if plugin.configurable? %>
+      </td>
+      <%= call_hook(:view_manage_plugins_row_buttons, {:bundle => bundle, :plugin => plugin}) if Redmine::Plugin.installed?(:easy_hosting_services) && !EasyHostingServices::EasyMultiTenancy.activated? %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

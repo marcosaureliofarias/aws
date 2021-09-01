@@ -1,0 +1,27 @@
+Rys::Patcher.add('Project') do
+  apply_if_plugins :easy_extensions
+
+  included do
+    # has_many :things
+
+    after_commit :easy_sso_saml_client_ensure_something, if: -> { Rys::Feature.active?('easy_sso.saml_client.project') }
+  end
+
+  instance_methods do
+    private
+
+      def easy_sso_saml_client_ensure_something
+        puts 'Features are activated'
+      end
+
+  end
+
+  instance_methods(feature: 'easy_sso.saml_client.project') do
+    def to_s
+      "I'am cool " + super
+    end
+  end
+
+  class_methods do
+  end
+end

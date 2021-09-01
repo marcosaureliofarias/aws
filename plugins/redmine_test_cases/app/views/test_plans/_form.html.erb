@@ -1,0 +1,36 @@
+<%= labelled_fields_for :test_plan, test_plan do |f| %>
+
+  <% if test_plan.safe_attribute?('project_id') && !@project %>
+  <p>
+    <%= f.select :project_id, Project.allowed_to(:manage_test_plans).collect{|x| [x.name, x.id]}, include_blank: true, required: true %>
+  </p>
+  <% end %>
+
+
+  <% if test_plan.safe_attribute?('name') %>
+  <p>
+    <%= f.text_field :name, required: true %>
+  </p>
+  <% end %>
+
+  <% if test_plan.safe_attribute?('test_case_ids') %>
+    <p>
+      <%= f.label :test_cases, l(:label_test_case_plural) %>
+      <%= autocomplete_field_tag 'test_plan[test_case_ids][]', autocomplete_test_cases_path(project_id: @project, format: :json, key: User.current.api_key), test_plan.test_cases.order(:name).collect{|i| {id: i.id, value: "#{i.id} #{i.name}"}}, id: 'test_cases', preload: false, show_toggle_button: true %>
+    </p>
+  <% end %>
+
+  <% if test_plan.safe_attribute?('author_id') %>
+  <p>
+    <%= f.select :author_id, User.sorted.find_each.collect{|x| [x.name, x.id]}.sort, include_blank: true, required: true %>
+  </p>
+  <% end %>
+
+
+  <% test_plan.visible_custom_field_values.each do |value| %>
+  <p>
+    <%= custom_field_tag_with_label :test_plan, value %>
+  </p>
+  <% end %>
+
+<% end %>

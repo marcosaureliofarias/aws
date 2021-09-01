@@ -1,0 +1,95 @@
+@mixin respond-to($media ) {
+  @if $media == max-mini-screen {
+    @media only screen and (max-width: 0.5*$media-collapse-small) { @content; }
+  }
+  @if $media == min-mini-screen {
+    @media only screen and (min-width: 0.5*$media-collapse-small + 1) { @content; }
+  }
+  @if $media == max-xsmall-screen {
+    @media only screen and (max-width: $media-collapse-xsmall) { @content; }
+  }
+  @else if $media == min-xsmall-screen {
+    @media only screen and (min-width: $media-collapse-xsmall + 1 ) { @content; }
+  }
+  @if $media == max-small-screen {
+    @media only screen and (max-width: $media-collapse-small) { @content; }
+  }
+  @else if $media == min-small-screen {
+    @media only screen and (min-width: $media-collapse-small + 1 ) { @content; }
+  }
+  @else if $media == min-menu-collapse {
+    @media only screen and (min-width: $media-collapse-menu + 1) { @content; }
+  }
+  @else if $media == max-menu-collapse {
+    @media only screen and (max-width: $media-collapse-menu ) { @content; }
+  }
+  @else if $media == min-sidebar-collapse {
+    @media only screen and (min-width: $media-collapse-sidebar + 1) { @content; }
+  }
+  @else if $media == max-sidebar-collapse {
+    @media only screen and (max-width: $media-collapse-sidebar ) { @content; }
+  }
+  @else if $media == max-medium-screen {
+    @media only screen and (max-width: $media-collapse-medium ) { @content; }
+  }
+  @else if $media == min-medium-screen {
+    @media only screen and (min-width: $media-collapse-medium + 1) { @content; }
+  }
+  @else if $media == only-medium-screen {
+    @media only screen and (min-width: $media-collapse-small + 1) and(max-width: $media-collapse-medium) { @content; }
+  }
+  @else if $media == only-large-screen {
+    @media only screen and (min-width: $media-collapse-medium + 1) and(max-width: $media-collapse-large) { @content; }
+  }
+  @else if $media == only-xlarge-screen {
+    @media only screen and (min-width: $media-collapse-medium + 1) and(max-width: $media-collapse-xlarge) { @content; }
+  }
+  @else if $media == max-large-screen {
+    @media only screen and (max-width: $media-collapse-large) { @content; }
+  }
+  @else if $media == min-large-screen {
+    @media only screen and (min-width: $media-collapse-large + 1) { @content; }
+  }
+  @else if $media == max-xlarge-screen {
+    @media only screen and (max-width: $media-collapse-xlarge) { @content; }
+  }
+  @else if $media == min-xlarge-screen {
+    @media only screen and (min-width: $media-collapse-xlarge + 1) { @content; }
+  }
+  @else if $media == max-xxlarge-screen {
+    @media only screen and (max-width: $media-collapse-xxlarge) { @content; }
+  }
+  @else if $media == min-xxlarge-screen {
+    @media only screen and (min-width: $media-collapse-xxlarge + 1) { @content; }
+  }
+  @else if $media == max-xxxlarge-screen {
+    @media only screen and (max-width: $media-collapse-xxxlarge) { @content; }
+  }
+  @else if $media == min-xxxlarge-screen {
+    @media only screen and (min-width: $media-collapse-xxxlarge + 1) { @content; }
+  }
+  @else if $media == highres-only {
+    @media only screen and (min-resolution: $media-highres-breakpoint) { @content; }
+  }
+  @else if $media == screen-only {
+    @media only screen { @content; }
+  }
+  @else if $media == print-only {
+    @media only print { @content; }
+  }
+  @else if $media == min-login-height {
+    @media only screen and (min-height: $login-height + 1) { @content; }
+  }
+  @else if $media == min-2login-height {
+    @media only screen and (min-height: 2*$login-height + 1) { @content; }
+  }
+  @else if $media == min-3login-height {
+    @media only screen and (min-height: 3*$login-height + 1) { @content; }
+  }
+  @else if $media == ie-only {
+    @media all and (-ms-high-contrast:none) { @content; }
+  }
+  @else if $media == min-max-medium-screen {
+    @media only screen and (min-width: $media-collapse-medium + 1) and (max-height: $media-collapse-medium-height) { @content; }
+  }
+}

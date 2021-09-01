@@ -1,0 +1,7 @@
+<% if e.is_a?(Issue) %>
+  <a class="link-issue" href="<%= issue_path(e) %>" data-issue-id="<%= e.id %>" onclick="if (event.metaKey || event.ctrlKey) return;EasyVue.showModal('issue', <%= e.id %>);EasyVue.handleActivityFeedChanges(<%= e.id %>);return false" title="<%= l('easy_vue.label_scroll_modal') %>">
+    <%= format_activity_title(e.event_title) %>
+  </a>
+<% else %>
+  <%= content_tag(:span, link_to(format_activity_title(e.event_title), e.event_url), class: 'issue-link') %>
+<% end %>

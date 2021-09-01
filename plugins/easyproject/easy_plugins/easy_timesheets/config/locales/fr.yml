@@ -1,0 +1,97 @@
+---
+fr:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Il existe une autre feuille
+                de temps pour cette période
+  button_copy_easy_time_sheet: Copier les lignes vers la nouvelle feuille de temps
+  button_easy_timesheet_by_easy_query: Feuilles de temps par filtre enregistré
+  button_easy_timesheet_delete_with_time_entries: Supprimer la ligne et le temps passé
+  button_easy_timesheet_delete_without_time_entries: Supprimer uniquement la ligne
+  button_easy_timesheets_approve: Approuver
+  button_easy_timesheets_lock: Verrouiller
+  button_easy_timesheets_new_row: Nouvelle ligne
+  button_easy_timesheets_reject: Rejeter
+  button_easy_timesheets_unlock: Déverrouiller
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Déclaration personnelle - Feuilles de temps
+        description: Voir les feuilles de temps
+  easy_query:
+    name:
+      easy_timesheet_query: Feuilles de temps
+  easy_timesheets_date_must_be_first_day_of_week: Doit être le premier jour de la
+    semaine. (%{day})
+  easy_timesheets_periods:
+    day: Hebdomadaire
+    month: Mensuelle
+    week: Mensuelle
+  easy_timesheets_plugin_name: Feuilles de temps
+  error_timesheet_invalid_time_entries: 'Impossible de créer la feuille de temps à
+    cause des entrées de temps non valides : %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: Identifiant du champ personnalisé pour les heures
+      supplémentaires
+    label_new_monhly_timesheet: Nouvelle feuille de temps mensuelle
+    label_overtime: Heures supplémentaires
+    label_set_cf_overtime_id_in_rys_plugins: La fonctionnalité heures supplémentaires
+      est active. Veuillez sélectionner le champ personnalisé pour les heures supplémentaires
+      %{link}.
+  field_easy_timesheet_period: Période
+  heading_easy_timesheets_edit: Modifier la feuille de temps
+  heading_easy_timesheets_new: Nouvelle feuille de temps
+  heading_easy_timesheets_show: Feuille de temps %{start_date} - %{end_date}
+  label_easy_timesheet: Feuille de temps
+  label_easy_timesheet_approved: Approuvée ?
+  label_easy_timesheet_approved_by: Approuvée par
+  label_easy_timesheet_end_date: Date de fin
+  label_easy_timesheet_lock_description: Raison approuvée / rejetée
+  label_easy_timesheet_lock_prompt: Raison d'approuver
+  label_easy_timesheet_locked_at: Approuvée / rejetée
+  label_easy_timesheet_rejected_by: Rejetée par
+  label_easy_timesheet_unlock_prompt: Raison de rejeter
+  label_easy_timesheets: Feuilles de temps
+  label_enable_timesheet_over_time: Activer la fonction heures supplémentaires
+  label_enabled_timesheet_periods: Périodes activées
+  label_filter_group_easy_timesheet_query: Feuille de temps
+  notice_easy_timesheet_both_periods: Si vous choisissez les deux, certains enregistrements
+    peuvent être mélangés ou ne pas fonctionner correctement si les périodes se chevauchent.
+  notice_extended_timesheet_period_not_enabled: La feuille de temps %{period} n'est
+    pas active
+  permission_create_easy_timesheets_for_other_user: Créer une feuille de temps pour
+    les autres utilisateurs
+  permission_edit_easy_timesheets: Modifier les feuilles de temps
+  permission_edit_own_easy_timesheets: Modifier ses propres feuilles de temps
+  permission_view_easy_timesheets: Voir les feuilles de temps
+  project_module_easy_timesheets: Feuilles de temps
+  text_easy_timesheet_destroy_cell_are_you_sure: Voulez-vous vraiment supprimer le
+    temps passé ?
+  text_easy_timesheet_destroy_row_are_you_sure: Vous vous apprêtez à supprimer une
+    ligne de la feuille de temps. Vous n'avez pas automatiquement à supprimer le temps
+    passé sur cette ligne. Comment souhaitez-vous procéder ?
+  text_easy_timesheet_prompt_text: Ajouter du temps
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: La date de début
+    sera automatiquement alignée au début de la semaine sélectionnée
+  text_time_sheet_copy_from: Les lignes seront pré-remplies à partir de la feuille
+    de temps %{entity}
+  text_warning_after_time_sheet_copied: Si vous n'enregistrez pas au moins une cellule
+    de la ligne, la ligne sera perdue.
+  title_easy_timesheet_destroy: Retirer la feuille de temps
+  title_easy_timesheet_edit_with_period: Modifier la feuille de temps %{period}
+  title_easy_timesheet_new_with_period: Nouvelle feuille de temps %{period}
+  title_easy_timesheet_show: Afficher la feuille de temps
+  title_next_time_sheet: Afficher la feuille de temps suivante de %{user}
+  title_previous_time_sheet: Afficher la feuille de temps précédente pour %{user}
+  validation_entry_already_exists: La feuille de temps entre (%{start_date}) et (%{end_date})
+    existe déjà
+  validation_greater_than_start_date: "(%{end_date}) doit être supérieure à la date
+    du début (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: Certaines saisies horaires n'ont
+    pas pu être détruites
+  validation_week_period: La période entre (%{start_date}) et (%{end_date}) doit être
+    une semaine

@@ -1,0 +1,271 @@
+---
+it:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: Che cosa stai facendo esattamente? Trasferisci tutto sul timesheet.
+      b: Il tuo timesheet è piuttosto triste, non credi?
+      c: Non lavorare gratis. Compila un timesheet.
+      d: Hai un giorno di vacanza oggi?
+      e: Avviso! Il timesheet ha bisogno di essere compilato!
+  alerts_plugin_description: "- Notifica automatica in base a parametri definiti"
+  alerts_plugin_name: Avvisi - Sistema di allarme rapido
+  alerts_rule_project_filters: 'Limite di progetto:'
+  alerts_type_alert: Allarme
+  alerts_type_notice: Notifica
+  alerts_type_warning: Avviso
+  button_alerts_add_new_alert: Nuovo avviso
+  button_alerts_add_new_context: Nuovo contesto
+  button_alerts_add_new_type: Nuovo tipo
+  button_alerts_manage_contexts: Gestione contesti
+  button_alerts_manage_types: Gestione tipi di avviso
+  button_alerts_my_alerts: I miei avvisi
+  button_alerts_report: Segnala
+  button_alerts_report_archive: Archivia
+  button_alerts_report_unarchive: Estrai
+  button_alerts_reports: I miei report
+  button_alerts_reports_archive: Archiviato
+  button_issue_sidebar_add_alert: Nuovo avviso
+  button_manage_alerts_for_all: Avvisi pubblici
+  easy_alert:
+    issue_providing_rule_required_error: Questo tipo di report non può essere inviato
+      a una destinazione di questo tipo
+  easy_alerts_context:
+    helpdesk: Help desk
+    invoice: Fattura
+    issue: Task
+    milestone: Milestone
+    project: Progetto
+    timeentry: Tempo trascorso
+  easy_alerts_rule:
+    easy_invoice_query: Filtro salvato
+    easy_issue_query: Filtro salvato
+    easy_project_query: Filtro salvato
+    easy_version_query: Filtro salvato
+    helpdesk_monitor_due_time: 'Help desk: ora di scadenza del task secondo SLA'
+    helpdesk_monitor_due_time_assignee: 'Help desk: tempo per il completamento del mio
+      task secondo SLA'
+    helpdesk_monitor_due_time_manager: 'Help desk: tempo di completamento del task
+      secondo SLA'
+    helpdesk_monitor_hours_to_response: 'Help desk: tempo per l''inizio della risoluzione
+      del task secondo SLA'
+    helpdesk_monitor_prepaid_hours: 'Help desk: tempo prepagato mensile'
+    invoice_due_date: Data di scadenza
+    issue_due_date: Data di scadenza
+    issue_updated_date: Data aggiornata
+    project_due_date: Data di scadenza
+    project_estimated_hours: Somma delle ore stimate
+    timeentry_time_watcher: Intervallo di tempo trascorso
+    timeentry_time_watcher_previous_day: Tempo trascorso nel giorno precedente
+    timeentry_time_watcher_previous_period: Tempo trascorso nel periodo precedente
+    version_due_date: Data di scadenza
+  easy_pages:
+    modules:
+      easy_alerts: Avvisi - report
+  easy_proposer:
+    alert_reports:
+      index:
+        caption: Alert - I miei report
+        description: Visualizza i miei report
+    alerts:
+      new:
+        caption: Alert - Nuovo avviso
+        description: Crea un nuovo avviso
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: Alert - valutazione
+  field_alert_is_for: Valutato da
+  field_alert_mail_for: Invia email a
+  field_alerts_report_text: Stato
+  field_alerts_rule: Monitora
+  field_budget: budget
+  field_context: dove
+  field_custom_hours: Orologio
+  field_date: data
+  field_delta: numero di giorni
+  field_entity_count: numero di task
+  field_period_from: Dal
+  field_period_to: Al
+  field_query_id: filtro
+  field_rule: Monitora
+  field_time_check: Verifica in corso
+  field_version_ids: milestone
+  label_alert_condition_was_satisfied: La condizione di avviso è stata soddisfatta
+  label_alerts: Alert - Sistema di allarme rapido
+  label_alerts_active_projects_only: Solo progetti attivi (non chiusi e non archiviati)
+  label_alerts_additional_settings: Altre impostazioni
+  label_alerts_context: 'Dove:'
+  label_alerts_contexts: Elenco dei contesti
+  label_alerts_executing_settings: Momento di esecuzione
+  label_alerts_for_all: Per tutti
+  label_alerts_for_group: 'Questo gruppo:'
+  label_alerts_for_only_me: Solo l'autore dell'avviso
+  label_alerts_hourstimecheck_after_time: orario
+  label_alerts_hourstimecheck_before_time: Controllare ogni giorno in
+  label_alerts_hourstimecheck_whenever: Ogni volta che << >>
+  label_alerts_issue_select_before: 'sui task:'
+  label_alerts_mail_group: 'L''esame degli avvisi sarà inviato via email a:'
+  label_alerts_mail_group_all: Tutti i partecipanti (vedi sopra)
+  label_alerts_mail_group_assignees: Assegnatari task
+  label_alerts_mail_group_coworkers: Collaboratori task
+  label_alerts_mail_group_custom: 'A una email personalizzata:'
+  label_alerts_mail_group_only_group: 'Solo i membri di questo gruppo:'
+  label_alerts_manage_alerts_for: 'In questa sezione puoi impostare chi si incaricherà
+    della valutazione degli avvisi, indipendentemente che riguardi dati relativi solamente
+    all''autore, a un gruppo o a tutti gli utenti. Questo avviso verrà esaminato dagli
+    utenti qui selezionati:'
+  label_alerts_my: 'I miei avvisi per tipologia:'
+  label_alerts_my_alerts: I miei avvisi
+  label_alerts_my_reports: I miei report
+  label_alerts_my_reports_archive: I miei report (archivio)
+  label_alerts_name: 'Nome:'
+  label_alerts_project_select_before: 'sul progetto:'
+  label_alerts_projects: 'Progetti di avviso:'
+  label_alerts_query_columns: Filtra colonne
+  label_alerts_report: Segnala
+  label_alerts_rule: 'Monitora:'
+  label_alerts_select_context: 'Seleziona contesto:'
+  label_alerts_select_rule: 'Seleziona regola:'
+  label_alerts_type: 'Livello di gravità:'
+  label_alerts_type_name: Nome
+  label_alerts_types: Tipi di avviso
+  label_choose_type: 'Scegliere quando l''avviso valuterà:'
+  label_day_singular: giorno
+  label_easy_alerts_easy_query_permissions_warning: 'Attenzione: gli utenti selezionati
+    possono ricevere documentazioni che non hanno il permesso di vedere.'
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: del termine indicato per
+    il task (in accordo agli SLA).
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: Monitora quando il tempo
+    corrente diviene maggiore o uguale al
+  label_easy_alerts_helpdesk_monitor_due_time_report: Scadenza fissata alle %{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_after: delle ore disponibili
+    per agire sul task (in accordo agli SLA).
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_before: Monitora quando
+    il tempo corrente diviene maggiore o uguale al
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: Il task doveva essere
+    risolto in %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: ore prepagate.
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: Monitora quando il
+    tempo impiegato mensilmente sul progetto diviene maggiore o uguale al
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: "%{sum_time_entries} impiegate
+    di %{prepaid_hours}"
+  label_easy_alerts_project_estimated_hours_form_after: del tempo previsto
+  label_easy_alerts_project_estimated_hours_form_before: Guardare se il tempo impiegato
+    è di
+  label_easy_alerts_project_estimated_hours_report: Il tempo impiegato ammonta a %{current_percentage}%
+    -%{sum_time_entries} di %{sum_estimated_hours}
+  label_invoice_due_date_invoice_select_before: su fattura/e
+  label_invoice_due_date_warning_date_before: 'Avverti il:'
+  label_invoice_due_date_warning_delta_after: giorni (+) dopo la scadenza, (-) prima
+  label_invoice_due_date_warning_delta_before: Avverti
+  label_invoice_query_after: documentazioni
+  label_invoice_query_before: 'Avverti se il numero di fatture nel filtro:'
+  label_invoice_query_middle: sarà maggiore di
+  label_invoice_query_report: ha oltrepassato il numero di fatture impostato nel filtro
+  label_issue_due_date_report: Data di termine del task superata
+  label_issue_due_date_warning_date_before: 'Avvisa in caso di:'
+  label_issue_due_date_warning_delta_after: giorni (+) dopo il termine, (-) prima
+    della scadenza
+  label_issue_due_date_warning_delta_before: Avverti
+  label_issue_due_date_where_iam: 'Solo dove sono io:'
+  label_issue_due_date_where_iam_assignee: Incaricato del task
+  label_issue_due_date_where_iam_author: Autore del task
+  label_issue_overdrawn_budget_before: 'Avvisa riguardo all''esaurimento del budget:'
+  label_issue_overdrawn_budget_report: Esaurito per %{costs}%{budget}
+  label_issue_query_after: documenti.
+  label_issue_query_before: 'Avvisa se il numero di task nel filtro:'
+  label_issue_query_middle: sarà maggiore
+  label_issue_query_report: ha superato il numero di task determinato
+  label_issue_updated_date_warning_date_before: 'Avvisa in caso di:'
+  label_issue_updated_date_warning_delta_after: giorni (+) dopo il termine, (-) prima
+    della scadenza
+  label_issue_updated_date_warning_delta_before: Avvertire
+  label_milestone_due_date_milestone_select_before: su milestone
+  label_milestone_due_date_report: Termine della milestone superato
+  label_milestone_due_date_warning_date_before: 'Avvisa in caso di:'
+  label_milestone_due_date_warning_delta_after: giorni (+) dopo il termine, (-) prima
+    della scadenza
+  label_milestone_due_date_warning_delta_before: Avvertire
+  label_project_due_date_not_overdue: 'Giorni oltre il termine:'
+  label_project_due_date_overdue: 'Giorni al termine:'
+  label_project_due_date_report: Il termine del progetto è stato superato
+  label_project_due_date_warning_date_before: 'Avvisa in caso di:'
+  label_project_due_date_warning_delta_after: giorni (+) dopo il termine, (-) prima
+    della scadenza
+  label_project_due_date_warning_delta_before: Avverti
+  label_project_overdrawn_budget_before: 'Avvisa l''esaurimento del budget:'
+  label_project_overdrawn_budget_report: esaurito per %{costs}%{budget}
+  label_project_query_after: documenti.
+  label_project_query_before: 'Avvisa se il numero di progetti nel filtro:'
+  label_project_query_middle: sarà maggiore
+  label_project_query_report: ha superato il numero di progetti definiti nel filtro
+  label_select_project: 'Scegliere un progetto:'
+  label_show_alerts: Mostra avvisi
+  label_timeentry_time_watcher_after: ore.
+  label_timeentry_time_watcher_before: Voglio controllare il tempo impiegato
+  label_timeentry_time_watcher_before_from: da
+  label_timeentry_time_watcher_before_to: a
+  label_timeentry_time_watcher_mail_body: 'Puoi compilare il tuo timesheet qui:'
+  label_timeentry_time_watcher_mail_body_link: il tuo timesheet
+  label_timeentry_time_watcher_middle: è maggiore o uguale a
+  label_timeentry_time_watcher_previous_day_before: Voglio controllare se il tempo
+    impiegato dal giorno lavorativo precedente sia
+  label_timeentry_time_watcher_previous_day_before_calendar: minore rispetto all'intero
+    gruppo di lavoro (tempo lavorato dall'utente o modello di orario lavorativo predefinito)
+  label_timeentry_time_watcher_previous_day_before_custom: maggiore o uguale a
+  label_timeentry_time_watcher_previous_day_before_time: Controllarlo ogni giorno
+    alle
+  label_timeentry_time_watcher_previous_day_mail_body: Hai registrato tutte le tue
+    ore di ieri? Controlla il tuo timesheet.
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'Queste persone hanno
+    inserito troppo poche ore ieri:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: Puoi
+    controllare qui un elenco di queste persone.
+  label_timeentry_time_watcher_previous_day_mail_body_link: il tuo timesheet
+  label_timeentry_time_watcher_previous_day_mail_subject: Hai inserito tutte le tue
+    ore di ieri? Controlla il tuo timesheet.
+  label_timeentry_time_watcher_previous_period_before: Desidero controllare se il
+    tempo impiegato dalla precedente attività
+  label_timeentry_time_watcher_previous_report: Ieri hai inserito alcune ore.
+  label_timeentry_time_watcher_previous_week_mail_body_for_group: 'Queste persone
+    hanno inserito troppo poche ore la scorsa settimana:'
+  label_timeentry_time_watcher_previous_week_report: La scorsa settimana hai realizzato
+    troppo poche ore.
+  label_timeentry_time_watcher_report: hai segnalato il tempo dalle %{from} alle %{to}
+    in maniera inadeguata
+  label_version_query_after: documenti.
+  label_version_query_before: 'Avverti se il numero di milestone nel filtro:'
+  label_version_query_middle: è maggiore di
+  label_version_query_report: ha oltrepassato il numero di milestone determinato
+  label_week_singular: settimana
+  permission_manage_alert_contexts: Gestione dei contesti
+  permission_manage_alert_types: Gestione delle tipologie di avvisi
+  permission_manage_alerts_for_all: Genera avvisi per tutti gli utenti
+  permission_view_alerts: Visualizza avvisi
+  project_default_page:
+    easy_alerts: Avvisi
+  project_module_easy_alerts: Avvisi
+  text_alerts_is_for_all: Per esempio, nel filtro salvato il valore <> sarà sostituito
+    con ciascun utente; altrimenti l'avviso del tempo trascorso si riferirà a quello
+    di tutti gli utenti.
+  title_alert_type_color: Seleziona un colore
+  title_alerts_add_new_alert: Crea un nuovo avviso
+  title_alerts_alert_edit: Modifica avvisi
+  title_alerts_alert_new: Nuovo avviso
+  title_alerts_context_edit: Contesto di modifica
+  title_alerts_context_new: Nuovo contesto
+  title_alerts_edit_alert: Modifica un avviso
+  title_alerts_manage_contexts: Gestisci contesti
+  title_alerts_manage_types: Gestisci tipi di avvisi
+  title_alerts_my_alerts: Visualizza i miei avvisi
+  title_alerts_report: Visualizza report sull'avviso
+  title_alerts_report_entity_invoice: Mostra fattura %{entityname}
+  title_alerts_report_entity_issue: Mostra task %{entityname}
+  title_alerts_report_entity_project: Visualizza progetto %{entityname}
+  title_alerts_report_entity_user: Visualizza utente %{entityname}
+  title_alerts_reports: Visualizza i miei report
+  title_alerts_reports_archive: Visualizza report archiviati.
+  title_alerts_show_alert: Mostra avviso %{alertname}
+  title_alerts_sidebar_type: Visualizza report per tipo %{typename}
+  title_alerts_type_edit: Modifica del tipo
+  title_alerts_type_new: Nuovo tipo
+  title_manage_alerts_for_all: Clicca per visualizzare avvisi per tutti

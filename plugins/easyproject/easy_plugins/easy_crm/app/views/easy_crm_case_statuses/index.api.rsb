@@ -1,0 +1,5 @@
+api.array :easy_crm_case_statuses, api_meta(:total_count => @easy_crm_case_statuses.count, :offset => @offset, :limit => @limit) do
+  @easy_crm_case_statuses.each do |easy_crm_case_status|
+    render_api_easy_crm_case_status(api, easy_crm_case_status)
+  end
+end

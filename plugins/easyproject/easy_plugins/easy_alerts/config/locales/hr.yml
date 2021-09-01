@@ -1,0 +1,265 @@
+---
+hr:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: Što točno radite? Prenesite ih u vremensku tablicu (kontrolnu karticu / timesheet).
+      b: Vaša vremenska tablica (kontrolna kartica / timesheet) je tužna, zar ne?
+      c: Nemoj raditi za badava. Ispuni vremensku tablicu (kontrolna kartica / timesheet).
+      d: Imate li praznik danas?
+      e: Poziv za buđenje! Potrebno je "hraniti" vremensku tablicu!
+  alerts_plugin_author: Easy Software
+  alerts_plugin_author_url: http://www.easyredmine.com
+  alerts_plugin_description: "- Automatska notifikacija prema definiranim parametrima"
+  alerts_plugin_name: Alerts - Early warning system
+  alerts_rule_project_filters: 'Limitiraj na projekt:'
+  alerts_type_alert: Alarm
+  alerts_type_notice: Obavijest
+  alerts_type_warning: Upozorenje
+  button_alerts_add_new_alert: Nova uzbuna
+  button_alerts_add_new_context: Novi kontekst
+  button_alerts_add_new_type: Nova vrsta
+  button_alerts_manage_contexts: Upravljanje kontekstima
+  button_alerts_manage_types: Upravljanje vrstama alarma
+  button_alerts_my_alerts: Moje uzbune / dojave
+  button_alerts_report: Izvijesti (izvješće)
+  button_alerts_report_archive: Arhiviraj (arhiva)
+  button_alerts_report_unarchive: Dearhiviraj
+  button_alerts_reports: Moji izvještaji
+  button_alerts_reports_archive: Arhivirano
+  button_issue_sidebar_add_alert: Nova uzbuna / dojava
+  button_manage_alerts_for_all: Javne uzbune / alarmi / dojave
+  easy_alerts_context:
+    helpdesk: Podrška
+    invoice: Invoice (Dostavnica, Faktura)
+    issue: Zadatak
+    milestone: Milestone
+    project: Projekt
+    timeentry: Utrošeno vrijeme
+  easy_alerts_rule:
+    easy_invoice_query: Spremljeni filter
+    easy_issue_query: Spremljeni filter
+    easy_project_query: Spremljeni filter
+    easy_version_query: Spremljeni filter
+    helpdesk_monitor_due_time: Podrška - termin zadatka prema SLA
+    helpdesk_monitor_due_time_assignee: Podrška - vrijeme potrebno za dovršavanje
+      mog zadatka prema SLA
+    helpdesk_monitor_due_time_manager: Podrška - vrijeme završetka zadatka prema SLA
+    helpdesk_monitor_hours_to_response: Podrška - vrijeme do početka rješavanja zadatka
+      prema SLA
+    helpdesk_monitor_prepaid_hours: Podrška - mjesečno unaprijed plaćeno vrijeme
+    invoice_due_date: Termin
+    issue_due_date: Termin
+    issue_updated_date: Ažurirani datum
+    project_due_date: Krajnji termin
+    project_estimated_hours: Suma procjenjenih sati
+    timeentry_time_watcher: Interval utrošenog vremena
+    timeentry_time_watcher_previous_day: Potrošeno vrijeme prijašnjeg dana
+    timeentry_time_watcher_previous_period: Potrošeno vrijeme prijašnjeg perioda
+    version_due_date: Termin
+  easy_pages:
+    modules:
+      easy_alerts: Uzbuna - izvješća
+  easy_proposer:
+    alert_reports:
+      index:
+        caption: Uzbuna - Moja izvješća
+        description: Pogledaj svoja izvješća
+    alerts:
+      new:
+        caption: Uzbune - nova uzbuna
+        description: Stvori novu uzbunu / alarm
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: Uzbune - evaluacija
+  field_alert_is_for: Evaluacija za
+  field_alert_mail_for: E-mail to
+  field_alerts_report_text: Stanje
+  field_alerts_rule: Watch
+  field_budget: budžet
+  field_context: gdje
+  field_custom_hours: Sat
+  field_date: datum
+  field_delta: broj dana
+  field_entity_count: broj zadataka
+  field_period_from: Od
+  field_period_to: Do
+  field_query_id: filter
+  field_rule: Watch
+  field_time_check: Prijavljuje se / Upisuje se
+  field_version_ids: milestone
+  label_alerts: Alerts - Early Warning System
+  label_alerts_additional_settings: Ostale postavke
+  label_alerts_context: 'Gdje:'
+  label_alerts_contexts: Lista konteksta
+  label_alerts_executing_settings: Vrijeme izvršenja
+  label_alerts_for_all: Za sve
+  label_alerts_for_group: 'Za grupu:'
+  label_alerts_for_only_me: Samo za autora uzbune/alarma
+  label_alerts_hourstimecheck_after_time: sati
+  label_alerts_hourstimecheck_before_time: Provjeri svaki dan u
+  label_alerts_hourstimecheck_whenever: Bilo kad &lt;&lt; &gt;&gt;
+  label_alerts_issue_select_before: 'na zadatak(zadatke):'
+  label_alerts_mail_group: 'Evaluacija uzbuna će biti poslana koristeći e-mail na:'
+  label_alerts_mail_group_all: Svi sudionici (pogledaj iznad)
+  label_alerts_mail_group_custom: 'Na prilagođeni mail:'
+  label_alerts_mail_group_only_group: 'Samo članovi grupe:'
+  label_alerts_manage_alerts_for: 'U ovom odjeljku, možete odabrati koga će evaluacija
+    uzbune predstavljati. Hoće li promatrati samo podatke koji se tiču autora, grupe
+    korisnika ili svih korisnika. Ova uzbuna će biti evaluirana za korisnike:'
+  label_alerts_my: 'Moje uzbune po vrsti:'
+  label_alerts_my_alerts: Moje uzbune / alarmi
+  label_alerts_my_reports: Moja izvješća
+  label_alerts_my_reports_archive: Moja izvješća (arhivirana)
+  label_alerts_name: 'Ime:'
+  label_alerts_project_select_before: 'na projekt:'
+  label_alerts_query_columns: Filter stupci
+  label_alerts_report: Izvješće
+  label_alerts_rule: 'Promatraj:'
+  label_alerts_select_context: 'Odaberi kontekst:'
+  label_alerts_select_rule: 'Odaberi pravilo:'
+  label_alerts_type: 'Ozbiljnost:'
+  label_alerts_type_name: Ime
+  label_alerts_types: Vrste uzbuna / alarma
+  label_choose_type: 'Odaberi kad će se uzbuna evaluirati:'
+  label_day_singular: dan
+  label_easy_alerts_easy_query_permissions_warning: Upozorenje, odabrani korisnici
+    mogu primiti zapise za koje nemaju dozvolu pregleda.
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: termin za zadatak (prema
+    SLA).
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: Promatraj kada je trenutno
+    vrijeme veće ili jednako
+  label_easy_alerts_helpdesk_monitor_due_time_report: Termin zadatka je %{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_after: sati za odgovoriti
+    na zadatak (prema SLA).
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_before: Promatraj kad
+    je trenutno vrijeme veće ili jednako
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: Zadatak je trebao biti
+    riješen do %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: unaprijed plaćeni sati.
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: Promatraj kada mjesečno
+    utrošeno vrijeme na projektu je veće ili jednako
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: Potrošeno %{sum_time_entries}
+    od %{prepaid_hours}
+  label_easy_alerts_project_estimated_hours_form_after: od procjenenog vremena
+  label_easy_alerts_project_estimated_hours_form_before: Promatraj kad je utrošeno
+    vrijeme na
+  label_easy_alerts_project_estimated_hours_report: Trošeno vrijeme je na  %{current_percentage}%
+    - %{sum_time_entries} od %{sum_estimated_hours}
+  label_invoice_due_date_invoice_select_before: na invoice(dostavnicu/e, fakturu/e)
+  label_invoice_due_date_warning_date_before: 'Upozori na:'
+  label_invoice_due_date_warning_delta_after: dana (+) nakon termina, (-) prije
+  label_invoice_due_date_warning_delta_before: Upozori
+  label_invoice_query_after: zapisa.
+  label_invoice_query_before: 'Upozori ako je broj invoiceova (dostavnica, faktura)
+    u filteru:'
+  label_invoice_query_middle: će biti veći od
+  label_invoice_query_report: je prekoračio ranije određeni broj invoiceova (dostavnica,
+    faktura) u filteru
+  label_issue_due_date_report: termin zadatka je bio prekoračen
+  label_issue_due_date_warning_date_before: 'Upozori na:'
+  label_issue_due_date_warning_delta_after: dana (+) nakon krajnjeg roka, (-) prije
+    krajnjeg roka
+  label_issue_due_date_warning_delta_before: Upozori
+  label_issue_due_date_where_iam: 'Samo gdje sam ja:'
+  label_issue_due_date_where_iam_assignee: Opunomoćenik zadatka
+  label_issue_due_date_where_iam_author: Autor zadatka
+  label_issue_overdrawn_budget_before: 'Upozori na iscrpljenje budžeta:'
+  label_issue_overdrawn_budget_report: iscrpljen od %{costs} %{budget}
+  label_issue_query_after: zapisa.
+  label_issue_query_before: 'Upozori ako je broj zadataka u filteru:'
+  label_issue_query_middle: će biti veći od
+  label_issue_query_report: je prekoračio unaprijed određeni broj zadataka u filteru
+  label_issue_updated_date_warning_date_before: 'Upozori na:'
+  label_issue_updated_date_warning_delta_after: dana (+) nakon krajnjeg roka, (-)
+    prije krajnjeg roka
+  label_issue_updated_date_warning_delta_before: Upozori
+  label_milestone_due_date_milestone_select_before: na datume prekretnice (milestones)
+  label_milestone_due_date_report: termin milestona je bio prekoračen
+  label_milestone_due_date_warning_date_before: 'Upozori na:'
+  label_milestone_due_date_warning_delta_after: dana (+) nakon roka, (-) prije roka
+  label_milestone_due_date_warning_delta_before: Upozori
+  label_project_due_date_not_overdue: 'Dana prekoračenja od roka:'
+  label_project_due_date_overdue: 'Dana do roka:'
+  label_project_due_date_report: Krajnji rok / termin projekta je bio prekoračen
+  label_project_due_date_warning_date_before: 'Upozori na:'
+  label_project_due_date_warning_delta_after: dana (+) nakon roka, (-) prije roka
+  label_project_due_date_warning_delta_before: Upozori
+  label_project_overdrawn_budget_before: 'Upozori iscrpljenje budžeta:'
+  label_project_overdrawn_budget_report: iscrpljeno iz %{costs} %{budget}
+  label_project_query_after: zapisa.
+  label_project_query_before: 'Upozori ako broj projekta u filteru:'
+  label_project_query_middle: će biti veći od
+  label_project_query_report: je prekoračio unaprijed određeni broj projekta u filteru
+  label_select_project: 'Odaberi projekt:'
+  label_show_alerts: Pokaži uzbune
+  label_timeentry_time_watcher_after: sati.
+  label_timeentry_time_watcher_before: Želim provjeriti da utrošeno vrijeme
+  label_timeentry_time_watcher_before_from: od
+  label_timeentry_time_watcher_before_to: do
+  label_timeentry_time_watcher_mail_body: 'Vaša vremenska tablica, možete ju popuniti
+    ovdje:'
+  label_timeentry_time_watcher_mail_body_link: vaša vremenska tablica (kontrolna kartica
+    / timesheet)
+  label_timeentry_time_watcher_middle: je manji ili jednak
+  label_timeentry_time_watcher_previous_day_before: Želim provjeriti je li potrošeno
+    vrijeme od prijašnjeg radnog dana
+  label_timeentry_time_watcher_previous_day_before_calendar: manje nego od rada 'bazena'
+    (radno vrijeme korisnika ili pretpostavljeno radno vrijeme predloška).
+  label_timeentry_time_watcher_previous_day_before_custom: manje ili jednako
+  label_timeentry_time_watcher_previous_day_before_time: Provjeri svaki dan u
+  label_timeentry_time_watcher_previous_day_mail_body: Unijeli ste sve jučerašnje
+    sate? Provjerite vašu vremensku tablicu / kontrolnu karticu.
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'Ovi ljudi su unijeli
+    premali broj sati jučer:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: Lista
+    ovih ljude može se provjeriti ovdje.
+  label_timeentry_time_watcher_previous_day_mail_body_link: vaša vremenska tablica
+    / kontrolna kartica
+  label_timeentry_time_watcher_previous_day_mail_subject: Unijeli ste sve sate za
+    jučerašnji dan? Provjerite vašu vremensku tablicu.
+  label_timeentry_time_watcher_previous_period_before: Želio bih provjeriti vrijeme
+    potrošeno od prijašnjeg biznisa
+  label_timeentry_time_watcher_previous_report: Jučer ste unijeli nekoliko sati rada.
+  label_timeentry_time_watcher_previous_week_mail_body_for_group: 'Ovi ljudi su unijeli
+    premalo sati protekli tjedan:'
+  label_timeentry_time_watcher_previous_week_report: Prošli tjedan unijeli ste premalo
+    sati.
+  label_timeentry_time_watcher_report: je neadekvatno prijavio vrijeme rada od %{from}
+    do %{to}
+  label_version_query_after: zapisa.
+  label_version_query_before: 'Upozori ako broj milestonea u filteru:'
+  label_version_query_middle: je veći od
+  label_version_query_report: je prekoračio određeni broj milestonea u filteru
+  label_week_singular: tjedan
+  permission_manage_alert_contexts: Upravljanje kontekstom
+  permission_manage_alert_types: Upravljanje vrstama uzbuna
+  permission_manage_alerts_for_all: Kreiraj uzbune za sve korisnike
+  permission_view_alerts: Pogledaj uzbune
+  project_default_page:
+    easy_alerts: Uzbune / Alarmi
+  project_module_easy_alerts: Uzbune / Alarmi
+  text_alerts_is_for_all: Npr. u spremljenoj vrijednosti filtera <<me>> će biti zamjenjeno
+    svakim korisnikom; ili će uzbuna potrošenog vremena promatrati potrošeno vrijeme
+    svih korisnika.
+  title_alert_type_color: Odaberi boju
+  title_alerts_add_new_alert: Stvori novu uzbunu / alarm
+  title_alerts_alert_edit: Izmjeni uzbune
+  title_alerts_alert_new: Nova uzbuna / alarm
+  title_alerts_context_edit: Izmjenjivanje konteksta
+  title_alerts_context_new: Novi kontekst
+  title_alerts_edit_alert: Modificiraj uzbunu
+  title_alerts_manage_contexts: Upravljanje kontekstom
+  title_alerts_manage_types: Upravljanje vrstama uzbuna
+  title_alerts_my_alerts: Pogledaj moje uzbune / alarme
+  title_alerts_report: Pogledaj izvješća uzbune
+  title_alerts_report_entity_invoice: Prikaži invoice (dostavnica, faktura) %{entityname}
+  title_alerts_report_entity_issue: Prikaži zadatak %{entityname}
+  title_alerts_report_entity_project: Prikaži projekt %{entityname}
+  title_alerts_report_entity_user: Prikaži korisnika %{entityname}
+  title_alerts_reports: Prikaži moja izvješća
+  title_alerts_reports_archive: Prikaži arhivirana izvješća.
+  title_alerts_show_alert: "%{alertname} Prikaži upozorenje"
+  title_alerts_sidebar_type: Pogledaj izvješća koja su ove vrste %{typename}
+  title_alerts_type_edit: Modifikacija vrste
+  title_alerts_type_new: Nova vrsta
+  title_manage_alerts_for_all: Klikni da bi pogledao uzbune / alarme za sve

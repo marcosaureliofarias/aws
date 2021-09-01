@@ -1,0 +1,20 @@
+<script type='text/javascript' defer>
+  EASY.schedule.require(function () {
+    var diagramVersionsSelectBox = $('[name="diagram-version"]');
+
+    diagramVersionsSelectBox.on('change', function() {
+      var togglePositionPath = $(this).attr('toggle_position_path');
+      var selectedValue = $(this).find(":selected").val();
+
+      if (selectedValue === '') {
+        return;
+      }
+
+      var path = togglePositionPath +
+                 '?position=' + selectedValue +
+                 '&back_url=' + window.location.href;
+
+      window.location.replace(path);
+    });
+  }, 'jQuery');
+</script>

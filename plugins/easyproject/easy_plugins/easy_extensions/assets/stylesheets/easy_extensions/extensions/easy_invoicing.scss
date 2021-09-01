@@ -1,0 +1,98 @@
+form #easy_invoice_line_items{
+  thead th{
+    color: $color-negative;
+  }
+}
+#easy_invoice_line_items{
+  th, td {
+    font-size: 11px;
+    padding: 3px 8px !important;
+  }
+}
+p.crm-case-status-invoice-template-relation {
+  @extend %flex;
+  @extend %flex-direction-row;
+  @extend %flex-wrap-nowrap;
+  @extend %align-items-center;
+  @extend %justify-content-space-between;
+  @extend %box-sizing-border-box;
+  position: relative;
+  padding-bottom: $gap;
+  border-bottom: 1px solid $color-border-minor;
+  @include respond-to(max-menu-collapse) {
+    display: block;
+    padding-bottom: .5*$gap;
+  }
+  label, label.inline {
+    margin-right: .5*$gap;
+    @include respond-to(max-menu-collapse) {
+      width: $tabular-offset - $gap;
+      text-align: right;
+      float: left;
+      display: inline-block !important;
+      vertical-align: middle;
+      padding: .5*$gap 0;
+      margin-right: $gap !important;
+    }
+    @include respond-to(max-sidebar-collapse) {
+      display: block;
+      float: none;
+      text-align: left;
+    }
+  }
+  select {
+    width: auto;
+    @extend %flex-grow-1;
+    margin-right: $gap;
+    @include respond-to(max-menu-collapse) {
+      width: 100%;
+      max-width: $form-field-max-width;
+      margin-bottom: 6px;
+      display: block;
+    }
+  }
+  .delete-easy-crm-invoice-relation {
+    margin-left: auto;
+    margin-right: .5*$gap;
+    @extend %button-small-negative;
+    border: 1px solid transparent;
+    @include respond-to(max-menu-collapse) {
+      position: absolute;
+      right: 0;
+      top: 38%;
+    }
+    @include respond-to(max-sidebar-collapse) {
+      position: relative;
+      margin-left: 0;
+      margin-bottom: $gap;
+    }
+  }
+}
+#tab-content-easy_crm {
+  p.buttons {
+    text-align: center;
+    padding-left: 0;
+    input[type=submit] {
+      @extend %button-positive;
+    }
+  }
+}
+
+//project CRM settings - move to another file?
+#tab-content-easy_crm {
+  h3.icon {
+    @extend %flex;
+    @extend %flex-direction-row;
+    @extend %align-items-center;
+    @extend %justify-content-flex-start;
+    .module-heading-links {
+      position: relative;
+      top: 0;
+      right: 0;
+      margin-left: auto;
+      a.button-positive {
+        @extend %button-positive;
+      }
+    }
+  }
+}

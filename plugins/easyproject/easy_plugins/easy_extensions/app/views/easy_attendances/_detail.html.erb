@@ -1,0 +1,91 @@
+<% more_attributes_collapsed = !toggle_button_expanded?('hide_more_attributes_easy_attendance', User.current, false) %>
+<div id="entity-info" class="easy-attendance-info multieditable-container entity-detail-header" data-url="<%= easy_attendance_path(attendance, format: 'json') %>">
+  <div id="attendance-detail-container" class="easy-entity-details">
+    <h2>
+      <%= l(:show, scope: :easy_attendance, date: format_date(attendance.arrival.to_date)) -%> -
+      <%= easy_format_hours(attendance.spent_time)%>
+    </h2>
+    <div class="easy-entity-details-header-attributes<%= ' open' unless more_attributes_collapsed %>">
+      <div class="attributes main-info">
+        <div cass="splitcontent">
+          <div class="splitcontentleft">
+            <div class="attribute">
+              <div class="label"><%= l(:field_easy_attendance_activity) %>:</div>
+              <div class="value">
+                <div class="<%= 'multieditable' if attendance.safe_attribute?('easy_attendance_activity_id') %>"
+                      data-name="easy_attendance[easy_attendance_activity_id]"
+                      data-type="select"
+                      data-value="<%= attendance.easy_attendance_activity_id %>"
+                      data-source="<%= easy_attendance_activities_for_autocomplete(attendance) %>">
+                          <%= attendance.easy_attendance_activity_id ? link_to_easy_attendance_activity(attendance.activity) : '-' %>
+                </div>
+              </div>
+            </div>
+            <div class="attribute">
+              <div class="label"><%= l(:field_arrival) %>:</div>
+              <div class="value">
+                <%= attendance.arrival ? format_date_or_time(attendance.arrival) : '-' %>
+              </div>
+            </div>
+          </div>
+          <div class="splitcontentright">
+            <div class="attribute">
+              <div class="label"><%= l(:field_user) %>:</div>
+              <div class="value">
+                <div class="<%= 'multieditable' if attendance.safe_attribute?('user_id') %>"
+                      data-name="easy_attendance[user_id]"
+                      data-type="select"
+                      data-value="<%= attendance.user_id %>"
+                      data-source="<%= j easy_autocomplete_path('managed_users') %>">
+                    <%= attendance.user ? link_to_user(attendance.user) : '-' %>
+                </div>
+              </div>
+            </div>
+            <div class="attribute">
+              <div class="label"><%= l(:field_departure) %>:</div>
+              <div class="value">
+                <%= attendance.departure ? format_date_or_time(attendance.departure) : '-' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="attributes main-info">
+        <div cass="splitcontent">
+          <div class="splitcontentleft">
+            <div class="attribute">
+              <div class="label"><%= l(:field_at_work) %>:</div>
+              <div class="value">
+                <%= attendance.activity.at_work ? l(:general_text_yes) : l(:general_text_no) %>
+              </div>
+            </div>
+            <div class="attribute">
+              <div class="label"><%= l(:field_approved_by) %>:</div>
+              <div class="value">
+                <%= attendance.approved_by ? link_to_user(attendance.approved_by) : '-' %>
+              </div>
+            </div>
+          </div>
+          <div class="splitcontentright">
+            <div class="attribute">
+              <div class="label"><%= l(:field_approval_status) %></div>
+              <div class="value">
+                <%= attendance.approval_status ? l(:approval_statuses, scope: :easy_attendance)[attendance.approval_status.to_s.to_sym] : l(:approval_not_required, scope: :easy_attendance) %>
+              </div>
+            </div>
+            <div class="attribute">
+              <div class="label"><%= l(:field_approved_at) %>:</div>
+              <div class="value">
+                <%= attendance.approved_at ? format_date_or_time(attendance.approved_at) : '-' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="easy-attendance--attributes">
+        <%= render_more_attributes_button('hide_more_attributes_easy_attendance', User.current.id, more_attributes_collapsed) %>
+      </div>
+    </div>
+  </div>
+</div>

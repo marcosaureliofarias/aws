@@ -1,0 +1,35 @@
+<% if @processed %>
+var html = "<%= j(render(:partial => 'easy_entity_imports/import', :formats => [:html], :locals => {:output => @output})) %>";
+if ($("#import_output")[0]) {
+  $("#import_output").prepend(html);
+  <% x = @easy_entity_import.attachments.order(:created_on => :desc).to_a; i = x.index(@attachment) %>
+  <% if !i.nil? && x[i+1] %>
+  $.post('<%= import_easy_entity_import_path(@easy_entity_import, :attachment_id => x[i+1].id, :format => 'js') %>');
+  <% else %>
+  $(".indicator").parent().hide();
+  <% end %>
+
+} else {
+  $("#ajax-modal").html(html);
+
+  EASY.modalSelector.showModal();
+  $("#ajax-modal").dialog("option", {
+    buttons: [
+      {
+        text: '<%=j l(:button_close) %>',
+        click: function() {$(this).dialog("close");},
+        'class': 'button'
+      }
+    ]
+  });
+}
+
+$("#easy_entity_import_source_inputs span.icon-pulse").removeClass('icon-pulse');
+<% elsif @error %>
+$("#import_output").html("");
+showFlashMessage("error", "<%= j @error.html_safe %>");
+<% else %>
+$("#content").html("<%=j render(template: 'easy_entity_imports/import', layout: false, formats: [:html]) %>");
+$(".indicator").parent().show();
+$.post('<%= import_easy_entity_import_path(@easy_entity_import, :attachment_id => @easy_entity_import.attachments.order(:created_on => :desc).first.id, :format => 'js') %>');
+<% end %>

@@ -1,0 +1,38 @@
+<%
+modul_uniq_id ||= 'modal_selector'
+query_form_project = @project unless query.dont_use_project
+easy_query_apply_url ||= url_for({:project_id => query_form_project, :set_filter => '1'})
+easy_query_params = query.to_params
+show_heading_buttons = params[:easy_query_q].blank?
+%>
+<div id='<%= modul_uniq_id %>' class="easy-lookup-modal-selector-filters-container">
+  <%= render( :partial => 'modal_selectors/modal_selector_freetext', :locals => {:before_functions => "EASY.modalSelector.unbindInfiniteScroll();EASY.modalSelector.selectAllOptions('#{modul_uniq_id}selected_columns')", :remote_function_url => url_for({:controller => 'modal_selectors', :entity_action => 'search', :type => query.type, :translated_query_name => query.name, :modal_action => (params[:modal_action] || action_name), :only_path => true}.merge(easy_query_params)), :modal_selector => true}) if query.searchable_columns.present? -%>
+  <%= form_tag('', :id => 'modal_selector_query_form') do %>
+    <%= hidden_field_tag 'set_filter', '1' %>
+    <%= hidden_field_tag 'project_id', @project.id if @project.present? %>
+
+    <div id="query_form_content" class="easy-query-filter-container">
+      <%= render :partial => 'easy_queries/easy_query_index_form', :locals => { :query => query, :modul_uniq_id => modul_uniq_id, :show_free_search => false, :show_heading_buttons => show_heading_buttons, :modal_selector => true, :entity_count => entity_count} %>
+      <div id="modal_selectorfilter_buttons" style="display: none;">
+        <%= submit_tag l(query.entity.name.underscore, :scope => [:easy_query,:button_apply], :default => l(:button_apply) ), :class => 'button-positive' %>
+        <%= link_to_function(l(:button_clear_projectquery), "$.post('#{j(url_for(:set_filter => 0))}', $('.modal-selected-values form').serialize(), function(data) {$('#easy_modal').html(data);$(document).trigger('easy-query:after-search');})",
+          :class => 'icon icon-reload clear-link button-negative', :title => l(:title_clear_projectquery), :id => 'modal-dialog-reload-button') -%>
+      </div>
+    </div>
+  <% end %>
+  <script type="text/javascript">
+    EASY.schedule.late(function(){
+      $("#modal_selector_query_form").submit(function() {
+        EASY.modalSelector.unbindInfiniteScroll();
+        EASY.modalSelector.selectAllOptions('<%= modul_uniq_id %>selected_columns');
+        $.post('<%= j easy_query_apply_url %>', EASY.modalSelector.parseEasyQueryData('<%= modul_uniq_id %>') + $('#easy_modal #<%= "#{params['field_id']}" %>-modal-selected-values-form').serialize(), function(data) {
+          $('#easy_modal').html(data);
+          EASY.modalSelector.bindInfiniteScroll();
+          $(document).trigger("easy-query:after-search");
+        });
+        return false;
+      });
+    });
+  </script>
+</div>
+<div class="clear"></div>

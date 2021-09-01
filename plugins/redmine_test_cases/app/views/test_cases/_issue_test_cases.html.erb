@@ -1,0 +1,32 @@
+<% if User.current.allowed_to?(:view_test_cases, project) %>
+  <%= render_easy_entity_assignments(issue,
+                                     ::TestCase,
+                                     easy_query_class: TestCaseQuery,
+                                     heading: l(:label_test_cases)) %>
+<% end %>
+
+<% if User.current.allowed_to?(:view_test_plans, project) %>
+  <% if issue.test_plans.count > 0 %>
+    <%= title l(:label_test_plans) %>
+  <% end %>
+  <% issue.test_plans.each do |test_plan| %>
+    <fieldset style="margin-left: 2rem !important; border: 1px solid #eee3d4 !important;">
+      <legend><%= test_plan.name %></legend>
+      <%= render_easy_entity_assignments(test_plan,
+                                         ::TestCase,
+                                         easy_query_class: TestCaseQuery,
+                                         heading: l(:label_test_cases)) %>
+    </fieldset>
+  <% end %>
+<% end %>
+
+<% if User.current.allowed_to?(:view_test_case_issue_executions, project) %>
+  <%= render_easy_entity_assignments(issue,
+                                     ::TestCaseIssueExecution,
+                                     easy_query_class: TestCaseIssueExecutionQuery,
+                                     project: project,
+                                     heading: l(:label_test_case_issue_executions)) %>
+<% end %>
+
+<%# render_easy_entity_cards(issue, EasyTestCase, :project => project) %>
+<%# render_easy_entity_cards(issue, EasyTestExecution, :referenced_collection_name => :easy_test_executions, :easy_query_class => EasyTestExecutionQuery) %>

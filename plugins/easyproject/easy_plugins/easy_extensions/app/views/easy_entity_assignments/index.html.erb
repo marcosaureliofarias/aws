@@ -1,0 +1,4 @@
+<%= render partial: 'easy_queries/easy_entity_assignments', locals: { easy_query: @easy_query, entities: @easy_query.entities, source_entity: @source_entity, options: @options } %>
+<% if @show_load_all_button %>
+   <div class="toolbar"><%= link_to l(:label_show_all), @easy_query.path(params.slice(:referenced_collection_name, :source_entity_type, :source_entity_id)), class: 'button', target: '_blank' %></div>
+<% end %>

@@ -1,0 +1,111 @@
+.global-filter{
+  @extend %inline-flex;
+  text-align: left;
+  flex-shrink: 0;
+  max-width: 250px;
+  margin: 0 $gap .5*$gap 0;
+  @include respond-to(max-menu-collapse) {
+    width: 45%;
+    width: calc(50% - #{$gap});
+    max-width: 500px;
+  }
+  @include respond-to(max-sidebar-collapse){
+    width: 100%;
+  }
+  &__name{
+    line-height: $form-field-height - px2rem(2px);
+    height: $form-field-height - px2rem(2px);
+    vertical-align: middle;
+    border: 1px solid $form-field-border;
+    display: inline-block;
+    margin-right: -1px;
+    padding: 0 $gap;
+    flex-shrink: 0;
+    white-space: nowrap;
+    @include border-radius($border-radius 0 0 $border-radius);
+    @include respond-to(max-menu-collapse){
+      min-width: 120px;
+    }
+  }
+  &__field {
+    display: inline-block;
+    flex-grow: 1;
+  }
+  &--wide {
+    max-width: initial;
+    width: auto;
+  }
+}
+.global_filters__apply-more{
+  @include border-radius( 0 $border-radius $border-radius 0 !important);
+}
+.global-filter__field select, .global-filter__field input {
+  flex-grow: 1;
+  &.hasDatepicker {
+    width: 95px;
+  }
+}
+.global-filters {
+  @extend %flex;
+  @extend %flex-wrap-nowrap;
+  justify-content: left;
+  margin-bottom: $gap;
+  @include respond-to(max-sidebar-collapse){
+    @include flex-wrap(wrap);
+  }
+  &-filters {
+    @extend %flex;
+    @extend %flex-wrap-nowrap;
+    margin-right: $gap;
+    @include respond-to(max-menu-collapse){
+      @include flex-wrap(wrap);
+    }
+    @include respond-to(max-sidebar-collapse){
+      margin-right: 0;
+    }
+    &.autoscroll {
+      .ps__rail-x {
+        bottom: -8px;
+      }
+      .ps__thumb-x {
+        height: 3px;
+      }
+    }
+  }
+  .autoscroll__wrapper {
+    margin-left: 0;
+    margin-right: $gap;
+    border: none;
+  }
+  .button-group {
+    @extend %flex;
+    line-height: $form-field-height - px2rem(2px);
+    height: $form-field-height - px2rem(2px);
+    position: relative;
+    align-self: center;
+    margin-top: -.5*$gap;
+    @include respond-to(max-sidebar-collapse){
+      margin: .5*$gap auto;
+    }
+    a {
+      padding-top: 8px;
+    }
+    .menu-more {
+      position: absolute;
+      top: 100%;
+      margin-left: -70%;
+      @include respond-to(min-xlarge-screen){
+        margin-left: -62%;
+      }
+    }
+  }
+}
+.definition-global-filters {
+  span.input-append {
+    width: inherit;
+    max-width: inherit;
+  }
+  input.hasDatepicker {
+    width: 95px;
+  }
+}

@@ -1,0 +1,1 @@
+<%= report.alert.name -%> - <%= sanitize(l(:label_easy_alerts_helpdesk_monitor_due_time_report, :due_time => format_time(report.entity.easy_due_date_time)).html_safe) -%> - <%= issue_url(report.entity_id, :only_path => false) -%>

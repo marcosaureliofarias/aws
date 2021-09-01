@@ -1,0 +1,12 @@
+<% unless form.object.root_supervisor? %>
+  <% supervisor = User.find_by(id: form.object.supervisor_user_id) if form.object.supervisor_user_id %>
+  <p>
+    <%= form.label :supervisor_user_id %>
+    <% if supervisor %>
+      <%= avatar(supervisor, style: :small, no_link: true) %>
+      <%= link_to supervisor.name, easy_org_chart_path, title: l(:title_easy_org_chart), target: '_blank', class: "icon icon-external" %>
+    <% else %>
+      <%= link_to l(:label_nobody), easy_org_chart_path, title: l(:title_easy_org_chart), target: '_blank', class: "icon icon-external" %>
+    <% end %>
+  </p>
+<% end %>

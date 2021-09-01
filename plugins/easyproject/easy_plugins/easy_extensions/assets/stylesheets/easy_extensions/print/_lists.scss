@@ -1,0 +1,17 @@
+ul {
+  list-style: none;
+}
+.members-list ul li {
+  width: 25%;
+  float: left;
+  //padding-bottom: $gap;
+  .avatar-container {
+    display: none;
+  }
+}
+#main_menu_top_project, #mobile-actions {
+  @extend %display_none;
+}
+.members-list {
+  @extend %clearfix;
+}

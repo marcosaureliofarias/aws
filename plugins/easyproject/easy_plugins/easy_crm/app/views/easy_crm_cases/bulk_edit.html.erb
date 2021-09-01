@@ -1,0 +1,174 @@
+<div class="contextual">
+  <ul id="bulk-selection">
+    <% @easy_crm_cases.each do |easy_crm_case| %>
+      <%= content_tag(:li, bulk_edit_link_to_easy_crm_case(easy_crm_case), :class => 'crm-case-bulk-edit-link') %>
+    <% end %>
+  </ul>
+</div>
+<h2><%= l(:label_bulk_edit_selected_easy_crm_case) %></h2>
+
+<% if @saved_easy_crm_cases && @unsaved_easy_crm_cases.present? %>
+  <div id="errorExplanation">
+    <span>
+      <%= l(:notice_failed_to_save_easy_crm_cases,
+            :count => @unsaved_easy_crm_cases.size,
+            :total => @easy_crm_cases.size,
+            :titles => @unsaved_easy_crm_cases.map(&:name).join(', ')) %>
+    </span>
+    <ul>
+      <% bulk_edit_invoice_error_messages(@unsaved_easy_crm_cases).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= labelled_form_for(:easy_crm_case, :easy_crm_case, :url => bulk_update_easy_crm_cases_path, :html => { :id => 'bulk_edit_form', :class => 'form-box'}) do |f| %>
+  <% @easy_crm_cases.each do |easy_crm_case| %>
+    <%= hidden_field_tag 'ids[]', easy_crm_case.id  %>
+  <% end %>
+  <%= back_url_hidden_field_tag %>
+  <div class="splitcontent tabular">
+    <div class="splitcontenleft">
+      <p>
+        <label for="easy_crm_case_project_id_autocomplete"><%= l(:field_project) %></label>
+        <%= easy_autocomplete_tag(
+                'easy_crm_case[project_id]',
+                {:name => (@target_project.nil? ? l(:label_no_change_option) : @target_project.name), :id => (@target_project.nil? ? '' : @target_project.id)},
+                easy_autocomplete_path('easy_crm_projects'),
+                :onchange => "updateBulkEditFrom('#{j(url_for(:action => 'bulk_edit', :format => 'js'))}')",
+                :include_blank => true, :root_element => 'projects', :html_options => {:id => 'easy_crm_case_project_id'}
+            ) -%>
+      </p>
+      <% if @safe_attributes.include?('easy_crm_case_status_id') -%>
+        <p>
+          <%= f.select :easy_crm_case_status_id, options_for_select([[l(:label_no_change_option), '']].concat(EasyCrmCaseStatus.sorted.map { |u| [u.name, u.id.to_s] }), selected: @easy_crm_case_params[:easy_crm_case_status_id]), label: EasyCrmCase.human_attribute_name(:easy_crm_case_status), class: 'required' %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('assigned_to_id') -%>
+        <p>
+          <label for='easy_crm_case_assigned_to_id'><%= EasyCrmCase.human_attribute_name(:account_manager) %></label>
+          <%= easy_autocomplete_tag("easy_crm_case[assigned_to_id]",
+                                    { name: l(:label_no_change_option), id: '' },
+                                    easy_autocomplete_path('assignable_principals_easy_crm_case', project_ids: @easy_crm_cases.map(&:project_id), move: true),
+                                    preload: false,
+                                    root_element: 'users',
+                                    html_options: { id: 'easy_crm_case_assigned_to_id' },
+                                    force_autocomplete: true,
+                                    easy_autocomplete_options: {
+                                        activate_on_input_click: true,
+                                        widget: 'catcomplete',
+                                        delay: 50,
+                                        minLength: 0
+                                    }) %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('external_assigned_to_id') && EasyUserType.easy_type_partner.any? -%>
+        <p>
+          <label for='easy_crm_case_external_assigned_to_id'><%= EasyCrmCase.human_attribute_name(:external_account_manager) %></label>
+          <%= easy_autocomplete_tag("easy_crm_case[external_assigned_to_id]",
+                                    { name: l(:label_no_change_option), id: '' },
+                                    easy_autocomplete_path('assignable_principals_easy_crm_case', project_ids: @easy_crm_cases.map(&:project_id), move: true, external: true),
+                                    preload: false,
+                                    root_element: 'users',
+                                    html_options: { id: 'easy_crm_case_external_assigned_to_id' },
+                                    force_autocomplete: true,
+                                    easy_autocomplete_options: {
+                                        activate_on_input_click: true,
+                                        widget: 'catcomplete',
+                                        delay: 50,
+                                        minLength: 0
+                                    }) %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('is_canceled') -%>
+        <p>
+          <label for='easy_crm_case_is_canceled'><%= EasyCrmCase.human_attribute_name(:is_canceled) %></label>
+          <%= easy_bulk_boolean_select_tag('easy_crm_case[is_canceled]', @easy_crm_case_params[:is_canceled]) %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('is_finished') -%>
+        <p>
+          <label for='easy_crm_case_is_canceled'><%= EasyCrmCase.human_attribute_name(:is_finished) %></label>
+          <%= easy_bulk_boolean_select_tag('easy_crm_case[is_finished]', @easy_crm_case_params[:is_finished]) %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('contract_date') -%>
+        <p>
+          <%= render partial: 'easy_crm_cases/change_date_fields', locals: {field_name: 'contract_date'} %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('next_action') -%>
+        <p>
+          <%= render partial: 'easy_crm_cases/change_date_fields', locals: {field_name: 'next_action'} %>
+        </p>
+      <% end %>
+    </div>
+    <div class="splitcontenright">
+      <% if @safe_attributes.include?('price') -%>
+        <p>
+          <%= f.text_field :price, value: @easy_crm_case_params[:price], placeholder: l(:label_no_change_option), size: 10, label: EasyCrmCase.human_attribute_name(:price) -%>
+          <%= f.select :currency, options_for_select([[l(:label_no_change_option), '']].concat(EasyCurrency.activated.map{|c|[ c.name, c.iso_code ]}), @easy_crm_case_params[:currency]), {no_label: true}, {class: 'inline'} if EasyCurrency.activated.any? %>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('email') -%>
+        <p>
+          <%= f.text_field :email, value: @easy_crm_case_params[:email], placeholder: l(:label_no_change_option), label: EasyCrmCase.human_attribute_name(:email) -%>
+        </p>
+      <% end %>
+      <% if @safe_attributes.include?('telephone') -%>
+        <p>
+          <%= f.text_field :telephone, value: @easy_crm_case_params[:telephone], placeholder: l(:label_no_change_option), label: EasyCrmCase.human_attribute_name(:telephone) -%>
+        </p>
+      <% end %>
+      <% @custom_fields.each do |custom_field| %>
+        <p>
+          <label class="<%= 'required' if custom_field.is_required? %>"><%= custom_field.translated_name %></label>
+          <%= custom_field_tag_for_bulk_edit('easy_crm_case', custom_field, @easy_crm_cases, @easy_crm_case_params[:custom_field_values][custom_field.id.to_s], :label_none => :label_no_change_option) %>
+        </p>
+      <% end %>
+
+    </div>
+  </div>
+
+  <fieldset>
+    <legend><%= l(:field_notes) %></legend>
+    <%= text_area_tag 'easy_crm_case[notes]', @easy_crm_case_params[:notes], :cols => 60, :rows => 10, :class => 'wiki-edit' -%>
+    <%= wikitoolbar_for 'easy_crm_case[notes]' unless in_mobile_view? -%>
+  </fieldset>
+
+  <fieldset class="collapsible">
+    <legend onclick="toggleFieldset(this);"><%= l(:label_issue_watchers) -%></legend>
+    <div style="display: none;">
+      <% @available_watchers.each do |watcher| %>
+        <p class="floating">
+          <%= check_box_tag 'easy_crm_case[watcher_user_ids][]', watcher.id, false, :id => "easy-crm-case-watcher-#{watcher.id}" %>
+          <%= label_tag("easy-crm-case-watcher-#{watcher.id}", watcher.name, :class => 'inline') %>
+        </p>
+      <% end -%>
+    </div>
+  </fieldset>
+
+  <div class="form-actions">
+    <% if @target_project %>
+      <%= submit_tag l(:button_move), :class => 'button-positive' %>
+      <%= submit_tag l(:button_move_and_follow), :name => 'follow', :class => 'button-positive' %>
+    <% else %>
+      <%= submit_tag l(:button_submit), :class => 'button-positive' %>
+    <% end %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $(document).on('change', 'input[data-disables]', function(){
+      var $this = $(this);
+      if ($this.prop('checked')){
+        $($this.data('disables')).prop('disabled', true);
+        $this.closest('span').find("input").last().prop('disabled', false);
+      } else {
+        $($this.data('disables')).prop('disabled', false);
+      }
+    });
+  });
+</script>

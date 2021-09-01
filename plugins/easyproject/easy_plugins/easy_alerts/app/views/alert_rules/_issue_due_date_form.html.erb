@@ -1,0 +1,15 @@
+<%= render(:partial => 'alert_rules/date_expiration_form', :locals => { :texts=> {
+  :choose_type => l(:label_choose_type),
+  :choose_type_date_before => l(:label_issue_due_date_warning_date_before),
+  :choose_type_date_after => l(:label_issue_due_date_warning_date_after),
+  :choose_type_delta_before => l(:label_issue_due_date_warning_delta_before),
+  :choose_type_delta_after => l(:label_issue_due_date_warning_delta_after)
+  } } ) -%>
+
+<p>
+  <label><%= l(:label_issue_due_date_where_iam) %></label>
+  <% box = check_box_tag 'where_iam_author', '1', @settings[:where_iam_author] == '1', :id => 'where_iam_author' %>
+  <%= label_tag 'where_iam_author', box + l(:label_issue_due_date_where_iam_author), :class => 'checkbox inline' %>
+  <% box = check_box_tag 'where_iam_assignee', '1', @settings[:where_iam_assignee] == '1', :id => 'where_iam_assignee' %>
+  <%= label_tag 'where_iam_assignee', box + l(:label_issue_due_date_where_iam_assignee), :class => 'checkbox inline' %>
+</p>

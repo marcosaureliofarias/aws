@@ -1,0 +1,124 @@
+.easy-page__module--trend {
+  @include respond-to(max-menu-collapse) {
+    padding: $gap $gap 0 $gap !important;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .module-toggle-button {
+    margin: 0 !important;
+    .module-heading {
+      padding: 0 3rem .75rem 0 !important;
+      margin-top: 0;
+      & > span {
+        font-size: 1rem;
+        line-height: 1.25rem;
+        height: 2.5rem;
+        @include respond-to(max-menu-collapse) {
+          font-size: .95rem;
+          line-height: 1.1rem;
+          height: 2.2rem;
+        }
+      }
+    }
+  }
+  .module-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100%;
+  }
+}
+.easy-trend{
+  @extend %clearfix;
+  margin-top: 0;
+  &__data{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 3.2rem;
+    height: 3.4rem;
+  }
+  &__description{
+    padding-right: 2*$gap;
+    overflow: hidden;
+    bottom: 0;
+    font-size: .89rem;
+    line-height: 1.3rem;
+    max-height: 2.6rem;
+    margin-bottom: 0.75rem;
+    .easy-page__module--trend & {
+      position: absolute;
+    }
+    p {
+      margin-bottom:0;
+    }
+  }
+  &__wrapper{
+    padding: 0 0 .75rem 0;
+  }
+  &__icon + &__wrapper{
+    float: right;
+    width: 75%;
+    padding-top: 1.1rem;
+    .easy-trend{
+      &__data,&__description{
+        margin-left: $box-padding;
+      }
+    }
+  }
+  &__icon{
+    float: left;
+    text-align: left;
+    display: inline-block;
+    font-size: 2.6rem;
+    line-height: 1.8rem;
+    max-height: 1.8rem;
+    width: auto;
+    padding-right: $gap;
+  }
+  &__value {
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    height: 1.8rem;
+    min-width: 60%;
+    padding-bottom: .25rem;
+  }
+  &__direction, &__previous_period_direction{
+    font-size: 0.95em !important;
+    &--up{
+      &:before {
+        content: "\2191";
+        color: $color-positive;
+        font-weight: bold;
+      }
+    }
+    &--down{
+      &:before {
+        content: "\2193";
+        color: $color-negative;
+        font-weight: bold;
+      }
+    }
+    &--stagnant{}
+    &:before,&:after{
+      bottom: $gap;
+    }
+    &:before {
+      font-size: 1.8rem !important;
+      line-height: 1rem !important;
+    }
+    &:after{
+      @include transform(scale(.8) translateY(-1px));
+    }
+  }
+  &__change, &__percent, &__previous_period_percent {
+    font-size: .89rem !important;
+    line-height: 1.5rem;
+    max-height: 1.5rem;
+    flex-basis: 50%;
+    flex-shrink: 0;
+    & > span {
+      font-size: inherit !important;
+      line-height: inherit;
+    }
+  }
+}

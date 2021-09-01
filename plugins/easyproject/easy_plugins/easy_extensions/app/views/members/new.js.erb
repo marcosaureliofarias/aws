@@ -1,0 +1,23 @@
+$('#ajax-modal').html('<%= j(render :partial => 'members/easy_new_modal', :formats => [:html]) %>');
+showModal('ajax-modal', 800);
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_add).html_safe %>',
+      click: function() {$(this).find('form').trigger('submit.rails');}, 'class': 'button-positive'
+    },
+    {
+      text: '<%=j l(:button_add_and_close).html_safe %>',
+      click: function() {
+        var form = $(this).find('form');
+        $.ajax({
+          type: 'POST',
+          url: form.attr('action'),
+          data: form.serialize() + '&hide_modal=true',
+          dataType: 'script'
+        });
+        return false;
+      }, 'class': 'button-positive'
+    }
+  ]
+});

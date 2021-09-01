@@ -1,0 +1,5 @@
+<% if params[:display_style] == 'list' %>
+  $(".<%= dom_id(@entity) %>").remove();
+<% else %>
+  $("#<%= params['module_name'] %>_card_<%= @entity.id %>").remove();
+<% end %>

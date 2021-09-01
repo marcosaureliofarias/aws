@@ -1,0 +1,11 @@
+$("#ajax-modal").html("<%=j render :partial => 'easy_knowledge_categories/edit', :locals => {:category => @category} %>");
+showModal('ajax-modal', '40%');
+$('#ajax-modal .form-actions').remove();
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_update) %>',
+      click: function() {$(this).find('form').submit();}, 'class': 'button-positive'
+    }
+  ]
+});

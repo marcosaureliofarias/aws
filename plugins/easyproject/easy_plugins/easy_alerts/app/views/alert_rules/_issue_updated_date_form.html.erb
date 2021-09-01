@@ -1,0 +1,8 @@
+<%= render(:partial => "alert_rules/date_expiration_form", :locals => { :texts=> {
+  :choose_type => l(:label_choose_type),
+  :choose_type_date_before => l(:label_issue_updated_date_warning_date_before),
+  :choose_type_date_after => l(:label_issue_updated_date_warning_date_after),
+  :choose_type_delta_before => l(:label_issue_updated_date_warning_delta_before),
+  :choose_type_delta_after => l(:label_issue_updated_date_warning_delta_after)
+  } } ) -%>
+<%= render :partial => "alert_rules/issue_limitation_form" %>

@@ -1,0 +1,1 @@
+<%= report.alert.name -%> - <%= sanitize(time_ago_in_words_ex(report.entity.due_date, l(:label_project_due_date_overdue), l(:label_project_due_date_not_overdue))) unless report.entity.due_date.nil? -%> - <%= url_for(:controller => 'projects', :action => 'show', :id => report.entity_id, :only_path => false) -%>

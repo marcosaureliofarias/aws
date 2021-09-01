@@ -1,0 +1,20 @@
+<% g_uuid = EasyUtils::UUID.generate -%>
+<% user_name = event.user ? event.user.name : '' %>
+<div id="<%= "el-#{g_uuid}" -%>" class="easy-attendance-calendar-item" data-can-edit="<%= event.can_edit? %>">
+  <% if event.can_edit? %>
+    <%= link_to(user_name, edit_easy_attendance_path(event, back_url: original_url, :item_uniq_id => g_uuid), :remote => true, :class => 'easy-attendance-calendar-item-link-to-edit') -%>
+  <% else %>
+    <%= content_tag(:a, user_name, :href => '#') %>
+  <% end %>
+  <%= format_time(event.arrival, false) if event.arrival && event.start_date(User.current) == day -%> - <%= format_time(event.departure, false) if event.departure && event.due_date(User.current) == day -%>
+  <%= content_tag(:em, event.easy_attendance_activity.name) -%>
+</div>
+<div id="tooltip-<%= g_uuid -%>" style="display:none;" class="tooltip">
+  <%= render :partial => 'easy_attendances/info', :locals => {:easy_attendance => event, :day => day} -%>
+</div>
+<script type="application/javascript">
+EASY.schedule.late(function(){
+  var uuid = '<%= g_uuid %>';
+  new easyClasses.EasyTooltip($('#tooltip-'+uuid).html(), $('#el-' + uuid), 0, -30);
+}, -5);
+</script>

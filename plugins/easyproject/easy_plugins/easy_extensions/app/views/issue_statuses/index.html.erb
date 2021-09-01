@@ -1,0 +1,48 @@
+<%= title(l(:label_issue_status_plural)) -%>
+<div class="autoscroll">
+  <table class="list reorder">
+    <thead>
+    <tr>
+      <th></th>
+      <th><%= l(:field_status) %></th>
+      <th><%= l(:field_description) %></th>
+      <% if Issue.use_status_for_done_ratio? %>
+        <th><%= l(:field_done_ratio) %></th>
+      <% end %>
+      <th><%= l(:field_is_closed) %></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @issue_statuses.each do |status| %>
+      <tr class="<%= status.easy_color_scheme %>">
+        <td class="center reorder-handler"><%= render_reorder_handle(status, 'issue_status', url_options: {page: params[:page]}) %></td>
+        <td class="name"><%= link_to status.name, edit_issue_status_path(status) %></td>
+        <td class="description"><%= status.description %></td>
+        <% if Issue.use_status_for_done_ratio? %>
+          <td><%= status.default_done_ratio %></td>
+        <% end %>
+        <td><%= checked_image status.is_closed? %></td>
+        <td class="buttons">
+          <%= delete_link issue_status_path(status) %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% if false %>
+<% if @issue_status_pages.item_count > @issue_status_pages.per_page %>
+  <p><%= link_to l(:button_show_all_issue_statuses), issue_statuses_path(:all => 'true') %></p>
+<% end %>
+<% end %>
+
+<span class="pagination"><%#= pagination_links_full @issue_status_pages %></span>
+
+<% ### PAGE CUSTOMS ##########################################################  -%>
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_issue_status_new), new_issue_status_path, :class => 'button-positive' %>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:label_update_issue_done_ratios), update_issue_done_ratio_issue_statuses_path, :class => 'button', :id => 'issue-statuses-update-issue-done-ratios', :method => 'post', :data => {:confirm => l(:text_are_you_sure)}) if Issue.use_status_for_done_ratio? %>
+<% end %>

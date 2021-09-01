@@ -1,0 +1,225 @@
+---
+cs:
+  button_print: Tisk
+  button_project_menu_easy_gantt: Easy Gantt
+  button_top_menu_easy_gantt: Globální Gantt
+  button_use_actual_delay: Použít skutečné zpoždění
+  easy_gantt_toolbar:
+    day: Dny
+    month: Měsíce
+    week: Týdny
+  easy_gantt:
+    button:
+      close_all: Zavřít vše
+      close_all_parent_issues: Zavřít všechny rodičovské úkoly
+      create_baseline: Baseline
+      critical_path: Kritická cesta
+      day_zoom: Dny
+      delayed_project_filter: Filtrovat zpožděné projekty
+      jump_today: Přejít na dnešek
+      load_sample_data: Nahrát zkušební data
+      month_zoom: Měsíce
+      print_fit: Přizpůsobit stránce
+      problem_finder: Problémy
+      reload: Znovu načíst (uložit)
+      remove_delay: Odstranit zpoždění
+      resource_management: Vytížení zdrojů
+      tool_panel: Nástroje
+      week_zoom: Týdny
+    critical_path:
+      disabled: Vypnuto
+      last: Poslední
+      last_text: Úkoly, které by se neměly odkládat
+      longest: Nejdelší
+      longest_text: Zobrazit nejdelší sled úkolů
+    errors:
+      change_link_length: Zpozdění mezi {{source_task}} a {{target_task}} bylo změněno
+        na minimální délku {{minimum_link_length}}
+      duplicate_link: Není možné vytvořit zdvojenou vazbu
+      fresh_milestone: Není možné přidat úkol na neuložený milník. Nejprve uložte
+        mílník.
+      integrity:
+        ends_too_late: končí příliš pozdě
+        gantt_is_too_long: Graf je příliš široký (více než {{limit}} dní)
+        out_of_limits: Některé záznamy jsou vynechány, protože se nachází mimo určené
+          doby od {{minLimit}} do {{maxLimit}}
+        starts_too_early: začíná příliš brzo
+        truncated: zkrácen
+      link_target_new: Nelze vytvořit vazbu na neuložený úkol. Nejprve uložte změny.
+      link_target_readonly: Cílový úkol pouze pro čtení
+      loop_link: Není možné vytvořit cyklickou vazbu
+      no_rest_api: Easy Gantt potřebuje mít zapnuté REST API. Zapněte ho v Administraci
+        -> Nastavení -> API -> Zapnout službu REST
+      overdue: má skončit v budoucnu, nebo být již uzavřen
+      overmile: musí končit %{effective_date}, aby dodržel milník
+      progress_date_overdue: se opožduje za plánem o %{days} dní
+      project_link: Není možné vytvořit vazbu na projekt
+      reservation_for_unassignee: Není možné vytvořit rezervaci pro nepřiřazené.
+      save_gantt: Uložte, prosím, Gantt před odchodem.
+      short_delay: mělo by být delší o %{diff} dnů
+      subproject_precedes_parent: Podprojekt předchází nadřazenému projektu‌
+      too_short: není dost dlouhý pro zbývajících %{rest} hodin odhadovaného času
+      unsaved_parent: Nelze přidat úkol k neuloženému rodiči. Nejprve uložte změny.
+      unsupported_link_type: Nepodporovaný typ vazby
+    gateway:
+      entity_save_failed: "%{entityType} %{entityName} se nepodařilo uložit kvůli
+        chybě"
+      send_failed: 'Následující požadavky se nepodařilo odeslat:'
+    label_pro_upgrade: Upgradovat na PRO verzi
+    legend:
+      heading: Legenda
+      heading_tips: Tipy a triky
+      label_dates_calculated: Datum začátku a dokončení je vypočten z úkolů
+      label_dates_set_manually: Datumy začátku a dokončení jsou nastaveny ručně
+      label_milestone: Milník
+      label_milestone_shared: Sdílený milník
+      label_project: Projekt
+      label_project_done: Vizualizace dokončenosti projektu (% hotovo)
+      label_project_problem: Projekt s problémem
+      label_relation_fixed: Uzamčená (pevná) vazba
+      label_relation_unfixed: Odomčená (volná) vazba
+      label_relations_handle: Úchyt pro vytvoření vazby
+      label_task: Úkol
+      label_task_delay: Číslo vyjadřuje zpoždění - počet dní mezi úkoly. Číslo v závorkách
+        vyjadřuje zpoždění bez víkendů a svátků
+      label_task_done: Vizualizace dokončenosti úkol (% hotovo)
+      label_task_due_missing: Úkol s nenastaveným datumem dokončení
+      label_task_movers: Úchyty pro posun začátku a konce‌
+      label_task_parent_dates_missing: Nadřazený úkol nemá nastaven začátek a konec
+      label_task_problem: Úkol s problémem
+      label_task_start_missing: Úkol s nenastaveným začátkem
+      label_today: Vizualizace dneška
+      notice_due_date_set: Datum začátku není nastaven, datum dokončení je
+      notice_future_due_date: Posunete-li projekt se začátkem v minulosti, nový datum
+        začátku se nastaví stejný jako datum dokončení - trvání projektu bude jeden
+        den
+      notice_future_start_date: Posunete-li datum začátku do budoucnosti, datum dokončení
+        bude stejný jako datum začátku - trvání projektu bude jeden den
+      notice_move_expanded_project: Rozbalený projekt není možné přesouvat - zabalte
+        projekt, obnovte stránku, pak jej můžete posunout
+      notice_past_due_date: Posunete-li projekt, datum začátku se nastaví na dnešek
+      notice_past_start_date: Posunete-li datum začátku do minulosti, datum dokočení
+        se nastaví na dnešek‌
+      notice_project_needs_task: Projekt nemůže být uložen, neobsahuje-li alespoň
+        jeden úkol. Přidejte úkol do projektu nebo jejího podprojektu, aby jej bylo
+        možné posouvat.
+      notice_start_date_set: Datum začátku je nastaven, datum dokončení nikoliv‌
+    link_dir:
+      link_end: jako předchůdce
+      link_start: jako následovník
+    popup:
+      add_task:
+        heading: Přidat úkol
+        text: "Tato funkce je dostupná pouze v Easy Gantt PRO \r\n<a href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Upgradovat
+          na PRO verzi</a>"
+      baseline:
+        heading: Baseline
+        text: "Tato funkce je dostupná pouze v Easy Gantt PRO \r\n<a href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Upgradovat
+          na PRO verzi</a>"
+      critical:
+        heading: Kritická cesta
+        text: "Tato funkce je dostupná pouze v Easy Gantt PRO \r\n<a href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Upgradovat
+          na PRO verzi</a>"
+      resource:
+        easy_text: Modul Vytížení zdrojů není nainstalován - získejte ho <a href="https://www.easyredmine.com/pricing-buy">zde!</a>
+        heading: Vytížení zdrojů
+        text: Vytížení zdrojů je dostupné v <a href="https://www.easyproject.cz/">
+          Easy Project</a>
+    reload_modal:
+      label_errors: Chyby
+      text_reload_appeal: Chcete ignorovat neuložené položky a znovu načíst data ze
+        serveru?
+      title: Gantt se nepodařilo správně uložit
+    sample_global_free:
+      text: Zkušební data nelze uzavřít. Gantt nad všemi projekty je k dispozici pouze
+        ve verzi PRO.
+      video:
+        text: Zde si můžete prohlédnout většinu funkcí Ganttu nad všemi projekty
+        title: Ukázkové video Ganttu nad všemi projekty
+        video_id: zd3M0KYxcXM
+    sample:
+      close_label: Zavřít toto okno a načíst skutečná data
+      header: Jsou načtena zkušební data!
+      text: Připravili jsme zkušební data, abyste <strong>vyzkoušeli všechny funkce
+        Easy Ganttu bez obav</strong>. Koukněte se také na video průvodce ukazujícího
+        užitečné triky. Zavřením tohoto okna načtete skutečná data.
+      video_label: Spustit video návod
+      video:
+        text: Zde můžete vidět většinu funkcí modulu Easy Gantt
+        title: Spustit video návod
+        video_id: UHgqfsrD59Q
+    text_blocker_milestone: Milník blokuje posunutí úkolu za toto datum
+    text_blocker_move_end: Alespoň jeden úkol bude zpožden, přesune-li se za tento
+      datum
+    text_blocker_move_pre: Úkol obsahuje vazbu, která blokuje posunutí úkolu za toto
+      datum
+    title:
+      button_test: Testovací tlačítko (pouze pro testování)
+      day_zoom: Dny
+      jump_today: Přejít na dnešek
+      month_zoom: Měsíce
+      print_fit: Zmenšit Gantt na jednu stránku
+      week_zoom: Týdny
+  easy_printable_templates_categories:
+    easy_gantt: Easy Gantt
+  easy_query:
+    name:
+      easy_gantt_easy_issue_query: Easy Gantt
+      easy_gantt_easy_project_query: Globální Easy Gantt
+  error_easy_gantt_view_permission: Nemáte právo vidět Easy Gantt
+  error_epm_easy_gantt_already_active: Easy gantt je na této stránce již aktivní
+  error_small_screen: Velikost obrazovky vašeho zařízení je příliš malá pro zobrazení
+    Ganttu
+  error_start_date_before_end_date: Datum dokončení musí být větší než začátek
+  field_easy_gantt_default_zoom: Výchozí přiblížení
+  field_easy_gantt_fixed_delay: Pevné zpoždení
+  field_easy_gantt_relation_delay_in_workdays: Zpoždení v pracovních dnech
+  field_easy_gantt_show_holidays: Zobrazit svátky
+  field_easy_gantt_show_project_progress: Zobrazit pokrok na projektu
+  field_easy_gantt_show_task_soonest_start: Zobrazit nejdřívější začátek
+  field_keep_link_delay_in_drag: Zachovat zpoždění vazby během přesunu
+  field_relation: Vazba
+  heading_delay_popup: Nastavte zpoždění úkolu ve dnech
+  heading_demo_feature_popup: Již brzy...
+  heading_easy_gantts_issues: Easy Gantt Free
+  label_easy_gantt: Easy Gantt
+  label_easy_gantt_critical_path: Kritická cesta
+  label_easy_gantt_global: Globální
+  label_easy_gantt_issue_loaded: Všechny úkoly načteny
+  label_easy_gantt_load: Načíst
+  label_easy_gantt_next_level_close: Uzavřít další úroveň
+  label_easy_gantt_next_level_open: Otevřít další úroveň
+  label_easy_gantt_recalculate_fixed_delay: přepočítat fixné zpoždení
+  label_easy_gantt_settings: Nastavení Ganttu
+  label_filter_group_easy_gantt_easy_issue_query: Úkolová pole
+  label_finish_to_finish: Konec na konec
+  label_not_available: Není k dispozici
+  label_parent_issue_plural: Rodičovské úkoly
+  label_start_to_finish: Začátek na konec
+  label_start_to_start: Začátek na začátek
+  link_easy_gantt_plugin: https://www.easyredmine.com/easy-gantt-upgrade-to-pro
+  notice_easy_gantt_fixed_delay_recalculated: Fixné zpoždení na všech vazbách byla
+    přepočítána
+  permission_edit_easy_gantt: Upravit Easy Gantt na projektu
+  permission_edit_global_easy_gantt: Upravit globální Easy Gantt
+  permission_edit_personal_easy_gantt: Upravit osobní Easy Gantt
+  permission_view_easy_gantt: Zobrazit Easy Gantt na projektu
+  permission_view_global_easy_gantt: Zobrazit globální Easy Gantt
+  permission_view_personal_easy_gantt: Zobrazit osobní Easy Gantt
+  project_default_page:
+    easy_gantt: Easy Gantt
+  project_module_easy_gantt: Easy Gantt
+  text_demo_feature_popup: Tato funkce bude brzy dostupná.
+  text_easy_gantt_fixed_delay: Udržet délku zpozdění fixnou, pohybuje-li se s úkolem
+  text_easy_gantt_footer: Redmine Gantt powered by Easy
+  text_easy_gantt_keep_link_delay_in_drag: Zachovat zpoždění vazby, když je úkol přetažen
+    zpět
+  text_easy_gantt_print_easy_gantt_current: Zobrazit aktuální Gantt (funguje pouze
+    na stránce, kde je Gantt načítán)
+  text_easy_gantt_relation_delay_in_workdays: Nezapočítat do zpoždení nepracovní dny
+  text_easy_gantt_show_holidays: Zobrazit svátky z kalendáře uživatele
+  text_easy_gantt_show_project_progress: Zobrazit procentuální dokončení na liště
+    projektu (načítání může být pomalé)
+  text_easy_gantt_show_task_soonest_start: Ukázat nejnižší platná data pro úkoly definovaná
+    vazbami nebo rodičem
+  title_easy_gantt_settings: Easy Gantt

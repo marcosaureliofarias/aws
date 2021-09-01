@@ -1,0 +1,18 @@
+<fieldset>
+    <legend><%= l(:'easy_pages.module_category.calendars') %></legend>
+    <% calendars.each do |id, klass| %>
+      <label for="<%="#{block_name}_enabled_calendars_#{id}"%>" class="floating">
+          <%= check_box_tag("#{block_name}[enabled_calendars][]", id, (settings[:enabled_calendars] || []).include?(id.to_s), :id => "#{block_name}_enabled_calendars_#{id}") %>
+          <%= l(klass.label) -%>
+      </label>
+    <% end -%>
+</fieldset>
+
+<%= call_hook(:view_calendar_select_before_settings_partial, {:settings => settings, :block_name => block_name}) %>
+
+<% calendars.select {|id, klass| klass.respond_to?(:settings_partial) && klass.settings_partial.present?}.each do |id, klass| %>
+  <fieldset>
+      <legend><%= l(klass.label) %></legend>
+      <%= render :partial => klass.settings_partial, :locals => {:settings => settings, :block_name => block_name} %>
+  </fieldset>
+<% end -%>

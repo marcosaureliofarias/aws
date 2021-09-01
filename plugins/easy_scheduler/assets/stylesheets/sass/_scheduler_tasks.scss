@@ -1,0 +1,241 @@
+&__tasks {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  @include respond-to(min-#{$scheduler__breakpoint}) {
+    grid-row-start: 2;
+  }
+  //width: 28%;
+  //height: 100%;
+  //@include respond-to(max-#{$scheduler__breakpoint}){
+  //  width: auto !important;
+  //}
+  position: relative;
+  display: none;
+
+  &-title{
+    margin: 0;
+    line-height: $button-height;
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      //font-size: 1.25rem;
+      margin:  0;
+    }
+  }
+  &-controls {
+    .button.active {
+      color: #ffffff;
+      background: $color-main;
+      border-color: $color-main;
+    }
+  }
+  &-wrap {
+    @extend %flex;
+    border-bottom: 1px solid $color-border-minor;
+  }
+
+  &-hide{
+    max-width: 50%;
+    @extend %truncate;
+    @include respond-to(min-#{$scheduler__breakpoint}) {
+      display: none;
+    }
+  }
+  &-show{
+    display: none;
+    margin: $gap auto 0;
+  }
+  &-toggler{
+    input{
+      margin-top: -.25*$gap !important;
+    }
+    @include respond-to(max-#{$scheduler__breakpoint}){
+      position: absolute;
+      top: 1*$box-padding;
+    }
+    &-row{
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 3;
+      display: none;
+      @include respond-to(max-#{$scheduler__breakpoint}) {
+        //.w-mobile-header-toggle--active &{
+        display: grid;
+        //}
+      }
+    }
+  }
+}
+
+&__task-list {
+  @include respond-to(max-#{$scheduler__breakpoint}) {
+    padding: .5*$gap $retrace-mod;
+    bottom: 0;
+    //margin-right: - $retrace;
+  }
+  border: none;
+  background: $scheduler__color-background;
+  padding: $gap $gap $gap $retrace;
+  width: auto;
+  //@include respond-to(min-#{$scheduler__breakpoint}){
+  position: absolute;
+  top: 4.5*$gap;
+  bottom: 0;
+  left: -$retrace;
+  right: 0;
+  //}
+  //margin-top: $gap;
+  //max-height: 550px;
+  overflow: auto;
+  //height: 100%;
+  order: -1;
+  text-align: center;
+  &--narrow {
+
+  }
+  &::-webkit-scrollbar{
+    &-track {
+      background: $scheduler__color-background;
+    }
+  }
+}
+
+&__task {
+  @extend %user-select-none;
+  @extend %agile__item;
+  height: auto;
+  margin: $gap/2 0;
+  position: relative;
+  padding: $gap $gap $gap 1.5*$gap;
+  text-align: left;
+  @include respond-to(max-#{$scheduler__breakpoint}) {
+    padding: .5*$gap .5*$gap .5*$gap .75*$gap;
+    @include small;
+  }
+
+  &:hover {
+    .easy-calendar__task-handle {
+      display: block;
+    }
+  }
+  @include anim--bliprotate;
+
+  .icon{
+    float: left;
+    display: inline-flex;
+  }
+  &--readonly {
+    opacity: 0.5;
+  }
+  &-name, &-spent, &-price {
+    display: inline-block;
+  }
+  &-start, &-due {
+    display: inline-block;
+  }
+  &-name, &-data{
+    margin-right: $box-padding;
+  }
+  &-spent, &-price, &-avatar-container {
+    position: absolute;
+    right: $gap;
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      right: .25*$gap;
+    }
+  }
+  &-spent, &-price {
+    cursor: pointer;
+    top: $gap;
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      top: .25*$gap
+    }
+    &--input {
+      margin: 5px;
+      z-index: 1;
+      width: 66px;
+    }
+  }
+  &-name {
+    overflow: hidden;
+    max-height: 2em * $base-line-height;
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      min-height: 2em * $base-line-height;
+    }
+    display: block;
+    max-width: 95%;
+  }
+  &-label {
+    font-weight: normal;
+    color: #99a0b2;
+  }
+  &-data {
+    @include small;
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      .easy-calendar__task-start, .easy-calendar__task-due, .separate-line{
+        display: none;
+      }
+    }
+    .separate-line {
+      margin: 0 $gap;
+      position: relative;
+      &:before {
+        content: "";
+        display: inline-block;
+        width: $gap;
+        height: 1px;
+        background: $color-main;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -$gap/2;
+        margin-top: -.5px;
+      }
+    }
+  }
+  &-avatar-container {
+    bottom: $gap;
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      bottom: .25*$gap
+    }
+  }
+  @extend %pseudo-after;
+  background: $color-foreground !important;
+  &:after {
+    top: 0;
+    bottom: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    left: 0;
+    width: $gap/6;
+  }
+  &--draggable {
+    .easy-calendar__task-handle {
+      @extend %pseudo-draggable;
+      display: none;
+      position: absolute;
+      background: mix($color-background, $color-foreground);
+      border: 1px solid $color-border;
+      border-radius: 1px;
+      top: 50%;
+      left: 0;
+      margin-top: -1.25*$gap;
+      margin-left: -.5*$gap;
+      z-index: 2;
+    }
+    &:hover {
+      .easy-calendar__task-handle{
+        display: block;
+      }
+      cursor: pointer;
+    }
+  }
+}
+
+&__body--no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: move;
+}

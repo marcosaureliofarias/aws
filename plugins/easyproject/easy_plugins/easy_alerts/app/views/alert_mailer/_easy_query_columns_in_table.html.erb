@@ -1,0 +1,9 @@
+<% if query %>
+  <% columns = query.inline_columns %>
+  <td>
+    <%= link_to(l(:label_link), url_to_entity(report.entity, :only_path => false), :title => report.entity.to_s) if report.entity %>
+  </td>
+  <% columns.each do |column| %>
+    <td class="<%= column.css_classes %>"><%= entity_attribute(report.entity, column, true) %></td>
+  <% end %>
+<% end %>

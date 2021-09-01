@@ -1,0 +1,6 @@
+<hr/>
+
+<p>
+  <%= label_tag "#{block_name}[sort_by]", l(:label_group_by, '') %>
+  <%= select_tag("#{block_name}[sort_by]", options_for_select([[l(:field_category),'category'],[l(:label_date), 'date'],[l(:field_title) ,'title'],[l(:field_author),'author'],[l(:field_project), 'project']], settings['sort_by']), :include_blank => true) -%>
+</p>

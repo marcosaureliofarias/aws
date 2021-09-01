@@ -1,0 +1,6 @@
+$("#non_primary_custom_fields");
+$("#contact-type-attributes").append("<%= j(render(:partial => 'custom_fields/non_primary_custom_field', :locals => {:entity_name => 'easy_contact_group', :entity_type => params[:entity_type], :entity_id => params[:entity_id], :custom_value => @custom_value})).html_safe %>");
+$("#non-primary-custom-fields-select option:selected").remove();
+if ($("#non-primary-custom-fields-select option").length == 1) {
+	$("#non-primary-custom-fields-select").closest('li').hide();
+}

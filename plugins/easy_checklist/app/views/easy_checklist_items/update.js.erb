@@ -1,0 +1,3 @@
+$("#easy_checklist_item<%= @easy_checklist_item.id %>").replaceWith('<%= j(render :partial => "easy_checklist_items/easy_checklist_item", :locals => {:easy_checklist_item => @easy_checklist_item}) %>');
+<%= render :partial => 'easy_checklists/update_inline_containers' %>
+<%= render :partial => 'easy_checklists/add_item_delete_buttons', locals: { entity: @easy_checklist.entity } %>

@@ -1,0 +1,3 @@
+<%= link_to l(:title_easy_contact_type_new), {:controller => :easy_contacts, :action => :new, :assign_to => entity, :project_id => @project, :back_url => back_url}, :class => 'button-positive' -%>
+<%= link_to l('easy_contact_action.edit'),{:controller => :easy_contact_groups, :action => :edit, :id => entity, :project_id => @project, :back_url => back_url }, :class => 'button' -%>
+<%= link_to l('easy_contact_action.destroy'),{:controller => :easy_contact_groups, :action => :destroy, :id => entity, :project_id => @project}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'button' -%>

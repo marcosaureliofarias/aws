@@ -1,0 +1,64 @@
+<%
+  easy_sprint_columns_options ||= {}
+  project ||= easy_sprint.project
+  backlog_more_issues_count = 0
+%>
+
+<div id="easy-sprint-container-<%= easy_sprint.id %>" class="easy-sprint-container multieditable-container" data-url="<%= url_to_entity(easy_sprint, format: 'json', project: project) %>">
+  <div class="easy-sprint autoscroll">
+    <table class="easy-sprint-table">
+      <thead>
+        <%= easy_sprint_heading(easy_sprint, swimlane: true) %>
+      </thead>
+      <tbody>
+        <tr>
+          <% easy_sprint_columns(easy_sprint, { no_progress: true, no_done: true }.merge(easy_sprint_columns_options)) do |relation_type, relation_position, issues| %>
+            <td class="sprint-col" rowspan="<%= @swimlane_workers.size + 2 %>">
+              <%= content_tag :ul, class: "#{relation_type} agile-list", data: { relation_type: relation_type, relation_position: relation_position } do %>
+                <% backlog_more_issues_count = issues.size %>
+                <% issues.each do |issue| %>
+                  <%= render partial: 'easy_agile_board/issue', locals: { issue: issue, sprint_project: project } %>
+                <% end %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+
+        <% (@swimlane_workers + [nil]).each do |worker| %>
+          <tr>
+            <td class="swimlane_worker">
+              <% if worker %>
+                <div class="member" title="<%= l(:title_easy_agile_board_drag_coworker, user_name: worker.name) %>" data-id="<%= worker.id %>">
+                  <%= link_to(worker.name, easy_agile_board_path(project, sprint_id: easy_sprint, assigned_to_id: worker)) %>
+                </div>
+              <% else %>
+                <%= l(:label_nobody) %>
+              <% end %>
+            </td>
+
+            <% easy_sprint_columns(easy_sprint, { no_backlog: true, assigned_to_id: worker }.merge(easy_sprint_columns_options)) do |relation_type, relation_position, issues| %>
+              <td class="sprint-col">
+                <%= content_tag :ul, class: "#{relation_type} agile-list", data: { relation_type: relation_type, relation_position: relation_position, assigned_to_id: worker.try(:id) } do %>
+                  <% backlog_more_issues_count -= issues.size %>
+                  <% issues.each do |issue| %>
+                    <%= render partial: 'easy_agile_board/issue', locals: { issue: issue, sprint_project: project } %>
+                  <% end %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <style type="text/css">
+    table.easy-sprint-table td.last {
+      height: <%= backlog_more_issues_count > 0 ? 65 * backlog_more_issues_count : 65 %>px;
+    }
+  </style>
+</div>
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    initAgileZones();
+  }, -1);
+</script>

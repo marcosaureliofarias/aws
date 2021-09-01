@@ -1,0 +1,2 @@
+$('#easy_money_affected_projects').html('<%= j(render partial: 'easy_money_rates/list_affected_projects', locals: {affected_projects: @affected_projects}) %>')
+$('#button_easy_money_show_all').attr("href", "<%= easy_money_rates_load_affected_projects_path(:type => params[:type], tab: params[:tab], project_id: params[:project_id], show_all: true) %>");

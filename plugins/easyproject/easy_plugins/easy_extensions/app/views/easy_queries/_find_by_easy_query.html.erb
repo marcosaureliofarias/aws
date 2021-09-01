@@ -1,0 +1,4 @@
+<% if modal_title.present? %>
+  <h3 class="title"><%= l(modal_title.to_sym) %></h3>
+<% end %>
+<%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => query_class, :no_data_warning => true} %>

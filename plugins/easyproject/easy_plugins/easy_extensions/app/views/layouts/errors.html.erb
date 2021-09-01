@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="<%= current_language %>">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title><%= html_title %></title>
+  <meta name="description" content="<%= EasyExtensions::EasyProjectSettings.app_name %>">
+  <meta name="keywords" content="issue,bug,tracker,<%= EasyExtensions::EasyProjectSettings.app_name %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="application-name" content="<%= EasyExtensions::EasyProjectSettings.app_name %>">
+  <meta name="msapplication-config" content="browserconfig.xml">
+  <%= csrf_meta_tag %>
+  <%= easy_favicon %>
+  <%= easy_favicon_android %>
+  <%= easy_favicon_apple %>
+
+  <link rel="stylesheet" media="screen" href="<%= error_stylesheet_path + 'easy_errors.css' %>">
+  
+</head>
+<body class="status-<%= @status_code %> nosidebar">
+<div id="wrapper">
+  <div id="wrapper2">
+    <div id="wrapper3">
+      <div id="main">
+        <div id="content">
+          <div class="easy-content-page">
+            <table id="login_form_container">
+              <tr>
+                <td>
+                  <%= yield %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

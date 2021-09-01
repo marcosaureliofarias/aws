@@ -1,0 +1,3 @@
+<% if !disabled_modules.include?('easy_contacts') && source_project_and_descendants.has_module(:easy_contacts).any? %>
+  <label class="inline"><%= check_box_tag 'only[]', 'easy_contacts', true -%> <%= l(:menu_easy_contacts) -%></label>
+<% end %>

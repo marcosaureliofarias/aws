@@ -1,0 +1,23 @@
+<% redmine_sass = false
+   ep_com = Redmine::Plugin.installed?(:easy_project_com)
+   er_com = EasySetting.value(:ui_theme).presence
+ %>
+$legend-width: 260px;
+@import "easy_extensions/common_assets";
+<% if ep_com %>
+$legend-width: px2rem(260px);
+<% end %>
+
+<% if redmine_sass %>
+@import "sass/mindmup_redmine_variables";
+<% end %>
+@import "sass/mindmup";
+<% if redmine_sass %>
+@import "sass/mindmup_redmine";
+<% end %>
+
+<%if redmine_sass %>
+  @include loadFontFace--non-rails('Material Icons','./../plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont','','',normal,normal);
+<% else %>
+  @include loadFontFace('Material Icons','./../plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont','','',normal,normal);
+<% end %>

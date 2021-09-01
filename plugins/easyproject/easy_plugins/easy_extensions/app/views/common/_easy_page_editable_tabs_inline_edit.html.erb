@@ -1,0 +1,33 @@
+<%
+  is_preloaded ||= false
+  url_for_options = {
+    controller: tab.is_a?(EasyPageTemplateTab) ? 'easy_page_template_layout' :'easy_page_layout',
+    tab_id: tab,
+    is_preloaded: is_preloaded,
+    original_url: params[:original_url]
+  }
+
+%>
+<%= form_tag(url_for_options.merge(action: 'save_tab', user_id: tab.is_a?(EasyPageUserTab) ? tab.user_id : nil),
+             id: "tab_form_#{tab.id}",
+             remote: true,
+             method: 'put') do %>
+  <%= text_field_tag 'name', tab.name, maxlength: 255, size: 20, id: "tab_name_edit_#{tab.id}" %>
+  <%= link_to('', "#", class: 'icon icon-save', id: "tab_name_form_save_#{tab.id}") %>
+  <script type="text/javascript">
+    EASY.schedule.late(function(){
+      $("<%= "#tab_name_form_save_#{tab.id}" %>").click(function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        $('#<%= "tab_form_#{tab.id}" %>').submit();
+        return false;
+      });
+      $("#tab_name_edit_<%= tab.id %>").keydown(function(e){
+        if( e.which == 32 ) {
+          e.stopPropagation();
+        }
+      });
+    });
+  </script>
+  <%= link_to('', url_for_options.merge(action: 'show_tab'), remote: true, class: 'icon icon-close') %>
+<% end %>

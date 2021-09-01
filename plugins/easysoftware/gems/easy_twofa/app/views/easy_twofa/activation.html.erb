@@ -1,0 +1,29 @@
+<div class="easy-twofa-verification">
+  <h2>
+    <%= l('easy_twofa.twofa') %> (<%= @scheme.t_name %>)
+  </h2>
+
+  <p>
+    <%= l('easy_twofa.text_activation') %>
+  </p>
+
+  <p>
+    <%= l('easy_twofa.please_enter_verification_key') %>
+  </p>
+
+  <%= form_tag activate_easy_twofa_path, method: 'POST' do %>
+    <%= render @scheme.verify_partial_path %>
+
+    <div class="form-actions">
+      <%= submit_tag l('easy_twofa.activate_scheme', name: @scheme.scheme_key), class: 'button-positive' %>
+
+      <% if @scheme.enable_resending? %>
+        <%= link_to l('easy_twofa.send_new_code'), activation_easy_twofa_path(resend: '1'), class: 'button' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_twofa' %>
+<% end %>

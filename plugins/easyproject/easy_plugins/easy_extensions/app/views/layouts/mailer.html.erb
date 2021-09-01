@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>
+    <% if content_for?(:email_title) %>
+      <%= yield :email_title %>
+    <% end %>
+  </title>
+  <style type="text/css">
+    <%= render file: Mailer.inline_css_file_path, formats: [:css] %>
+  </style>
+  <style type="text/css" data-roadie-ignore>
+    <%= render file: Mailer.non_inline_css_file_path, formats: [:css] %>
+  </style>
+  <!--[if gt mso 11]>
+  <style type="text/css">
+    <%= render file: File.join(Redmine::Plugin.find(:easy_extensions).assets_directory, 'stylesheets', 'mailer', '_easy_styles_outlook.css'), formats: [:css] %>
+  </style>
+  <![endif]-->
+</head>
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<center>
+  <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+    <tr>
+      <td align="center" valign="top" id="bodyCell">
+        <!-- BEGIN TEMPLATE // -->
+        <table border="0" cellpadding="0" cellspacing="0" id="templateContainer">
+          <% if content_for?(:email_header) || Setting.emails_header.present?%>
+            <tr>
+              <td align="center" valign="top">
+                <!-- BEGIN PREHEADER // -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templatePreheader">
+                  <tr>
+                    <td valign="top" class="preheaderContent" style="padding-top:10px; padding-right:20px; padding-bottom:10px; padding-left:20px;">
+                      <% if content_for?(:email_header) %>
+                        <%= yield :email_header %>
+                      <% else %>
+                        <% if Setting.emails_header.present? %>
+                          <%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_header).html_safe %>
+                        <% end %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+                <!-- // END PREHEADER -->
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td align="center" valign="top">
+              <!-- BEGIN BODY // -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
+                <tr>
+                  <td valign="top" class="bodyContent">
+                    <% @_message.subject %>
+                    <% if content_for?(:email_heading) %>
+                      <%= yield :email_heading %>
+                    <% end %>
+                    <%= yield %>
+                  </td>
+                </tr>
+              </table>
+              <!-- // END BODY -->
+              <% if content_for?(:email_afterbody) %>
+              <!-- BEGIN AFTERBODY // -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateAfterBody">
+                <tr>
+                  <td valign="top" class="bodyAfter">
+                    <%= yield :email_afterbody %>
+                  </td>
+                </tr>
+              </table>
+              <!-- // END AFTERBODY -->
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="top">
+              <!-- BEGIN FOOTER // -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter">
+                <% if content_for?(:email_actions) %>
+                  <tr>
+                    <td valign="top" class="footerContent footerActions">
+                      <%= yield :email_actions %>
+                    </td>
+                  </tr>
+                <% end %>
+                <% if content_for?(:email_prefooter) %>
+                  <tr>
+                    <td valign="top" class="footerContent">
+                      <%= yield :email_prefooter %>
+                    </td>
+                  </tr>
+                <% end %>
+                <tr>
+                  <td valign="top" class="footerContent">
+                    <% if content_for?(:email_footer) %>
+                      <%= yield :email_footer %>
+                    <% else %>
+                      <% if Setting.emails_footer.present? %>
+                        <%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_footer).html_safe %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+              <!-- // END FOOTER -->
+            </td>
+          </tr>
+        </table>
+        <!-- // END TEMPLATE -->
+      </td>
+    </tr>
+  </table>
+</center>
+</body>
+</html>

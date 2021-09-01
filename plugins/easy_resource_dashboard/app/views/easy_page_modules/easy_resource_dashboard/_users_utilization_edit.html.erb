@@ -1,0 +1,39 @@
+<%
+  selected_user = @easy_page_modules_data[block_name][:selected_user]
+  available_global_filters = @easy_page_modules_data[block_name][:available_global_filters]
+%>
+<div class="tabular">
+  <%= back_url_hidden_field_tag %>
+  <p>
+    <%= label_tag "#{block_name}[name]", l(:field_name) %>
+    <%= text_field_tag "#{block_name}[name]", settings['name'] ? settings['name'] : l('easy_pages.modules.users_utilization') %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[user_ids]", l(:label_user) %>
+    <%= easy_autocomplete_tag "#{block_name}[user_ids]", { name: selected_user&.name, id: selected_user&.id }, easy_autocomplete_path('internal_users'), { root_element: 'users', html_options: {id: "#{block_name}_from_id"} } %>
+  </p>
+
+  <% if false %>
+    <p>
+      <%= label_tag "#{block_name}[days]", l(:text_easy_settings_time_entry_limit_future).capitalize %>
+      <%= text_field_tag "#{block_name}[days]", settings['days'] || '7', size: 3 %>
+    </p>
+  <% end %>
+</div>
+<fieldset>
+  <div>
+    <%= render 'easy_page_modules/global_filters',
+               modul_uniq_id: block_name,
+               block_name: block_name,
+               page_params: page_params,
+               query_params: settings,
+               available_global_filters: available_global_filters,
+               page_module: page_module %>
+  </div>
+</fieldset>
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    initEasyAutocomplete()
+  });
+</script>

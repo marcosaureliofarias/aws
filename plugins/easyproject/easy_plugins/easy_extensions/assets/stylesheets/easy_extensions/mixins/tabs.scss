@@ -1,0 +1,130 @@
+%tab-a {
+  display: inline-block;
+  font-size: 0.9em;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid transparent;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+%tab-li {
+  position: relative;
+  float: left;
+  margin-bottom: -1px;
+  list-style-type: none;
+  white-space: nowrap;
+
+  & > a {
+   @extend %tab-a;
+  }
+}
+
+%tab-ul {
+  @extend %box-sizing-border-box;
+  @extend %inline-flex;
+  @extend %flex-direction-row;
+  @extend %flex-wrap-nowrap;
+  margin: 0;
+  padding-left: $gap; //$box-padding;
+  padding-right: $gap; //$box-padding;
+  min-width: 100%;
+
+  & > li {
+    @extend %tab-li;
+  }
+}
+
+%tab-parent {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-bottom: 0;
+  @extend %compositor-layer;
+  @include respond-to(max-medium-screen){
+    overflow-x: auto;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+  }
+  .easy-content-page &{
+    margin-left: -$retrace;
+    margin-right: -$retrace;
+  }
+  & > ul {
+    @extend %tab-ul;
+  }
+}
+
+@mixin tab-a($color-background, $color-border, $color-text, $tab-height, $gap, $color-active) {
+  @extend %tab-a;
+  padding: $gap 2*$gap;
+  line-height: -2+$tab-height;
+  color: rgba($color-text, 0.6);
+
+  &:hover {
+    color: $color-text;
+  }
+
+  &.selected {
+    border-bottom: 3px solid $color-active;
+    color: $color-text;
+  }
+}
+
+@mixin tab-li($color-background, $color-border, $color-text, $tab-height, $gap, $color-active) {
+  @extend %tab-li;
+
+  & > a {
+    @include tab-a($color-background, $color-border, $color-text, $tab-height, $gap, $color-active);
+  }
+}
+
+@mixin tab-ul($color-background, $color-border, $color-text, $tab-height, $gap, $color-active) {
+  @extend %tab-ul;
+  @extend %list-style-none;
+
+  border-bottom: 1px solid $color-border;
+
+  & > li {
+	 @include tab-li($color-background, $color-border, $color-text, $tab-height, $gap, $color-active);
+  }
+}
+
+@mixin tab-parent($color-background, $color-border, $color-text, $tab-height, $gap, $color-active) {
+  @extend %tab-parent;
+
+  & > ul {
+    @include tab-ul($color-background, $color-border, $color-text, $tab-height, $gap, $color-active);
+  }
+
+  .tabs-buttons {
+    @extend %control-menu-buttons;
+
+    button {
+      transform: translateY(-50%);
+    }
+  }
+}
+
+%tab-content {
+  margin-top: -1px;
+  //overflow: hidden;
+  @extend %clearfix;
+  padding-top: $box-padding;
+  .box{
+	//margin: 0 0 $gap 0;
+  }
+  .box &, .easy-content-page &{
+    padding: $box-padding;
+    margin: -1px (-$box-padding) (-$box-padding);
+  }
+  //& > p{
+  //  &:first-child{
+  //    margin-top: $box-padding;
+  //  }
+  //}
+}

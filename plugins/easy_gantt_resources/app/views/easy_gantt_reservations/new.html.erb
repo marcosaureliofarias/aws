@@ -1,0 +1,81 @@
+<h3 class="title"><%= l(:label_easy_gantt_resources_new_reservation) %></h3>
+<%= labelled_form_for @reservation, url: "", html: { class: 'form-box' } do |form| %>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <div class="box tabular">
+        <p class="attribute">
+          <%= form.text_field :name, :required => true %>
+        </p>
+        <p class="attribute">
+          <%= form.text_field :start_date, :size => 10, required: true %><%= calendar_for('easy_gantt_reservation_start_date') %>
+        </p>
+        <p class="attribute">
+          <%= form.text_field :due_date, :size => 10, required: true %><%= calendar_for('easy_gantt_reservation_due_date') %>
+        </p>
+      </div>
+    </div>
+    <div class="splitcontentright">
+      <div class="box tabular easy_gantt_reservations_max_allocation_container">
+        <p class="attribute">
+          <% assignee = @reservation.assigned_to %>
+          <% if assignee %>
+            <label><%= l(:field_assigned_to) %></label>
+            <%= text_field_tag nil, assignee.name, readonly: true %>
+            <%= form.hidden_field :assigned_to_id %>
+          <% else %>
+            <%= form.auto_complete :assigned_to_id, easy_autocomplete_path('principals'),
+                                   selected: [id: assignee.try(:id), value: assignee.try(:name)],
+                                   id: 'reservation_assigned_to_id_select',
+                                   preload: false,
+                                   rootElement: 'users' %>
+          <% end %>
+        </p>
+        <p class="attribute">
+          <% if params[:fixed_project] %>
+            <label><%= l(:field_project) %></label>
+            <%= text_field_tag nil, form.object.project&.name, readonly: true %>
+            <%= form.hidden_field :project_id %>
+          <% else  %>
+            <%= form.auto_complete :project_id, easy_autocomplete_path('visible_projects'),
+                                   selected: [id: form.object.project&.id, value: form.object.project&.name],
+                                   id: 'reservation_project_id_select',
+                                   preload: false,
+                                   rootElement: 'projects' %>
+          <% end %>
+
+        </p>
+        <p class="attribute nowrap">
+          <%= label_tag '', l(:field_max_allocation), :class => 'wrap' %>
+          <span id="easy_gantt_reservation_max_allocation"></span>
+        </p>
+        <p class="attribute nowrap">
+            <%= form.text_field :estimated_hours, size: 3, required: true,
+                                tabindex: 150, label: l(:field_hours_in_hour), placeholder: l(:field_hours), type: :number %> h
+            <%= text_field_tag 'easy_gantt_reservation_estimated_percent', '', size: 3, type: :number %> %
+        </p>
+        <% default_allocator_options = EasyGanttResources.allocators(with_labels: true, include_default: true) %>
+        <p class="attribute">
+          <%= form.select :allocator, default_allocator_options, label: l(:field_resource_allocator) %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="block">
+      <%= form.label_for_field :description, :required => false %>
+      <%= form.text_area :description,
+                         cols: 60,
+                         rows: 10,
+                         class: 'wiki-edit',
+                         no_label: true %>
+      <%= wikitoolbar_for 'easy_gantt_reservation_description', preview_text_path, { removeButtons: "Table,PasteFromWord,Link,Unlink", removePlugins: "base64image, tableselection, tableresize, tabletools"}%>
+    </p>
+  </div>
+  <div class="form-actions">
+    <% if params[:show_delete] %>
+      <%= link_to l(:button_delete), 'javascript:void(0)', class: 'button button-negative reservation_delete' %>
+    <% end %>
+    <%= form.submit l(:button_save), class: 'button-positive' %>
+    <%= link_to l(:button_cancel), 'javascript:void(0)', class: 'button reservation_close' %>
+  </div>
+<% end %>

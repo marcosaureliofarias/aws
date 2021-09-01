@@ -1,0 +1,21 @@
+<div id="alerts-context">
+  <h2><%= l(:title_alerts_context_edit) %></h2>
+
+  <%= form_for(@context) do |f| %>
+    <%= error_messages_for @context %>
+
+    <%= render :partial => 'form', :locals => {:f => f}  %>
+
+    <p><%= f.submit l(:button_update), :class => 'button-positive' %></p>
+  <% end %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>
+
+<% content_for :sidebar do %>
+    <%= render :partial => 'sidebar/alerts' %>
+<% end %>

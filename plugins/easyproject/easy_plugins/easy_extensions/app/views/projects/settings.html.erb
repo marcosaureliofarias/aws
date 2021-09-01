@@ -1,0 +1,15 @@
+<div id="project-settings-edit-container">
+  <%= title l(:label_settings)%>
+  <%= render_tabs project_settings_tabs, utm_content: 'project_settings' %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    if (typeof project_settings_tabs_after_render == 'function') {
+      project_settings_tabs_after_render();
+    }
+  });
+</script>
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+<% end %>

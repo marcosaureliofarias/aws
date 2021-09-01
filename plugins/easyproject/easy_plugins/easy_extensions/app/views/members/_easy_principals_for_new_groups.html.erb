@@ -1,0 +1,18 @@
+<div class="box">
+  <% groups = Group.active.visible.givable.sorted.not_member_of(project).like(params[:q]) %>
+  <%= toggling_fieldset((toggle_checkboxes_link('#project_principals_group input') + ' ' + l(:label_group_plural)), :id => 'project_principals_group') do %>
+    <div class="objects-selection principals-block-list">
+      <%= content_tag(:p, l(:label_no_data), :class => 'nodata') if groups.blank? %>
+      <ul class="link-list" id="groups">
+        <% groups.each do |group| %>
+          <% checked = false; object_name = 'membership'; method = 'user_ids' %>
+          <li class="<%= "user-#{group.id}" %> <%= 'checked' if checked %> <%= object_name %> link-list-item easy-dropper-target easy-drop-user" data-user-id="<%= group.id %>" data-drop-action="user">
+            <%= check_box_tag "#{object_name}[#{method}][]", group.id, checked, :id => "membership_user_id#{group.id}", :class => 'link-list-checkbox' -%>
+            <%= avatar(group, :style => :small, :no_link => true) %>
+            <div class="form-entity-principal-name link-list-item-content"><%= label_tag("membership_user_id#{group.id}", h(group), :class => 'inline') -%></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end -%>
+</div>

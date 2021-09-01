@@ -1,0 +1,21 @@
+<%= breadcrumb([
+    link_to(l(:heading_easy_helpdesk_index), {:controller => 'easy_helpdesk', :action => :index}, :title => l(:heading_easy_helpdesk_index)),
+    link_to(l(:heading_easy_helpdesk_mailboxes_index), {:controller => 'easy_helpdesk_mailboxes', :action => :index}, :title => l(:heading_easy_helpdesk_mailboxes_index))]) %>
+
+<h2><%= l(:heading_easy_helpdesk_mailboxes_index) -%></h2>
+<div class="autoscroll list">
+  <%= render :partial => 'easy_rake_tasks/index', :locals => {:tasks => @tasks} %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_helpdesk_index), l(:heading_easy_helpdesk_mailboxes_index)) -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_easy_helpdesk_add_mailbox), {:controller => 'easy_rake_tasks', :action => :new, :type => 'EasyRakeTaskEasyHelpdeskReceiveMail', :back_url => original_url}, :class => 'button-positive icon icon-add', :title => l(:button_easy_helpdesk_add_mailbox)) -%>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_helpdesk/sidebar_links' %>
+<% end %>
+
+<%= context_menu(:controller =>'context_menus', :action => 'easy_rake_tasks')%>

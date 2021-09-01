@@ -1,0 +1,25 @@
+<%= hidden_field_tag(:project_id, @project.id) if @project %>
+<%= hidden_field_tag(:source_issue_id, @entity.id) if @entity.is_a?(Issue) %>
+<%= hidden_field_tag(:source_issue_id, @entity.issue.id) if @entity.is_a?(Journal) %>
+<% if f.object.entity %>
+  <%= f.hidden_field(:entity_type) -%>
+  <%= f.hidden_field(:entity_id) -%>
+<% end -%>
+<p>
+  <%= f.text_field :name, :label => :field_easy_knowledge_story_name, :required => true-%>
+</p>
+<p>
+  <%= label_tag('easy_knowledge_story_references_by_ids', l(:label_easy_knowledge_story_references)) -%><%= easy_modal_selector_field_tag('EasyKnowledgeStory', 'link_with_name', 'easy_knowledge_story[references_by_ids]', 'easy_knowledge_story_references_by_ids', EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(f.object.references_to, {:display_name => :name}), :label_none => :label_easy_knowledge_story_no_references, :url => {:query_name => :related_story}) -%>
+</p>
+<p class="easy-tag-list-field">
+  <%= label_tag 'easy_knowledge_story_tag_list', l(:label_easy_tags) %>
+  <%= easy_tag_list_autocomplete_field_tag f.object, 'easy_knowledge_story', id: 'easy_knowledge_story_tag_list' %>
+</p>
+<p class="description">
+</p>
+<%= f.text_area :description,
+                :cols => 60,
+                :rows => 20,
+                :accesskey => accesskey(:edit),
+                :class => 'wiki-edit' %>
+<%= wikitoolbar_for 'easy_knowledge_story_description', preview_text_path, {:custom => 'resize_enabled: true'} -%>

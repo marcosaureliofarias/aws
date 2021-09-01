@@ -1,0 +1,173 @@
+---
+sk:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: nemôže byť prázdny, alebo neexistuje‌
+              empty: nemôže byť prázdny, alebo neexistuje‌
+        easy_data_template:
+          attributes:
+            type:
+              blank: nemôže byť prázdny, alebo neexistuje
+              empty: nemôže byť prázdny, alebo neexistuje
+  button_easy_data_template_assignment: priradenie polí
+  button_easy_data_template_edit: Upraviť šablónu
+  button_easy_data_template_export_data: Exportovať dáta
+  button_easy_data_template_import: import
+  button_easy_data_template_import_data: Importovať dáta‌
+  button_easy_data_template_import_preview: náhľad
+  button_easy_data_template_new_export: Export CSV
+  button_easy_data_template_new_import: Import CSV
+  button_easy_data_template_new_msproject: Import z MS Projectu
+  button_easy_data_template_settings: nastavenie‌
+  button_new_advance_import: Pokročilý import
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Nie
+    xyes: Áno
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: meno riešiteľa
+      assigned_to_id: id riešiteľa
+      assigned_to_lastname: priezvisko riešiteľa
+      assigned_to_login: login riešiteľa
+      assigned_to_mail: email riešiteľa
+      author_firstname: meno autora
+      author_id: id autora
+      author_lastname: priezvisko autora
+      author_login: login autora
+      author_mail: email autora
+      description: popis úlohy
+      due_date: termín dokončenia úlohy (dátum)
+      estimated_hours: odhadovaný čas úlohy (hodiny)
+      id: id úlohy
+      priority_id: id priority
+      priority_name: názov priority
+      project_id: id projektu
+      project_name: názov projektu
+      start_date: začiatok úlohy (dátum)
+      subject: predmet úlohy
+      tracker_id: id typu úlohy
+      tracker_name: názov typu úlohy
+    Project:
+      description: popis projektu
+      enabled_modules: názov modulu
+      id: id projektu
+      is_public: verejný (A/N)
+      name: názov projektu
+      parent_id: id nadradeného projektu‌
+      parent_name: názov nadradeného projektu
+      trackers_ids: id typu úlohy
+      trackers_names: názov typu úlohy
+    TimeEntry:
+      activity: aktivita
+      activity_id: id aktivity‌
+      activity_name: názov aktivity
+      comments: poznámka
+      easy_range_from: vykázané od
+      easy_range_to: vykázané do
+      hours: hodiny
+      issue: úloha
+      issue_id: id úlohy
+      issue_subject: nadpis úlohy
+      project: projekt
+      project_id: id projektu
+      project_name: názov projektu
+      spent_on: dátum
+      user: používateľ
+      user_id: id používateľa
+    User:
+      admin: Administrátor (A/N)
+      firstname: prihlasovacie meno
+      id: id používateľa
+      language: jazyk používateľa
+      lastname: priezvisko používateľa
+      login: Prihlasovacie meno
+      mail: email používateľa
+      password: heslo
+      send_mail: zaslať prihlasovacie meno emailom? (A/N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Úloha
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Projekt
+    EasyDataTemplateTimeEntry: Vykázaný čas
+    EasyDataTemplateUser: Používateľ
+  easy_data_templates_plugin_description: Dátové šablóny pre import a export údajov
+    vo formáte CSV
+  easy_data_templates_plugin_name: Dátové šablóny
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Dátové šablóny
+        description: Spravovať dátové šablóny‌
+  error_during_import: Pri importe sa vyskytla chyba. Prosím skontrolujte si zadané
+    dáta.
+  error_easy_data_template_attachment_not_uploaded: Nebola nahraná žiadna príloha
+    k importu‌
+  error_easy_data_template_ms_project_not_valid_xml: Priložený súbor nie je validný
+    XML formát z MS Project 2010 a vyšších
+  field_easy_data_template_allowed_import: Import
+  field_easy_do_not_export: Neexportovať
+  label_check_preview: Skontrolujte si prosím údaje pomocou  'Náhľad'
+  label_easy_data_template_assignment: Priradenie polí‌
+  label_easy_data_template_author_name: Autor
+  label_easy_data_template_edit: Upraviť šablóny
+  label_easy_data_template_entity_type: Entita
+  label_easy_data_template_export_new: Nová šablóna pre export
+  label_easy_data_template_import_file: Importovať súbor‌
+  label_easy_data_template_import_new: Nová šablóna pre import
+  label_easy_data_template_import:
+    assignments:
+      all: priradené pozície stĺpcov‌
+      entity_attribute_name: názov stĺpca entity
+      file_column_position: pozícia stĺpca v csv súbore
+      new: Priradenie polôh stĺpcov‌
+    errors:
+      erow: chyba v riadku‌
+      errors_count: počet chýb‌
+      errors_rows: chybné riadky
+      errors_rows_count: počet chybných riadkov‌
+      errors_sum: celkom spolu‌
+      row: číslo chybného riadku‌
+      show: zobraziť chybné riadky
+    preview:
+      row: číslo riadku‌
+      table: náhľad
+    settings:
+      col_sep: oddeľovač polí‌
+      encoding: typ kódovania
+      import_all: všetko alebo nič
+      new: Nastavenie
+      preview_rows: počet riadkov na zobrazenie ukážky‌
+      project_template: Použiť šablónu vzhľadu
+      quote_char: oddeľovač textu
+      return_headers: prvý riadok obsahuje názov stĺpca‌
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Priradený k jednej úlohe)"
+    other: "(Priradený k %{count} úlohám)"
+    zero: "(Nie je priradená)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Meno v MSP‌
+  label_easy_data_template_ms_project_user_name_in_ep: Interné meno
+  label_easy_data_template_name: Názov‌
+  label_easy_data_template_public: verejný
+  label_easy_data_template_template_type: Typ
+  label_easy_data_template_template_type_export: export
+  label_easy_data_template_template_type_import: import
+  label_easy_data_template_user_name: Vlastník
+  label_easy_data_templates: Dátové šablóny
+  label_easy_data_templates_choose_project: Vyberte projekt
+  label_easy_data_templates_choose_query: Vyberte filter
+  label_easy_data_templates_source_settings: Vyberte zdroj dát
+  label_easy_data_templates_target_settings: Vyberte cieľ dát‌
+  label_import_summaries_as_milestones: Importovať súhrnné úlohy ako míľniky‌
+  notice_easy_data_templates_import_ok: Import bol v poriadku.
+  text_easy_data_template_ms_project_upload_file: Súbor musí byť vo formáte XML (V
+    aplikácii MS Project kliknite v hornom menu na Súbor -> Uložiť ako -> uložiť ako
+    typ XML).
+  title_easy_data_templates_apply_to_all_rows: Kliknutím nastavíte túto hodnotu na
+    všetkých podobných riadkoch.

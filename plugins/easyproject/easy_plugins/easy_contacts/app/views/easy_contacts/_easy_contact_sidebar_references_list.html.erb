@@ -1,0 +1,8 @@
+<ul class="link-list">
+  <% collection.each do |item| %>
+    <li id="easy_contact_<%= easy_contact.id %>_<%= item.class.name.underscore %>_<%= item.id %>">
+      <%= link_to_entity(item) %>
+      <%= link_to('', polymorphic_path([:remove_from_entity, @project, easy_contact], {:entity_type => item.class.name, :entity_id => item}), :method => :delete, :remote => true, :class => 'icon-del delete', :title => l(:title_remove_easy_contact_from_entity)) %>
+    </li>
+  <% end -%>
+</ul>

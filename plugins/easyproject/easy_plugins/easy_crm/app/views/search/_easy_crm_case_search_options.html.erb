@@ -1,0 +1,13 @@
+<div class='easy-crm-case-options <%= :hidden unless scope.include?('easy_crm_cases') %>'>
+  <p>
+    <label class="inline"><%= check_box_tag 'easy_crm_case[all]', '1', params[:easy_crm_case].try(:[],:all) == '1' %> <%= l(:label_easy_crm_case_searchable_all) %></label>
+  </p>
+</div>
+
+<script type="application/javascript">
+  EASY.schedule.late(function(){
+    $("input[name='easy_crm_cases']").change(function(){
+      $('div.easy-crm-case-options').toggle(this.checked == false);
+    });
+  });
+</script>

@@ -1,0 +1,35 @@
+<% lookup_collection = EasyExtensions::EasyLookups::EasyLookupCollection.new(custom_field) %>
+<p>
+  <%= label_tag 'custom_field_settings_entity_type', l(:label_custom_field_settings_entity_type) %>
+  <%= select_tag 'custom_field[settings][entity_type]', options_for_select(lookup_collection.available_types, custom_field.settings['entity_type']), :disabled => !custom_field.new_record? %>
+  <% unless custom_field.new_record? %>
+    <%= hidden_field_tag 'custom_field[settings][entity_type]', custom_field.settings['entity_type'].presence || lookup_collection.entity_type %>
+  <% end %>
+</p>
+
+<% if custom_field.settings['entity_type'].present? %>
+  <p>
+    <%= label_tag 'custom_field_settings_entity_attribute', l(:label_custom_field_settings_entity_attribute) %>
+    <%= select_tag 'custom_field[settings][entity_attribute]', options_for_select(lookup_collection.attribute_options, custom_field.settings['entity_attribute']) %>
+  </p>
+  <p id="lookup_settings_entity_custom_field" <%= 'style="display: none"'.html_safe unless custom_field.settings['entity_attribute'] == 'name_and_cf' %>>
+    <%= label_tag 'custom_field_settings_entity_custom_field', l(:label_custom_field_settings_entity_custom_field) %>
+    <%= select_tag 'custom_field[settings][entity_custom_field]', options_for_select(easy_lookup_entity_custom_fields_options(custom_field.settings['entity_type']), custom_field.settings['entity_custom_field']) %>
+  </p>
+  <%= call_hook :view_easy_lookup_entity_type_bottom, {custom_field: custom_field} %>
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function(){
+    $('#custom_field_settings_entity_type').change(function(){
+      $.ajax({
+        url: '<%= update_form_custom_fields_path(:id => custom_field, :format => :js) %>',
+        type: 'post',
+        data: $('#custom_field_form').serialize()
+      });
+    });
+    $('#custom_field_settings_entity_attribute').change(function(){
+      $('#lookup_settings_entity_custom_field').toggle($(this).val() == 'name_and_cf');
+    });
+  });
+</script>

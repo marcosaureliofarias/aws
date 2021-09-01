@@ -1,0 +1,62 @@
+<%
+  base_url ||= (query.persisted? ? { type: query.type, query_id: query.id } : query.to_params)
+  base_parameters ||= { t: params[:t], tab: params[:tab], project_id: query.project.try(:id) }
+  block_name ||= ''
+  path_method ||= :url_for
+  page_module ||= nil
+  url_params = base_url.merge(base_parameters)
+  url_params.merge!(EasyExtensions::GlobalFilters.active_filters_from_params(params.to_unsafe_hash))
+%>
+
+<div class="easy-query-listing-links-wrapper">
+  <!--<div class="clear"></div>-->
+  <div class="button-group easy-query-heading-controls">
+    <% query.all_periods.each do |period| %>
+      <% is_active = (query.period_zoom == period) %>
+
+      <%= link_to(
+        content_tag(:span, query_period_zoom_name(period), class: 'tooltip'),
+        presenter.switch_period_url(period, path_method, url_params, block_name),
+        class: "icon icon-calendar-#{period}#{' active' if is_active} #{block_name}reload_link",
+        title: query_period_zoom_name(period))
+      %>
+
+      <% if page_module && is_active %>
+        <%= hidden_field_tag "#{page_module.module_name}[period_zoom]", period, class: 'additional-data-for-module-reloading' %>
+      <% end %>
+    <% end %>
+  </div>
+  <% if presenter.render_zoom_listing_links? %>
+    <span>
+      <%= hidden_field_tag(block_name.present? ? "#{block_name}[period_date_from_calendar]" : 'period_date_from_calendar', query.period_start_date, id: "#{block_name}period_start_date", data: { url: presenter.period_calendar_url(path_method, url_params, block_name) }) + calendar_for(block_name+'period_start_date')
+      %>
+    </span>
+    <div class="easy-query-listing-links easy-calendar-listing-links next-prev-links">
+      <%= link_to('', presenter.previous_period_url(path_method, url_params, block_name), :title => l(:label_previous), :class => "#{block_name}reload_link prev") %>
+      <%= content_tag(:span, format_date(query.period_start_date) + ' - ' + format_date(query.period_end_date),:class => 'period') %>
+      <%= link_to('', presenter.next_period_url(path_method, url_params, block_name), :title => l(:label_next), :class => "#{block_name}reload_link next") %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    <% if page_module %>
+    $(".<%= block_name %>reload_link").click(function(evt) {
+      evt.preventDefault();
+      $.ajax($(this).attr('href')).done(function(data){
+        $("#<%= modul_uniq_id %>").html(data).trigger('easy_pagemodule_new_dom');
+      });
+    });
+    $("#<%= block_name %>period_start_date").on('change', function(evt){
+      $.ajax($(this).data('url'), {data: $(this).serializeArray(), method: 'GET'}).done(function(data){
+        $("#<%= modul_uniq_id %>").html(data).trigger('easy_pagemodule_new_dom');
+      });
+    });
+    <% else %>
+    $("#<%= block_name %>period_start_date").on('change', function(evt){
+      window.location.href = $(this).data('url') + '&' + $(this).serialize();
+    });
+    <% end %>
+  });
+</script>

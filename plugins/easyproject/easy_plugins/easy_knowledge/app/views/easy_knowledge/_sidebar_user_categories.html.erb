@@ -1,0 +1,39 @@
+<% uniq_prefix = "#{controller_name}_#{action_name}_" %>
+<% openClass = toggle_open_css_row((uniq_prefix + 'user_categories-0'), User.current) %>
+<% isOpen = (openClass == ' open') %>
+<div id="user_categories" class="list-group-item">
+  <div class="category-group-title <%= openClass %> list-heading">
+    <span class="expander <%= 'expanded' if isOpen %>" alt="Expander" title="<%=l :collapse_expand %>" onclick="EASY.knowledge.toggleTreeVisibility('<%= uniq_prefix -%>', 'user_categories', '0', '<%= User.current.id -%>', true, this.parentNode);">&nbsp;</span>
+    <%= content_tag :h4, l(:label_easy_knowledge_index_user) -%>
+  </div>
+  <%- active_parents = [] -%>
+  <ul id="<%= uniq_prefix + 'user_categories-0' -%>" <%= "style='display: none;'".html_safe unless isOpen %> class="link-list">
+    <% @grouped_user_categories.each do |category| %>
+      <% to_delete = 0 %>
+      <%- active_parents.each do |parent| -%>
+        <%- if !category.is_descendant_of?(parent) -%>
+          <% to_delete += 1 %>
+          </ul></li>
+        <%- end -%>
+      <%- end -%>
+      <% to_delete.times{ active_parents.pop } %>
+
+  <% openClass = toggle_open_css_row(uniq_prefix + 'user_categories-' + category.id.to_s, User.current) %>
+  <% isOpen = (openClass == ' open') %>
+
+  <li class="project-list link-list-item">
+
+      <% if !category.leaf? %>
+        <span class="expander" alt="Expander" title="<%=l :collapse_expand %>" onclick="EASY.knowledge.toggleTreeVisibility('<%= uniq_prefix -%>', 'user_categories', '<%= category.id.to_s %>', '<%= User.current.id -%>', true, this.parentNode);">&nbsp;</span>
+      <% end %>
+      <%= link_to(category.name, easy_knowledge_user_path(category), :title => l(:title_easy_knowledge_category_stories), :class => 'easy-knowledge-project-link') %>
+
+    <%- if category.leaf? -%>
+    </li>
+  <%- else -%>
+    <%- active_parents << category -%>
+    <ul id="<%= uniq_prefix + 'user_categories-' + category.id.to_s %>" class="project-list link-list" <%= "style='display: none;'".html_safe unless isOpen %> >
+    <%- end -%>
+  <% end %>
+</ul>
+</div>

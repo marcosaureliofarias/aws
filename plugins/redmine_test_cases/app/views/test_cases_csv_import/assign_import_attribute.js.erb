@@ -1,0 +1,7 @@
+var el = $("#easy_entity_import_att_<%= @easy_entity_import_attributes_assignment.entity_attribute.tr('.', '-') %>");
+el.find(".attribute-default-value").css({visibility:"visible"});
+var mark = document.createElement('i');
+mark.className = "icon xl-icon icon-"+ "<%= (!@easy_entity_import_attributes_assignment.new_record?).to_s %>";
+mark.style.position = "absolute";
+mark.setAttribute("title", "<%=j !@easy_entity_import_attributes_assignment.new_record? ? l(:notice_successful_create) : @easy_entity_import_attributes_assignment.errors.full_messages.join(', ') %>")
+el.prepend(mark);

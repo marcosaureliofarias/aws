@@ -1,0 +1,12 @@
+<span><%= item + 1 %>:</span>
+<%= select_tag "#{block_name}[sort_criteria][#{item}][]",
+                options_for_select(sortable_columns_options, sortable_columns_options_selected),
+                class: 'inline',
+                include_blank: true,
+                id: "#{modul_uniq_id}_select_column" %>
+
+<%= select_tag "#{block_name}[sort_criteria][#{item}][]",
+                options_for_select(sorting_options, sorting_options_selected),
+                class: 'inline',
+                include_blank: true,
+                id: "#{modul_uniq_id}_select_sort_criteria" %>

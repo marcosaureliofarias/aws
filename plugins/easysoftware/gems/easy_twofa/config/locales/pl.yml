@@ -1,0 +1,74 @@
+---
+pl:
+  easy_twofa:
+    activate_scheme: Aktywuj %{name}
+    address: Adres
+    authentificate: Uwierzytelnij
+    code_was_resend: Kod został wysłany ponownie
+    continue: Kontynuuj
+    device_will_be_rememberd_for_x_days: To urządzenie zostanie zapamiętane na %{count}
+      dni
+    disable_scheme: Wyłącz %{name}
+    disabled: Wyłączono
+    disabling_twofa: Wyłączanie uwierzytelniania dwuskładnikowego
+    enabled_scheme: Włączona metoda
+    expired_at: Wygasło o
+    global_settings: Ustawienia globalne
+    http_method: Metoda HTTP
+    mode: Tryb
+    optional: Opcjonalne
+    plain_key: Klucz otwartym tekstem
+    please_enter_verification_key: Wpisz klucz weryfikacyjny
+    plugin_name: Easy Twofa
+    plugin_name_long: Easy Uwierzytelnianie Dwuskładnikowe
+    provider: Dostawca
+    remember_device: Zapamiętaj urządzenie
+    remembered_devices: Zapamiętane urządzenia
+    required: Wymagane
+    scheme_is_active: "%{name} jest aktywny"
+    schemes:
+      sms:
+        errors:
+          missing_provider: Brakuje dostawcy uwierzytelniania przez SMS
+          missing_telephone: Brakuje numeru telefonu
+        name: SMS
+        providers:
+          custom:
+            body: Tekst wiadomości
+            name: Własne
+            telephone: Telefon
+          messagebird:
+            name: MessageBird
+        small_description: Uwierzytelnij przy pomocy numeru wysłanego SMS-em. Musisz
+          mieć ustawiony numer telefonu.
+      totp:
+        disable_title: Wyłącz TOTP
+        name: TOTP
+        setup_info: Zeskanuj ten kod QR lub wpisz klucz tekstowy w aplikaji TOTP (np. Google
+          Authenticator, Authy, Duo Mobile) i wpisz kod w polu poniżej, aby włączyć
+          uwierzytelnianie dwuskładnikowe.
+        setup_title: Ustaw TOTP
+        small_description: Uwierzytelnij przy pomocy Time-based One-Time Password
+          Algorithm przez aplikację TOTP (np. Google Authenticator itp.).
+    select_scheme: Wybierz metodę
+    select_scheme_is_required: Wymagane jest uwierzytelnianie dwuetapowe. Aby kontynuować,
+      wybierz metodę, której będziesz używać. Możesz zmienić ją później w swoim profilu.
+    send_new_code: Wyślij nowy kod
+    setting_enabled_schemes_info: Musi być wybrana co najmniej jedna metoda. Jeżeli
+      żadna nie zostanie wybrana, wszystkie będą włączone.
+    successfully_disabled: Wyłączono
+    successfully_verified: Zweryfikowano
+    telephone_cf: Własne pole z numerem telefonu
+    text_activation: Wybrana metoda nie została jeszcze aktywowana. Musisz ją zweryfikować,
+      aby uniknąć komplikacji podczas logowania.
+    text_disable: Metoda nadal jest aktywna. Zweryfikuj swoją tożsamość. Jeżeli nie
+      możesz tego zrobić, skontaktuj się z Administratorem.
+    too_much_attempts: Zbyt wiele prób
+    twofa: Uwierzytelnianie dwuskładnikowe
+    twofa_is_required: Uwierzytelnianie dwuskładnikowe jest wymagane
+    twofa_verification_failed: Uwierzytelnianie dwuskładnikowe nie powiodło się
+    twofa_was_saved: Uwierzytelnianie dwuskładnikowe zostało zapisane
+    user_agent: User-Agent
+    verification_failed_contact_administrator: Nie można zweryfikować uwierzytelniania
+      dwuskładnikowego. Skontaktuj się z administratorem.
+    verify_code: Zweryfikuj kod

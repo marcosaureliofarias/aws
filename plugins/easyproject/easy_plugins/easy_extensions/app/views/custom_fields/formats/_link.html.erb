@@ -1,0 +1,8 @@
+<%= render partial: 'custom_fields/formats/regexp', locals: { f: f, custom_field: custom_field } %>
+<p>
+  <%= f.text_field :url_pattern, label: :field_url %>
+  <em class="help"><%= l(:text_custom_field_link_url_info) %></em>
+</p>
+<p>
+  <%= f.text_field(:default_value) %>
+</p>

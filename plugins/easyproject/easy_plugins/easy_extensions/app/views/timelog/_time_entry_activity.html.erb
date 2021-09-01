@@ -1,0 +1,84 @@
+<%
+  options ||= Hash.new
+  modal ||= params[:modal].to_s.to_boolean
+%>
+<% unless activity_collection.nil? %>
+  <% time_entry_id = convert_form_name_to_id(tag_name_prefix)
+  @user ||= User.current
+  user_roles = project && @user.roles_for_project(project).uniq
+  user_roles_collection = [[l(:label_activity_all), 'xAll']]
+  user_roles_collection_selected = params["user_role_id_#{time_entry_id}"] || params[:user_role_id]
+  if project && @user.admin? && user_roles && user_roles.include?(Role.non_member)
+    user_roles = project.all_members_roles
+    user_roles_collection_selected ||= 'xAll'
+  end
+  if !user_roles_collection_selected.blank? && user_roles_collection_selected != 'xAll'
+    user_roles_collection_selected = nil unless user_roles.collect{|role| role.id.to_s}.include?(user_roles_collection_selected)
+  end
+  if user_roles
+    user_roles.uniq.each{|role| user_roles_collection << [role.name, role.id.to_s]}
+  end
+  if !user_roles.blank? && !user_roles.include?(Role.non_member)
+    user_roles_collection_selected ||= (@user.selected_role_id || 'xAll')
+  end
+  if user_roles_collection.size > 1
+    user_roles_collection_selected ||= user_roles_collection[1][1]
+  end
+  modal_sufix = ''
+  if modal
+    modal_sufix = 'modal'
+  end
+  -%>
+  <p id="<%= container_id -%>">
+    <label class="required">
+      <%= l(:field_activity) -%>
+      <% if EasySetting.value('enable_activity_roles') && !options[:hide_role_select]  %>
+          <%= content_tag(:span, l(:label_user_role_select)) -%>
+      <% end %>
+      <span class="required"> *</span>
+    </label>
+    <span class="timeentry-activities">
+      <% if EasySetting.value('enable_activity_roles') && !options[:hide_role_select]  %>
+          <span class="user-role-select">
+          <%= select_tag("user_role_id_#{time_entry_id}", options_for_select(user_roles_collection, user_roles_collection_selected), {
+              :onchange => "
+          $.post('#{j change_role_activities_easy_time_entries_path(:project_id => project)}', {
+            user_role_id: $(\"##{container_id} #user_role_id_#{time_entry_id}\").val(),
+            container_id: '#{container_id}',
+            tag_name_prefix: '#{tag_name_prefix}',
+            entity_class: '#{entity && entity.class.name}',
+            entity_id: '#{(entity && !entity.new_record?) ? entity.id : nil }',
+            user_id: '#{@user && @user.id}',
+            modal: '#{modal}'
+          })"
+          }) -%>
+        </span><br />
+      <% end %>
+      <% if activity_collection.size > 7 %>
+        <%= collection_select tag_name_prefix, :activity_id, activity_collection, :id, :name, { include_blank: true },
+                              { class: 'timeentry-activity' } %>
+      <% elsif activity_collection.any? %>
+        <% activity_collection.each do |activity| %>
+          <%= label_tag "radio-timeentry-#{tag_name_prefix}", :for => "radio-timeentry-#{tag_name_prefix}-#{activity.id}#{modal_sufix}", :class => 'inline radio' do -%>
+            <%= radio_button_tag "#{tag_name_prefix}[activity_id]" , activity.id, (entity && activity.id == entity.activity_id), :class => 'timeentry-activity', :id => "radio-timeentry-#{tag_name_prefix}-#{activity.id}#{modal_sufix}"-%>
+            <%= activity.name %>
+          <% end -%>
+        <% end %>
+      <% else %>
+        <%= content_tag(:span, l(:text_timelog_user_time_entry_no_activity_for_role), :class => 'nodata') %>
+      <% end %>
+    </span>
+  </p>
+
+  <% if modal %>
+    <script type="application/javascript">
+      EASY.schedule.late(function() {
+        $('div#ajax-modal .timeentry-activity').change(function(){
+          fillFormTextAreaFromCKEditor('modal_time_entry_comment');
+          fillCustomFieldsFormTextAreasFromCKEditor(this.closest('form'));
+          $.ajax({url: '<%= j new_easy_time_entry_path(:activity_changed => '1', :format => 'js').html_safe %>', data: $('#bulk-time-entry-form').serialize()});
+        });
+      });
+    </script>
+  <% end %>
+<% end %>

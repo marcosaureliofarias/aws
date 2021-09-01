@@ -1,0 +1,12 @@
+<%
+ # This setting is available on /rys_management/easy_service_manager/edit
+ # All values are stored in EasySettings
+ # Each key have own record
+%>
+
+<p>
+  <% # This value is accesible via `EasyServiceManager.setting(:value)` %>
+  <% #                          or `EasySetting.value(:easy_service_manager_value)` %>
+  <%= form.label :value, l('field_value') %>
+  <%= form.text_field :value %>
+</p>

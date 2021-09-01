@@ -1,0 +1,5 @@
+<% selected_value ||=  { id: '', name: '' }
+   disabled = entity_type == 'Project' %>
+
+<%= label_tag l("field_#{ entity_type.underscore }"), nil, class: 'required' %>
+<%= easy_select_tag 'easy_money[entity_id]', selected_value, nil, easy_autocomplete_path('project_entities', project_id: project.id, entity_type: entity_type), root_element: 'entities', html_options: { disabled: disabled, id: "easy_money_#{entity_type.to_s.underscore}_autocomplete" } %>

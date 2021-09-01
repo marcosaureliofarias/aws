@@ -1,0 +1,89 @@
+.gantt{
+  $block: #{&};
+  --gantt-tree__color-bg: #{$gantt__color--background};
+  &_grid {
+    border-right-width: 1px !important;
+    background: var(--gantt-tree__color-bg);
+    &_milestone_bullet {
+      transform: scale(0.65) rotate(45deg);
+      width: $gantt__icon--size;
+      height: $gantt__icon--size;
+      background-color: $gantt__color--text;
+      margin-top: .5*$gantt__icon--size;
+      #{$block}_milestone_shared & {
+        background: rgba($gantt__color--text, 0.5);
+        border-color: rgba($gantt__color--text, 0.5);
+        background-clip: padding-box;
+      }
+    }
+    &_data{
+      z-index: 0;
+      position: relative;
+    }
+    &_head{
+      &_cell{
+        .gantt_sort{
+          top: auto;
+          bottom: 5px;
+        }
+      }
+      &_buttons{
+        &_collapse{
+          position: absolute;
+          left: 5px;
+          bottom: 2px;
+          display: none !important;
+          a{
+            font-size: 18px;
+            color: #a6a6a6;
+            font-weight: bold;
+            font-family: monospace;
+            display: inline-block;
+            &.active{
+              font-size: 18px;
+              color: #d94838 !important;
+              background-color: transparent !important;
+              border: none !important;
+            }
+            &:hover{
+              font-size: 18px;
+              color: rgba(72, 72, 72, 1);
+              text-decoration: none;
+              background-color: #eeeeee !important;
+              box-shadow: 0 0 15px 5px #eeeeee;
+              border-radius: 11px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &_scale{
+    &_cell{
+      &#{&}#{&}{
+        border-left-color: transparent !important;
+        border-right-color: transparent !important;
+
+      }
+    }
+  }
+  &_row {
+    display: flex;
+    &:hover .gantt_drag_handle:before {
+      content: '';
+      background: radial-gradient($color-text 25%, transparent 10%) 1px 1px;
+      background-size: 4px 4px;
+      opacity: 0.5;
+      display: block;
+      width: 8px;
+      height: 12px;
+      margin-top: calc(50% - 6px);
+      margin-left: calc(50% - 4px);
+    }
+    .gantt_drag_handle:before {
+      width: $gantt__icon--size;
+      height: 100%;
+      font-size: $gantt__icon--size;
+    }
+  }
+}

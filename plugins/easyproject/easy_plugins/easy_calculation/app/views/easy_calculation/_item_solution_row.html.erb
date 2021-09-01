@@ -1,0 +1,49 @@
+<% distance ||= 0 %>
+<tr class="item-solution-row phase-project-<%= phase.project.id %>" data-url="<%= easy_calculation_item_path(solution.calculation_item, :format => 'json') %>">
+  <% if @calculation.show_phases? %>
+    <td class="entity"></td>
+  <% end -%>
+  <td class="entity hide-when-print">
+    <span class="reorder-handler">
+      <%= render_reorder_handle(easy_calculation_order_path(@calculation.project, {:distance => distance, :solution => {:id => solution.calculation_item.id, :type => 'item'}}), 'move_to') %>
+    </span>
+  </td>
+  <td class="entity solution-entity">
+    <span class="solution-editable" data-name="easy_calculation_item[name]">
+      <%= solution %>
+    </span>
+  </td>
+  <td class='hide-when-print'></td>
+  <td class="text-right">
+    <span class="calculation-unit-editable"
+          data-value='<%= solution.hours %>,<%= solution.unit %>'
+          data-name="easy_calculation_item[hours],easy_calculation_item[unit]">
+      <%= format_locale_number(solution.hours || 0) %>&nbsp;<%= solution.unit.to_s %>
+    </span>
+  </td>
+  <td class="text-right">
+    <span class="solution-editable" data-value="<%= solution.hour_rate %>" data-name="easy_calculation_item[rate]">
+      <%= format_easy_calculation_price(solution.hour_rate, @calculation.project) %>
+    </span>
+  </td>
+
+  <td class="text-right <%= 'hide-when-print' if phase.solution_discount_sum.zero? %>">
+    <span class="calculation-discount-editable"
+          data-value='<%= solution.calculation_item.calculation_discount %>,<%= solution.discount_percent? %>'
+          data-name='easy_calculation_item[calculation_discount],easy_calculation_item[calculation_discount_is_percent],easy_calculation_item[calculation_discount_is_percent]'>
+      <%= format_easy_calculation_price(-solution.discount_price, @calculation.project) %>
+      <% if solution.discount_percent.try(:>, 0) %>
+        (<%= solution.discount_percent %> %)
+      <% end %>
+    </span>
+  </td>
+
+  <td class="text-right">
+    <span class="<%= 'solution-editable' if solution.calculation_item.value.present? && solution.calculation_item.calculation_discount.blank? %>" data-value="<%= solution.price %>" data-name="easy_calculation_item[value]">
+      <%= format_easy_calculation_price(solution.discounted_price, @calculation.project) %>
+    </span>
+  </td>
+  <td class="calculation-item-actions easy-query-additional-ending-buttons hide-when-print">
+    <%= link_to('', easy_calculation_item_path(solution.calculation_item), :class => 'icon icon-remove destroy-calculation') %>
+  </td>
+</tr>

@@ -1,0 +1,217 @@
+---
+da:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: Hvad laver du? Bær dem til timeseddel.
+      b: Din timeseddel er trist, synes du ikke?
+      c: Må ikke arbejde gratis. Udfyld en timeseddel.
+      d: Har du en ferie i dag?
+      e: Wake-up call! Timeseddel skal foder!
+  alerts_plugin_author: Easy Software
+  alerts_plugin_author_url: http://www.easyredmine.com
+  alerts_plugin_description: "- Automatisk besked i henhold til definerede parametre"
+  alerts_rule_project_filters: 'Begræns til projektet:'
+  alerts_type_alert: Alarm
+  alerts_type_notice: Meddelelse
+  alerts_type_warning: Advarsel
+  button_alerts_add_new_alert: Ny alarm
+  button_alerts_add_new_context: Ny sammenhæng
+  button_alerts_add_new_type: Ny type
+  button_alerts_manage_contexts: Administrer sammenhænge
+  button_alerts_manage_types: Styr alarmtyper
+  button_alerts_my_alerts: Mine advarsler
+  button_alerts_report: Rapport
+  button_alerts_report_archive: Arkiv
+  button_alerts_report_unarchive: Dearkivere
+  button_alerts_reports: Mine rapporter
+  button_alerts_reports_archive: Arkiveret
+  button_issue_sidebar_add_alert: Ny alarm
+  button_manage_alerts_for_all: Offentlige advarsler
+  easy_alerts_context:
+    helpdesk: Helpdesk
+    issue: Opgave
+    milestone: Milestone
+    project: Projekt
+    timeentry: Brugt tid
+  easy_alerts_rule:
+    easy_issue_query: Gemt forespørgsel
+    easy_project_query: Gemt forespørgsel
+    easy_version_query: Gemt forespørgsel
+    helpdesk_monitor_due_time: Helpdesk - spørgsmål rettidigt ifølge SLA
+    helpdesk_monitor_due_time_assignee: Helpdesk - tid til at fuldføre min opgave
+      i henhold til SLA
+    helpdesk_monitor_due_time_manager: Helpdesk - tidspunkt for afslutning af opgaven
+      i henhold til SLA
+    helpdesk_monitor_hours_to_response: Helpdesk - tid til begyndelsen af ​​løse opgave
+      i henhold til SLA
+    helpdesk_monitor_prepaid_hours: Helpdesk - månedlig forudbetalt tid
+    issue_due_date: Forfaldsdato
+    issue_updated_date: Opdateret dato
+    project_due_date: Forfaldsdato
+    project_estimated_hours: Summen af ​​estimeret timer
+    timeentry_time_watcher: Brugt tidsinterval
+    timeentry_time_watcher_previous_day: Forrige dag brugt tid
+    version_due_date: Forfaldsdato
+  easy_pages:
+    modules:
+      easy_alerts: Alarmer - rapporter
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: Advarsler - evaluering
+  field_alert_is_for: Evaluering af
+  field_alert_mail_for: Send til
+  field_alerts_report_text: Stat
+  field_alerts_rule: Watch
+  field_budget: budget
+  field_context: hvor
+  field_custom_hours: Clock
+  field_date: dato
+  field_delta: antal dage
+  field_entity_count: række opgaver
+  field_period_from: Fra
+  field_period_to: Til
+  field_query_id: filtrere
+  field_rule: Watch
+  field_time_check: Kontrol
+  field_version_ids: milepæl
+  label_alerts_additional_settings: Andre indstillinger
+  label_alerts_context: 'Hvor:'
+  label_alerts_contexts: Liste over sammenhænge
+  label_alerts_for_all: For alle
+  label_alerts_for_group: 'For gruppen:'
+  label_alerts_for_only_me: Kun for alarm forfatter
+  label_alerts_hourstimecheck_after_time: time
+  label_alerts_hourstimecheck_before_time: Tjek det hver dag i
+  label_alerts_hourstimecheck_whenever: Anytime << >>
+  label_alerts_issue_select_before: 'på opgave (r):'
+  label_alerts_mail_group: Evaluering af indberetninger vil blive sendt via e-mail
+  label_alerts_mail_group_all: Alle deltagere (se ovenfor)
+  label_alerts_mail_group_custom: 'Til brugerdefineret mail:'
+  label_alerts_mail_group_only_group: 'Kun gruppens medlemmer:'
+  label_alerts_manage_alerts_for: 'Denne advarsel vil blive evalueret for brugere:'
+  label_alerts_my: 'Mine indberetninger efter type:'
+  label_alerts_my_alerts: Mine advarsler
+  label_alerts_my_reports: Mine rapporter
+  label_alerts_my_reports_archive: Mine rapporter (arkiv)
+  label_alerts_name: 'Navn:'
+  label_alerts_project_select_before: 'om projektet:'
+  label_alerts_report: Rapport
+  label_alerts_rule: 'Watch:'
+  label_alerts_select_context: 'Vælg sammenhæng:'
+  label_alerts_select_rule: 'Vælg regel:'
+  label_alerts_type: 'Severity:'
+  label_alerts_type_name: Navn
+  label_alerts_types: Alert typer
+  label_choose_type: 'Vælg, hvornår alarmen skal evaluere:'
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: rettidigt på opgave (i henhold
+    til SLA).
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: Watch, at den nuværende
+    tidspunkt er mere eller lig med
+  label_easy_alerts_helpdesk_monitor_due_time_report: God tid opgave er på%{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: Opgave skulle løses
+    i %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: forudbetalte timer.
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: Watch, at månedlig
+    brugt tid på projektet er mere eller lig med
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: Brugt %{sum_time_entries}
+    fra %{prepaid_hours}
+  label_easy_alerts_project_estimated_hours_form_after: versus brugt tid
+  label_easy_alerts_project_estimated_hours_form_before: Watch, at anslået tid er
+    på
+  label_easy_alerts_project_estimated_hours_report: Tid udgifterne til %{current_percentage}%
+    -%{sum_time_entries} fra %{sum_estimated_hours}
+  label_issue_due_date_report: sigt opgave er overskredet
+  label_issue_due_date_warning_date_before: 'Advar om:'
+  label_issue_due_date_warning_delta_after: dag (+) efter udløbet af fristen, (-)
+    inden fristens udløb
+  label_issue_due_date_warning_delta_before: Advar
+  label_issue_due_date_where_iam: 'Kun hvis jeg er:'
+  label_issue_due_date_where_iam_assignee: Erhverver af opgaven
+  label_issue_due_date_where_iam_author: Forfatter af opgaven
+  label_issue_overdrawn_budget_before: 'Advar udtømningen af ​​budgettet:'
+  label_issue_overdrawn_budget_report: opbrugt fra %{costs}%{budget}
+  label_issue_query_after: optegnelser.
+  label_issue_query_before: 'Advare, hvis antallet af opgaver i filteret:'
+  label_issue_query_middle: være større end
+  label_issue_query_report: oversteg antallet af opgaver i filteret
+  label_issue_updated_date_warning_date_before: 'Advar om:'
+  label_issue_updated_date_warning_delta_after: dag (+) efter udløbet af fristen,
+    (-) inden fristens udløb
+  label_issue_updated_date_warning_delta_before: Advar
+  label_milestone_due_date_milestone_select_before: på milepæl (s)
+  label_milestone_due_date_report: sigt milepæl er overskredet
+  label_milestone_due_date_warning_date_before: 'Advar om:'
+  label_milestone_due_date_warning_delta_after: dag (+) efter udløbet af fristen,
+    (-) inden fristens udløb
+  label_milestone_due_date_warning_delta_before: Advar
+  label_project_due_date_not_overdue: 'Dage efter dato:'
+  label_project_due_date_overdue: 'Dage til grund:'
+  label_project_due_date_report: Projektet deadline er overskredet
+  label_project_due_date_warning_date_before: 'Advar om:'
+  label_project_due_date_warning_delta_after: dag (+) efter udløbet af fristen, (-)
+    inden fristens udløb
+  label_project_due_date_warning_delta_before: Advar
+  label_project_overdrawn_budget_before: 'Advar udtømningen af ​​budgettet:'
+  label_project_overdrawn_budget_report: opbrugt fra %{costs}%{budget}
+  label_project_query_after: optegnelser.
+  label_project_query_before: 'Advar hvis antallet af projekter i filteret:'
+  label_project_query_middle: være større end
+  label_project_query_report: oversteg antallet af projekter i filteret
+  label_select_project: 'Vælg et projekt:'
+  label_timeentry_time_watcher_after: timer.
+  label_timeentry_time_watcher_before: Jeg ønsker at kontrollere, at brugt tid
+  label_timeentry_time_watcher_before_from: fra
+  label_timeentry_time_watcher_before_to: til
+  label_timeentry_time_watcher_mail_body: 'Din timeseddel, kan du udfylde her:'
+  label_timeentry_time_watcher_mail_body_link: din timeseddel
+  label_timeentry_time_watcher_middle: er større end eller lig med
+  label_timeentry_time_watcher_previous_day_before: Jeg ønsker at kontrollere, at
+    den brugte tid fra foregående bankdag
+  label_timeentry_time_watcher_previous_day_before_calendar: større end eller lig
+    med arbejdskraft.
+  label_timeentry_time_watcher_previous_day_before_custom: større end eller lig med
+  label_timeentry_time_watcher_previous_day_before_time: Tjek det hver dag på
+  label_timeentry_time_watcher_previous_day_mail_body: Skrev du går alle timer? Tjek
+    din timeseddel.
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'Disse mennesker
+    fyldt for få timer går:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: En
+    liste over disse mennesker, kan du tjekke her.
+  label_timeentry_time_watcher_previous_day_mail_body_link: din timeseddel
+  label_timeentry_time_watcher_previous_day_mail_subject: Skrev du går alle timer?
+    Tjek din timeseddel.
+  label_timeentry_time_watcher_previous_report: I går postet et par timer.
+  label_timeentry_time_watcher_report: har utilstrækkeligt rapporteret tid fra %{from}
+    til %{to}
+  label_version_query_after: optegnelser.
+  label_version_query_before: 'Fortæl hvis antallet af milepæle i filteret:'
+  label_version_query_middle: er større end
+  label_version_query_report: oversteg antallet af milepæle i filteret
+  permission_manage_alert_contexts: Administration af sammenhænge
+  permission_manage_alert_types: Ledelse typer advarsler
+  permission_manage_alerts_for_all: Det kan generere advarsler for alle brugere
+  permission_view_alerts: Visning af alarmer
+  project_default_page:
+    easy_alerts: Advarsler
+  project_module_easy_alerts: Advarsler
+  title_alert_type_color: Vælg en farve
+  title_alerts_add_new_alert: Opret en ny indberetning
+  title_alerts_alert_edit: Rediger alarmer
+  title_alerts_alert_new: Ny alarm
+  title_alerts_context_edit: Redigering sammenhæng
+  title_alerts_context_new: Ny sammenhæng
+  title_alerts_edit_alert: Ændre en advarsel
+  title_alerts_manage_contexts: Administrer sammenhænge
+  title_alerts_manage_types: Administrer de advarselstyper
+  title_alerts_my_alerts: Se mine indberetninger
+  title_alerts_report: Se rapporter om indberetningen
+  title_alerts_report_entity_issue: Vis Opgave %{entityname}
+  title_alerts_report_entity_project: Se Project %{entityname}
+  title_alerts_report_entity_user: Vis brugerens %{entityname}
+  title_alerts_reports: Se mine rapporter
+  title_alerts_reports_archive: Vis arkiverede rapporter.
+  title_alerts_show_alert: "%{alertname} Vis en advarsel"
+  title_alerts_sidebar_type: Se rapporter efter type %{typename}
+  title_alerts_type_edit: Ændring af typen
+  title_alerts_type_new: Ny type
+  title_manage_alerts_for_all: Klik for at se advarsler for alle

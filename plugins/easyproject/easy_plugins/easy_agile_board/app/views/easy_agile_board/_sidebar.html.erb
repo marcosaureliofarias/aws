@@ -1,0 +1,60 @@
+<%
+  agile_action ||= ''
+  show_sprint_button_in_primary_actions ||= false
+  allowed_to_edit = User.current.allowed_to?(:edit_easy_scrum_board, project)
+  in_backlog = @query&.outputs&.include?('scrum_backlog')
+  allowed_to_manage_backlog = allowed_to_edit || User.current.allowed_to?(:manage_sprint_backlog, project)
+%>
+<% if allowed_to_manage_backlog %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <% if show_sprint_button_in_primary_actions && in_backlog %>
+      <%= link_to l(:label_agile_go_to_sprint),
+                  easy_agile_board_path(project, sprint_id: easy_sprint),
+                  title: l(:label_agile_sprint_reload), class: 'icon icon-bullet-list button-positive' %>
+    <% elsif allowed_to_edit %>
+      <%= link_to l(:label_agile_sprint_new),
+                  new_project_easy_sprint_path(project),
+                  title: l(:label_agile_sprint_new), class: 'icon icon-add button-positive' %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= form_tag(easy_agile_board_path(project), id: 'easy_sprint_form', method: :get) do %>
+    <%= hidden_field_tag('agile_action', agile_action, id: 'agile_action') unless agile_action.blank? %>
+    <%= easy_autocomplete_tag('sprint_id',
+                              { name: easy_sprint.nil? ? l(:label_easy_agile_board_select_sprint) : easy_sprint.name, id: easy_sprint.nil? ? '' : easy_sprint.id },
+                              autocomplete_project_easy_sprints_path(project, format: :json),
+                              root_element: 'easy_sprints', html_options: { id: 'sprint_id' },
+                              onchange: '$("#easy_sprint_form").submit()'
+        ) %>
+  <% end %>
+  <% if easy_sprint && allowed_to_edit %>
+    <%= link_to(l(:title_edit_sprint), edit_project_easy_sprint_path(project, easy_sprint), title: l(:title_edit_sprint), class: 'icon icon-edit button-positive') %>
+    <%= link_to(l(:button_delete_sprint), project_easy_sprint_path(project, easy_sprint), method: :delete, data: { confirm: l(:text_are_you_sure) }, class: 'icon icon-del button-negative', title: l(:button_delete_sprint)) %>
+  <% end %>
+<% end %>
+
+<div class="agile-board-sidebar">
+  <ul>
+    <% if easy_sprint %>
+      <%= render partial: 'capacity', locals: { easy_sprint: easy_sprint } %>
+      <% if allowed_to_edit %>
+        <li>
+          <% if show_sprint_button_in_primary_actions %>
+            <%= link_to(l(:label_agile_sprint_new), new_project_easy_sprint_path(project), title: l(:label_agile_sprint_new), class: 'icon icon-add button') if allowed_to_edit %>
+          <% else %>
+            <%= content_tag(:li, link_to(l(:label_agile_go_to_sprint), easy_agile_board_path(project, sprint_id: easy_sprint), title: l(:label_agile_sprint_reload), class: 'icon icon-bullet-list button')) if in_backlog %>
+          <% end %>
+        </li>
+      <% end %>
+      <% if allowed_to_manage_backlog && !in_backlog %>
+        <li>
+          <%= link_to(l(:label_project_backlog), easy_agile_board_backlog_path(project, easy_sprint), class: 'icon icon-templates button', title: l(:label_project_backlog)) %>
+        </li>
+        <%= content_tag(:li, link_to(l(:label_easy_agile_board_charts), easy_agile_board_burndown_chart_path(project, easy_sprint), class: 'icon icon-stats button', title: l(:label_easy_agile_board_charts))) %>
+      <% end %>
+    <% end %>
+    <%= content_tag(:li, link_to(l(:button_settings), easy_agile_board_settings_path(project), class: 'icon icon-settings button', title: l(:button_settings))) if allowed_to_edit %>
+  </ul>
+</div>

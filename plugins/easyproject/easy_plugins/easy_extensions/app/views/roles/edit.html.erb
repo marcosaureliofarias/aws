@@ -1,0 +1,8 @@
+<%= title [l(:label_role_plural), roles_path], @role.name %>
+
+<%= labelled_form_for @role, :html => {:class => 'form-box tabular'} do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+<% end %>

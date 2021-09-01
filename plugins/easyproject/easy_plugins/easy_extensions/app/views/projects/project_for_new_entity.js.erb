@@ -1,0 +1,14 @@
+$("#ajax-modal").html("<%= j(render :partial => 'project_for_new_entity', :locals => {entity_label: @entity_label, type: @type, project: @project, easy_new_entity_auto_complete_path: params[:easy_new_entity_auto_complete_path]}) %>");
+showModal('ajax-modal', '50%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:label_new) %>',
+      click: function() {$(this).find('form').submit();}, 'class': 'button-positive'
+    }
+  ]
+});

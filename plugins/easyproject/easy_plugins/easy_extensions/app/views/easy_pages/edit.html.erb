@@ -1,0 +1,21 @@
+<%= title l(:label_easy_page_edit) %>
+
+<%= form_for(@page, class: 'form-box') do |f| %>
+  <%= error_messages_for @page %>
+
+  <div class="tabular">
+    <%= render partial: 'form', locals: { f: f } %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit l(:button_update), class: 'button-positive' %>
+  </div>
+<% end %>
+
+<%= toggling_container('easy-page-history', User.current, { heading: l(:label_history) }) do %>
+  <%= easy_journal_render_history(@journals, {
+      collapsible: false,
+      entity: @page,
+      reply_links: false,
+      loader: @journal_count > @journals.size
+  }) %>
+<% end if @journals.present? %>

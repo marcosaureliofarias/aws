@@ -1,0 +1,9 @@
+Easy Actions - Sequence Instances Creator:
+  cron: "*/5 * * * *"
+  class: "EasyActionSequenceInstanceCreatorJob"
+  queue: "easy_actions"
+
+Easy Actions - Sequence Instance Engine Planner:
+  cron: "*/5 * * * *"
+  class: "EasyActionSequenceInstancePlannerJob"
+  queue: "easy_actions"

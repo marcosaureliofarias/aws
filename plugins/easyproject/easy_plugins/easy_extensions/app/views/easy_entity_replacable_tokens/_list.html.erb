@@ -1,0 +1,24 @@
+<%
+token_list = entity_class.easy_entity_replacable_tokens_list(project)
+left_token_list, right_token_list = [], []
+token_list.each do |token, column|
+  column.is_a?(EasyQueryCustomFieldColumn) ? right_token_list << [token, column] : left_token_list << [token, column]
+  end
+%>
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <% left_token_list.each do |token, column| %>
+      <p class="floating">
+        <%= easy_entity_replace_token_link(token, column, params[:dom_id], :close_modal => true) %>
+      </p>
+    <% end %>
+  </div>
+  <div class="splitcontentright">
+    <% right_token_list.each do |token, column| %>
+      <p class="floating">
+        <%= easy_entity_replace_token_link(token, column, params[:dom_id], :close_modal => true) %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,11 @@
+<% if @attachment.is_a?(Attachment) && @attachment.custom_field_values.any? -%>
+  <h3 class="title"><%= @attachment.title %></h3>
+
+  <div>
+    <% @attachment.custom_field_values.each do |custom_value| -%>
+      <% if custom_value.value.present? -%>
+        <p><%= custom_value.custom_field.name %>: <%= custom_value.value %></p>
+      <% end -%>
+    <% end -%>
+  </div>
+<% end -%>

@@ -1,0 +1,18 @@
+<% principals.each do |principal| %>
+  <% method ||= principal.is_a?(User) ? 'watcher_user_ids' : 'watcher_group_ids' %>
+  <% checkbox_id = "#{object_name}_#{method}_#{principal.id}" %>
+  <% watchable ||= @issue %>
+  <% checked ||= (watchable && watchable.watched_by?(principal)) || (watchable.respond_to?(:copied_from) && watchable.copied_from && watchable.copied_from.watched_by?(principal)) %>
+  <% role_names ||= {} %>
+
+  <li class="<%= "#{principal.is_a?(User) ? 'user' : 'group'}-#{principal.id} link-list-item" %> <%='checked' if checked %> form-entity-watcher-container <%= object_name %> easy-dropper-target easy-drop-user" data-user-id="<%= principal.id %>" data-drop-action="user">
+    <%= check_box_tag "#{object_name}[#{method}][]", principal.id, checked, :id => checkbox_id, :class => 'link-list-checkbox' -%>
+    <%= avatar(principal, :style => :small, :no_link => true) %>
+    <div class="link-list-item-content two-lines">
+      <div class="form-entity-watcher-name"><%= label_tag(checkbox_id, h(principal) ) -%></div>
+      <div class="form-entity-watcher-role"><%= role_names[principal.id] -%></div>
+    </div>
+    <div class="clear"></div>
+  </li>
+<% end %>
+

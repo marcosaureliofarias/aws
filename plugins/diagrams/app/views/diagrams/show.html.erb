@@ -1,0 +1,94 @@
+<%= stylesheet_link_tag 'grapheditor', plugin: 'diagrams' %>
+
+<script type='text/javascript' defer>
+	EASY.schedule.require(function () {
+		window.SAVE_URL = '<%= j(save_diagrams_path(id: @diagram.id, back_url: @back_url)) %>';
+		window.BACK_URL = '<%= @back_url %>';
+
+		var editor = 'https://embed.diagrams.net?ui=atlas&spin=1&proto=json';
+		var initial = null;
+		var name = null;
+
+		load();
+
+		function edit(image)
+		{
+			var iframe = document.createElement('iframe');
+			iframe.setAttribute('frameborder', '0');
+			iframe.setAttribute('id', 'diagramIframe');
+
+			var close = function()
+			{
+				window.close();
+			};
+
+			var xml = "<%= @diagram.root_xml %>";
+			var xmlpng = "<%= @diagram.attachment_base64 %>";
+
+			var receive = function(evt)
+			{
+				if (evt.data.length > 0)
+				{
+					var msg = JSON.parse(evt.data);
+
+					if (msg.event == 'init')
+					{
+						if (xml !== "")
+						{
+							iframe.contentWindow.postMessage(JSON.stringify({action: 'load',
+								autosave: 1, xml: xml}), '*');
+							iframe.contentWindow.postMessage(JSON.stringify({action: 'status',
+								modified: true}), '*');
+						}
+						else
+						{
+							iframe.contentWindow.postMessage(JSON.stringify({action: 'load',
+								autosave: 1, xmlpng: xmlpng}), '*');
+						}
+					}
+					else if (msg.event == 'export')
+					{
+						$.ajax({
+							url: SAVE_URL,
+							data: { xmlpng: msg.data },
+							type: 'POST',
+							dataType:'json',
+							error:function(err){
+								close();
+							},
+							complete:function(xmlHttp){
+								if(xmlHttp.status.toString() =='200'){
+									window.location.replace(xmlHttp.getResponseHeader('Location'));
+								}
+
+								close();
+							}
+						});
+					}
+					else if (msg.event == 'save')
+					{
+						iframe.contentWindow.postMessage(JSON.stringify({action: 'export',
+							format: 'xmlpng', xml: msg.xml, spin: 'Updating page'}), '*');
+					}
+					else if (msg.event == 'exit')
+					{
+						window.location.replace(BACK_URL);
+					}
+				}
+			};
+
+			window.addEventListener('message', receive);
+			iframe.setAttribute('src', editor);
+			document.body.appendChild(iframe);
+		};
+
+		function load()
+		{
+			initial = document.getElementById('image').getAttribute('src');
+			edit(document.getElementById('image'));
+		};
+	}, 'jQuery');
+</script>
+
+<img id="image" onclick="edit(this);"/>
+

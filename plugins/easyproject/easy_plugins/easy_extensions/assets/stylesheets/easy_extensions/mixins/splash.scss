@@ -1,0 +1,150 @@
+%splash-screen{
+  @extend %absolute;
+  padding-top: 0!important;
+  overflow: hidden;
+
+  &:before{
+    display: none;
+  }
+
+  #wrapper{
+    position: relative;
+    background: #023fa9 $login-bg-url no-repeat bottom right;
+    background-size: 100% auto;
+    margin-bottom: -2px;
+    min-height: 100vh;
+    height: 100%;
+
+    &:before{
+      content: "";
+      @extend %absolute;
+      z-index: 0;
+      @include gradient-vertical(rgba($color-main,1),rgba($color-main,0));
+    }
+  }
+
+  #wrapper2{
+    $width: 420px;
+    @extend %flex;
+    @extend %align-items-center;
+    position: relative;
+    max-width: $width;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+  }
+
+  #wrapper3 {
+    @extend %border-radius-large;
+    @extend %material__elevation--depth_5 !optional;
+    width: 100%;
+    background: $color-login-background;
+    color: $color-login-text;
+    padding: 0 !important;
+    padding-bottom: 3*$gap !important;
+    @media screen and (max-height: 600px) {
+      padding-bottom: $gap !important;
+    }
+    @if $custom-brand-active == true {
+      &:after {
+        content: "";
+        display: block;
+        height: 3*$box-padding !important;
+        width: 100% !important;
+        background-image: image-url("logo_er18_mutation.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: white;
+        background-size: auto 36px;
+      }
+    }
+  }
+
+  h1{
+    text-align: center;
+    span{
+      color: $color-main;
+    }
+  }
+
+  #main{
+    background: none;
+    z-index: 1;
+    padding: 0;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    @media screen and (max-height: 700px) {
+      margin-top: 0 !important;
+    }
+  }
+
+  #content{
+    padding: 0 2*$box-padding;
+  }
+
+  .easy-content-page{
+    border: none;
+    background: none;
+    padding: 0;
+    margin-bottom: 0; //$box-padding;
+    @extend %box-shadow-none;
+    overflow: visible;
+  }
+
+  #top-menu{
+    @extend %box-shadow-none;
+    @extend %justify-content-center;
+    border: none;
+    background: none;
+    position: relative !important;
+    padding: 1.5*$box-padding 0 2.25*$box-padding 0;
+    @media screen and (max-height: 540px) {
+      padding-bottom: $box-padding;
+    }
+    #logo{
+      @extend %flex;
+      @include flex-basis(100%);
+      text-align: center;
+      margin: 0;
+      &~div, &~ul{
+        display: none;
+      }
+      a{
+        background-position: center;
+        margin: $gap;
+        width: 100%;
+        //background-image: image-url("logo-inverted.svg");
+      }
+    }
+  }
+  .flash{
+    @extend %border-radius-none;
+    margin: 0 0 $gap;
+  }
+
+  hr{
+    margin: $box-padding 0;
+    opacity: .5;
+  }
+
+  #login-form{
+    p{
+      margin-bottom: $gap;
+    }
+    td{
+      //background: $color-main-border;
+    }
+  }
+  #login_form_container{
+    text-align: center;
+
+    button {
+      text-align: center;
+      width: 100% !important;
+      height: $form-field-height
+    }
+  }
+}

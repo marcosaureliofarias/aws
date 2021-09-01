@@ -1,0 +1,21 @@
+<%= form_for(:related_easy_crm_case,
+             url: add_related_issue_with_post_params_path(back_url: issue_path(@issue)),
+             method: :post,
+             html: { id: 'related_easy_crm_case', class: 'form-box tabular', style: 'display: none;' }) do |f| %>
+  <%= hidden_field_tag 'issue_id', @issue.id %>
+  <div class="box">
+    <%  modul_uniq_id ||= controller_name + '_' + action_name %>
+    <%= toggling_container(modul_uniq_id, User.current, { heading: l(:heading_easy_crm_related_case), default_button_state: true, wrapping_heading_element_classes: ' icon icon-crm-1' }) do %>
+      <p class="gray-background">
+        <span class="label-before"><%= l(:label_easy_crm_related_case) %></span>
+        <span class="issue-selector">
+          <%= easy_crm_cases_relations_field_tag 'id', 'related_crm_id', false, url: { query_name: 'related_easy_crm_case', modal_project_id: @project.id }, multiple: false %>
+        </span>
+      </p>
+    <% end %>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag l(:button_add), class: 'button-positive' %>
+    <%= link_to_function l(:button_cancel), '$("#related_easy_crm_case").hide();', class: 'button' %>
+  </div>
+<% end %>

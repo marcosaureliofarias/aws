@@ -1,0 +1,8 @@
+var notes = $("#journal-<%= @journal.id %>-notes")
+notes.hide().parent().find('.menu-more').hide();
+
+if ($("form#journal-<%= @journal.id %>-form").length > 0) {
+  $("#journal-<%= @journal.id %>-form").show();
+} else {
+  notes.after('<%= j(render :partial => 'notes_form') %>');
+}

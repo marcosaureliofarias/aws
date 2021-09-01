@@ -1,0 +1,16 @@
+:verbose: false
+:pidfile: ../sidekiq.pid
+:logfile: ./log/sidekiq.log
+:concurrency: <%= ENV["SIDEKIQ_WORKERS"] || 2 %>
+:queues:
+  - critical
+  - easy_devops
+  - default
+  - recalculate_custom_fields
+  - easy_git
+  - easy_actions
+  - easy_mail_campaigns
+  - easy_integrations
+  - mailers
+  - easy_rake_tasks
+  - low

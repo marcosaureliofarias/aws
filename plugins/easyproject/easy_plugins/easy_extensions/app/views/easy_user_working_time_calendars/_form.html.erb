@@ -1,0 +1,64 @@
+<%= error_messages_for 'easy_user_working_time_calendar' %>
+
+<div class="box">
+  <p>
+    <%= f.text_field :name, :required => !easy_user_working_time_calendar.builtin?, :disabled => easy_user_working_time_calendar.builtin?, :label => 'activerecord.attributes.easy_user_working_time_calendar.name'.to_sym %>
+  </p>
+  <p>
+    <% time_from_value = (easy_user_working_time_calendar.time_from ? easy_user_working_time_calendar.time_from.strftime('%H:%M') : '') %>
+    <%= f.text_field :time_from, type: 'time', required: true, label: l(:label_easy_user_working_time_calendar_time_from), value: time_from_value, placeholder: time_from_value.presence || '00:00', name: 'easy_user_working_time_calendar[time_from]', size: 5, class: 'time-select time-select-time_from' %>
+  </p>
+  <p>
+    <% time_to_value = (easy_user_working_time_calendar.time_to ? easy_user_working_time_calendar.time_to.strftime('%H:%M') : '') %>
+    <%= f.text_field :time_to, type: 'time', required: true, label: l(:label_easy_user_working_time_calendar_time_to), value: time_to_value, placeholder: time_to_value.presence || '00:00', name: 'easy_user_working_time_calendar[time_to]', size: 5, class: 'time-select time-select-time_to' %>
+  </p>
+  <p>
+    <%= f.text_field :default_working_hours, :required => true, :label => 'activerecord.attributes.easy_user_working_time_calendar.default_working_hours'.to_sym, :size => 5 %>
+  </p>
+  <p>
+    <% working_days_options_for_select = options_for_select((0..6).map { |wday| [ day_name(wday+1), wday+1 ] }, f.object.working_week_days) %>
+    <%= f.select :working_week_days, working_days_options_for_select, { label: 'activerecord.attributes.easy_user_working_time_calendar.working_week_days'.to_sym }, multiple: true, size: 7, :class => 'inline' %>
+  </p>
+  <p>
+    <%= f.select(:first_day_of_week, 7.times.collect{|d| [day_name(d+1), d+1]}, { :required => true, :label => 'activerecord.attributes.easy_user_working_time_calendar.first_day_of_week'.to_sym}, {:class => 'inline' }) %>
+  </p>
+  <p>
+    <%= f.check_box :is_default, :label => 'activerecord.attributes.easy_user_working_time_calendar.is_default'.to_sym %>
+  </p>
+
+  <div id='ical_import'>
+    <p>
+      <%= f.url_field :ical_url, :placeholder => 'http://***.ics', disabled: (params[:ical_update].nil? ? false : !params[:ical_update] == '1') %>
+      <%= link_to l(:label_holiday_calendars), l(:holiday_calendars_url), :target => '_blank', :class => 'external' %>
+    </p>
+    <% unless easy_user_working_time_calendar.new_record? %>
+      <p class="nowrap">
+        <%= hidden_field_tag 'ical_update', 0, id: 'ical_update_hidden' %>
+        <%= check_box_tag 'ical_update', 1, (params[:ical_update].nil? ? true : params[:ical_update] == '1'), onchange: "$('#ical_overwrite').prop('disabled', !this.checked); $('#easy_user_working_time_calendar_ical_url').prop('disabled', !this.checked);" %>
+        <%= label_tag 'ical_update', l(:label_ical_update), class: 'inline' %>
+
+        <%= hidden_field_tag 'ical_overwrite', 0, id: 'ical_overwrite_hidden' %>
+        <%= check_box_tag 'ical_overwrite', 1, (params[:ical_overwrite].nil? ? false : params[:ical_overwrite] == '1'), disabled: (params[:ical_update].nil? ? false : !params[:ical_update] == '1') %>
+        <%= label_tag 'ical_overwrite', l(:label_ical_overwrite), class: 'inline' %>
+
+      </p>
+    <% end %>
+  </div>
+
+  <% if easy_user_working_time_calendar.new_record? -%>
+    <p>
+      <%= label_tag 'inherit', l(:label_easy_user_working_time_calendar_inherit_from_parent_calendar) %>
+      <%= select_tag 'inherit', options_for_select([['', '']] + EasyUserWorkingTimeCalendar.templates.collect{|c| [c.translated_name, c.id.to_s]}, params[:inherit]) %>
+    </p>
+    <p>
+      <%= label_tag 'copy_exceptions', l(:label_easy_user_working_time_calendar_inherit_from_parent_calendar_copy_exceptions) %>
+      <%= hidden_field_tag 'copy_exceptions', 0 %>
+      <%= check_box_tag 'copy_exceptions', 1, (params[:copy_exceptions].nil? ? true : params[:copy_exceptions] == '1') %>
+    </p>
+    <p>
+      <%= label_tag 'copy_holidays', l(:label_easy_user_working_time_calendar_inherit_from_parent_calendar_copy_holidays) %>
+      <%= hidden_field_tag 'copy_holidays', 0 %>
+      <%= check_box_tag 'copy_holidays', 1, (params[:copy_holidays].nil? ? true : params[:copy_holidays] == '1') %>
+    </p>
+  <% end -%>
+</div>

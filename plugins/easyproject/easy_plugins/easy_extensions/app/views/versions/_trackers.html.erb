@@ -1,0 +1,3 @@
+<% trackers.each do |tracker| -%>
+  <label class="inline checkbox"><%= check_box_tag 'tracker_ids[]', tracker.id, (selected_tracker_ids.include? tracker.id.to_s), :id => nil -%><%= tracker.name -%></label>
+<% end -%>

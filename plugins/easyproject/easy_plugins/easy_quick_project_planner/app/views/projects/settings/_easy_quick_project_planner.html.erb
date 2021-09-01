@@ -1,0 +1,9 @@
+<% if @easy_quick_planner_fields %>
+  <%= form_tag({:action => 'settings', :tab => 'quick_planner'}) do %>
+    <%= render 'extensions/settings/easy_quick_project_planner', project: @project, planner_fields: @easy_quick_planner_fields %>
+
+    <div class="form-actions">
+      <%= submit_tag l(:button_save), :class => 'button-positive' %>
+    </div>
+  <% end %>
+<% end %>

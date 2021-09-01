@@ -1,0 +1,207 @@
+#user_detail_header{
+  @extend %graphic-bg-boxes;
+  margin: -$box-padding;
+  margin-bottom: 0;
+  padding: $box-padding;
+  border-bottom: 1px solid $color-border;
+  @extend %clearfix;
+  .avatar-container{
+    margin: $gap $gap+$box-padding $gap $gap;
+  }
+  .ui-dialog-content &{
+    .avatar-container{
+      margin: 0;
+      margin-right: $box-padding;
+    }
+  }
+  & + #custom-field-files, & ~ .tab-content{
+    margin-bottom: $box-padding;
+  }
+  & + .tabs{
+    margin-top: -$tab-height;
+  }
+}
+
+.menu-user-profile{
+  @extend %menu-horizontal;
+  @extend %menu-buttons;
+  margin-bottom: 0;
+  & > li{
+    @extend %menu-tooltip;
+    & > ul{
+      @include triangle-top(0.5*$gap, $tooltip-background, $tooltip-border, 85%);
+      display: none;
+      left: 0;
+      right: auto;
+    }
+    &:hover{
+      & > ul{
+        display: block;
+      }
+    }
+    & > a{
+      position: relative;
+      color: $button-base-color;
+      i{
+        display: inline-block;
+        margin: 0 (-0.5*$gap);
+        margin-left: $gap;
+        padding: 0 0.5*$gap;
+        border-left: 1px solid $color-border;
+      }
+    }
+  }
+  .ui-dialog &{
+    margin: $gap 0;
+  }
+}
+.character-details{
+  .ui-dialog &{
+    background: $color-foreground;
+   // margin: 0 (-$box-padding) (-1.5*$box-padding - 1);
+    //padding: $box-padding;
+    border-bottom: none;
+    margin-top: $box-padding;
+  }
+  border-bottom: 1px solid $color-border;
+}
+
+.users{
+  &-activity{
+    text-align: center;
+    @extend %clearfix;
+    @extend %pseudo-before;
+
+    .tab-content &{
+      padding-top: $box-padding;
+    }
+    &:before{
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      //border-left: 1px solid $color-border-minor;
+      z-index: 0;
+    }
+    &-root{
+      h2,h3{
+        margin: 0;
+      }
+      .at-work{
+        @include small;
+      }
+      border: 1px solid $color-border-minor;
+      background: mix($color-foreground,$color-background);
+      display: inline-block;
+      padding: $gap;
+      //@extend %border-radius-infinite;
+      position: relative;
+    }
+    &-item{
+      width: 50%;
+      clear: both;
+      margin: $box-padding 0;
+      text-align: right;
+      float: left;
+      position: relative;
+      @extend %box-sizing-border-box;
+      padding-right: 2*$box-padding;
+      @include pseudo-before{
+        top: 1.8*$gap;
+        right: 0;
+        width: $box-padding;
+        border-top: 1px solid $color-border-minor;
+      }
+      .author{
+        position: absolute;
+        right: -3.25*$box-padding;
+        top: $box-padding;
+      }
+      .grouped {
+        margin-right: 50px;
+      }
+      dl{
+        margin-right: 3*$box-padding;
+      }
+      dt{
+        @extend %hyphenate;
+        clear: both;
+        position: relative;
+        //min-height: $box-padding + $journal-avatar-width;
+        span{
+          &.time{
+            float: right;
+            margin-right: -3*$box-padding;
+          }
+        }
+      }
+      dd{
+        margin-bottom: $gap;
+        margin-left: 0;
+        min-height: $journal-avatar-width;
+        @extend %hyphenate;
+        .project{
+          @include small;
+          display: block;
+        }
+      }
+      &:nth-of-type(2n){
+        float:right;
+        text-align: left;
+        padding-right: 0;
+        padding-left: 2*$box-padding;
+        &:before{
+          right: auto;
+          left: 0;
+        }
+        .author{
+          right: auto;
+          left: -3.25*$box-padding;
+        }
+        .grouped {
+          margin-left: 50px;
+        }
+        dl{
+          margin-right: 0;
+          margin-left: 3*$box-padding;
+        }
+        dt{
+          span{
+            &.time{
+              float: left;
+              margin-right: 0;
+              margin-left: -3*$box-padding;
+            }
+          }
+        }
+      }
+
+      .description{
+        font-style: italic;
+      }
+      .time{
+        width: 60px;
+      }
+    }
+    .next,.prev{
+      margin-top: 1.5*$gap;
+    }
+    & + .nodata{
+      margin-top: $box-padding;
+    }
+  }
+}
+
+#find_by_user{
+  max-width: 600px;
+  .easy-freetext-search{
+    position: relative;
+    margin-bottom: $box-padding;
+    input{
+      @extend %input-block;
+    }
+    [class*='icon']{
+      @extend %input-button-absolute;
+    }
+  }
+}

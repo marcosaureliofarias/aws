@@ -1,0 +1,22 @@
+<% if issues.any? %>
+  <div class="autoscroll">
+    <table class="issues list">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% issues.each do |issue| %>
+        <tr class="<%= issue.css_classes %>">
+          <td class="subject">
+            <%= link_to_issue issue, :project => true %>
+          </td>
+          <td class="buttons"><%= link_to(l(:button_easy_crm_add_related_issue), add_related_issue_easy_crm_case_path(easy_crm_case, :issue_id => issue), :method => :post, :class => 'button-positive', :title => l(:button_easy_crm_add_related_issue)) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+<% end -%>

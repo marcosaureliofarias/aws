@@ -1,0 +1,108 @@
+$dmsf-icons: (
+grip-dotted-horizontal: 'bullet-list',
+image: 'slab'
+);
+@each $ui-name, $easy-name in $dmsf-icons {
+  .ui-icon-#{$ui-name}{
+    @extend %icon-parent;
+    text-indent: initial;
+    line-height: 1;
+    &:before {
+      @extend %material-icon; //@extend %easy-icon;
+      content: unicode(map-get($icons, #{$easy-name})) !important;
+    }
+  }
+}
+#uploader_select{
+  @extend %input-inline;
+}
+.dmsf_upload_select{
+  margin-top: $gap;
+  &+h3{
+    padding: 0.4em 0;
+  }
+}
+.dmsf{
+  &_entries {
+    margin-bottom: 0 !important;
+    & ~ .box{
+      padding: 0 $box-padding $box-padding;
+    }
+  }
+  &_list{
+    margin-bottom: -1px !important;
+    tr {
+      &.odd {
+        background-color: mix($color-background, $color-foreground) !important;
+      }
+      &.even {
+        background-color: $color-foreground !important;
+      }
+      td {
+        border-color: $color-border-minor !important;
+      }
+    }
+  }
+  &_checkbox{
+    padding-left: $gap;
+  }
+  &_uploader, &-uploader {
+    background: mix($color-background, $color-foreground) !important;
+    border: 2px dashed $color-border !important;
+    border-radius: 0 !important;
+    .attachment {
+      input {
+        color: $color-text !important;
+      }
+    }
+  }
+}
+table.list{
+  td,th{
+    &.dmsf{
+      &_check{
+        text-align: center;
+        width: $box-padding;
+        padding: 0;
+      }
+      &_buttons{
+        text-align: right;
+      }
+    }
+  }
+}
+#admin-menu a.dmsf-approvalworkflows{
+  background-image: none !important;
+  @include icon-parent(workflow);
+  @extend %button-with-icon;
+  @extend %button-with-icon-insidebar;
+  padding-left: 4*$gap !important;
+}
+#new, #edit{
+  &_dmsf_workflow{
+    @extend %form-box;
+  }
+}
+
+.select2{
+  #main & {
+    &-container{
+      @extend %form-field;
+    }
+    &-selection{
+      &--single{
+        background: none !important;
+        border: none !important;
+      }
+    }
+  }
+  &-dropdown{
+    border-color: $color-border !important;
+  }
+  &-search{
+    &__field{
+      border-color: $color-border !important;
+    }
+  }
+
+}

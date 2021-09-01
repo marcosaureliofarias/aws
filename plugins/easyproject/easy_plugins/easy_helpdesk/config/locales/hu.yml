@@ -1,0 +1,444 @@
+---
+hu:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Beállítások
+      easy_helpdesk_mail_template:
+        body_html: Levél formátum (HTML)
+        body_plain: Levél formátum (Egyszerû szöveg)
+        issue_status_id: Hibajegy állapot
+        mailboxes: 'Használja ennél a postafióknál:'
+        reply_to: Válasz neki
+        sender: Feladó
+        subject: Tárgy
+      easy_helpdesk_project_matching:
+        domain_name: Domain név
+      easy_helpdesk_project_sla:
+        base: SLA
+    models:
+      easy_helpdesk_mail_template: Levél sablon
+  aggregated_periods:
+    half-yearly: Félévente
+    quarterly: Negyedévente
+    yearly: Évente
+  button_easy_helpdesk_add_domain_name: Levél vagy domain hozzáadása
+  button_easy_helpdesk_add_mail_template: Levélsablon hozzáadása
+  button_easy_helpdesk_add_mailbox: Postafiók hozzáadása
+  button_easy_helpdesk_add_project: Projekt hozzáadása
+  button_easy_helpdesk_add_project_from_sidebar: Hozzáadás Help Deskhez
+  button_easy_helpdesk_add_signature: Aláírás hozzáadása
+  button_easy_helpdesk_add_sla: SLA hozzárendelése
+  button_easy_helpdesk_all_mail_templates_index: Minden e-mail sablon
+  button_easy_helpdesk_all_mailboxes_index: Minden postafiók
+  button_easy_helpdesk_all_projects_index: Minden Helpdesk projekt
+  button_easy_helpdesk_mail_templates_index: Sablonok listája
+  button_easy_helpdesk_mailboxes_index: Postafiókok listája
+  button_easy_helpdesk_projects_index: Projektek listája
+  button_easy_helpdesk_reports_index: Jelentések
+  button_easy_helpdesk_settings_index: Beállítások
+  confirm_edit_remaining_hours: Az érték kiszámítása automatikusan történik, biztosan
+    manuálisan szeretné szerkeszteni?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Help Desk
+  easy_helpdesk_plugin_description: "- teljeskörû Help Desk megoldás"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Helpdesk
+    modules:
+      easy_helpdesk_create_mail_template_button: Levélsablon létrehozása
+      easy_helpdesk_create_mailbox_button: Postafiók létrehozása
+      easy_helpdesk_mailboxes: Helpdesk postafiókok
+      easy_helpdesk_mailtemplates: Helpdesk levélsablonok
+      easy_helpdesk_project_query: Helpdesk projektek szűrők alapján
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Easy helpdesk levélsablonok
+        description: Easy helpdesk levélsablonok
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Easy helpdesk postafiókok
+        description: Easy helpdesk postafiókok megtekintése
+    easy_helpdesk:
+      index:
+        caption: Helpdesk
+        description: A Helpdesk kezelőfelület megekintése
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - projektek
+      easy_helpdesk_report_monthly_query: Helpdesk - havi jelentések
+      easy_helpdesk_report_yearly_query: Helpdesk - éves jelentések
+      easy_sla_event_query: SLA események
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Egyéni projekt szûrõk a HelpDesk-ben
+        easy_helpdesk_report_monthly_query: Egyéni szűrők a Helpdesk havi jelentésekre
+        easy_helpdesk_report_yearly_query: Egyéni szűrők a Helpdesk éves jelentésekre
+      public:
+        easy_helpdesk_project_query: Közös projekt szûrõk a HelpDesk-ben
+        easy_helpdesk_report_monthly_query: Közös szűrők a Helpdesk havi jelentésekre
+        easy_helpdesk_report_yearly_query: Közös szűrők a Helpdesk éves jelentésekre
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Helpdesk - fel nem használt órák összegyűjtése
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Helpdesk - automatikus feladat lezárás
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - e-mailek fogadása
+      settings:
+        imap:
+          allow_override: Értékek felülbírálásának engedélyezése
+          allow_override_example: 'Példa: követõ, prioritás - ezeket az értékeket
+            felülbírálhatja egy e-mail'
+          application_section_label: Egyéb beállítások
+          category_example: 'Példa: Kategória - új feladatoknak ez lesz a kategóriája:
+            Kategória'
+          email_section_label: Fiókbeállítások
+          folder: Mappa
+          folder_example: 'Olvasásra kijelölt IMAP mappa (alapértelmezett: INBOX)'
+          folders: Mappák
+          folders_example: 'IMAP mappák ellenőrzése (soronként egy) (alapértelmezett:
+            INBOX, mappa választásához használjon "/" például: inbox/sales)'
+          host: Kiszolgáló
+          host_example: 'Példa: mail.company.com'
+          label: IMAP
+          move_on_failure: Sikertelen befejezés utáni mûvelet
+          move_on_failure_example: Kihagyott levelek áthelyezése MAILBOX mappába
+          move_on_success: Sikeres befejezés utáni mûvelet
+          move_on_success_example: Sikeresen letöltött levelek áthelyezése MAILBOX
+            mappába, különben törlés
+          no_permission_check: Nincsenek ellenõrizhetõ felhasználói engedélyek
+          password: Jelszó
+          password_example: 'Példa: secretpassword'
+          port: Port
+          port_example: 'Példa: 143'
+          priority_example: 'Példa: Magas - Új feladatok ezt a prioritást kapják:
+            Magas'
+          project_example: 'Példa: 205 - új feladatok létrehozása a 205-ös projekthez'
+          sender_mail: Feladó
+          sender_mail_example: 'Például: support@company.com'
+          ssl: SSL
+          ssl_example: SSL hitelesítés használata
+          status_example: 'Példa: Új - Új feladatoknak ez lesz az állapota : Új'
+          tracker_example: 'Példa: Bug - új feladatoknak ez lesz a követõje: Bug'
+          unknown_user: Ismeretlen felhasználó
+          unknown_user_example: elfogadás - Névtelen felhasználó kerül beállításra;
+            létrehozás - felhasználó az e-mail alapján kerül létrehozásra; direkt
+            login - ez a felhasználó lesz érvényes
+          use_custom_sender: Küldés más feladóként
+          username: Felhasználónév
+          username_example: 'Példa: accessuser@domain.com'
+        pop3:
+          allow_override: Értékek felülbírálásának engedélyezése
+          allow_override_example: 'Példa: követõ, prioritás - ezeket az értékeket
+            felülbírálhatja egy e-mail'
+          apop: APOP
+          apop_example: APOP hitelesítés használata
+          application_section_label: Egyéb beállítások
+          category_example: 'Példa: Kategória - új feladatoknak ez lesz a kategóriája:
+            Kategória'
+          delete_unprocessed: Feldolgozatlanok törlése
+          delete_unprocessed_example: Nem feldolgozható levelek törlése
+          email_section_label: Fiókbeállítások
+          host: Kiszolgáló
+          host_example: 'Példa: mail.company.com'
+          label: POP3
+          no_permission_check: Nincsenek ellenõrizhetõ felhasználói engedélyek
+          password: Jelszó
+          password_example: 'Példa: secretpassword'
+          port: Port
+          port_example: 'Példa: 110'
+          priority_example: 'Példa: Magas - Új feladatok ezt a prioritást kapják:
+            Magas'
+          project_example: 'Példa: 205 - új feladatok létrehozása a 205-ös projekthez'
+          sender_mail: Feladó
+          sender_mail_example: support@company.com
+          status_example: 'Példa: Új - Új feladatoknak ez lesz az állapota : Új'
+          tracker_example: 'Példa: Bug - új feladatoknak ez lesz a követõje: Bug'
+          unknown_user: Ismeretlen felhasználó
+          unknown_user_example: elfogadás - Névtelen felhasználó kerül beállításra;
+            létrehozás - felhasználó az e-mail alapján kerül létrehozásra; direkt
+            login - ez a felhasználó lesz érvényes
+          use_custom_sender: Küldés más feladóként
+          username: Felhasználónév
+          username_example: 'Példa: accessuser@domain.com'
+  error_update_easy_setting_helpdesk: Beállítások mentése sikertelen
+  field_aggregated_hours: Fel nem használt órák
+  field_aggregated_hours_period: Keret időszaka
+  field_aggregated_hours_remaining: Felhasználható órák
+  field_aggregated_hours_start_date: Keret kezdődátuma
+  field_automatically_issue_closer_enable: Engedélyezi az automatikus lezárást?
+  field_date_to_response: SLA (válaszadási dátum)
+  field_date_to_solve: SLA (megoldási dátum)
+  field_default_for_mailbox: Alapértelmezett a postafiókra
+  field_easy_helpdesk_has_sla: SLA aktív
+  field_easy_helpdesk_ignorate_suspend_statuses: SLA események létrehozása minden
+    állapotból
+  field_easy_helpdesk_mail_template: Gyors e-mail küldése az ügyfélnek sablonból: 
+  field_easy_helpdesk_need_reaction: Reakció szükséges?
+  field_easy_helpdesk_project_keyword: Kulcsszó
+  field_easy_helpdesk_project_matching:
+    domain_name: E-mail vagy domain
+    email_field_from: átvéve a FROM mezõbõl
+    email_field_to: átvéve a TO mezõbõl
+  field_easy_helpdesk_project_monthly_hours: Szerződött órák havonta
+  field_easy_helpdesk_project_sla:
+    blank_keyword: Hiányzó SLA elnevezés
+    hours_to_response: Kötelező válaszadási idő
+    hours_to_solve: Kötelező megoldási idő
+    keyword: Kulcsszó
+    title: Név
+  field_easy_helpdesk_project_spent_time_current_month: HelpDesk munkaórák (ebben
+    a hónapban)
+  field_easy_helpdesk_project_spent_time_last_month: HelpDesk munkaórák (előző hónapban)
+  field_easy_helpdesk_project_spent_time_total: A Help Desk teljes eltöltött ideje
+  field_easy_reopen_at: Újranyitva ekkor
+  field_easy_response_date_time: SLA (válasz)
+  field_easy_time_to_solve_paused_at: SLA megállítva ekkor
+  field_email_footer: E-mail lábléc
+  field_email_header: E-mail fejléc
+  field_first_response: Első válasz
+  field_has_easy_sla_event: Van SLA esemény
+  field_hide_sla_data: SLA adatok elrejtése
+  field_hours_mode_from: SLA szerinti munkaidõ
+  field_hours_to_response: SLA (válasz)
+  field_hours_to_solve: SLA (megoldás)
+  field_is_under_helpdesk: Helpdeskhez tartozik
+  field_issue_closer_done_issue_status: Lezáró állapot
+  field_issue_closer_done_issue_user: és kiosztja valakinek
+  field_issue_closer_inactive_interval: és nincs frissítés ennyi időn belül
+  field_issue_closer_observe_issue_status_id: az állapotban
+  field_monitor_due_date: Hibajegyek határidejének monitorozása
+  field_monitor_spent_time: Hibajegyekre fordított munkaórák számának monitorozása
+  field_monthly_hours: Elõfizetett támogatási órák
+  field_sla_resolve: SLA megoldás
+  field_sla_resolve_fulfilment: SLA megoldás megvalósulás
+  field_sla_response: SLA válasz
+  field_sla_response_fulfilment: SLA válaszadás megvalósulás
+  field_use_working_time: SLA számolása csak munkaidőben
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: E-mail sablonok szerkesztése
+  heading_easy_helpdesk_mail_templates_index: E-mail sablonok
+  heading_easy_helpdesk_mail_templates_new: Új E-mail sablon
+  heading_easy_helpdesk_mail_templates_show: E-mail sablon részletei
+  heading_easy_helpdesk_mailboxes_edit: Postafiók szerkesztése
+  heading_easy_helpdesk_mailboxes_index: Postafiókok
+  heading_easy_helpdesk_mailboxes_new: Új postafiók
+  heading_easy_helpdesk_projects_edit: Projekt szerkesztése
+  heading_easy_helpdesk_projects_index: Projektek
+  heading_easy_helpdesk_projects_new: Új projekt
+  heading_easy_helpdesk_projects_show: Projekt részeletei
+  heading_easy_helpdesk_reports_index: Help Desk - riportok
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Előfizetett órák havi jelentése
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Előfizetett órák éves jelentése
+  heading_easy_helpdesk_settings: Beállítások
+  issue_closer_inactive_interval_units:
+    days: napok
+    hours: órák
+  label_automatically_issue_closer: Zárja le automatikusan a feladatot ebben
+  label_copy_settings_sla_from_project: A beállítások SLA másolása a projektből
+  label_easy_hekodesk_additional_task_info_received_emails: Feldolgozott levelek
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: Felhasználható órák száma a hónapban
+  label_easy_helpdesk_actual_budget_to_spend: Felhasználható órák
+  label_easy_helpdesk_aggregated_from_last_period: Előző hónapról áthozott órák
+  label_easy_helpdesk_alerts: Emlékeztetõk beállításai
+  label_easy_helpdesk_allow_custom_sender: Egyedi feladó engedélyezése
+  label_easy_helpdesk_allow_override: Értékek felülírásának engedélyezése
+  label_easy_helpdesk_auto_issue_closer_settings:
+    notify: E-mail küldése sablonból
+  label_easy_helpdesk_client_response_status: Ügyfél válasza után állapot változtatása
+    erre
+  label_easy_helpdesk_domain_name: E-mail domain
+  label_easy_helpdesk_emails: E-mail beállítások - fejléc és lábléc
+  label_easy_helpdesk_enable_email_footer: Módosítja a láblécet ehhez a projekthez?
+  label_easy_helpdesk_enable_email_header: Módosítja a fejlécet ehhez a projekthez?
+  label_easy_helpdesk_hours_comulated: Halmozott órák
+  label_easy_helpdesk_hours_comulated_range: "%{from} - %{to} között"
+  label_easy_helpdesk_hours_per_month: Munkaórák száma ebben a hónapban
+  label_easy_helpdesk_ignore_cc: Fogadott levelek másolat (CC) mezőjének figyelmen
+    kívül hagyása
+  label_easy_helpdesk_mail_signature: Help Desk - aláírás
+  label_easy_helpdesk_matching: A projektbe feldolgozott levelek, domainek és kulcsszavak
+  label_easy_helpdesk_message_above_variables: A feladat megjegyzése a levélsablon
+    fölé kerül
+  label_easy_helpdesk_need_reaction: Reakció szükséges!
+  label_easy_helpdesk_project_helpdesk_tab: Helpdesk
+  label_easy_helpdesk_project_managed_by_helpdesk: Help Desk beállítások
+  label_easy_helpdesk_project_plural: Help desk projektek
+  label_easy_helpdesk_projects_sla_working_time_calendar: Munkanapok
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: SLA nullázása a feladat újranyitása
+    után
+  label_easy_helpdesk_sender: Feladó
+  label_easy_helpdesk_sender_current_user: Jelenleg bejelentkezett felhasználó
+  label_easy_helpdesk_sender_is_user: A feladó a bejelentkezett felhasználó
+  label_easy_helpdesk_sender_mailbox_address: Postafiók címe
+  label_easy_helpdesk_sender_redmine_default: Alapértelmezett e-mail feladó
+  label_easy_helpdesk_signature: Aláírás
+  label_easy_helpdesk_signature_name: Aláírás név
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Automata e-mailek fogadása
+  label_easy_helpdesk_sla: SLA beállítások - prioritások, hibajegyek megoldási határidõi
+  label_easy_helpdesk_sla_start_states: SLA számolás aktív ebben a feladat állapotban
+  label_easy_helpdesk_sla_stop_states: SLA számolás felfüggesztve ebben a feladat
+    állapotban
+  label_easy_sla_event: SLA esemény
+  label_easy_sla_events: SLA események
+  label_easy_sla_events_reports: SLA riportok
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - projekt
+  label_filter_group_easy_helpdesk_report_monthly_query: Helpdesk - jelentés
+  label_filter_group_easy_helpdesk_report_query: Helpdesk - jelentések
+  label_filter_group_easy_helpdesk_report_yearly_query: Helpdesk - jelentés
+  label_filter_group_easy_sla_event_query: SLA esemény
+  label_filter_show_spent_time_current_month_equal_to_zero: 'Helpdesk munkaórák száma
+    (ebben a hónapban) : 0'
+  label_filter_show_spent_time_last_month_equal_to_zero: 'Helpdesk munkaórák száma
+    (előző hónapban) : 0'
+  label_issue_bottom_from_easy_helpdesk: Feladat létrehozva a helpdesk részérõl (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Szerződött órák havonta
+  label_sla_calendar_settings: Naptár beállításai
+  label_tab_sla_events: SLA események
+  permission_manage_easy_helpdesk: Help Desk modul kezelése
+  permission_manage_easy_helpdesk_project: Help desk projektek kezelése
+  permission_manage_easy_sla_events: SLA események kezelése
+  permission_view_easy_helpdesk_sla: SLA megtekintése a feladatokon
+  permission_view_easy_sla_events: SLA események megtekintése
+  project_module_easy_helpdesk: Help desk
+  setting_easy_helpdesk_custom_sender: Helpdesk feladó
+  text_easy_helpdesk_change_default_sender: Ez a beállítás nem módosítja a 'reply-to'
+    mező értékét
+  text_easy_helpdesk_custom_sender: Alapértelmezett helpdesk feladó felülírása. Hagyja
+    üresen a funkció kikapcsolásához.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: a jelenlegi kijelölt kolléga nevére
+    author: jelenlegi szerző
+    date: aktuális dátum
+    mail_to: címzett
+    spent_time: a teljes ráfordított munkaóra értékére
+    task_closed_on: feladat lezárásának napja
+    task_description: feladatleírás
+    task_done_ratio: feladat készültségi szint
+    task_due_date: feladat határidő
+    task_estimated_hours: feladat becsült ideje
+    task_history: a feladat összes hozzászólás előzménye
+    task_id: a megfelelõ feladat ID-ra
+    task_id_without_hash: jelenlegi feladat ID, hash nélkül
+    task_last_journal: a feladat utolsó nyilvános megjegyzése
+    task_note: az utolsó megjegyzésre
+    task_priority: feladat prioritás
+    task_project: projektnév
+    task_public_url: feladat publikus URL
+    task_start_date: feladat kezdődátuma
+    task_status: feladat állapot
+    task_subject: a megfelelõ feladat tárgyra
+    task_tracker: feladattípus
+    user_first_name: jelenlegi felhasználó keresztneve
+    user_last_name: jelenlegi felhasználó vezetékneve
+    user_name: jelenlegi felhasználó teljes neve
+    user_signature: jelenlegi felhasználó aláírása
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Tárgy mezõ és a levélrész tartalmazhat dinamikus szöveget:'
+  - "%task_id% (csere a megfelelõ feladat ID-ra)"
+  - "%task_subject% (csere a megfelelõ feladat tárgyra)"
+  - "%task_note% (csere az utolsó megjegyzésre)"
+  - "%task_history% (csere a feladat összes nem privát megjegyzésére)"
+  - "%time_spent% (csere az eltöltött idő értékére)"
+  - "%assignee% (csere a jelenlegi kijelölt kolléga nevére)"
+  - "%user_signature% (csere a jelenlegi kijelölt kolléga aláírására)"
+  - "%date% (csere a mai napra)"
+  - "%task_tracker% (csere a feladattípusra)"
+  - "%task_project% (csere a projekt névre)"
+  - "%task_description% (csere a feladatleírásra)"
+  - "%task_status% (csere a feladat állapotra)"
+  - "%task_priority% (csere a feladat prioritásra)"
+  - "%task_estimated_hours% (csere a becsült időre)"
+  - "%task_done_ratio% (csere a készültségi szintre)"
+  - "%task_public_url% (csere a feladat publikus url-jére)"
+  - "%task_closed_on% (csere a feladat lezárásának dátumára)"
+  - "%task_due_date% (csere a feladat határidejére)"
+  - "%task_start_date% (csere a feladat kezdő dátumára)"
+  - "%user_name% (csere a jelenlegi felhasználó teljes nevére)"
+  - "%user_first_name% (csere a jelenlegi felhasználó keresztnevére)"
+  - "%user_last_name% (csere a jelenlegi felhasználó vezetéknevére)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Tárgy mezõ és a levélrész
+    tartalmazhat dinamikus szöveget:'
+  text_easy_helpdesk_mail_template_issue_status_id: Postafiók sablon hozzárendelésének
+    engedélyezése bizonyos feladat állapothoz
+  text_easy_helpdesk_mail_template_replacement_for: csere
+  text_easy_helpdesk_mail_template_reply_to: "(Kedves Példafelhasználó) - az e-mail
+    küldés itt nincs engedélyezve."
+  text_easy_helpdesk_mail_template_reply_to2: A "Válasz neki" és a "Feladó" mezõk
+    tartalma átvételre kerül a postafiók sablonból, hogy a kommunikáció végig egy
+    levelezésben maradjon
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Javasolt ezeket a postafiókokat
+    projektekhez társítani. Ha ezt kihagyja, az ismeretlen bejövõ levelek nem kerülnek
+    feldolgozásra!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Ezeknek a postafiókoknak
+    nincs alapértelmezett projektje:'
+  text_easy_helpdesk_projects_alerts_list: 'Értesítõk listája:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Értesítõk listája, amelyeket szükséges
+    figyelmeztetõ e-mail küldésre konfigurálni (új ablakban nyílik):'
+  text_easy_helpdesk_projects_is_default: Ismeretlen levél érkezése esetén a feladat
+    itt lesz létrehozva.
+  text_easy_helpdesk_projects_keyword_description: Ha a levél tárgya tartalmazza a
+    megadott kulcsszót, a feladat ehhez a projekthez kerül. A kulcsszó kisbetű-nagybetű
+    érzékeny
+  text_easy_helpdesk_projects_keywords: 'Amennyiben az e-mail tárgy mezõ adott karaktereket
+    tartalmaz, egyedi prioritás és határidõ kerül beállításra. (* karakter: minden
+    tárgy mezõnél)'
+  text_easy_helpdesk_projects_monitor_due_date: Ez az elõkonfigurált értesítõ figyelmeztetõ
+    e-mailt fog küldeni,amennyiben a hibajegy megsérti az SLA-t, vagyis nem kerül
+    megoldásra az SLA-ban meghatározott idõn belül.
+  text_easy_helpdesk_projects_monitor_spent_time: Ez az elõkonfigurált értesítõ figyelmeztetõ
+    e-mailt fog küldeni, amennyiben a teljes munkaóra több egy adott naptári hónapban,
+    mint az elõfizetett munkaórák száma.
+  text_easy_helpdesk_projects_new_priority: Ha nincsenek megadva kulcsszavak, az SLA
+    a kiválasztott prioritás alapján kerül beállításra
+  text_easy_helpdesk_projects_priority: Az SLA a kiválasztott prioritás szerint kerül
+    beállításra
+  text_easy_helpdesk_projects_sla_hours_to_response: Maximális idõ, mely az e-mail
+    érkezésétõl a feldolgozás megkezdéséig eltelhet.
+  text_easy_helpdesk_projects_sla_hours_to_solve: Maximális idõ a hiba megoldására.
+    A hibajegy megjeleníthetõ Gantt-diagramban - amennyiben a megoldási idõ 75%-a
+    letelt- a hibajegy narancs színûre vált, amennyiben a hibajegy túllépi a megoldási
+    határidõt - piros színûre.
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Néhány (%{count}/%{total}) feladatot
+    nem sikerül lezárni:'
+  text_isseu_closer_close_notice: A feladatot automatikusan lezárta a helpdesk
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: a munkának
+    eddig meg kellett volna kezdődnie: %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: a munkát
+    meg kell kezdeni eddig: %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: a munkának
+    eddig be kellett volna fejeződnie: %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: a munkát
+    eddig be kell fejezni: %{time}'
+  title_easy_helpdesk_add_project_from_sidebar: Kattintson a projekt hozzáadásához a
+    Help Deskhez 
+  title_easy_helpdesk_allow_custom_sender: Egyedi feladó engedélyezése projektenként
+  title_easy_helpdesk_allow_override: Feladat adatai felülírhatóak e-mailen keresztül
+  title_easy_helpdesk_client_response_status: Válassza ki, mi legyen a feladat új
+    állapota, ha e-mailen keresztül frissítés érkezik.
+  title_easy_helpdesk_ignore_cc: E-mail fogadásakor, minden másolatot kapó címzett
+    hozzáadásra kerül figyelőként, külső címre kapnak levelet és automatikus választ.
+    Ez az opció kikapcsolja a leírt funkciót.
+  title_easy_helpdesk_message_above_variables: A sablon üzenet a sablon változói felett
+    jelenjen meg
+  title_easy_helpdesk_sender: Ki legyen a 'feladó' mezőben
+  title_easy_helpdesk_sender_current_user: Jelenleg bejelentkezett felhasználó
+  title_easy_helpdesk_sender_is_user: A 'from' mező értéke a bejelentkezett felhasználó
+    legyen
+  title_easy_helpdesk_sender_mailbox_address: E-mail cím postafiókból
+  title_easy_helpdesk_sender_redmine_default: Alapértelmezett feladó e-mail cím
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'FIGYELEM: A Helpdesk más
+    rendszerektől fog leveleket kapni, melynek végtelen e-mail váltás lehet az eredménye!'
+  title_easy_helpdesk_sla_start_states: Válassza ki az állapotokat, amikor újraindul
+    az SLA számolás miután megállt a fenti beállítás szerint.
+  title_easy_helpdesk_sla_stop_states: Válassza ki az állapotokat amikor nincs SLA
+    számolás. Például, a lezárt feladatok vagy amikor az ügyfél válaszára vár.
+  title_sla_waiting_for_client: Ügyfélre vár
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Kikapcsolva - a feladat lezárása után az SLA számolás megáll. A feladat
+      újranyitása esetén az SLA az eredeti bejegyzési időtől kerül számolásra
+    enabled: Engedélyezett - a feladat lezárása után az SLA számolás megáll. Amikor
+      a feladat újranyitásra kerül, az SLA az újranyitás idejétől kerül újra számolásra

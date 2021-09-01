@@ -1,0 +1,203 @@
+.mapjs {
+  &-node {
+    @extend %border-radius-small !optional;
+    //@include mindmup-scheme($mindmup__border-color--minor);
+    //@include box-shadow(0 0 3px 0px rgba($black, .25));
+    border: 0;
+    color: darken($mindmup__color--text, 50*(1 - luminance($mindmup__color--text)));
+    @include box-shadow(none);
+    @include mindmup-scheme($mindmup-default-node-color);
+    margin: 0;
+    padding: 0;
+
+    @include anim--bliprotate;
+
+    &.activated, &.selected, &.droppable {
+      @include box-shadow($mindmup__shadow--node);
+      @extend %material__elevation--depth_4 !optional;
+      margin-left: px2rem(-2px);
+    }
+    &.activated {
+      border: px2rem(1px) solid transparent;
+    }
+    &.droppable {
+      border: px2rem(1px) solid $color-important;
+    }
+    span {
+      margin: 0.75 * $mindmup__gap 1.5 * $mindmup__gap;
+      border: px2rem(1px) solid transparent;
+    }
+  }
+  &-collapsor {
+    @extend %border-radius-infinite !optional;
+    position: absolute !important;
+    left: auto;
+    top: 50%;
+    right: -$mindmup__gap - px2rem(2px);
+    margin-top: -$mindmup__gap;
+    color: $mindmup__color--negative;
+    line-height: 1;
+    font-size: 2 * $mindmup__gap;
+    font-weight: normal;
+    text-shadow: 2px -2px 0 #fff, -2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff;
+
+    @include icon-parent('collapse');
+
+    .collapsed & {
+      color: $mindmup__color--positive;
+      @include icon-parent('expand');
+    }
+    .mindmup-node-left & {
+      right: auto;
+      left: -$mindmup__gap - px2rem(2px);
+    }
+    .mapjs-node:hover & {
+      font-size: 2.5 * $mindmup__gap;
+      margin-top: -$mindmup__gap - px2rem(2px);
+      right: -$mindmup__gap - px2rem(5px);
+    }
+    .mindmup-node-left:hover & {
+      left: -$mindmup__gap - px2rem(5px);
+      right: auto;
+    }
+  }
+}
+
+.mindmup {
+  &__node--filtered_out {
+    opacity: 0.2 !important;
+  }
+  &__node--not-saved {
+    opacity: 0.7;
+  }
+  &-node {
+    &-filtered {
+      opacity: 0.2;
+    }
+    &-icon {
+      height: px2rem(20px);
+      display: inline-block;
+      margin-right: px2rem(2px);
+      vertical-align: middle;
+      &s {
+        position: absolute;
+        left: px2rem(-10px);
+        top: px2rem(-18px);
+        white-space: nowrap;
+        //&--with_icons & {
+        //  top: -18px;
+        //}
+        &-all {
+          display: flex;
+          &_temp-icons {
+            margin-left: 10px;
+          }
+        }
+      }
+      &-progress {
+        width: px2rem(4px);
+        background-color: $color-border;
+        @extend %rotate-90cw;
+        margin: 0 $mindmup__gap;
+      }
+      &-progress-bar {
+        background-color: $mindmup__color--positive;
+        position: relative;
+      }
+      &-milestone-shell {
+        @extend %rotate-45cw;
+        vertical-align: middle;
+        display: inline-block;
+      }
+      &-milestone-diamond{
+        border-width: px2rem(1px);
+        border-style: solid;
+        width: px2rem(8px);
+        height: px2rem(8px);
+      }
+      &-status {
+        font-weight: normal;
+        opacity: .5;
+        color: $color-text;
+        max-width: px2rem(30px);;
+        overflow: hidden;
+        @include small;
+      }
+      &-avatar{
+        .gravatar {
+          vertical-align: sub;
+        }
+      }
+      &-is_edited {
+        margin-right: px2rem(1px);
+        margin-left: px2rem(-10px);
+        vertical-align: middle;
+        border-radius: px2rem(5000px);
+        width: px2rem(20px);
+        height: px2rem(20px);
+        color: #ffffff;
+        background-color: #e50026;
+        line-height: 1.2;
+        font-size: px2rem(18px);
+        text-align: center;
+        display: inline-block;
+        &:before {
+          content: "!";
+          font-family: inherit;
+        }
+      }
+
+    }
+
+    &-filtered {
+      opacity: 0.2;
+    }
+    &-avatar {
+      position: absolute;
+      top: 50%;
+      margin-top: px2rem(-11px);
+      .mindmup-node-left & {
+        left: auto;
+        right: px2rem(-31px);
+      }
+    }
+  }
+  &__node-control {
+    @extend %flex;
+    @extend %justify-content-space-between;
+    color: $mindmup__color--main;
+    background-color: transparent;
+    position: absolute;
+    bottom: 100%;
+    height: px2rem(20px);
+    width: calc(100% - 14px);
+    line-height: px2rem(20px);
+    margin-bottom: px2rem(-5px);
+    margin-left: 14px;
+    @include box-shadow(0px 3px 3px 0px rgba(0,0,0,0.1));
+    .easy-mindmup__icon {
+      width: 50%;
+      text-align: center;
+      background-color: $mindmup__color--back;
+      border: 1px solid rgba($color-main, .5);
+      z-index: z($z-priority, content);
+      &--edit {
+        border-right: none;
+      }
+      //&--add {
+      //  border-left: 1px solid $color-text; //solid px2rem(1px) darken($mindmup__color--back,5%);
+      //}
+      &:hover {
+        background-color: darken($mindmup__color--back,5%);
+      }
+    }
+    .mindmup-node--renaming &{
+      display: none;
+    }
+  }
+}
+
+.mindmup-scheme-project {
+  @include mindmup-scheme($button-main-background);
+  color: $button-main-color;
+}

@@ -1,0 +1,7 @@
+<% if @ical.valid? %>
+  $("#icalendar_form_container_<%= params[:modul_uniq_id] %>").html('');
+  $container = $("#icalendars_items_<%= params[:modul_uniq_id] %>");
+  $container.append("<%= j render('external_calendars/easy_icalendar_item', ical: @ical, block_name: params[:block_name], modul_uniq_id: params[:modul_uniq_id]) %>");
+<% else %>
+  $("#icalendar_form_container_<%= params[:modul_uniq_id] %> form").prepend('<%= j error_messages_for(@ical) %>');
+<% end %>

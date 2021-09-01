@@ -1,0 +1,24 @@
+<h2><%= l(:heading_easy_issues_preview_external_email) -%></h2>
+
+<%= labelled_form_for(@entity, :url => send_external_email_path, :html => {:method => 'post', :class => 'form-box', :multipart => true}) do |f| %>
+  <%= back_url_hidden_field_tag %>
+  <%= hidden_field_tag(:entity_type, @entity.class.name) %>
+  <%= hidden_field_tag(:entity_id, @entity.id) %>
+
+  <div id="preview_external_email_container" class="box">
+    <%= render :partial => 'easy_external_emails/preview_external_email', :locals => {:mail_template => @mail_template, :entity => @entity} %>
+  </div>
+
+  <div id="external_mail_bottom">
+    <% if !@entity.attachments_delegable? %>
+      <%= render partial: 'attachments/form', container: @entity %>
+      <%= link_to_attachments @entity, thumbnails: false, do_not_show_context_menu: true, enable_toggling: true, selected: params[:upload_ids], only_mails: true, label: l(:label_email_address_plural), toggling_uniq_id: 'emails' %>
+      <%= link_to_attachments @entity, thumbnails: false, do_not_show_context_menu: true, enable_toggling: true, selected: params[:upload_ids], without_mails: true, toggling_uniq_id: 'attachments' %>
+    <% end %>
+  </div>
+
+  <div id="external_mail_submit_buttons" class="form-actions">
+    <%= f.submit l(:button_send_email), :title => l(:button_send_email), :class => 'button-positive' %>
+    <%= link_to(l(:button_dont_send_email), CGI.unescape(url_for(params[:back_url] || back_url)), :class => 'button', :title => l(:button_dont_send_email) ) %>
+  </div>
+<% end %>

@@ -1,0 +1,26 @@
+<%
+  include_jqplot_scripts
+  graph_id = "graph_#{modul_uniq_id}"
+
+  groups = easy_page_modules_data[:groups]
+  days = easy_page_modules_data[:days]
+  additional_filters = easy_page_modules_data[:additional_filters]
+
+  from = Date.today
+  to = from + days.days
+
+  if additional_filters && additional_filters['project_id']
+    hours = EasyGanttResource.joins(issue: :project)
+      .where(user_id: groups, issues: { project_id: additional_filters['project_id'] } )
+      .between_dates(from, to).sum(:hours)
+  else
+    hours = EasyGanttResource.where(user_id: groups).between_dates(from, to).sum(:hours)
+  end
+
+  max_hours = groups.map{|u| max_allocable_hours(u, from, to) }.reduce(:+).to_f
+%>
+
+<div id="<%= graph_id %>"></div>
+
+<%= render partial: 'easy_resource_dashboard/switch_period', locals: {page_module: page_module} %>
+<%= render partial: 'easy_resource_dashboard/utilization_chart', locals: {graph_id: graph_id, hours: hours, max_hours: max_hours} %>

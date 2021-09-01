@@ -1,0 +1,29 @@
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    EASY.utils.setInfiniteScrollDefaults();
+    var content_selector = $('<%= (content_selector ||= 'table.list:first > tbody').html_safe %>');
+    content_selector.infinitescroll({
+      navSelector: '<%= (nav_selector ||= '.pagination').html_safe %>',
+      nextSelector: '<%= (next_selector ||= '.pagination .next > a').html_safe %>',
+      itemSelector: '<%= (item_selector ||= "#{content_selector} > tr").html_safe %>, <%= next_selector.html_safe %>'
+      }, function(data, opts) {
+        var a = $(data.pop());
+        if (a.is('a')) {
+          opts.path = [a.attr('href')];
+          a.remove();
+        } else {
+          data.push(a[0]);
+          opts.state.isPaused = true;
+          $(".infinite-scroll-load-next-page-trigger").parent().hide();
+        }
+    });
+
+    $(document).on('click', '.infinite-scroll-load-next-page-trigger', function(e) {
+      content_selector.infinitescroll('retrieve', {});
+    });
+  });
+</script>
+
+<p style="display: none;" class="infinite-scroll-load-next-page-trigger-container hide-when-print">
+  <a class="button button-main button-rounded button-outlined infinite-scroll-load-next-page-trigger"><%= l(:button_load_additional_records) %><i class="icon-arrow"></i></a>
+</p>

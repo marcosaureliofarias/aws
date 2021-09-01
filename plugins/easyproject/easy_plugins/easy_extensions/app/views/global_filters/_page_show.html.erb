@@ -1,0 +1,49 @@
+<div class="global-filters-filters autoscroll">
+  <%
+    current_tab = easy_page_context[:page_params][:current_tab]
+    back_url = easy_page_context[:page_params][:back_url]
+    entity_id = easy_page_context[:page_params][:entity_id]
+    apply_url = get_content_easy_page_tab_path(current_tab, tab_id: current_tab.try(:id), entity_id: entity_id, back_url: back_url)
+
+    saved_global_filters = current_tab.settings['global_filters']
+    saved_global_filters = {} unless saved_global_filters.is_a?(Hash)
+  %>
+
+  <% saved_global_filters.each do |filter_id, filter_options| %>
+    <%=
+      type = filter_options['type']
+      selected = params["global_filter_#{filter_id}"].presence ||
+                 filter_options['default_value'].presence ||
+                 ''
+
+      EasyExtensions::GlobalFilters.render_type(type,
+        view_context: self,
+        selected: selected,
+        filter_id: filter_id,
+        filter_options: filter_options
+      )
+    %>
+  <% end %>
+
+  <% if current_tab.settings['global_currency'] == '1' %>
+    <%= render 'global_filters/currency', current_tab: current_tab %>
+  <% end %>
+</div>
+<div class="button-group">
+  <a href="javascript:void(0)" class="global_filters__apply button-positive button-outlined icon icon-checked" onclick="EASY.globalFilters.apply(this)" data-apply-url="<%= apply_url %>" data-tab-id="<%= current_tab.id %>">
+    <%= l(:button_apply) %>
+  </a>
+  <a href="javascript:void(0)" class="button button-positive button-outlined global_filters__apply-more" data-widget="toggleable" data-widget-content=".fck-menu-more">
+    <i class="control-down"></i>
+  </a>
+  <div class="fck-menu-more menu-more">
+    <ul class="">
+      <li>
+       <a href="javascript:void(0)" class="icon icon-copy" onclick="easyUtils.clipboard.copy(EASY.globalFilters.getLink(), true);"><%= l(:label_copy_link_to_clipboard) %></a>
+      </li>
+      <li>
+       <a href="javascript:void(0)" class="icon icon-link" onclick="prompt('', EASY.globalFilters.getLink())"><%= l(:label_show_link) %></a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    <% page_params[:page].zones.each do |page_zone| %>
+      <% zone = page_zone.zone_definition -%>
+      PageLayout.initSortable({
+        tab_id: <%= page_params[:current_tab] ? page_params[:current_tab].id : 0 %>,
+        tabPos: <%= (params[:t] || 1).to_i %>,
+        zoneName: "<%= zone.zone_name.dasherize %>",
+        updateUrl: "<%= url_for(page_params[:url_order_module].merge(:zone_id => page_zone.id, :t => params[:t])).html_safe %>"
+      });
+    <% end -%>
+    PageLayout.refreshAddModule();
+  });
+</script>
+<%= form_tag(page_params[:url_save_modules], {:id => 'easy-page_modules-settings-form', :class => 'hidden'}) do -%>
+  <%= hidden_field_tag 'back_url', params[:back_url] || page_params[:back_url] -%>
+  <%= hidden_field_tag 't', params[:t] || 1 -%>
+<% end -%>
+
+<%= link_to l(:button_save_easy_page), 'javascript:void(0);', :onclick => 'PageLayout.prepareSubmitModules();PageLayout.submitModules()', :title => l(:title_button_save_easy_page), :class => 'button-positive save-modules-back icon icon-save' %>
+<% if page_params[:page_template] %>
+  <%= link_to l(:button_easy_page_add_tab),
+    url_for({
+      :controller => 'easy_page_template_layout',
+      :action => 'add_tab',
+      :page_template_id => page_params[:page_template],
+      :entity_id => page_params[:entity_id],
+      :t => params[:t],
+      :original_url => original_url
+    }), :remote => true,
+    :class => 'button add-tab-button icon icon-add', :title => l(:title_easy_page_add_tab), :data => {:disable_with => l(:label_adding)} %>
+
+  <%= link_to l(:button_duplicate), new_easy_page_template_path(page_id: page_params[:page], copy_from_type: 'template', copy_from_template_id: page_params[:page_template]), class: 'button icon icon-page' %>
+<% else %>
+  <%= link_to l(:button_easy_page_add_tab),
+    url_for({
+      :controller => 'easy_page_layout',
+      :action => 'add_tab',
+      :page_id => page_params[:page],
+      :user_id => page_params[:user_id],
+      :entity_id => page_params[:entity_id],
+      :t => params[:t],
+      :original_url => original_url
+    }), :remote => true,
+    :class => 'button add-tab-button  icon icon-add', :title => l(:title_easy_page_add_tab), :data => {:disable_with => l(:label_adding)} %>
+
+  <% if page_params[:page].has_template? && User.current.easy_lesser_admin_for?(:easy_pages_administration) %>
+    <% new_template_params = { page_id: page_params[:page],
+                               copy_from_type: 'regular_page',
+                               copy_from_user_id: page_params[:user_id],
+                               copy_from_entity_id: page_params[:entity_id] } %>
+
+    <%= link_to l(:button_easy_page_create_template), new_easy_page_template_path(new_template_params),
+                class: 'button icon icon-page' %>
+    <% if page_params[:current_tab] %>
+      <%= link_to l(:button_easy_page_create_template_from_tab),
+                  new_easy_page_template_path(new_template_params.merge(copy_from_tab_id: page_params[:current_tab].id)),
+                  class: 'button icon icon-page' %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to(l(:label_global_filters), 'javascript:void(0)', onclick: 'EASY.globalFilters.openEdit(this)', class: 'button icon icon-filter') if EasyExtensions.global_filters_enabled %>
+
+<%= call_hook(:view_easy_page_layout_before_main_edit_bottom, back_url: params[:back_url], easy_page_context: easy_page_context, project: @project, controller: params[:controller]) %>
+
+<%=
+  if page_params[:page].built_in? || (page_params[:user_id].nil? && page_params[:entity_id].nil?)
+    apply_template_base_link(page_params[:page].id, { post_action: 'layout_from_template_built_in' })
+  else
+    apply_template_base_link(page_params[:page].id, {
+      post_action: "layout_from_template_selected_#{page_params[:page].page_scope.pluralize}",
+      user_id: page_params[:user_id],
+      easy_page_context: easy_page_context,
+      project: page_params[:entity_id]
+    })
+  end
+%>
+

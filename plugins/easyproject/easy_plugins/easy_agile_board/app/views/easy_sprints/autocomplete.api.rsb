@@ -1,0 +1,8 @@
+api.array :easy_sprints do
+  @easy_sprints.each do |easy_sprint|
+    api.easy_sprint do
+      api.value easy_sprint.name
+      api.id easy_sprint.id
+    end
+  end
+end

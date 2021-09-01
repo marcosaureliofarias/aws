@@ -1,0 +1,29 @@
+<%#= render(:partial => 'easy_activities/menu_trigger') if !in_mobile_view? && User.current.logged? %>
+<%#= render(:partial => 'easy_broadcasts/render_broadcast_flash_messages_box') %>
+
+<script type="application/javascript">
+  <% active_services = EasyExtensions::EasyBackgroundService.active(self).keys %>
+  EASY.schedule.main(function variablesForEE() {
+    ERUI.isMobile = <%= is_mobile_device? %>;
+    if (top.location !== self.location) {
+      $("#header, #top-menu").remove();
+      $("body").addClass('in-iframe');
+    }
+    EASY.shortcut.add('Alt+Shift+N', function () {
+      window.location.href = '<%= j new_issue_path %>';
+    });
+    EASY.shortcut.add('Alt+Shift+F', EASY.utils.toggleSidebar);
+
+    moment.locale('<%= j momentjs_locale %>');
+    <% dow = EasyExtensions::Calendars::Calendar.first_wday % 7 || 1 %>
+    moment.updateLocale('<%= j momentjs_locale %>', { week: {  dow: <%= j dow.to_s  %>, doy: 4 } });
+  }, 5);
+
+  EASY.schedule.main(function otherVariablesForEE() {
+    window.saveButtonSettingsUrl = '<%=j users_save_button_settings_path %>';
+    window.easyClasses.User.current = new easyClasses.User(EASY.currentUser);
+
+    EASY.backgroundServices.active = <%= active_services.to_json.html_safe %>;
+  }, 5);
+
+</script>

@@ -1,0 +1,68 @@
+&__popup {
+  @include popup;
+  background-color: mix($color-front, $color-background);
+  position: absolute;
+  //height: 250px;
+  height: auto !important;
+  overflow-y: auto;
+  padding: $gap;
+  bottom: 0;
+  margin-bottom: 2 * $gap;
+  @media only screen and (min-width: $breakpoint--small) {
+    right: 0;
+    left: auto;
+    .vue-modal__sidebar & {
+      @media only screen and (max-height: 800px){
+        top: 20vh !important;
+      }
+    }
+  }
+  .vue-modal__sidebar & {
+    @media only screen and (max-width: $breakpoint--small){
+      top: 15vh !important;
+      bottom: 5vh !important;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  &-wrapper {
+    @include popup__backdrop;
+  }
+
+  .popup-heading {
+    border-bottom: 1px solid rgba($color-border, 0.5);
+    padding: 0.5 * $gap 0 $gap 0.5 * $gap;
+    margin: 0 0 0.5 * $gap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+  }
+  @media only screen and (min-width: $breakpoint--small) {
+    & .vdatetime .vdatetime-popup {
+      position: fixed !important;
+      top: 30%;
+      left: auto;
+    }
+  }
+
+  &--repeating {
+    & > .vue-modal__popup {
+      padding: 0;
+      background: $color-background__atributes;
+      .vue-modal__attributes--repeating {
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .vue-modal__attribute {
+        margin-top: $gap/2;
+        justify-content: normal;
+        & > input {
+          margin-right: $gap/2;
+          max-width: 5 * $gap;
+        }
+      }
+    }
+  }
+}

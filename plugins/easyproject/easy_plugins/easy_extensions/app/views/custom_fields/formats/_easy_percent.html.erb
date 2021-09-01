@@ -1,0 +1,8 @@
+<p>
+  <%= f.text_field :default_value %>
+</p>
+<p>
+  <label for="custom_field_range"><%= l(:label_range) %></label>
+  <%= f.number_field :easy_min_value, size: 5, no_label: true, step: :any, value: f.object.easy_min_value || 0 %> -
+  <%= f.number_field :easy_max_value, size: 5, no_label: true, step: :any, value: f.object.easy_max_value || 100 %>
+</p>

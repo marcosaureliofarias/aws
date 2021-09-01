@@ -1,0 +1,5 @@
+  <%= render :partial => 'alert_reports/list', :locals => {:reports => @easy_page_modules_data[block_name][:reports]} %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>

@@ -1,0 +1,14 @@
+<h2 class="title"><%= @easy_meeting.name %></h2>
+
+<%= labelled_form_for @easy_meeting, html: { class: 'form-box' } do |f| %>
+  <%= error_messages_for(@easy_meeting) %>
+
+  <% if @easy_meeting.big_recurring_children? %>
+    <h3><%= l(:title_easy_meeting_big_recurring_children) %></h3>
+    <p>
+      <%= link_to l(:field_easy_repeat_parent), easy_meeting_path(@easy_meeting.easy_repeat_parent_id), class: 'easy-show-repeating-parent icon icon-edit button' %>
+    </p>
+  <% else %>
+    <%= render 'form', f: f %>
+  <% end %>
+<% end %>

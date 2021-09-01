@@ -1,0 +1,61 @@
+<%= labelled_fields_for :test_case, test_case do |f| %>
+
+  <% if test_case.safe_attribute?('project_id') && !@project %>
+  <p>
+    <%= f.select :project_id, Project.allowed_to(:manage_test_cases).collect{|x| [x.name, x.id]}, include_blank: true, required: true %>
+  </p>
+  <% end %>
+
+
+  <% if test_case.safe_attribute?('name') %>
+  <p>
+    <%= f.text_field :name, required: true %>
+  </p>
+  <% end %>
+
+  <% if test_case.safe_attribute?('scenario') %>
+  <p>
+    <%= f.text_area :scenario, :cols => 60, :rows => (test_case.scenario.blank? ? 10 : [[10, test_case.scenario.length / 50].max, 100].min), accesskey: accesskey(:edit), class: 'wiki-edit', label: ::TestCase.human_attribute_name(:scenario) %>
+    <%= wikitoolbar_for 'test_case_scenario' %>
+  </p>
+  <% end %>
+
+  <% if test_case.expected_result_enabled? %>
+  <p>
+    <%= f.text_area :expected_result_cfv, :id => 'test_case_expected_result', :name => "test_case[custom_field_values][#{test_case.expected_result_cf.custom_field_id}]", :cols => 60, :rows => (test_case.expected_result_cfv.blank? ? 10 : [[10, test_case.expected_result_cfv.length / 50].max, 100].min), accesskey: accesskey(:edit), class: 'wiki-edit', label: ::TestCase.human_attribute_name(:expected_result) %>
+    <%= wikitoolbar_for 'test_case_expected_result' %>
+  </p>
+  <% end %>
+
+  <% if test_case.safe_attribute?('issue_ids') %>
+    <p>
+      <%= f.label :issue_test_cases, l(:label_issue_plural) %>
+      <%= autocomplete_field_tag 'test_case[issue_ids][]', issues_autocomplete_test_cases_path(project_id: @project, format: :json, key: User.current.api_key), test_case.issues.order(:subject).collect{|i| {id: i.id, value: "#{i.id} #{i.subject}"}}, id: 'issue_test_cases', preload: false, show_toggle_button: true %>
+    </p>
+  <% end %>
+
+  <% if test_case.safe_attribute?('test_plan_ids') %>
+    <p>
+      <%= f.label :test_plans, l(:label_test_plans) %>
+      <%= autocomplete_field_tag 'test_case[test_plan_ids][]', autocomplete_test_plans_path(project_id: @project, format: :json, key: User.current.api_key), test_case.test_plans.order(:name).collect{|i| {id: i.id, value: "#{i.id} #{i.name}"}}, id: 'test_plans', preload: false, show_toggle_button: true %>
+    </p>
+  <% end %>
+
+  <% if test_case.safe_attribute?('author_id') %>
+  <p>
+    <%= f.select :author_id, User.sorted.find_each.collect{|x| [x.name, x.id]}.sort, include_blank: true, required: true %>
+  </p>
+  <% end %>
+
+
+  <% custom_field_values = test_case.visible_custom_field_values.reject { |cfv| cfv.custom_field.internal_name == 'test_case_expected_result' } %>
+  <% custom_field_values.each do |value| %>
+  <p>
+    <%= custom_field_tag_with_label :test_case, value %>
+  </p>
+  <% end %>
+
+
+  <p id="attachments_form"><label><%= l(:label_attachment_plural) %></label><%= render :partial => 'attachments/form', :locals => {:container => test_case} %></p>
+
+<% end %>

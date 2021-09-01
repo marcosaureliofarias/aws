@@ -1,0 +1,84 @@
+<% if @easy_query.default_query_by_role.present? %>
+  <% link = link_to(l(:label_my_page_issue_query_new_link), edit_easy_query_management_path(@easy_query.type.to_s)) %>
+  <p class="nodata">
+    <%= content_tag(:span, (l(:text_default_query_overridden) + ' ' + link).html_safe) %>
+  </p>
+<% else %>
+  <%= form_tag({:action => 'save'}, :onsubmit => "EASY.modalSelector.selectAllOptions('#{@easy_query.type.underscore}_selected_columns');", :class => 'form-box') do %>
+    <%= hidden_field_tag :tab, @easy_query.type.underscore -%>
+    <div class="gray-background">
+      <fieldset id="filters">
+        <%= content_tag :legend, l(:default_fitlers, :scope => [:easy_query, :label]) -%>
+        <%= render :partial => 'easy_queries/filters', :locals => {:query => @easy_query, :modul_uniq_id => "#{@easy_query.type.underscore}_"} -%>
+      </fieldset>
+
+      <% if EasySetting.value('show_easy_custom_formatting') %>
+        <fieldset id="custom_formatting">
+          <%= content_tag :legend, l(:default_custom_formatting, :scope => [:easy_query, :label]) -%>
+          <%= render :partial => 'easy_queries/filters_custom_formatting',  :locals => {:query => @easy_query, :modul_uniq_id => "#{@easy_query.type.underscore}_"} -%>
+        </fieldset>
+      <% end %>
+
+      <fieldset id="filters_settings">
+        <%= content_tag :legend,  l(:default_columns, :scope => [:easy_query, :label]) -%>
+          <%= render :partial => 'easy_queries/columns', :locals => {:query => @easy_query, :modul_uniq_id => "#{@easy_query.type.underscore}_"} -%>
+        <% partial_name = "easy_query_settings/by_query/#{@easy_query.type.underscore}_description" %>
+        <% if lookup_context.template_exists?(partial_name, nil, :partial) %>
+          <br class="clear"/>
+          <div class="filters-description help-block">
+            <%= render :partial => partial_name, :locals => {:query => @easy_query, :modul_uniq_id => '', :block_name => 'easy_query'} %>
+          </div>
+        <% end %>
+      </fieldset>
+
+    <% if @easy_query.groupable_columns.any? %>
+      <fieldset class="easy-query-filters-field tabular">
+        <%= content_tag :legend,  l(:field_group_by) -%>
+        <p>
+          <%= label_tag :grouped_by, l(:field_column_names) -%>
+          <%= select_tag( 'easy_query[group_by]', options_for_select([[]] + @easy_query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @easy_query.group_by), :id => :grouped_by) -%>
+        </p>
+      </fieldset>
+    <% end %>
+
+    <% if @easy_query.display_filter_sort_on_edit %>
+      <fieldset id="filters_order_settings" class="tabular">
+        <legend><%= l(:label_sort) %></legend>
+        <% 3.times do |i| %>
+          <p><label><%= i+1 %>:</label> <%= select_tag("easy_query[sort_criteria][#{i}][]",
+              options_for_select([[]] + @easy_query.available_columns.select(&:sortable?).collect {|column| [column.caption, column.name.to_s]}, @easy_query.default_sort_criteria[i])) -%>
+            <%= select_tag("easy_query[sort_criteria][#{i}][]",
+              options_for_select([[], [l(:label_ascending), 'asc'], [l(:label_descending), 'desc']], @easy_query.default_sort_criteria[i])) -%><br />
+        <% end -%></p>
+      </fieldset>
+    <% end %>
+        
+    <% if @easy_query.display_outputs_select_on_edit %>
+      <% presenter = EasyExtensions::EasyQueryHelpers::EasyQueryPresenter.new(@easy_query, self) %>
+      <% output_black_list = %w(scrum scrum_backlog agile_backlog) %>
+      <fieldset id="available_outputs" class="easy-query-filters-field tabular">
+        <legend><%= l(:label_easy_query_outputs) %></legend>
+        <p>
+          <% presenter.outputs.each(:available) do |output| %>
+            <%= output.render_edit_box(style = :check_box, block_name: 'easy_query') if !output_black_list.include?(output.key) %>
+          <% end %>
+        </p>
+      </fieldset>
+    <% end %>
+
+      <%= render :partial => 'easy_queries/settings_criteria', :locals => {:query => @easy_query, :modul_uniq_id => '', :block_name => 'easy_query'} %>
+
+      <% if @easy_query.period_columns? %>
+        <%= render :partial => 'easy_queries/settings_period_criteria', :locals => {:query => @easy_query, :modul_uniq_id => '', :block_name => 'easy_query'} %>
+      <% end %>
+
+      <% partial_name = "easy_query_settings/by_query/#{@easy_query.type.underscore}_settings" %>
+      <% if lookup_context.template_exists?(partial_name, nil, :partial) %>
+        <%= render :partial => partial_name, :locals => {:query => @easy_query, :modul_uniq_id => '', :block_name => 'easy_query'} %>
+      <% end %>
+
+    </div>
+    <div class="form-actions"><%= submit_tag(l(:button_save), :class => 'button-positive') -%></div>
+  <% end %>
+<% end %>
+

@@ -1,0 +1,12 @@
+<div id="coworkers_container" style="display:none" class="link-list splitcontent form-box">
+  <% coworkers.each do |member| %>
+    <div class="member link-list-item size-l-25 size-s-5" title="<%= l(:title_easy_agile_board_drag_coworker, user_name: member.name) %>" data-id="<%= member.user_id %>">
+      <%= link_to(avatar(member.user, style: :small, no_link: true), easy_agile_board_path(project, sprint_id: easy_sprint, assigned_to_id: member.user_id)) %>
+      <div class="link-list-item-content two-lines">
+        <div class="member-name"><%= link_to(member.name, easy_agile_board_path(project, sprint_id: easy_sprint, assigned_to_id: member.user_id)) %></div>
+        <div class="member-roles"><%= member.roles.sort_by(&:position).collect(&:name).join(', ') %></div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,21 @@
+<div class="to-do-lists servicebar-content">
+  <%= render(partial: 'easy_to_do_lists/show', collection: @easy_to_do_lists, as: :easy_to_do_list) %>
+</div>
+<% if @new_easy_to_do_list %>
+  <div class="servicebar-actions">
+    <%= link_to_function(l(:button_easy_to_do_list_add_new_list), '', title: l(:button_easy_to_do_list_add_new_list), class: 'add-easy-to-do-list icon icon-add button-positive') %>
+    <div class="easy-to-do-list-new-form-container" style="display:none">
+      <%= form_for(@new_easy_to_do_list, html: {class: 'easy-to-do-list-new-form'}) do |f| %>
+        <div class="box">
+          <p>
+            <%= f.text_field :name, placeholder: l(:label_easy_to_do_list_field_name_on_list), size: nil %>
+          </p>
+          <%= f.submit l(:button_add), title: l(:button_add), class: 'button-positive' %>
+          <%= link_to_function(l(:button_close), '', title: l(:button_close), class: 'close-easy-to-do-list button') %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+

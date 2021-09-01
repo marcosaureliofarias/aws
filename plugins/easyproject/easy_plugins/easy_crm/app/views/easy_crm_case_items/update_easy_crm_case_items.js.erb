@@ -1,0 +1,2 @@
+$('#easy_crm_case_items_container').html('<%= j(render :partial => "easy_crm_case_items/#{@easy_crm_case_saved ? 'show' : 'edit'}", :formats => [:html], :locals => {:easy_crm_case => @easy_crm_case, :project => @project}) %>');
+EASY.dragAndDrop.initReorders();

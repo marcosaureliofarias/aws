@@ -1,0 +1,54 @@
+svg{
+  text{
+    stroke: transparent;
+    fill: $color-print--text;
+  }
+}
+.c3{
+  page-break-inside:avoid;
+  &-ygrid{
+    stroke: $color-print--accent !important;
+  }
+  &-line {
+    fill: transparent !important;
+  }
+  &-axis {
+    stroke: $color-print--accent;
+    .domain {
+      stroke: $color-print--accent !important;
+      fill: transparent !important;
+    }
+    &-y{
+      &-label{
+       font-size: $gap;
+        opacity: .5;
+      }
+    }
+  }
+  &-legend{
+    &-background {
+      fill: transparent !important;
+    }
+
+    &-item{
+      //visibility: visible !important;
+      //opacity: 1 !important;
+    }
+  }
+  &-chart{
+    &-arcs-background{
+      fill: $color-print--accent;
+    }
+  }
+}
+
+.tick {
+  stroke: $color-print--accent !important;
+  fill: transparent !important;
+}
+
+.chart-gauge{
+  svg{
+    margin: auto;
+  }
+}

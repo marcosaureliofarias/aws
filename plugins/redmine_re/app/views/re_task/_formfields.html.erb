@@ -1,0 +1,82 @@
+<% content_for :body_botttom do %>
+  <%= javascript_include_tag 'jquery.autogrowtextarea.js', defer: true %>
+  <%= javascript_include_tag 're_task.js', defer: true %>
+<% end %>
+
+<%= f.fields_for :artifact do |artifact_form|%>
+
+  <fieldset class="tabular">
+  	 <legend><%= l(:re_task_specific_attributes) %></legend>
+		 <p><%= artifact_form.label :start, l(:re_task_start) %> <%= artifact_form.text_field :start, :class => "full_width" %></p>
+
+		 <p><%= artifact_form.label :end, l(:re_task_end) %> <%= artifact_form.text_field :end, :class => "full_width" %></p>
+
+		 <p><%= artifact_form.label :frequency, l(:re_task_frequency) %> <%= artifact_form.text_field :frequency, :class => "full_width" %></p>
+
+		<p>
+	     <label><%= l(:re_task_difficulties) %></label>
+
+		   <%= artifact_form.text_area :difficult,
+		                    :cols => 60,
+			                    :rows => (@re_artifact_properties.artifact.difficult.blank? ? 10 : [[10, @re_artifact_properties.artifact.difficult.length / 50].max, 100].min),
+			                    :class => 'wiki-edit' %>
+			   <%= wikitoolbar_for  're_artifact_properties_artifact_attributes_difficult' %>
+		 </p>
+    </fieldset>
+
+	<fieldset class="tabular">
+	   <legend><%= t(:re_subtasks) %></legend>
+	   <table class="subtasks ui-sortable">
+	      <thead>
+	         <tr>
+	            <th style="width: 60px;"><%= t(:re_subtask_type) -%></th>
+	            <th style="width: 300px;"><%= t(:re_subtask_name) -%></th>
+	            <th style="width: 300px;"><%= t(:re_subtask_solution) -%></th>
+	            <th>&nbsp;</th>
+	            <th><a class="icon icon-subtask-after" href="#" onclick="addSubtask(document.getElementById('subtasks'), 'top'); return false;"><%= t(:re_insert_st_after) %></a></th>
+	         </tr>
+	      </thead>
+
+	   </table>
+	   <div id="subtasks">
+    		  <%= artifact_form.fields_for :re_subtasks do |builder| %>
+    		  	<%= render('re_task/subtasks', f: builder) %>
+    		  <% end %>
+	   </div>
+	</fieldset>
+
+	<%= late_javascript_tag do %>
+    EASY.schedule.late(function () {
+  	  function addSubtask(element, add_pos, type) {
+  	    var rendered_subtask;
+  	    rendered_subtask = "<%= get_escaped_subtask_html(artifact_form, 0) %>";
+
+    		switch(type) {
+    		  case '1':
+    		  	rendered_subtask = "<%= get_escaped_subtask_html(artifact_form, 1) %>";
+    		  break;
+    		  case '2':
+    		  	rendered_subtask = "<%= get_escaped_subtask_html(artifact_form, 2) %>";
+    		}
+
+    		var now = new Date;
+    		var utc_timestamp = Date.UTC(now.getFullYear(),now.getMonth(), now.getDate() ,
+    							now.getHours(), now.getMinutes(), now.getSeconds(),
+    							now.getMilliseconds());
+    		var ts = Math.round((new Date()).getTime() / 1000);
+
+    		rendered_subtask = replaceAll(rendered_subtask, "new_re_subtask", utc_timestamp.toString().substring(5,12));
+
+    		switch(add_pos) {
+    		  case 'top':    $(element).prepend(rendered_subtask); break;
+    		  case 'after':  $(element).after(rendered_subtask); break;
+    		  case 'before': $(element).before(rendered_subtask); break;
+    		  case 'bottom': $(element).append(rendered_subtask); break;
+        }
+
+    	  updateSubtaskPositionFields();
+    		jsInitScript();
+  	  }
+    });
+	<%end%>
+<% end%>

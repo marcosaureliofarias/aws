@@ -1,0 +1,31 @@
+labels = []
+colors = {}
+api.ticks @price_sums[@price_sums.keys.first].keys
+api.data do
+  api.array :columns do
+    @users_settings.keys.each do |user_id|
+      label = l(:label_nobody) if user_id == '0'
+      label ||= (user = @users.detect{|u| u.id.to_s == user_id}) ? user.name : l(:label_unknown_user)
+      api.foo [label] + @price_sums[user_id].values
+      labels << label
+      colors[label] = @users_settings[user_id]['color']
+    end
+  end
+  api.type 'bar'
+  if @easy_page_zone_module.settings['stacked'] == '1'
+    api.array :groups do
+      api.foo labels
+    end
+  end
+  #api.colors colors
+end
+api.chart_options do
+  api.color do
+    api.pattern @users_settings.collect{ |user_id, sett| sett['color'] }
+  end
+  api.axis do
+    api.y do
+      api.label @currency
+    end
+  end
+end

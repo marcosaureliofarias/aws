@@ -1,0 +1,291 @@
+---
+zh:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: 邮件内容（Html格式）
+        body_plain: 邮件内容（文本格式）
+        easy_crm_case_status: 状态
+        project: 项目
+        subject: 主题
+      easy_crm_case_status:
+        is_closed: 是否已关闭?
+        is_default: 是默认的吗？
+        is_easy_contact_required: 是否需要联系人?
+        is_paid: 是否付款?
+        is_won: 是否已取得
+        name: 名称
+        show_in_search_results: 可以被搜索?
+      easy_crm_case:
+        assigned_to: 指派给
+        author: 作者
+        closed_on: 关闭于
+        contract_date: 合同日期
+        created_at: 创建于
+        currency: 货币
+        description: 描述
+        easy_closed_by: 关闭.执行人为
+        easy_contacts: 联系人
+        easy_crm_case_items:
+          amount: 总计
+          description: 描述
+          discount: 折扣
+          easy_crm_case: CRM 案例
+          name: 名称
+          price_per_unit: 每个价格
+          product_code: 产品代码
+          total_price: 总价
+          unit: 单位
+        easy_crm_case_status: 状态
+        email: Email
+        is_canceled: 取消吗？
+        is_finished: 完成了吗？
+        lead_value: 营销信息的值
+        name: 名称
+        need_reaction: 需要回执吗？
+        next_action: 下一步行动
+        price: 价格
+        probability: 机率
+        project: 项目
+        send_to_external_mails: 将更新发送给外部邮箱
+        telephone: 电话
+        updated_at: 更新于
+      easy_lead_score:
+        country: 国别
+        created_at: 创建于
+        updated_at: 更新于
+      easy_user_target:
+        currency: 货币
+        target: 目标
+        valid_from: 从
+        valid_to: 到
+    models:
+      easy_crm_case_mail_template: 邮件模版
+      easy_mail_campaign_easy_crm_case: 客户管理
+  button_change_easy_crm_cases_status: 重新分配和删除
+  button_easy_crm_add_item: 添加条目
+  button_easy_crm_add_mail_template: 增加模版
+  button_easy_crm_add_mailbox: 增加邮箱
+  button_easy_crm_add_or_create_related_contact: 添加相关联系人
+  button_easy_crm_add_or_create_related_invoice: 添加 相关票据
+  button_easy_crm_add_or_create_related_issue: 添加相关任务
+  button_easy_crm_add_related_contact: 指定联系人
+  button_easy_crm_add_related_invoice: 分配单据
+  button_easy_crm_add_related_issue: 分配任务
+  button_easy_crm_add_sales_activity: 新增销售活动
+  button_easy_crm_add_status: 增加状态
+  button_easy_crm_country_value_new: 创建新的值
+  button_easy_crm_create_related_contact: 创建一个新的客户
+  button_easy_crm_create_related_invoice: 创建新的收据
+  button_easy_crm_create_related_issue: 创建新任务
+  button_easy_crm_merge_cases: 合并个案
+  button_easy_crm_merge_cases_inteligent_merge: 合并 CRM cases
+  button_easy_crm_merge_cases_quick_merge: 快速合并CRM cases
+  button_easy_crm_new_case: 新CRM case
+  button_easy_crm_related_case: 添加相关CRM个案
+  button_easy_crm_view_sales_activities: 销售活动概览
+  button_easy_lead_score_new: 新 Easy Lead Score
+  button_easy_user_target_add_all_users_of_type: 添加所有的用户类型
+  button_easy_user_target_add_users: 添加用户
+  button_easy_user_target_add_users_from_group: 从组内添加用户
+  button_manage_user_targets: 管理用户的目标
+  button_merge_and_follow: 合并-跟踪
+  button_set_easy_user_target_currency: 设置货币
+  easy_crm_plugin_author: Easy Project
+  easy_crm_plugin_author_url: http://www.easyproject.cz/en
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: 销售活动已被变更
+  easy_entity_activity_destroyed: 销售活动已被删除
+  easy_entity_activity_is_planned: '类别: %{category} 被安排在时间: %{time}'
+  easy_entity_activity_was_finished: 类别%{category} 已于 %{time} 完成
+  easy_entity_activity_was_reported: '类别: %{category} 于时间: %{time} 生成报表.'
+  easy_invoice_already_has_crm_case: 收据已有CRM case
+  easy_lookup:
+    easy_crm_case:
+      label: CRM 个案
+  easy_mail_template_token:
+    caption:
+      crm_case_id: 客户关系ID
+      crm_case_name: CRM case名称
+      crm_case_note: CRM case 最后日志更新
+    title:
+      crm_case_id: 点击更换客户关系ID
+      crm_case_name: 点击更换客户关系名称
+      crm_case_note: 点击更换客户关系最后备注
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: 客户关系过滤器
+      easy_crm_create_easy_crm_case_button: 新CRM case按钮
+      easy_crm_pie_chart_from_custom_field: 自定义饼图
+      easy_crm_user_performance: 成员绩效
+      easy_crm_user_target: 用户目标
+      easy_entity_activity_crm_case_query: 按过滤器查看销售活动
+    pages_description:
+      easy_crm_overview: 客户关系总览
+      easy_crm_project_overview: 客户关系项目总览
+    pages:
+      easy_crm_overview: 客户关系总览
+      easy_crm_project_overview: CRM(客户关系)项目总览
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: 添加新的CRM案例
+        description: 创建一个新的CRM案例
+    easy_crm_settings:
+      index:
+        caption: CRM设置
+        description: 管理CRM设置
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: CRM cases
+          related_easy_crm_case: 相应的 CRM case
+    name:
+      easy_crm_case_item_query: CRM case下的条目
+      easy_crm_case_query: 客户关系
+      easy_crm_contact_query: 客户
+      easy_crm_country_value_query: CRM中的国别代码
+      easy_lead_score_query: Easy Lead Scores
+      easy_user_target_query: 用户目标
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: 针对客户关系的私人过滤器
+        easy_crm_contact_query: 针对客户的私人过滤器
+      public:
+        easy_crm_case_query: 针对客户关系的公共过滤器
+        easy_crm_contact_query: 针对客户的公共过滤器
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: CRM邮箱
+  error_can_not_delete_easy_crm_status: 含有 CRM cases 的状态, 不能被删除
+  error_easy_crm_case_can_not_assign_custom_field: 自定义区域的CRM case不能被分配, 因为其是带球项目的
+  error_easy_crm_case_could_not_merge: CRM cases 不能被合并
+  field_easy_crm_case: CRM case
+  field_easy_crm_case_contract_date: 约定日期
+  field_easy_crm_case_created_date: 创建日期
+  field_easy_crm_case_next_action: 下一次行动
+  field_easy_crm_cases: 客户关系
+  field_easy_lead_score: Lead Score
+  heading_easy_crm_case_edit: 编辑客户关系
+  heading_easy_crm_case_item_index: CRM case 条目
+  heading_easy_crm_case_mail_template_edit: 编辑邮件模版
+  heading_easy_crm_case_mail_template_index: 邮件模版
+  heading_easy_crm_case_mail_template_new: 新的邮件模版
+  heading_easy_crm_case_new: 新的CRM Case(客户关系管理)
+  heading_easy_crm_case_sidebar_filters_by_member: 成员
+  heading_easy_crm_case_status_edit: 编辑客户关系状态
+  heading_easy_crm_case_status_index: 客户关系状态
+  heading_easy_crm_case_status_new: 新的客户关系状态
+  heading_easy_crm_country_value_new: 新建CRM国别代码
+  heading_easy_crm_mailboxes_index: 收件箱
+  heading_easy_crm_related_case: 相应的CRM case
+  heading_easy_crm_related_case_plural: 相关的CRM案例
+  heading_easy_crm_related_contacts: 相关的客户
+  heading_easy_crm_related_issues: 相关任务
+  heading_easy_lead_score_edit: 编辑Easy Lead Score
+  heading_easy_lead_score_new: 新 Easy Lead Score
+  label_advanced_custom_fields: 高级自定义区域
+  label_assign_to_easy_crm_case: 指派客户关系
+  label_attribute_of_easy_crm_cases: "%{name}客户关系"
+  label_bulk_edit_selected_easy_crm_case: 批量编辑CRM cases
+  label_change_crm_cases_status_explanation: '将CRM case 的状态改变为:'
+  label_chart_target: 用户目标
+  label_crm_currency_rate: 基础货币
+  label_crm_fields_permissions: CRM区域的权限
+  label_easy_contact_easy_crm_cases: 客户关系
+  label_easy_crm: CRM
+  label_easy_crm_case: CRM
+  label_easy_crm_case_added: 添加客户关系
+  label_easy_crm_case_assignee: CRM case 被分配人
+  label_easy_crm_case_default_values: 默认值
+  label_easy_crm_case_filters: 筛选器
+  label_easy_crm_case_is_associated_to_easy_invoice: 已连向CRM cases?
+  label_easy_crm_case_need_reaction: 需要立即行动
+  label_easy_crm_case_new: 新CRM case
+  label_easy_crm_case_plural: 客户关系
+  label_easy_crm_case_query_includes_descendants: 从所有子项目中显示 CRM cases
+  label_easy_crm_case_searchable_all: 搜索所有的 CRM 状态
+  label_easy_crm_case_status: CRM case 状态
+  label_easy_crm_case_updated: 更新客户关系
+  label_easy_crm_case_watchers_heading: 合作者
+  label_easy_crm_cases: CRM cases - 客户关系管理
+  label_easy_crm_cases_merge_into: '合并CRM cases 到:'
+  label_easy_crm_country_values: CRM国别代码
+  label_easy_crm_default_assignee: 指派新的任务
+  label_easy_crm_find_by_worker: 查找工作人员
+  label_easy_crm_kanban: 看板视图
+  label_easy_crm_kanban_columns_name: 列名
+  label_easy_crm_kanban_drop_in: 下放状态
+  label_easy_crm_kanban_settings: Kanban (看板)视图设置
+  label_easy_crm_kanban_status_not_uniq: Kanban 各列必须追踪各不同的状态
+  label_easy_crm_kanban_statuses: 列的状态
+  label_easy_crm_kanban_sum_column: 栏汇总区域
+  label_easy_crm_new_kanban_column: 添加新的列
+  label_easy_crm_project: 客户关系项目
+  label_easy_crm_related_case: 相关个案
+  label_easy_crm_search_fo_easy_contact: 搜索客户
+  label_easy_crm_search_for_easy_invoice: 搜索收据
+  label_easy_crm_search_for_issue: 搜索任务
+  label_easy_crm_settings: CRM设置
+  label_easy_crm_use_items: 使用 CRM 项
+  label_easy_lead_score: Easy Lead Score
+  label_easy_lead_scores: Easy Lead Scores
+  label_easy_money_sidebar:
+    easy_crm_case: CRM case的资金
+  label_easy_user_target: 用户目标
+  label_easy_user_target_currency: 货币
+  label_easy_user_with_targets: 目标为...的用户
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: 客户
+  label_filter_group_easy_user_target_query: 用户目标
+  label_page_module_compare: 比较
+  label_set_crm_fields_permissions: 按状态设置 CRM区域的权限
+  label_show_assigned_crm_cases: 显示分配给%{username}的客户关系
+  label_statuses_not_selected: 没有选择状态. 请至少选定一个状态.
+  label_unknown_user: 未知
+  label_use_values_from_crm_case: 从中选择值
+  mail:
+    subject:
+      easy_crm_case_add: "%{name}"
+      easy_crm_case_edit: "%{name}"
+      my_easy_crm_case_add: ">>> 我的CRM case [%{projectname}] 已添加 - %{name}"
+      my_easy_crm_case_edit: ">>> 我的CRM case [%{projectname}] 已更新 - %{name} (%{status})"
+  notice_failed_to_save_easy_crm_cases: 'CRM case(s)%{count}个保存失败, 共 %{total} 个: %{titles}'
+  permission_add_crm_case_notes: 添加便条和备注
+  permission_add_easy_crm_case_watchers: 添加 CRM case 观察者
+  permission_add_easy_crm_cases: 增加客户关系
+  permission_delete_easy_crm_case_watchers: 删除 CRM case 观察者
+  permission_delete_easy_crm_cases: 删除 CRM cases
+  permission_edit_crm_case_notes: 编辑便条与备注
+  permission_edit_easy_crm_cases: 编辑客户关系
+  permission_edit_own_crm_case_notes: 编辑我的便条与备注
+  permission_edit_own_easy_crm_cases: 编辑我的客户关系
+  permission_manage_easy_crm_page: 管理客户关系页面
+  permission_manage_easy_crm_settings: 管理客户关系设置
+  permission_manage_easy_lead_scores: 管理 Easy Lead Scores
+  permission_manage_easy_user_targets: 管理用户目标
+  permission_view_easy_crm_case_watchers: 查看 CRM case 观察者
+  permission_view_easy_crms: 查看客户关系
+  permission_view_easy_lead_scores: 查看Easy Lead Scores
+  permission_view_own_easy_crms: 查看我的 CRM cases
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: 移除
+  remove_related_invoice: 移除收据
+  setting_show_easy_entity_activity_on_crm_case: 显示CRM case中的销售活动
+  sidebar_crm_case_button_move: 移动CRM case(s)
+  text_are_you_sure_remove_user: 确定要移除所有用户?
+  text_easy_crm_case_updated: CRM case %{id} 已被  %{user}更新.
+  title_easy_crm_case_delete: 删除CRM case
+  title_easy_crm_country_value_new: 点此创建新的国别代码
+  title_easy_crm_new_case: 点击创建新的客户关系
+  title_easy_lead_score_new: 点此创建新的Easy Lead Score
+  title_easy_user_target_modal_easy_user_type: 按类型选择用户
+  title_easy_user_target_modal_group: 按组选择用户
+  title_easy_user_target_remove_user: 移除用户
+  title_kanban_settings: 看板设置

@@ -1,0 +1,7 @@
+<%
+project ||= easy_crm_case.project
+entity_type, entity_id = 'EasyCrmCase', easy_crm_case.id
+%>
+<%= render_menu_more('easy_crm_case_money_menu', project, :label => l(:label_easy_money), :menu_more_class => 'menu-more-sidebar', :menu_expander_class => 'icon icon-money button') do %>
+  <%= render :partial => 'easy_money/easy_money_entity_links', :locals => {:project => project, :entity_type => entity_type, :entity_id => entity_id} %>
+<% end if User.current.allowed_to?(:view_easy_money, project) %>

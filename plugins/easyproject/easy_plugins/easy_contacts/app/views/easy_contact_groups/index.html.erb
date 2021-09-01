@@ -1,0 +1,45 @@
+<%= render @query, :entities => @easy_contact_groups, :easy_query_name => l(:label_easy_contact_groups) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% html_title(l(:label_easy_contacts)) -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l('easy_contacts_toolbar.group_new'), @project ? new_project_easy_contact_group_path(@project) : new_easy_contact_group_path, :class => 'button-positive' -%>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to( l(:title_easy_contact_type_new), new_project_easy_contact_path(@project, back_url: original_url), :class => 'button-positive') if @project -%>
+  <%= link_to l(:label_easy_contacts), @project ? project_easy_contacts_path(@project) : easy_contacts_path, :class => 'button' -%>
+<% end %>
+<% content_for :sidebar do %>
+  <div class="box fixed-sidebar-box grid_3 alpha omega">
+    <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} %>
+
+    <%= render :partial => 'sidebar/project_family_info_container', :locals => {:project => @project} -%>
+  </div>
+<% end %>
+
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<% end %>
+
+<%= context_menu context_menus_easy_contact_groups_path %>
+
+<script type="application/javascript">
+  EASY.schedule.require(function () {
+    $('.group_name').droppable({
+      activeClass: 'drag-ready',
+      hoverClass: 'drag-over',
+      accept: '.easy-contact-toolbar-item',
+      tolerance: 'pointer',
+      drop: function (event, ui) {
+        var easyContactId = ui.draggable.data('easy-contact-id');
+        $(ui.helper).remove();
+        $.post($(this).find('a').attr('href') + '/assign_contact', {
+          easy_contact_id: easyContactId
+        });
+      }
+    });
+  }, jQueryPluginGetter("droppable"));
+</script>

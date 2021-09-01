@@ -1,0 +1,339 @@
+---
+ru:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: Тело письма (HTML)
+        body_plain: Тело письма (в текстовом формате)
+        easy_crm_case_status: Статус
+        project: Проект
+        subject: Тема
+      easy_crm_case_status:
+        is_closed: Закрыта?
+        is_default: По умолчанию?
+        is_easy_contact_required: Контакт обязателен?
+        is_paid: Оплачена?
+        is_provisioned: Оплачено?
+        is_provisioning: Поступления?
+        is_won: Выиграна?
+        name: Имя
+        only_for_admin: Только для администратора
+        show_in_search_results: Показывать в результатах поиска?
+      easy_crm_case:
+        account_manager: Аккаунт-менеджер
+        accounted_by: Ответственный партнёр
+        assigned_to: Исполнитель
+        author: Автор
+        closed_on: Дата закрытия
+        contract_date: Дата контракта
+        created_at: Создано
+        currency: Валюта
+        description: Описание
+        easy_closed_by: Закрыта пользователем
+        easy_contacts: Контакты
+        easy_crm_case_items:
+          amount: Сумма
+          description: Описание
+          discount: Скидка
+          easy_crm_case: CRM-сделка
+          name: Имя
+          price_per_unit: Цена за ед.
+          product_code: Код продукта
+          total_price: Общая стоимость
+          unit: Ед. изм.
+        easy_crm_case_status: Статус
+        email: Эл. почта
+        email_cc: Поставить в копию
+        external_account_manager: Внешний аккаунт-менеджер
+        is_canceled: Сделка отменена?
+        is_finished: Завершена?
+        lead_value: Оценка лида
+        main_easy_contact_id: Заказчик
+        name: Имя
+        need_reaction: Нужна реакция?
+        next_action: Следующее действие
+        price: Цена
+        probability: Вероятность
+        project: Проект
+        send_to_external_mails: Отправить уведомление об обновлении на внешний адрес?
+        telephone: Телефон
+        updated_at: Обновлено
+      easy_lead_score:
+        country: Страна
+        created_at: Создано
+        updated_at: Обновлено
+      easy_user_target:
+        currency: Валюта
+        target: Назначение
+        valid_from: С
+        valid_to: до
+    models:
+      easy_crm_case_mail_template: Шаблон письма
+      easy_mail_campaign_easy_crm_case: CRM-сделка
+  button_change_easy_crm_cases_status: Переназначить  и удалить
+  button_easy_crm_add_item: Добавить пункт
+  button_easy_crm_add_mail_template: Добавить шаблон
+  button_easy_crm_add_mailbox: Добавить почтовый ящик
+  button_easy_crm_add_or_create_related_contact: Добавить связанный контакт
+  button_easy_crm_add_or_create_related_invoice: Добавить счет
+  button_easy_crm_add_or_create_related_issue: Добавить или создать связанную задачу
+  button_easy_crm_add_related_contact: Назначить контакт
+  button_easy_crm_add_related_invoice: Привязать счёт
+  button_easy_crm_add_related_issue: Добавить задачу
+  button_easy_crm_add_sales_activity: Добавить продажу
+  button_easy_crm_add_status: Добавить статус
+  button_easy_crm_country_value_new: Создать новое значение
+  button_easy_crm_create_related_contact: Создать новый контакт
+  button_easy_crm_create_related_invoice: Создать новый счёт
+  button_easy_crm_create_related_issue: Создать новую задачу
+  button_easy_crm_merge_cases: Объединить CRM-сделки
+  button_easy_crm_merge_cases_inteligent_merge: Объединить CRM-сделки
+  button_easy_crm_merge_cases_quick_merge: Быстро объединить CRM-сделки
+  button_easy_crm_new_case: Создать CRM-сделку
+  button_easy_crm_related_case: Добавить связанную CRM-сделку
+  button_easy_crm_view_sales_activities: Обзор продаж
+  button_easy_lead_score_new: Новая оценка лидов Easy
+  button_easy_user_target_add_all_users_of_type: Добавить всех пользователей типа
+  button_easy_user_target_add_users: Добавить пользователей
+  button_easy_user_target_add_users_from_group: Добавить пользователей из группы
+  button_manage_user_targets: Управление целями пользователя
+  button_merge_and_follow: Объединить и продолжить
+  button_set_easy_user_target_currency: Установить валюту
+  easy_contacts_toolbar:
+    assign_to_crm_case: Закрепить за CRM-сделкой
+  easy_crm_plugin_author: Easy Software
+  easy_crm_plugin_author_url: http://www.easyproject.cz/en
+  easy_crm_plugin_description: ''
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: Действие изменено
+  easy_entity_activity_destroyed: Действие удалено
+  easy_entity_activity_is_planned: Действие %{category} запланировано на %{time}
+  easy_entity_activity_was_finished: Действие %{category} в %{time} завершено
+  easy_entity_activity_was_reported: Запись о действии %{category} сделана в %{time}
+  easy_invoice_already_has_crm_case: К счёту уже привязана CRM-сделка
+  easy_lookup:
+    easy_crm_case:
+      label: CRM-сделки
+  easy_mail_template_token:
+    caption:
+      crm_case_id: ID CRM-сделки
+      crm_case_name: Имя CRM-сделки
+      crm_case_note: Последний комментарий по CRM-сделке
+    title:
+      crm_case_id: Нажмите, чтобы добавить идентификатор CRM-сделки.
+      crm_case_name: Нажмите, чтобы добавить имя (предмет) CRM-сделки.
+      crm_case_note: Нажмите, чтобы добавить последний комментарий из журнала CRM-сделки.
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: CRM-сделки по фильтру
+      easy_crm_cases_create_new: Создать CRM-сделку
+      easy_crm_create_easy_crm_case_button: Кнопка «Создать CRM-сделку»
+      easy_crm_pie_chart_from_custom_field: Настраиваемая круговая диаграмма
+      easy_crm_user_performance: Показатели участника
+      easy_crm_user_target: Цели пользователя
+      easy_entity_activity_crm_case_query: Продажи по фильтру
+    pages_description:
+      easy_crm_overview: Обзор CRM
+      easy_crm_project_overview: Обзор проекта CRM
+    pages:
+      easy_crm_overview: Обзор CRM
+      easy_crm_project_overview: Обзор проекта CRM
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: Создать CRM-сделку
+        description: Создать новую CRM-сделку
+    easy_crm_settings:
+      index:
+        caption: Настройки CRM
+        description: Управление настройками CRM
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: CRM-сделки
+          related_easy_crm_case: Связанная CRM-сделка
+    name:
+      easy_crm_case_item_query: позиции CRM-сделок
+      easy_crm_case_query: CRM-сделки
+      easy_crm_contact_query: Контакты CRM
+      easy_crm_country_value_query: Значения CRM для страны
+      easy_lead_score_query: Оценка лидов Easy
+      easy_user_target_query: Цели пользователя
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: Личные фильтры для CRM-сделок
+        easy_crm_contact_query: Личные фильтры для контактов CRM
+      public:
+        easy_crm_case_query: Общие фильтры для CRM-сделок
+        easy_crm_contact_query: Общие фильтры для контактов CRM
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: Почтовый ящик CRM
+  error_can_not_delete_easy_crm_status: Статус используется в CRM-сделках, его нельзя
+    удалить.
+  error_easy_crm_case_can_not_assign_custom_field: Параметры CRM-сделки не соответствуют
+    настройкам проекта.
+  error_easy_crm_case_could_not_merge: Не удалось объединить CRM-сделки.
+  field_easy_crm_case: CRM-сделка
+  field_easy_crm_case_contract_date: Дата контракта
+  field_easy_crm_case_created_date: Дата создания
+  field_easy_crm_case_next_action: Следующее действие
+  field_easy_crm_cases: CRM-сделка
+  field_easy_crm_cases_visibility: Видимость CRM-сделок
+  field_easy_lead_score: Оценка лида
+  heading_easy_crm_case_edit: Редактировать CRM-сделку
+  heading_easy_crm_case_item_index: Позиции CRM-сделки
+  heading_easy_crm_case_mail_template_edit: Редактировать шаблон письма
+  heading_easy_crm_case_mail_template_index: Шаблоны писем
+  heading_easy_crm_case_mail_template_new: Создать шаблон письма
+  heading_easy_crm_case_new: Создать CRM-сделку
+  heading_easy_crm_case_sidebar_filters_by_member: Сделки участника
+  heading_easy_crm_case_status_edit: Редактировать статус CRM-сделки
+  heading_easy_crm_case_status_index: Статусы CRM-сделки
+  heading_easy_crm_case_status_new: Новый статус CRM-сделки
+  heading_easy_crm_country_value_new: Создать значение CRM для страны
+  heading_easy_crm_mailboxes_index: Почтовые ящики
+  heading_easy_crm_related_case: Связанная CRM-сделка
+  heading_easy_crm_related_case_plural: Связанные CRM-сделки
+  heading_easy_crm_related_contacts: Связанные контакты
+  heading_easy_crm_related_issues: Связанные задачи
+  heading_easy_lead_score_edit: Редактировать настройки оценки лида Easy
+  heading_easy_lead_score_new: Создать оценку лида Easy
+  label_advanced_custom_fields: Дополнительные настраиваемые поля
+  label_assign_to_easy_crm_case: Добавить к CRM-сделке
+  label_attribute_of_easy_crm_cases: "%{name} CRM-сделки"
+  label_bulk_edit_selected_easy_crm_case: Массовое редактирование выбранных CRM-сделок
+  label_change_crm_cases_status_explanation: 'Изменить статус CRM-сделки на:'
+  label_chart_target: Цель пользователя
+  label_crm_currency_rate: Курс к основной валюте
+  label_crm_fields_permissions: Права на изменение полей в CRM
+  label_easy_contact_customer_business: Прямые продажи (CRM)
+  label_easy_contact_easy_crm_cases: CRM-сделки
+  label_easy_contact_indirect_business: Косвенные продажи (CRM)
+  label_easy_contact_managed_easy_crm_cases: Управляемые CRM-сделки
+  label_easy_crm: CRM
+  label_easy_crm_case: CRM
+  label_easy_crm_case_account_manager: Аккаунт-менеджер CRM-сделки‌
+  label_easy_crm_case_accounted_by: Ответственный: %{name}
+  label_easy_crm_case_added: CRM-сделка добавлена
+  label_easy_crm_case_assignee: Исполнитель по CRM-сделке
+  label_easy_crm_case_customer: Заказчик
+  label_easy_crm_case_customer_query_group_custom_fields: Настраиваемые поля заказчика
+  label_easy_crm_case_default_values: Значения по умолчанию
+  label_easy_crm_case_filters: Фильтр
+  label_easy_crm_case_is_associated_to_easy_invoice: Привязать CRM-сделку?
+  label_easy_crm_case_main_contact: Главный контакт
+  label_easy_crm_case_need_reaction: Нужна реакция!
+  label_easy_crm_case_new: Создать CRM-сделку
+  label_easy_crm_case_plural: CRM-сделки
+  label_easy_crm_case_query_includes_descendants: Отобразить CRM-сделки со всех подпроектов
+  label_easy_crm_case_searchable_all: Поиск по всем статусам CRM
+  label_easy_crm_case_status: Статус CRM-сделки
+  label_easy_crm_case_updated: CRM-сделка обновлена
+  label_easy_crm_case_watchers_heading: Сотрудники
+  label_easy_crm_cases: CRM-сделки
+  label_easy_crm_cases_merge_into: 'Объединить CRM-сделки в:'
+  label_easy_crm_cases_visibility_all: Все CRM-сделки в проектах пользователя
+  label_easy_crm_cases_visibility_own: CRM-сделки, созданные / отслеживаемые / закреплённые
+    за пользователем
+  label_easy_crm_country_values: Значения CRM для страны
+  label_easy_crm_default_account_manager: Аккаунт-менеджер новой сделки‌
+  label_easy_crm_default_assignee: Исполнитель по умолчанию для новых сделок
+  label_easy_crm_default_external_account_manager: Внешний аккаунт-менеджер новой
+    сделки
+  label_easy_crm_find_by_worker: Искать сотрудника
+  label_easy_crm_kanban: Kanban
+  label_easy_crm_kanban_columns_name: Имя столбца
+  label_easy_crm_kanban_drop_in: Перевести в статус
+  label_easy_crm_kanban_settings: Посмотреть настройки Kanban
+  label_easy_crm_kanban_status_not_uniq: Столбцы в Kanban должны обозначать разные
+    статусы
+  label_easy_crm_kanban_statuses: Статусы столбца
+  label_easy_crm_kanban_sum_column: Поле суммы столбца
+  label_easy_crm_new_kanban_column: Добавить новый столбец
+  label_easy_crm_project: CRM-проект
+  label_easy_crm_related_case: Связанная CRM-сделка
+  label_easy_crm_search_fo_easy_contact: Искать контакт
+  label_easy_crm_search_for_easy_invoice: Искать счёт
+  label_easy_crm_search_for_issue: Искать задачу
+  label_easy_crm_settings: Настройки CRM
+  label_easy_crm_use_items: Применить позиции CRM-сделки
+  label_easy_lead_score: Оценка лидов Easy
+  label_easy_lead_scores: Оценки лидов Easy
+  label_easy_money_sidebar:
+    easy_crm_case: Бюджет CRM-сделки
+  label_easy_user_target: Цели пользователя
+  label_easy_user_target_currency: Валюта
+  label_easy_user_with_targets: Пользователи с целями
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: Контакт
+  label_filter_group_easy_crm_contact_query_custom_fields: Настраиваемые поля контактов
+  label_filter_group_easy_crm_main_contact_query: Главный контакт
+  label_filter_group_easy_crm_main_contact_query_custom_fields: Настраиваемые поля
+    главного контакта
+  label_filter_group_easy_user_target_query: Цели пользователя
+  label_filter_group_sales_activity_additional_filters: Дополнительный фильтр продаж
+  label_filter_sales_activity_not_in: "%{category} — нет за период"
+  label_merge_to_entities:
+    easy_crm_case: CRM-сделка
+  label_page_module_compare: Сравнить
+  label_prefix_easy_contacts_query_filter: Контакты
+  label_set_crm_fields_permissions: Настроить доступ к полям CRM по статусу
+  label_show_assigned_crm_cases: Показать CRM-сделки, закреплённые за пользователем %{username}.
+  label_statuses_not_selected: Статусы не выбраны. Выберите хотя бы один статус.
+  label_unknown_user: Неизвестный
+  label_use_values_from_crm_case: Использовать значения из
+  label_validation_only_for_admin: Только администратор может использовать этот статус
+  mail:
+    subject:
+      easy_crm_case_add: Добавлена CRM-сделка [%{projectname}] – %{name}
+      easy_crm_case_edit: Обновлена CRM-сделка [%{projectname}] – %{name} (%{status})
+      my_easy_crm_case_add: ">>> Моя CRM-сделка [%{projectname}] добавлена – %{name}"
+      my_easy_crm_case_edit: ">>> Моя CRM-сделка [%{projectname}] обновлена – %{name}
+        (%{status})"
+  notice_easy_crm_case_successful_create: CRM-сделка %{id} создана.
+  notice_easy_crm_update_conflict: Пока вы редактировали CRM-сделку, она была обновлена
+    другим пользователем.
+  notice_failed_to_save_easy_crm_cases: 'Не удалось сохранить %{count} из %{total}
+    выбранных CRM-сделок: %{titles}'
+  permission_add_crm_case_notes: Добавлять примечания
+  permission_add_easy_crm_case_watchers: Добавить наблюдателей CRM-сделки
+  permission_add_easy_crm_cases: Добавлять CRM-сделки
+  permission_delete_easy_crm_case_watchers: Удалять наблюдателей CRM-сделки
+  permission_delete_easy_crm_cases: Удалять CRM-сделки
+  permission_edit_crm_case_notes: Редактировать примечания
+  permission_edit_easy_crm_cases: Редактировать CRM-сделки
+  permission_edit_easy_crm_country_values: Редактировать значения CRM для страны
+  permission_edit_own_crm_case_notes: Редактировать свои примечания
+  permission_edit_own_easy_crm_cases: Редактировать свои CRM-сделки
+  permission_manage_easy_crm_page: Управлять страницами в CRM
+  permission_manage_easy_crm_settings: Управлять настройками CRM
+  permission_manage_easy_lead_scores: Управлять оценкой лидов Easy
+  permission_manage_easy_user_targets: Управлять целями пользователя
+  permission_view_easy_crm_case_watchers: Просматривать список наблюдателей CRM-сделки
+  permission_view_easy_crm_country_values: Просматривать значения CRM по странам
+  permission_view_easy_crms: Просматривать CRM-сделки
+  permission_view_easy_lead_scores: Просматривать оценку лидов Easy
+  permission_view_own_easy_crms: Просматривать свои CRM-сделки
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: Удалить
+  remove_related_invoice: Удалить счёт
+  setting_show_description_on_crm_case: Показать описание позиций CRM-сделки
+  setting_show_easy_entity_activity_on_crm_case: Показать продажи в CRM-сделке
+  sidebar_crm_case_button_move: Переместить CRM-сделку
+  text_are_you_sure_remove_user: Вы точно хотите удалить пользователя из всех кварталов?
+  text_easy_crm_case_updated: CRM-сделка %{id} обновлена пользователем %{user}.
+  title_easy_crm_case_delete: Удалить CRM-сделку
+  title_easy_crm_country_value_new: Нажмите, чтобы создать новое значение для страны.
+  title_easy_crm_new_case: Нажмите, чтобы создать CRM-сделку.
+  title_easy_lead_score_new: Нажмите, чтобы создать новую оценку лидов Easy.
+  title_easy_user_target_modal_easy_user_type: Выбрать пользователей по типу
+  title_easy_user_target_modal_group: Выбрать пользователей по группе
+  title_easy_user_target_remove_user: Удалить пользователя
+  title_kanban_settings: Настройки Kanban

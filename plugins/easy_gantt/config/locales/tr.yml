@@ -1,0 +1,226 @@
+---
+tr:
+  button_print: Bastır
+  button_project_menu_easy_gantt: Easy Gantt
+  button_top_menu_easy_gantt: Global Gantt
+  button_use_actual_delay: Gerçek gecikmeyi kullan
+  easy_gantt_toolbar:
+    day: Gün
+    month: Ay
+    week: Hafta
+  easy_gantt:
+    button:
+      close_all: Hepsini kapat
+      close_all_parent_issues: Tüm üst işleri kapat
+      create_baseline: Temel çizgileri
+      critical_path: Kritik yol
+      day_zoom: Gün
+      delayed_project_filter: Sadece gecikmiş projeler
+      jump_today: Bugüne atla
+      load_sample_data: Örnek verileri yükle
+      month_zoom: Ay
+      print_fit: Sayfaya sığdır
+      problem_finder: Problemler
+      reload: Yeniden yükle (kaydet)
+      remove_delay: Gecikmeyi kaldır
+      resource_management: Kaynak yönetimi
+      tool_panel: Araçlar
+      week_zoom: Hafta
+    critical_path:
+      disabled: Devre dışı
+      last: Sonuncu
+      last_text: Gecikmemesi gereken işler
+      longest: En uzun
+      longest_text: En uzun iş sırasını göster
+    errors:
+      change_link_length: "{{source_task}} ve {{target_task}} arasındaki gecikme,
+        minimum {{minimum_link_length}} uzunluğa değiştirildi"
+      duplicate_link: Çift bağlantı oluşturulamıyor
+      fresh_milestone: Kaydedilmemiş bir kilometre taşına iş eklenemiyor. Önce kilometre
+        taşını kaydet.
+      integrity:
+        ends_too_late: çok geç bitiyor
+        gantt_is_too_long: Gantt grafiği çok geniş ({{limit}} günden fazla)
+        out_of_limits: Bazı varlıklar atlandı, çünkü {{minLimit}} ile {{maxLimit}}
+          arasındaki sınırlar dışındalar.
+        starts_too_early: çok erken başlıyor
+        truncated: ucu kesilmiş
+      link_target_new: Kaydedilmemiş işe bağlantı oluşturulamıyor. Önce değişiklikleri kaydet
+      link_target_readonly: Salt okunur hedef iş
+      loop_link: Döngüsel bağlantı oluşturulamıyor
+      no_rest_api: Easy Gantt için REST API etkin olmalıdır. Yönetimde açın -> Ayarlar
+        -> API -> REST web servisini etkinleştir
+      overdue: gelecekte bitmeli ya da çoktan kapanmış olmalı
+      overmile: kilometre taşını tutturmak için %{effective_date} tarihinde bitmelidir
+      progress_date_overdue: "%{days} gün kadar planın gerisinde"
+      project_link: Proje bağlantısı oluşturulamıyor
+      reservation_for_unassignee: Atanmayan kullanıcı için için rezervasyon oluşturulamıyor.
+      save_gantt: Lütfen, ayrılmadan önce ganttı kaydedin.
+      short_delay: "%{diff} gün daha uzun olmalı"
+      subproject_precedes_parent: Alt proje üst projeden önce geliyor
+      too_short: "%{rest} tahmini saat için yeterli gün içermiyor"
+      unsaved_parent: Kaydedilmemiş üst işe iş eklenemiyor. Önce değişiklikleri kaydet
+      unsupported_link_type: Desteklenmeyen bağlantı türü
+    gateway:
+      entity_save_failed: "%{entityType} %{entityName} hata yüzünden kaydedilemedi"
+      send_failed: Başarısız oldu
+    label_pro_upgrade: PRO sürümüne yükseltin
+    legend:
+      heading: Gantt Şeması Açıklaması
+      heading_tips: İpuçları ve Püf noktaları
+      label_dates_calculated: Başlangıç ve hedef tarihleri görevlerden hesaplanır
+      label_dates_set_manually: Başlangıç ve hedef tarihleri manuel olarak ayarlanır
+      label_milestone: Kilometre taşı
+      label_milestone_shared: Paylaşılan kilometre taşı
+      label_project: Proje
+      label_project_done: Proje tamamlanma görseli (tamamlanma yüzdesi)
+      label_project_problem: Problemli proje
+      label_relation_fixed: Kilitli (sabit) ilişki
+      label_relation_unfixed: Kilitsiz (esnek) ilişki
+      label_relations_handle: İlişki çizme noktası
+      label_task: İş
+      label_task_delay: Gecikmeyi gösteren sayı
+      label_task_done: İş tamamlanma görseli (tamamlanma yüzdesi)
+      label_task_due_missing: İş hedef tarihi tanımlanmamış
+      label_task_movers: Başlangıç / hedef tarihlerini değiştirme noktaları
+      label_task_parent_dates_missing: Üst işin başlangıç ve hedef tarihi tanımlanmamış
+      label_task_problem: Problemli iş
+      label_task_start_missing: İş başlangıç tarihi tanımsız
+      label_today: Mevcut günün görseli
+      notice_due_date_set: Başlangıç tarihi tanımsız, hedef tarihi tanımlı
+      notice_future_due_date: Başlangıç tarihi geçmişte olan projeyi taşırsanız, yeni
+        tarih hedef tarihle aynı olur ve proje süresi 1 gün olur
+      notice_future_start_date: Başlangıç tarihini geleceğe taşırsanız, hedef tarih
+        başlangıç tarihiyle aynı güne ayarlanacaktır ve proje süresi 1 gün olur
+      notice_move_expanded_project: Genişletilmiş proje taşınamaz - proje görünümünü
+        daraltın, sayfayı yenileyin, ardından projeyi taşıyın
+      notice_past_due_date: Projeyi taşırsanız, başlangıç tarihi mevcut güne (bugün)
+        ayarlanacaktır
+      notice_past_start_date: Başlangıç ​​tarihini geçmişe taşırsanız, hedef tarih mevcut güne
+        (bugün) ayarlanacaktır.
+      notice_project_needs_task: En az bir iş içermeyen proje taşınamaz ve kaydedilemez.
+        Taşıyabilmek için projeye veya alt projesine iş ekleyin.
+      notice_start_date_set: Başlangıç ​​tarihi tanımlı, hedef tarih tanımsız
+    link_dir:
+      link_end: önce gelen
+      link_start: takip eden
+    popup:
+      add_task:
+        heading: İş özelliği ekle
+        text: Yeni iş / kilometre taşı özelliği yalnızca Easy Gantt PRO'da kullanılabilir 
+          <a href="https://www.easyredmine.com/redmine-gantt-plugin">Güncelleştirmeleri
+          kontrol et</a>
+      baseline:
+        heading: Temel çizgisi özelliği
+        text: Temel çizgisi özelliği sadece Easy Gantt PRO'da bulunur <a href="https://www.easyredmine.com//redmine-gantt-plugin">Güncelleştirmeleri
+          kontrol et!</a>
+      critical:
+        heading: Kritik yol özelliği
+        text: Kritik yol özelliği yalnızca Easy Gantt PRO'da kullanılabilir <a href="https://www.easyredmine.com/redmine-gantt-plugin">Güncelleştirmeleri
+          kontrol et!</a>
+      resource:
+        easy_text: Kaynak yönetimi eklentisi yüklü değil - <a href="https://www.easyredmine.com/pricing-buy">buradan</a>
+          edinebilirsiniz
+        heading: Kaynak yöneticisi özelliği
+        text: Kaynak yönetimi özelliği yalnızca <a href="https://www.easyredmine.com/">
+          Easy Redmine</a>’da
+    reload_modal:
+      label_errors: Hatalar
+      text_reload_appeal: Kaydedilmemiş öğeleri yoksaymak ve verileri sunucudan yeniden
+        yüklemek ister misiniz?
+      title: Gantt düzgün bir şekilde kaydedilemedi
+    sample_global_free:
+      text: Örnek veriler kapatılamaz. Tüm projelerdeki Gantt sadece PRO versiyonunda
+        mevcuttur
+      video:
+        text: Burada tüm projelerdeki Gantt özelliklerinin çoğunu görebilirsiniz.
+        title: Tüm projelerdeki Gantt örnek videosu
+        video_id: zd3M0KYxcXM
+    sample:
+      close_label: Bu pencereyi kapat ve gerçek proje verilerini yükle
+      header: Örnek veriler yüklenmiştir!
+      text: Tüm Easy Gantt özelliklerini stres olmadan denemeniz için bazı örnek veriler
+        hazırladık. Ayrıca yararlı özellikler gösteren video kılavuzu izlemenizi öneririz.
+        Bu pencereyi kapatmak, gerçek proje verilerini yükleyecektir.
+      video_label: Eğitim videosunu izleyin
+      video:
+        text: Burada bu Gantt modülünün özelliklerinin çoğunu görebilirsiniz.
+        title: Örnek video
+        video_id: UHgqfsrD59Q
+    text_blocker_milestone: Kilometre taşı, bu tarihin ötesine taşınacak işi engelliyor
+    text_blocker_move_end: Bu tarihten sonraya taşınırsa sonraki işlerden en az biri
+      ertelenir
+    text_blocker_move_pre: İş, bu tarihten sonraya ötenlemesini engelleyen bir ilişkiye
+      sahiptir
+    title:
+      button_test: Test düğmesi (yalnızca test için)
+      day_zoom: Gün ölçeğine yakınlaştır
+      jump_today: Zaman çizelgesinde bugünü görüntüle
+      month_zoom: Ay ölçeğine yakınlaştır
+      print_fit: Gantt'ı bir sayfaya ölçeklendir
+      week_zoom: Hafta ölçeğine yakınlaştır
+  easy_printable_templates_categories:
+    easy_gantt: Easy Gantt
+  easy_query:
+    name:
+      easy_gantt_easy_issue_query: Easy Gantt
+      easy_gantt_easy_project_query: Global Gantt
+  error_easy_gantt_view_permission: Easy Gantt'ı görme izniniz yok.
+  error_epm_easy_gantt_already_active: Sayfadaki Easy Gantt zaten aktif
+  error_small_screen: Cihazınızın ekran boyutu Gantt tablosu gösteremeyecek kadar
+    küçük
+  error_start_date_before_end_date: Bitiş tarihi, başlangıç tarihinden büyük olmalıdır
+  field_easy_gantt_default_zoom: Varsayılan yakınlaştırma
+  field_easy_gantt_fixed_delay: Sabit gecikme
+  field_easy_gantt_relation_delay_in_workdays: Bağlantılardaki gecikmeler iş günü
+    cinsinden
+  field_easy_gantt_show_holidays: Tatillleri göster
+  field_easy_gantt_show_project_progress: Proje ilerlemesini göster
+  field_easy_gantt_show_task_soonest_start: En erken başlangıcı göster
+  field_keep_link_delay_in_drag: Sürükleme sırasında sabit bağlantı gecikmesi
+  field_relation: İlişki
+  heading_delay_popup: Gecikmeyi günlerle tanımlayın
+  heading_demo_feature_popup: Çok yakında
+  heading_easy_gantts_issues: Easy Gantt Ücretsiz
+  label_easy_gantt: Easy Gantt
+  label_easy_gantt_critical_path: Kritik yol
+  label_easy_gantt_global: Global
+  label_easy_gantt_issue_loaded: Tüm işler yüklendi
+  label_easy_gantt_load: Yükle
+  label_easy_gantt_next_level_close: Sonraki seviyeyi kapat
+  label_easy_gantt_next_level_open: Sonraki seviyeyi aç
+  label_easy_gantt_recalculate_fixed_delay: Sabit gecikmeyi tekrar hesapla
+  label_easy_gantt_settings: Gantt ayarları
+  label_filter_group_easy_gantt_easy_issue_query: İş alanları
+  label_finish_to_finish: Bitiş-Bitiş
+  label_not_available: mevcut değil
+  label_parent_issue_plural: Ana işler
+  label_start_to_finish: Başlangıç-Bitiş
+  label_start_to_start: Başlangıç-Başlangıç
+  link_easy_gantt_plugin: https://www.easyredmine.com/easy-gantt-upgrade-to-pro
+  notice_easy_gantt_fixed_delay_recalculated: Tüm ilişkilerde sabit gecikme yeniden
+    hesaplandı
+  permission_edit_easy_gantt: Bir projede Easy Gantt düzenleme
+  permission_edit_global_easy_gantt: Global Ganttı Düzenle
+  permission_edit_personal_easy_gantt: Kişisel Easy Gantt düzenle
+  permission_view_easy_gantt: Bir projede Easy Gantt görüntüle
+  permission_view_global_easy_gantt: Global Gantt görüntüle
+  permission_view_personal_easy_gantt: Kişisel Easy Gantt görüntüle
+  project_default_page:
+    easy_gantt: Easy Gantt
+  project_module_easy_gantt: Gantt
+  text_demo_feature_popup: Bu özellik çok yakında hazır olacak.
+  text_easy_gantt_fixed_delay: İş gecikirken ilişki gecikmesini sabit tut
+  text_easy_gantt_footer: Redmine Gantt Easy tarafından desteklenmektedir
+  text_easy_gantt_keep_link_delay_in_drag: İş gecikirken ilişki gecikmesini sabit
+    tut
+  text_easy_gantt_print_easy_gantt_current: Geçerli Easy Gantt'ı göster (yalnızca
+    easy gantt yüklü olan sayfadan çalışır)
+  text_easy_gantt_relation_delay_in_workdays: İlişki gecikmelerinde çalışmayan günlü
+    olmayan günleri saymayın
+  text_easy_gantt_show_holidays: Mevcut kullanıcının takviminden tatilleri göster
+  text_easy_gantt_show_project_progress: Proje çubuğunda tamamlanan yüzdeyi göster
+    (yüklenmesi yavaş olabilir)
+  text_easy_gantt_show_task_soonest_start: İlişkiler veya üst iş tarafından tanımlanan
+    işler için geçerli en yakın tarihleri göster
+  title_easy_gantt_settings: Gantt ayarları

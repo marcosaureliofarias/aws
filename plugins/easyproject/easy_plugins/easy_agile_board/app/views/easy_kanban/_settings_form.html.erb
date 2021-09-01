@@ -1,0 +1,30 @@
+<%= form_tag(@project ? project_easy_kanban_settings_path(@project) : save_global_easy_agile_settings_path(tab: 'kanban'), class: 'form-box') do %>
+  <%= hidden_field_tag :back_url, params[:back_url] %>
+  <%= render 'easy_agile_board/settings_columns', project: @project, easy_setting_name: 'kanban_statuses' %>
+
+  <fieldset>
+    <legend class="icon icon-bullet-list"><%= l(:label_others) %></legend>
+    <%= render 'easy_queries/kanban_output_settings', query: @query, easy_setting_name: 'kanban_output_setting', modul_uniq_id: '' %>
+
+    <p>
+      <%= hidden_field_tag 'easy_setting[easy_agile_use_workflow_on_kanban]', '0', id: '' %>
+      <% box = check_box_tag 'easy_setting[easy_agile_use_workflow_on_kanban]', '1', EasySetting.value('easy_agile_use_workflow_on_kanban', @project) %>
+      <%= label_tag 'easy_setting[easy_agile_use_workflow_on_kanban]', box + l(:label_easy_agile_use_workflow_on_kanban), title: l(:text_easy_agile_use_workflow_on_kanban), class: 'inline checkbox' %>
+    </p>
+    <p>
+      <%= hidden_field_tag 'easy_setting[add_new_issues_to_project_kanban]', '0', id: '' %>
+      <% box = check_box_tag 'easy_setting[add_new_issues_to_project_kanban]', '1', EasySetting.value('add_new_issues_to_project_kanban', @project) %>
+      <%= label_tag 'easy_setting[add_new_issues_to_project_kanban]', box + l(:label_add_new_issues_to_project_kanban), title: l(:text_add_new_issues_to_project_kanban), class: 'inline checkbox' %>
+    </p>
+    <p>
+      <%= hidden_field_tag 'easy_setting[kanban_display_closed_tasks_in_last_n_days]', '0', id: '' %>
+      <%= label_tag 'easy_setting[kanban_display_closed_tasks_in_last_n_days]', l(:field_easy_agile_board_display_closed_tasks_in_last_n_days) %>
+      <%= text_field_tag 'easy_setting[kanban_display_closed_tasks_in_last_n_days]', EasySetting.value('kanban_display_closed_tasks_in_last_n_days', @project) %>&nbsp;<%= l(:label_days) %>
+    </p>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_update), class: 'button-positive' %>
+    <%= link_to l(:button_recalculate_agile_board), easy_kanban_recalculate_path(@project), method: :post, class: 'button' if @project %>
+  </div>
+<% end %>

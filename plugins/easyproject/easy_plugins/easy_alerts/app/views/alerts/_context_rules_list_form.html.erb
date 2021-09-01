@@ -1,0 +1,12 @@
+<fieldset class="alert-context-rules">
+  <% if @alert.new_record? %>
+    <%= labelled_fields_for :alert, @alert do |f| -%>
+      <p><%= f.select :rule_id, option_groups_from_collection_for_select(@contexts.sort_by(&:translated_name), :sort_rules, :translated_name, :id, :translated_name, Array(@rule_selected)), {:include_blank => true, :required => true}, {:disabled => !@alert.new_record?, :data => {:remote => true, :url => url_for(:action => :rule_changed, :id => @alert, :issue => @issue)}} %></p>
+    <% end -%>
+  <% else %>
+    <legend><%= @alert.rule.translated_name %></legend>
+  <% end -%>
+  <div id="alert-context-rule-form">
+    <%= render(:partial => @alert.rule.get_settings_form) unless @alert.rule.nil? %>
+  </div>
+</fieldset>

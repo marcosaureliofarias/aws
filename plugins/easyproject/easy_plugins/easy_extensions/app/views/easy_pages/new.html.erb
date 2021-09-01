@@ -1,0 +1,11 @@
+<%= title l(:label_easy_page_new) %>
+
+<%= form_for(@page, class: 'form-box') do |f| %>
+  <%= error_messages_for @page %>
+
+  <div class="tabular">
+    <%= render :partial => 'form', locals: {f: f, easy_page: @page} %>
+  </div>
+
+  <div class="form-actions"><%= f.submit l(:button_save), class: 'button-positive' %></div>
+<% end %>

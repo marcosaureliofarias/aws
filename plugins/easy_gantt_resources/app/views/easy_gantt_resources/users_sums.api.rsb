@@ -1,0 +1,12 @@
+api.easy_resource_data do
+
+  api.array :users do
+    @resources_sums.each do |user_id, allocations|
+      api.user do
+        api.id user_id
+        api.resources_sums allocations
+      end
+    end
+  end
+
+end

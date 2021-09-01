@@ -1,0 +1,12 @@
+<h2><%= l(:sidebar_project_members) %></h2>
+
+<%= form_for :project_members, as: :membership, url: show_more_members_project_path(project), method: :post, remote: true, class: 'form-box' do |f| %>
+  <p>
+    <%= search_field_tag('q', nil, id: 'principal_search', class: 'block', placeholder: l(:label_users_find_by_user)) %>
+  </p>
+  <%= late_javascript_tag "observeSearchfield('principal_search', null, '#{ j show_more_members_project_path(project, format: 'js') }')" %>
+
+  <div class="objects-selection principals-block-list clear members-list list ">
+    <%= render partial: 'modal_project_members_list', locals: {project_members: project_members, project: project} %>
+  </div>
+<% end %>

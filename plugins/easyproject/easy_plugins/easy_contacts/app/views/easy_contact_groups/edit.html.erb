@@ -1,0 +1,17 @@
+<div class="easy-contact-form-container">
+  <h2><%= l(:title_easy_contact_groups_edit) %></h2>
+
+  <%= labelled_form_for(@easy_contact_group, :url => {:controller => :easy_contact_groups, :action => :update, :id => @easy_contact_group.id, :project_id => @project, :back_url => back_url}, :html => {:id => 'easy-contact-form', :class => 'form-box'}) do |f| %>
+    <div class="box tabular">
+      <%= error_messages_for @easy_contact_group -%>
+
+      <%= render :partial => 'form', :locals => {:f => f, :available_groups => @available_groups} -%>
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit l(:button_update), :class => 'button-positive' -%>
+      <%= link_to l('easy_contacts_toolbar.contact_exit'), params[:back_url] || {:controller => 'easy_contact_groups'}, :class => 'button' -%>
+    </div>
+  <% end %>
+</div>

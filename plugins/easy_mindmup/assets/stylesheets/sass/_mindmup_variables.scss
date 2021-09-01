@@ -1,0 +1,66 @@
+$mindmup-default-node-color: #e5e5e5;
+$mindmup-default-schemes: (
+        #f9f6a8,
+        #fbe3bd,
+        #f3cccf,
+        #eabdec,
+        #d0b8ec,
+        #c9c9f9,
+        #c9dcff,
+        #d2f4f0,
+        #d2ecc9,
+        #e1ee9e,
+        #dadace,
+        #dbd1c7
+);
+$progress-0: white;
+$progress-1: $mindmup__color--positive;
+$progress-2: $color-important;
+@for $i from 1 through length($mindmup-default-schemes) {
+        $mindmup-default-schemes: append($mindmup-default-schemes, darken(nth($mindmup-default-schemes,$i),25%),comma)
+}
+$mindmup-schemes: (
+        priority: (
+                hsl(hue($mindmup__color--negative), 80%, 90%),
+                hsl(hue($mindmup__color--negative), 80%, 80%),
+                hsl(hue($mindmup__color--positive), 80%, 90%),
+                hsl(hue($mindmup__color--positive), 80%, 80%),
+                hsl(hue($mindmup__color--main), 80%, 90%),
+                hsl(hue($mindmup__color--main), 80%, 80%),
+                hsl(hue(#EF771A), 80%, 90%),
+                hsl(hue(#EF771A), 80%, 80%),
+                #add7f3, // redmine low
+                #e5e5e5, // redmine normal
+                #fcc,    // redmine high
+                #ffb4b4  // redmine urgent
+        ),
+        status: join((), $mindmup-default-schemes),
+        tracker: join((), $mindmup-default-schemes),
+        assignee: join((), $mindmup-default-schemes),
+        milestone: join((), $mindmup-default-schemes),
+        progress: (
+                $mindmup-default-node-color,
+                mix($progress-1, $progress-0, 10%),
+                mix($progress-1, $progress-0, 25%),
+                mix($progress-1, $progress-0, 45%),
+                mix($progress-1, $progress-0, 70%),
+                $progress-1),
+        budget: (
+                  hsl(hue($mindmup__color--negative), 80%, 90%),
+                  mix($mindmup__color--positive, white, 45%),
+                  $mindmup-default-node-color,
+        ),
+        spentTimeRatio: (
+                $mindmup-default-node-color,
+                mix($progress-1, $progress-0, 15%),
+                mix($progress-1, $progress-0, 30%),
+                mix($progress-1, $progress-0, 45%),
+                mix($progress-1, $progress-0, 60%),
+                $progress-1,
+                mix($progress-2, $progress-0, 65%),
+                mix($progress-2, $progress-0, 75%),
+                mix($progress-2, $progress-0, 85%),
+                mix($progress-2, $progress-0, 95%),
+                )
+) !default;
+$mindmup__font-family: 'Ubuntu', 'Open Sans', sans-serif !default; //type

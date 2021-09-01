@@ -1,0 +1,36 @@
+$mimimal-col-width: 100px;
+
+.ant-calendar-picker-input {
+    cursor: text;
+    background-color: inherit;
+}
+.ant-form-item {
+    margin-bottom: $gap;
+}
+.modal-summary {
+    padding-top: 2 * $gap;
+    .ant {
+        &-statistic {
+            padding: 0 $gap;
+            margin-bottom: $gap;
+            &-content {
+                font-size: 1.25 * $font-size--big;
+            }
+        }
+        &-row-flex {
+            flex-wrap: wrap;
+            justify-content: left;
+            margin-bottom: $gap;
+            .ant-col {
+                min-width: $mimimal-col-width;
+            }
+        }
+    }
+}
+.ant-modal-content .footer-buttons {
+    width: 100%;
+    text-align: center;
+}
+.ant-modal-content input.ant-input {
+    background: #fff;
+}

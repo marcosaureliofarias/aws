@@ -1,0 +1,292 @@
+<% more_attributes_collapsed = !toggle_button_expanded?('hide_more_attributes_easy_crm_case', User.current, false); editable = @easy_crm_case.editable? %>
+
+<div id="crm-detail">
+  <div class="easy-entity-details crmcase details multieditable-container" data-url="<%= url_to_entity(@easy_crm_case, :format => 'json') %>">
+    <div class="easy-entity-details-header easy-dropper-target easy-drop-crmcase" id="crmcase-detail-header" data-drop-action="easy_crm_case" data-entity-id="<%= @easy_crm_case.id %>" data-issue-show="1">
+      <div class="contextual">
+        <% if @easy_crm_case.need_reaction? %>
+          <span class="upper red"><%= l(:label_easy_crm_case_need_reaction) %></span>
+        <% end %>
+        <% if @easy_crm_case.is_canceled? %>
+          <span class="red"><%= l(:label_canceled) %></span>
+        <% end %>
+      </div>
+      <h2 data-entity-id="<%= @easy_crm_case.id %>" data-entity-type="EasyCrmCase" data-handler="true">
+        <%= avatar(@easy_crm_case.assigned_to, { style: :small }).to_s.html_safe %>
+        <% if EasyUserType.easy_type_partner.any? && @easy_crm_case.external_assigned_to %>
+          <%= avatar(@easy_crm_case.external_assigned_to, { style: :small }).to_s.html_safe %>
+        <% end %>
+        <%= @easy_crm_case.to_s %>
+        <%= call_hook(:view_easy_crm_cases_show_header_bottom, easy_crm_case: @easy_crm_case) %>
+      </h2>
+
+      <div class="easy-entity-details-header-attributes<%= ' open' unless more_attributes_collapsed %>">
+        <table class="attributes">
+          <tbody>
+          <tr>
+            <th><%= EasyCrmCase.human_attribute_name(:account_manager) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('assigned_to_id') %>"
+                      data-name="easy_crm_case[assigned_to_id]"
+                      data-type="select"
+                      data-value="<%= @easy_crm_case.assigned_to_id %>"
+                      data-source="<%= j easy_autocomplete_path('assignable_users', :entity_type => 'EasyCrmCase', :entity_id => @easy_crm_case.id) %>">
+                        <%= @easy_crm_case.assigned_to ? link_to_user(@easy_crm_case.assigned_to) : '-' %>
+                </span>
+            </td>
+            <% if EasyUserType.easy_type_partner.any? %>
+              <th><%= EasyCrmCase.human_attribute_name(:external_account_manager) %>:</th>
+              <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('external_assigned_to_id') %>"
+                      data-name="easy_crm_case[external_assigned_to_id]"
+                      data-type="select"
+                      data-value="<%= @easy_crm_case.external_assigned_to_id %>"
+                      data-source="<%= j easy_autocomplete_path('assignable_users', :entity_type => 'EasyCrmCase', :entity_id => @easy_crm_case.id, :external => true) %>">
+                        <%= @easy_crm_case.external_assigned_to ? link_to_user(@easy_crm_case.external_assigned_to) : '-' %>
+                </span>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <th><%= EasyCrmCase.human_attribute_name(:contract_date) %>:</th>
+            <td>
+                <span class="<%= 'overdue' if @easy_crm_case.overdue? %> <%= 'multieditable' if @easy_crm_case.safe_attribute?('contract_date') %>"
+                      data-name="easy_crm_case[contract_date]"
+                      data-type="dateui"
+                      data-value="<%= @easy_crm_case.contract_date %>">
+                        <%= @easy_crm_case.contract_date ? format_date(@easy_crm_case.contract_date) : '-' %>
+                </span>
+            </td>
+            <th><%= EasyCrmCase.human_attribute_name(:easy_crm_case_status) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('easy_crm_case_status_id') %>"
+                      data-name="easy_crm_case[easy_crm_case_status_id]"
+                      data-type="select"
+                      data-value="<%= @easy_crm_case.easy_crm_case_status_id %>"
+                      data-source="<%= j easy_autocomplete_path('easy_crm_case_statuses') %>">
+                        <%= @easy_crm_case.easy_crm_case_status ? @easy_crm_case.easy_crm_case_status.name : '-' %>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <th><%= EasyCrmCase.human_attribute_name(:next_action) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('next_action') %>"
+                      data-name="easy_crm_case[next_action]"
+                      data-type="dateui"
+                      data-value="<%= @easy_crm_case.next_action_date %>">
+                        <% if @easy_crm_case.next_action %>
+                          <%= format_next_action(@easy_crm_case) %>
+                        <% else %>
+                          -
+                        <% end %>
+                </span>
+            </td>
+            <th><%= EasyCrmCase.human_attribute_name(:email) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('email') %>"
+                      data-name="easy_crm_case[email]"
+                      data-type="text"
+                      data-value="<%= @easy_crm_case.email %>">
+                        <%= @easy_crm_case.email ? @easy_crm_case.email : '-' %>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <th><%= EasyCrmCase.human_attribute_name(:price) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('price') %>"
+                      data-name="easy_crm_case[price]"
+                      data-type="text"
+                      data-value="<%= @easy_crm_case.price %>">
+                        <%= @easy_crm_case.price ? format_price(@easy_crm_case.price, @easy_crm_case.currency) : '-' %>
+                </span>
+            </td>
+            <th><%= EasyCrmCase.human_attribute_name(:telephone) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('telephone') %>"
+                      data-name="easy_crm_case[telephone]"
+                      data-type="text"
+                      data-value="<%= @easy_crm_case.telephone %>">
+                        <%= @easy_crm_case.telephone ? @easy_crm_case.telephone : '-' %>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <th><%= EasyCrmCase.human_attribute_name(:author_id) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('author_id') %>"
+                      data-name="easy_crm_case[author_id]"
+                      data-type="select"
+                      data-value="<%= @easy_crm_case.author_id %>"
+                      data-source="<%= j easy_autocomplete_path('assignable_users', :entity_type => 'EasyCrmCase', :entity_id => @easy_crm_case.id) %>">
+                        <%= @easy_crm_case.author ? link_to_user(@easy_crm_case.author) : '-' %>
+                </span>
+            </td>
+            <th><%= l(:field_created_at) %>:</th>
+            <td><%= format_time(@easy_crm_case.created_at) %></td>
+          </tr>
+          <tr>
+            <th><%= l(:label_easy_crm_case_customer) %>:</th>
+            <td>
+              <% if (contact = @easy_crm_case.main_easy_contact) %>
+                <% contact_link_name = User.current.visible_contact_via_user_type(contact) ? contact.name : contact.id %>
+                <%= link_to(contact_link_name, easy_contact_path(contact), {class: entity_css_icon(contact)}) %>
+              <% else %>
+                <%= '-' %>
+              <% end %>
+            </td>
+            <th><%= EasyCrmCase.human_attribute_name(:email_cc) %>:</th>
+            <td>
+                <span class="<%= 'multieditable' if @easy_crm_case.safe_attribute?('email_cc') %>"
+                      data-name="easy_crm_case[email_cc]"
+                      data-type="text"
+                      data-value="<%= @easy_crm_case.email_cc %>">
+                        <%= @easy_crm_case.email_cc ? @easy_crm_case.email_cc : '-' %>
+                </span>
+            </td>
+          </tr>
+          <tr>
+            <% if @easy_crm_case.project.module_enabled?(:time_tracking) && User.current.allowed_to?(:view_time_entries, @easy_crm_case.project) %>
+              <th><%= l(:label_spent_time) %></th>
+              <td><%= link_to(easy_format_hours(@easy_crm_case.total_spent_hours), easy_time_entries_path(:project_id => @easy_crm_case.project, :period => 'all', :set_filter => '1', :entity_id => @easy_crm_case, :entity_type => 'EasyCrmCase'), :title => l(:sidebar_issue_spent_time)) %></td>
+            <% end %>
+          </tr>
+          <%= call_hook(:view_easy_crm_cases_show_attributes_bottom, easy_crm_case: @easy_crm_case) %>
+          </tbody>
+        </table>
+        <% custom_field_values = @easy_crm_case.visible_custom_field_values %>
+        <% if custom_field_values.any? %>
+          <hr/>
+          <div id="crm_case_detail_custom_fields" class="custom-fields">
+            <%= render_show_entity_custom_fields(@easy_crm_case, @easy_crm_case.grouped_custom_field_values(custom_field_values), 'two_columns', inline_editable: @easy_crm_case.editable?) -%>
+          </div>
+        <% end %>
+
+        <% if !@easy_crm_case.lead_value.blank? || !@easy_crm_case.probability.blank? %>
+          <hr/>
+          <div class="custom-fields">
+            <table class="attributes">
+              <th><%= EasyCrmCase.human_attribute_name(:lead_value) %>:</th>
+              <td><%= @easy_crm_case.lead_value %></td>
+              <th><%= EasyCrmCase.human_attribute_name(:probability) %>:</th>
+              <td><%= @easy_crm_case.probability %></td>
+            </table>
+          </div>
+        <% end %>
+
+        <%= call_hook(:view_easy_crm_cases_show_details_bottom, :easy_crm_case => @easy_crm_case) %>
+
+        <%= render_more_attributes_button('hide_more_attributes_easy_crm_case', User.current.id, more_attributes_collapsed) %>
+
+      </div>
+    </div>
+
+    <% if @easy_crm_case.safe_attribute?('description') %>
+      <div class="easy-contextual">
+        <%= link_to_in_place_notes_editor(content_tag(:span, l(:button_edit), class: 'tooltip'),
+                                          "easy_crm_case_#{@easy_crm_case.id}_description_edit",
+                                          description_edit_easy_crm_case_path(@easy_crm_case, format: 'js'),
+                                          title: l(:button_edit),
+                                          accesskey: accesskey(:edit),
+                                          class: 'icon icon-edit') %>
+      </div>
+    <% end %>
+
+    <div <% if @easy_crm_case.description.present? %>class="wiki easy-entity-details-description kicker"<% end %> id="show_easy_crm_case_description">
+      <%= textilizable(@easy_crm_case, :description, { attachments: @easy_crm_case.attachments }) %>
+    </div>
+
+    <% if @easy_crm_case.has_attachments? %>
+      <%= link_to_attachments( @easy_crm_case, thumbnails: true, enable_toggling: true, only_mails: true, label: l(:label_email_address_plural), toggling_uniq_id: 'emails') %>
+      <%= link_to_attachments( @easy_crm_case, thumbnails: true, enable_toggling: true, without_mails: true, toggling_uniq_id: 'attachments') %>
+    <% end %>
+  </div>
+
+  <%= render :partial => 'easy_crm_case_items/items_container_show', :locals => {:easy_crm_case => @easy_crm_case, :project => @project} %>
+
+  <%= call_hook(:view_easy_crm_case_entity_cards_top, :easy_crm_case => @easy_crm_case, :project => @easy_crm_case.project) %>
+
+  <%= render_easy_entity_assignments(@easy_crm_case, EasyContact, :project => @project, :referenced_collection_name => :easy_contacts, :easy_query_class => EasyContactQuery, :heading => l(:label_contact_references), :context_menus_path => :context_menus_easy_contacts_path) %>
+  <%= render_easy_entity_assignments(@easy_crm_case, Issue, :project => @project) %>
+  <%= render_easy_entity_assignments(@easy_crm_case, Project, :project => @project, :referenced_collection_name => :related_projects, :easy_query_class => EasyProjectQuery, :context_menus_path => :context_menus_easy_project_path) %>
+  <%= call_hook(:view_easy_crm_case_entity_cards_bottom, :easy_crm_case => @easy_crm_case, :project => @easy_crm_case.project) %>
+
+  <%= call_hook(:view_easy_crm_cases_show_journals_top, :easy_crm_case => @easy_crm_case, :project => @project) %>
+
+  <% if User.current.allowed_to?(:edit_easy_crm_cases, @easy_crm_case.project) %>
+    <div id="merge_to_container">
+      <%= render :partial => 'merge_to' %>
+    </div>
+  <% end %>
+
+  <%= render partial: 'common/entity_tabs', locals: {tabs: easy_crm_case_tabs(@easy_crm_case), tabs_container: 'crm-detail'} %>
+
+  <% if editable %>
+    <div id="update" class="easy-entity-update" style="display:none;"></div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.main(function () {
+    EASY.utils.contentHeightSwitchable('easy_long_note', '<%= j l(:label_note_show_more) %>', '<%= j l(:label_note_show_less) %>');
+    EASY.journals.collapseUnnecessary();
+  });
+</script>
+
+<% ### PAGE CUSTOMS ##########################################################      %>
+
+<% html_title @easy_crm_case.to_s %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_edit), edit_easy_crm_case_path(@easy_crm_case), {
+    :class => "icon icon-edit #{params[:dd].blank? ? 'button-positive' : 'button'} sidebar-link_to-update",
+    :id => 'issue-sidebar-link_to-update',
+    :remote => true,
+    :accesskey => accesskey(:issue_edit),
+    :title => l(:sidebar_issue_button_update)
+  }) if @easy_crm_case.editable? %>
+  <%= link_to l(:button_easy_crm_add_sales_activity), "javascript:void(0)", class: 'icon icon-add button-positive button-outlined log-entity-action ' if EasySetting.value('show_easy_entity_activity_on_crm_case', @project) %>
+  <%= link_to(l(:button_easy_crm_add_item), edit_items_easy_crm_case_path(@easy_crm_case), :remote => true, :title => l(:button_easy_crm_add_item), :class => 'icon icon-add button', :id => 'button_easy_crm_add_item_show') if EasySetting.value('easy_crm_use_items', @project) && @easy_crm_case.editable? %>
+  <%= call_hook(:view_easy_crm_case_layout_primary_actions_bottom, :easy_crm_case => @easy_crm_case, :project => @project) %>
+<% end %>
+
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render_menu_more(:easy_crm_case_sidebar_more_menu, @easy_crm_case, menu_more_class: 'menu-more-sidebar', menu_expander_class: 'button icon icon-add', hook: {name: :view_easy_crm_case_sidebar_bottom, options: {easy_crm_case: @easy_crm_case, project: @easy_crm_case.project}}) %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'easy_taggables/easy_taggables', :locals => {:entity => @easy_crm_case} %>
+  <% if User.current.allowed_to?(:add_easy_crm_case_watchers, @easy_crm_case.project) || User.current.allowed_to?(:view_easy_crm_case_watchers, @easy_crm_case.project) %>
+    <div id="sidebar-box-watchers_wrapper-container">
+      <%= render :partial => 'sidebar/issue_watchers', :locals => {:watched => @easy_crm_case} %>
+    </div>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar_exports do %>
+  <div class="other-formats links">
+    <% easy_other_formats_links(utm_content: 'easy_crm_case') do |f| %>
+      <%= f.link_to 'QR', :caption => 'QR', :title => l(:title_other_formats_links_qr), :remote => true %>
+      <%= call_hook(:view_easy_crm_case_other_formats_link_bottom, {:easy_crm_case => @easy_crm_case, :f => f}) %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+  <%= javascript_include_tag 'easy_crm', defer: true %>
+<% end %>
+
+<% include_calendar_headers_tags %>
+<% include_attachment_tags %>
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $('a.log-entity-action').on('click', function () {
+      var tab = $('[data-tab-id="tab-easy-entity-activity"]');
+      EntityTabs.showAjaxTab(tab, '<%= j(render_tab_easy_crm_case_path(@easy_crm_case, tab: 'easy_entity_activity')) %>');
+      scrollTo(tab);
+    });
+  });
+</script>

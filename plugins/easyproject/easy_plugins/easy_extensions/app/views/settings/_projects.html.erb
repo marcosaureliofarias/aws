@@ -1,0 +1,125 @@
+<%= form_tag({:action => 'edit', :tab => 'projects'}, :class => 'form-box') do %>
+  <div class="box tabular settings">
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <fieldset>
+          <legend><%= l(:label_module_plural) -%></legend>
+          <p>
+            <%= setting_multiselect(:default_projects_modules, Redmine::AccessControl.available_project_modules.collect {|m| [l_or_humanize(m, :prefix => "project_module_"), m.to_s]}) -%>
+          </p>
+        </fieldset>
+      </div>
+      <div class="splitcontentright">
+        <fieldset>
+          <legend><%= l(:label_column_group_other) -%></legend>
+          <p>
+            <%= hidden_field_tag 'easy_setting[project_fixed_activity]', false, :id => nil -%>
+            <% box = check_box_tag 'easy_setting[project_fixed_activity]', true, EasySetting.value('project_fixed_activity') -%>
+            <%= label_tag :easy_setting_project_fixed_activity, box + l(:field_global_fixing_activity), :class => 'checkbox inline' -%>
+          </p>
+          <p>
+            <%= hidden_field_tag 'easy_setting[enable_activity_roles]', false, :id => nil -%>
+            <% box = check_box_tag 'easy_setting[enable_activity_roles]', true, EasySetting.value('enable_activity_roles') -%>
+            <%= label_tag :easy_setting_enable_activity_roles, box + l(:field_enable_activity_roles), :class => 'checkbox inline' -%>
+          </p>
+          <p><%= setting_check_box :default_projects_public -%></p>
+          <p>
+            <%= hidden_field_tag 'easy_setting[default_project_inherit_members]', false, :id => nil -%>
+            <% box = check_box_tag 'easy_setting[default_project_inherit_members]', true, EasySetting.value('default_project_inherit_members') -%>
+            <%= label_tag :easy_setting_default_project_inherit_members, box + l(:setting_default_project_inherit_members), :class => 'checkbox inline' -%>
+          </p>
+          <p>
+            <%= hidden_field_tag 'easy_setting[project_display_identifiers]', '0', :id => nil %>
+            <% box = check_box_tag 'easy_setting[project_display_identifiers]', true, EasySetting.value('project_display_identifiers') %>
+            <%= label_tag 'easy_setting[project_display_identifiers]', box + l(:setting_project_display_identifiers), :class => 'checkbox inline' %>
+          </p>
+          <p>
+            <%= label_tag 'easy_setting[use_default_user_type_role_for_new_project]', class: 'checkbox inline' do %>
+              <%= hidden_field_tag 'easy_setting[use_default_user_type_role_for_new_project]', '0', id: nil %>
+              <%= check_box_tag 'easy_setting[use_default_user_type_role_for_new_project]', true, EasySetting.value('use_default_user_type_role_for_new_project') %>
+              <%= l(:setting_use_default_user_type_role_for_new_project) %>
+            <% end %>
+          </p>
+          <script type="text/javascript">
+            EASY.schedule.late(function(){
+              $("#easy_setting_project_display_identifiers").change(function(event) {
+                $('#sequential_project_identifiers_container').toggle();
+              });
+            });
+          </script>
+          <p id="sequential_project_identifiers_container" style="<%= 'display:none' unless EasySetting.value('project_display_identifiers') -%>">
+            <%= setting_check_box :sequential_project_identifiers -%>
+          </p>
+          <p>
+            <%= setting_select :new_project_user_role_id,
+                               Role.givable.collect {|r| [r.name, r.id.to_s]},
+                               :blank => "--- #{l(:actionview_instancetag_blank_option)} ---" -%>
+          </p>
+          <p>
+            <%= label_tag :easy_setting_new_subproject_user_role_id, l(:label_easy_setting_new_subproject_user_role_id) -%>
+            <%= select_tag('easy_setting[new_subproject_user_role_id]', options_for_select([["--- #{l(:actionview_instancetag_blank_option)} ---",'']] + Role.givable.collect {|r| [r.name, r.id.to_s]}, EasySetting.value('new_subproject_user_role_id'))) -%>
+            <%= content_tag :em, l(:label_easy_setting_new_subproject_user_role_id_info) , :class => 'help' -%>
+          </p>
+          <!--p>
+            <%#= content_tag(:label, l(:setting_default_projects_tree_display)) + select_tag('easy_setting[default_projects_tree_display]', options_for_select([[l(:setting_projects_tree_display_with_siblings),'with_siblings'],[l(:setting_projects_tree_display_without_siblings),'without_siblings']], :selected => EasySetting.value('default_projects_tree_display').to_s)) -%>
+          </p-->
+          <p>
+            <%= hidden_field_tag 'easy_setting[project_calculate_start_date]', '0', :id => nil %>
+            <% box = check_box_tag 'easy_setting[project_calculate_start_date]', true, EasySetting.value('project_calculate_start_date') %>
+            <%= label_tag 'easy_setting[project_calculate_start_date]', box + l(:setting_project_calculate_start_date), :class => 'checkbox inline' %>
+            <em class="help"><%= l(:text_easy_settings_calculate_start_date_info) -%></em>
+          </p>
+          <p>
+            <%= hidden_field_tag 'easy_setting[project_calculate_due_date]', '0', :id => nil %>
+            <% box = check_box_tag 'easy_setting[project_calculate_due_date]', true, EasySetting.value('project_calculate_due_date')  %>
+            <%= label_tag 'easy_setting[project_calculate_due_date]', box + l(:setting_project_calculate_due_date), :class => 'checkbox inline'%>
+            <em class="help"><%= l(:text_easy_settings_calculate_due_date_info) -%></em>
+          </p>
+          <p class="cols-4">
+            <%= label_tag l(:setting_default_activity_in_overall_activity) %>
+            <%= hidden_field_tag 'easy_setting[default_activity_in_overall_activity][]', '', :id => nil %>
+            <% EasyExtensions::EasyProjectSettings.available_event_types.each do |event| %>
+              <label class="inline">
+                <%= check_box_tag('easy_setting[default_activity_in_overall_activity][]', event, EasySetting.value('default_activity_in_overall_activity').try(:include?, event)) %>
+                <%= l("label_#{event.singularize}_plural") %>
+              </label>
+            <% end %>
+          </p>
+          <p>
+            <label for="easy_setting_project_completion_formula"><%= l(:label_settings_project_completion_formula) -%></label>
+            <%= select_tag 'easy_setting[project_completion_formula]', options_for_select(Project::COMPLETION_FORMULAS.collect{|c| [l("label_project_completion.#{c}"), c]}, EasySetting.value('project_completion_formula'))%>
+          </p>
+          <p>
+            <label for="easy_setting_project_default_indicator"><%= l(:label_settings_default_project_indicator) -%></label>
+            <label class="inline">
+              <%= radio_button_tag 'easy_setting[default_project_indicator]', '20', EasySetting.value('default_project_indicator') == '20' -%>
+              <%= l(:label_green) %>
+            </label>
+            <label class="inline">
+              <%= radio_button_tag 'easy_setting[default_project_indicator]', '0', EasySetting.value('default_project_indicator') == '0' -%>
+              <%= l(:label_no_color) %>
+            </label>
+            <%= content_tag :em, l(:label_settings_default_project_indicator_info) , :class => 'help' -%>
+          </p>
+          <%# <p> %>
+          <%#   <label for="project_destroy_preferred_hour"><%= l(:label_settings_project_destroy_preferred_hour) -% ></label> %>
+            <%#= select_tag 'easy_setting[project_destroy_preferred_hour]', options_for_select((0..23).map{|h| [h, h]}, EasySetting.value(:project_destroy_preferred_hour)) %>
+            <%#= content_tag :em, l(:label_settings_project_destroy_preferred_hour_info) , :class => 'help' -%>
+          <%# </p> %>
+          <%= call_hook(:view_settings_projects_form) %>
+        </fieldset>
+      </div>
+      <div class="splitcontentleft">
+        <fieldset>
+          <legend><%= l(:label_tracker_plural) -%></legend>
+          <p>
+            <%= setting_multiselect(:default_projects_tracker_ids, Tracker.sorted.collect {|t| [t.name, t.id.to_s]}) %>
+          </p>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save),:class => 'button-positive' %>
+  </div>
+<% end %>

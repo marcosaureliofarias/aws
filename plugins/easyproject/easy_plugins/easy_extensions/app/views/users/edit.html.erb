@@ -1,0 +1,12 @@
+<% default_url ||= {} %>
+<%= title [l(:label_user_plural), users_path], @user.login %>
+<%= render_tabs user_settings_tabs, params[:tab], { default_url: default_url } %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= render :partial => 'new_user_button' %>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:label_profile), user_path(@user), class: 'icon icon-user button-positive orange') %>
+  <%= link_to(l(:button_delete), user_path(@user), data: {confirm: l(:text_are_you_sure)}, method: :delete, class: 'icon icon-del button') if User.current != @user && @user.logged? %>
+  <%= easy_change_status_link(@user, additional_classes: 'button') if @user.logged? %>
+<% end %>

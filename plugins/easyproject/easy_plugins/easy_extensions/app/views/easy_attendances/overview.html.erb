@@ -1,0 +1,7 @@
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= render_easy_page_bottom_buttons(easy_attendances_layout_path(t: params[:t])) if @page_editable %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render partial: 'easy_attendances/sidebar_links' %>
+<% end %>

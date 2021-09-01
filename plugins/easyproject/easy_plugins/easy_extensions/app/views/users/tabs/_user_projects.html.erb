@@ -1,0 +1,13 @@
+<% unless @memberships.empty? %>
+  <div class="box">
+      <h3 id="user-profile-memberships-title"></h3>
+      <ul id="user-profile-memberships-list link-list">
+        <% @memberships.each do |membership| %>
+          <li class="link-list-item"><%= link_to(membership.project.family_name, project_path(membership.project)) %><br/>
+            <span class="small">(<%=h membership.roles.sort.collect(&:to_s).join(', ') %>, <%= format_date(membership.created_on) %>)</span></li>
+        <% end %>
+      </ul>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% end %>

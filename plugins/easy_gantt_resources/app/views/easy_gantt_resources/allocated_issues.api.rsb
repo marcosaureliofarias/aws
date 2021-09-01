@@ -1,0 +1,23 @@
+api.array :easy_resources_allocations do
+  @issues_data.each do |id, subject, hours, project_id, project_name|
+    api.issue do
+      api.id id
+      api.subject subject
+      api.hours hours
+      api.project_id project_id
+      api.project_name project_name
+    end
+  end
+end
+
+api.array :easy_reservations_allocations do
+  @reservations_data.each do |id, name, hours, project_id, project_name|
+    api.reservation do
+      api.id id
+      api.name name
+      api.hours hours
+      api.project_id project_id
+      api.project_name project_name
+    end
+  end
+end

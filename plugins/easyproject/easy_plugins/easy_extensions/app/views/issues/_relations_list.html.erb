@@ -1,0 +1,27 @@
+<% if @relations.present? %>
+  <div class="box">
+    <%= toggling_container('issue-relations', User.current, {:heading => l(:label_related_issues), :wrapping_heading_element_classes => 'icon icon-relation'}) do %>
+      <form action="">
+        <ul class="link-list issues issue-relations context-menu-container">
+          <% @relations.each do |relation| %>
+            <% other_issue = relation.other_issue(@issue) -%>
+            <li class="hascontextmenu issue issue-<%= other_issue.id -%> <%= other_issue.css_classes %>">
+              <span class="subject">
+                <%= relation.to_s(@issue) {|other| link_to_issue(other, :project => Setting.cross_project_issue_relations?)}.html_safe %>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+      </form>
+    <%end%>
+  </div>
+<% end -%>
+<%= form_for(:relation, :remote => true,
+  :url => issue_relations_path(@issue),
+  :method => :post,
+  :html => {:id => 'new-relation-form', :style => (@relation ? '' : 'display: none;')}) do |f| %>
+  <div class="box">
+    <%= render :partial => 'issue_relations/form', :locals => {:f => f}%>
+  </div>
+<% end %>
+<%= context_menu issues_context_menu_path, 'table.issues.issue-relations' %>

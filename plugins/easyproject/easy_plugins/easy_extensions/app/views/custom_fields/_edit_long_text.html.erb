@@ -1,0 +1,20 @@
+<% form_name_prefix ||= custom_value.custom_field.class.customized_class.name.underscore
+   tag_id = custom_field_tag_id('longtext', custom_value.custom_field)
+   url = url.sub(/lock_version=\d*/, "lock_verrsion=#{customized_entity.try(:lock_version)}") -%>
+<h3 class="title"><%= l(:heading_edit_custom_field) -%></h3>
+<%= labelled_form_for(customized_entity, :url => url, :html => {:onsubmit => "EASY.customFields.submitCfLongTextInlineEdit(event, this, '#{tag_id}')", :method => :put, :class => 'tabular', :id => 'cf_long_text_form'}) do %>
+  <%= error_messages_for customized_entity %>
+  <div class="easy-lookup-modal-selector-container">
+    <p class="<%= custom_value.custom_field.name.tr(' ', '-') -%>">
+      <%= custom_field_label_tag(form_name_prefix, custom_value) +
+          custom_value.custom_field.format.edit_tag(self, tag_id,
+          custom_field_tag_name(form_name_prefix, custom_value.custom_field),
+          custom_value, {class: "#{custom_value.custom_field.field_format}_cf", data: { internal_name: custom_value.custom_field.internal_name }})
+      -%>
+    </p>
+    <p>
+      <%= submit_tag l(:button_update), :title => l(:button_update) %>
+      <%= link_to_function l(:button_close), 'hideModal(this)', :title => l(:button_close), :class => 'button-2' %>
+    </p>
+  </div>
+<% end %>

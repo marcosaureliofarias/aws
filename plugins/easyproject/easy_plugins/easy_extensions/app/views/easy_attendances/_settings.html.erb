@@ -1,0 +1,61 @@
+<div class="easy-user-working-time-activity-limit-settings">
+  <h3><%= l(:label_easy_user_working_time_activity_limit_settings) %></h3>
+  <p><%= l(:text_easy_user_working_time_activity_limit_settings) %></p>
+  <div class="splitcontent tabular">
+    <% EasyAttendanceActivity.where(at_work: false).order(:position).all.each do |activity| %>
+      <div class="splitcontentleft">
+        <p>
+          <% limit = @settings['easy_attendance_activity_user_limit'].try(:[], activity.id.to_s).to_f if @settings['easy_attendance_activity_user_limit'].try(:[], activity.id.to_s).present? %>
+          <%= label_tag("easy_attendance_activity_user_limit_#{activity.id}", activity.name) %>
+          <%= text_field_tag("settings[easy_attendance_activity_user_limit][#{activity.id}]", limit, size: 5) %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="help-block">
+    <em><%= l(:label_easy_user_working_time_activity_limit_settings_description) %></em>
+  </div>
+</div>
+<br />
+<%= call_hook :easy_attendance_settings_form, settings: @settings %>
+<div>
+  <% settings = Array(@settings['office_ip_range']).dup; %>
+  <p>
+    <%= label_tag(:settings_office_ip_range, l(:label_setting_attendance_office_ip_range)) %>
+  	<%= text_field_tag('settings[office_ip_range][]', settings.shift ) %>
+    <%= link_to('', 'javascript:void(0)', :class => 'icon-add', :title => l(:button_add), :id => 'easy_settings_add_more_ips') %>
+  </p>
+  <p><em><%= l(:text_setting_attendance_office_ip_range) %></em></p>
+  <div id="easy_attendace_more_ips_container">
+    <% settings.each do |s| %>
+      <p>
+        <%= text_field_tag('settings[office_ip_range][]', s ) %>
+        <%= link_to('', 'javascript:void(0)', :class => 'icon-del', :title => l(:button_delete)) %>
+      </p>
+    <% end -%>
+  </div>
+  <p>
+    <%= label_tag(:settings_ip_range_activity_id, l(:label_setting_attendance_ip_range_activity_id)) %>
+  	<%= select_tag('settings[ip_range_activity_id]', options_from_collection_for_select(EasyAttendanceActivity.all, :id, :name, @settings['ip_range_activity_id']), :include_blank => true) %>
+  </p>
+  <p>
+    <%= label_tag(:settings_outside_ip_range_activity_id, l(:label_setting_attendance_outside_ip_range_activity_id)) %>
+  	<%= select_tag('settings[outside_ip_range_activity_id]', options_from_collection_for_select(EasyAttendanceActivity.all, :id, :name, @settings['outside_ip_range_activity_id']), :include_blank => true) %>
+  </p>
+  <p>
+    <%= label_tag(:settings_attendance_round, l(:label_setting_attendance_round)) %>
+    <%= select_tag('settings[settings_attendance_round]', options_for_select([[l(:one, scope: :round_values), '1'], [l(:five, scope: :round_values), '5'], [l(:ten, scope: :round_values), '10'], [l(:quarter, scope: :round_values), '15'], [l(:half, scope: :round_values), '30']], @settings['settings_attendance_round'] || EasyAttendance::ROUND_MIN_TO)) %>
+  </p>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $("#easy_settings_add_more_ips").click(function(event) {
+      $("#easy_attendace_more_ips_container").append($("<p/>").html("<%=j text_field_tag('settings[office_ip_range][]', '', :placeholder => l(:label_next)) %>").append("&nbsp;<%=j link_to('', 'javascript:void(0)', :class => 'icon-del', :title => l(:button_delete)) -%>"));
+    });
+    $(document).on('click', '#easy_attendace_more_ips_container input + a.icon-del', function(event){
+      $(this).closest('p').remove();
+    })
+  });
+</script>

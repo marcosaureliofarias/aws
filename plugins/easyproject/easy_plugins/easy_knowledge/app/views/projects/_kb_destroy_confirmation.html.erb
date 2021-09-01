@@ -1,0 +1,4 @@
+<% issue_ids, journal_ids = @project_to_destroy.issues.select(:id).to_sql, @project_to_destroy.issues.joins(:journals).select('journals.id').to_sql %>
+<% if EasyKnowledgeStory.where("(entity_id IN (#{issue_ids} AND entity_type = 'Issue') OR (entity_id IN (#{journal_ids}) AND entity_type = 'Journal'))").exists? %>
+  <%= l(:text_project_with_kb_destroy_confirmation) -%>
+<% end %>

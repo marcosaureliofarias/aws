@@ -1,0 +1,113 @@
+<%-
+modul_uniq_id ||= EasyUtils::UUID.generate
+total_week = 0.0
+display_hours_info = local_assigns.fetch(:display_hours_info, false)
+unless defined?(easy_user_working_time_calendar)
+  easy_user_working_time_calendar = nil
+end
+-%>
+<div class="easy-calendar">
+<table class="cal">
+  <thead>
+    <tr>
+      <th scope="col" title="<%= l(:label_week) %>" class="week-number"></th>
+      <% 7.times do |i| %>
+        <th scope="col"><%= day_name( (calendar.first_wday+i)%7 ) %></th>
+      <% end %>
+      <% if display_hours_info %>
+        <th><%= l(:field_hours) %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% day = calendar.startdt
+      while day <= calendar.enddt %>
+        <% day_events = calendar.sorted_events_on(day) %>
+        <% holiday = easy_user_working_time_calendar.holiday(day) unless easy_user_working_time_calendar.nil? %>
+        <%= ("<td class='week-number' title='#{ l(:label_week) }'>#{(day+(11-day.cwday)%7).cweek}</td>").html_safe if day.cwday == calendar.first_wday %>
+        <td class="<%= easy_user_working_time_calendar ? ' ' + easy_user_working_time_calendar.css_classes(day) : (' today' if User.current.today == day) -%>">
+          <div class="easy-dropper-target easy-drop-calendar easy-calendar-inside common-calendar" data-calendar-day="<%= day %>">
+            <p class="day-num <%='holiday' if holiday %>" id="<%= "#{modul_uniq_id}-day-num-#{day.month}-#{day.day}"%>">
+              <%= day.day %>
+              <% if holiday %>
+                <span class="tooltip">
+                  <%= holiday.name %>
+                </span>
+              <% end %>
+            </p>
+            <% if display_hours_info %>
+              <div class="calendar-hours-info">
+                <%-
+                  attendance_events = day_events.select{|x| x.is_a? EasyAttendances::EasyAttendanceCalendarDay}
+                  hours = attendance_events.inject(0.0) {|sum, x| sum + x.events.values.flatten.inject(0.0) {|summ, y| summ + y.spent_time_on(day).to_f}}.to_f
+                  total_week += hours
+                -%>
+                <p><%= easy_format_hours(hours) %></p>
+              </div>
+            <% end %>
+            <div class="day-content" id="<%= "#{modul_uniq_id}_#{day}" %>">
+              <% day_events.each do |i| %>
+              <% if i.is_a? Issue %>
+                <% g_uuid = EasyUtils::UUID.generate -%>
+                <div class="<%= i.css_classes %> <%= 'starting' if day == i.start_date %> <%= 'ending' if day == i.due_date %>">
+                  <%= "#{i.project} -" unless @project && @project == i.project %>
+                  <%= link_to_issue i, :truncate => 30, :html => {:id => "el-#{g_uuid}"} %>
+                  <div id="tooltip-<%= g_uuid -%>" style="display: none;" class="tooltip"><%= render_issue_tooltip i %></div>
+                  <script type="application/javascript">
+                    EASY.schedule.late(function(){
+                      var uuid = '<%= g_uuid %>';
+                      new easyClasses.EasyTooltip($('#tooltip-'+uuid).html(), $('#el-' + uuid), 0, -30);
+                    }, -5);
+                  </script>
+                </div>
+              <% elsif i.is_a? Project %>
+                <span class="icon icon-package">
+                  <%= "#{i} -" -%>
+                  <% issues = i.issues.select{|is| is.due_date == day}
+                  shared_versions = i.shared_versions.select{|sh| sh.due_date == day} -%>
+                  <% if issues.any? -%>
+                    <% issues.each do |issue| -%>
+                      <%= link_to_issue issue -%>
+                    <% end -%>
+                  <% elsif shared_versions.any? -%>
+                    <% shared_versions.each do |shared_version| -%>
+                      <%= link_to_version shared_version -%>
+                    <% end -%>
+                  <% end -%>
+                </span>
+              <% elsif i.is_a? EasyAttendances::EasyAttendanceCalendarDay %>
+                <% i.events.each do |user, user_events| %>
+                  <% user_events.each do |event| %>
+                      <%= render :partial => 'easy_attendances/calendar_event', :locals => {:event => event, :day => day} -%>
+                  <% end -%>
+                <% end -%>
+              <% elsif i.is_a? EasyEntityActivity %>
+                  <div>
+                    <%= render :partial => 'easy_entity_activities/calendar_item', :locals => {:easy_entity_activity => i, :calendar => calendar, :day => day} -%>
+                  </div>
+              <% else %>
+                <span class="icon icon-package">
+                  <%= "#{i.project} -" unless @project && @project == i.project %>
+                  <%= link_to_version i%>
+                </span>
+              <% end %>
+            <% end %>
+            </div>
+
+          </div>
+        </td>
+        <% if day.cwday == calendar.last_wday %>
+          <% if display_hours_info %>
+            <td class="week-total"><%= format_locale_number(total_week) %></td>
+            <% total_week = 0.0 %>
+          <% end %>
+          <%= '</tr><tr>'.html_safe if day!=calendar.enddt %>
+        <% end %>
+        <% day = day + 1
+      end %>
+
+    </tr>
+  </tbody>
+</table>
+</div>

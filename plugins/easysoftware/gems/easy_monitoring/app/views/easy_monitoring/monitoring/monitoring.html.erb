@@ -1,0 +1,4 @@
+<!-- __EP_.O.K.__ SITE: <%= EasyMonitoring::Metadata.instance.host_name %> -->
+<% EasyMonitoring::Metadata.instance.each do |key, value| %>
+  <p><%= "#{key}: #{value}" %></p>
+<% end %>

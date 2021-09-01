@@ -1,0 +1,23 @@
+<div id='pipelines'>
+  <table class='list'>
+    <thead>
+      <tr>
+        <th title="<%= l('easy_jenkins.job_selection') %>"><%= l('easy_jenkins.job_selection') %></th>
+        <th title="<%= l('easy_jenkins.tasks_selection') %>"><%= l('easy_jenkins.tasks_selection') %></th>
+        <th title="<%= l('easy_jenkins.for_all_tasks') %>"></th>
+        <th title="<%= l('easy_jenkins.trackers_selection') %>"><%= l('easy_jenkins.trackers_selection') %></th>
+        <th title="<%= l('easy_jenkins.statuses_selection') %>"><%= l('easy_jenkins.statuses_selection') %></th>
+        <th title="<%= l('easy_jenkins.remove_pipeline') %>"><%= l('easy_jenkins.remove_pipeline') %></th>
+      </tr>
+    </thead>
+    <tbody class='pipelines'>
+      <%= f.fields_for :pipelines do |pipeline| %>
+        <%= render partial: 'pipeline_fields', locals: { setting: setting, f: pipeline } %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class='links' style='text-align: center; margin: 5px auto'>
+    <%= link_to_add_association l('easy_jenkins.add_pipeline'), f, :pipelines, class: 'button button-secondary icon icon-add', data: { 'association-insertion-node' => 'tbody.pipelines', 'association-insertion-method' => 'append'} %>
+  </div>
+</div>

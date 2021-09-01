@@ -1,0 +1,22 @@
+<%= title(@custom_title) if @custom_title %>
+<%= render @query, options: @query_options %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:label_easy_page_new), new_easy_page_path, class: 'icon icon-add button-positive' %>
+  <%= link_to l('easy_pages.label_built_in'), easy_pages_built_in_path, class: 'icon icon-list button' if @sidebar_buttons.include? :built_in %>
+  <%= link_to l('easy_pages.label_overview'), easy_pages_path, class: 'icon icon-list button' if @sidebar_buttons.include? :overview %>
+  <% if User.current.easy_lesser_admin_for?(:easy_xml_data_import) && Redmine::Plugin.installed?(:easy_data_templates) %>
+    <%= link_to l(:label_import_easy_page),
+                easy_xml_data_import_settings_path(back_url: request.fullpath),
+                remote: true,
+                class: 'icon icon-import button' %>
+  <% end %>
+<% end %>
+
+<% if @sidebar_buttons.include? :saved_queries %>
+  <% content_for :sidebar do %>
+    <%= render partial: 'sidebar/saved_easyqueries_by_type', locals: { query_class: @query.class, project: @project } %>
+  <% end %>
+<% end %>

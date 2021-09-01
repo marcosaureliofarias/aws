@@ -1,0 +1,72 @@
+<%
+query, easy_attendance, easy_user_working_time_calendar = @easy_page_modules_data[block_name][:query], @easy_page_modules_data[block_name][:easy_attendance], @easy_page_modules_data[block_name][:easy_user_working_time_calendar];
+first_non_closed_attendance = @easy_page_modules_data[block_name][:first_non_closed_attendance]
+formid = "easy-attendance-calendar-form-#{page_module.uuid.dasherize}"
+flash.now[:warning] = l('easy_attendance.notice.warning_missing_departure', :arrival_date => link_to(format_date(User.current.user_time_in_zone(first_non_closed_attendance.arrival)), {:controller => 'easy_attendances', :action => 'edit', :id => first_non_closed_attendance, :back_url => original_url})).html_safe if first_non_closed_attendance && controller_name != 'users'
+output = page_module.module_definition.output(page_module.settings)
+-%>
+
+<% if query %>
+    <div class="easy-attendances">
+      <div class="easy-calendar-header">
+        <div id="<%= modul_uniq_id -%>_easy_attendances_toolbar_container" class="toolbar">
+          <%= render :partial => 'easy_attendances/toolbar', :locals => {:modul_uniq_id => (modul_uniq_id + '_easy_attendances_toolbar_container'), :easy_attendance => easy_attendance, :user => user, :back_url => original_url} %>
+          <% if output == 'calendar' -%>
+            <%= render :partial => 'easy_page_modules/calendar_listing_links', :locals => {:formid => formid, :divid => modul_uniq_id, :page_module => page_module, :period => @easy_page_modules_data[block_name][:period], :calendar => @easy_page_modules_data[block_name][:calendar]} -%>
+          <% end -%>
+        </div>
+      </div>
+      <% if output == 'calendar' -%>
+        <%= form_tag({}, {:id => formid, :class => 'hidden'}) do -%>
+          <%= hidden_field_tag 'original_url', original_url -%>
+          <%= hidden_field_tag 'uuid', page_module.uuid.dasherize -%>
+          <%= hidden_field_tag "#{block_name}[start_date]", @easy_page_modules_data[block_name][:start_date], id: "start-date-#{page_module.uuid.dasherize}", class: 'additional-data-for-module-reloading' -%>
+          <%= hidden_field_tag "#{block_name}[user_id]", user.id, class: 'additional-data-for-module-reloading' -%>
+
+          <%= global_filters_as_hidden_fields %>
+        <% end -%>
+
+        <%= render :partial => 'common/calendar', :locals => {:calendar => @easy_page_modules_data[block_name][:calendar], :modul_uniq_id => block_name, :easy_user_working_time_calendar => easy_user_working_time_calendar, :display_hours_info => true} -%>
+
+        <div class="legend cal easy-calendar-export">
+          <span class="starting"><%= l(:starting, :scope => [:easy_attendance, :calendar, :legend]) %></span>
+          <span class="ending"><%= l(:ending, :scope => [:easy_attendance, :calendar, :legend]) %></span>
+          <span class="starting ending "><%= l(:starting_ending, :scope => [:easy_attendance, :calendar, :legend]) %></span>
+          <span class="starting ending approval-status-1"><%= l(:pending, :scope => [:easy_attendance, :calendar, :legend]) %></span>
+          <span class="starting ending approval-status-3"><%= l(:rejected, :scope => [:easy_attendance, :calendar, :legend]) %></span>
+          <%= call_hook :view_easy_attendance_calendar_legend_from_the_right, { calendar: @calendar, easy_user_working_time_calendar: @easy_user_working_time_calendar } %>
+        </div>
+
+      <script type="text/javascript">
+        EASY.schedule.late(function () {
+          function addEasyCalendarAction(path, month, day) {
+            var add = $('<a><%= l :new, :scope => :easy_attendance -%></a>').attr({
+              'class': 'easy-attendance-calendar-add-quick-event icon icon-add',
+              'title': '<%= l :new, :scope => :easy_attendance -%>'
+            });
+            add.click(function () {
+              $.get(path, { modul_uniq_id: this.closest('td').getElementsByClassName("day-content")[0].id });
+            });
+            $('#<%= "#{block_name}" %>' + '-day-num-' + month + '-' + day).parent().append('<div class="calendar-actions">');
+            $('#<%= "#{block_name}" %>' + '-day-num-' + month + '-' + day + ' ~ .calendar-actions').append(add);
+          }
+
+          <% day = @easy_page_modules_data[block_name][:calendar].startdt
+          if User.current.allowed_to_globally?(:use_easy_attendances)
+            while day <= @easy_page_modules_data[block_name][:calendar].enddt %>
+          addEasyCalendarAction('<%= j new_easy_attendance_path(:arrival_at => day, :back_url => original_url).html_safe %>', <%= day.month %>, <%= day.day %>);
+          <% day += 1 %>
+          <% end
+          end %>
+        });
+      </script>
+    <% else -%>
+      <%= render :partial => 'easy_page_modules/easy_query_show', :locals => local_assigns.merge({ :entities => easy_page_modules_data[:prepared_result_entities], :groups_url => group_load_url_for_module(page_module, query), :options => { :hascontextmenu => true } }) %>
+      <%= context_menu(context_menus_easy_attendances_path, "##{modul_uniq_id}") %>
+    <% end -%>
+  </div>
+<% elsif page_module.is_a?(EasyPageTemplateModule) %>
+  <%= l(:label_easy_page_module_empty, :modulename => page_module.module_definition.translated_name).html_safe %>
+<% else %>
+  <%= l(:label_easy_page_module_settings_missing) %>
+<% end %>

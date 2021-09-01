@@ -1,0 +1,34 @@
+<%= form_tag({}, :id => 'issues-form') do -%>
+  <%= hidden_field_tag 'back_url', original_url %>
+  <table class="list issues">
+    <thead>
+      <tr>
+        <th style="display:none"></th>
+        <% query.columns.each do |column| -%>
+          <th><%= column.caption -%></th>
+        <% end -%>
+        <th></th>
+      </tr>
+    </thead>
+    <% previous_group = false -%>
+    <tbody>
+      <%- issue_list(issues) do |issue, level|
+        uniq_id = ''
+        if query.grouped?
+          group_column = query.group_by_column
+          group_value = group_column.value(issue)
+          uniq_id = "#{controller_name}_#{action_name}_#{block_name}_#{group_column.name}_#{group_value.hash}"
+          if group_value != previous_group -%>
+            <%= filter_plus_button(group_value.blank?, query.columns.size + 2, uniq_id, format_html_entity_attribute(issue.class, group_column, group_column.value(issue), {:entity => issue}), query.entity_count_by_group[group_value], user) %>
+            <% previous_group = group_value %>
+          <% end %>
+        <% end %>
+        <tr id="issue-<%= issue.id %>" class="hascontextmenu <%= issue.css_classes(User.current, level) -%> " <%= detect_hide_elements(uniq_id,user) %> onclick="EASY.utils.goToUrl('<%= issue_path(issue)) -%>', event)">
+          <td class="checkbox hide-when-print" style="display:none"><%= check_box_tag("ids[]", issue.id, false, :id => nil) %></td>
+          <% query.columns.each do |column| %><%= content_tag 'td', format_html_entity_attribute(issue.class, column, column.value(issue, {:params => params}), {:entity => issue, :editable => true}), :class => column.name %><% end %>
+          <td class="buttons"><%= link_to(l(:button_edit), {:controller => 'issues', :action => 'edit', :id => issue}, :class => 'issue-update button-positive', :title => l(:button_edit)) %></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+<% end -%>

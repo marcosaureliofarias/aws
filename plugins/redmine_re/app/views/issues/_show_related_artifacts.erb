@@ -1,0 +1,32 @@
+<% if @project && @project.module_enabled?(:requirements) %>
+  <% unless @issue.nil? %>
+
+    <div class="module box collapsible" data-toggle="requirements_childs_inner">
+
+      <div class="module-heading " onclick="EasyToggler.toggle(this.nextElementSibling, event);">
+        <span class="expander module-toggler"> </span>
+        <h3 class=" icon icon-tracker"><%= t(:re_asscociated_requirements) %></h3>
+      </div>
+
+      <div class="module-content" id="requirements_childs_inner" style="display: block;">
+        <div class="autoscroll__wrapper">
+          <div class="autoscroll ps-container ps-theme-default">
+            <table class="list issues descendants context-menu-container">
+              <tbody>
+              <% @issue.re_artifact_properties.each do |current_artifact| %>
+                <tr>
+                  <td class="status"><ins class="subject_icon <%= current_artifact.artifact_type.underscore %>"></ins>
+                    <%= link_to current_artifact.name, current_artifact	%>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+<%
+  active = params[:global_currency].presence || current_tab.settings['global_currency_defaults']
+%>
+
+<div class="global-filter">
+  <span class="global-filter__name"><%= l(:label_easy_currency) %></span>
+
+  <div class="global-filter__field">
+    <%= select_tag :global_currency, options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, active), prompt: "--- #{I18n.t(:label_in_modules)} ---" %>
+  </div>
+</div>

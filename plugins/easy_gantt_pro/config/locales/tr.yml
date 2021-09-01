@@ -1,0 +1,112 @@
+---
+tr:
+  button_create_easy_baseline: Temel çizgisi oluştur
+  easy_gantt_pro:
+    add_task_modal:
+      title: İş ekle
+    add_task:
+      body: İş (veya Kilometre Taşı) düğmesine tıklayarak veya grafikte herhangi bir
+        yere sürükleyerek yeni iş / kilometre taşı oluşturabilirsiniz.
+      title: 'Yardım: İş ekleme'
+    baselines:
+      confirm_delete: Bu temel çizgisini gerçekten silmek istiyor musunuz?
+      create_failed: Yeni temel çizgisi oluşturulamadı
+      delete_failed: Temel çizgisi silinemedi
+      error_missing_delete_permission: Temel çizgisini silme izniniz yok
+      error_not_saved: Temel çizgisini oluşturmadan önce projedeki tüm değişiklikleri
+        kaydetmelisiniz
+      label_baseline: Temel çizgisi
+      label_same: "-aynı-"
+      off_desc: Temel çizgilerini görüntülemek ve oluşturmak için Temel çizgisi proje
+        modülünü etkinleştirin.
+      off_link: Modül ayarları
+      off_title: Temel çizgisi proje modülü devre dışı
+    cashflow:
+      difference: Fark
+      expense: Gider
+      full_price: Tam fiyat
+      label_cashflow: Nakit Akışı
+      planned: Plan
+      planned_Cashflow: Planlanan Nakit Akışı
+      real: Gerçekleşen
+      real_Cashflow: Gerçek Nakit Akışı
+      revenue: Gelir
+      timeflow: EAC
+      total: Genel Toplam
+      total_price: Toplam fiyat
+      week: Hafta
+    critical:
+      hide_button: Kritik yolu gizle
+      legend_issues: Kritik yoldaki iş
+      show_button: Kritik yolu göster
+    lowest_progress:
+      label_progress_date: İlerleme tarihi
+    project_move:
+      error_opening_unsaved: Projeyi açmadan önce değişiklikleri kaydetmelisiniz.
+    resources:
+      label_resources: Kaynaklar
+    unfix_relations:
+      label_unfix_relations: İlişkilerdeki sabitlemeyi kaldır
+    warning_no_permission_to_edit: Düzenleme izniniz yok.
+  easy_gantt:
+    button:
+      bulk_edit: Toplu düzenleme
+      delayed_issue_filter: Gecikmiş işleri filtrele
+      show_lowest_progress_tasks: En düşük ilerleme tarihine sahip işleri göster
+      show_only_critical: Kritikleri filtrele
+    popup:
+      add_task:
+        heading: İş yardımı ekle
+        text: Yeni bir iş veya kilometre taşı, iş düğmesine (ya da  Kilometre Taşı
+          düğmesi) tıklanarak veya grafikte herhangi bir yere sürüklenerek oluşturulabilir
+      baseline:
+        heading: Temel çizgisi açıklama
+        heading_new_baseline: Yeni temel çizgisi
+        text: Daha fazla karşılaştırma için projenin bir kopyasını oluşturur
+      cashflow:
+        definition: EAC = "Tamamlanmada tahmin" - Şu an itibariyle, toplam projenin
+          ne kadara mal olacağını bekliyoruz?
+        difference: Fark (gerçek nakit akışı eksi planlanan nakit akışı "Gerçek -
+          Plan")
+        eac: EAC (geçmiş zaman ve şimdiki zaman gerçek Nakit Akışı "Gerçeklik" dir;
+          gelecek zamanda plan Nakit Akışı "Plan" dır)
+        heading: Nakit akışı tanımı
+        planned: Plan (Planlanan Nakit akışı)
+        real: Gerçeklik (Gerçek Nakit akışı)
+      critical:
+        heading: Kritik yol açıklaması
+        text: Projenin hedef tarihinde tamamlanması için zamanında tamamlanması gereken
+          bir proje planındaki en uzun faaliyet sırası. Kritik yoldaki bir etkinlik,
+          önce gelen etkinlik tamamlanana kadar başlatılamaz; Bir gün ertelenirse,
+          ertelenen etkinliği takip eden etkinlik bir gün önce tamamlanmadıkça, tüm
+          proje bir gün ertelenir. Kritik bir yolun düzgün çalışması için proje sadece
+          1 başlangıç ve 1 bitiş işine sahip olmalı ve işler ilişkilerle bağlantılı
+          olmalıdır.
+    scheme_by:
+      label_by_priority: Önceliğe göre
+      label_by_status: Duruma göre
+      label_by_tracker: İş tipine göre
+      label_color_by: Renklendirme
+    title:
+      delayed_issue_filter: Yalnızca ilerleme tarihi bugünden önceki işleri göster
+      show_only_critical: Yalnızca kritik yoldaki işleri göster
+  easy_pages:
+    modules:
+      easy_global_gantt: Global Gantt
+      easy_project_gantt: Proje Ganttı
+  easy_proposer:
+    easy_gantt:
+      index:
+        caption: Easy Gantt PRO
+        description: Easy Gantt PRO'ya gidin
+  heading_easy_gantts_issues: Easy Gantt PRO
+  label_show_lowest_progress_tasks: En düşük ilerlemeli işler
+  label_show_project_milestones: Proje kilometre taşlarını göster
+  label_show_spent_time_progress_tasks: Harcanan zamanı oranını göster
+  text_show_lowest_progress_tasks: En kötü ilerleme tarihine sahip işleri görüntüleme
+    (= iş tamamlama oranının gantt çubuğunda karşılık geldiği tarih)
+  text_show_project_milestones: Proje kilometre taşları proje çubuğunda gösterilecek
+  text_show_spent_time_progress_tasks: İşlerde ilerleme yerine harcanan zaman oranını
+    göster
+  warning_easy_gantt_recalculate_fixed_delay: Bu yeniden hesaplama, sistemdeki her
+    iş ilişkisinin gecikmesini etkiler. Devam edeceğine emin misin?

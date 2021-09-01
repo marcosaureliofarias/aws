@@ -1,0 +1,10 @@
+<% Rys::Feature.on('easy_actions') do %>
+  <%= link_to(l(:button_choose_sequence_template, scope: :easy_actions),
+              modal_index_easy_action_sequence_templates_path(
+                  entity_type: entity.class.name,
+                  entity_id:   entity.id,
+                  back_url:    easy_git_repository_path(entity)),
+              title:  l(:button_choose_sequence_template, scope: :easy_actions),
+              remote: true,
+              class:  'icon icon-puzzle button') %>
+<% end %>

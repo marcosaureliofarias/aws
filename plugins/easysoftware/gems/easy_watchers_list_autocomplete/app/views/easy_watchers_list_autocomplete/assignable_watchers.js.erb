@@ -1,0 +1,1 @@
+$('.easy_watchers_updatable_container').html("<%= j(render partial: 'easy_watchers_list_autocomplete/watchers_avatar_and_checkbox_with_groups_original', locals: {watchable: @entity, project: @project, object_name: 'issue', available_watcher_groups: @groups, available_watcher_users: @users }).html_safe %>");

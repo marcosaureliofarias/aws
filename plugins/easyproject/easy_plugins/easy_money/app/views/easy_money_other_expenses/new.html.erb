@@ -1,0 +1,59 @@
+<div class="easy-money-other-expense-container">
+  <h2 class="easy_money_form_title"><%= l(:label_easy_money_other_expense_new) %></h2>
+  <%= form_for(@easy_money_object, :as => :easy_money, :html => { :multipart => true, :id => 'easy-money-other-expense-form', :class => 'easy-money-form form-box' }) do |f| -%>
+    <%= error_messages_for @easy_money_object %>
+    <%= hidden_field_tag('back_url', params[:back_url], :id => nil) unless params[:back_url].blank? %>
+    <% if (@project.easy_money_settings.show_expected? || @project.easy_money_settings.use_travel_costs? || @project.easy_money_settings.use_travel_expenses?) && ((@project.easy_money_settings.expenses_type == 'sum' && @project.expected_expenses.size == 0) || @project.easy_money_settings.expenses_type == 'list') %>
+      <%= render :partial => 'easy_money/tabs_expenses', :locals => { :selected_entity_type => 'other_expense', :project => @project } %>
+    <% end %>
+    <br/>
+    <div class="box">
+      <%= render :partial => 'easy_money_other_expenses/form', :locals => { :f => f, :project => @project, :other_expense => @easy_money_object } %>
+    </div>
+    <div class="form-actions">
+      <%= f.submit l(:button_save), :class => 'button-positive' -%>
+      <%= f.submit l(:button_issue_create_and_continue), :name => 'continue', :class => 'link_new icon-save-issue button' -%>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :header_tags do -%>
+  <%= stylesheet_link_tag 'easy_money' -%>
+  <%= javascript_include_tag 'easy_money', defer: true -%>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'easy_money/index_sidebar' -%>
+<% end -%>
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    function submitNewForm(url) {
+      url += (url.indexOf('?') >= 0) ? '&' : '?';
+      url += $('#easy-money-other-expense-form').serialize();
+      window.location = url;
+    }
+
+    $("#expense_type_expected_expense").change(function() {
+      var url = '<%= url_for(:controller => 'easy_money_expected_expenses', :action => 'new', :only_path => false) -%>';
+      submitNewForm(url);
+    });
+
+    <% if @project.easy_money_settings.use_travel_expenses? %>
+      $("#expense_type_travel_expense").change(function() {
+        var url = '<%= url_for(:controller => 'easy_money_travel_expenses', :action => 'new', :only_path => false) -%>';
+        submitNewForm(url);
+      });
+    <% end %>
+
+    <% if @project.easy_money_settings.use_travel_costs? %>
+      $("#expense_type_travel_cost").change(function() {
+        var url = '<%= url_for(:controller => 'easy_money_travel_costs', :action => 'new', :only_path => false) -%>';
+        submitNewForm(url);
+      });
+    <% end %>
+    easyMoneyOnFormSubmit('easy-money-other-expense-form');
+  });
+</script>

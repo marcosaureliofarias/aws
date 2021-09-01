@@ -1,0 +1,4 @@
+<% time_entry_ids = params[:time_entry_ids] || @easy_invoice.time_entry_ids %>
+<% time_entry_ids.each do |x| %>
+  <%= hidden_field_tag 'easy_invoice[time_entry_ids][]', x %>
+<% end if time_entry_ids %>

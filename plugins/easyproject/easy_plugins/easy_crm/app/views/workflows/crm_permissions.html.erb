@@ -1,0 +1,90 @@
+<%= render :partial => 'action_menu' %>
+
+<%= title l(:label_workflow) %>
+<%= render :partial => 'tabs' %>
+
+<div class="tab-content">
+    <%= form_tag({}, id: 'workflow_form') do %>
+      <div class="autoscroll autoscroll">
+        <table class="list workflows fields_permissions">
+          <thead>
+            <tr>
+              <th></th>
+              <th colspan="<%= @statuses.length %>"><%=l(:label_easy_crm_case_status)%></th>
+            </tr>
+            <tr>
+              <td></td>
+              <% @statuses.each do |status| %>
+                <td style="width:<%= 75 / @statuses.size %>%;"><%=h status.name %></td>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @fields.each do |field, name| %>
+              <tr>
+                <td class="name">
+                  <%= name %> <%= content_tag('span', '*', class: 'required') if field_required?(field) %>
+                </td>
+                <% for status in @statuses -%>
+                  <td class="<%= @permissions[status.id][field].try(:join, ' ') if @permissions[status.id].present? %>">
+                    <% unless status == @statuses.last %>
+                        <span class="input-append">
+                    <% end %>
+                    <%= easy_crm_field_permission_tag(@permissions, status, field) %>
+                    <% unless status == @statuses.last %>
+                      <a href="#" class="repeat-value">&#187;</a>
+                      </span>
+                    <% end %>
+                  </td>
+                <% end -%>
+              </tr>
+            <% end %>
+            <% if @custom_fields.any? %>
+              <tr class="group open">
+                <td colspan="<%= @statuses.size + 1 %>">
+                  <span class="expander" onclick="toggleRowGroup(this);">&nbsp;</span>
+                  <%= l(:label_custom_field_plural) %>
+                </td>
+              </tr>
+              <% @custom_fields.each do |field| %>
+                <tr>
+                  <td class="name">
+                    <%= content_tag(:span, h(field.translated_name)) %>
+                    <%= content_tag(:span, '*', class: 'required') if field_required?(field) %>
+                  </td>
+                  <% @statuses.each do |status| -%>
+                    <td align="center" class="<%= @permissions[status.id][field.id.to_s].try(:join, ' ') if @permissions[status.id].present? %>">
+                      <% unless status == @statuses.last %>
+                        <span class="input-append">
+                      <% end %>
+                      <%= easy_crm_field_permission_tag(@permissions, status, field) %>
+                      <% unless status == @statuses.last %>
+                          <a href="#" class="repeat-value">&#187;</a>
+                        </span>
+                      <% end %>
+                    </td>
+                  <% end -%>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag l(:button_save), class: 'button-positive' %>
+      </div>
+    <% end -%>
+
+    <script type="text/javascript">
+      EASY.schedule.late(function(){
+        $("a.repeat-value").click(function(e) {
+          e.preventDefault();
+          var td = $(this).closest('td');
+          var selected = td.find("select").find(":selected").val();
+          td.nextAll('td').find("select").val(selected);
+        });
+      });
+    </script>
+
+  </div>
+

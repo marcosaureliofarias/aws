@@ -1,0 +1,11 @@
+<%= form_for(@easy_helpdesk_project, :html => {:class => 'tabular form-box', :id => 'easy_helpdesk_project_form'}) do |f| -%>
+  <%= hidden_field_tag :back_url, url_for(request.query_parameters.merge('tab' => 'helpdesk')) %>
+
+  <div class="gray-background" id="easy_helpdesk_project_form_container">
+    <%= render :partial => 'easy_helpdesk_projects/form', :locals => {:f => f, :options => {:hide_project => true}} %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+  </div>
+<% end %>

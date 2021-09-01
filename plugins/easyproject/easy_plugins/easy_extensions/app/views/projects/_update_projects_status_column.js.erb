@@ -1,0 +1,5 @@
+$('#context-menu').hide();
+<% @projects.each do |project| %>
+  <% project.status = status %>
+  $('#administration_projects_project-<%= project.id %> td.status').text('<%= project_named_status(project) %>');
+<% end %>

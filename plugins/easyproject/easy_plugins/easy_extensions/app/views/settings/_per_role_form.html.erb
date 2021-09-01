@@ -1,0 +1,75 @@
+<%
+  role_id = role.id if role
+  egtes = EasyGlobalTimeEntrySetting.find_or_initialize_by(:role_id => role_id)
+-%>
+<fieldset>
+  <legend><%= l(:text_easy_settings_time_entry_heading)  -%></legend>
+    <% if role.nil? %>
+      <%= fields_for :easy_setting do |f| %>
+        <p><span>
+          <% box = f.check_box :time_entries_locking_enabled, :checked => EasySetting.value('time_entries_locking_enabled')-%>
+          <%= f.label :time_entries_locking_enabled, box + l(:label_time_entries_locking_enabled) -%>
+        </span></p>
+        <%= call_hook(:view_settings_timeentries_form, :f => f) %>
+      <% end %>
+    <% end %>
+    <p>
+      <%= f.label :spent_on_limit_before_today, l(:text_easy_settings_time_entry_limit_create) -%>
+        <%= f.number_field :spent_on_limit_before_today, :size => 3, :maxlength => 3, :min => 0 %>
+      <%= l(:text_easy_settings_time_entry_limit_past) -%>.
+    </p>
+    <p>
+      <%= f.label :spent_on_limit_before_today_edit, l(:text_easy_settings_time_entry_limit_edit) -%>
+        <%= f.number_field :spent_on_limit_before_today_edit, :size => 3, :maxlength => 3, :min => 0 %>
+      <%= l(:text_easy_settings_time_entry_limit_past) -%>.
+    </p>
+    <p>
+      <%= f.label :spent_on_limit_after_today, l(:text_easy_settings_time_entry_limit_create) -%>
+        <%= f.number_field :spent_on_limit_after_today, :size => 3, :maxlength => 3, :min => 0 %>
+      <%= l(:text_easy_settings_time_entry_limit_future) -%>.
+    </p>
+    <p>
+      <%= f.label :spent_on_limit_after_today_edit, l(:text_easy_settings_time_entry_limit_edit) -%>
+       <%= f.number_field :spent_on_limit_after_today_edit, :size => 3, :maxlength => 3, :min => 0 %>
+      <%= l(:text_easy_settings_time_entry_limit_future) -%>.
+    </p>
+    <p>
+      <%= f.label :time_entry_daily_limit, l(:text_easy_settings_time_entry_daily_limit) -%>
+      <%= f.number_field :time_entry_daily_limit, :size => 3, :maxlength => 3, :min => 0 %>
+      <%= l(:label_hour_plural) -%>.
+    </p>
+    <p>
+      <em class="info"><%= l(:text_easy_settings_time_entry_limit_note) -%></em>
+    </p>
+</fieldset>
+<fieldset>
+  <p><span>
+    <% box = f.check_box :timelog_comment_editor_enabled, :checked => egtes.timelog_comment_editor_enabled -%>
+    <%= f.label :timelog_comment_editor_enabled, box + l(:label_timelog_comment_editor_enabled) -%>
+  </span></p>
+  <p><span>
+    <% box = f.check_box :time_entry_spent_on_at_issue_update_enabled, :checked => egtes.time_entry_spent_on_at_issue_update_enabled -%>
+    <%= f.label :time_entry_spent_on_at_issue_update_enabled, box + l(:label_time_entry_spent_on_at_issue_update_enabled) -%>
+  </span></p>
+  <p><span>
+    <% box= f.check_box :allow_log_time_to_closed_issue, :checked => egtes.allow_log_time_to_closed_issue %>
+    <%= f.label :allow_log_time_to_closed_issue, box + l(:label_allow_log_time_to_closed_issue) %>
+  </span></p>
+  <p><span>
+    <% box= f.check_box :required_issue_id_at_time_entry, :checked => egtes.required_issue_id_at_time_entry %>
+    <%= f.label :required_issue_id_at_time_entry, box + l(:label_easy_setting_required_issue_id_at_time_entry) %>
+    <% if Redmine::Plugin.installed?(:easy_attendances) %>
+      <em class='help'><%= l(:notice_easy_attendance_activity_logging_time) %></em>
+    <% end %>
+  </span></p>
+  <p><span>
+    <% box = f.check_box :show_time_entry_range_select, :checked => egtes.show_time_entry_range_select %>
+    <%= f.label :show_time_entry_range_select, box + l(:label_easy_setting_show_time_entry_range_select) %>
+  </span></p>
+  <p><span>
+    <% box = f.check_box :required_time_entry_comments, :checked => egtes.required_time_entry_comments %>
+    <%= f.label :required_time_entry_comments, box + l(:label_easy_setting_required_time_entry_comments) %>
+  </span></p>
+  <%= f.hidden_field :role_id, value: role_id %>
+</fieldset>
+

@@ -1,0 +1,56 @@
+<%
+  query_string_help_id = "query_string_help_#{modul_uniq_id}"
+  query_string_help_content_id = "query_string_help_content_#{modul_uniq_id}"
+%>
+
+<div id="<%= query_string_help_id %>" class="hide">
+  <%= toggle_link l('helper_module.button_show_help'), query_string_help_content_id, class: 'icon icon--help block' %>
+
+  <div id="<%= query_string_help_content_id %>" class="help hide">
+    <p>
+      The advance way how to filter records in a query.
+      <br>
+      QueryString is consist of filters joined by operators (AND, OR).
+      <br>
+      <pre>FILTER AND/OR FILTER AND/OR (FILTER AND/OR FILTER) ...</pre>
+    </p>
+
+    <p>
+      Every filter has format:
+    </p>
+
+    <ul style="font-family: monospace">
+      <li>FIELD OPERATOR VALUE</li>
+      <li>FIELD: available query filter name (status_id, done_ration, tracker_id)</li>
+      <li>OPERATOR:
+        <ul>
+          <li>"=" equals</li>
+          <li>"~" text contains</li>
+          <li>"<=" lesser or equal</li>
+          <li>">=" higher or equal</li>
+        </ul>
+      </li>
+      <li>VALUE:
+        <ul>
+          <li>a simple string: test</li>
+          <li>a quoted string: "test test test"</li>
+          <li>an array: [1, 2, 3]</li>
+        </ul>
+      </li>
+    </ul>
+
+    <strong>Examples</strong>
+
+    <p>
+      Show all tasks which have status (New=1) or are assigned to (Test=63)
+
+      <pre>status_id = 1 OR assigned_to_id = 63</pre>
+    </p>
+
+    <p>
+      Show all tasks with status (New=1) or are assigned to (Test=63, Test2=64, Test=65) and done_ration is above 50%.
+
+      <pre>status_id = 1 OR (assigned_to_id = [63, 64, 65] AND done_ration >= 50)</pre>
+    </p>
+  </div>
+</div>

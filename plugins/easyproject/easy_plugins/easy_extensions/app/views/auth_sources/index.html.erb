@@ -1,0 +1,37 @@
+<%= title l(:label_auth_source_plural) %>
+<div class="autoscroll">
+  <table class="list">
+  <thead><tr>
+      <th><%=l(:field_name)%></th>
+      <th><%=l(:field_type)%></th>
+      <th><%=l(:field_host)%></th>
+      <th><%=l(:label_user_plural)%></th>
+      <th><%=l(:label_available_users)%></th>
+      <th></th>
+    </tr></thead>
+  <tbody>
+    <% for source in @auth_sources %>
+      <% available_users_count = source.try(:available_users_count) %>
+      <tr>
+        <td class="name"><%= source.editable? ? link_to(source.name, :action => 'edit', :id => source) : source.name.to_s %></td>
+        <td><%= source.auth_method_name %></td>
+        <td><%= source.host %></td>
+        <td><%= link_to source.users.count, users_path(set_filter: '1', auth_source_id: source.id) %></td>
+        <td><%= available_users_count ? link_to(available_users_count, available_users_auth_source_path(source)) : '-' %></td>
+        <td class="buttons">
+          <%= link_to l(:button_test), try_connection_auth_source_path(source), :class => 'icon icon-test' %>
+          <%= delete_link auth_source_path(source) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<span class="pagination"><%= pagination_links_full @auth_source_pages %></span>
+<%= call_hook(:view_auth_sources_bottom, {}) %>
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_auth_source_new), {:action => 'new'}, :class => 'button-positive' %>
+<% end %>
+

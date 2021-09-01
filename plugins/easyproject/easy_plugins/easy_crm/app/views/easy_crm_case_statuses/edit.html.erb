@@ -1,0 +1,15 @@
+<%= title l(:heading_easy_crm_case_status_edit) %>
+
+<%= form_for(@easy_crm_case_status, :url => easy_crm_case_status_path(:project_id => @project), :method => :put, :html => {:id => 'easy_crm_case_status_form', :class => 'tabular'}) do |f| %>
+  <%= error_messages_for @easy_crm_case_status %>
+  <%= hidden_field_tag('back_url', params[:back_url], :id => nil) unless params[:back_url].blank? %>
+
+  <div class="box">
+    <%= render :partial => 'form', :locals => {:f => f, :easy_crm_case_status => @easy_crm_case_status, :project => @project} %>
+  </div>
+
+  <p class="buttons">
+    <%= submit_tag l(:button_update), :title => l(:button_update) %>
+    <%= link_to(l(:button_back), params[:back_url] || {:action => 'index'}, :class => 'button') %>
+  </p>
+<% end %>

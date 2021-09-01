@@ -1,0 +1,22 @@
+api.array :easy_queries, api_meta(:total_count => @query_count, :offset => @offset, :limit => @limit) do
+  @easy_queries.each do |easy_query|
+    api.easy_query do
+      api.id            easy_query.id
+      api.name          easy_query.name
+      api.is_public     easy_query.is_public?
+      api.project_id    easy_query.project_id
+      api.filters       easy_query.filters
+      api.parameterized easy_query.to_params
+      api.user_id       easy_query.user_id
+      api.column_names  easy_query.column_names
+      api.sort_criteria easy_query.sort_criteria
+      api.group_by      easy_query.group_by
+      api.type          easy_query.type
+      api.settings      easy_query.settings
+      api.visibility    easy_query.visibility
+      api.show_sum_row  easy_query.show_sum_row
+      api.groups_opened easy_query.groups_opened
+      api.is_tagged     easy_query.is_tagged
+    end
+  end
+end

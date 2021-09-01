@@ -1,0 +1,32 @@
+@import "easy_redmine/functions";
+
+<% advanced_fields.select{|i| i.value.present?}.each do |field| %>$<%= field.name.to_s %>: <%= field.value %>;
+<% end %>
+<% self.class.attached_image_names.each do |image_name| %>
+<% if get_image(image_name) %>
+$<%= image_name.dasherize %>-url: url("<%= prefixed_path(image_asset_url(image_name)) %>");
+<% end %>
+<% end %>
+<% if logo = get_image('logo') %>
+<%= (geometry = Paperclip::Geometry.from_file(logo.diskfile)) && "$logo-width: #{(n = geometry.width) && (n > 130 || n.zero?) ? '130' : n}px;" %>
+<% end %>
+$custom-brand-active: true;
+
+$rails-env: <%= Rails.env %>;
+
+<% if internal_name %>
+$internal-brand: <%= internal_name %>;
+<% end %>
+
+<% if EasySetting.value('ui_theme') %>
+@import 'easy_redmine/generated';
+<% else %>
+@import 'easy_extensions/common_assets';
+@import 'easy_design';
+<% end %>
+
+<% EasyThemeDesign::TEMPLATES.each do |t| %>
+@import '<%= t.to_s %>';
+<% end %>
+
+<%= css.presence %>

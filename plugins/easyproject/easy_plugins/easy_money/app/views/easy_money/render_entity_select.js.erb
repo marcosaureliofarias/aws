@@ -1,0 +1,2 @@
+$('.easy_money_entity_autocomplete').html('<%= j(render(partial: 'easy_money/form_entity_autocomplete', formats: [:html], locals: { project: @project, entity_type: params[:entity_type], selected_value: @selected_value })) %>');
+initEasyAutocomplete();

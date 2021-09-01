@@ -1,0 +1,12 @@
+<div class="text-center">
+  <label><%= l('search_in_administration.label_search_settings') %></label>
+  <%= easy_autocomplete_tag(
+          'easy_administration_search',
+          { name: l('search_in_administration.label_jump_to_a_setting'), id: nil },
+          settings,
+          multiple: false,
+          easy_autocomplete_options: { activate_on_input_click: 'true' },
+          onchange: "window.location.href = ui.item.jump_url;"
+      )
+  %>
+</div>

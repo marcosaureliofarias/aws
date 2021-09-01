@@ -1,0 +1,173 @@
+---
+it:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: non può essere vuoto o non esiste
+              empty: non può essere vuoto o non esiste
+        easy_data_template:
+          attributes:
+            type:
+              blank: non può essere vuoto o non esiste
+              empty: non può essere vuoto o non esiste
+  button_easy_data_template_assignment: assegnazioni di campi
+  button_easy_data_template_edit: Modifica modello
+  button_easy_data_template_export_data: Esporta dati
+  button_easy_data_template_import: importa
+  button_easy_data_template_import_data: Importa dati
+  button_easy_data_template_import_preview: anteprima
+  button_easy_data_template_new_export: Esporta CSV
+  button_easy_data_template_new_import: Importa CSV
+  button_easy_data_template_new_msproject: Importa da MS Project
+  button_easy_data_template_settings: correzione
+  button_new_advance_import: Importazione avanzata
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: 'No'
+    xyes: Sì
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: Nome risolutore
+      assigned_to_id: ID incaricato
+      assigned_to_lastname: cognome risolutore
+      assigned_to_login: login risolutore
+      assigned_to_mail: e-mail risolutore
+      author_firstname: nome autore
+      author_id: ID autore
+      author_lastname: cognome autore
+      author_login: login autore
+      author_mail: e-mail autore
+      description: descrizione del task
+      due_date: Fine task (data)
+      estimated_hours: tempo di task previsto (ore)
+      id: ID task
+      priority_id: ID priorità
+      priority_name: titolo priorità
+      project_id: ID progetto
+      project_name: nome progetto
+      start_date: inizio task (data)
+      subject: Oggetto del task
+      tracker_id: ID tipo di task
+      tracker_name: Nome tipo di task
+    Project:
+      description: descrizione del progetto
+      enabled_modules: nome modulo
+      id: ID progetto
+      is_public: pubblico (A / N)
+      name: nome progetto
+      parent_id: ID progetto padre
+      parent_name: nome progetto padre
+      trackers_ids: ID tipo di task
+      trackers_names: nome tipo di task
+    TimeEntry:
+      activity: attività
+      activity_id: ID attività
+      activity_name: Nome attività
+      comments: commento
+      easy_range_from: segnalato da
+      easy_range_to: segnalato a
+      hours: orologio
+      issue: task
+      issue_id: ID task
+      issue_subject: titolo task
+      project: progetto
+      project_id: ID progetto
+      project_name: nome progetto
+      spent_on: data
+      user: utente
+      user_id: ID utente
+    User:
+      admin: Amministratore (A / N)
+      firstname: nome utente
+      id: ID utente
+      language: lingua utente
+      lastname: cognome utente
+      login: Accesso utente
+      mail: utenti di posta elettronica
+      password: password
+      send_mail: accesso per invio e-mail (A / N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Task
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Progetto
+    EasyDataTemplateTimeEntry: Ora segnalazione
+    EasyDataTemplateUser: Utente
+  easy_data_templates_plugin_description: "- modelli di dati per importare ed esportare
+    i dati in formato CSV"
+  easy_data_templates_plugin_name: Modelli di dati
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Modelli di dati
+        description: Gestisci modelli di dati
+  error_during_import: Si è verificato un errore durante l'importazione. Si prega
+    di verificare i dati inseriti.
+  error_easy_data_template_attachment_not_uploaded: Non è stato registrato alcun supplemento
+    per l'importazione
+  error_easy_data_template_ms_project_not_valid_xml: Il file allegato non è valido
+    XML da MS Project 2010 e versioni successive.
+  field_easy_data_template_allowed_import: Importa
+  field_easy_do_not_export: Non esportare
+  label_check_preview: Si prega di controllare i dati utilizzando 'Anteprima'
+  label_easy_data_template_assignment: Assegnazioni campo
+  label_easy_data_template_author_name: Autore
+  label_easy_data_template_edit: Modifica dei modelli
+  label_easy_data_template_entity_type: Entità
+  label_easy_data_template_export_new: Nuovo modello di esportazione
+  label_easy_data_template_import_file: Importa un file
+  label_easy_data_template_import_new: Nuovo modello di importazione
+  label_easy_data_template_import:
+    assignments:
+      all: colonne di posizione assegnate
+      entity_attribute_name: entità nomi di colonna
+      file_column_position: posizione della colonna in csv
+      new: Posizioni colonna di assegnazione
+    errors:
+      erow: errore nella riga
+      errors_count: numero di errori
+      errors_rows: righe difettose
+      errors_rows_count: numero di righe errate
+      errors_sum: totale
+      row: numero di riga errata
+      show: mostra righe difettose
+    preview:
+      row: Numero riga
+      table: anteprima
+    settings:
+      col_sep: separatore di campo
+      encoding: codifica
+      import_all: Tutto o niente
+      new: Correzione
+      preview_rows: numero di righe per l'anteprima
+      project_template: Utilizza un modello di struttura
+      quote_char: separatore di testo
+      return_headers: la prima riga contiene il nome della colonna
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Assegnato a un task)"
+    other: "(Assegnato a %{count} task)"
+    zero: "(Non assegnato)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Nome in MSP
+  label_easy_data_template_ms_project_user_name_in_ep: Nome interno
+  label_easy_data_template_name: Nome
+  label_easy_data_template_public: pubblico
+  label_easy_data_template_template_type: Tipo
+  label_easy_data_template_template_type_export: esportazione
+  label_easy_data_template_template_type_import: importazione
+  label_easy_data_template_user_name: Proprietario
+  label_easy_data_templates: Modelli di dati
+  label_easy_data_templates_choose_project: Scegli un progetto
+  label_easy_data_templates_choose_query: Scegli un filtro
+  label_easy_data_templates_source_settings: Seleziona un'origine dati
+  label_easy_data_templates_target_settings: Selezione dei dati di destinazione
+  label_import_summaries_as_milestones: Importa task di riepilogo come milestone
+  notice_easy_data_templates_import_ok: Importa andava bene.
+  text_easy_data_template_ms_project_upload_file: Il file deve essere in formato XML
+    (in MS Project dal menù principale, cliccare su File -> Salva con nome -> Salva
+    come XML).
+  title_easy_data_templates_apply_to_all_rows: Fare clic per impostare questo valore
+    su tutte le linee simili.

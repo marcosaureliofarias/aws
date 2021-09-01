@@ -1,0 +1,6 @@
+<fieldset id="filter-projects" class="collapsible <%= @settings[:projects].blank? ? "collapsed" : "" %>">
+  <legend onclick="toggleFieldset(this);"><%= l(:alerts_rule_project_filters) %></legend>
+  <div style="<%= @settings[:projects].blank? ? "display: none;" : "" %>">
+    <%= project_tree_select(Project.non_templates.sorted.visible, { :name=> "projects[]", :multiple => true, :selected => @settings[:projects], :size => 10 } ) -%>
+  </div>
+</fieldset>

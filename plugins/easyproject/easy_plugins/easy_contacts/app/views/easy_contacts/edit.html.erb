@@ -1,0 +1,20 @@
+<div class="easy-contact-form-container">
+  <%= content_tag :h2, l(:title_easy_contact_type_edit) %>
+  <%= labelled_form_for(@easy_contact, :html => {:id => 'easy-contact-form', :class => 'form-box', :multipart => true}) do |f| %>
+  <div class="gray-background">
+    <%= error_messages_for @easy_contact -%>
+
+    <%= render :partial => 'form', :locals => {:f => f, :contact => @easy_contact} -%>
+
+    <div class="form-actions">
+      <%= f.submit l(:button_update), :class => 'button-positive' -%>
+      <% if @modal %>
+        <%= link_to_function(l(:button_close), 'EASY.modalSelector.closeModal()', :class => 'button') %>
+      <% else %>
+        <%= link_to l("easy_contacts_toolbar.contact_exit"), params[:back_url] || {:controller =>  'easy_contacts', :action => :index,  :project_id => @project}, :class => 'button' -%>
+      <% end -%>
+    </div>
+  </div>
+  <% end %>
+
+</div>

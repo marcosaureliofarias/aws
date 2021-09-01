@@ -1,0 +1,37 @@
+<div id="alerts-context">
+  <h2><%= l(:label_alerts_contexts) -%></h2>
+
+  <% if (@contexts.empty?) -%>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% else -%>
+    <div class="autoscroll">
+      <table class="list reorder">
+        <tbody>
+        <% for context in @contexts %>
+          <tr>
+            <td class="center reorder-handler"><%= render_reorder_handle(context, 'alert_context') %></td>
+            <td class="name"><%= context.translated_name %></td>
+            <td>
+              <%# link_to(l(:button_edit), { :action => 'edit', :id => context.id}, :class => 'icon icon-edit') -%>
+            </td>
+          </tr>
+        <% end -%>
+        <tbody>
+      </table>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% #content_for :easy_page_layout_service_box do %>
+<% # link_to(l(:button_alerts_add_new_context), { :action => 'new' }, :class => 'button-positive') %>
+<% #end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar/alerts' %>
+<% end %>

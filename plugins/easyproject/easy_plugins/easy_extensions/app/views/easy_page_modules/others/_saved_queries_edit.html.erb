@@ -1,0 +1,58 @@
+  <%= content_tag :h4, l(:label_display) -%>
+
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <fieldset>
+        <legend>
+          <%= link_to_function(l('easy_page_module.saved_queries.label_select_queries'), "$(this).closest('fieldset').find('input:checkbox').prop('checked', function(idx, chck) {return !chck;})", :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", :class => 'icon icon-checked') %>
+        </legend>
+        <%
+          settings['queries'] ||= []
+          q = @easy_page_modules_data[block_name][:queries].inject({}) { |mem, query| mem[l("easy_query.name.#{query}", :default => h(query))] = query; mem}
+        %>
+
+        <%= hidden_field_tag "#{block_name}[queries][]", '', :id => nil %>
+        <% q.keys.sort.each do |i| %>
+          <% query = q[i] %>
+          <p class="floating">
+            <%= check_box_tag "#{block_name}[queries][]", query, (settings['queries'].include?(query)), :id => "#{block_name}_queries_#{query}" %>
+            <%= label_tag("#{block_name}_queries_#{query}", i ) %>
+          </p>
+        <% end %>
+      </fieldset>
+    </div>
+    <div class="splitcontentright">
+      <fieldset>
+        <legend>
+          <%= link_to_function(l(:label_display), "$(this).closest('fieldset').find('input:checkbox').prop('checked', function(idx, chck) {return !chck;})", :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", :class => 'icon icon-checked') %>
+        </legend>
+        <p>
+          <%= hidden_field_tag "#{block_name}[saved_personal_queries]", '', :id => nil %>
+          <%= check_box_tag "#{block_name}[saved_personal_queries]", true, settings['saved_personal_queries'].present? -%>
+          <%= label_tag "#{block_name}_saved_personal_queries", l('easy_query.sidebar_filters.personal.other') -%>
+        </p>
+
+        <p>
+          <%= hidden_field_tag "#{block_name}[saved_easy_user_types_queries]", '', :id => nil %>
+          <%= check_box_tag "#{block_name}[saved_easy_user_types_queries]", true, settings['saved_easy_user_types_queries'].present?  -%>
+          <%= label_tag "#{block_name}_saved_easy_user_types_queries", l(:field_easy_user_type_filters) -%>
+        </p>
+
+        <% if user.internal_client? %>
+          <p>
+            <%= hidden_field_tag "#{block_name}[saved_public_queries]", '', :id => nil %>
+            <%= check_box_tag "#{block_name}[saved_public_queries]", true, settings['saved_public_queries'].present? -%>
+            <%= label_tag "#{block_name}_saved_public_queries", l('easy_query.sidebar_filters.public.other') -%>
+          </p>
+
+          <p>
+            <%= hidden_field_tag "#{block_name}[saved_roles_queries]", '', :id => nil %>
+            <%= check_box_tag "#{block_name}[saved_roles_queries]", true, settings['saved_roles_queries'].present?  -%>
+            <%= label_tag "#{block_name}_saved_roles_queries", l(:field_user_roles) -%>
+          </p>
+        <% end %>
+
+      </fieldset>
+    </div>
+  </div>
+  <div class="clear"></div>

@@ -1,0 +1,11 @@
+<div id="report_<%= modul_uniq_id %>">
+</div>
+
+<%
+  hide_form ||= true
+  report_url_params ||= {}
+%>
+
+<%= late_javascript_tag do %>
+    $.get('<%= report_easy_attendances_path(report_url_params.merge(uuid: modul_uniq_id, hide_form: hide_form)) %>', {format: 'js'});
+<% end %>

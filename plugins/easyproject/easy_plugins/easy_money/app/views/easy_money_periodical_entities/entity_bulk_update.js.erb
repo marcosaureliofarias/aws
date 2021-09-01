@@ -1,0 +1,4 @@
+$('#entity_overview_container').html('<%= j(render :partial => 'easy_money_periodical_entities/entities_overview', :locals => { :project => @project, :entities => @entities, :period_date => @period_date, :url_params => { :project_id => @project }, :edit => @edit }) %>');
+<% if @msg %>
+  showFlashMessage('error', '<%= j @msg %>');
+<% end %>

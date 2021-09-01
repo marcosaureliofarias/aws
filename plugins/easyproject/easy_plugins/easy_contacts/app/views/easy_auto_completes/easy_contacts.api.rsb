@@ -1,0 +1,8 @@
+api.array :easy_contacts do
+  @easy_contacts.each do |easy_contact|
+    api.easy_contact do
+      api.id easy_contact.id
+      api.value easy_contact.name
+    end
+  end
+end

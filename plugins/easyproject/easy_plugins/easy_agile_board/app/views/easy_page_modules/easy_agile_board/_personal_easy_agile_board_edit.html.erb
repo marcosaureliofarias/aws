@@ -1,0 +1,39 @@
+<%
+  project = @easy_page_modules_data[block_name][:project]
+  swimlanes_for_autocomplete = @easy_page_modules_data[block_name][:swimlanes_for_autocomplete]
+%>
+
+<div class="tabular">
+  <p>
+    <%= hidden_field_tag "#{block_name}[only_me]", '0', id: '' %>
+    <%= check_box_tag "#{block_name}[only_me]", '1', settings['only_me'] == '1' %>
+    <%= label_tag "#{block_name}[only_me]", l(:label_personal_easy_agile_board_only_me) %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[heading]", l(:label_personal_easy_agile_board_heading) %>
+    <%= page_module_settings_text_field_tag(page_module, %w[heading], value: settings['heading']) %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[project_id]", l(:field_project) %>
+    <%= easy_select_tag(
+            "#{block_name}[project_id]",
+            { name: project.try(:to_s), id: project.try(:id) },
+            nil,
+            easy_autocomplete_path('easy_scrum_board_visible_projects'),
+            include_blank: false, root_element: 'projects', html_options: { id: "#{block_name}_project_id" }
+          ) %>
+
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[swimlane]", l(:label_swimlane) %>
+    <span class="value">
+      <%= select_tag "#{block_name}[swimlane]", options_for_select(swimlanes_for_autocomplete, settings['swimlane']), { include_blank: true } %>
+    </span>
+  </p>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    initEasyAutocompleteFor($('#<%= "#{block_name}_project_id" %>').closest(".easy-autocomplete-tag[data-easy-autocomplete]"));
+  });
+</script>

@@ -1,0 +1,29 @@
+<%= title(l('easy_xml_data.label_imported_file_info')) %>
+
+<%= form_tag(@submit_url, class: 'form-box') do %>
+  <%= hidden_field_tag 'back_url', params['back_url'] if params['back_url'] %>
+  <p>
+    <%= l('easy_xml_data.label_file_name') %>: <%= params[:archivefile].original_filename %><br />
+    <%= "#{l(:field_author)}: #{@meta_data[:author]} <br />".html_safe if @meta_data[:author].present? %>
+    <%= l(:field_entity_type) %>: <%= @meta_data[:entity_type] %><br />
+    <%= "#{l(:field_count)}: #{@meta_data[:entity_count]} <br />".html_safe if @meta_data[:entity_count].present? %>
+    <%= "#{l(:field_title)}: #{@meta_data[:name]} <br />".html_safe if @meta_data[:name].present? %>
+    <%= "#{l(:field_description)}: #{@meta_data[:description]} <br />".html_safe if @meta_data[:description].present? %>
+  </p>
+  <% if @mappables.present? %>
+    <h3><%= l(:label_auto_mapping) %></h3>
+    <div>
+      <% @mappables.each do |importable_id| %>
+        <label><%= check_box_tag 'auto_mappings[]', importable_id, true %> <%= l("xml_data_#{importable_id.pluralize}")%></label>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_xml_data_import), class: 'button-positive' %>
+    <%= link_to(l(:button_cancel), easy_xml_data_import_settings_path, class: 'button') %>
+  </div>
+<% end %>
+
+<%= content_for(:easy_page_layout_service_box_primary_actions) do %>
+  <%= link_to(l(:button_new_advanced_import), easy_entity_imports_path, class: 'button-positive icon icon-import') %>
+<% end %>

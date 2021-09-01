@@ -1,0 +1,5 @@
+<% if @attached[:unsaved].any? %>
+  alert('<%= j @attached[:unsaved].collect {|unsaved| unsaved.errors.full_messages.join(', ')}.join("\n") %>');
+<% else %>
+  window.location.reload();
+<% end %>

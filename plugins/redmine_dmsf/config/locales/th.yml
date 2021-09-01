@@ -1,0 +1,381 @@
+---
+th:
+  activerecord:
+    errors:
+      messages:
+        error_contains_invalid_character: มีอักขระที่ไม่ถูกต้อง
+  button_edit_content: แก้ไขเนื้อหา
+  comment_copied_from: คัดลอกจาก %{source}
+  comment_moved_from: ถูกย้ายจาก %{source}
+  dmsf: DMS
+  dmsf_and: และ
+  dmsf_new_step: ขั้นตอนใหม่
+  dmsf_new_step_or_approver: ขั้นตอนใหม่หรือผู้อนุมัติใหม่
+  dmsf_or: หรือ
+  easy_pages:
+    module_category:
+      easy_dms: Easy DMS
+    modules:
+      dmsf_locked_documents: เอกสารที่ถูกล็อคของฉัน
+      dmsf_open_approvals: การอนุมัติแบบเปิดของฉัน
+  error_at_least_one_revision_must_be_present: ต้องมีการแก้ไขอย่างน้อยหนึ่งรายการ
+  error_cannot_renumber_steps: ไม่สามารถจัดลำดับขั้นตอนใหม่ได้
+  error_cannot_start_workflow: ไม่สามารถเริ่่มลำดับงานได้
+  error_contains_invalid_character: มีอักขระที่ไม่ถูกต้อง
+  error_create_cycle_in_folder_dependency: สร้างวงจรในการพึ่งพาโฟลเดอร์
+  error_email_to_must_be_entered: จะต้องใส่อีเมลผู้รับ
+  error_empty_note: โปรดระบุความคิดเห็น
+  error_entry_project_does_not_match_current_project: โครงการที่เข้าร่วมไม่ตรงกับโครงการปัจจุบัน
+  error_file_can_not_be_created: ไม่สามารถสร้างไฟล์ในสารบบการจัดเก็บ
+  error_file_commit_require_uploaded_file: ไฟล์ที่มอบหมายต้องใช้ไฟล์ที่อัพโหลด
+  error_file_is_locked: ไฟล์ถูกล็อค
+  error_file_storage_directory_does_not_exist: สารบบที่เก็บไฟล์ไม่มีอยู่และไม่สามารถสร้างได้
+  error_file_tmpdir_does_not_exist: ไม่มีไฟล์แพธชั่วคราวและไม่สามารถสร้างได้
+  error_folder_cannot_be_copied: คัดลอกโฟลเดอร์ไม่ได้
+  error_folder_creation_failed: การสร้างโฟลเดอร์ล้มเหลว
+  error_folder_is_locked: โฟลเดอร์ถูกล็อค
+  error_folder_is_not_empty: โฟลเดอร์ไมได้่ว่างเปล่า
+  error_folder_title_is_already_used: ชื่อถูกใช้ไปแล้ว
+  error_folder_title_must_be_entered: ต้องระบุชื่อ
+  error_lock_exclusively: ไม่สามารถล็อคทรัพยากรที่ถูกล็อคอยู่แล้วได้เป็นการเฉพาะ
+  error_max_email_filesize_exceeded: คุณมีขนาดไฟล์เกินขนาดสูงสุดสำหรับการส่งทางอีเมล
+    (%{number} MB)
+  error_max_files_exceeded: เกินขีดจำกัดสำหรับ %{number} ไฟล์ที่ดาวน์โหลดพร้อมกัน
+  error_maximum_upload_filecount: ต้องอัพโหลดไม่เกิน %{filecount} ไฟล์ 
+  error_minimum_filesize: ไฟล์ %{file} มี 0 ไบต์และไม่สามารถแนบได้
+  error_only_user_that_locked_file_can_unlock_it: เฉพาะผู้ใช้ที่ล็อคไฟล์เท่านั้นที่สามารถปลดล็อคได้
+  error_only_user_that_locked_folder_can_unlock_it: คุณไม่มีสิทธิ์ปลดล็อคโฟลเดอร์นี้
+  error_parent_folder: โฟลเดอร์หลักไม่มีอยู่
+  error_parent_locked: ไม่สามารถล็อคให้สมบูรณ์ - ทรัพยากรหลักถูกล็อค
+  error_resource_locked: ไม่สามารถล็อคให้สมบูรณ์ - ทรัพยากรถูกล็อค
+  error_resource_or_parent_locked: ไม่สามารถล็อคให้สมบูรณ์ - ทรัพยากร (หรือหลัก) ถูกล็อค
+  error_target_folder_same: โฟลเดอร์และโครงการเป้าหมายเหมือนกันกับปัจจุบัน
+  error_tmpfile_can_not_be_created: ไม่สามารถสร้างไฟล์ในสารบบไฟล์แพธชั่วคราว
+  error_unable_delete_dmsf_workflow: ไม่สามารถลบลำดับงาน
+  error_unlock_parent_locked: ปลดล็อคล้มเหลว - ทรัพยากรหลักถูกล็อค
+  error_user_has_not_right_delete_file: ผู้ใช้ไม่มีสิทธิ์ลบไฟล์
+  error_user_has_not_right_delete_folder: ผู้ใช้ไม่มีสิทธิ์ลบโฟลเดอร์
+  error_workflow_assign: เกิดข้อผิดพลาดขณะมอบหมาย
+  error_wrong_zip_encoding: การเข้ารหัส Zip ผิด
+  field_count: D/L
+  field_dmsf_not_inheritable: ไม่สามารถรับช่วงต่อได้
+  field_dmsf_tree_view: นำทางโฟลเดอร์ในแผนภูมิต้นไม้
+  field_external_url: URL
+  field_first_at: ครั้งแรก
+  field_folder: โฟลเดอร์
+  field_label_dmsf_workflow: การอนุมัติลำดับงาน
+  field_label_dmsf_workflow_name: การอนุมัติชื่อของลำดับงาน
+  field_last_at: ล่าสุด
+  field_modified: วันที่
+  field_size: ขนาด
+  field_target_file: ไฟล์ต้นทาง
+  field_target_folder: โฟลเดอร์เป้าหมาย
+  field_target_project: โครงการเป้าหมาย
+  field_updated: วันที่
+  field_workflow: ลำดับงาน
+  header_minimum_filesize: ข้อผิดพลาดของไฟล์
+  heading_access_downloads_emails: ดาวน์โหลด/อีเมล
+  heading_access_first: แรก
+  heading_access_last: สุดท้าย
+  heading_new_folder: โฟลเดอร์ใหม่
+  heading_new_revision: กาแก้ไขใหม่
+  heading_revisions: การแก้ไข
+  heading_send_documents_by_email: ส่งเอกสารทางอีเมล
+  heading_uploaded_files: อัพโหลดไฟล์
+  info_changed_by_user: "%{changed} โดย"
+  info_file_locked: ไฟล์ถูกล็อค!
+  info_revision: r%{rev}
+  label_act_as_attachable: ทำหน้าที่เป็นไฟล์แนบ
+  label_action: ดำเนินการ
+  label_add_width: เพิ่มด้วย
+  label_basic_attachments: ไฟล์แนบพื้นฐาน
+  label_changed: เปลี่ยน
+  label_created: สร้าง
+  label_default_notifications: ไฟล์แจ้งเตือนเริ่มต้น
+  label_description: รายละเอียด
+  label_display_notified_recipients: แสดงผู้รับที่ได้รับแจ้ง
+  label_dmsf: DMS
+  label_dmsf_attachments: เอกสารแนบ DMS
+  label_dmsf_downloaded: ดาวน์โหลด
+  label_dmsf_fast_links: ลิ้งค์ด่วน
+  label_dmsf_file: เอกสาร (DMS)
+  label_dmsf_file_plural: เอกสาร (DMS)
+  label_dmsf_file_revision_access_plural: การเข้าถึงเอกสาร
+  label_dmsf_file_revision_plural: การแก้ไขเอกสาร
+  label_dmsf_folder: โฟลเดอร์ (DMS)
+  label_dmsf_folder_plural: โฟลเดอร์ 
+  label_dmsf_keep_documents_locked: ล็อคเอกสารไว้ตามเดิม
+  label_dmsf_permissions: อนุญาตการเข้าถึงเฉพาะ
+  label_dmsf_plural: คัดลอกเอกสารและโฟลเดอร์ (%{files} ไฟล์ ใน %{folders} folders)
+  label_dmsf_updated: อัพเดต
+  label_dmsf_version: เวอร์ชั่น
+  label_dmsf_wokflow_action_approve: การอนุมัติ
+  label_dmsf_wokflow_action_assign: มอบหมายลำดับการอนุมัติ
+  label_dmsf_wokflow_action_delegate: มอบหมายให้
+  label_dmsf_wokflow_action_reject: ปฏิเสธ
+  label_dmsf_wokflow_action_start: เริ่มลำดับงาน
+  label_dmsf_workflow_add_approver: 'เพิ่มผู้อนุมัติใหม่ด้วยฟังก์ชั่นตรรกะ:'
+  label_dmsf_workflow_approval: การอนุมัติ
+  label_dmsf_workflow_approval_plural: การอนุมัติ
+  label_dmsf_workflow_new: ลำดับการอนุมัติใหม่
+  label_dmsf_workflow_plural: ลำดับการอนุมัติ
+  label_dmsf_workflow_plural_num: ลำดับการอนุมัติ (%{count})
+  label_dmsf_workflow_step: ขั้นตอน
+  label_dmsf_workflow_step_plural: ขั้นตอน
+  label_document_url: Url
+  label_email_body: เนื้อหา
+  label_email_cc: CC
+  label_email_documents: เอกสาร 
+  label_email_from: จาก
+  label_email_from_override: จาก
+  label_email_reply_to: ตอบกลับ
+  label_email_send: ส่ง
+  label_email_subject: เรื่อง
+  label_email_to: ถึง
+  label_enable_cjk_ngrams: เปิดใช้งานการสร้าง n-grams จากข้อความ CJK
+  label_external: ภายนอก
+  label_file: ไฟล์
+  label_file_storage_directory: สารบบที่จัดเก็บไฟล์
+  label_filename: ชื่อไฟล์
+  label_full_text: ค้นหาข้อความแบบเต็ม
+  label_index_database: ฐานข้อมูลดัชนี
+  label_inherited_permissions: การเข้าถึงที่รับช่วงต่อมาเพื่อ
+  label_internal: ภายใน
+  label_last_approver: ผู้อนุมัติล่าสุด
+  label_last_revision_id: การแก้ไข
+  label_link_from: ลิงค์จาก
+  label_link_name: ชื่อลิงค์
+  label_link_to: ลิงค์ไป
+  label_links_only: เฉพาะลิงก์
+  label_maximum_email_filesize: ขนาดไฟล์แนบสูงสุดของอีเมล
+  label_maximum_files_download: ดาวน์โหลดไฟล์สูงสุด
+  label_mime: ไม่ใช้เสียง
+  label_my_locked_documents: เอกสารที่ถูกล็อคของฉัน
+  label_my_open_approvals: การอนุมัติแบบเปิดของฉัน
+  label_new_content: เนื้อหาใหม่
+  label_note: หมายเหตุ
+  label_notifications: การแจ้งเตือน
+  label_notifications_off: ปิดการแจ้งเตือน
+  label_notifications_on: เปิดการแจ้งเตือน
+  label_number_of_documents: เอกสาร
+  label_number_of_folders: โฟลเดอร์
+  label_or: หรือ
+  label_physical_file_delete: การลบไฟล์ทางกายภาพ
+  label_public_urls: URL สาธารณะใช้ได้กับ
+  label_size: ขนาด
+  label_source_folder: โฟลเดอร์ต้นทาง
+  label_source_project: โครงการต้นทาง
+  label_stem_strategy: กลยุทธ์การปิดกั้น
+  label_stemming_description: สิ่งนี้จะควบคุมวิธีที่ตัวแยกวิเคราะห์แบบสอบถามจะใช้อัลกอริทึมการปิดกั้น
+    ค่าเริ่มต้นคือ STEM_NONE ค่าที่เป็นไปได้คือ
+  label_stemming_language: Stemming Language
+  label_target_folder: โฟลเดอร์เป้าหมาย
+  label_target_project: โครงการเป้าหมาย
+  label_title: ชื่อ
+  label_title_format: รูปแบบของชื่อ
+  label_tmpdir: แพธชั่วคราวของไฟล์
+  label_upload: อัพโหลด
+  label_user_search_add: ค้นหน้าผู้ใช้ที่จะเพิ่ม
+  label_webdav: WebDAV
+  label_webdav_disable_versioning: ไม่มีรูปแบบไฟล์ที่กำหนดเวอร์ชัน
+  label_webdav_ignore: ยกเลิกรูปแบบไฟล์
+  label_webdav_strategy: Webdav strategy
+  label_webdav_use_project_names: ใช้ชื่อโครงการสำหรับโฟลเดอร์โครงการ
+  link_author: ผู้เขียน
+  link_create_folder: สร้างโฟลเดอร์
+  link_details: รายละเอียด %{title} 
+  link_documents: เอกสาร
+  link_edit: แก้ไข %{title}
+  link_extension: ส่วนขยาย
+  link_modified: ปรับปรุง
+  link_size: ขนาด
+  link_title: ชื่อ
+  link_trash_bin: ถังขยะ
+  link_user_preferences: การตั้งค่าโครงการ DMS ของคุณ
+  link_ver: Ver.
+  link_workflow: ลำดับงาน
+  locked_documents: เอกสารที่ถูกล็อค
+  menu_dmsf: DMS
+  message_dmsf_wokflow_note: หมายเหตุของคุณ...
+  note_display_notified_recipients: ผู้ใช้จะได้รับแจ้งเกี่ยวกับผู้รับทุกคนที่เพิ่งส่งการแจ้งเตือนทางอีเมล
+  note_dmsf_act_as_attachable: อนุญาตให้แนบเอกสารกับวัตถุเช่น ภารกิจ
+  note_dmsf_keep_documents_locked: เอกสารจะถูกล็อคเมื่อได้รับการอนุมัติ
+  note_do_not_stem: ไม่ต้องทำการปิดกั้น
+  note_global: "(ทั่วโลก)"
+  note_maximum_email_filesize: จำกัดขนาดไฟล์สูงสุดที่สามารถส่งทางอีเมล. 0 หมายถึงไม่จำกัด.
+    จำนวนเป็น MB.
+  note_maximum_number_of_files_downloaded: จำกัดจำนวนไฟล์สูงสุดที่ดาวน์โหลดใน zip
+    หรือส่งทางอีเมล. 0 หมายถึงไม่จำกัด
+  note_pass_none_to_disable_stemming: ผ่าน 'ไม่' เพื่อปิดการกั้น
+  note_possible_values: ค่าที่เป็นไปได้
+  note_stem_all: 'ค้นหารูปแบบที่เกิดจากคำทั้งหมด (หมายเหตุ: ไม่มีการใส่คำนำหน้า ''Z'')'
+  note_stem_some: ค้นหารูปแบบของคำศัพท์ที่ถูกปิดกั้นยกเว้นคำที่ขึ้นต้นด้วยตัวพิมพ์ใหญ่หรือตามด้วยอักขระบางตัวหรือใช้กับตัวดำเนินการที่จำเป็นของข้อมูลตำแหน่ง
+    คำที่ถูกปิดกั้นจะถูกเติมหน้าด้วย 'Z'
+  note_stemming_applied: โปรดทราบว่าอัลกอริทึมการกั้นถูกนำไปใช้กับคำต่างๆ ในฟิลด์ที่น่าจะเป็นเท่านั้น
+    - เงื่อนไขตัวกรองบูลีนจะไม่ถูกปิดกั้น
+  note_webdav: สามารถเปิดใช้งาน Webdav แบบครั้งเดียวได้ที่ %{protocol}://%{domain}/dmsf/webdav/[project
+    identifier]
+  note_webdav_disable_versioning: การแสดงทั่วไปที่ปิดใช้งานการกำหนดเวอร์ชันสำหรับไฟล์ที่ตรงกัน
+    รูปแบบเริ่มต้นตรงกับไฟล์ชั่วคราวที่สร้างโดย MsOffice
+  note_webdav_ignore: การแสดงทั่วไปที่มีชื่อไฟล์ที่จะละเว้น ตามคำขอ PUT
+  note_webdav_strategy: ช่วยให้ผู้ดูแลระบบตัดสินใจว่า webdav เป็นแพลตฟอร์มอ่านอย่างเดียว
+    หรืออ่าน-เขียนสำหรับผู้ใช้ปลายทาง
+  note_webdav_use_project_names: ใช้ชื่อโครงการแทนตัวระบุโครงการสำหรับโฟลเดอร์โครงการ
+  notice_dmsf_file_restored: กู้คืนเอกสารสำเร็จ
+  notice_dmsf_folder_restored: กู้คืนโฟลเดอร์สำเร็จ
+  notice_dmsf_link_restored: กู้คืนลิ้งค์สำเร็จ
+  notice_entries_deleted: ลบรายการ
+  notice_file_copied: คัดลอกไฟล์แล้ว
+  notice_file_deleted: ลบไฟล์แล้ว
+  notice_file_locked: ล็อคไฟล์แล้ว
+  notice_file_moved: ย้ายไฟล์แล้ว
+  notice_file_notifications_activated: เปิดใช้งานการแจ้งเตือนไฟล์แล้ว
+  notice_file_notifications_deactivated: ปิดใช้งานการแจ้งเตือนไฟล์แล้ว
+  notice_file_revision_created: สร้างการแก้ไขไฟล์แล้ว
+  notice_file_unlocked: ปลดล็อคไฟล์แล้ว
+  notice_folder_copied: คัดลอกโฟลเดอร์แล้ว
+  notice_folder_created: สร้างโฟลเดอร์แล้ว
+  notice_folder_deleted: ลบโฟลเดอร์แล้ว
+  notice_folder_details_were_saved: บันทึกรายละเอียดโฟลเดอร์แล้ว
+  notice_folder_locked: ล็อคโฟลเดอร์แล้ว
+  notice_folder_notifications_activated: เปิดใช้งานการแจ้งเตือนโฟลเดอร์แล้ว
+  notice_folder_notifications_deactivated: ปิดใช้งานการแจ้งเตือนโฟลเดอร์แล้ว
+  notice_folder_unlocked: ปลดล็อคโฟลเดอร์แล้ว
+  notice_revision_deleted: ลบการแก้ไข
+  notice_revision_obsoleted: การแก้ไขล้าสมัยแล้ว
+  notice_workflow_started: เริ่มต้นอนุมัติลำดับงานสำเร็จ
+  notice_your_preferences_were_not_saved: การตั้งค่าของคุณไม่ได้รับการบันทึก
+  notice_your_preferences_were_saved: การตั้งค่าของคุณบันทึกแล้ว
+  open_approvals: เปิดการอนุมัติ
+  option_stem_all: ปิดกั้นทั้งหมด
+  option_stem_none: ไม่ต้องปิดกั้น(ค่าเริ่มต้น)
+  option_stem_some: ปิดกั้นบางส่วน
+  option_version_custom: กำหนดเอง
+  option_version_major: หลัก
+  option_version_minor: รอง
+  option_version_same: คล้ายกัน
+  parent_directory: สารบบหลัก
+  permission_display_system_folders: แสดงโฟลเดอรในระบบ
+  permission_email_documents: อีเมลเอกสาร
+  permission_file_approval: การอนุมัติไฟล์
+  permission_file_delete: ลบเอกสาร
+  permission_file_manipulation: การจัดการไฟล์
+  permission_folder_manipulation: การจัดการโฟลเดอร์
+  permission_force_file_unlock: บังคับให้ปลดล็อคไฟล์
+  permission_manage_workflows: จัดการลำดับงาน
+  permission_user_preferences: การตั้งค่าของผู้ใช้
+  permission_view_dmsf_file_revision_accesses: ดูการดาวน์โหลดในสตรีมกิจกรรม
+  permission_view_dmsf_file_revisions: ดูการแก้ไขในสตรีมกิจกรรม
+  permission_view_dmsf_files: ดูเอกสาร
+  permission_view_dmsf_folders: เรียกดูเอกสาร
+  project_module_dmsf: DMS
+  select_option_activated: เปิดใช้งาน
+  select_option_deactivated: ปิดใช้งาน
+  select_option_default: ค่าเริ่มต้น
+  select_option_webdav_readonly: อ่านอย่างเดียว
+  select_option_webdav_readwrite: อ่าน/เขียน
+  submit_save: บันทึก
+  text_dmsf_fast_links_info: คุณจะสามารถป้อน ID โฟลเดอร์เป้าหมายด้วยตนเองเมื่อสร้างลิงก์เพื่อเร่งกระบวนการสร้างลิงก์
+  text_email_doc_deleted: เพิ่งลบเอกสารของ
+  text_email_doc_deleted_subject: ลบเอกสารแล้ว
+  text_email_doc_follows: ดังต่อไปนี้
+  text_email_doc_updated: เพิ่งอัพเดตเอกสารของ
+  text_email_doc_updated_subject: เอกสารอัพเดตแล้ว
+  text_email_finished_approved: การอนุมัติการมอบหมายลำดับงาน '%{name}' ไปยังเอกสาร '%{filename}'
+    เพิ่งเสร็จสิ้นและเอกสารได้รับการอนุมัติแล้ว
+  text_email_finished_delegated: การอนุมัติการมอบหมายลำดับงาน '%{name}' ไปยังเอกสาร
+    '%{filename}' เพิ่งจะถูกมอบหมายเนื่องจาก '%{notice}' และคาดว่าคุณจะทำการอนุมัติในขั้นตอนการอนุมัติปัจจุบัน
+  text_email_finished_rejected: การอนุมัติการมอบหมายลำดับงาน '%{name}' ไปยังเอกสาร '%{filename}'
+    เพิ่งเสร็จสิ้นและเอกสารถูกปฏิเสธเนื่องจาก'%{notice}'.
+  text_email_finished_step: การอนุมัติการมอบหมายลำดับงาน '%{name}' ไปยังเอกสาร '%{filename}'
+    เพิ่งเสร็จสิ้นหนึ่งในขั้นตอนการอนุมัติและคาดว่าคุณจะทำการอนุมัติในขั้นตอนการอนุมัติถัดไป
+  text_email_finished_step_short: การอนุมัติการมอบหมายลำดับงาน '%{name}' ไปยังเอกสาร '%{filename}'
+    เพิ่งเสร็จสิ้นหนึ่งในขั้นตอนการอนุมัติ
+  text_email_from_override: ผู้ใช้ที่เข้าสู่ระบบในปัจจุบัน
+  text_email_started: การอนุมัติลำดับงาน '%{name}' ที่มอบหมายไปยังเอกสาร '%{filename}'
+     เพิ่งจะเริ่มขึ้นและคาดว่าคุณจะทำการอนุมัติในขั้นตอนการอนุมัติปัจจุบัน
+  text_email_subject_approved: อนุมัติ
+  text_email_subject_delegated: ตั้งตัวแทน
+  text_email_subject_rejected: ปฏิเสธ
+  text_email_subject_requires_approval: ต้องการการอนุมัติของคุณ
+  text_email_subject_started: เริ่ม
+  text_email_subject_updated: อัพเดต
+  text_email_to_proceed: หากต้องการดำเนินการต่อให้คลิกที่ไอคอนช่องทำเครื่องหมายถัดจากเอกสารใน
+  text_email_to_see_history: หากต้องการดูประวัติการอนุมัติให้คลิกที่สถานะลำดับงานของเอกสาร
+  text_email_to_see_status: หากต้องการดูสถานะปัจจุบันของการอนุมัติลำดับงานให้คลิกที่สถานะลำดับงาน์ที่ระบุในเอกสาร
+  text_enable_cjk_ngrams: 'ด้วยการเปิดใช้งานสิ่งนี้ช่วงของอักขระ CJK จะถูกแบ่งออกเป็น
+    unigrams และ bigrams โดย unigrams ที่มีข้อมูลตำแหน่ง อักขระที่ไม่ใช่ CJK แบ่งออกเป็นคำตามปกติ
+    ตัวเลือกที่เกี่ยวข้องจะต้องมีการใช้งานในเวลาดัชนี. e.g: XAPIAN_CJK_NGRAM=true
+    ruby plugins/redmine_dmsf/extra/xapian_indexer.rb -fv'
+  text_memcached_servers: สนับสนุนเซิร์ฟเวอร์เดียวเท่านั้น หากปล่อยว่างแคชจะถูกปิดใช้งาน
+    หลังจากเปลี่ยนสิ่งนี้แอปพลิเคชันจะต้องเริ่มต้นใหม่!
+  text_stemming_info: 'สิ่งนี้จะควบคุมวิธีที่ตัวแยกวิเคราะห์แบบสอบถามจะใช้อัลกอริทึมการปิดกั้น.
+    ค่าเริ่มต้นคือ STEM_NONE ค่าที่เป็นไปได้คือ: STEM_NONE - ไม่ต้องทำการปิดกั้นใดๆ ,STEM_SOME
+    - ค้นหารูปแบบของคำศัพท์ที่ถูกปิดกั้นยกเว้นคำที่ขึ้นต้นด้วยตัวพิมพ์ใหญ่, หรือที่ตามด้วยอักขระบางตัว
+    (currently:''/@<>=*[{"''), หรือใช้กับผู้ประกอบการที่ต้องการข้อมูลตำแหน่ง. คำที่ถูก
+    Stemed นำหน้าด้วย ''Z'', STEM_ALL - ค้นหาคำที่มีรูปแบบของคำทั้งหมด(note: no ''Z''
+    prefix is added).'
+  text_title_format: 'รูปแบบชื่อเอกสารสำหรับดาวน์โหลด (%t - title, %f - file, %d -
+    date, %v - version, %i - ID, %r - revision).ตัวอย่าง: %t_%v'
+  title_approval: การอนุมัติ
+  title_approved: อนุมัติ
+  title_assigned: ได้รับมอบหมาย
+  title_assignment: การมอบหมาย
+  title_check_for_restore_or_delete: ตรวจสอบการคืนค่าหรือลบ
+  title_check_for_zip_download_or_email: ตรวจสอบไฟล์ zip ดาวน์โหลดหรืออีเมล
+  title_check_uncheck_all_for_restore_or_delete: ทำเครื่องหมาย / ไม่เลือกทั้งหมดเพื่อกู้คืนหรือลบ
+  title_check_uncheck_all_for_zip_download_or_email: ตรวจ/ไม่ตรวจไฟล์ zip ทั้งหมด
+    ดาวน์โหลดหรืออีเมล
+  title_copy: คัดลอก
+  title_copy_or_move: คัดลอก/ย้าย
+  title_create_link: สร้างลิงค์สัญลักษณ์
+  title_delegation: การมอบหมายหน้าที่
+  title_delete: ลบ
+  title_delete_checked: ลบการตรวจสอบแล้ว
+  title_delete_revision: ลบการแก้ไข
+  title_dmsf_workflow_log: บันทึกการอนุมัติลำดับงาน
+  title_download: ดาวน์โหลด
+  title_download_checked: ตรวจสอบการดาวน์โหลดในไฟล์ Zip ถาวร
+  title_download_entries: ดาวน์โหลดรายการ
+  title_filename_for_download: ชื่อไฟล์ที่ใช้สำหรับดาวน์โหลดหรือที่เก็บถาวรในไฟล์
+    Zip
+  title_items: รายการ
+  title_lock_file: ล็อคเพื่อป้องกันการเปลี่ยนแปลงสำหรับสมาชิกรายอื่น
+  title_lock_folder: ล็อคเพื่อป้องกันการเปลี่ยนแปลงสำหรับสมาชิกรายอื่น
+  title_locked_by_user: ล็อคโดย%{user}
+  title_none: ไม่มี
+  title_notifications_active: การแจ้งเตือนใช้งานอยู่
+  title_notifications_active_deactivate: 'การแจ้งเตือนที่ใช้งานอยู่: ปิดการใช้งาน'
+  title_notifications_not_active_activate: 'การแจ้งเตือนปิดใช้งานอยู่: เปิดใช้งาน'
+  title_obsolete: เลิกใช้
+  title_obsolete_revision: เลิกใช้การแก้ไข
+  title_rejected: ปฏิเสธ
+  title_rejection: การปฏิเสธ
+  title_restore: กู้คืน
+  title_restore_checked: ตรวจสอบการคืนค่า
+  title_save_preferences: บันทึกค่ากำหนด
+  title_send_checked_by_email: ส่งการตรวจสอบทางอีเมล
+  title_start: เริ่ม
+  title_title_version_version_download: "%{title} ดาวน์โหลดเวอร์ชั่น %{version} "
+  title_total_size_of_all_files: ขนาดทั้งหมดของไฟล์ทั้งหมดในโฟลเดอร์นี้
+  title_unlock_file: ปลดล็อคเพื่ออนุญาตการเปลี่ยนแปลงสำหรับสมาชิกคนอื่น ๆ
+  title_unlock_folder: ปลดล็อคเพื่ออนุญาตการเปลี่ยนแปลงสำหรับสมาชิกคนอื่น ๆ
+  title_waiting_for_approval: รอการอนุมัติ
+  user_is_not_project_member: คุณไม่ได้เป็นสมาชิกของโครงการ
+  warning_email_notifications: ส่งการแจ้งเตือนทางอีเมลถึง %{to}
+  warning_file_already_locked: ไฟล์ถูกล็อคแล้ว
+  warning_file_not_locked: ไฟล์ไม่ถูกล็อค
+  warning_file_notifications_already_activated: เปิดใช้งานการแจ้งเตือนไฟล์แล้ว
+  warning_file_notifications_already_deactivated: ปิดใช้งานการแจ้งเตือนไฟล์แล้ว
+  warning_folder_already_locked: โฟลเดอร์นี้ถูกล็อคแล้ว
+  warning_folder_not_locked: ขออภัยไม่สามารถล็อคโฟลเดอร์ได้
+  warning_folder_notifications_already_activated: เปิดใช้งานการแจ้งเตือนโฟลเดอร์แล้ว
+  warning_folder_notifications_already_deactivated: ปิดใช้งานการแจ้งเตือนโฟลเดอร์แล้ว
+  warning_no_entries_selected: ไม่ได้เลือกรายการ
+  warning_no_project_to_copy_file_to: ไม่มีโครงการที่จะคัดลอกไฟล์ไปที่
+  warning_no_project_to_copy_folder_to: ไม่มีโครงการที่จะคัดลอกโฟลเดอร์ไป
+  warning_one_of_files_locked: หนึ่งไฟล์ถูกล็อค
+  warning_some_entries_were_not_deleted: บางรายการไม่ถูกลบ:%{entries}
+  warning_some_files_were_not_commited: 'บางไฟล์ไม่ได้รับการยืนยันเนื่องจากข้อผิดพลาดในการตรวจสอบ:
+    %{files}'
+  warning_xapian_not_available: Xapian ไม่สามารถใช้ได้

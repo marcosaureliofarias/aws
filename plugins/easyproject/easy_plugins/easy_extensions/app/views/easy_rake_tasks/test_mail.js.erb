@@ -1,0 +1,5 @@
+<% if @result == true %>
+  alert('<%= j l(:notice_successful_connection) -%>');
+<% else %>
+  alert('<%= j @result-%>');
+<% end %>

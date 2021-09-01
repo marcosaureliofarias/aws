@@ -1,0 +1,9 @@
+<% if User.current.allowed_to?(:edit_easy_crm_cases, @project, global: @project.nil?) || User.current.allowed_to?(:edit_own_easy_crm_cases, @project, global: @project.nil?) %>
+  <%= content_tag(:li, link_to(l(:label_easy_crm_case_new), new_easy_crm_case_path('easy_crm_case[main_easy_contact_id]': @easy_contact.id, project_id: @project), class: 'icon icon-add')) %>
+<% end %>
+<% if User.current.allowed_to?(:view_easy_crms, @project, global: @project.nil?) %>
+  <%= content_tag(:li, link_to(l(:label_easy_crm_case_plural), easy_crm_cases_path(set_filter: '1', 'easy_contacts.id': @easy_contact.id, project_id: @project), class: EasyCrmCase.css_icon)) %>
+<% end %>
+<% if (User.current.allowed_to?(:edit_easy_crm_cases, @project, global: @project.nil?) || User.current.allowed_to?(:edit_own_easy_crm_cases, @project, global: @project.nil?)) && EasySetting.value('show_easy_entity_activity_on_crm_case', @project) %>
+  <%= content_tag(:li, link_to(l(:label_easy_entity_activity), sales_activities_path(set_filter: '1', 'easy_entity_activity_attendees': 'EasyContact_' + @easy_contact.id.to_s), class: 'icon icon-list button')) %>
+<% end %>

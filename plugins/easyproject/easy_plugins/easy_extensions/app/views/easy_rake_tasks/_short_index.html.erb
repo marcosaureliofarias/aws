@@ -1,0 +1,27 @@
+<% if tasks.blank? %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% else %>
+  <%= form_tag '', {:class => 'autoscroll'} do %>
+    <table class="list easy-rake-tasks">
+      <tbody>
+      <% tasks.each do |task| %>
+        <tr class="hascontextmenu">
+          <td style="display: none;" class="checkbox hide-when-print"><%= check_box_tag 'ids[]', task.id, false, :id => nil, :class => 'checkbox hide-when-print' -%></td>
+          <td class="name">
+            <%= link_to(task.caption, edit_easy_rake_task_path(task, {:back_url => original_url})) -%>
+            <br/>
+            <%= task_period_description(task) %>
+            <span class="contextual">
+              <%= l(:label_easy_rake_last)%>: <%= l(:x_seconds, :scope => [:datetime, :distance_in_words], :count => task.last_duration) %>
+              <%= l(:label_easy_rake_average)%>: <%= l(:x_seconds, :scope => [:datetime, :distance_in_words], :count => task.average_duration) %>
+            </span>
+          </td>
+          <td class="buttons easy-query-additional-ending-buttons">
+            <span class="btn_contextmenu_trigger icon icon-settings" title="<%= l(:label_settings) %>"></span>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

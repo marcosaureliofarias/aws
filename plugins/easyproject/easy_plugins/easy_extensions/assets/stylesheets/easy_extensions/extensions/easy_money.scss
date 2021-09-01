@@ -1,0 +1,57 @@
+.overdrawn{
+  color: $color-negative;
+}
+#project-overview-container{
+  table.list{
+
+    &> tbody > tr {
+      &, & a{
+        font-size: inherit;
+      }
+      &>th{
+        //font-size: 0.89em !important;
+        font-weight: normal;
+      }
+    }
+    .button-icon{
+      opacity: 0;
+      margin-right: $gap;
+    }
+    tr{
+      &:hover{
+        .button-icon{
+          opacity: 1;
+        }
+      }
+    }
+
+    tbody, tfoot{
+      tr{
+        td{
+          &:first-of-type {
+            background: rgba(mix($color-foreground,$color-background,25%), 0.5);
+          }
+        }
+      }
+    }
+    tfoot{
+      background: none;
+      tr {
+        th, td {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
+.easy-money-subproject{
+  td.expander{
+    width: 50px;
+  }
+}
+#money-type-select {
+  & > ul {
+    @extend %flex;
+    @extend %flex-wrap-wrap;
+  }
+}

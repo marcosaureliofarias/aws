@@ -1,0 +1,422 @@
+div.dhx {
+  &_menu {
+    &_head {
+      margin: 0;
+      background: none;
+      width: auto;
+      height: auto;
+      &:before {
+        font-size: larger;
+      }
+    }
+    &_icon {
+      @extend %button-positive;
+      cursor: pointer;
+    }
+  }
+  &_cal_header, &_multi_day, &_cal_data{
+    top: 0 !important;
+  }
+  &_cal {
+    &_container {
+      overflow: visible;
+      font-size: $font-size;
+      background: none;
+      [class*=dhx] {
+        font-family: $font-family !important;
+      }
+      .legend {
+        @include small;
+        position: sticky;
+        bottom: 0;
+        z-index: 3;
+        background: $scheduler__color-background;
+        border-top: 1px solid $color-border-minor;
+        margin-top: -1px;
+        left: 0;
+        right: 0;
+        line-height: $box-padding;
+        text-align: left;
+        padding: $gap 0 !important;
+        //& > span {
+        //  white-space: nowrap;
+        //}
+      }
+      &, & *{
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+    &_navline {
+      div{
+        @extend %truncate;
+      }
+      .button {
+        &.active {
+          background-color: $color-main;
+          border-color: $color-main;
+          color: $color-foreground !important;
+          text-align: left;
+        }
+      }
+    }
+    &_header {
+      color: $color-text-muted !important;
+      position: relative;
+      border-color: $color-border-minor;
+      @extend %flex;
+      .dhx_scheduler_day &,
+      .dhx_scheduler_week &{
+        margin-left: 35px;
+      }
+      .dhx_scheduler_month &{
+        @extend %box-sizing-border-box;
+      }
+    }
+    &_data {
+      min-height: 300px;
+      height: initial !important;
+      position: relative;
+      width: 100% !important;
+      background: $color-foreground;
+      border-color: $color-border-minor;
+      @extend %flex;
+      @extend %flex-wrap-wrap;
+      @include align-items(flex-start);
+      .dhx_scheduler_week &{
+        margin-right: -20px;
+      }
+      .dhx_scheduler_month &{
+        border-top: none;
+      }
+      .dhx_scheduler_year &{
+        $year-breakpoint: max-small-screen;
+        @include respond-to ($year-breakpoint) {
+          @include flex-direction(column);
+        }
+        & > div{
+          position: relative !important;
+          flex-basis: 25%;
+          top: auto !important;
+          left: auto !important;
+          margin: 0 !important;
+          height: auto !important;
+          &+div{
+            margin-left: -1px !important;
+            &:nth-of-type(4n+0) + div{
+              margin-left: 0px !important;
+            }
+            @include respond-to($year-breakpoint) {
+              margin-left: 0 !important;
+            }
+          }
+          @include respond-to($year-breakpoint) {
+            width: 100% !important;
+          }
+        }
+      }
+      table{
+        border-collapse: collapse;
+      }
+      td{
+        border: 1px solid $color-border-minor;
+      }
+    }
+    &_select_menu {
+      height: auto !important;
+      width: 23px !important;
+      border: none;
+      .dhx {
+        &_title {
+          display: none;
+        }
+      }
+    }
+    &_event {
+      color: $color-text;
+      z-index: 1;
+      @extend %user-select-none;
+      //-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      @include box-shadow(0 0 .25*$gap rgba(0, 0, 0, .25));
+      @include box-sizing(border-box);
+      border-radius: 4px;
+      @include transition(all .5s);
+      max-width: 100% !important;
+      &:hover {
+        z-index: 2;
+        width: 100%;
+        @include respond-to(min-#{$scheduler__breakpoint}) {
+          width: 100% !important;
+        }
+      }
+      &:focus {
+        outline: none;
+        .dhx_body {
+          min-height: min-content !important;
+          //position: absolute;
+          //z-index: 2;
+        }
+
+      }
+      &.selected {
+        z-index: 2;
+      }
+      .dhx_body {
+        padding-top: calc(.5*#{$gap} + 10px);
+        font-size: 11px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .dhx_title {
+        height: 12px;
+        line-height: 12px;
+        font-size: 12px;
+        text-align: left;
+        width: auto;
+        left: 0;
+        right: 0;
+        padding: .2*$gap;
+        z-index: 1;
+        cursor: pointer;
+      }
+      &_clear {
+        z-index: 1;
+        padding: ($scheduler__month-event-bar-width - 2) 2px 0;
+        border-radius: 4px;
+        color: $color-text;
+      }
+      .dhx_footer {
+        box-sizing: border-box;
+        margin: -6px 0 0;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 0;
+      }
+
+      &_line {
+        border-radius: 4px;
+        z-index: 1;
+        color: $color-text;
+        font-weight: bold;
+        padding: .150*$gap;
+        padding-bottom: 0;
+        height: 13px;
+      }
+      //&:hover,&:focus{
+      //  z-index: 2;
+      //}
+    }
+  }
+  &_event {
+    color: $color-text;
+    &_move {
+      content: '';
+      display: block;
+      height: 2px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    &_line {
+      color: $color-text;
+    }
+    &_resize {
+      @extend %pseudo-after;
+      &:after {
+        height: 1px;
+        width: 20%;
+        left: 40%;
+        border-bottom: 1px solid $color-text;
+        border-top: 1px solid $color-text;
+        opacity: .2;
+      }
+    }
+  }
+  &_multi_day {
+    position: relative;
+    width: 100% !important;
+    border: 1px solid $color-border-minor;
+    border-bottom: none;
+    height: auto !important;
+    @extend %box-sizing-border-box;
+    background: $color-foreground;
+    &_icon{
+      &,&_small{
+        width: 34px !important;
+        border-bottom: none;
+        text-align: center;
+        background: $color-foreground;
+        border-right-color: $color-border-minor;
+      }
+    }
+  }
+  &_scheduler {
+    &_agenda {
+
+    }
+  }
+  &_agenda {
+    &_line {
+      //margin-bottom: 1px;
+      overflow: visible;
+      height: auto;
+      min-height: $box-padding;
+      border-left: 1px solid $color-border-minor;
+      border-right: 1px solid $color-border-minor;
+      @extend %flex;
+      .dhx_event_icon{
+        order: 99;
+      }
+      .dhx_cal_header &{
+        &>div{
+          flex-basis: 100px;
+          width: 100px;
+          border-color: $color-border-minor !important;
+        }
+        border: none;
+      }
+
+      &>span{
+        @extend %flex;
+        &>span{
+
+        }
+      }
+      &[aria]:hover{
+        cursor: pointer;
+      }
+    }
+    &_event{
+      &_time{
+        background: rgba($black, 0.1);
+        flex-basis: 100px;
+        width: 100px;
+        min-width: 100px;
+        //@extend %truncate;
+      }
+    }
+    &_area {
+      .dhx_v_border {
+        display: none;
+      }
+    }
+  }
+  &_month {
+    //border: 1px solid $color-border-minor;
+    &_head, &_body {
+      //border: none;
+      width: unset !important;
+      border: none;
+      background-color: $color-foreground !important;
+      //.easy-calendar__month-cell:first-child & {
+      //  margin-left: 0;
+      //}
+      //.easy-calendar__month-cell:last-child & {
+      //  margin-right: 1px;
+      //}
+    }
+    &_link{
+      text-align: center;
+      &>a{
+        @extend %button-link;
+        @extend %tooltip-top;
+      }
+    }
+  }
+  &_year {
+    &_tooltip {
+      z-index: z($z-priority, topmenu);
+      background-color: $color-foreground;
+      @include respond-to(max-small-screen){
+        margin-top: $box-padding;
+        left: $gap !important;
+        width: calc(100vw - #{2*$gap});
+      }
+    }
+    &_body{
+      border: none;
+    }
+    &_month{
+      border-top: none;
+      border-color: $color-border-minor !important;
+    }
+  }
+  &_scale {
+    &_bar {
+      @include flex-basis(0);
+      @include flex-grow(1);
+      @extend %box-sizing-border-box;
+      width: auto !important;
+      position: static;
+      left: initial !important;
+      background: $color-foreground;
+      border-color: $color-border-minor;
+      .dhx_year_week &{
+        left: auto !important;
+      }
+    }
+    &_holder {
+      @include flex-basis(0);
+      @include flex-grow(1);
+      border-color: $color-border-minor;
+      &:last-child{
+        order: -1;
+        max-width: 35px;
+      }
+      &_now {
+        background-color: $color-calendar-background-today;
+        border-color: $color-border-minor;
+        @extend %box-sizing-border-box;
+        @include flex-basis(0);
+        @include flex-grow(1);
+      }
+    }
+    &_ignore{
+      display: none;
+    }
+    &_hour {
+      border-left: 1px solid $color-border-minor;
+      border-color: $color-border-minor;
+      font-weight: bold;
+      background: $color-foreground;
+      //@include respond-to(max-#{$scheduler__breakpoint}) {
+      //  width: $box-padding !important;
+      //}
+      &_minute {
+        &_cont {
+          display: none;
+        }
+      }
+
+    }
+
+  }
+  &_focus {
+    &_slot {
+      &, &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+#calendar_modal {
+  background: mix($color-foreground, $color-background);
+  .buttons {
+    @extend %flexbox-base;
+    @extend %justify-content-center;
+    .button {
+      margin-right: .75 * $gap;
+      @extend %button-positive;
+      padding-bottom: .75 * $gap;
+      padding-top: .75 * $gap;
+    }
+  }
+}

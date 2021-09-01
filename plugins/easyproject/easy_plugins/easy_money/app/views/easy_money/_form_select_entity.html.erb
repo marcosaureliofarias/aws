@@ -1,0 +1,18 @@
+<% entity = f.object.entity
+   entity_type = @entity_type || entity.class.to_s
+   allowed_entities = EasyMoneyEntity.allowed_entities(project) %>
+
+<%= f.hidden_field :project_id, value: project.id %>
+<div style="display: <%= allowed_entities.size > 1 ? '' : 'none' %>">
+  <p>
+    <%= f.label :entity_type, l(:label_easy_money_create_to), class: 'required' %>
+    <%= f.select :entity_type,
+                 allowed_entities.map { |entity| [l("field_#{entity.underscore}"), entity] },
+                 {},
+                 onchange: "$.ajax({ url: '#{ j(easy_money_render_entity_select_path(project_id: project)).html_safe }', type: 'POST', data: { entity_type: $(this).val() } })" %>
+  </p>
+
+  <p class="easy_money_entity_autocomplete">
+    <%= render(partial: 'easy_money/form_entity_autocomplete', locals: { project: project, entity_type: entity_type, selected_value: { id: entity.try(:id), name: entity.try(:to_s) } }) %>
+  </p>
+</div>

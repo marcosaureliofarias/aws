@@ -1,0 +1,104 @@
+<% if easy_action_sequence_template.states.any? %>
+  <% unless request.xhr? %>
+    <% include_easy_actions_assets %>
+    <div class="contextual" id="graphContextual">
+      <%= link_to_function l(:button_save_as_png, scope: :easy_actions),
+                           "saveSvgAsPng(document.getElementById('chart'), '#{easy_action_sequence_template.name}-#{Time.now.iso8601}.png', {backgroundColor: 'white'})" %>
+    </div>
+  <% end %>
+  <div id="chart_container">
+    <svg id="chart">
+      <g transform="translate(2,2)"/>
+    </svg>
+  </div>
+  <script type="text/javascript">
+      var showEasyActionSequenceChart = function () {
+// Create a new directed graph
+          var g = new dagreD3.graphlib.Graph().setGraph({});
+
+          <% easy_action_sequence_template.states.each do |state| %>
+          g.setNode("<%= state.ident %>", {label: "<%= j state.name %>", shape: "ellipse"});
+          <% end %>
+
+          <% easy_action_sequence_template.state_actions.each do |state_action| %>
+          g.setNode("<%= state_action.ident %>", {
+              label: "<%= j state_action.name %>",
+              shape: "rect"
+          });
+          <% end %>
+
+          <% easy_action_sequence_template.transitions.each do |transition| %>
+          <% next if transition.state_from.nil? || transition.state_to.nil? %>
+          g.setEdge("<%= transition.state_from.ident %>", "<%= transition.state_to.ident %>", {label: "<%= j transition.name %>"});
+          <% end %>
+
+          <% easy_action_sequence_template.state_actions.each do |state_action| %>
+          g.setEdge("<%= state_action.easy_action_state.ident %>", "<%= state_action.ident %>", {label: ""});
+          <% end %>
+
+// Set some general styles
+          g.nodes().forEach(function (v) {
+              var node = g.node(v);
+              node.rx = node.ry = 5;
+          });
+
+// Add some custom colors based on state
+          <% if local_assigns[:current_state] %>
+          g.node("<%= local_assigns[:current_state].ident %>").style = "fill: #7f7";
+          <% end %>
+
+          var svg = d3.select("svg"),
+              inner = svg.select("g");
+
+// Set up zoom support
+          var zoom = d3.zoom().on("zoom", function () {
+              inner.attr("transform", d3.event.transform);
+          });
+          svg.call(zoom);
+
+// Create the renderer
+          var render = new dagreD3.render();
+
+// Run the renderer. This is what draws the final graph.
+          render(inner, g);
+
+// Center the graph
+          var initialScale = 0.75;
+
+          svg.attr('height', g.graph().height * initialScale + 40);
+
+          var cw = $('div#content').width();
+          var dw = $('#chart_container').width();
+          var t = cw >= 900 ? 20 : 5;
+          var gw = g.graph().width + 2 * t;
+          var gh = g.graph().height + 2 * t;
+          var w = Math.min(cw - 20, gw);
+          if (dw < cw && dw > gw) {
+              w = dw;
+          }
+
+          var h = Math.min($(window).height(), gh);
+          var sw = w / gw;
+          var sh = h / gh;
+          var s = 1;
+          if (sw < 1 || sh < 1) {
+              if (sw < sh) {
+                  s = sw;
+                  h = w * gh / gw;
+              } else {
+                  s = sh;
+                  w = h * gw / gh;
+              }
+          }
+          $('#chart').attr('width', w).attr('height', h);
+          var transform = 'translate(' + t + ',' + t + ')';
+          if (s < 1) {
+              transform += 'scale(' + s + ')';
+          }
+          d3.select("#chart g").attr("transform", transform);
+      };
+      $(function () {
+          showEasyActionSequenceChart();
+      });
+  </script>
+<% end %>

@@ -1,0 +1,384 @@
+<% uniq_prefix = 'easy_data_template_ms_projects_import_settings_'
+onstart_script = ''
+all_trackers, all_issue_statuses = Tracker.sorted.select([:id, :name]), IssueStatus.sorted.select([:id, :name])
+all_priorities = IssuePriority.active.sorted.select([:id, :name])
+all_custom_fields = IssueCustomField.visible.sorted.where(:is_for_all => true).where(:is_required => true)
+all_users = User.visible.active.non_system_flag.sorted
+all_roles = Role.givable.sorted.select([:id, :name])
+default_issue_status_id = Tracker.order(:position).limit(1).pluck(:default_status_id).first
+default_issue_priority_id = IssuePriority.default.try(:id)
+maximum_version_validator = Version.validators_on(:name).detect { |v| v.is_a?(ActiveModel::Validations::LengthValidator) }
+summaries_as_milestones = @datatemplate.settings['summaries_as_milestones']  == '1'
+%>
+<%= title l(:button_easy_data_template_new_msproject) -%>
+<div class="import-data-preview-container">
+  <%= form_tag({:action => 'import_data'}, :autocomplete => 'off', :class => 'form') do %>
+    <div class="box">
+      <%= toggling_container(uniq_prefix + 'project', User.current, :heading => l(:label_project), :container_html => {:class => 'tabular form-box'}) do %>
+        <% unless @invalid_objects[:project].blank? %>
+          <div class="flash error">
+            <span><%= @invalid_objects[:project].errors.full_messages.join('<br />').html_safe -%></span>
+          </div>
+        <% end %>
+        <p>
+          <%= hidden_field_tag('project[id]', @valid_objects[:project].id) unless @valid_objects[:project].nil? %>
+          <%= label_tag 'project_name', l(:field_name) %>
+          <%= text_field_tag 'project[name]', @xml_project.title || @xml_project.name.to_s.gsub(/.xml/, '').titleize, :size => 100 %>
+        </p>
+        <% if (EASY_EXTENSIONS_ENABLED && EasySetting.value('project_display_identifiers')) || !EASY_EXTENSIONS_ENABLED %>
+          <p>
+            <%= label_tag 'project_identifier', l(:field_identifier) %>
+            <%= text_field_tag 'project[identifier]', (params[:project] && params[:project][:identifier]) %>
+          </p>
+        <% end %>
+        <% if EASY_EXTENSIONS_ENABLED && !EasySetting.value('project_calculate_start_date') %>
+          <p>
+            <%= label_tag 'project_easy_start_date', l(:field_easy_start_date) %>
+            <%= text_field_tag 'project[easy_start_date]', @xml_project.start_date, :size => 10 %><%= calendar_for('project_easy_start_date') %>
+          </p>
+        <% end %>
+        <% if EASY_EXTENSIONS_ENABLED && !EasySetting.value('project_calculate_due_date') %>
+          <p>
+            <%= label_tag 'project_easy_due_date', l(:field_easy_due_date) %>
+            <%= text_field_tag 'project[easy_due_date]', @xml_project.finish_date, :size => 10 %><%= calendar_for('project_easy_due_date') %>
+          </p>
+        <% end %>
+        <% if EASY_EXTENSIONS_ENABLED %>
+          <div id="form-project-custom-fields">
+            <% project_custom_field_values = @valid_objects[:project].nil? ? Project.new.visible_custom_field_values : @valid_objects[:project].visible_custom_field_values %>
+            <%= render :partial => 'projects/form_project_custom_fields', :locals => {:custom_field_values => project_custom_field_values.sort_by { |i| i.custom_field.position }, :project => @valid_objects[:project] || Project.new } -%>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <% if @xml_project.resources && @xml_project.resources.size > 0 %>
+      <div class="box">
+        <%= toggling_container(uniq_prefix + 'resources', User.current, :heading => l(:label_user_plural)) do %>
+          <div class="autoscroll">
+            <table class="list users">
+            <tbody>
+              <% @xml_project.resources.sort_by{|r| r.name.to_s}.each do |resource|
+                next if resource.name.blank?
+                assgn_count = @xml_project.assignments_by_resource(resource).size
+                -%>
+                <% if @invalid_objects[:user].key?(resource.uid) %>
+                  <tr>
+                    <td colspan="4">
+                      <div class="flash error"><%= @invalid_objects[:user][resource.uid].join('<br />').html_safe -%></div>
+                    </td>
+                  </tr>
+                <% end %>
+                <tr>
+                  <td>
+                    <div class="top"><%= l(:label_easy_data_template_ms_project_resource_name_in_msp) -%>:</div>
+                    <div class="bottom"><%= resource.name %></div>
+                  </td>
+                  <td>
+                    <div class="top"><%= l(:label_easy_data_template_ms_project_user_name_in_ep) -%>:</div>
+                    <div class="bottom">
+                      <% founded_user = User.visible.active.non_system_flag.detect{|u| u.name.match(Regexp.escape(resource.name))} %>
+                      <%= select_tag "resource[#{resource.uid}][assigned_to_id]", options_for_select([['', '']] + all_users.collect{|p| [p.name, p.id]}, :selected => ((params['resource'] && params['resource'][resource.uid.to_s]['assigned_to_id'].to_i) || (founded_user && founded_user.id))), :onchange => "apply_to_all_rows('resource_#{resource.uid}_assigned_to_id', '.field_assigned_to.res_#{resource.uid.to_s.underscore}')" %>
+                      <% onstart_script << "apply_to_all_rows('resource_#{resource.uid}_assigned_to_id', '.field_assigned_to.res_#{resource.uid.to_s.underscore}');" %>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="top"><%= label_tag "resource_#{resource.uid}_role_id", l(:field_role) -%>:</div>
+                    <div class="bottom"><%= select_tag "resource[#{resource.uid}][role_id]", options_for_select([['','']] + all_roles.collect{|r| [r.name, r.id.to_s]}, :selected => (params[:resource] && params[:resource][resource.uid.to_s]['role_id'])) -%></div>
+                  </td>
+                  <td>
+                    <%= l(:label_easy_data_template_ms_project_assigned_user, :count => assgn_count) -%>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <% if (versions = @xml_project.versions(include_summaries: summaries_as_milestones)).size > 0 %>
+      <div class="box">
+        <%= toggling_container(uniq_prefix + 'versions', User.current, :heading => l(:label_version_plural)) do %>
+          <div class="autoscroll">
+            <table class="list versions">
+            <tbody>
+              <% versions.each do |version| %>
+                <% if @invalid_objects[:version].key?(version.uid) %>
+                  <tr>
+                    <td>
+                      <div class="flash error"><%= @invalid_objects[:version][version.uid].errors.full_messages.join('<br />').html_safe -%></div>
+                    </td>
+                  </tr>
+                <% end %>
+                <tr id="version_<%= version.uid.to_s.underscore -%>">
+                  <td>
+                    <table style="width:100%">
+                      <tr>
+                        <td style="width:80px">
+                          <div class="top">
+                            <%= label_tag "version_#{version.uid}_allow_import", l(:field_easy_data_template_allowed_import) %>:
+                          </div>
+                          <div class="bottom">
+                            <%= hidden_field_tag("version[#{version.uid}][id]", @valid_objects[:version][version.uid].id) if @valid_objects[:version].key?(version.uid) %>
+                            <%= hidden_field_tag("version[#{version.uid}][uid]", version.uid) %>
+                            <%= hidden_field_tag("version[#{version.uid}][outlinenumber]", version.outlinenumber) %>
+                            <%= hidden_field_tag("version[#{version.uid}][status]",'open') %>
+                            <%= hidden_field_tag("version[#{version.uid}][sharing]", 'none') %>
+                            <%= select_tag "version[#{version.uid}][allow_import]", options_for_select(allowed_import_options, :selected => ((params[:version] && params[:version][version.uid.to_s]['allow_import']) || (version.name.blank? || (maximum_version_validator && version.name.to_s.length > maximum_version_validator.options[:maximum].to_i) ? 'no' : 'yes'))), :class => 'field_easy_data_template_allowed_import' -%>
+                          </div>
+                        </td>
+                        <td class="name">
+                          <div class="top">
+                            <%= label_tag "version_#{version.uid}_name", l(:field_name) %>:
+                          </div>
+                          <div class="bottom">
+                            <%= text_field_tag "version[#{version.uid}][name]", ((params[:version] && params[:version][version.uid.to_s]['name']) || version.name), :size => 50 %>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="top">
+                            <%= label_tag "version_#{version.uid}_effective_date", l(:field_effective_date) %>:
+                          </div>
+                          <div class="bottom">
+                            <%= text_field_tag "version[#{version.uid}][effective_date]", ((params[:version] && params[:version][version.uid.to_s]['effective_date']) || version.finish_date), :size => 8 %><%= calendar_for("version_#{version.uid}_effective_date") %>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="box">
+      <%= toggling_container(uniq_prefix + 'tasks', User.current, :heading => l(:label_issue_plural)) do %>
+        <div class="autoscroll">
+          <table class="list issues">
+          <tbody>
+            <% @xml_project.issues(include_summaries: !summaries_as_milestones).each do |task|
+              next if task.name.blank? %>
+
+              <% is_summary = task.summary.to_i == 1 %>
+              <tr>
+                <td>
+                  <table style="width:100%">
+                    <tr class="<%= 'summary-task' if is_summary %>">
+                      <td>
+                        <%= ('&nbsp;'*5*task.outline_level).html_safe -%><%= link_to_function(task.name.to_s, "$('#task_#{task.uid.to_s.underscore}_1, #task_#{task.uid.to_s.underscore}_2, #task_#{task.uid.to_s.underscore}_3').toggle()", :class => 'issue-toggling icon icon-edit') -%>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <% if @invalid_objects[:issue].key?(task.uid) %>
+                <tr>
+                  <td>
+                    <div class="flash error"><%= @invalid_objects[:issue][task.uid].errors.full_messages.join('<br />').html_safe -%></div>
+                  </td>
+                </tr>
+              <% end %>
+              <tr style="<%= 'display:none' unless @invalid_objects[:issue].key?(task.uid) -%>" id="task_<%= task.uid.to_s.underscore -%>_1">
+                <td>
+                  <table style="width:100%">
+                    <tr>
+                      <td style="width:120px">
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_allow_import", l(:field_easy_data_template_allowed_import) %>:
+                        </div>
+                        <div class="bottom" id="task_import_allow_div">
+                          <%= hidden_field_tag("issue[#{task.uid}][id]", @valid_objects[:issue][task.uid].id) if @valid_objects[:issue].key?(task.uid) %>
+                          <%= hidden_field_tag("issue[#{task.uid}][uid]", task.uid) %>
+                          <%= hidden_field_tag("issue[#{task.uid}][outlinenumber]", task.outlinenumber) %>
+                          <% select_html_id = "#{is_summary ? 'summary_task' : 'task'}_#{task.uid}" %>
+                          <% select_class = "field_easy_data_template_allowed_import inline #{is_summary ? 'summary-task' : 'task'}" %>
+                          <%= select_tag "issue[#{task.uid}][allow_import]",
+                                         options_for_select(allowed_import_options, selected: (params.dig(:issue, task.uid.to_s, 'allow_import') || 'yes')),
+                                         class: select_class,
+                                         id: select_html_id %>
+                          <%= apply_to_all_rows_link(select_html_id, select_class.split(' ').map { |s| s.prepend('.') }.join) %>
+                        </div>
+                      </td>
+                      <td class="name">
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_subject", l(:field_subject) %>:
+                        </div>
+                        <div class="bottom">
+                          <%= text_field_tag "issue[#{task.uid}][subject]", ((params[:issue] && params[:issue][task.uid.to_s]['subject']) || task.name), :size => 35 %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_tracker_id", l(:field_tracker) %>:
+                        </div>
+                        <div class="bottom nowrap">
+                          <%= select_tag "issue[#{task.uid}][tracker_id]", options_for_select(all_trackers.collect {|p| [p.name, p.id]}, :selected => (params[:issue] && params[:issue][task.uid.to_s]['tracker_id'].to_i)), :class => 'field_tracker inline' %>
+                          <%= apply_to_all_rows_link("issue_#{task.uid}_tracker_id", '.field_tracker') %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_assigned_to_id", l(:field_assigned_to) -%>:
+                        </div>
+                        <% if @xml_project.assignments %>
+                          <div class="bottom nowrap">
+                            <% assgn_resource = @xml_project.assignments.detect{|a| a.task_uid == task.uid}
+                            resource_css = assgn_resource.nil? ? '' : 'res_' + assgn_resource.resource_uid.to_s.underscore -%>
+                            <%= select_tag "issue[#{task.uid}][assigned_to_id]", options_for_select([['', '']] + all_users.collect {|p| [p.name, p.id]}, :selected => (params[:issue] && params[:issue][task.uid.to_s]['assigned_to_id'].to_i)), :class => "field_assigned_to #{resource_css} inline" %>
+                            <%= apply_to_all_rows_link("issue_#{task.uid}_assigned_to_id", '.field_assigned_to') %>
+                          </div>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr style="<%= 'display:none' unless @invalid_objects[:issue].key?(task.uid) -%>" id="task_<%= task.uid.to_s.underscore -%>_2">
+                <td>
+                  <table style="width:100%">
+                    <tr>
+                      <td style="width:80px"></td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_priority_id", l(:field_priority) %>:
+                        </div>
+                        <div class="bottom">
+                          <%= select_tag "issue[#{task.uid}][priority_id]", options_for_select(all_priorities.collect {|p| [p.name, p.id]}, :selected => ((params[:issue] && params[:issue][task.uid.to_s]['priority_id'].to_i) || default_issue_priority_id )), :class => 'field_priority inline' %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_status_id", l(:field_status) %>:
+                        </div>
+                        <div class="bottom nowrap">
+                          <%= select_tag "issue[#{task.uid}][status_id]", options_for_select(all_issue_statuses.collect {|p| [p.name, p.id]}, :selected => ((params[:issue] && params[:issue][task.uid.to_s]['status_id'].to_i) || default_issue_status_id)), :class => 'field_status inline' %>
+                          <%= apply_to_all_rows_link("issue_#{task.uid}_status_id", '.field_status') %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_start_date", l(:field_start_date) %>:
+                        </div>
+                        <div class="bottom">
+                          <%= text_field_tag "issue[#{task.uid}][start_date]", ((params[:issue] && params[:issue][task.uid.to_s]['start_date']) || task.start_date), :size => 8 %><%= calendar_for("issue_#{task.uid}_start_date") %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_due_date", l(:field_due_date) %>:
+                        </div>
+                        <div class="bottom">
+                          <%= text_field_tag "issue[#{task.uid}][due_date]", ((params[:issue] && params[:issue][task.uid.to_s]['due_date']) || task.finish_date), :size => 8 %><%= calendar_for("issue_#{task.uid}_due_date") %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_done_ratio", l(:field_done_ratio) %>:
+                        </div>
+                        <div class="bottom">
+                          <%= select_tag "issue[#{task.uid}][done_ratio]", options_for_select(((0..10).to_a.collect {|r| ["#{r*10} %", r*10] }), :selected => ((params[:issue] && params[:issue][task.uid.to_s]['done_ratio'].to_i) || ((task.percent_complete || 0)/10*10))), :class => 'field_done_ratio' %>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="width:80px"></td>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue_#{task.uid}_estimated_hours", l(:field_estimated_hours) %>:
+                        </div>
+                        <div class="bottom">
+                          <%= text_field_tag "issue[#{task.uid}][estimated_hours]", ((params[:issue] && params[:issue][task.uid.to_s]['estimated_hours']) || msproject_work_to_estimated_hours(task.work)), :size => 8 %>&nbsp;h
+                        </div>
+                      </td>
+                      <td>
+                        <% task.predecessor_links&.each do |predecessor_link| %>
+                          <% next unless predecessor_link.relation_type %>
+
+                          <% if predecessor_link.predecessor_uid && (related_task = @xml_project.tasks_by_uid(predecessor_link.predecessor_uid)) %>
+                            <% relation_name = "issue_relations[#{task.uid}][relations][#{related_task.uid}]" %>
+                            <%= hidden_field_tag("#{relation_name}[issue_to_id]", related_task.uid) %>
+                            <%= hidden_field_tag("#{relation_name}[relation_type]", predecessor_link.relation_type) %>
+                            <%#= hidden_field_tag("#{relation_name}[relation_delay]",  predecessor_link.relation_delay) %>
+
+                            <%= hidden_field_tag("issue[#{task.uid}][predecessors][]", related_task.uid) %>
+                          <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr style="<%= 'display:none' unless @invalid_objects[:issue].key?(task.uid) -%>" id="task_<%= task.uid.to_s.underscore -%>_3">
+                <td>
+                  <table style="width:100%">
+                    <tr>
+                      <td style="width:80px"></td>
+                      <% all_custom_fields.each do |custom_field|
+                        cfv = CustomFieldValue.new
+                        cfv.custom_field = custom_field
+                        cfv.customized = Issue.new
+                        cfv.value = (params[:issue] && params[:issue][task.uid.to_s] && params[:issue][task.uid.to_s][:custom_field_values] && params[:issue][task.uid.to_s][:custom_field_values][custom_field.id.to_s])
+                      %>
+                      <td>
+                        <div class="top">
+                          <%= label_tag "issue[#{task.uid}][custom_field_values][#{custom_field.id}]", h(custom_field.name) %>
+                        </div>
+                        <div class="bottom">
+                          <%= custom_field_tag "issue[#{task.uid}]", cfv %>
+                        </div>
+                      </td>
+                      <% end %>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        </div>
+        <script type="text/javascript">
+          window.apply_to_all_rows = function(element_id, element_css) {
+            $(element_css).val($('#' + element_id).val());
+          };
+
+          <% if @invalid_objects[:project].blank? && @invalid_objects[:issue].blank? && @invalid_objects[:user].blank? %>
+          EASY.schedule.late(function () {
+            <%= onstart_script.html_safe %>
+          });
+          <% end %>
+        </script>
+      <% end %>
+    </div>
+    <div class="form-actions">
+      <%= submit_tag l(:button_easy_data_template_import_data), :class => 'button-positive' %>
+    </div>
+  <% end %>
+</div>
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% include_calendar_headers_tags %>
+
+<% if EASY_EXTENSIONS_ENABLED %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to(l(:button_easy_data_template_new_msproject), { :controller => 'easy_data_template_ms_projects', :action => 'new' }, :class => 'button-positive icon icon-windows') %>
+    <%= link_to(l(:label_easy_data_templates), { :controller => 'easy_data_templates', :action => 'index' }, :class => 'button') %>
+  <% end %>
+<% else %>
+  <% content_for :sidebar do %>
+    <div class="box">
+      <p>
+        <%= link_to(l(:button_easy_data_template_new_msproject), { :controller => 'easy_data_template_ms_projects', :action => 'new' }, :class => 'icon icon-add') %>
+      </p>
+      <p>
+        <%= link_to(l(:label_easy_data_templates), { :controller => 'easy_data_templates', :action => 'index' }, :class => 'icon icon-copy') %>
+      </p>
+    </div>
+  <% end %>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_data_templates', :plugin => 'easy_data_templates' %>
+<% end %>

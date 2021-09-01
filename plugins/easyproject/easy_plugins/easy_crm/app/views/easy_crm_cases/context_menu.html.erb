@@ -1,0 +1,128 @@
+<% if @can[:edit] %>
+  <ul>
+    <% if @easy_crm_case -%>
+      <li><%= context_menu_link l(:button_edit), edit_easy_crm_case_path(@easy_crm_case),
+          :class => 'icon icon-edit' %></li>
+    <% else %>
+      <li>
+        <%= link_to l(:button_edit), bulk_edit_easy_crm_cases_path(:ids => @easy_crm_case_ids), :class => 'icon icon-edit' %>
+      </li>
+    <% end %>
+    <% if @safe_attributes.include?('assigned_to_id') && @assignables.present? %>
+      <% assigned_to_options = [ { label: l(:label_nobody), id: 'none' } ] %>
+      <% if @assignables.include?(User.current) %>
+        <% assigned_to_options.concat([ { label: "<< #{l(:label_me)} >>", id: User.current.id } ]) %>
+      <% end %>
+      <% assigned_to_options.concat(@assignables.map { |a| { label: a.name, id: a.id } }) %>
+      <li class="context-menu-autocomplete">
+        <a class="icon icon-user">
+          <%= easy_autocomplete_tag(
+            'easy_crm_case[assigned_to_id]',
+            { name: EasyCrmCase.human_attribute_name(:account_manager), id: nil },
+            assigned_to_options,
+            html_options: {
+              id: 'assigned_to_for_context_menu_easy_crm_case'
+              },
+            easy_autocomplete_options: {
+              activate_on_input_click: 'true'
+              },
+            onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :back_url => @back)}', data: { easy_crm_case: { assigned_to_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });"
+            ) %>
+        </a>
+      </li>
+    <% end %>
+    <% if @safe_attributes.include?('external_assigned_to_id') && EasyUserType.easy_type_partner.any? && @assignables_external.present? %>
+      <% assigned_to_options = [ { label: l(:label_nobody), id: 'none' } ] %>
+      <% if @assignables_external.include?(User.current) %>
+        <% assigned_to_options.concat([ { label: "<< #{l(:label_me)} >>", id: User.current.id } ]) %>
+      <% end %>
+      <li class="context-menu-autocomplete">
+        <a class="icon icon-user">
+          <%= easy_autocomplete_tag(
+            'easy_crm_case[external_assigned_to_id]',
+            { name: EasyCrmCase.human_attribute_name(:external_account_manager), id: nil },
+            assigned_to_options,
+            html_options: {
+              id: 'external_assigned_to_for_context_menu_easy_crm_case'
+              },
+            easy_autocomplete_options: {
+              activate_on_input_click: 'true'
+              },
+            onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :back_url => @back)}', data: { easy_crm_case: { external_assigned_to_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });"
+            ) %>
+        </a>
+      </li>
+    <% end %>
+
+    <% if @safe_attributes.include?('author_id') && @available_authors.present? -%>
+      <li class="context-menu-autocomplete">
+        <a class="icon icon-user">
+          <% assigned_to_options = [] %>
+          <% if @available_authors.include?(User.current) %>
+            <% assigned_to_options.concat([ { label: "<< #{l(:label_me)} >>", id: User.current.id } ]) %>
+          <% end %>
+          <% assigned_to_options.concat(@available_authors.map { |a| { label: a.name, id: a.id } }) %>
+          <%= easy_autocomplete_tag(
+            'easy_crm_case[author_id]',
+            { name: l(:field_author), id: nil },
+            assigned_to_options,
+            html_options: {
+              id: 'author_id_for_context_menu_easy_crm_case'
+              },
+            easy_autocomplete_options: {
+              activate_on_input_click: 'true'
+              },
+            onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :back_url => @back)}', data: { easy_crm_case: { author_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });"
+            ) %>
+        </a>
+      </li>
+    <% end %>
+
+    <li class="folder">
+      <a href="#" class="submenu icon icon-list"><%= EasyCrmCase.human_attribute_name(:easy_crm_case_status) %></a>
+      <ul>
+        <% @easy_crm_case_statuses.each do |p| -%>
+          <li>
+            <% id = p.id.to_s %>
+            <% easy_crm_case_status_id = @easy_crm_case.try(:easy_crm_case_status).try(:id).to_s %>
+            <%= context_menu_link p.name, bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :back_url => @back, :easy_crm_case => {:easy_crm_case_status_id => id}), :method => :post, :selected => (@easy_crm_case && (@easy_crm_case_ids.size == 1) && (id == easy_crm_case_status_id)) %>
+          </li>
+        <% end -%>
+      </ul>
+    </li>
+
+    <li class="folder">
+      <a href="#" class="submenu" onclick="return false;"><%= EasyCrmCase.human_attribute_name(:is_canceled) %></a>
+      <ul>
+        <li><%= context_menu_link l(:general_text_No), bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :easy_crm_case => {:is_canceled => '0'}, :back_url => @back), :method => :post,
+            :selected => (@easy_crm_cases.size == @easy_crm_cases.reject(&:is_canceled?).size), :disabled => !@can[:edit] %></li>
+        <li><%= context_menu_link l(:general_text_Yes), bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :easy_crm_case => {:is_canceled => '1'}, :back_url => @back), :method => :post,
+            :selected => (@easy_crm_cases.size == @easy_crm_cases.select(&:is_canceled?).size), :disabled => !@can[:edit] %></li>
+      </ul>
+    </li>
+    <li class="folder">
+      <a href="#" class="submenu" onclick="return false;"><%= EasyCrmCase.human_attribute_name(:is_finished) %></a>
+      <ul>
+        <li><%= context_menu_link l(:general_text_No), bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :easy_crm_case => {:is_finished => '0'}, :back_url => @back), :method => :post,
+            :selected => (@easy_crm_cases.size == @easy_crm_cases.reject(&:is_finished?).size), :disabled => !@can[:edit] %></li>
+        <li><%= context_menu_link l(:general_text_Yes), bulk_update_easy_crm_cases_path(:ids => @easy_crm_case_ids, :easy_crm_case => {:is_finished => '1'}, :back_url => @back), :method => :post,
+            :selected => (@easy_crm_cases.size == @easy_crm_cases.select(&:is_finished?).size), :disabled => !@can[:edit] %></li>
+      </ul>
+    </li>
+  <% if @easy_crm_case_ids.count > 1 %>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-integrate">
+        <%= context_menu_merge_link('get', 'inteligent_merge') %>
+      </a>
+    </li>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-integrate">
+        <%= context_menu_merge_link('put', 'quick_merge') %>
+      </a>
+    </li>
+  <% end %>
+    <li><%= context_menu_link l(:button_delete), easy_crm_cases_path(:ids => @easy_crm_case_ids, :back_url => @back),
+        :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :disabled => !@can[:delete] %></li>
+     <%= call_hook(:view_easy_crm_cases_context_menu_end, {:easy_crm_case => @easy_crm_case, :easy_crm_cases => @easy_crm_cases, :can => @can, :back => @back, :project => @project}) %>
+  </ul>
+<% end %>

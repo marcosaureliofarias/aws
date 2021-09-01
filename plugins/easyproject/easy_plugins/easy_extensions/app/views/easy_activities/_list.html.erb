@@ -1,0 +1,55 @@
+<%
+  recent_events_options = local_assigns.fetch(:recent_events_options, {})
+  recent_events_options_in_use = local_assigns.fetch(:recent_events_options_in_use, false)
+  recent_events_options_params = { recent_events_options: recent_events_options }
+%>
+<div class="activity-feed servicebar-content easy-activity-feed">
+  <% @events_by_day.keys.sort.reverse.each do |day| %>
+    <% if @events_by_day.keys.size > 1 %>
+      <h4 class="easy-activity-feed-group-heading"><%= format_activity_day(day) %></h4>
+    <% end %>
+    <dl class="easy-activity-feed-activity-event">
+      <% sort_activity_events(@events_by_day[day]).each do |e, in_group| %>
+        <%= render partial: 'easy_activities/grouped_event', locals: { e: e, in_group: in_group } %>
+      <% end %>
+    </dl>
+  <% end %>
+</div>
+<div class="servicebar-actions">
+  <%= link_to l(:label_easy_activity_feed_show_all),
+              easy_events_from_activity_feed_module_path({ defaults: '1'}.merge(recent_events_options_in_use ? recent_events_options_params : {})),
+              class: 'button' %>
+  <%= link_to l(:label_easy_activity_feed_discart_all),
+              easy_discart_all_events_path(recent_events_options_in_use ? recent_events_options_params : {}),
+              remote: true,
+              data: { confirm: l(:text_are_you_sure) },
+              method: :delete,
+              class: 'button' %>
+  <%= link_to '', 'javascript:void(0)',
+              onclick: 'document.querySelector("form#recent_events_options").classList.toggle("hidden")',
+              class: "button icon-eye #{recent_events_options_in_use && 'color-positive' }" %>
+  <%= form_with url: easy_activities_toolbar_path,
+                scope: :recent_events_options,
+                id: :recent_events_options,
+                class: 'hidden servicebar-actions',
+                data: { remote: true },
+                method: :get do |f| %>
+    <p>
+      <%= f.label :last_x_days, l(:label_last_x_days) %>
+      <%= f.number_field :last_x_days, value: recent_events_options[:last_x_days], class: :inline, min: 0, max: 30, size: 1 %>
+    </p>
+    <p>
+      <%= f.label :display_read do %>
+        <%= l(:label_display_read) %>
+        <%= f.check_box :display_read, checked: recent_events_options[:display_read] %>
+      <% end %>
+    </p>
+    <div class="form-actions">
+      <%= button_tag l(:button_submit), type: :submit, class: 'button button-mini' %>
+      <%= button_tag l(:button_cancel),
+                     type: :button,
+                     class: 'button button-mini color-negative',
+                     onclick: 'document.querySelector("form#recent_events_options").classList.toggle("hidden")' %>
+    </div>
+  <% end %>
+</div>

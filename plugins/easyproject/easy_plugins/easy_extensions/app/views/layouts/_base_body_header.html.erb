@@ -1,0 +1,149 @@
+<%= call_hook :view_layout_before_top_menu %>
+<% if params[:load_iframe] || session[:in_iframe] %>
+  <div id="iframe-top-menu">
+    <ul class="menu">
+      <li><%= link_to(:back) do -%><i class="icon-arrow left"></i><%= l(:button_back) %>
+        <% end %></li>
+      <li><%= link_to(l(:label_my_page), home_path, :class => 'icon icon-home') -%></li>
+    </ul>
+  </div>
+<% else %>
+  <div id="top-menu">
+    <%= call_hook :view_layout_before_logo %>
+    <div id="logo"><%= link_to('', home_path, :title => l(:title_logo)) -%></div>
+
+    <% if User.current.easy_user_type_for?(:more) && (User.current.logged? || !Setting.login_required?)%>
+      <ul id="top-menu-rich">
+        <li id="top-menu-rich-more">
+          <a id="top-menu-rich-more-toggler" class="has-menu-children" data-menu-toggle="true" href="javascript:void(0)"> <%= content_tag(:span, l(:label_menu_more), :class => 'menu-more-label') %> <i class="icon-reorder down"></i></a>
+          <ul class="menu-children" style="display:none" id="top-menu-rich-more-list">
+            <%
+               services, menu_more = Array.new, Array.new(1) { [] }
+               sorted_menu_items_for(:top_menu).each do |item|
+
+                 if item.html_options[:service]
+                   services << item
+                 else
+                   menu_more.last << item
+                 end
+               end
+            -%>
+            <% menu_more.each do |nodes| -%>
+              <li class="top-menu-rich-more-group">
+                <ul id="top-menu-fake-container" class="top-menu-rich-more-item">
+                  <li class="new-task"><%= link_to l(:label_issue_new), new_issue_path, :class => 'button-positive block'%></li>
+                  <%= render_easy_menu(:easy_quick_top_menu, nil, {:no_container => true, :optional_project => @project}) %>
+                  <% if User.current.easy_user_type && User.current.easy_user_type_for?(:custom_menu) %>
+                      <%= render_easy_custom_menu(User.current) %>
+                  <% end %>
+                </ul>
+                <ul class="top-menu-rich-more-item">
+                  <% nodes.each do |node| %>
+                    <%= render_menu_node(node).html_safe %>
+                  <% end -%>
+                </ul>
+              </li>
+            <% end %>
+
+            <li id="top-menu-rich-more-service-container">
+              <ul>
+                <% services.each do |node| %>
+                  <%= render_menu_node(node).html_safe %>
+                <% end -%>
+              </ul>
+            </li>
+
+          </ul>
+        </li>
+      </ul>
+    <% end %>
+
+    <div id="loggedas">
+      <%= avatar(User.current, {:style => :small}).to_s.html_safe if User.current.easy_user_type_for?(:user_profile) %>
+      <%= link_to('', signout_path, :method => 'post', :class => 'icon icon-power') if User.current.logged? && User.current.easy_user_type_for?(:sign_out) %>
+      <% if (User.current.admin? || User.current.easy_lesser_admin?) && User.current.easy_user_type_for?(:administration) %>
+        <%= link_to '', admin_path, class: "icon icon-settings administration" %>
+      <% end %>
+    </div>
+
+    <ul id="top-menu-container">
+      <% if (User.current.logged? || !Setting.login_required?) %>
+        <%= render_easy_menu(:easy_quick_top_menu, nil, {:no_container => true, :optional_project => @project}) %>
+        <% if User.current.easy_user_type && User.current.easy_user_type_for?(:custom_menu) %>
+          <%= render_easy_custom_menu(User.current) %>
+        <% end %>
+      <% end %>
+    </ul>
+
+
+
+    <div id="top-menu-quick-search-container">
+      <a href="#" class="mobile-toggle-button js-flyout-menu-toggle-button"></a>
+      <% if (User.current.logged? || !Setting.login_required?) %>
+        <div id="quick-search">
+          <% if User.current.easy_user_type_for?(:before_search) %>
+              <div id="before-quick-search">
+                <%= call_hook :view_layout_before_quick_search %>
+              </div>
+          <% end %>
+          <div id="account">
+            <%= render_menu :account_menu -%>
+          </div>
+          <div class="splitcontent">
+            <% if User.current.easy_user_type_for?(:jump_to_project) %>
+              <%# easy_cache ['project_jump_box', controller_name, I18n.locale] do %>
+              <div class="splitcontentleft top-menu-quick">
+                <span id="header-quick-search-project-jump-box-container">
+                  <%= render_project_jump_box %>
+                 </span>
+              </div>
+              <%# end %>
+            <% end %>
+            <% if User.current.easy_user_type_for?(:search) %>
+              <div class="splitcontentright top-menu-quick">
+                <%= form_tag({controller: 'search', action: 'index', id: @project}, method: :get, id: 'top_quick_search', autocomplete: 'off') do %>
+                  <%= hidden_field_tag(controller.default_search_scope, 1, :id => nil) if controller.default_search_scope %>
+                  <% if EasySetting.value('easy_search_suggester') && EasySetting.value('easy_search_suggester')['enabled'].to_boolean %>
+                      <%= hidden_field_tag :q , '', :class => 'hidden_q' %>
+                      <%= render_suggester_jump_box %>
+                  <% else %>
+                      <%= search_field_tag('q', @question, {:class => 'small border-radius-3', :accesskey => accesskey(:quick_search), :placeholder => (l(controller_name, :scope => [:search_field_placeholders], :default => l(:label_search))) }) -%>
+                  <% end %>
+                  <i class="icon-magnifier xl-icon"></i>
+                  <% submit_tag l(:label_search), :class => 'button-2' %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= render 'layouts/easy_servicebar', render_sidebar: render_sidebar %>
+    <%= call_hook :view_layouts_base_body_header_bottom %>
+
+    <div id="ajax-indicator" style="display:none;">
+      <div class="progress-bar"></div>
+    </div>
+
+  </div>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      $('#top_quick_search').submit(function(e) {
+        $('input.hidden_q').val($('#search_q_autocomplete').val());
+      });
+    });
+  </script>
+<% end -%>
+
+<% if Rails.env.test? %>
+  <script type="text/javascript">
+    // workaround for a glitch in capybara & headless chrome
+    window.alert = function() { return true; };
+    window.confirm = function() { return true; };
+    EASY.schedule.main(function(){
+      $.fx.off = true;
+    }, 50);
+
+    window.testEnviroment = true;
+  </script>
+<% end %>

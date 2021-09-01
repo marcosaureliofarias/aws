@@ -1,0 +1,1 @@
+EasyExtensions::ActionProposer.add({ controller: 'easy_money_settings', action: 'index' })

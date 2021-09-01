@@ -1,0 +1,174 @@
+---
+fi:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: Mail runko (HTML)
+        body_plain: Mail runko (tekstimuodossa)
+        issue_status_id: Julkaisutila
+        mailboxes: 'Käytä postilaatikkoon:'
+        reply_to: Vastaa
+        sender: Lähettäjä
+        subject: Aihe
+    models:
+      easy_helpdesk_mail_template: Mail malli
+  button_easy_helpdesk_add_domain_name: Lisää postin tai toimialueen
+  button_easy_helpdesk_add_mail_template: Lisää mail malli
+  button_easy_helpdesk_add_mailbox: Lisää postilaatikko
+  button_easy_helpdesk_add_project: Lisää projekti
+  button_easy_helpdesk_add_sla: Lisää SLA
+  button_easy_helpdesk_mail_templates_index: Mallit lista
+  button_easy_helpdesk_mailboxes_index: Postilaatikot lista
+  button_easy_helpdesk_projects_index: Projektit lista
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_plugin_description: "- Monimutkainen Help Desk ratkaisu"
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - hankkeet
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Yksityinen suodattimia hankkeita Helpdesk
+      public:
+        easy_helpdesk_project_query: Julkinen suodattimia hankkeita Helpdesk
+  easy_rake_tasks:
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - saavat sähköpostit
+      settings:
+        imap:
+          allow_override: Salli ohittavat
+          allow_override_example: 'Esimerkki: tracker, prioriteetti - näitä ominaisuuksia
+            pitäisi ohittaa postitse'
+          application_section_label: Muut asetukset
+          category_example: 'Esimerkki: Luokka - uusia tehtäviä tulee olemaan Luokka'
+          email_section_label: Postilaatikon asetukset
+          folder: Kansio
+          folder_example: 'IMAP-kansion seuraavasti (oletus: INBOX)'
+          host: Isäntä
+          host_example: 'Esimerkki: mail.company.com'
+          label: IMAP
+          move_on_failure: Epäonnistumiseen liikkua
+          move_on_failure_example: siirtää viestejä, jotka on jätetty huomiotta kansioon
+            POSTILAATIKON
+          move_on_success: Menestykseen liikkua
+          move_on_success_example: siirtää viestejä, jotka on onnistuneesti saanut
+            kansioon postilaatikkoon, muuten poistetaan
+          no_permission_check: Ei käyttäjän käyttöoikeudet tarkistaa
+          password: Salasana
+          password_example: 'Esimerkki: secretpassword'
+          port: Portti
+          port_example: 'Esimerkki: 143'
+          priority_example: 'Esimerkki: High - uusia tehtäviä tulee olemaan ensisijainen
+            korkea'
+          project_example: 'Esimerkki: 205 - uusia tehtäviä luodaan hankkeen ID 205'
+          ssl: SSL
+          ssl_example: Käytä SSL autentikointi
+          status_example: 'Esimerkki: Uusi - uusia tehtäviä tulee olemaan status New'
+          tracker_example: 'Esimerkki: Bug - uusia tehtäviä on tracker Bug'
+          unknown_user: Tuntematon käyttäjä
+          unknown_user_example: hyväksyä - Anonymous user käytetään, luoda - käyttäjä
+            luodaan Mail, betoni kirjautuminen - käyttäjän tulee käyttää
+          username: Käyttäjä
+          username_example: 'Esimerkki: accessuser@domain.com'
+        pop3:
+          allow_override: Salli ohittavat
+          allow_override_example: 'Esimerkki: tracker, prioriteetti - näitä ominaisuuksia
+            pitäisi ohittaa postitse'
+          apop: APOP
+          apop_example: Käytä APOP todennus
+          application_section_label: Muut asetukset
+          category_example: 'Esimerkki: Luokka - uusia tehtäviä tulee olemaan Luokka'
+          delete_unprocessed: Poista käsittelemätön
+          delete_unprocessed_example: Poista sähköpostit, joita ei voida käsitellä
+          email_section_label: Postilaatikon asetukset
+          host: Isäntä
+          host_example: 'Esimerkki: mail.company.com'
+          label: POP3
+          no_permission_check: Ei käyttäjän käyttöoikeudet tarkistaa
+          password: Salasana
+          password_example: 'Esimerkki: secretpassword'
+          port: Portti
+          port_example: 'Esimerkki: 110'
+          priority_example: 'Esimerkki: High - uusia tehtäviä tulee olemaan ensisijainen
+            korkea'
+          project_example: 'Esimerkki: 205 - uusia tehtäviä luodaan hankkeen ID 205'
+          status_example: 'Esimerkki: Uusi - uusia tehtäviä tulee olemaan status New'
+          tracker_example: 'Esimerkki: Bug - uusia tehtäviä on tracker Bug'
+          unknown_user: Tuntematon käyttäjä
+          unknown_user_example: hyväksyä - Anonymous user käytetään, luoda - käyttäjä
+            luodaan Mail, betoni kirjautuminen - käyttäjän tulee käyttää
+          username: Käyttäjä
+          username_example: 'Esimerkki: accessuser@domain.com'
+  field_default_for_mailbox: Oletusarvo postilaatikkoon
+  field_easy_helpdesk_project_matching:
+    domain_name: Mail tai toimialueen
+    email_field_from: otetaan kentän
+    email_field_to: on otettu pellolta
+  field_easy_helpdesk_project_sla:
+    hours_to_response: Tuntia vastaus
+    hours_to_solve: Tuntia ratkaista
+    keyword: Avainsana
+  field_email_footer: Mail footer
+  field_email_header: Postiotsakkeisiin
+  field_hours_mode_from: SLA työaika
+  field_monitor_due_date: Näytön tuki liput eräpäivä
+  field_monitor_spent_time: Näytön tuki liput viettänyt aikaa
+  field_monthly_hours: Pre-paid tuki tuntia
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: Muokkaa mail mallia
+  heading_easy_helpdesk_mail_templates_index: Mail mallit
+  heading_easy_helpdesk_mail_templates_new: Uusi posti malli
+  heading_easy_helpdesk_mail_templates_show: Yksityiskohta postin mallin
+  heading_easy_helpdesk_mailboxes_edit: Edit postilaatikkoon
+  heading_easy_helpdesk_mailboxes_index: Postilaatikot
+  heading_easy_helpdesk_mailboxes_new: Uusi postilaatikko
+  heading_easy_helpdesk_projects_edit: Muokkaa hanke
+  heading_easy_helpdesk_projects_index: Hankkeet
+  heading_easy_helpdesk_projects_new: Uusi projekti
+  heading_easy_helpdesk_projects_show: Yksityiskohta hankkeen
+  label_easy_hekodesk_additional_task_info_received_emails: Jalostettu sähköpostit
+  label_easy_helpdesk_alerts: Hälytykset asetukset
+  label_easy_helpdesk_domain_name: Mail domain
+  label_easy_helpdesk_emails: Postin asetukset - ylä-ja alatunniste
+  label_easy_helpdesk_enable_email_footer: Vaihda footer tähän hankkeeseen?
+  label_easy_helpdesk_enable_email_header: Muuta otsikko tähän hankkeeseen?
+  label_easy_helpdesk_matching: Mail tai toimialueen asetukset
+  label_easy_helpdesk_sla: SLA asetukset - painopisteet aika ratkaista lippu
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - hanke
+  label_issue_bottom_from_easy_helpdesk: Tehtävä luotiin miehet (%{easy_helpdesk_mailbox_username})
+  text_easy_helpdesk_mail_template_issue_status_id: Mahdollistaa sitoa postilaatikkoon
+    mallin tietyn tehtävän tila
+  text_easy_helpdesk_mail_template_reply_to: "(Mr. esimerkki) - posti ei ole sallittu
+    tässä"
+  text_easy_helpdesk_mail_template_reply_to2: Kentät "Vastaa" ja "Lähettäjä" on otettu
+    postilaatikosta mallin säilyttämiseksi viestintä kuluessa asian
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Sinun pitäisi määrittää
+    nämä postilaatikot hankkeisiin. Jos et ole, tuntemattomia saapuvia sähköpostiviestejä
+    ei käsitellä!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Nämä postilaatikot eivät
+    ole oletuksena projekti:'
+  text_easy_helpdesk_projects_alerts_list: 'Luettelo hälytykset:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Maahantulokieltoluetteloon joka
+    tarvitsee perustaa ilmoitusvelvollisuuden posti (on auki tyhjä ikkuna):'
+  text_easy_helpdesk_projects_keywords: Jos posti aihe sisältää määritellyn merkkijonon,
+    erityisesti etusijalle ja eräpäivä asetetaan. (* Tarkoittaa jokaista aihetta)
+  text_easy_helpdesk_projects_monitor_due_date: Tämä ennalta hälytys lähettää sinulle
+    sähköpostitse ilmoituksen, jos lippu rikottu SLA - ei ratkaistu kuluessa määritellyn
+    ajan SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Tämä ennalta hälytys lähettää sinulle
+    sähköpostitse ilmoituksen, jos kokonaisaika viettää erityisesti kalenterikuukauden
+    exeeds prepaid-tuki tuntia
+  text_easy_helpdesk_projects_sla_hours_to_response: Enintään aika vaaditaan vastaanotetun
+    sähköpostiviestin alkuun toteutumista.
+  text_easy_helpdesk_projects_sla_hours_to_solve: Enintään aikaa ratkaista ongelma.
+    Help Desk lippu voidaan visualisoida Gantt-kaavion - jos 75% ajasta ratkaista
+    lippu on ohi - lippu on värjätty oranssi, jos lippu on yli ajoissa - lippu on
+    väritetty punaisella.
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: vastaus
+    pitäisi olla %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: vastaus
+    on oltava %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: tahto tulisi
+    olla %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: tahto on
+    oltava %{time}'

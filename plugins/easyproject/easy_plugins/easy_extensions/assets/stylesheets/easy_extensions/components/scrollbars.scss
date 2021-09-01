@@ -1,0 +1,108 @@
+* {
+  &::-webkit-scrollbar {
+    width: $scrollbar-width;
+    height: $scrollbar-width - px2rem(2px);
+    &-thumb {
+      background: $scrollbar-foreground;
+      border-radius: 1.5*$gap;
+      border: $scrollbar-foreground-border;
+    }
+    &-track {
+      background: $scrollbar-background;
+      border:$scrollbar-background-border;
+    }
+  }
+}
+
+.ps {
+  overflow: hidden !important;
+  overflow-anchor: none;
+  -ms-overflow-style: none;
+  touch-action: auto;
+  -ms-touch-action: auto;
+  &:hover {
+    .ps {
+      &__rail {
+        &-x, &-y {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &--scrolling {
+    &-x, &-y {
+      .ps {
+        &__rail {
+          &-x, &-y {
+            opacity: 1 !important;
+          }
+        }
+      }
+    }
+  }
+
+  &__thumb{
+    &-x, &-y {
+      @extend %compositor-layer;
+      @extend %border-radius;
+      background: $scrollbar-foreground;
+      position: absolute;
+      opacity: 0.85;
+      //border: 1px solid darken($scrollbar-background,10%);
+      &:hover {
+        opacity: 1;
+      }
+
+    }
+    &-x {
+      height: $scrollbar-width - px2rem(2px);
+      margin-bottom: 1px;
+    }
+    &-y {
+      width: $scrollbar-width - px2rem(2px);
+      margin-left: 2px;
+    }
+  }
+  &__rail{
+    &-x,&-y {
+      position: absolute;
+      opacity: 0;
+      //background: $scrollbar-background;
+      border: 1px solid transparent;
+      z-index: 0;
+      @include respond-to(max-medium-screen) {
+        opacity: 1 !important;
+      }
+    }
+    &-y {
+      left: auto;
+      width: $scrollbar-width;
+      border-top: none;
+      border-bottom: none;
+      right: 0 !important;
+    }
+    &-x {
+      bottom: 0;
+      height: $scrollbar-width;
+      border-left: none;
+      border-right: none;
+    }
+  }
+
+
+
+
+}
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+  .ps {
+    overflow: auto !important;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ps {
+    overflow: auto !important;
+  }
+}

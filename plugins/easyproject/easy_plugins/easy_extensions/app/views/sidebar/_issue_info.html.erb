@@ -1,0 +1,23 @@
+<% unless issue.nil? %>
+
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to_function(l(:button_update), "EASY.utils.showUpdate(this)", {
+        :class => "icon icon-edit update-button #{params[:dd].blank? ? 'button-positive' : 'button'}",
+        :accesskey => accesskey(:issue_edit),
+        :title => l(:sidebar_issue_button_update)
+    }) if issue.editable? %>
+  <% end %>
+
+  <div class="issue-info">
+    <%= call_hook(:view_issue_sidebar_issue_info, :issue => issue) %>
+    <div class="issue_actions">
+      <%= call_hook(:view_issue_sidebar_issue_info_before_menu_more, :issue => issue) %>
+  <%# easy_cache ['sidebar/_issue_info/menu_more', User.current, issue.project] do %>
+      <%= render_menu_more(:issue_sidebar_more_menu, issue, menu_more_class: 'menu-more-sidebar', menu_expander_class: 'button icon icon-add', hook: {name: :view_issue_sidebar_issue_buttons, options: {:issue => issue}}) %>
+
+  <%# end %>
+      <%= call_hook(:view_issue_sidebar_issue_info_after_menu_more, :issue => issue) %>
+    </div>
+  </div>
+<% end %>
+

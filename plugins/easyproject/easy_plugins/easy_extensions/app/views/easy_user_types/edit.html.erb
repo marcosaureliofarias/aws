@@ -1,0 +1,10 @@
+<%= title [l(:label_easy_user_type_plural), easy_user_types_path], @easy_user_type.name %>
+
+<%= labelled_form_for @easy_user_type, :html => {:class => 'form-box'} do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <div class="form-actions"><%= submit_tag @easy_user_type.is_copy ? l(:button_save) : l(:button_update), :class => 'button-positive' %></div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+<% end %>

@@ -1,0 +1,8 @@
+<% if @project.easy_has_custom_menu? %>
+  $('#easy_custom_project_menu_container').html('<%= j render(:partial => 'easy_custom_project_menus/index', :locals => {:project => @project, :easy_custom_project_menus => @project.easy_custom_project_menus.sorted}) %>');
+  $('#easy_custom_project_menu_container').show();
+  EASY.dragAndDrop.initReorders();
+<% else %>
+  $('#easy_custom_project_menu_container').html('');
+  $('#easy_custom_project_menu_container').hide();
+<% end %>

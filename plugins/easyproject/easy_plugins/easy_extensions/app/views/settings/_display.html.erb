@@ -1,0 +1,83 @@
+<%= form_tag({:action => 'edit', :tab => 'display'}, :class => 'form-box') do %>
+  <%= fields_for :easy_setting do |f| %>
+    <div class="box tabular settings">
+      <fieldset>
+        <p><%= setting_select :default_language, lang_options_for_select(false) -%></p>
+        <p><%= setting_check_box :force_default_language_for_anonymous %></p>
+        <p><%= setting_check_box :force_default_language_for_loggedin %></p>
+      </fieldset>
+      <%= call_hook :view_settings_display_top, f: f %>
+      <fieldset>
+        <p><%= setting_select :start_of_week, [[day_name(1),'1'], [day_name(6),'6'], [day_name(7),'7']], :blank => :label_language_based -%></p>
+        <% locale = User.current.language.blank? ? ::I18n.locale : User.current.language %>
+        <p>
+          <%= setting_select :date_format, date_format_setting_options(locale), :blank => :label_language_based %>
+          <%= hidden_field_tag('easy_setting[html5_dates]', '0', :id => nil) -%>
+          <%= check_box_tag('easy_setting[html5_dates]', '1', EasySetting.value(:html5_dates)) -%>
+          <%= label_tag('easy_setting_html5_dates', l(:label_easy_setting_html5_dates)) %>
+        </p>
+        <p><%= setting_select :time_format, Setting::TIME_FORMATS.collect {|f| [::I18n.l(Time.now, :locale => locale, :format => f), f]}, :blank => :label_language_based %></p>
+        <p><%= setting_select :user_format, @options[:user_format] -%></p>
+        <p>
+          <%= hidden_field_tag('easy_setting[chart_numbers_format]', '0', id: nil) %>
+          <%= check_box_tag('easy_setting[chart_numbers_format]', '1', EasySetting.value(:chart_numbers_format)) %>
+          <%= label_tag('easy_setting_chart_numbers_format', l(:label_easy_setting_chart_numbers_format)) %>
+        </p>
+      </fieldset>
+      <fieldset>
+        <p>
+          <%= setting_check_box :gravatar_enabled %><br />
+          <em class="help"><%= l(:text_settings_gravatar_enabled) -%></em>
+        </p>
+        <p><%= setting_select :gravatar_default, [["Wavatars", 'wavatar'], ["Identicons", 'identicon'], ["Monster ids", 'monsterid'], ["Retro", 'retro'], ["Mystery man", 'mm']], :blank => :label_none %></p>
+      </fieldset>
+      <fieldset>
+        <p><%= setting_check_box :thumbnails_enabled %></p>
+        <p><%= setting_text_field :thumbnails_size, :size => 6 %></p>
+      </fieldset>
+      <fieldset>
+        <p>
+          <%= hidden_field_tag('easy_setting[show_personal_statement]', '0', :id => nil) -%>
+          <%= check_box_tag('easy_setting[show_personal_statement]', '1', EasySetting.value('show_personal_statement')) -%>
+          <%= label_tag('easy_setting_show_personal_statement', l(:setting_show_personal_statement)) %>
+        </p>
+        <p>
+          <%= hidden_field_tag('easy_setting[show_bulk_time_entry]', '0', :id => nil) -%>
+          <%= check_box_tag('easy_setting[show_bulk_time_entry]', '1', EasySetting.value('show_bulk_time_entry')) -%>
+          <%= label_tag('easy_setting_show_bulk_time_entry', l(:setting_show_bulk_time_entry)) %>
+        </p>
+        <p>
+          <%= hidden_field_tag('easy_setting[show_easy_resource_booking]', '0', :id => nil) -%>
+          <%= check_box_tag('easy_setting[show_easy_resource_booking]', '1', EasySetting.value('show_easy_resource_booking')) -%>
+          <%= label_tag('easy_setting_show_easy_resource_booking', l(:setting_show_easy_resource_booking)) %>
+        </p>
+        <p>
+          <%= hidden_field_tag('easy_setting[show_easy_custom_formatting]', '0', :id => nil) -%>
+          <%= check_box_tag('easy_setting[show_easy_custom_formatting]', '1', EasySetting.value('show_easy_custom_formatting')) -%>
+          <%= label_tag('easy_setting_show_easy_custom_formatting', l(:setting_show_easy_custom_formatting)) %>
+        </p>
+        <% if false %>
+        <% # is that necessary? %>
+        <p>
+          <%= hidden_field_tag('easy_setting[show_avatars_on_query]', '0', :id => nil) -%>
+          <%= check_box_tag('easy_setting[show_avatars_on_query]', '1', EasySetting.value('show_avatars_on_query')) -%>
+          <%= label_tag('easy_setting_show_avatars_on_query', l(:setting_show_avatars_on_query)) %>
+        </p>
+        <% end %>
+        <p><span>
+          <% box = f.check_box(:hide_login_quotes, :checked => EasySetting.value('hide_login_quotes')) %>
+          <%= f.label(:hide_login_quotes, box + l(:label_easy_setting_hide_login_quotes)) %>
+        </span></p>
+        <% if EasyExtensions::ImageProcessing.avaliable_ip_adapters.empty? %>
+          <p><span>
+            <% box = f.check_box(:hide_imagemagick_warning, :checked => EasySetting.value('hide_imagemagick_warning')) %>
+            <%= f.label(:hide_imagemagick_warning, box + l(:label_easy_setting_hide_imagemagick_warning)) %>
+          </span></p>
+        <% end %>
+      </fieldset>
+    </div>
+    <div class="form-actions">
+      <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+    </div>
+  <% end %>
+<% end %>

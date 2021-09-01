@@ -1,0 +1,19 @@
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% title l(:heading_easy_sprints_overview) -%>
+
+<%= render_easy_page_bottom_buttons(easy_sprints_layout_path(t: params[:t])) if @page_editable %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_agile_sprint_new), new_easy_sprint_path, title: l(:label_agile_sprint_new), class: 'icon icon-add button-positive', remote: true %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <% if User.current.allowed_to_globally?(:view_global_easy_sprints, {}) %>
+    <%= link_to(l(:button_global_easy_sprint_query), easy_sprints_path , class: 'button icon icon-list') %>
+  <% end %>
+  <% if User.current.admin? %>
+    <%= link_to(l(:easy_agile_default_settings_scrum), { controller: 'easy_agile_settings', action: 'index', tab: 'scrum' } , class: 'button icon icon-bullet-list') %>
+    <%= link_to(l(:easy_agile_default_settings_kanban), { controller: 'easy_agile_settings', action: 'index', tab: 'kanban' } , class: 'button icon icon-bullet-list') %>
+  <% end %>
+<% end %>

@@ -1,0 +1,154 @@
+<div id="report_<%= @modul_uniq_id %>">
+  <%= form_tag(report_easy_attendances_path(:uuid => @modul_uniq_id), :remote => true, :class => 'form-box') do %>
+    <div class="splitcontent">
+      <%= hidden_field_tag 'tab', 'report' %>
+      <div class="splitcontentleft">
+        <div id="report-date-select">
+            <p>
+              <%= radio_button_tag "report[period_type]", '1', !@free_period, :id => "#{@modul_uniq_id}_report_period_type_1" %>
+              <%= select_tag "report[period]", options_for_period_select(@saved_params[:period] || 'current_month',nil, {show_future: true}),
+                :onfocus => "$('##{@modul_uniq_id}_report_period_type_1').attr('checked', true);",
+                :disabled => @free_period, :id => "#{@modul_uniq_id}_report_period" %>
+              <% period_days = @saved_params[:period] && @saved_params[:period].to_s.include?('n_days') %>
+              <span id='period_days_container' style="<%= 'display:none;' unless period_days %>">
+                <%= text_field_tag 'report[period_days]', @saved_params[:period_days] || '0', :size => 3 %> <%= l(:label_day_plural) %>
+                <span id="<%= "period_days_description_container" %>" style="margin-left: 20px;"></span>
+              </span>
+            </p>
+            <p>
+              <%= radio_button_tag "report[period_type]", '2', @free_period, :id => "#{@modul_uniq_id}_report_period_type_2" %>
+              <span id="<%= @modul_uniq_id %>_date_period">
+                <% start_tag = '<span class="input-append inline">' + (text_field_tag("report[from]", @from, :size => 10, :disabled => !@free_period, :id => "#{@modul_uniq_id}_report_from")) + '</span>'
+                   end_tag = '<span class="input-append inline">' + (text_field_tag("report[to]", @to, :size => 10, :disabled => !@free_period, :id => "#{@modul_uniq_id}_report_to")) + '</span>'
+                %>
+                <%= l(:label_date_from_to, :start => start_tag + calendar_for("#{@modul_uniq_id}_report_from"), :end => end_tag + calendar_for("#{@modul_uniq_id}_report_to")).html_safe %>
+              </span>
+          </p>
+          <script type="text/javascript">
+            EASY.schedule.late(function () {
+              var f = function (bool, module_id) {
+                $("#" + module_id + "_report_from, #" + module_id + "_report_to").attr("disabled", bool);
+                $("#" + module_id + "_report_period").attr("disabled", !bool);
+              };
+              $('#<%= "#{@modul_uniq_id}_report_period_type_1" %>').click(function () {
+                f(true, "<%= @modul_uniq_id %>");
+              });
+              $('#<%= "#{@modul_uniq_id}_report_period_type_2" %>').click(function () {
+                f(false, "<%= @modul_uniq_id %>");
+              });
+              $('#<%= "#{@modul_uniq_id}_date_period" %>').click(function () {
+                $('#<%= "#{@modul_uniq_id}_report_period_type_2" %>').prop('checked', true);
+                f(false, "<%= @modul_uniq_id %>");
+              });
+
+              $(document).trigger("easy_attendance_autoscroll");
+              $('#report_period').change(function () {
+                var option = $(this).find('option:selected');
+                var custom = (option.val().indexOf('n_days') !== -1);
+                $('#period_days_container').toggle(custom);
+                if (custom) {
+                  $('#period_days_description_container').html('<em>' + option.data('description') + '</em>');
+                }
+              });
+              <% if (period_days) %>
+              $('#report_period').change();
+              <% end %>
+            });
+          </script>
+        </div>
+      </div>
+      <% if User.current.allowed_to_globally?(:view_easy_attendance_other_users) %>
+        <div class="splitcontentright">
+          <%= autocomplete_field_tag('report[users][]', easy_autocomplete_path('attendance_report_users'), @selected_users&.map{|u| {value: u.name, id: u.id.to_s}}, id: "#{@modul_uniq_id}_report_users", class: 'report_users', preload: false, select_first_value: true, multiple: true, rootElement: 'users') %>
+        </div>
+      <% end %>
+    </div>
+    <div class="form-actions">
+      <%= submit_tag l(:button_apply), :class => 'button-positive' %>
+    </div>
+  <% end if !@hide_form %>
+
+  <br />
+
+  <% if @reports.any? %>
+    <% if @reports.one? %>
+      <%= render(:partial => 'personal_report', :locals => {:report => @reports.first, :activities => @activities}) %>
+    <% else %>
+      <div class="autoscroll">
+        <table class="list" id="easy_attendance_reports">
+          <thead>
+            <th><%= l(:field_name)-%></th>
+            <th></th>
+            <% @activities.each do |activity| %>
+              <th><%= activity.name -%></th>
+            <% end %>
+            <%= call_hook :view_easy_attendances_report_list_header, {:reports => @reports, :activities => @activities, :saved_params => @saved_params} %>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+            <tr>
+              <td class="user-name" rowspan="8"><%= report.user.name -%></td>
+            </tr>
+              <tr class="time-entry-sum">
+                <td><%= l(:label_easy_attendance_report_working_time, :sum_timeentries => easy_format_hours(report.sum_timeentries), :total_working_hours => easy_format_hours(report.sum_working_hours),
+                    :timeentries_percent => content_tag(:span, report.timeentries_percent, :class => "easy-attendance-report-#{report.timeentries_percent_class_name}")).html_safe -%></td>
+                <td colspan="<%= @activities.size -%>"></td>
+                <%= call_hook :view_easy_attendances_report_list_body_time_entry_line, {:report => report, :activities => @activities, :saved_params => @saved_params} %>
+              </tr>
+              <tr class="easy-attendance-sum">
+                <td><%= l(:label_easy_attendance_report_attendence_time, :sum_attendance => easy_format_hours(report.sum_attendances), :total_working_hours => easy_format_hours(report.sum_attendance_hours),
+                    :working_percent => content_tag(:span, report.working_attendance_percent, :class => "easy-attendance-report-#{report.working_percent_class_name}")).html_safe -%></td>
+                <% @activities.each do |activity|
+                  sum_act = report.user_activities[activity.id] || 0.0 -%>
+                  <td><%= easy_format_hours(sum_act.to_f / 1.hour) -%></td>
+                <% end %>
+                <%= call_hook :view_easy_attendances_report_list_body_attendance_line, {:report => report, :activities => @activities, :saved_params => @saved_params} %>
+              </tr>
+              <tr class="time-entry-year-sum">
+                <%= content_tag(:td, l(:label_report_sum_time_entry, :scope => :easy_attendance, :year => report.from.year)) -%>
+                <% @activities.each do |activity| %>
+                  <%= content_tag(:td, (l(:label_day, :count => ('%.2f' % activity.sum_in_days_timeentry(report.user, report.from.year)).to_f) unless activity.mapped_project_id.nil?) ) -%>
+                <% end %>
+                <%= call_hook :view_easy_attendances_report_list_body_sum_time_entry_line, {:report => report, :activities => @activities, :saved_params => @saved_params} %>
+              </tr>
+              <tr class="easy-attendance-year-sum">
+                <%= content_tag(:td, l(:label_report_sum_attendance, :scope => :easy_attendance, :year => report.from.year)) -%>
+                <% @activities.each do |activity| %>
+                  <%= content_tag(:td, l(:label_day, :count => ('%.2f' % activity.sum_in_days_easy_attendance(report.user, report.from.year)).to_f)) -%>
+                <% end %>
+                <%= call_hook :view_easy_attendances_report_list_body_sum_attendnace_line, {:report => report, :activities => @activities, :saved_params => @saved_params} %>
+              </tr>
+
+              <tr class="vacation-waiting-sum">
+                <%= content_tag(:td, l('easy_attendance.approval_statuses.1')) -%>
+                <% @activities.each do |activity| %>
+                  <%= content_tag(:td, easy_format_user_vacation_activity_days(activity, activity.user_waiting_vacation_in_days(report.user, report.from.year).to_f)) -%>
+                <% end %>
+              </tr>
+
+              <tr class="vacation-remaining-sum">
+                <%= content_tag(:td, l(:label_report_vacation_remaining, :scope => :easy_attendance, :year => report.from.year)) -%>
+                <% @activities.each do |activity| %>
+                    <% waiting = activity.user_waiting_vacation_in_days(report.user, report.from.year).to_f %>
+                    <%= content_tag(:td, easy_format_user_vacation_activity_days(activity, activity.user_vacation_remaining_in_days(report.user, report.from.year).to_f - waiting)) -%>
+                <% end %>
+                <%= call_hook :view_easy_attendances_report_list_body_vacation_remaining_line, {:report => report, :activities => @activities, :saved_params => @saved_params} %>
+              </tr>
+
+              <tr class="vacation-limit-sum">
+                <%= content_tag(:td, l(:label_report_vacation_limits, :scope => :easy_attendance, :year => report.from.year)) -%>
+                <% @activities.each do |activity| %>
+                    <%= content_tag(:td, easy_format_user_vacation_activity_days(activity, activity.user_vacation_limit_in_days(report.user).to_f)) -%>
+                <% end %>
+                <%= call_hook :view_easy_attendances_report_list_body_vacation_limit_line, {:report => report, :activities => @activities, :saved_params => @saved_params} %>
+              </tr>
+
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% end %>
+  <% else %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% end %>
+</div>

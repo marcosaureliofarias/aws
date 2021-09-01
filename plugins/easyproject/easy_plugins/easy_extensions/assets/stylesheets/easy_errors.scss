@@ -1,0 +1,43 @@
+@import 'easy_extensions/common_assets';
+//@include loadFontFace--non-rails('Material Icons','../easy_fonts/../easy_fonts/EasyMaterialIcons-Regular','Material Icons','MaterialIcons-Regular',normal,normal);
+@font-face{
+  font-family:"EasyIcons";
+  src:local("EasyIcons"),local("EasyIcons"),
+    url("../easy_fonts/easy_icons-webfont.woff2") format("woff2"),
+    url("../easy_fonts/easy_icons-webfont.woff") format("woff"),
+    url("../easy_fonts/easy_icons-webfont.ttf") format("truetype"),
+    url("../easy_fonts/easy_icons-webfont.svg") format("svg");
+}
+@import 'easy_extensions/components/typography';
+@import "easy_icons";
+@import "easy_extensions/layouts/errors";
+@import "easy_extensions/components/buttons";
+body{
+  margin: 0;
+  &.status-402, &.status-500, &.status-502, &.status-404, &.status-307{
+    #wrapper{
+      @include respond-to(min-menu-collapse) {
+        background: #023fa9 url('../images/login-bg.jpg') no-repeat bottom right !important;
+        background-size: 100% auto;
+      }
+    }
+  }
+  .server-admin-user {
+    #instruction {
+      a {
+        color: $white;
+        text-decoration: underline;
+      }
+    }
+    #message-box {
+      textarea {
+        max-width: 320px;
+        width: 100%;
+      }
+    }
+    .button, input[name="commit"] {
+      border-color: #9aaab8;
+      margin-bottom: 10px !important;
+    }
+  }
+}

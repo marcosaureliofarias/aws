@@ -1,0 +1,11 @@
+<% if EasySetting.value('easy_crm_use_items', @project) %>
+  <div class="box">
+    <%= toggling_container('easy_crm_case_items_toggler', User.current, {heading: l(:heading_easy_crm_case_item_index), default_button_state: @easy_crm_case.easy_crm_case_items.any?, ajax_call: false, wrapping_heading_element_classes: EasyCrmCaseItem.css_icon}) do %>
+      <div id="easy_crm_case_items_container">
+        <div class="autoscroll">
+          <%= render partial: 'easy_crm_case_items/show', locals: {easy_crm_case: @easy_crm_case, project: @project} %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

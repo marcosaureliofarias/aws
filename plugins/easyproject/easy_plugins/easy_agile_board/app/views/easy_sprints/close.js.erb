@@ -1,0 +1,6 @@
+<% if @errors %>
+  showFlashMessage("error", "<%= @errors.join('<br/>').html_safe %>");
+<% else %>
+  $("#ajax-modal").dialog('close');
+  showFlashMessage("notice", "<%= l(:notice_agile_board_sprint_was_successfully_closed) %>");
+<% end %>

@@ -1,0 +1,21 @@
+<p>
+  <%= label_tag 'project_id', l(:label_alerts_project_select_before) -%>
+  <%= project_tree_select(Project.non_templates.sorted.visible, {
+      :name=> 'project_id',
+      :selected => @settings[:project_id]
+    }) -%>
+
+  <script type="application/javascript">
+    EASY.schedule.late(function() {
+      $('#project_id').change(function() {
+        $('#alert-context-rule-form').load(
+          '<%= url_for(:action => :custom_action, :id => @alert, :issue => @issue) %>',
+          $('#alert-form').serialize()
+        );
+      });
+    });
+  </script>
+</p>
+<p>
+  <%= render :partial => "alert_rules/issue_limitation_issue_form" %>
+</p>

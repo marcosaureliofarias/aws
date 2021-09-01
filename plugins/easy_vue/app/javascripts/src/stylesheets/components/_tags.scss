@@ -1,0 +1,92 @@
+&__tags{
+  outline: transparent !important;
+  &-heading{
+    border-bottom: 1px solid rgba($color-border, .5);
+    padding: .5*$gap 0 $gap .5*$gap;
+    margin: 0 0 $gap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-head{
+    margin: -$gap;
+    margin-bottom: $gap;
+    background-color: mix($color-front,$color-background);
+    padding: $gap;
+    top: -$gap;
+    @include sticky;
+  }
+  &-input{
+    width: calc(100% - 80px) !important;
+    &-button{
+      width: 30px !important;
+      min-width: 30px !important;
+    }
+  }
+  &-item{
+    //width: 25%;
+    margin-bottom: .5*$gap;
+    border-radius: $input-radius;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-label{
+      padding: .5*$gap;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    &-name{
+      flex-grow: 1;
+    }
+    &-checkbox{
+      display: none;
+    }
+    &-avatar{
+      width: 20px;
+      display: inline-block;
+      margin-right: .5*$gap;
+    }
+    &:hover{
+      background: $color-background;
+    }
+    &--active{
+      //background-color: $color-positive !important;
+      //color: $color-front;
+      & > label:after{
+        font-family: "Material Icons";
+        content: "\F012C";
+        display: inline;
+        color: $color-positive;
+      }
+      & > label:hover:after{
+        content: "\F0159";
+        color: $color-negative;
+      }
+    }
+  }
+  &-list{
+    margin: 0;
+    padding: 0;
+    &-wrapper{
+      margin-top: $gap;
+      & > button{
+        margin-bottom: -30px;
+      }
+    }
+    //display: flex;
+    //flex-wrap: wrap;
+  }
+  &-overview-list{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 0 0 $gap;
+    padding: 0;
+    z-index: 0;
+    flex-direction: row-reverse;
+    list-style: none;
+  }
+}

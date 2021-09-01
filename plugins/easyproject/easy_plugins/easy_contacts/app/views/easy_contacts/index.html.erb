@@ -1,0 +1,11 @@
+<%= render @query, :easy_query_name => @project ? l(:label_project_easy_contacts) : l(:label_easy_contacts) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= render(:partial => 'service_box_partial', locals: { project: @project, query: @query }) %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<% end %>
+
+<%= context_menu context_menus_easy_contacts_path(:project_id => @project) -%>

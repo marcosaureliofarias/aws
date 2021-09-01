@@ -1,0 +1,21 @@
+.issue_category {
+  &-buttons_move {
+    .icon {
+      font-size: 1.25em;
+      padding: 0 .25*$gap;
+    }
+  }
+}
+#tab-content-categories {
+  table.list ~ p {
+    text-align: center;
+    .button {
+      margin-top: $gap;
+    }
+  }
+}
+.icon.move-to-top {
+  &:before {
+    transform: rotate(180deg) !important;
+  }
+}

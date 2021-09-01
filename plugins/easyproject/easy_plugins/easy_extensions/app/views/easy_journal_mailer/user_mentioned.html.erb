@@ -1,0 +1,28 @@
+<h2><%= raw l(:label_mentioned_email_subject, entity_title: link_to(@entity.to_s, @entity_url)) %></h2>
+
+<% content_for :email_afterbody do %>
+  <div class="journal">
+    <h5>
+      <span class="avatar">
+        <%= avatar(@user, style: :small, no_link: true, base64: true).presence %>&nbsp;<%= @user.to_s %>
+      </span>
+    </h5>
+
+    <% if (details = @journal.details || []).any? %>
+      <div class="details">
+        <% details_to_strings(details, false, only_path: false, entity: @entity).each do |string| %>
+          <span><%= string -%></span><br/>
+        <% end %>
+      </div>
+    <% end %>
+    
+    <% unless @journal.notes.blank? %>
+      <div class="note">
+        <% if @journal.private_notes? %>
+          <span style="color: red; float: right" title="<%= l(:field_private_notes).downcase %>">🔒</span>
+        <% end %>
+        <%= textilizable(@journal, :notes, only_path: false) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

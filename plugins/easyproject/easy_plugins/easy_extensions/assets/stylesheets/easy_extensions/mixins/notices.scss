@@ -1,0 +1,94 @@
+%flash {
+  margin-bottom:$gap;
+  @include respond-to(min-menu-collapse) {
+    margin-bottom:$box-margin;
+  }
+  @include display(flex);
+  @include align-items(center);
+  @include flex-wrap(wrap);
+  padding: $gap;
+  padding-left: 6*$gap;
+  padding-right: 1.5em;
+  position: relative;
+  @extend %border-radius-large;
+  //@extend %box-shadow;
+  a{
+    //color: $white;
+  }
+  & > .icon-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0.5;
+    width: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    &:hover {
+      opacity: 1
+    }
+    &:before {
+      font-size: 1rem;
+    }
+  }
+  p{
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  & > div, & > p {
+    flex-basis: 100%;
+  }
+
+}
+@mixin flash-icon($icon,$color){
+  @extend %translateY-correction;
+  @include icon($icon);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  bottom: auto;
+  width: 6*$gap;
+  padding:1.5*$gap 0;
+  text-align: center;
+  font-size:$font-h1;
+  line-height: 1;
+}
+
+@mixin flash($background,$icon){
+  $local-background: mix($background,$color-foreground, 25);
+  @extend %flash;
+  @extend %flex;
+  @extend %align-items-center;
+  background: $local-background;
+  border: 1px solid rgba($background,1);
+  color: $color-text;
+  a{
+    color: $color-text;
+    text-decoration: underline;
+  }
+  span {
+    padding-left: .5*$gap;
+  }
+  &:before{
+    @include flash-icon($icon, $background);
+    //opacity: 0.75;
+  }
+  &>.icon-close{
+    color: $color-text;
+  }
+}
+%flash-success{
+  @include flash($color-positive,notice);
+}
+%flash-notice{
+  @include flash($color-highlight,warning);
+}
+%flash-warning{
+  @include flash($color-important,warning);
+}
+%flash-error{
+  @include flash($color-negative,error);
+}
+%flash-info{
+  @include flash($color-notice,notice);
+}

@@ -1,0 +1,7 @@
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:button_copy), {:action => 'copy'}, :class => 'icon icon-copy button-positive' %>
+  <%= link_to l(:field_summary), {:action => 'index'}, :class => 'icon icon-summary button' %>
+  <%= call_hook(:view_workflows_layout_primary_actions_bottom, trackers: @trackers, roles: @roles, statuses: @statuses, workflows: @workflows) %>
+<% end %>
+
+

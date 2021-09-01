@@ -1,0 +1,30 @@
+<%
+  include_jqplot_scripts
+  graph_id = "graph_#{modul_uniq_id}"
+
+  t_table = Tracker.table_name
+  r_table = EasyGanttResource.table_name
+
+  allocations_by_trackers = Tracker.select("#{t_table}.*, SUM(#{r_table}.hours) AS resources_hours").joins(issues: :easy_gantt_resources).group("#{t_table}.id").map { |t| [t.name, t.resources_hours.to_f] }
+%>
+
+<div id="<%= graph_id %>"></div>
+
+<script>
+  EASY.schedule.require(function () {
+    var graph = c3.generate({
+      bindto: "#<%= graph_id %>",
+      data: {
+        type: "donut",
+        columns: <%= allocations_by_trackers.to_json.html_safe %>
+      },
+      donut: {
+        label: {
+          format: function (value, ratio, id) {
+            return d3.format(",f")(value) + "h";
+          }
+        }
+      }
+    });
+  }, jQueryPluginGetter("easy_chart"));
+</script>

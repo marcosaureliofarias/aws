@@ -1,0 +1,37 @@
+
+<h2 class="title">
+  <%=raw (@test_case_issue_execution.test_case_issue_execution_result.name == 'Pass' ? content_tag(:i, '', class: 'icon-true') : content_tag(:i, '', class: 'icon-false')) unless @test_case_issue_execution.result_id.nil? %>
+  <%= l(:label_test_case_issue_execution) %> <%= format_time(@test_case_issue_execution.created_at) %>
+</h2>
+<div class="issue">
+  <div class="attributes">
+    <%= issue_fields_rows do |rows| %>
+      <% rows.left ::TestCaseIssueExecution.human_attribute_name(:test_case), link_to(@test_case_issue_execution.test_case, @test_case_issue_execution.test_case) %>
+      <% rows.right l(:field_issue), link_to_issue(@test_case_issue_execution.issue) %>
+      <% rows.left( ::TestCaseIssueExecution.human_attribute_name(:result), @test_case_issue_execution.test_case_issue_execution_result.name) if @test_case_issue_execution.result_id %>
+      <% rows.right ::TestCaseIssueExecution.human_attribute_name(:author_id), link_to_user(@test_case_issue_execution.author) %>
+    <% end %>
+    <%= render_half_width_custom_fields_rows(@test_case_issue_execution) %>
+    <%= call_hook(:view_test_case_issue_executions_show_details_bottom, :test_case_issue_execution => @test_case_issue_execution) %>
+  </div>
+  <% if @test_case_issue_execution.comments.present? %>
+      <hr />
+      <div class="description">
+        <p><strong><%= :field_comments %></strong></p>
+        <div class="wiki">
+          <%= textilizable @test_case_issue_execution, :comments, attachments: @test_case_issue_execution.attachments %>
+        </div>
+      </div>
+  <% end %>
+  <% if @test_case_issue_execution.attachments.any? -%>
+    <hr />
+    <%= link_to_attachments @test_case_issue_execution, :thumbnails => true %>
+  <% end %>
+  <%= render_full_width_custom_fields_rows(@test_case_issue_execution) %>
+
+  <%= render_easy_entity_assignments @test_case_issue_execution.test_case, Issue, project: @test_case_issue_execution.test_case.project %>
+</div>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'test_case_issue_executions/sidebar' %>
+<% end %>

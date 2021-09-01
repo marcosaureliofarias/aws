@@ -1,0 +1,27 @@
+<% if query = @custom_field.create_easy_query %>
+  <p>
+    <%= label_tag 'custom_field[settings][easy_query_entity_filter]', l(:label_easy_computed_from_query_entity_filter) %>
+    <%= select_tag 'custom_field[settings][easy_query_entity_filter]', grouped_options_for_select(easy_computed_from_query_available_entity_filters(@custom_field, query), @custom_field.settings['easy_query_entity_filter'], prompt: '') %>
+  </p>
+  <p>
+    <%= label_tag 'custom_field[settings][easy_query_formula]', l(:label_easy_computed_from_query_formula) %>
+    <%= select_tag 'custom_field[settings][easy_query_formula]', options_for_select(easy_computed_from_query_available_formulas(@custom_field, query), @custom_field.settings['easy_query_formula']), onchange: "$.post('#{j update_form_custom_fields_path(id: @custom_field, format: :js)}', $('#custom_field_form').serialize())" %>
+  </p>
+  <% if !@custom_field.settings['easy_query_formula'].blank? && @custom_field.format.display_column_selection?(@custom_field) %>
+    <p>
+      <%= label_tag 'custom_field[settings][easy_query_column]', l(:label_easy_computed_from_query_column) %>
+      <%= select_tag 'custom_field[settings][easy_query_column]', options_for_easy_computed_from_query_available_columns(@custom_field, query) %>
+    </p>
+    <% if EasyCurrency.activated.any? %>
+      <p>
+        <%= label_tag 'custom_field[settings][easy_query_column_currency]', l(:field_currency) %>
+        <%= select_tag 'custom_field[settings][easy_query_column_currency]', options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, @custom_field.easy_query_column_currency_code) %>
+      </p>
+    <% end %>
+  <% end %>
+  <div>
+    <h3 class="icon icon-filter"><%= l(:heading_easy_computed_from_query_define_filter) %></h3>
+    <%= hidden_field_tag 'custom_field[settings][easy_query_filters][set_filter]', '1' %>
+    <%= render partial: 'easy_queries/filters', locals: {query: query, block_name: 'custom_field[settings][easy_query_filters]'} %>
+  </div>
+<% end %>

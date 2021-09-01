@@ -1,0 +1,28 @@
+Rys::Patcher.add('Project') do
+
+  included do
+    # has_many :things
+
+    after_commit :easy_zapier_ensure_something, if: -> { Rys::Feature.active?('easy_zapier.project') }
+  end
+
+  instance_methods do
+
+    private
+
+      def easy_zapier_ensure_something
+        puts 'Features are activated'
+      end
+
+  end
+
+  instance_methods(feature: 'easy_zapier.project') do
+    def to_s
+      "I'am cool " + super
+    end
+  end
+
+  class_methods do
+  end
+
+end

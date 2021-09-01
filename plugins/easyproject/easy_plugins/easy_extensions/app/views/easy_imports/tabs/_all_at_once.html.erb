@@ -1,0 +1,13 @@
+<%= form_tag(easy_imports_import_path, multipart: true, class: 'form-box') do %>
+  <%= hidden_field_tag 'tab', tab[:name] %>
+  <p>
+    <label style="width: 150px; display: inline-block; font-size: 20pt">Jira</label>
+    <%= file_field_tag 'jira_file', accept: '.xml' %>
+  </p>
+  <p>
+    <label style="width: 150px; display: inline-block; font-size: 20pt">MS Project</label>
+    <%= file_field_tag 'ms_project_file', accept: '.xml' %>
+  </p>
+
+  <div class="form-actions"><%= submit_tag l(:button_xml_data_import), class: 'button-positive' %></div>
+<% end %>

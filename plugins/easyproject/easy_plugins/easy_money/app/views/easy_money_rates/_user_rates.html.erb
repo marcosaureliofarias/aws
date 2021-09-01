@@ -1,0 +1,17 @@
+<%=
+  render @query,
+         easy_query_name: l("easy_money_rate_entity.user"),
+         form_options: {
+           easy_query_apply_url: url_for({t: params[:t], set_filter: '1', tab: params[:tab]}),
+           easy_query_clear_url: url_for({set_filter: 0, tab: params[:tab]}),
+           show_free_search: false
+         }
+%>
+
+<%= context_menu({controller: 'context_menus', action: 'easy_money_user_rates', project_id: @project})  -%>
+
+<script>
+    EASY.schedule.main(function () {
+        $.fn.editabletypes.price.easyCurrencies = JSON.parse('<%= EasyCurrency.activated.to_json(only: %w[name iso_code]).html_safe %>');
+    });
+</script>

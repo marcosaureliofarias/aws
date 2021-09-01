@@ -1,0 +1,3 @@
+$("#ajax-modal").html("<%= j render(template: 'easy_imports/_index', formats: ['html']) %>");
+$("#ajax-modal").find('easy-imports__page-title').remove();
+showModal('ajax-modal', '80%', '<%= j l('easy_imports.label_import_entities') %>');

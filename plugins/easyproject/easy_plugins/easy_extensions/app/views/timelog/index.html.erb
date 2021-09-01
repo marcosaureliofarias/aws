@@ -1,0 +1,52 @@
+<% if @only_me == true -%>
+  <% html_title l(:label_personal_statement), l(:label_details) %>
+<% else -%>
+  <% html_title l(:label_spent_time), l(:label_details) %>
+<% end -%>
+
+<%= call_hook :view_timelog_index_before_form_after_breadcrump, {:only_me => @only_me, :entries => @entries, :easy_attendance_report => @easy_attendance_report, :issue => @issue, :project => @project} %>
+
+<%= render :partial => 'timelog/filter_and_tabs', :locals => {:additional_hidden_fields => {'only_me' => @only_me, 'entity_type' => params[:entity_type], 'entity_id' => params[:entity_id]}} %>
+
+<%= toggling_container('time-log-only-me', User.current, {:heading => l(:label_easy_attendance_plural), :default_button_state => false}) do %>
+
+  <%= render(:partial => 'easy_attendances/personal_report', :locals => {:report => @easy_attendance_report, :from => @from, :to => @to}) %>
+  <br />
+<% end  if @easy_attendance_report -%>
+<%= render @query, :options => { :render_index => false } -%>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :header_tags do %>
+  <%= auto_discovery_link_tag(:atom, {:issue_id => @issue, :format => 'atom', :key => User.current.rss_key}, :title => l(:label_spent_time)) %>
+<% end %>
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_log_time), new_easy_time_entry_path(:project_id => @project, :issue_id => @issue, :spent_on => (params[:spent_on].split('|').last if params[:spent_on])), :class => 'button-positive') if User.current.allowed_to?(:log_time, @project, :global => true) -%>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <div class="easy-entity-details-sidebar-attributes">
+    <table class="highlight">
+      <tr class="total-hours">
+        <td class="big color-important"><%= easy_format_hours(TimeEntry.sum_total_spent_hours(@project), :format => 'simple') %></td>
+        <th><label><%= l(:label_overall_spent_time) %></label><th>
+      </tr>
+
+      <tr>
+        <td class="big color-positive"><%= easy_format_hours(TimeEntry.sum_previous_month_hours(@project), :format => 'simple') %></td>
+        <th><label><%= l(:label_last_month).capitalize %></label></th>
+      </tr>
+      <tr>
+        <td class="big color-positive"><%= easy_format_hours(TimeEntry.sum_previous_week_hours(@project), :format => 'simple') %></td>
+        <th><label><%= l(:label_last_week).capitalize %></label><th>
+      </tr>
+
+    </table>
+  </div>
+  <%= link_to(l(:label_project_all), easy_time_entries_path, :class => 'button') if @project %>
+<% end %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} %>
+<% end %>
+
+<%= context_menu easy_time_entries_context_menu_path %>
+

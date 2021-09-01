@@ -1,0 +1,14 @@
+<h2><%= link_to l(:label_issue_status_plural), issue_statuses_path %> &#187;
+  <%= @issue_status %> &#187; <%= l(:label_issue_status_reassignment) %></h2>
+<%= form_tag(action: :update_reassignment) do %>
+  <fieldset class="box">
+    <p>
+      <%= l(:label_tracker_move_issues_explanation) %>
+      <%= select_tag('issue_status_to_id', options_from_collection_for_select(@issue_statuses, 'id', 'name')) %>
+    </p>
+  </fieldset>
+  <div class="form-actions">
+    <%= submit_tag l(:button_issue_status_reassignment), class: 'button-negative' %>
+    <%= link_to(l(:button_back), { action: 'index' }, class: 'button') %>
+  </div>
+<% end %>

@@ -1,0 +1,5 @@
+api.array :easy_to_do_list_items do
+  @easy_to_do_list_items.each do |easy_to_do_list_item|
+    render(easy_to_do_list_item, { api: api, easy_to_do_list_item: easy_to_do_list_item })
+  end
+end

@@ -1,0 +1,87 @@
+<div id="easy-contact-detail">
+  <div class="easy-dropper-target easy-drop-contact" data-drop-action="easy_contact" data-entity-id="<%= @easy_contact.id %>">
+    <%= render(partial: 'easy_contacts/detail', locals: { easy_contact: @easy_contact, edit_avatar: true }) %>
+  </div>
+
+  <% if @easy_contact.author_note.present? %>
+    <div class="wiki easy-entity-details-description kicker" id="show_issue_description">
+      <%= textilizable(@easy_contact, :author_note) %>
+    </div>
+  <% end %>
+
+  <div id="easy-contact-detail-attachments">
+    <%= link_to_attachments @easy_contact, {:thumbnails => true} %>
+  </div>
+
+  <div class="clear"></div>
+
+  <%= render(:partial => 'export_vcard_encoding_selector') %>
+
+  <%= render_easy_entity_assignments(@easy_contact, EasyContact, project: @project, referenced_collection_name: :references_by, easy_query_class: EasyContactQuery, heading: l(:label_contact_references), context_menus_path: :context_menus_easy_contacts_path, collapsed: true) %>
+
+  <% if Redmine::Plugin.installed?(:easy_crm) %>
+    <%= render_easy_entity_assignments(@easy_contact, EasyCrmCase, project: @project, referenced_collection_name: :main_easy_crm_cases, easy_query_class: EasyCrmCaseQuery, heading: l(:label_easy_contact_customer_business), hascontextmenu: true, context_menus_path: :context_menu_easy_crm_cases_path, collapsed: true) %>
+  <% end %>
+
+  <% @easy_contact.easy_contact_entity_assignments.all.distinct.pluck(:entity_type).each do |entity_type| %>
+    <% type = entity_type.safe_constantize %>
+    <% next unless type %>
+    <% if entity_type == 'EasyCrmCase' %>
+      <%= render_easy_entity_assignments(@easy_contact, type, project: @project, heading: l(:label_easy_contact_indirect_business), collapsed: true) %>
+    <% else %>
+      <%= render_easy_entity_assignments(@easy_contact, type, project: @project, collapsed: true) %>
+    <% end %>
+  <% end %>
+
+  <%= call_hook(:view_easy_contact_entity_cards_bottom, :easy_contact => @easy_contact, :project => @project) %>
+
+  <div class="clear"></div>
+
+  <%= render partial: 'common/entity_tabs', locals: {tabs: easy_contact_tabs(@easy_contact), tabs_container: 'easy-contact-detail'} %>
+</div>
+
+<% ### PAGE CUSTOMS ##########################################################  %>
+<% html_title @easy_contact.name %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l('easy_contact_action.edit'), {:controller => 'easy_contacts', :action => 'edit', :id => @easy_contact, :project_id => @project}, :class => 'button-positive icon icon-edit' if @easy_contact.editable? %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(params[:back_url] || polymorphic_path([@project, :easy_contacts]), :class => 'button back') do %>
+    <i class="xl-icon icon-arrow left floatleft"></i>
+    <%= l('easy_contacts_toolbar.contact_exit') %>
+  <% end -%>
+  <%= link_to_google_map(@easy_contact.address, :show_as_button => true) %>
+  <%= render :partial => 'sidebar', :locals => {:entity => @easy_contact} -%>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'easy_taggables/easy_taggables', :locals => {:entity => @easy_contact} %>
+  <%= hidden_field_tag 'ids[]', @easy_contact.id, :id => 'entity_id' -%>
+
+  <%= toggling_container('contact_groups_id', User.current, {:heading => l(:label_easy_contact_easy_contact_groups), :wrapping_heading_element_classes => 'icon icon-group'}) do %>
+    <ul class="link-list">
+      <% @easy_contact.easy_contact_groups.each do |group| %>
+        <li><%= link_to group.name, easy_contact_group_path(group) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar_exports do %>
+  <div class="other-formats links">
+    <h6 class="floating"><%= l(:label_easy_query_export_links) -%></h6>
+    <%= link_to_entity_mapper(content_tag(:i, '', :class => 'xl-icon icon-vcard') + 'vCard', easy_contact_path(@easy_contact, :format => 'vcf'), EasyContact, EasyExtensions::Export::EasyVcard) %>
+    <%= link_to_entity_mapper(content_tag(:i, '', :class => 'xl-icon icon-qr') + 'QR', easy_contact_path(@easy_contact, :format => 'qr'), EasyContact, EasyExtensions::Export::EasyVcard, :remote => true) %>
+    <%= link_to_function(content_tag(:i, '', :class => 'icon icon-file-xml') + 'XML', "EASY.utils.downloadRemoteDataAsFile('#{easy_contact_path(@easy_contact, format: :xml)}', '#{@easy_contact.name}.xml', '#{l(:text_easy_service_is_unavailable)}')") %>
+  </div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<% end %>
+
+<% include_attachment_tags %>
+
+<%= late_javascript_tag "EASY.journals.collapseUnnecessary();" %>

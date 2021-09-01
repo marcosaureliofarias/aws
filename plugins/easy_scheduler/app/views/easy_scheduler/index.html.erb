@@ -1,0 +1,98 @@
+<%
+  settings ||= {}
+  container_id ||= 'scheduler_calendar'
+%>
+
+<div class="easy-calendar__heading">
+  <%#= render 'easy_queries/easy_query_index',
+             query: query,
+             easy_query_name: 'Scheduler',
+             options: { show_free_search: false,
+                        show_custom_formatting: false,
+                        hide_heading_counts: true,
+                        additional_tagged_url_options: { manager: settings['manager'] },
+                        page_module: page_module
+             } %>
+</div>
+<div id="<%= container_id %>" class="easy-calendar__wrapper">
+  <div class="easy-calendar__split">
+    <div class="easy-calendar__tasks">
+      <h3 class="easy-calendar__tasks-title">
+        <%= query.class.translated_name %>
+        <span class="easy-calendar__tasks-count">(<%= query.entity_count %>)</span>
+      </h3>
+      <div class="easy-calendar__task-list"></div>
+    </div>
+
+    <div class="easy-calendar__assignees-wrap">
+      <%= link_to t('easy_scheduler.label_clear_all'), 'javascript:void(0)', id: 'clear-all-assignees' %>
+      <div class="easy-calendar__user-select">
+        <input type="text" class="easy-calendar__user-select-input" title="<%= t(:label_user_plural) %>" placeholder="<%= t(:label_user_plural) %>">
+      </div>
+      <span class="entity-array easy-calendar__assignees"></span>
+    </div>
+
+    <div class="easy-calendar__tasks-toggler-row">
+      <span class="easy-calendar__tasks-toggler push-right">
+        <label><input type="radio"  name="easy-calendar__tasks-toggler" value="0"/><%= t('easy_scheduler.label_tasks_toggle_calendar') %></label>
+        <label><input type="radio"  name="easy-calendar__tasks-toggler" value="1" checked="checked"/><%= t('easy_scheduler.label_tasks_toggle_plan') %></label>
+        <label><input type="radio"  name="easy-calendar__tasks-toggler" value="2"/><%= t('easy_scheduler.label_tasks_toggle_tasks') %></label>
+      </span>
+
+    </div>
+
+    <div class="dhx_cal_container easy-calendar__calendar-cont">
+      <div class="dhx_cal_navline easy-calendar__calendar-navs">
+        <div class="easy-calendar-listing-links easy-calendar__calendar-listing">
+          <a class="dhx_cal_prev_button easy-calendar__active-button prev"></a>
+          <div class="dhx_cal_date easy-calendar__calendar-listing-date"></div>
+          <a class="dhx_cal_next_button easy-calendar__active-button next"></a>
+        </div>
+        <span></span>
+        <span class="easy-calendar__calendar-resolution-wrapper">
+          <a class="button active calendar_resolution easy-calendar__calendar-resolution_picked"></a>
+          <span class="easy-calendar__calendar-resolution">
+          <a class="dhx_cal_today_button button"><%= t(:label_today) %></a>
+          <a class="dhx_cal_tab button" name="day_tab"><%= t('easy_scheduler.label_day_singular') %></a>
+          <a class="dhx_cal_tab button" name="week_tab"><%= t(:label_week) %></a>
+          <a class="dhx_cal_tab button" name="month_tab"><%= t(:label_month) %></a>
+          <a class="dhx_cal_tab button" name="year_tab"><%= t(:label_year) %></a>
+          <a class="dhx_cal_tab button" name="agenda_tab"><%= t('easy_scheduler.label_agenda') %></a>
+        </span></span>
+        <span class="easy-calendar__calendar-call-group">
+          <%= call_hook :view_easy_calendar_top_buttons, { settings: settings } %>
+        </span>
+      </div>
+      <div class="dhx_cal_header">
+      </div>
+      <div class="dhx_cal_data">
+      </div>
+      <%= render 'easy_scheduler/legend' %>
+    </div>
+  </div>
+
+  <div class="easy-calendar__legend--mobile">
+    <%= render 'easy_scheduler/legend' %>
+  </div>
+</div>
+
+<%= render 'easy_scheduler/includes' %>
+<%#= content_for :body_bottom do %>
+<%= render 'easy_scheduler/js_prepare',
+           query: query,
+           settings: settings,
+           container_id: container_id %>
+<%= render 'easy_scheduler/test_includes' if params[:jasmine] %>
+
+<script type="application/javascript">
+  (() => {
+    const settings = window.EasyCalendar.schedulerSettings
+
+    EasyGem.schedule.require(() => {
+      window.easyScheduler = new EasyCalendar.CalendarMain(settings)
+    }, () => {
+      return window.EasyCalendar && EasyCalendar.CalendarMain
+    }, 'jQuery');
+  })()
+</script>
+<%# end %>

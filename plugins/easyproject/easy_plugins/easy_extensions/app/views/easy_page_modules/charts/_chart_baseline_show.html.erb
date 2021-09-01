@@ -1,0 +1,15 @@
+<% baseline = @easy_page_modules_data[block_name][:baseline] %>
+<% if baseline %>
+  <% include_jqplot_scripts %>
+  <div id="<%= block_name %>_chart" class="easy_query_chart" data-method="GET" data-url="<%= raw easy_chart_baseline_path(baseline) %>"  data-renderchart="true" data-uuid="">
+    <%= l(:label_chart_is_loading) %>
+  </div>
+  <script type="text/javascript">
+    EASY.schedule.require(function () {
+      $('#<%= block_name %>_chart').easy_chart();
+    }, jQueryPluginGetter("easy_chart"));
+  </script>
+
+<% else %>
+  <%= l(:label_easy_page_module_settings_missing) %>
+<% end %>

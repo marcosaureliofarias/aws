@@ -1,0 +1,177 @@
+<%
+  project_params = @project_params || {}
+  allowed_parents = @new_project.allowed_parents(nil, force: :projects)
+  project = @projects.shift
+  start_date = @template_params[:start_date].presence || Date.current
+%>
+
+<%= title l(:label_template_new) %>
+
+<%= form_tag(make_project_from_template_path(id: @source_project), method: :post, id: 'project-from-template', class: 'form-box') do %>
+  <div class="box tabular long2 settings">
+    <p id="project-template">
+      <%= label_tag :project_root, l('project_template.label_name') %>
+      <%= text_field_tag('', @source_project, disabled: true) %>
+      <%= hidden_field_tag 'template[assign_entity][type]', params[:assign_entity_type] %>
+      <%= hidden_field_tag 'template[assign_entity][id]', params[:assign_entity_id] %>
+    </p>
+    <% if project %>
+      <%= hidden_field_tag 'template[project][][id]', project.id %>
+      <p id="project-name">
+        <%= label_tag "template_project_#{project.id}_name", l('project_template.label_new_project'), class: 'required' %>
+        <%= text_field_tag 'template[project][][name]', project_params[:name] || project.name, { id: "template_project_#{project.id}_name", autofocus: true } %>
+        <%= late_javascript_tag "$('#template_project_#{project.id}_name').focus()" %>
+      </p>
+      <p id="project-root">
+        <% if allowed_parents.compact.empty? %>
+          <%= hidden_field_tag 'template[parent_id]', '' %>
+        <% else %>
+          <%= label_tag('', l(:field_parent), class: allowed_parents.include?(nil) ? nil : 'required') %>
+          <%= parent_project_select_tag(@new_project,
+                                        force: :projects,
+                                        from_template: true,
+                                        html: { name: 'template[parent_id]', id: 'template_parent_id' },
+                                        render_item: '
+                                          function (ul, item) {
+                                            return $("<li>")
+                                            .append("<div>" + handle_line_brakes(item.label) + "</div>" )
+                                            .appendTo(ul);
+                                          }',
+                                        nested_autocomplete: true) %>
+        <% end %>
+      </p>
+      <% if EasySetting.value('project_display_identifiers') %>
+        <p>
+          <%= label_tag 'template[project][][identifier]', l('field_identifier'), class: 'required' %>
+          <%= text_field_tag 'template[project][][identifier]', project_params[:identifier] || @project_identifier, size: 50 %>
+          <br />
+          <em>
+            <%= l(:text_length_between, min: 1, max: Project::IDENTIFIER_MAX_LENGTH) %> <%= l(:text_project_identifier_info).html_safe %>
+          </em>
+        </p>
+      <% end %>
+
+      <% cv = project.visible_custom_field_values.reject{ |x| x.custom_field.is_a?(EasyProjectTemplateCustomField) }.sort_by { |i| i.custom_field.position } %>
+      <% unless cv.blank? %>
+        <fieldset>
+          <%= toggling_container("project_template_custom_fields_#{project.id}", User.current, { heading: l(:label_project_templates_custom_fields), container_html: { class: '' }, default_button_state: false }) do %>
+            <%= render partial: 'projects/form_project_custom_fields', locals: { custom_field_values: cv, form_name_prefix: 'template[project][]', project: project, values_from_params: project_params[:custom_field_values], no_hidden_field: true } %>
+          <% end %>
+        </fieldset>
+      <% end %>
+    <% end %>
+
+    <% new_identifier = @project_identifier %>
+    <% @projects.each_with_index do |project, i| %>
+      <% subproject_params = @template_params[:project].try(:[], i + 1) || {} %>
+      <% if Setting.sequential_project_identifiers? && !new_identifier.nil? %>
+        <% new_identifier = new_identifier.to_s.succ %>
+      <% end %>
+      <fieldset>
+        <%= hidden_field_tag 'template[project][][id]', project.id %>
+        <p class="subproject">
+          <%= label_tag 'template[project][][name]', project.to_s, class: 'required' %>
+          <%= text_field_tag 'template[project][][name]', subproject_params[:name] || project.name, { size: 50, id: "template_project_#{project.id}_name" } %>
+        </p>
+        <% if EasySetting.value('project_display_identifiers') %>
+          <p>
+            <%= label_tag 'template[project][][identifier]', l('field_identifier'), class: 'required' %>
+            <%= text_field_tag 'template[project][][identifier]', subproject_params[:identifier] || new_identifier, size: 50 %>
+            <br />
+            <em>
+              <%= l(:text_length_between, min: 1, max: Project::IDENTIFIER_MAX_LENGTH) %> <%= l(:text_project_identifier_info).html_safe %>
+            </em>
+          </p>
+        <% end %>
+        <% unless project.custom_field_values.blank? %>
+          <%= toggling_container("project_template_custom_fields_#{project.id}", User.current, { heading: l(:label_project_templates_custom_fields), container_html: { class: '' }, default_button_state: false }) do %>
+            <%= render partial: 'projects/form_project_custom_fields', locals: { custom_field_values: project.custom_field_values, form_name_prefix: 'template[project][]', project: project, values_from_params: subproject_params[:custom_field_values], no_hidden_field: true } %>
+          <% end %>
+        <% end %>
+      </fieldset>
+    <% end %>
+    <fieldset>
+      <p id="form-start-date">
+        <%= label_tag 'template[start_date]', @projects.size == 0 ? l(:label_template_easy_start_date) : l(:label_templates_easy_start_date) %>
+        <%= text_field_tag 'template[start_date]', start_date, { size: 10 } %>
+        <%= calendar_for('template_start_date') %>
+        <% if @source_project.start_date %>
+          <em class="info" id="template-shifted-time-duration"><%= l(:text_start_date_will_be_shifted_by, duration: distance_of_time_in_words(start_date, @source_project.start_date)) %></em>
+        <% end %>
+      </p>
+
+      <% if project %>
+        <p id="form-checkbox">
+          <label><%= l(:label_settings) %></label>
+          <label for="template_dates_settings_update_dates" class="block radio">
+            <%= radio_button_tag 'template[dates_settings]', :update_dates, (@template_params[:dates_settings] == 'update_dates') && project.start_date, disabled: !project.start_date %>
+            <%= l(:label_project_templates_update_dates) %>
+          </label>
+          <label for="template_dates_settings_match_starting_dates" class="block radio">
+            <%= radio_button_tag 'template[dates_settings]', :match_starting_dates, @template_params[:dates_settings] == 'match_starting_dates' %>
+            <%= l(:label_match_starting_dates) %>
+          </label>
+          <label for="template_dates_settings_do_not_change_any_dates" class="block radio">
+            <%= radio_button_tag 'template[dates_settings]', :do_not_change_any_dates, @template_params[:dates_settings] == 'do_not_change_any_dates' %>
+            <%= l(:label_do_not_change_any_dates) %>
+          </label>
+        </p>
+      <% end %>
+
+      <div id="additional_template_options">
+        <p>
+          <%= label_tag(:change_issues_author, l(:label_project_templates_change_issues_author)) %>
+          <%= select_tag('template[change_issues_author]', options_for_select([[l(:label_no_change_option), '']] + User.active.non_system_flag.easy_type_internal.sorted.collect{|u| [u.name, u.id] }, @template_params[:change_issues_author])) %>
+        </p>
+
+        <%= call_hook(:view_templates_create_project_from_template, source_project: @source_project, template_params: @template_params) %>
+      </div>
+    </fieldset>
+  </div>
+  <div class="form-actions">
+    <label class="inline"><%= check_box_tag 'notifications', '1', params[:notifications] %> <%= l(:label_project_notifications) %></label><br/>
+    <%= submit_tag l(:button_new_project_from_template), class: 'button-positive' %>
+  </div>
+
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(() => {
+    $('#template_parent_id').on('change', (e) => {
+      $(e.target).closest('form').find('.inheritance-option').toggle(e.target.value !== '');
+    });
+    $('#template_parent_id').change();
+    $('#template_start_date').on('change', (e) => {
+      const start_date = '<%= @source_project.start_date %>';
+      if (start_date) {
+        $.ajax({
+          url: '<%= render_shifted_time_duration_path %>',
+          type: 'get',
+          dataType: 'json',
+          data: { new_start_date: $(e.target).val(), start_date: start_date },
+          success: (data) => {
+            $('#template-shifted-time-duration').text(data.text);
+          }
+        });
+      }
+    });
+  });
+
+  function handle_line_brakes(original) {
+    let lines = original.replace(/»/g, "=>").split("\n");
+    let with_indentations = lines.reduce(function(accumulator, currentValue, index, array) {
+      let element = "&nbsp;&nbsp;".repeat(index) + currentValue;
+      if(accumulator.length === 1 && accumulator[0].replace(/&nbsp;|\s/g, "") === ""){
+        return [accumulator[0] + element];
+      } else {
+        return accumulator.concat([element]);
+      }
+    }, []);
+
+    return with_indentations.join("<br>");
+  }
+</script>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% html_title(l(:label_template_new)) %>

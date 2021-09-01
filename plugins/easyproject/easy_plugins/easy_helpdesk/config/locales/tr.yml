@@ -1,0 +1,455 @@
+---
+tr:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Ayarlar
+      easy_helpdesk_mail_template:
+        body_html: Posta gövdesi (HTML)
+        body_plain: Posta gövdesi (DÜZ METİN)
+        issue_status_id: İş durumu
+        mailboxes: 'Kullanılacak posta kutusu:'
+        reply_to: Yanıtla‌
+        sender: Gönderen
+        subject: Konu‌
+      easy_helpdesk_project_matching:
+        domain_name: Alan adı‌
+      easy_helpdesk_project_sla:
+        base: SLA
+    models:
+      easy_helpdesk_mail_template: Posta şablonu
+  aggregated_periods:
+    half-yearly: Yarı yıllık
+    quarterly: Üç Aylık
+    yearly: Yıllık
+  button_easy_helpdesk_add_domain_name: Posta veya alan adı ekle
+  button_easy_helpdesk_add_mail_template: Posta şablonu ekle
+  button_easy_helpdesk_add_mailbox: Posta kutusu ekle
+  button_easy_helpdesk_add_project: Proje ekle
+  button_easy_helpdesk_add_project_from_sidebar: Help Desk'e ekle
+  button_easy_helpdesk_add_signature: İmza ekle
+  button_easy_helpdesk_add_sla: SLA ekle‌
+  button_easy_helpdesk_all_mail_templates_index: E-posta şablonu ekle
+  button_easy_helpdesk_all_mailboxes_index: Tüm posta kutuları
+  button_easy_helpdesk_all_projects_index: Tüm Help Desk projeleri
+  button_easy_helpdesk_mail_templates_index: Şablon listesi
+  button_easy_helpdesk_mailboxes_index: Posta kutusu listesi
+  button_easy_helpdesk_projects_index: Proje listesi
+  button_easy_helpdesk_reports_index: Raporlar
+  button_easy_helpdesk_settings_index: Help Desk ayarları
+  confirm_edit_remaining_hours: Bu alan arka planda hesaplanıyor, elle düzenlemek
+    istediğinizden emin misiniz?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Help desk
+  easy_helpdesk_plugin_description: "- kompleks help desk çözümü"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Help desk
+    modules:
+      easy_helpdesk_create_mail_template_button: Posta şablonu oluştur düğmesi
+      easy_helpdesk_create_mailbox_button: Posta kutusu oluştur düğmesi
+      easy_helpdesk_mailboxes: Help desk posta kutuları
+      easy_helpdesk_mailtemplates: Help desk e-posta şablonları
+      easy_helpdesk_project_query: Filtrelerden help desk projeleri
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Help desk posta şablonları
+        description: Help desk posta şablonları
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Help desk posta kutuları
+        description: Help desk posta kutularını görüntüle
+    easy_helpdesk:
+      index:
+        caption: Help desk
+        description: Help Desk panosunu görüntüleme
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Help desk - projeler
+      easy_helpdesk_report_monthly_query: Help desk - aylık raporlar
+      easy_helpdesk_report_yearly_query: Help desk - yıllık raporlar
+      easy_sla_event_query: SLA etkinlikleri
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Help desk projelerindeki özel filtreler
+        easy_helpdesk_report_monthly_query: Help desk aylık raporlardaki özel filtreler
+        easy_helpdesk_report_yearly_query: Help desk yıllık raporlara özel filtreler
+      public:
+        easy_helpdesk_project_query: Help desk projelerindeki genel filtreler
+        easy_helpdesk_report_monthly_query: Help Desk aylık raporlarındaki genel filtreler
+        easy_helpdesk_report_yearly_query: Help Desk yıllık raporlarındaki genel filtreler
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Help desk - toplam saatleri hesaplayın
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Help Desk - biletleri otomatik olarak güncelleme
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Help Desk - posta alma
+      settings:
+        imap:
+          allow_override: İş özelliklerini güncellemeyi etkinleştir
+          allow_override_example: 'Örnek: iş tipi, öncelik - bu özellikler posta ile
+            değiştirilebilir'
+          application_section_label: Diğer ayarlar
+          category_example: 'Örnek: Kategori - yeni işlerin kategorisi bu olacak'
+          email_section_label: Posta kutusu ayarları
+          folder: Klasör
+          folder_example: 'okunacak IMAP klasörü (varsayılan: INBOX, "/" örnekini
+            kullanarak klasörü seçmek için örnek: inbox/sales)'
+          folders: Okunacak klasörler
+          folders_example: 'Okunacak IMAP klasörleri (her satıra bir tane) (varsayılan:
+            INBOX, "/" örnek: inbox / sales)'
+          host: Sunucu
+          host_example: 'Örnek: mail.company.com'
+          label: IMAP
+          move_on_failure: Başarısızlık durumunda buraya taşı
+          move_on_failure_example: dikkate alınmayan postaları MAILBOX klasörüne taşı
+          move_on_success: Başarılı olanları buraya taşı
+          move_on_success_example: başarıyla alınan postaları MAILBOX klasörüne taşı,
+            diğerleri silinecek
+          no_permission_check: Kullanıcı izin kontrolü yok
+          password: Şifre
+          password_example: 'Örnek: secretpassword'
+          port: Port
+          port_example: 'Örnek: 143'
+          priority_example: 'Örnek: Yüksek - yeni işlerin önceliği Yüksek olacak'
+          project_example: 'Örnek: 205 - yeni işler ID 205 projesinde oluşturulacak'
+          sender_mail: Gönderen
+          sender_mail_example: 'Örnek: support@company.com'
+          ssl: SSL
+          ssl_example: SSL kimlik doğrulamasını kullan
+          status_example: 'Örnek: Yeni - yeni işlerin durumu Yeni olacak'
+          tracker_example: 'Örnek: Bug - yeni işler Bug iş tipinde olacak'
+          unknown_user: Bilinmeyen kullanıcı
+          unknown_user_example: kabul et - Anonim kullanıcı kullanılacak; oluştur
+            - kullanıcı postadan oluşturulacak; somut giriş - bu kullanıcı kullanılacak
+          use_custom_sender: Farklı bir gönderen kullan
+          username: Kullanıcı
+          username_example: 'Örnek: accessuser@domain.com'
+        pop3:
+          allow_override: İş niteliklerini güncellemeyi etkinleştir
+          allow_override_example: 'Örnek: iş tipi, öncelik - bu özellikler posta ile
+            değiştirilebilir'
+          apop: APOP
+          apop_example: APOP kimlik doğrulamasını kullan
+          application_section_label: Diğer ayarlar
+          category_example: 'Örnek: Kategori - yeni işlerin kategorisi Kategori olacak'
+          delete_unprocessed: İşlenmemişleri sil
+          delete_unprocessed_example: İşlenemeyen postaları sil
+          email_section_label: Posta kutusu ayarları
+          host: Sunucu
+          host_example: 'Örnek: mail.company.com'
+          label: POP3
+          no_permission_check: Kullanıcının izin kontrolü yok
+          password: Şifre
+          password_example: Örnek: secretpassword
+          port: Port
+          port_example: 'Örnek: 110'
+          priority_example: 'Örnek: Yüksek - yeni işlerin önceliği Yüksek olacak'
+          project_example: 'Örnek: 205 - ID 205 projesine yeni işler oluşturulacak'
+          sender_mail: Gönderen
+          sender_mail_example: support@company.com
+          status_example: 'Örnek: Yeni - yeni işlerin durumu Yeni olacak'
+          tracker_example: 'Örnek: Bug - yeni işlerin iş tipi Bug olacak'
+          unknown_user: Bilinmeyen kullanıcı
+          unknown_user_example: kabul et - anonim kullanıcı kullanılacak; oluştur
+            - kullanıcı postadan oluşturulacak; somut giriş - bu kullanıcı kullanılacak
+          use_custom_sender: Farklı bir gönderen kullan
+          username: Kullanıcı
+          username_example: 'Örnek: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: "'Cevap Süresi' ve 'Çözüm Süresi'
+    alanlarının ikisi de boş bırakılamaz. Lütfen bunlardan birini doldurun."
+  error_easy_sla_hours_mode_greater_than: "%{title} %{from} %{to} 'dan daha büyük
+    olmalı"
+  error_update_easy_setting_helpdesk: Ayar kaydedilemiyor
+  field_aggregated_hours: Toplu Help Desk saatleri
+  field_aggregated_hours_period: Toplam dönemi
+  field_aggregated_hours_remaining: Kalan Help Desk saatleri
+  field_aggregated_hours_start_date: Toplama başlangıç tarihi
+  field_automatically_issue_closer_enable: Otomatik sorun kaydı güncellemesi etkinleştirilsin
+    mi?
+  field_date_to_response: SLA (yanıt tarihi)
+  field_date_to_solve: SLA (çözüm tarihi)
+  field_default_for_mailbox: Posta kutusu için varsayılan
+  field_easy_helpdesk_has_sla: SLAsı var
+  field_easy_helpdesk_hours_to_response_before_expired: Cevaplama Süresi
+  field_easy_helpdesk_hours_to_solve_before_expired: Çözümleme süresi
+  field_easy_helpdesk_ignorate_suspend_statuses: Tüm durumlardan SLA etkinlikleri
+    oluşturun
+  field_easy_helpdesk_mail_template: 'Şablondan müşteriye hızlı e-posta gönder:'
+  field_easy_helpdesk_need_reaction: Aksiyon gerekli mi?
+  field_easy_helpdesk_project_keyword: Proje için anahtar kelime
+  field_easy_helpdesk_project_matching:
+    domain_name: Posta veya alan adı
+    email_field_from: GÖNDEREN alanından alındı
+    email_field_to: ALICI alanından alındı
+  field_easy_helpdesk_project_monthly_hours: Sözleşmedeki Help Desk aylık saatler
+  field_easy_helpdesk_project_sla:
+    blank_keyword: SLA adı eksik
+    hours_to_response: Cevap verme süresi
+    hours_to_solve: Çözüm süresi
+    keyword: SLA anahtar sözcüğü
+    title: SLA'nın adı
+  field_easy_helpdesk_project_spent_time_current_month: HD'de çalışılan saatler (bu
+    ay)
+  field_easy_helpdesk_project_spent_time_last_month: HD'de çalışılan saatler (geçen
+    ay)
+  field_easy_helpdesk_project_spent_time_total: Help Deskte harcanan zaman toplamı
+  field_easy_helpdesk_ticket_owner: Sorun kaydı sahibi
+  field_easy_reopen_at: 'Yeniden açılma zamanı:'
+  field_easy_response_date_time: SLA (yanıt)
+  field_easy_time_to_solve_paused_at: SLA duraklama zamanı
+  field_email_footer: Posta altbilgisi
+  field_email_header: Posta başlığı
+  field_first_response: İlk cevap
+  field_has_easy_sla_event: SLA etkinlikleri var
+  field_hide_sla_data: SLA verilerini gizle
+  field_hours_mode_from: SLA çalışma saatleri
+  field_hours_to_response: SLA (yanıt)
+  field_hours_to_solve: SLA (çözüm)
+  field_is_under_helpdesk: Help Desk altında
+  field_issue_closer_done_issue_status: Durumu değiştirin
+  field_issue_closer_done_issue_user: ve atayın
+  field_issue_closer_inactive_interval: ve şu aralıkta güncelleme yok
+  field_issue_closer_observe_issue_status_id: durumu
+  field_monitor_due_date: Sorun kaydı son günlerini gözle
+  field_monitor_spent_time: Sorun kaydı harcanan sürelerini gözle
+  field_monthly_hours: Sözleşmedeki Help Desk aylık saatler
+  field_occurence_time: Oluşma zamanı
+  field_sla_resolve: Sla çözüm
+  field_sla_resolve_fulfilment: Sla çözüm tamamlama
+  field_sla_response: Sla yanıtı
+  field_sla_response_fulfilment: Sla yanıtı tamamlama
+  field_use_working_time: Çalışma süresine göre SLA sayımı
+  heading_easy_helpdesk_index: Help desk
+  heading_easy_helpdesk_mail_templates_edit: Posta şablonunu düzenle
+  heading_easy_helpdesk_mail_templates_index: Posta şablonları
+  heading_easy_helpdesk_mail_templates_new: Yeni posta şablonu
+  heading_easy_helpdesk_mail_templates_show: Posta şablonunun detayı
+  heading_easy_helpdesk_mailboxes_edit: Posta kutusunu düzenle
+  heading_easy_helpdesk_mailboxes_index: Help Desk Posta kutuları
+  heading_easy_helpdesk_mailboxes_new: Yeni posta kutusu
+  heading_easy_helpdesk_projects_edit: Projeyi düzenle
+  heading_easy_helpdesk_projects_index: Help desk projeleri
+  heading_easy_helpdesk_projects_new: Yeni Help desk projesi
+  heading_easy_helpdesk_projects_show: Projenin detayı
+  heading_easy_helpdesk_reports_index: Help desk - raporlar
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Ön ödemeli saatlerin aylık
+    raporu
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Ön ödemeli saatlerin yıllık
+    raporu
+  heading_easy_helpdesk_settings: Ayarlar
+  issue_closer_inactive_interval_units:
+    days: gün
+    hours: saat
+  label_automatically_issue_closer: Sorun kayıtlarını otomatik güncelleme şartı
+  label_copy_settings_sla_from_project: SLA ayarlarını projeden kopyala
+  label_easy_hekodesk_additional_task_info_received_emails: İşlenmiş postalar
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: Bu ay harcanacak Help desk saatleri
+  label_easy_helpdesk_actual_budget_to_spend: Kalan saatler
+  label_easy_helpdesk_aggregated_from_last_period: Son dönemden itibaren birikmiş
+  label_easy_helpdesk_alerts: Uyarılar ayarları
+  label_easy_helpdesk_allow_custom_sender: Özel Gönderen'e izin ver (proje bazlı)
+  label_easy_helpdesk_allow_override: İş niteliklerini güncellemeyi etkinleştir
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: Sorun kaydı alanlarını değiştir
+    notify: Şablondan e-posta gönder
+  label_easy_helpdesk_client_response_status: Müşterinin yanıtından sonra durumu buna
+    değiştir
+  label_easy_helpdesk_domain_name: E-posta alan adı
+  label_easy_helpdesk_emails: Posta ayarları - üstbilgi ve altbilgi
+  label_easy_helpdesk_enable_email_footer: Bu proje için altbilgi değiştirilsin mi?
+  label_easy_helpdesk_enable_email_header: Bu projenin başlığını değiştir?
+  label_easy_helpdesk_hours_comulated: Biriktirilen saatler
+  label_easy_helpdesk_hours_comulated_range: "%{from} 'dan  %{to} 'a"
+  label_easy_helpdesk_hours_per_month: Bu ay çalışılan saatler
+  label_easy_helpdesk_ignore_cc: Alınan e-postaların CC'sini yoksay
+  label_easy_helpdesk_mail_signature: Help desk - imza
+  label_easy_helpdesk_matching: Bu projede işlenen postalar, alan adları ve anahtar
+    kelimeler
+  label_easy_helpdesk_message_above_variables: İş yorumu posta şablonunun üstünde
+    gösterilir
+  label_easy_helpdesk_need_reaction: Eylem gerekli!
+  label_easy_helpdesk_project_helpdesk_tab: Help desk
+  label_easy_helpdesk_project_managed_by_helpdesk: Help desk ayarları
+  label_easy_helpdesk_project_plural: Help desk projeleri
+  label_easy_helpdesk_projects_sla_working_time_calendar: SLA iş günü
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: İş yeniden açıldıktan sonra
+    SLA'yı sıfırla
+  label_easy_helpdesk_sender: Gönderen
+  label_easy_helpdesk_sender_current_user: Mevcut giriş yapan kullanıcı
+  label_easy_helpdesk_sender_is_user: Gönderen giriş yapan kullanıcı
+  label_easy_helpdesk_sender_mailbox_address: Posta kutusu adresi
+  label_easy_helpdesk_sender_redmine_default: Posta bildiriminden varsayılan
+  label_easy_helpdesk_signature: İmza
+  label_easy_helpdesk_signature_name: İmza ismi
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Otomatik olarak oluşturulan
+    postaları kabul et
+  label_easy_helpdesk_sla: SLA ayarları - öncelikler, sorun kaydı çözme zamanı
+  label_easy_helpdesk_sla_start_states: Durum bu olduğunda, sorun kaydı için SLA'yı
+    say
+  label_easy_helpdesk_sla_stop_states: Durum bu olduğunda, SLA'yı sorun kaydı için
+    askıya al
+  label_easy_sla_event: SLA etkinliği
+  label_easy_sla_events: SLA etkinlikleri
+  label_easy_sla_events_reports: SLA Raporları
+  label_filter_group_easy_helpdesk_project_query: Help desk - proje
+  label_filter_group_easy_helpdesk_report_monthly_query: Help desk - rapor
+  label_filter_group_easy_helpdesk_report_query: Help desk - rapor
+  label_filter_group_easy_helpdesk_report_yearly_query: Help desk - rapor
+  label_filter_group_easy_sla_event_query: SLA etkinliği
+  label_filter_show_spent_time_current_month_equal_to_zero: HD'de çalışılan saatler
+    (bu ay) 0
+  label_filter_show_spent_time_last_month_equal_to_zero: HD'de çalışılan saatler (geçen
+    ay) 0
+  label_issue_bottom_from_easy_helpdesk: Help Desk tarafından oluşturuldu (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Aylık sözleşme saatleri
+  label_sla_calendar_settings: Takvim ayarları
+  label_tab_sla_events: SLA etkinlikleri
+  permission_manage_easy_helpdesk: Help deski yönet
+  permission_manage_easy_helpdesk_project: Help desk projelerini yönet
+  permission_manage_easy_sla_events: SLA etkinliklerini yönet
+  permission_view_easy_helpdesk_sla: İşlerdeki SLA'yı görüntüleme
+  permission_view_easy_sla_events: SLA etkinliklerini görüntüle
+  project_module_easy_helpdesk: Help desk
+  setting_easy_helpdesk_custom_sender: Help desk Gönderen
+  text_easy_helpdesk_change_default_sender: Bu ayar Yanıtla alanını değiştirmeyecek
+  text_easy_helpdesk_custom_sender: Varsayılan Help Desk göndericisinin üzerine yaz.
+    Bu işlevi devre dışı bırakmak için boş bırakın.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: mevcut atanan
+    author: mevcut yazar
+    date: güncel tarih
+    mail_to: posta alıcı
+    spent_time: işte harcanan zaman
+    task_closed_on: iş kapanma tarihi
+    task_description: işin açıklaması
+    task_done_ratio: iş tamamlama oranı
+    task_due_date: iş hedef tarihi
+    task_estimated_hours: iş tahmini saatler
+    task_history: İşin tüm yorumlarının geçmişi
+    task_id: mevcut iş kimliği
+    task_id_without_hash: mevcut iş kimliği # olmadan
+    task_last_journal: işin son genel yorumu
+    task_note: işle ilgili son yorum
+    task_priority: iş önceliği
+    task_project: proje adı
+    task_public_url: iş genel url'si
+    task_start_date: iş başlangıç tarihi
+    task_status: iş durumu
+    task_subject: mevcut iş konusu
+    task_tracker: iş tipi
+    user_first_name: mevcut kullanıcının ismi
+    user_last_name: mevcut kullanıcı soyadı
+    user_name: mevcut kullanıcı tam adı
+    user_signature: mevcut kullanıcı imzası
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Konu ve posta gövdesi dinamik metin içerebilir:'
+  - "% task_id% (geçerli iş kimliği yerine)"
+  - "% task_subject% (geçerli iş konusu yerine)"
+  - "% task_note% (işteki son yorum yerine)"
+  - "% task_history% (işin tüm özel olmayan yorumlarının geçimişi yerine)"
+  - "% time_spent% (işte harcanan zaman yerine)"
+  - "%assignee% (mevcut atananın yerine)"
+  - "% user_signature% (geçerli kullanıcı imzası yerine)"
+  - "% date% (geçerli tarihin yerine)"
+  - "% task_tracker% (iş tipi yerine)"
+  - "% task_project% (proje adı yerine)"
+  - "% task_description% (iş tanımı yerine)"
+  - "% task_status% (iş durumu yerine)"
+  - "% task_priority% (iş önceliği yerine)"
+  - "% task_estimated_hours% (tahmini süre yerine)"
+  - "% task_done_ratio% (yapılan iş oranı yerine)"
+  - "% task_public_url% (iş genel URL'si yerine)"
+  - "% task_closed_on% (işin kapanma tarihi yerine)"
+  - "% task_due_date% (iş son tarihi yerine)"
+  - "% task_start_date% (görev başlangıç tarihi yerine)"
+  - "% user_name% (geçerli kullanıcının tam adı yerine)"
+  - "% user_first_name% (geçerli kullanıcı adı yerine)"
+  - "% user_last_name% (geçerli kullanıcı soyadı yerine)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Konu ve posta gövdesi dinamik
+    metin içerebilir:'
+  text_easy_helpdesk_mail_template_issue_status_id: Posta kutusu şablonunu belirli
+    bir iş durumuna bağlama izni verir. Varsayılan durumu (işlerin oluşturulduğu)
+    seçerek, iş e-postadan oluşturulduktan sonra bu şablon otomatik cevap olarak kullanılır.
+  text_easy_helpdesk_mail_template_replacement_for: bunun yerine
+  text_easy_helpdesk_mail_template_reply_to: "(Örnek Bey) - burada postaya izin verilmiyor"
+  text_easy_helpdesk_mail_template_reply_to2: İletişimi bir iş içinde tutmak için
+    "Yanıtla" ve "Gönderen" alanları posta kutusu şablonundan alınmıştır.
+  text_easy_helpdesk_mailbox_too_long_to_process: Bu posta kutusunun işlenmesi çok
+    uzun sürüyor - sunucudan yanıt gelmiyor. Muhtemelen posta kutusundaki çok fazla
+    e-postadan kaynaklanmakta. Lütfen eski e-postaları Help Desk tarafından işlenen
+    klasörlerden kaldırın. Ayrıca harici uygulamaların posta sunucunuza tekrarlayan
+    erişimi için gereken güvenlik ilkelerini doğrulayın.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Bu posta kutularını projelere
+    atamalısınız. Bunu yapmazsanız, bilinmeyen gelen postalar işleme alınmayacaktır!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Bu posta kutularının varsayılan
+    projesi yok:'
+  text_easy_helpdesk_projects_alerts_list: 'Yapılandırılmış uyarıların listesi:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Alıcının ayarlanması gereken uyarıların
+    listesi:'
+  text_easy_helpdesk_projects_is_default: Bilinmeyen bir göndericiden e-posta gelirse,
+    sorun kaydı burada oluşturulacaktır.
+  text_easy_helpdesk_projects_keyword_description: Posta konusu tanımlanmış bir dize
+    içeriyorsa, bu projeye sorun kaydı atanacaktır. Anahtar kelime büyük / küçük harf
+    duyarlıdır.
+  text_easy_helpdesk_projects_keywords: Posta konusu tanımlanmış bir dize içeriyorsa,
+    belirli öncelik ve son tarih ayarlanacaktır (* her konu anlamına gelir). Elle
+    oluşturulan sorun kayıtlarının SLA'yını ayarlamak için boş bırakın.
+  text_easy_helpdesk_projects_monitor_due_date: Bu önceden tanımlanmış uyarı, SLA’yı
+    ihlal eden bir sorun kaydı - SLA’da tanımlanan süre içinde çözülmediyse, size
+    e-posta bildirimi gönderir
+  text_easy_helpdesk_projects_monitor_spent_time: Bu önceden tanımlanmış uyarı, belirli
+    bir takvim ayında harcanan toplam süre önceden ödenmiş destek saatlerini aşarsa
+    size e-posta bildirimi gönderir
+  text_easy_helpdesk_projects_new_priority: Anahtar kelimeler belirtilmezse, SLA seçilen
+    önceliğe göre ayarlanır
+  text_easy_helpdesk_projects_priority: SLA seçilen önceliğe göre ayarlanacaktır
+  text_easy_helpdesk_projects_sla_hours_to_response: Sorun kaydı üzerinde çalışmaya
+    başlamadan önce izin verilen maksimum süre (ilk durum değişikliği).
+  text_easy_helpdesk_projects_sla_hours_to_solve: Sorun kaydını çözmek için azami
+    süre (kapalı durum).
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Bazı işler (%{count} / %{total})
+    güncellenemedi:'
+  text_easy_rake_task_helpdesk_issue_closer_updated: '%{updated_count} <small class="help">güncellenmiş
+    </small> / %{notified_count} <small class="help">müşteri e-postası</small>'
+  text_isseu_closer_close_notice: Bu iş Help Desk tarafından otomatik olarak güncellendi
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: Yanıt,
+    %{time} ''a kadar verilmeliydi'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: Yanıt,
+    %{time} ''a kadar verilmelidir'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: Çözüm %{time}
+    ''a kadar sunulmalıydı'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: Çözüm %{time}
+    ''a kadar sunulmalıydı'
+  title_easy_helpdesk_add_project_from_sidebar: Help Deske proje eklemek için tıklayın
+  title_easy_helpdesk_allow_custom_sender: Her proje için özel bir gönderenin ayarlanmasına
+    izin ver
+  title_easy_helpdesk_allow_override: İleti ile iş niteliklerinin üzerine yazılmasına izin
+    ver
+  title_easy_helpdesk_client_response_status: Bir sorun kaydının e-postayla güncellendiğinde
+    hangi duruma geçeceğini seçin.
+  title_easy_helpdesk_ignore_cc: E-posta alındığında, CC'deki tüm e-postalar izleyicilere
+    eklenir, dış e-posta gönderilir ve onlara otomatik yanıt gönderilir, bu seçenek bunu devre
+    dışı bırakır.
+  title_easy_helpdesk_message_above_variables: Şablon mesajı şablon değişkenlerinin
+    üstünde olacak
+  title_easy_helpdesk_sender: "'Gönderen' alanında kim olacak"
+  title_easy_helpdesk_sender_current_user: Mevcut giriş yapan kullanıcı
+  title_easy_helpdesk_sender_is_user: "'Gönderen' alanı mevcut kullanıcı olacak"
+  title_easy_helpdesk_sender_mailbox_address: Posta kutusundan posta adresi
+  title_easy_helpdesk_sender_redmine_default: Varsayılan emisyon e-posta adresi
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'UYARI: Help Desk diğer sistemlerden
+    e-posta alacak ve bu sonsuz posta alışverişine neden olabilir!'
+  title_easy_helpdesk_sla_start_states: Yukarıdaki ayar ile duraklatıldıktan sonra
+    SLA ölçümüne devam edilecek durumları seçin.
+  title_easy_helpdesk_sla_stop_states: SLA ölçülmediğinde durumları seçin. Örneğin,
+    kapalı sorun kayıtları veya müşteriden bir cevap beklerken.
+  title_sla_waiting_for_client: SLA askıya alındı
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Devre dışı - iş kapatıldıktan sonra SLA durdurulur. İş yeniden açıldığında,
+      SLA en başta oluşturulduğu andan itibaren sayılır
+    enabled: Etkin -iş kapatıldıktan sonra SLA durdurulur. İş yeniden açıldığında,
+      SLA yeniden açıldığı zamandan itibaren sayılır.

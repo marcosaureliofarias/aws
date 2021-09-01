@@ -1,0 +1,12 @@
+<%
+  hide_period ||= false
+  start_date_id ||= "start-date-#{page_module.uuid.dasherize}"
+  day ||= calendar.startdt
+%>
+<div class="easy-calendar-listing-links next-prev-links">
+  <%= link_to_function '', "$('##{start_date_id}').val('#{calendar.prev_start_date}'); $.ajax({url:'#{ j update_my_page_module_view_path}', data: $('##{formid}').serialize(), success: function(data){ $('##{divid}').html(data) }})", :title => l("title_timelog_calendar_prev.#{calendar.period}"), :class => 'prev' -%>
+  <% unless hide_period %>
+    <span class="period"><%= "#{(day+(11-day.cwday)%7).cweek} / " if period.to_sym == :week && day.cwday == calendar.first_wday %><%= month_name(calendar.month) -%> <%= calendar.year -%></span>
+  <% end %>
+  <%= link_to_function '', "$('##{start_date_id}').val('#{calendar.next_start_date}'); $.ajax({url:'#{ j update_my_page_module_view_path}', data: $('##{formid}').serialize(), success: function(data){ $('##{divid}').html(data) }})", :title => l("title_timelog_calendar_next.#{calendar.period}"), :class => 'next' -%>
+</div>

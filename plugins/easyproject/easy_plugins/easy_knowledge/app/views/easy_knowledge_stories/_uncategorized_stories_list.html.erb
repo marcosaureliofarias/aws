@@ -1,0 +1,37 @@
+<div class="flash error">
+  SEM BY SES DOSTAT NEMEL !
+  nahlas mi to prosim
+  easy_knowledge_stories/_uncategorized_stories_list.html
+</div>
+<% if stories.any? %>
+  <table class="list stories anchor">
+    <thead>
+      <tr>
+        <% if checkbox %>
+          <th class="checkbox hide-when-print">
+            <%= link_to_function('','EASY.contextMenu.toggleIssuesSelection($(this));', :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", :class => 'icon icon-checked') -%>
+          </th>
+        <% end %>
+        <th><%=l(:field_easy_knowledge_story_name)-%></th>
+        <th><%=l(:field_easy_knowledge_story_author_id)-%></th>
+        <th><%=l(:field_easy_knowledge_story_storyviews)-%></th>
+        <th><%=l(:field_easy_knowledge_story_updated_on)-%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% stories.each do |story| -%>
+        <tr onclick="EASY.utils.goToUrl('<%= easy_knowledge_story_path(story) -%>', event)">
+          <% if checkbox %>
+            <td class="checkbox hide-when-print"><%= check_box_tag("ids[]", story.id, false, :id => nil) -%></td>
+          <% end %>
+          <td class="name"><%= link_to h(story.name), {:controller => 'easy_knowledge_stories', :action => 'show', :id => story, :project_id => @project}, :title => l(:title_easy_knowledge_show_story) -%></td>
+          <td><%=  avatar(story.author, :style => :small).to_s + story.author.name -%></td>
+          <td><%=  story.storyviews -%></td>
+          <td><%=  format_time(story.updated_on) -%></td>
+        </tr>
+      <% end -%>
+    </tbody>
+  </table>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% end -%>

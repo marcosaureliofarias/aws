@@ -1,0 +1,84 @@
+---
+hu:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Már van egy jelenléti ív
+                erre az időszakra
+  button_copy_easy_time_sheet: Sorok másolása új jelenléti ívre
+  button_easy_timesheet_by_easy_query: Jelenléti ív szűrő alapján
+  button_easy_timesheet_delete_with_time_entries: Sor és eltöltött idő eltávolítása
+  button_easy_timesheet_delete_without_time_entries: Csak a sor eltávolítása
+  button_easy_timesheets_approve: Jóváhagyás
+  button_easy_timesheets_lock: Jóváhagyás
+  button_easy_timesheets_new_row: Új sor
+  button_easy_timesheets_reject: Elutasítás
+  button_easy_timesheets_unlock: Feloldás
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Személyes jelentések - Jelenléti ív
+        description: Jelenléti ívek megtekintése
+  easy_query:
+    name:
+      easy_timesheet_query: Jelenléti ívek
+  easy_timesheets_date_must_be_first_day_of_week: A hét első napja kell hogy legyen.
+    (%{day})
+  easy_timesheets_periods:
+    day: Heti
+    month: Havi
+    week: Heti
+  easy_timesheets_plugin_name: Jelenléti ívek
+  error_timesheet_invalid_time_entries: 'Jelenléti ív létrehozása sikertelen, hibás
+    időbejegyzések miatt: %{errors}'
+  extended_timesheet:
+    label_new_monhly_timesheet: Új havi jelenléti ív
+  field_easy_timesheet_period: Időszak
+  heading_easy_timesheets_edit: Jelenléti ív szerkesztése
+  heading_easy_timesheets_new: Új jelenléti ív
+  heading_easy_timesheets_show: Jelenléti ív %{start_date} - %{end_date}
+  label_easy_timesheet: Jelenléti ív
+  label_easy_timesheet_approved: Jóváhagyva?
+  label_easy_timesheet_approved_by: Jóváhagyta
+  label_easy_timesheet_end_date: Befejező dátum
+  label_easy_timesheet_lock_description: Jóváhagyás/elutasítás indoklása
+  label_easy_timesheet_lock_prompt: Jóváhagyás indoklása
+  label_easy_timesheet_locked_at: Jóváhagyva/elutasítva
+  label_easy_timesheet_rejected_by: Elutasította
+  label_easy_timesheet_unlock_prompt: Elutasítás indoklása
+  label_easy_timesheets: Jelenléti ívek
+  label_enabled_timesheet_periods: Engedélyezett időszak
+  label_filter_group_easy_timesheet_query: Jelenléti ív
+  permission_create_easy_timesheets_for_other_user: Jelenléti ívek készítése más felhasználók
+    részére
+  permission_edit_easy_timesheets: Jelenléti ívek szerkesztése
+  permission_edit_own_easy_timesheets: Saját jelenléti ívek szerkesztése
+  permission_view_easy_timesheets: Jelenléti ívek megtekintése
+  project_module_easy_timesheets: Jelenléti ívek
+  text_easy_timesheet_destroy_cell_are_you_sure: Valóban el akarja távolítani az eltöltött
+    időt?
+  text_easy_timesheet_destroy_row_are_you_sure: El fog távolítani egy sort a jelenléti
+    ívből. Nem szükséges automatikusan törölni az eltöltött időt ezen a soron. Hogyan
+    akarja folytatni?
+  text_easy_timesheet_prompt_text: Idő hozzáadása
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: A kezdő dátum
+    automatikusan igazodik a választott időszak elejéhez
+  text_time_sheet_copy_from: A sorok kitöltésre kerülnek %{entity} ív adataival
+  text_warning_after_time_sheet_copied: Ha nem ment legalább egy cellát a sorban,
+    a sor elveszik.
+  title_easy_timesheet_destroy: Jelenléti ív eltávolítása
+  title_easy_timesheet_edit_with_period: Jelenléti ív (%{period}) szerkesztése
+  title_easy_timesheet_new_with_period: Új %{period} jelenléti ív
+  title_easy_timesheet_show: Jelenléti ív megjelenítése
+  title_next_time_sheet: "%{user} következő jelenléti ívének megjelenítése"
+  title_previous_time_sheet: "%{user} előző jelenléti ívének megjelenítése"
+  validation_entry_already_exists: Erre az időszakra (%{start_date}) - (%{end_date})
+    már létezik jelenléti ív
+  validation_greater_than_start_date: "(%{end_date}) legyen később mint a kezdődátum
+    (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: Néha a belépők törlése nem lehetséges
+  validation_week_period: A kezdő (%{start_date}) és záróidőszak (%{end_date}) között
+    egy hétnek kell lennie

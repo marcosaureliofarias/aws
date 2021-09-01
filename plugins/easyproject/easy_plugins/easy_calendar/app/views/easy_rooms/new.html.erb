@@ -1,0 +1,9 @@
+<%= title [l(:label_room_plural), groups_path], l(:label_room_new) %>
+
+<%= labelled_form_for @easy_room, :html => {:class => 'form-box'} do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <div class="form-actions">
+    <%= f.submit l(:button_create), :class => 'button-positive' %>
+    <%= f.submit l(:button_create_and_continue), :name => 'continue', :class => 'button-positive' %>
+  </div>
+<% end %>

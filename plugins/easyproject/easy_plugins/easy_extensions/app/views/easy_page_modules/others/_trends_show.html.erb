@@ -1,0 +1,91 @@
+<% if easy_page_modules_data[:query] && easy_page_modules_data[:number_to_show] %>
+  <%
+    formatted_value = -> settings, easy_page_modules_data, value, show_result_as_percentage do
+      query = easy_page_modules_data[:query]
+      return unless query.present?
+      return unless value.present?
+      if settings['type'] != 'sum' || show_result_as_percentage
+        format_locale_number(value, strip_insignificant_zeros: true, humanize: EasySetting.value(:chart_numbers_format), percentage: show_result_as_percentage)
+      else
+        attribute = query.get_column(settings['column_to_sum'])
+        format_options = { query: query, hours_format: 'short', no_html: true, humanize: EasySetting.value(:chart_numbers_format), strip_insignificant_zeros: true }
+
+        format_html_entity_attribute(query.entity, attribute, value, format_options)
+      end
+    end
+
+    query_to_compare = easy_page_modules_data[:query_to_compare]
+    query_url = modal_for_trend_easy_queries_path(easy_page_modules_data[:query].to_params.merge(set_default_columns: '1', project_id: @project, original_url: original_url)).html_safe
+    query_to_compare_url = query_to_compare && modal_for_trend_easy_queries_path(query_to_compare.to_params.merge(set_default_columns: '1', project_id: @project, original_url: original_url)).html_safe
+  %>
+
+  <div class="easy-trend">
+    <div class="easy-trend__wrapper">
+      <div class="easy-trend__data">
+        <% if settings['easy_icon'] != '' %>
+          <i class="<%= "#{settings['easy_icon']}" %> easy-trend__icon"></i>
+        <% end %>
+        <span class="easy-trend__value">
+          <%= formatted_value.call(settings, easy_page_modules_data, easy_page_modules_data[:number_to_show], easy_page_modules_data[:show_result_as_percentage]) %>
+        </span>
+        <span class="easy-trend__change">
+          <% if easy_page_modules_data[:show_trend] %>
+            <% if easy_page_modules_data[:trend_icon] %>
+              <span class="<%= easy_page_modules_data[:trend_icon] %> easy-trend__direction"></span>
+              <span class="easy-trend__percent">
+               <%= "#{format_locale_number(easy_page_modules_data[:trend_percent], percentage: true) if easy_page_modules_data[:trend_percent]}" %>
+              </span>
+            <% end %>
+          <% end %>
+        </span>
+        <% if easy_page_modules_data[:show_trend_for_previous_period] %>
+          <% if easy_page_modules_data[:trend_icon_for_previous_period] %>
+            <span class="easy-trend__change__previous_period">
+              <span class="<%= easy_page_modules_data[:trend_icon_for_previous_period] %> easy-trend__previous_period_direction"></span>
+              <span class="easy-trend__previous_period_percent">
+               <%= "#{format_locale_number(easy_page_modules_data[:trend_percent_for_previous_period], percentage: true) if easy_page_modules_data[:trend_percent_for_previous_period]}" %>
+              </span>
+            </span>
+<!--            <span class="<%#= easy_page_modules_data[:trend_icon_for_previous_period] %> easy-trend__previous_period_direction"></span>-->
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="easy-trend__description">
+      <p><%= settings['description'] %></p>
+    </div>
+  </div>
+<% else %>
+  <div class="info"><%= l(:label_easy_page_module_settings_missing) %></div>
+<% end %>
+
+<%= call_hook(:show_trend_module_bottom, {block_name: block_name, modul_uniq_id: modul_uniq_id, settings: settings, page_module: page_module, easy_page_modules_data: easy_page_modules_data}) %>
+
+<script type="application/javascript">
+  EASY.schedule.late(() => {
+    $("#module_<%= page_module.uuid.dasherize %>").on("click", (event) => {
+      if (event.target.tagName === "A") {
+        return;
+      }
+
+      const classes = event.target.classList;
+      let queryUrl;
+
+      if (classes.contains("easy-trend__direction") || classes.contains("easy-trend__percent")) {
+        // Don't care if url is blank string because this conditions is
+        // fulfil only if query_to_compare exist
+        queryUrl = "<%= j query_to_compare_url %>";
+      } else {
+        queryUrl = "<%= j query_url %>";
+      }
+
+      $.get(queryUrl, (data) => {
+        $("#ajax-modal").html(data);
+        showModal("ajax-modal", "70%", "<%= settings[:name] %>");
+
+        // Just in case
+        // $("#ajax-modal .tablesaw").removeClass("tablesaw")
+      });
+    });
+  });
+</script>

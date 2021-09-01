@@ -1,0 +1,1 @@
+EASY.schedule.late(function(){$("img.gravatar").Jcrop({setSelect:[0,0,1e3,1e3],onSelect:function(e){$("#crop_x").val(e.x),$("#crop_y").val(e.y),$("#crop_width").val(e.w),$("#crop_height").val(e.h)}})});

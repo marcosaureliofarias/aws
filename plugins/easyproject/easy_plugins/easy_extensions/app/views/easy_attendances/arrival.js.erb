@@ -1,0 +1,6 @@
+<%= render(:template => 'easy_attendances/new') %>
+var modal = $("#ajax-modal");
+var l = modal.find("#easy_attendance_form_datetime_inputs");
+l.find("label").text("<%= l :field_time %>");
+l.find("input.time-select-departure").remove();
+l.nextAll().hide();

@@ -1,0 +1,25 @@
+<% title l(:title_spent_time_overview) %>
+
+<%= render_easy_page_bottom_buttons(overview_layout_easy_time_entries_path(t: params[:t])) if @page_editable %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <% if User.current.allowed_to_globally?(:log_time) %>
+    <%= link_to(l(:button_log_time), new_easy_time_entry_path , class: 'button icon icon-time-add button-positivet') %>
+  <% end %>
+
+  <% if User.current.allowed_to_globally?(:view_time_entries) %>
+    <%= link_to(l(:label_spent_time), easy_time_entries_path , class: 'button icon icon-list') %>
+  <% end %>
+
+  <% if User.current.easy_lesser_admin_for?(:enumerations) %>
+    <%= link_to(l(:label_enumerations), enumerations_path , class: 'button icon icon-list') %>
+  <% end %>
+
+  <% if User.current.allowed_to_globally?(:view_personal_statement, {}) && EasySetting.value('show_personal_statement') %>
+    <%= link_to(l(:label_personal_statement), easy_time_entries_path(only_me: true) , class: 'button icon icon-user') %>
+  <% end %>
+
+  <% if User.current.easy_lesser_admin_for?(:settings) %>
+    <%= link_to(l(:label_settings), settings_path(tab: 'timeentries') , class: 'button icon icon-settings') %>
+  <% end %>
+<% end %>

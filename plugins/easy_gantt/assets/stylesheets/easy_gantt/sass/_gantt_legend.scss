@@ -1,0 +1,38 @@
+.easy-gantt__legend {
+  &-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 4*$gantt__gap;
+  }
+  &-img {
+    display: inline-flex;
+    width: 80px;
+    flex-shrink: 0;
+    margin-right: 4*$gantt__gap;
+    align-items: center;
+    justify-content: center;
+  }
+  &-description {
+    width: auto;
+    font-size: 13px;
+  }
+  &-tips {
+    margin-top: 4*$gantt__gap;
+    ol, ul {
+      margin: 2*$gantt__gap;
+      li {
+        padding-bottom: 2*$gantt__gap;
+      }
+    }
+  }
+  &-trigger{
+    vertical-align: middle;
+    padding: .75*$gap;
+    cursor: pointer;
+    font-size: 1.25rem;
+    i{
+      font-size: 1.25em;
+    }
+  }
+}

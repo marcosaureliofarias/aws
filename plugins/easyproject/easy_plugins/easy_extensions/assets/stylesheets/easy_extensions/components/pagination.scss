@@ -1,0 +1,51 @@
+.pagination {
+  display: block;
+  margin-top: $box-padding;
+  padding: $gap 0;
+  text-align: center;
+  line-height: $tab-height - 2;
+  overflow: hidden;
+
+  .easy-content-page & {
+    margin: 0 (-$box-padding);
+  }
+
+  .items,
+  .per-page {
+    @include small;
+  }
+
+  .pages {
+    @extend %flex;
+    @extend %flex-wrap-wrap;
+    @extend %justify-content-center;
+    list-style: none;
+    padding: $gap 0 0 0;
+    margin: 0;
+
+    li {
+      margin-left: .35*$gap;
+      margin-right: .35*$gap;
+      padding-left: .35*$gap;
+      padding-right: .35*$gap;
+      flex-shrink: 1;
+    }
+  }
+
+  .current {
+    font-weight: bold;
+  }
+
+  .previous,
+  .next {
+    min-width: 70px;
+
+    @include respond-to(max-small-screen) {
+      flex-basis: 100%;
+    }
+  }
+
+  .spacer {
+    display: inline-block;
+  }
+}

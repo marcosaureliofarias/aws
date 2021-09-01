@@ -1,0 +1,100 @@
+<form>
+  <h2 class="title"><%= @easy_meeting.name %></h2>
+  <%= error_messages_for(@easy_meeting) %>
+
+  <table class="attributes">
+    <tbody>
+    <tr>
+      <td colspan="2"><%= textilizable(@easy_meeting.description) %></td>
+    </tr>
+    <tr>
+      <th><%= l(:field_all_day) %>:</th>
+      <td><%= @easy_meeting.all_day? ? l(:general_text_Yes) : l(:general_text_No) %></td>
+    </tr>
+    <tr>
+      <th><%= l(:field_start_time) %>:</th>
+      <td><%= @easy_meeting.all_day? ? format_date(User.current.time_to_date(@easy_meeting.start_time)) : format_time(@easy_meeting.start_time) %></td>
+    </tr>
+    <tr>
+      <th><%= l(:field_end_time) %>:</th>
+      <td><%= @easy_meeting.all_day? ? format_date(User.current.time_to_date(@easy_meeting.end_time)) : format_time(@easy_meeting.end_time) %></td>
+    </tr>
+    <% if @easy_meeting.location.present? %>
+      <tr>
+        <th><%= l(:field_place_name) %>:</th>
+        <td><%= @easy_meeting.location %></td>
+      </tr>
+    <% end %>
+    <%= call_hook :view_easy_calendar_show_attributes_header_bottom, easy_meeting: @easy_meeting %>
+    </tbody>
+  </table>
+
+  <% if @easy_meeting.easy_invitations.any? || @easy_meeting.external_mails.any? %>
+    <h3><%= l(:label_invitations) %></h3>
+    <table class="attributes">
+      <tbody>
+      <tr>
+        <th><%= l(:field_author) %>:</th>
+        <td><%= @easy_meeting.author.name %></td>
+      </tr>
+      <tr>
+        <th><%= l(:label_user_plural) %>:</th>
+        <td>
+          <div class="entity-array labeled">
+            <% @easy_meeting.easy_invitations.each do |inv| %>
+              <span class="<%= 'icon icon-true' if inv.accepted? %> <%= 'icon icon-false' if inv.declined? %> <%= inv.class_by_status %>"><%= inv.user.name %></span>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th><%= l(:field_mails) %>:</th>
+        <td>
+          <%= @easy_meeting.external_mails.collect { |mail| mail_to mail }.join(', ').html_safe %>
+        </td>
+      </tr>
+      <%= call_hook :view_easy_calendar_show_invitations_header_bottom, easy_meeting: @easy_meeting %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <% if (project = @easy_meeting.project) %>
+    <h3><%= l(:field_project) %></h3>
+    <table class="attributes box">
+      <tbody>
+      <tr>
+        <td colspan="2"><%= project.name %></td>
+      </tr>
+      <% if project.description.present? %>
+        <tr>
+          <td colspan="2"><%= textilizable(project.short_description) %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <% if (@easy_meeting.user_invited?(User.current) || User.current.allowed_to_globally?(:edit_meetings)) && (!request.xhr? || params[:show_buttons] == '1') %>
+    <div class="form-actions">
+      <% if @easy_meeting.user_invited?(User.current) %>
+        <%=
+          if !@easy_meeting.accepted_by?(User.current)
+            link_to l(:button_meeting_accept), accept_easy_meeting_path(@easy_meeting, back_url: back_url), method: 'post', class: 'button-positive icon icon-checked'
+          end
+        %>
+
+        <%=
+          if !@easy_meeting.declined_by?(User.current)
+            link_to l(:button_meeting_decline), decline_easy_meeting_path(@easy_meeting, back_url: back_url), method: 'post', class: 'button icon icon-false'
+          end
+        %>
+      <% end %>
+
+      <%=
+        if User.current.allowed_to_globally?(:edit_meetings)
+          link_to l(:button_edit), edit_easy_meeting_path(@easy_meeting), method: 'get', class: 'button icon icon-edit'
+        end
+      %>
+    </div>
+  <% end %>
+</form>

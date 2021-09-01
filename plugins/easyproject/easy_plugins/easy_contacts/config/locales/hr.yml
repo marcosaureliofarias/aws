@@ -1,0 +1,541 @@
+---
+hr:
+  activerecord:
+    models:
+      easy_mail_campaign_easy_contact: Kontakt
+  administration:
+    label_easy_contact: Korisnička polja - kontakti
+    label_easy_contact_group: Korisnička polja - grupe
+    label_easy_contact_type: Vrsta kontakta
+  button_assign_to_me: Dodaj u omiljene kontakte
+  button_easy_contact_by_easy_query: Kontakti po spremljenom filtru
+  button_easy_contact_homepage: Prikaži sve
+  button_easy_contact_new: Novi kontakt
+  button_easy_contact_show_contact_on_google_map: Prikaži kontakt na Google karti.
+  button_easy_entity_attribute_vcard_map: VCard postavke mapiranja
+  button_new_easy_contact_csv_import: CSV uvoz novog kontakta
+  button_ok_continue_import: U redu je - Uvezi
+  button_reasign_and_delete_easy_contact: Ponovno dodijeli i obriši vrstu
+  button_remove_from_me: Ukloni iz omiljenih kontakata
+  button_remove_from_project: Ukloni iz projektnih kontakata
+  button_save_contact_and_add_reference: Spremi i nastavi
+  button_show_contact_account: Računi
+  button_show_contact_corporate: Tvrtke
+  button_show_contact_personal: Ljudi
+  custom_field_names:
+    easy_contacts_city:
+      label: Grad
+    easy_contacts_country:
+      label: Država
+    easy_contacts_email:
+      label: E-mail
+    easy_contacts_organization:
+      label: Organizacija
+    easy_contacts_postal_code:
+      label: Poštanski broj
+    easy_contacts_region:
+      label: Država
+    easy_contacts_street:
+      label: Ulica
+    easy_contacts_telephone:
+      label: Telefon
+  easy_contact_action:
+    action: Akcija
+    add_note: Dodaj komentar
+    add_to_contact: Poveži kontakte
+    add_to_global: Dodaj u globalne kontakte
+    add_to_group: Dodaj u grupu
+    add_to_project: Dodaj u projekt
+    add_to_user: Dodaj u osobne kontakte
+    destroy: Obriši
+    edit: Izmjeni
+    refresh: Osvježi
+    send_mail: Šalji kontakta preko e-maila
+  easy_contact_country_select:
+    ABW: Aruba
+    AFG: Afganistan
+    AGO: Angola
+    AIA: Anguilla
+    ALB: Albanija
+    AND: Andora
+    ANT: Nizozemski Antili
+    ARE: Ujedinjeni Arapski Emirati
+    ARG: Argentina
+    ARM: Armenija
+    ASM: Američka Samoa
+    ATA: Antarktika
+    ATF: Francuski Južni i Antarktički Teritoriji
+    ATG: Antigva i Barbuda
+    AUS: Australija
+    AUT: Austrija
+    AZE: Azerbajdžan
+    BDI: Burundi
+    BEL: Belgija
+    BEN: Benin
+    BFA: Burkina Faso
+    BGD: Bangladeš
+    BGR: Bugarska
+    BHR: Bahrein
+    BHS: Bahami
+    BIH: Bosna i Hercegovina
+    BLR: Bjelorusija
+    BLZ: Belize
+    BMU: Bermudski Otoci
+    BOL: Bolivija
+    BRA: Brazil
+    BRB: Barbados
+    BRN: Brunej Darussalam
+    BTN: Butan
+    BVT: Otok Bouvet
+    BWA: Bocvana
+    CAF: Srednjoafrička Republika
+    CAN: Kanada
+    CCK: Kokosovi (Keelingovi) Otoci
+    CHE: Švicarska
+    CHL: Čile
+    CHN: Kina
+    CIV: Obala Bjelokosti
+    CMR: Kamerun
+    COG: Kongo
+    COK: Cookovo Otočje
+    COL: Kolumbija
+    COM: Komori (Comoros)
+    CPV: Zelenortska Republika (Cape Verde)
+    CRI: Kostarika
+    CUB: Kuba
+    CXR: Božićni Otok
+    CYM: Kajmanski Otoci
+    CYP: Cipar
+    CZE: Češka Republika
+    DEU: Njemačka
+    DJI: Džibuti
+    DMA: Dominika
+    DNK: Danska
+    DOM: Dominikanska Republika
+    DRC: Demokratska Republika Kongo
+    DZA: Alžir
+    ECU: Ekvador
+    EGY: Egipt
+    ERI: Eritreja
+    ESH: Zapadna Sahara
+    ESP: Španjolska
+    EST: Estonija
+    ETH: Etiopija
+    FIN: Finska
+    FJI: Fidži
+    FLK: Falklandsko Otočje (Malvinas)
+    FRA: Francuska
+    FRO: Farski Otoci
+    FSM: Savezne Države Mikronezije
+    GAB: Gabon
+    GBR: Ujedinjeno Kraljevstvo
+    GEO: Gruzija
+    GHA: Gana
+    GIB: Gibraltar
+    GIN: Gvineja
+    GLP: Gvadalupa
+    GMB: Gambija
+    GNB: Gvineja Bisau
+    GNQ: Ekvatorijalna Gvineja
+    GRC: Grčka
+    GRD: Grenada
+    GRL: Grenland
+    GTM: Gvatemala
+    GUF: Francuska Gvajana
+    GUM: Guam
+    GUY: Gvajana
+    HKG: Hong Kong
+    HMD: Otok Heard i Otočje McDonald
+    HND: Honduras
+    HRV: Hrvatska
+    HTI: Haiti
+    HUN: Mađarska
+    IDN: Indonezija
+    IND: Indija
+    IOT: Britanski Indijskooceanski Teritorij
+    IRL: Irska
+    IRN: Iran (Islamska Republika Irana)
+    IRQ: Irak
+    ISL: Island
+    ISR: Izrael
+    ITA: Italija
+    JAM: Jamajka
+    JEY: Jersey
+    JOR: Jordan
+    JPN: Japan
+    KAZ: Kazahstan
+    KEN: Kenija
+    KGZ: Kirgistan
+    KHM: Kambodža
+    KIR: Kiribati
+    KNA: Sveti Kristofor i Nevis
+    KOR: Republika Koreja
+    KWT: Kuvajt
+    LAO: Laos
+    LBN: Libanon
+    LBR: Liberija
+    LBY: Libija
+    LCA: Sveta Lucija
+    LIE: Lihtenštajn
+    LKA: Šri Lanka
+    LSO: Lesoto
+    LTU: Litva
+    LUX: Luksemburg
+    LVA: Latvija
+    MAC: Makao
+    MAF: Sint Maarten (Francuski Antili)
+    MAR: Maroko
+    MCO: Kneževina Monako
+    MDA: Republika Moldavija
+    MDG: Madagaskar
+    MDV: Maldivi
+    MEX: Meksiko
+    MHL: Maršalovi Otoci
+    MKD: Makedonija
+    MLI: Mali
+    MLT: Malta
+    MMR: Mjanmar (Burma)
+    MNG: Mongolija
+    MNP: Sjevernomarijanski Otoci
+    MOZ: Mozambik
+    MRT: Mauretanija
+    MSR: Montserrat
+    MTQ: Martinik
+    MUS: Mauricijus
+    MWI: Malavi
+    MYS: Malezija
+    MYT: Mayotte
+    NAM: Namibija
+    NCL: Nova Kaledonija
+    NER: Niger
+    NFK: Otok Norfolk
+    NGA: Nigerija
+    NIC: Nikaragva
+    NIU: Niue
+    NLD: Nizozemska
+    NOR: Norveška
+    NPL: Nepal
+    NRU: Nauru
+    NZL: Novi Zeland
+    OMN: Oman
+    PAK: Pakistan
+    PAN: Panama
+    PCN: Pitcairnovo Otočje
+    PER: Peru
+    PHL: Filipini
+    PLW: Palau
+    PNG: Papua Nova Gvineja
+    POL: Poljska
+    PRI: Portoriko
+    PRK: Sjeverna Koreja
+    PRT: Portugal
+    PRY: Paragvaj
+    PYF: Francuska Polinezija
+    QAT: Katar
+    REU: Réunion
+    ROM: Rumunjska
+    ROU: Rumunjska
+    RUS: Rusija
+    RWA: Ruanda
+    SAU: Saudijska Arabija
+    SDN: Sudan
+    SEN: Senegal
+    SGP: Singapur
+    SGS: Južna Georgija i Otočje Južni Sandwich
+    SHN: Sveta Helena
+    SJM: Svalbard
+    SLB: Solomonsko Otočje
+    SLE: Sijera Leone
+    SLV: El Salvador
+    SMR: San Marino
+    SOM: Somalija
+    SPM: Sveti Petar i Mikelon
+    SRB: Srbija
+    STP: Sveti Toma i Princip
+    SUR: Surinam
+    SVK: Slovačka
+    SVN: Slovenija
+    SWE: Švedska
+    SWZ: Svaziland
+    SXM: Sint Maarten (Nizozemski Antili)
+    SYC: Sejšeli
+    SYR: Sirija
+    TCA: Otoci Turks i Caicos
+    TCD: Čad
+    TGO: Togo
+    THA: Tajland
+    TJK: Tadžikistan
+    TKL: Tokelau
+    TKM: Turkmenistan
+    TMP: Istočni Timor
+    TON: Tonga
+    TTO: Trinidad i Tobago
+    TUN: Tunis
+    TUR: Turska
+    TUV: Tuvalu
+    TWN: Tajvan (Republika Kina)
+    TZA: Tanzanija
+    UGA: Uganda
+    UKR: Ukrajina
+    UMI: Mali Udaljeni Otoci SAD-a
+    URY: Urugvaj
+    USA: Sjedinjene Američke Države (SAD)
+    UZB: Uzbekistan
+    VAT: Vatikan
+    VCT: Sveti Vincent i Grenadini
+    VEN: Venezuela
+    VGB: Djevičanski Otoci (Britanski)
+    VIR: Djevičanski Otoci (SAD)
+    VNM: Vijetnam
+    VUT: Vanuatu
+    WLF: Wallis i Futuna
+    WSM: Samoa
+    XCA: Kanarsko Otočje
+    XET: Istočni Timor
+    XSB: Sveti Bartolomej
+    XSE: Sveti Eustahije
+    YEM: Jemen
+    ZAF: Južno Afrička Republika (JAR)
+    ZMB: Zambija
+    ZWE: Zimbabve
+  easy_contact_toolbar_label_search: Traži
+  easy_contact_types:
+    account: Račun
+    corporate: Tvrtka
+    personal: Osobni
+  easy_contacts_plugin_author: Easy Software
+  easy_contacts_plugin_author_url: http://www.easyproject.cz/en
+  easy_contacts_plugin_description: "- direktorij kontakata za projekte i tvrtku"
+  easy_contacts_plugin_name: Kontakti
+  easy_contacts_toolbar:
+    contact_all_delete: Obriši
+    contact_delete: Ukloni iz grupe
+    contact_edit: Izmjeni
+    contact_edit_save: Spremi
+    contact_exit: Nazad
+    contact_new_save: Spremi
+    group_delete: Obriši
+    group_edit: Izmjeni
+    group_edit_save: Spremi
+    group_exit: Odustani
+    group_new: Nova grupa
+    group_new_save: Spremi
+    new_contact: Novi kontakt
+    projectgroup_new: Nova grupa
+  easy_lookup:
+    easy_contact:
+      label: Kontakti
+  easy_pages:
+    module_category:
+      contacts: Kontakti
+    modules:
+      easy_contact_create_button: Gumb za novi kontakt
+      easy_contact_query: Filtrirani kontakti
+      group_of_contacts_button: Gumb za kontakt grupe
+      import_contacts_button: Gumb za uvoz kontakata
+      my_contacts_button: Gumb za moje kontakte
+      project_contacts_overview: Projektni kontakti
+      user_contacts_overview: Omiljeni kontakti
+  easy_proposer:
+    easy_contacts:
+      new:
+        caption: Stvori novog kontakta
+        description: Stvori novog kontakta
+  easy_query:
+    button_apply:
+      easy_contact: Filtriraj kontakte
+      easy_contact_group: Filtriraj grupe
+    easy_lookup:
+      name:
+        easy_contact_group:
+          default: Odaberi grupe kontakata
+        easy_contact:
+          default: Odaberi kontakte
+    name:
+      easy_contact_group_query: Grupe kontakata
+      easy_contact_query: Kontakti
+    sidebar_filters:
+      personal:
+        easy_contact_group_project_query: Privatni filteri na projektne kontaktne
+          grupe
+        easy_contact_group_query: Privatni filteri na grupe kontakata
+        easy_contact_group_user_query: Privatni filteri na moje grupe kontakata
+        easy_contact_query: Privatni filteri na kontaktima
+      public:
+        easy_contact_group_project_query: Javni filteri na grupama projektnih kontakata
+        easy_contact_group_query: Javni filteri na grupama kontakata
+        easy_contact_group_user_query: Javni filteri na mojim grupama kontakata
+        easy_contact_query: Javni filteri na kontaktima
+  error_can_not_delete_easy_contact_type: Postoje kontakti stvoreni sa ovom vrstom,
+    ona se ne može obrisati.
+  error_contact_already_assigned: Kontakt je već pridodijeljen.
+  error_easy_contact_could_not_merge: Kontakti nisu mogli biti spojeni
+  error_import_data_integrity: Uvezeni podaci sadržavaju %{count} grešaka, molimo
+    provjerite ih.
+  error_import_file_encoding: Uvoz iz datoteke nije uspješan (postoji mogućnost da
+    ste odabrali krivi encoding
+  error_import_file_malformed: Datoteka za uvoz nema pravilan CSV format
+  error_import_file_missing: Datoteka za uvoz nedostaje
+  error_no_contacts_select: Niste odabrali nijedan kontakt
+  error_no_groups_select: Niste odabrali nijednu grupu
+  error_no_projects_select: Niste odabrali nijedan projekt
+  error_no_recipients_select: Niste odabrali nijednog primatelja
+  field_author_note: Komentari
+  field_contact_groups: Grupe kontakata
+  field_contact_name: Ime
+  field_csv_has_headers: Nazivi stupaca su u prvom redu
+  field_easy_contact: Kontakt
+  field_easy_contact_author_note: Opis
+  field_easy_contact_from_eu: Iz EU
+  field_easy_contact_group: Grupa kontakata
+  field_easy_contact_group_entity: Osobne grupe
+  field_easy_contact_group_entity_type: Vrste grupa
+  field_easy_contact_group_parent: Roditeljska grupa kontakta
+  field_easy_contact_group_root: Vršna grupa kontakta
+  field_easy_contact_parent: Kontakt roditelj
+  field_easy_contact_private: Privatni kontakt
+  field_easy_contact_root: Vršni kontakt
+  field_easy_contact_type: Vrsta kontakta
+  field_easy_contacts: Kontakti
+  field_easy_contacts_parent: Kontakt roditelj
+  field_group_name: Ime
+  field_group_type: Vrsta grupe
+  field_icon_path: Ikona
+  field_is_global: Je li kontakt globalni?
+  field_project_group: Projektne grupe
+  field_type_name: Ime
+  filter:
+    global_groups: Globalne grupe
+    personal_groups: Osobne grupe
+    project_groups: Projektne grupe
+  header_text_of_mail: Ovaj kontakt je poslan na vašeg korisnika '%{user}'.
+  heading_easy_contacts_toolbar: Kontakti
+  label_account_name: Naziv korisničkog računa
+  label_add_subcontact: Novi povezani kontakt
+  label_assign_to_contact: Dodaj kontaktu
+  label_assign_to_issue: Dodaj zadatku
+  label_assign_to_me: Dodaj u moje kontakte
+  label_assign_to_project: Dodaj u projekt
+  label_attribute_of_easy_contacts: Contact's %{name}
+  label_bulk_edit_selected_contacts: Masovna izmjena odabranih kontakata
+  label_change_easy_contact_type_to: Promjeni vrstu u
+  label_contact_references: Povezani kontakti
+  label_contact_references_to_account: Povezivanje sa računima
+  label_contact_references_to_corporate: Povezivanje sa organizacijama
+  label_contact_references_to_personal: Povezivanje sa kontaktima
+  label_contacts_groups: Kontaktove grupe
+  label_contacts_main_crm_cases: Vlastiti CRM caseovi
+  label_corporate_name: Korporativno ime
+  label_easy_contact: Kontakt
+  label_easy_contact_add_sub_contact: Dodaj podkontakt
+  label_easy_contact_change_avatar: Promjeni avatar
+  label_easy_contact_client_custom_fields: Klijentska korisnička polja
+  label_easy_contact_country_select: Odaberi državu
+  label_easy_contact_easy_contact_groups: Kontaktne grupe
+  label_easy_contact_encoding_chooser: Odaberi vcard encoding (način kodnog zapisa)
+  label_easy_contact_global: Globalni kontakti
+  label_easy_contact_group: Grupa kontakta
+  label_easy_contact_groups: Upravljanje grupama kontakata
+  label_easy_contact_is_global_false: Kontakt nije globalni
+  label_easy_contact_is_global_true: Kontakt jest globalni
+  label_easy_contact_is_my: Kontakt je omiljen
+  label_easy_contact_is_not_my: Kontakt nije u grupi omiljenih
+  label_easy_contact_is_private_false: Kontakt nije privatni
+  label_easy_contact_is_private_true: Kontakt jest privatni
+  label_easy_contact_issues: 'Zadaci:'
+  label_easy_contact_note: Komentari kontakta
+  label_easy_contact_parent_contact_plural: Kontakti roditelji
+  label_easy_contact_parent_group: Grupa roditelj
+  label_easy_contact_personal: Moji kontakti
+  label_easy_contact_plural: Kontakti
+  label_easy_contact_principals: 'Korisnici:'
+  label_easy_contact_projects: 'Projekti:'
+  label_easy_contact_queries_plural: Kontakti
+  label_easy_contact_references: Povezani kontakti
+  label_easy_contact_references_groups: Kontakt grupe
+  label_easy_contact_root_contact: Vršni kontakt
+  label_easy_contact_sub_contact: Podkontakt
+  label_easy_contact_sub_contact_plural: Podkontakti
+  label_easy_contact_type: Je li tvrtka?
+  label_easy_contact_type_edit: Izmjeni vrstu kontakta
+  label_easy_contact_type_new: Nova vrsta kontakta
+  label_easy_contact_types: Vrste kontakata
+  label_easy_contact_used_in_type: Korišteni u
+  label_easy_contacts: Kontakti
+  label_easy_contacts_add_non_primary_custom_fields: Dodaj drugi atribut
+  label_easy_contacts_add_non_primary_custom_fields_select: Odaberi atribut...
+  label_easy_contacts_import: Uvezi kontakte
+  label_easy_contacts_name: Kontaktovo ime
+  label_easy_contacts_reg_no_query: Prefill by reg. no. query
+  label_easy_contacts_settings: Postavke kontakta
+  label_easy_contacts_validate_vat_no: Validiraj EU PDV broj (EU vat number)
+  label_filter_group_easy_contact_group_query: Kontakt grupa
+  label_filter_group_easy_contact_query: Kontakt
+  label_new_import_file_toggling_button: Dodatna datoteka/postavka
+  label_personal_name: Ime
+  label_project_easy_contact_groups: Projektne grupe
+  label_project_easy_contacts: Projektni kontakti
+  label_show_easy_contacts: Prikaži kontakte
+  menu_easy_contacts: Kontakti
+  modal_labels:
+    cancel: Odustani
+    mail: Šalji odabrane
+  modal_query:
+    groups: Pridodijeli u grupe / grupama
+    mail: Šalji preko e-maila
+    projects: Pridodijeli projektima / u projekte
+  modal_titles:
+    cancel: Zatvori
+    mail: Pošalji odabrane korisnike odabranim kontaktima.
+  notice_failed_to_save_contacts: Greška prilikom spremanja kontakata.
+  notice_successfull_contacts_import: Kontakti su uspješno uvezeni
+  notice_successfully_assignable_easy_contacts: Odabrani kontakti (%{count}) su pridodijeljeni
+  notice_successfully_remove: Kontakt je bio uklonjen iz grupe - %{ecg}
+  notice_successfully_send_by_mail: Odabrani kontakti (%{count}) su poslani
+  permission_add_note_easy_contact_groups: Dodaj komentare u grupe
+  permission_add_note_easy_contacts: Dodaj komentare kontaktima
+  permission_assign_easy_contacts: Pridodijeljivanje kontakata
+  permission_assign_to_project: Mogućnost za dodavanje/uklanjanje kontakta projektu
+    / iz projekta
+  permission_delete_easy_contact_groups: Obriši grupe kontakata
+  permission_delete_easy_contact_types: Obriši vrste kontakata
+  permission_delete_easy_contacts: Obriši kontakte
+  permission_edit_contact_note: Izmjeni komentare o kontaktima
+  permission_manage_easy_contact_groups: Upravljanje grupama kontakta
+  permission_manage_easy_contact_types: Upravljaj vrstama kontakata
+  permission_manage_easy_contacts: Upravljanje kontaktima
+  permission_view_easy_contacts: Pregledaj kontakte
+  project_contacts_overview:
+    header: Lista kontakata u projektu
+    warning_easy_contacts_disabled: Projekt ima modul kontakata onemogućen
+  project_default_page:
+    easy_contacts: Kontakti
+  project_module_easy_contacts: Kontakti
+  search_field_placeholders:
+    easy_contacts: Traži kontakte
+  setting_easy_carddav_enabled: Omogući carddav
+  text_easy_contact_missing_comments: Nema komentara
+  text_easy_contacts_encoding_help: Za Windows korisnike je vjerojatno 'windows-1250',
+    'UTF-8' inače
+  text_easy_contacts_import_help: Molimo odaberite CSV datoteku za uvoz, te encoding
+    u kojem je spremljena.
+  text_easy_contacts_import_preview: Molimo provjerite podatke prikazane ispod. Ako
+    jeste zadovoljni, nastavite klikom na dugme za uvoz da biste spremili podatke.
+    Ako niste, pokušajte sa nekom drugom datotekom ili postavkom.
+  title_easy_contact_assign: Pridijeli kontakt grupi
+  title_easy_contact_groups_edit: Izmjeni grupu
+  title_easy_contact_mailer: Kontakti - %{contact_name}
+  title_easy_contact_type_delete: Obriši kontakt
+  title_easy_contact_type_edit: Izmjeni kontakt
+  title_easy_contact_type_new: Novi kontakt
+  title_easy_contacts_in_group: Kontakti u grupi
+  title_easy_modal_selector_trigger:
+    easy_contact: Klikni da bi odabrao kontakt sa liste.
+    easy_contact_group: Klikni da bi odabrao grupu kontakata sa liste.
+  title_issue_contacts_display_changer_list: Pokaži kontakte kao listu
+  title_issue_contacts_display_changer_slab: Pokaži kontakte kao ploče
+  title_issue_contacts_display_changer_tile: Prikaži kontakte kao polja
+  title_maybe_you_can: Možda možete kreirati kontakt ove vrste
+  title_other_formats_links_vcf: Izvoz na vCard
+  title_reasign_easy_contact: 'Ponovno pridodijeli kontakt: %{contact}'
+  title_remove_easy_contact_from_entity: Ukloni kontakt iz subjekta

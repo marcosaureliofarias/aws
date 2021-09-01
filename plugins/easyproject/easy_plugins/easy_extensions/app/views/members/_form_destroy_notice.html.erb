@@ -1,0 +1,16 @@
+<%= form_tag membership_path(@member), method: 'delete' do %>
+  <div class="gray-background">
+    <p><strong><%= l(:notice_destroy_member_assigned_to_tasks) %></strong></p>
+    <p>
+      <label><%= radio_button_tag 'after_destroy[action]', :unassign, true %> <%= l(:unassign_tasks, scope: 'memberships.destroy.actions') %></label><br/>
+      <label><%= radio_button_tag 'after_destroy[action]', :assign, false %> <%= l(:reassign_tasks, scope: 'memberships.destroy.actions') %></label>
+      <%= easy_autocomplete_tag 'after_destroy[assigned_to_id]',
+                            {},
+                            easy_autocomplete_path('assignable_principals_issue', project_id: @member.project_id),
+                            root_element: 'users',
+                            html_options: { id: 'project_assignable_principals'},
+                            wrapper_html_options: { id: 'project_assignable_principals_container' },
+                            onchange: "document.querySelector('#after_destroy_action_assign').checked = true" %>
+    </p>
+  </div>  
+<% end %>

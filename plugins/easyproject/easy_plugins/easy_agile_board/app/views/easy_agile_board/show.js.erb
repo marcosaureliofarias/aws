@@ -1,0 +1,6 @@
+$('#easy_sprint_head').html('<%= j(easy_sprint_head(@project, @easy_sprint)) %>');
+<% if params[:view] == 'swimlane' %>
+  $('#agile_sprint_container').html('<%= j(render(partial: 'easy_sprints/sprint_swimlanes', locals: { easy_sprint: @easy_sprint, project: @project })) %>');
+<% else %>
+  $('#agile_sprint_container').html('<%= j(render(partial: 'easy_sprints/sprint', locals: { easy_sprint: @easy_sprint, project: @project })) %>');
+<% end %>

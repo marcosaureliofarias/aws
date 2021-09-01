@@ -1,0 +1,38 @@
+//Fonts
+@mixin loadFontFace($fontFamily,$fontName,$fontLocal,$fontLocalAlt,$fontWeight,$fontStyle){
+  @font-face {
+    font-family: $fontFamily;
+    @if($fontLocal != '' and $fontLocalAlt != ''){
+      src:
+        local($fontLocal),
+        local($fontLocalAlt),
+        asset-url('#{$fontName}.woff2') format('woff2'),
+        asset-url('#{$fontName}.woff') format('woff'),
+        asset-url('#{$fontName}.ttf') format('truetype'),
+        asset-url('#{$fontName}.svg') format('svg');
+    }@else{
+      src:
+        asset-url('#{$fontName}.woff2') format('woff2'),
+        asset-url('#{$fontName}.woff') format('woff'),
+        asset-url('#{$fontName}.ttf') format('truetype'),
+        asset-url('#{$fontName}.svg') format('svg');
+    }
+    font-weight: $fontWeight;
+    font-style: $fontStyle;
+    unicode-range:'U+0-1FFFFF';
+  }
+}
+
+@mixin loadFontFace--non-rails($fontFamily,$fontName,$fontLocal,$fontLocalAlt,$fontWeight,$fontStyle){
+  @font-face {
+    font-family: $fontFamily;
+    src: //local($fontLocal), local($fontLocalAlt),
+    url('#{$fontName}.woff2') format('woff2'),
+    url('#{$fontName}.woff') format('woff'),
+    url('#{$fontName}.ttf') format('truetype'),
+    url('#{$fontName}.svg') format('svg');
+    font-weight: $fontWeight;
+    font-style: $fontStyle;
+    unicode-range:'U+0-1FFFFF';
+  }
+}

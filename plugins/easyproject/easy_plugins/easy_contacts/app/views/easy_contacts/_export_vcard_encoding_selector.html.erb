@@ -1,0 +1,33 @@
+<div id="easy_contact_vcard_encoding_select" style="display:none">
+  <%= content_tag(:h3, l(:label_easy_contact_encoding_chooser), style: 'display:none', class: 'title') %>
+  <%= form_tag({}, method: :get) do %>
+    <p>
+      <%= easy_encoding_select_tag('easy_contact_vcard_encoding_select') %>
+    </p>
+    <p>
+      <%= submit_tag(l(:button_submit), class: 'button-positive') %>
+      <%= button_tag(l(:button_cancel), onclick: 'hideModal(this); return false', class: 'button') %>
+    </p>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    $(".other-formats .vcf").click(function(e){
+      showModal("easy_contact_vcard_encoding_select", "330px"); e.preventDefault();
+      $("#easy_contact_vcard_encoding_select form").append( $("<input>").attr({name: "target_url", type: "hidden"}).val($(this).attr("href")) );
+    });
+
+    $("#easy_contact_vcard_encoding_select form").submit(function(e){
+      hideModal(this);
+      e.preventDefault();
+      var target_url = $("#easy_contact_vcard_encoding_select input[name=\'target_url\']").val();
+      if(!target_url.match(/\?/)) {
+        target_url+="?"
+      } else {
+        target_url+="&"
+      }
+      window.location.replace(target_url+$(this).serialize());
+    });
+  });
+</script>

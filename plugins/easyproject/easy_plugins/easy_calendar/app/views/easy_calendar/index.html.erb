@@ -1,0 +1,6 @@
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% html_title(l(:easy_calendar_plugin_name)) %>
+
+<%= render_easy_page_bottom_buttons(easy_calendar_page_layout_path(t: params[:t])) if @page_editable %>
+

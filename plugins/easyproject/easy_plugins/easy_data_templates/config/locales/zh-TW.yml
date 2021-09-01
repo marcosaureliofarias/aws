@@ -1,0 +1,161 @@
+---
+zh-TW:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: 不能為空或不存在
+              empty: 不能為空或不存在
+        easy_data_template:
+          attributes:
+            type:
+              blank: 不能為空或不存在
+              empty: 不能為空或不存在
+  button_easy_data_template_assignment: 現場作業
+  button_easy_data_template_edit: 編輯模板
+  button_easy_data_template_export_data: 導出數據
+  button_easy_data_template_import: 進口
+  button_easy_data_template_import_data: 導入數據
+  button_easy_data_template_import_preview: 預覽
+  button_easy_data_template_new_export: 導出CSV
+  button_easy_data_template_new_import: 導入CSV
+  button_easy_data_template_new_msproject: 從MS Project導入
+  button_easy_data_template_settings: 調整
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: 沒有
+    xyes: 是
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: 名稱求解
+      assigned_to_id: ID求解
+      assigned_to_lastname: 姓求解
+      assigned_to_login: 登錄求解
+      assigned_to_mail: 電子郵件求解
+      author_firstname: 作者的名字
+      author_id: ID作者
+      author_lastname: 姓
+      author_login: 登錄作者
+      author_mail: 電子郵件的作者
+      description: 任務的描述
+      due_date: 任務結束（日期）
+      estimated_hours: 估計任務時間（小時）
+      id: 任務ID
+      priority_id: ID優先級
+      priority_name: 優先稱號
+      project_id: ID項目
+      project_name: 項目名稱
+      start_date: 開始的任務（日期）
+      subject: 工作主旨
+      tracker_id: ID的任務類型
+      tracker_name: 任務類型的名稱
+    Project:
+      description: 該項目的描述
+      enabled_modules: 模塊名稱
+      id: ID項目
+      is_public: 公共（A / N）
+      name: 項目名稱
+      parent_id: ID父項目
+      parent_name: 父項目的名稱
+      trackers_ids: ID的任務類型
+      trackers_names: 任務類型的名稱
+    TimeEntry:
+      activity: 活動
+      activity_id: ID活動
+      activity_name: 活動名稱
+      comments: 評論
+      easy_range_from: 報導
+      easy_range_to: 據報導，
+      hours: 時鐘
+      issue: 任務
+      issue_id: 任務ID
+      issue_subject: 任務標題
+      project: 項目
+      project_id: ID項目
+      project_name: 項目名稱
+      spent_on: 日期
+      user: 用戶
+      user_id: 用戶ID
+    User:
+      admin: 管理員（A / N）
+      firstname: 用戶名
+      id: 用戶ID
+      language: 用戶的語言
+      lastname: 用戶的姓
+      login: 用戶登錄
+      mail: e-mail用戶
+      password: 密碼
+      send_mail: 日誌發送電子郵件（A / N）
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: 任務
+    EasyDataTemplateMsProject: MS項目
+    EasyDataTemplateProject: 項目
+    EasyDataTemplateTimeEntry: 報告的時間
+    EasyDataTemplateUser: 用戶
+  easy_data_templates_plugin_author: 易軟件
+  easy_data_templates_plugin_author_url: http://www.easyredmine.com
+  easy_data_templates_plugin_description: "- 數據模板導入和導出CSV格式的數據"
+  easy_data_templates_plugin_name: 數據模板
+  error_during_import: 當你導入時發生的錯誤。請檢查輸入的數據。
+  error_easy_data_template_attachment_not_uploaded: 記錄沒有進口補充
+  error_easy_data_template_ms_project_not_valid_xml: 附加的文件不是有效的XML，MS Project 2010和更高。
+  field_easy_data_template_allowed_import: 進口
+  label_check_preview: 請檢查數據，使用“預覽”
+  label_easy_data_template_assignment: 現場作業
+  label_easy_data_template_author_name: 作者
+  label_easy_data_template_edit: 編輯模板
+  label_easy_data_template_entity_type: 實體
+  label_easy_data_template_export_new: 新的導出模板
+  label_easy_data_template_import_file: 導入文件
+  label_easy_data_template_import_new: 新導入模板
+  label_easy_data_template_import:
+    assignments:
+      all: 指定的位置列
+      entity_attribute_name: 列名實體
+      file_column_position: 的CSV列在位置
+      new: 分配列的位置
+    errors:
+      erow: 行中的錯誤
+      errors_count: 的錯誤數
+      errors_rows: 故障線路
+      errors_rows_count: 錯誤的行數
+      errors_sum: 共
+      row: 不正確的行數
+      show: 顯示故障線路
+    preview:
+      row: 行號
+      table: 預覽
+    settings:
+      col_sep: 字段分隔符
+      encoding: 編碼
+      import_all: 全有或全無
+      new: 調整
+      preview_rows: 的行數，以預覽
+      project_template: 使用設計模板
+      quote_char: 分隔符的文本
+      return_headers: 第一行包含的列名
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "（分配給一個任務）"
+    other: "（分配給%{count}任務）"
+    zero: "（未分配）"
+  label_easy_data_template_ms_project_resource_name_in_msp: 在中小型企業名稱
+  label_easy_data_template_ms_project_user_name_in_ep: 名稱EP
+  label_easy_data_template_name: 名稱
+  label_easy_data_template_public: 公眾
+  label_easy_data_template_template_type: 類型
+  label_easy_data_template_template_type_export: 出口
+  label_easy_data_template_template_type_import: 進口
+  label_easy_data_template_user_name: 業主
+  label_easy_data_templates: 數據模板
+  label_easy_data_templates_choose_project: 選擇項目
+  label_easy_data_templates_choose_query: 選擇一個過濾器
+  label_easy_data_templates_source_settings: 選擇一個數據源
+  label_easy_data_templates_target_settings: 選擇目標數據
+  notice_easy_data_templates_import_ok: 進口的罰款。
+  text_easy_data_template_ms_project_upload_file: 該文件必須以XML格式（在MS Project從頂部的菜單中，單擊“文件
+    - >另存為 - >保存為XML類型）。
+  title_easy_data_templates_apply_to_all_rows: 單擊“將此值設置為對所有類似。

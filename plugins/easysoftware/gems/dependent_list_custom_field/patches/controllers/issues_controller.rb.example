@@ -1,0 +1,37 @@
+Rys::Patcher.add('IssuesController') do
+
+  included do
+    before_action :dependent_list_custom_field_add_flash_notice, only: [:show]
+  end
+
+  instance_methods do
+    def show
+      Rys::Feature.on('dependent_list_custom_field.issue.show') do
+        @dependent_list_custom_field_test_1 = 'Test 2'
+      end
+
+      super
+    end
+
+    private
+
+      def dependent_list_custom_field_add_flash_notice
+        if Rys::Feature.active?('dependent_list_custom_field.issue.show', 'dependent_list_custom_field.project.show')
+          flash.now[:notice] = 'Features are activated'
+        end
+      end
+  end
+
+
+  instance_methods(feature: 'dependent_list_custom_field.issue.show') do
+    def show
+      @dependent_list_custom_field_test_2 = 'Test 2'
+
+      super
+    end
+  end
+
+  class_methods do
+  end
+
+end

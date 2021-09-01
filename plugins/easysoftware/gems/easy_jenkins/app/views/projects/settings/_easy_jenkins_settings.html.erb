@@ -1,0 +1,51 @@
+<%= labelled_form_for [@project, @easy_jenkins_setting], html: { id: 'setting_form'} do |f| %>
+  <div class='box tabular'>
+    <h3 class='icon icon-stack'><%= l('easy_jenkins.label_connection') %></h3>
+    <div>
+      <%= render partial: 'projects/settings/easy_jenkins/connection', locals: { setting: @easy_jenkins_setting, f: f } %>
+    </div>
+    <p>
+      <span class='button test-connection'><%= l('easy_jenkins.test_connection') %></span>
+      <span class='connection-result'></span>
+    </p>
+  </div>
+
+  <% if @easy_jenkins_setting.persisted? %>
+    </br>
+    <div class='box tabular'>
+      <h3 class='icon icon-stack'><%= l('easy_jenkins.label_configuration') %></h3>
+      <div style=''>
+        <%= render partial: 'projects/settings/easy_jenkins/configuration', locals: { setting: @easy_jenkins_setting, f: f } %>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+  <div class='toolbar'>
+    <%= submit_tag l(:button_submit), class: 'button-positive' %>
+  </div>
+<% end %>
+
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag 'cocoon', defer: true %>
+
+  <%= late_javascript_tag do %>
+    EASY.schedule.late(function () {
+      var testConnectionUrl = "<%= test_connection_project_easy_jenkins_settings_path(@project, format: :js) %>";
+
+      $('.test-connection').on('click', function(e) {
+        e.preventDefault();
+
+        var url = $('input#easy_jenkins_setting_url').val();
+        var userName = $('input#easy_jenkins_setting_user_name').val();
+        var userToken = $('input#easy_jenkins_setting_user_token').val();
+
+        $.ajax({
+          url: testConnectionUrl,
+          type: 'get',
+          data: { url: url, user_name: userName, user_token: userToken }
+        });
+      });
+    });
+  <% end %>
+<% end %>

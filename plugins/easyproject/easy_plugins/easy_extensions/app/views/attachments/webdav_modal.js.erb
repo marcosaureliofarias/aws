@@ -1,0 +1,5 @@
+$("#ajax-modal").html("<%=j render(template: 'attachments/webdav_modal', formats: [:html]) %>");
+showModal('ajax-modal', '40%');
+$('#ajax-modal').dialog("option", {
+  title: '<%=j l(:heading_online_editing) %>'
+});

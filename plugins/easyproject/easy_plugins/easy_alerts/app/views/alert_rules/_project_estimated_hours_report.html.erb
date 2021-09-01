@@ -1,0 +1,2 @@
+<div class="alerts-report-entity-name"><%= link_to(report.entity.family_name, { :controller => 'projects', :action => 'show', :id => report.entity_id}) if report.entity-%></div>
+<div class="alerts-report-entity-watch"><%= l(:label_easy_alerts_project_estimated_hours_report, :current_percentage => report.entity.percentage_of_time_spending, :sum_time_entries => easy_format_hours(report.entity.sum_time_entries), :sum_estimated_hours => easy_format_hours(report.entity.sum_estimated_hours)).html_safe if report.entity-%></div>

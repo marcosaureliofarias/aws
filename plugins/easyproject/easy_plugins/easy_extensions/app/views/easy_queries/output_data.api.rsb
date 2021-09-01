@@ -1,0 +1,3 @@
+present(@easy_query) do |presenter|
+  presenter.outputs.first.render_api_data(api, params.to_unsafe_h) if presenter.outputs.first
+end

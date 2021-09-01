@@ -1,0 +1,37 @@
+<% # Do not combine this file with a "easy_twofa/_view_my_account.html"
+   # Conditions are different
+   # Admin can disable twofa for any user
+   # But cannot setup twofa for othe users %>
+
+<% Rys::Feature.on('easy_twofa') do %>
+  <p>
+    <label><%= l('easy_twofa.twofa') %></label>
+
+    <% if user.easy_twofa_active? %>
+      <%
+        scheme_key = user.easy_twofa_scheme.scheme_key
+        scheme_name = l("easy_twofa.schemes.#{scheme_key}.name")
+
+        if user != User.current && User.current.admin?
+          path_to_disable = admin_disable_easy_twofa_path(user)
+        else
+          path_to_disable = disable_easy_twofa_path
+        end
+      %>
+
+      <%= l('easy_twofa.scheme_is_active', name: scheme_name) %>
+      <br>
+      <%= link_to l('easy_twofa.disable_scheme', name: scheme_name), path_to_disable, method: 'POST' %>
+      <br><br>
+      <%= link_to l('easy_twofa.remembered_devices'), remembers_easy_twofa_path(user_id: user.id) %>
+
+    <% elsif User.current == user %>
+      <% EasyTwofa::Auth.enabled_schemes.each do |key, scheme| %>
+        <%= link_to l('easy_twofa.activate_scheme', name: l("easy_twofa.schemes.#{key}.name")), setup_easy_twofa_path(key), method: 'POST' %>
+        <br>
+      <% end %>
+    <% else %>
+      <%= l('easy_twofa.disabled') %>
+    <% end %>
+  </p>
+<% end %>

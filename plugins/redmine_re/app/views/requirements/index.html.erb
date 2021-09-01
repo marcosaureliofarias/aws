@@ -1,0 +1,35 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+  <%= stylesheet_link_tag 'icons.css', :media => 'all' %>
+
+  <%= javascript_include_tag 'jquery.layout.js', defer: true %>
+  <%= javascript_include_tag 'jquery.layout.state.js', defer: true %>
+  <%= javascript_include_tag 'redmine_re.js', defer: true %>
+<% end %>
+
+<div id="infobar" class="ui-layout-west ui-layout-content">
+  <%= render "requirements/treebar" %>
+</div>
+
+<div id="re-index" class="ui-layout-center">
+
+  <% if not @configured_description.present? %>
+    <% if User.current.allowed_to?(:edit_requirements, @project) %>
+        <h2><%= t(:re_artifact_create) %></h2>
+    <% elsif  User.current.allowed_to?(:view_requirements, @project) %>
+        <h2><%= t(:requirements_artifact) %></h2>
+    <% end %>
+
+    <% s = "" %>
+    <% flash.each do |k,v| %>
+    <%   s << content_tag('div', v, :class => "flash #{k}") %>
+    <% end %>
+    <%= s.html_safe%>
+
+    <%= t(:re_description_of_plugin_usage).html_safe %>
+  <% else %>
+      <%= textilizable(configured_description, :only_path => false) %>
+  <% end %>
+
+  <div style="clear:both;"></div>
+</div>

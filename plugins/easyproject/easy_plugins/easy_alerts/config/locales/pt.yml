@@ -1,0 +1,219 @@
+---
+pt:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: O que exatamente você está fazendo? Leve-os para o quadro de horários.
+      b: Seu quadro de horários é triste que você não acha!
+      c: Eu não trabalho de graça. Preencha o quadro de horários.
+      d: Você não sai hoje à noite?
+      e: Wake-up call! Timesheet precisa se alimentar!
+  alerts_plugin_author: Software Fácil
+  alerts_plugin_author_url: http://www.easyredmine.com
+  alerts_plugin_description: "- Notificação automática de acordo com parâmetros definidos"
+  alerts_rule_project_filters: 'Limite para o projeto:'
+  alerts_type_alert: Alarme
+  alerts_type_notice: Notar
+  alerts_type_warning: Aviso
+  button_alerts_add_new_alert: Novo alerta
+  button_alerts_add_new_context: Um novo contexto
+  button_alerts_add_new_type: A nova gravidade
+  button_alerts_manage_contexts: Gerenciar contextos
+  button_alerts_manage_types: Gerenciar os tipos de alarme
+  button_alerts_my_alerts: Meus alertas
+  button_alerts_report: Relatório
+  button_alerts_report_archive: Arquivo
+  button_alerts_report_unarchive: Desarquivar
+  button_alerts_reports: Meus relatórios
+  button_alerts_reports_archive: Arquivo
+  button_issue_sidebar_add_alert: Adicionar advertência
+  button_manage_alerts_for_all: Aviso Público
+  easy_alerts_context:
+    helpdesk: Helpdesk
+    issue: Tarefa
+    milestone: Marco miliário
+    project: Projeto
+    timeentry: O tempo relatado
+  easy_alerts_rule:
+    easy_issue_query: O filtro salvo
+    easy_project_query: O filtro salvo
+    easy_version_query: Consulta salva
+    helpdesk_monitor_due_time: Helpdesk - questão de tempo devido de acordo com SLA
+    helpdesk_monitor_due_time_assignee: Helpdesk - tempo para completar a minha tarefa
+      de acordo com SLA
+    helpdesk_monitor_due_time_manager: Helpdesk - o tempo de conclusão da tarefa de
+      acordo com SLA
+    helpdesk_monitor_hours_to_response: Helpdesk - hora de início da resolução de
+      tarefas de acordo com SLA
+    helpdesk_monitor_prepaid_hours: Helpdesk - tempo de pré-pago mensalmente
+    issue_due_date: A tarefa termo
+    issue_updated_date: Data
+    project_due_date: O prazo final do projeto
+    project_estimated_hours: Soma das horas estimadas
+    timeentry_time_watcher: O intervalo de tempo relatado
+    timeentry_time_watcher_previous_day: Tempo relatado ontem
+    version_due_date: O marco termo
+  easy_pages:
+    modules:
+      easy_alerts: Alertas - relatórios
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: Alertas - avaliação
+  field_alert_is_for: Avaliação para
+  field_alert_mail_for: Enviar e-mail para
+  field_alerts_report_text: Estado
+  field_alerts_rule: Ver
+  field_budget: orçamento
+  field_context: onde
+  field_custom_hours: Relógio
+  field_date: data
+  field_delta: número de dias
+  field_entity_count: número de tarefas
+  field_period_from: A partir de
+  field_period_to: Para
+  field_query_id: filtrar
+  field_rule: Ver
+  field_time_check: O check-in
+  field_version_ids: marco miliário
+  label_alerts_additional_settings: Outras configurações
+  label_alerts_context: 'Onde:'
+  label_alerts_contexts: Lista de Contextos
+  label_alerts_for_all: Para todos
+  label_alerts_for_group: 'Para o grupo:'
+  label_alerts_for_only_me: Somente para o autor alerta
+  label_alerts_hourstimecheck_after_time: horas
+  label_alerts_hourstimecheck_before_time: Verifique realizado todos os dias em
+  label_alerts_hourstimecheck_whenever: Sempre &lt;&lt; &gt;&gt;
+  label_alerts_issue_select_before: 'a tarefa:'
+  label_alerts_mail_group: Avaliação de alertas serão enviados via e-mail
+  label_alerts_mail_group_all: Todos os participantes (ver acima)
+  label_alerts_mail_group_custom: 'Para e-mail personalizado:'
+  label_alerts_mail_group_only_group: 'Apenas os membros do grupo:'
+  label_alerts_manage_alerts_for: 'Este alerta será avaliada para os usuários:'
+  label_alerts_my: 'Meus avisos relatado por:'
+  label_alerts_my_alerts: Meus alertas
+  label_alerts_my_reports: Meus relatórios
+  label_alerts_my_reports_archive: Meus relatórios (de arquivo)
+  label_alerts_name: 'Nome:'
+  label_alerts_project_select_before: 'o projeto:'
+  label_alerts_report: Relatório
+  label_alerts_rule: 'Assista:'
+  label_alerts_select_context: 'Selecione contexto:'
+  label_alerts_select_rule: 'Selecione regra:'
+  label_alerts_type: 'Estima:'
+  label_alerts_type_name: Nome
+  label_alerts_types: Alertas de gravidade
+  label_choose_type: 'selecione:'
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: devido tempo na tarefa (de
+    acordo com SLA).
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: Assista que o tempo atual
+    é mais ou igual a
+  label_easy_alerts_helpdesk_monitor_due_time_report: Devido tempo de tarefa é a %{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: Tarefa tinha que ser
+    resolvido em %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: horas pré-pagas.
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: Acompanhar quando
+    as horas trabalhadas mensais no projeto for maior ou igual a
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: Gasto %{sum_time_entries}
+    de %{prepaid_hours}
+  label_easy_alerts_project_estimated_hours_form_after: do tempo estimado
+  label_easy_alerts_project_estimated_hours_form_before: Assista que o tempo estimado
+    é de
+  label_easy_alerts_project_estimated_hours_report: Tempo é gasto em %{current_percentage}%
+    -%{sum_time_entries} de %{sum_estimated_hours}
+  label_issue_due_date_report: tarefa prazo foi excedido
+  label_issue_due_date_warning_date_before: 'Mandar para um dia especial:'
+  label_issue_due_date_warning_delta_after: dia (+) após o prazo, (-) antes do prazo
+  label_issue_due_date_warning_delta_before: Dizer
+  label_issue_due_date_where_iam: 'Só que eu sou:'
+  label_issue_due_date_where_iam_assignee: Cessionário de tarefa
+  label_issue_due_date_where_iam_author: Autor de tarefa
+  label_issue_overdrawn_budget_before: 'Diga o esgotamento do orçamento:'
+  label_issue_overdrawn_budget_report: exausto de %{costs} %{budget}
+  label_issue_query_after: registros.
+  label_issue_query_before: 'Diga-se o número de tarefas no filtro:'
+  label_issue_query_middle: será maior do que
+  label_issue_query_report: excedido o número de tarefas no filtro
+  label_issue_updated_date_warning_date_before: 'Mandar para um dia especial:'
+  label_issue_updated_date_warning_delta_after: dia (+) após o prazo, (-) antes do
+    prazo
+  label_issue_updated_date_warning_delta_before: Dizer
+  label_milestone_due_date_milestone_select_before: em milhas
+  label_milestone_due_date_report: marco prazo foi excedido
+  label_milestone_due_date_warning_date_before: 'Mandar para um dia especial:'
+  label_milestone_due_date_warning_delta_after: dia (+) após o prazo, (-) antes do
+    prazo
+  label_milestone_due_date_warning_delta_before: Dizer
+  label_project_due_date_not_overdue: após o prazo para
+  label_project_due_date_overdue: para completar o restante
+  label_project_due_date_report: O prazo final do projeto foi excedido
+  label_project_due_date_warning_date_before: 'Mandar para um dia especial:'
+  label_project_due_date_warning_delta_after: dia (+) após o prazo, (-) antes do prazo
+  label_project_due_date_warning_delta_before: Dizer
+  label_project_overdrawn_budget_before: 'Diga o esgotamento do orçamento:'
+  label_project_overdrawn_budget_report: exausto de %{costs} %{budget}
+  label_project_query_after: registros.
+  label_project_query_before: 'Diga-se o número de projetos no filtro:'
+  label_project_query_middle: será maior do que
+  label_project_query_report: excedido o número de projetos no filtro
+  label_select_project: 'Escolha um projeto:'
+  label_timeentry_time_watcher_after: horas.
+  label_timeentry_time_watcher_before: Quero verificar que relatou no intervalo de
+    tempo diário
+  label_timeentry_time_watcher_before_from: a partir de
+  label_timeentry_time_watcher_before_to: para
+  label_timeentry_time_watcher_mail_body: 'Seu quadro de horários, você pode preencher
+    aqui:'
+  label_timeentry_time_watcher_mail_body_link: seu quadro de horários
+  label_timeentry_time_watcher_middle: é maior do que ou igual a
+  label_timeentry_time_watcher_previous_day_after_time: horas
+  label_timeentry_time_watcher_previous_day_before: Quero verificar que o tempo relatado
+    para o dia anterior da
+  label_timeentry_time_watcher_previous_day_before_calendar: maior do que ou igual
+    à força de trabalho.
+  label_timeentry_time_watcher_previous_day_before_custom: maior do que ou igual a
+  label_timeentry_time_watcher_previous_day_before_time: Verifique realizado todos
+    os dias em
+  label_timeentry_time_watcher_previous_day_mail_body: Ele escreveu ontem, todos os
+    relógios? Peek para o quadro de horários.
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'Essas pessoas lotaram
+    algumas horas ontem:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: A
+    lista dessas pessoas, você pode conferir aqui.
+  label_timeentry_time_watcher_previous_day_mail_body_link: seu quadro de horários
+  label_timeentry_time_watcher_previous_day_mail_subject: Ele escreveu ontem, todos
+    os relógios? Peek para o quadro de horários.
+  label_timeentry_time_watcher_previous_report: Ontem você postou algumas horas.
+  label_timeentry_time_watcher_report: tem inadequadamente relatado de tempos a %{from}
+    %{to}
+  label_version_query_after: registros.
+  label_version_query_before: 'Diga-se o número de etapas no filtro:'
+  label_version_query_middle: é maior do que
+  label_version_query_report: excedido o número de marcos no filtro
+  permission_manage_alert_contexts: Gerenciando contextos
+  permission_manage_alert_types: Tipos de gestão de alertas
+  permission_manage_alerts_for_all: Pode gerar alertas para todos os usuários
+  permission_view_alerts: Exibindo alertas
+  project_default_page:
+    easy_alerts: Alertas
+  project_module_easy_alerts: Alertas
+  title_alert_type_color: Selecione uma cor
+  title_alerts_add_new_alert: Crie um novo alerta
+  title_alerts_alert_edit: Editar alertas
+  title_alerts_alert_new: Novo alerta
+  title_alerts_context_edit: Contexto de edição
+  title_alerts_context_new: Um novo contexto
+  title_alerts_edit_alert: Modificar um alerta
+  title_alerts_manage_contexts: Gerenciar contextos
+  title_alerts_manage_types: Gerenciar os tipos de alarme
+  title_alerts_my_alerts: Ver os meus alertas
+  title_alerts_report: Exibir relatórios sobre o aviso
+  title_alerts_report_entity_issue: Mostrar Tarefa %{entityname}
+  title_alerts_report_entity_project: Ver Projeto %{entityname}
+  title_alerts_report_entity_user: Ver user %{entityname}
+  title_alerts_reports: Ver meus relatórios
+  title_alerts_reports_archive: Zobratit arquivo informa.
+  title_alerts_show_alert: "%{alertname} Exibe um aviso"
+  title_alerts_sidebar_type: Exibir relatórios por tipo %{typename}
+  title_alerts_type_edit: Modificação do tipo
+  title_alerts_type_new: A nova gravidade
+  title_manage_alerts_for_all: Clique para ver os alertas para todos

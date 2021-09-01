@@ -1,0 +1,148 @@
+&__sidebar{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: $gap;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-left: 1px solid $color-border;
+  z-index: auto;
+  justify-content: space-between;
+  transition: left .5s, right .5s;
+  @media only screen and (max-width: $breakpoint--small) {
+    position: absolute;
+    z-index: 2;
+    width: 50%;
+    top: 0;
+    bottom: 0;
+    left: calc(100% - #{$padding-modal-main - 1});
+    right: 0;
+    border: 0;
+    background: transparent;
+    transition: left .5s, right .5s;
+    padding: $gap $gap $gap 2*$gap;
+    &--opened{
+      //overflow: unset;
+      left: auto;
+      right: 0;
+      border-left: 1px solid $color-border;
+      background: $color-background;
+    }
+  }
+  &-toggle{
+    background: $color-background;
+  }
+  //justify-content: space-around;
+  &-item{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5 * $gap;
+    &--fake {
+      height: 30px;
+    }
+  }
+  &-legend{
+    &--disabled{
+      //text-align: center;
+      position: relative;
+      opacity: .5;
+      font-weight: normal;
+      margin: .5*$gap 0;
+      &:after{
+        content: "";
+        display: block;
+        border-top: 1px solid $color-border;
+        position: absolute;
+        top: 50%;
+        left: 60%;
+        right: 0%;
+        opacity: 1;
+        margin: 0;
+      }
+    }
+  }
+  &-button{
+    flex-grow: 1;
+    border: 1px solid $color-border;
+    border-radius: 0;
+    &:hover{
+      background: $color-background__button--hover;
+    }
+    &:hover + &--add{
+      background: $color-background__button--hover;
+    }
+    &:first-child{
+      border-top-left-radius: $input-radius;
+      border-bottom-left-radius: $input-radius;
+    }
+    &:last-child{
+      border-top-right-radius: $input-radius;
+      border-bottom-right-radius: $input-radius;
+    }
+    &--add{
+      flex-grow: 0;
+      padding: 0.5*$gap .75*$gap;
+      margin-left: -1px;
+      font-size: 1em;
+      display: inline-flex;
+      align-items: center;
+      background: $color-background__button;
+      color: $color-text;
+      &:hover {
+        background: $color-positive !important;
+        border-color: $color-background__button--hover--positive;
+        color: $color-front !important;
+      }
+    }
+
+    &--control {
+      position: absolute;
+      left: 0;
+      top: calc(50% - .5*#{$headline-height});
+      width: calc(2*#{$gap} + 2px);
+      display: none;
+      background: $color-background__button;
+      border-radius-top-right: 0;
+      border-radius-bottom-right: 0;
+      .vue-modal__sidebar--opened &{
+        left: -.5*$gap;
+        border-radius-top-left: 0;
+        border-radius-bottom-left: 0;
+        width: calc(2*#{$gap} - 2px);
+        a:before {
+          max-width: calc(2*#{$gap} - 2px);
+        }
+      }
+      @media only screen and (max-width: $breakpoint--small) {
+        display: block;
+      }
+
+      & > a {
+        color: $color-text;
+        font-size: 22px;
+        line-height: 80px;
+        width: $padding-modal-main;
+        display: block;
+        text-align: center;
+        &:hover {
+          text-decoration: none !important;
+        }
+        @media only screen and (max-width: $breakpoint--small) {
+          display: flex;
+          justify-content: center;
+          max-width: calc(2*#{$gap} - 2px);
+        }
+      }
+    }
+  }
+
+  &-wrapper {
+    outline: none;
+    display: flex;
+    width: $sidebar-width;
+
+    @media only screen and (max-width: $breakpoint--small) {
+      width: 0;
+    }
+  }
+}

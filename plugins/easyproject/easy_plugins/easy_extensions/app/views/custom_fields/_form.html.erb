@@ -1,0 +1,101 @@
+<%= labelled_fields_for :custom_field, @custom_field do |f| %>
+  <%= error_messages_for 'custom_field' %>
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+  <% is_issue = @custom_field.is_a?(IssueCustomField) %>
+  <% project_ids = @custom_field.project_ids.to_a if is_issue %>
+
+  <%= conditional_content_tag is_issue, :div, :class => 'splitcontent' do %>
+    <%= conditional_content_tag is_issue, :div, :class => 'splitcontentleft' do %>
+      <div class="t">
+        <div class="">
+          <div class="box tabular">
+            <p><%= f.select :field_format, custom_field_formats_for_select(@custom_field), {}, :disabled => !@custom_field.new_record?, :onchange => "$.post('#{j update_form_custom_fields_path(:id => @custom_field, :format => :js)}', $('#custom_field_form').serialize())" %></p>
+            <p><%= f.text_field :name, :required => true %></p>
+            <% if @custom_field.easy_groupable? %>
+              <p>
+                <%= f.label('custom_field[easy_group_id]', l(:label_group)) %>
+                <%= f.auto_complete(:easy_group_id, EasyCustomFieldGroup.active.sorted.pluck(:name, :id), no_label: true, combo: true) %>
+              </p>
+            <% end %>
+            <p><%= f.text_area :description, :rows => 7 %></p>
+
+            <% if @custom_field.format.multiple_supported %>
+              <p>
+                <%= f.check_box :multiple %>
+                <% if !@custom_field.new_record? && @custom_field.multiple %>
+                  <em class="info"><%= l(:text_turning_multiple_off) %></em>
+                <% end %>
+              </p>
+            <% end %>
+
+            <%= render_custom_field_format_partial f, @custom_field %>
+
+            <% if %w(IssueCustomField ProjectCustomField).include?(@custom_field.class.name) %>
+              <%= render :partial => 'role_visibility' %>
+            <% end %>
+
+            <% if @custom_field.is_a?(UserCustomField) %>
+              <%= render :partial => 'user_additional_options' %>
+            <% end %>
+
+            <% if @custom_field.is_a?(TimeEntryCustomField) %>
+              <%= render :partial => 'activity_visibility' %>
+            <% end %>
+
+            <%= call_hook(:view_custom_fields_form_upper_box, :custom_field => @custom_field, :form => f) %>
+          </div>
+        </div>
+
+        <%= call_hook(:"view_custom_fields_form_#{@custom_field.type.to_s.underscore}", :custom_field => @custom_field, :form => f) %>
+
+      </div>
+    <% end %>
+    <%= conditional_content_tag is_issue, :div, :class => 'splitcontentright' do %>
+      <% if is_issue %>
+        <div class="splitcontent">
+          <div class="splitcontentleft">
+            <%= toggling_fieldset l(:label_tracker_plural), :id => 'custom_field_tracker_ids', :class => 'box' do %>
+              <p>
+                <% tracker_ids = @custom_field.tracker_ids %>
+                <% Tracker.sorted.each do |tracker| %>
+                  <% box = check_box_tag "custom_field[tracker_ids][]", tracker.id, tracker_ids.include?(tracker.id), :id => "custom_field_tracker_ids_#{tracker.id}" %>
+                  <%= label_tag("custom_field_tracker_ids_#{tracker.id}", box + tracker.name, :class => 'checkbox block') %>
+                <% end -%>
+              </p>
+              <%= hidden_field_tag "custom_field[tracker_ids][]", '' %>
+              <p><%= check_all_links 'custom_field_tracker_ids' %></p>
+            <% end -%>
+          </div>
+          <div class="splitcontentright">
+            <%= toggling_fieldset l(:label_project_plural), :id => 'custom_field_project_ids', :class => 'box' do %>
+              <%= render_project_nested_lists(Project.active_and_planned.non_templates.sorted) do |p| %>
+                <%= content_tag(:label, check_box_tag('custom_field[project_ids][]', p.id, project_ids.include?(p.id), :id => nil) + ' ' + p) %>
+              <% end %>
+              <%= hidden_field_tag('custom_field[project_ids][]', '', :id => nil) %>
+              <p><%= check_all_links 'custom_field_project_ids' %></p>
+            <% end -%>
+          </div>
+        </div>
+        <div class="splitcontent">
+           <%= toggling_fieldset l(:label_templates_plural), :id => 'custom_field_template_ids', :class => 'box' do %>
+               <%= render_project_nested_lists(Project.active_and_planned.templates.sorted) do |p| %>
+                   <%= content_tag(:label, check_box_tag('custom_field[project_ids][]', p.id, project_ids.include?(p.id), :id => nil) + ' ' + p) %>
+               <% end %>
+               <%= hidden_field_tag('custom_field[project_ids][]', '', :id => nil) %>
+               <p><%= check_all_links 'custom_field_template_ids' %></p>
+           <% end -%>
+        </div>
+      <% end %>
+      <%= call_hook(:view_custom_fields_form_right_content, custom_field: @custom_field, f: f) %>
+    <% end %>
+  <% end %>
+  <div class="form-actions">
+    <% @custom_field.available_form_fields.each do |field| %>
+      <%= f.check_box(field, {:id => "custom_field_#{field.to_s}"}.merge(@custom_field.available_form_fields_options[field])) %>
+    <% end %>
+    <br/>
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+
+  <% include_calendar_headers_tags %>
+<% end %>

@@ -1,0 +1,47 @@
+<% if tasks.blank? %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% else %>
+  <%= form_tag '', {:class => 'autoscroll'} do %>
+    <table class="list easy-rake-tasks">
+      <thead>
+        <tr>
+          <th style="display: none;"></th>
+          <th><%= l(:field_active) -%></th>
+          <th><%= l(:field_name) -%></th>
+          <th><%= l(:'easy_rake_tasks.views.interval') -%></th>
+          <th><%= l(:'easy_rake_tasks.views.next_run_at') -%></th>
+          <th><%= l(:'easy_rake_tasks.views.last_action') -%></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% grouped_tasks = tasks.group_by(&:category_caption_key) %>
+        <% grouped_tasks.keys.sort{|a,b| a == :label_others ? 1 : (b == :label_others ? -1 : l(a) <=> l(b))}.each do |category_key| %>
+          <tr id="easy_rake_task-<%= category_key.to_s.underscore %>" class="group open">
+            <td colspan="7" class="expander"><span class="expander" onclick="EASY.utils.toggleTableRowVisibility('', 'easy_rake_task', '<%= category_key.to_s.underscore -%>');" alt="Expander" title="<%= l(:collapse_expand) %>">&nbsp;</span><%= l(category_key) %></td>
+          </tr>
+
+          <% grouped_tasks[category_key].each do |task| %>
+            <tr class="hascontextmenu parenteasy_rake_task_<%= category_key.to_s.underscore %>">
+              <td style="display: none;" class="checkbox hide-when-print"><%= check_box_tag 'ids[]', task.id, false, :id => nil, :class => 'checkbox hide-when-print' -%></td>
+              <td><%= checked_image task.active? %></td>
+              <td class="name"><%= link_to(task.caption, edit_easy_rake_task_path(task, {:back_url => original_url})) -%></td>
+              <td><%= task_period_caption(task) -%></td>
+              <td><%= format_time(task.next_run_at) -%></td>
+              <% if last_info = @last_infos[task.id] %>
+                <td class="due-date <%= 'overdue' if last_info.failed? -%>" title="<%= task_info_status(last_info) -%>"><%= format_time(last_info.finished_at) if last_info.finished_at -%></td>
+              <% else %>
+                <td></td>
+              <% end %>
+              <td class="buttons easy-query-additional-ending-buttons">
+                <span class="btn_contextmenu_trigger icon icon-settings" title="<%= l(:label_settings) %>"></span>
+              </td>
+            </tr>
+          <% end %>
+
+        <% end %>
+
+      </tbody>
+    </table>
+  <% end %>
+<% end %>

@@ -1,0 +1,16 @@
+&__control{
+  position: absolute;
+  right: $gap;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //background: $color-background;
+  padding: .25*$gap;
+  //border: 1px solid $color-border-minor;
+  border-top: none;
+  .icon{
+    @extend %button-icon;
+    font-size: .75em;
+  }
+}

@@ -1,0 +1,68 @@
+<% user ||= User.current
+scope = TimeEntry.where(:user_id => user.id, :spent_on => spent_on).visible
+total_hours = scope.sum(:hours)
+entries = scope.preload(:project, :issue, :user, :activity).order("#{TimeEntry.table_name}.spent_on DESC").to_a
+back_url ||= nil
+%>
+<h2><%= l(:label_spent_time) %></h2>
+<div class="big-highlight">
+  <p><%= l(:label_sum) %> <%= easy_format_hours(total_hours) %></p>
+</div>
+<% if entries.any? %>
+  <div class="autoscroll">
+    <table class="list time-entries">
+      <thead>
+        <tr>
+          <th><%= l(:label_date) -%></th>
+          <th><%= l(:label_member) -%></th>
+          <th><%= l(:label_activity) -%></th>
+          <th><%= l(:label_project) -%></th>
+          <th><%= l(:label_issue) -%></th>
+          <th><%= l(:field_comments) -%></th>
+          <% if user.user_time_entry_setting_range? -%>
+            <th><%= l(:field_easy_range_from) %></th>
+            <th><%= l(:field_easy_range_to) %></th>
+          <% end -%>
+          <th><%= l(:field_hours) -%></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% entries.each do |entry| -%>
+          <tr class="time-entry" id="<%= dom_id(entry) %>">
+            <td class="spent_on"><%= format_date(entry.spent_on) %></td>
+            <td class="user"><%= entry.user %></td>
+            <td class="activity"><%= entry.activity %></td>
+            <td class="project"><%= entry.project %></td>
+            <td class="subject">
+              <% if entry.issue -%>
+                <%= entry.issue.visible? ? link_to_issue(entry.issue, :truncate => 50) : "##{entry.issue.id}" -%>
+              <% end -%>
+            </td>
+            <td class="comments"><%= (entry.comments || '').html_safe -%></td>
+            <% if user.user_time_entry_setting_range? -%>
+              <td class="easy-range-from"><%= format_time(entry.easy_range_from, false) %></td>
+              <td class="easy-range-to"><%= format_time(entry.easy_range_to, false) %></td>
+            <% end -%>
+            <td class="hours"><%= easy_format_hours(entry.hours) %></td>
+            <td class="fast-icons easy-query-additional-ending-buttons hide-when-print">
+              <% if entry.editable_by?(User.current) -%>
+                <%= link_to('', new_easy_time_entry_path(project_id: entry.project, issue_id: entry.issue, spent_on: entry.spent_on, activity_id: entry.activity_id), title: l(:button_log_time), class: 'icon icon-time-add') %>
+                <%= link_to('', edit_easy_time_entry_path(entry, back_url: back_url),
+                        title: l(:button_edit), :class => 'icon icon-edit') %>
+                <%= link_to('', easy_time_entry_path(entry, back_url: back_url),
+                        data: { confirm: l(:text_are_you_sure) },
+                        method: :delete,
+                        remote: true,
+                        title: l(:button_delete),
+                        class: 'icon icon-del') %>
+              <% end -%>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end -%>

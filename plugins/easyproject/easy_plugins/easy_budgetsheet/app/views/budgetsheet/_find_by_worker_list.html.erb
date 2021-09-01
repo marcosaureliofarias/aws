@@ -1,0 +1,16 @@
+<table class="list">
+  <tbody>
+    <% users.each do |user| %>
+      <tr class="<%= user.css_classes %>">
+        <td class="name">
+          <%= link_to(avatar(user, :style => :small, :no_link => true) + user.name, {:controller => 'budgetsheet', :set_filter => 1, :user_id => user.id, :spent_on => 'last_month', :query_by_user => 1}, :title => l(:label_show_assigned_issues, :username => user.name)) %>
+        </td>
+        <td class="buttons">
+          <%= link_to(l(:label_last_month), {:controller => 'budgetsheet', :set_filter => 1, :user_id => user.id, :spent_on => 'last_month', :query_by_user => 1}, :title => l(:label_last_month), :class => 'button') %>
+          <%= link_to(l(:label_last_week), {:controller => 'budgetsheet', :set_filter => 1, :user_id => user.id, :spent_on => 'last_week', :query_by_user => 1}, :title => l(:label_last_week), :class => 'button') %>
+          <%= link_to(l(:label_this_month), {:controller => 'budgetsheet', :set_filter => 1, :user_id => user.id, :spent_on => 'current_month', :query_by_user => 1}, :title => l(:label_this_month), :class => 'button') %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

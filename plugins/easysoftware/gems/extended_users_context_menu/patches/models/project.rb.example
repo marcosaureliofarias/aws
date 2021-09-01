@@ -1,0 +1,30 @@
+Rys::Patcher.add('Project') do
+
+  apply_if_plugins :easy_extensions
+
+  included do
+    # has_many :things
+
+    after_commit :extended_users_context_menu_ensure_something, if: -> { Rys::Feature.active?('extended_users_context_menu.project') }
+  end
+
+  instance_methods do
+
+    private
+
+      def extended_users_context_menu_ensure_something
+        puts 'Features are activated'
+      end
+
+  end
+
+  instance_methods(feature: 'extended_users_context_menu.project') do
+    def to_s
+      "I'am cool " + super
+    end
+  end
+
+  class_methods do
+  end
+
+end

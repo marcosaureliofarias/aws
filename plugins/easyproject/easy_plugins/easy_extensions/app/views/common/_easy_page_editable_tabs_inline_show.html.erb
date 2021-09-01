@@ -1,0 +1,97 @@
+<%
+# Just fallback
+if !defined?(tabs) && defined?(tab)
+  tabs = [tab]
+end
+
+# Default for all tabs
+is_preloaded ||= false
+
+# Wrap tab into <li> element
+# Not very nice but its much faster then render each tab
+render_li ||= false
+%>
+
+<% tabs.each do |tab| %>
+  <% if render_li %>
+    <li id="easy_jquery_tab-<%= tab.id %>" class="easy_jquery_tab">
+  <% end %>
+
+  <%
+    if params[:original_url]
+      original_url = CGI.unescape(params[:original_url])
+      uri = URI.parse(original_url)
+      uri_query = uri.query || 't=1'
+      uri_query << '&t=1' unless /t=\d+/.match?(uri_query)
+      uri.query = uri_query.gsub(/t=\d+/, "t=#{tab.position}")
+    end
+    uri ||= url_for(params.to_unsafe_hash.merge(t: tab.position))
+
+    if editable
+      escaped_uri = CGI.escape(uri.to_s)
+      tab_controller = tab.is_a?(EasyPageTemplateTab) ? {controller: 'easy_page_template_layout', page_template_id: tab.page_template_id} : {controller: 'easy_page_layout', page_id: tab.page_id}
+      panel_target = "#easy_jquery_tab_panel-#{tab.id}"
+      if is_preloaded || tab.position == selected_tab
+        current_is_preloaded = true
+        tab_href = panel_target
+      else
+        current_is_preloaded = is_preloaded
+        tab_href = url_for(
+          tab_controller.merge(
+              action: 'get_tab_content',
+              tab_id: tab.id,
+              t: tab.position,
+              back_url: uri,
+              user_id: (easy_page_context && easy_page_context[:page_params][:user_id]) || params[:user_id],
+              entity_id: (easy_page_context && easy_page_context[:page_params][:entity_id]) || params[:entity_id]
+            )
+        )
+      end
+    else
+      tab_href = uri.to_s
+    end
+  %>
+
+  <% if editable %>
+    <%= content_tag(:span, ' ', style: 'display:none;', class: 'easy-sortable-list-handle', data: {
+        url: url_for( tab_controller.merge(action:'save_tab', tab_id: tab.id) ),
+        name: (tab.is_a?(EasyPageTemplateTab) ? 'easy_page_template_tab' : 'easy_page_user_tab')
+      }) %>
+    <%= content_tag(:span, ' ', class: 'easy_tab_id', data: { tab_id: tab.id }) %>
+  <% end %>
+
+  <%= link_to(tab.name, tab_href, id: "tab_#{tab.position}", class: 'tab-link' + (tab.position != selected_tab || editable ? '' : ' selected'), data: ({target: panel_target} unless current_is_preloaded) ) %>
+
+  <% if editable %>
+    <span class="tooltip">
+      <%= call_hook(:view_easy_page_editable_tabs_inline_show_tab_options_top, tab: tab, params: params) %>
+      <%= render partial: 'my/easy_page_link_to_copy_tab', locals: { tab: tab } %>
+
+    <%= link_to '', tab_controller.merge(action: 'edit_tab', tab_id: tab.id, original_url: escaped_uri, is_preloaded: current_is_preloaded),
+      class: 'icon icon-edit', title: l(:button_edit), onclick: "return PageLayout.editTab(this, #{tab.position});" %>
+    <%= link_to '',
+      tab_controller.merge(
+        action: 'remove_tab',
+        tab_id: tab.id,
+        t: tab.position == selected_tab ? nil : params[:t],
+        user_id: (easy_page_context && easy_page_context[:page_params][:user_id]) || params[:user_id],
+        entity_id: (easy_page_context && easy_page_context[:page_params][:entity_id]) || params[:entity_id],
+        original_url: escaped_uri
+      ),
+      remote: true,
+      method: :delete,
+      data: { confirm: l(:text_tab_layout_remove_tab_confirmation) },
+      class: 'icon icon-del',
+      title: l(:button_delete) %>
+      <%= link_to '', easy_translations_path(tab.class.name, tab, :name),
+                  remote: true,
+                  class: 'icon icon-globe',
+                  title: l(:title_manage_easy_translations),
+                  data: { confirm: l(:text_tab_layout_change_tab_translations_confirmation) } %>
+    </span>
+  <% end %>
+
+  <% if render_li %>
+    </li>
+  <% end %>
+<% end %>

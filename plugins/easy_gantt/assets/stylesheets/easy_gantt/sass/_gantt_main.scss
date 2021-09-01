@@ -1,0 +1,232 @@
+div#easy_gantt.easy {
+  a {
+
+  }
+  #easy_gantt_menu {
+    //overflow: hidden;
+    padding: $gantt__gap $gantt__box-padding;
+    p {
+      margin-bottom: 0;
+    }
+  }
+  #gantt_footer_buttons {
+    float: left;
+    margin-top: $gantt__gap;
+    @extend %flex-wrap-wrap;
+    & + p {
+      float: right;
+      margin-top: $gantt__gap;
+    }
+  }
+  .button.active {
+    @extend %button-main !optional;
+  }
+}
+
+#button_jump_today {
+  padding-right: 0;
+}
+.gantt_marker{
+  z-index: 1;
+}
+
+.gantt-menu-sub-panel {
+  width: 100%;
+  & > span {
+    display: none !important;
+  }
+}
+
+.gantt_row.gantt_selected {
+  background: rgba($gantt__color--highlight, .4) !important;
+}
+
+.gantt_cell + .gantt_cell, .gantt_side_content {
+  color: $gantt__color--text !important;
+}
+
+.gantt_grid .gantt_grid_head_cell, .gantt_grid_scale, #gantt_grid, .gantt_scale_cel, .gantt_task_scale {
+  border-color: $gantt__border-color--minor !important;
+}
+
+
+
+.gantt_container {
+  border-color: $gantt__border-color--minor;
+}
+
+
+.gantt {
+  &_grid_data &_row {
+    background: transparent !important;
+    &.closed {
+      background-color: rgba($gantt__color--closed, .5);
+      .gantt_tree_content {
+        text-decoration: line-through;
+      }
+    }
+    //&.odd{
+    //  .gantt_tree_content, .gantt_tree_icon{
+    //    background: mix($gantt__color--background,$gantt__color--foreground, 75%) !important;
+    //  }
+    //}
+    &, &.odd {
+      &:hover {
+        .gantt_tree_content, .gantt_tree_icon{
+          background: mix($gantt__color--important,$gantt__color--foreground, 20%) !important;
+        }
+      }
+      &.gantt_selected {
+        .gantt_tree_content, .gantt_tree_icon{
+          background: mix($gantt__color--text-muted,$gantt__color--foreground, 15%) !important;
+        }
+      }
+      &.gantt_selected, &:hover{
+        .gantt_tree_indent, .gantt_tree_expander{
+          background: transparent !important;
+        }
+      }
+    }
+  }
+  &-relation {
+    &-simple {
+      @include gantt-relation(darken($color-main, 10))
+    }
+    &-unlocked {
+      @include gantt-relation(darken($gantt__color--positive, 10))
+    }
+  }
+  &-tooltip-header {
+    border-bottom: 1px solid $gantt__color--border !important;
+  }
+}
+
+.gantt_task_scale, .gantt_grid_scale {
+  @extend %material__elevation--depth_1 !optional;
+  z-index: 2 !important;
+  margin-top: -1px;
+  background-color: $gantt__color--foreground !important;
+  position: relative;
+  border-top: 1px solid $gantt__color--border !important;
+  transform: translate(0, -1px);
+
+}
+.gantt_grid_scale .gantt_grid_head_cell, .gantt_task .gantt_task_scale .gantt_scale_cell{
+  color: $gantt__color--text-muted !important;
+}
+
+.gantt_scale_line, .gantt_cell, .gantt_row, .gantt_task_row, .gantt_grid, .gantt_task .gantt_task_scale .gantt_scale_cell {
+  border-color: $gantt__color--border !important;
+}
+
+.gantt_task_bg{
+  background: $gantt__color--background !important;
+  path{
+    stroke: rgba($gantt__color--border, .5) !important;
+  }
+  svg rect {
+    fill: rgba($gantt__color--text-muted, .1) !important;
+  }
+}
+#gantt_cont {
+  width: auto !important;
+  margin: 0 (-$retrace);
+  background: $gantt__color--foreground;
+}
+
+
+
+.gantt_hor_scroll {
+  z-index: 3;
+}
+
+.gantt-project {
+  &-milestones {
+    position: absolute;
+  }
+  &-milestone {
+    @include transform(#{scale(.45) rotate(45deg)});
+    background-color: rgba($gantt__color--text, 0.6);
+    border-color: rgba($gantt__color--text, 0.6);
+    height: 20px;
+    width: 20px;
+    margin: -10px;
+    position: absolute;
+  }
+}
+
+#easy_gantt_reservation {
+  &_estimated_percent {
+    margin-left: 2*$gantt__gap;
+  }
+
+  &_estimated_hours, &_estimated_percent {
+    margin-right: .25*$gantt__gap;
+  }
+}
+
+
+
+.gantt-footer {
+  &-menu {
+    @extend %inline-flex;
+    @extend %align-items-center;
+    width: 100%;
+    & > select {
+      @include respond-to(max-small-screen){
+        width: 100% !important;
+        margin: 0 !important;
+      }
+    }
+    & > label {
+      margin-left: $gantt__gap;
+    }
+
+    &_print {
+      @extend %inline-flex;
+      @extend %align-items-center;
+      @extend %flex-wrap-wrap;
+      & > &_datepicker {
+        @extend %inline-flex;
+        @extend %align-items-center;
+        margin: 0 $gantt__gap;
+        @include respond-to(max-small-screen){
+          width: 100%;
+          margin: 0 !important;
+        }
+        &:first-child {
+          margin-right: 0;
+        }
+
+        & > .input-append {
+          flex-wrap: initial;
+          max-width: 150px;
+          @include respond-to(max-small-screen){
+            max-width: initial;
+            width: auto;
+            flex-grow: 1;
+          }
+        }
+
+        & > label {
+          margin-right: .5*$gantt__gap;
+        }
+      }
+    }
+  }
+}
+
+.gantt-legend-box {
+  &-noAllocations {
+    background: mix($gantt__color--palette-12, $gantt__color--foreground,33%) !important;
+  }
+  &-someAllocations {
+    background: mix($gantt__color--palette-13, $gantt__color--foreground,33%) !important;
+  }
+  &-fullAllocations {
+    background: mix($gantt__color--positive, $gantt__color--foreground,33%) !important;
+  }
+  &-overAllocations {
+    background: mix($gantt__color--negative, $gantt__color--foreground,33%) !important;
+  }
+}

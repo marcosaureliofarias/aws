@@ -1,0 +1,13 @@
+<% @settings[:date_type] = "delta" unless @settings[:date_type] -%>
+<p>
+  <label>
+    <%= texts[:choose_type] -%>
+  </label>
+  <label class="radio inline">
+    <%= radio_button_tag 'date_type', 'date', (@settings[:date_type] == "date") -%> <%= texts[:choose_type_date_before] -%>
+  </label>
+  <span><%= text_field_tag "date", @settings[:date], {:size => 10} -%><%= calendar_for('date') -%></span> <label><%= texts[:choose_type_date_after] -%></label><br/>
+  <label class="radio inline">
+    <%= radio_button_tag 'date_type', 'delta', (@settings[:date_type] == "delta") -%> <%= texts[:choose_type_delta_before] -%>
+  </label><%= text_field_tag "delta", @settings[:delta], {:maxlength => 3, :size => 3} %> <label><%= texts[:choose_type_delta_after] %></label>
+</p>

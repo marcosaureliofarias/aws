@@ -1,0 +1,48 @@
+&__checklist{
+  display: flex;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  margin-bottom: $gap;
+  &-wrapper{
+
+  }
+  &-item{
+    width: 50%;
+    display: inline-flex;
+    input{
+      font-weight: normal !important;
+    }
+    a.icon {
+      display: none;
+    }
+    &:hover {
+      a.icon {
+        display: block;
+      }
+    }
+  }
+  &-input{
+    margin-bottom: .5*$gap;
+    max-width: none !important;
+  }
+  &-delete{
+    position: absolute;
+    left: -$left-offset;
+    opacity: 0;
+    color: $color-text;
+    line-height: 2em;
+    padding: 0 .5$gap;
+  }
+  &-heading:hover &-delete{
+    opacity: 1;
+  }
+  &-heading{
+    display: flex;
+    .progress-parent{
+      width: 33%;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+}

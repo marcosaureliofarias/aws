@@ -1,0 +1,11 @@
+<div id="user-query-automatic-filter">
+  <% if params[:tab] == 'report' %>
+    <% User.active.non_system_flag.easy_type_internal.visible.sorted.each do |user| %>
+      <%= link_to(user.name, {:controller => 'easy_attendances', :action => 'report', :tab => params[:tab], :report => {:users => [user.id]}}, :title => l(:label_show_assigned_issues, :username => user.name), :class => 'easy-attendances-user-list-item') %>
+    <% end %>
+  <% else %>
+    <% User.active.non_system_flag.easy_type_internal.sorted.each do |user| %>
+      <%= link_to(user.name, {:controller => 'easy_attendances', :set_filter => 1, :user_id => user.id, :arrival => 'current_month', :sort => 'arrival:desc', :tab => params[:tab]}, :title => l(:label_show_assigned_issues, :username => user.name), :class => 'easy-attendances-user-list-item') %>
+    <% end %>
+  <% end %>
+</div>

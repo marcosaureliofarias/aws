@@ -1,0 +1,147 @@
+<% needle_query = @easy_page_modules_data[block_name][:needle_query]
+   needle_queries = @easy_page_modules_data[block_name][:needle_queries]
+   needle_column = @easy_page_modules_data[block_name][:needle_column]
+   range_query = @easy_page_modules_data[block_name][:range_query]
+   range_queries = @easy_page_modules_data[block_name][:range_queries]
+   range_column = @easy_page_modules_data[block_name][:range_column]
+   registred_queris_with_sumable_columns = @easy_page_modules_data[block_name][:available_query_subclasses].collect { |klass| [klass.translated_name, klass.name.underscore] }.sort
+%>
+<div class="tabular">
+    <p>
+      <%= label_tag "#{block_name}[name]", l(:field_name) %>
+      <%= page_module_settings_text_field_tag(page_module, %w[name], value: settings['name'] || l('easy_pages.modules.generic_gauge')) %>
+    </p>
+    <fieldset>
+      <p>
+        <%= label_tag "#{block_name}[needle_easy_query_klass]", "#{l(:label_needle)} #{l(:field_entity)}" %>
+        <%= select_tag "#{block_name}[needle_easy_query_klass]",
+                       options_for_select([[l(:actionview_instancetag_blank_option), '']] + registred_queris_with_sumable_columns, settings['needle_easy_query_klass']), class: "#{block_name}-easy-query-settings" %>
+      </p>
+      <% if needle_query %>
+        <p>
+          <%= label_tag "#{block_name}[needle_query_sumable_column]", "#{l(:label_needle)} #{l(:field_sumable_column)}" %>
+          <%= select_tag "#{block_name}[needle_query_sumable_column]", options_from_collection_for_select(needle_query.sumable_columns, 'name', 'caption', settings['needle_query_sumable_column']), class: "#{block_name}-easy-query-settings" %>
+        </p>
+
+        <% if needle_column.is_a?(EasyQueryCurrencyColumn) %>
+          <p>
+            <%= label_tag "#{block_name}[needle_query_easy_currency_code]", "#{l(:label_needle)} #{l(:field_currency)}" %>
+            <%= select_tag "#{block_name}[needle_query_easy_currency_code]", options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, settings['needle_query_easy_currency_code']), include_blank: true %>
+          </p>
+        <% end %>
+      <% end %>
+    </fieldset>
+    <p>
+      <%= label_tag "#{block_name}[action_range]", l(:label_gauge_range) %>
+      <%= radio_button_tag "#{block_name}[action_range]", 'fix_range', (settings['action_range'] == 'fix_range' || settings['action_range'].nil?), id: "#{block_name}_fix_action_range", onchange: "showDataFrom('#{block_name}_fix_range','#{block_name}_dynamic_range')" %>
+      <%= label_tag "#{block_name}_fix_action_range", l(:label_fix_action_range) %>
+
+      <%= radio_button_tag "#{block_name}[action_range]", 'dynamic_range', settings['action_range'] == 'dynamic_range', id: "#{block_name}_dynamic_action_range", onchange: "showDataFrom('#{block_name}_dynamic_range', '#{block_name}_fix_range')" %>
+      <%= label_tag "#{block_name}_dynamic_action_range", l(:label_dynamic_action_range) %>
+    </p>
+    <fieldset class="<%= block_name %>_dynamic_range"  style="<%= settings['action_range'] == 'dynamic_range' ? '' : 'display: none' %>">
+      <p>
+        <%= label_tag "#{block_name}[range_easy_query_klass]", "#{l(:label_gauge_range)} #{l(:field_entity)}" %>
+        <%= select_tag "#{block_name}[range_easy_query_klass]",
+                       options_for_select([[l(:actionview_instancetag_blank_option), '']] + registred_queris_with_sumable_columns, range_query.present? ? range_query.get_class_name.underscore : ''), class: "#{block_name}-easy-query-settings" %>
+      </p>
+      <% if range_query %>
+        <p>
+          <%= label_tag "#{block_name}[range_query_sumable_column]", "#{l(:label_gauge_range)} #{l(:field_sumable_column)}" %>
+          <%= select_tag "#{block_name}[range_query_sumable_column]",
+                         options_from_collection_for_select(range_query.sumable_columns, 'name', 'caption', settings['range_query_sumable_column']), class: "#{block_name}-easy-query-settings" %>
+        </p>
+        <% if range_column.is_a?(EasyQueryCurrencyColumn) %>
+          <p>
+            <%= label_tag "#{block_name}[range_query_easy_currency_code]", "#{l(:label_gauge_range)} #{l(:field_currency)}" %>
+            <%= select_tag "#{block_name}[range_query_easy_currency_code]", options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, settings['range_query_easy_currency_code']), include_blank: true %>
+          </p>
+        <% end %>
+      <% end %>
+    </fieldset>
+</div>
+
+<% if needle_query %>
+  <% 0.upto(2).each do |idx| %>
+    </br>
+    <% tag_options = (settings['tags'] && settings['tags'][idx.to_s]) || {} %>
+      <%= toggling_fieldset(l('easy_page_module.generic_gauge.label_quick_tag', tag_no: idx + 1), legend_class: 'icon icon-filter') do %>
+        <div class="tabular">
+            <%= hidden_field_tag "#{block_name}[tags][#{idx}][easy_query_settings][set_filter]", "1" %>
+            <p>
+              <%= label_tag "#{block_name}[tags][#{idx}][name]", l(:field_name) %>
+              <%= page_module_settings_text_field_tag(page_module, ['tags', idx.to_s, 'name'], value: tag_options['name'].present? ? tag_options['name'] : '') %>
+            </p>
+            <p class="<%= block_name %>_fix_range" style="<%= settings['action_range'] == 'fix_range' ? '' : 'display: none' %>">
+              <%= label_tag "#{block_name}[tags][#{idx}][plan]", l(:label_gauge_range_max_value) %>
+              <%= text_field_tag "#{block_name}[tags][#{idx}][plan]", tag_options['plan'] %>
+            </p>
+        </div>
+
+        <%= conditional_content_tag range_query, :div, :class => 'splitcontent' do %>
+          <%= conditional_content_tag range_query, :div, :class => 'splitcontentleft' do %>
+            <%
+              needle_query_block_name = "#{block_name}[tags][#{idx}][needle_easy_query_settings]"
+              needle_modul_uniq_id = "#{modul_uniq_id}_#{idx}"
+            %>
+            <fieldset>
+              <legend><%= l(:label_needle_filters) %></legend>
+              <%= render 'easy_queries/filters', query: needle_queries[idx],
+                                                 modul_uniq_id: needle_modul_uniq_id,
+                                                 block_name: needle_query_block_name %>
+            </fieldset>
+
+            <%= render 'easy_page_modules/global_filters', modul_uniq_id: needle_modul_uniq_id,
+                                                           block_name: needle_query_block_name,
+                                                           page_params: page_params,
+                                                           query_params: tag_options['needle_easy_query_settings'],
+                                                           query: needle_queries[idx],
+                                                           page_module: page_module %>
+          <% end %>
+          <% if range_query %>
+            <%
+              range_query_block_name = "#{block_name}[tags][#{idx}][range_easy_query_settings]"
+              range_modul_uniq_id = "#{modul_uniq_id}_range_#{idx}"
+            %>
+
+            <div class="<%= block_name %>_dynamic_range splitcontentright">
+              <fieldset>
+                <legend><%= l(:label_action_range_filters) %></legend>
+                <%= render 'easy_queries/filters', query: range_queries[idx],
+                                                   modul_uniq_id: range_modul_uniq_id,
+                                                   block_name: range_query_block_name %>
+              </fieldset>
+
+              <%= render 'easy_page_modules/global_filters', modul_uniq_id: range_modul_uniq_id,
+                                                             block_name: range_query_block_name,
+                                                             page_params: page_params,
+                                                             query_params: tag_options['range_easy_query_settings'],
+                                                             query: range_queries[idx],
+                                                             page_module: page_module %>
+
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $(".<%= block_name %>-easy-query-settings").change(function () {
+      var targetUrl = "<%= update_my_page_module_view_path(page_module.uuid, template: page_module.is_a?(EasyPageTemplateModule) ? '1' : '0', block_name: block_name, edit: true, project_id: @project&.id, modal_edit: page_params[:modal_edit]).html_safe %>";
+      var module = $("#<%= modul_uniq_id %>");
+
+      $.post(targetUrl, module.find(".easy-page-module-form").serialize(), function (data) {
+        module.html(data);
+        module.find(".easy-page-module-form").attr('data-changed', true);
+      });
+    });
+
+    window.showDataFrom = function(showClass, hideClass) {
+      $('.' + showClass).show();
+      $('.' + hideClass).hide();
+    }
+  });
+</script>

@@ -1,0 +1,110 @@
+#header {
+  background-color: $color-background;
+  color: $color-text;
+  padding: 0 0.5*$box-margin;
+  @extend %compositor-layer;
+  h1 {
+    padding: 0 $box-padding;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: $base-line-height;
+    margin: $gap 0;
+    @include respond-to(min-menu-collapse) {
+      padding: 0.75*$box-padding $box-padding;
+      margin: 0;
+    }
+    a {
+      font-weight: bold;
+      color: $color-text;
+    }
+    .self {
+      span{
+        @extend %indicator;
+      }
+    }
+  }
+
+  #main_menu_top_project {
+    display: none;
+    @extend %list-style-none;
+    @include respond-to(min-sidebar-collapse) {
+      display: block;
+      float: right;
+      z-index: z($z-priority, newissue);
+      margin: -.5*$gap 0 .5*$gap;
+      padding: 0 0 0 0.5*$box-padding;
+      li {
+        float: right;
+        &:only-child{
+          float: none;
+        }
+        & + li {
+          margin-right: 0.5*$gap;
+        }
+      }
+      a {
+        display: block;
+        margin-bottom: 0;
+      }
+    }
+    @include respond-to(min-menu-collapse) {
+      margin: $gap 0 0;
+      padding: 0 0.5*$box-padding;
+      min-width: $sidebar-width;
+    }
+  }
+  #main_menu_scroll_buttons {
+    @extend %control-menu-buttons;
+    top: inherit;
+    margin-top: 0;
+    a {
+      width: 1.5*$box-padding;
+      &:first-child {
+        &:before {
+          left: 1.25*$gap;
+        }
+      }
+      &:last-child {
+        &:before {
+          right: 1.25*$gap;
+        }
+      }
+      &:before {
+      bottom: -0.5em !important;
+      }
+    }
+  }
+}
+
+#main-menu{
+  @extend %pills-parent;
+  a {
+    margin-bottom: 0 !important;
+  }
+  position: relative;
+  padding-bottom: $box-padding;
+  margin: 0 $box-padding (-$box-padding) $box-padding;
+  .ps__rail-x {
+    bottom:  ($box-padding - $scrollbar-width) /2;
+    display: none !important;
+  }
+  &:hover {
+    .ps__rail-x {
+      display: inherit;
+    }
+  }
+}
+
+#mobile-actions {
+  @extend %list-reset;
+  @extend %flex;
+  @extend %flex-wrap-wrap;
+  @extend %justify-content-center;
+  margin-top: $gap;
+  @include respond-to(min-sidebar-collapse) {
+    display: none;
+  }
+  a {
+    margin: 3px;
+  }
+}

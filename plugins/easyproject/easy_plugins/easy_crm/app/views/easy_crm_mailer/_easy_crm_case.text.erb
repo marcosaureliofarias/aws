@@ -1,0 +1,28 @@
+<%- show_attachments ||= false -%>
+<%= easy_crm_case.to_s -%>
+
+<%= EasyCrmCase.human_attribute_name(:account_manager) %>: <%= easy_crm_case.assigned_to %>
+<% if EasyUserType.easy_type_partner.any? %>
+<%= EasyCrmCase.human_attribute_name(:external_account_manager) %>: <%= easy_crm_case.external_assigned_to %>
+<% end %>
+<%= EasyCrmCase.human_attribute_name(:contract_date) %>: <%= format_date(easy_crm_case.contract_date) %>
+<%= EasyCrmCase.human_attribute_name(:easy_crm_case_status) %>: <%= easy_crm_case.easy_crm_case_status.name %>
+<%= EasyCrmCase.human_attribute_name(:price) %>: <%= format_price(easy_crm_case.price, easy_crm_case.currency) %>
+<%= EasyCrmCase.human_attribute_name(:email) %>: <%= easy_crm_case.email %>
+<%= EasyCrmCase.human_attribute_name(:author_id) %>: <%= easy_crm_case.author ? link_to_user(easy_crm_case.author, :only_path => false) : '-' %>
+<%= EasyCrmCase.human_attribute_name(:telephone) %>: <%= easy_crm_case.telephone %>
+
+<% easy_crm_case.visible_custom_field_values.each do |c| %><%= c.custom_field.translated_name %>: <%= Sanitize.clean(show_value(c), :output => :html) -%>
+<% end %>
+
+<%= Sanitize.clean(easy_crm_case.description, :output => :html) unless easy_crm_case.description.nil? -%>
+
+<% if show_attachments && easy_crm_case.attachments.any? %>
+  <%=l :label_issue_attachments_heading %>
+  <% easy_crm_case.attachments.each do |attachment | %>
+    * <%= attachment.filename %> (<%= number_to_human_size attachment.filesize %>)
+    <% unless attachment.description.blank? %>
+      --- <%= " #{attachment.description}" %>
+    <% end %>
+  <% end %>
+<% end %>

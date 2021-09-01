@@ -1,0 +1,1 @@
+<%= options_for_period_select(params[:period_value], @filter, {:show_future => /cf_\d+/.match?(@filter)}.merge(@query.extended_period_options)) %>

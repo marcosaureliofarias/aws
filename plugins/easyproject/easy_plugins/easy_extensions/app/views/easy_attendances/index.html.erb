@@ -1,0 +1,20 @@
+<%= render :partial => 'easy_queries/easy_query_index', :locals => {:query => @query, :easy_query_name => l(:label, :scope => [:easy_attendance]), :easy_query_apply_url => url_for({:tab => params[:tab], :set_filter => '1'}), :easy_query_clear_url => {:set_filter => 0, :tab => params[:tab]} } -%>
+
+<%= render_tabs easy_attandance_tabs -%>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%#= link_to(l(:new, :scope => [:easy_attendance]), {:controller => 'easy_attendances', :action => 'new', :back_url => url_for(:controller => 'easy_attendances', :tab => params[:tab])}, :class => 'button-positive') -%>
+
+  <%= link_to(l(:advanced_settings, :scope => :easy_attendance),
+    new_easy_attendance_path(:back_url => url_for(easy_attendances_path(:tab => params[:tab]))),
+    :title => l(:advanced_settings, :scope => [:easy_attendance, :title]),
+    :class => 'button-positive',
+    :remote => true) if User.current.allowed_to_globally?(:use_easy_attendances) -%>
+<% end %>
+
+<% content_for :sidebar do  -%>
+  <%= render(:partial => 'easy_attendances/all_users_queries') if User.current.allowed_to_globally?(:view_easy_attendance_other_users) %>
+  <%= render(:partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class}) -%>
+<% end -%>

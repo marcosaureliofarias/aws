@@ -1,0 +1,6 @@
+<td>
+  <span class="input-append">
+    <%= f.text_field :discount, size: 1, onchange: 'EASY.crm.recalculateCrmCaseItemTotalPrice(this);', class: 'repeat-discount' %>
+    <%= link_to_function '&#x25BC;'.html_safe, 'EASY.crm.repeatButton(this);', class: 'repeat-button', 'data-class': 'repeat-discount' %>
+  </span>
+</td>

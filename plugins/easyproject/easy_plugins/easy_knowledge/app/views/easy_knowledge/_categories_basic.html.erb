@@ -1,0 +1,52 @@
+<% categories ||= [] %>
+<% id ||= nil %>
+<% categories_with_checkboxes ||= false %>
+
+<% uniq_prefix = "#{controller_name}_#{action_name}_#{id}" %>
+<% openClass = toggle_open_css_row((uniq_prefix + '-0'), User.current) %>
+<% isOpen = (openClass == ' open') %>
+
+<div id="<%= id %>" class="easy-knowledge-story-categories list-group-item">
+  <% unless categories_with_checkboxes %>
+    <div class="category-group-title <%= openClass %> list-heading">
+      <span class="expander <%= 'expanded' if isOpen %>" alt="Expander" title="<%=l :collapse_expand %>" onclick="EASY.knowledge.toggleTreeVisibility('<%= uniq_prefix -%>', '', '0', '<%= User.current.id -%>', true, this.parentNode);">&nbsp;</span>
+      <%= content_tag :h4, l(:label_easy_knowledge_index_global) -%>
+    </div>
+  <% end %>
+
+  <ul id="<%= uniq_prefix + '-0' -%>" <%= "style='display: none;'".html_safe unless isOpen || categories_with_checkboxes %> class="link-list">
+    <%- active_parents = [] -%>
+    <% categories.each do |category| %>
+      <% to_delete = 0 %>
+      <%- active_parents.each do |parent| -%>
+        <%- if !category.is_descendant_of?(parent) -%>
+          <% to_delete += 1 %>
+          </ul></li>
+        <%- end -%>
+      <%- end -%>
+      <% to_delete.times{ active_parents.pop } %>
+
+      <% openClass = toggle_open_css_row(uniq_prefix + '-' + category.id.to_s, User.current) %>
+      <% isOpen = (openClass == ' open') %>
+
+      <li class="project-list link-list-item">
+        <div class="<%= openClass -%>">
+          <% if !category.leaf? %>
+            <span class="expander" alt="Expander" title="<%=l :collapse_expand %>" onclick="EASY.knowledge.toggleTreeVisibility('<%= uniq_prefix -%>', '', '<%= category.id.to_s %>', '<%= User.current.id -%>', true, this.parentNode);">&nbsp;</span>
+          <% end %>
+          <% if categories_with_checkboxes %>
+            <%= check_box_tag(form.object_name + '[easy_knowledge_category_ids][]', category.id, story.easy_knowledge_category_ids.include?(category.id), :id => "#{form.object_name}_easy_knowledge_category_ids_#{category.id}") %>
+            <%= label_tag("#{form.object_name}_easy_knowledge_category_ids_#{category.id}", category.name) %>
+          <% else %>
+            <%= link_to(category.name, easy_knowledge_global_path(category), :title => l(:title_easy_knowledge_category_stories), :class => 'easy-knowledge-project-link') %>
+          <% end %>
+        </div>
+      <%- if category.leaf? -%>
+        </li>
+      <%- else -%>
+        <%- active_parents << category -%>
+        <ul id="<%= uniq_prefix + '-' + category.id.to_s %>" class="project-list link-list" <%= "style='display: none;'".html_safe unless isOpen %> >
+      <%- end -%>
+    <% end %>
+  </ul>
+</div>

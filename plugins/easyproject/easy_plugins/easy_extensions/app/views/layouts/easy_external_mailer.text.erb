@@ -1,0 +1,8 @@
+<%- if content_for?(:email_header) -%>
+  <%= yield :email_header -%>
+<% end -%>
+<%= yield %>
+<%- if content_for?(:email_footer) -%>
+  --
+  <%= yield :email_footer %>
+<% end -%>

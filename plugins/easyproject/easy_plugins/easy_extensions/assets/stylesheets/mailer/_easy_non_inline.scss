@@ -1,0 +1,28 @@
+@media only screen and (max-width: 639px){
+    .bodyContent a{
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+    .attributes a{
+        word-break: normal;
+        word-wrap: normal;
+    }
+    .private{
+        float: none;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .attributes, .attributes tr, .attributes tbody, .attributes th, .attributes td{
+        display: block;
+    }
+    .attributes td{
+        text-align: right;
+    }
+    .attributes th{
+        float: left;
+    }
+    .attributes tr{
+        clear: both;
+    }
+}

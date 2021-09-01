@@ -1,0 +1,29 @@
+//Tabs
+.tabs {
+  @include tab-parent(transparent, $color-border, $color-text, $tab-height, $gap, $color-main);
+  & ~ .tab-content {
+    &.custom-fields {
+      padding-top: 10px;
+      background: inherit;
+    }
+  }
+  & ~ .tab-content, & ~ .entity-tabs-content {
+    @extend %tab-content;
+  }
+  .tabs-buttons {
+    .tab-right {
+      #project-settings-edit-container & {
+        background-color: $color-foreground;
+      }
+    }
+  }
+}
+
+.tab-spent_time-content {
+  .autoscroll {
+    @extend %translate-reset;
+    @include respond-to(max-small-screen) {
+      overflow-x: scroll;
+    }
+  }
+}

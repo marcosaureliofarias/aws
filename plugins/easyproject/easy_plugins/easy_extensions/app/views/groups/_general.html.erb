@@ -1,0 +1,6 @@
+<%= labelled_form_for @group, :url => group_path(@group), :html => {:class => 'form-box'} do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+<div class="form-actions">
+  <%= submit_tag l(:button_save), :class => 'button-positive' %>
+</div>
+<% end %>

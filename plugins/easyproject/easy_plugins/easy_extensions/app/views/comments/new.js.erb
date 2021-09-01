@@ -1,0 +1,17 @@
+$("#ajax-modal").html("<%=j render(:partial => 'comments/form') %>");
+$("#ajax-modal").find(".form-actions").remove();
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_save) %>',
+      click: function() {
+        if (typeof CKEDITOR !== 'undefined') {
+          CKEDITOR.instances["comment_comments"].updateElement();
+        }
+        $(this).find('form').submit();
+      },
+      'class': 'button-positive'
+    }
+  ]
+});

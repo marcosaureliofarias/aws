@@ -1,0 +1,59 @@
+<%= hidden_field_tag(:back_url, back_url) %>
+
+<% unless @page.built_in? %>
+  <p>
+    <%= f.label :user_defined_name, EasyPage.human_attribute_name(:translated_name) %>
+    <%= f.text_field :user_defined_name, id: 'project_name' %>
+  </p>
+  <p>
+    <%= f.label :identifier %>
+    <%= f.text_field :identifier, maxlength: Project::IDENTIFIER_MAX_LENGTH, class: 'u__max-width--input', id: 'project_identifier' %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 4 %>
+  </p>
+<% end %>
+<p class="easy-tag-list-field">
+  <%= label_tag 'easy_page_tag_list', l(:label_easy_tags) %>
+  <%= easy_tag_list_autocomplete_field_tag @page, 'easy_page', id: 'easy_page_tag_list' %>
+</p>
+<% if @page.new_record? %>
+  <p>
+    <%= label_tag :page_layout_identifier, EasyPage.human_attribute_name(:page_layout_identifier) %>
+    <label class="radio inline">
+      <%= radio_button_tag :page_layout_identifier, 'tchtrrs', true, id: 'nil' %>
+      <%= l(:label_easy_page_layout_tchtrrs) %><br/>
+      <%= image_tag 'layouts/tchtrrs.png', :plugin => 'easy_extensions' %>
+    </label>
+    <label class="radio inline">
+      <%= radio_button_tag :page_layout_identifier, 'tchfw', false, id: 'nil' %>
+      <%= l(:label_easy_page_layout_tchfw) %><br/>
+      <%= image_tag 'layouts/tchfw.png', :plugin => 'easy_extensions' %>
+    </label>
+    <label class="radio inline">
+      <%= radio_button_tag :page_layout_identifier, 'tchaf', false, id: 'nil' %>
+      <%= l(:label_easy_page_layout_tchaf) %><br/>
+      <%= image_tag 'layouts/tchaf.png', :plugin => 'easy_extensions' %>
+    </label>
+  </p>
+  <p>
+    <%= label_tag :page_scope_identifier, EasyPage.human_attribute_name(:page_scope_identifier) %>
+    <%= radio_button_tag :page_scope_identifier, 'nothing', true, id: 'page_scope_identifier_nothing' %>
+    <%= label_tag 'page_scope_identifier_nothing', l(:nothing_label, :scope => [:easy_pages, :scope]) %>
+    <br/>
+    <em><%= l(:nothing_description, :scope => [:easy_pages, :scope]) %></em>
+  </p>
+  <p>
+    <%= radio_button_tag :page_scope_identifier, 'user', false, id: 'page_scope_identifier_user' %>
+    <%= label_tag 'page_scope_identifier_user', l(:user_label, :scope => [:easy_pages, :scope]) %>
+    <br/>
+    <em><%= l(:user_description, :scope => [:easy_pages, :scope]) %></em>
+  </p>
+<% end %>
+
+<%= render partial: 'strict_permissions'  %>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'project_identifier', defer: true %>
+<% end %>

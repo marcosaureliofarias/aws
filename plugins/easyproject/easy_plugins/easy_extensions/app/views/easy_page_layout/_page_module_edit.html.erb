@@ -1,0 +1,34 @@
+<%
+  modul_uniq_id = "module_inside_modal_#{page_module.uuid.dasherize}" if page_params[:modal_edit]
+  modul_uniq_id ||= "module_inside_#{page_module.uuid.dasherize}"
+
+  module_form = EasyExtensions::PageModuleFormObject.new(page_module, project: @project)
+%>
+
+<%= form_for(module_form, builder: EasyExtensions::PageModuleFormObject::FormBuilder,
+                          url: save_my_page_module_view_path(uuid: page_module.uuid, project_id: @project.try(:id)),
+                          method: 'POST',
+                          html: {
+                            id: "module_#{page_module.module_name}_form",
+                            class: 'easy-page-module-form',
+                            :'data-uuid' => page_module.uuid.underscore
+                          }) do |form| %>
+
+  <% if page_params[:modal_edit] || page_params[:inline_edit] || page_params[:inline_view] %>
+    <%= hidden_field_tag 'back_url', page_params[:back_url] %>
+    <%= hidden_field_tag 't', params[:t] || '1' %>
+    <%= hidden_field_tag 'block_name', page_module.module_name -%>
+    <%= hidden_field_tag('template', params[:template]) if params[:template] %>
+    <%= hidden_field_tag 'inline_view', '1' %>
+  <% end %>
+
+  <%= render partial: page_module.module_definition.edit_path,
+             locals: {
+               user: (page_params[:user] || User.current),
+               block_name: page_module.module_name,
+               settings: (page_module.settings || {}).merge(request.query_parameters[page_module.module_name] || {}),
+               page_module: page_module,
+               modul_uniq_id: modul_uniq_id,
+               page_params: page_params,
+               form: form } %>
+<% end %>

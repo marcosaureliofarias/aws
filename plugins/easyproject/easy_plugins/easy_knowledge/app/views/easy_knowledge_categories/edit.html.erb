@@ -1,0 +1,10 @@
+<h2 class="title"><%= l(:label_easy_knowledge_edit_category) %></h2>
+
+<%= labelled_form_for @category, :url => { :action => 'update' }, :html => { :method => :put, :class => 'form-box'} do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f, :category => @category} %>
+  <div class="form-actions"><%= submit_tag l(:button_update), :class => 'button-positive' -%></div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% html_title(l(:label_easy_knowledge_category)) -%>

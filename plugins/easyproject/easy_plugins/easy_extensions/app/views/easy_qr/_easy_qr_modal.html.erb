@@ -1,0 +1,6 @@
+<% modul_uniq_id ||= 'easy_qr_container'; size ||= nil %>
+<% if easy_qr %>
+  <h3 class="title">QR</h3>
+  <%= render :partial => 'easy_qr/easy_qr', :locals => {:easy_qr => easy_qr, :modul_uniq_id => modul_uniq_id, :size => size} %>
+  <%= call_hook(:view_easy_qr_bottom, :modul_uniq_id => modul_uniq_id, :easy_qr => easy_qr) %>
+<% end %>

@@ -1,0 +1,219 @@
+///*EASY ATTENDANCE*/
+//a.easy-attendance-calendar-add-quick-event.icon {
+//  display: inline;
+//  cursor: pointer;
+//}
+//
+
+.easy-attendance {
+  &__activity {
+    &-select{
+      @extend %flex;
+      @extend %align-items-center;
+    }
+  }
+  &-datetime {
+    margin-right: 3*$gap;
+  }
+  &-advanced {
+    &-datetime-fields {
+      @extend %flex;
+      @include respond-to(max-small-screen) {
+        @include flex-wrap(wrap);
+      }
+    }
+    &-select {
+      max-height: 70vh;
+      overflow-y: auto;
+      @include respond-to(max-medium-screen) {
+        p {
+          margin-bottom: 0;
+        }
+      }
+      @include respond-to(min-small-screen) {
+        min-width: 250px;
+      }
+    }
+    &-user-fields {
+      #easy_attendance_form_fields_container {
+        .input-append {
+          width: initial;
+          max-width: none;
+          @include respond-to(max-medium-screen) {
+            @include flex-wrap(wrap);
+          }
+        }
+      }
+    }
+  }
+  &s {
+    .nodata {
+      margin-top: 1.5*$box-padding;
+    }
+  }
+}
+
+//
+//.easy-attendance-calendar-item[onclick]:hover {
+//  cursor: pointer;
+//}
+//
+//.easy-attendance-range-half-day-radio {
+//  position: relative;
+//  margin-right: 10px;
+//}
+//
+//.easy-attendance-range-half-day-radio .easy-attendance-time-dropper {
+//  display: block;
+//  position: absolute;
+//  width: auto;
+//  top: 35px;
+//  padding: 5px;
+//  left: 50%;
+//  margin-left: -87.5px;
+//  border: 2px solid $color-main;
+//  text-align: center;
+//  background-color: rgba(255, 255, 255, 0.75);
+//  box-shadow: 0px 0px 2px $color-main;
+//  z-index: 999999999999999;
+//}
+//
+//html p#easy-attendance-range-select .easy-attendance-range-half-day-radio .easy-attendance-time-dropper label {
+//  display: inline;
+//  vertical-align: middle;
+//  padding: 0 2px;
+//  width: auto;
+//}
+//
+//.easy-attendance-range-half-day-radio .easy-attendance-time-dropper input {
+//  min-width: 70px;
+//  text-align: center;
+//}
+//
+//.easy-attendance-range-half-day-radio .easy-attendance-time-dropper:before {
+//  border-color: $color-main transparent;
+//  border-width: 0px 10px 10px 10px;
+//  left: 90px;
+//  top: -10px;
+//  border-style: solid;
+//  content: "";
+//  display: block;
+//  position: absolute;
+//  width: 0;
+//  margin-left: -10px;
+//}
+//
+///* Easy Attendances personal report module */
+//.easy-attendance-personal-report {
+// // border: 1px solid #c9c9c9;
+//  //padding: 10px;
+//  //font-size: 120%;
+//}
+//
+//.easy-attendance-personal-report table {
+//  width: 100%;
+//  border-collapse: collapse;
+//}
+//
+//.easy-attendance-personal-report table table.easy-attendance-statistics {
+//  width: auto;
+//}
+//
+//.easy-attendance-personal-report table table.easy-attendance-statistics td.sum-hours {
+//  font-weight: bold;
+//}
+//
+//.easy-attendance-personal-report table td {
+//  padding: 5px 2.5px;
+//}
+//
+//.easy-attendance-personal-report table.general td.user-name {
+//  font-size: 200%;
+//}
+//
+//.easy-attendance-personal-report table.general td.user-name, .easy-attendance-personal-report table.activities-sum td.activity-name {
+//  width: 300px;
+//}
+//
+//.easy-attendance-personal-report table.general li .hours {
+//  text-decoration: underline;
+//}
+//
+//.easy-attendance-personal-report table.general li span[class*=easy-attendance-report-normal] {
+//  font-size: 110%;
+//}
+//
+//.easy-attendance-personal-report table.activities-sum th {
+//  text-align: left;
+//}
+
+form[class$=easy_attendance] p.user-select #easy_attendance_user_id__autocomplete {
+  width: 30%;
+}
+
+.user.easy-attendance-indicator {
+  font-size: 8px;
+  vertical-align: middle;
+  padding: 0 5px;
+  position: relative;
+  top: -0.4em;
+}
+
+.user.easy-attendance-indicator a, .user.easy-attendance-indicator span.icon {
+  color: inherit;
+}
+
+.user.easy-attendance-indicator span.icon:before {
+  font-size: 8px;
+}
+
+.user.easy-attendance-indicator.online {
+  color: green;
+}
+
+.user.easy-attendance-indicator.offline {
+  color: red;
+}
+p.textarea--approval {
+  width: 100%;
+  padding: 0 $gap;
+}
+#tab-content-detailed_report {
+  --sticky-col-firstname-attendance: 110px;
+  --sticky-col-lasttname-attendance: 110px;
+  th.lastname, th.firstname {
+    padding-left: $gap;
+  }
+  .easy-entity-list__item-attribute {
+    &.firstname, &.lastname {
+      position: sticky;
+      background: $color-foreground;
+      z-index: 1;
+      word-wrap: break-word;
+      left: 0;
+      padding-left: $gap;
+    }
+    &.firstname {
+      display: inline-block;
+      width: var(--sticky-col-firstname-attendance);
+      & + .lastname {
+        left: var(--sticky-col-firstname-attendance);
+        display: table-cell;
+      }
+    }
+    &.lastname {
+      display: inline-block;
+      width: var(--sticky-col-lasttname-attendance);
+      & + .firstname {
+        left: var(--sticky-col-lasttname-attendance);
+        display: table-cell;
+      }
+    }
+  }
+  tr:hover {
+    .firstname, .lastname {
+      background: $color-highlight !important;
+    }
+  }
+}
+

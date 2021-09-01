@@ -1,0 +1,72 @@
+<%= error_messages_for 'auth_source' %>
+
+<div class="tabular">
+  <p><%= f.text_field :name, :required => true %></p>
+  <p><%= f.text_field :host, :required => true %></p>
+  <p>
+    <%= f.text_field :port, :required => true, :placeholder => '389', :size => 6 %>
+    <%= f.select :ldap_mode, AuthSourceLdap::LDAP_MODES.map { |m| [l("label_#{m}"), m] }, :no_label => true %>
+    <em class="info ldaps_warning"><%= l("label_ldaps_warning") %></em>
+  </p>
+  <p><%= f.text_field :account %></p>
+  <p><%= f.password_field :account_password, :label => :field_password,
+           :name => 'dummy_password',
+           :value => ((@auth_source.new_record? || @auth_source.account_password.blank?) ? '' : ('x'*15)),
+           :onfocus => "this.value=''; this.name='auth_source[account_password]';",
+           :onchange => "this.name='auth_source[account_password]';" %></p>
+  <p><%= f.text_field :base_dn, :required => true, :size => 60, :placeholder => 'dc=example,dc=com' %></p>
+  <p><%= f.text_area :filter, :size => 60, :label => :field_auth_source_ldap_filter %></p>
+  <p><%= f.text_field :timeout, :size => 4 %></p>
+  <p><%= f.check_box :onthefly_register, :label => :field_onthefly %></p>
+</div>
+
+<%= render :partial => 'form_easy_options', :locals => {:f => f} %>
+
+<fieldset class="tabular"><legend><%=l(:label_attribute_plural)%></legend>
+  <p><%= f.text_field :attr_login, :required => true, :size => 20, :placeholder => 'uid', :append => link_to_function('', 'loadAttributes()', :class => 'icon-adressbook') %></p>
+  <p><%= f.text_field :attr_firstname, :size => 20, :placeholder => 'cn' %></p>
+  <p><%= f.text_field :attr_lastname, :size => 20, :placeholder => 'sn' %></p>
+  <p><%= f.text_field :attr_mail, :size => 20, :placeholder => 'mail' %></p>
+</fieldset>
+
+<script type="text/javascript">
+  function loadAttributes(){
+    $.ajax({url: '<%= available_attributes_auth_source_path(@auth_source) %>',
+      type: 'post',
+      data: $('#auth_source_form').serialize()
+        }).done(function(data){
+          if($.isArray(data) && data.length > 0) {
+            var values_to_preselect = {login: ['samaccountname', 'uid'], firstname: ['givenname', 'cn'], lastname: ['sn'], mail: ['mail']};
+
+            var selected_value;
+            var selected = false;
+            var elements = $("[id^='auth_source_attr_']");
+            $.each(elements, function(_, e) {
+              var select = '<select style="width: 200px;" id="' + e.id + '" name="' + e.name + '">';
+              select += "<option value=''></option>";
+              selected = false;
+              selected_value = null;
+              for(var i = 0; i < data.length; i++) {
+                if(!selected) {
+                  var attr_name = e.id.replace(/.*_/, '');
+                  var preselected_values = $.map([e.value].concat(values_to_preselect[attr_name] || []).filter(function(value) {
+                    return value !== undefined && value !== null;
+                  }), function(v) { return v.toLowerCase(); });
+                  selected_value = preselected_values.filter(function(n) {
+                    return data.indexOf(n) !== -1;
+                  })[0];
+                }
+
+                select += "<option value='" + data[i] + "'";
+                if((selected_value === data[i]) && !selected) {
+                  select += " selected=selected";
+                  selected = true;
+                }
+                select += ">" + data[i] + "</option>";
+              }
+              $(e).replaceWith(select);
+            });
+          }
+        });
+  }
+</script>

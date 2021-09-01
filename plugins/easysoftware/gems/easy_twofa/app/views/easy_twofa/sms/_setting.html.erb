@@ -1,0 +1,55 @@
+<%
+  setting = EasySetting.value(:easy_twofa_sms)
+  providers = [
+    [l('easy_twofa.schemes.sms.providers.custom.name'), 'custom'],
+    [l('easy_twofa.schemes.sms.providers.messagebird.name'), 'messagebird']
+  ]
+  telephone_cfs = UserCustomField.all.map do |cf|
+    [cf.name, cf.id]
+  end
+%>
+
+<p>
+  <%= label_tag 'easy_setting[easy_twofa_sms][telephone_cf]', l('easy_twofa.telephone_cf') %>
+  <%= select_tag 'easy_setting[easy_twofa_sms][telephone_cf]', options_for_select(telephone_cfs, setting['telephone_cf']), include_blank: true %>
+</p>
+
+<p class="easy-twofa-provider">
+  <%= label_tag 'easy_setting[easy_twofa_sms][provider]', l('easy_twofa.provider') %>
+  <%= select_tag 'easy_setting[easy_twofa_sms][provider]', options_for_select(providers, setting['provider']), include_blank: true %>
+</p>
+
+<p data-provider="custom">
+  <%= label_tag 'easy_setting[easy_twofa_sms][method]', l('easy_twofa.http_method') %>
+  <%= select_tag 'easy_setting[easy_twofa_sms][custom_method]', options_for_select(['GET', 'POST'], setting['custom_method']) %>
+</p>
+
+<p data-provider="custom">
+  <%= label_tag 'easy_setting[easy_twofa_sms][custom_url]', l(:field_url) %>
+  <%= text_area_tag 'easy_setting[easy_twofa_sms][custom_url]', setting['custom_url'] %>
+
+  <em class="help" style="display: block">
+    <code>%{telephone}</code> <%= l('easy_twofa.schemes.sms.providers.custom.telephone') %><br>
+    <code>%{body}</code> <%= l('easy_twofa.schemes.sms.providers.custom.body') %><br>
+  </em>
+</p>
+
+<p data-provider="messagebird">
+  <%= label_tag 'easy_setting[easy_twofa_sms][messagebird_access_key]', l(:label_api_access_key) %>
+  <%= text_field_tag 'easy_setting[easy_twofa_sms][messagebird_access_key]', setting['messagebird_access_key'] %>
+</p>
+
+<p data-provider="messagebird">
+  <%= label_tag 'easy_setting[easy_twofa_sms][messagebird_originator]', l(:field_subject) %>
+  <%= text_field_tag 'easy_setting[easy_twofa_sms][messagebird_originator]', setting['messagebird_originator'], placeholder: EasyTwofa::Sms.default_messagebird_originator %>
+</p>
+
+<script>
+  EasyGem.schedule.late(function(){
+    $(".easy-twofa-provider select").on("change", function(){
+      $("[data-provider]").hide();
+      $("[data-provider='"+this.value+"']").show();
+    }).change();
+  });
+</script>
+

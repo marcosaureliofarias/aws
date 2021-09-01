@@ -1,0 +1,190 @@
+---
+ro:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        issue_status_id: Status sarcină
+        reply_to: Răspunde la
+        sender: Expeditor
+        subject: Subiect
+    models:
+      easy_helpdesk_mail_template: Șablon mail
+  aggregated_periods:
+    half-yearly: Semestrial
+    quarterly: Trimestrial
+    yearly: Anual
+  button_easy_helpdesk_add_domain_name: Adăugați mail sau domeniu
+  button_easy_helpdesk_add_mail_template: Adăugare șablon mail
+  button_easy_helpdesk_add_mailbox: Adăugați cutie poștală
+  button_easy_helpdesk_add_project: Adăugați proiect
+  button_easy_helpdesk_add_project_from_sidebar: Adăugați la asistență tehnică
+  button_easy_helpdesk_add_signature: Adăugați semnătură
+  button_easy_helpdesk_add_sla: Adăugați SLA
+  button_easy_helpdesk_all_mail_templates_index: Toate șabloanele de e-mail
+  button_easy_helpdesk_all_mailboxes_index: Toate cutiile poștale
+  button_easy_helpdesk_all_projects_index: Toate proiectele de asistență tehnică
+  button_easy_helpdesk_mail_templates_index: Listă șabloane
+  button_easy_helpdesk_mailboxes_index: Listă cutii poștale
+  button_easy_helpdesk_projects_index: Listă proiecte
+  button_easy_helpdesk_reports_index: Rapoarte
+  button_easy_helpdesk_settings_index: Setări asistență tehnică
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_name: Asistență tehnică
+  easy_helpdesk_plugin_description: "- soluție complexă de asistență tehnică"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Asistență tehnică
+    modules:
+      easy_helpdesk_create_mail_template_button: Creare buton șablon de mail
+      easy_helpdesk_create_mailbox_button: Creați buton cutie poștală
+      easy_helpdesk_mailboxes: Cutii poștale asistență tehnică
+      easy_helpdesk_mailtemplates: Șabloane mail de asistență tehnică
+      easy_helpdesk_project_query: Proiecte asistență tehnică din filtre
+  easy_proposer:
+    easy_helpdesk:
+      index:
+        caption: Asistență tehnică
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Asistență tehnică - proiecte
+      easy_helpdesk_report_monthly_query: Asistență tehnică - rapoarte lunare
+    sidebar_filters:
+      personal:
+        easy_helpdesk_report_monthly_query: Filtre private pe rapoarte lunare în Asistență
+          tehnică
+  easy_rake_tasks:
+    easy_rake_task_easy_helpdesk_receive_mail:
+      settings:
+        imap:
+          application_section_label: Alte setări
+          email_section_label: Setări căsuță poștală
+          folder: Folder
+          host: Gazdă
+          host_example: 'Exemplu: mail.company.com'
+          label: IMAP
+          password: Parola
+          port: Port
+          port_example: 'Exemplu: 143'
+          priority_example: 'Exemplu: Ridicată - sarcinile noi vor avea prioritate
+            Ridicată'
+          project_example: 'Exemplu: 205 - sarcini noi vor fi create la proiectul  ID
+            205'
+          sender_mail: Expeditor
+          sender_mail_example: 'Exemplu: support@company.com'
+          ssl: SSL
+          ssl_example: Utilizați autentificarea SSL
+          unknown_user: Utilizator necunoscut
+          use_custom_sender: Utilizați un alt expeditor
+          username: Utilizator
+          username_example: 'Exemplu: accessuser@domain.com'
+        pop3:
+          allow_override: Activați actualizarea atributelor sarcinei
+          apop: APOP
+          apop_example: Utilizați autentificarea APOP
+          application_section_label: Alte setări
+          delete_unprocessed_example: Ștergeți mail-uri care nu pot fi procesate
+          host: Gazdă
+          host_example: 'Exemplu: mail.company.com'
+          label: POP3
+          password: Parolă
+          password_example: 'Exemplu:  secretpassword'
+          port: Port
+          port_example: 'Exemplu: 110'
+          priority_example: 'Exemplu: Ridicată - sarcinile noi vor avea prioritate
+            Ridicată'
+          project_example: 'Exemplu: 205 - sarcini noi vor fi create la proiectul
+            ID 205'
+          sender_mail: Expeditor
+          sender_mail_example: support@company.com
+          status_example: 'Exemplu: Nou - sarcinile noi vor avea status-ul Nou'
+          unknown_user: Utilizator necunoscut
+          use_custom_sender: Utilizați un alt expeditor
+          username: Utilizator
+          username_example: 'Exemplu: accessuser@domain.com'
+  error_update_easy_setting_helpdesk: Setările nu pot fi salvate
+  field_aggregated_hours: Ore agregate asistență tehnică
+  field_aggregated_hours_period: Perioada agregată
+  field_easy_helpdesk_has_sla: Are SLA
+  field_easy_helpdesk_project_keyword: Cuvinte cheie pentru proiect
+  field_easy_helpdesk_project_matching:
+    domain_name: Mail sau domeniu
+  field_easy_helpdesk_project_sla:
+    keyword: SLA cuvânt cheie
+    title: Denumirea SLA
+  field_easy_reopen_at: Redeschis la
+  field_easy_response_date_time: SLA (răspuns)
+  field_email_header: Antet mail
+  field_hours_mode_from: SLA ore lucrătoare
+  field_hours_to_response: SLA (răspuns)
+  field_hours_to_solve: SLA (soluție)
+  field_is_under_helpdesk: Este sub asistență tehnică?
+  field_issue_closer_done_issue_status: Schimbați status-ul la
+  heading_easy_helpdesk_index: Asistență tehnică
+  heading_easy_helpdesk_mail_templates_new: Șablon nou mail
+  heading_easy_helpdesk_mailboxes_edit: Editare căsuță poștală
+  heading_easy_helpdesk_mailboxes_new: Cutie poștală nouă
+  heading_easy_helpdesk_projects_edit: Editare proiect
+  heading_easy_helpdesk_projects_new: Proiect nou de Asistență tehnică
+  label_filter_group_easy_helpdesk_report_yearly_query: Asistență tehnică - raport
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    task_description: descriere sarcină
+    task_history: isoricul tuturor comentariilor sarcinii
+    task_id: ID sarcină curentă
+    task_priority: Prioritate sarcină
+    task_project: denumire proiect
+    user_name: Nume complet utilizator curent
+    user_signature: Semnătură utilizator curent
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Subject and mail body can contain dynamic text:'
+  - "%task_id% (replacement for the current task ID)"
+  - "%task_subject% (replacement for the current task subject)"
+  - "%task_note% (replacement for the last comment on the task)"
+  - "%task_history% (replacement for history of all non-private comments of the task)"
+  - "%time_spent% (replacement for spent time on the task)"
+  - "%assignee% (replacement for current assignee)"
+  - "%user_signature% (replacement for current user signature)"
+  - "%date% (replacement for current date)"
+  - "%task_tracker% (replacement for task tracker)"
+  - "%task_project% (replacement for project name)"
+  - "%task_description% (replacement for task description)"
+  - "%task_status% (replacement for task status)"
+  - "%task_priority% (replacement for task priority)"
+  - "%task_estimated_hours% (replacement for task estimated hours)"
+  - "%task_done_ratio% (replacement for task done ratio)"
+  - "%task_public_url% (replacement for task public url)"
+  - "%task_closed_on% (replacement for task closed on date)"
+  - "%task_due_date% (replacement for task due date)"
+  - "%task_start_date% (replacement for task start date)"
+  - "%user_name% (replacement for current user full name)"
+  - "%user_first_name% (replacement for current user first name)"
+  - "%user_last_name% (replacement for current user last name)"
+  text_easy_helpdesk_mail_template_replacement_for: înlocuitor pentru
+  text_easy_helpdesk_projects_priority: SLA vor fi stabilite în funcție de prioritatea
+    aleasă
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Unele sarcini (%{count}/%{total})
+    nu au putut fi actualizate:'
+  text_isseu_closer_close_notice: Această sarcină a fost actualizată în mod automat
+    de  Asistența tehnică
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: răspunsul
+    trebuie să fie până la %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: rezolvarea
+    trebuie să fie până la %{time}'
+  title_easy_helpdesk_add_project_from_sidebar: Clic pentru a adăuga proiect la Asistență
+    tehnică
+  title_easy_helpdesk_sender: Cine va fi în câmpul „din“
+  title_easy_helpdesk_sender_current_user: Utilizator care este conectat curent
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'ATENȚIE: Asistența tehnică
+    va primi mail-uri de la alte sisteme și poate face schimb infinit de e-mail!'
+  title_easy_helpdesk_sla_start_states: Selectare statusuri, când măsurare SLA este
+    reluat după ce a fost întreruptă prin setarea de mai sus.
+  title_easy_helpdesk_sla_stop_states: Selectați statusurile atunci când SLA nu se
+    măsoară. De exemplu, biletele închise sau atunci când așteptați pentru un răspuns
+    de la client.
+  title_sla_waiting_for_client: SLA suspendat
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Dezactivat - după ce sarcina este închisă, SLA este oprit. Atunci când
+      sarcina este redeschisă, SLA este luat în calcul din momentul în care originalul
+      a fost creat
+    enabled: Activat - după ce sarcina este închisă, SLA este oprit. Atunci când sarcina
+      este redeschisă, SLA este luat în calcul din momentul în care a fost redeschisă

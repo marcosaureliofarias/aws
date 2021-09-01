@@ -1,0 +1,7 @@
+<h2><%= l(:label_query) %></h2>
+<%= form_for @easy_query, :as => :easy_query, :url => easy_query_path(@easy_query), :html => {:onsubmit => 'EASY.modalSelector.selectAllOptions("selected_columns");', :class => 'form-box'} do |f| %>
+  <%= render 'form', f: f, query: @easy_query, hide_columns_selection: true -%>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+  </div>
+<% end %>

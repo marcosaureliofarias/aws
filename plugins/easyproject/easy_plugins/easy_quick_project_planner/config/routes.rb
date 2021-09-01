@@ -1,0 +1,6 @@
+get 'projects/:id/quick_planner', :to => 'easy_quick_project_planner#plan', :as => 'quick_planner'
+match 'projects/:id/quick_planner/new_issue_row', :to => 'easy_quick_project_planner#new_issue_row', :via => [:get, :post], :as => 'quick_planner_new_issue_reload'
+get 'projects/:id/quick_planner/issues', :to => 'easy_quick_project_planner#issues', :as => 'quick_planner_issues'
+get 'projects/:id/quick_planner/load_created_issue', :to => 'easy_quick_project_planner#load_created_issue', :as => 'quick_planner_load_created_issue'
+post 'projects/:id/quick_planner/setting', :to => 'easy_quick_project_planner#save_setting', :as => 'quick_planner_setting'
+get 'settings/plugin/easy_quick_project_planner', :to => 'easy_quick_project_planner#plugin_settings'

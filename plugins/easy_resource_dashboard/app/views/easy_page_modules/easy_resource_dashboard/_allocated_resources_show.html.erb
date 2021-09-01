@@ -1,0 +1,67 @@
+<%
+  module_data = @easy_page_modules_data[block_name]
+  include_jqplot_scripts
+  graph_id = "graph_#{modul_uniq_id}"
+%>
+<div id="<%= graph_id %>"></div>
+
+<script>
+  EASY.schedule.require(function () {
+    var legendLimitSize = 550;
+    var legendLimitMaxLenght = 30;
+    var legendSmallSizeLenght = 4;
+    c3.generate({
+      bindto: "#<%= graph_id %>",
+      data: {
+        xFormat: "%Y-%W",
+        type: "area-spline",
+        json: <%= module_data[:values].to_json.html_safe %>,
+        keys: {
+          x: 'x',
+          value: ['resource', 'time_entry']
+        },
+        names: {
+          resource: "<%=j l(:field_estimated_hours) %>",
+          time_entry: "<%=j l(:label_spent_time) %>"
+        }
+      },
+      axis: {
+        x: {
+          type: "timeseries",
+          label: "<%=j l(:label_time) %>",
+          tick: {
+            count: function() {
+              if (this.innerWidth < legendLimitSize) {
+                return legendSmallSizeLenght;
+              }
+              return legendLimitMaxLenght;
+            },
+            format: "%B %Y"
+          }
+        },
+        y: {
+          label: "<%=j l(:field_hours) %>"
+        }
+      },
+      tooltip: {
+        format: {
+          value: function (value) {
+            return d3.round(value);
+          }
+        }
+      },
+      grid: {
+        x: {
+          lines: [
+            { value: (new Date()), text: "<%= l(:label_today) %>" }
+          ]
+        },
+        y: { show: true }
+      },
+      padding: {
+        bottom: 30
+      },
+      legend: { show: false }
+    });
+  }, jQueryPluginGetter("easy_chart"));
+</script>

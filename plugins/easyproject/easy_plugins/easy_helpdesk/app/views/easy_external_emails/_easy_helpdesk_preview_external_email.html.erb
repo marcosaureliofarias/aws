@@ -1,0 +1,4 @@
+<p>
+  <%= label_tag 'easy_helpdesk_mail_template', l(:'activerecord.models.easy_helpdesk_mail_template') %>
+  <%= select_tag 'easy_helpdesk_mail_template', easy_helpdesk_mail_template_options_for_select(entity, @easy_helpdesk_mail_template), include_blank: true, onchange: "$.ajax({url: '#{j(issue_preview_external_email_path(id: entity, format: :js)).html_safe}', type: 'patch', data: $(this).closest('form').serialize()})" %>
+</p>

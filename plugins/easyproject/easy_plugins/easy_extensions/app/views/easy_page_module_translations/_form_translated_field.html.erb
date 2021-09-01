@@ -1,0 +1,29 @@
+<%
+  translation = local_assigns.fetch(:translation)
+  input_name = local_assigns.fetch(:input_name)
+  locale = translation[0]
+  value = translation[1]
+
+  @translated_langs_from_cache ||= languages_options.inject({}){|mem,var| mem[var.last.to_s] = var.first; mem}
+%>
+<div class="splitcontentleft">
+  <p id="<%= locale %>">
+    <%= label_tag("#{input_name}[#{locale}]", @translated_langs_from_cache[locale]) %>
+    <span class="<%= "easy-translator-input-field #{locale}" %> input-append">
+      <%= text_field_tag("#{input_name}[#{locale}]", value, class: "easy-flag #{locale}") %>
+      <%= link_to('', 'javascript:void(0);',
+                  onclick: "(function (event) {
+                      if(!confirm('#{l(:text_are_you_sure)}')) return;
+                      el = event.target.closest('div');
+                      el.parentNode.removeChild(el);
+                      var translationsSelect = document.getElementById('add_translation');
+                      var option = document.createElement('option');
+                      option.text = '#{@translated_langs_from_cache[locale]}';
+                      option.value = '#{locale}';
+                      translationsSelect.add(option);
+                    })(event)",
+                  title: l(:title_easy_translation_destroy),
+                  class: 'icon-del') %>
+    </span>
+  </p>
+</div>

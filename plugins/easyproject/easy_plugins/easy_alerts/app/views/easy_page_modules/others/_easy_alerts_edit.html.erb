@@ -1,0 +1,4 @@
+  <p>
+    <label for="<%= block_name %>_alert_type"><%= l(:label_alerts_my) -%></label>
+    <%= select_tag "#{block_name}[alert_type]", options_for_select([['', '']] + AlertType.all.collect { |a| [a.translated_name, a.id.to_s] }, settings['alert_type']) -%>
+  </p>

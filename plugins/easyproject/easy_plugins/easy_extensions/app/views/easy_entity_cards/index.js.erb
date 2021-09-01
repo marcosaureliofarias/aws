@@ -1,0 +1,4 @@
+$("#<%= @options[:module_name] %>").html("<%=j render(:partial => 'easy_entity_cards/easy_entity_cards', :locals => {
+    :source_entity => @source_entity,
+    :query => @query, :referenced_entity_type => params[:referenced_entity_type],
+    :project => @project, :options => @options, :referenced_entities => @query.entities, :display_style => @options[:display_style]}) %>");

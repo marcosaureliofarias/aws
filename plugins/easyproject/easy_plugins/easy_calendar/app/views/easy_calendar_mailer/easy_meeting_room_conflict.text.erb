@@ -1,0 +1,4 @@
+<% title = l(:title_meeting_room_conflict, name: @easy_meeting.name) %>
+<%= "#{title} #{easy_meeting_url(@easy_meeting)}" %>
+</br>
+<%= l(:error_meeting_room_conflict, conflict: @conflict_meetings) %>

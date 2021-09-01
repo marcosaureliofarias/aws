@@ -1,0 +1,14 @@
+api.array :groups do
+  @grouped.each_key do |group|
+
+    api.group do
+      api.name group.to_s
+      api.array :documents do
+        @grouped[group].each do |document|
+          EasySwagger::Document.render_api(document, self, api)
+        end
+      end
+    end
+
+  end
+end

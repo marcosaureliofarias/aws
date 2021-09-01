@@ -1,0 +1,34 @@
+<% if easy_contacts.any? %>
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+        <tr>
+          <th></th>
+          <% easy_contacts.first.visible_custom_field_values.each_with_index do |value, i| %>
+            <% next if i >= 3 %>
+            <th>
+              <%= content_tag(:span, h(value.custom_field.translated_name)) %>
+            </th>
+          <% end %>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% easy_contacts.each do |easy_contact| %>
+          <tr class="<%= easy_contact.css_classes %>">
+            <td class="name">
+              <%= link_to(easy_contact.contact_name, add_related_easy_contact_easy_crm_case_path(easy_crm_case, :easy_contact_id => easy_contact), :method => :post, :class => easy_contact.css_icon, :title => l(:button_easy_crm_add_related_contact)) %>
+            </td>
+            <% easy_contact.visible_custom_field_values.each_with_index do |value, i| %>
+              <% next if i >= 3 %>
+              <td>
+                <%= show_value(value) %>
+              </td>
+            <% end %>
+            <td class="buttons"><%= link_to(l(:button_easy_crm_add_related_contact), add_related_easy_contact_easy_crm_case_path(easy_crm_case, :easy_contact_id => easy_contact), :method => :post, :class => 'button-positive', :title => l(:button_easy_crm_add_related_contact)) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end -%>

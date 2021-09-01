@@ -1,0 +1,13 @@
+$('#ajax-modal').html('<%= j(render template: 'easy_xml_data/import_settings', formats: [:html]) %>').find(".form-actions").remove();
+showModal('ajax-modal', '800');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%= j l(:button_data_save_n_preview).html_safe %>',
+      click: function() {
+        $(this).find('form').submit();
+      },
+      'class': 'button-positive'
+    }
+  ]
+});

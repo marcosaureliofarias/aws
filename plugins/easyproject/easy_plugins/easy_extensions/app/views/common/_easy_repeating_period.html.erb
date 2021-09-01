@@ -1,0 +1,61 @@
+<%
+form_prefix ||= 'easy_repeating_period'
+selected ||= {}
+selected['days_in_week'] ||= []; selected['days_in_month'] ||= []
+id_prefix ||= convert_form_name_to_id(form_prefix)
+%>
+<div>
+  <p>
+    <%= label_tag "#{id_prefix}_period_every_day", l(:label_easy_repeating_period_every_day) %>
+    <%= radio_button_tag "#{form_prefix}[period]", 'every_day', selected['period'] == 'every_day' || selected['period'].nil?, :id => "#{id_prefix}_period_every_day", :onclick => "$('.period-hidden-section').hide('fast');" %>
+    <%= label_tag "#{id_prefix}_period_every_day", l(:label_easy_repeating_period_every_day), :class => 'inline' %>
+    <%= radio_button_tag "#{form_prefix}[period]", 'days_in_week', selected['period'] == 'days_in_week', :id => "#{id_prefix}_period_days_in_week", :onclick => "$('.period-hidden-section').hide('fast');$('##{id_prefix}_days_in_week_container').show('fast')" %>
+    <%= label_tag "#{id_prefix}_period_days_in_week", l(:label_easy_repeating_period_days_in_week), :class => 'inline' %>
+    <%= radio_button_tag "#{form_prefix}[period]", 'days_in_month', selected['period'] == 'days_in_month', :id => "#{id_prefix}_period_days_in_month", :onclick => "$('.period-hidden-section').hide('fast');$('##{id_prefix}_days_in_month_container').show('fast')" %>
+    <%= label_tag "#{id_prefix}_period_days_in_month", l(:label_easy_repeating_period_days_in_month), :class => 'inline' %>
+  </p>
+  <p class="period-hidden-section" style="<%= (selected['period'] == 'days_in_week') ? '' : 'display:none' %>" id="<%= "#{id_prefix}_days_in_week_container" %>">
+    <% 1.upto(7) do |n| %>
+      <% day_index =  (EasyExtensions::Calendars::Calendar.first_wday+(n-1))%7
+      day_of_week = day_index == 0 ? 7 : day_index %>
+      <%= check_box_tag "#{form_prefix}[days_in_week][]", day_of_week, selected['days_in_week'].include?(day_of_week.to_s), :id => "#{id_prefix}_days_in_week_#{n}" %>
+      <%= label_tag "#{id_prefix}_days_in_week_#{day_of_week}", day_name(day_of_week), :class => 'inline' %>
+    <% end %>
+  </p>
+  <p class="period-hidden-section" style="<%= (selected['period'] == 'days_in_month') ? '' : 'display:none' %>" id="<%= "#{id_prefix}_days_in_month_container" %>">
+    <% 1.upto(7) do |n| %>
+      <%= check_box_tag "#{form_prefix}[days_in_month][]", n, selected['days_in_month'].include?(n.to_s), :id => "#{id_prefix}_days_in_month_#{n}" %>
+      <%= label_tag "#{id_prefix}_days_in_month_#{n}", "#{n}.", :class => 'inline' %>
+    <% end %>
+    <br />
+    <% 8.upto(14) do |n| %>
+      <%= check_box_tag "#{form_prefix}[days_in_month][]", n, selected['days_in_month'].include?(n.to_s), :id => "#{id_prefix}_days_in_month_#{n}" %>
+      <%= label_tag "#{id_prefix}_days_in_month_#{n}", "#{n}.", :class => 'inline' %>
+    <% end %>
+    <br />
+    <% 15.upto(21) do |n| %>
+      <%= check_box_tag "#{form_prefix}[days_in_month][]", n, selected['days_in_month'].include?(n.to_s), :id => "#{id_prefix}_days_in_month_#{n}" %>
+      <%= label_tag "#{id_prefix}_days_in_month_#{n}", "#{n}.", :class => 'inline' %>
+    <% end %>
+    <br />
+    <% 22.upto(28) do |n| %>
+      <%= check_box_tag "#{form_prefix}[days_in_month][]", n, selected['days_in_month'].include?(n.to_s), :id => "#{id_prefix}_days_in_month_#{n}" %>
+      <%= label_tag "#{id_prefix}_days_in_month_#{n}", "#{n}.", :class => 'inline' %>
+    <% end %>
+    <br />
+    <% 29.upto(31) do |n| %>
+      <%= check_box_tag "#{form_prefix}[days_in_month][]", n, selected['days_in_month'].include?(n.to_s), :id => "#{id_prefix}_days_in_month_#{n}" %>
+      <%= label_tag "#{id_prefix}_days_in_month_#{n}", "#{n}.", :class => 'inline' %>
+    <% end %>
+  </p>
+  <p>
+    <%= label_tag "#{id_prefix}_time_cron", l(:label_easy_repeating_time) %>
+    <%= radio_button_tag "#{form_prefix}[time]", 'cron', selected['time'] == 'cron' || selected['time'].nil?, :id => "#{id_prefix}_time_cron", :onclick => "$('.time-hidden-section').hide('fast');" %>
+    <%= label_tag "#{id_prefix}_time_cron", l(:label_easy_repeating_time_cron), :class => 'inline' %>
+    <%= radio_button_tag "#{form_prefix}[time]", 'defined', selected['time'] == 'defined', :id => "#{id_prefix}_time_defined", :onclick => "$('.time-hidden-section').hide('fast');$('##{id_prefix}_time_defined_container').show('fast')" %>
+    <%= label_tag "#{id_prefix}_time_defined", l(:label_easy_repeating_time_defined), :class => 'inline' %>
+  </p>
+  <p class="time-hidden-section" style="<%= (selected['time'] == 'defined') ? '' : 'display:none' %>" id="<%= "#{id_prefix}_time_defined_container" %>">
+    <%= select_tag("#{form_prefix}[hours]", hourstimecheck_collection_for_select_options(selected['hours'])) -%>
+  </p>
+</div>

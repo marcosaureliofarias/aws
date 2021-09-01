@@ -1,0 +1,58 @@
+<% unless @easy_org_chart_invitialized %>
+  <% content_for :body_bottom do %>
+
+    <% if Redmine::Plugin.installed?(:easy_extensions) && (!Redmine::Plugin.installed?(:easy_theme_designer) || !EasyThemeDesign.in_use) %>
+      <%= stylesheet_link_tag 'jquery.orgchart.css', 'easy_org_chart/application.css' %>
+    <% end %>
+
+    <% if Redmine::Plugin.installed?(:easy_project_com) %>
+      <%= stylesheet_link_tag 'easy_org_chart_ep2017.css' %>
+    <% end %>
+
+    <style>
+      .orgchart-user, .orgchart-legend-symbol-node {
+        background: <%= easy_org_chart_node_bg_color('node_background_color').html %>;
+      }
+
+      .orgchart-user {
+        width: <%= easy_org_chart_node_width %>;
+      }
+
+      .orgchart-user, .orgchart-user a {
+        color: <%= easy_org_chart_node_text_color('node_background_color').html %>;
+      }
+
+      .orgchart-user:hover {
+        background: <%= easy_org_chart_node_bg_color('node_background_color').darken_by(90).html %>;
+      }
+
+      .orgchart-user.node-parent, .orgchart-legend-symbol-parent_node {
+        background: <%= easy_org_chart_node_bg_color('parent_node_background_color').html %>;
+      }
+
+      .orgchart-user.node-parent, .orgchart-user.node-parent a {
+        color: <%= easy_org_chart_node_text_color('parent_node_background_color').html %>;
+      }
+
+      .orgchart-user.node-parent:hover {
+        background: <%= easy_org_chart_node_bg_color('parent_node_background_color').darken_by(90).html %>;
+      }
+
+      .orgchart-user.node-root, .orgchart-legend-symbol-root_node {
+        background: <%= easy_org_chart_node_bg_color('root_node_background_color').html %>;
+      }
+
+      .orgchart-user.node-root, .orgchart-user.node-root a {
+        color: <%= easy_org_chart_node_text_color('root_node_background_color').html %>;
+      }
+
+      .orgchart-user.node-root:hover {
+        background: <%= easy_org_chart_node_bg_color('root_node_background_color').darken_by(90).html %>;
+      }
+    </style>
+
+    <%= javascript_include_tag 'html2canvas.js', 'jquery.debounce.js', 'jquery.orgchart.js', 'easy_org_chart.js', defer: true %>
+  <% end %>
+
+  <% @easy_org_chart_invitialized = true %>
+<% end %>

@@ -1,0 +1,18 @@
+<%
+  options ||= {}
+  options[:display_link_to_remove_association] = false if options[:display_link_to_remove_association].nil?
+%>
+
+<p>
+  <%= render :partial => 'easy_checklists/form', :locals => {:f => f, :options => options} %>
+</p>
+<% easy_checklist.easy_checklist_items.each_with_index do |easy_checklist_item, index| %>
+  <%= f.fields_for :easy_checklist_items, easy_checklist_item, {:child_index => index.to_s} do |builder| %>
+    <%= render :partial => 'easy_checklist_items/form', :locals => {:f => builder, :easy_checklist_item => easy_checklist_item, :options => options} %>
+  <% end %>
+<% end %>
+
+<p>
+  <%= link_to_add_association(l(:button_new_easy_checklist_item), f, :easy_checklist_items, :class => 'button icon icon-add easy_checklist_add_item', :partial => 'easy_checklist_items/form', :render_options => {:locals => {:options => options}}) %>
+  <%= link_to_remove_association(l(:button_remove_easy_checklist), f, :class => 'button icon icon-del') if options[:display_link_to_remove_association] %>
+</p>

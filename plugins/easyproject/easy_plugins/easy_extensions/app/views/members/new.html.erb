@@ -1,0 +1,9 @@
+<h2><%= l(:label_member_new) %></h2>
+
+<%= form_for @member, as: :membership, url: project_memberships_path(@project), method: :post, remote: true,
+             html: { class: 'form-box', id: 'form-add-members' } do |form| %>
+  <%= render 'new_form', form: form %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), class: 'button-positive', name: nil %>
+  </div>
+<% end %>

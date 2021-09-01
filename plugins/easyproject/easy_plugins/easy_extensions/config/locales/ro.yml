@@ -1,0 +1,2034 @@
+---
+ro:
+  actionview_instancetag_blank_option: Selectați
+  activerecord:
+    attributes:
+      easy_currency:
+        digits_after_decimal_separator: Număr de cifre după separatorul zecimal
+        iso_code: Cod monetar
+        name: Denumire
+        symbol: Simbol monetar
+      easy_email_template:
+        body_html: Conținut mail in HTML
+        body_plain: Conținut mail în text simplu
+        name: Denumire
+        subject: Subiect
+      easy_entity_action:
+        action_name: Acțiune
+        active: Activ
+        execute_as: Executare ca
+        name: Denumire
+        repeatedly: În mod repetat?
+        type: Tip
+        use_journal: Scrie rezultatul în jurnalul entității
+      easy_page:
+        identifier: Identificator
+        page_scope: Scop
+        page_scope_identifier: Scop pagină
+        translated_name: Titlu
+      easy_short_url:
+        allow_external: Permite accesul anonim
+        shortcut: Scurtătură
+        source_url: Adresa URL sursă
+        valid_to: Expiră
+      easy_user_working_time_calendar_holiday:
+        holiday_date: Zi
+        is_repeating: Repetare concediu
+        name: Denumire
+      easy_user_working_time_calendar:
+        default_working_hours: Număr de ore lucrătoare pe zi
+        first_day_of_week: Prima zi a săptămânii
+        is_default: Calendar implicit
+        name: Denumire
+        parent_id: Calendar sursă
+        working_week_days: Zilele lucrătoare ale săptămânii
+    errors:
+      messages:
+        accepted: trebuie acceptat
+        after_project_start: "(%{start_date}) trebuie să fie mai mare decât data de
+          început a proiectului (%{project_start_date})"
+        before_milestone: "(%{due_date}) trebuie sa fie înainte de data de data limită
+          (%{effective_date})"
+        before_project_end: "(%{due_date}) trebuie să fie înainte de data scadentă
+          a proiectului (%{project_due_date})"
+        blank: nu poate fi gol
+        cant_link_an_issue_with_a_descendant: An issue can not be linked to one of
+          its subtasks
+        cant_link_an_project_with_a_descendant: Un proiect nu poate fi legat de una
+          din subsarcinile sale
+        cant_link_an_version_with_a_descendant: Un punct de referință nu poate fi
+          legat de una din subactivitățile sale
+        circular_dependency: Această relație ar crea o dependență circulară
+        confirmation: nu este identică
+        due_date_after_start: trebuie să fie mai mare decât data de început
+        earlier_than_minimum_start_date: cannot be earlier than %{date} because of
+          preceding issues
+        easy_query_filter_relation_invalid: Trebuie să alegeți o valoare
+        empty: trebuie completat
+        equal_to: trebuie să fie egal cu {count}}
+        even: trebuie să fie par
+        exclusion: este rezervat
+        greater_than: trebuie să fie mai mare de %{count}
+        greater_than_or_equal_to: trebuie să fie mai mare sau egal cu %{count}
+        greater_than_soonest_start: "(%{start_date})  trebuie să fie mai mare decât
+          cel mai apropiată dată de începere (%{soonest_start}) a sarcinilor aferente
+          (verificare întârziere în ceea ce privește sarcina)"
+        greater_than_start_date: trebuie să fie după data de început
+        greater_than_start_date2: "(%{due_date}) trebuie să fie mai mare decât data
+          de început (%{start_date}) (verifică întârzierea în ceea ce privește  sarcina)"
+        inclusion: nu este inclus în listă
+        invalid: nu este valid
+        invalid_plural: sunt nevalide
+        less_than: trebuie să fie mai mic decat %{count}
+        less_than_duration: este prea devreme în funcție de ore estimate (orele de
+          lucru nu pot fi alocate în această sumă de zile lucrătoare)
+        less_than_or_equal_to: trebuie să fie mai mic sau egal cu %{count}
+        not_a_amount: Sumă nevalidă
+        not_a_date: nu este o dată validă
+        not_a_number: nu este un număr
+        not_same_project: trebuie să aparțină aceluiași proiect
+        odd: trebuie să fie impar
+        taken: a fost luat deja
+        too_long: este prea lung
+        too_short: este prea scurt
+        wrong_length: nu are lungimea corectă
+      models:
+        time_entry:
+          attributes:
+            base:
+              is_locked: Intrare blocată
+            spent_on:
+              out_of_range: este în afara intervalului permis
+      template:
+        header:
+          one: 1 error prohibited this %{model} from being saved
+          other: "%{count} errors prohibited this %{model} from being saved"
+    models:
+      easy_email_template: Șablon email
+      easy_user_working_time_calendar: Calendar
+      easy_user_working_time_calendar_holiday: Concedii
+  activity_has_no_default_value: nu are nicio valoare implicită
+  after_project_start_human_error: Trebuie să mutați data de început a sarcinei %{distance}
+    înainte - pe %{project_start_date} pentru a păstra data de început a proiectului
+  are_you_sure_delete_avatar: Sunteți sigur că doriți să vă ștergeți avatarul?
+  attachments:
+    attachments_missing: Atașamentele lipsesc.
+    no_more_versions: Fără alte versiuni
+    other_attachments: Alte atașamente
+    revert_to:
+      failed: 'Atașamentul nu a reușit să revină la versiunea %{version} . Versiunea
+        curentă este: %{current_v}.'
+      successfully: Atașamentul a revenit cu succes la %{version} versiune.
+  attribute_in_currency: "%{attribute} în %{currency}"
+  avatar_deleted: Avatar șters
+  avatar_invalid_file: Tip de fișier nevalid
+  base_currency: Monedă de bază
+  before_milestone_human_error: Trebuie să mutați data scadentă a sarcinei  %{distance}
+    din nou pe %{effective_date} pentru a păstra milestone
+  before_project_end_human_error: Trebuie să mutați data scadentă a sarcinei  %{distance}
+    înapoi - pe %{project_due_date} pentru a păstra data scadentă a proiectului
+  breadcrumb:
+    label:
+      easy_page_edit: Editează pagina %{pagename}
+      easy_page_new: Pagină nouă
+      easy_page_show: Module pe pagina %{pagename}
+      easy_page_templates: Șabloane pagina %{pagename}
+      easy_page_templates_edit: Editare șablon %{templatename}
+      easy_page_templates_new: Şablon pagină nouă
+      easy_pages_administration: Personalizare pagină
+    title:
+      easy_page_edit: Făcând clic editezi pagina  %{pagename}.
+      easy_page_new: Accesând creare pagină  nouă
+      easy_page_show: Făcând clic afișezi %{pagename}.
+      easy_page_template_edit: Accesând editare - layout module - în șablon.
+      easy_page_template_user_modules: Accesând vizualizare module aspect.
+      easy_page_template_view: Accesând vizualizare module aspect.
+      easy_page_templates: Făcând clic mergi la lista șablon %{pagename}.
+      easy_page_templates_edit: Făcând clic editezi șablonul %{templatename}.
+      easy_page_templates_new: Făcând clic creezi șablon nou pe pagina %{pagename}.
+      easy_pages_administration: Făcând clic mergi la administrare pagina.
+  bulk_time_entry_title: Jurnal de timp
+  bundle_description_advanced: 'Acesta este un pachet de %{appname} extensii pentru
+    promovarea eficienței proiectului în următoarele procese: agile, managementul
+    cunoștințelor, managementul timpului etc.'
+  bundle_description_basic: Aceasta este o soluție de început care are toate caracteristicile
+    ca Redmine de bază + multe îmbunătățiri, cum ar fi interfața ușoară cu utilizatorul
+    pentru satisfacția mai mare a utilizatorilor , şabloane de proiect & Planificator
+    de Proiect Rapid, Grafice inteligente Gantt pentru managerii de proiect și, de
+    asemenea, multe altele pentru proprietarii de afaceri.
+  bundle_description_customers: Soluțiile  %{appname} care fluidizează toate procesele
+    de gestionare a clientului. În special, acesta favorizează serviciul dvs. către
+    client și cuprind vânzările dvs., inclusiv facturarea.
+  bundle_description_finance: Acesta este un pachet de%{appname}  extensii rezolvând
+    tot ce ține de finanțarea proiectelor. În special, aceasta ajută la creșterea
+    profitabilității proiectului și monitorizarea financiară.
+  bundle_description_resource: Aceasta este %{appname} extensie pachet pentru planficare
+    profesională și exactă  a muncii. Alocarea și prezența resurselor fac ca capacitatiile
+    dvs. să fie 100% utilizate.
+  button_activate: Activare
+  button_add: Adaugă
+  button_add_and_close: Adaugă şi închide
+  button_add_project_and_roles: Adaugă proiecte şi roluri
+  button_additional_context_menu: Alte opţiuni
+  button_advanced_search: Căutare avansată
+  button_annotate: Adnotează
+  button_apply: Aplică
+  button_apply_projectquery: Utilizare
+  button_archive: Arhivare
+  button_attachment_context_menu: Afișare istoric versiune
+  button_auth_source_move_users: Realocați și ștergeți
+  button_back: Înapoi
+  button_back_to_calendar: Înapoi la calendar
+  button_bulk_time_save_and_continue: Salvează şi adaugă  intrare nouă
+  button_cancel: Închide
+  button_change: Modificare
+  button_change_avatar: Schimbare avatar local
+  button_change_password: Schimbare parolă
+  button_check_all: Verifică totul
+  button_check_and_uncheck_subprojects: Bifare/Debifare subproiecte
+  button_check_subprojects: Verificare subproiecte
+  button_choose_actions: Selectați date pentru copiere
+  button_clear: Ștergeți
+  button_clear_projectquery: Filtre implicite
+  button_close: Închide
+  button_collapse_all: Restrânge totul
+  button_configure: Configurează
+  button_copy: Copiază
+  button_copy_and_follow: Copiază și urmează
+  button_copy_project_from_template: Copiază în proiect
+  button_create: Creează
+  button_create_and_back: Creează și mergi înapoi
+  button_create_and_continue: Creează și continuă
+  button_create_issue_from_journal: Creează sarcină
+  button_create_project_from_template: Creează proiect nou
+  button_data_import: Importați
+  button_data_save_n_preview: Salvați și previzualizați
+  button_delete: Șterge
+  button_delete_avatar: Eliminați avatarul
+  button_delete_my_account: Șterge contul meu
+  button_delete_projectquery: Șterge filtru
+  button_disable_show_query_in_tree: Arbore dezactivat
+  button_document_by_easy_query: Documente după filtrul salvat
+  button_dont_send_email: Nu trimite mail
+  button_down: Jos
+  button_download: Descărcare
+  button_download_email: Descărcare mail
+  button_duplicate: Duplicare
+  button_easy_copy_to_project: Creează un proiect
+  button_easy_entity_actions_query: Filtru
+  button_easy_exchange_rates_add_currency: Adaugă monedă
+  button_easy_exchange_rates_currency_index: Listă monede
+  button_easy_exchange_rates_settings_index: Actualizare rate de schimb
+  button_easy_is_not_easy_repeating: Eliminare repetare
+  button_easy_issue_timer_pause: Pauză
+  button_easy_issue_timer_resume: Continuare
+  button_easy_issue_timer_stop: Terminat
+  button_easy_lookup_modal_close: Închide
+  button_easy_lookup_modal_selector_assign: Atribuire selectată
+  button_easy_page_add_page: Adaugă pagină
+  button_easy_page_add_tab: Adaugă filă
+  button_easy_page_create_template: Creare șablon
+  button_easy_page_templates: Prezentare generală șabloane
+  button_easy_user_working_time_back_to_calendar: Înapoi la calendar
+  button_easy_user_working_time_back_to_calendars: Înapoi la calendare
+  button_easy_user_working_time_calendar_holidays: Concedii
+  button_easy_user_working_time_calendar_holidays_new: Concediu nou
+  button_easy_user_working_time_calendar_show: Detalii calendar
+  button_easy_user_working_time_calendars_new: Calendar nou
+  button_easy_user_working_time_parent: Mergi la calendarul părinte
+  button_easy_user_working_time_reset_to_parent: Resetare calendar (eliminare excepții)
+  button_easy_version_by_easy_query: Milestones după filtru salvat
+  button_edit: Editare
+  button_edit_anonymous_user: Editare utilizator anonim
+  button_edit_associated_wikipage: 'Editează pagina Wiki asociată: %{page_title}'
+  button_edit_easy_entity_xml_import: Editare import XML
+  button_edit_mobile_page: Editare versiune mobilă
+  button_edit_projectquery: Editare filtru
+  button_edit_section: Editează această secțiune
+  button_edit_user_profile: Editează profil
+  button_execute: Execută
+  button_expand_all: Extinde totul
+  button_export: Exportați
+  button_filter: Filtru
+  button_fullscreen: Ecran complet
+  button_fullscreen_close: X
+  button_gantt_hide_sidebar: Ascunde filtre salvate
+  button_gantt_issue_update: Actualizare sarcină
+  button_gantt_issue_update_plural: Actualizare
+  button_gantt_project_update: Actualizare proiect
+  button_gantt_project_update_plural: Actualizări
+  button_gantt_relation_destroy: Eliminare relație
+  button_gantt_relation_new: Relație nouă
+  button_gantt_show_sidebar: Afișare filtre salvate
+  button_gantt_zoom_confirm: Sunteți sigur? Schimbările nesalvate vor fi pierdute
+  button_gantt_zoom_day: Zi
+  button_gantt_zoom_month: Lună
+  button_gantt_zoom_quartal: Trimestru
+  button_gantt_zoom_quarter: Trimestru
+  button_gantt_zoom_week: Săptămână
+  button_gantt_zoom_year: An
+  button_generate_api_key: Generare cheie API
+  button_generate_rss_key: Generare cheie RSS
+  button_go_up: Sus
+  button_hide: Închide
+  button_history: Istoric
+  button_import: Import
+  button_issue_create: Salvare sarcină
+  button_issue_create_and_continue: Salvați și continuați
+  button_issue_submit: Salvare actualizare
+  button_issue_update: 'Actualizare sarcină:'
+  button_journal_unprivate_note: Publică comentariu
+  button_link_easy_google_map_address: Afișare pe harta Google
+  button_link_journal: Link către jurnal
+  button_list: Listă
+  button_load_additional_records: Încarcă mai multe
+  button_lock: Blocare
+  button_log_time: Jurnal de timp
+  button_login: Autentificare
+  button_manage_versions: Administrare etape
+  button_meeting_accept: Acceptare
+  button_meeting_decline: Refuz
+  button_merge: Unire
+  button_merge_to: Unire la
+  button_merge_to_newest: Unire la cel mai nou
+  button_merge_to_oldest: Unire la cel mai vechi
+  button_mobile_saved_filters: Filtre salvate
+  button_move: Mută
+  button_my_page_google_maps_url_helper: Ajutor pentru adăugarea hartei din Google
+  button_new_advanced_import: Importare avansată
+  button_new_easy_entity_csv_import: Import nou CSV
+  button_new_easy_entity_xml_import: Import nou XML
+  button_new_issue_relation: Adaugă sarcini conexe
+  button_new_project_from_template: Creare proiect nou
+  button_new_subtask: Adăugare subsarcini
+  button_new_template_from_project: Creare șablon din acest proiect
+  button_pdf: PDF
+  button_print: Imprimare
+  button_quote: Citat
+  button_remove: Eliminare
+  button_rename: Redenumiți
+  button_reopen: Redeschide
+  button_reply: Răspunde
+  button_reset: Resetează
+  button_role_move_members: Reatribuire și ștergere
+  button_rollback: Revenire la această versiune
+  button_save: Salvare
+  button_save_and_continue: Salvați și continuați
+  button_save_projectquery: Salvare
+  button_select_file: Alege fișier
+  button_send: Trimite
+  button_send_email: Trimite mail
+  button_settings: Setări
+  button_show: Afișează
+  button_show_all_issues: Afișează totul
+  button_show_all_projects: Afișează totul
+  button_show_favorite_issues: Afişeaza favorite
+  button_show_favorite_projects: Afişează favorite
+  button_show_issue_report: Raport sarcini
+  button_show_on_google_map: Afișare în hartă
+  button_show_query_in_tree: Afișează în arbore
+  button_sort: Sortare
+  button_submit: Trimite
+  button_template_restore_project: Restabiliți proiectul
+  button_test: Testare
+  button_timelog_calendar_new: Jurnal de timp
+  button_timelog_calendar_next:
+    month: Luna viitoare
+    week: Săptămână viitoare
+    year: Anul viitor
+  button_timelog_calendar_prev:
+    month: Luna trecută
+    week: Săptămână trecută
+    year: Anul trecut
+  button_timelog_easy_lock: Blocat
+  button_timelog_easy_unlock: Deblocare
+  button_tracker_move_issues: Reatribuiți și ștergeți
+  button_unarchive: Dezarhivare
+  button_uncheck_all: Debifați totul
+  button_uncheck_subprojects: Debifare subproiecte
+  button_uninstall: Dezinstalare
+  button_unlock: Deblocare
+  button_unwatch: Nu urmăresc
+  button_update: Actualizare
+  button_user_field_mappings: Mapare atribute
+  button_view: Vizualizare
+  button_view_complete_history: Vizualizați istoricul complet
+  button_watch: Urmăresc
+  button_xml_data_continue: Continuă
+  button_xml_data_export: Exportați
+  button_xml_data_import: Importați
+  collapse_expand: restrângere/extindere
+  confirm_admininstration_display_all_project: Afișarea tuturor proiectelor va dura
+    mult timp. Doriți să continuați?
+  currency_dates: Date
+  custom_field_names:
+    external_mails:
+      label: Email extern
+  dashboard:
+    legends:
+      extensions: Extensii
+      issues: Sarcini
+      projects: Proiecte
+      security: Securitate
+      settings: Setări
+      users: Utilizatori
+      xml: XML
+  date:
+    abbr_day_names:
+    - Dum
+    - Lun
+    - Mar
+    - Mie
+    - Joi
+    - Vin
+    - Sâm
+    abbr_month_names:
+    - 
+    - Ian
+    - Feb
+    - Mar
+    - Apr
+    - Mai
+    - Iun
+    - Iul
+    - Aug
+    - Sep
+    - Oct
+    - Noi
+    - Dec
+    day_names:
+    - Duminică
+    - Luni
+    - Marti
+    - Miercuri
+    - Joi
+    - Vineri
+    - Sâmbătă
+    formats:
+      default: "%d-%m-%Y"
+      long: "%d %B %Y"
+      short: "%d %b"
+    month_names:
+    - 
+    - Ianuarie
+    - Februarie
+    - Martie
+    - Aprilie
+    - Mai
+    - Iunie
+    - Iulie
+    - August
+    - Septembrie
+    - Octombrie
+    - Noiembrie
+    - Decembrie
+    order:
+    - :day
+    - :month
+    - :year
+    quarter_names:
+    - Q1
+    - Q2
+    - Q3
+    - Q4
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximativ o oră
+        other: aproximativ %{count} ore
+      about_x_months:
+        one: aproximativ o lună
+        other: aproximativ %{count} luni
+      about_x_years:
+        one: aproximativ un an
+        other: aproximativ %{count} ani
+      almost_x_years:
+        one: aproape 1 an
+        other: aproape %{count} ani
+      half_a_minute: jumătate de minut
+      less_than_x_minutes:
+        one: mai puțin de un minut
+        other: mai puțin de %{count} minute
+      less_than_x_seconds:
+        one: mai puțin de o secundă
+        other: mai puțin de %{count} secunde
+      over_x_years:
+        one: peste un an
+        other: peste %{count} ani
+      x_days:
+        one: o zi
+        other: "%{count} zile"
+      x_hours:
+        one: 1 oră
+        other: "%{count} ore"
+      x_minutes:
+        one: un minut
+        other: "%{count} minute"
+      x_months:
+        one: o luna
+        other: "%{count} luni"
+      x_seconds:
+        one: o secundă
+        other: "%{count} secunde"
+  default_activity_design: Proiectare
+  default_activity_development: Dezvoltare
+  default_doc_category_tech: Documentație tehnică
+  default_doc_category_user: Documentație de utilizare
+  default_issue_status_closed: Închis
+  default_issue_status_feedback: Feedback
+  default_issue_status_in_progress: În progres
+  default_issue_status_new: Nou
+  default_issue_status_rejected: Respins
+  default_issue_status_resolved: Rezolvat
+  default_priority_high: Ridicată
+  default_priority_immediate: Imediată
+  default_priority_low: Scăzută
+  default_priority_normal: Normală
+  default_priority_urgent: Urgentă
+  default_role_developer: Dezvoltator
+  default_role_manager: Manager
+  default_role_reporter: Raportor
+  default_tracker_bug: Bug
+  default_tracker_feature: Caracteristică
+  default_tracker_support: Suport
+  description_all_columns: Toate coloanele
+  description_available_columns: Coloane disponibile
+  description_choose_project: Proiecte
+  description_count_on_different_column: Suma elementelor grupată într-o coloană separată
+  description_date_from: Introduceți data de început
+  description_date_range_interval: Alege intervalul prin selectarea datei de început
+    și sfârșit
+  description_date_range_list: Alegeți intervalul de timp din listă
+  description_date_to: Introducere dată de încheiere
+  description_filter: Filtru
+  description_issue_category_reassign: Selectare categorie sarcină
+  description_message_content: Conținut mesaj
+  description_notes: Notițe
+  description_project_scope: Scop căutare
+  description_query_sort_criteria_attribute: Sortare atribut
+  description_query_sort_criteria_direction: Sortare direcție
+  description_selected_columns: Coloane selectate
+  description_user_mail_notification: Setări notificare mail
+  description_wiki_subpages_reassign: Alege pagină părinte nouă
+  direction: ltr
+  easy_attendance:
+    advanced_settings: Planificator
+    approval_actions:
+      '2': Aprobat
+      '3': Respins
+    approval_detail: Detaliile cererii
+    approval_details: Solicitare de răspuns
+    approval_status: Status aprobare
+    approval_statuses:
+      '1': Aprobare în așteptare
+      '2': Aprobat
+      '3': Respins
+      '4': Anulează solicitarea
+      '5': Anulat
+    approval-1: Aprobare în așteptare
+    approval:
+      actions:
+        '0': Respins
+        '1': Aprobată
+      titles:
+        '1': Aprobare cerere
+        '4': Anulează cerere
+        global: Solicitare de...
+    approved_by: Aprobat de
+    arrival: Sosire
+    arrival_already_taken: Data este deja ocupată de către o altă activitate
+    arrival_date_error: nu poate fi mai mare decât plecarea
+    button_approve: Aprobare
+    button_reject: Refuzare
+    button_settings: Setări prezență
+    calendar:
+      legend:
+        ending: Încheierea activității
+        pending: Această activitate așteaptă aprobarea
+        rejected: Această activitate a fost refuzată
+        starting: Începerea activității
+        starting_ending: Activitatea acestei zile
+    change_easy_attendance_activity_to: 'Schimbă activitatea în:'
+    departure: Plecare
+    departure_is_less_than_arrival: Timpul trebuie sa fie mai mare  decât timpul sosirii
+    departure_is_same_as_arrival: va avea același timp ca și sosirea
+    description:
+      advanced_infobox: 'Exemplu: Iau concediu de la %{from} la %{to}.'
+      arrival: Tocmai am venit la muncă
+      departure: Părăsind locul de muncă
+    error_can_not_delete_activity: Activitatea conține înregistrări  si nu a putut
+      fi ștearsă.
+    error_ldap_bind_credentials: Cont/Parolă LDAP invalid
+    error_not_a_working_day: Nu o zi lucrătoare
+    error_time_entry_is_locked: Unele dintre intrări sunt blocate
+    field_range: 'Porțiunea zilei:'
+    heading_easy_attendance_settings_index: Setări prezență
+    invalid_date: fără dată
+    label: Participare
+    label_activities: Activitate
+    label_approval: Aprobare
+    label_approval_status: Statusul aprobării
+    label_back_to_basic: Închide
+    label_cancel: Anulează
+    label_mail: Mail de înștiințare
+    label_menu_more: Prezență
+    label_report_sum_attendance: Total pentru anul %{year} [Attendance]
+    label_report_sum_time_entry: Total pentru anul %{year} [Timp petrecut]
+    label_report_vacation_limits: Zile permise
+    label_report_vacation_remaining: Zile rămase
+    label_request_cancel: Solicitare anulată
+    label_setting: Folosirea înregistrărilor sosirilor și plecărilor
+    label_statistic_attendance: prezență
+    label_statistic_worked: timp petrecut
+    limit_for_currencies_hit: Nu pot fi decât  %{limit} monede active.
+    link_to_easy_attendance: Listă participare
+    mail_added:
+      body_top: "%{user} anunță %{activity} la locul de muncă de la %{from} la %{to}."
+      subject: "%{user} anunță absența de la locul de muncă"
+    mail_approval_new_pending_subject: Utilizator %{user_name} solicită aprobare pentru
+      %{activity}
+    mail_updated:
+      body_top: "%{user} anunță %{activity} la locul de muncă %{from} la %{to}."
+      subject: "%{user} anunță absența de la locul de muncă"
+    new: Intrare nouă
+    not_possible_to_approve_all_attendances: Nu ești autorizat să aprobi toate participările
+      selectate.
+    not_possible_to_edit_due_time: Nu este posibil să modificați această activitate
+      în mai puțin de 24 de ore de începerea acesteia
+    notice:
+      notice_arrivaled: Înregistrare sosire. Făcând clic puteti schimba  sosirile
+        si plecările.
+    pending_detail: Solicitare de răspuns
+    project_mapping_1_1: în activitate
+    range:
+      afternoon: După-amiază
+      forenoon: Dimineața
+      full_day: Toată ziua
+    specify_time:
+      label: Introduceți ore ca
+    text_activity_destroy_with_attendances: Activitatea este raportată în total %{count}
+      înregistrări prezență. Sunteți sigur că doriți să ștergeți activitatea și toate
+      înregistrările?
+    title:
+      advanced_settings: Planificați munca de acasă sau o plecare
+  easy_curremcy_currency_to_add: Monede disponibile de adăugat
+  easy_currency_settings_day_of_month: Ziua lunii pentru setat rate
+  easy_currency_settings_end: Afișare rate pentru "n" luni viitoare
+  easy_currency_settings_locked_after_months: Blochează rate după "n" luni
+  easy_currency_settings_start: Afișare rate de "n" luni în urmă
+  easy_currency_synchronization_successful: Sincronizare cu succes
+  easy_entity_action:
+    easy_entity_action:
+      caption: Acțiuni generice
+  easy_exchange_rates_currency_from: Moneda articolelor
+  easy_exchange_rates_currency_to: Moneda facturii
+  easy_exchange_rates_rate: Rata de schimb
+  easy_hosting_services_plugin_author_url: http://www.easyproject.cz/ro
+  easy_indicator:
+    alert: Avertizare
+    label_easy_indicator: Indicator
+    ok: Ok
+    title_easy_indicator_alert: Proiectul a depășit data scadentă
+    title_easy_indicator_ok: Totul în regulă
+    title_easy_indicator_warning: Cel puțin o sarcină a depășit data scadentă
+    titles:
+      '0': Totul este în ordine
+      '20': Totul în ordine
+      '21': Cel puțin o sarcină a depășit data ei scadentă
+      '22': Proiectul a depășit data scadentă
+    warning: Avertizare
+  easy_issue_mail_subject_styles:
+    redmine: Original ([Project - Tracker - ID] Subject)
+  easy_lookup:
+    document:
+      label: Documente
+    group:
+      label: Grupuri
+    issue:
+      label: Sarcini
+    project:
+      label: Proiecte
+    user:
+      label: Utilizatori
+    version:
+      label: Puncte de referință
+  easy_mail_template_token:
+    caption:
+      spent_time: Timpul petrecut
+      user_signature: Semnătură utilizator
+    title:
+      spent_time: Faceți clic pentru a adăuga înlocuire pentru timpul petrecut
+      user_signature: Clic pentru a adăuga înlocuire pentru semnătura utilizatorului
+        curent
+  easy_page_module:
+    attendance:
+      adhoc_query: Nume de filtru ad-hoc
+      adhoc_query_default_text: Participarea mea
+    document_query:
+      adhoc_query: Nume de filtru ad-hoc
+      adhoc_query_default_text: numele filtrului
+    generic_gauge:
+      label_plan: Planificat
+      label_quick_tag: Etichetă %{tag_no}
+      label_total_made: Total realizat
+    issue_query:
+      adhoc_query: Numele filtrului ad-hoc
+      adhoc_query_default_text: nume filtru
+    new_issue:
+      default_value: Valoarea implicită (necompletat înseamnă - nicio schimbare)
+      field: Domeniu
+    project_query:
+      adhoc_query: Nume de filtru ad-hoc
+      adhoc_query_default_text: nume filtru
+    resource_availability:
+      label_available: disponibil
+      label_day_start_time: Timpul începerii
+      label_description_prompt: 'Vă rugăm să scrieți un comentariu:'
+      label_resource_name: Denumirea resursei
+      label_set_available: Setați ca disponibile
+      label_set_day_available: Setează întreaga zi ca disponibilă
+      label_set_day_unavailable: Setează întreaga zi ca fiind indisponibilă
+      label_set_unavailable: Setează ca indisponibil
+      label_unavailable: indisponibil
+    saved_queries:
+      label_select_queries: Selectare tipuri filtre
+    user_query:
+      adhoc_query: Nume filtru ad-hoc
+      adhoc_query_default_text: nume filtru
+  easy_pages:
+    module_category:
+      calendars: Calendare
+      charts: Grafice
+      issues: Sarcini
+      lists: Liste
+      others: Altele
+      projects: Proiecte
+      redmine: DMS Simplu
+      timelog: Utilizare timp
+      users: Utilizatori
+    modules:
+      attendance: Prezență
+      attendance_report: Raportul de prezență
+      attendance_user_list: Prezență pe utilizatori
+      documents: Documente
+      generic_gauge: Generic gauge
+      google_maps: Hărți Google
+      issue_query: Sarcini din filtru
+      issue_timers_query: Cine face ce
+      issues_assigned_to_me: Sarcinile mele
+      issues_create_new: Sarcină nouă
+      issues_reported_by_me: Sarcini raportate de mine
+      issues_rss_reader: Sarcini de la alt server
+      issues_watched_by_me: Sarcinile urmărite de mine
+      line_chart_query: Grafic linie
+      mobile_issues_assigned_to_me: Sarcinile mele
+      my_calendar: Calendarul meu
+      my_projects_simple: Listă proiect
+      news: Noutăți
+      noticeboard: Avizier
+      pie_chart_query: Grafic Placintă
+      project_history: Istoric proiect
+      project_info: Descriere proiect
+      project_issues: Sarcini
+      project_news: Noutăți
+      project_sidebar_all_users_queries: Sarcinile angajațiilor
+      project_sidebar_family_info: Arbore proiect
+      project_sidebar_project_info: Informații despre proiect
+      project_sidebar_project_members: Echipă proiect
+      project_sidebar_saved_queries: Filtre salvate
+      project_tree: Subproiecte
+      projects_query: Proiecte din filtru
+      resource_availability: Disponibilitate resurse
+      saved_queries: Listă filtre salvate
+      tag_cloud: Etichete
+      timelog_calendar: Calendar timp petrecut
+      timelog_query: Timp petrecut din filtru
+      timelog_simple: Timp petrecut
+      users_query: Echipa de proiect din filtru
+    pages_description:
+      my_mobile_page: Pagina mea mobilă
+      my_page: Pagina mea
+      project_overview: Proiect - Pagina start
+    pages:
+      my_mobile_page: Pagina mea mobilă
+      my_page: Pagina mea
+      project_overview: Proiect - pagina start
+    scope:
+      nothing_description: Înseamnă că pagina este accesibilă prin meniul principal
+        și nu depinde de proiect sau utilizator. Toți utilizatorii au același conținut.
+      nothing_label: Nimic
+      project_and_user_label: Proiect și utilizator
+      project_label: Proiect
+      user_label: Utilizator
+    zones_description:
+      bottom_left: descriere
+      bottom_middle: descriere
+      bottom_right: descriere
+      middle_left: descriere
+      middle_middle: descriere
+      middle_right: descriere
+      right_sidebar: descriere
+      top_left: descriere
+      top_middle: descriere
+      top_right: descriere
+    zones:
+      bottom_right: buton dreapta
+      top_left: sus stânga
+      top_right: sus dreapta
+  easy_plugin_bundles:
+    customers: Management Client
+    finance: Management Financiar
+    resource: Management Resurse
+  easy_proposer:
+    action_label: "(Acțiune)"
+    admin:
+      manage_plugins:
+        caption: Plugin-uri
+        description: Administrare plugin-uri
+    auth_sources:
+      index:
+        caption: Autentificare LDAP
+        description: Administrare autentificare LDAP
+    bulk_time_entries:
+      index:
+        description: Jurnal de timp
+    easy_attendance_settings:
+      index:
+        caption: Setări prezență
+    easy_attendances:
+      index:
+        description: Mergi la listă prezență
+      report:
+        description: Mergi la raportul prezenței
+    easy_currencies_exchange_rates:
+      index:
+        caption: Rate de schimb valutar
+        description: Actualizare rate de schimb valutar
+    easy_documents:
+      index:
+        caption: Documente
+        description: Vizualizare documente
+    easy_pages:
+      index:
+        caption: Personalizare pagini
+    easy_pdf_themes:
+      index:
+        caption: Teme PDF
+        description: Vizualizare și administrare teme PDF
+    easy_query_management:
+      edit:
+        caption: Administrare filtre salvate
+    easy_query_settings:
+      index:
+        caption: Setări filtru
+        description: Administrare coloane implicite și alte setări de filtru
+    easy_rake_tasks:
+      index:
+        caption: Prezentare generală a sarcinilor planificate
+        description: Vizualizare sarcini planificate
+    easy_user_types:
+      index:
+        caption: Tipuri de utilizator
+        description: Vizualizare și administrare tipuri de utilizatori
+    easy_user_working_time_calendars:
+      index:
+        caption: Timpul de lucru - șabloane
+    easy_versions:
+      index:
+        caption: Milestones
+        description: Vizualizare și administrare milestones
+    easy_xml_data:
+      export_settings:
+        caption: Export date XML
+        description: Administrare export date XML
+      import_settings:
+        caption: Import date XML
+        description: Administrarea importului datelor XML
+    enumerations:
+      index:
+        caption: Categorii
+        description: Administrare categorii
+    groups:
+      index:
+        caption: Grupuri
+        description: Vizualizare și administrare grupuri
+    issue_statuses:
+      index:
+        caption: Statusuri sarcină
+        description: Vizualizare și administrare statusuri sarcini
+    issues:
+      index:
+        caption: Probleme / Sarcini
+        description: Vizualizare și administrare sarcini
+    projects:
+      index:
+        caption: Proiecte
+        description: Vizualizare și administrare proiecte
+    roles:
+      index:
+        caption: Roluri și permisiuni
+        description: Vizualizare și administrare roluri și permisiuni
+    settings:
+      index:
+        caption: Setări
+        description: Administrare setări
+    templates:
+      index:
+        caption: Șabloane
+        description: Vizualizare șabloane și creare proiecte din șabloane
+    users:
+      index:
+        caption: Utilizatori
+        description: Vizualizare și administrare utilizatori
+      new:
+        caption: Utilizator nou
+        description: Creează un nou utilizator
+    workflows:
+      edit:
+        caption: Fluxul de lucru
+        description: Administrare flux de lucru
+  easy_query:
+    button_apply:
+      issue: Aplică setări
+      project: Aplică setări
+      user: Aplică setări
+    easy_lookup:
+      name:
+        document:
+          default: Selectare documente
+        easy_crm_case:
+          easy_crm_case_relation: Selectați cazuri CRM  asociate
+        group:
+          default: Selectare grupuri
+        issue:
+          default: Selectare sarcini
+          issue_relation: Selectare sarcini asociate
+        project:
+          default: Selectare proiecte
+          project_relation: Selectare proiecte asociate
+        user:
+          default: Selectare utilizatori
+        version:
+          default: Selectare milestones
+          version_relation: Selectare milestones asociate
+    label:
+      default_columns: Coloane implicite
+      default_fitlers: Filtre implicite
+    name:
+      easy_attendance_query: Prezență
+      easy_document_query: Documente
+      easy_easy_query_query: Filtre salvate
+      easy_entity_action_query: Acțiuni entitate
+      easy_entity_activity_crm_case_query: Activități vânzări
+      easy_entity_activity_query: Activități vânzări
+      easy_group_query: Grupuri
+      easy_issue_gantt_query: Gantt Global
+      easy_issue_query: Sarcini
+      easy_project_gantt_query: Proiect Gantt
+      easy_project_query: Proiecte
+      easy_project_template_query: Șabloane proiect
+      easy_time_entry_query: Timp petrecut
+      easy_user_query: Utilizatori
+      easy_version_query: Milestones
+    sidebar_filters:
+      easy_user_type: Filtre pentru tipul de utilizator %{easy_user_type}
+      personal:
+        easy_attendance_query: Filtre private pe  participare
+        easy_document_query: Filtre private pe documente
+        easy_group_query: Filtre private pe grupuri
+        easy_issue_query: Filtre private pe sarcini
+        easy_member_query: Filtre private pe membrii
+        easy_project_query: Filtre private pe proiecte
+        easy_time_entry_query: Filtre private pe timp petrecut
+        easy_user_query: Filtre private pe utilizatori
+        easy_version_query: Filtre private pe milestones
+        other: Filtre private
+      public:
+        easy_document_query: Filtre publice pe documente
+        easy_group_query: Filtre publice pe grupuri
+        easy_issue_query: Filtre publice pe sarcini
+        easy_member_query: Filtre publice pe membrii
+        easy_project_query: Filtre publice pe proiecte
+        easy_time_entry_query: Filtre publice pe timp petrecut
+        easy_user_query: Filtre publice pe utilizatori
+        easy_version_query: Filtre publice pe milestones
+        other: Filtre publice
+      role: Filtre pentru %{role}
+  easy_rake_task_info_details:
+    receive_mail:
+      status:
+        cannot_be_processed: Nu poate fi procesat
+        not_processed_and_deleted: Nu sunt prelucrate și au fost șterse
+        processed_and_deleted: Procesat și eliminat din căsuța poștală
+        received: Recepționat
+        unknown: Necunoscut
+  easy_rake_task_infos:
+    status:
+      ended_failed: Terminat cu o eroare
+      ended_ok: Completat în regulă
+      next_2hours: în decurs de 2 ore
+  easy_rake_tasks:
+    easy_rake_task_check_failure_tasks:
+      email_type:
+        all_admins: Trimitere mail către administratori
+        email: Trimite mail către
+      mail:
+        footer: Aveți posibilitatea să modificați setările în Administrare >>> Prezentare
+          generală a sarcinilor programate
+        heading: Aceste sarcini planificate au eșuat la %{date}
+    easy_rake_task_easy_entity_action:
+      caption: Definire acțiuni repetate
+    easy_rake_task_easy_helpdesk_receive_mail:
+      settings:
+        imap:
+          application_section_label: Alte setări
+          email_section_label: Setări căsuță poștală
+          folder: Folder
+          host: Gazdă
+          host_example: 'Exemplu: mail.company.com'
+          label: IMAP
+          password: Parola
+          port: Port
+          port_example: 'Exemplu: 143'
+          priority_example: 'Exemplu: Ridicată - sarcinile noi vor avea prioritate
+            Ridicată'
+          project_example: 'Exemplu: 205 - sarcini noi vor fi create la proiectul  ID
+            205'
+          sender_mail: Expeditor
+          sender_mail_example: 'Exemplu: support@company.com'
+          ssl: SSL
+          ssl_example: Utilizați autentificarea SSL
+          unknown_user: Utilizator necunoscut
+          use_custom_sender: Utilizați un alt expeditor
+          username: Utilizator
+          username_example: 'Exemplu: accessuser@domain.com'
+        pop3:
+          allow_override: Activați actualizarea atributelor sarcinei
+          apop: APOP
+          apop_example: Utilizați autentificarea APOP
+          application_section_label: Alte setări
+          delete_unprocessed_example: Ștergeți mail-uri care nu pot fi procesate
+          host: Gazdă
+          host_example: 'Exemplu: mail.company.com'
+          label: POP3
+          password: Parolă
+          password_example: 'Exemplu:  secretpassword'
+          port: Port
+          port_example: 'Exemplu: 110'
+          priority_example: 'Exemplu: Ridicată - sarcinile noi vor avea prioritate
+            Ridicată'
+          project_example: 'Exemplu: 205 - sarcini noi vor fi create la proiectul
+            ID 205'
+          sender_mail: Expeditor
+          sender_mail_example: support@company.com
+          status_example: 'Exemplu: Nou - sarcinile noi vor avea status-ul Nou'
+          unknown_user: Utilizator necunoscut
+          use_custom_sender: Utilizați un alt expeditor
+          username: Utilizator
+          username_example: 'Exemplu: accessuser@domain.com'
+    easy_rake_task_entity_import_automat:
+      caption: Importare automată
+    periods:
+      daily: la fiecare %{interval} zile
+      hourly: la fiecare %{interval} ore
+      minutes: la fiecare %{interval} minute
+      monthly: la fiecare %{interval} lună
+      years: la fiecare %{interval} ani
+    views:
+      button_index: Prezentare generală a sarcinilor planificate
+      heading_settings: Setări muncă %{task_name}
+      heading_task_infos: Rezumat muncă - %{task_name}
+      interval: Interval
+      last_action: Ultima acțiune
+      next_run_at: Următorul început
+  easy_repeating_simple_options:
+    custom: Avansat...
+    daily: Zilnic
+    monthly: Lunar
+    quart_year: Trimestrial
+    weekly: Săptămânal
+    yearly: Anual
+  easy_scheduler_task_info:
+    ended_failed: Sarcina%{task_name} a eșuat.
+    ended_ok: Sarcina %{task_name} s-a încheiat cu succes.
+    initialized: Sarcina %{task_name} a fost creată.
+    planned: Sarcina %{task_name} a fost planificată.
+    running: Sarcina %{task_name} rulează.
+  easy_search:
+    label_column_type:
+      comment: Comentariu
+      description: Descriere
+      name: Denumire
+    legend_column_types: 'Căutare în:'
+    legend_entities: 'Caută:'
+  easy_user_type_setting_administration: Administrare
+  easy_user_type_setting_issues: Sarcini
+  easy_user_type_setting_jump_to_project: Sari la proiect
+  easy_user_type_setting_more: Mai mult
+  easy_user_type_setting_projects: Proiecte
+  easy_user_type_setting_search: Caută
+  easy_user_type_setting_sign_out: Delogare
+  easy_user_type_setting_user_profile: Profil utilizator
+  easy_user_type_visibility_options: Opțiuni vizibilitate
+  easy_user_type_visible_to_user_types: Vizibil pentru tipuri de utilizatori
+  easy_user_working_time_calendar_names:
+    standard: Standard
+  easy_vcard_attributes:
+    city: Oraș
+    country: Țară
+    firstname: Nume
+    lastname: Prenume
+    mail: E-mail
+    organization: Companie
+    phone: Telefon
+    postal_code: Cod poștal
+    street: Strada
+    updated_at: Actualizat la
+  easyproject_author: Easy Software
+  easyproject_description: Sistem informațional de management pentru managementul
+    de proiect.
+  easyproject_name: EASY PROJECT
+  easyproject_version_description: '2019'
+  edit_settings_per_role: Editează setări pe rol
+  editor_config_names:
+    extended: Avansat
+    full: Complet
+  enumeration_activities: Activități (timp petrecut)
+  enumeration_doc_categories: Categorii documente
+  enumeration_easy_custom_field_group: Grupuri de câmpuri personalizate
+  enumeration_easy_entity_activity_category: Categorie activitate vânzări
+  enumeration_easy_project_priority: Prioritate proiect
+  enumeration_easy_version_cetegory: Categorie milestone
+  enumeration_issue_priorities: Priorități sarcină
+  enumeration_system_activity: Activitate Sistem
+  error_attachment_too_big: Acest fișier nu poate fi încărcat, deoarece depășește
+    dimensiunea fișierului maximă permisă (%{max_size}, setting is in Administration
+    > Settings > General)
+  error_can_not_archive_project: Acest proiect nu poate fi arhivat
+  error_can_not_create_project_template: O eroare s-a produs în timpul creării șablonului
+    proiectului de la proiectul %{projectname}.
+  error_can_not_delete_auth_source: Această sursă de autentificare este utilizată
+    și nu poate fi ștearsă.
+  error_can_not_delete_custom_field: Nu se poate șterge un câmp personalizat. Este
+    necesar pentru alte funcționalități.
+  error_can_not_delete_project: Proiectul nu poate fi șters.
+  error_can_not_delete_project_template: Șablonul de proiect nu poate fi șters.
+  error_can_not_remove_role: Acest rol este utilizat și nu poate fi șters
+  error_can_not_reopen_issue_on_closed_version: O sarcină atribuită unui milestone
+    închis nu poate fi redeschisă
+  error_can_not_unarchive_project: Proiectul nu a putut fi dezarhivat.
+  error_can_t_load_default_data: 'Configurația implicită nu a putut fi încărcată:
+    %{value}'
+  error_cant_remove_default_type: Nu se poate elimina tipul implicit
+  error_create_repo_from_url_cannot_create_dir: Nu se poate crea dir %{dir}
+  error_create_repo_from_url_cannot_determine_repo_name: Nu se poate determina un
+    nume de depozit
+  error_create_repo_from_url_repo_already_exists: Există deja depozit
+  error_custom_value_autoincrement_equal: trebuie să fie %{count}
+  error_custom_value_autoincrement_greater: trebui să fie mai mare decât %{count}
+  error_easy_entity_attribute_map_invalid: Maparea atributelor este nevalidă
+  error_entity_conditions_are_not_met: Condițiile nu sunt îndeplinite.
+  error_invalid_authenticity_token: Pagina a expirat.
+  error_issue_not_found: Sarcina nu a fost găsită
+  error_issue_not_found_in_project: Sarcina nu a fost găsită sau nu aparține acestui
+    proiect
+  error_issue_repeat_endtype_date_blank: data de sfârșit nu poate fi goală
+  error_issue_repeat_endtype_missing: Sârșitul repetării trebuie să fie ales
+  error_issue_repeat_period_missing: Perioada de repetare trebuie aleasă
+  error_issue_repeat_weekly_days_selected: cel puțin o zi a săptămânii trebuie să
+    fie selectată
+  error_ldap_bind_credentials: Cont/Parolă LDAP invalidă
+  error_mailbox_already_exists: Cutia poștală deja există (%{link}).
+  error_no_default_issue_status: Nu există un status implicit al tichetelor. Verificați
+    vă rog configurația (Mergeți la "Administrare -> Stări tichete").
+  error_no_file_selected_to_upload: Nu există niciun fișier selectat pentru a fi încărcat.
+  error_no_tracker_in_project: Nu există un tracker asociat cu proiectul. Verificați
+    vă rog setările proiectului.
+  error_not_a_safe_attribute: câmpul nu poate fi editat de utilizatorul curent
+  error_oauth_authorization: Autorizație de la terțe părți nu a fost acordată sau
+    o eroare a avut loc în procesul de acordare
+  error_oauth_destroy_failed: Contul %{provider}  nu poate fi eliminat.
+  error_password_expired: Parola dvs. a expirat sau administratorul vă solicită să
+    o schimbați.
+  error_project_not_selected: Proiect neselectat
+  error_put_between_issue_count: Vă rugăm selectați două sarcini
+  error_query_copy_incomplete: 'Filtrul nu a fost copiat pentru toți utilizatorii,
+    unii utilizatori nu au fost găsiți: %{user_name}.'
+  error_repeat_endtype_date_blank: data de sfârșit nu poate fi goală
+  error_repeat_endtype_missing: Sfârșitul repetării trebuie să fie ales
+  error_repeat_period_missing: Perioada de repetare trebuie să fie aleasă
+  error_required_fields_missing: Lipsesc câmpurile obligatorii
+  error_scm_annotate: Nu există sau nu poate fi adnotată.
+  error_scm_command_failed: 'A intervenit o eroare la accesarea depozitului: %{value}'
+  error_scm_not_found: Înregistrarea sau revizuirea nu a fost găsită în depozit.
+  error_session_expired: Sesiunea a expirat. Vă rugăm să vă conectați din nou.
+  error_translations_original_value_is_missing: Pentru alte traduceri completați valoarea
+    implicită mai întâi
+  error_translations_translation_was_removed: Traducere a fost eliminată de către
+    un alt utilizator, vă rugăm să actualizați pagina
+  error_unable_delete_issue_status: Nu se poate șterge starea sarcinii
+  error_unable_to_connect: Nu se poate conecta (%{value})
+  error_update_easy_issue_timer_settings: Setarea nu a fost salvată
+  error_validates_max_size: fișierul este prea mare
+  error_working_days: Vă rugăm setați zilele de lucru
+  errors:
+    messages:
+      spoofed_media_type: are o extensie care nu se potrivește cu conținutul său
+  field_account: Cont
+  field_active: Activ
+  field_activity: Activitate
+  field_admin: Administrator
+  field_all_day: Toată ziua
+  field_amount_type: Unitate de măsură
+  field_api_key: Cheie API
+  field_approval_status: Stare aprobare
+  field_approved_by: Aprobat de
+  field_assignable: Sarcinile pot fi atribuite acestui rol
+  field_assigned_to: Atribuit
+  field_at_work: La serviciu?
+  field_attachment: Fișier
+  field_attr_firstname: Atribut prenume
+  field_attr_lastname: Atribut nume
+  field_attr_login: Atribut autentificare
+  field_attr_mail: Atribut email
+  field_auth_source: Mod autentificare
+  field_auth_source_ldap_filter: Filtru LDAP
+  field_author: Autor
+  field_base_dn: Base DN
+  field_cached_group_names: Grupuri
+  field_category: Categorie
+  field_closed_on: Închis
+  field_color: Culoare
+  field_column_names: Coloane
+  field_comments: Comentariu
+  field_comments_sorting: Afișează comentarii
+  field_commit_logs_encoding: Codare pentru mesaje
+  field_completed_percent: "% Realizat"
+  field_content: Conținut
+  field_created_at: Creat
+  field_created_by_who: Creat de
+  field_created_on: Creat
+  field_currency: Monedă
+  field_default_value: Valoare implicita
+  field_default_version: Milestone implicit
+  field_delay: Întârziere
+  field_description: Descriere
+  field_disable_automatic_loading: Dezactivare  încărcare automată
+  field_document: Document
+  field_done_ratio: Realizat (%)
+  field_downloads: Descărcări
+  field_due_date: Data finalizării
+  field_easy_attendance_activity: Activitate
+  field_easy_closed_by: Închis de
+  field_easy_entity_activity_finished: Este încheiată?
+  field_easy_entity_activity_start_time: Dată și timp
+  field_easy_external: ID Extern
+  field_easy_locked_by: Blocat de
+  field_easy_start_date: Dată început
+  field_easy_status_updated_on: Actualizare stare
+  field_easy_unlocked_by: Deblocat de
+  field_easy_user_type: Tip utilizator
+  field_easy_user_type_filters: Filtre după tipul utilizatorului
+  field_editable: Editabil
+  field_effective_date: Data
+  field_estimated_hours: Timp estimat
+  field_field_format: Format
+  field_filename: Fișier
+  field_filesize: Mărime
+  field_firstname: Prenume
+  field_fixed_version: Milestone
+  field_group_by: Grupează după
+  field_hide_mail: Nu se afișează adresa de email
+  field_homepage: Pagina principală
+  field_host: Gazdă
+  field_hours: Ore
+  field_identifier: Identificator
+  field_identity_url: URL OpenID
+  field_is_closed: Rezolvat
+  field_is_default: Implicit
+  field_is_filter: Filtru
+  field_is_for_all: Pentru toate proiectele
+  field_is_for_subprojects: pentru subproiecte
+  field_is_in_roadmap: Tichete afișate în plan
+  field_is_planned: Planificat
+  field_is_public: Public
+  field_is_required: Obligatoriu
+  field_issue: Tichet
+  field_issue_to: Sarcină asociată
+  field_language: Limba
+  field_last_login_on: Ultima autentificare în
+  field_lastname: Nume
+  field_login: Autentificare
+  field_mail: Email
+  field_mail_notification: Notificări prin e-mail
+  field_max_length: lungime maximă
+  field_min_length: lungime minimă
+  field_name: Nume
+  field_new_password: Parola nouă
+  field_notes: Note
+  field_onthefly: Creare utilizator pe loc
+  field_parent: Sub-proiect al
+  field_parent_title: Pagina superioara
+  field_password: Parola
+  field_password_confirmation: Confirmare
+  field_port: Port
+  field_possible_values: Valori posibile
+  field_precision: Precizie
+  field_priority: Prioritate
+  field_project: Proiect
+  field_project_last_journal_comment: Ultimul comentariu
+  field_redirect_existing_links: Redirecționează legăturile existente
+  field_regexp: Expresie regulară
+  field_remote_ip: Adresa IP
+  field_role: Rol
+  field_searchable: Căutare
+  field_show_sum_row: Afisează total rând
+  field_spent_on: Data
+  field_start_date: Data începerii
+  field_start_page: Pagina de start
+  field_status: Stare
+  field_subject: Subiect
+  field_subproject: Subproiect
+  field_subprojects_of: Toate subproiectele ale
+  field_summary: Rezumat
+  field_target: Obiectiv
+  field_time_zone: Fus orar
+  field_title: Titlu
+  field_tracker: Tip de tichet
+  field_type: Tip
+  field_updated_on: Actualizat la
+  field_url: URL
+  field_user: Utilizator
+  field_valid_from: De la
+  field_valid_to: La
+  field_value: Valoare
+  field_version: Versiune
+  field_visible: Vizibil
+  field_watcher: Urmărește
+  filter_active: activ
+  filter_default: implicit
+  general_csv_decimal_separator: "."
+  general_csv_encoding: UTF-8
+  general_csv_separator: ","
+  general_first_day_of_week: '2'
+  general_lang_name: Romanian (Română)
+  general_pdf_fontname: freesans
+  general_pdf_monospaced_fontname: freemono
+  general_text_No: Nu
+  general_text_Yes: Da
+  heading_easy_custom_project_menu_new: Nou element al meniului
+  label_activity: Activitate
+  label_add_another_file: Adaugă alt fișier
+  label_add_members: Adaugă membrii
+  label_add_note: Adaugă o notă
+  label_added: adaugată
+  label_added_time_by: Adăugat de %{author} acum %{age}
+  label_additional_options: Opțiuni suplimentare
+  label_admin: administrator
+  label_administration: Administrare
+  label_age: vechime
+  label_ago: în urma
+  label_all: toate
+  label_all_words: toate cuvintele
+  label_and_its_subprojects: "%{value} și sub-proiecte"
+  label_api: API
+  label_applied_status: Stare aplicată
+  label_ascending: Crescător
+  label_assigned_to_me_issues: Tichetele mele
+  label_associated_revisions: Revizii asociate
+  label_attachment: Fișier
+  label_attachment_delete: Șterge fișier
+  label_attachment_new: Fișier nou
+  label_attachment_plural: Fișiere
+  label_attribute: Atribut
+  label_attribute_plural: Atribute
+  label_auth_source: Mod de autentificare
+  label_auth_source_new: Nou
+  label_auth_source_plural: Moduri de autentificare
+  label_authentication: Autentificare
+  label_available_users: Utilizatori disponibili
+  label_blocked_by: blocat de
+  label_blocks: blocări
+  label_board: Forum
+  label_board_new: Forum nou
+  label_board_plural: Forumuri
+  label_boolean: Valoare logică
+  label_branch: Branch
+  label_browse: Afișează
+  label_bulk_edit_selected_issues: Editează toate tichetele selectate
+  label_calendar: Calendar
+  label_change_plural: Schimbări
+  label_change_properties: Schimbă proprietățile
+  label_change_status: Schimbă starea
+  label_change_view_all: Afișează toate schimbările
+  label_changes_details: Detaliile tuturor schimbărilor
+  label_changeset_plural: Schimbări
+  label_chronological_order: în ordine cronologică
+  label_closed_issues: închis
+  label_closed_issues_plural: închise
+  label_comment: Comentariu
+  label_comment_add: Adaugă un comentariu
+  label_comment_added: Adăugat
+  label_comment_delete: Șterge comentariul
+  label_comment_plural: Comentarii
+  label_commits_per_author: Commit per autor
+  label_commits_per_month: Commit pe luna
+  label_confirmation: Confirmare
+  label_contains: conține
+  label_copied: copiată
+  label_copy_relations: Copiază relații
+  label_copy_workflow_from: Copiază modul de lucru de la
+  label_create_subproject: Creează subproiect
+  label_current_status: Stare curentă
+  label_current_version: Versiunea curentă
+  label_custom_field: Câmp personalizat
+  label_custom_field_new: Câmp nou personalizat
+  label_custom_field_plural: Câmpuri personalizate
+  label_date: Dată
+  label_date_from: De la
+  label_date_from_to: De la %{start} la %{end}
+  label_date_range: Perioada
+  label_date_to: La
+  label_day_plural: zile
+  label_default: Implicită
+  label_default_columns: Coloane implicite
+  label_default_query_mapping_new: Adaugă setări pentru roluri
+  label_deleted: ștearsă
+  label_descending: Descrescător
+  label_details: Detalii
+  label_diff_inline: în linie
+  label_diff_side_by_side: una lângă alta
+  label_disabled: dezactivat
+  label_display: Afișează
+  label_display_per_page: 'pe pagină: %{value}'
+  label_document: Document
+  label_document_added: Adăugat
+  label_document_new: Document nou
+  label_document_plural: Documente
+  label_downloads_abbr: D/L
+  label_duplicated_by: la fel ca
+  label_duplicates: duplicate
+  label_dynamic_action_range: Dinamic
+  label_easy_attendance_accumulated_days: Zile acumulate
+  label_easy_entity_activity: Activități vânzări
+  label_easy_page_layout_fdd: Tablou de bord dinamic
+  label_easy_page_layout_tchaf: Tablou de bord
+  label_easy_page_layout_tchfw: Antet, două coloane
+  label_easy_page_plural: Pagini
+  label_easy_query_default_for_roles: implicit pentru roluri
+  label_easy_query_management: Administrarea filtrelor salvate
+  label_easy_query_output_options:
+    kanban: Opțiuni kanban
+    map: Opțiuni hartă
+    report: Raport opțiuni
+  label_easy_query_outputs: Ieșiri
+  label_easy_rake_average: Medie
+  label_easy_rake_last: Ultimul
+  label_easy_tags: Etichete
+  label_ends_with: sfârșește cu
+  label_enumeration_new: Valoare nouă
+  label_enumerations: Enumerări
+  label_environment: Mediu
+  label_equals: este
+  label_example: Exemplu
+  label_export_to: 'Disponibil și în:'
+  label_f_hour: "%{value} oră"
+  label_f_hour_plural: "%{value} ore"
+  label_feed_plural: Feed-uri
+  label_feeds_access_key_created_on: Cheie de acces creată acum %{value}
+  label_field_format_enumeration: Listă cheie/valoare
+  label_file_added: Adăugat
+  label_file_plural: Fișiere
+  label_filter_add: Adaugă filtru
+  label_filter_group_easy_easy_query_query: Filtre
+  label_filter_group_easy_entity_activity_crm_case_query: Activități vânzări
+  label_filter_group_easy_entity_activity_query: Activități vânzări
+  label_filter_plural: Filtre
+  label_float: Zecimal
+  label_follows: urmează
+  label_from: De la
+  label_gantt: Gantt
+  label_gauge_range: Interval
+  label_gauge_range_max_value: Valoare maximă
+  label_general: General
+  label_generate_key: Generează o cheie
+  label_greater_or_equal: ">="
+  label_green: verde
+  label_group: Grup
+  label_group_new: Grup nou
+  label_group_plural: Grupuri
+  label_help: Ajutor
+  label_history: Istoric
+  label_home: Acasă
+  label_import_issues: Importă sarcini
+  label_in: în
+  label_in_less_than: în mai puțin de
+  label_in_more_than: în mai mult de
+  label_incoming_emails: Mesaje primite
+  label_index_by_date: Sortează după dată
+  label_index_by_title: Sortează după titlu
+  label_information: Informație
+  label_information_plural: Informații
+  label_integer: Întreg
+  label_internal: Intern
+  label_issue: Tichet
+  label_issue_added: Adaugat
+  label_issue_category: Categorie de tichet
+  label_issue_category_new: Categorie nouă
+  label_issue_category_plural: Categorii de tichete
+  label_issue_new: Tichet nou
+  label_issue_plural: Tichete
+  label_issue_static_attributes_heading: Atribute de bază
+  label_issue_status: Stare tichet
+  label_issue_status_new: Stare nouă
+  label_issue_status_plural: Stare tichete
+  label_issue_tracking: Urmărire tichete
+  label_issue_updatable_attributes_heading: Atribute adiționale
+  label_issue_updated: Actualizat
+  label_issue_view_all: Afișează toate tichetele
+  label_issue_watchers: Cine urmărește
+  label_issues_assigned_to_me: Sarcinile mele
+  label_issues_by: Sortează după %{value}
+  label_issues_find_by_easy_query: Deschide un filtru
+  label_jump_to_a_project: Alege proiectul...
+  label_language_based: Un funcție de limba de afișare a utilizatorului
+  label_last_changes: ultimele %{count} schimbări
+  label_last_login: Ultima conectare
+  label_last_month: luna trecută
+  label_last_n_days: ultimele %{count} zile
+  label_last_n_days_next_m_days_description: ultimele X zile la următoarele Y zile
+  label_last_week: săptămâna trecută
+  label_latest_revision: Ultima revizie
+  label_latest_revision_plural: Ultimele revizii
+  label_ldap_authentication: autentificare LDAP
+  label_less_or_equal: "<="
+  label_less_than_ago: mai puțin de ... zile
+  label_list: Listă
+  label_loading: Încarcă...
+  label_logged_as: Autentificat ca
+  label_login: Autentificare
+  label_login_with_open_id_option: sau autentificare cu OpenID
+  label_logout: Ieșire din cont
+  label_max_size: Mărime maximă
+  label_me: eu
+  label_member: Membru
+  label_member_new: membru nou
+  label_member_plural: Membri
+  label_menu_more: Mai mult
+  label_message_last: Ultimul mesaj
+  label_message_new: Mesaj nou
+  label_message_plural: Mesaje
+  label_message_posted: Adăugat
+  label_message_subject: Subiect
+  label_min_max_length: lungime min - max
+  label_modified: modificată
+  label_module_jump: Sari la modul
+  label_module_manage: Administrare module
+  label_module_plural: Module
+  label_month: Lună
+  label_months_from: luni de la
+  label_more_than_ago: mai mult de ... zile
+  label_most_used: Cele mai utilizate
+  label_my_account: Contul meu
+  label_my_page: Pagina mea
+  label_my_page_issue_output:
+    chart: grafic
+    kanban: kanban
+    list: listă
+    map: hartă
+    report: raport
+    tiles: titluri
+  label_my_page_journal_row_count: 'Numărul de comentarii:'
+  label_my_page_journal_view_all_journals: Vizualizați toate comentariile
+  label_my_page_project_output:
+    kanban: kanban
+    map: hartă
+    report: raport
+  label_my_projects: Proiectele mele
+  label_name_and_date: "%{attribute} și dată"
+  label_new: Nou
+  label_new_project_issue_tab_enabled: Afișare fila ''Sarcină nouă''
+  label_new_statuses_allowed: Stări noi permise
+  label_news: Știri
+  label_news_added: Adăugat
+  label_news_latest: Ultimele știri
+  label_news_new: Adaugă știre
+  label_news_plural: Știri
+  label_news_view_all: Afișează toate știrile
+  label_next: Înainte
+  label_no_change_option: "(fără schimbări)"
+  label_no_data: Nu există date de afișat
+  label_no_options_available: "- nu sunt opțiuni disponibile -"
+  label_no_preview: Nicio previzualizare disponibilă
+  label_nobody: nimeni
+  label_none: niciunul
+  label_not_contains: nu conține
+  label_not_equals: nu este
+  label_open_issues: deschis
+  label_open_issues_plural: deschise
+  label_optional_description: Descriere (opțională)
+  label_options: Opțiuni
+  label_overall_activity: Activitate - vedere de ansamblu
+  label_overview: Pagină proiect
+  label_page_module_chart_add_additional_data_serie: Adăugați serii de date de la
+    altă interogare
+  label_page_module_chart_axis_y2: a doua axa Y
+  label_page_module_chart_period: Filtru perioadă
+  label_page_module_chart_time_window: Fereastra de timp
+  label_page_module_chart_time_window_disabled: Tot timpul
+  label_password_lost: Parolă uitată
+  label_permissions: Permisiuni
+  label_permissions_report: Permisiuni
+  label_personal_visibility: Vezi doar propria valoare
+  label_plugins: Plugin-uri
+  label_precedes: precede
+  label_preferences: Preferințe
+  label_preview: Previzualizare
+  label_previous: Înapoi
+  label_project: Proiect
+  label_project_all: Toate proiectele
+  label_project_index: Listă proiect
+  label_project_latest: Proiecte noi
+  label_project_new: Proiect nou
+  label_project_notifications: Trimite notificări mail
+  label_project_plural: Proiecte
+  label_projects_find_by_easy_query: Deschide un filtru
+  label_public_projects: Proiecte publice
+  label_query: Cautare personalizata
+  label_query_new: Căutare nouă
+  label_query_plural: Căutări personalizate
+  label_read: Citește...
+  label_register: Înregistrare
+  label_registered_on: Înregistrat la
+  label_registration_activation_by_email: activare cont prin email
+  label_registration_automatic_activation: activare automată a contului
+  label_registration_manual_activation: activare manuală a contului
+  label_related_issues: Tichete asociate
+  label_relates_to: asociat cu
+  label_relation_delete: Șterge asocierea
+  label_relation_new: Asociere nouă
+  label_relations: Relații
+  label_renamed: redenumită
+  label_reply_plural: Răspunsuri
+  label_report: Raport
+  label_report_plural: Rapoarte
+  label_reported_issues: Tichete
+  label_repository: Depozit
+  label_repository_plural: Depozite
+  label_result_plural: Rezultate
+  label_reverse_chronological_order: În ordine invers cronologică
+  label_revision: Revizie
+  label_revision_plural: Revizii
+  label_roadmap: Planificare
+  label_roadmap_due_in: De terminat în %{value}
+  label_roadmap_no_issues: Nu există tichete pentru această versiune
+  label_roadmap_overdue: Întârziat cu %{value}
+  label_role: Rol
+  label_role_and_permissions: Roluri și permisiuni
+  label_role_new: Rol nou
+  label_role_plural: Roluri
+  label_save_grid_setup: Salvează tabel
+  label_saved_query_name: Nume filtru
+  label_scm: SCM
+  label_search: Caută
+  label_search_titles_only: Caută numai în titluri
+  label_select_easy_tag_source: Selectare sursă etichete
+  label_select_file_to_import: Selectare fișier pentru import
+  label_send_information: Trimite utilizatorului informațiile despre cont
+  label_send_test_email: Trimite email de test
+  label_settings: Setări
+  label_settings_default_project_indicator: Indicator culoare implicit
+  label_show_completed_versions: Arată versiunile terminate
+  label_show_in_meeting_calendar: Afișare în calendarul întâlnirii
+  label_sort: Sortează
+  label_sort_by: Sortează după %{value}
+  label_sort_higher: În sus
+  label_sort_highest: Prima
+  label_sort_lower: În jos
+  label_sort_lowest: Ultima
+  label_spent_time: Timp alocat
+  label_statistics: Statistici
+  label_stay_logged_in: Păstrează autentificarea
+  label_string: Text
+  label_subproject_plural: Sub-proiecte
+  label_tag: Tag
+  label_templates_plural: Şabloane proiect
+  label_text: Text lung
+  label_theme: Tema
+  label_this_month: luna aceasta
+  label_this_week: săptămâna aceasta
+  label_this_year: anul acesta
+  label_time_entry_plural: Timp alocat
+  label_time_tracking: Urmărire timp de lucru
+  label_to: la
+  label_to_now: până acum
+  label_today: astăzi
+  label_topic_plural: Subiecte
+  label_total: Total
+  label_total_plural: Totaluri
+  label_tracker: Tip de tichet
+  label_tracker_new: Tip nou de tichet
+  label_tracker_plural: Tipuri de tichete
+  label_updated_time: Actualizat acum %{value}
+  label_updated_time_by: Actualizat de %{author} acum %{age}
+  label_used_by: Folosit de
+  label_user: Utilizator
+  label_user_activities: Activități
+  label_user_activity: Activitate %{value}
+  label_user_add: Adaugă utilizator
+  label_user_mail_no_self_notified: Nu trimite notificări pentru modificările mele
+  label_user_mail_option_all: Pentru orice eveniment, în toate proiectele mele
+  label_user_mail_option_selected: Pentru orice eveniment, în proiectele selectate...
+  label_user_new: Utilizator nou
+  label_user_plural: Utilizatori
+  label_user_projects: Proiecte
+  label_version: Versiune
+  label_version_new: Versiune nouă
+  label_version_plural: Versiuni
+  label_view_all_revisions: Arată toate reviziile
+  label_view_diff: Afișează diferențele
+  label_view_revisions: Afișează revizii
+  label_visibility_private: doar mie
+  label_visibility_public: oricărui utilizator
+  label_watched_issues: Tichete urmărite
+  label_week: Săptămână
+  label_wiki: Wiki
+  label_wiki_content_added: Adăugat
+  label_wiki_content_updated: Actualizat
+  label_wiki_edit: Editare Wiki
+  label_wiki_edit_plural: Editări Wiki
+  label_wiki_page: Pagină Wiki
+  label_wiki_page_new: Pagină nouă wiki
+  label_wiki_page_plural: Pagini Wiki
+  label_without_notifications: Nu trimite notificări
+  label_workflow: Mod de lucru
+  label_x_closed_issues_abbr:
+    one: 1 închis
+    other: "%{count} închise"
+    zero: 0 închise
+  label_x_comments:
+    one: 1 comentariu
+    other: "%{count} comentarii"
+    zero: fara comentarii
+  label_x_issues:
+    one: 1 tichet
+    other: "%{count} tichete"
+    zero: 0 tichet
+  label_x_open_issues_abbr:
+    one: 1 deschis
+    other: "%{count} deschise"
+    zero: 0 deschise
+  label_x_projects:
+    one: un proiect
+    other: "%{count} proiecte"
+    zero: niciun proiect
+  label_year: An
+  label_yesterday: ieri
+  license_manager:
+    project_limit: Numarul maxim de proiecte a fost epuizat, pentru a extinde  numărul
+      vă rugăm să ne contactați la  %{email}.
+  mail_body_account_activation_request: 'S-a înregistrat un utilizator nou (%{value}).
+    Contul așteaptă aprobarea dumneavoastră:'
+  mail_body_account_information: Informații despre contul dumneavoastră
+  mail_body_account_information_external: Puteți folosi contul „{value}}” pentru a
+    vă autentifica.
+  mail_body_lost_password: 'Pentru a schimba parola, accesați:'
+  mail_body_password_updated: Parola dvs. a fost schimbată
+  mail_body_register: 'Pentru activarea contului, accesați:'
+  mail_body_reminder: "%{count} tichete atribuite dumneavoastră trebuie rezolvate
+    în următoarele %{days} zile:"
+  mail_body_security_notification_add: "%{field} %{value} a fost adăugat."
+  mail_body_security_notification_change: "%{field} a fost schimbat."
+  mail_body_security_notification_change_to: "%{field} s-a schimbat în %{value}."
+  mail_body_security_notification_notify_disabled: Adresa de mail %{value} nu va mai
+    primi notificări.
+  mail_body_security_notification_notify_enabled: Adresa de email %{value} acum primește
+    notificări.
+  mail_body_settings_updated: 'Următoarele setări au fost schimbate:'
+  mail_body_wiki_content_added: Pagina wiki '%{id}' a fost adăugată de %{author}.
+  mail_body_wiki_content_updated: Pagina wiki '%{id}' a fost actualizată de %{author}.
+  mail_subject_account_activation_request: Cerere de activare a contului %{value}
+  mail_subject_lost_password: 'Parola dumneavoastră: %{value}'
+  mail_subject_register: Activarea contului %{value}
+  mail_subject_reminder: "%{count} tichete trebuie rezolvate în următoarele %{days}
+    zile"
+  mail_subject_security_notification: Notificare de securitate
+  mail_subject_wiki_content_added: Pagina wiki '%{id}' a fost adăugată
+  mail_subject_wiki_content_updated: Pagina wiki '%{id}' a fost actualizată
+  notice_account_activated: Contul a fost activat. Vă puteți autentifica acum.
+  notice_account_invalid_credentials: Utilizator sau parola nevalidă
+  notice_account_lost_email_sent: S-a trimis un email cu instrucțiuni de schimbare
+    a parolei.
+  notice_account_password_updated: Parolă actualizată.
+  notice_account_pending: Contul dumneavoastră a fost creat și așteaptă aprobarea
+    administratorului.
+  notice_account_register_done: Contul a fost creat. Pentru activare, urmați legătura
+    trimisă prin email.
+  notice_account_unknown_email: Utilizator necunoscut.
+  notice_account_updated: Cont actualizat.
+  notice_account_wrong_password: Parolă greșită
+  notice_can_t_change_password: Acest cont folosește o sursă externă de autentificare.
+    Nu se poate schimba parola.
+  notice_default_data_loaded: S-a încărcat configurația implicită.
+  notice_email_error: A intervenit o eroare la trimiterea de email (%{value})
+  notice_email_sent: S-a trimis un email către %{value}
+  notice_failed_to_save_issues: 'Nu s-au putut salva %{count} tichete din cele %{total}
+    selectate: %{ids}.'
+  notice_feeds_access_key_reseted: Cheia de acces Atom a fost resetată.
+  notice_file_not_found: Pagina pe care doriți să o accesați nu există sau a fost
+    ștearsă.
+  notice_locking_conflict: Datele au fost actualizate de alt utilizator.
+  notice_no_issue_selected: Niciun tichet selectat! Vă rugăm să selectați tichetele
+    pe care doriți să le editați.
+  notice_not_authorized: Nu sunteți autorizat sa accesați această pagină.
+  notice_select_group_by: Vă rugăm selectați grup după
+  notice_successful_connection: Conectat.
+  notice_successful_create: Creat.
+  notice_successful_delete: Șters.
+  notice_successful_update: Actualizat.
+  notice_unable_delete_version: Nu se poate șterge versiunea.
+  number:
+    format:
+      delimiter: ''
+      precision: 3
+      separator: "."
+    human:
+      format:
+        delimiter: ''
+        precision: 3
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+  payment_require_page:
+    heading: 'Motiv: neplată'
+    note_text: Notificați administratorul dvs. cu informații despre plată
+    notice: Contul dvs. este temporar blocat
+    subheading: Ce urmează ?
+  permission_add_issue_notes: Adaugă note
+  permission_add_issue_watchers: Adaugă persoane interesate
+  permission_add_issues: Adaugă tichete
+  permission_add_messages: Scrie mesaje
+  permission_add_project: Crează proiect
+  permission_browse_repository: Răsfoiește depozitul
+  permission_comment_news: Comentează știrile
+  permission_commit_access: Acces commit
+  permission_delete_issues: Șterge tichete
+  permission_delete_messages: Șterge mesaje
+  permission_delete_own_messages: Șterge mesajele proprii
+  permission_delete_wiki_pages: Șterge pagini wiki
+  permission_delete_wiki_pages_attachments: Șterge atașamente
+  permission_edit_assigned_issue: Editare sarcini atribuite utilizatorului
+  permission_edit_issue_notes: Editează note
+  permission_edit_issues: Editează tichete
+  permission_edit_messages: Editează mesaje
+  permission_edit_own_issue_notes: Editează notele proprii
+  permission_edit_own_messages: Editează mesajele proprii
+  permission_edit_own_time_entries: Editează jurnalele proprii cu timpul de lucru
+  permission_edit_project: Editează proiectul
+  permission_edit_time_entries: Editează jurnalele cu timp de lucru
+  permission_edit_wiki_pages: Editează pagini wiki
+  permission_edit_without_notifications: Editare fără notificări
+  permission_import_issues: Import sarcini
+  permission_log_time: Înregistrează timpul de lucru
+  permission_manage_boards: Editează forum
+  permission_manage_categories: Editează categorii
+  permission_manage_files: Editează fișiere
+  permission_manage_issue_relations: Editează relații tichete
+  permission_manage_members: Editează membri
+  permission_manage_news: Editează știri
+  permission_manage_public_queries: Editează căutările implicite
+  permission_manage_repository: Gestionează depozitul
+  permission_manage_versions: Editează versiuni
+  permission_manage_wiki: Editează wiki
+  permission_protect_wiki_pages: Blochează pagini wiki
+  permission_rename_wiki_pages: Redenumește pagini wiki
+  permission_save_queries: Salvează căutările
+  permission_select_project_modules: Alege module pentru proiect
+  permission_view_calendar: Afișează calendarul
+  permission_view_changesets: Afișează modificările din depozit
+  permission_view_documents: Afișează documente
+  permission_view_files: Afișează fișiere
+  permission_view_gantt: Afișează Gantt
+  permission_view_issue_watchers: Afișează lista de persoane interesate
+  permission_view_messages: Afișează mesaje
+  permission_view_time_entries: Afișează timpul de lucru
+  permission_view_wiki_edits: Afișează istoricul wiki
+  permission_view_wiki_pages: Afișează wiki
+  project_module_boards: Forum
+  project_module_documents: Documente
+  project_module_files: Fișiere
+  project_module_issue_tracking: Tichete
+  project_module_news: Știri
+  project_module_repository: Depozit
+  project_module_time_tracking: Timp de lucru
+  project_module_wiki: Wiki
+  setting_activity_days_default: Se afișează zile în jurnalul proiectului
+  setting_app_title: Titlu aplicație
+  setting_attachment_extensions_allowed: Extensii permise
+  setting_attachment_max_size: Mărime maxima atașament
+  setting_autofetch_changesets: Preluare automată a modificărilor din depozit
+  setting_autologin: Autentificare automată
+  setting_bcc_recipients: Alți destinatari pentru email (BCC)
+  setting_commit_fix_keywords: Cuvinte cheie pt. rezolvare tichet
+  setting_commit_ref_keywords: Cuvinte cheie pt. referire tichet
+  setting_cross_project_issue_relations: Permite legături de tichete între proiecte
+  setting_date_format: Format dată
+  setting_default_language: Limba implicita
+  setting_default_projects_public: Proiectele noi sunt implicit publice
+  setting_diff_max_lines_displayed: Număr maxim de linii de diferență afișate
+  setting_display_subprojects_issues: Afișează implicit tichetele sub-proiectelor
+    în proiectele principale
+  setting_emails_footer: Subsol email
+  setting_enabled_scm: SCM activat
+  setting_feeds_limit: Limita de actualizări din feed
+  setting_file_max_size_displayed: Număr maxim de fișiere text afișate în pagină (inline)
+  setting_gravatar_enabled: Folosește poze Gravatar pentru utilizatori
+  setting_host_name: Numele gazdei și calea
+  setting_issue_list_default_columns: Coloane implicite afișate în lista de tichete
+  setting_issue_private_note_as_default: Comentarii cu privire la sarcini sunt private
+    prestabilit
+  setting_issues_export_limit: Limită de tichete exportate
+  setting_login_required: Necesita autentificare
+  setting_lost_password: Permite resetarea parolei prin email
+  setting_mail_from: Adresa de email a expeditorului
+  setting_mail_handler_api_enabled: Activare WS pentru email primit
+  setting_mail_handler_api_key: cheie API
+  setting_new_item_menu_tab: Filă meniu proiect  pentru creare noi obiecte
+  setting_new_project_user_role_id: Rol atribuit utilizatorului non-admin care crează
+    un proiect.
+  setting_openid: Permite înregistrare și autentificare cu OpenID
+  setting_password_min_length: Lungime minimă parolă
+  setting_per_page_options: Număr de obiecte pe pagină
+  setting_plain_text_mail: Mesaje text (fără HTML)
+  setting_protocol: Protocol
+  setting_repository_log_display_limit: Număr maxim de revizii afișate în istoricul
+    fișierului
+  setting_self_registration: Înregistrare automată
+  setting_sequential_project_identifiers: Generează secvențial identificatoarele de
+    proiect
+  setting_show_easy_entity_activity_on_issue: Afișare activități vânzări pe sarcini
+  setting_sys_api_enabled: Activare WS pentru gestionat depozitul
+  setting_text_formatting: Formatare text
+  setting_time_format: Format oră
+  setting_user_format: Stil de afișare pentru utilizator
+  setting_welcome_text: Text de întâmpinare
+  setting_wiki_compression: Comprimare istoric Wiki
+  sidebar_all_users_queries: Sarcinile angajaţiilor
+  status_active: activ
+  status_locked: blocat
+  status_registered: înregistrat
+  support:
+    array:
+      sentence_connector: și
+      skip_last_comma: false
+  text_are_you_sure: Sunteți sigur(ă)?
+  text_assign_time_entries_to_project: Atribuie orele la proiect
+  text_caracters_maximum: maxim %{count} caractere.
+  text_caracters_minimum: Trebuie să fie minim %{count} caractere.
+  text_chart_period_disabled: Perioada este aceeași ca axa x dacă este o dată
+  text_comma_separated: Sunt permise mai multe valori (separate cu virgulă).
+  text_custom_field_possible_values_info: O linie pentru fiecare valoare
+  text_default_administrator_account_changed: S-a schimbat contul administratorului
+    implicit
+  text_destroy_time_entries: Șterge orele înregistrate
+  text_destroy_time_entries_question: "%{hours} ore sunt înregistrate la tichetele
+    pe care doriți să le ștergeți. Ce doriți sa faceți?"
+  text_diff_truncated: "... Comparația a fost trunchiată pentru ca depășește lungimea
+    maximă de text care poate fi afișat."
+  text_email_delivery_not_configured: |-
+    Trimiterea de emailuri nu este configurată și ca urmare, notificările sunt dezactivate.
+    Configurați serverul SMTP în config/configuration.yml și reporniți aplicația pentru a le activa.
+  text_enumeration_category_reassign_to: 'Atribuie la această valoare:'
+  text_enumeration_destroy_question: Această valoare are %{count} obiecte.
+  text_file_repository_writable: Se poate scrie în directorul de atașamente
+  text_issue_added: Tichetul %{id} a fost adăugat de %{author}.
+  text_issue_category_destroy_assignments: Șterge apartenența la categorie.
+  text_issue_category_destroy_question: Această categorie conține (%{count}) tichete.
+    Ce doriți să faceți?
+  text_issue_category_reassign_to: Atribuie tichetele la această categorie
+  text_issue_updated: Tichetul %{id} a fost actualizat de %{author}.
+  text_issues_destroy_confirmation: Sigur doriți să ștergeți tichetele selectate?
+  text_issues_ref_in_commit_messages: Referire la tichete și rezolvare în textul mesajului
+  text_journal_changed: "%{label} schimbat din %{old} în %{new}"
+  text_journal_deleted: "%{label} șters (%{old})"
+  text_journal_set_to: "%{label} setat ca %{value}"
+  text_length_between: Lungime între %{min} și %{max} caractere.
+  text_load_default_configuration: Încarcă configurația implicită
+  text_min_max_length_info: 0 înseamnă fără restricții
+  text_minimagick_available: Este disponibil MiniMagick (opțional)
+  text_no_configuration_data: |-
+    Nu s-au configurat încă rolurile, stările tichetelor și modurile de lucru.
+    Este recomandat să încărcați configurația implicită. O veți putea modifica ulterior.
+  text_plugin_assets_writable: Se poate scrie în directorul de plugin-uri
+  text_project_destroy_confirmation: Sigur doriți să ștergeți proiectul și toate datele
+    asociate?
+  text_reassign_time_entries: 'Atribuie orele înregistrate la tichetul:'
+  text_regexp_info: ex. ^[A-Z0-9]+$
+  text_repository_usernames_mapping: |-
+    Selectați sau modificați contul Redmine echivalent contului din istoricul depozitului.
+    Utilizatorii cu un cont (sau e-mail) identic în Redmine și depozit sunt echivalate automat.
+  text_select_group_by: Selectare condiții de grupare
+  text_select_mail_notifications: Selectați acțiunile notificate prin email.
+  text_select_project_modules: 'Selectați modulele active pentru acest proiect:'
+  text_status_changed_by_changeset: Aplicat în setul %{value}.
+  text_subprojects_destroy_warning: 'Se vor șterge și sub-proiectele: %{value}.'
+  text_tip_issue_begin_day: sarcină care începe în această zi
+  text_tip_issue_begin_end_day: sarcină care începe și se termină în această zi
+  text_tip_issue_end_day: sarcină care se termină în această zi
+  text_tracker_no_workflow: Nu sunt moduri de lucru pentru acest tip de tichet
+  text_unallowed_characters: Caractere nepermise
+  text_user_mail_option: 'Pentru proiectele care nu sunt selectate, veți primi notificări
+    doar pentru ceea ce urmăriți sau în ce sunteți implicat (ex: tichete create de
+    dumneavoastră sau care vă sunt atribuite).'
+  text_user_wrote: "%{value} a scris:"
+  text_user_wrote_in: "%{value} a scris (%{link}):"
+  text_wiki_destroy_confirmation: Sigur doriți ștergerea Wiki și a conținutului asociat?
+  text_wiki_page_destroy_children: Șterge paginile și descendenții
+  text_wiki_page_destroy_question: Această pagină are %{descendants} pagini anterioare
+    și descendenți. Ce doriți să faceți?
+  text_wiki_page_nullify_children: Menține paginile ca și pagini inițiale (root)
+  text_wiki_page_reassign_children: Atribuie paginile la această pagină
+  text_workflow_edit: Selectați un rol și un tip de tichet pentru a edita modul de
+    lucru
+  time:
+    am: am
+    formats:
+      default: "%m/%d/%Y %I:%M %p"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+      time: "%I:%M %p"
+    pm: pm
+  title_easy_custom_menu_lock: Elementul este blocat și nu poate fi modificat.
+  title_easy_query_change_output:
+    kanban: Clic pentru a afișa rezultatele ca un kanban
+    list: Faceți clic pentru a afișa rezultatele ca o listă
+    map: Clic pentru a afișa rezultatul ca o hartă
+    report: Clic pentru a afișa rezultatele ca un raport.
+  title_new_issue_relation: Adaugă sarcini asociate
+  title_open_in_browser: Deschis în browser
+  title_other_formats_links_vcard: Salvați pe disc ca fișier VCARD.
+  title_personal_visibility: Utilizatorii vor vedea doar propriile lor valori ale
+    acestui câmp. Va fi ascuns când vizualizează profilurile altor utilizatori.
+  title_project_edit: Editare proiect
+  title_version_detail: Făcând clic puteți afișa detalii ale milestone
+  unable_to_delete_avatar: Ne pare rău. A intervenit o eroare în ștergerea avatarului.
+  user_time_entry_setting:
+    hours: ore
+  user:
+    easy_user_type:
+      external: Client
+  version_predecessor_error: Milestone %{version_name} deja urmează un alt milestone.
+  version_status_locked: blocat
+  version_status_open: deschis
+  warning_attachments_not_saved: Nu s-au putut salva %{count} fișiere.
+  xml_data_issue_priorities: Priorități sarcină
+  xml_data_roles: Roluri
+  xml_data_time_entry_activities: Activități
+  xml_data_users: Utilizatori

@@ -1,0 +1,6 @@
+<% 0.upto(custom_field_values.size - 1).each do |row| %>
+  <tr>
+    <th><%= custom_field_values[row] ? h(custom_field_values[row].custom_field.translated_name) : '' %></th>
+    <td><%= custom_field_values[row] ? show_value(custom_field_values[row], true, inline_editable: true) : '' %></td>
+  </tr>
+<% end %>

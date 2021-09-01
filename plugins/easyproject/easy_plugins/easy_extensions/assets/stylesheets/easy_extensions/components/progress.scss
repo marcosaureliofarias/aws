@@ -1,0 +1,63 @@
+/***** Progress bar *****/
+table.progress {
+  border-collapse: collapse;
+  border-spacing: 0pt;
+  empty-cells: show;
+  text-align: center;
+ // float: left;
+  position: relative;
+  td{
+	border-width: 1px;
+	border-style: solid;
+	height: 0.5*$gap - 2;
+	background: transparent none repeat scroll 0%;
+	&.closed {
+	  background-color: $color-main;
+	  border-color: $color-main-border !important;
+	}
+	&.done {
+	  background-color: $color-positive;
+	  border-color: $color-positive-border !important;
+	}
+	&.todo {
+	  background-color: $color-foreground;
+	  border-color: $color-border !important;
+	}
+  }
+  &+.percent {
+	display: none;
+	position: absolute;
+	padding: 0;
+	margin: 0 auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	text-shadow: 0 0 5px #fff;
+	font-size: 12px;
+	line-height: 1;
+	background-color: rgba(255, 255, 255, 0.5);
+	  &:hover{
+		  display: block;
+	  }
+  }
+  &:hover{
+	& + .percent{
+	  display: block;
+	}
+  }
+
+}
+p.progress-info {
+ // clear: left;
+  font-size: 80%;
+  margin-top: $gap;
+  color: #777;
+  text-align: center;
+}
+
+.progress-parent{
+  position: relative;
+	min-width: 30px;
+	// overflow: hidden;
+}

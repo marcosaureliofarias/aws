@@ -1,0 +1,140 @@
+<% project = tab[:project]
+   settings = project.nil? ? EasyMoney::SettingsResolver.new((EasyMoneySettings.global_settings_names + EasyMoneySettings.project_settings_names), project) : project.easy_money_settings
+  form_id = "easy-money-other-settings-form"
+  options_for_easy_currency = EasyCurrency.activated.map{|easy_currency| [easy_currency.name, easy_currency.iso_code]}
+-%>
+<%= form_tag({controller: 'easy_money_settings', action: 'update_settings', project_id: project}, {id: form_id, class: 'form-box'}) do %>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <%= hidden_field_tag("project_id", project.id) unless project.nil? -%>
+
+      <div class="easy-money-other-settings-container tabular long4 settings">
+
+        <h3><%= l(:heading_easy_money_other_settings_prices_and_rates) -%></h3>
+        <p>
+          <label for="settings_price_visibility"><%= l(:label_easy_money_other_settings_price_visibility) -%></label>
+          <%= select_tag 'settings[price_visibility]', options_for_select([[l('easy_money_other_settings_price_visibility.price1'), 'price1'], [l('easy_money_other_settings_price_visibility.all'), 'all']], settings['price_visibility']) -%>
+        </p>
+        <p>
+          <label><%= l(:label_easy_money_other_settings_vat) -%></label>
+          <%= text_field_tag 'settings[vat]', settings['vat'], :size => 1, :maxlength => 3 %>%
+        </p>
+        <p>
+          <label for="settings_rate_type"><%= l(:label_easy_money_other_settings_rate_type) -%></label>
+          <%= select_tag 'settings[rate_type]', options_for_select([[l('easy_money_other_settings_rate_type.internal'), 'internal'], [l('easy_money_other_settings_rate_type.all'), 'all']], settings['rate_type']) -%>
+        </p>
+        <p>
+          <%= hidden_field_tag 'settings[round_on_list]', '0', :id => nil %>
+          <label for="settings_round_on_list"><%= l(:label_easy_money_round_money_on_list) %></label>
+          <%= check_box_tag 'settings[round_on_list]', '1', settings.round_on_list? %>
+        </p>
+
+        <h3><%= l(:heading_easy_money_other_settings_project_overview) -%></h3>
+        <p>
+          <label for="settings_expected_count_price"><%= l(:label_easy_money_other_settings_expected_count_price) -%></label>
+          <%= select_tag 'settings[expected_count_price]', options_for_select([[l('easy_money_other_settings_expected_count_price.price1'), 'price1'], [l('easy_money_other_settings_expected_count_price.price2'), 'price2']], settings['expected_count_price']) -%>
+        </p>
+        <p>
+          <label for="settings_expected_rate_type"><%= l(:label_easy_money_other_settings_expected_rate_type) -%></label>
+          <%= select_tag 'settings[expected_rate_type]', options_for_select([[l('easy_money_other_settings_expected_rate_type.internal'), 'internal'], [l('easy_money_other_settings_expected_rate_type.external'), 'external']], settings['expected_rate_type']) -%>
+        </p>
+        <p>
+          <%= label_tag 'settings_revenues_type', l(:label_easy_money_other_settings_revenues_type) %>
+          <%= select_tag 'settings[revenues_type]',
+                         options_for_select([[l('easy_money_revenues_type.list'), 'list'], [l('easy_money_revenues_type.sum'), 'sum']], settings['revenues_type']),
+                         onchange: "alert('#{l('easy_money_revenues_type.change_confirm')}');"
+          -%>
+        </p>
+        <p>
+          <%= label_tag 'settings_expenses_type', l(:label_easy_money_other_settings_expenses_type) %>
+          <%= select_tag 'settings[expenses_type]',
+                         options_for_select([[l('easy_money_expenses_type.list'), 'list'], [l('easy_money_expenses_type.sum'), 'sum']], settings['expenses_type']),
+                         onchange: "alert('#{l('easy_money_revenues_type.change_confirm')}');"
+          -%>
+        </p>
+        <p>
+          <%= label_tag 'settings_expected_payroll_expense_type', l(:label_easy_money_other_settings_expected_payroll_expense_type) %>
+          <%= select_tag 'settings[expected_payroll_expense_type]',
+                         options_for_select([[l('easy_money_expected_payroll_expense_type.amount'), 'amount'], [l('easy_money_expected_payroll_expense_type.hours'), 'hours'], [l('easy_money_expected_payroll_expense_type.estimated_hours'), 'estimated_hours'], [l('easy_money_expected_payroll_expense_type.planned_hours_and_rate'), 'planned_hours_and_rate']], settings['expected_payroll_expense_type']),
+                         :onchange => "$('#settings_expected_payroll_expense_rate_value').parent().toggle(this.value !== 'amount')", :id => 'settings_expected_payroll_expense_type'
+          -%>
+        </p>
+
+        <%= render_setting_with_easy_currency settings, 'expected_payroll_expense_rate', options_for_easy_currency, {invisible: settings['expected_payroll_expense_type'] == 'amount', label: l(:label_easy_money_expected_payroll_expense_per_hours) }%>
+
+        <h3><%= l(:label_easy_money_other_settings) -%></h3>
+        <p>
+          <%= hidden_field_tag 'settings[include_childs]', '0', :id => nil -%>
+          <%= label_tag 'settings_include_childs', l(:label_easy_money_other_settings_include_childs) %>
+          <%= check_box_tag 'settings[include_childs]', '1', settings.include_childs? -%>
+        </p>
+        <p>
+          <%= hidden_field_tag 'settings[use_travel_costs]', '0', :id => nil -%>
+          <%= label_tag 'settings_use_travel_costs', l(:label_easy_money_other_settings_use_travel_costs) %>
+          <%= check_box_tag 'settings[use_travel_costs]', '1', settings.use_travel_costs? -%>
+        </p>
+        <p>
+          <%= hidden_field_tag 'settings[use_travel_expenses]', '0', :id => nil -%>
+          <%= label_tag 'settings_use_travel_expenses', l(:label_easy_money_other_settings_use_travel_expenses) %>
+          <%= check_box_tag 'settings[use_travel_expenses]', '1', settings.use_travel_expenses? -%>
+        </p>
+
+        <%= render_setting_with_easy_currency settings, 'travel_cost_price_per_unit', options_for_easy_currency %>
+        <%= render_setting_with_easy_currency settings, 'travel_expense_price_per_day', options_for_easy_currency %>
+
+        <p>
+          <%= label_tag 'settings_travel_metric_unit', l(:label_easy_money_other_settings_travel_metric_unit) %>
+          <%= text_field_tag('settings[travel_metric_unit]', settings['travel_metric_unit'], :size => 10) -%>
+        </p>
+        <%= call_hook :view_easy_money_bottom_other_settings, {settings: settings, project: project} %>
+        <p>
+          <%= hidden_field_tag 'settings[expected_visibility]', '0', :id => nil -%>
+          <%= label_tag 'settings_expected_visibility', l(:label_easy_money_other_settings_project_expected_visibility) %>
+          <%= check_box_tag 'settings[expected_visibility]', '1', settings.show_expected? -%>
+        </p>
+        <p>
+          <%= hidden_field_tag 'settings[use_easy_money_for_versions]', '0', :id => nil -%>
+          <%= label_tag 'settings_use_easy_money_for_versions', l(:label_easy_money_other_settings_project_use_easy_money_for_versions) %>
+          <%= check_box_tag 'settings[use_easy_money_for_versions]', '1', settings.use_easy_money_for_versions? -%>
+        </p>
+        <p>
+          <%= hidden_field_tag 'settings[use_easy_money_for_issues]', '0', :id => nil -%>
+          <%= label_tag 'settings_use_easy_money_for_issues', l(:label_easy_money_other_settings_project_use_easy_money_for_issues) %>
+          <%= check_box_tag 'settings[use_easy_money_for_issues]', '1', settings.use_easy_money_for_issues? -%>
+        </p>
+        <% if Redmine::Plugin.installed?(:easy_crm) %>
+          <p>
+            <%= hidden_field_tag 'settings[use_easy_money_for_easy_crm_cases]', '0', :id => nil -%>
+            <%= label_tag 'settings_use_easy_money_for_easy_crm_cases', l(:label_easy_money_other_settings_project_use_easy_money_for_easy_crm_cases) %>
+            <%= check_box_tag 'settings[use_easy_money_for_easy_crm_cases]', '1', settings.use_easy_money_for_easy_crm_cases? -%>
+          </p>
+        <% end %>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="splitcontentright">
+      <h3><%= l(:heading_easy_money_mapping_setting) -%></h3>
+      <% keys = {'Expected' => 'Other'}; keys.merge!(keys.invert) %>
+      <ul style="list-style-type: none;">
+        <% ['Revenue', 'Expense'].each do |x| %>
+          <% keys.each do |k, v| %>
+            <% source = "EasyMoney#{k}#{x}"; target = "EasyMoney#{v}#{x}" %>
+            <li><%= link_to_entity_mapper(l(:label_easy_money_mapping_setting, :from => l("label_#{source.underscore}"), :to => l("label_#{target.underscore}")), '', source, target, :class => 'icon icon-settings', :force_map => true) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <%= render partial: 'easy_money_rates/save_modal_dialog', locals: {project: project, form_id: form_id} %>
+  <div class="form-actions">
+    <%= link_to_function(l(:button_save), "showEasyMoneySettingSaveDialog()", class: 'show-save-dialog-modal button-positive', title: l(:title_easy_money_rates_save)) %>
+
+    <% if project.nil? -%>
+      <% warning = String.new
+         warning += (l('warning_easy_money_all_projects.revenues_type', :projects => @different_settings[:revenues]) + "\n") if @different_settings && !@different_settings[:revenues].blank?
+         warning += (l('warning_easy_money_all_projects.expenses_type', :projects => @different_settings[:expenses]) + "\n") if @different_settings && !@different_settings[:expenses].blank?
+         warning += l('warning_easy_money_all_projects.question')
+      -%>
+    <% end -%>
+  </div>
+<% end -%>

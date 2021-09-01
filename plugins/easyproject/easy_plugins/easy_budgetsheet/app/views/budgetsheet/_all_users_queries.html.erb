@@ -1,0 +1,13 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name -%>
+<div class="box">
+  <%= content_tag :h3, l(:sidebar_budgetsheet_all_users_queries) %>
+  <div id="user-query-automatic-filter" class="entity-array">
+    <% User.select('users.*, easy_user_types.position').easy_budgetsheet_available_users.joins(:easy_user_type).preload(:easy_user_type).reorder("easy_user_types.position ASC, #{User.fields_for_order_statement.join(', ')}").group_by(&:easy_user_type).each do |type, users| %>
+      <%= toggling_container(modul_uniq_id+type.hash.to_s, User.current, {:heading => type ? type.name : l(:label_none), default_button_state: type ? type.internal? : false}) do %>
+        <% users.each do |user| %>
+          <%= link_to(user.name, {:controller => 'budgetsheet', :set_filter => 1, :user_id => user.id, :spent_on => 'last_month', :query_by_user => 1}, :title => l(:label_show_assigned_issues, :username => user.name)) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

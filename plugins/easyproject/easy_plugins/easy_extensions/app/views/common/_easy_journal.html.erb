@@ -1,0 +1,25 @@
+<div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
+<%# easy_cache ['avatar', journal.user] do %>
+  <%= avatar(journal.user, :size => 64) -%>
+<%# end %>
+  <% easy_cache [entity.class.name.underscore.pluralize.to_s + '/journal/details', I18n.locale, journal], Proc.new{!User.current.admin?} do %>
+    <div class="journal-details-container">
+      <%= link_to(polymorphic_path(entity, :anchor => "change-#{journal.id}"), :class => 'journal journal-id', :title => truncate(h(entity), :length => 100)) do %>
+        <i class="icon-link"></i>
+        <span><%= journal.id -%></span>
+      <% end if EasySetting.value('show_journal_id') -%>
+      <h4 data-entity-id="<%= journal.id %>" data-entity-type="Journal" data-handler="<%= journal.notes.present? %>"><%= content_tag('a', '', :name => "note-#{journal.id}") %><%= authoring_with_datetime(journal.created_on, journal.user, :label => :label_updated_datetime_by) %></h4>
+
+      <% if journal.visible_details.any? %>
+        <ul class="details">
+          <% details_to_strings(journal.visible_details, false, :entity => entity).each do |string| %>
+            <li><%= string -%></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  <% end -%>
+  <div class="clear"></div>
+
+  <%= render_notes(entity, journal, {:editable => true}) -%>
+</div>

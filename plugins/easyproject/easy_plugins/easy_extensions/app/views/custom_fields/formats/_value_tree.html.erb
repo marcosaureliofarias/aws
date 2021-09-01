@@ -1,0 +1,51 @@
+<p>
+  <%= f.text_area :possible_values, :value => @custom_field.format.possible_values_for_edit_page(@custom_field).to_a.join("\n"), rows: 15 %>
+  <em class="info"><%= easy_simple_format l(:text_custom_field_value_tree_info) %></em>
+</p>
+
+<% if false %>
+  <p><%= f.text_field(:default_value) %></p>
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    var separatorMark = '<%= EasyExtensions::FieldFormats::ValueTree::SEPARATOR_MARK.html_safe %>';
+    var separatorRegexp = new RegExp(separatorMark + "+");
+
+    $("#custom_field_possible_values").on('keydown', function (event) {
+      // Common
+      if (event.which == 9 || event.which == 13) {
+        event.preventDefault();
+
+        var value = this.value;
+        var values = value.split("\n")
+        var start = this.selectionStart;
+
+        var lineNumber = value.substring(0, start).split("\n").length - 1;
+      }
+
+      // Tab
+      if (event.which == 9) {
+        values[lineNumber] = separatorMark + values[lineNumber];
+
+        this.value = values.join("\n");
+        this.selectionStart = this.selectionEnd = start + 1;
+      }
+
+      // Enter
+      if (event.which == 13) {
+        var prepend = '';
+        var currentLevel = values[lineNumber].match(separatorRegexp);
+
+        if (currentLevel) {
+          prepend = currentLevel.toString() + ' ';
+        }
+
+        values.splice(lineNumber + 1, 0, prepend);
+
+        this.value = values.join("\n");
+        this.selectionStart = this.selectionEnd = start + prepend.length + 1;
+      }
+    });
+  });
+</script>

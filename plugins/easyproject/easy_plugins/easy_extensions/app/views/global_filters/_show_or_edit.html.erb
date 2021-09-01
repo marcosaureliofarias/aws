@@ -1,0 +1,21 @@
+<% if EasyExtensions.global_filters_enabled %>
+  <%
+    current_tab = easy_page_context[:page_params][:current_tab]
+    edit = easy_page_context[:page_params][:edit]
+    template = easy_page_context[:page_params][:page_template]
+  %>
+
+  <% if edit %>
+    <%= render 'global_filters/edit', local_assigns %>
+  <% elsif current_tab && (current_tab.settings['global_filters'].present? || current_tab.settings['global_currency'] == '1') %>
+    <div class="global-filters">
+      <%=
+        if template
+          render 'global_filters/template_show', local_assigns
+        else
+          render 'global_filters/page_show', local_assigns
+        end
+      %>
+    </div>
+  <% end %>
+<% end %>

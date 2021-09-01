@@ -1,0 +1,44 @@
+@mixin cool-toggler(
+  $settings: (
+      toggler-height: 12px,
+      toggler-width: 20px,
+      toggler-padding: 2px,
+      toggler-offset-left: 6px
+    )){
+
+  $toggler-height:      map-get($settings, toggler-height);
+  $toggler-width:       map-get($settings, toggler-width);
+  $toggler-padding:     map-get($settings, toggler-padding);
+  $toggler-offset-left: map-get($settings, toggler-offset-left);
+
+  &:before,&:after{
+    display: inline-block !important;
+    content: '';
+    @include border-radius($toggler-height);
+  }
+  &:before{
+    @include box-shadow(0 0 2px inset);
+    background: $color-negative;
+    width: $toggler-width !important;
+    height: $toggler-height !important;
+  }
+  &:after{
+    @include box-shadow(0 0 2px);
+    background: $color-foreground;
+    width: calc(#{$toggler-height} - #{2*$toggler-padding});
+    height: calc(#{$toggler-height} - #{2*$toggler-padding}) !important;
+    margin: $toggler-padding;
+    position: absolute;
+    left: $toggler-offset-left;
+  }
+
+  &.active{
+    &:before{
+      background: $color-positive;
+    }
+    &:after{
+      left: auto;
+      right: $toggler-padding;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<table class="list">
+  <tbody>
+    <% users.each do |user| %>
+      <tr class="<%= user.css_classes %>">
+        <td class="name">
+          <%= link_to(avatar(user, style: :small, no_link: true) + user.name, user_path(user), title: user.name) %>
+        </td>
+        <td>
+          <%= mail_to user.mail %>
+        </td>
+        <td class="buttons">
+          <%= link_to(l(:button_show), user_path(user), class: 'icon icon-user', title: l(:button_view), alt: l(:button_view)) %>
+          <%= link_to(l(:button_edit), edit_user_path(user), class: 'icon icon-edit', title: l(:button_edit), alt: l(:button_edit)) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="clear"></div>
+<span class="pagination">
+  <%= pagination_links_full(@user_pages , @user_count, :per_page_links => false) do |text, parameters, options| %>
+    <% link_to text, url_for(parameters.merge(:q => params[:q])), :remote => true %>
+  <% end %>
+</span>

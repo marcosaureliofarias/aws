@@ -1,0 +1,26 @@
+<%= form_for @new_easy_entity_activity, remote: true do |fl| %>
+  <div class="autoscroll__wrapper">
+    <div class="autoscroll">
+      <table class="list">
+        <thead>
+          <tr>
+            <%= call_hook(:view_easy_entity_activities_list_table_head_top) %>
+            <th><%= l :field_easy_entity_activity_start_time %></th>
+            <th><%= l :field_category %></th>
+            <th><%= l :field_easy_entity_activity_finished %></th>
+            <th><%= l :field_easy_entity_activity_attendees %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="entity-activity__new">
+          <%= render partial: 'easy_entity_activities/form', locals: {f: fl} %>
+        </tbody>
+          <%= render partial: 'easy_entity_activities/item_tr', collection: @easy_entity_activities.active, as: :easy_entity_activity %>
+          <%= render partial: 'easy_entity_activities/item_tr', collection: @easy_entity_activities.finished, as: :easy_entity_activity %>
+      </table>
+      <%= late_javascript_tag('initEasyAutocomplete();') %>
+    </div>
+  </div>
+  <div class="toolbar">
+  </div>
+<% end %>

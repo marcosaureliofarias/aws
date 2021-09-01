@@ -1,0 +1,11 @@
+<%
+  can_delete_items = User.current.allowed_to?(:delete_easy_checklist_items, entity.project)
+%>
+
+<% if can_delete_items %>
+EASY.schedule.main(function () {
+  $(".easy-checklist-item-container .easy-checklist-item-label").each(function(){
+    $(this).find('.easy-checklist-item-delete').detach().appendTo($(this))
+  });
+});
+<% end %>

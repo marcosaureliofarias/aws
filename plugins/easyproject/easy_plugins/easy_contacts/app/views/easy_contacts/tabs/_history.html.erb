@@ -1,0 +1,5 @@
+<% if @journals.any? %>
+  <%= easy_journal_render_history(@journals, :entity => @easy_contact, :wrapping_heading_element_classes => 'icon icon-workflow') %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

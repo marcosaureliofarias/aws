@@ -1,0 +1,61 @@
+---
+cs:
+  button_easy_earned_values_reload_planned: Přepočítat plán
+  easy_earned_values:
+    axes:
+      costs: Náklady
+      time: Čas
+    baseline: Baseline
+    chart_types:
+      bar: Sloupcový graf
+      line: Liniový graf
+      spline: Křivka
+    field_reload_constantly: Obnovovat průběžně
+    help_reload_constantly: Data budou plně načteny až při každém spuštění (tato operace
+      může trvat dlouho)
+    types:
+      estimated_hours:
+        name: Předepsané hodiny
+        values:
+          ac_long: Skutečné výdaje (vykázaný čas)
+          ev_long: Dosažená hodnota (vážené % dokončení, váha dle redepsané doby)
+          pv_long: Plánovaná hodnota (předepsaná doba)
+    use_current_project: Použít aktuální projekt
+    values:
+      ac: Skutečné náklady
+      cpi: Index nákladů
+      cpi_help: 'Vyjadřuje množství dokončené práce na jednotku nákladů. Hodnota je
+        vypočtená jako podíl: Dosažená hodnota / Skutečné náklady. Hodnota vyšší než
+        1 znamená, že projekt si vede z nákladového hlediska efektivně.'
+      cv: Rozdíl nákladů
+      cv_help: Rozdíl mezi dosaženou hodnotou a skutečnými náklady.
+      ev: Dosažená hodnota
+      pv: Plánovaná hodnota
+      spi: Index časového plánu
+      spi_help: 'Vyjadřuje jak je práce dokončena v poměru k plánu. Hodnota je vypočtena
+        jako podíl: Dosažená hodnota / Plánovaná hodnota. Hodnota vyšší než 1 znamená,
+        že projekt je oproti plánu vepřed.'
+      sv: Rozdíl časového plánu
+      sv_help: Toto je dokončená práce v porovnání s plánem. Hodnota je vypočtená
+        jako rozdíl mezi dosaženou hodnotou a plánovanou hodnotou
+  easy_pages:
+    modules:
+      easy_earned_value: Dosažená hodnota
+  easy_rake_tasks:
+    easy_earned_values_updater:
+      caption: Aktualizátor dosažené hodnoty
+  label_easy_earned_value: Dosažená hodnota
+  label_easy_earned_values: Dosažené hodnoty
+  label_edit_easy_earned_value: Upravit dosaženou hodnotu
+  label_new_easy_earned_value: Nová dosažená hodnota
+  permission_edit_easy_earned_value: Upravovat dosaženou hodnotu
+  permission_edit_easy_earned_values: Upravovat dosaženou hodnotu
+  permission_view_easy_earned_value: Zobrazit dosaženou hodnotu
+  permission_view_easy_earned_values: Zobrazit dosaženou hodnotu
+  project_module_easy_earned_values: Dosažené hodnoty
+  text_easy_earned_values_baseline_disabled: Modul Baseline je na projektu deaktivován.
+    Aktivujte ho prosím.
+  text_easy_earned_values_no_data: Dosažené hodnoty neobsahují data. Počkejte prosím
+    na přepočet.
+  text_easy_earned_values_not_authorized: Nemáte oprávnění zobrazit dosaženou hodnotu.
+  text_easy_earned_values_select_ev: Zvolte dosaženou hodnotu.

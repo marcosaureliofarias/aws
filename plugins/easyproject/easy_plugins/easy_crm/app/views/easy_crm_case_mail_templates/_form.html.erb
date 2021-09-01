@@ -1,0 +1,38 @@
+<% if project %>
+  <%= f.hidden_field :project_id, :value => project.id.to_s %>
+<% else %>
+  <p>
+    <%= f.label :project_id -%>
+    <% selected_project_value = (f.object.project.nil? ? {:name => '', :id => ''} : {:name => f.object.project.name, :id => f.object.project.id.to_s}) %>
+    <%= easy_select_tag(
+      "#{f.object_name}[project_id]", selected_project_value, nil,
+      easy_autocomplete_path('easy_crm_projects'),
+      :html_options => {:id => "#{f.object_name}_project_id"}, :root_element => 'projects') -%>
+  </p>
+<% end %>
+
+<p>
+  <%= f.label :easy_crm_case_status_id %>
+  <%= f.select :easy_crm_case_status_id, EasyCrmCaseStatus.all.to_a.collect{|t| [t.name, t.id.to_s]}, {:include_blank => true} %>
+</p>
+<p>
+  <%= f.label :subject %>
+  <%= f.text_field :subject, :size => nil %>
+</p>
+<p>
+  <%= render_mail_template_dynamic_tokens(EasyCrmCase, 'easy_crm_case_mail_template_body_html') %>
+  <%# l(:text_easy_helpdesk_mail_template_dynamic_text).join('<br />').html_safe %>
+</p>
+<p>
+  <%= f.label :body_html %>
+</p>
+<p>
+  <%= f.text_area :body_html %>
+  <%= wikitoolbar_for('easy_crm_case_mail_template_body_html', preview_text_path, {:toolbar => 'Full'}) %>
+</p>
+<p>
+  <%= f.label :body_plain %>
+</p>
+<p>
+  <%= f.text_area :body_plain, :cols => 60 %>
+</p>

@@ -1,0 +1,18 @@
+<% object_name ||= 'issue' %>
+<% if issue.safe_attribute? 'custom_field_values' %>
+  <div class="tabular box" style="<%= 'display:none;' if issue.editable_custom_field_values.empty? %>">
+    <% if @copy_from %>
+      <%
+        readonly = issue.visible_custom_field_values - issue.editable_custom_field_values
+        readonly.each do |value, idx|
+      %>
+        <%= hidden_field_tag("#{object_name}[custom_field_values][#{value.custom_field.id}]", value.value) %>
+      <% end %>
+    <% end %>
+    <%= toggling_container("issue-form-custom-fields-#{params[:format]}", User.current, { heading: l(:label_custom_field_plural), wrapping_heading_element_classes: ' icon icon-db-key' }) do %>
+      <% issue.editable_custom_field_values.each_with_index do |value, idx| %>
+        <p class="new-issue-custom-field"><%= custom_field_tag_with_label object_name, value, {}, { tabindex: (200 + 10 * idx), default_value: true } %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% end -%>

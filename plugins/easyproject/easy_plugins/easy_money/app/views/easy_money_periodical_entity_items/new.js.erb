@@ -1,0 +1,18 @@
+$('#ajax-modal').html("<%= j(render(:template => 'easy_money_periodical_entity_items/new', :formats => [:html])) %>");
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel).html_safe %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_create).html_safe %>',
+      click: function() {EASY.utils.submitModalForm(this)}, 'class': 'button-positive'
+    },
+    {
+      text: '<%=j l(:button_issue_create_and_continue).html_safe %>',
+      click: function() {EASY.utils.submitModalForm(this, true)}, 'class': 'button-positive'
+    }
+  ]
+});

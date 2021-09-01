@@ -1,0 +1,21 @@
+var fileSpan = $('#attachments_<%= j params[:attachment_id] %>').addClass('attachment');
+<% if @attachment.new_record? %>
+  fileSpan.hide();
+  alert("<%= j @attachment.errors.full_messages.join(', ') %>");
+<% else %>
+  $('<input>', { type: 'hidden', name: '<%= params.delete(:tag_name) || 'attachments' %>[<%= j params[:attachment_id] %>][token]' } ).val('<%= j @attachment.token %>').appendTo(fileSpan);
+  fileSpan.find('a.remove-upload')
+    .attr({
+      "data-remote": true,
+      "data-method": 'delete',
+      href: '<%= j attachment_path(@attachment, :attachment_id => params[:attachment_id], :format => 'js') %>'
+    })
+    .off('click')
+    .empty();
+  fileSpan.append('<%= j render :partial => "attachments/form_custom_fields", :locals => { :tag_name => params.delete(:tag_name) || 'attachments', :attachment_id => params[:attachment_id], :attachment => @attachment_for_custom_fields } %>');
+
+  if (fileSpan.parents('div.modal').length > 0) {
+    fileSpan.parents('form').attr('data-remote', true);
+    $('#ajax-modal').scrollTop(0);
+  }
+<% end %>

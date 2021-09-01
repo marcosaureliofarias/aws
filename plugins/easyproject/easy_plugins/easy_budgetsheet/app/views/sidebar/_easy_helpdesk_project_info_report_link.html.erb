@@ -1,0 +1,10 @@
+<% if User.current.allowed_to?(:manage_easy_helpdesk_project, project) %>
+  <li>
+    <%= link_to(l(:button_easy_helpdesk_reports_index), budgetsheet_path(
+        {:set_filter => '1', :xproject_id => project.id, :group_by => 'tmonth', :spent_on => '90_days',
+         :tracker_id => ehp.tracker_ids.join('|'),
+        :easy_query => {:column_names => ['issue', 'user', 'activity', 'hours', 'easy_money_rate_type_external']}
+        }),
+      :title => l(:button_easy_helpdesk_reports_index), :class => 'icon icon-tracker') -%>
+  </li>
+<% end %>

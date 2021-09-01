@@ -1,0 +1,74 @@
+<% ep_com = Redmine::Plugin.installed?(:easy_project_com)
+   er_com = Redmine::Plugin.installed?(:easy_redmine) && EasySetting.value(:ui_theme).presence
+ %>
+<% if ep_com%>
+  @import "easy_project_com/common_assets";
+  @import "easy_project_com/components/typography";
+  @import "easy_project_com/components/progress";
+  @import "easy_project_com/components/avatar";
+  @import "easy_project_com/components/buttons";
+  @import "easy_project_com/components/modal";
+  @import "easy_project_com/components/jqueryui";
+<% else %>
+  <% if er_com %>
+    @import "easy_redmine/common_assets";
+  <% else %>
+    @import "easy_extensions/common_assets";
+  <% end %>
+  @import "easy_extensions/components/typography";
+  @import "easy_extensions/components/progress";
+  @import "easy_extensions/components/avatar";
+  @import "easy_extensions/components/buttons";
+  @import "easy_extensions/components/modal";
+  @import "easy_extensions/components/jqueryui";
+<% end %>
+$color-print--text: $color-print;
+$color-print--accent: lighten($color-main, 50%);
+//@import "scss/components/colors";
+//@import "scss/extensions/easy_calculation";
+
+@import 'easy_extensions/functions';
+@import 'easy_extensions/variables_icons';
+@import 'easy_extensions/variables';
+@import 'easy_extensions/mixins/fonts';
+@import 'easy_extensions/mixins/icons';
+
+@include loadFontFace('Material Icons','materialdesignicons-webfont','','',normal,normal);
+
+@page{
+  margin: 10mm 5mm;
+}
+@import "easy_extensions/print/_typography";
+@import "easy_extensions/print/_frames";
+@import "easy_extensions/print/_tables";
+@import "easy_extensions/print/_avatar";
+@import "easy_extensions/print/_forms";
+@import "easy_extensions/print/_boxes";
+@import "easy_extensions/print/_calendar";
+@import "easy_extensions/print/_progress";
+@import "easy_extensions/print/_buttons";
+@import "easy_extensions/print/_grid";
+@import "easy_extensions/print/_journal";
+@import "easy_extensions/print/_galereya";
+@import "easy_extensions/print/_checklists";
+@import "easy_extensions/print/_cke";
+@import "easy_extensions/print/_printable_templates.scss";
+@import "easy_extensions/print/_lists";
+@import "easy_extensions/print/_easy_pages";
+@import "easy_extensions/print/_charts";
+@import "easy_extensions/print/_activity";
+@import "easy_extensions/print/_easy_query";
+@import "easy_extensions/print/_detail";
+@import "easy_extensions/print/_gantt";
+@import "easy_extensions/print/_tabs";
+@import "easy_extensions/print/_tags";
+@import "easy_extensions/print/_scheduler";
+@import "easy_extensions/print/_jquery_ui";
+@import "easy_extensions/print/_maps";
+@import "easy_extensions/print/_wbs";
+@import "easy_extensions/print/_agile";
+@import "easy_extensions/print/_intercom";
+@import "easy_extensions/components/indicator";
+
+<% Redmine::Hook.call_hook(:easy_extensions_stylesheets_print_hook, {template: self}) %>
+

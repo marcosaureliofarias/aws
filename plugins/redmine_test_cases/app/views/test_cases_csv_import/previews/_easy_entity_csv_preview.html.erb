@@ -1,0 +1,13 @@
+<% if easy_entity_import.file %>
+  <p>
+    <% count = 0;File.open(easy_entity_import.file.path) { |f| count = f.readlines.count } %>
+    <%= l(:label_total_lines, count: count) %>
+  </p>
+  <ol start="0">
+    <% easy_entity_import.csv.each_with_index do |column, index| %>
+      <li>
+        <big class="easy-import-child easy-import-item-handler" data-path="<%= index %>" data-name="<%= column %>"><%= column %></big>
+      </li>
+    <% end %>
+  </ol>
+<% end %>

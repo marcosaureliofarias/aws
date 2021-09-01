@@ -1,0 +1,48 @@
+$popup__shadow: $box-shadow;
+$popup__radius: .5*$gap;
+$popup__border--content: $color-border;
+$popup__z-index: 6;
+$popup__z-index--backdrop: 5;
+
+@mixin popup($mobile-reposition: true) {
+  color: $color-text;
+  background-color: mix($color-background, $color-front);
+  min-width: 200px;
+  @if ($mobile-reposition){
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    position: fixed !important;
+  }@else{
+    width: 100%;
+    max-width: 350px;
+    position: absolute !important;
+    left: 0;
+    top: 100%;
+    transform: none !important;
+  }
+  @media only screen and (min-width: $breakpoint--small) {
+    width: 100%;
+    max-width: 350px;
+    position: absolute !important;
+    left: 0;
+    top: 100%;
+    transform: none !important;
+  }
+  box-shadow:$popup__shadow;
+  z-index: $popup__z-index;
+}
+@mixin popup__backdrop{
+  &:after{
+    content: "";
+    position: fixed;
+    display: block;
+    z-index: $popup__z-index--backdrop !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba($backdrop__color, $backdrop__opacity);
+  }
+}

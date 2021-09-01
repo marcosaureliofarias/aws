@@ -1,0 +1,24 @@
+<%=
+  easy_checklist = @easy_checklist.dup
+  easy_checklist.easy_checklist_items = @easy_checklist.easy_checklist_items
+  @entity.easy_checklists = [easy_checklist]
+  labelled_form_for @entity do |form|
+    form.fields_for :easy_checklists, :child_index => 'new_easy_checklists' do |builder|
+      link_to_add_association l(:button_new_easy_checklist), form, :easy_checklists,
+        :class => 'button icon icon-add',
+        :id => 'append_easy_checklist_template_button',
+        :partial => 'easy_checklists/easy_checklist_form_attributes_fieldset',
+        :render_options => {
+          :child_index => 'new_easy_checklists',
+          :locals => {
+            :f => builder,
+            :easy_checklist => easy_checklist,
+            :options => {
+              :display_link_to_remove_association => true,
+              :display_link_to_remove_item_association => true
+            }
+          }
+        }
+    end
+  end
+%>

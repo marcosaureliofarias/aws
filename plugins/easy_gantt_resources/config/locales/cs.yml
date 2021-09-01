@@ -1,0 +1,207 @@
+---
+cs:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: Alokace již existuje
+  button_hide_planned_tasks: Plánované úkoly
+  button_top_menu_easy_gantt_resources: Vytížení zdrojů
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: Zobrazení vytížení zdrojů v Ganttu
+  easy_gantt_resources_plugin_name: Vytížení zdrojů
+  easy_gantt_resources:
+    allocator:
+      evenly: Rovnoměrně (pomalé)
+      from_end: Od konce
+      from_start: Od začátku
+      future_evenly: Budoucí rovnoměrně
+      future_from_end: V budoucnosti od konce
+      future_from_start: V budoucnosti od začátku
+      label_allocator: Alokátor
+      random: Náhodně
+    buttons:
+      button_project_menu: Vytížení zdrojů
+      rm_balance: Vyvážit
+      rm_hide_reservations: Skrýt rezervace
+      rm_hide_tasks: Skrýt úkol
+      rm_reservations: Rezervace
+      rm_with_milestones: Zobrazit milníky
+      rm_with_projects: Zobrazit projekty
+    context:
+      heading_allocator_setting: Nastavení alokátoru
+      label_maximal_hours: Maximální počet hodin / dnů
+      pseudo_even_allocation: Pseudo-rovnoměrná alokace
+      text_setting_for: Nastavení pro
+    errors:
+      assigned_to_is_blank: Řešitel musí být vyplněn
+      estimated_hours_is_blank: Předepsaná doba není platná
+      issue_is_closed: Úkol je uzavřen
+      negative_allocation: má záporný počet přiřazených hodin %{date}
+      no_rights_for_allocation: Nemáte právo pro alokaci %{issue}
+      non_member_assignee: Úkol %{issue} patří do projektu %{project} a uživatel %{assignee}
+        není jeho členem
+      over_allocation: má přiřazeno více hodin, než je možné %{date}
+      project_is_baseline: Projekt je baseline
+      save_error: 'Alokace [%{allocations}] úkolu "%{name}" pro %{assignee} nebyla
+        uložena z důvodu: %{reason}'
+      start_or_due_is_required: Datum začátku či konce musí být vyplněno
+      under_estimation: je podhodnocen. Zvyšte hodinový odhad alespoň o %{over} hodin.
+    event_types:
+      generic: Událost
+      holiday: Dovolená
+      meeting: Schůzka
+      symbols:
+        holiday_short: S
+        meeting_short: s
+        nonworking_attendance_short: N
+        unapproved_nonworking_attendance_short: Z
+    global_resource_title: Globální vytížení zdrojů
+    label_allocations_sum: Alokace úkolů
+    label_events: Události
+    label_other_allocations_sum: Alokace na neviditelných úkolech
+    label_reservations_sum: Alokace rezervací
+    label_whole_day: Celý den
+    legend:
+      day_custom_allocation: ručně upravená alokace
+      day_over_allocation: Uživatel je přetížen v určitém dni
+      full_allocations: Uživatel má optimální vytížení
+      no_allocations: Uživatel nemá přiřazenou práci
+      over_allocations: Uživatel je přetížen
+      reservation: rezervace
+      some_allocations: Uživatel má volnou kapacitu
+    link_easy_resources_plugin: https://www.easyproject.cz/o-software/rizeni-zdroju
+    resource_management: Vytížení zdrojů
+    text_easy_resources_footer: Redmine Resource Management powered by Easy
+    title_rm_short: VZ
+  easy_gantt:
+    button:
+      rm_reallocate: Realokovat
+    title:
+      rm_reallocate: Znovu vypočítat alokace pro všechny úkoly
+  easy_pages:
+    modules:
+      easy_gantt_resources: Vytížení zdrojů
+      personal_easy_gantt_resources: Osobní vytížení zdrojů
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: Vytížení zdrojů
+        description: Přejít na vytížení zdrojů
+  easy_query:
+    name:
+      easy_light_resource_query: Alokace
+      easy_resource_easy_query: Vytížení zdrojů
+  easy_rake_tasks:
+    easy_rake_task_issue_allocations_recalculation:
+      caption: Přepočítat alokace na úkolech
+  error_allocation_uniqueness: Zdroj již existuje
+  error_epm_resource_already_active: Modul stránky na stránce je již aktivní
+  error_invalid_dates: Neplatná data předána
+  error_resources_not_authorized: Zdroje nebyly uloženy, nejste oprávněni upravovat
+    veškeré požadované prostředky
+  field_advance_hours_definition: Ruční nastavení hodin
+  field_advance_hours_per_days: Nastavit hodiny dle dní
+  field_assigned_to_admin: Administrátor
+  field_assigned_to_created_on: Vytvořeno
+  field_assigned_to_email: E-mail
+  field_assigned_to_firstname: Jméno
+  field_assigned_to_lastname: Příjmení
+  field_assigned_to_login: Login
+  field_assigned_to_status: Stav
+  field_change_allocator_enabled: Změnit alokátor
+  field_decimal_allocation: Desetinné přiřazení
+  field_default_allocator: Výchozí alokátor
+  field_easy_gantt_show_task_latest_due: Zobrazit nejpozdější konec
+  field_hide_planned_tasks_enabled: Přepínač "Plánované úkoly"
+  field_hide_unassigned: Skrýt nepřiřazené
+  field_hours_in_hour: Předepsaná doba
+  field_hours_in_percent: Předepsaná doba
+  field_hours_per_day: Hodin za den
+  field_max_allocation: 'Maximální alokace:'
+  field_resource_allocator: Alokátor zdrojů
+  field_show_groups: Zobrazit skupiny
+  field_show_total_project_allocations: Zobrazit celkové projektové alokace
+  field_watchdog_enabled: Hlídací pes povolen
+  heading_easy_gantt_resources_index: Vytížení zdrojů
+  help_easy_gantt_resources_users_estimated_ratios: Předpokládaná doba u přiřazených
+    úkolú uživateli se násobí touto konstantou v alokacích
+  help_easy_gantt_resources_users_hours_limits: Denní pracovní doba uživatele je omezena
+    touto hodnotou
+  help_easy_gantt_resources_users_hours_limits_blank: Nechte prázdné pro použití výchozí
+    hodnoty
+  label_allocated_dates: Datumy s alokací
+  label_allocated_hours: Alokované hodiny
+  label_easy_gantt_allocations: Alokace
+  label_easy_gantt_original_allocations: Plné alokace
+  label_easy_gantt_period: Období
+  label_easy_gantt_resources_balance: Vyvážit
+  label_easy_gantt_resources_get_from_users: počítat z uživatelů
+  label_easy_gantt_resources_get_from_users_for_all_groups: Součty všech uživatelů
+  label_easy_gantt_resources_global_query_filters: Globální výchozí filtry
+  label_easy_gantt_resources_groups_holidays_enabled: Sledovat absence na skupinách
+  label_easy_gantt_resources_groups_selection: Výběr skupin
+  label_easy_gantt_resources_hours_from_calendar: Hodiny z kalendáře
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: Hodiny z kalendáře
+    pro všechny uživatele
+  label_easy_gantt_resources_new_reservation: Nová rezervace
+  label_easy_gantt_resources_reservation_enabled: Aktivovat rezervace
+  label_easy_gantt_resources_settings: Nastavení prostředků
+  label_easy_gantt_resources_show_free_capacities: Zobrazit volné kapacity
+  label_easy_gantt_resources_user_unassigned: Nepřiřazené
+  label_easy_gantt_resources_users_estimated_ratios: Poměr předpokládané doby
+  label_easy_gantt_resources_users_hours_limits: Hodinový limit na den
+  label_easy_gantt_resources_users_selection: Výběr uživatelů
+  label_easy_gantt_resources_with_projects: Ve výchozím stavu zobrazovat projektové
+    alokace
+  label_easy_meeting_easy_resource_dont_allocate: Nealokovat
+  permission_edit_easy_gantt_resources: Upravit vytížení zdrojů na projektu
+  permission_edit_global_easy_gantt_resources: Upravit globální vytížení zdrojů
+  permission_edit_personal_easy_gantt_resources: Upravit osobní vytížení zdrojů
+  permission_manage_user_easy_gantt_resources: Spravovat uživatelské limity / propočty
+  permission_view_easy_gantt_resources: Zobrazit vytížení zdrojů na projektu
+  permission_view_global_easy_gantt_resources: Zobrazit globální vytížení zdrojů
+  permission_view_personal_easy_gantt_resources: Zobrazit osobní vytížení zdrojů
+  project_module_easy_gantt: Easy Gantt
+  text_easy_gantt_resources_advance_hours_definition: Možnost nastavit povolené hodiny
+    k alokaci na dny v týdnu
+  text_easy_gantt_resources_advance_hours_per_days: Maximální povolená alokace hodin
+    na dny v týdnu
+  text_easy_gantt_resources_change_allocator_enabled: Umožňit změnu alokátoru při
+    editaci úkolu
+  text_easy_gantt_resources_change_default_allocator: Z důvodů výkonu nebude mít změna
+    této volby vliv na aktuální výchozí alokátor na úkolech. Přednastavený alokátor
+    na rezervacích je vždy rovnoměrne. Pak je jej možné změnit ručne.
+  text_easy_gantt_resources_decimal_allocation: Hodiny budou přiřazeny v desetinných
+    číslech (0.5)
+  text_easy_gantt_resources_default_allocator: Jak budou přiděleny odhadované hodiny
+    na úkoly. (Rovnoměrný způsob může být pomalý)
+  text_easy_gantt_resources_default_zoom: Výchozí přiblížení pro globální vytížení
+    zdrojů
+  text_easy_gantt_resources_groups_holidays_enabled: Kapacity skupin jsou sníženy
+    na základě nahlášených absencí jejích členů.
+  text_easy_gantt_resources_hide_planned_tasks_enabled: Zobrazit přepínač "Plánované
+    úkoly" v menu nástroje
+  text_easy_gantt_resources_hours_per_day: Maximální počet hodin alokovaných na den
+  text_easy_gantt_resources_overloaded_assigned: 'Předepsané hodiny na tomto úkolu
+    jsou alokovány na dny, kdy je přiřazený uživatel přetížen: %{errors}. Jděte na
+    %{link} pro případné úpravy.'
+  text_easy_gantt_resources_reservation_enabled: Aktivovat rezervace na uživatelích.
+  text_easy_gantt_resources_show_free_capacities: Zapnout přepínání zobrazení volných
+    kapacit místo přidělených hodin pro přiřazené úkoly ve vytížení zdrojů
+  text_easy_gantt_resources_show_groups: Zobrazit skupiny v globálním vytížení zdrojů
+  text_easy_gantt_resources_show_total_project_allocations: Zobrazit celkové alokace
+    na vytížení zdrojů projektu
+  text_easy_gantt_resources_watchdog_enabled: Sledovat přiřazené uživatelské přetížení
+    při editaci úkolu
+  text_easy_gantt_resources_with_projects: Ve výchozím stavu povolit volbu "S projekty"
+    na globálním vytížení zdrojů
+  text_easy_gantt_show_task_latest_due: Zobrazí nejpozdější povolený konec úkolu vzhledem
+    k jeho nasledujícím a nebo rodičovským úkolům
+  text_easy_meeting_easy_resource_dont_allocate: Schůzka nesníží alokace ve vytížení
+    zdrojů
+  title_easy_gantt_personal_resources: Moje zdroje
+  title_easy_gantt_resources_settings: Easy vytížení zdrojů
+  title_easy_gantt_resources_users_settings: Nastavení uživatelů

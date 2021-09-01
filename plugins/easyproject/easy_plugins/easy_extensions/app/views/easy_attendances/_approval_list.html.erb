@@ -1,0 +1,15 @@
+<tr class="<%= easy_attendance.limit_exceeded ? 'red' : '' %>">
+  <td><%= easy_attendance.user.name %></td>
+  <td><%= easy_attendance.easy_attendance_activity %></td>
+  <td><%= format_time(easy_attendance.arrival) %></td>
+  <td><%= format_time(easy_attendance.departure) %></td>
+  <td><%= easy_attendance.attendance_status %></td>
+  <% if @is_exceeded_attendance %>
+    <td>
+      <% if easy_attendance.limit_exceeded %>
+        <%= l(:label_over_limit_attendance) %>
+      <% end %>
+    </td>
+  <% end %>
+  <td><%= check_box_tag('ids[]', easy_attendance.id, true, class: 'approval_ids') %></td>
+</tr>

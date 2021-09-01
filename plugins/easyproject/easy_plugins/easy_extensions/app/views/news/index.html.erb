@@ -1,0 +1,48 @@
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <% if @project %>
+    <%= link_to(l(:label_news_new),
+                new_project_news_path(@project),
+                :class => 'button-positive',
+                :onclick => 'EASY.utils.showAndScrollTo("add-news", 0, "news_title"); return false;') if @project && (User.current.allowed_to?(:manage_news, @project) || User.current.allowed_to?(:manage_own_news, @project)) %>
+  <% end %>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <% if @project %>
+    <%= watcher_link(@project.enabled_module('news'), User.current, :class => 'button') if @project && User.current.logged? %>
+  <% end %>
+<% end %>
+
+<h2><%=l(:label_news_plural)%></h2>
+<div class="clear"></div>
+
+<div id="add-news" style="display:none;" class="box">
+  <h2><%=l(:label_news_new)%></h2>
+  <%= labelled_form_for @news, :url => project_news_index_path(@project),
+                        :html => { :id => 'news-form', :class => 'form-box', :multipart => true } do |f| %>
+    <%= render :partial => 'news/form', :locals => { :f => f } %>
+    <div class="form-actions">
+      <%= submit_tag l(:button_create) , :class => 'button-positive' %>
+      <%= link_to l(:button_cancel), "#", :onclick => '$("#add-news").hide()', :class => 'button' %>
+    </div>
+  <% end if @project %>
+  <div id="preview" class="wiki"></div>
+</div>
+
+<% if @newss.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <div id="history" class="box easy-entity-journal"><%= render(:partial => 'news', :collection => @newss, :as => 'news') %></div>
+<% end %>
+
+<span class="pagination" style="display: none"><%= pagination_links_full @news_pages %></span>
+
+<%= render :partial => 'common/infinite_scroll', :locals => { :content_selector => '#history', :item_selector => '.news-article' } %>
+
+<% easy_other_formats_links(utm_content: 'news') do |f| %>
+  <%= f.link_to 'Atom', :url => {:project_id => @project, :key => User.current.rss_key, :title => l(:title_other_formats_links_atom)} %>
+<% end %>
+<% content_for :header_tags do %>
+  <%= auto_discovery_link_tag(:atom, _project_news_path(@project, :key => User.current.rss_key, :format => 'atom')) %>
+  <%= stylesheet_link_tag 'scm' %>
+<% end %>
+<% html_title(l(:label_news_plural)) -%>

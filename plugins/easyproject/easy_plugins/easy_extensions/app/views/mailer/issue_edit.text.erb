@@ -1,0 +1,13 @@
+<% # Select - non custom fields
+   #        - custom fields with mail_notification == TRUE
+   visible_details = @journal.visible_details.select {|jd| jd.custom_field.nil? || (jd.custom_field.mail_notification && jd.custom_field.visible?) }
+-%><%= "(#{l(:field_private_notes)}) " if @journal.private_notes? -%><%= l(:'mail.field_updated_by') -%> <%= @journal.user -%> <%= format_time(@journal.created_on) -%>
+<% if visible_details.any? %><% details_to_strings(visible_details, true, :only_path => false, :entity => @issue).each do |string| %>
+  <%= string -%>
+<% end %><% end %>
+
+<%= Sanitize.clean(@journal.notes, :output => :html) if @journal.notes? %>
+
+--------------------------------------------------------------------------------
+
+<%= render :partial => 'mailer/issue', :formats => [:text], :locals => { :issue => @issue, :users => @users, :issue_url => @issue_url } %>

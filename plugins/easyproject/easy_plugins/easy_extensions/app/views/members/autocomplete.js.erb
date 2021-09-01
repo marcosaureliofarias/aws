@@ -1,0 +1,35 @@
+var selected = [];
+var selectedObj = {};
+var selectedGroups = [];
+var selectedObjGroups = {};
+
+$("#principals input:checked").each(function(){
+  $this = $(this);
+  var val = $this.val();
+  selectedObj[val] = ($this.parent());
+  selected.push(val);
+});
+$("#groups input:checked").each(function(){
+  $this = $(this);
+  var val = $this.val();
+  selectedObjGroups[val] = ($this.parent());
+  selectedGroups.push(val);
+});
+
+$('#principals_for_new_groups').html('<%=j render(:partial => 'members/easy_principals_for_new_groups', :locals => {:project => @project}) %>');
+$('#principals_for_new_member').html('<%=j render(:partial => 'members/easy_principals_for_new_members', :locals => {:project => @project}) %>');
+
+var principals = $("#principals");
+var groups = $("#groups");
+$.each(selected,function(i, val){
+  principals.find("input[value='"+ val +"']").parent().remove();
+  principals.prepend(" "); // whitespace
+  principals.prepend(selectedObj[val]);
+});
+$.each(selectedGroups,function(i, val){
+  groups.find("input[value='"+ val +"']").parent().remove();
+  groups.prepend(" "); // whitespace
+  groups.prepend(selectedObjGroups[val]);
+});
+
+principals.get(0).closest('form').querySelector('.roles-selection').dispatchEvent(new Event('membersReloaded'));

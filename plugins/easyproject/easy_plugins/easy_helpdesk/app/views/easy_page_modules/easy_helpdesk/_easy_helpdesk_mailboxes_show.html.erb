@@ -1,0 +1,11 @@
+<%
+tasks       = @easy_page_modules_data[block_name][:tasks]
+tasks_count = @easy_page_modules_data[block_name][:tasks_count]
+@last_infos = @easy_page_modules_data[block_name][:last_infos]
+%>
+
+<%= render_non_default_mailboxes_warning_if_needed %>
+
+<%= render :partial => 'easy_helpdesk_mailboxes/overview', :locals => {:tasks => tasks, :tasks_count => tasks_count, :module_id => modul_uniq_id} %>
+
+<%= context_menu({:controller =>'context_menus', :action => 'easy_rake_tasks'}, "##{modul_uniq_id}") %>

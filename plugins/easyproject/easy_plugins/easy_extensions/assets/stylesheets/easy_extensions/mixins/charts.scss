@@ -1,0 +1,7 @@
+@mixin chart-scheme($color){
+  $color-adjusted: rgba(desaturate($color,10%),.75);
+  fill: $color-adjusted !important;
+}
+%chart{
+  display: inline-block;
+}

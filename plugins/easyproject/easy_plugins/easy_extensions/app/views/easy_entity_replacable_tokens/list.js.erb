@@ -1,0 +1,11 @@
+$('#ajax-modal').html("<%=j render(:partial => 'list', :locals => {:entity_class => @entity_class, :project => @project}, :formats => [:html]) %>");
+showModal('ajax-modal', '80%');
+var closeButton = {
+text: "<%=j l(:button_close) -%>",
+click: function() {$(this).dialog('close');},
+'class': 'button'
+}
+$("#ajax-modal").dialog('option', {
+title: "<%= l(:heading_easy_entity_replacable_tokens)-%>",
+buttons: [closeButton]
+})

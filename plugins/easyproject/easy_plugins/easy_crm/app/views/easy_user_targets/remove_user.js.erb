@@ -1,0 +1,6 @@
+$('#<%= dom_id(@user) %>').remove();
+if ($('.easy-user-targets-user').length === 0) {
+  $('table#easy_user_targets').hide();
+  $('.form-actions').hide();
+  $('#easy_user_target_no_data').append('<p class="nodata"><%= l(:label_no_data) %></p>');
+}

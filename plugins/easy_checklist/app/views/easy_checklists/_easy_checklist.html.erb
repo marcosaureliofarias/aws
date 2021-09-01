@@ -1,0 +1,38 @@
+<%
+  entity ||= easy_checklist.entity
+  can_delete = User.current.allowed_to?(:delete_easy_checklists, entity.project)
+  can_create = User.current.allowed_to?(:create_easy_checklist_items, entity.project)
+  can_change = User.current.allowed_to?(:change_easy_checklists_layout, entity.project)
+%>
+
+<div id="easy_checklist<%= easy_checklist.id %>">
+  <fieldset>
+    <legend>
+      <%= easy_checklist.name %>
+      <span class="legend-actions">
+        <% if can_create %>
+          <%= link_to(content_tag(:span, l(:button_new_easy_checklist_item), :class => 'tooltip'), item_easy_checklist_path(easy_checklist), :class => 'icon-add icon easy-checklist-add-item', :remote => true) %>
+        <% end %>
+        <% if can_change %>
+          <label class="inline">
+          <%= l :label_easy_checklist_columns %>:
+          <%= select_tag('set_display_mode', options_for_select((1 .. 4).to_a, easy_checklist.display_mode), :onchange => "$.ajax({url: '#{j(update_display_mode_easy_checklist_path(easy_checklist, :format => 'js')).html_safe}', type: 'PUT', data: 'display_mode='+$(this).val(), success: function(data) {}});", :class => 'inline') %>
+          </label>
+        <% end %>
+        <% if can_delete %>
+          <%= link_to content_tag(:span, l(:button_remove_easy_checklist), :class => 'tooltip'), easy_checklist_path(easy_checklist), :method => :delete, :remote => true, :class => 'icon-del icon', :data => {:confirm => l(:text_are_you_sure)} %>
+        <% end %>
+      </span>
+    </legend>
+
+    <div id="easy_checklist<%= easy_checklist.id %>_items_container">
+      <ul id="easy_checklist<%= easy_checklist.id %>_items" class="easy-checklist-items <%= easy_checklist.css_classes %>">
+        <% easy_checklist.easy_checklist_items.each do |easy_checklist_item| %>
+          <%= render easy_checklist_item, :locals => {:entity => entity} %>
+        <% end %>
+      </ul>
+      <span class="clear"></span>
+    </div>
+
+  </fieldset>
+</div>

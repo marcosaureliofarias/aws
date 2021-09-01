@@ -1,0 +1,67 @@
+<%
+  module_data = @easy_page_modules_data[block_name]
+  period_date_period_type = module_data[:period_date_period_type]
+  period_date_period = module_data[:period_date_period]
+  period_start_date = module_data[:period_start_date]
+  period_end_date = module_data[:period_end_date]
+  available_global_filters = module_data[:available_global_filters]
+%>
+
+<div class="tabular">
+  <%= back_url_hidden_field_tag %>
+  <p>
+    <%= label_tag "#{block_name}[name]", l(:field_name) %>
+    <%= text_field_tag "#{block_name}[name]", settings['name'] ? settings['name'] : l('easy_pages.modules.allocated_resources') %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[period_date_period_type]", l(:label_easy_gantt_period) %>
+
+    <%= radio_button_tag("#{block_name}[period_date_period_type]", '1', (period_date_period_type == '1'), id: "#{modul_uniq_id}period_date_period_1") %>
+    <%= select_tag(
+          "#{block_name}[period_date_period]",
+          options_for_period_select(
+            period_date_period,
+            nil,
+            show_future: true,
+            hide_custom: true,
+            disabled_values: ['all', 'is_not_null', 'is_null']
+          ),
+          id: "#{modul_uniq_id}period_date_period",
+          onfocus: "$('##{modul_uniq_id}period_date_period_1').prop('checked', true);"
+        ) %>
+  </p>
+  <p>
+    <%= radio_button_tag("#{block_name}[period_date_period_type]", '2', (period_date_period_type == '2'), id: "#{modul_uniq_id}period_date_period_2") %>
+
+    <span onclick="<%= "$('##{modul_uniq_id}period_date_period_2').prop('checked', true);" -%>">
+          <%= text_field_tag(
+                "#{block_name}[period_start_date]",
+                period_start_date,
+                id: "#{modul_uniq_id}period_start_date",
+                size: 10,
+                onchange: "$(this).closest('span').click();"
+              ) %>
+      <%= calendar_for("#{modul_uniq_id}period_start_date") %>
+
+      <%= text_field_tag(
+            "#{block_name}[period_end_date]",
+            period_end_date,
+            id: "#{modul_uniq_id}period_end_date",
+            size: 10,
+            onchange: "$(this).closest('span').click();"
+          ) %>
+      <%= calendar_for("#{modul_uniq_id}period_end_date") %>
+    </span>
+  </p>
+</div>
+<fieldset>
+  <div>
+    <%= render 'easy_page_modules/global_filters',
+               modul_uniq_id: block_name,
+               block_name: block_name,
+               page_params: page_params,
+               query_params: settings,
+               available_global_filters: available_global_filters,
+               page_module: page_module %>
+  </div>
+</fieldset>

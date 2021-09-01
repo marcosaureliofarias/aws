@@ -1,0 +1,31 @@
+<fieldset>
+  <legend><%= l(:label_page_module_chart_settings) %>:</legend>
+  <p>
+    <%= l(:label_page_module_default_period) %>:
+    <%= radio_button_tag "#{block_name}[period]", 'months', settings['period'] == 'months' || settings['period'].nil? %>
+    <%= label_tag "#{block_name}_period_months", l(:button_gantt_zoom_month) %>
+    <%= radio_button_tag "#{block_name}[period]", 'weeks', settings['period'] == 'weeks' %>
+    <%= label_tag "#{block_name}_period_weeks", l(:button_gantt_zoom_week) %>
+    <%= radio_button_tag "#{block_name}[period]", 'days', settings['period'] == 'days' %>
+    <%= label_tag "#{block_name}_period_days", l(:button_gantt_zoom_day) %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[columns]", l(:label_page_module_chart_columns) %>
+    <%= text_field_tag "#{block_name}[columns]", settings['columns'] || '4', :size => 3 %>
+  </p>
+  <p>
+    <%= l(:label_page_module_default_season) %>:
+    <%= radio_button_tag "#{block_name}[season]", 'past', settings['season'] == 'past' %>
+    <%= label_tag "#{block_name}_season_past", l(:label_page_module_chart_season_past) %>
+    <%= radio_button_tag "#{block_name}[season]", 'future', settings['season'] == 'future' || settings['season'].nil? %>
+    <%= label_tag "#{block_name}_season_future", l(:label_page_module_chart_season_future) %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[autorefresh]", l(:label_page_module_chart_autorefresh_before) %>
+    <%= text_field_tag "#{block_name}[autorefresh]", settings['autorefresh'] || '0', :size => 5 %> <%= l(:label_page_module_chart_autorefresh_after) %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[stacked]", l(:label_page_module_chart_stacked) %>
+    <%= check_box_tag "#{block_name}[stacked]", 1, settings['stacked'] == '1' %>
+  </p>
+</fieldset>

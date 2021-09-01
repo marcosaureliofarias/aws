@@ -1,0 +1,28 @@
+<td class="crm-kanban-col" data-drop-in-status="<%= column[:drop_in_status] %>">
+  <ul class="kanban-column<%=  column[:drop_in_status] && ' drop-enabled' %>" data-position = "<%= column[:position]%>" data-kanban-column ="<%= column[:name]%>">
+    <% column[:entities].each do |easy_crm_case| %>
+      <li id="kanban_<%= dom_id easy_crm_case %>" data-id="<%= easy_crm_case.id %>" class="<%= 'drag-on ' if easy_crm_case.editable? %>kanban-easy-crm-case-item agile-issue-item <%= easy_crm_case.css_classes %>">
+        <% if @query.show_avatars? %>
+          <%= avatar(easy_crm_case.assigned_to, style: :small, no_link: true) if easy_crm_case.assigned_to -%>
+          <% if easy_crm_case.external_assigned_to && EasyUserType.easy_type_partner.any? %>
+            <%= avatar(easy_crm_case.external_assigned_to, style: :small, no_link: true) -%>
+          <% end %>
+        <% end %>
+        <div class="easy-crm-case-link">
+          <%= link_to_easy_crm_case(easy_crm_case) %>
+        </div>
+        <div>
+          <%= format_price(easy_crm_case.price(@query.easy_currency_code), @query.easy_currency_code, {entity: easy_crm_case}) %>
+        </div>
+        <%= (s = format_date(easy_crm_case.contract_date)).present? && content_tag(:div, s) || nil %>
+        <%= (s = easy_crm_case.easy_contacts.first.to_s).present? && content_tag(:div, s) || nil %>
+        <%= (s = format_time(easy_crm_case.next_action_in_zone)).present? && content_tag(:div, s) || nil %>
+      </li>
+    <% end %>
+    <% if params[:page].to_i < (column[:count] / @limit).ceil %>
+      <li class="pagination next">
+        <%= link_to l(:label_next), "javascript:$('ul.kanban-column[data-position=#{column[:position]}]').infinitescroll('retrieve')", class: 'button easy-next-button' %>
+      </li>
+    <% end %>
+  </ul>
+</td>

@@ -1,0 +1,39 @@
+<div id="alerts-type">
+  <h2><%= l(:label_alerts_types) -%></h2>
+
+  <% if (@types.empty?) -%>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% else -%>
+    <div class="autoscroll">
+      <table class="list reorder">
+        <% for type in @types %>
+          <tr>
+            <td class="center reorder-handler"><%= render_reorder_handle(type, 'alert_type') %></td>
+            <td class="name"><%= type.translated_name %></td>
+            <td style="color:<%= type.color %>"><%= type.color %></td>
+            <td>
+              <%= link_to(l(:button_edit), { :action => 'edit', :id => type.id}, :class => 'icon icon-edit') -%>
+              <%= link_to(l(:button_delete), { :action => 'destroy', :id => type.id}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del') -%>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_alerts_add_new_type), { :controller => 'alert_types', :action => 'new' }, :class => 'button-positive' -%>
+  <%= link_to l(:button_alerts_my_alerts), { :controller => 'alerts', :action => 'index' }, :title => l(:title_alerts_my_alerts), :class => 'button' -%>
+  <%= link_to l(:button_alerts_reports), { :controller => 'alert_reports', :action => 'index' }, :title => l(:title_alerts_reports), :class => 'button' -%>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar/alerts' %>
+<% end %>

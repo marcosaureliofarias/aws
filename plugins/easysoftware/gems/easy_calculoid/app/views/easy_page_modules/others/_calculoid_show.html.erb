@@ -1,0 +1,18 @@
+<%
+  calc_id = settings['calc_id']
+  api_key = settings['api_key']
+  values = easy_page_modules_data[:data].reject{|x, y| y.blank?}
+  init = {calcId: calc_id, apiKey: api_key, showTitle: 0, values: values}.to_json
+%>
+
+<% if calc_id.present? && api_key.present? %>
+  <span class="after-apply-global-filters-module-need-reloading"></span>
+  <div class="ng-scope" ng-controller="CalculoidMainCtrl" ng-init="init(<%= init %>)" ng-include="load()"></div>
+  <% include_calculoid_tags(settings) %>
+
+  <script type="application/javascript">
+    document.querySelector('body').setAttribute('ng-app', 'calculoid');
+  </script>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

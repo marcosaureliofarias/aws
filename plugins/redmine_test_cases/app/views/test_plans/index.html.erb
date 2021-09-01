@@ -1,0 +1,7 @@
+<%= render @query, hascontextmenu: true %>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <h3><%= l(:label_test_plans) %></h3>
+  <%= render :partial => 'test_plans/sidebar' %>
+<% end %>
+<%#= context_menu context_menu_test_cases_path(project_id: @project) %>

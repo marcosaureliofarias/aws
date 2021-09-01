@@ -1,0 +1,18 @@
+<table class="list">
+  <thead>
+  <tr>
+    <th><%= EasyAttendance.human_attribute_name(:arrival) %></th>
+    <th><%= EasyAttendance.human_attribute_name(:departure) %></th>
+    <th><%= EasyAttendance.human_attribute_name(:activity) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @attendances.each do |attendance| %>
+    <tr class= "easy-attendance-activity <%= attendance.easy_attendance_activity.color_schema %>">
+      <td><%= format_time(attendance.arrival)%></td>
+      <td><%= format_time(attendance.departure) %></td>
+      <td><%= attendance.easy_attendance_activity.name %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

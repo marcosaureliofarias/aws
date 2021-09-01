@@ -1,0 +1,32 @@
+<%
+  module_data = @easy_page_modules_data[block_name]
+  include_jqplot_scripts
+  graph_id = "graph_#{modul_uniq_id}"
+%>
+
+<% if module_data[:allocations_by_trackers].blank? %>
+  <p class="nodata">
+    <%= l(:label_no_data) %>
+  </p>
+<% else %>
+  <div id="<%= graph_id %>"></div>
+
+  <script>
+    EASY.schedule.require(function () {
+      c3.generate({
+        bindto: "#<%= graph_id %>",
+        data: {
+          type: "donut",
+          columns: <%= module_data[:allocations_by_trackers].to_json.html_safe %>
+        },
+        donut: {
+          label: {
+            format: function (value, ratio, id) {
+              return d3.format(",f")(value) + "h";
+            }
+          }
+        }
+      });
+    }, jQueryPluginGetter("easy_chart"));
+  </script>
+<% end %>

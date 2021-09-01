@@ -1,0 +1,101 @@
+<% builder ||= nil %>
+<% object_name ||= nil %>
+<% object, object_name = builder.object, builder.object_name if builder %>
+
+<div id="<%= object_name %>_easy_is_easy_repeating_form_loader">
+  <% if object.easy_is_repeating? %>
+    <p>
+      <%= link_to(l(:field_easy_repeat_settings), '#', class: 'icon icon-edit button easy-repeat-button') %>
+    </p>
+    <script type="text/javascript">
+      EASY.schedule.late(function () {
+        function showRepeatingOptions(dontShowModal) {
+          var optionsUrl = '<%= show_repeating_options_path(object.class, object.id, :object_name => object_name) %>';
+          if(dontShowModal)
+            optionsUrl += ((optionsUrl.indexOf('?') >= 0) ? '&' : '?') + 'dont_show_modal=1';
+          $.ajax({ type: 'POST', url: optionsUrl, data: <%= {:easy_repeat_settings => object.easy_repeat_settings}.to_json.html_safe %> } );
+        };
+        showRepeatingOptions(true);
+        ERUI.document.on('click', '.easy-repeat-button', function () {
+          showRepeatingOptions(false);
+        });
+      });
+    </script>
+  <% elsif object.respond_to?(:easy_repeat_parent) && object.easy_repeat_parent.try(:easy_is_repeating?) %>
+    <p>
+      <%= link_to(l(:field_easy_repeat_parent), edit_easy_meeting_path(object.easy_repeat_parent), :class => 'easy-show-repeating-parent icon icon-edit button') %>
+    </p>
+  <% else %>
+    <%= fields_for(object_name.present? ? object_name : object) do |f| %>
+      <%= f.fields_for(:easy_repeat_settings) do |e| %>
+        <p>
+          <%= e.label(:simple_period, l(:label_easy_attendance_is_repeating)) %><%= e.select(:simple_period, object.available_simple_repeatings.map{|i| [l(i, :scope => :easy_repeating_simple_options), i]}, {:prompt => l(:prompt_easy_repeat_simple_repeat)}, {:class => 'auto'}) %>
+        </p>
+        <% unless object.delayed_create_supported? %>
+          <p id="easy_meeting_easy_repeat_settings_simple_period_delayed_create_warning" style="display: none">
+            <em class="help-block"><%= l(:text_easy_repeating_reccuring_delayed_create_not_supported, {limit_of_records: object.class::CREATE_ALL_RECORDS_LIMIT}) %></em>
+          </p>
+        <% end %>
+        <p style="display:none">
+          <%= f.label(:easy_repeat_simple_repeat_end_at, l(:label_easy_issue_easy_repeating_endtype)) %><%= f.select(:easy_repeat_simple_repeat_end_at, [[l(:label_easy_is_easy_repeating_endtype_count), :endtype_count_x], [l(:label_easy_is_easy_repeating_endtype_date), :end_date]],{:prompt => l(:prompt_easy_repeat_simple_repeat)}, {:disabled => true, :class => 'auto'}) %>
+
+          <span class="nowrap" style="display:none" id="end_date_easy_repeat_simple_repeat_end_at">
+            <%= e.text_field(:end_date, :size => 10, :id => "#{f.object_name}_easy_repeating_simple_form_end_date") %>
+            <%= calendar_for("#{f.object_name}_easy_repeating_simple_form_end_date") %>
+          </span>
+          <span class="nowrap" style="display:none" id="endtype_count_x_easy_repeat_simple_repeat_end_at">
+            <%= e.number_field(:endtype_count_x, :placeholder => 'x', :size => 2, :maxlength => 2, :style => 'width: 50px;') %>
+            <%= content_tag(:span, l(:label_easy_is_easy_repeating_endtype_count_hint), :class => '') %>
+          </span>
+
+        </p>
+
+        <script type="text/javascript">
+          EASY.schedule.late(function () {
+            $("#<%= f.object_name %>_easy_repeat_simple_repeat_end_at").change(function(e) {
+              var value = $(e.target).val();
+              $(e.target).parent().find('span.nowrap').hide();
+              $("#"+value+"_easy_repeat_simple_repeat_end_at").show();
+            });
+
+            $("#<%= f.object_name %>_easy_repeat_settings_simple_period").change(function(e) {
+              var value = $(e.target).val();
+
+              switch (value) {
+                case '':
+                  toggleEasyRepeatingOptions(false);
+                  toggleUpdateRepeatedCheckbox(false);
+                  <% unless object.delayed_create_supported? %>toggleDelayedCreateWarning(false);<% end %>
+                  break;
+                case 'custom':
+                  toggleEasyRepeatingOptions(false);
+                  toggleUpdateRepeatedCheckbox(true);
+                  $.get('<%= show_repeating_options_path(object.class, object.id, :object_name => object_name) %>');
+                  <% unless object.delayed_create_supported? %>toggleDelayedCreateWarning(true);<% end %>
+                  break;
+                default:
+                  toggleEasyRepeatingOptions(true);
+                  toggleUpdateRepeatedCheckbox(true);
+                  <% unless object.delayed_create_supported? %>toggleDelayedCreateWarning(true);<% end %>
+                  break;
+              }
+            });
+
+            function toggleEasyRepeatingOptions(show) {
+              $("#<%= f.object_name %>_easy_repeat_simple_repeat_end_at").prop('disabled', !show);
+              $("#<%= f.object_name %>_easy_repeat_simple_repeat_end_at").parent().toggle(show);
+            }
+            function toggleUpdateRepeatedCheckbox(show) {
+              $('#update_repeating').toggle(show);
+            }
+            <% unless object.delayed_create_supported? %>
+              function toggleDelayedCreateWarning(show) {
+                $('#easy_meeting_easy_repeat_settings_simple_period_delayed_create_warning').toggle(show);
+              }
+            <% end %>
+          });
+        </script>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+</div>

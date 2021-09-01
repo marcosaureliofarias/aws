@@ -1,0 +1,11 @@
+<p id="easy_crm_case_main_easy_contact_id">
+  <label><%= l(:label_easy_crm_case_customer) %></label>
+  <%= easy_autocomplete_tag("#{form.object_name}[main_easy_contact_id]",
+                            easy_contact.nil? ?
+                                { name: '' } :
+                                { name: easy_contact.name, id: easy_contact.id },
+                            easy_autocomplete_path('easy_contacts_visible_contacts', project_id: @project.try(:id)),
+                            html_options: { id: 'main_easy_contact_id' },
+                            root_element: 'easy_contacts'
+      ) %>
+</p>

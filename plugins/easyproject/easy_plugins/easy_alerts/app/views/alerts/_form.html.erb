@@ -1,0 +1,81 @@
+
+<p><%= f.text_field :name, :required => true, :size => nil -%></p>
+<p>
+  <% @types.each do |type| %>
+    <%= f.radio_button :type_id, type.id, :checked => type.id == @alert.type.id %>
+    <%= label_tag "alert_type_id_#{type.id}", type.translated_name, :style => "color: #{type.color}", :class => 'inline' %>
+  <% end %>
+</p>
+<div id="alert-rules-list">
+  <%= render(:partial => 'context_rules_list_form')%>
+</div>
+
+<%= toggling_fieldset(l(:label_alerts_additional_settings), :legend_class => 'icon-settings') do %>
+    <% if User.current.admin? %>
+      <p>
+        <%= f.select :author_id, User.active.sorted.all.collect{|u| [u.name, u.id]}, {:include_blank => true, :required => true} %>
+      </p>
+    <% end %>
+    <% if User.current.allowed_to?(:manage_alerts_for_all, nil, :global => true) %>
+      <p>
+        <label><%= l(:label_alerts_manage_alerts_for) -%></label>
+        <label for="cbx_alerts_is_for_only_me" class="inline radio">
+          <%= radio_button_tag 'alert[is_for]', 'only_me', @alert.is_for == 'only_me', :id => 'cbx_alerts_is_for_only_me' %>
+          <%= l(:label_alerts_for_only_me) %>
+        </label><br/>
+        <label for="cbx_alerts_is_for_all" class="inline radio">
+          <%= radio_button_tag 'alert[is_for]', 'all', @alert.is_for == 'all', :id => 'cbx_alerts_is_for_all' %>
+          <%= l(:label_alerts_for_all) %>
+        </label>
+        <em class="help"><%= l(:text_alerts_is_for_all) %></em><br/>
+        <% if Group.count > 0 %>
+          <label for="cbx_alerts_is_for_group" class="inline radio">
+            <%= radio_button_tag 'alert[is_for]', 'group', @alert.is_for == 'group', :id => 'cbx_alerts_is_for_group' %>
+            <%= l(:label_alerts_for_group) %><br/>
+            <%= select_tag 'alert[group_id]', options_for_select(Group.sorted.collect{|g| [g.name, g.id]}, @alert.group_id) %>
+          </label><br/>
+        <% end %>
+      </p>
+    <% end %>
+    <p>
+      <label><%= l(:label_alerts_mail_group) %></label>
+      <label for="cbx_alerts_mail_for_all" class="inline radio">
+        <%= radio_button_tag 'alert[mail_for]', 'all', @alert.mail_for == 'all', :id => 'cbx_alerts_mail_for_all' %>
+        <%= l(:label_alerts_mail_group_all) %>
+      </label><br/>
+    <% if Group.count > 0 %>
+      <label for="cbx_alerts_mail_for_group" class="inline radio">
+        <%= radio_button_tag 'alert[mail_for]', 'group', @alert.mail_for == 'group', :id => 'cbx_alerts_mail_for_group' %>
+        <%= l(:label_alerts_mail_group_only_group) %><br/>
+        <%= select_tag 'alert[mail_group_id]', options_for_select(Group.sorted.collect{|g| [g.name, g.id]}, @alert.mail_group_id) %>
+      </label><br/>
+    <% end %>
+      <label for="cbx_alerts_mail_for_custom" class="inline block radio">
+        <%= radio_button_tag 'alert[mail_for]', 'custom', @alert.mail_for == 'custom', :id => 'cbx_alerts_mail_for_custom' %>
+        <%= l(:label_alerts_mail_group_custom) %><br/>
+        <%= text_field_tag 'alert[mail]', @alert.mail, :class => 'normalize' %>
+      </label><br/>
+      <span id="cbx_alerts_mail_options_issue_specific">
+        <label for="cbx_alerts_mail_for_assignees" class="inline radio">
+          <%= radio_button_tag 'alert[mail_for]', 'assignees', @alert.mail_for == 'assignees', :id => 'cbx_alerts_mail_for_assignees' %>
+          <%= l(:label_alerts_mail_group_assignees) %>
+        </label><br/>
+        <label for="cbx_alerts_mail_for_coworkers" class="inline radio">
+          <%= radio_button_tag 'alert[mail_for]', 'coworkers', @alert.mail_for == 'coworkers', :id => 'cbx_alerts_mail_for_coworkers' %>
+          <%= l(:label_alerts_mail_group_coworkers) %>
+        </label>
+      </span>
+    </p>
+    <p>
+      <label><%= l(:label_alerts_projects) -%></label>
+      <label for="cbx_alerts_active_projects_only" class="inline radio">
+        <%= hidden_field_tag 'alert[active_projects_only]', '0' %>
+        <%= check_box_tag 'alert[active_projects_only]', '1', @alert.active_projects_only, id: 'cbx_alerts_active_projects_only' %>
+        <%= l(:label_alerts_active_projects_only) %>
+      </label>
+    </p>
+  <% end %>
+
+<%= toggling_fieldset(l(:label_alerts_executing_settings), :legend_class => 'icon-time') do %>
+  <%= render(:partial => 'common/easy_repeating_period', :locals => {:selected => @alert.period_options, :form_prefix => 'alert[period_options]'}) %>
+<% end %>

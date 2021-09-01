@@ -1,0 +1,2 @@
+$('#easy_timesheet_form_container').html("<%= j render :partial => 'easy_timesheets/show', :locals => {:easy_timesheet => @easy_timesheet} %>");
+$('#easy_timesheet_calendar_listing_links').html("<%= j render :partial => 'common/calendar_listing_links', :locals => {:period => :week, :hide_period => true, :calendar => @calendar, :url_options => {:listing => true}, :html_options => {:remote => true}} %>");

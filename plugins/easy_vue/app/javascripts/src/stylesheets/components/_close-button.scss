@@ -1,0 +1,42 @@
+&__button {
+  &--close {
+    width: 24px;
+    height: 24px;
+    border: none !important;
+    background: none !important;
+    display: block;
+    span {
+      display: none;
+    }
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-top: 1px solid $color-border;
+      position: absolute;
+      top: 50%;
+      left: 0;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(135deg);
+    }
+    &-wrapper {
+      position: absolute;
+      width: calc(2*#{$gap} + 24px);
+      height: $headline-height;
+      top: 0;
+      right: 0;
+      //background: $color-background;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

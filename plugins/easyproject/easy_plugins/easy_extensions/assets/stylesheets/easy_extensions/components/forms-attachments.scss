@@ -1,0 +1,156 @@
+.attachments-container{
+  //display: block !important;
+  @extend %flex;
+  @extend %flex-wrap-wrap;
+  @extend %justify-content-space-between;
+  text-align: center;
+  @extend %page-zone;
+  background: none;
+  margin-bottom: 0;
+  overflow: hidden;
+  .add_attachment{
+    @include small;
+    font-size: .8rem;
+    display: inline-block;
+    margin-bottom: .5*$gap;
+    margin-top: .5*$gap;
+    float: left;
+    #ajax-modal &{
+      float: none;
+    }
+  }
+  .info{
+    margin: auto 0 .5*$gap;
+    clear: both;
+    width: auto;
+    border: none;
+    padding: .5*$gap $box-padding .5*$gap 2*$box-padding;
+    flex-grow: 1;
+    color: $color-text;
+    &:before {
+      width: 2*$box-padding;
+    }
+
+  }
+  span[id*='attachments_']{
+    display: block;
+    position: relative;
+    text-align: left;
+    z-index: 0;
+    width: 100%;
+    .description{
+      width: 100%;
+    }
+    .remove-upload{
+      @extend %button-link;
+      text-align: center;
+      position: absolute;
+      top: 3px;
+      right: 0;
+      z-index: 3;
+    }
+    .modify-upload{
+      @extend %button-link;
+      text-align: center;
+      position: absolute;
+      top: 3px;
+      right: 20px;
+      z-index: 3;
+    }
+    .filename{
+      background: none;
+      border: none;
+      width: 90%;
+      //padding-left: 0;
+      @extend %box-shadow-none;
+    }
+    .ui-progressbar{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      line-height: $tab-height - 2;
+      height: $tab-height - 2;
+      text-align: center;
+      z-index: -1;
+    }
+  }
+  input{
+    //margin-bottom: $gap;
+    z-index: 2;
+    font-size: 0.85rem;
+    &.hidden{
+      display: inline-block; // show default upload field
+    }
+
+  }
+  .fakefile{
+    display: none;
+  }
+  .filedrop.fileover &{
+    border-color: $color-important;
+  }
+  #cbp_image_fields{
+    overflow: hidden;
+    clear: both;
+    display: block;
+    text-align: left;
+    input{
+      width: auto !important;
+    }
+  }
+  #cbp_image_field{
+    padding: $gap 0 0 0;
+    @include display(flex !important);
+    @extend %flex-wrap-nowrap;
+    @extend %justify-content-space-between;
+    @extend %align-items-center;
+
+  }
+  #cbp_images_form{
+    width: 100%;
+    order: 3;
+    .file_selector{
+      @include small;
+      //float: right;
+      display: block;
+      text-align: left;
+      margin: 0;
+    }
+    .name {
+      flex-shrink: 1;
+      flex-grow: 1;
+      margin: auto $gap;
+    }
+    .icon {
+      margin-right: .5*$gap;
+    }
+    .icon-link {
+      margin-left: auto;
+    }
+  }
+  .dropbox-dropin-btn{
+    float: right;
+  }
+}
+#cbp{
+  &_paste_dlg {
+    background: $color-background;
+    & + .ui-dialog-buttonpane {
+      button.ui-button {
+        background: $button-base-background !important;
+      }
+    }
+  }
+  &_instructions {
+    background: $color-foreground !important;
+    border: 1px solid $color-border !important;
+    height: auto !important;
+    padding: $gap;
+  }
+  &_panel_box {
+    background: $color-foreground !important;
+    border: 3px solid $color-border !important;
+  }
+}

@@ -1,0 +1,372 @@
+---
+sl:
+  activerecord:
+    errors:
+      messages:
+        error_contains_invalid_character: vsebuje nedovoljene znake
+  comment_copied_from: Skopirano iz %{source}
+  comment_moved_from: Premaknjeno iz %{source}
+  dmsf: Arhiv
+  dmsf_and: AND
+  dmsf_new_step: New step
+  dmsf_new_step_or_approver: New step or New approver
+  dmsf_or: OR
+  easy_pages:
+    module_category:
+      easy_dms: Easy DMS
+    modules:
+      dmsf_locked_documents: My locked documents
+      dmsf_open_approvals: My open approvals
+  error_at_least_one_revision_must_be_present: Vsaj ena verzija mora obstajati
+  error_cannot_renumber_steps: Steps can't be renumbered
+  error_cannot_start_workflow: Workflow can't be started
+  error_contains_invalid_character: vsebuje nedovoljene znake
+  error_create_cycle_in_folder_dependency: naredi ciklično odvisnost med mapami
+  error_email_to_must_be_entered: Email Naslovnik mora bit izbran
+  error_empty_note: The note can't be empty
+  error_entry_project_does_not_match_current_project: Projekt se ujema s trenutno
+    nastavljenim projektom
+  error_file_can_not_be_created: Datoteke se ne da kreirat v mapi
+  error_file_commit_require_uploaded_file: Ukaz zahteva naloženo datoteko
+  error_file_is_locked: Mapa je zaklenjena
+  error_file_storage_directory_does_not_exist: Mapa za datoteke ne obstaja in se je
+    ne da kreirat
+  error_file_tmpdir_does_not_exist: Temporary file path doesn't exist and can't be
+    created
+  error_folder_cannot_be_copied: Mapo se ne da skopirati
+  error_folder_creation_failed: Mape ne morem kreirati
+  error_folder_is_locked: Папка заблокированa
+  error_folder_is_not_empty: Mapa ni prazna
+  error_folder_title_is_already_used: Naslov je že uporabljen
+  error_folder_title_must_be_entered: Naslov mora biti vnešen
+  error_lock_exclusively: Unable to lock exclusively an already-locked resource
+  error_max_email_filesize_exceeded: Presegli ste največjo velikost datoteke za pošiljanje
+    po email-u. (%{number} MB)
+  error_max_files_exceeded: Max %{number} datotek za istočasno nalaganje je preseženo.
+  error_maximum_upload_filecount: No more than %{filecount} file(s) can be uploaded.
+  error_minimum_filesize: Datoteka %{file} je 0 bytov in ne bo pripeta.
+  error_only_user_that_locked_file_can_unlock_it: Samo oseba, ki je zaklenila datoteko,
+    jo lahko odklene.
+  error_only_user_that_locked_folder_can_unlock_it: Nimate privilegijev, da bi odklenili
+    to mapo
+  error_parent_folder: The parent folder doesn't exist
+  error_parent_locked: Unable to complete lock - resource parent is locked
+  error_resource_locked: Unable to complete lock - resource is locked
+  error_resource_or_parent_locked: Unable to complete lock - resource (or parent)
+    is locked
+  error_target_folder_same: Ciljna mapa in projekt sta ista kot izvorna (trenutna)
+  error_tmpfile_can_not_be_created: Files can't be created in temporary file path
+    directory
+  error_unable_delete_dmsf_workflow: Unable to delete the workflow
+  error_unlock_parent_locked: Unlock failed - resource parent is locked
+  error_user_has_not_right_delete_file: Uporabnik nima privilegija brisati datoteke
+  error_user_has_not_right_delete_folder: Uporabnik nima privilegija brisati mapo
+  error_workflow_assign: An error occured while assigning
+  error_wrong_zip_encoding: Napačen Zip nabor znakov
+  field_dmsf_not_inheritable: Not inheritable
+  field_dmsf_tree_view: Navigate folders in a tree
+  field_external_url: URL
+  field_folder: Pod mapo
+  field_label_dmsf_workflow: Approval Workflow
+  field_label_dmsf_workflow_name: Approval workflow name
+  field_target_file: Source file
+  field_target_folder: Ciljna mapa
+  field_target_project: Ciljni projekt
+  header_minimum_filesize: Datotečna napaka.
+  heading_access_downloads_emails: Prenosi/Email-i
+  heading_access_first: Prvi
+  heading_access_last: Zadnji
+  heading_new_folder: Nova mapa
+  heading_new_revision: Nova verzija
+  heading_revisions: Verzije
+  heading_send_documents_by_email: Pošlji dokumente po elektronski pošti
+  heading_uploaded_files: Naložene datoteke
+  info_changed_by_user: "%{changed} po"
+  info_file_locked: Datoteka zaklenjena!
+  info_revision: r%{rev}
+  label_act_as_attachable: Act as attachable
+  label_action: Action
+  label_basic_attachments: Basic Attachments
+  label_changed: Spremenjeno
+  label_created: Narejeno
+  label_default_notifications: Privzeti status obveščanja za datoteke
+  label_description: Opis
+  label_display_notified_recipients: Display notified recipients
+  label_dmsf_attachments: DMS Attachments
+  label_dmsf_downloaded: Arhiv downloaded
+  label_dmsf_fast_links: Fast links
+  label_dmsf_file_plural: DMS Arhivske datoteke
+  label_dmsf_file_revision_access_plural: Document accesses
+  label_dmsf_file_revision_plural: Document revisions
+  label_dmsf_folder_plural: DMS Arhivske mape
+  label_dmsf_keep_documents_locked: Keep documents locked
+  label_dmsf_plural: Kopiraj Arhivske datoteke in mape (%{files} datoteke v %{folders}
+    mape)
+  label_dmsf_updated: Arhiv posodobljen
+  label_dmsf_version: Verzija
+  label_dmsf_wokflow_action_approve: Approve
+  label_dmsf_wokflow_action_assign: Assign an approval workflow
+  label_dmsf_wokflow_action_delegate: Delegate to
+  label_dmsf_wokflow_action_reject: Reject
+  label_dmsf_wokflow_action_start: Start workflow
+  label_dmsf_workflow_add_approver: 'Add a new approver with a logical function:'
+  label_dmsf_workflow_approval: Approval
+  label_dmsf_workflow_approval_plural: Approvals
+  label_dmsf_workflow_new: New approval workflow
+  label_dmsf_workflow_plural: Approval workflows
+  label_dmsf_workflow_plural_num: Approval workflows (%{count})
+  label_dmsf_workflow_step: Step
+  label_dmsf_workflow_step_plural: Steps
+  label_document_url: Url
+  label_email_body: Vsebina
+  label_email_cc: Kp
+  label_email_documents: Priloge
+  label_email_from: Pošiljatelj
+  label_email_from_override: From
+  label_email_reply_to: Reply-to
+  label_email_send: Pošlji
+  label_email_subject: Zadeva
+  label_email_to: Naslovnik
+  label_enable_cjk_ngrams: Enable generation of n-grams from CJK text
+  label_external: External
+  label_file: Datoteka
+  label_file_storage_directory: Direktorij za datoteke
+  label_filename: Datoteka
+  label_full_text: Full-text search
+  label_index_database: Index podatkovna baza
+  label_last_approver: Last approver
+  label_last_revision_id: Revision
+  label_link_from: Link from
+  label_link_name: Link name
+  label_link_to: Link to
+  label_links_only: links only
+  label_maximum_email_filesize: Največja velikost email priponke
+  label_maximum_files_download: Maximum datotek za prenos dol.
+  label_mime: Mime
+  label_my_locked_documents: My locked documents
+  label_my_open_approvals: My open approvals
+  label_new_content: Nova vsebina
+  label_note: Note
+  label_notifications: Obveščanje
+  label_notifications_off: Notifications off
+  label_notifications_on: Notifications on
+  label_number_of_documents: Dokumentacija
+  label_number_of_folders: Mapa
+  label_or: or
+  label_physical_file_delete: Brisanje datoteke (fizično)
+  label_public_urls: Public URLs valid to
+  label_size: Velikost
+  label_source_folder: Source folder
+  label_source_project: Source project
+  label_stem_strategy: Strategija korenjenja besed
+  label_stemming_language: Jezik za korenjenje besed (stemming)
+  label_target_folder: Target folder
+  label_target_project: Target project
+  label_title: Naziv mape
+  label_title_format: Title format
+  label_tmpdir: Temporary file path
+  label_upload: Naloži
+  label_user_search_add: Search for user to add
+  label_webdav: WebDAV
+  label_webdav_disable_versioning: No versioning files patterns
+  label_webdav_ignore: Ignored files patterns
+  label_webdav_strategy: Webdav strategija
+  label_webdav_use_project_names: Use project name for project folder
+  link_author: Autor
+  link_create_folder: Kreiraj mapo
+  link_details: "%{title} podrobnosti"
+  link_documents: Dokumentacija
+  link_edit: Uredi %{title}
+  link_extension: Ext
+  link_modified: Spremenjeno
+  link_size: Velikost
+  link_title: Naslov
+  link_trash_bin: Trash bin
+  link_user_preferences: Vaše Arhivske nastavitve za projekt
+  link_ver: Ver.
+  link_workflow: Workflow
+  locked_documents: Locked documents
+  menu_dmsf: Arhiv
+  message_dmsf_wokflow_note: Your note...
+  note_display_notified_recipients: The user will be informed about all recipients
+    of just sent the email notification.
+  note_dmsf_act_as_attachable: Allows to attach documents to objects e.g. issues.
+  note_dmsf_keep_documents_locked: Documents will be kept locked when approved
+  note_global: "(global)"
+  note_maximum_email_filesize: Omejitev največje velikosti datoteke, ki se lahko pošlje
+    po email-u. 0 pomeni neomejeno. Količina je v MB.
+  note_maximum_number_of_files_downloaded: Omejitev največjega števila prenešenih
+    datotek v zip formatu ali poslanih po emailu. 0 pomeni neomejeno.
+  note_pass_none_to_disable_stemming: vnesi 'none' za izklop korenjenja besed (stemming)
+  note_possible_values: Možne vrednosti
+  note_webdav: Webdav po vklopu lahko najdete na %{protocol}://%{domain}/dmsf/webdav/[project
+    identifier]
+  note_webdav_disable_versioning: A regular expression that disables versioning for
+    matching files.
+  note_webdav_ignore: A regular expresion with filenames to ignore by PUT requests.
+  note_webdav_strategy: Omogoči administratorju da odloči ali je webdav platforma
+    na voljo izključno za branje ali beri/piši za končne uporabnike.
+  note_webdav_use_project_names: Use project names instead of project identifier for
+    project folders.
+  notice_dmsf_file_restored: The document has been successfully restored
+  notice_dmsf_folder_restored: The folder has been successfully restored
+  notice_dmsf_link_restored: The link has been successfully restored
+  notice_entries_deleted: Izbrane enote izbrisane
+  notice_file_copied: Datoteka skopirana
+  notice_file_deleted: Datoteka izbrisana
+  notice_file_locked: Datoteka zaklenjena
+  notice_file_moved: Datoteka premaknjena
+  notice_file_notifications_activated: Obveščanje o datoteki je aktivirano
+  notice_file_notifications_deactivated: Obveščanje o datoteki je deaktivirano
+  notice_file_revision_created: Verzija datoteke kreirana
+  notice_file_unlocked: Datoteka odklenjena
+  notice_folder_copied: Mapa skopirana
+  notice_folder_created: Mapa kreirana
+  notice_folder_deleted: Mapa izbrisana
+  notice_folder_details_were_saved: Podatki o mapi so shranjeni
+  notice_folder_locked: Mapa je uspešno zaklenjena
+  notice_folder_notifications_activated: Obveščanje o mapi je aktivirano
+  notice_folder_notifications_deactivated: Obveščanje o mapi je deaktivirano
+  notice_folder_unlocked: Mapa je uspešno odklenjena
+  notice_revision_deleted: Verzija izbrisana
+  notice_revision_obsoleted: Revision obsoleted
+  notice_workflow_started: Approval workflow successfully started
+  notice_your_preferences_were_not_saved: Your preferences were not saved
+  notice_your_preferences_were_saved: Vaše nastavitve so shranjene
+  open_approvals: Open approvals
+  option_stem_all: Korenjenje vseh besed
+  option_stem_none: Izklop korenjenja (privzeto)
+  option_stem_some: Korenjenje nekaterih besed
+  option_version_custom: Custom
+  option_version_major: Major
+  option_version_minor: Minor
+  option_version_same: Enako
+  parent_directory: Nadrejena mapa
+  permission_display_system_folders: Display system folders
+  permission_email_documents: Email documents
+  permission_file_approval: File approval
+  permission_file_delete: Delete documents
+  permission_file_manipulation: Upravljanje z datotekami
+  permission_folder_manipulation: Upravljanje z mapami
+  permission_force_file_unlock: Prisilno odkleni datoteko
+  permission_manage_workflows: Manage workflows
+  permission_user_preferences: Uporabniške nastavitve
+  permission_view_dmsf_file_revision_accesses: View downloads in Activity stream
+  permission_view_dmsf_file_revisions: View revisions in Activity stream
+  permission_view_dmsf_files: Preglej dokumente
+  permission_view_dmsf_folders: Brskanje po dokumentih
+  project_module_dmsf: Arhiv
+  select_option_activated: Aktivirano
+  select_option_deactivated: Deaktivirano
+  select_option_default: Privzeto
+  select_option_webdav_readonly: Beri (izključno)
+  select_option_webdav_readwrite: Beri/Piši
+  submit_save: Shrani
+  text_dmsf_fast_links_info: You will be able to manually enter a target folder's
+    ID when creating links in order to speed up the process of creating links.
+  text_email_doc_deleted: has just deleted documents of
+  text_email_doc_deleted_subject: Documents deleted
+  text_email_doc_follows: as follows
+  text_email_doc_updated: has just actualized documents of
+  text_email_doc_updated_subject: Documents updated
+  text_email_finished_approved: The approval workflow '%{name}' assigned to '%{filename}'
+    document has just been finished and the document has been approved.
+  text_email_finished_delegated: The approval workflow '%{name}' assigned to '%{filename}'
+    document has just been delegated because of '%{notice}' and you are expected to
+    do an approval in the current approval step.
+  text_email_finished_rejected: The approval workflow '%{name}' assigned to '%{filename}'
+    document has just been finished and the document has been rejected because of
+    '%{notice}'.
+  text_email_finished_step: The approval workflow '%{name}' assigned to '%{filename}'
+    document has just finished one of the approval steps and you are expected to do
+    an approval in the next approval step.
+  text_email_finished_step_short: The approval workflow '%{name}' assigned to '%{filename}'
+    document has just finished one of the approval steps.
+  text_email_from_override: The user currently logged in
+  text_email_started: The approval workflow '%{name}' assigned to '%{filename}' document
+    has just been started and you are expected to do an approval in the current approval
+    step.
+  text_email_subject_approved: approved
+  text_email_subject_delegated: delegated
+  text_email_subject_rejected: rejected
+  text_email_subject_requires_approval: requires your approval
+  text_email_subject_started: started
+  text_email_subject_updated: updated
+  text_email_to_proceed: To proceed click on the check box icon next to the document
+    in
+  text_email_to_see_history: To see the approval history click on the workflow status
+    of the document in
+  text_email_to_see_status: To see the current status of the approval workflow click
+    on the workflow status the document in
+  text_enable_cjk_ngrams: 'With this enabled, spans of CJK characters are split into
+    unigrams and bigrams, with the unigrams carrying positional information. Non-CJK
+    characters are split into words as normal. The corresponding option needs to have
+    been used at index time. e.g: XAPIAN_CJK_NGRAM=true ruby plugins/redmine_dmsf/extra/xapian_indexer.rb
+    -fv'
+  text_stemming_info: 'This controls how the query parser will apply the stemming
+    algorithm. The default value is STEM_NONE. The possible values are: STEM_NONE
+    -  Don''t perform any stemming, STEM_SOME - Search for stemmed forms of terms
+    except for those which start with a capital letter, or are followed by certain
+    characters (currently:''/@<>=*[{"''), or are used with operators which need positional
+    information. Stemmed terms are prefixed with ''Z'', STEM_ALL - Search for stemmed
+    forms of all words (note: no ''Z'' prefix is added).'
+  text_title_format: 'Document title format for download (%t - title, %f - file, %d
+    - date, %v - version, %i - ID, %r - revision). Example: %t_%v'
+  title_approval: Approval
+  title_approved: Odobreno
+  title_assigned: Assigned
+  title_assignment: Assignment
+  title_check_for_restore_or_delete: Check for restore or delete
+  title_check_for_zip_download_or_email: Označi za zip prenašanje ali email
+  title_copy: Kopiraj
+  title_copy_or_move: Kopiraj/Premakni
+  title_create_link: Create a symbolic link
+  title_delegation: Delegation
+  title_delete: Izbriši
+  title_delete_checked: Izbriši izbrano
+  title_delete_revision: Izbriši verzijo
+  title_dmsf_workflow_log: Approval Workflow Log
+  title_download: Prenesi dol
+  title_download_checked: Prenesi izbrano v Zip formatu
+  title_download_entries: Download entries
+  title_filename_for_download: Naziv datoteke za prenos dol ali Zip arhiva
+  title_items: items
+  title_lock_file: Zakleni za posodabljanje
+  title_lock_folder: Zakleni, da bi drugim članom preprečil spreminjanje
+  title_locked_by_user: Zaklenil %{user}
+  title_none: None
+  title_notifications_active: Obveščanje aktivno
+  title_notifications_active_deactivate: 'Obveščanje aktivno: Deaktiviraj'
+  title_notifications_not_active_activate: 'Obveščanje ni aktivno: Aktiviraj'
+  title_obsolete: Obsolete
+  title_obsolete_revision: Obsolete revision
+  title_rejected: Rejected
+  title_rejection: Rejection
+  title_restore: Restore
+  title_restore_checked: Restore checked
+  title_save_preferences: Save preferences
+  title_send_checked_by_email: Pošlji izbrano po elektronski pošti
+  title_start: Start
+  title_title_version_version_download: "%{title} verzija %{version} prenesi dol"
+  title_total_size_of_all_files: Skupna velikost vseh datotek v tej mapi
+  title_unlock_file: Odkleni drugim članom za posodabljanje
+  title_unlock_folder: Odkleni, da bi drugim članom omogočil spreminjanje
+  title_waiting_for_approval: V postopku odobritve
+  user_is_not_project_member: Niste član projekta
+  warning_email_notifications: Email notifications sent to %{to}
+  warning_file_already_locked: Datoteka že zaklenjena
+  warning_file_not_locked: Datoteka ni zaklenjena
+  warning_file_notifications_already_activated: Obveščanje o datoteki je že aktivno
+  warning_file_notifications_already_deactivated: Obveščanje o datoteki je že deaktivirano
+  warning_folder_already_locked: Mapa je že zaklenjena
+  warning_folder_not_locked: Ne, ta mapa ne more biti zaklenjena
+  warning_folder_notifications_already_activated: Obveščanje o mapi je že aktivno
+  warning_folder_notifications_already_deactivated: Obveščanje o mapi je že neaktivno
+  warning_no_entries_selected: Ničesar niste izbrali
+  warning_no_project_to_copy_file_to: Ni projekta kamor bi kopiral datoteko
+  warning_no_project_to_copy_folder_to: Ni projekta v katerega bi skopiral mapo
+  warning_one_of_files_locked: Ena od datotek je zaklenjena
+  warning_some_entries_were_not_deleted: 'Nekatere enote niso izbrisane: %{entries}'
+  warning_some_files_were_not_commited: 'Nekatere datoteke niso shranje zaradi napak
+    v validaciji: %{files}'
+  warning_xapian_not_available: Xapian ni na voljo

@@ -1,0 +1,15 @@
+<div class="easy-contact-form-container">
+  <h2 class="title"><%= l(:label_easy_contact_type_edit) %></h2>
+
+  <%= labelled_form_for(@type, html: { class: 'form-box tabular' }) do |f| %>
+    <%= render partial: 'form', locals: { f: f }  %>
+
+    <div class="form-actions">
+      <p><%= f.submit l(:button_update), class: 'button-positive' %></p>
+    </div>
+  <% end %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= render 'sidebar' %>

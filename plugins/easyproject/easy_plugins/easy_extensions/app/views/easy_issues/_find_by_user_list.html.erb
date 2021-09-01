@@ -1,0 +1,22 @@
+<table class="list">
+  <tbody>
+    <% users.each do |user| %>
+      <tr class="<%= user.css_classes %>">
+        <td class="name">
+          <%= link_to(user.name, {:controller => 'issues', :set_filter => 1, :assigned_to_id => user.id, :status_id => 'o'}, :title => l(:label_show_assigned_issues, :username => user.name)) %>
+        </td>
+        <td class="buttons">
+          <%= link_to(l(:label_issues_assigned_to), {:controller => 'issues', :set_filter => 1, :assigned_to_id => user.id, :status_id => 'o'}, :title => l(:label_issues_assigned_to), :class => 'button') %>
+          <%= link_to(l(:label_issues_after_due_date), {:controller => 'issues', :set_filter => 1, :assigned_to_id => user.id, :due_date => 'after_due_date', :status_id => 'o'}, :title => l(:label_issues_after_due_date), :class => 'button') %>
+          <%= link_to(l(:label_issues_not_updated), {:controller => 'issues', :set_filter => 1, :assigned_to_id => user.id, :not_updated_on => '7_days', :status_id => 'o'}, :title => l(:label_issues_not_updated), :class => 'button') %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="clear"></div>
+<span class="pagination">
+  <%= pagination_links_full(@user_pages , @user_count, :per_page_links => false) do |text, parameters, options| %>
+    <% link_to text, url_for(parameters.merge(:q => params[:q])), :remote => true %>
+  <% end %>
+</span>

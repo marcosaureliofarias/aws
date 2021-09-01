@@ -1,0 +1,35 @@
+var modal = $("#ajax-modal")
+modal.html("<%= j(render partial: 'easy_agile_board/populate', formats: [:html], locals: { project: @project, easy_sprint: @easy_sprint }) %>");
+showModal('ajax-modal', '70%', null, '90%', '92%');
+
+modal.dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_save) %>',
+        click: function() {
+          var val = $(".ui-dialog-buttonpane input[name='target_backlog']:checked").val();
+          $(this).find('.target_backlog_field').val(val);
+          if(!$('#new_issue_tabs .tab-new_issue-content').is(':visible')) {
+            $(this).dialog('close');
+            var additionalParams = $('#backlog_query_q').serializeArray();
+            additionalParams.push({ name: 'check_capacities', value: '1' });
+            getAgileData(additionalParams);
+          } else {
+            EASY.utils.updateCKE();
+            $(this).find('form').trigger('submit.rails');
+          }
+        },
+        'class': 'button-positive'
+    },
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() { $(this).dialog('close'); }, 'class': 'button'
+    }
+  ]
+});
+
+$(document).ready(function() {
+  var modal_buttons = $(".ui-dialog-buttonset")
+  var radio_buttons = '<%= j render partial: 'easy_agile_board/target_backlog_row' %>'
+  $(radio_buttons).prependTo(modal_buttons)
+})

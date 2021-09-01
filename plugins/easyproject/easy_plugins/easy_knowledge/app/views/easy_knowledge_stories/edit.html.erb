@@ -1,0 +1,11 @@
+<%= title l(:label_easy_knowledge_edit_story) %>
+<%= labelled_form_for @story, url: {action: 'update'}, html: {multipart: true, method: :put, class: 'form-box main-form'} do |f| -%>
+    <%= render partial: 'form', locals: {f: f, story: @story} %>
+    <div class="form-actions">
+      <%= submit_tag l(:button_update), :class => 'button-positive' %>
+    </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% html_title(l(:label_easy_knowledge_new_story)) -%>

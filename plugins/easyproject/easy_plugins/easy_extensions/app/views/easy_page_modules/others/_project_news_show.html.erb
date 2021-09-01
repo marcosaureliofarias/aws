@@ -1,0 +1,8 @@
+<% if page_module.entity_id.blank? -%>
+  <%= render :partial => 'easy_page_modules/page_module_cannot_be_displayed', :locals => { :page_module => page_module } %>
+<% else -%>
+  <div class="clear"></div>
+  <%= render(:partial => 'news/news', :collection => @easy_page_modules_data[block_name][:news])-%>
+  <p class="small"><%= link_to l(:label_news_view_all), {:controller => 'news', :action => 'index', :project_id => @easy_page_modules_data[block_name][:project]} %></p>
+<% end -%>
+

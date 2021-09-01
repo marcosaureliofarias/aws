@@ -1,0 +1,34 @@
+<% if @entry && @entry.kind == 'file' %>
+
+<%
+tabs = []
+tabs << { name: 'entry', label: :button_view,
+          url: { :action => 'entry', :id => @project, :repository_id => @repository.identifier_param, :path => to_path_param(@path), :rev => @rev }
+        } if @repository.supports_cat?
+
+tabs << { name: 'changes', label: :label_history,
+          url: {:action => 'changes', :id => @project, :repository_id => @repository.identifier_param, :path => to_path_param(@path), :rev => @rev }
+        }
+tabs << { name: 'annotate', label: :button_annotate,
+          url: {:action => 'annotate', :id => @project, :repository_id => @repository.identifier_param, :path => to_path_param(@path), :rev => @rev }
+        } if @repository.supports_annotate?
+%>
+
+<div class="tabs">
+  <ul>
+    <% tabs.each do |tab| -%>
+      <li><%= link_to l(tab[:label]), (tab[:url] || { :tab => tab[:name] }),
+                                    :id => "tab-#{tab[:name]}",
+                                    :class => (tab[:name] != action_name ? nil : 'selected'),
+                                    :onclick => tab[:partial] ? "showTab('#{tab[:name]}', this.href); this.blur(); return false;" : nil %></li>
+    <% end -%>
+  </ul>
+</div>
+
+<% tabs.each do |tab| -%>
+  <%= content_tag('div', render(:partial => tab[:partial], :locals => {:tab => tab} ),
+                       :id => "tab-content-#{tab[:name]}",
+                       :style => (tab[:name] != action_name ? 'display:none' : nil),
+                       :class => 'tab-content') if tab[:partial] %>
+<% end -%>
+<% end %>

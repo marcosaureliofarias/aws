@@ -1,0 +1,59 @@
+<% project = row.project || @project; issue = row.issue || @issue; activity = row.activity || @activity %>
+<tr id="<%= row.dom_id %>" class="<%= 'is-new-row' if row.is_new_row? %>" data-project-id="<%= row.project_id %>" data-issue-id="<%= row.issue_id %>" data-activity-id="<%= row.activity_id %>" data-over-time="<%= row.over_time %>">
+  <td class="project" data-resizable-sticky title="<%= project %>">
+    <% if row.is_new_row? && !row.read_only? %>
+      <%= easy_select_tag(
+            'project_id', { name: project, id: project.try(:id) }, nil, load_assigned_projects_easy_time_entries_path(format: 'json', user_id: easy_timesheet.user_id),
+            include_blank: true,
+            onchange: "easyTimesheetOnChangeRowAttribute('#{row.dom_id}', 'project', event);",
+            root_element: 'projects',
+            easy_autocomplete_options: { position: {
+              collision: "flipfit"
+            }}
+          ) -%>
+    <% else %>
+      <%= project %>
+    <% end -%>
+  </td>
+  <td class="issue" data-resizable-sticky title="<%= issue %>">
+    <% if !row.read_only? && row.is_new_row? && project %>
+      <%= easy_select_tag(
+            'issue_id',
+            { name: issue.to_s, id: issue.try(:id) },
+            @issues ? options_for_select(@issues.collect { |i| [i.to_s, i.id] }, { selected: issue }) : nil,
+            load_assigned_issues_easy_time_entries_path(format: 'json', user_id: easy_timesheet.user_id, without_subprojects: '1', project_id: project),
+            onchange: "easyTimesheetOnChangeRowAttribute('#{row.dom_id}', 'issue', event);",
+            include_blank: true
+          ) if project.issues.any? -%>
+    <% else %>
+      <%= issue %>
+    <% end -%>
+  </td>
+  <td class="activity" data-resizable-sticky>
+    <% if row.is_new_row? && !row.read_only? %>
+      <% if project.try(:fixed_activity?) && issue %>
+        <%= hidden_field_tag(:activity_id, activity.try(:id)) if activity %>
+        <%= activity %>
+      <% elsif @activities_collection.present? %>
+        <%= select_tag('activity_id', options_for_select(@activities_collection.map { |a| [a.name, a.id] }, (activity || TimeEntryActivity.default).try(:id)), onchange: "easyTimesheetOnChangeRowAttribute('#{row.dom_id}', 'activity', event, this);") -%>
+      <% end -%>
+      <% if EasySetting.value('easy_timesheets_over_time') == '1' && row.easy_timesheet.period == :month %>
+        <%= label_tag 'over_time', l('extended_timesheet.label_overtime') %>
+        <%= check_box_tag('over_time', 1, @over_time || row.over_time, class: 'over-time', onchange: "easyMonthlyTimesheetOnChangeRowAttribute('#{row.dom_id}', 'over-time', this);") %>
+      <% end %>
+    <% else %>
+      <%= activity %>
+    <% end -%>
+  </td>
+  <%= render(partial: 'easy_timesheet_cells/cell', collection: row.each_cell, locals: { easy_timesheet: easy_timesheet, row: row }) -%>
+  <td class="time-entry-hour row-sum">
+    <%= format_locale_number(row.sum_hours) -%>
+  </td>
+  <td class="buttons">
+    <% if row.is_new_row? %>
+      <%= link_to('', 'javascript:void(0)', onclick: "$(this).closest('tr').remove();", class: 'icon-false', title: l(:button_delete)) %>
+    <% elsif easy_timesheet.editable? %>
+      <%= link_to('', row_easy_timesheet_path(easy_timesheet, row_id: row), method: :delete, class: 'icon-del', title: l(:button_delete), remote: true) -%>
+    <% end -%>
+  </td>
+</tr>

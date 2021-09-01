@@ -1,0 +1,10 @@
+modal = $("#ajax-modal")
+modal.html("<%=j render(:partial => 'easy_queries/load_users_for_copy') %>");
+showModal("ajax-modal", 550);
+modal.dialog({
+  title: '<%= j l(:title_copy_projectquery) %>',
+  buttons: [
+    {text: '<%=j l(:button_cancel) %>', click: function() {hideModal()}, 'class': 'button-2' },
+    {text: '<%=j l(:button_copy) %>', click: function() {$(this).find('form').submit()}, 'class': 'button-1'}
+  ]
+})

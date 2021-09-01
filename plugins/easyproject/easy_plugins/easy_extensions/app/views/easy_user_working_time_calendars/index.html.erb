@@ -1,0 +1,8 @@
+<div id="easy_user_working_time_calendar_index">
+  <%= title l(:heading_easy_user_working_time_calendar_index) -%>
+  <%= render :partial => 'easy_user_working_time_calendars/list' %>
+</div>
+
+<% content_for :easy_page_layout_service_box_primary_actions do -%>
+  <%= link_to(l(:button_easy_user_working_time_calendars_new), { :controller => 'easy_user_working_time_calendars', :action => 'new'}, :class => 'button-positive', :title => l(:title_easy_user_working_time_calendars_new)) -%>
+<% end -%>

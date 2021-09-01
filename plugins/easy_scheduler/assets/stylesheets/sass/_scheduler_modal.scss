@@ -1,0 +1,33 @@
+&__modal {
+  &_button {
+    &.active {
+      background-color: $color-main;
+      color: $color-foreground;
+    }
+    &.disabled {
+      opacity: 0.5;
+    }
+  }
+  &_content {
+
+  }
+  &_flash {
+    margin-bottom: 2.2rem;
+    &__message {
+      position: absolute;
+    }
+    &--error {
+      @extend %flash-error;
+    }
+    &--success {
+      @extend %flash-success;
+    }
+  }
+  &--disabled &-button {
+    opacity: 0.5;
+  }
+  &__warning--scheduler {
+    background-color: mix($scheduler-color-warning, $color-foreground, 30%);
+    border-color: $scheduler-color-warning;
+  }
+}

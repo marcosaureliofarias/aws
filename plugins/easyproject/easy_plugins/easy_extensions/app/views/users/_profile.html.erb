@@ -1,0 +1,25 @@
+<% if EasyExtensions::EasyProjectSettings.enable_action_cable %>
+  <h3 class="title"><%= user.name %> (<%= l("easy_online_status_#{user.easy_online_status}") %>)</h3>
+<% else %>
+  <h3 class="title"><%= user.name %></h3>
+<% end %>
+
+<div id="user_detail_header" class="easy-entity-details-header">
+  <div class="entity-detail-header-avatar"><%= avatar user, :style => :medium, :no_link => true %></div>
+  <div class="menu-user-profile push-right">
+    <% if User.current.easy_lesser_admin_for?('users') %>
+      <%= link_to(l(:button_edit), edit_user_path(@user), :class => 'button-positive icon icon-edit')  %>
+    <% else %>
+      <% if @user.id == User.current.id && User.current.allowed_to_globally?(:edit_profile) %>
+        <%= link_to(l(:button_edit_user_profile), my_account_path, :class => 'button-positive edit-user-profile icon icon-user', :title => l(:title_edit_user_profile)) %>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render_menu :user_profile %>
+</div>
+
+<span id="profile_tabs" data-entity-type="User">
+  <span class="tabs tab-container">
+    <%= render :partial => 'common/entity_tabs', :locals => {:tabs => user_profile_tabs(@user), :tabs_container => 'profile_tabs'} %>
+  </span>
+</span>

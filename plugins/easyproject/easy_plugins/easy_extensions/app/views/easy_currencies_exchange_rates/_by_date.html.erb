@@ -1,0 +1,54 @@
+<div class="currency_top_select">
+  <%= l(:label_valid_on) %>
+  <span class="input-append"><%= text_field_tag(:date, @date, size: 10) %> <%= calendar_for('date') %></span>
+</div>
+<%= form_tag({ controller: :easy_currencies_exchange_rates, action: :bulk_update }, :method => :post) do %>
+  <%= hidden_field_tag(:date, @date, size: 10) %>
+  <table class="easy-table">
+    <thead>
+    <tr>
+      <th></th>
+      <% @exchange_table.each do |base, rate| %>
+        <th class="currency-header"> <%= base.iso_code %></th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% @exchange_table.each do |base, rates| %>
+      <tr>
+        <td class="currency-header"> 1 <%= base.iso_code %> =</td>
+        <% rates.each do |rate_pair| %>
+          <td><%= text_field_tag "rate[#{rate_pair.id}]", rate_pair.rate, readonly: rate_pair.base_code == rate_pair.to_code, class: :rate_input %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="form-actions">
+    <%= submit_tag l(:button_update), class: 'button-positive' %>
+    <% if @easy_currency_settings['show_ECB_rates'].present? %>
+      <%= link_to(l(:label_synchronize_exchange_rate), { controller: 'easy_currencies_exchange_rates', action: 'synchronize_rates', date: @date }, class: 'button') %>
+    <% end %>
+    <% if @last_date_of_rate %>
+      <%= "(#{l(:field_updated_on)} #{format_date(@last_date_of_rate)})" %>
+    <% end %>
+  </div>
+
+<% end %>
+<script type="application/javascript">
+    EASY.schedule.late(function () {
+        var pairs = <%= Hash[EasyCurrencyExchangeRate.all.inject({}) { |mem,var| mem[var.id] = var.reverse_pair(@date).try(:id); mem}].to_json.html_safe %>
+
+            $(document).on('keyup', '.rate_input', function (evt) {
+                $("#rate_" + pairs[this.id.split("_")[1]]).val((1.0 / this.value).toFixed(6))
+            });
+
+        $(document).on('change', '#date', function (evt) {
+            var date = this.value;
+
+            if (date !== undefined || date != null) {
+                window.location = 'easy_currencies_exchange_rates?date=' + date;
+            }
+        });
+    });
+</script>

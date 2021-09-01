@@ -1,0 +1,21 @@
+<div class="tabular">
+  <%= form_tag(update_easy_license_path) do %>
+    <%= label_tag 'key', 'Add new license key' %>
+    <%= text_field_tag 'key', '' %>
+
+    <%= submit_tag 'Apply key' %>
+  <% end %>
+</div>
+
+<div>
+  <p>
+    <% if @generated_key %>
+      Existing stored license
+      key: <%= @generated_key %> <%= link_to('Validate', validate_easy_license_path, :remote => true, :class => 'button') %>
+    <% else %>
+      No license key present
+    <% end %>
+  </p>
+</div>
+
+<div id="last_valid_license_key_container"></div>

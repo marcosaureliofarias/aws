@@ -1,0 +1,3 @@
+module EasyChecklist
+
+end

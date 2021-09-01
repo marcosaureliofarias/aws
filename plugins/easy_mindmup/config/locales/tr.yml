@@ -1,0 +1,176 @@
+---
+tr:
+  easy_mindmup:
+    button_add_child: Alt öğe ekle
+    button_add_parent: Ana öğe ekle
+    button_add_sibling: Kardeş öğe ekle
+    button_all_icons: Simgeler
+    button_collapse: Daralt
+    button_collapse_all: Tümünü daralt
+    button_cut: Kes
+    button_edit_data: Veriyi düzenle
+    button_expand: Genişlet
+    button_expand_all: Tümünü genişlet
+    button_expand_collapse: Genişlet/Daralt
+    button_hotkeys: Kısayollar
+    button_legend: Lejant
+    button_one_side: Tek taraf
+    button_paste: Yapıştır
+    button_project_menu: Easy Zihin Haritası
+    button_redo: Yeniden yap
+    button_remove_node: Düğümü kaldır
+    button_show_links: Bağlantıları göster
+    button_undo: Geri al
+    error_create: yaratılamadı
+    error_delete: yaratılamadı
+    error_update: güncellenemedi
+    errors:
+      no_rest_api: REST API devre dışı. Lütfen Yönetim ayarlarından etkinleştirin.
+      not_subtaskable: '"%{task_name}" işi, iş tipi ayarı nedeniyle alt iş olamaz'
+    free:
+      button_upgrade: Tam sürümü al
+      feature_coloring: Düğümleri özelliğe göre boyama
+      feature_context_menu: Düğümün özelliklerini içerik menüsüyle değiştirme
+      feature_dnd_property: Düğümün özelliklerini sürükleyip bırakarak değiştirme
+      feature_filtering: Düğümleri özelliğe göre filtreleme
+      header_not_available: Sadece tam sürümde mevcut
+    hotkeys:
+      info_mac_metakey: Mac OSX'te, Ctrl ve Cmd tuşları, aşağıda Ctrl işaretli kısayollar
+        için kullanılabilir - bazı tarayıcılar belirli tuşların bağlanmasını önler.
+        Bu nedenle, örneğin, Cmd + Space tarayıcınızda çalışmıyorsa, Ctrl + Space'i
+        deneyin.
+      keyboard:
+      - title: Düğüm değiştirme
+        hotkeys:
+        - hotkey: Enter
+          info: Kardeş Ekle
+        - hotkey: Shift+Enter
+          info: Kardeş ekle yukarıya veya satır sonuna (düğümü yeniden adlandırırken)
+        - Hotkey: Tab veya Insert
+          info: Çocuk ekle
+        - hotkey: Shift+Tab
+          info: Üst öğe ekle
+        - hotkey: Space
+          info: Düğümü yeniden adlandır
+        - hotkey: Shift+Space
+          info: Düğüm verilerini düzenle
+        - hotkey: Backspace veya Delete
+          info: Düğümü kaldır
+        - hotkey: Ctrl + Yukarı / Aşağı
+          info: Düğümü yukarı/aşağı taşı
+      - title: Düzenleme
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Kaydet
+        - hotkey: Ctrl+X veya C
+          info: Kes
+        - hotkey: Ctrl+C veya Y
+          info: Kopyala
+        - hotkey: Ctrl+V veya P
+          info: Yapıştır
+        - hotkey: U veya Ctrl+Z
+          info: Geri al
+        - hotkey: R veya Ctrl+Y veya Ctrl+Shift+Z
+          info: Yinele
+      - title: Seçim
+        hotkeys:
+        - hotkey: Ok Tuşları
+          info: Seçili olanın yukarı/aşağı/sol/sağındaki düğümü seçin
+        - hotkey: Shift + Ok tuşları
+          info: Seçim için yukarı / aşağı / sola / sağa düğüm ekleyin (çoklu kardeş
+            seçimi için kullanışlıdır)
+        - hotkey: "{"
+          info: Geçerli düğümü ve altındaki tüm alt ağacı çoklu seç
+        - hotkey: "["
+          info: Yalnızca geçerli düğümün altındaki alt ağacı seç düğümün kendisi değil)
+        - hotkey: "="
+          info: Geçerli düğümün tüm kardeşlerini (aynı üst öğeye sahip olan) çoklu
+            seçin
+        - hotkey: "."
+          info: Çoklu seçimi iptal et ve yalnızca geçerli düğümü tekrar seç
+        - hotkey: 1 - 9
+          info: Belirli bir seviyedeki tüm düğümleri seç ( örneğin 1 tüm birinci seviye
+            düğümleri seçer)
+      - title: Gezinme ve ekran
+        hotkeys:
+        - hotkey: "/ veya F"
+          info: Düğümü genişlet veya daralt (çocukları daralt veya genişlet)
+        - hotkey: Ctrl + veya Z
+          info: Yakınlaştır
+        - hotkey: Ctrl – veya Shift Z
+          info: Uzaklaştır
+        - hotkey: Esc, 0, Ctrl+0
+          info: " Harita görünümünü sıfırla - kök düğümü seç ve ekranın ortasına getir"
+      mouse:
+      - action: Haritayı taşıma
+        gesture: orta düğümü tıklayın ve sürükleyin, arka planı tıklayıp sürükleyin
+          veya izleme dörtgeni / dokunmatik yüzey ile kaydırın.
+      - action: Bir düğüm seçin
+        gesture: üzerine dokunun veya tıklayın
+      - action: Birden çok düğüm seçin
+        gesture: Shift+tıklama
+      - action: Düğümleri yeniden sırala
+        gesture: kardeşleri arasında yeniden sıralama konumuna yatay olarak yakın
+          bir düğümü sürükleyin. Yeniden sıralarken siyah bir ok noktası gösterilir.
+      - action: Bir düğümü manuel olarak konumlandırma
+        gesture: yeniden sıralama için ok noktası görünene kadar bir düğümü sürükleyin.
+          Yeniden sıralama ok noktası gösterilse bile manuel konumu zorlamak için
+          Shift tuşunu basılı tutun. Kök düğümün alt öğelerinin herhangi bir yönde
+          çekilebileceğini, ancak alt düzey düğümlerin yalnızca üst öğesinin köke
+          göre yönünde konumlandırılabileceğini unutmayın.
+      - action: Bir düğümü yeniden adlandırın
+        gesture: Ona çift tıklayın veya iki kez hafifçe dokunun
+      - action: İşlemlerle bağlam menüsünü göster
+        gesture: 'Bir düğüme sağ tıklayın (fare ile) veya arka plana çift dokunun
+          veya bir düğüme uzun basın: show (dokunmatik cihazlarda)'
+      - action: Düğüm üst öğesini değiştir
+        gesture: bir düğümü başka bir düğüme sürükleyip bırakın (dairesel bağlantılara
+          izin verilmez, bu nedenle alt düğümlere veya alt öğelerden birine düğüm
+          bırakamazsınız)
+      - action: Görevi veya projeyi ayrı pencerede aç
+        gesture: Alt+tıklama
+      title_key_shortcuts: Klavye işlemleri
+      title_mouse_shortcuts: Fare ve dokunma işlemleri
+      title_shortcuts: Kısayollar
+    info_all_saved: Her şey başarıyla kaydedildi
+    info_any_failed: 'İsteklerden bazıları başarısız oldu:'
+    info_no_permission: Bunu yapmak için gerekli izniniz yok
+    label_color_by: Renklendirme
+    label_go_to: Git
+    label_hide_unused: Kullanılmayanları gizle
+    label_less: Daha az
+    label_or: veya
+    label_save_progress: Lütfen bekleyin, tüm varlıklar kaydediliyor
+    label_show_unused: Kullanılmayanları göster
+    label_tooltip_display_info: Lejant tüm durumları gösterir, ancak bazılarını kullanmanıza
+      izin verilmeyebilir.
+    last_state_modal:
+      label_differencies: Sunucudaki farklılıklar
+      message_changed: farklı özelliklere sahip (tarayıcı => sunucu) ({{changes}})
+      message_missing: ana düğümde eksik "{{from}}"
+      message_moved: bundan "{{from}}" buna "{{to}}" bağlandı
+      message_present: şu anda buna bağlı "{{to}}"
+      text_reload_appeal: Sunucudan yeniden yükleme istiyor musunuz?
+      title: Zihin haritasının son hali sunucudakinden farklı
+    reload_modal:
+      label_errors: Hatalar
+      text_reload_appeal: Kaydedilmemiş öğeleri yoksaymak ve verileri sunucudan yeniden
+        yüklemek ister misiniz?
+      title: Zihin haritası düzgün kaydedilemedi
+    save_info:
+      at: "-"
+      autosaved: Otomatik kaydedildi
+      loaded: Yüklendi
+      saved: Kaydedildi
+    stored_modal:
+      button_local: Lokal versiyon
+      button_server: Sunucu versiyonu
+      text_load_appeal: Yüklemek ister misiniz? Yoksa sunucudan yeni bir durum mu
+        yüklemek istersiniz?
+      title: Kaydedilmemiş lokal sürüm bulundu
+    title_node_changed: Bu düğüm değiştirildi ve kaydedilecek
+    warning_delete_node: "{{name}} düğümünü ve ona bağlı olanları gerçekten silmek
+      istiyor musunuz?"
+    warning_delete_nodes: Bu düğümleri ve onlara bağlı olanları gerçekten silmek istiyor
+      musunuz?
+    warning_not_saved: düzgün kaydedilemedi

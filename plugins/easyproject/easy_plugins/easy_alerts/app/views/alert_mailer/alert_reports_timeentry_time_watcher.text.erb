@@ -1,0 +1,2 @@
+<%= l(:label_timeentry_time_watcher_mail_body) %><%= easy_time_entries_url %>
+<%= link_to(@alert.caption, {:controller => 'alerts', :action => 'show', :id => @alert, :only_path => false}, :title => l(:title_alerts_show_alert, :alertname => @alert.caption)) %>

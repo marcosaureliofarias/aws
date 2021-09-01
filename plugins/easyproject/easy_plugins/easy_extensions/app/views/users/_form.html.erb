@@ -1,0 +1,131 @@
+<% user ||= @user
+auth_sources ||= @auth_sources %>
+<%= error_messages_for 'user' %>
+
+<div id="user_form" class="splitcontent tabular">
+  <div class="splitcontentleft">
+    <%= toggling_fieldset l(:label_information_plural) do %>
+      <% if user.safe_attribute?('login') %>
+        <p>
+          <%= f.text_field :login, :required => true %>
+        </p>
+      <% end %>
+      <p>
+        <%= f.text_field :firstname, :required => true %>
+      </p>
+      <p>
+        <%= f.text_field :lastname, :required => true %>
+      </p>
+      <% if user.auth_change_allowed? %>
+        <p>
+          <%= f.text_field :mail, :required => true %> <%= additional_emails_link(user) unless user.new_record? %>
+        </p>
+      <% end %>
+      <% unless user.force_default_language? %>
+        <p>
+          <%= f.select :language, lang_options_for_select %>
+        </p>
+      <% end %>
+      <% if Setting.openid? %>
+        <p>
+          <%= f.text_field :identity_url  %>
+        </p>
+      <% end %>
+      <% if user.safe_attribute_names.include?('easy_user_type_id') %>
+        <p>
+          <%= f.select :easy_user_type_id, easy_user_type_options %>
+        </p>
+        <p>
+          <%= f.check_box :apply_default_page_template %>
+        </p>
+      <% end %>
+      <% if user.safe_attribute_names.include?('tag_list') %>
+        <p class="easy-tag-list-field">
+          <%= label_tag 'user_tag_list', l(:label_easy_tags) %>
+          <%= easy_tag_list_autocomplete_field_tag user, 'user', id: 'user_tag_list' %>
+        </p>
+      <% end %>
+      <% if user.safe_attribute_names.include?('easy_system_flag') %>
+        <p>
+          <%= f.check_box :easy_system_flag %><%= l(:label_easy_system_flag, appname: EasyExtensions::EasyProjectSettings.app_name) -%>
+        </p>
+      <% end %>
+
+      <% user.custom_field_values.each do |value| %>
+        <% unless (cf_tag = custom_field_tag_with_label :user, value).blank? %>
+          <p>
+            <%= cf_tag %>
+          </p>
+        <% end %>
+      <% end %>
+
+      <% if user.safe_attribute_names.include?('admin') %>
+        <p>
+          <%= f.check_box :admin, disabled: (user == User.current), onchange: '$(\'#easy_lesser_admin_container\').toggle(!this.checked);' %>
+        </p>
+      <% end %>
+      <%= call_hook(:view_users_form, user: user, form: f) %>
+    <% end %>
+
+    <% if user.auth_change_allowed? %>
+      <%= toggling_fieldset l(:label_authentication) do %>
+        <div class="box tabular">
+          <% unless auth_sources.empty? %>
+            <p><%= f.select :auth_source_id, ([[l(:label_internal), '']] + auth_sources.collect { |a| [a.name, a.id] }), {}, :onchange => "$('#password_fields').toggle(this.value === '');" %></p>
+          <% end %>
+          <div id="password_fields" style="<%= 'display:none;' if user.auth_source %>">
+            <p>
+              <%= f.password_field :password, :required => user.new_record?, :size => 25 %>
+              <br/>
+              <em class="info">
+                <%= l(:text_caracters_minimum, :count => Setting.password_min_length) %>
+                <% if Setting.password_required_char_classes.any? %>
+                  <em class="info"><%= l(:text_characters_must_contain, :character_classes => Setting.password_required_char_classes.collect{|c| l("label_password_char_class_#{c}")}.join(", ")) %></em>
+                <% end %>
+              </em>
+            </p>
+            <p><%= f.password_field :password_confirmation, :required => user.new_record?, :size => 25 %></p>
+            <p><%= f.check_box :generate_password %></p>
+            <p><%= f.check_box :must_change_passwd %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="splitcontentright">
+    <%= call_hook(:view_my_account_custom_theme, :user => @user, :form => f) %>
+
+    <%= toggling_fieldset l(:field_mail) do %>
+      <%= render :partial => 'users/mail_notifications', :locals => {:user => user} %>
+      <%= call_hook(:view_my_account_mail_signature, :user => @user, :form => f) %>
+    <% end %>
+
+    <%= toggling_fieldset l(:label_preferences) do %>
+      <%= render :partial => 'users/preferences', :locals => {:user => user} %>
+      <%= call_hook(:view_my_account_preferences, :user => @user, :form => f) %>
+      <%= call_hook(:view_users_form_preferences, :user => @user, :form => f) %>
+    <% end %>
+
+    <%= toggling_fieldset l(:label_user_form_other_settings) do %>
+      <%= render :partial => 'users/other_settings', locals: { user: user } %>
+    <% end %>
+
+    <%= call_hook(:view_users_form_content_right, user: @user, form: f) %>
+
+  </div>
+</div>
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $('#user_generate_password').change(function(){
+      var passwd = $('#user_password, #user_password_confirmation');
+      if ($(this).is(':checked')){
+        passwd.val('').prop('disabled', true);
+      }else{
+        passwd.removeAttr('disabled');
+      }
+    }).trigger('change');
+    $('#user_admin').trigger('change');
+    $('#user_easy_lesser_admin').trigger('change');
+  });
+</script>

@@ -1,0 +1,8 @@
+<%= render_module_easy_box 'entity_tag_list_container', l(:label_easy_tags), icon: 'icon-bookmark' do |m| %>
+  <% m.heading_links do %>
+    <%= link_to('javascript:void(0)', onclick: 'var el=document.getElementById("entity_tag_list_container");if(el.style.display === "none"){EasyToggler.toggle(el);}$("#entity_tag_list_show_container").hide();$("#entity_tag_list_form_container").show().find(".ui-autocomplete-input").focus()', class: 'icon-edit') do %>
+      <span class="tooltip"><%= l(:title_inline_editable) %></span>
+    <% end %>
+  <% end if User.current.logged? %>
+  <%= render 'easy_taggables/index', entity: entity %>
+<% end %>

@@ -1,0 +1,33 @@
+<% title = l(:text_meeting_updated, :author => h(@easy_meeting.author), :name => h(@easy_meeting.name)) %>
+
+<h1 size="3">
+  <font size="3">
+    <% if @external %>
+    	<%= title %>
+    <% else %>
+      <%= link_to(title, easy_meeting_url(@easy_meeting)) %>
+    <% end -%>
+  </font>
+</h1>
+<font size="3">
+  <ul>
+    <li>
+      <%= l(:field_start_time) %>: <%= format_date(@user.user_time_in_zone(@easy_meeting.start_time).try(:to_date)) %> <%= @user.user_time_in_zone(@easy_meeting.start_time).try(:strftime, '%H:%M') unless @easy_meeting.all_day? %>
+    </li>
+    <li>
+      <%= l(:field_end_time) %>: <%= format_date(@user.user_time_in_zone(@easy_meeting.end_time).try(:to_date)) %> <%= @user.user_time_in_zone(@easy_meeting.end_time).try(:strftime, '%H:%M') unless @easy_meeting.all_day? %>
+    </li>
+  </ul>
+  <% if (description = textilizable(@easy_meeting, :description, {:only_path => false})).present? %>
+    <h2><%= l(:label_meeting_agenda) %>:</h2>
+    <div class="description">
+      <%= description -%>
+    </div>
+  <% end -%>
+  <% if @invited_user %>
+    <p>
+      <big><%= link_to(l(:button_meeting_accept), accept_easy_meeting_url(@easy_meeting)) %></big>
+      <big><%= link_to(l(:button_meeting_decline), decline_easy_meeting_url(@easy_meeting)) %></big>
+    </p>
+  <% end -%>
+</font>

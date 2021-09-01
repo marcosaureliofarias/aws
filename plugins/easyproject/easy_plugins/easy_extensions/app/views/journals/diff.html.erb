@@ -1,0 +1,12 @@
+<h2><%= diff_show_h2(@journal) %></h2>
+<p><%= authoring @journal.created_on, @journal.user, :label => :label_updated_time_by %></p>
+
+<div class="text-diff">
+  <%= simple_format_without_paragraph @diff.to_html %>
+</div>
+
+<p><%= diff_show_back_link(@journal) %></p>
+
+<% if @issue %>
+  <% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>
+<% end %>

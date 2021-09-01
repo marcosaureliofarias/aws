@@ -1,0 +1,8 @@
+<%= title l(:label_default_query_mapping_new) %>
+
+<%= labelled_form_for :easy_default_query_mapping, @easy_query_mapping, :url => easy_default_query_mappings_path do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_create), :class => 'button-positive' %>
+  </div>
+<% end %>

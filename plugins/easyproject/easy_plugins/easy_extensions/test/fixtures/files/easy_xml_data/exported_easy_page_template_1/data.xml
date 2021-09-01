@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<easy_xml_data>
+  <easy-page-templates type="array">
+    <easy-page-template>
+      <id type="integer">46</id>
+      <template-name>Custom User Template</template-name>
+      <description>custom user template description</description>
+      <easy-page>my-page</easy-page>
+    </easy-page-template>
+  </easy-page-templates>
+  <easy-page-template-tabs type="array">
+    <easy-page-template-tab>
+      <id type="integer">66</id>
+      <page-template-id type="integer">46</page-template-id>
+      <position type="integer">1</position>
+      <name>Tab 1</name>
+      <settings>
+      </settings>
+    </easy-page-template-tab>
+    <easy-page-template-tab>
+      <id type="integer">67</id>
+      <page-template-id type="integer">46</page-template-id>
+      <position type="integer">2</position>
+      <name>Tab 2</name>
+      <settings>
+      </settings>
+    </easy-page-template-tab>
+  </easy-page-template-tabs>
+  <easy-page-template-modules type="array">
+    <easy-page-template-module>
+      <entity-id type="integer" nil="true"/>
+      <tab-id type="integer">66</tab-id>
+      <tab type="integer">1</tab>
+      <created-at type="dateTime">2017-12-18T14:33:28Z</created-at>
+      <updated-at type="dateTime">2017-12-18T14:34:04Z</updated-at>
+      <id>ba632f80-0746-4d23-861e-7c7b3f7c6727</id>
+      <easy-page-template>46</easy-page-template>
+      <easy-page-zone>top-middle</easy-page-zone>
+      <easy-page-module>EpmTrends</easy-page-module>
+      <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        easy_query_type: EasyUserQuery
+        use_query_to_compare: 'false'
+        name: Trends - Users
+        description: Trends - Users
+        easy_icon: ''
+        color: palette-1
+        query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        set_filter: '1'
+        query_type: '2'
+        query_name: name of filter
+        row_limit: '10'
+        outputs:
+        - list
+        sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        '0':
+        - ''
+        - ''
+        '1':
+        - ''
+        - ''
+        '2':
+        - ''
+        - ''
+        column_names:
+        - login
+        - firstname
+        - lastname
+        group_by:
+        - ''
+        show_sum_row: '0'
+        load_groups_opened: '0'
+        show_avatars: '1'
+        chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        primary_renderer: line
+        axis_x_column: admin
+        y_label: ''
+        period_column: ''
+        legend_enabled: '0'
+        legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        location: nw
+        period_zoom: month
+        operator: "&gt;"
+        easy_query_type_to_compare: EasyUserQuery
+      </settings>
+    </easy-page-template-module>
+    <easy-page-template-module>
+      <entity-id type="integer" nil="true"/>
+      <tab-id type="integer">67</tab-id>
+      <tab type="integer">2</tab>
+      <created-at type="dateTime">2017-12-18T14:33:50Z</created-at>
+      <updated-at type="dateTime">2017-12-18T14:34:04Z</updated-at>
+      <id>c98b3571-d124-4f36-b29a-b2eeaf2719e6</id>
+      <easy-page-template>46</easy-page-template>
+      <easy-page-zone>top-middle</easy-page-zone>
+      <easy-page-module>EpmNoticeboard</easy-page-module>
+      <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        heading: Noticeboard
+        text: "&lt;p&gt;noticeboard text&lt;/p&gt;\r\n"
+      </settings>
+    </easy-page-template-module>
+  </easy-page-template-modules>
+</easy_xml_data>

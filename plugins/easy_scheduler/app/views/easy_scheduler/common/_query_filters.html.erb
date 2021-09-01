@@ -1,0 +1,19 @@
+<!-- local_assignes is :query, :modul_uniq_id, :block_name -->
+<h3 class="easy-query-type-settings-container-filters"><%= l(:label_filter_plural) %></h3>
+<%= render_with_fallback partial: 'filters', prefixes: query, locals: local_assigns %>
+<table class="filters-table">
+  <tbody>
+    <%= content_tag(:tr, class: 'sort-container', id: "#{modul_uniq_id}_sort_criteria") do %>
+      <td class="sort-heading"><%= content_tag(:label, l(:label_sort)) %></td>
+      <td>
+        <% render_query_sort_criteria(query, local_assigns) %>
+      </td>
+    <% end %>
+    <% if query.currency_columns? && (currencies = EasyCurrency.activated).any? %>
+      <tr class="currency-container gray-background easy_query_additional_options">
+        <td class="columns-heading"><label><%= l(:field_currency) %></label></td>
+        <td><%= select_tag "#{block_name}[easy_currency_code]", options_from_collection_for_select(currencies, :iso_code, :name, query.easy_currency_code), include_blank: true %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

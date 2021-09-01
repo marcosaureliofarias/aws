@@ -1,0 +1,17 @@
+<% if project %>
+  <div class="members-list">
+    <ul class="link-list">
+      <% project.members_list(system_users: false) do |member| %>
+        <li class="<%= "user-#{member.user_id}" -%> member easy-dropper-target easy-drop-user link-list-item" data-user-id="<%= member.user_id %>" data-drop-action="user">
+          <%= avatar(member.user, :style => :small) %>
+          <div class="link-list-item-content two-lines">
+            <div class="member-name"><%= link_to(member.name, {:controller => 'issues', :project_id => project, :set_filter => 1, :assigned_to_id => member.user_id, :status_id => 'o'}, :title => l(:label_show_assigned_issues, :username => member.name), :class => 'add-user-links', :data => {:id => member.user_id}) %></div>
+            <div class="member-roles"><%= member.roles.uniq.sort_by(&:position).collect(&:name).join(', ') -%></div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <%= call_hook(:view_issue_sidebar_project_members, :project => project) %>
+  <%= link_to l(:label_show_more_members), show_more_members_project_path(project), remote: true, class: "button-show-more" %>
+<% end %>

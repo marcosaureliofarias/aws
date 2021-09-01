@@ -1,0 +1,23 @@
+<div class="readers" id="readers_tab">
+  <table class="list">
+    <tr>
+      <th><%= l(:label_avatar) %></th>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <th><%= l(:label_easy_knowledge_story_read_or_unread) %></th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= avatar(user, style: :small).to_s %></td>
+        <td><%= link_to_user(user) %></td>
+        <td class="red-icon"> <%= l(:label_unread_entity) %></td>
+      </tr>
+    <% end if @users.present? %>
+    <% @readers.each do |user| %>
+      <tr>
+        <td><%= avatar(user, style: :small).to_s %></td>
+        <td><%= link_to_user(user) %></td>
+        <td class="already-read"> <%= l(:label_easy_knowledge_story_already_read) %> </td>
+      </tr>
+    <% end if @readers.present? %>
+  </table>
+</div>

@@ -1,0 +1,88 @@
+module EasySwagger
+  class <%= class_name %>
+    include EasySwagger::BaseModel
+    swagger_me
+
+    shared_scheme do
+    <%- if model -%>
+      <%- model_columns.each do |column| -%>
+      <%- next if column.read_only? %>
+      property "<%= column.name -%>", type: "<%= column.type -%>" do
+        <%- if column.example.present? -%>
+        key :example, '<%= column.example %>'
+        <%- end -%>
+        <%- if column.format -%>
+        key :format, "<%= column.format %>"
+        <%- end -%>
+        key :description, "<%= I18n.t("field_#{column.name}", default: "") -%>"
+      end
+      <%- end -%>
+      <%- if custom_fields? -%>
+      custom_fields
+      <%- end -%>
+      <%- else -%>
+      relation *%w[project_id issue_id user_id priority_id activity_id]
+      property "easy_external_id"
+      property "hours" do
+        key :example, "8"
+        key :description, "Amount of spent hours"
+      end
+      property "spent_on", format: "date" do
+        key :example, "2019-07-09"
+        key :description, "Date of spent time. It can be limited by global setting"
+      end
+      property "arrival", format: "date-time", if: ->(context, object) { object.visible?(User.current) } do
+        key :example, "2019-07-09 14:56"
+        key :description, "Example of date time"
+      end
+      property "status" do
+        key :enum, ::Model.statuses.keys
+      end
+      %w[easy_is_billable easy_billed].each do |column|
+        property column, type: "boolean"
+      end
+
+      custom_fields
+    <%- end -%>
+
+      # @example of relations
+      # relation "author"
+    end
+
+    request_schema do
+      # key :required, %w[project_id user_id hours spent_on]
+    end
+
+    response_schema do
+      <%- model_columns.each do |column| -%>
+      <%- next unless column.read_only? %>
+      property "<%= column.name -%>", type: "<%= column.type -%>" do
+        key :example, '<%= column.example %>'
+        <%- if column.format -%>
+        key :format, "<%= column.format -%>"
+        <%- end -%>
+        <%- if (description = I18n.t("field_#{column.name}", default: "")).present? -%>
+        key :description, "<%= description -%>"
+        <%- end -%>
+        key :readOnly, true
+      end
+      <%- end -%>
+      # @example of usage has_many associations
+      # property "entities", if: ->(context, entity) { User.current.allowed_to_globally?(:view_entities) } do
+      #  key :type, "array"
+      #  key :description, "if you specify `include=entities`"
+      #  key :xml, wrapped: true
+      #  items do
+      #    key :title, "SomeModel"
+      #    key :type, "object"
+      #    key :readOnly, true
+      #    # key :xml, name: "entity"
+      #    property "id", type: "integer"
+      #    property "name"
+      #  end
+      # end
+      timestamps legacy: <%= timestamps? == :legacy %>
+    end
+
+  end
+end

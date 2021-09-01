@@ -1,0 +1,30 @@
+<div class="easy_query_additional_options easy_query_snapshot">
+  <p>
+    <%= hidden_field_tag((block_name.blank? ? 'daily_snapshot' : "#{block_name}[daily_snapshot]"), '0', id: modul_uniq_id + 'daily_snapshot_0') %>
+    <% box = check_box_tag((block_name.blank? ? 'daily_snapshot' : "#{block_name}[daily_snapshot]"), '1', query.daily_snapshot?, id: modul_uniq_id + 'daily_snapshot_1', onchange: "$('##{modul_uniq_id}_daily_snapshot').toggle()") %>
+    <%= label_tag(modul_uniq_id + 'daily_snapshot_1', box + l(:field_daily_snapshot), class: 'checkbox inline') %>
+  </p>
+
+  <fieldset id="<%= modul_uniq_id + '_daily_snapshot' %>" style="<%= 'display: none;' unless query.daily_snapshot? %>">
+    <legend><%= content_tag :label, l(:label_easy_query_snapshot) %></legend>
+    <%= fields_for((block_name.blank? ? 'easy_query_snapshot' : "#{block_name}[easy_query_snapshot]"), (query.easy_query_snapshot || query.build_easy_query_snapshot)) do |fields| %>
+      <div>
+        <p>
+          <em><%= l(:text_executed_as) %></em>
+        </p>
+        <p>
+          <%= fields.radio_button :execute_as, 'author', id: modul_uniq_id + '_execute_as_author' %>
+          <%= label_tag modul_uniq_id + '_execute_as_author', l(:label_execute_as_author), class: 'inline' %>
+          <%= fields.radio_button :execute_as, 'user', id: modul_uniq_id + '_execute_as_user' %>
+          <%= label_tag modul_uniq_id + '_execute_as_user', l(:label_execute_as_user), class: 'inline' %>
+          <%= fields.select :execute_as_user_id, User.active.easy_type_internal.sorted.collect { |u| [u.name, u.id] }, { include_blank: true, no_label: true }, {} %>
+        </p>
+      </div>
+      <div>
+        <%= render(partial: 'common/easy_repeating_period', locals: {
+            selected:    fields.object.period_options,
+            form_prefix: (block_name.blank? ? '[easy_query_snapshot][period_options]' : "#{block_name}[easy_query_snapshot][period_options]") }) %>
+      </div>
+    <% end %>
+  </fieldset>
+</div>

@@ -1,0 +1,33 @@
+<div class="autoscroll">
+  <table class="list reorder">
+    <thead>
+      <tr>
+        <th width="30px"></th>
+        <th width="25px"><%= l(:field_icon_path) %></th>
+        <th width="30%"><%= l(:field_type_name) %></th>
+        <th><%= l(:field_is_default) %></th>
+        <th width="10%"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @types.each do |contact_type| %>
+        <tr>
+          <td class="center reorder-handler"><%= render_reorder_handle(contact_type, 'easy_contact_type', url_options: {page: params[:page]}) %></td>
+
+          <td>
+            <span class="icon <%= contact_type.icon_path %>"></span>
+          </td>
+
+
+          <td><%= link_to contact_type.type_name, { :controller => 'easy_contact_types', :action => 'edit', :id => contact_type.id, :back_url => url_for({:tab => 'EasyContactType'}) }, { :title => l(:title_easy_contact_type_edit) } -%></td>
+          <td align="center"><%= image_tag( 'true.png', :alt => l(:general_text_Yes)) if contact_type.is_default? %></td>
+          <td class="buttons">
+          <%= link_to(l(:button_delete), { :controller => 'easy_contact_types', :action => 'destroy', :id => contact_type.id, :back_url => url_for({:tab => 'EasyContactType'}) },
+          { :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:title_easy_contact_type_delete) } ) if User.current.allowed_to_globally?(:delete_easy_contact_types, {}) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

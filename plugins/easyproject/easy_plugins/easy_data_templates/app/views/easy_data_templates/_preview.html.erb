@@ -1,0 +1,31 @@
+<% unless @csv_data.blank? %>
+  <div class="autoscroll">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="<%= (datatemplate.assignments.size+1) %>">(<%= l("label_easy_data_template_import.preview.table") %>)</th>
+        </tr>
+        <tr>
+          <th><%= l("label_easy_data_template_import.preview.row") %></th>
+          <%  datatemplate.assignments.sort_by(&:file_column_position).each do |assignment| %>
+            <%  if datatemplate.allowed_attributes.include?(assignment.entity_attribute_name) %>
+              <th><%= l("easy_data_template_entity_attributes_select.#{datatemplate.entity_type}.#{assignment.entity_attribute_name}") %></th>
+            <% else %>
+              <th><%= datatemplate.allowed_custom_field_attributes.select{|x| x[1]==assignment.entity_attribute_name}.flatten[0] %></th>
+            <% end %>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% csv_data[0..(datatemplate.settings["preview_rows"].to_i-1)].each do |row| %>
+          <tr>
+            <td><%= csv_data.index(row)+1 %></td>
+            <%datatemplate.assignments.sort_by(&:file_column_position).each do |assignment| %>
+              <td><%= row[(assignment.file_column_position-1)] %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

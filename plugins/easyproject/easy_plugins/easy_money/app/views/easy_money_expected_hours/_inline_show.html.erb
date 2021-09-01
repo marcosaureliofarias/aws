@@ -1,0 +1,5 @@
+<% if User.current.allowed_to?(:easy_money_manage_expected_payroll_expense, project) && entity_type == 'Project' -%>
+  <%= link_to('', { controller: 'easy_money_expected_hours', action: 'inline_edit', project_id: project.id, entity_type: entity_type, entity_id: entity_id }, class: 'icon icon-edit button-icon', title: l(:button_edit), remote: true) %>
+<% end -%>
+<%= content_tag :span, l(:label_easy_money_hour, hours: expected_hours) -%>
+<%= content_tag :span, " (* #{easy_money.easy_money_settings.expected_payroll_expense_rate(easy_currency_code)}/#{easy_currency_code} #{hourly_total_with_currency})" %>

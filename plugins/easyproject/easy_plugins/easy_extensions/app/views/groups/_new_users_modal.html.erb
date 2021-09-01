@@ -1,0 +1,6 @@
+<h3 class="title"><%= l(:label_user_add) %></h3>
+
+<%= form_for @group, :url => group_users_path(@group), :remote => true, :method => :post, :html => {:class => 'form-box', :id => 'modal-dialog-add-members'} do |f| %>
+  <%= render :partial => 'new_users_form', :locals => { :group => @group } %>
+<% end %>
+

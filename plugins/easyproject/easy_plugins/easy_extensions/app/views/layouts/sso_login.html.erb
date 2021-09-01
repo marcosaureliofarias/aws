@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="<%= current_language %>">
+<%= render 'layouts/brand_html_header' %>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<body class="<%= body_css_classes %>">
+<div id="wrapper">
+
+  <div id="wrapper2">
+    <div id="wrapper3">
+      <div id="main">
+
+        <div id="content">
+          <%= render_flash_messages %>
+          <%= content_tag(:div, class: 'easy-content-page') do %>
+            <%= yield %>
+          <% end -%>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

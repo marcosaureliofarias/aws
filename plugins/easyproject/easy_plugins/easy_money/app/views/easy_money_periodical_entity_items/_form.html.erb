@@ -1,0 +1,31 @@
+<%= fields_for easy_money_periodical_entity_item do |f|%>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </p>
+      <div>
+        <%= f.label :description, :class => 'block' -%>
+        <%= f.text_area :description, :class => 'wiki-edit' -%>
+        <%= wikitoolbar_for('easy_money_periodical_entity_item_description') %>
+      </div>
+    </div>
+    <div class="splitcontentright">
+      <p>
+        <%= f.label :period_date -%>
+        <%= f.text_field :period_date, :size => 10 -%><%= calendar_for('easy_money_periodical_entity_item_period_date') -%>
+      </p>
+      <p>
+        <%= f.label :price1 -%>
+        <%= f.text_field :price1, :size => 10 -%>
+      </p>
+      <% easy_money_periodical_entity_item.visible_custom_field_values.each do |custom_value| -%>
+        <p>
+          <%= custom_field_tag_with_label :easy_money_periodical_entity_item, custom_value %>
+        </p>
+      <% end -%>
+    </div>
+  </div>
+  <div class="clear"></div>
+<% end %>

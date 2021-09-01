@@ -1,0 +1,5 @@
+api.attachments do
+  @attached.values.flatten.each do |attachment|
+    render_api_attachment(attachment, api)
+  end
+end

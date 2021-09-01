@@ -1,0 +1,69 @@
+var modal = $("#ajax-modal");
+modal.html("<%=j render(partial: 'easy_page_module_translations/form') %>");
+showModal('ajax-modal', '80%');
+modal.dialog('option', {
+  title: "<%=j l(:title_modal_easy_translation_edit_for_column, column: @keys.last.humanize) %>",
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_update) %>',
+      click: function() {
+        const moduleName = '<%=j @page_module.module_name %>';
+        const keys = '<%=j @keys.map { |key| "[#{key}]" }.join %>'
+
+
+        const newTranslatedValue = function(parentNode) {
+          const inputName = `${moduleName}[translations]${keys}`;
+          const locales = ['<%=j I18n.locale.to_s %>', 'en']
+
+          let input;
+          let newValue;
+          locales.forEach(function (locale) {
+            if((input = parentNode.querySelector(`input[name="${inputName}[${locale}]"]`)) && input.value) {
+              newValue = newValue || input.value;
+            }
+          });
+
+          // original value
+          newValue = newValue || ((input = parentNode.querySelector(`input[name="${moduleName}${keys}"]`)) && input.value);
+
+          return newValue || ''
+        }
+
+        const inputs = this.querySelectorAll('form input[type="text"]');
+        const hiddenInputs = [];
+        inputs.forEach(function(input) {
+          const newInput = input.cloneNode();
+          newInput.type = 'hidden'
+          hiddenInputs.push(newInput)
+        });
+
+        const translationSpan = document.getElementById('<%=j "#{@page_module.module_name}#{@keys.map { |key| "[#{key}]" }.join}_translations" %>');
+        const frag = document.createDocumentFragment();
+        hiddenInputs.forEach(function(input) {
+          frag.appendChild(input);
+        });
+        if (hiddenInputs.length === 1) { // there are no translations
+          const noTranslationsInput = document.createElement('INPUT');
+          noTranslationsInput.name = `${moduleName}[translations][no_translations]`;
+          noTranslationsInput.value = 'true';
+          noTranslationsInput.type = 'hidden';
+          frag.appendChild(noTranslationsInput);
+        }
+        translationSpan.innerText = '';
+        const newValue = newTranslatedValue(frag);
+        translationSpan.appendChild(frag);
+
+        const originalInput = document.querySelector(`input[name="${moduleName}${keys}"]`);
+        originalInput.value = newValue;
+        originalInput.disabled = true;
+        $(originalInput).trigger('change');
+        $(this).dialog('close');
+      },
+      'class': 'button-positive submit'
+    }
+  ]
+});

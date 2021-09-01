@@ -1,0 +1,45 @@
+<p id="icalendars_settings_<%= modul_uniq_id %>">
+  <legend><%= l(:label_icalendars) %></legend>
+  <%= select_tag(
+      "#{modul_uniq_id}_icalendars_select",
+      options_for_select_external_calendars,
+      data: {modul_uniq_id: modul_uniq_id, block_name: block_name},
+      include_blank: true,
+      onchange: 'addIcalendar(event);') %>
+  <span class="entity-array" id="icalendars_items_<%= modul_uniq_id%>">
+    <% icalendars.each do |ical| %>
+      <%= render 'external_calendars/easy_icalendar_item', ical: ical, block_name: block_name, modul_uniq_id: modul_uniq_id %>
+    <% end %>
+  </span>
+</p>
+
+<div id="icalendar_form_container_<%= modul_uniq_id %>"></div>
+
+<%= easy_cocoon_tags %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    window.addIcalendar = function (e) {
+      $elem = $(e.target);
+      var icalId = $elem.val();
+      var modulUniqId = $elem.data('modulUniqId');
+      if (icalId) {
+        var item = $('#icalendars_items_' + modulUniqId).find('#icalendar_' + icalId + '_' + modulUniqId);
+        if (item.length) {
+          $elem.val('');
+          return;
+        }
+      }
+      var data = {
+        block_name: $elem.data('blockName'),
+        modul_uniq_id: modulUniqId,
+        id: icalId
+      };
+      if (!icalId) $.extend(data, {_new: true});
+      $.get('<%= get_item_easy_icalendars_path %>', data).done(function(html) { $elem.val('');});
+    };
+    window.removeIcalendar = function(e) {
+      $(e.target).closest('span').remove();
+    };
+  });
+</script>

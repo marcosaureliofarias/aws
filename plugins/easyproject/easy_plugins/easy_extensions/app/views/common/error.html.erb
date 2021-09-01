@@ -1,0 +1,8 @@
+<div class="easy-content-page">
+  <%= title @status %>
+
+  <% if @message.present? %>
+    <p id="errorExplanation"><%= @message %></p>
+  <% end %>
+  <p><a href="javascript:history.back()" class="button"><%= l(:button_back) %></a></p>
+</div>

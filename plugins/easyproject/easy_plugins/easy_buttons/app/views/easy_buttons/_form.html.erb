@@ -1,0 +1,132 @@
+<%= fields_for :easy_button, easy_button do |f| %>
+  <fieldset class="tabular">
+    <legend><%= l(:label_settings) %></legend>
+
+    <% if easy_button.new_record? %>
+      <p>
+        <%= f.label :entity_type %>
+        <%= f.select :entity_type,
+                     EasyButton.registered_entities.map { |ec, _| [l("label_#{ec.name.underscore}"), ec.name] },
+                     { include_blank: true },
+                     { onchange: "$.post('#{j update_form_easy_buttons_path(format: :js)}', $('#easy_button_form').serialize())" }
+        %>
+      </p>
+    <% end %>
+
+    <p>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+      <%= f.label :silent_mode %>
+      <%= f.check_box :silent_mode %>
+      <%= content_tag :em, l('easy_buttons.tooltip_silent_mode'), class: 'help' %>
+    </p>
+
+    <p>
+      <%= f.label :is_private %>
+
+      <% if User.current.allowed_to?(:manage_easy_buttons, nil, global: true) %>
+        <%= f.check_box :is_private %>
+
+        <label class="inline">
+          <em>(<%= f.object.author && f.object.author.name %>)</em>
+        </label>
+      <% else %>
+        <label class="block">
+          <strong><%= l(:label_visibility_private) %></strong>
+        </label>
+      <% end %>
+
+      <%= content_tag :em, l('easy_buttons.tooltip_private_button'), class: 'help' %>
+    </p>
+
+    <p>
+      <%
+        colors = (1..35).map do |i|
+          ["palette-#{i}", "palette-#{i}", { class: "palette-#{i}" }]
+        end
+      %>
+
+      <%= f.label :color %>
+      <%= f.select :color, options_for_select(colors, f.object.color), { include_blank: true }, class: 'select-color' %>
+    </p>
+
+    <p>
+      <%= f.label :active %>
+      <%= f.check_box :active %>
+    </p>
+
+    <p class="tags">
+      <%= label_tag l(:label_preview) %>
+      <span class="easy-action-button-preview">
+        <%= link_to f.object.name.to_s, '#',
+                    class: "easy-action-button #{f.object.color}"
+        %>
+      </span>
+    </p>
+  </fieldset>
+
+  <p></p>
+
+  <% if easy_button.entity_class %>
+    <div class="box">
+      <h3 class="icon icon-filter"><%= l(:heading_easy_button_filters) %></h3>
+
+      <%= render 'easy_queries/filters',
+                 query:                         easy_button.conditions_query,
+                 filters:                       EasyButtons::QueryBase.reader_filters(easy_button),
+                 block_name:                    'easy_button[conditions]',
+                 list_values_additional_params: { filters_type: 'attr_reader' },
+                 modul_uniq_id:                 'conditions'
+      %>
+
+      <p></p>
+    </div>
+
+    <div class="box">
+      <h3 class="icon icon-filter"><%= l(:heading_easy_button_actions) %></h3>
+      <%= render 'easy_queries/filters',
+                 query:                         easy_button.actions_query,
+                 filters:                       EasyButtons::QueryBase.writer_filters(easy_button),
+                 block_name:                    'easy_button[actions]',
+                 modul_uniq_id:                 'actions',
+                 available_operators:           EasyButtons::QueryAction::OPERATORS,
+                 list_values_additional_params: { filters_type: 'attr_writer' },
+                 list_multiple:                 false,
+                 select_first_value:            false,
+                 additional_select_options:     {
+                     'assigned_to_id' => EasyButtons::QueryBase.assigned_to_id_additional_select_options
+                 }
+      %>
+      <p></p>
+    </div>
+
+    <div class="tabular">
+      <p>
+        <%= f.label l(:field_note) %>
+        <%= f.text_area :entity_note %>
+        <%= wikitoolbar_for('easy_button_entity_note') %>
+      </p>
+    </div>
+
+    <%= call_hook(:view_form_easy_buttons, f: f) %>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+    EASY.schedule.late(function () {
+        var preview = $('.easy-action-button-preview a');
+
+        $('#easy_button_name').on('keyup', function () {
+            preview.text(this.value);
+        });
+
+        $('#easy_button_color').on('change', function () {
+            preview.removeClass();
+            preview.addClass('easy-action-button');
+            preview.addClass(this.value);
+        });
+    });
+</script>

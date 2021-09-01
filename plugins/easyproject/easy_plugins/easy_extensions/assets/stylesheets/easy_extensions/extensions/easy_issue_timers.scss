@@ -1,0 +1,62 @@
+.easy-issue-timers{
+  &-item{
+    padding: $gap !important;
+    @include small;
+    border:1px solid $color-border !important;
+    @extend %flex;
+    @extend %flex-wrap-wrap;
+    & + &{
+      margin-top: $gap;
+    }
+    &-breadcrumb{
+      margin-bottom: $gap;
+      display: block;
+      flex-basis: 100%;
+      & > a{
+        &:last-child{
+          display: block;
+          @include large;
+          padding: 0 .5*$gap;
+          margin: .5*$gap  (-.5*$gap) 0;
+        }
+      }
+      & > .separator{
+        &:nth-last-child(2){
+          display: none;
+        }
+      }
+      .icon-time{
+        &:before{}
+        margin-right: .5*$gap;
+      }
+    }
+    &-buttons{
+      @extend %flex;
+      flex-grow: 1;
+      padding-left: $box-padding;
+      span {
+        margin-left: $gap;
+      }
+      a , span{
+        //display: inline-block;
+      }
+      span + span{
+        //margin-top: 3px;
+      }
+      .icon-del {
+        order: 99;
+        margin-left: auto;
+      }
+    }
+    .timer-time{
+      &:before{
+        margin-right: .5*$gap;
+      }
+
+    }
+  }
+  &-stop-n-pause-buttons {
+    @extend %inline-flex;
+    @extend %flex-wrap-wrap;
+  }
+}

@@ -1,0 +1,10 @@
+<% working_hours, holiday = easy_user_working_time_calendar.working_hours(day), easy_user_working_time_calendar.holiday(day) -%>
+<div class="easy-calendar-inside">
+  <p class="day-num"<%= (" title=\"#{h(holiday.name)}\"").html_safe if holiday -%>><%= format_short_date(day) %><%= ('<br/>' + h(holiday.name)).html_safe if holiday -%></p>
+  <div class="day-content">
+    <p class="working-hours" id="<%= day.to_s.underscore -%>_inner">
+      <%= working_hours -%>
+    </p>
+    <p class="calendar-actions"><%= link_to(l(:button_edit), {:controller => 'easy_user_working_time_calendars', :action => 'inline_edit', :id => easy_user_working_time_calendar, :day => day, :working_hours => working_hours, :start_date => params[:start_date]}, :class => 'icon icon-edit', :title => l(:title_easy_user_working_time_calendars_inline_edit), :remote => true) -%></p>
+  </div>
+</div>

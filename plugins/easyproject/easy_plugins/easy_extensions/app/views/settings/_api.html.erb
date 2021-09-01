@@ -1,0 +1,10 @@
+<%= form_tag({:action => 'edit', :tab => 'api'}, :class => 'form-box') do %>
+  <div class="box tabular settings">
+    <p><%= setting_check_box :rest_api_enabled %></p>
+    <p><%= setting_check_box :jsonp_enabled %></p>
+  </div>
+
+  <div class=" form-actions">
+    <%= submit_tag l(:button_save),:class => 'button-positive' %>
+  </div>
+<% end %>

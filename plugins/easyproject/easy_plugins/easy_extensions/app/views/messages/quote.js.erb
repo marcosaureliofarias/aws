@@ -1,0 +1,9 @@
+$('#message_subject').val("<%= raw escape_javascript(@subject) %>");
+if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.instances.message_content.setData( '<%= raw j(@content) %>' );
+}
+else{
+    $("textarea#message_content").val("<%= raw j(@content) %>");
+}
+EASY.utils.showAndScrollTo('reply', 0, 'message_content');
+$('html, body').animate({ scrollTop: $(document).height() }, 500);

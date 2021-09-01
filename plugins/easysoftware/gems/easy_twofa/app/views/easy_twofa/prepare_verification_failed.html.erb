@@ -1,0 +1,23 @@
+<div class="easy-twofa-verification">
+  <h2><%= l('easy_twofa.twofa_verification_failed') %></h2>
+
+  <p>
+    <%= l('easy_twofa.verification_failed_contact_administrator') %>
+  </p>
+
+  <div class="flash error">
+    <ul>
+      <% @scheme.last_verification_status.errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <p>
+    <%= link_to l(:label_profile), my_account_path, class: 'button' %>
+  </p>
+</div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_twofa' %>
+<% end %>

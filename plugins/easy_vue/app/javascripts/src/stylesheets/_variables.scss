@@ -1,0 +1,52 @@
+$gap: 10px !default;
+$font-size--small: 12px !default;
+$font-size--big: 16px !default;
+$base-line-height: 1.5 !default;
+$left-offset: 48px !default;
+$color-text: #50596f !default;
+$color-text--muted: rgba($color-text,.75) !default;
+$color-positive: #00c8a9 !default;
+$color-negative: #fe7d99 !default;
+$color-warning: #eaba72 !default;
+$color-main: #0080e6 !default;
+$color-front: #ffffff !default;
+$color-border: #c8c8c8 !default;
+$color-background: #f2f2f2 !default;
+$color-background__label: #d8d8d8 !default;
+$color-background__atributes: mix($color-background, $color-background__label, 66%) !default;
+$color-background__button: darken($color-background__atributes,5%) !default;
+$color-background__button--hover: darken($color-border,0%) !default;
+$color-background__button--hover--positive: darken($color-positive,5%) !default;
+$z-priority: body,main,newissue,sidebar,content,scrollbar,servicebar,topmenu,ui-widget,context-menu,sidemenu,modal,draggable,ajax !default;
+$z-index__modal: z($z-priority,modal) !default;
+
+$width-heading-icon: 2*$gap !default;
+$padding-modal-main: 2*$gap !default;
+
+$input-height: 32px !default;
+$input-padding: 3px !default;
+$input-radius: 3px !default;
+$border-radius: $gap !default;
+$headline-height: 68px !default;
+$box-shadow: 0px 1px $gap rgba(0,0,0,0.1) !default;
+$breakpoint--small: 640px !default;
+$breakpoint--large: 1920px !default;
+$backdrop__color: #111111 !default;
+$backdrop__opacity: .5 !default;
+
+$sidebar-width: 190px;
+$faker__background: linear-gradient(-45deg,
+        mix($color-background, #888888, 90%),
+        mix($color-background, #888888, 70%),
+        mix($color-background, #888888, 90%),
+        mix($color-background, #888888, 80%),
+        mix($color-background, #888888, 90%),
+        mix($color-background, #888888, 60%),
+        mix($color-background, #888888, 90%))
+!default;
+
+%signature{
+  font-style: italic;
+  color: $color-text--muted;
+  font-size: 12px;
+}

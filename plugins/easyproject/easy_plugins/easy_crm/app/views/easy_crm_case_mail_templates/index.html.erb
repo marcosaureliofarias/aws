@@ -1,0 +1,9 @@
+<%= title l(:heading_easy_crm_case_mail_template_index) %>
+
+<%= render :partial => 'easy_crm_case_mail_templates/index', :locals => {:easy_crm_case_mail_templates => @easy_crm_case_mail_templates, :project => @project} %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_easy_crm_add_mail_template), new_easy_crm_case_mail_template_path(:project_id => @project), :class => 'button-positive icon icon-add', :title => l(:button_easy_crm_add_mail_template) %>
+<% end %>

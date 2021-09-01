@@ -1,0 +1,7 @@
+<%= hidden_field_tag 'easy_data_template[format_type]', 'csv' %>
+<p><%= f.text_field :name, :label => l(:label_easy_data_template_name) -%></p>
+<% if fid.blank? %>
+  <p><%= f.select :entity_type, entity_type_options, :label => l(:label_easy_data_template_entity_type) -%></p>
+  <p><%= f.select :template_type, template_type_options, :label => l(:label_easy_data_template_template_type)-%></p>
+<% end %>
+<p><%= f.check_box :is_public, :label => l(:label_easy_data_template_public) -%></p>

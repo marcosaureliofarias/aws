@@ -1,0 +1,409 @@
+---
+es:
+  activerecord:
+    errors:
+      messages:
+        error_contains_invalid_character: contiene caracter(es) inválido(s)
+  button_edit_content: Editar contenido
+  comment_copied_from: Copiado desde %{source}
+  comment_moved_from: Movido desde %{source}
+  dmsf: DMS
+  dmsf_and: Y
+  dmsf_new_step: Nuevo paso
+  dmsf_new_step_or_approver: Nuevo paso o nuevo aprobador
+  dmsf_or: O
+  easy_pages:
+    module_category:
+      easy_dms: Easy DMS
+    modules:
+      dmsf_locked_documents: Mis documentos bloqueados
+      dmsf_open_approvals: Mis aprobaciones abiertas
+  error_at_least_one_revision_must_be_present: Al menos una revisión debe estar presente
+  error_cannot_renumber_steps: No se puede volver a enumerar los pasos
+  error_cannot_start_workflow: No se puede iniciar el flujo de trabajo
+  error_contains_invalid_character: contiene uno o varios caracteres inválidos
+  error_create_cycle_in_folder_dependency: crear ciclo en dependencia de la carpeta
+  error_email_to_must_be_entered: Es necesario introducir una dirección de correo
+    electrónico.
+  error_empty_note: La nota no puede estar vacía
+  error_entry_project_does_not_match_current_project: El proyecto de entrada no se
+    corresponde con el proyecto seleccionado
+  error_file_can_not_be_created: El archivo no se puede crear en el directorio de
+    almacenamiento
+  error_file_commit_require_uploaded_file: La confirmación del archivo requiere que
+    se cargue el archivo
+  error_file_is_locked: Archivo bloqueado
+  error_file_storage_directory_does_not_exist: El directorio destino no existe y no
+    puede ser creado
+  error_file_tmpdir_does_not_exist: La ruta temporal del archivo no existe y no se
+    puede crear
+  error_folder_cannot_be_copied: No se puede copiar la carpeta
+  error_folder_creation_failed: Error en la creación de carpetas
+  error_folder_is_locked: Carpeta bloqueada
+  error_folder_is_not_empty: La carpeta no está vacía
+  error_folder_title_is_already_used: El título ya está en uso
+  error_folder_title_must_be_entered: Debes introducir un título
+  error_lock_exclusively: No es posible bloquear exclusivamente un recurso ya bloqueado
+  error_max_email_filesize_exceeded: Has superado el tamaño máximo de archivo para
+    enviar por correo electrónico. (%{number} MB)
+  error_max_files_exceeded: 'Se ha excedido el número permitido de %{number} archivos
+    que pueden descargarse de forma simultánea:'
+  error_maximum_upload_filecount: No se pueden cargar más de %{filecount} archivos.
+  error_minimum_filesize: El archivo %{file} tiene 0 bytes de tamaño y no se adjuntará.
+  error_only_user_that_locked_file_can_unlock_it: Solo el usuario que ha bloqueado
+    el archivo puede desbloquearlo.
+  error_only_user_that_locked_folder_can_unlock_it: No tienes permiso para desbloquear
+    esta carpeta
+  error_parent_folder: La carpeta matriz no existe
+  error_parent_locked: No se puede realizar el bloqueo completo - el recurso matriz
+    está bloqueado
+  error_resource_locked: No se puede realizar el bloqueo completo - el recurso está
+    bloqueado
+  error_resource_or_parent_locked: No se puede realizar el bloqueo completo - el recurso
+    (o matriz) está bloqueado
+  error_target_folder_same: La carpeta y el proyecto de destino son los mismos que
+    los actuales
+  error_tmpfile_can_not_be_created: Los archivos no se pueden crear en el directorio
+    de ruta de archivo temporal
+  error_unable_delete_dmsf_workflow: No se ha podido eliminar el flujo de trabajo
+  error_unlock_parent_locked: No se ha podido desbloquear - el recurso matriz está
+    bloqueado
+  error_user_has_not_right_delete_file: El usuario no tiene permisos para eliminar
+    el archivo
+  error_user_has_not_right_delete_folder: El usuario no tiene permiso para eliminar
+    carpetas
+  error_workflow_assign: Ha ocurrido un error mientras se asignaba
+  error_wrong_zip_encoding: Codificación de Zip errónea
+  field_count: D/L
+  field_dmsf_not_inheritable: No heredable
+  field_dmsf_tree_view: Explorar carpetas en árbol
+  field_external_url: URL
+  field_first_at: Primero
+  field_folder: Carpeta
+  field_label_dmsf_workflow: Flujo de trabajo de aprobación
+  field_label_dmsf_workflow_name: Nombre de flujo de trabajo de aprobación
+  field_last_at: Último
+  field_modified: Fecha
+  field_size: Tamaño
+  field_target_file: Archivo fuente
+  field_target_folder: Carpeta de destino
+  field_target_project: Proyecto de destino
+  field_updated: Fecha
+  field_workflow: Flujo de trabajo
+  header_minimum_filesize: Error en archivo.
+  heading_access_downloads_emails: Descargas/Mensajes de correo electrónico
+  heading_access_first: Primero
+  heading_access_last: Último
+  heading_new_folder: Nueva carpeta
+  heading_new_revision: Nueva revisión
+  heading_revisions: Revisiones
+  heading_send_documents_by_email: Enviar documentos por correo electrónico
+  heading_uploaded_files: Archivos subidos
+  info_changed_by_user: "%{changed} por"
+  info_file_locked: Archivo bloqueado.
+  info_revision: r%{rev}
+  label_act_as_attachable: Actuar como si fuera adjuntable
+  label_action: Acción
+  label_add_width: Añadir con
+  label_basic_attachments: Ajustes básicos
+  label_changed: Modificado
+  label_created: Creado
+  label_default_notifications: Notificaciones predeterminadas de archivo
+  label_description: Descripción
+  label_display_notified_recipients: Mostrar destinatarios notificados
+  label_dmsf: DMS
+  label_dmsf_attachments: Adjunos de DMS
+  label_dmsf_downloaded: Descargado
+  label_dmsf_fast_links: Enlaces rápidos
+  label_dmsf_file: Documento (DMS)
+  label_dmsf_file_plural: Documentos (DMS)
+  label_dmsf_file_revision_access_plural: Accesos a documento
+  label_dmsf_file_revision_plural: Revisiones de documento
+  label_dmsf_folder: Carpeta (DMS)
+  label_dmsf_folder_plural: Carpetas
+  label_dmsf_keep_documents_locked: Mantener documentos bloqueados
+  label_dmsf_permissions: Permitir acceso solo a
+  label_dmsf_plural: Copiar archivos de documentos y carpetas (%{files} en %{folders}
+    directorios)
+  label_dmsf_updated: Actualizado
+  label_dmsf_version: Versión
+  label_dmsf_wokflow_action_approve: Aprobar
+  label_dmsf_wokflow_action_assign: Asignar flujo de trabajo de aprobación
+  label_dmsf_wokflow_action_delegate: Delegar a
+  label_dmsf_wokflow_action_reject: Rechazar
+  label_dmsf_wokflow_action_start: Comenzar flujo de trabajo
+  label_dmsf_workflow_add_approver: 'Añadir un nuevo aprobador con una función lógica:'
+  label_dmsf_workflow_approval: Aprobación
+  label_dmsf_workflow_approval_plural: Aprobaciones
+  label_dmsf_workflow_new: Nuevo flujo de trabajo de aprobación
+  label_dmsf_workflow_plural: Flujos de trabajo de aprobación
+  label_dmsf_workflow_plural_num: Flujos de trabajo de aprobación (%{count})
+  label_dmsf_workflow_step: Paso
+  label_dmsf_workflow_step_plural: Pasos
+  label_document_url: Url
+  label_email_body: Cuerpo del mensaje
+  label_email_cc: CC
+  label_email_documents: Documentos
+  label_email_from: De
+  label_email_from_override: De
+  label_email_reply_to: Responder a
+  label_email_send: Enviar
+  label_email_subject: Asunto
+  label_email_to: Para
+  label_enable_cjk_ngrams: Habilitar generación de n-grams desde texto CJK
+  label_external: Externo
+  label_file: Archivo
+  label_file_storage_directory: Directorio de almacenamiento de archivos
+  label_filename: Nombre de archivo
+  label_full_text: Búsqueda de texto completo
+  label_index_database: Indexar base de datos
+  label_inherited_permissions: Permisos heredados
+  label_internal: Interno
+  label_last_approver: Último aprobador
+  label_last_revision_id: Revisión
+  label_link_from: Vincular desde
+  label_link_name: Nombre de enlace
+  label_link_to: Vincular con
+  label_links_only: solo enlaces
+  label_maximum_email_filesize: Tamaño máximo de adjunto en correo electrónico
+  label_maximum_files_download: Número máximo de archivos para descargar
+  label_mime: Mimo
+  label_my_locked_documents: Mis documentos bloqueados
+  label_my_open_approvals: Mis aprobaciones abiertas
+  label_new_content: Nuevo contenido
+  label_note: Nota
+  label_notifications: Notificaciones
+  label_notifications_off: Desactivar notificaciones
+  label_notifications_on: Activar notificaciones
+  label_number_of_documents: Documentos
+  label_number_of_folders: Carpetas
+  label_or: o
+  label_physical_file_delete: Eliminar archivos físicos
+  label_public_urls: URL públicas validas para
+  label_size: Tamaño
+  label_source_folder: Carpeta fuente
+  label_source_project: Proyecto fuente
+  label_stem_strategy: Estrategia raíz
+  label_stemming_language: Idioma de derivación
+  label_target_folder: Directorio destino
+  label_target_project: Proyecto destino
+  label_title: Título
+  label_title_format: Formato del título
+  label_tmpdir: Ruta de archivo temporal
+  label_upload: Subir
+  label_user_search_add: Buscar usuario para añadir
+  label_webdav: WebDAV
+  label_webdav_disable_versioning: No versionar patrones de archivo
+  label_webdav_ignore: Patrones de archivo ignorados
+  label_webdav_strategy: Estrategia Webdav
+  label_webdav_use_project_names: Emplear nombre de proyecto para carpeta de proyecto
+  link_author: Autor
+  link_create_folder: Crear carpeta
+  link_details: "%{title} detalles"
+  link_documents: Documentos
+  link_edit: Editar %{title}
+  link_extension: Ext
+  link_modified: Modificado
+  link_size: Tamaño
+  link_title: Título
+  link_trash_bin: Papelera de reciclaje
+  link_user_preferences: Preferencias de tu proyecto DMS
+  link_ver: Ver.
+  link_workflow: Flujo de trabajo
+  locked_documents: Documentos bloqueados
+  menu_dmsf: DMS
+  message_dmsf_wokflow_note: Tu nota...
+  note_display_notified_recipients: El usuario será informado de todos los destinatarios
+    a los que acaba de enviar la notificación por correo electrónico.
+  note_dmsf_act_as_attachable: Permite adjuntar documentos a objetos, por ejemplo,
+    tareas.
+  note_dmsf_keep_documents_locked: Los documentos se mantendrán bloqueados cuando
+    se aprueben
+  note_global: "(global)"
+  note_maximum_email_filesize: Limita el tamaño máximo de archivo que puede enviarse
+    por correo electrónico. 0 equivale a ilimitado. Cifra en MB.
+  note_maximum_number_of_files_downloaded: Limita el número máximo de archivos para
+    una sola descarga en Zip o enviados por correo electrónico. 0 equivale a ilimitado.
+  note_pass_none_to_disable_stemming: cambiar a "ninguno" para deshabilitar derivación
+  note_possible_values: Valores posibles
+  note_webdav: Si Webdav está habilitado, se puede encontrar en %{protocol}://%{domain}/dmsf/webdav/[project
+    identifier]
+  note_webdav_disable_versioning: Una expresión regular que deshabilita el versionado
+    de archivos coincidentes. El patrón predeterminado coincide con los archivos temporales
+    creados por MsOffice.
+  note_webdav_ignore: Una expresión regular con nombres de archivo para ignorar en
+    las peticiones PUT.
+  note_webdav_strategy: Habilita el administrador para decidir si webdav es una plataforma
+    de solo lectura o de lectura-escritura para los usuarios finales.
+  note_webdav_use_project_names: Utiliza nombres de proyectos en lugar de identificadores
+    de proyectos para las carpetas de proyectos.
+  notice_dmsf_file_restored: El documento ha sido restaurado correctamente
+  notice_dmsf_folder_restored: El directorio ha sido restaurado correctamente
+  notice_dmsf_link_restored: El enlace ha sido restaurado satisfactoriamente
+  notice_entries_deleted: Entradas eliminadas
+  notice_file_copied: Archivo copiado
+  notice_file_deleted: Archivo eliminado
+  notice_file_locked: Archivo bloqueado
+  notice_file_moved: Archivo desplazado
+  notice_file_notifications_activated: Notificaciones de archivo activado
+  notice_file_notifications_deactivated: Notificaciones de archivo desactivada
+  notice_file_revision_created: Revisión de archivos creada
+  notice_file_unlocked: Archivo desbloqueado
+  notice_folder_copied: Carpeta copiada
+  notice_folder_created: Carpeta creada
+  notice_folder_deleted: Carpeta eliminada
+  notice_folder_details_were_saved: Se han guardado los detalles de la carpeta
+  notice_folder_locked: Se ha bloqueado la carpeta correctamente
+  notice_folder_notifications_activated: Notificaciones de carpeta activadas
+  notice_folder_notifications_deactivated: Notificaciones de carpeta desactivadas
+  notice_folder_unlocked: Se ha desbloqueado la carpeta correctamente
+  notice_revision_deleted: Revisión eliminada
+  notice_revision_obsoleted: Revisión obsoletada
+  notice_workflow_started: Se ha iniciado correctamente el flujo de trabajo de aprobación
+  notice_your_preferences_were_not_saved: Tus preferencias no se han guardado
+  notice_your_preferences_were_saved: Tus preferencias se han guardado
+  open_approvals: Aprobaciones abiertas
+  option_stem_all: Derivar todo
+  option_stem_none: No derivar (predeterminado)
+  option_stem_some: Derivar algunos
+  option_version_custom: Personalizar
+  option_version_major: Mayor
+  option_version_minor: Menor
+  option_version_same: Igual
+  parent_directory: Directorio  matriz
+  permission_display_system_folders: Mostrar carpetas de sistema
+  permission_email_documents: Enviar documentos por correo electrónico
+  permission_file_approval: Aprobación de archivo
+  permission_file_delete: Eliminar documentos
+  permission_file_manipulation: Manipulación de archivos
+  permission_folder_manipulation: Manipulación de carpeta
+  permission_force_file_unlock: Forzar desbloqueo de archivo
+  permission_manage_workflows: Gestionar flujos de trabajo
+  permission_user_preferences: Preferencias de usuario
+  permission_view_dmsf_file_revision_accesses: Ver descargas en flujo de actividad
+  permission_view_dmsf_file_revisions: Ver revisiones en flujo de actividad
+  permission_view_dmsf_files: Ver documentos
+  permission_view_dmsf_folders: Examinar documentos
+  project_module_dmsf: DMS
+  select_option_activated: Activado
+  select_option_deactivated: Desactivado
+  select_option_default: Predeterminado
+  select_option_webdav_readonly: Solo lectura
+  select_option_webdav_readwrite: Lectura/Escritura
+  submit_save: Guardar
+  text_dmsf_fast_links_info: Podrás introducir manualmente el ID de una carpeta de
+    destino cuando crees enlaces para acelerar el proceso de creación de enlaces.
+  text_email_doc_deleted: acaba de eliminar documentos de
+  text_email_doc_deleted_subject: Documentos eliminados
+  text_email_doc_follows: lo siguiente
+  text_email_doc_updated: acaba de actualizar los documentos de
+  text_email_doc_updated_subject: Documentos actualizados
+  text_email_finished_approved: El flujo de trabajo de aprobación '%{name}' asignado
+    al documento '%{filename}' acaba de finalizar y el documento ha sido aprobado.
+  text_email_finished_delegated: El flujo de trabajo de aprobación '%{name}' asignado
+    al documento '%{filename}' acaba de ser delegado por '%{notice}' y se espera que
+    haga una aprobación en la etapa de aprobación actual.
+  text_email_finished_rejected: El flujo de trabajo de aprobación '%{name}' asignado
+    al documento '%{filename}' acaba de finalizar y el documento ha sido rechazado
+    por el siguiente motivo '%{notice}'.
+  text_email_finished_step: El flujo de trabajo de aprobación '%{name}' asignado al
+    documento '%{filename}' acaba de terminar uno de los pasos de aprobación y se
+    espera que hagas una aprobación en el siguiente paso.
+  text_email_finished_step_short: El flujo de trabajo de aprobación '%{name}' asignado
+    al documento '%{filename}' acaba de finalizar uno de los pasos de aprobación.
+  text_email_from_override: El usuario conectado actualmente
+  text_email_started: El flujo de trabajo de aprobación '%{name}' asignado al documento
+    '%{filename}' acaba de iniciarse y se espera que hagas una aprobación en la etapa
+    de aprobación actual.
+  text_email_subject_approved: aprobado
+  text_email_subject_delegated: delegado
+  text_email_subject_rejected: rechazado
+  text_email_subject_requires_approval: requiere tu aprobación
+  text_email_subject_started: comenzado
+  text_email_subject_updated: actualizado
+  text_email_to_proceed: Para continuar, haz clic en el icono de la casilla de verificación
+    al lado del documento en
+  text_email_to_see_history: Para ver el historial de aprobación, haz clic en el estado
+    del flujo de trabajo del documento en
+  text_email_to_see_status: Para ver el estado actual del flujo de trabajo de aprobación,
+    haz clic en el estado del flujo de trabajo del documento en
+  text_enable_cjk_ngrams: 'Con esta opción, los espacios de caracteres CJK se dividen
+    en unigramas y bigramas, y los unigramas llevan información de posición. Los caracteres
+    que no son CJK se dividen en palabras de la forma habitual. La opción correspondiente
+    debe haberse utilizado en el momento de la indexación: XAPIAN_CJK_NGRAM=true ruby
+    plugins/redmine_dmsf/extra/xapian_indexer.rb -fv'
+  text_stemming_info: 'Esto controla cómo el analizador de consultas aplicará el algoritmo
+    de derivación. El valor por defecto es STEM_NONE. Los valores posibles son: STEM_NONE
+    - No realizar ninguna derivación, STEM_SOME - Buscar formas de términos derivados
+    excepto aquellos que empiezan con una letra mayúscula, o son seguidos por ciertos
+    caracteres (actualmente:''/@<>>=*[{"), o se utilizan con operadores que necesitan
+    información de posición. Los términos derivados están prefijados con ''Z'', STEM_ALL
+    - Buscar formas derivadas de todas las palabras (nota: no se agrega el prefijo
+    ''Z'').'
+  text_title_format: 'Formato del título del documento para descarga (%t - título,
+    %f - archivo, %d - fecha, %v - versión, %i - ID, %r - revisión). Ejemplo: %t_%v'
+  title_approval: Aprobación
+  title_approved: Aprobado
+  title_assigned: Asignado
+  title_assignment: Asignación
+  title_check_for_restore_or_delete: Marcar para restaurar o eliminar
+  title_check_for_zip_download_or_email: Marcar para crear Zip, descargar o enviar
+    por correo electrónico
+  title_copy: Copiar
+  title_copy_or_move: Copiar/Mover
+  title_create_link: Crear un enlace simbólico
+  title_delegation: Delegación
+  title_delete: Eliminar
+  title_delete_checked: Eliminar marcados
+  title_delete_revision: Eliminar revisión
+  title_dmsf_workflow_log: Registro de flujo de trabajo de aprobación
+  title_download: Descargar
+  title_download_checked: Descargar seleccionados como Zip
+  title_download_entries: Descargar entradas
+  title_filename_for_download: Nombre de archivo utilizado para descargar o crear
+    zip
+  title_items: elementos
+  title_lock_file: Bloquear para que otros miembros no puedan editarlo
+  title_lock_folder: Bloquear para evitar que sea editado por otros miembros
+  title_locked_by_user: Bloqueado por %{user}
+  title_none: Ninguno
+  title_notifications_active: Activar notificaciones
+  title_notifications_active_deactivate: 'Notificaciones activas: desactivar'
+  title_notifications_not_active_activate: 'Notificaciones no activas: activar'
+  title_obsolete: Obsoleto
+  title_obsolete_revision: Revisión obsoleta
+  title_rejected: Rechazado
+  title_rejection: Rechazo
+  title_restore: Restaurar
+  title_restore_checked: Restaurar seleccionados
+  title_save_preferences: Guardar preferencias
+  title_send_checked_by_email: Enviar los seleccionados por correo electrónico
+  title_start: Comenzar
+  title_title_version_version_download: "%{title} version %{version} descargar"
+  title_total_size_of_all_files: Tamaño total de los archivos en esta carpeta
+  title_unlock_file: Desbloquear para que otros miembros puedan editarlo
+  title_unlock_folder: Desbloquear para que sea editado por otros miembros
+  title_waiting_for_approval: Esperando aprobación
+  user_is_not_project_member: No es miembro del proyecto
+  warning_email_notifications: Notificaciones de correo electrónico enviadas a %{to}
+  warning_file_already_locked: El archivo ya está bloqueado
+  warning_file_not_locked: Archivo no bloqueado
+  warning_file_notifications_already_activated: Las notificaciones del archivo seleccionado
+    ya están activadas
+  warning_file_notifications_already_deactivated: Las notificaciones del archivo seleccionado
+    ya están desactivadas
+  warning_folder_already_locked: El directorio ya está bloqueado
+  warning_folder_not_locked: Desafortunadamente, el directorio no se ha podido bloquear
+  warning_folder_notifications_already_activated: Las notificaciones de la carpeta
+    seleccionada ya están activadas  
+  warning_folder_notifications_already_deactivated: Las notificaciones de la carpeta
+    seleccionada ya están desactivadas
+  warning_no_entries_selected: No se han seleccionado entradas
+  warning_no_project_to_copy_file_to: No hay proyecto en donde copiar el archivo
+  warning_no_project_to_copy_folder_to: No existe proyecto en donde copiar la carpeta
+  warning_one_of_files_locked: Uno de los archivos está bloqueado
+  warning_some_entries_were_not_deleted: 'Algunas entradas no han sido eliminadas:
+    %{entries}'
+  warning_some_files_were_not_commited: 'Algunos archivos no han sido registrados
+    por un error de validación: %{files}'
+  warning_xapian_not_available: Xapian no disponible

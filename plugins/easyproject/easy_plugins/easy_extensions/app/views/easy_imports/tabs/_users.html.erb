@@ -1,0 +1,11 @@
+<% mail = Redmine::Plugin.installed?(:easy_project_com) ? 'support@easyproject.com' : 'support@easyredmine.com' %>
+<% if Redmine::Plugin.installed?(:easy_invite_colleagues) %>
+  <% @user = User.new %>
+  <% if request.xhr? %>
+    <h2><%= l('easy_invite_colleagues.form.heading') %></h2>
+  <% end %>
+  <%= render(template: 'easy_invited_colleagues/new', formats: ['html'], locals: { prefix: 'easy_imports_'} ) %>
+<% else %>
+  <h2><%= l('easy_imports.coming_soon') %>...</h2>
+  <p><%= l('easy_imports.contact_support_and_get_help', mail: "<a href='mailto:#{mail}'>#{mail}</a>").html_safe %></p>
+<% end %>

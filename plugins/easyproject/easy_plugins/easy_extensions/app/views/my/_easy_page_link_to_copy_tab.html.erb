@@ -1,0 +1,6 @@
+<%= if tab.is_a?(EasyPageTemplateTab)
+      link_to '', easy_page_template_layout_add_tab_path(page_template_id: tab.page_template_id, entity_id: tab.entity_id, tab_id_to_copy: tab.id, original_url: request.original_fullpath), remote: true, class: 'icon icon-copy', title: l(:button_copy)
+    else
+      link_to '', easy_page_layout_add_tab_path(page_id: tab.page_id, user_id: tab.user, entity_id: tab.entity_id, tab_id_to_copy: tab.id, original_url: request.original_fullpath), remote: true, class: 'icon icon-copy', title: l(:button_copy)
+    end
+%>

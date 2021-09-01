@@ -1,0 +1,17 @@
+EASY.schedule.require(function ($, knowledgeUtils) {
+  $("#easy_servicebar_component_body").html("<%=j render(:partial => 'easy_knowledge_toolbar') -%>");
+  $("#easy_servicebar_component").easy_knowledge_toolbar({
+    "createButton": "<%=j l(:button_create) %>",
+    "closeButton": "<%=j l(:button_close) %>",
+    "dropZoneUser": "<%=j l(:field_assigned_to) %>",
+    "dropZoneOther": "<%=j l(:label_issue_new) %>",
+    "dropZoneCalendar": "<%=j "#{l(:field_start_date)} / #{l(:field_due_date)}" %>",
+    "lang": {
+      "pushSortbale": "<%=j l(:label_push_it_here) %>"
+    }
+  });
+  knowledgeUtils.initDroppable();
+  $("#easy_servicebar_component_body input").focus()
+}, "jQuery", function () {
+  return EASY.knowledge;
+})

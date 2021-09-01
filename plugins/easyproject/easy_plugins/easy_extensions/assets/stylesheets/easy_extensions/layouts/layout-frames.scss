@@ -1,0 +1,377 @@
+@import "main";
+@import "header";
+@import "topmenu-pushcurtain";
+$native-scrollbar-width: 18px;
+body {
+  margin: 0 0 1px !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+  &.modal-opened{
+    overflow-y: hidden;
+  }
+}
+
+//body, #wrapper, #wrapper2, #wrapper3, #easy_servicebar, #easy_servicebar_component {
+//  @extend %fixed;
+//  z-index: z($z-priority,body);
+//}
+body, #wrapper, #wrapper2, #wrapper3, #easy_servicebar, #easy_servicebar_component{
+  //@extend %absolute;
+  //z-index: z($z-priority,body);
+  //overflow: hidden;
+}
+#top-menu {
+  left: 0;
+  z-index: z($z-priority,topmenu);
+  height: (($topmenu-height - 2*$gap) - 1);
+  bottom: auto;
+  right: 0;
+  top: 0;
+  position: fixed;
+  & ~ #main{
+    margin-top: $topmenu-height;
+  }
+}
+#header {
+  //z-index: z($z-priority,topmenu);
+  //bottom: auto;
+  //height: $header-height;
+  position: relative;
+  order: 1;
+  @include respond-to(min-menu-collapse) {
+
+  }
+  #top-menu ~ & {
+	top: $topmenu-height;
+  }
+}
+
+#main-menu{
+  //height: $mainmenu-height;
+  & + #main {
+    top: $mainmenu-height;
+  }
+}
+
+#main {
+  @extend %flex;
+  @extend %flex-direction-column;
+  //@extend %absolute;
+  //z-index: z($z-priority,main);
+  //-webkit-overflow-scrolling: touch;
+  //overflow: hidden;
+  //overflow-y: scroll;
+  @include respond-to(min-menu-collapse) {
+    //right: $servicebar-width;
+    padding-right: $servicebar-width + 1;
+  }
+
+  #top-menu ~ & {
+	top: $topmenu-height;
+  }
+  /*  // Un/Comment to get "pushy" rich menu
+  .left-menu-opened &{
+    @include respond-to(min-menu-collapse) {
+      right: $leftmenu-width + $servicebar-width;
+    }
+    @include respond-to(max-medium-screen) {
+        right: $leftmenu-width;
+    }
+  }
+  */
+  /* // Un/Comment to get "pushy" servicebar
+  .servicebar-opened &{
+    @include respond-to(min-menu-collapse) {
+      right: $servicebar-component-width + $servicebar-width;
+    }
+  }
+  */
+  /* // Un/Comment to get "pushy" rich menu
+  .servicebar-opened.left-menu-opened &{
+    @include respond-to(min-menu-collapse) {
+      right: $servicebar-component-width + $leftmenu-width + $servicebar-width;
+    }
+    @include respond-to(max-medium-screen) {
+      right: $leftmenu-width;
+    }
+  }
+  */
+  @include respond-to(min-sidebar-collapse) {
+    display: block;
+  }
+  @include respond-to(max-menu-collapse) {
+    padding-bottom: $servicebar-height;
+  }
+  .in-iframe &{
+    padding-right: 0;
+  }
+}
+#easy_servicebar {
+  //@extend %compositor-layer;
+  @extend %flex;
+  @extend %flex-direction-column;
+  float: right;
+  position: absolute;
+  right: 0;
+  z-index: z($z-priority,servicebar);
+  left: auto;
+  width: $servicebar-width;
+  top: $topmenu-height;//0
+  height: calc(100vh - #{$topmenu-height});
+  overflow: visible;
+
+  /* // Un/Comment to get "pushy" rich menu
+  .left-menu-opened &{
+    right: $leftmenu-width;
+  }
+  @include respond-to(max-medium-screen) {
+    .left-menu-opened &{
+      display: none;
+    }
+  }
+  */
+  @include respond-to(max-menu-collapse) {
+    left:0;
+    bottom: 0;
+    top: auto;
+    right: auto;
+    position: fixed;
+    height: $servicebar-height;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 0;
+    //ul {
+    //  display: flex;
+    //  flex-direction: row;
+    //  justify-content: center;
+    //  border-top: 1px solid $color-border-minor;
+    //  border-left: none;
+    //}
+
+    //ul > li {
+    //  padding-left: .2*$servicebar-width;
+    //  padding-right: .2*$servicebar-width;
+    //  width: $servicebar-width;
+    //}
+  }
+
+  &_component{
+    position: absolute;
+    display: none;
+    z-index: z($z-priority,sidemenu);
+    height: calc(100vh - #{$topmenu-height} - 2px);
+    right:0;
+    top: 0;
+    bottom: 0;
+    @include respond-to(min-small-screen) {
+      right: $servicebar-width;
+      bottom: -1px;
+      left: auto;
+      width: 1.25*$servicebar-component-width;
+      border: 1px solid transparent;
+      z-index: (z($z-priority,servicebar) + 1);
+      /* // Un/Comment to get "pushy" rich menu
+      .left-menu-opened &{
+        right: $leftmenu-width + $servicebar-width;
+      }
+      */
+    }
+    /* // Un/Comment to get "pushy" rich menu
+    @include respond-to(max-medium-screen) {
+      .left-menu-opened &{
+        display: none !important;
+      }
+    }
+    */
+    //@include respond-to(max-menu-collapse) {
+    //  display: none !important;
+    //}
+  }
+}
+#content{
+  @extend %order-2;
+  //z-index: z($z-priority,content);
+  padding: $gap;
+  @include respond-to(min-menu-collapse) {
+    padding: $box-margin;
+  }
+  #sidebar + &{
+    margin-right: calc(#{$sidebar-width} + #{$gap} + #{$gap-const});
+    @include respond-to(max-sidebar-collapse) {
+      margin-right: 0 !important;
+    }
+    .nosidebar &{
+      margin-right: calc(2*#{$gap} + 2*#{$gap-const});
+    }
+  }
+  .easy_jquery_tab{
+    @include respond-to(max-medium-screen) {
+      & > .splitcontent{
+        margin-left: 0;
+        margin-right: 0;
+        & > div{
+          float: none;
+          width: 100%;
+          padding-left:0;
+          padding-right:0;
+        }
+      }
+    }
+    //.servicebar-opened &{ //,.left-menu-opened & // Un/Comment to get "pushy" rich menu
+    //  @include respond-to(max-large-screen) {
+    //    & > .splitcontent{
+    //      margin-left: 0;
+    //      margin-right: 0;
+    //      & > div{
+    //        float: none;
+    //        width: auto;
+    //        padding-left:0;
+    //        padding-right:0;
+    //      }
+    //    }
+    //  }
+    //}
+    //.servicebar-opened &{ // .left-menu-opened // Un/Comment to get "pushy" rich menu
+    //  @include respond-to(max-xlarge-screen) {
+    //    & > .splitcontent{
+    //      margin-left: 0;
+    //      margin-right: 0;
+    //      & > div{
+    //        float: none;
+    //        width: auto;
+    //        padding-left:0;
+    //        padding-right:0;
+    //      }
+    //    }
+    //  }
+    //}
+  }
+}
+
+#sidebar,#easy_grid_sidebar {
+  //@extend %compositor-layer;
+  @extend %order-3;
+  position: relative;
+  padding-left: $gap;
+  padding-right: $gap;
+  padding-top: .5*$box-margin;
+  z-index: z($z-priority,sidebar);
+  @include respond-to(min-sidebar-collapse) {
+    width: $sidebar-width;
+    padding-top: .5*$box-margin;
+    padding-left: 0;
+    padding-right: 0;
+    position: absolute;
+    right: $box-margin;
+    .nosidebar &{
+      margin-right: -$sidebar-width + 2*$gap - px2rem(3px);
+      @if $internal-brand == 'easy_compact_theme' {
+        margin-right: -$sidebar-width + 3*$gap - px2rem(3px);
+      }
+      @include respond-to(max-menu-collapse) {
+        margin-right: -$sidebar-width + 3*$gap - px2rem(3px);
+        margin-left: $gap;
+      }
+    }
+  }
+  @include respond-to(min-menu-collapse) {
+    right: $servicebar-width + $box-margin + 1;
+    padding-top: $box-margin;
+  }
+  @include respond-to(max-menu-collapse) {
+
+    //padding-top: $gap;
+    @include respond-to(min-sidebar-collapse) {
+      width: $sidebar-width;
+      right: $gap;
+    }
+  }
+  &_inner{
+    //&>div{
+    //  padding-right: $box-margin;
+    //  //margin-left: $box-margin;
+    //}
+    .easy-scroller{
+      margin-right: -$box-margin;
+      padding-right: calc(.5*#{$box-margin} + #{$gap-const});
+    }
+  }
+
+  //border-left: 1px solid $color-border;
+  //&.fake-responsive{
+  //  width: 0.75*$sidebar-width - 2*$box-margin;
+  //}
+  //&Clone{
+  //  display: none;
+  //  padding: 0 $box-padding;
+  //  @include respond-to(max-sidebar-collapse) {
+  //    display: block;
+  //  }
+  //  .fake-responsive &{
+  //    display: block;
+  //  }
+  //}
+  .in-iframe &{
+    right: $box-padding;
+  }
+}
+#easy_grid_sidebar {
+  @include respond-to(min-sidebar-collapse) {
+    padding-top: $box-margin;
+  }
+}
+#easy_grid{
+  @extend %flex;
+  @extend %flex-direction-column;
+  margin: -$box-margin;
+  @include respond-to(min-sidebar-collapse) {
+    display: block;
+  }
+  &_content{
+    @extend %order-2;
+    padding: $box-margin calc(#{$gap} + #{$gap-const}) 0 $box-margin;
+    #easy_grid_sidebar + &{
+      margin-right: $sidebar-width + $box-margin;
+      @include respond-to(max-sidebar-collapse) {
+        margin-right: 0;
+        padding-right: $box-margin;
+      }
+      .fake-responsive &{
+        margin-right: 0;
+      }
+      @include respond-to(max-medium-screen) {
+        & > .splitcontent{
+          margin-left: 0;
+          margin-right: 0;
+          & > div{
+            float: none;
+            width: 100%;
+            padding-left:0;
+            padding-right:0;
+          }
+        }
+      }
+      .nosidebar &{
+        @include respond-to(min-sidebar-collapse) {
+          margin-right: 4.75*$gap;
+        }
+        @include respond-to(min-menu-collapse) {
+          margin-right: 4*$gap;
+        }
+      }
+
+    }
+  }
+  &_sidebar{
+    padding-left: $box-padding;
+    padding-right: $box-padding;
+    @include respond-to(min-sidebar-collapse) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+#ajax-indicator{
+ @extend %loader--stripe;
+}

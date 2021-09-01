@@ -1,0 +1,6 @@
+<%
+easy_helpdesk_mail_templates       = @easy_page_modules_data[block_name][:easy_helpdesk_mail_templates]
+easy_helpdesk_mail_templates_count = @easy_page_modules_data[block_name][:easy_helpdesk_mail_templates_count]
+%>
+
+<%= render :partial => 'easy_helpdesk_mail_templates/overview', :locals => {:easy_helpdesk_mail_templates => easy_helpdesk_mail_templates, :easy_helpdesk_mail_templates_count => easy_helpdesk_mail_templates_count} %>

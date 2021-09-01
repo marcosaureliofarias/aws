@@ -1,0 +1,10 @@
+//= require_self
+//= require 'easy_widgets/easy.widget_root'
+//= require 'easy_widgets/easy.customTooltip'
+//= require 'easy_widgets/easy.toggleable'
+//= require 'easy_widgets/easy.clickObserver'
+//= require 'easy_widgets/easy.chat'
+//= require 'easy_widgets/easy.tableSaw'
+//= require 'easy_widgets/easy.activityTimeline'
+//= require 'easy_widgets/easy.swipeable'
+//= require 'easy_widgets/easy.table_resizer'

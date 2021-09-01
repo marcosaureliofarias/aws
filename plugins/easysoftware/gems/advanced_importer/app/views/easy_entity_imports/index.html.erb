@@ -1,0 +1,13 @@
+<p class="warning"><%= l(:label_easy_entity_important_message) %></p>
+
+<%= render @query, easy_query_name: l(:heading_easy_entity_imports) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= content_for :sidebar do %>
+  <%= entity_import_buttons %>
+  <p>
+    <%= link_to(l('easy_imports.label_standardized_imports'), easy_imports_path, class: 'button-positive icon icon-import', remote: true) %>
+  </p>
+<% end %>
+<%= call_hook(:view_easy_entity_imports_index_bottom) %>

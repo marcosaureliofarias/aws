@@ -1,0 +1,51 @@
+<div class="autoscroll">
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th><%= l('label_easy_data_template_import.errors.errors_count') %></th>
+        <th><%= l('label_easy_data_template_import.errors.errors_rows_count') %></th>
+        <th><%= l('label_easy_data_template_import.errors.errors_rows') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= l('label_easy_data_template_import.errors.errors_sum') %></td>
+        <td><%= my_errors[:size] %></td>
+        <td><%= my_errors[:rows].size %></td>
+        <td><%= my_errors[:rows].join(", ").to_s %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="toolbar">
+  (<%= link_to l("label_easy_data_template_import.errors.show"), {}, :onclick => 'Effect.toggle("erows", "appear", {duration:0.3}); return false;' %>)
+</div>
+<div class="autoscroll">
+  <table id="erows" style="display: none">
+    <thead>
+      <tr>
+        <th><%= l("label_easy_data_template_import.errors.row") %></th>
+        <%  datatemplate.assignments.each do |assignment| %>
+          <%  if datatemplate.allowed_attributes.include?(assignment.entity_attribute_name) %>
+            <th><%= l("easy_data_template_entity_attributes_select.#{datatemplate.entity_type}.#{assignment.entity_attribute_name}") %></th>
+          <% else %>
+            <th><%= datatemplate.allowed_custom_field_attributes.select{|x| x[1] == assignment.entity_attribute_name}.flatten[0] %></th>
+          <% end %>
+        <% end %>
+        <th><%= l("label_easy_data_template_import.errors.erow") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% my_errors[:rows].each do |erow| %>
+        <tr>
+          <td><%= my_errors[:rows].index(erow)+1 %></td>
+          <% datatemplate.assignments.each do |assignment| %>
+            <td><%= csv_data[erow-1][(assignment.file_column_position-1)] %></td>
+          <% end %>
+          <td><%= error_messages_for 'neco_tu_musi_byt', :object => csv_data[erow-1].last -%> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

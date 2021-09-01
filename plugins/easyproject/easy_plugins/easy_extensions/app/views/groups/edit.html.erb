@@ -1,0 +1,13 @@
+<%= title [l(:label_group_plural), groups_path], @group.name %>
+
+<%= render_tabs group_settings_tabs(@group) %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_group_new), new_group_path, :class => 'button-positive' %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= mail_to(EmailAddress.where(user_id: @group.users).pluck(:address).join('; '), l(:label_send_email_to_all_users), :class => 'button', :id => 'users-send-mail-all') -%>
+<% end %>

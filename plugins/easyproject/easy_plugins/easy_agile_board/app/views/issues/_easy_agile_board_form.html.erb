@@ -1,0 +1,7 @@
+<p>
+  <%= form.number_field :easy_story_points, label: l(:label_agile_story_points) %>
+</p>
+<p>
+  <%= form.select :easy_sprint_id, sprints, { include_blank: true, label: l(:label_agile_sprint) } %>
+</p>
+<%= form.hidden_field :target_backlog, class: 'target_backlog_field' %>

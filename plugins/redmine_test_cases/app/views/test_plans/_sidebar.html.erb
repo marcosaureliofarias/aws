@@ -1,0 +1,9 @@
+<ul>
+  <li>
+    <%= link_to l(:button_test_plan_new), new_polymorphic_path([@project, :test_plan]), title: l(:title_test_plan_new), class: 'icon icon-add button button-positive' %>
+  </li>
+<% if @test_plan && !@test_plan.new_record? %>
+  <li><%= link_to l(:button_edit), edit_polymorphic_path([@project, @test_plan]), title: l(:button_edit), class: 'icon icon-edit button' %></li>
+  <li><%= link_to l(:label_test_plans), polymorphic_path([@project, :test_plans], set_filter: '1'), title: l(:label_test_plans), class: 'icon icon-folder button' %></li>
+<% end %>
+</ul>

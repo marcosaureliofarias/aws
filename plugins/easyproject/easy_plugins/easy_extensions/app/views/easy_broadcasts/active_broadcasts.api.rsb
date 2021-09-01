@@ -1,0 +1,8 @@
+api.array :easy_broadcasts do
+  @easy_broadcasts.each do |easy_broadcast|
+    api.easy_broadcast do
+      api.id          easy_broadcast.id
+      api.message     easy_broadcast.message
+    end
+  end
+end

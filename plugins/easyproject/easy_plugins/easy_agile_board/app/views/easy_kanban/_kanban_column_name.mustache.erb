@@ -1,0 +1,4 @@
+<div class='agile__col__title'>
+  <span>{{name}}</span>{{#showTimes}}<span class='agile__col__title__details'>( {{summableString}} ) <span class='tooltip'><%= summable_column.present? ? query.get_column(summable_column).try(:caption).to_s : '' %></span></span>{{/showTimes}}{{#showSortButton}}<span class='agile__col-sort'>&nbsp;
+  <span class='tooltip'><%= l(:label_easy_kanban_sort_by_priority)%></span></span>{{/showSortButton}}
+</div>

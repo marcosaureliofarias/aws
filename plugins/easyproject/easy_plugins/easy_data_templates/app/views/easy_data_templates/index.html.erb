@@ -1,0 +1,67 @@
+<div id="data-templates-container">
+  <h2><%= l(:label_easy_data_templates) -%></h2>
+
+  <% if (@datatemplates.empty?) -%>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% else -%>
+    <div class="autoscroll">
+      <table class="list">
+      <thead>
+        <tr>
+          <th><%= l(:label_easy_data_template_name) %></th>
+          <th><%= l(:label_easy_data_template_entity_type) %></th>
+          <th><%= l(:label_easy_data_template_template_type) %></th>
+          <th><%= l(:label_easy_data_template_user_name) %></th>
+          <th><%= l(:label_easy_data_template_author_name) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @datatemplates.each do |datatemplate| %>
+          <tr>
+            <td><%= datatemplate.name %></td>
+            <td><%= l('easy_data_template_entity_type_select.'+datatemplate.type.to_s) %></td>
+            <td><%= datatemplate.template_type -%></td>
+            <td><%= datatemplate.user.nil? ? l(:label_easy_data_template_public) : datatemplate.user.name %></td>
+            <td><%= datatemplate.author.try(:name) %></td>
+            <td>
+              <% if datatemplate.format_type == 'xml' %>
+                <%= link_to(l(:button_easy_data_template_import_data), { :controller => 'easy_data_template_ms_projects', :action => 'import_settings', :id => datatemplate}, :class => '') -%>
+                <%= link_to(l(:button_edit), { :controller => 'easy_data_template_ms_projects', :action => 'edit', :id => datatemplate}, :class => 'icon icon-edit') -%>
+                <%= link_to(l(:button_delete), { :controller => 'easy_data_template_ms_projects', :action => 'destroy', :id => datatemplate}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del') -%>
+              <% elsif datatemplate.format_type == 'csv' %>
+                <% if datatemplate.template_type == 'import' %>
+                  <%= link_to(l(:button_easy_data_template_import_data), { :controller => 'easy_data_templates_import', :action => 'import_settings', :id => datatemplate}, :class => '') -%>
+                  <%= link_to(l(:button_edit), { :controller => 'easy_data_templates_import', :action => 'edit', :id => datatemplate}, :class => 'icon icon-edit') -%>
+                  <%= link_to(l(:button_delete), { :controller => 'easy_data_templates', :action => 'destroy', :id => datatemplate}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del') -%>
+                <% elsif datatemplate.template_type == 'export' %>
+                  <%= link_to(l(:button_easy_data_template_export_data), { :controller => 'easy_data_templates_export', :action => 'export_settings', :id => datatemplate}, :class => '') -%>
+                  <%= link_to(l(:button_edit), { :controller => 'easy_data_templates_export', :action => 'edit', :id => datatemplate}, :class => 'icon icon-edit') -%>
+                  <%= link_to(l(:button_delete), { :controller => 'easy_data_templates', :action => 'destroy', :id => datatemplate}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del') -%>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% if EASY_EXTENSIONS_ENABLED %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to(l(:button_easy_data_template_new_msproject), { :controller => 'easy_data_template_ms_projects', :action => 'new' }, :class => 'button-positive') %>
+    <%= link_to(l(:label_easy_data_templates), { :controller => 'easy_data_templates', :action => 'index' }, :class => 'button') %>
+  <% end %>
+<% else %>
+  <% content_for :sidebar do %>
+    <div class="box">
+      <p>
+        <%= link_to(l(:button_easy_data_template_new_msproject), { :controller => 'easy_data_template_ms_projects', :action => 'new' }, :class => 'icon icon-add') %>
+      </p>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+<% if role %>
+  <% egtes = role.easy_global_time_entry_setting || EasyGlobalTimeEntrySetting.new -%>
+  <%= form_for egtes, id: "egtes_for_role_#{role.name}", namespace: "egtes_for_role_#{role.name}" do |f|%>
+    <%= render :partial => 'settings/per_role_form', :locals => { :f => f, :role => role } %>
+    <p><%= submit_tag l(:button_save), :class => 'button-positive' -%><p>
+  <% end %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

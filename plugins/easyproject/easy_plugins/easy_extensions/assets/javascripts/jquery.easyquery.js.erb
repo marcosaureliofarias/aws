@@ -1,0 +1,1112 @@
+(function($, undefined) {
+
+// -------- ##### FILTER MAIN CLASS ##### ----------------
+
+  function Filter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  window.EasyQueryFilter = Filter;
+  Filter.prototype.typesWithoutOperator = ['date_period', 'query_string'];
+
+// ---- should be overwritten ----
+  Filter.prototype.createInput = function(wrapingEl) {
+    this.input = this.create_text_input(this.name, this.inputSize);
+    wrapingEl.append( this.input );
+  }
+  Filter.prototype.isActive = function() {
+    return this.check_box.is(':checked');
+  }
+
+  Filter.prototype.setValue = function(values) {
+    this.input.val(values);
+  }
+  Filter.prototype.getValue = function() {
+    return this.input.val();
+  }
+
+// --------------- HELPERS ---------------
+  Filter.prototype.getPrefixedHtmlName = function(name, suffix) {
+    return this.filters.options.blockName ? this.filters.options.blockName + '['+name+']' + suffix : name + suffix;
+  }
+
+  Filter.prototype.wrapId = function(id) {
+    return this.filters.options.modulUniqId + id + this.name.replace(/\./g, '_');
+  }
+
+  Filter.prototype.wrapClass = function(cls) {
+    return cls + '_' + this.name.replace(/\./g, '_');
+  }
+
+  Filter.prototype.create_text_input = function(name, size) {
+    return $('<input>', {
+      type: 'text',
+      name: this.getPrefixedHtmlName('values', '['+name+'][]'),
+      id: this.wrapId('values_'),
+      class: this.wrapClass('values')
+    }).attr('size', size);
+  }
+
+// ----------------- DOM HELPERS ---------------------
+
+  Filter.prototype.enableValues = function(indexes) {
+    var values = this.valueInput.find(this.wrapClass('.values'));
+    var isAutocomplete = this.valueInput.find('.easy-multiselect-tag-container').length > 0;
+
+    for(var i = 0; i < values.length; ++i) {
+      var value = values.eq(i);
+      if( indexes.indexOf(i) !== -1 ) {
+        value.prop('disabled', false);
+        var parent = value.parent('span').show();
+        if(isAutocomplete) {
+          parent.find("input[type='hidden']").prop('disabled', false);
+        }
+      }
+      else {
+        value.prop('disabled', true).val('')
+        var parent = value.parent('span').hide();
+        if(isAutocomplete) {
+          parent.find("input[type='hidden']").val('').prop('disabled', true);
+        }
+      }
+    }
+    this.valueInput.toggle(indexes.length > 0);
+  }
+
+  Filter.prototype.toggle_operator = function (operator) {
+    if (typeof(operator) === 'undefined' || !operator ) {
+        this.valueInput.show();
+    } else {
+        switch (operator) {
+            case "!*":
+            case "*":
+            case "t":
+            case "ld":
+            case "w":
+            case "lw":
+            case "l2w":
+            case "m":
+            case "lm":
+            case "y":
+            case "o":
+            case "*o":
+            case "!o":
+            case "c":
+            case ">dd":
+                this.enableValues([]);
+                break;
+            case "><":
+                this.enableValues([0, 1]);
+                break;
+            case "<t+":
+            case ">t+":
+            case "><t+":
+            case "t+":
+            case ">t-":
+            case "<t-":
+            case "><t-":
+            case "t-":
+                this.enableValues([2]);
+                break;
+            case "=p":
+            case "=!p":
+            case "!p":
+                this.enableValues([1]);
+                break;
+            default:
+                this.enableValues([0]);
+                break;
+        }
+    }
+  }
+
+// -------------- ELEMENT CREATION -----------
+
+  Filter.prototype.createValueInput = function(operator) {
+    var $span = $('<span>', {class: this.wrapClass('span_values')});
+
+    this.valueInput = $('<div>',{ id: this.wrapId('div_values_') }).append( $span );
+    $('.values', this.element).append( this.valueInput );
+
+    this.createInput($span, operator);
+
+    return this.valueInput;
+  }
+
+  Filter.prototype.createFilter = function(selected) {
+    var that = this,
+        available_operators = this.filters.available_operators[this.type],
+        chck_id = this.wrapId( 'cb_' ),
+        opselect_name = this.getPrefixedHtmlName('operators', '['+this.name+']'),
+        operator = typeof selected === 'undefined' ? null : selected['operator'],
+        values = typeof selected === 'undefined' ? null : selected['values'];
+
+    this.check_box = $('<input>', {type: 'checkbox', name: this.getPrefixedHtmlName('fields', '[]'), value: this.name, checked: true, id: chck_id});
+    //:onclick => "EASY.query.toggleFilter('#{field_dom_id}', '#{modul_uniq_id}');", :id => "#{modul_uniq_id}cb_#{field_dom_id}"
+    this.chck_label = $('<label>', {for: chck_id}).text(this.label).prepend(this.check_box);
+
+    this.element = $('<tr></tr>').append( $('<td>', {class: 'field'}).append(this.chck_label) );
+
+    if( this.typesWithoutOperator.indexOf( this.type ) !== -1 ) {
+      this.element.append( $('<td>', {colspan: 2, class: 'values'}) );
+    } else {
+      if ( available_operators.length > 1 ) {
+        this.operator_select = $('<select>',{name: opselect_name, id: this.wrapId( 'operators_') })
+        for( var i = 0; i < available_operators.length; ++i ) {
+          this.operator_select
+            .append($('<option>', {value: available_operators[i], selected: operator == available_operators[i], class: 'block'})
+            .text(this.filters.options.i18n.operators[available_operators[i]]));
+        }
+        this.operator_select.on('change', function(evt){
+          that.toggle_operator($(this).val());
+        });
+      } else {
+        this.operator_select = $('<input>', {type: 'hidden', name: opselect_name, value: available_operators[0]})
+      }
+
+      this.element.append( $('<td>', {class: 'operator'}).append(this.operator_select) );
+      this.element.append( $('<td>', {class: 'values'}) );
+    }
+
+    this.filters.getFiltersTable(this.name).prepend(this.element);
+
+    this.createValueInput(operator);
+    if( this.operator_select )
+      this.toggle_operator(this.operator_select.val());
+
+    if( values )
+      this.setValue(values);
+
+    return this.element;
+  }
+
+  Filter.prototype.getUrlValue = function() {
+    var val = this.getValue(),
+        op = '';
+
+    if( this.operator_select ) {
+      op = this.operator_select.val()
+    }
+    return op + (Array.isArray(val) ? val.join('|') : val.toString());
+  }
+
+// -------------- ##### FILTER TYPES ##### ------------------
+
+  function DatePeriodFilter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+    this.afterPeriodLoad = [];
+  }
+  DatePeriodFilter.prototype = new Filter();
+  DatePeriodFilter.prototype.constructor = DatePeriodFilter;
+  DatePeriodFilter.prototype.parent = Filter.prototype;
+  DatePeriodFilter.prototype.createInput = function(wrapingEl, operator) {
+    var that = this,
+        $period1_container = $('<p class="flex-center">'),
+        $period2_container = $('<p class="flex-center">'),
+        $shift_container = $('<p class="flex-center">'),
+        $period2_inner_container,
+        $period2_radio,
+        $period2_timerange,
+        $period2_from,
+        $period2_to;
+
+    values = (typeof values === 'undefined' || !values) ? {} : values;
+
+    this.input = [];
+    this.input.push({});
+    this.input.push({});
+    this.input.push({});
+
+    wrapingEl.append($period1_container);
+    wrapingEl.append($period2_container);
+    wrapingEl.append($shift_container);
+
+    this.input[0]['radio'] = $('<input>', {type: 'radio', name: this.getPrefixedHtmlName('operators', '['+this.name+']'), value: 'date_period_1', checked: operator != 'date_period_2', id: this.wrapId('')+'_date_period_1'});
+    this.input[0]['select'] = $('<select>', {name: this.getPrefixedHtmlName('values', '['+this.name+'][period]'), id: this.wrapId('values_')+'_period' });
+    this.input[0]['n_days'] = $('<input>', {
+      type: 'text',
+      name: this.getPrefixedHtmlName('values', '['+this.name+'][period_days]'), id: this.wrapId('values_')+'_period_days',
+      class: this.wrapClass('values')
+    }).attr('size', 3);
+    this.input[0]['m_days'] = $('<input>', {
+      type: 'text',
+      name: this.getPrefixedHtmlName('values', '['+this.name+'][period_days2]'), id: this.wrapId('values_')+'_period_days',
+      class: this.wrapClass('values')
+    }).attr('size', 3);
+    this.ndays_container = $('<span>', {id: this.wrapId('values_')+'_period_days_container', class: 'values-period-days-container'})
+      .append( this.input[0]['m_days'].hide() )
+      .append( this.input[0]['n_days'] )
+      .append( $('<span>', {id: this.wrapId('values')+'_period_days_description_container', class: 'help', style: 'margin-left: 27px;'}) );
+
+    $period1_container.append( this.input[0]['radio'] );
+    $period1_container.append( this.input[0]['select'] );
+    $period1_container.append( this.ndays_container );
+
+    $.ajax(this.filters.options.listValuesUrl, {
+      method: 'POST',
+      data: $.extend(JSON.parse(this.filters.options.listValuesParams), {filter_name: this.name}),
+      success: function(data){
+        that.input[0]['select'].on('change', function(evt) {
+          var option = $(this).find('option:selected');
+          if (option.length > 0 && option.val().indexOf('n_days') !== -1) {
+            that.ndays_container.show();
+            $('.help', that.ndays_container).html('<em>' + option.data('description') + '</em>');
+            that.toggleNdaysContainer(option.val());
+          } else {
+            that.ndays_container.hide();
+          }
+        });
+        that.input[0]['select'].html(data);
+        for(var i = 0; i < that.afterPeriodLoad.length; ++i ) {
+          that.afterPeriodLoad[i].call(that);
+          that.afterPeriodLoad = [];
+        }
+        that.input[0]['select'].change(); //fill it in - if selected ndays
+      }
+    });
+
+    this.input[0]['select'].on('focus', function(evt){ that.input[0]['radio'].prop('checked', true); });
+
+    this.input[1]['radio'] = $('<input>', {type: 'radio', name: this.getPrefixedHtmlName('operators', '['+this.name+']'), value: 'date_period_2', checked: operator == 'date_period_2', id: this.wrapId('')+'_date_period_2'});
+    $period2_timerange = $('<span class="input--range">').on('click', function(evt) {
+      that.input[1]['radio'].prop('checked', true);
+    });
+    this.input[1]['from'] = $('<input>', { type: 'text', name: this.getPrefixedHtmlName('values', '['+this.name+'][from]'), id: this.wrapId('')+'_from' }).attr('size', 10);
+    this.input[1]['to'] = $('<input>', { type: 'text', name: this.getPrefixedHtmlName('values', '['+this.name+'][to]'), id: this.wrapId('')+'_to' }).attr('size', 10);
+    var $from = $('<span class="input-append">');
+    $from.append( $('<span>').append( document.createTextNode(this.filters.options.i18n.label_date_from) ));
+    $from.append( this.input[1]['from'] );
+    $period2_timerange.append( $from );
+    var $to = $('<span class="input-append">');
+    $to.append( $('<span>').append( document.createTextNode(this.filters.options.i18n.label_date_to.toLowerCase()) ));
+    $to.append( this.input[1]['to'] );
+    $period2_timerange.append( $to );
+    $('input', $period2_timerange).on('change', function(evt){ $(this).closest('span').click() }).datepicker(EASY.datepickerOptions);
+    $period2_container.append( this.input[1]['radio'] );
+    $period2_container.append( $period2_timerange );
+
+    this.input[2]["shift"] = $("<input>", {
+      type: "hidden",
+      name: this.getPrefixedHtmlName("values", "["+this.name+"][shift]"),
+    })
+    this.input[2]["shift_help"] = $("<em>", { class: "help hidden" })
+    $shift_container.append(this.input[2]["shift"])
+    $shift_container.append(this.input[2]["shift_help"])
+  }
+  DatePeriodFilter.prototype.toggleNdaysContainer = function(period_type) {
+    if( period_type.indexOf('m_to_n') !== -1 ) {
+      this.input[0]['m_days'].show();
+    } else {
+      this.input[0]['m_days'].hide();
+    }
+  };
+  DatePeriodFilter.prototype.setOperator = function(operator) {
+    this.operator_select = this.input[ operator == 'date_period_2' ? 1 : 0 ]['radio'].prop('checked', true);
+  }
+  DatePeriodFilter.prototype.getOperator = function() {
+    return this.input[1]['radio'].is(':checked') ? 'date_period_2' : 'date_period_1';
+  }
+  DatePeriodFilter.prototype.afterPeriodLoaded = function(callback) {
+    if(this.periodLoaded) {
+      callback.call(this);
+    } else {
+      this.afterPeriodLoad.push(callback);
+    }
+  }
+  DatePeriodFilter.prototype.setValue = function(values) {
+    if( !(values['period'] && values['period'].indexOf('n_days') !== -1 ) ) {
+      this.ndays_container.hide();
+    } else if ( values['period'].indexOf('m_to_n') === -1 ) {
+      this.ndays_container.show();
+      this.input[0]['n_days'].val(values['period_days']);
+      this.toggleNdaysContainer(values['period']);
+    } else {
+      this.ndays_container.show();
+      this.input[0]['m_days'].val(values['period_days2']);
+      this.input[0]['n_days'].val(values['period_days']);
+    }
+
+    this.afterPeriodLoaded(function(){
+      $('option[value="'+values['period']+'"]', this.input[0]['select']).prop('selected', true);
+    });
+    this.input[1]['from'].val(values['from']);
+    this.input[1]['to'].val(values['to']);
+
+    if (values.shift) {
+      this.input[2]["shift"].val(values.shift)
+      this.input[2]["shift_help"].text(this.filters.options.i18n.text_date_period_is_shifted_by.replace("%{period}", values.shift)).show()
+    }
+  }
+  DatePeriodFilter.prototype.getValue = function() {
+    var result = {}
+    result['period'] = this.input[0]['select'].val();
+    if( result['period'].indexOf('n_days') !== -1 ) {
+      if( result['period'].indexOf('m_to_n') !== -1 ) {
+        result['period_days2'] = this.input[0]['m_days'].val();
+        result['period_days'] = this.input[0]['n_days'].val();
+      } else {
+        result['period_days'] = this.input[0]['n_days'].val();
+      }
+    }
+    result['from'] = this.input[1]['from'].val();
+    result['to'] = this.input[1]['to'].val();
+    return result;
+  }
+  DatePeriodFilter.prototype.getUrlValue = function() {
+    var res = [],
+        val = this.getValue();
+    if(this.getOperator() == 'date_period_1') {
+      res.push(val['period']);
+      if( val['period_days2'] && val['period_days'] ) {
+        res.push(val['period_days2']);
+        res.push(val['period_days']);
+      } else if( val['period_days'] ) {
+        res.push(val['period_days'])
+      }
+    } else {
+      res.push(val['from']);
+      res.push(val['to']);
+    }
+    return res.join('|');
+  }
+
+
+  function BooleanFilter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  BooleanFilter.prototype = new Filter();
+  BooleanFilter.prototype.constructor = BooleanFilter;
+  BooleanFilter.prototype.createInput = function(wrapingEl) {
+    var $label, suffix;
+
+    this.input = {};
+
+    for(var i = 1; i >= 0; --i) {
+      suffix = (i ? '_true' : '_false');
+      this.input[i] = $('<input>', {
+        type: 'radio',
+        value: i,
+        name: this.getPrefixedHtmlName('values', '['+this.name+'][]' ),
+        checked: i == 1,
+        id: this.wrapId('values_') + suffix
+      });
+      $label = $('<label>', {for: this.wrapId('values_')+suffix}).text(this.filters.options.i18n[i ? 'yes' : 'no']);
+      wrapingEl.append( $('<span>').append(this.input[i]).append($label) );
+    }
+  }
+  BooleanFilter.prototype.setValue = function(values) {
+    var value = Array.isArray(values) ? values[0] : values;
+    if( value == '0' || value == 'false' || !value ) {
+      this.input[0].prop('checked', true);
+    } else {
+      this.input[1].prop('checked', true);
+    }
+  }
+  BooleanFilter.prototype.getValue = function() {
+    return this.input[0].is(':checked') ? 0 : 1;
+  }
+
+  function ListFilter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  ListFilter.prototype = new Filter();
+  ListFilter.prototype.constructor = ListFilter;
+  ListFilter.prototype.setMultiselectOptions = function(source) {
+    this.multiselect_options = {
+      source: source,
+      selected: null,
+      multiple: this.filters.options.listMultiple,
+      select_first_value: this.filters.options.selectListFirstValue,
+      load_immediately: this.filters.options.loadListValuesImmediately
+    }
+  }
+  ListFilter.prototype.createInput = function(wrapingEl) {
+    var that = this;
+    this.setMultiselectOptions(function(callback){
+      that.filters.loadPossibleValues( that.name, callback );
+    });
+    this.createAutocomplete(wrapingEl);
+  }
+  ListFilter.prototype.getAutocompleteInputName = function() {
+    var core_name = '['+this.name+']';
+    if( this.multiselect_options['multiple'] ) {
+      core_name += '[]';
+    }
+    return this.getPrefixedHtmlName('values', core_name);
+  }
+  ListFilter.prototype.createAutocomplete = function(wrapingEl) {
+    this.input = $('<input>', {
+      type: 'text',
+      name: this.getAutocompleteInputName(),
+      class: this.wrapClass('values'),
+      id: this.wrapId('')
+    });
+
+    wrapingEl.append( $('<span>', { class: 'easy-multiselect-tag-container'}).append(this.input) );
+
+    this.input.easymultiselect(this.multiselect_options);
+    return this.input;
+  }
+  ListFilter.prototype.setValue = function(values) {
+    this.input.easymultiselect('setValue', values);
+  }
+  ListFilter.prototype.getValue = function() {
+    return this.input.easymultiselect('getValue');
+  }
+
+
+  function AutocompleteFilter(filters, name, type, label){
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  AutocompleteFilter.prototype = new ListFilter();
+  AutocompleteFilter.prototype.constructor = AutocompleteFilter;
+  AutocompleteFilter.prototype.parent = ListFilter.prototype;
+  AutocompleteFilter.prototype.createInput = function(wrapingEl) {
+    var source_options;
+    if( this.filters.options.autocompleteSources && this.filters.options.autocompleteSources[this.name] ) {
+      source_options = this.filters.options.autocompleteSources[this.name];
+    } else {
+      source_options = {url: window.urlPrefix + '/easy_autocompletes/query_entities', root: 'entities' };
+    }
+
+    this.setMultiselectOptions(source_options['url']);
+    this.multiselect_options['multiple'] = this.filters.options.listMultiple;
+    this.multiselect_options['preload'] = false;
+    this.multiselect_options['rootElement'] = source_options['root'];
+    this.createAutocomplete(wrapingEl);
+  }
+
+  function RelationFilter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  RelationFilter.prototype = new AutocompleteFilter();
+  RelationFilter.prototype.constructor = RelationFilter;
+  RelationFilter.prototype.parent = AutocompleteFilter.prototype;
+  RelationFilter.prototype.createInput = function(wrapingEl) {
+    var entities, projects;
+
+    this.setMultiselectOptions(window.urlPrefix + '/easy_autocompletes/query_entities'+'?'+$.param({autocomplete_options: {entity: this.filters.options.queryEntity}}));
+    this.multiselect_options['multiple'] = false;
+    this.multiselect_options['preload'] = false;
+    this.multiselect_options['rootElement'] = 'entities';
+    entities = this.createAutocomplete(wrapingEl);
+    entities.attr('id', entities.attr('id')+'_entities').addClass('input_for_filter');
+
+    this.setMultiselectOptions(window.urlPrefix + '/easy_autocompletes/visible_projects.json');
+    this.multiselect_options['multiple'] = false;
+    this.multiselect_options['preload'] = false;
+    this.multiselect_options['rootElement'] = 'projects';
+    projects = this.createAutocomplete(wrapingEl);
+    projects.attr('id', projects.attr('id')+'_projects').addClass('input_for_filter');
+
+    entities.on('change', function(){ projects.val('') });
+    projects.on('change', function(){ entities.val('') });
+
+    this.entities = entities;
+    this.projects = projects;
+  }
+  RelationFilter.prototype.toggle_operator = function(operator) {
+    this.parent.toggle_operator.call(this, operator);
+    if( operator == '=' ) {
+      this.input = this.entities;
+    } else {
+      this.input = this.projects;
+    }
+  }
+
+
+  function DateFilter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  DateFilter.prototype = new Filter();
+  DateFilter.prototype.constructor = DateFilter;
+  DateFilter.prototype.parent = Filter.prototype;
+  DateFilter.prototype.createInput = function(wrapingEl){
+    this.inputSize = 3;
+    this.parent.createInput.call(this, wrapingEl);
+    wrapingEl.append( document.createTextNode(this.filters.options.i18n.label_day_plural) );
+  }
+
+
+  function StringFilter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  StringFilter.prototype = new Filter();
+  StringFilter.prototype.constructor = StringFilter;
+  StringFilter.prototype.parent = Filter.prototype;
+  StringFilter.prototype.createInput = function(wrapingEl) {
+    this.inputSize = 30;
+    this.parent.createInput.call(this, wrapingEl);
+  }
+
+
+  class QueryStringFilter extends Filter {
+
+    // QueryString is not regular filter
+    // This prevents against using it in a code which dont know how
+    isActive() {
+      return false
+    }
+
+    moveHelpUnderInput() {
+      const help = document.getElementById(`query_string_help_${this.filters.options.modulUniqId}`)
+
+      if (help) {
+        // Detach
+        help.parentElement.removeChild(help)
+
+        // Element is hidden
+        help.classList.remove("hide")
+
+        // Appent under text field
+        this.valueInput.append(help)
+      }
+    }
+
+    createFieldAutocomplete() {
+      // Load available filters
+      const data = []
+
+      const optgroups = this.filters.addSelect[0].querySelectorAll("optgroup")
+      optgroups.forEach(optgroup => {
+        const options = optgroup.querySelectorAll("option")
+        options.forEach(option => {
+          if (option.value === "query_string") {
+            return
+          }
+
+          data.push({ label: option.text, field: option.value, category: optgroup.label })
+        })
+      })
+
+      // Options are removed if filter is active
+      Object.keys(this.filters.filters).forEach(key => {
+        if (key === "query_string") {
+          return
+        }
+
+        const definition = this.filters.filters[key]
+        data.push({ label: definition.label, field: definition.name, category: "" })
+      })
+
+      const autocomplete = $(this.input).autocomplete({
+        minLength: 0,
+
+        source: function(request, response) {
+          const terms = request.term.split(/\s+/)
+          const term = terms[terms.length - 1]
+
+          response($.ui.autocomplete.filter(data, term))
+        },
+
+        focus: function() {
+          return false
+        },
+
+        select: function(event, ui) {
+          const terms = this.value.split(' ')
+
+          terms.pop()
+          terms.push(ui.item.field)
+          terms.push('')
+
+          this.value = terms.join(' ')
+
+          return false
+        }
+      })
+
+      autocomplete.data("uiAutocomplete")._create = function() {
+        this._super()
+        this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)")
+      }
+
+      // Enable using categories
+      autocomplete.data("uiAutocomplete")._renderMenu = function(ul, items) {
+        const that = this
+        let currentCategory = ""
+
+        $.each(items, function(index, item) {
+          let li
+
+          if (item.category != currentCategory) {
+            ul.append("<li class='ui-autocomplete-category' aria-label='" + item.category + "'>" + item.category + "</li>")
+            currentCategory = item.category
+          }
+
+          li = that._renderItemData(ul, item)
+          if (item.category) {
+            li.attr("aria-label", item.category + " : " + item.label)
+          }
+        })
+      }
+    }
+
+    createFilter(selected) {
+      super.createFilter(selected)
+
+      this.chck_label.addClass("indicator-beta")
+
+      const input = this.input[0]
+      this.check_box[0].addEventListener("change", event => {
+        input.disabled = !event.target.checked
+      })
+
+      this.moveHelpUnderInput()
+      this.createFieldAutocomplete()
+    }
+
+    create_text_input(name, size) {
+      if (this.filters.options.blockName) {
+        name = `${this.filters.options.blockName}[${name}]`
+      }
+
+      // Class {Filter} counts with a jQuery
+      const $input = $("<input>", {
+        type: "text",
+        name: name,
+        id: this.wrapId('values_'),
+        class: this.wrapClass('values') + " block serialize",
+      })
+
+      return $input
+    }
+
+  }
+
+
+  function IntegerFilter(filters, name, type, label) {
+    this.filters = filters;
+    this.name = name;
+    this.type = type;
+    this.label = label;
+  }
+  IntegerFilter.prototype = new Filter();
+  IntegerFilter.prototype.constructor = IntegerFilter;
+  IntegerFilter.prototype.parent = Filter.prototype;
+  IntegerFilter.prototype.createInput = function(wrapingEl) {
+    var $second = wrapingEl.clone();
+    wrapingEl.after($second);
+
+    this.input = [];
+    this.input.push( this.create_text_input(this.name, 6) );
+    this.input.push( this.create_text_input(this.name, 6) );
+
+    this.input[0].attr('id', this.input[0].attr('id') + '_1' );
+    this.input[1].attr('id', this.input[1].attr('id') + '_2' );
+    wrapingEl.append( this.input[0] );
+    $second.append( this.input[1] );
+  }
+  IntegerFilter.prototype.setValue = function(values) {
+    this.input[0].val(values[0]);
+    this.input[1].val(values[1]);
+  }
+  IntegerFilter.prototype.getValue = function() {
+    return [this.input[0].val(), this.input[1].val()];
+  }
+
+  // TODO: easy_lookup, relation
+
+
+  // ### HELPER FOR VALUES LOADING ###
+  function PossibleValuesLoader(filters) {
+    this.filters = filters;
+    this.batchLoad = false;
+  }
+
+  PossibleValuesLoader.prototype.getValues = function(filter_name, callback)
+  {
+    if( this.batchLoad ) {
+      this.filters_to_load.push(filter_name);
+      this.callbacks[filter_name] = callback;
+    } else {
+      this.load(filter_name, callback)
+    }
+  }
+
+  PossibleValuesLoader.prototype.load = function(filter_names, callback)
+  {
+    $.ajax(this.filters.options.listValuesUrl, {
+      method: 'POST',
+      data: $.extend(JSON.parse(this.filters.options.listValuesParams), {filter_name: filter_names, format: 'json'}),
+      dataType: 'json',
+      success: callback
+    });
+  }
+
+  PossibleValuesLoader.prototype.startBatchLoad = function()
+  {
+    this.filters_to_load = [];
+    this.callbacks = {};
+    this.batchLoad = true;
+  }
+
+  PossibleValuesLoader.prototype.loadBatch = function()
+  {
+    var that = this;
+    if( this.filters_to_load.length > 0 ) {
+      this.load(this.filters_to_load, function(json) {
+        var filter;
+        for( var i = 0; i < that.filters_to_load.length; ++i ) {
+          filter = that.filters_to_load[i];
+          if( that.callbacks[filter] !== undefined ) {
+            that.callbacks[filter].call(that.filters, json[filter]);
+          }
+        }
+      });
+    }
+    this.batchLoad = false;
+  }
+
+// ----------------- WIDGET ------------------
+
+  $.widget('easyquery.filters', {
+    options: {
+      blockName: null,
+      modulUniqId: null,
+      queryEntity: null,
+      filter_groups: [],
+      listMultiple: true,
+      loadListValuesImmediately: true,
+      selectListFirstValue: true,
+      listValuesUrl: null, // url to fetch select/multiselect values from
+      listValuesParams: null,
+      availableFilters: null, // available filters and types of them.
+      filters: null, // selected filters and their values
+      availableOperators: null,
+      i18n: { // default translations - redefined in application helper by header tags
+        yes: '<%= I18n.t(:general_text_Yes) %>',
+        no: '<%= I18n.t(:general_text_No) %>',
+        label_day_plural: '<%= I18n.t(:label_day_plural) %>',
+        label_date_from: '<%= I18n.t(:label_date_from) %>',
+        label_date_to: '<%= I18n.t(:label_date_to) %>',
+        operators: <%= EasyQuery.operators.inject({}){|res, el| res[el[0]] = I18n.t(el[1]); res }.to_json %>
+      }
+    },
+
+    available_operators: <%= EasyQuery.operators_by_filter_type.to_json %>,
+    filter_type_classes: {
+      boolean: BooleanFilter,
+      list: ListFilter,
+      list_optional: ListFilter,
+      list_status: ListFilter,
+      list_subprojects: ListFilter,
+      list_version: ListFilter,
+      list_autocomplete: AutocompleteFilter,
+      relation: RelationFilter,
+      date: DateFilter,
+      date_past: DateFilter,
+      string: StringFilter,
+      text: StringFilter,
+      integer: IntegerFilter,
+      float: IntegerFilter,
+      currency: IntegerFilter,
+      date_period: DatePeriodFilter,
+      country_select: ListFilter,
+      query_string: QueryStringFilter,
+    },
+
+    _create: function() {
+      var that = this;
+
+      this.available_operators = this.options.availableOperators ? this.options.availableOperators : this.available_operators;
+
+      this.addSelect = $('.add-filter select', this.element);
+      this.addSelect.on('change', function(evt){
+        that.addFilter($(this).val(), $('option:selected', $(this)).text());
+        $('option[value="' + $(this).val() + '"]', that.addSelect).prop('disabled', true);
+        this.selectedIndex = 0;
+      });
+    },
+
+    _init: function() {
+      this.valuesLoader = new PossibleValuesLoader(this);
+      this.valuesLoader.startBatchLoad();
+      this.filters = {};
+      this.filters_table = $('#'+this.options.modulUniqId+'filters-table', this.element);
+      for (var key in this.options.filters) {
+        this.addFilter(key, this.options.filters[key]['label'], this.options.filters[key] );
+      }
+      this.valuesLoader.loadBatch();
+    },
+
+    loadPossibleValues: function( filter, callback ) {
+      this.valuesLoader.getValues( filter, callback );
+    },
+
+    addFilter: function(name, label, selected) {
+      var type = this.options.availableFilters[name];
+      if(type !== undefined) {
+        this.filters[name] = new this.filter_type_classes[type](this, name, type, label);
+        this.filters[name].createFilter(selected);
+      }
+    },
+
+    getValues: function() {
+      var values = {};
+      for(var f in this.filters) {
+        if( this.filters[f].isActive() )
+          values[f] = this.filters[f].getUrlValue();
+      }
+      return values;
+    },
+
+    getFiltersTable: function(name) {
+      for(var i = this.options.filter_groups.length - 1; i >= 0; --i ) {
+        var g = this.options.filter_groups[i];
+        if( name.substring(0, g.length) === g ) {
+          return $('#'+this.options.modulUniqId+g+'filters-table', this.element);
+        }
+      }
+
+      return this.filters_table;
+    }
+
+  });
+
+})(jQuery);
+
+
+// GROUPACE
+(function($, undefined) {
+
+    var plugin = 'easygrouploader';
+    var defaults = {
+        next_button_cols: 1,
+        load_opened: false,
+        load_limit: 25,
+        texts: {
+            'next': 'Next',
+        }
+    };
+
+    $.fn[plugin] = function(options, methodParams) {
+        $.each($(this), function(idx) {
+            var instance = $(this).data('plugin_' + plugin);
+            if (!instance) {
+                instance = new EasyGroupLoader(this, options);
+                $(this).data('plugin_' + plugin, instance);
+            } else if (typeof options === 'string') {
+                switch (options) {
+                    case 'load_groups':
+                        if (instance.options.load_opened)
+                            instance.load_all_groups();
+                }
+            }
+        });
+        return $(this);
+    };
+
+
+    function EasyGroupLoader(elem, options) {
+        this.groupsContainer = $(elem);
+        this.options = $.extend({}, defaults, options);
+        this.loadUrl = options.loadUrl || elem.data('url');
+        this.texts = this.options.texts;
+        this.callback = options.callback;
+
+        this.init();
+    }
+
+    EasyGroupLoader.prototype.init = function()
+    {
+        var self = this;
+        this.groupsContainer.on('click', '.group .expander', function(evt) {
+            var $row = $(this).closest('tr.group');
+            var group = $row.data('group') || new Group(self, $row);
+
+            if (!group.loaded) {
+                if (!group.header.hasClass('group-loaded')) {
+                  group.load();
+                  group.toggle();
+                }
+            } else {
+                group.toggle();
+                if(typeof(self.callback) === 'function')
+                  self.callback();
+            }
+
+            affix.recalculateHeads($row.closest('table').find('thead'));
+
+            $row.trigger('EasyGroup--opened');
+
+            //var tablesaw = $row.closest('table').tablesaw().data('tablesaw');
+
+        });
+        if (this.options.load_opened)
+            this.load_all_groups();
+    };
+
+    EasyGroupLoader.prototype.initInlineEdit = function()
+    {
+        $('.multieditable-container:not(.multieditable-initialized)', this.groupsContainer).each(function() {
+            initInlineEditForContainer(this);
+        });
+        EASY.utils.initProjectEdit();
+        initEasyAutocomplete();
+        LazyLoader.refresh();
+    };
+
+    EasyGroupLoader.prototype.load_all_groups = function()
+    {
+        var group;
+        var self = this;
+        var groups_to_load = [];
+        var entity_count = 0;
+        $('.group', this.groupsContainer).not('.group-loaded').each(function() {
+            group = $(this).data('group') || new Group(self, $(this));
+            if (!group.loaded) {
+                groups_to_load.push(group);
+                entity_count += group.count;
+            }
+            if (entity_count >= self.options.load_limit) {
+                self.load_groups(groups_to_load);
+                entity_count = 0;
+                groups_to_load = [];
+            }
+        });
+        if (groups_to_load.length > 0) {
+            this.load_groups(groups_to_load);
+        }
+    };
+
+    EasyGroupLoader.prototype.load_groups = function(groups_to_load) {
+        var self = this;
+        var group_names = groups_to_load.map(function(group) {
+            return group.group_value;
+        });
+        // var url = EPExtensions.setAttrToUrl(, 'group_to_load', group_names);
+        $.ajax(this.loadUrl, {
+            method: 'GET',
+            data: { group_to_load: group_names },
+            success: function(data, textStatus, request) {
+                var parsed = (typeof data === 'object') ? data : $.parseJSON(data);
+
+                $.each(groups_to_load, function(idx, group) {
+                    group.parseData(parsed[group.group_name]);
+                    group.toggle();
+                });
+                self.initInlineEdit();
+            }
+        });
+    };
+
+    function Group(loader, header)
+    {
+        this.loader = loader;
+        this.header = header;
+        this.header.data('group', this);
+        this.group_name = this.header.data('group-name');
+        this.group_value = this.group_name;
+        if( $.isArray(this.group_name) ) {
+            // potencialne nebezpecne - TODO: vymyslet spravny oddelovac
+            this.group_name = '["' + this.group_name.join('", "') + '"]';
+        }
+        this.count = parseInt(this.header.data('entity-count'));
+        this.pages = this.header.data('pages') || 1;
+        this.loaded = this.header.hasClass('preloaded');
+    }
+
+    Group.prototype.toggle = function() {
+        EPExtensions.issuesToggleRowGroup(this.header);
+    };
+
+    Group.prototype.load = function() {
+        var $hrow = this.header;
+        var self = this;
+
+        if (!$hrow.hasClass('group-loaded')) {
+            $hrow.addClass('group-loaded');
+            $.ajax(this.loader.loadUrl, {
+                method: 'GET',
+                data: {
+                    group_to_load: this.group_value
+                },
+                success: function(data, textStatus, request) {
+                    self.parseData(data);
+                    self.loader.initInlineEdit();
+                    if(typeof(self.callback) === 'function')
+                      self.callback();
+                    $hrow.trigger('EasyGroup--loaded');
+                }
+            });
+        }
+    };
+
+    Group.prototype.parseData = function(data) {
+        var $hrow = this.header;
+
+        this.rows = $(data);
+        $hrow.after(this.rows);
+        $hrow.data('group-page', 1);
+        this.loaded = true;
+        if (this.pages > 1) {
+            this.createNextButton();
+            // .find doesn't work on this set
+            this.rows.filter("tr:last").after(this.next_button);
+        }
+    };
+
+    Group.prototype.loadNext = function() {
+        var $hrow = this.header;
+        var page = $hrow.data('group-page') + 1;
+        var self = this;
+
+        if (page <= this.pages) {
+            $.ajax(this.loader.loadUrl, {
+                method: 'GET',
+                data: {
+                    page: page,
+                    group_to_load: this.group_value
+                },
+                success: function(data, textStatus, request) {
+                    self.next_button.before(data);
+
+                    self.loader.initInlineEdit();
+                    $hrow.data('group-page', page);
+                    if (self.pages === page) {
+                        self.next_button.remove();
+                    }
+                }
+            });
+        }
+    };
+
+    Group.prototype.createNextButton = function() {
+        //var next_link_url = EPExtensions.setAttrToUrl(this.loader.loadUrl, 'group_to_load', this.group_value);
+        var next_link_url = this.loader.loadUrl + ( this.loader.loadUrl.indexOf('?') >= 0 ? '&' : '?' ) + $.param({group_to_load: this.group_value});
+        this.next_link = $('<a>', {href: next_link_url, 'class': 'button'}).text(this.loader.texts['next']).append($("<i>", {"class": "icon-arrow"}));
+        this.next_button = $('<tr/>', {'class': 'easy-next-button'}).html($('<td>', {colspan: this.loader.options.next_button_cols, "class": "text-center"}).html(this.next_link));
+
+        var self = this;
+
+        this.next_link.click(function(evt) {
+            evt.preventDefault();
+            self.loadNext();
+        });
+    };
+
+})(jQuery);

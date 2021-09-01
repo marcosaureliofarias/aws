@@ -1,0 +1,5 @@
+var issue_descr_fields_style = $('#issue_descr_fields').css('display');
+$('#form-attributes').html("<%= j(render(:partial => 'edit_form_attributes')) %>");
+$('#issue_descr_fields').css('display', issue_descr_fields_style);
+
+initEasyAutocomplete();

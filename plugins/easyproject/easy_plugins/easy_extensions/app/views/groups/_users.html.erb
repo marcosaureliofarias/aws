@@ -1,0 +1,26 @@
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_user_add), new_group_users_path(@group), :remote => true, :class => "button-positive icon icon-add" %>
+<% end %>
+
+<% if @group.users.any? %>
+  <div class="autoscroll">
+    <table class="list users">
+    <thead><tr>
+      <th><%= l(:label_user) %></th>
+      <th style="width:15%"></th>
+    </tr></thead>
+    <tbody>
+    <% @group.users.sort.each do |user| %>
+      <tr id="user-<%= user.id %>">
+        <td class="name"><%= link_to_user user %></td>
+        <td class="buttons">
+          <%= delete_link group_user_path(@group, :user_id => user), :remote => true %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

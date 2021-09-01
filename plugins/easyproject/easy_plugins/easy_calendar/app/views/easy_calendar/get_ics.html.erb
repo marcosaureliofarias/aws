@@ -1,0 +1,46 @@
+<% url_copied = params[:url_copied] %>
+
+<%= title(l('easy_calendar.label_calendar_link')) %>
+<div id="get_ics_container">
+  <div id="get_ics_container_flash" class="notice <%= url_copied ? 'flash' : '' %>">
+    <%= l('easy_calendar.text_calendar_url_copied') %>
+  </div>
+  <p>
+    <%= render(partial: 'easy_qr/easy_qr', locals: { easy_qr: @easy_qr, modul_uniq_id: 'easy_qr_container' }) %>
+  </p>
+  <p>
+    <%= text_field_tag('', @link, readonly: true, onclick: 'this.select();') %>
+  </p>
+  <button class="copy_button icon--copy button-positive <%= url_copied ? 'hidden' : '' %>">
+    <%= l('easy_calendar.label_copy_to_clipboard') %>
+  </button>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(() => {
+    document.querySelector('#get_ics_container .copy_button').addEventListener('click', () => {
+      easyUtils.clipboard.copy(document.querySelector('#get_ics_container input').value);
+      document.getElementById('get_ics_container_flash').classList.add("flash");
+    })
+  })
+</script>
+
+<style type="text/css">
+  #get_ics_container input {
+    text-align: center;
+    max-width:initial;
+    margin:auto;
+  }
+  #get_ics_container {
+    text-align: center;
+  }
+  #get_ics_container table {
+    margin: auto;
+  }
+  #get_ics_container_flash {
+    display: none;
+  }
+  #get_ics_container_flash.flash {
+    display: block;
+  }
+</style>

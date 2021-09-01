@@ -1,0 +1,36 @@
+<%
+  prefix = block_name.blank? ? 'settings' : "#{block_name}[settings]"
+  report_group_by_name = "#{prefix}[report_group_by][]"
+%>
+<div id="<%= modul_uniq_id %>_report_options_container">
+  <div class="tabular">
+    <p class="top_group">
+      <label><%= l(:label_report_top_group_by) %></label>
+      <span class="value">
+        <%= autocomplete_field_tag(report_group_by_name, query.groupable_columns.map{|c| [c.caption, c.name.to_s]}, Array.wrap(output.top_report_group_by), multiple: false, id: "#{block_name}_report_group_by_top") %>
+      </span>
+    </p>
+    <p class="left_group">
+      <label><%= l(:label_report_left_group_by) %></label>
+      <span class="value">
+        <%= autocomplete_field_tag(report_group_by_name, query.groupable_columns.map { |c| [c.caption, c.name.to_s] }, output.left_report_group_by, id: "#{block_name}_report_group_by_left") %>
+      </span>
+    </p>
+    <p>
+      <label><%= l(:field_sumable_column) %></label>
+      <span class="value">
+        <%= autocomplete_field_tag("#{prefix}[report_sum_column][]",
+                     query.sumable_columns.map { |c| [c.caption, c.name.to_s] }.sort_by(&:first),
+                     Array.wrap(query.settings['report_sum_column'])
+          )
+        %>
+      </span>
+    </p>
+    <p>
+      <%= label_tag "#{block_name}_report_sum_column_checkbox", l(:field_count) %>
+      <span class="value">
+        <%= check_box_tag("#{prefix}[report_sum_column][]", '', Array.wrap(query.settings['report_sum_column']).include?(''), id: "#{block_name}_report_sum_column_checkbox" ) %>
+      </span>
+    </p>
+  </div>
+</div>

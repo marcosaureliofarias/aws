@@ -1,0 +1,20 @@
+<%= render @query, :easy_query_name => l(:label_user_plural), :form_options => {:free_search_options => {:free_search_after_function => "$('.other-formats').remove()"}} %>
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% #render(:partial => 'easy_queries/easy_query_export_format_links', :locals => {:query => @query}) #TODO remove -%>
+
+<% html_title(l(:label_user_plural)) -%>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= render :partial => 'new_user_button' %>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to_entity_mapper(l(:button_user_field_mappings), '',  User, EasyExtensions::Export::EasyVcard, :class => 'icon icon-settings button', :title => l(:button_user_field_mappings), :force_map => true) if User.current.admin?  %>
+  <%= call_hook(:view_users_index_bottom_of_easy_page_layout_service_box, {:query => @query}) -%>
+<% end %>
+
+<%= context_menu admin_users_context_menu_path %>

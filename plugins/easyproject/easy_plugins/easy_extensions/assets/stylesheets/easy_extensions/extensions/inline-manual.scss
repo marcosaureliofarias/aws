@@ -1,0 +1,45 @@
+@include keyframes(inlinemanual-slide-right) {
+  from {
+    @include translate(-125px, 0);
+  }
+  to {
+    @include translate(0,0);
+  }
+}
+.inmplayer{
+  &-general{
+    font-family: $font-family !important;
+    @include respond-to(max-medium-screen){
+      display: none;
+    }
+  }
+  &-general &-trigger{
+    @extend %button-negative;
+    @include border-radius(0 50px 50px 0);
+    padding: 1.5*$gap .5*$gap;
+    bottom: auto !important;
+    border: none !important;
+    top: 50%;
+    left: 0 !important;
+    //width: $sidebar-width - 3*$box-padding !important;
+    position: fixed !important;
+    z-index: z($z-priority, topmenu) + 1 !important;
+    text-align: center !important;
+    width: 150px !important;
+    margin-left: -3px !important;
+    @include translate(-125px, 0);
+    &:hover{
+      @include animation(inlinemanual-slide-right 0.25s forwards);
+    }
+    &:after{
+      @include icon('help');
+      margin-left: $gap;
+      font-size: 1.125em;
+    }
+  }
+  [aria-describedby="invited_colleague_onboard_modal"] ~ &{
+    &-general, &-popover, &-popover-pointer-holder, &-backdrop{
+      display: none;
+    }
+  }
+}

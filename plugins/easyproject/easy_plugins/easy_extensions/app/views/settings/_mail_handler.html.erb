@@ -1,0 +1,39 @@
+<%= form_tag({:action => 'edit', :tab => 'mail_handler'}, :class => 'form-box') do %>
+
+  <div class="box tabular settings">
+    <p>
+      <%= setting_text_area :mail_handler_body_delimiters, :rows => 5 %>
+      <label class="block">
+        <%= setting_check_box :mail_handler_enable_regex_delimiters, :label => false %>
+        <%= l(:setting_mail_handler_enable_regex) %>
+      </label>
+      <em class="help"><%= l(:text_line_separated) %></em>
+    </p>
+
+    <p>
+      <%= setting_text_field :mail_handler_excluded_filenames %>
+      <label class="block">
+        <%= setting_check_box :mail_handler_enable_regex_excluded_filenames, :label => false %>
+        <%= l(:setting_mail_handler_enable_regex) %>
+      </label>
+      <em class="help"><%= l(:text_comma_separated) %>
+      <%= l(:label_example) %>: smime.p7s, *.vcf</em>
+    </p>
+  </div>
+
+  <div class="box tabular settings">
+    <p><%= setting_check_box :mail_handler_api_enabled,
+             :onclick => "if (this.checked) { $('#settings_mail_handler_api_key').removeAttr('disabled'); } else { $('#settings_mail_handler_api_key').attr('disabled', true); }"%></p>
+
+    <p>
+      <%= setting_label(:mail_handler_api_key) %>
+      <span class="input-append"><%= text_field_tag "settings[#{:mail_handler_api_key}]", Setting.send(:mail_handler_api_key), :id => 'settings_mail_handler_api_key',
+                                                     :disabled => !Setting.mail_handler_api_enabled? %>
+      <%= link_to_function content_tag(:span, l(:label_generate_key), :class => 'tooltip'), "if (!$('#settings_mail_handler_api_key').attr('disabled')) { $('#settings_mail_handler_api_key').val(randomKey(20)) }", :class => 'icon-key' %></span>
+    </p>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+
+<% end %>

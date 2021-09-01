@@ -1,0 +1,13 @@
+api.array :suggest_entities do
+
+  @suggest_entities.each do |type, entities|
+    type.render_api(api, entities, self)
+  end
+
+  if @suggest_entities.empty?
+    api.suggest_entity do
+      api.value l(:label_no_data)
+    end
+  end
+
+end

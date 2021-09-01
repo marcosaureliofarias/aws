@@ -1,0 +1,99 @@
+<%
+  settings['show_fields_option'] ||= 'all'
+  settings['selected_fields'] ||= {}
+
+  options = {}
+  entity_name = @easy_page_modules_data[block_name][:entity_name]
+  available_fields = @easy_page_modules_data[block_name][:available_fields]
+  options_for_show_fields = @easy_page_modules_data[block_name][:options_for_show_fields]
+  grouped_entity_cf_values = @easy_page_modules_data[block_name][:grouped_entity_custom_field_values]
+%>
+
+<p>
+  <span class="my-page-issue-query-select-label"><%= l(:label_my_page_issue_show_fields_option_part1) %></span>
+  <span class="my-page-issue-query-select">
+    <%= select_tag "#{block_name}[show_fields_option]", options_for_select(options_for_show_fields, selected: settings['show_fields_option']), class: 'inline' %>
+  </span>
+  <span class="my-page-issue-query-select-label"><%= l(:label_my_page_issue_show_fields_option_part2) %></span>
+</p>
+
+<div id="<%= block_name %>-field-selection" style="<%= 'display:none' unless settings['show_fields_option'] == 'only_selected' %>" class="autoscroll">
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l('easy_page_module.new_issue.field') %></th>
+        <th><%= l('easy_page_module.new_issue.show') %></th>
+        <th><%= l('easy_page_module.new_issue.default_value') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% available_fields.each do |field_name, field_settings| %>
+        <tr>
+          <td><%= l(field_settings[:label] || "field_#{field_name}") %></td>
+          <%
+            field_prefix = "#{block_name}[selected_fields][#{field_name}]"
+            options[:field_val_name] = "#{field_prefix}[default_value]"
+            options[:field_val_id] = "#{block_name}_selected_fields_#{field_name}_default_value"
+            options[:value] = settings['selected_fields'][field_name.to_s] ? settings['selected_fields'][field_name.to_s]['default_value'] : ''
+            options[:block_name] = block_name
+            options[:field_settings] = field_settings
+          %>
+          <td>
+            <%= check_box_tag "#{field_prefix}[enabled]", '1', settings['selected_fields'][field_name.to_s] && settings['selected_fields'][field_name.to_s]['enabled'] %>
+          </td>
+          <td>
+            <%= get_entity_field_attribute(entity_name, field_name, options) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% grouped_entity_cf_values.each do |group, cf_values| %>
+    <% group_name = group.try(:name) || l(:label_custom_field_plural) %>
+    <div>
+      <%= toggling_container("#{group_name}-form-custom-fields", User.current, {heading: group_name, wrapping_heading_element_classes: 'icon icon-db-key'}) do %>
+        <table class="list">
+          <thead>
+          <tr>
+            <th><%= l('easy_page_module.new_issue.field') %></th>
+            <th><%= l('easy_page_module.new_issue.show') %></th>
+            <th><%= l('easy_page_module.new_issue.default_value') %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% cf_values.each do |value| %>
+            <tr>
+              <td><%= custom_field_label_tag 'issue_cf', value %></td>
+              <% cf_id = value.custom_field.id.to_s
+                 field_prefix = "#{block_name}[selected_fields][#{cf_id}]" %>
+              <td>
+                <%= check_box_tag "#{field_prefix}[enabled]", '1', settings['selected_fields'][cf_id] && settings['selected_fields'][cf_id]['enabled'] %>
+              </td>
+              <% cf_values = settings['selected_fields']['custom_field_values'] %>
+              <% value.value = cf_values[cf_id] if cf_values && cf_values[cf_id] %>
+              <td>
+                <%= custom_field_tag "#{block_name}[selected_fields]", value %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+    <br>
+<% end %>
+</div>
+
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    var name = '<%= block_name %>';
+    var select = $('#' + name + '_show_fields_option');
+    var settings = $('#' + name + '-field-selection');
+    initEasyAutocomplete();
+    select.change(function() {
+      settings.toggle($(this).val() === 'only_selected');
+    });
+  });
+</script>

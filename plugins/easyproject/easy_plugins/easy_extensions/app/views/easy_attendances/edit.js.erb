@@ -1,0 +1,41 @@
+var closeButton = {
+  text: "<%=j l(:button_close) -%>",
+  click: function() {$(this).dialog('close');},
+  'class': 'button'
+};
+var modal = $('#ajax-modal');
+
+showModal('ajax-modal', '750px');
+
+modal.html("<%=j form_for(@easy_attendance, :remote => true) {|f| render(:partial => 'form', :locals => {:f => f, :easy_attendance => @easy_attendance, :modul_uniq_id => '', :item_uniq_id => params[:item_uniq_id]}) } %>");
+
+var submitButton = {
+  text:"<%=j l(:button_update) -%>",
+  click: function() {
+    $(this).next().find('button.modal-submit').prop('disabled', true);
+    fillFormTextAreaFromCKEditor('easy_attendance_description');
+    $(this).find('form').submit();
+  },
+  'class': 'button-positive easy-calendar__modal-button'
+};
+
+modal.dialog('option', {
+  title: "<%=j l(:edit, :scope => :easy_attendance, :date => format_date(@easy_attendance.arrival)) -%>",
+  buttons: [submitButton, closeButton]
+});
+
+<% if @easy_attendance.can_delete? %>
+  <% uiButtonClass = 'ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover' %>;
+  $('<a />', {
+      class: 'button-negative icon icon-del <%=j uiButtonClass%>',
+      href: '<%=j easy_attendance_path(@easy_attendance, {back_url: back_url}) -%>',
+      'data-confirm': '<%=j l(:text_are_you_sure) -%>',
+      'data-method': 'delete'
+    }).html($('<span />', {text: '<%=j l(:button_delete) -%>', class: 'ui-button-text'})).appendTo($(".ui-dialog-buttonpane .ui-dialog-buttonset"));
+<% end %>
+
+
+EASY.initEasyAttendanceActivityChanger();
+
+// modal.append("<%=j easy_journal_render_history(@journals, {:entity => @easy_attendance}) -%>");
+EASY.journals.collapseUnnecessary();

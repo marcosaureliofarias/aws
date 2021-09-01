@@ -1,0 +1,10 @@
+<%
+  allowed_to_edit = User.current.allowed_to?(:edit_easy_kanban_board, project)
+%>
+<div class="easy-kanban-sidebar">
+  <ul>
+    <%= content_tag(:li, link_to(l(:label_kanban_board), project_easy_kanban_path(project), class: 'icon icon-bullet-list button-positive', title: l(:label_kanban_board))) unless local_assigns[:hide_show_action] %>
+    <%= content_tag(:li, link_to(l(:label_project_backlog), project_easy_kanban_backlog_path(project), class: 'icon icon-templates button', title: l(:label_project_backlog))) unless @query&.outputs.include?('agile_backlog') %>
+    <%= content_tag(:li, link_to(l(:button_settings), project_easy_kanban_settings_path(project), class: 'icon icon-settings button', title: l(:button_settings))) if allowed_to_edit %>
+  </ul>
+</div>

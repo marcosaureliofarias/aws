@@ -1,0 +1,23 @@
+<%= breadcrumb([
+    link_to(l(:heading_easy_helpdesk_index), {:controller => 'easy_helpdesk', :action => :index}, :title => l(:heading_easy_helpdesk_index)),
+    link_to(l(:heading_easy_helpdesk_mail_templates_index), {:controller => 'easy_helpdesk_mail_templates', :action => :index}, :title => l(:heading_easy_helpdesk_mail_templates_index)),
+    link_to(l(:heading_easy_helpdesk_mail_templates_edit), {:controller => 'easy_helpdesk_mail_templates', :action => :edit, :id => @easy_helpdesk_mail_template}, :title => l(:heading_easy_helpdesk_mail_templates_edit))]) %>
+
+<h2><%= l(:heading_easy_helpdesk_mail_templates_edit) -%></h2>
+
+<%= form_for(@easy_helpdesk_mail_template, :html => {:class => 'tabular form-box' }) do |f| -%>
+  <%= error_messages_for @easy_helpdesk_mail_template %>
+  <%= hidden_field_tag('back_url', params[:back_url]) unless params[:back_url].blank? %>
+
+  <div class="gray-background" id="easy_helpdesk_mail_template_form_container">
+    <%= render :partial => 'form' -%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_update), :class => 'button-positive' %>
+  </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_helpdesk_index), l(:heading_easy_helpdesk_mail_templates_index), l(:heading_easy_helpdesk_mail_templates_edit)) -%>

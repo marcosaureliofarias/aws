@@ -1,0 +1,43 @@
+.translatoid{
+  &-parent{
+    position: relative;
+  }
+  &-link{
+    color: $color-important !important;
+    margin-left: .5*$gap;
+    opacity: .5;
+    &:hover{
+      opacity: 1;
+    }
+    .tooltip{
+      font-weight: normal;
+    }
+    &-wrapper{
+      display: inline !important;
+
+    }
+    &-wrapper > & {
+      @at-root {
+        //h1 > &,h2 > &,h3 > &,h4 > &,h5 > &,h6 > &{
+        //  float: right;
+        //}
+        h1 > &,h2 > &,h3 > &,h4 > &,h5 > &,h6 > &{
+          margin-right: $gap;
+        }
+        a & {
+          padding: 0 !important;
+          display: inline !important;
+          border: none !important;
+          background: none !important;
+          &:before{
+            width: auto !important;
+            position: static !important;
+          }
+        }
+        .button-important > &{
+          color: $color-foreground !important;
+        }
+      }
+    }
+  }
+}

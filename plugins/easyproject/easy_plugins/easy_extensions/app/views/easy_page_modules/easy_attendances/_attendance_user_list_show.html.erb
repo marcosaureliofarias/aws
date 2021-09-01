@@ -1,0 +1,3 @@
+<% if User.current.allowed_to_globally?(:view_easy_attendance_other_users) %>
+  <%= render(:partial => 'easy_attendances/all_users_queries_toggle_container_content', :locals => {:modul_uniq_id => modul_uniq_id}) %>
+<% end %>

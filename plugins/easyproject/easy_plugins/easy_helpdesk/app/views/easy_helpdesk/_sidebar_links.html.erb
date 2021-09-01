@@ -1,0 +1,6 @@
+<%= link_to(l(:button_easy_helpdesk_all_mailboxes_index), easy_helpdesk_mailboxes_path, :class => 'button icon icon-stack', :title => l(:button_easy_helpdesk_mailboxes_index)) %>
+<%= link_to(l(:button_easy_helpdesk_all_mail_templates_index), easy_helpdesk_mail_templates_path, :class => 'button icon icon-message', :title => l(:button_easy_helpdesk_mail_templates_index)) %>
+<%= link_to(l(:button_easy_helpdesk_all_projects_index), easy_helpdesk_projects_path, :class => 'button icon icon-project', :title => l(:button_easy_helpdesk_projects_index)) %>
+<%= link_to(l(:button_easy_helpdesk_settings_index), easy_helpdesk_settings_path, :class => 'button icon icon-settings', :title => l(:button_easy_helpdesk_mailboxes_index)) %>
+<%= link_to(l(:label_easy_sla_events_reports), easy_sla_events_path, class: 'button icon icon-tracker', title: l(:label_easy_sla_events_reports)) %>
+<%= call_hook(:view_easy_helpdesk_sidebar_bottom) %>

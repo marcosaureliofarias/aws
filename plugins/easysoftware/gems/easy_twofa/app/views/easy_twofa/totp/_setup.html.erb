@@ -1,0 +1,8 @@
+<p style="text-align: center">
+  <%= image_tag RQRCode::QRCode.new(scheme.provisioning_uri).as_png(fill: ChunkyPNG::Color::TRANSPARENT, resize_exactly_to: 280, border_modules: 0).to_data_url %>
+</p>
+
+<p style="text-align: center">
+  <label><%= l('easy_twofa.plain_key') %></label>
+  <code><%= scheme.totp_key(formatted: true) %></code>
+</p>

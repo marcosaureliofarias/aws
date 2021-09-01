@@ -1,0 +1,727 @@
+---
+fr:
+  activerecord:
+    attributes:
+      re_artifact_properties:
+        acceptance_criteria: Critères d'acceptation
+        created_by: Création de l'utilisateur
+        parent: Artifact parent
+        updated_by: Mise à jour de l'utilisateur
+      re_artifact_relationship:
+        relation_type: Type de relation
+        sink: Artifact Sink
+        source: Artefact source
+        source_id: Artefact source
+    errors:
+      models:
+        re_artifact_relationship:
+          attributes:
+            source_id:
+              re_the_specified_relation_already_exists: La relation spécifiée existe
+                déjà
+    models:
+      re_artifact_properties: Artifact
+      re_artifact_relationship: Relation
+  add_issue_to_requirement: Ajouter une tâche connexe
+  artifact_issue_coverage: 'couverture de tâche/artifact:'
+  artifactcount: Nombre d'artefacts
+  artifacts_wo_issues: Le nombre d'artefacts n'étant connectés à aucune tâche
+  comments: Commentaires
+  conflict: Conflit
+  connect_issue: Relier une tâche
+  dates: Dates
+  datetime:
+    formats:
+      short: "%d/%m/%y, %H:%M"
+  dependency: Dépendance
+  field_re_artifact: artefact champ
+  field_re_artifact_properties:
+    created_by: 'Création de l''utilisateur:'
+    name: 'Nom:'
+    parent: 'Artifact parent:'
+    project: 'Projet:'
+    updated_by: 'Mise à jour de l''utilisateur:'
+  field_subtasks: Sous-tâches
+  general_visualization_settings: Paramètres de visualisation généraux
+  implementation_of: Implémentation de
+  issue_menue_visualization: Tâches
+  issuecount: Nombre de tâches
+  issues_wo_artifacts: Nombre de tâches n'étant connectées à aucun artefact
+  label_any: quelconque
+  label_asc: Ascendant
+  label_attachments: Fichiers joints
+  label_desc: Descendant
+  label_is_me: c'est moi
+  label_is_not_me: ce n'est pas moi
+  label_re_artifact_baseline: Modifier la ligne de base
+  label_re_artifact_baseline_modal: Conditions de base modales
+  label_re_artifact_baseline_new: Créer une base
+  label_re_artifact_properties_plural: Artefacts
+  label_re_artifact_property_plural: Artefacts
+  label_redmine_re_artifact_custom_field_plural: Configuration requise
+  label_some: quelque
+  main_tab: Onglet principal
+  new_comment: Nouveau commentaire
+  new_comment_text: 'Texte du commentaire:'
+  open_requirements: Exigences ouvertes
+  own_rating: Votre évaluation
+  parentchild: Parent-enfant
+  part_of: Partie de
+  permission_administrate_requirements: Gérer les critères
+  permission_edit_requirements: Modifier les critères
+  permission_view_requirements: Voir les critères
+  progress: Progression
+  project: Projet
+  project_module_requirements: Critères
+  rating: Évaluation
+  rating_average: Évaluation moyenne
+  rationale: Logique
+  re_404_artifact_not_found: L'artefact (ou l'ID d'artefact) n'a pas pu être trouvé
+  re_404_artifact_not_found_or_project_missing: Artefact introuvable et aucun ID de
+    projet n'a été fourni
+  re_404_invalid_project_id: Le projet (ou l'ID du projet) n'a pas pu être trouvé
+    ou n'est pas valide
+  re_actors: Acteurs
+  re_add_associated_requirements: Ajouter des artefacts connexes
+  re_add_secondary_actor: Ajouter un acteur secondaire
+  re_administrate: Administration
+  re_alias_name: Nom de la relation
+  re_apply_filter: Appliquer le filtre
+  re_are_you_sure: Êtes-vous sûr?
+  re_artifact: Artifact
+  re_artifact_attributes: Attributs de l'artefact
+  re_artifact_baseline_deleted: Ligne de base supprimée avec succès
+  re_artifact_baseline_destroy: Supprimer la ligne de base
+  re_artifact_baseline_edit: Modifier la ligne de base
+  re_artifact_baseline_revert: Revenir à la base
+  re_artifact_baseline_reverted: Est retourné avec succès à la ligne de base %{baseline}
+  re_artifact_comments_count: Nombre de commentaires
+  re_artifact_configuration: Configuration d de l'artefact
+  re_artifact_create: Créer un nouvel artefact de critères
+  re_artifact_created_by: Créé par
+  re_artifact_description: Description
+  re_artifact_details: Détails de l'artefact
+  re_artifact_export: artefact_export
+  re_artifact_history: Histoire
+  re_artifact_id: "#"
+  re_artifact_name: Nom
+  re_artifact_order: Ordre d'affichage des artifacts
+  re_artifact_priority: Priorité
+  re_artifact_properties_attachment_missing: L'artefact n'a pas de pièce jointe
+  re_artifact_properties_created: Artefact créé
+  re_artifact_properties_diff_added: "%{key} remplacé par %{new_value}"
+  re_artifact_properties_diff_changed: "%{key} modifié de %{value} à %{new_value}"
+  re_artifact_properties_diff_deleted: "%{key} supprimé (la valeur était %{value})"
+  re_artifact_properties_import: importation d'artefacts
+  re_artifact_properties_import_invalid_extension: Extension de pièce jointe non valide.
+  re_artifact_properties_import_success: importation d'artefact réussie.
+  re_artifact_properties_import_with_errors: 'Importation d''artefacts terminée avec
+    des erreurs: %{errors}.'
+  re_artifact_properties_not_enought_chars: Au moins %d caractères
+  re_artifact_properties_to_many_chars: "%d caractères au maximum"
+  re_artifact_properties_updated: Propriétés de l'artefact mises à jour
+  re_artifact_properties_validates_presence_of_artifact: Aucun artefact n'a été associé
+    à ces propriétés d'artefact
+  re_artifact_properties_validates_presence_of_created_by: créé par ne peut pas être
+    vide.
+  re_artifact_properties_validates_presence_of_name: Entrer le nom de l'artefact.
+  re_artifact_properties_validates_presence_of_parent: Cet artefact ne semble pas
+    avoir un artefact parent défini
+  re_artifact_properties_validates_presence_of_project: Il n'y a aucun projet associé
+    à cet artefact.
+  re_artifact_properties_validates_presence_of_updated_by: Mis à jour par ne peut
+    pas être vide.
+  re_artifact_properties_validates_uniqueness_of_artifact: L'artefact associé à ces
+    propriétés d'artefact doit être unique
+  re_artifact_properties_validates_uniqueness_of_name: Ce nom est déjà attribué à
+    un autre artefact.
+  re_artifact_properties_version: Histoire
+  re_artifact_properties_version_revert: Revenir à la version
+  re_artifact_properties_version_reverted: 'La version #%{version} a été rétablie.'
+  re_artifact_rating_average: Évaluation moyenne
+  re_artifact_related_content: Contenu connexe
+  re_artifact_relationships: Relation
+  re_artifact_relationships_incoming: Relations entrantes
+  re_artifact_relationships_outgoing: Relations sortantes
+  re_artifact_responsible: Responsable
+  re_artifact_responsibles: Responsables
+  re_artifact_type: Type
+  re_artifact_type_description: Description du type d'artefact
+  re_artifact_type_description_configuration: Configuration de la description du type
+    d'artefact %{artifact_type}
+  re_artifact_updated_by: Mis à jour par
+  re_artifacts: Artifacts
+  re_asscociated_requirements: Exigences
+  re_associated_issues: Tâches connexes
+  re_at: à
+  re_attachment: Fichier joint
+  re_attachment_deleted: Le fichier joint %{name} a été supprimé
+  re_attachment_file: Fichier
+  re_attachment_no_file_error: Veuillez choisir un fichier
+  re_attachment_not_deleted: Le fichier joint %{name} n'a pas pu être supprimé
+  re_attachment_not_found: Impossible de trouver un fichier joint avec l'ID %{id}
+    à supprimer
+  re_attachment_priority: Priorité
+  re_attachment_saved: Le fichier joint a été sauvegardé avec succès
+  re_attachment_size_greater_zero: La taille du fichier doit être supérieure à 0 octets
+    !
+  re_attachment_validation_error: 'Erreur de fichier joint : %{msg}'
+  re_baselines: Lignes de base
+  re_by: Par
+  re_cancel: Annuler
+  re_cannnot_delete_project_artifact: Cet artefact est un artefact de projet qui ne
+    peut pas être supprimé. Pour supprimer le projet, veuillez utiliser
+  re_change_request: Demande de changement
+  re_changed_by: Changé par
+  re_child_artifacts: Artifacts enfants
+  re_children: Enfants
+  re_color: Couleur
+  re_common_attributes: Attributs communs
+  re_common_linked_artifacts: Artefacts connexes
+  re_conf_add_relation: Ajouter une relation
+  re_conf_add_status: Ajouter un statut
+  re_conf_alias_name: Vous pouvez renommer ce type d'artefact pour le faire correspondre
+    à votre processus de gestion des exigences
+  re_conf_artifact_directed: Dirigé
+  re_conf_artifact_display_order: Utiliser la fonction Glisser-déplacer pour modifier
+    l'ordre d'affichage (p. ex. dans le menu latéral ou la page d'index)
+  re_conf_artifact_in_use: Voulez-vous utiliser (afficher) ce type d'artefact dans
+    ce projet (les artefacts existants ne seront pas supprimés) ?
+  re_conf_color: Le code couleur de cet artefact dans toute l'application. Ceci est
+    particulièrement utile dans la visualisation
+  re_conf_directed: Dirigé
+  re_conf_display_order: Ordre d’affichage
+  re_conf_fields: Configurer les champs personnalisés de ce type d'artefact
+  re_conf_internal_name: Nom interne
+  re_conf_show_in_visualization: Définir si ce type de relation est affiché dans la
+    visualisation par défaut
+  re_configs_saved: Configurations sauvegardées avec succès
+  re_configure: Configurer
+  re_configure_fields_treebar: Configurer les champs de %{artifact_type}
+  re_configure_plugin: Paramètres des exigences
+  re_confirm: Confirmer
+  re_confirm_deletion_by_choosing: Veuillez confirmer la suppression en sélectionnant
+    l'une des options ci-dessous
+  re_conflict: Conflit
+  re_conflict_relation_type: Conflit
+  re_connected_nodes: Noeuds connectés
+  re_contains: Contient
+  re_continue_here: continuer pour de plus amples informations
+  re_create: Créer
+  re_create_a_new: Créer un nouveau
+  re_create_baseline: Créer une base
+  re_create_below: Créer un artefact au même niveau ...
+  re_create_child: Créer un "enfant"
+  re_create_in: Créer un artefact sous ...
+  re_create_new: Créer un nouveau
+  re_create_new_artifacts: Créer de nouveaux artefacts
+  re_create_new_relation: Créer une nouvelle relation
+  re_create_new_relation_prompt: Veuillez ajouter au moins un type de relation.
+  re_create_new_relationship: Créer une nouvelle relation
+  re_create_re_attachment: Créer un nouveau fichier joint
+  re_create_re_goal: Créer un objectif
+  re_create_re_processword: Créer un nouveau processword
+  re_create_re_rationale: Créer une nouvelle logique
+  re_create_re_requirement: Créer une exigence
+  re_create_re_scenario: Créer un scénario
+  re_create_re_section: Créer une nouvelle section
+  re_create_re_subtask: Créer une nouvelle sous-tâche
+  re_create_re_task: Créer une nouvelles tâche
+  re_create_re_use_case: Créer un nouveau cas d'utilisation
+  re_create_re_user_profile: Créer un nouveau profil d'utilisateur
+  re_create_re_vision: Créer un nouvel énoncé de vision
+  re_create_re_workarea: Créer un nouvel espace de travail
+  re_create_relation: créer une relation avec ...
+  re_create_wiki_page_for_re_artifact: Créer une nouvelle page wiki
+  re_created_by: Créé par
+  re_creating_a_new: Créer un nouveau
+  re_data_expansion: Données
+  re_delete: Supprimer
+  re_delete_and_move_children: Supprimer l'artefact et déplacer les enfants
+  re_delete_artifact: Supprimer l'artefact
+  re_delete_confirm: Êtes-vous certain de vouloir supprimer  %{what} ?
+  re_delete_project_artifact: Supprimer l'artefact du projet
+  re_delete_project_artifact_error: L'artefact du projet ne peut pas être supprimé.
+  re_delete_recursively: Supprimer de façon récursive
+  re_delete_subtask: supprimer
+  re_delete_use_case_expansion: Supprimer
+  re_delete_use_case_step: Supprimer
+  re_delete_use_case_step_expansion: supprimer
+  re_deleted_artifact_and_children: L'artefact et tous ses enfants ont été supprimés
+    avec succès.
+  re_deleted_artifact_and_moved_children: Tous les enfants de l’artefact ont été associés
+    avec succès au parent et l'artefact a été supprimé.
+  re_dependency: Dépendance
+  re_dependency_relation_type: Dépendance
+  re_description_fieldset: Description de l'artefact
+  re_description_of_plugin_usage: "<h2>Création d'artefacts</h2><ul><li>Commencez
+    par créer des artéfacts en cliquant avec le bouton droit sur l’objet en haut de
+    l’arborescence à gauche. Vous pouvez choisir parmi différents types d’artéfacts,
+    notamment : « Section », « Exigence » et « Demande de modification ». Après avoir
+    effectué la sauvegarde, vous trouverez les artéfacts que vous avez créés dans
+    l’arborescence à gauche.</li><li>Vous pouvez également cliquer avec le bouton
+    droit sur n’importe quel artéfact sur l’arborescence pour ajouter de nouveaux
+    artéfacts. Utilisez « Créer un artéfact sous » pour créer un artéfact au niveau
+    suivant de l’arborescence ou « Créer un artéfact au même niveau ».</li></ul><h2>Structure</h2><ul><li>Vous
+    pouvez faire glisser et déposer chaque artéfact dans l’arborescence pour réorganiser
+    ou restructurer vos artéfacts RE. L’arborescence représente la structure de votre
+    document d’exigences.</li><li>Vous pouvez créer des traces entre des artefacts
+    comme suite<ul><li>Éditer un artéfact et utiliser la section « Logiques ». Choisissez
+    le type de trace en cliquant sur le bouton radio correspondant et commencez à
+    saisir un nom. Les artéfacts apparaitront et un lien peut être créé. Vous trouvez
+    toutes les traces dans la section en haut à droite</li><li>Vous pouvez également
+    créer des traces en faisant glisser et déposer un artefact à partir de l’arborescence
+    dans les sections traces à partir de/traces vers.</li></ul></li></ul><h2>Connexion
+    des tâches</h2><ul><li>Vous pouvez utiliser le lien de connexion des tâches pour
+    créer une tâche qui s’associe automatiquement à l’artéfact sélectionné</li><li>Vous
+    pouvez également modifier et les tâches et les artéfacts pour créer des liens
+    manuellement</li></ul>"
+  re_description_updated_successfully: La description a été mise à jour avec succès
+  re_diagrams: Diagrammes
+  re_directed: dirigé
+  re_display_order: Ordre d'affichage
+  re_drag_list_items_to_reorder_artifacts: Faites glisser les éléments de la liste
+    pour réorganiser les artefacts. L'ordre configuré sera utilisé partout dans le
+    plugin Requirements.
+  re_edit: Modifier
+  re_edit_artifact_type_description: Modifier la description de l'artefact de type
+    "%{artifact_type}"
+  re_edit_default_description: Modifier la description par défaut
+  re_editor_for: Veuillez patienter, l'éditeur pour
+  re_ends_with: Se termine par
+  re_enhanced_filter: Filtre amélioré
+  re_equals: Équivaut à
+  re_exception_expansion: Exception
+  re_expansion_description: Description
+  re_expansion_type: Type
+  re_export: Exporter
+  re_export_error: Erreur lors de l'exportation.  Veuillez vous assurer que pandoc
+    est installé et que le format de destination est configuré dans les paramètres.
+  re_export_format_configuration: Configuration des formats d'exportation
+  re_extension_description: Description
+  re_extension_type: Type
+  re_field_configuration: Configuration des champs pour le type d'artefact %{artifact_type}
+  re_fields: Champs
+  re_filter: Filtre
+  re_filter_apply: Appliquer
+  re_filter_order: Ordre
+  re_filter_related_issues: Tâches connexes
+  re_filter_save: Sauvegarder
+  re_filter_save_and_apply: Sauvegarder et appliquer
+  re_filter_sink_artifacts: cible
+  re_filter_source_artifacts: Source
+  re_find_secondary_actor: Trouver un acteur secondaire
+  re_first_use: C'est la première fois que vous utilisez le plugin Requirements
+  re_from: de
+  re_goal: Objectif
+  re_goal_default_description: "<p> Vous pouvez utiliser des objectifs en tant qu’exigences
+    de haut niveau ou pour structurer vos exigences. Il existe également des approches
+    vous permettant d’utiliser des objectifs pour l’ensemble des RE, en particulier
+    pour comprendre les exigences. </p> <p> Les objectifs constituent un bon point
+    de départ pour enregistrer les intentions de vos parties prenantes. Les objectifs
+    ne doivent pas nécessairement être entièrement réalisables ou mesurables. Les
+    objectifs peuvent être considérés comme une première esquisse des exigences. Vous
+    pouvez utiliser des objectifs pour découvrir et résoudre les conflits qui existent
+    entre les intentions de vos parties prenantes. Cela peut vous aider à établir
+    un accord global entre vos parties prenantes. Vous devez veiller à ce que les
+    objectifs affinent les énoncés de vision. [Alexander 2009, S. 51]</p>"
+  re_goal_deleted: L'objectif %{name} a été supprimé
+  re_goal_not_deleted: L'Objectif %{name} n'a pas pu être supprimé
+  re_goal_not_found: Impossible de trouver un objectif avec l'ID %{id} à supprimer
+  re_goal_priority: Priorité
+  re_goal_saved: Objectif sauvegardé avec succès
+  re_goals: Objectifs
+  re_greater_than: Supérieur à
+  re_hide: cacher
+  re_import_description_of_usage: "<ul> <li> id - ID de l'artefact </ li> <li> artifact_type
+    (obligatoire) <ul> <li> ReSection </ li> <li> ReRequirement </ li> <li > ReChangeRequest
+    </ li> </ul> </li> <li> project_id (obligatoire) - ID du projet </ li> <li> parent_id
+    - ID de l'artefact parent </ li> <li> name (obligatoire) - nom de l'artefact </
+    li> <li> responsible_id - ID utilisateur </ li> <li> status - nom d'état </ li>
+    <li> description - description d'artefact </ li> <li> acceptance_criteria - critères
+    d'acceptation d'artefact </ li> < li> issue_ids - ID de tâches séparés par une
+    virgule </ li> <li> dependency_ids - ID de l'artefact séparés par une virgule
+    </ li> <li> conflict_ids - ID de l'artefact séparés par une virgule </ li> </
+    ul>"
+  re_incoming_relationship_count: Entrant
+  re_index: Plugin Requirement
+  re_insert_pr_after: insérer un problème
+  re_insert_st_after: insérer une sous-tâche
+  re_insert_st_before: insérer
+  re_insert_va_after: insérer une variante
+  re_is_being_loaded: en cours de chargement...
+  re_last_update: dernière mise à jour
+  re_lesser_than: Inférieur à
+  re_link_to_configure: Ou configurer le plugin
+  re_linked_artifact: Artefact connexe
+  re_linked_artifact_name: Nom de l'artefact connexe
+  re_linked_artifact_type: Type de l'artefact connexe
+  re_linked_artifacts: Artefacts connexes
+  re_linked_artifacts_count: Artefacts connexes
+  re_more: Suite
+  re_my_artifacts: Mes artefacts
+  re_netmap: Netmap
+  re_new_re_attachment: Fichier joint
+  re_new_re_goal: Objectif
+  re_new_re_processword: Nouveau processword
+  re_new_re_rationale: Nouvelle logique
+  re_new_re_requirement: Exigence
+  re_new_re_scenario: Scénario
+  re_new_re_section: Section
+  re_new_re_subtask: Sous-tâche
+  re_new_re_task: Tâche
+  re_new_re_use_case: Nouveau cas d'utilisation
+  re_new_re_user_profile: Profil d'utilisateur
+  re_new_re_vision: Énoncé de vision
+  re_new_re_workarea: Espace de travail
+  re_no_one_line_view_existent: 'Modèle manquant : Aucun One_line_view n''a encore
+    été défini'
+  re_no_responsible_user_defined: Aucun utilisateur responsable n'a été défini
+  re_none_specific: Non spécifié
+  re_of_type: de type
+  re_other_expansion: Autre
+  re_outgoing_relationship_count: Sortant
+  re_pandoc_error_first: Le plugin  Requirements  utilise
+  re_pandoc_error_second: Pour exporter des données artefact vers différents formats.
+    Assurez-vous que pandoc est installé.
+  re_parent: Parent
+  re_parentchild: Parent-enfant
+  re_part_of: Partie de
+  re_please_choose: Veuillez choisir
+  re_please_select_visualization_type: Veuillez sélectionner la façon dont vous voulez
+    visualiser vos données en choisissant le type de visualisation.
+  re_plugin_configuration: Paramètres des exigences
+  re_plugin_description: Description du plugin
+  re_preparing_deletion: Préparation de la suppression
+  re_preview_wiki_page_for_re_artifact: 'Aperçu de la page Wiki :'
+  re_primary_actor: Acteur primaire
+  re_priority_responsible: Priorité et responsabilités
+  re_processword: Processword
+  re_processword_default_description: "<p>Les Processwords sont requis pour l’utilisation
+    de modèles d’exigences syntaxiques. Ici, vous pouvez définir des synonymes pour
+    le mot et fournir une définition correcte du terme.</p>"
+  re_processword_deleted: Le processword %{name} a été supprimé
+  re_processword_not_deleted: Le processword %{name} n'a pas pu être supprimé
+  re_processword_priority: Priorité
+  re_processword_saved: Le processword a été sauvegardé avec succès
+  re_processword_specific_attributes: Attributs spécifiques au Processword
+  re_processword_synonyms: Synonymes
+  re_processword_validation_error: Erreur de  Processword :%{msg}
+  re_project_was_setup: Je viens de configurer votre base de données
+  re_query_name: Nom
+  re_query_settings: Paramètres
+  re_query_visibility_me: Moi seulement
+  re_query_visibility_public: public
+  re_query_visibility_roles: Pour
+  re_rationale: Logique
+  re_rationale_default_description: "<p>Utilisez des logiques pour justifier vos exigences
+    ou autres artefacts.</p> <p>Les décisions concernant les exigences et la conception
+    reposent souvent sur des suppositions cachées. Rendre les suppositions explicites
+    par une logique permet de réviser les décisions. Les logiques aident également
+    à établir l’ordre de priorité des exigences et à les protéger contre leur suppression.</p>"
+  re_rationale_deleted: La logique %{name} a été supprimée
+  re_rationale_not_deleted: La logique %{name} n'a pas pu être supprimée
+  re_rationale_not_found: Impossible de trouver une logique avec l'ID %{id} à supprimer
+  re_rationale_saved: La logique a été sauvegardée avec succès
+  re_rationale_specific_attributes: Attributs spécifiques à la logique
+  re_redmine_project_administration: Administration du projet Easy Redmine
+  re_refinement: Raffinement
+  re_related_diagrams: Diagrammes connexes
+  re_related_issues: Tâches
+  re_related_test_case: Scénario de test
+  re_related_test_cases: Scénarios de test
+  re_relation_management_pane: Toujours afficher le volet de gestion des relations
+  re_relation_saved: Relation sauvegardée avec succès
+  re_relation_saved_error: La relation n'a pas été sauvegardée avec succès
+  re_relation_sucessfull_created: La relation de type "%{relation_type}" a été créée
+    avec succès à partir de %{source_name} vers %{sink_name}
+  re_relation_type: Type de relation
+  re_relationship: Relation
+  re_relationship_configuration: Configuration de la relation
+  re_relationship_create_error: La relation n'a pas pu être créée
+  re_relationship_visualization: Visualisation
+  re_remove: supprimer
+  re_requirement: Exigence
+  re_requirement_default_description: "<p>Pour gérer l’artéfact RE le plus important.</p>
+    <p>La dérivation des exigences à partir de scénarios vous permet d’éviter d’en
+    inventer, car ces artéfacts doivent être à la base de toutes les exigences. Vous
+    pouvez obtenir de nouvelles exigences auprès des parties prenantes individuelles
+    à l’aide d’entretiens et d’observations. Les ateliers sont les meilleures options
+    pour découvrir les exigences dans des groupes. [Pohl 2008, S. 183], [Alexander
+    2009, S.260 S. 315]</p>"
+  re_requirement_priority: Priorité
+  re_requirement_saved: Exigence sauvegardée avec succès
+  re_requirements: Exigences
+  re_requirements_overview: Aperçu des exigences
+  re_save: Sauvegarder
+  re_scenario: Scenario
+  re_scenario_default_description: "<p>Gérer les scénarios pour afficher les processus
+    dans votre système, identifier les justifications et fournir un contexte aux tâches
+    et aux sous-tâches.</p>"
+  re_scenario_priority: Priorité
+  re_scenario_saved: Scénario sauvegardé avec succès
+  re_scroll_to_top: Faire défiler vers le haut
+  re_secondary_actor: Acteur(s) secondaire(s)
+  re_section: Section
+  re_section_default_description: "<p>Utilisez les sections pour structurer vos exigences
+    dans l’arborescence de gauche.</p> <p> Vous devez structurer vos exogènes en sections,
+    car cela vous permet de gérer tous vos artefacts et leurs informations contextuelles.
+    Il existe beaucoup de structures de référence pour les exigences. Par exemple,
+    vous pouvez utiliser la norme IEEE 1233-1998 qui définit une structure pour les
+    spécifications d’exigences système (SyRS) ou la norme IEEE 830-1998 qui définit
+    une structure pour la spécification des exigences logicielles (SRS). <!—tiré de
+    :  [Pohl 2008, S. 251 - 253] --></p>"
+  re_section_deleted: La section %{name} a été supprimée avec succès.
+  re_section_not_deleted: La section %{name} n'a pas pu être supprimée.
+  re_section_not_found: Impossible de trouver de section correspondant à l'identifiant
+    %{id}.
+  re_section_priority: Priorité
+  re_section_saved: Section sauvegardée avec succès
+  re_select_all: Tout sélectionner
+  re_select_artifact: Sélectionner un artifact
+  re_set_parent: Définir l'artefact parent
+  re_settings_display_requirement_id_description: Afficher l'ID de l'exigence dans
+    l'arborescence
+  re_settings_have_to_save: 'Aucune configuration n''a encore été sauvegardée : Vous
+    devez cliquer sur sauvegarder avant de quitter cette page !'
+  re_settings_have_to_save_again: Le système a été mis à jour ! Veuillez vérifier
+    la configuration. Vous devez cliquer sur sauvegarder avant de quitter cette page
+    !
+  re_settings_project_hierarchy: Hiérarchie de projet
+  re_settings_project_hierarchy_description: Autoriser la connexion de tâches depuis
+    d'autres projets
+  re_settings:
+    project_hierarchy_types:
+      all: tous les projets
+      aucun: aucun
+      descendants: sous-projets
+      hiérarchie: arborescence de projet
+      hierarchy: arborescence du projet
+      none: aucun
+      tous: tous les projets
+  re_show: Afficher
+  re_show_goals: Afficher des objectifs
+  re_show_in_visualization: Afficher dans la visualisation
+  re_show_relationships: Afficher des relations
+  re_show_subtasks: Afficher les sous-tâches
+  re_show_tasks: Afficher les tâches
+  re_show_wiki_page_for_re_artifact: Page wiki
+  re_shows_after_reload: sera affiché après chargement de la page
+  re_sink_artifact: Artefact cible
+  re_sink_artifact_name: Nom de l'artefact cible
+  re_sink_artifact_type: Type de l'artefact cible
+  re_source_artifact: Artefact source
+  re_source_artifact_name: Nom de l'artefact source
+  re_source_artifact_type: Type de l'artefact source
+  re_space_tree: Éclater en arborescence
+  re_specification_overview: Arborescence des exigences
+  re_st_position_not_allowed: Cette position de sous-tâche n'est pas autorisée
+  re_st_type_not_allowed: Ce type de sous-tâche n'est pas autorisé
+  re_stakeholders: Parties prenantes
+  re_starts_with: Commence par
+  re_status: Statut
+  re_status_alias_name: Nom
+  re_status_color: Couleur
+  re_status_configuration: Configuration du statut
+  re_status_internal_name: Nom interne
+  re_structuring_elements: Éléments structurants
+  re_subtask: Sous-tâche
+  re_subtask_default_description: "<p>Bien que vous puissiez créer une sous-tâche
+    avec cet outil, il serait plus pratique de créer une tâche et d’ajouter des sous-tâches
+    à partir de l’aperçu des tâches.</</p>"
+  re_subtask_deleted: La sous-tâche %{name} a été supprimée
+  re_subtask_name: Nom
+  re_subtask_not_deleted: La sous-tâche %{name} n'a pas pu être supprimée
+  re_subtask_not_found: Impossible de trouver une sous-tâche avec l'ID %{id} à supprimer
+  re_subtask_priority: Priorité
+  re_subtask_problem: Problème
+  re_subtask_saved: La sous-tâche %{name} a été sauvegardée avec succès
+  re_subtask_solution: Solution
+  re_subtask_type: Type
+  re_subtask_variant: Variante
+  re_subtasks: Sous-tâches
+  re_subtasks_not_valid: Les sous-tâches ne sont pas valides!
+  re_subtasks_saved: Sous-tâches sauvegardées avec succès
+  re_sunburst: Éclater en soleil
+  re_system_step: étape système
+  re_system_steps: Étapes système
+  re_task: Tâche
+  re_task_and_subtasks_saved: Tâche et sous-tâches sauvegardées avec succès
+  re_task_attributes: Attributs spécifiques à la tâche
+  re_task_default_description: "<p>Si vous n’êtes pas familier avec l'approche basée
+    sur les tâches de Lauesen pour les RE, sachez que c’est très semblable aux fameux
+    Cas d’utilisateurs de Cockburn, dont vous pouvez visiter le site en suivant ce
+    <a href='http://www.itu.dk/~slauesen/SorenReqs.html'>lien</a>.<br /> Le plus important,
+    c’est que vous reconnaissiez le principe de la solution de la demande qui vient
+    avec les deux colonnes de l’approche.</p> <p>Les tâches ne distinguent pas qui
+    fait quoi. La fermeture d’une tâche signifie que celle-ci a un point de départ
+    et un point d’arrivée bien définis. Un bon point de départ est quelque chose qui
+    se produit dans le monde de l’utilisateur, par exemple lorsqu’un client fait un
+    appel. Un bon point d’arrivée est que rien de plus ne peut être fait concernant
+    le cas en ce moment – l’utilisateur mérite une « pause café ». [Lauesen 2011,
+    S. 34]</p>"
+  re_task_deleted: La tâche %{name} a été supprimée
+  re_task_difficult: Difficile
+  re_task_difficulties: Difficultés
+  re_task_end: Fin
+  re_task_frequency: Fréquence
+  re_task_not_deleted: la tâche %{name} n'a pas pu être supprimée
+  re_task_not_found: Impossible de trouver une tâche avec l'ID %{id} à supprimer
+  re_task_priority: Priorité
+  re_task_saved: Tâche sauvegardée avec succès
+  re_task_specific_attributes: Attributs spécifiques à la tâche
+  re_task_start: Début
+  re_tasks: Tâches
+  re_text_artifact_added: L'artefact %{id} a été ajouté par %{author}.
+  re_text_artifact_updated: L'artefact %{id} a été mis à jour par %{author}.
+  re_text_artifact_updated_new_comment: "%{author} a ajouté un nouveau commentaire
+    :"
+  re_to: vers
+  re_traces_from: Trace à partir de
+  re_traces_to: Trace vers
+  re_tree_loading: Arborescence en chargement...
+  re_tree:
+    mode:
+      unknown: Mode inconnu.
+    node:
+      closed: Nœud #{node_id} fermé.
+      opened: Nœud #{node_id} ouvert.
+  re_treefilter: Filtre
+  re_type: Type
+  re_uc_add: ajouter
+  re_uc_add_below: ajouter en dessous
+  re_uc_dialog: dialogue
+  re_uc_insert: ajouter
+  re_uc_system: Système
+  re_uc_user: Utilisateur
+  re_unsaved: non sauvegardé
+  re_unselect_all: Tout déselectionner
+  re_update_description: Mettre à jour la description
+  re_update_difficult: Mettre à jour les difficultés
+  re_update_plugin_description: Mettre à jour la description du plugin
+  re_updated_at: Mis à jour
+  re_use: Actif
+  re_use_case: Cas d'utilisation
+  re_use_case_abstract_overview: Aperçu du résumé
+  re_use_case_and_steps_saved: Le cas d'utilisation et toutes les étapes ont été sauvegardés
+    avec succès
+  re_use_case_attributes: Attributs spécifiques au cas d'utilisation
+  re_use_case_default_description: "<p>Utiliser le modèle de cas d’utilisation tel
+    qu'il est indiqué dans le livre de Cockburn intitulé : « Writing effective Use-Cases
+    ».</p>"
+  re_use_case_deleted: Le cas d'utilisation %{name} a été supprimé
+  re_use_case_expansion: Expansion
+  re_use_case_expansions: Expansions de cas d'utilisation
+  re_use_case_function: Fonction
+  re_use_case_level: Niveau
+  re_use_case_low: Bas
+  re_use_case_not_deleted: Le cas d'utilisation %{name} n'a pas pu être supprimé
+  re_use_case_not_found: Impossible de trouver un cas d'utilisation avec l'ID %{id}
+    à supprimer
+  re_use_case_overview: Aperçu
+  re_use_case_postcondition: Postcondition
+  re_use_case_precondition: Précondition
+  re_use_case_primary_actor: Acteur primaire
+  re_use_case_saved: Le cas d'utilisation a été sauvegardé avec succès
+  re_use_case_secondary_actors: Acteur(s) secondaire(s)
+  re_use_case_specific_attributes: Attributs spécifiques au cas d'utilisation
+  re_use_case_step: Étape
+  re_use_case_steps: Étapes de cas d'utilisation
+  re_use_case_trigger: Déclencheur
+  re_use_case_user_goal: Objectif d'utilisateur
+  re_user_defined_fields: Champs définis par l'utilisateur
+  re_user_profile: Profil d'utilisateur
+  re_user_profile_default_description: "<p>Vous pouvez utiliser des profils d’utilisateurs
+    pour décrire vos utilisateurs.</p><p> Il est très importante de décrire les parties
+    prenantes avec des profils d’utilisateurs, car toutes les exigences proviennent
+    de personnes. C’est pour cela que vous devriez consulter et documenter toutes
+    les parties prenantes impliquées dans votre projet.[Alexander 2009, S 28]</p>"
+  re_user_profile_deleted: Le profil utilisateur %{name} a été supprimé
+  re_user_profile_not_deleted: Le profil d'utilisateur %{name} n'a pas pu être supprimé
+  re_user_profile_not_found: Impossible de trouver un profil d'utilisateur avec un
+    ID %{id} à supprimer
+  re_user_profile_priority: Priorité
+  re_user_profile_saved: Profil d'utilisateur sauvegardé avec succès
+  re_user_step: étape utilisateur
+  re_user_steps: Étapes utilisateur
+  re_vision: Énoncé de vision
+  re_vision_default_description: "<p>Un énoncé de vision pour votre projet. Ceci est
+    utilisé pour décrire les idées dans une syntaxe de style Wiki avec cet artefact.</p>
+    <p> Vous devriez utiliser un énoncé de vision pour décrire l’objectif fondamental
+    de votre projet. Une vision doit être énoncée de façon claire et simple pour que
+    tout le monde puisse comprendre le but fondamental du projet. [Alexander 2009,
+    S 53]</p>"
+  re_vision_deleted: La révision %{name} a été supprimée avec succès.
+  re_vision_not_deleted: La révision %{name} n'a pas pu être supprimée.
+  re_vision_not_found: Impossible de trouver de révision correspondant à l'ID %{id}.
+  re_vision_priority: Priorité
+  re_vision_saved: Vision sauvegardée avec succès
+  re_visualitation_deep_graph_explain: Nombre max. d'étapes d'itération 0 = désactivé
+  re_visualization_config: Configurer
+  re_visualization_show: Visualisation
+  re_visualization_show_graph: Afficher en tant que graphique
+  re_visualization_show_netmap: Afficher en tant que netmap
+  re_visualization_show_sunburst: Afficher en tant que sunburst
+  re_visualization_size: Taille de visualisation (en pixels)
+  re_visualization_type: Type de visualisation
+  re_was_created: a été créé
+  re_was_updated: a été mis à jour
+  re_what_will_be_deleted: Si vous supprimez cet artefact, les relations énumérées
+    ci-dessous seront également supprimés.
+  re_wiki_page_available_after_save: Vous ne pouvez connecter une page wiki qu'après
+    l'avoir sauvegardée
+  re_wiki_page_for_artifact: Page Wiki
+  re_will_delete_artifact_and_all_children: 'Choisir cette option supprimera cet artefact
+    (nommé: %{name}) et les relations (énumérées ci-dessus). De plus, tous ses enfants
+    et les enfants de ceux-ci (énumérés ci-dessus) ainsi que les relations de chaque
+    enfant avec d''autres artefacts seront supprimés. Vous devriez peut-être vérifier
+    encore une fois avant de choisir cette option.'
+  re_will_delete_artifact_and_move_children: 'Choisir cette option fera associer tous
+    les enfants de cet artefact (énumérés ci-dessus) au (%{parent}), le parent de
+    cet artefact. Ensuite, cet artefact (nommé: %{name}) et toutes ses relations avec
+    d''autres artefacts seront supprimés.'
+  re_will_delete_artifact_and_relations: Choisir cette option effacera cet artefact
+    (nommé %{name}) et ses relations (énumérées ci-dessus).
+  re_workarea: Espace de travail
+  re_workarea_default_description: "<p>Un espace de travail peut être utilisé pour
+    structurer quelques tâches. Il permet de conserver ensemble les artéfacts qui
+    se déroulent dans le même endroit (par exemple, une pièce, une entreprise ou un
+    département).</p>"
+  re_workarea_deleted: L'espace de travail  %{name} a été supprimé avec succès.
+  re_workarea_not_deleted: L'espace de travail %{name} n'a pas pu être supprimé.
+  re_workarea_not_found: Impossible de trouver d'espace de travail correspondant à
+    l'ID %{id}.
+  re_workarea_priority: Priorité
+  re_workarea_saved: Espace de travail sauvegardé avec succès
+  re_you_asked_for_deleting_the_following_artifact: Vous avez demandé la suppression
+    de l'artefact suivant
+  ReArtifactRelationship: Relation d'exigence
+  ReAttachment: Fichier joint
+  ReChangeRequest: Demande de modification
+  redmine_re_plugin_author: Easy Software Ltd
+  redmine_re_plugin_author_url: http://www.easyredmine.com
+  redmine_re_plugin_description: ''
+  redmine_re_plugin_name: Plugin Easy Requirements
+  refinement: Raffinement
+  ReGoal: Objectif
+  relations: Relations
+  relationship: Relation
+  ReProcessword: Processword
+  requirement_progress: Progression des exigences
+  Requirements: Exigences
+  requirements_artifact: Artefact des critères
+  ReRationale: Logique
+  ReRequirement: Exigence
+  ReScenario: Scénario
+  ReSection: Section
+  ReSubtask: Sous-tâche
+  ReTask: Tâche
+  ReUseCase: Cas d'utilisation
+  ReUserProfile: Profil d'utilisateur
+  ReVision: Énoncé de vision
+  ReWorkarea: Espace de travail
+  status: Status
+  subject: Sujet
+  ticketend_overdue: Tickets en retard par rapport à la date limite
+  ticketstart_overdue: Tickets en retard par rapport à la date de début
+  todo: Tickets ouverts

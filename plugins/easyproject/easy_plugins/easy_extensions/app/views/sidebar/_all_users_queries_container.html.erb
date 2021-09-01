@@ -1,0 +1,4 @@
+<%= render_module_easy_box('user_query_automatic_filter', l(:sidebar_all_users_queries), {icon: 'icon-user', class: {container: 'members'}}) do %>
+  <%= render partial: 'sidebar/all_users_queries' %>
+<% end if User.current.internal_client? %>
+

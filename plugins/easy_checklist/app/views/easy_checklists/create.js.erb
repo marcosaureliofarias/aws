@@ -1,0 +1,10 @@
+<% if @easy_checklist.valid? %>
+
+  $('#easy_checklist_name').val('');
+  $('#easy_checklists_container').append("<%=j render(:partial => 'easy_checklists/easy_checklist', :locals => {:easy_checklist => @easy_checklist}) -%>");
+
+  <%= render :partial => 'easy_checklists/update_inline_containers' %>
+  <%= render :partial => 'easy_checklists/add_item_delete_buttons', locals: { entity: @easy_checklist.entity } %>
+<% else %>
+  showFlashMessage('error', "<%= @easy_checklist.errors.full_messages.join('<br/>').html_safe %>");
+<% end %>

@@ -1,0 +1,471 @@
+---
+ru:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Настройки
+      easy_helpdesk_mail_template:
+        body_html: Тело письма (HTML)
+        body_plain: Тело письма (в текстовом формате)
+        issue_status_id: Статус задачи
+        mailboxes: 'Использовать для почтового ящика:'
+        reply_to: Кому
+        sender: Отправитель
+        subject: Тема
+      easy_helpdesk_project_matching:
+        domain_name: Доменное имя
+      easy_helpdesk_project_sla:
+        base: SLA
+    models:
+      easy_helpdesk_mail_template: Шаблон письма
+  aggregated_periods:
+    half-yearly: Раз в полгода
+    quarterly: Поквартально
+    yearly: Раз в год
+  button_easy_helpdesk_add_domain_name: Добавить эл. почту или домен
+  button_easy_helpdesk_add_mail_template: Добавить шаблон письма
+  button_easy_helpdesk_add_mailbox: Добавить почтовый ящик
+  button_easy_helpdesk_add_project: Добавить проект
+  button_easy_helpdesk_add_project_from_sidebar: Добавить в Help Desk
+  button_easy_helpdesk_add_signature: Добавить подпись
+  button_easy_helpdesk_add_sla: Добавить SLA
+  button_easy_helpdesk_all_mail_templates_index: Все шаблоны писем
+  button_easy_helpdesk_all_mailboxes_index: Все почтовые ящики
+  button_easy_helpdesk_all_projects_index: Все проекты Help Desk
+  button_easy_helpdesk_mail_templates_index: Список шаблонов
+  button_easy_helpdesk_mailboxes_index: Список почтовых ящиков
+  button_easy_helpdesk_projects_index: Список проектов
+  button_easy_helpdesk_reports_index: Отчёты
+  button_easy_helpdesk_settings_index: Настройки Help Desk
+  confirm_edit_remaining_hours: Значение в этом поле рассчитывается автоматически. Хотите
+    внести изменения вручную?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Help Desk
+  easy_helpdesk_plugin_description: "– комплексное решение Help Desk"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Help Desk
+    modules:
+      easy_helpdesk_create_mail_template_button: Кнопка «Создать шаблон письма»
+      easy_helpdesk_create_mailbox_button: Кнопка «Создать почтовый ящик»
+      easy_helpdesk_mailboxes: Почтовые ящики Help Desk
+      easy_helpdesk_mailtemplates: Шаблоны писем Help Desk
+      easy_helpdesk_project_query: Проекты Help Desk по фильтру
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Шаблоны писем Help Desk
+        description: Шаблоны писем Help Desk
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Почтовые ящики Help Desk
+        description: Просмотр почтовых ящиков Help Desk
+    easy_helpdesk:
+      index:
+        caption: Help Desk
+        description: Просмотр панели Help Desk
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Help Desk – проекты
+      easy_helpdesk_report_monthly_query: Help Desk – ежемесячные отчёты
+      easy_helpdesk_report_yearly_query: Help Desk – годовые отчёты
+      easy_sla_event_query: События SLA
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Личные фильтры для проектов в Help Desk
+        easy_helpdesk_report_monthly_query: Личные фильтры для месячных отчётов в
+          Help Desk
+        easy_helpdesk_report_yearly_query: Личные фильтры для годовых отчётов в Help
+          Desk
+      public:
+        easy_helpdesk_project_query: Общие фильтры для проектов в Help Desk
+        easy_helpdesk_report_monthly_query: Общие фильтры для ежемесячных отчётов
+          в Help Desk
+        easy_helpdesk_report_yearly_query: Общие фильтры для годовых отчётов в Help
+          Desk
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Help Desk – расчёт суммарных часов
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Help Desk – автоматическое обновление заявок
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Help Desk – получение почты
+      settings:
+        imap:
+          allow_override: Разрешить обновление атрибутов задач
+          allow_override_example: 'Пример: трекер, приоритет – эти атрибуты можно
+            менять посредством эл. почты'
+          application_section_label: Другие настройки
+          category_example: 'Пример: категория – присвоение категории новым задачам'
+          email_section_label: Настройки почтового ящика
+          folder: Папка
+          folder_example: 'Папка IMAP для чтения (по умолчанию: INBOX, для выбора
+            папки используйте «/». Пример: inbox/sales)'
+          folders: Папки для чтения
+          folders_example: 'Папки IMAP для чтения (по одной в каждой строке) (по умолчанию:
+            INBOX, для выбора папки используйте «/». Пример: inbox/sales)'
+          host: Хост
+          host_example: 'Пример: mail.company.com'
+          label: IMAP
+          move_on_failure: Папка для ошибок
+          move_on_failure_example: перемещать игнорируемые сообщения в папку MAILBOX
+          move_on_success: Папка для успешно обработанных писем
+          move_on_success_example: перемещать полученные письма в папку MAILBOX, остальные
+            удалять
+          no_permission_check: Не проверять права пользователя
+          password: Пароль
+          password_example: 'Пример: secretpassword'
+          port: Порт
+          port_example: 'Пример: 143'
+          priority_example: 'Пример: высокий – присвоение высокого приоритета новым
+            задачам'
+          project_example: 'Пример: 205 – новые задачи будут созданы в проекте с идентификатором
+            205'
+          sender_mail: Отправитель
+          sender_mail_example: 'Пример: support@company.com'
+          ssl: SSL
+          ssl_example: Использовать SSL-аутентификацию
+          status_example: 'Пример: новая – при создании задачи ей будет присвоен статус
+            «новая»'
+          tracker_example: 'Пример: ошибка – у новых задач будет трекер «Ошибка»'
+          unknown_user: Неизвестный пользователь
+          unknown_user_example: "«принять» – использовать анонимного пользователя,
+            «создать» – создать нового пользователя; «логин» – использовать соответствующего
+            пользователя"
+          use_custom_sender: Использовать другого отправителя
+          username: Пользователь
+          username_example: 'Пример: accessuser@domain.com'
+        pop3:
+          allow_override: Разрешить обновление атрибутов задач
+          allow_override_example: 'Пример: трекер, приоритет – эти атрибуты можно
+            менять посредством эл. почты'
+          apop: APOP
+          apop_example: Использование APOP-аутентификации
+          application_section_label: Другие настройки
+          category_example: 'Пример: категория – присвоение категории новым задачам'
+          delete_unprocessed: Удалять необработанные
+          delete_unprocessed_example: Удалять сообщения, которые нельзя обработать
+          email_section_label: Настройки почтового ящика
+          host: Хост
+          host_example: 'Пример: mail.company.com'
+          label: POP3
+          no_permission_check: Не проверять права пользователя
+          password: Пароль
+          password_example: 'Пример: secretpassword'
+          port: Порт
+          port_example: 'Пример: 110'
+          priority_example: 'Пример: высокий – присвоение высокого приоритета новым
+            задачам'
+          project_example: 'Пример: 205 – новые задачи будут созданы в проекте с идентификатором
+            205'
+          sender_mail: Отправитель
+          sender_mail_example: support@company.com
+          status_example: 'Пример: новая – при создании задачи ей будет присвоен статус
+            «новая»'
+          tracker_example: 'Пример: ошибка – у новых задач будет трекер «Ошибка»'
+          unknown_user: Неизвестный пользователь
+          unknown_user_example: "«принять» – использовать анонимного пользователя,
+            «создать» – создать нового пользователя; «логин» – использовать соответствующего
+            пользователя"
+          use_custom_sender: Использовать другого отправителя
+          username: Пользователь
+          username_example: 'Пример: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: Вы не заполнили поля «Кол-во
+    часов на реагирование» и «Кол-во часов на решение». Заполните хотя бы одно поле.
+  error_easy_sla_hours_mode_greater_than: "%{title} %{to} не может быть меньше, чем %{from}"
+  error_update_easy_setting_helpdesk: Не удалось сохранить настройки.
+  field_aggregated_hours: Всего часов Help Desk
+  field_aggregated_hours_period: Период
+  field_aggregated_hours_remaining: Осталось часов Help Desk
+  field_aggregated_hours_start_date: Начало периода
+  field_automatically_issue_closer_enable: Разрешить автоматическое обновление заявок?
+  field_date_to_response: SLA (дата ответа)
+  field_date_to_solve: SLA (дата решения)
+  field_default_for_mailbox: Почтовый ящик по умолчанию
+  field_easy_helpdesk_has_sla: Попадает под SLA
+  field_easy_helpdesk_hours_to_response_before_expired: Кол-во часов на реагирование
+  field_easy_helpdesk_hours_to_solve_before_expired: Кол-во часов на решение
+  field_easy_helpdesk_ignorate_suspend_statuses: Создать события SLA из всех статусов
+  field_easy_helpdesk_mail_template: 'Отправьте письмо клиенту из шаблона:'
+  field_easy_helpdesk_need_reaction: Нужна реакция?
+  field_easy_helpdesk_project_keyword: Ключевое слово проекта
+  field_easy_helpdesk_project_matching:
+    domain_name: Почта или домен
+    email_field_from: берётся из поля «Отправитель»
+    email_field_to: берётся из поля «Получатель»
+  field_easy_helpdesk_project_monthly_hours: Предоплаченные часы Help Desk на месяц
+  field_easy_helpdesk_project_sla:
+    blank_keyword: Отсутствует имя SLA
+    hours_to_response: Часы до ответа
+    hours_to_solve: Часы на решение
+    keyword: Ключевое слово SLA
+    title: Имя SLA
+  field_easy_helpdesk_project_spent_time_current_month: Отработано часов HD (этот
+    месяц)
+  field_easy_helpdesk_project_spent_time_last_month: Отработано часов HD (прошлый
+    месяц)
+  field_easy_helpdesk_project_spent_time_total: Общее затраченное время HD
+  field_easy_helpdesk_ticket_owner: Владелец заявки
+  field_easy_reopen_at: Снова открыт в
+  field_easy_response_date_time: SLA (ответ)
+  field_easy_time_to_solve_paused_at: SLA на паузе с
+  field_email_footer: Нижний колонтитул письма
+  field_email_header: Заголовок письма
+  field_first_response: Первая реакция
+  field_has_easy_sla_event: Содержит события SLA
+  field_hide_sla_data: Скрыть данные SLA
+  field_hours_mode_from: Рабочие часы SLA
+  field_hours_to_response: SLA (ответ)
+  field_hours_to_solve: SLA (решение)
+  field_is_under_helpdesk: В проекте Help Desk
+  field_issue_closer_done_issue_status: Перевести в статус
+  field_issue_closer_done_issue_user: и закрепить за пользователем
+  field_issue_closer_inactive_interval: и не было обновлений в течение
+  field_issue_closer_observe_issue_status_id: в статусе
+  field_monitor_due_date: Контролировать сроки по заявкам
+  field_monitor_spent_time: Контролировать затраченное время по заявкам
+  field_monthly_hours: Предоплаченные часы Help Desk на месяц
+  field_occurence_time: Время возникновения
+  field_sla_resolve: Решение SLA
+  field_sla_resolve_fulfilment: Исполнение решения SLA
+  field_sla_response: Ответ SLA
+  field_sla_response_fulfilment: Исполнение ответа SLA
+  field_use_working_time: Считать SLA на основе рабочего времени
+  heading_easy_helpdesk_index: Help Desk
+  heading_easy_helpdesk_mail_templates_edit: Редактировать шаблон письма
+  heading_easy_helpdesk_mail_templates_index: Шаблоны писем
+  heading_easy_helpdesk_mail_templates_new: Создать шаблон письма
+  heading_easy_helpdesk_mail_templates_show: Детали шаблона
+  heading_easy_helpdesk_mailboxes_edit: Редактировать почтовый ящик
+  heading_easy_helpdesk_mailboxes_index: Почтовые ящики Help Desk
+  heading_easy_helpdesk_mailboxes_new: Создать почтовый ящик
+  heading_easy_helpdesk_projects_edit: Редактировать проект
+  heading_easy_helpdesk_projects_index: Проекты Help Desk
+  heading_easy_helpdesk_projects_new: Создать проект Help Desk
+  heading_easy_helpdesk_projects_show: Детали проекта
+  heading_easy_helpdesk_reports_index: Help Desk – отчёты
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Ежемесячный отчёт по предоплаченным
+    часам
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Годовой отчёт по предоплаченным
+    часам
+  heading_easy_helpdesk_settings: Настройки
+  issue_closer_inactive_interval_units:
+    days: дни
+    hours: часы
+  label_automatically_issue_closer: Условия автоматического обновления заявок
+  label_copy_settings_sla_from_project: Копировать настройки SLA из проекта
+  label_easy_hekodesk_additional_task_info_received_emails: Обработано писем
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: Часы Help Desk на этот месяц
+  label_easy_helpdesk_actual_budget_to_spend: Оставшиеся часы
+  label_easy_helpdesk_aggregated_from_last_period: Накоплено с прошлого периода
+  label_easy_helpdesk_alerts: Настройки оповещений
+  label_easy_helpdesk_allow_custom_sender: Разрешить выбор отправителя (на проекте)
+  label_easy_helpdesk_allow_override: Разрешить обновление атрибутов задач
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: Изменить поля заявки
+    notify: Отправить письмо по шаблону
+  label_easy_helpdesk_client_response_status: Поменять статус, после того как клиент
+    ответит
+  label_easy_helpdesk_domain_name: Домен почты
+  label_easy_helpdesk_emails: Настройки почты – верхний и нижний колонтитулы
+  label_easy_helpdesk_enable_email_footer: Изменить нижний колонтитул для этого проекта?
+  label_easy_helpdesk_enable_email_header: Изменить заголовок для этого проекта?
+  label_easy_helpdesk_hours_comulated: Накопленные часы
+  label_easy_helpdesk_hours_comulated_range: с %{from} до %{to}
+  label_easy_helpdesk_hours_per_month: Отработанные часы за этот месяц
+  label_easy_helpdesk_ignore_cc: Игнорировать скрытые копии входящих писем
+  label_easy_helpdesk_mail_signature: Help Desk – подпись
+  label_easy_helpdesk_matching: Настройки почты, домены, ключевые слова, добавленные
+    в проект
+  label_easy_helpdesk_message_above_variables: Комментарий к задаче отображается над
+    шаблоном письма
+  label_easy_helpdesk_need_reaction: Нужна реакция!
+  label_easy_helpdesk_project_helpdesk_tab: Help Desk
+  label_easy_helpdesk_project_managed_by_helpdesk: Настройки Help Desk
+  label_easy_helpdesk_project_plural: Проекты Help Desk
+  label_easy_helpdesk_projects_sla_working_time_calendar: Рабочие дни SLA
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: Перезапустить SLA после повторного
+    открытия задачи
+  label_easy_helpdesk_sender: Отправитель
+  label_easy_helpdesk_sender_current_user: Авторизованный пользователь
+  label_easy_helpdesk_sender_is_user: В поле отправитель указывается авторизованный
+    пользователь
+  label_easy_helpdesk_sender_mailbox_address: Адрес эл. почты
+  label_easy_helpdesk_sender_redmine_default: По умолчанию из почтового уведомления
+  label_easy_helpdesk_signature: Подпись
+  label_easy_helpdesk_signature_name: Имя подписи
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Принимать автоматически созданные
+    письма
+  label_easy_helpdesk_sla: Настройки SLA – приоритет, время на решение проблемы по
+    заявке
+  label_easy_helpdesk_sla_start_states: Вести отсчёт SLA по заявке при статусе
+  label_easy_helpdesk_sla_stop_states: Приостановить SLA по заявке при статусе
+  label_easy_sla_event: Событие SLA
+  label_easy_sla_events: События SLA
+  label_easy_sla_events_reports: Отчёты SLA
+  label_filter_group_easy_helpdesk_project_query: Help Desk – проект
+  label_filter_group_easy_helpdesk_report_monthly_query: Help Desk – отчёт
+  label_filter_group_easy_helpdesk_report_query: Help Desk – отчёт
+  label_filter_group_easy_helpdesk_report_yearly_query: Help Desk – отчёт
+  label_filter_group_easy_sla_event_query: Событие SLA
+  label_filter_show_spent_time_current_month_equal_to_zero: Не потрачено часов в Help
+    Desk в этом месяце
+  label_filter_show_spent_time_last_month_equal_to_zero: Не потрачено часов в Help
+    Desk в прошлом месяце
+  label_issue_bottom_from_easy_helpdesk: Задача создана из Help Desk (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Предоплаченные часы на месяц
+  label_sla_calendar_settings: Настройки календаря
+  label_tab_sla_events: События SLA
+  permission_manage_easy_helpdesk: Управлять Help Desk
+  permission_manage_easy_helpdesk_project: Управлять проектами Help Desk
+  permission_manage_easy_sla_events: Управлять событиями SLA
+  permission_view_easy_helpdesk_sla: Просматривать SLA по задачам
+  permission_view_easy_sla_events: Просматривать события SLA
+  project_module_easy_helpdesk: Help Desk
+  setting_easy_helpdesk_custom_sender: Отправитель в Help Desk
+  text_easy_helpdesk_change_default_sender: Настройка не влияет на поле «Ответ»
+  text_easy_helpdesk_custom_sender: Заменить отправителя по умолчанию в Help Desk.
+    Оставьте поле пустым, если не хотите использовать эту функцию.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: текущий исполнитель
+    author: текущий автор
+    date: текущая дата
+    mail_to: кому
+    spent_time: затраченное время по задаче
+    task_closed_on: задача, закрытая в указанную дату
+    task_description: описание задачи
+    task_done_ratio: готовность задачи
+    task_due_date: дата завершения задачи
+    task_estimated_hours: расчётное время задачи
+    task_history: история комментариев к задаче
+    task_id: ID текущей задачи
+    task_id_without_hash: ID текущей задачи без хэша
+    task_last_journal: последний открытый комментарий к задаче
+    task_note: последний комментарий к задаче
+    task_priority: приоритет задачи
+    task_project: имя проекта
+    task_public_url: "«URL задачи для общего доступа»"
+    task_start_date: дата начала задачи
+    task_status: статус задачи
+    task_subject: тема текущей задачи
+    task_tracker: трекер задачи
+    user_first_name: имя текущего пользователя
+    user_last_name: фамилия текущего пользователя
+    user_name: полное имя текущего пользователя
+    user_signature: подпись текущего пользователя
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Тема и тело письма могут содержать динамический текст:'
+  - "%task_id% (замена ID текущей задачи)"
+  - "%task_subject% (замена темы текущей задачи)"
+  - "%task_note% (замена последнего комментария к задаче)"
+  - "%task_history% (замена истории открытых комментариев к задаче)"
+  - "%time_spent% (замена затраченного времени задачи)"
+  - "%assignee% (замена текущего исполнителя)"
+  - "%user_signature% (замена подписи текущего пользователя)"
+  - "%date% (замена текущей даты)"
+  - "%task_tracker% (замена трекера задачи)"
+  - "%task_project% (замена имени проекта)"
+  - "%task_description% (замена описания задачи)"
+  - "%task_status% (замена статуса задачи)"
+  - "%task_priority% (замена приоритета задачи)"
+  - "%task_estimated_hours% (замена расчётного времени задачи)"
+  - "%task_done_ratio% (замена готовности задачи)"
+  - "%task_public_url% (замена url задачи для общего доступа)"
+  - "%task_closed_on% (замена задачи, закрытой в указанную дату)"
+  - "%task_due_date% (замена даты завершения задачи)"
+  - "%task_start_date% (замена даты начала задачи)"
+  - "%user_name% (замена полного имени текущего пользователя)"
+  - "%user_first_name% (замена имени текущего пользователя)"
+  - "%user_last_name% (замена фамилии текущего пользователя)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Тема и тело письма могут
+    содержать динамический текст:'
+  text_easy_helpdesk_mail_template_issue_status_id: Привязка шаблона письма к определённому
+    статусу задачи. При выборе статуса по умолчанию (с которым создаются задачи) шаблон
+    будет использоваться для автоматического ответа после создания задачи из эл. почты.
+  text_easy_helpdesk_mail_template_replacement_for: замена для
+  text_easy_helpdesk_mail_template_reply_to: "(Г-н Пример) – здесь не указывается
+    адрес"
+  text_easy_helpdesk_mail_template_reply_to2: Поля «Кому» и «Отправитель» настраиваются
+    в соответствии с шаблоном письма, чтобы обеспечить коммуникацию в рамках одной
+    задачи
+  text_easy_helpdesk_mailbox_too_long_to_process: Обработка почтового ящика затянулась,
+    ответ от сервера не получен. Возможно, ящик переполнен. Удалите старые письма
+    из папок, обрабатываемых службой Help Desk, и проверьте настройки доступа внешних
+    приложений к почтовому серверу.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Закрепите почтовые ящики
+    за конкретными проектами. Если этого не сделать, неизвестные входящие письма не
+    будут обрабатываться!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'У этих почтовых ящиков нет
+    проекта по умолчанию:'
+  text_easy_helpdesk_projects_alerts_list: 'Список настроенных оповещений:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Список оповещений, для которых
+    требуется настроить получателя:'
+  text_easy_helpdesk_projects_is_default: Для создания заявок при получении писем
+    от неизвестных отправителей.
+  text_easy_helpdesk_projects_keyword_description: Если в теме письма содержится указанная
+    строка, заявка будет привязана к соответствующему проекту. Ключевое слово чувствительно к
+    регистру.
+  text_easy_helpdesk_projects_keywords: Если в теме письма содержится указанная строка,
+    соответствующий приоритет и дата завершения будут заданы автоматически (символ
+    * означает любую тему). Не заполняйте поле, чтобы настроить SLA для заявок, созданных
+    вручную.
+  text_easy_helpdesk_projects_monitor_due_date: Настройте это оповещение, чтобы получать
+    уведомления по почте при нарушении SLA, то есть когда проблема из завки не решается
+    в сроки, установленные SLA.
+  text_easy_helpdesk_projects_monitor_spent_time: Настройте это оповещение, чтобы
+    получать уведомления по почте, когда общее затраченное время за календарный месяц
+    будет превышать предоплаченные часы поддержки.
+  text_easy_helpdesk_projects_new_priority: Если ключевые слова не указаны, SLA будет
+    настраиваться по выбранному приоритету.
+  text_easy_helpdesk_projects_priority: SLA будет настраиваться по выбранному приоритету
+  text_easy_helpdesk_projects_sla_hours_to_response: Максимальное время до начала
+    работы по заявке (первое изменение статуса).
+  text_easy_helpdesk_projects_sla_hours_to_solve: Максимальное время до разрешения
+    проблемы по заявке (статус «закрыто»).
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Не удалось обновить некоторые
+    задачи (%{count}/%{total}):'
+  text_easy_rake_task_helpdesk_issue_closer_updated: "%{updated_count} обновлено /
+    %{notified_count} отправлено уведомлений клиенту"
+  text_isseu_closer_close_notice: Эта задача была автоматически обновлена в Help Desk
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: требовалось ответить
+    на заявку до %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: требуется
+    ответить на заявку до %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: требовалось решить
+    проблему по заявке до %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: требуется
+    решить проблему по заявке до %{time}'
+  text_mailbox_delete_confirmation: Вы собираетесь удалить почтовый ящик. Удаление
+    почтового ящика может привести к следующим проблемам: – Заявки, созданные через
+    этот почтовый ящик, больше не смогут пользоваться шаблонами. Вы точно хотите продолжить?
+  title_easy_helpdesk_add_project_from_sidebar: Нажмите, чтобы добавить проект в Help
+    Desk.
+  title_easy_helpdesk_allow_custom_sender: Разрешить выбор отправителя на проекте
+  title_easy_helpdesk_allow_override: Разрешить изменение свойств задачи из сообщения
+  title_easy_helpdesk_client_response_status: Выберите статус, который будет присвоен заявке
+    при обновлении через электронную почту.
+  title_easy_helpdesk_ignore_cc: При получении письма все пользователи, поставленные в
+    копию, становятся наблюдателями. Они получают внешнюю почту и автоматические ответы.
+    Выберите эту опцию, чтобы не добавлять пользователей в список наблюдателей.
+  title_easy_helpdesk_message_above_variables: Шаблон сообщения будет над переменной
+    шаблона
+  title_easy_helpdesk_sender: Кто будет  в поле <Отправитель>
+  title_easy_helpdesk_sender_current_user: Авторизованный пользователь
+  title_easy_helpdesk_sender_is_user: В поле «Отправитель» будет указан авторизованный
+    пользователь
+  title_easy_helpdesk_sender_mailbox_address: Адрес эл. почты из почтового ящика
+  title_easy_helpdesk_sender_redmine_default: Адрес исходящей почты по умолчанию
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'ПРЕДУПРЕЖДЕНИЕ: Help Desk
+    будет принимать письма из других систем, что может привести к зацикливанию почты!'
+  title_easy_helpdesk_sla_start_states: Выберите статусы, при которых учёт времени
+    SLA возобновляется после паузы в соответствии с настройками выше.
+  title_easy_helpdesk_sla_stop_states: Выберите статусы, при которых учёт времени
+    SLA не ведётся. Например, закрытые заявки или ожидание ответа от клиента.
+  title_sla_waiting_for_client: Приостановка SLA
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Неактивно – после закрытия задачи действие SLA останавливается. Если
+      открыть задачу снова, учёт времени SLA возобновится (за весь период с момента
+      создания задачи).
+    enabled: Активно – после закрытия задачи действие SLA останавливается. Если открыть
+      задачу снова, учёт времени SLA ведётся с момента повторного открытия задачи.

@@ -1,0 +1,10 @@
+<%= f.fields_for :settings do |s| %>
+  <p>
+    <%= label_tag 'associated_query_easycrmcasequery', l(:label_filter_plural) %>
+    <%= s.radio_button :associated_query, 'EasyCrmCaseQuery', checked: @custom_field.settings['associated_query'] == 'EasyCrmCaseQuery', id: 'associated_query_easycrmcasequery', onchange: "$.post('#{j update_form_custom_fields_path(id: @custom_field, format: :js)}', $('#custom_field_form').serialize())" %>
+    <%= label_tag 'associated_query_easycrmcasequery', l(:easy_crm_case_query, scope: [:easy_query, :name]) %>
+  </p>
+<% end %>
+<div id="query_container">
+  <%= render partial: 'custom_fields/easy_computed_from_query_settings' %>
+</div>

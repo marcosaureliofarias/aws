@@ -1,0 +1,86 @@
+---
+hr:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Postoji druga kontrolna
+                tablica (vremenska tablica, timesheet) u ovom tjednu
+  button_copy_easy_time_sheet: Kopiraj redove u novu kontrolnu listu (vremensku tablicu,
+    vremensku evidenciju, timesheet)
+  button_easy_timesheet_by_easy_query: Vremenske tablice (timesheet) po spremljenom
+    filteru
+  button_easy_timesheet_delete_with_time_entries: Ukloni red i utrošeno vrijeme
+  button_easy_timesheet_delete_without_time_entries: Ukloni samo red
+  button_easy_timesheets_approve: Odobri
+  button_easy_timesheets_lock: Zaključaj
+  button_easy_timesheets_new_row: Novi red
+  button_easy_timesheets_reject: Odbij
+  button_easy_timesheets_unlock: Otključaj
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Osobne izjave - Vremenske tablice (Kontrolne tablice, timesheets)
+        description: Pregledaj vremenske tablice
+  easy_query:
+    name:
+      easy_timesheet_query: Vremenske tablice (Kontrolne tablice, timesheetovi)
+  easy_timesheets_date_must_be_first_day_of_week: Mora biti prvi dan tjedna. (%{day})
+  easy_timesheets_periods:
+    day: Tjedno
+    month: Mjesečno
+    week: Mjesečno
+  easy_timesheets_plugin_author: Easy Software
+  easy_timesheets_plugin_author_url: http://www.easyproject.cz/en
+  easy_timesheets_plugin_name: Vremenske tablice
+  error_timesheet_invalid_time_entries: 'Ne može se kreirati vremenska tablica zbog
+    nevaljanih vremenskih unosa: %{errors}'
+  field_easy_timesheet_period: Period
+  heading_easy_timesheets_edit: Izmjeni vremensku tablicu
+  heading_easy_timesheets_new: Nova vremenska tablica
+  heading_easy_timesheets_show: Vremenska tablica %{start_date} - %{end_date}
+  label_easy_timesheet: Vremenska tablica
+  label_easy_timesheet_approved: Odobreno?
+  label_easy_timesheet_approved_by: Odobrio
+  label_easy_timesheet_end_date: Datum kraja
+  label_easy_timesheet_lock_description: Razlog odobren/odbijen
+  label_easy_timesheet_lock_prompt: Razlog za odobriti
+  label_easy_timesheet_locked_at: Odobren / Odbijen
+  label_easy_timesheet_rejected_by: Odbio
+  label_easy_timesheet_unlock_prompt: Razlog za odbiti
+  label_easy_timesheets: Vremenske tablice
+  label_filter_group_easy_timesheet_query: Timesheet
+  permission_create_easy_timesheets_for_other_user: Kreiraj vremensku tablicu za druge
+    korisnike
+  permission_edit_easy_timesheets: Izmjeni vremenske tablice
+  permission_edit_own_easy_timesheets: Izmjeni vlastite vrmeenske tablice
+  permission_view_easy_timesheets: Pogledaj vremenske tablice
+  project_module_easy_timesheets: Vremenske tablice
+  text_easy_timesheet_destroy_cell_are_you_sure: Želite li zaista ukloniti utrošeno
+    vrijeme?
+  text_easy_timesheet_destroy_row_are_you_sure: Upravo ćete ukloniti red vremenske
+    tablice. Ne morate automatski obrisati vrijeme utrošeno na ovaj red. Kako želite
+    nastaviti?
+  text_easy_timesheet_prompt_text: Dodaj vrijeme
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: Početni datum
+    će biti automatski poravnat na početak odabranog tjedna
+  text_time_sheet_copy_from: Redovi će biti unaprijed ispunjeni sa vremenske tablice
+    %{entity}
+  text_warning_after_time_sheet_copied: Ako ne spremite barem jednu ćeliju reda, red
+    će biti izgubljen.
+  title_easy_timesheet_destroy: Ukloni vremensku tablicu
+  title_easy_timesheet_edit_with_period: Izmjeni %{period} vremenske tablice
+  title_easy_timesheet_new_with_period: Novi %{period} vremenske tablice
+  title_easy_timesheet_show: Prikaži vremensku tablicu
+  title_next_time_sheet: Prikaži sljedeću vremensku tablicu od %{user}
+  title_previous_time_sheet: Prikaži prijašnju vremensku tablicu od %{user}
+  validation_entry_already_exists: Vremenska tablica između (%{start_date}) i (%{end_date})
+    već postoji
+  validation_greater_than_start_date: "(%{end_date}) mora biti poslije datuma početka
+    (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: Neki vremenski zapisi nisu mogli
+    biti uništeni
+  validation_week_period: Period između  (%{start_date}) i (%{end_date}) mora biti
+    tjedan

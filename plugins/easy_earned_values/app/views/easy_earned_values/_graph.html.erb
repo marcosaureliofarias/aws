@@ -1,0 +1,123 @@
+<%
+  include_easy_earned_value_scripts
+  include_easy_earned_value_styles
+
+  unless defined?(modul_uniq_id)
+    modul_uniq_id = SecureRandom.hex
+  end
+
+  graph_id = "graph_#{modul_uniq_id}"
+  json_data = easy_earned_value.data.map{|d| { date: d.date, ac: d.ac, ev: d.ev, pv: d.pv } }.to_json
+  other_values = easy_earned_value.other_values
+
+  spi = other_values[:spi].to_f.round(2)
+  cpi = other_values[:cpi].to_f.round(2)
+%>
+
+<div id="<%= graph_id %>" style="clear: both;"></div>
+
+<div class="easy_earned_value__summary splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <span><%= l('easy_earned_values.values.sv') %>:</span>
+      <%= other_values[:sv].to_f.round(2) %>
+      <i class="icon icon-help" title="<%= l('easy_earned_values.values.sv_help') %>"></i>
+    </p>
+
+    <p class="<%= spi_css_classes(spi) %>">
+      <span><%= l('easy_earned_values.values.spi') %>:</span>
+      <%= spi %>
+      <i class="icon icon-help " title="<%= l('easy_earned_values.values.spi_help') %>"></i>
+    </p>
+  </div>
+
+  <div class="splitcontentleft">
+    <p>
+      <span><%= l('easy_earned_values.values.cv') %>:</span>
+      <%= other_values[:cv].to_f.round(2) %>
+      <i class="icon icon-help" title="<%= l('easy_earned_values.values.cv_help') %>"></i>
+    </p>
+
+    <p class="<%= cpi_css_classes(cpi) %>">
+      <span><%= l('easy_earned_values.values.cpi') %>:</span>
+      <%= cpi %>
+      <i class="icon icon-help" title="<%= l('easy_earned_values.values.cpi_help') %>"></i>
+    </p>
+  </div>
+</div>
+
+<script type="application/javascript">
+  EasyGem.schedule.late(function(){
+    function earnedValueColors() {
+      if (window.ERUI && ERUI.sassData !== undefined && ERUI.sassData['color-main'] && ERUI.sassData['color-positive'] && ERUI.sassData['color-negative']) {
+        return [ERUI.sassData['color-negative'], ERUI.sassData['color-main'], ERUI.sassData['color-positive']];
+      } else {
+        return ['#2ca02c', '#ff7f0e', '#1f77b4'];
+      }
+    }
+
+    var format = d3.timeFormat("%Y-%m-%d");
+    c3.generate({
+      bindto: "#<%= graph_id %>",
+      data: {
+        xFormat: '%Y-%m-%d',
+        json: <%=raw json_data %>,
+        keys: {
+          x: "date",
+          value: ["ac", "ev", "pv"]
+        },
+        names: {
+          ac: "<%= evm_long_name_of(:ac, earned_value: easy_earned_value) %>",
+          ev: "<%= evm_long_name_of(:ev, earned_value: easy_earned_value) %>",
+          pv: "<%= evm_long_name_of(:pv, earned_value: easy_earned_value) %>",
+        },
+        type: "line"
+      },
+      axis: {
+        x: {
+          type: "timeseries",
+          label: "<%= l('easy_earned_values.axes.time') %>",
+          tick: {
+            format: "%Y-%m-%d",
+            count: 10
+            // culling: {
+            //   max: 3 // the number of tick texts will be adjusted to less than this value
+            // }
+          }
+        },
+        y: {
+          label: "<%= l('easy_earned_values.axes.costs') %>"
+        }
+      },
+      grid: {
+        x: {
+          lines: [
+            { value: format(new Date()), text: "<%= l(:label_today) %>" },
+            { value: "<%= easy_earned_value.due_date.to_s %>", text: "<%= l(:field_due_date) %>" }
+          ]
+        },
+        y: {
+          show: true
+        }
+      },
+      line: {
+        connectNull: true
+      },
+      point: {
+        show: <%= easy_earned_value.data.size < 30 %>
+      },
+      padding: {
+        bottom: 30
+      },
+      color: {
+        pattern: earnedValueColors()
+      },
+      regions: [
+        {
+          start: "<%= easy_earned_value.due_date.to_s %>",
+          end: "<%= easy_earned_value.due_date_with_delay.to_s %>"
+        }
+      ]
+    })
+  });
+</script>

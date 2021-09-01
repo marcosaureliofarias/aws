@@ -1,0 +1,6 @@
+<% if params[:q] %>
+  $('.principals-block-list').html('<%= j (render partial: 'modal_project_members_list', formats: ['html'], locals: {project: @project, project_members: @project_members}) %>');
+<% else %>
+  $('#ajax-modal').html('<%= j (render partial: 'projects/modal_project_members', formats: ['html'], locals: {project: @project, project_members: @project_members}) %>');
+  showModal('ajax-modal', '50%');
+<% end %>

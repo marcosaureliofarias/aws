@@ -1,0 +1,5 @@
+<h1><%= l('easy_zapier.label_zapier_integration_templates') %></h1>
+<p>
+  <%= l('easy_zapier.text_zapier_integration_info_html', landing_page_url: EasyZapier.config.landing_page_url).html_safe %>
+</p>
+<script src="https://zapier.com/apps/embed/widget.js?services=<%= EasyZapier.config.service_name %>&limit=10"></script>

@@ -1,0 +1,47 @@
+<div class="autoscroll">
+  <table class="list reorder custom_fields">
+    <thead>
+      <tr>
+        <th></th>
+        <th><%= l(:field_name) %></th>
+        <th><%= l(:field_field_format) %></th>
+        <th><%= l(:field_is_required) %></th>
+        <% if tab[:name] == 'IssueCustomField' || tab[:name] == 'ProjectCustomField' %>
+          <th><%= l(:field_is_for_all) %></th>
+          <th><%= l(:label_used_by) %></th>
+        <% end %>
+        <% if (@custom_fields_by_type[tab[:name]] || []).first.try(:easy_groupable?) %>
+          <th><%= l(:label_group) %></th>
+        <% end %>
+        <%= call_hook :view_custom_fields_index_head %>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (@custom_fields_by_type[tab[:name]] || []).sort.each do |custom_field| -%>
+        <% back_url = custom_fields_path(:tab => tab[:name]) %>
+        <tr>
+          <%= content_tag(:td, render_reorder_handle(custom_field_path(custom_field, :back_url => back_url), 'custom_field'), :class => 'reorder-handler') %>
+          <td class="name"><%= custom_field.disabled? && custom_field.translated_name || link_to(custom_field.translated_name, edit_custom_field_path(custom_field)) %></td>
+          <td><%= l(custom_field.format.label, :default => l(:label_unknown_plugin)) %></td>
+          <td><%= checked_image custom_field.is_required? %></td>
+          <% if tab[:name] == 'IssueCustomField' || tab[:name] == 'ProjectCustomField' %>
+            <td><%= checked_image custom_field.is_for_all? %></td>
+            <td><%= l(:label_x_projects, :count => @custom_fields_projects_count[custom_field.id] || 0) if custom_field.is_a? IssueCustomField and !custom_field.is_for_all? %></td>
+          <% end %>
+          <% if custom_field.easy_groupable? %>
+            <td><%= custom_field.easy_group %></td>
+          <% end %>
+          <%= call_hook :view_custom_fields_index_body, custom_field: custom_field %>
+          <td class="buttons">
+            <% if custom_field.non_deletable %>
+              <%= link_to (custom_field.disabled? ? l(:label_easy_custom_field_enable) : l(:label_easy_custom_field_disable)), custom_field_toogle_disable_path(custom_field), :method => :post, :class => 'icon icon-'+(custom_field.disabled? ? 'checked-circle' : 'close') %>
+            <% else %>
+              <%= delete_link custom_field_path(custom_field) %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

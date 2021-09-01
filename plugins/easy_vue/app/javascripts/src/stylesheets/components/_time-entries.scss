@@ -1,0 +1,16 @@
+.log-time {
+  &__cf-wrapper {
+    margin: $gap 0 $gap/2 0;
+    width: 100%;
+    & > div {
+      &:nth-of-type(odd) {
+        margin-left: 0;
+      }
+
+      &:nth-of-type(even) {
+        margin-right: 0;
+      }
+      width: calc(50% - 20px) !important;
+    }
+  }
+}

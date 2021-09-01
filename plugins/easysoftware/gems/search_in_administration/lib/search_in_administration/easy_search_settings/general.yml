@@ -1,0 +1,203 @@
+---
+settings_path:
+  first:
+    params:
+    labels:
+      - label_settings
+  general:
+    params:
+      tab: 'general'
+    labels:
+    - setting_app_title
+    - label_easy_setting_attachment_description
+    - setting_per_page_options
+    - setting_search_results_per_page
+    - setting_easy_maximum_results_shown_in_autocomplete
+    - setting_activity_days_default
+    - setting_host_name
+    - setting_protocol
+    - setting_text_formatting
+    - field_ckeditor_toolbar_config
+    - setting_ckeditor_syntax_highlight_enabled
+    - field_ckeditor_syntax_highlight_theme
+    - setting_ckeditor_autolink_file_protocols
+    - field_attachment_reminder_words
+    - setting_cache_formatted_text
+    - setting_feeds_limit
+    - setting_fiscal_period
+    - setting_easy_search_suggester
+    - setting_easy_search_default_object_types
+    - heading_webdav
+    - setting_easy_webdav_enabled
+    - setting_easy_caldav_enabled
+    - setting_easy_carddav_enabled
+    label_tab_name: label_general
+  display:
+    params:
+      tab: 'display'
+    labels:
+    - setting_default_language
+    - setting_force_default_language_for_anonymous
+    - setting_force_default_language_for_loggedin
+    - setting_start_of_week
+    - setting_date_format
+    - label_easy_setting_html5_dates
+    - setting_time_format
+    - setting_user_format
+    - label_easy_setting_chart_numbers_format
+    - setting_gravatar_enabled
+    - setting_gravatar_default
+    - setting_thumbnails_enabled
+    - setting_thumbnails_size
+    - setting_show_personal_statement
+    - setting_show_bulk_time_entry
+    - setting_show_easy_resource_booking
+    - setting_show_easy_custom_formatting
+    - label_easy_setting_hide_login_quotes
+    label_tab_name: label_display
+  authentication:
+    params:
+      tab: 'authentication'
+    labels:
+    - setting_login_required
+    - setting_autologin
+    - setting_self_registration
+    - label_easy_setting_self_registered_user_to_group_id
+    - setting_password_min_length
+    - label_unique_password_counter
+    - setting_password_max_age
+    - setting_lost_password
+    - setting_openid
+    - setting_password_required_char_classes
+    - label_setting_sso
+    - setting_enable_sso
+    - setting_sso_login_env_variable
+    label_tab_name: label_authentication
+  api:
+    params:
+      tab: 'api'
+    labels:
+    - setting_rest_api_enabled
+    - setting_jsonp_enabled
+    label_tab_name: label_api
+  projects:
+    params:
+      tab: 'projects'
+    labels:
+    - setting_default_projects_modules
+    - setting_default_projects_tracker_ids
+    - field_global_fixing_activity
+    - field_enable_activity_roles
+    - setting_default_projects_public
+    - setting_default_project_inherit_members
+    - setting_project_display_identifiers
+    - setting_new_project_user_role_id
+    - label_easy_setting_new_subproject_user_role_id
+    - setting_project_calculate_start_date
+    - setting_project_calculate_due_date
+    - setting_default_activity_in_overall_activity
+    - label_settings_project_completion_formula
+    - label_settings_project_risk_custom_field_id
+    - label_settings_default_project_indicator
+    label_tab_name: label_project_plural
+  issues:
+    params:
+      tab: 'issues'
+    labels:
+    - setting_show_issue_id
+    - setting_display_subprojects_issues
+    - setting_display_issue_relations_on_new_form
+    - setting_display_project_field_on_issue_detail
+    - setting_show_easy_entity_activity_on_issue
+    - setting_issue_created_on_date_format_label
+    - label_issue_color_scheme_for
+    - setting_milestone_effective_date_from_issue_due_date
+    - setting_enable_private_issues
+    - setting_allow_repeating_issues
+    - setting_link_copied_issue
+    - setting_cross_project_subtasks
+    - setting_cross_project_issue_relations
+    - setting_issue_group_assignment
+    - setting_default_issue_start_date_to_creation_date
+    - setting_close_subtask_after_parent
+    - setting_issue_done_ratio
+    - setting_issue_set_done_after_close
+    - setting_issue_private_note_as_default
+    - setting_skip_workflow_for_admin
+    - setting_issues_export_limit
+    - label_parent_task_attributes
+    label_tab_name: label_issue_tracking
+  timeentries:
+    params:
+      tab: 'timeentries'
+    labels:
+    - text_easy_settings_time_entry_heading
+    - label_time_entries_locking_enabled
+    - label_show_billable_things
+    - text_easy_settings_time_entry_limit_create
+    - text_easy_settings_time_entry_limit_edit
+    - text_easy_settings_time_entry_daily_limit
+    - label_timelog_comment_editor_enabled
+    - label_time_entry_spent_on_at_issue_update_enabled
+    - label_allow_log_time_to_closed_issue
+    - label_easy_setting_required_issue_id_at_time_entry
+    - label_easy_setting_show_time_entry_range_select
+    - label_easy_setting_required_time_entry_comments
+    label_tab_name: label_time_entry_plural
+  attachments:
+    params:
+      tab: 'attachments'
+    labels:
+    - setting_attachment_max_size
+    - setting_attachment_extensions_allowed
+    - setting_attachment_extensions_denied
+    - setting_file_max_size_displayed
+    - setting_diff_max_lines_displayed
+    - setting_repositories_encodings
+    label_tab_name: label_attachment_plural
+  notifications:
+    params:
+      tab: 'notifications'
+    labels:
+    - setting_mail_from
+    - setting_bcc_recipients
+    - setting_plain_text_mail
+    - label_easy_setting_issue_mail_subject_style
+    - text_select_mail_notifications
+    - setting_emails_header
+    - setting_emails_footer
+    label_tab_name: field_mail_notification
+  mail_handler:
+    params:
+      tab: 'mail_handler'
+    labels:
+    - setting_mail_handler_body_delimiters
+    - setting_mail_handler_enable_regex_delimiters
+    - setting_mail_handler_excluded_filenames
+    - setting_mail_handler_api_enabled
+    - setting_mail_handler_api_key
+    label_tab_name: label_incoming_emails
+  repositories:
+    params:
+      tab: 'repositories'
+    labels:
+    - setting_enabled_scm
+    - setting_autofetch_changesets
+    - label_easy_setting_dont_verify_server_cert
+    - setting_sys_api_enabled
+    - setting_sys_api_key
+    - setting_repository_log_display_limit
+    - setting_commit_logs_formatting
+    - text_issues_ref_in_commit_messages
+    label_tab_name: label_repository_plural
+  users:
+    params:
+      tab: 'users'
+    labels:
+    - setting_max_additional_emails
+    - setting_default_notification_option
+    - label_default_values_for_new_users
+    - field_time_zone
+    - field_hide_mail
+    - setting_unsubscribe
+    label_tab_name: label_user_plural

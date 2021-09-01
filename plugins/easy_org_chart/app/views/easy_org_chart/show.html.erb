@@ -1,0 +1,51 @@
+<%= render 'easy_org_chart/initialization_tags' %>
+
+<% content_for :sidebar do %>
+    <div id="easy-org-chart-users-drop-zone" class="orgchart-drop-overlay">
+      <div class="orgchart-drop-zone">
+        <div class="orgchart-drop-zone-text-wrapper"><span><%= l(:title_easy_org_chart_drop_for_delete) %></span></div>
+      </div>
+    </div>
+
+    <%= form_tag users_easy_org_chart_path(format: :json), method: :get, data: {remote: true}, id: "easy-org-chart-form" do %>
+      <input name="with_user_id" type="hidden" id="easy-org-chart-with-user-id" />
+      <input name="without_user_id" type="hidden" id="easy-org-chart-without-user-id" />
+      <p>
+        <input name="keywords" type="search" placeholder="Search" id="easy-org-chart-users-search" />
+        <em class="help"><%= l(:title_easy_org_chart_drag_for_create) %></em>
+      </p>
+    <% end %>
+
+
+    <ul id="easy-org-chart-users" class="link-list"></ul>
+<% end %>
+
+<div class="orgchart-wrapper">
+  <div class="orgchart-menu">
+    <div class="push-right">
+      <%= content_tag :button, l(:button_easy_org_chart_collapse), type: 'button', class: 'button icon icon-remove', data: {org_chart_action: 'toggle', status: 'expanded', org_chart_collapse: l(:button_easy_org_chart_collapse), org_chart_expand: l(:button_easy_org_chart_expand)} %>
+      <button class="button button-positive icon icon-save" type="button" disabled="disabled" data-org-chart-action="save" data-path="<%= easy_org_chart_path %>"><%= l(:button_save) %></button>
+    </div>
+    <h2><%= l(:title_easy_org_chart) %></h2>
+  </div>
+  <div class="orgchart-container-wrapper">
+    <div class="orgchart-zoom-icons">
+      <a class="icon icon-zoom-in" href="#" data-org-chart-zoom="in"></a>
+      <a class="icon icon-zoom-out" href="#" data-org-chart-zoom="out"></a>
+      <a class="icon icon-refresh" href="#" data-org-chart-zoom="reset"></a>
+    </div>
+    <div class="orgchart-container" data-role="easy-org-chart" data-path="<%= tree_easy_org_chart_path(format: 'json') %>" data-org-chart-editable="true"></div>
+  </div>
+  <div class="orgchart-menu">
+    <button class="button icon icon-print" type="button" data-org-chart-action="export"><%= l(:button_easy_org_chart_export) %></button>
+    <div class="orgchart-legend push-right">
+      <% %w[root_node parent_node node].each do |node_type| %>
+        <span class="orgchart-legend-label">
+          <span class="orgchart-legend-symbol orgchart-legend-symbol-<%= node_type %>"></span>
+          <%= l("label_easy_org_chart_legend_#{node_type}") %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>
+

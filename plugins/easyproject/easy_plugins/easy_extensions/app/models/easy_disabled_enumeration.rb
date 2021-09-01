@@ -1,0 +1,2 @@
+class EasyDisabledEnumeration < Enumeration
+end

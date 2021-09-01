@@ -1,0 +1,20 @@
+api.array :events do
+  @events.each do |event|
+    api.activity do
+      api.id event.id
+      api.datetime event.event_datetime
+      api.title event.event_title
+      api.description event.event_description
+      if event.event_author
+        api.author do
+          if event.event_author.respond_to?(:id)
+            api.id event.event_author.id
+          end
+          api.name event.event_author.to_s
+        end
+      end
+      api.type event.event_type
+      api.issue_id event.journalized_id if event.is_a?(Journal) && event.journalized_type == 'Issue'
+    end
+  end
+end

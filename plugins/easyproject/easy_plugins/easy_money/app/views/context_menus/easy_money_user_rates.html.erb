@@ -1,0 +1,8 @@
+<ul>
+  <li>
+    <%= context_menu_link(l(:label_bulk_edit_selected_users), {controller: 'easy_money_rates', action: 'bulk_edit', project_id: @project, ids: params[:ids], back_url: params[:back_url]}, class: 'icon icon-edit') -%>
+  </li>
+  <li>
+    <%= context_menu_link(l(:label_update_project_rates_for_selected_users), {controller: 'easy_money_rates', action: 'projects_select', project_id: @project, ids: params[:ids], back_url: params[:back_url]}, class: 'icon icon-edit') %>
+  </li>
+</ul>

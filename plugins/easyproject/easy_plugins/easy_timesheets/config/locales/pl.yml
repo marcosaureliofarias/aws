@@ -1,0 +1,94 @@
+---
+pl:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Istnieje inny arkusz dla
+                tego okresu
+  button_copy_easy_time_sheet: Kopiuj wiersze do nowego grafiku
+  button_easy_timesheet_by_easy_query: Grafiki wg zapisanego filtra
+  button_easy_timesheet_delete_with_time_entries: Usuń wiersz i spędzony czas
+  button_easy_timesheet_delete_without_time_entries: Usuń tylko wiersz
+  button_easy_timesheets_approve: Zatwierdź
+  button_easy_timesheets_lock: Zablokuj
+  button_easy_timesheets_new_row: Nowy wiersz
+  button_easy_timesheets_reject: Odrzuć
+  button_easy_timesheets_unlock: Odblokuj
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Oświadczenie osobiste - Listy obecności
+        description: Zobacz listy obecności
+  easy_query:
+    name:
+      easy_timesheet_query: Listy obecności
+  easy_timesheets_date_must_be_first_day_of_week: Musi być pierwszy dzień tygodnia.
+    (%{day})
+  easy_timesheets_periods:
+    day: Tygodniowo
+    month: Miesięcznie
+    week: Tygodniowo
+  easy_timesheets_plugin_name: Grafiki
+  error_timesheet_invalid_time_entries: 'Nie można utworzyć graifku z powodu nieprawidłowych
+    wpisów czasu: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: ID własnego pola nadgodzin
+    label_new_monhly_timesheet: Nowa miesięczna ewidencja czasu pracy
+    label_overtime: Nadgodziny
+    label_set_cf_overtime_id_in_rys_plugins: Funkcja nadgodzin jest aktywna. Wybierz
+      pole własne nadgodzin %{link}.
+  field_easy_timesheet_period: Okres
+  heading_easy_timesheets_edit: Edytuj grafik
+  heading_easy_timesheets_new: Nowy grafik
+  heading_easy_timesheets_show: Grafik %{start_date} - %{end_date}
+  label_easy_timesheet: Grafik
+  label_easy_timesheet_approved: Zatwierdzony?
+  label_easy_timesheet_approved_by: Zatwierdzony przez
+  label_easy_timesheet_end_date: Data końcowa
+  label_easy_timesheet_lock_description: Przyczyna zatwierdzenia/odrzucenia
+  label_easy_timesheet_lock_prompt: Przyczyna do zatwierdzenia
+  label_easy_timesheet_locked_at: Zatwierdzony/odrzucony
+  label_easy_timesheet_rejected_by: Odrzucony przez
+  label_easy_timesheet_unlock_prompt: Przyczyna do odrzucenia
+  label_easy_timesheets: Listy obecności
+  label_enable_timesheet_over_time: Włącz funkcję nadgodzin
+  label_enabled_timesheet_periods: Włącz okresy
+  label_filter_group_easy_timesheet_query: Grafik
+  notice_easy_timesheet_both_periods: Jeżeli wybierzesz obydwa, niektóre pozycje mogą
+    się pomieszać lub nie działać poprawnie, jeżeli okresy będą na siebie zachodzić.
+  notice_extended_timesheet_period_not_enabled: Ewidencja czasu pracy na %{period}
+    jest nieaktywna
+  permission_create_easy_timesheets_for_other_user: Tworzenie ewidencji czasu pracy
+    dla innych użytkowników
+  permission_edit_easy_timesheets: Edytowanie ewidencji czasu pracy
+  permission_edit_own_easy_timesheets: Edytowanie własnej ewidencji czasu pracy
+  permission_view_easy_timesheets: Wyświetlanie ewidencji czasu pracy
+  project_module_easy_timesheets: Listy obecności
+  text_easy_timesheet_destroy_cell_are_you_sure: Czy na pewno chcesz usunąć spędzony
+    czas?
+  text_easy_timesheet_destroy_row_are_you_sure: Zamierzasz usunąć wiersz grafiku.
+    Nie musisz automatycznie usunąć spędzonego czasu na tym wierszu. W jaki sposób
+    chciałbyś kontynuować?
+  text_easy_timesheet_prompt_text: Dodaj czas
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: Data początkowa
+    będzie automatycznie przypisana do początku wybranego tygodnia
+  text_time_sheet_copy_from: Wiersze będą wstępnie wypełnione z grafiku %{entity}
+  text_warning_after_time_sheet_copied: Jeśli nie zapiszesz przynajmniej jednej komórki
+    w wierszu, wiersz zostanie utracony.
+  title_easy_timesheet_destroy: Usuń grafik
+  title_easy_timesheet_edit_with_period: Edytuj %{period} grafik
+  title_easy_timesheet_new_with_period: Nowy %{period} grafik
+  title_easy_timesheet_show: Pokaż grafik
+  title_next_time_sheet: Pokaż następujący grafik %{user}
+  title_previous_time_sheet: Pokaż poprzedni grafik %{user}
+  validation_entry_already_exists: Grafik pomiędzy (%{start_date}) i (%{end_date})
+    już istnieje
+  validation_greater_than_start_date: "(%{end_date}) musi być późniejsza niż data
+    początkowa (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: Niektóre wpisy mogły nie zostać
+    zniszczone
+  validation_week_period: Okres pomiędzy (%{start_date}) i (%{end_date}) musi być
+    tygodniem

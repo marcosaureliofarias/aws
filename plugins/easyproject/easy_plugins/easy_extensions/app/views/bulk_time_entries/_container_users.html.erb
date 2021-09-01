@@ -1,0 +1,14 @@
+<% project = @project || @last_project %>
+<% if @time_entry.safe_attribute?('user_id') || User.current.allowed_to?(:add_timeentries_for_other_users_on_project, project) %>
+  <p>
+    <%= label_for_field(:user_id, {required: true }) -%><%= easy_select_tag(
+      'user_id',
+      {name: @time_entry.user.name, id: @time_entry.user_id},
+      nil,
+      load_users_easy_time_entries_path(format: 'json', project_id: project&.id),
+      onchange: "$.ajax({url: '#{j new_easy_time_entry_path(user_changed: '1', format: 'js', project_id: project).html_safe}', data: $('#bulk-time-entry-form').serialize()});"
+    ) -%>
+  </p>
+<% else %>
+  <%= hidden_field_tag 'user_id', @user.id %>
+<% end %>

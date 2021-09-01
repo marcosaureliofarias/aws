@@ -1,0 +1,45 @@
+<%
+  reply_links = local_assigns.fetch(:reply_links, false)
+  editable = local_assigns.fetch(:editable, true)
+  hook_enabled = local_assigns.fetch(:hook_enabled, false)
+  collapsible = local_assigns.fetch(:collapsible, true)
+%>
+<div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
+  <div class="journal-details-container">
+    <% if EasySetting.value('show_journal_id') %>
+      <% m = "#{journal.journalized.class.name.underscore}_journal_id_link".to_sym %>
+      <%= send(m, journal, entity).html_safe if respond_to?(m) -%>
+    <% end -%>
+
+    <h5 class="journal-byline" data-entity-id="<%= journal.id %>" data-entity-type="Journal" data-handler="<%= journal.notes.present? %>">
+      <span class="journal-details-headline">
+        <%= avatar(journal.user, :style => :medium) -%>
+        <%= content_tag('a', '', :name => "note-#{journal.id}") %>
+        <span class="journal-details-headline-wrap">
+          <span class="journal-details-headline-nowrap">
+            <%= link_to_user(journal.user) %>
+            <%= content_tag('span', l(:field_is_private), :class => 'private') if journal.private_notes? %>
+            <%= content_tag(:i, '', :class => "icon-watcher private-notes-lock-icon#{' hidden' unless journal.private_notes?}") %>
+          </span>
+          <%= content_tag('span', format_time(journal.created_on).html_safe, :class => "journal-timestamp") %>
+        </span>
+      </span>
+      <% if journal.not_important_details? && User.current.pref.display_journal_details && collapsible %>
+        <%= content_tag(:span, l(:label_menu_more), :class => 'expander journal-details-toggler') -%>
+      <% end %>
+    </h5>
+
+    <% if Setting.thumbnails_enabled? && (thumbnail_attachments = journal_thumbnail_attachments(journal)).any? %>
+      <div class="thumbnails">
+        <% thumbnail_attachments.each do |attachment| %>
+          <div><%= thumbnail_tag(attachment) %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= render_notes(entity, journal, {:reply_links => reply_links, :editable => editable}) -%>
+    <%= render_journal_details(journal, { entity: entity }) %>
+  </div>
+  <%= call_hook(:view_journal_show_description_bottom, :journal => journal, :entity => entity) if !journal.notes.blank? && hook_enabled && User.current.pref.display_journal_details -%>
+</div>
+<%= call_hook(:view_issues_history_journal_bottom, {:journal => journal}) -%>

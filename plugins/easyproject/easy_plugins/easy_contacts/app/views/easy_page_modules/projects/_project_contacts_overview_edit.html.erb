@@ -1,0 +1,14 @@
+  <%= hidden_field_tag 'edit', 'true' %>
+  <% query = @easy_page_modules_data[block_name][:query] %>
+  <%= hidden_field_tag( 'project_id', @project.id) if @project %>
+  <%= render(:partial => 'easy_page_modules/easy_query_module_form', :locals => {
+      :page_module => page_module, :block_name => block_name, :settings => settings, :modul_uniq_id => modul_uniq_id,
+      :query => query, :preview_options => {:update => "#{modul_uniq_id}easy_contacts_preview"}
+    }) %>
+  <div id="<%= modul_uniq_id %>easy_contacts_preview" class="adhoc-entities-preview"></div>
+
+<script type="text/javascript">
+  before_submit_<%= modul_uniq_id.underscore -%> = function() {
+    if ($('#<%= modul_uniq_id -%>query_type_2').is(":checked")) { EASY.modalSelector.selectAllOptions('<%= modul_uniq_id -%>selected_columns'); }
+  };
+</script>

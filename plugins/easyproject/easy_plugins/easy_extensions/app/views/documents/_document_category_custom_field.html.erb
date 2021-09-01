@@ -1,0 +1,9 @@
+<% category ||= nil %>
+
+<% if category && category.is_a?(DocumentCategory) %>
+  <ul>
+    <% category.custom_field_values.each do |custom_value| %>
+      <li><strong><%= custom_value.custom_field.name %>:</strong> <%= show_value(custom_value) %></li>
+    <% end %>
+  </ul>
+<% end %>

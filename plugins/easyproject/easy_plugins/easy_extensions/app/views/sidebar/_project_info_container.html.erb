@@ -1,0 +1,4 @@
+<% tc_options = {:heading => l(:sidebar_project_info), :container_html => {:class => 'project-info'}} %>
+<%= toggling_container('issues-sidebar-project-info', User.current, tc_options) do %>
+  <%= render :partial => 'sidebar/project_info', :locals => { :project => @project } %>
+<% end %>

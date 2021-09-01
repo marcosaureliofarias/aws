@@ -1,0 +1,18 @@
+<%= render @query, :options => { :hascontextmenu => false }, :form_options => {:free_search_options => {:free_search_url => easy_crm_contacts_project_path(id: @project)}} %>
+
+<%= render(:partial => 'easy_queries/easy_query_export_format_links', :locals => {:query => @query}) -%>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do -%>
+  <%= render_easy_menu(:easy_crm_contacts_page_menu, nil, {:optional_project => @project}) %>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+<% end -%>
+
+<% content_for :easy_page_layout_service_box do -%>
+  <%= render :partial => 'easy_crm/sidebar_buttons', :locals => {:project => @project} %>
+<% end -%>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_crm' -%>
+<% end %>

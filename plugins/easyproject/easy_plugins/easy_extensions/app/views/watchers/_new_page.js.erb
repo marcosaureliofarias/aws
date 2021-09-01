@@ -1,0 +1,33 @@
+var selected = [];
+var selectedObj = {};
+var selectedGroups = [];
+var selectedObjGroups = {};
+
+$("#modal_watchers_user_select .users input:checked").each(function(){
+  $this = $(this);
+  var val = $this.val();
+  selectedObj[val] = ($this.parent());
+  selected.push(val);
+});
+$("#modal_watchers_group_select .groups input:checked").each(function(){
+  $this = $(this);
+  var val = $this.val();
+  selectedObjGroups[val] = ($this.parent());
+  selectedGroups.push(val);
+});
+
+$('#ajax-modal').html("<%=j(render :partial => 'watchers/new', :locals => {:watched => watched, :watchables => watchables, :available_watchers => available_watchers, groups: @available_watcher_groups }) %>");
+
+var principals = $("#modal-selector-entities .users");
+var groups = $("#modal-selector-entities .groups");
+
+$.each(selected,function(i, val){
+  principals.find("input[value='"+ val +"']").parent().remove();
+  principals.prepend(" "); // whitespace
+  principals.prepend(selectedObj[val]);
+});
+$.each(selectedGroups,function(i, val){
+  groups.find("input[value='"+ val +"']").parent().remove();
+  groups.prepend(" "); // whitespace
+  groups.prepend(selectedObjGroups[val]);
+});

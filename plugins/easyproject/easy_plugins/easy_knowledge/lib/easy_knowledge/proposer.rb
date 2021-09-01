@@ -1,0 +1,2 @@
+EasyExtensions::ActionProposer.add({ controller: 'easy_knowledge_stories', action: 'new' })
+EasyExtensions::ActionProposer.add({ controller: 'easy_knowledge_stories', action: 'index', set_filter: 1, favourited: 1 })

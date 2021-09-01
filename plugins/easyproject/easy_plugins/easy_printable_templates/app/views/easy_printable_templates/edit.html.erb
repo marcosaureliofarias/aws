@@ -1,0 +1,34 @@
+<h2><%= l(:heading_easy_printable_templates_edit) -%></h2>
+
+<%= labelled_form_for @easy_printable_template, :html => {:class => 'tabular form-box'} do |f| %>
+  <%= error_messages_for @easy_printable_template %>
+
+  <div>
+    <%= render :partial => 'form', :locals => { :f => f } %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_update),:class => 'button-positive' if @easy_printable_template.editable? %>
+    <% if params[:back_url2] || params[:back_url] %>
+      <%= link_to(l(:button_back), params[:back_url2].presence || params[:back_url], :class => 'button', :title => l(:button_back)) %>
+    <% end %>
+    <%= link_to_add_association l(:button_easy_printable_templates_add_page), f, :easy_printable_template_pages, :class => 'button', :title => l(:button_easy_printable_templates_add_page), :partial => 'pages' %>
+  </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title l(:heading_easy_printable_templates_edit) %>
+
+<% content_for :header_tags do %>
+  <style type="text/css">
+    table.easy-printable-template-tokens-list tr > td:first-child {
+      padding-left: 25px;
+    }
+    table.easy-printable-template-tokens-list tr > td[colspan] {
+      padding-left: 0;
+      font-weight: bold;
+    }
+  </style>
+  <%= easy_cocoon_tags %>
+<% end %>

@@ -1,0 +1,3 @@
+<span><%= link_to(report.alert.name, {:controller => 'alerts', :action => 'show', :id => report.alert.id, :only_path => false}, :title => l(:title_alerts_show_alert, :alertname => report.alert.name)) -%></span>
+<span><%= link_to(report.entity.name, { :controller => 'versions', :action => 'show', :id => report.entity_id, :project_id => report.entity.project, :only_path => false}, :title => l(:title_alerts_report_entity_issue, :entityname => report.entity.name)) -%></span>
+<span><%= l(:label_version_query_report) %></span>

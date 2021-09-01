@@ -1,0 +1,13 @@
+<%= error_messages_for @news %>
+<div class="box tabular settings">
+  <p><%= f.text_field :title, :required => true, :size => 60, :class => 'block', :maxlength => 60 %></p>
+  <p style="display:none"><%= f.text_area :summary, :cols => 60, :rows => 2, :class => 'block' %></p>
+  <p class="description">
+  	<%= label_for_field(:description, :required => true) %>
+  	<%= f.text_area :description, :cols => 60, :rows => 15, :class => 'wiki-edit', :no_label => true %></p>
+  <p id="news-spinned"><%= f.check_box :spinned -%></p>
+  <p id="attachments_form">
+    <%= render :partial => 'attachments/form', :locals => {:container => @news} %></p>
+</div>
+
+<%= wikitoolbar_for( 'news_description' ) unless in_mobile_view? -%>

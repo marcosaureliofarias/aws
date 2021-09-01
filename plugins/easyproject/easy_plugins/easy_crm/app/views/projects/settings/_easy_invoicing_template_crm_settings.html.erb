@@ -1,0 +1,17 @@
+<% easy_invoicing_template_crm_case_status_id = EasySetting.value(:easy_invoicing_template_crm_case_status_id, project) %>
+<% easy_invoicing_template_create_crm_case_assignee_id = EasySetting.value(:easy_invoicing_template_create_crm_case_assignee_id, project) %>
+<p>
+  <%= hidden_field_tag 'easy_setting[easy_invoicing_template_create_crm_case]', 0, :id => nil %>
+  <% box = check_box_tag 'easy_setting[easy_invoicing_template_create_crm_case]', 1, EasySetting.value('easy_invoicing_template_create_crm_case', project) %>
+  <%= label_tag 'easy_setting[easy_invoicing_template_create_crm_case]', box + l(:label_easy_invoicing_template_create_crm_case) %>
+</p>
+<p>
+  <%= label_tag 'easy_setting[easy_invoicing_template_crm_case_status_id]', l(:label_easy_crm_case_status) %>
+  <%= select_tag 'easy_setting[easy_invoicing_template_crm_case_status_id]', options_from_collection_for_select(EasyCrmCaseStatus.sorted, 'id', 'name', easy_invoicing_template_crm_case_status_id.to_s), :include_blank => false %>
+</p>
+<% if project %>
+  <p>
+    <%= label_tag 'easy_setting[easy_invoicing_template_create_crm_case_assignee_id]', l(:label_easy_crm_case_account_manager) %>
+    <%= select_tag 'easy_setting[easy_invoicing_template_create_crm_case_assignee_id]', options_from_collection_for_select(project.assignable_users, 'id', 'name', easy_invoicing_template_create_crm_case_assignee_id.to_s), :include_blank => true %>
+  </p>
+<% end %>

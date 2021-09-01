@@ -1,0 +1,7 @@
+<div>
+  <%= render_easy_entity_assignments entity, EasyActionCheck,
+                                     referenced_collection_name: :easy_action_checks,
+                                     display_style:              'list',
+                                     heading:                    l(:easy_action_check_query, scope: [:easy_query, :name]),
+                                     collapsed:                  true %>
+</div>

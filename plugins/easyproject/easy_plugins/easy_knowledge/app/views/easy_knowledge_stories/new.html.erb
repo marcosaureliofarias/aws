@@ -1,0 +1,14 @@
+<%= title  l(:label_easy_knowledge_new_story_knowledgebase) %>
+
+<%= labelled_form_for @story, :html => {:multipart => true, :class => 'form-box'} do |f| -%>
+
+  <%= render :partial => 'easy_knowledge_stories/form', :locals => {:f => f, :story => @story} %>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_create), :class => 'button-positive' %>
+  </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% html_title(l(:label_easy_knowledge_new_story_knowledgebase)) -%>

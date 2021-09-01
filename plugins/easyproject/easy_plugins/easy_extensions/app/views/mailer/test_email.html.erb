@@ -1,0 +1,10 @@
+<% content_for :email_header do %>
+  <%= link_to @app_name, @app_url %>
+<% end %>
+
+<% content_for :email_footer do %>
+  <%= Date.today.year -%> &copy; <%= link_to @app_name, @app_url %>, <%= mail_to @app_email %>
+<% end %>
+
+<p>This is a test email sent by <%= @app_name %>.<br>
+  <%= @app_name %> URL: <%= link_to @url, @url %></p>

@@ -1,0 +1,6 @@
+@mixin sticky {
+  position: sticky;
+  @supports (-ms-ime-align: auto) {
+    position: static;
+  }
+}

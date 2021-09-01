@@ -1,0 +1,5 @@
+<% view_options = {:go_to_url => {:controller => 'issues', :action => 'show'}, :render_query_tooltip_box => true} %>
+
+<%= render @query, hascontextmenu: true, :options => view_options %>
+
+<%= context_menu context_menu_diagrams_path %>

@@ -1,0 +1,32 @@
+<% show_zoom ||= '1' %>
+<td class="columns-heading"><label><%= l(:field_period_options) %></label></td>
+<td>
+  <% if show_zoom == '1' %>
+    <p>
+      <%= label_tag(modul_uniq_id + 'period_zoom', l(:field_period_zoom), class: :inline) %>
+      <%= select_tag((block_name.blank? ? 'period_zoom' : "#{block_name}[period_zoom]"), options_for_select(query.all_periods.collect{|p| [query_period_zoom_name(p), p]}, query.period_zoom), :id => modul_uniq_id + 'period_zoom') %>
+    </p>
+  <% else %>
+    <%= hidden_field_tag((block_name.blank? ? 'period_zoom' : "#{block_name}[period_zoom]"), query.period_zoom, :id => modul_uniq_id + 'period_zoom')  %>
+  <% end %>
+
+  <div>
+    <%= radio_button_tag((block_name.blank? ? 'period_date_period_type' : "#{block_name}[period_date_period_type]"), '2', query.period_date_period_type != '1', :id => modul_uniq_id + 'period_date_period_2') %>
+    <span onclick="<%= "$('##{modul_uniq_id}period_date_period_2').prop('checked', true);" -%>">
+      <span>
+        <%= label_tag(modul_uniq_id + 'period_start_date', l(:field_period_start_date), class: :inline) %>
+        <%= text_field_tag((block_name.blank? ? 'period_start_date' : "#{block_name}[period_start_date]"), query.period_start_date, :id => modul_uniq_id + 'period_start_date', size: 10, :onchange => "$(this).closest('span').click();") %>
+        <%= calendar_for(modul_uniq_id + 'period_start_date') %>
+      </span>
+      <span>
+        <%= label_tag(modul_uniq_id + 'period_end_date', l(:field_period_end_date), class: :inline) %>
+        <%= text_field_tag((block_name.blank? ? 'period_end_date' : "#{block_name}[period_end_date]"), query.period_end_date, :id => modul_uniq_id + 'period_end_date', size: 10, :onchange => "$(this).closest('span').click();") %>
+        <%= calendar_for(modul_uniq_id + 'period_end_date') %>
+      </span>
+    </span>
+  </div>
+  <div>
+    <%= radio_button_tag((block_name.blank? ? 'period_date_period_type' : "#{block_name}[period_date_period_type]"), '1', query.period_date_period_type == '1', :id => modul_uniq_id + 'period_date_period_1') %>
+    <%= select_tag (block_name.blank? ? 'period_date_period' : "#{block_name}[period_date_period]"), options_for_period_select(query.period_date_period, nil, {:show_future => true, :hide_custom => true}.merge(query.extended_period_options)), :id => modul_uniq_id + 'period_date_period', :onfocus => "$('##{modul_uniq_id}period_date_period_1').prop('checked', true);" %>
+  </div>
+</td>

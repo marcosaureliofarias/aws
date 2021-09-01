@@ -1,0 +1,42 @@
+<%= fields_for(easy_crm_case) do |f| %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= EasyCrmCaseItem.human_attribute_name('amount') %></th>
+        <th><%= EasyCrmCaseItem.human_attribute_name('unit') %></th>
+        <th><%= EasyCrmCaseItem.human_attribute_name('name') %></th>
+        <% if EasySetting.value(:show_description_on_crm_case, @project) %>
+          <th><%= EasyCrmCaseItem.human_attribute_name('description') %></th>
+        <% end %>
+        <th><%= EasyCrmCaseItem.human_attribute_name('price_per_unit') %></th>
+        <th><%= EasyCrmCaseItem.human_attribute_name('discount') %></th>
+        <th><%= EasyCrmCaseItem.human_attribute_name('total_price') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="easy_crm_case_items-association-insertion-node">
+      <%= f.fields_for :easy_crm_case_items, f.object.easy_crm_case_items do |builder| %>
+        <%= render :partial => 'easy_crm_case_items/easy_crm_case_item', :locals => {:f => builder, :easy_crm_case => easy_crm_case} %>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="<%= EasySetting.value(:show_description_on_crm_case, @project) ? 6 : 5 %>"></td>
+        <td class="total_sum"><%= format_price(easy_crm_case.price, easy_crm_case.currency) %></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+  <% if easy_crm_case.new_record? %>
+    <p>
+      <%= link_to_add_association l(:button_easy_crm_add_item), f, :easy_crm_case_items, :class => 'icon icon-add button button-positive',
+                                  :data => {
+                                      'association-insertion-node' => '.easy_crm_case_items-association-insertion-node',
+                                      'association-insertion-position' => 'append'
+                                  },
+                                  :partial => 'easy_crm_case_items/easy_crm_case_item', :render_options => {:locals => {:easy_crm_case => easy_crm_case}} %>
+
+      <%= call_hook(:view_easy_crm_case_items_buttons, :easy_crm_case => easy_crm_case, :f => f) %>
+    </p>
+  <% end %>
+<% end %>

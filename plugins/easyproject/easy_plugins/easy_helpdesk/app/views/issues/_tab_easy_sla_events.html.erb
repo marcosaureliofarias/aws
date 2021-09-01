@@ -1,0 +1,12 @@
+<% if @query.entities.any? %>
+  <%=
+    render 'easy_queries/easy_query_entities_list',
+           entities: @query.entities,
+           query: @query,
+           options: {
+               disable_sort: true
+           }
+  %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

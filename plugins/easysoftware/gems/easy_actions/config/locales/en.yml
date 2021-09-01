@@ -1,0 +1,94 @@
+en:
+  activemodel:
+    models:
+      easy_actions/actions/call_url: Call URL
+      easy_actions/actions/change_issue_status: Change task status
+      easy_actions/actions/new_email: Email Attributes
+      easy_actions/actions/new_issue: Task Attributes
+      easy_actions/actions/new_rocket_chat_message: Message Attributes
+  activerecord:
+    attributes:
+      easy_action:
+        name: Name
+        description: Description
+        active: Active
+        template: Template
+        from_template_id: From template
+      easy_action_check_template:
+        name: Name
+      easy_action_check:
+        entity_type: Entity Type
+        entity_id: Entity ID
+        status: Status
+      easy_action_state:
+        initial: Initial State
+      easy_action_state_action:
+        easy_action_state_id: Fire in State
+        action_class: Action
+      easy_action_sequence:
+        template: Template
+        entity_id: Entity ID
+      easy_action_sequence_template:
+        condition_class: Fire on
+        target_entity_class: Target Entity
+      easy_action_sequence_instance:
+        entity_type: Entity Type
+        entity_id: Entity ID
+        current_easy_action_state_id: Current State
+      easy_action_sequence_category:
+        name: Name
+        description: Description
+      easy_action_transition:
+        state_from_id: From
+        state_to_id: To
+        condition_class: Condition
+
+  easy_actions:
+    button_check_state: Check State
+    button_save_as_png: Download Image
+    button_choose_sequence_template: Choose Sequence Template
+    button_new_instance: Create instance
+    heading_easy_action_sequences: Entity Sequences
+    heading_easy_action_sequence_templates: Sequence Templates
+    heading_new_easy_action_sequence_template: New Template
+    heading_edit_easy_action_sequence_template: Edit Template
+    heading_new_easy_action_sequence: New Sequence
+    heading_edit_easy_action_sequence: Edit Sequence
+    heading_easy_action_sequence_instances: Instances
+    heading_easy_action_sequence_categories: Categories
+    heading_new_easy_action_sequence_category: New Category
+    heading_edit_easy_action_sequence_category: Edit Category
+    label_easy_action_sequence_instance_status:
+      waiting: Waiting
+      running: Running
+      done: Done
+    label_filter_group_easy_action_check_query: Checks
+    label_filter_group_easy_action_check_template_query: Checks
+    label_filter_group_easy_action_sequence_category_query: Categories
+    label_filter_group_easy_action_sequence_query: Entity Sequences
+    label_filter_group_easy_action_sequence_template_query: Sequence Templates
+    label_filter_group_easy_action_sequence_instance_query: Instances
+    label_manual_trigger: (manual)
+    plugin_name: Entity Sequences
+    plugin_description: ""
+    title_new_easy_action_sequences: Click to create new sequence
+    text_easy_action_transition_repeatedly: "(Execute repeatedly on entity, e.g. for every
+                                                hour checking)"
+
+  easy_query:
+    name:
+      easy_action_check_query: Checks
+      easy_action_check_template_query: Checks
+      easy_action_sequence_category_query: Categories
+      easy_action_sequence_query: Entity Sequences
+      easy_action_sequence_template_query: Sequence Templates
+      easy_action_sequence_instance_query: Instances
+
+  rys_features:
+    easy_actions:
+      title: Entity Sequences
+      description: Entity Sequences
+
+  permission_view_easy_actions: View Easy Actions
+  permission_manage_easy_actions: Manage Easy Actions
+  project_module_easy_actions: Easy Actions

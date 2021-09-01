@@ -1,0 +1,45 @@
+<% if easy_crm_case_statuses.blank? %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% else %>
+  <div class="autoscroll">
+    <table class="list reorder">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:name) -%></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:is_default) %></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:is_easy_contact_required) %></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:is_closed) %></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:is_won) %></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:is_provisioned) %></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:is_paid) %></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:show_in_search_results) %></th>
+          <th><%= EasyCrmCaseStatus.human_attribute_name(:only_for_admin) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% easy_crm_case_statuses.each do |easy_crm_case_status| %>
+          <tr>
+            <td class="center reorder-handler"><%= render_reorder_handle(easy_crm_case_status, 'easy_crm_case_status') %></td>
+            <td class="name"><%= easy_crm_case_status.name -%></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.is_default? %></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.is_easy_contact_required? %></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.is_closed? %></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.is_won? %></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.is_provisioned? %></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.is_paid? %></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.show_in_search_results? %></td>
+            <td class="tick"><%= checked_image easy_crm_case_status.only_for_admin %></td>
+            <td class="easy-additional-ending-buttons">
+              <div class="ending-buttons-fixed">
+                <%= link_to(content_tag(:span, l(:button_edit), :class => 'tooltip'), edit_easy_crm_case_status_path(easy_crm_case_status, :back_url => back_url), :remote => true, :class => 'icon icon-edit', :title => l(:button_edit)) %>
+                <%= link_to(content_tag(:span, l(:button_delete), :class => 'tooltip'), easy_crm_case_status_path(easy_crm_case_status, :back_url => back_url), :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:button_delete)) %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

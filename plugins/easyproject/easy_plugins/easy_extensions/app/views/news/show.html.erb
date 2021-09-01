@@ -1,0 +1,47 @@
+  <h2><%#= avatar(@news.author, :style => :small) %><%=h @news.title %></h2>
+
+  <% if authorize_for('news', 'edit') %>
+    <div id="edit-news" style="display:none;">
+      <%= labelled_form_for @news, :url => news_path(@news),
+        :html => { :id => 'news-form', :class => 'form-box', :method => :put, :multipart => true } do |f| %>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+        <div class="form-actions">
+          <%= submit_tag l(:button_save), :class => 'button-positive floatleft' %>
+          <%= link_to l(:button_cancel), '#', :onclick => '$("#edit-news").hide(); return false;', :class => 'button' %>
+        </div>
+      <% end %>
+      <div id="preview" class="wiki"></div>
+    </div>
+  <% end %>
+  <div id="history">
+    <%= render(:partial => 'news/news', :locals => {:news => @news, :detail => true}) %>
+    <%= link_to_attachments @news %>
+  </div>
+
+  <div id="comments" class="box easy-entity-journal">
+    <%= toggling_container('note-comments', User.current, {:heading => l(:label_comment_plural), :wrapping_heading_element_classes => 'icon icon-workflow'}) do %>
+      <%= render(:partial => 'common/comment', :collection => @news.comments) -%>
+    <% end %>
+  </div>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to( l(:label_comment_add), new_comment_path(@news.class, @news), :remote => true, :class => 'icon icon-add button-positive', :title => l(:label_comment_add)) if @news.commentable? -%>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= watcher_link(@news, User.current, :class => 'button')  %>
+  <% if @news.editable? %>
+    <%= link_to(l(:button_edit),
+                edit_news_path(@news),
+                :class => 'icon icon-edit button',
+                :accesskey => accesskey(:edit),
+                :onclick => 'EASY.utils.showAndScrollTo("edit-news", 0); return false;') %>
+    <%= delete_link news_path(@news), :class => 'button icon icon-remove' %>
+  <% end %>
+<% end %>
+
+<% html_title @news.title -%>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'scm' %>
+<% end %>

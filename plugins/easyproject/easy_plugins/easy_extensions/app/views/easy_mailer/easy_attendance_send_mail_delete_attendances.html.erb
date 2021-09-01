@@ -1,0 +1,20 @@
+<% ids = [] %>
+<% start_date = nil %>
+
+<table style='border: 1px solid black;border-spacing: 0px;'>
+  <thead>
+    <tr style='border: 1px solid black;'>
+      <th style='border: 1px solid black;'><%= l(:label_date_from) %></th>
+      <th style='border: 1px solid black;'><%= l(:label_date_to) %></th>
+      <th style='border: 1px solid black;'><%= l(:field_user) %></th>
+      <th style='border: 1px solid black;'><%= l(:field_easy_attendance_activity) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @easy_attendances.each do |activity, attendances| %>
+      <% start_date ||= attendances.first.arrival %>
+      <%= render :partial => 'delete_list', :collection => attendances, :as => 'easy_attendance' %>
+      <% ids.concat(attendances.collect(&:id)) %>
+    <% end %>
+  </tbody>
+</table>

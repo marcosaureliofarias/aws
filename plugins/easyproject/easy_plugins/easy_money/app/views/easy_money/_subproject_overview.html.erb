@@ -1,0 +1,128 @@
+<%
+  options[:only_self] ||= false
+
+  money_enabled = project.module_enabled?(:easy_money)
+  money_project = money_enabled ? project : project.parent
+  easy_money_settings = money_project.easy_money_settings
+  easy_money = money_project.easy_money(easy_currency_code)
+
+  project_price_type = easy_money_settings.expected_count_price
+  project_rate_type = EasyMoneyRateType.rate_type_cache(name: easy_money_settings.expected_rate_type)
+  project_rate_type ||= EasyMoneyRateType.rate_type_cache.first
+  project_rate_type_id = project_rate_type.try(:id)
+  project_show_expected = easy_money_settings.show_expected?
+%>
+
+<tr>
+  <td class="project-name">
+    <%= link_to_if(money_enabled ,project.name, project_easy_money_path(project_id: project.id), { title: l(:title_easy_money_link_to_subproject, subproject: project.name) }) %>
+  </td>
+  <td class="easy-money-sum-revenues">
+    <% if project_show_expected %>
+        <% if User.current.allowed_to?(:easy_money_show_expected_revenue, money_project) || User.current.allowed_to?(:easy_money_manage_expected_revenue, money_project) %>
+            <% value = easy_money.sum_expected_revenues(project_price_type, options) %>
+            <span title="<% l(:title_easy_money_sum_expected_revenues, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+        <% end %>
+        <span>/</span>
+    <% end %>
+    <% if User.current.allowed_to?(:easy_money_show_other_revenue, money_project) || User.current.allowed_to?(:easy_money_manage_other_revenue, money_project) %>
+        <% value = easy_money.sum_other_revenues(project_price_type, options) %>
+        <span title="<% l(:title_easy_money_sum_other_revenues, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+    <% end %>
+  </td>
+  <td class="easy-money-sum-expenses">
+    <% if project_show_expected %>
+        <% if User.current.allowed_to?(:easy_money_show_expected_expense, money_project) || User.current.allowed_to?(:easy_money_manage_expected_expense, money_project) %>
+            <% value = easy_money.sum_expected_expenses(project_price_type, options) %>
+            <span title="<% l(:title_easy_money_sum_expected_expenses, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+        <% end %>
+        <span>/</span>
+    <% end %>
+    <% if User.current.allowed_to?(:easy_money_show_other_expense, money_project) || User.current.allowed_to?(:easy_money_manage_other_expense, money_project) %>
+        <% value = easy_money.sum_other_expenses(project_price_type, options) %>
+        <span title="<% l(:title_easy_money_sum_other_expenses, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+    <% end %>
+  </td>
+
+  <% if options[:show_time_tracking] %>
+      <td class="easy-money-sum-payroll-expenses">
+        <% if project.self_and_descendants.where(Project.allowed_to_condition(User.current, :view_time_entries)).exists? %>
+            <% if project_show_expected %>
+              <% if User.current.allowed_to?(:easy_money_show_expected_payroll_expense, money_project) || User.current.allowed_to?(:easy_money_manage_expected_payroll_expense, money_project)%>
+                <% value = easy_money.sum_expected_payroll_expenses(options) %>
+                <span title="<% l(:title_easy_money_sum_expected_payroll_expenses, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+              <% end %>
+              <span>/</span>
+            <% end %>
+            <% if User.current.allowed_to?(:easy_money_show_time_entry_expenses, money_project) %>
+              <% value = easy_money.sum_time_entry_expenses(project_rate_type_id, options) %>
+              <span title="<% l(:title_easy_money_sum_time_entry_expenses, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+            <% end %>
+        <% else %>
+            <% if project_show_expected %>
+                <span><%= l(:label_not_available)%> / <%= l(:label_not_available) %></span>
+            <% else %>
+                <span><%= l(:label_not_available)%></span>
+            <% end %>
+        <% end %>
+      </td>
+  <% end %>
+
+  <% if options[:show_travel_costs] %>
+      <td class="easy-money-sum-travel-costs">
+        <% if easy_money_settings.use_travel_costs? %>
+            <% if User.current.allowed_to?(:easy_money_show_travel_cost, money_project) || User.current.allowed_to?(:easy_money_manage_travel_cost, money_project) %>
+                <% value = easy_money.sum_travel_costs(project_price_type, options) %>
+                <span title="<% l(:title_easy_money_sum_travel_costs, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+            <% end %>
+        <% else %>
+            <span><%= l(:label_not_available)%></span>
+        <% end %>
+      </td>
+  <% end %>
+
+  <% if options[:show_travel_expenses] %>
+      <td class="easy-money-sum-travel-expenses">
+        <% if easy_money_settings.use_travel_expenses? %>
+            <% if User.current.allowed_to?(:easy_money_show_travel_expense, money_project) || User.current.allowed_to?(:easy_money_manage_travel_expense, money_project) %>
+                <% value = easy_money.sum_travel_expenses(project_price_type, options) %>
+                <span title="<% l(:title_easy_money_sum_travel_expenses, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+            <% end %>
+        <% else %>
+            <span><%= l(:label_not_available)%></span>
+        <% end %>
+      </td>
+  <% end %>
+
+  <td class="easy-money-profit">
+    <% if project_show_expected %>
+        <% if User.current.allowed_to?(:easy_money_show_expected_profit, money_project) %>
+            <% value = easy_money.expected_profit(project_price_type, options) %>
+            <span title="<% l(:title_easy_money_expected_profit, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+        <% end %>
+        <span>/</span>
+    <% end %>
+    <% if User.current.allowed_to?(:easy_money_show_other_profit, money_project) %>
+        <% value = easy_money.other_profit(project_price_type, project_rate_type_id, options) %>
+        <span title="<% l(:title_easy_money_other_profit, project: project.name, value: format_easy_money_price(value, project, easy_currency_code, no_html: true)) %>"><%= format_easy_money_price(value, project, easy_currency_code) %></span>
+    <% end %>
+  </td>
+
+  <td class="easy-additional-ending-buttons">
+    <% if easy_money_settings.revenues_type == 'list' %>
+        <% url_options = {project_id: project.id, easy_money: {entity_type: 'Project', entity_id: project.id}, easy_currency_code: easy_currency_code} %>
+
+        <% if User.current.allowed_to?(:easy_money_manage_other_revenue, project) %>
+          <%= link_to('', {controller: 'easy_money_other_revenues', action: 'new'}.merge(url_options), {title: l(:title_easy_money_project_new_revenue), alt: l(:button_easy_money_project_new_revenue), class: 'icon icon-add'}) %>
+        <% elsif User.current.allowed_to?(:easy_money_manage_expected_revenue, project) %>
+            <%= link_to('', {controller: 'easy_money_expected_revenues', action: 'new'}.merge(url_options), {title: l(:title_easy_money_project_new_revenue), alt: l(:button_easy_money_project_new_revenue), class: 'icon icon-add'}) %>
+        <% end %>
+
+        <% if User.current.allowed_to?(:easy_money_manage_other_expense, project) %>
+            <%= link_to('', {controller: 'easy_money_other_expenses', action: 'new'}.merge(url_options), {title: l(:button_easy_money_project_new_expense), alt: l(:button_easy_money_project_new_expense), class: 'icon icon-remove'}) %>
+        <% elsif User.current.allowed_to?(:easy_money_manage_expected_expense, project) %>
+            <%= link_to('', {controller: 'easy_money_expected_expenses', action: 'new'}.merge(url_options), {title: l(:button_easy_money_project_new_expense), alt: l(:button_easy_money_project_new_expense), class: 'icon icon-remove'}) %>
+        <% end %>
+    <% end %>
+  </td>
+</tr>

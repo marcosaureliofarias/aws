@@ -1,0 +1,32 @@
+$gantt__color--text: $color-text !default;
+$gantt__color--text-muted: $color-text-muted !default;
+$gantt__color--background: mix($color-background, $color-foreground) !default;
+$gantt__color--foreground: $color-foreground !default;
+$gantt__color--border: $color-border-minor !default;
+
+$gantt__color--closed : $color-text-muted !default;
+$gantt__color--positive: $color-positive !default;
+$gantt__color--negative: $color-negative !default;
+$gantt__color--important: $color-important !default;
+$gantt__color--main: $color-main !default;
+$gantt__color--critical:  #c800ff !default;
+$gantt__color--highlight: mix($color-main, $color-foreground, 30%) !default; //$color-highlight !default;
+
+$gantt__color--palette-12: #b19f8d !default;
+$gantt__color--palette-13: #eed63a !default;
+
+@if variable-exists(color-palette-12) {
+  $gantt__color--palette-12: $color-palette-12 !default;
+}
+@if variable-exists(color-palette-13) {
+  $gantt__color--palette-13: $color-palette-13 !default;
+}
+
+$gantt__background--menu: $gantt__color--foreground !default;
+$gantt__border-color--minor: $color-border-minor !default;
+
+$gantt__gap: 5px !default;
+$gantt__height--line: 24px !default;
+$gantt__box-padding: $box-padding !default;
+
+$gantt__icon--size: $font-size;

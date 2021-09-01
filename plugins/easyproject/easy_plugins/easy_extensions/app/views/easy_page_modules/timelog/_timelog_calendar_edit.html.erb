@@ -1,0 +1,6 @@
+<div class="tabular">
+  <p>
+    <label class="my-page-timelog-calendar-period-label"><%= l(:label_my_page_timelog_calendar_period_select) -%></label>
+    <span class="my-page-timelog-calendar-period"><%= select_tag "#{block_name}[period]", options_for_select([[l("my_page_timelog_calendar_period.month"), "month"], [l("my_page_timelog_calendar_period.week"), "week"]], settings["period"]) -%></span>
+  </p>
+</div>

@@ -1,0 +1,14 @@
+<%= render @query, :easy_query_name => l(:label_easy_crm_cases) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= context_menu context_menu_easy_crm_cases_path(:project_id => @project) %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+  <%= render(:partial => 'easy_crm_cases/filters_by_member', :locals => {:project => @project}) if @project -%>
+<% end -%>
+
+<% content_for :easy_page_layout_service_box do -%>
+  <%= render(:partial => 'easy_crm/sidebar_buttons', :locals => {:project => @project}) %>
+<% end -%>

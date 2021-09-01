@@ -1,0 +1,1 @@
+EasyExtensions::ActionProposer.add({ controller: 'easy_timesheets', action: 'index', set_filter: 0 })

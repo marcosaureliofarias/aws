@@ -1,0 +1,183 @@
+---
+de:
+  easy_mindmup:
+    button_add_child: Unterordnung hinzufügen
+    button_add_parent: Überordnung hinzufügen
+    button_add_sibling: Gleichberechtigung hinzufügen
+    button_all_icons: Symbole
+    button_collapse: Einklappen
+    button_collapse_all: Alles einklappen
+    button_cut: Ausschneiden
+    button_edit_data: Daten bearbeiten
+    button_expand: Ausklappen
+    button_expand_all: Alles ausklappen
+    button_expand_collapse: Ausklappen/Einklappen
+    button_hotkeys: Tastaturkürzel
+    button_legend: Legende
+    button_one_side: Einseitig
+    button_paste: Einfügen
+    button_project_menu: Easy MindMup
+    button_redo: Wiederherstellen
+    button_remove_node: Knoten entfernen
+    button_show_links: Links anzeigen
+    button_undo: Rückgängig
+    error_create: konnte nicht erstellt werden
+    error_delete: konnte nicht gelöscht werden
+    error_update: konnte nicht aktualisiert werden
+    errors:
+      no_rest_api: REST-API ist deaktiviert. Aktivieren Sie es bitte in der Administration.
+      not_subtaskable: Aufgabe „%{task_name}“ kann wegen der Einstellung ihres Trackers
+        keine Unteraufgabe sein
+    free:
+      button_upgrade: Vollversion erwerben
+      feature_coloring: Knoten nach Eigenschaften färben
+      feature_context_menu: Ändern der Knoteneigenschaften über das Kontextmenü
+      feature_dnd_property: Ändern der Knoteneigenschaften per Drag & Drop
+      feature_filtering: Knoten nach Eigenschaft filtern
+      header_not_available: Nur in der Vollversion verfügbar
+    hotkeys:
+      info_mac_metakey: Auf dem Mac OSX können die Tasten Strg und Cmd für Tastenkürzel
+        verwendet werden, die mit Strg markiert sind – einige Browser verhindern bestimmte
+        Tastenbelegungen. Wenn zum Beispiel Cmd+Leertaste nicht in Ihrem Browser funktioniert,
+        versuchen Sie Strg+Leertaste.
+      keyboard:
+      - title: Knotenbearbeitung
+        hotkeys:
+        - hotkey: Enter
+          info: Gleichberechtigung hinzufügen
+        - hotkey: Shift+Enter
+          info: Gleichberechtigung darüber einfügen oder Zeilenumbruch (wenn Knoten
+            erhalten bleibt)
+        - hotkey: Tab oder Insert
+          info: Unterordnung hinzufügen
+        - hotkey: Shift+Tab
+          info: Überordnung einfügen
+        - hotkey: Leertaste
+          info: Knoten umbenennen
+        - hotkey: Shift+Leertaste
+          info: Knotendaten bearbeiten
+        - hotkey: Backspace oder Delete
+          info: Knoten entfernen
+        - hotkey: Strg+Hoch/Runter
+          info: Knoten nach oben/unten bewegen
+      - title: Bearbeitung
+        hotkeys:
+        - hotkey: Strg+S
+          info: Speichern
+        - hotkey: Strg+X oder C
+          info: Ausschneiden
+        - hotkey: Strg+C oder Y
+          info: Kopieren
+        - hotkey: Strg+V oder P
+          info: Einfügen
+        - hotkey: U oder Strg+Z
+          info: Rückgängig
+        - hotkey: R oder Strg+Y oder Strg+Shift+Z
+          info: Wiederherstellen
+      - title: Auswahl
+        hotkeys:
+        - hotkey: Pfeiltasten
+          info: Den Knoten über/unter/links/rechts dem/vom derzeit ausgewählten Knoten
+            auswählen
+        - hotkey: Shift + Pfeiltasten
+          info: Knoten über/unter/links/rechts der Auswahl hinzufügen (nützlich bei
+            der Mehrfachauswahl von Gleichberechtigungen)
+        - hotkey: "{"
+          info: Mehrfachauswahl des aktuellen Knotens und gesamten Teilbaums darunter
+        - hotkey: "["
+          info: Nur Mehrfachauswahl des Teilbaums unter dem aktuellen Knoten (nicht
+            des Knotens selbst)
+        - hotkey: "="
+          info: Mehrfachauswahl aller Gleichberechtigungen des aktuellen Knotens (die
+            die gleiche Überordnung haben)
+        - hotkey: "."
+          info: Mehrfachauswahl abbrechen und wieder nur den Knoten auswählen
+        - hotkey: 1 - 9
+          info: Alle Knoten einer bestimmten Ebene auswählen (z.B. 1 für alle Knoten
+            der ersten Ebene)
+      - title: Navigation und Bildschirm
+        hotkeys:
+        - hotkey: "/ oder F"
+          info: Knoten aus- oder einklappen (Unterordnungen aus- oder einklappen)
+        - hotkey: Strg + oder Z
+          info: Vergrößern
+        - hotkey: Strg - oder Shift Z
+          info: Verkleinern
+        - hotkey: Esc, 0, Strg+0
+          info: Kartenansicht zurücksetzen – Wurzelknoten auswählen und ins Zentrum
+            des Bildschirms bringen
+      mouse:
+      - action: Karte bewegen
+        gesture: Klicken und ziehen Sie den zentralen Knoten, klicken und ziehen Sie
+          den Hintergrund oder scrollen Sie mit dem Tastfeld/Touchpad.
+      - action: Einen Knoten auswählen
+        gesture: Tippen oder klicken Sie darauf
+      - action: Mehrere Knoten auswählen
+        gesture: Shift+klicken
+      - action: Knoten neu ordnen
+        gesture: Ziehen Sie einen Knoten zwischen seinen Gleichberechtigungen horizontal
+          in die Nähe der Position der Neuordnung. Ein schwarzer Pfeil wird die Neuordnung
+          anzeigen.
+      - action: Einen Knoten manuell positionierene
+        gesture: Ziehen Sie einfach einen Knoten, bis die Pfeilspitze zur Neuordnung
+          nicht mehr angezeigt wird. Um die manuelle Position auch bei Anzeige des
+          Neuordnungspfeils zu erzwingen, halten Sie Shift beim Ziehen gedrückt. Beachten
+          Sie bitte, dass Unterordnungen des Wurzelknotens in jede Richtung gezogen
+          werden können. Knoten von unteren Ebenen können nur in Richtung ihrer Überordnungen
+          positioniert werden, die eine Verbindung zur Wurzel haben.
+      - action: Knoten umbenennen
+        gesture: Doppelklick oder doppelt antippen
+      - action: Kontextmenü mit Handlungen anzeigen
+        gesture: 'Machen Sie einen Rechtsklick auf einen Knoten (mit der Maus) oder
+          tippen Sie den Hintergrund doppelt an, oder drücken Sie lange auf einen
+          Knoten: anzeigen (bei Touchgeräten)'
+      - action: Knotenüberordnung ändern
+        gesture: Drag and Drop eines Knotens auf einen anderen Knoten (rundumlaufende
+          Drops sind nicht erlaubt. Sie können einen Knoten also nicht auf eine seiner
+          Unterordnungen oder Nachkommen legen)
+      - action: Autfage oder Projekt in einem separaten Fenster öffnen
+        gesture: Alt+klicken
+      title_key_shortcuts: Tastaturbedienung
+      title_mouse_shortcuts: Maus- und Touchbedienung
+      title_shortcuts: Tastaturkürzel
+    info_all_saved: Alles erfolgreich gespeichert
+    info_any_failed: 'Einige der Anfragen sind fehlgeschlagen:'
+    info_no_permission: Sie haben dafür nicht die notwendigen Berechtigungen
+    label_color_by: Färben nach
+    label_go_to: Weiter zu
+    label_hide_unused: Ungenutztes ausblenden
+    label_less: Weniger
+    label_or: oder
+    label_save_progress: Warten Sie bitte, alle Entitäten werden gespeichert
+    label_show_unused: Unbenutztes anzeigen
+    label_tooltip_display_info: Die Legende zeigt alle Status an, allerdings dürfen
+      Sie einige davon möglicherweise nicht verwenden.
+    last_state_modal:
+      label_differencies: Unterschiede auf dem Server
+      message_changed: haben verschiedene Attribute (Browser => Server) ({{changes}})
+      message_missing: fehlt von Überordnung "{{from}}"
+      message_moved: ist Unterordnung von "{{to}}", nicht "{{from}}"
+      message_present: ist momentan Unterordnung von "{{to}}"
+      text_reload_appeal: Möchten Sie den Status vom Server neu laden?
+      title: Der letzte Client-Status der Mind Map unterscheidet sich vom Serverstatus
+    reload_modal:
+      label_errors: Fehler
+      text_reload_appeal: Möchten Sie nicht gespeicherte Elemente ignorieren und Daten
+        vom Server neu laden?
+      title: Mind Map konnte nicht ordnungsgemäß gespeichert werden
+    save_info:
+      at: unter
+      autosaved: Automatisch gespeichert
+      loaded: Geladen
+      saved: Gespeichert
+    stored_modal:
+      button_local: Lokale Version
+      button_server: Server-Version
+      text_load_appeal: Möchten Sie es laden? Oder möchten Sie einen neuen Status
+        vom Server laden?
+      title: Nicht gespeicherte lokale Version wurde gefunden
+    title_node_changed: Dieser Knoten wurden geändert und wird gespeichert
+    warning_delete_node: Möchten sie den Knoten {{name}} und alle Nachfolger wirklich
+      löschen?
+    warning_delete_nodes: Möchten Sie diese Knoten und alle Nachfolger wirklich löschen?
+    warning_not_saved: ist nicht richtig gespeichert

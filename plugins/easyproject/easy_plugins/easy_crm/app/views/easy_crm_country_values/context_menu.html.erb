@@ -1,0 +1,8 @@
+<ul>
+<% if @easy_crm_country_value -%>
+  <li><%= context_menu_link l(:button_edit), edit_easy_crm_country_value_path(@easy_crm_country_value), class: 'icon icon-edit', disabled: !@can[:edit] %></li>
+<% end %>
+  <li><%= context_menu_link l(:button_delete), easy_crm_country_values_path(ids: @easy_crm_country_value_ids, back_url: @back), method: :delete, data: {confirm: l(:text_are_you_sure)}, class: 'icon icon-del', disabled: !@can[:delete] %></li>
+
+  <%= call_hook(:view_easy_crm_country_values_context_menu_end, {easy_crm_country_value: @easy_crm_country_value, easy_crm_country_values: @easy_crm_country_value, can: @can, back: @back, project: @project}) %>
+</ul>

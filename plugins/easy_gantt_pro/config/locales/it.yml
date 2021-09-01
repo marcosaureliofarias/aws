@@ -1,0 +1,119 @@
+---
+it:
+  button_create_easy_baseline: Crea baseline
+  easy_gantt_pro:
+    add_task_modal:
+      no_parent: ''
+      title: Aggiungi task
+    add_task:
+      body: È possibile creare un nuovo task o milestone facendo clic sul pulsante
+        Task (o Milestone) o trascinando in qualsiasi punto del grafico
+      title: Guida: Aggiunta di task
+    baselines:
+      confirm_delete: Sei sicuro di voler eliminare questa baseline?
+      create_failed: Non è stato possibile creare una nuova baseline
+      delete_failed: Non è stato possibile eliminare la baseline
+      error_missing_delete_permission: Non disponi dell'autorizzazione per eliminare
+        la baseline
+      error_not_saved: Prima di creare la baseline è necessario salvare tutte le modifiche
+        nel progetto.
+      label_baseline: Baseline
+      label_same: "-uguale-"
+      off_desc: Abilita il modulo di progetto Baseline per la visualizzazione e la
+        creazione delle baseline.
+      off_link: Impostazioni modulo
+      off_title: Il modulo del progetto Baseline è disabilitato
+    cashflow:
+      difference: Differenza
+      expense: Spese
+      full_price: Prezzo pieno
+      label_cashflow: Flusso di cassa
+      planned: Previsto
+      planned_Cashflow: Flusso di cassa previsto
+      real: Effettivo
+      real_Cashflow: Flusso di cassa effettivo
+      revenue: Entrata
+      timeflow: EAC
+      total: Totale
+      total_price: Prezzo totale
+      week: Settimana
+    critical:
+      hide_button: Nascondi percorso critico
+      legend_issues: Task nel percorso critico
+      show_button: Mostra percorso critico
+    lowest_progress:
+      label_progress_date: Data avanzamento
+    project_move:
+      error_opening_unsaved: Prima di aprire il progetto, è necessario salvare dapprima
+        le modifiche.
+    resources:
+      label_resources: Risorse
+    unfix_relations:
+      label_unfix_relations: Annulla relazioni
+    warning_no_permission_to_edit: Non si dispone dell'autorizzazione per la modifica.
+  easy_gantt:
+    button:
+      bulk_edit: Modifica in blocco
+      delayed_issue_filter: Filtra task posticipati
+      show_lowest_progress_tasks: Mostra task con data di avanzamento minore
+      show_only_critical: Filtra Criticità
+    popup:
+      add_task:
+        heading: Aggiungi guida per task
+        text: È possibile creare nuovi task o milestone cliccando rispettivamente
+          sui pulsanti Task o Milestone, oppure tramite trascinamento in qualsiasi
+          punto del grafico.
+      baseline:
+        heading: Descrizione baseline
+        heading_new_baseline: Nuova baseline
+        text: Crea una copia del progetto per ulteriori confronti
+      cashflow:
+        definition: EAC = "Stima al completamento" - A partire da questo momento,
+          quanto sarà il costo totale stimato del progetto?
+        difference: Differenza (flusso di cassa effettivo meno flusso di cassa previsto
+          = "Effettivo-Previsto")
+        eac: EAC (se riferito al passato e presente, s’intende il flusso di cassa
+          effettivo, se al futuro s’intende il flusso di cassa previsto)
+        heading: Definizione flusso di cassa
+        planned: Previsto (flusso di cassa previsto)
+        real: Effettivo (flusso di cassa effettivo)
+      critical:
+        heading: Descrizione percorso critico
+        text: La più lunga sequenza di attività in un piano di progetto che deve essere
+          completata in tempo per il completamento del progetto alla data di scadenza.
+          Un'attività sul percorso critico non può essere avviata fino al completamento
+          dell'attività precedente corrispondente; se viene rinviata di un giorno,
+          l'intero progetto verrà posticipato di un giorno a meno che l'attività successiva
+          all'attività rinviata sia completata un giorno prima. Per un corretto funzionamento
+          di un percorso critico, il progetto deve disporre di 1 task iniziale e 1
+          finale e i task devono essere connessi alle relazioni.
+    scheme_by:
+      label_by_priority: per priorità
+      label_by_status: per stato
+      label_by_tracker: per tracker
+      label_color_by: Colora di
+    title:
+      delayed_issue_filter: Mostra solo task con data di avanzamento precedente alla
+        data odierna
+      show_only_critical: Mostra solo i task sul percorso critico
+  easy_pages:
+    modules:
+      easy_global_gantt: Global Gantt
+      easy_project_gantt: Project gantt
+  easy_proposer:
+    easy_gantt:
+      index:
+        caption: Easy Gantt PRO
+        description: Vai a Easy Gantt PRO
+  heading_easy_gantts_issues: Easy Gantt PRO
+  label_show_lowest_progress_tasks: Task con avanzamento minore
+  label_show_project_milestones: Mostra milestone di progetto
+  label_show_spent_time_progress_tasks: Mostra rapporto tempo trascorso task
+  text_show_lowest_progress_tasks: Mostra task con lo stato di avanzamento minore
+    (data corrispondente alla barra dell'indice di completamento del task in gantt)
+  text_show_project_milestones: Le milestone del progetto verranno visualizzate nella
+    barra del progetto.
+  text_show_spent_time_progress_tasks: Visualizza il rapporto tra tempo trascorso
+    e stato dei task
+  warning_easy_gantt_recalculate_fixed_delay: Questo ricalcolo influisce sul ritardo
+    delle relazioni su ogni task nel sistema. Sei sicuro di continuare?

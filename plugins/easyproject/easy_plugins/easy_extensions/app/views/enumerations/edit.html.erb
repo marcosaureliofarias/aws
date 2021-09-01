@@ -1,0 +1,8 @@
+<%= title [l(@enumeration.option_name), enumerations_path], @enumeration.name %>
+
+<%= labelled_form_for :enumeration, @enumeration, :url => enumeration_path(@enumeration), :html => {:method => :put, :class => 'form-box'} do |f| %>
+  <%= render :partial => @enumeration.form_partial, :locals => {:f => f} %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+<% end %>

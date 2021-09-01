@@ -1,0 +1,2 @@
+<div class="alerts-report-entity-name"><%= link_to(report.entity.number, project_easy_invoice_path(report.entity_id, :project_id => report.entity.project)) if report.entity -%></div>
+<div class="alerts-report-entity-watch"><%= time_ago_in_words_ex(report.entity.due_at, l(:label_project_due_date_overdue), l(:label_project_due_date_not_overdue)) if report.entity && !report.entity.due_at.nil? -%></div>

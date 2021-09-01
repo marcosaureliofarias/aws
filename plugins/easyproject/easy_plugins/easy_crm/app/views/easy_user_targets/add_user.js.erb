@@ -1,0 +1,14 @@
+$('#ajax-modal').html("<%= j(render template: 'easy_user_targets/add_user', formats: [:html]) %>");
+showModal('ajax-modal', '50%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {hideModal()}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_easy_user_target_add_users) %>',
+      click: function() {$(this).find('form').submit();}, 'class': 'button-positive'
+    }
+  ]
+});

@@ -1,0 +1,45 @@
+<% hidden_options = easy_crm_case.new_record? ? {} : {:class => 'attribute-hidden', :style => 'display: none'} %>
+<% if Redmine::Plugin.installed?(:easy_invoicing) %>
+  <% easy_invoice_id = params[:easy_invoice_id] || easy_crm_case.easy_invoices.any? ? easy_crm_case.easy_invoices.first.id : '' %>
+  <%= hidden_field_tag('easy_invoice_id', easy_invoice_id, :id => nil) unless easy_invoice_id.blank? %>
+<% end %>
+<%= hidden_field_tag('back_url', params[:back_url], :id => nil) unless params[:back_url].blank? %>
+<%= hidden_field_tag('easy_contact_id', params[:easy_contact_id], :id => nil) unless params[:easy_contact_id].blank? %>
+<div class="<%= easy_crm_case.new_record? ? 'splitcontent' : ''%>">
+  <div class="<%= easy_crm_case.new_record? ? 'splitcontentleft' : ''%>">
+    <div class="box <%= easy_crm_case.new_record? ? '' : 'attribute-hidden'%>" style="<%= easy_crm_case.new_record? ? '' : 'display:none'%>">
+      <%= content_tag :h3, l(:label_issue_static_attributes_heading), :class => "#{easy_crm_case.new_record? ? nil : 'attribute-hidden'} icon icon-tracker", :style => easy_crm_case.new_record? ? nil : 'display: none' %>
+
+      <% if easy_crm_case.safe_attribute? 'name' %>
+        <%= content_tag :p, hidden_options do  %>
+          <%= f.text_field :name, placeholder: EasyCrmCase.human_attribute_name(:name), class: "entity-subject required #{easy_crm_case.new_record? ? 'block' : ''}" -%>
+        <% end %>
+      <% end %>
+
+      <% if easy_crm_case.safe_attribute? 'description' %>
+        <%= content_tag :p, hidden_options do  %>
+          <% if easy_crm_case.new_record? %>
+            <%= render_visible_crm_case_attribute_for_edit_description(easy_crm_case, f) -%>
+          <% else %>
+            <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'description') %>
+            <%= link_to('', {:controller => 'easy_crm_cases', :action => 'toggle_description', :id => easy_crm_case, :project_id => project, :element => 'description_container'}, :class => 'icon icon-edit', :title => l(:button_edit), :remote => true, :id => 'description_toggler') %>
+            <span id="description_container"></span>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if easy_crm_case.new_record? %>
+        <p id="easy-crm-case-attachments-container">
+          <%= render :partial => 'attachments/form', :locals => {:container => easy_crm_case} %>
+        </p>
+      <% end %>
+
+      <div id="easy_crm_case_form_bottom_container">
+        <%= render :partial => 'easy_crm_cases/form/form_bottom', :locals => {:easy_crm_case => easy_crm_case, :project => project} %>
+      </div>
+    </div>
+  </div>
+  <div class="<%= easy_crm_case.new_record? ? 'splitcontentright' : ''%>" id="updatable_attributes_container">
+    <%= render :partial => 'easy_crm_cases/form/updatable_attributes', :locals => {:easy_crm_case => easy_crm_case} %>
+  </div>
+</div>

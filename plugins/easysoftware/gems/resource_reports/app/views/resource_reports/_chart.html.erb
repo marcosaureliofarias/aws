@@ -1,0 +1,106 @@
+<%
+  principals = easy_page_modules_data[:principals]
+  show_settings = easy_page_modules_data[:show_settings]
+  chart_data = easy_page_modules_data[:chart_data]
+  show_settings = easy_page_modules_data[:show_settings]
+  all_periods = easy_page_modules_data[:all_periods]
+
+  columns_per_period = show_settings.count {|(_, value)| value }
+  principals_js = principals.map {|p| { id: p.id, name: p.name } }
+
+  chart_container_id = "#{modul_uniq_id}_chart_container"
+  chart_id = "#{modul_uniq_id}_chart"
+
+  include_jqplot_scripts
+%>
+
+<div id="<%= chart_container_id %>">
+  <div id="<%= chart_id %>"></div>
+</div>
+
+<script>
+  EASY.schedule.late(() => {
+    const chartData = <%= chart_data.to_json.html_safe %>;
+    const principals = <%= principals_js.to_json.html_safe %>;
+    const paddingBottom = 36
+
+    const names = {}
+
+    const columnsPerPeriod = <%= columns_per_period %>;
+    const periodCount = <%= all_periods.size %>;
+
+    // Because of ****** javascript
+    // You cannot do `Array().map()`
+    const regions = Array(...Array(periodCount)).map((region, index) => {
+      const start = (index * columnsPerPeriod)
+      return {
+        axis: "x",
+        start: start,
+        end: (start + (columnsPerPeriod - 1))
+      }
+    })
+
+    principals.forEach(principal => {
+      names[`principal_${principal.id}`] = principal.name
+    })
+
+    c3.generate({
+      bindto: "#<%= chart_id %>",
+
+      data: {
+        json: chartData,
+
+        keys: {
+          x: "name",
+          value: Object.keys(names),
+        },
+
+        type: "bar",
+        names: names,
+        groups: [Object.keys(names)],
+      },
+
+      regions: regions,
+
+      axis: {
+        x: {
+          type: "category",
+          tick: {
+            rotate: -60,
+            multiline: false,
+          },
+        },
+
+        y: {
+          tick: {
+            format: d3.format(" .2f"),
+          }
+        },
+      },
+
+      legend: {
+        position: "right"
+      },
+
+      padding: {
+        bottom: paddingBottom
+      },
+
+      color: {
+        pattern: ERUI.sassData["chart-palette"].split(","),
+      },
+    })
+  })
+</script>
+
+<style>
+  #<%= chart_container_id %> .c3-bar {
+    /* Because it's already important (for some reason) */
+    stroke-width: 0 !important;
+  }
+
+  #<%= chart_container_id %> .c3-axis-x .tick text {
+    /* Because core is overwriting c3 with `transform: translateY(-12px)` */
+    transform: rotate(-60deg) translateY(15px);
+  }
+</style>

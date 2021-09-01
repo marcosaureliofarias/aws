@@ -1,0 +1,20 @@
+<%
+  limit = @easy_page_modules_data[block_name][:limit]
+%>
+<div class="tabular">
+  <p>
+    <%= label_tag "#{block_name}[name]", l(:field_name) %>
+    <%= page_module_settings_text_field_tag(page_module, %w[name]) %>
+  </p>
+  <p>
+    <%
+      easy_query_options = options_for_select(@easy_page_modules_data[block_name][:queries], settings['easy_query_type'])
+    %>
+    <%= label_tag "#{block_name}[easy_query_type]", l(:label_select_easy_tag_source) %>
+    <%= select_tag "#{block_name}[easy_query_type]", easy_query_options, {:include_blank => false, :label => l(:label_select_easy_tag_source)} %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[limit]", l(:label_my_page_results_row_count) %>
+    <%= text_field_tag "#{block_name}[limit]", limit %>
+  </p>
+</div>

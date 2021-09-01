@@ -1,0 +1,7 @@
+<% if source_entity.is_a?(EasyContact) && query.is_a?(EasyCrmCaseQuery) && entities.size > 0 && (selected_entities = entities.select{|easy_crm_case| easy_crm_case.easy_crm_case_status.is_paid? }) && selected_entities.size > 0 %>
+      <%= render_module_easy_box(options[:module_name] + '_cf_summary', "#{options[:heading]} - #{l(:label_entity_custom_fields_summary)}", {class: {heading: entity_css_icon(referenced_entity_type)}, default: false}) do |m| %>
+      <div class="custom-fields splitcontent">
+        <%= render :partial => 'custom_fields/two_columns_list_div', :locals => {:custom_field_values => source_entity.sum_custom_field_values_on_entities(selected_entities)} %>
+      </div>
+    <% end %>
+<% end %>

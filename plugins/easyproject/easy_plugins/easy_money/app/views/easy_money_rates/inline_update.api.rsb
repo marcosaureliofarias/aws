@@ -1,0 +1,9 @@
+api.easy_money_rate do
+  api.entity_id           @easy_money_rate.entity_id
+  api.entity_type         @easy_money_rate.entity_type
+  api.rate_type_id        @easy_money_rate.rate_type_id
+  api.project_id          @easy_money_rate.project_id
+  api.unit_rate           @easy_money_rate.unit_rate
+  api.easy_currency_code  @easy_money_rate.easy_currency_code
+  api.formatted_html      format_easy_money_rate(@easy_money_rate, @project)
+end

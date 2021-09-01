@@ -1,0 +1,184 @@
+table{
+  border-collapse: collapse;
+  width: 100%;
+  @for $n from 0 to 24 {
+    &[border="#{$n}"]{
+      &, td, th{
+        border-width: #{$n}px;
+      }
+    }
+  }
+
+  thead{
+    a{
+      color: $color-text;
+    }
+    td,th{
+      padding-top: 0.5*$gap;
+      padding-bottom: 0.5*$gap;
+      border: 1px solid $color-border-minor;
+      @include smaller;
+      text-align: left;
+      @extend %jqui-default-state;
+      //@include gradient-vertical(rgba($color-uberlight,0),$color-uberlight);
+      //background-color: $color-foreground;
+      //border-top: 1px solid $color-underlight-border;
+      &+th,&+td{
+        //border-left: 1px solid $color-border-minor;
+      }
+    }
+    th.period{
+      text-align: center;
+    }
+    th{
+      font-weight: bold;
+    }
+    tr{
+      &:last-child{
+        //border-bottom: 1px solid $color-underlight-border;
+      }
+    }
+  }
+  tbody{
+    th{
+      @include small;
+    }
+    & > tr{
+
+      &:last-child{
+        &>td{
+
+        }
+      }
+      /*
+      &:last-child{
+        &>td{
+          border-bottom: 1px solid $header-color-border !important;
+        }
+      }
+      */
+    }
+  }
+  tfoot{
+    border-top: 1px solid $color-border-minor !important;
+    background: mix(mix($color-background,$color-foreground),$color-foreground);
+    a{
+      color: $color-text;
+    }
+    td{
+      border-top: 1px solid $color-border-minor;
+    }
+    td,th {
+      padding-top: $gap;
+      padding-bottom: $gap;
+      @include small;
+      font-weight: bold;
+    }
+  }
+  &.easy-table-summary{
+    @include respond-to(screen-only){
+      font-size: 1.25em;
+      margin: $box-padding 0;
+      &>tbody{
+        &>tr{
+          &>th{
+            background: $color-main;
+            color: $white;
+            padding-left: $box-padding;
+            padding-right: $box-padding;
+          }
+          &>td{
+            background: $color-highlight;
+            padding-left: $gap;
+            padding-right: $gap;
+          }
+          &:first-child{
+            &>th{
+              border-top: 1px solid $color-main;
+            }
+            &>td{
+              border-top: 1px solid $color-border;
+            }
+          }
+          &:last-child{
+            &>td{
+              border-bottom: 1px solid $color-border;
+            }
+            &>th{
+              border-bottom: 1px solid $color-main;
+            }
+          }
+        }
+      }
+    }
+  }
+  .wiki &, .cke_editable &{
+    @extend %reset-table;
+  }
+}
+td,th{
+  vertical-align: middle;
+  text-align: left;
+}
+td{
+  p:last-child{
+    margin-bottom: 0;
+  }
+}
+
+.autoscroll{
+  clear: both;
+  //border-top: 1px solid $color-border-minor;
+  //& > table{
+  //  @extend %compositor-layer;
+  //}
+  &__wrapper{
+    @extend %compositor-layer;
+    @include respond-to(screen-only){
+      margin-left: -$box-padding;
+      margin-right: -$box-padding;
+      padding-left: $box-padding;
+      padding-right: $box-padding;
+    }
+  }
+  @include respond-to(screen-only){
+    margin-left: -$box-padding;
+    margin-right: -$box-padding;
+    overflow: hidden;
+    position: relative;
+    .ps-scrollbar{
+      &-x{
+        &-rail{
+          position: absolute;
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &.no-transform {
+    transform: none;
+
+    & > table {
+      transform: none;
+    }
+  }
+
+  #sidebar &, #easy_grid_sidebar &, .form-box .splitcontent &{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .form-box .splitcontent &{
+    border-left: 1px solid $color-border;
+    border-right: 1px solid $color-border;
+  }
+  //@extend %box-last-bottom-negativ-margin;
+  margin-bottom: -1px;
+  .fullscreen &{
+    margin: 0;
+  }
+}
+.new-easy-activity-attendees {
+  min-width: 150px;
+}

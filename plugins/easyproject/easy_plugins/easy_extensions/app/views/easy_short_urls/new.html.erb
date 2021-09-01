@@ -1,0 +1,19 @@
+<%= title(l(:heading_easy_short_urls_new)) unless request.xhr? %>
+<%= form_for(@easy_short_url, :remote => request.xhr?, :html => {:id => 'easy_short_url_form', :class => 'tabular'}) do |f| %>
+  <%= error_messages_for @easy_short_url %>
+  
+  <% if @entity %>
+    <%= hidden_field_tag('entity_type', @entity.class.name) %>
+    <%= hidden_field_tag('entity_id', @entity.id) %>
+  <% end %>
+
+  <div>
+    <%= render :partial => 'form', :locals => {:f => f, :easy_short_url => @easy_short_url} %>
+  </div>
+
+  <% unless request.xhr? %>
+    <p class="buttons">
+      <%= f.submit l(:button_create) %>
+    </p>
+  <% end %>
+<% end %>

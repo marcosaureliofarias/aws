@@ -1,0 +1,12 @@
+<%
+  if project.nil?
+    entity_scope = Role.order(:position).all
+    easy_money_settings = EasyMoney::SettingsResolver.new(EasyMoneySettings.project_settings_names)
+  else
+    entity_scope = project.all_members_roles
+    easy_money_settings = project.easy_money_settings
+  end
+%>
+
+<%= render 'easy_money_rates/entity_type_index', entity_type: 'Role', entity_scope: entity_scope, project: project, project_id: project_id, easy_money_settings: easy_money_settings %>
+

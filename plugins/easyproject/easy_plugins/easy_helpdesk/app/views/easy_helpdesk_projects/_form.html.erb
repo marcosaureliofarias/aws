@@ -1,0 +1,195 @@
+<% options ||= {} %>
+<%= fields_for(@easy_helpdesk_project) do |f| %>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <% if options[:hide_project] && @easy_helpdesk_project.project %>
+        <%= hidden_field_tag 'easy_helpdesk_project[project_id]', @easy_helpdesk_project.project_id %>
+      <% else %>
+        <p>
+          <%= label_tag 'easy_helpdesk_project[project_id]', l(:field_project) %>
+          <% selected_project_value = (@easy_helpdesk_project.project.nil? ? {:name => '', :id => ''} : {:name => @easy_helpdesk_project.project.name, :id => @easy_helpdesk_project.project.id}) %>
+          <%= easy_select_tag(
+            'easy_helpdesk_project[project_id]', selected_project_value, nil,
+            easy_autocomplete_path('easy_helpdesk_projects'),
+            :onchange => "$.ajax({url: '#{j(polymorphic_path([@easy_helpdesk_project.new_record? ? :new : :edit, :easy_helpdesk_project], :format => 'js')).html_safe}', type: 'get', data: $('#easy_helpdesk_project_form').serialize()})",
+            :html_options => {:id => "easy_helpdesk_project_project_id"}, :root_element => 'projects') -%>
+        </p>
+      <% end %>
+
+      <% if @easy_helpdesk_project.project %>
+          <p>
+            <%= f.label :default_for_mailbox_id %>
+            <%= f.select :default_for_mailbox_id, unused_mailbox_for_helpdesk_projects(@easy_helpdesk_project).collect{|t| [t.username_caption, t.id]}, {:include_blank => true}, {} %>
+            <em class="help-block"><%= l(:text_easy_helpdesk_projects_is_default) %></em>
+          </p>
+          <p>
+            <%= f.label :tracker_id %>
+            <%= f.select :tracker_id, (@easy_helpdesk_project.project.trackers).collect{|t| [t.name, t.id]} %>
+          </p>
+          <p>
+            <%= f.label :assigned_to_id %>
+            <%= f.select :assigned_to_id, grouped_options_for_select(project_assignable_users_collection(@easy_helpdesk_project.project), @easy_helpdesk_project.assigned_to_id), {:include_blank => true} %>
+          </p>
+          <%= toggling_fieldset(l(:field_watcher)) do %>
+            <p>
+              <%= f.label :watchers_ids, l(:label_user_plural) %>
+              <%= f.select :watchers_ids, (@easy_helpdesk_project.project.users.sorted).collect{|t| [t.name, t.id]}, {:include_blank => true}, {:multiple => true} %>
+            </p>
+            <% if Setting.issue_group_assignment? && @easy_helpdesk_project.project.groups.any? %>
+                <p>
+                  <%= f.label :watcher_groups_ids, l(:label_group_plural) %>
+                  <%= f.select :watcher_groups_ids, (@easy_helpdesk_project.project.groups.sorted).collect{|t| [t.name, t.id]}, {:include_blank => true}, {:multiple => true} %>
+                </p>
+            <% end %>
+          <% end %>
+          <section id="easy_helpdesk_issue_closer">
+            <p>
+              <span><%= f.label(:automatically_issue_closer_enable, f.check_box(:automatically_issue_closer_enable) + l(:field_automatically_issue_closer_enable)) %></span>
+              <%=  %>
+            </p>
+            <fieldset class="easy-helpdesk-autocloser-settings" style="<%= 'display:none' if !f.object.automatically_issue_closer_enable? %>">
+              <%= content_tag(:legend, l(:label_automatically_issue_closer)) %>
+              <%= f.fields_for :easy_helpdesk_auto_issue_closers do |auto_issue_closer| %>
+                <%= render :partial => 'easy_helpdesk_projects/form_auto_issue_closer', :locals => { :auto_issue_closer => auto_issue_closer } %>
+              <% end %>
+              <p>
+                <%= link_to_add_association l(:button_add), f,
+                                            :easy_helpdesk_auto_issue_closers, :class => 'icon icon-add button',
+                                            :partial => 'easy_helpdesk_projects/form_auto_issue_closer',
+                                            :form_name => 'auto_issue_closer',
+                                            :locals => {:options => options}
+                %>
+              </p>
+            </fieldset>
+            <div class="clear"><br/></div>
+            <script type="application/javascript">
+              EASY.schedule.late(function(){
+                $(document).on("change", "#easy_helpdesk_project_automatically_issue_closer_enable", function(e) {
+                  $(".easy-helpdesk-autocloser-settings").toggle();
+                })
+              });
+            </script>
+          </section>
+        <% end %>
+
+      <%= toggling_fieldset(l(:label_easy_helpdesk_matching)) do %>
+        <p>
+          <%= f.label :keyword, l(:'field_easy_helpdesk_project_keyword') %>
+          <%= f.text_field :keyword %>
+        </p>
+        <p>
+          <em class="help-block"><%= l(:text_easy_helpdesk_projects_keyword_description) %></em>
+        </p>
+        <%= f.fields_for :easy_helpdesk_project_matching do |builder| %>
+          <%= render :partial => 'easy_helpdesk_projects/matchings', :locals => {:f => builder, :options => options} %>
+        <% end %>
+        <p>
+          <%= link_to_add_association l(:button_easy_helpdesk_add_domain_name), f,
+                                      :easy_helpdesk_project_matching, :class => 'icon icon-add button',
+                                      :partial => 'easy_helpdesk_projects/matchings',
+                                      :locals => {:options => options}
+          %>
+        </p>
+      <% end %>
+
+      <%= toggling_fieldset(l(:label_easy_helpdesk_emails), :collapsed => true) do %>
+        <p>
+          <span><%= label_tag 'enable_email_header', check_box_tag('enable_email_header', '1', !@easy_helpdesk_project.email_header.blank?, :onchange => '$(\'#email_header_container\').toggle()') + l(:label_easy_helpdesk_enable_email_header) %></span>
+        </p>
+        <p id="email_header_container" style="<%= 'display:none' if @easy_helpdesk_project.email_header.blank? -%>">
+          <%= f.label :email_header %>
+          <%= f.text_area :email_header %>
+          <%= wikitoolbar_for('easy_helpdesk_project_email_header') %>
+        </p>
+        <p>
+          <span><%= label_tag 'enable_email_footer', check_box_tag('enable_email_footer', '1', ! @easy_helpdesk_project.email_footer.blank?, :onchange => '$(\'#email_footer_container\').toggle()') + l(:label_easy_helpdesk_enable_email_footer) %></span>
+        </p>
+        <p id="email_footer_container" style="<%= 'display:none' if @easy_helpdesk_project.email_footer.blank? -%>">
+          <%= f.label :email_footer %>
+          <%= f.text_area :email_footer %>
+          <%= wikitoolbar_for('easy_helpdesk_project_email_footer') %>
+        </p>
+      <% end %>
+
+      <%= call_hook(:view_easy_helpdesk_project_settings_bottom, :f => f, :options => options) %>
+    </div>
+    <div class="splitcontentright">
+      <%= toggling_fieldset(l(:field_monthly_hours)) do %>
+        <%= render :partial => 'easy_helpdesk_projects/prepaid_hours', :locals => {:f => f, :options => options} %>
+      <% end %>
+
+      <%= toggling_fieldset(l(:label_easy_helpdesk_sla), :class => 'easy-helpdesk-project-sla') do %>
+        <p>
+          <% setting = EasySetting.value('easy_helpdesk_reopen_resets_start_time_for_sla', @easy_helpdesk_project.project_id ) == '1' %>
+          <%= hidden_field_tag 'easy_setting[easy_helpdesk_reopen_resets_start_time_for_sla]', '0', :id => nil %>
+          <%= check_box_tag 'easy_setting[easy_helpdesk_reopen_resets_start_time_for_sla]', 1, setting %>
+          <%= label_tag 'easy_setting[easy_helpdesk_reopen_resets_start_time_for_sla]', l(:label_easy_helpdesk_reopen_resets_start_time_for_sla), title: setting ? l('tooltip_easy_helpdesk_reopen_resets_start_time_for_sla.enabled') : l('tooltip_easy_helpdesk_reopen_resets_start_time_for_sla.disabled') %>
+        </p>
+
+        <p>
+          <%= label_tag 'copy_settings_sla_from_project', l(:label_copy_settings_sla_from_project) %>
+          <%= easy_select_tag(
+                  'copy_settings_sla_from_project[project_id]', {}, nil,
+                  easy_autocomplete_path('easy_projects_with_easy_helpdesk'),
+                  :onchange => "$.ajax({url: '#{j(copy_sla_easy_helpdesk_projects_path(project_id: @easy_helpdesk_project.project_id))}', type: 'get', data: $('#copy_settings_sla_from_project').serialize()})",
+                  :html_options => {:id => "copy_settings_sla_from_project"}, :root_element => 'projects') -%>
+        </p>
+
+        <div id="sortable" class="easy_helpdesk_project_sla_container" style="list-style-type: none">
+        <%= f.fields_for :easy_helpdesk_project_sla, @easy_helpdesk_project.easy_helpdesk_project_sla.order(:position)  do |builder| %>
+          <%= render :partial => 'easy_helpdesk_projects/sla', :locals => {:f => builder, :options => options} %>
+        <% end %>
+          </div>
+          <hr/>
+          <p>
+            <%= link_to_add_association l(:button_easy_helpdesk_add_sla), f,
+                                        :easy_helpdesk_project_sla, :class => 'icon icon-add button',
+                                        :partial => 'easy_helpdesk_projects/sla',
+                                        :locals => {:options => options},
+                                        :data => {
+                                          'association-insertion-node' => '.easy_helpdesk_project_sla_container',
+                                          'association-insertion-position' => 'append' }
+            %>
+          </p>
+      <% end %>
+    </div>
+  </div>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      function refresh_working_time_fields(element) {
+        var working_times = null;
+        if (typeof(element) === 'undefined') {
+          working_times = $('#easy_helpdesk_project_sla').find('.sla-working-time');
+        }
+        else {
+          working_times = $(element).find('.sla-working-time');
+        }
+        working_times.each(function () {
+          var e = $(this);
+          var checkbox = e.find('.use-working-time-checkbox');
+          var container = e.find('.sla-working-time-container');
+          container.toggle(checkbox.is(':checked'));
+          checkbox.on('click', function (e) {
+            var checkbox = $(e.target);
+            container.toggle(checkbox.is(':checked'));
+          });
+        });
+      }
+      refresh_working_time_fields();
+
+      $('#easy_helpdesk_project_sla').on('cocoon:after-insert', function (_, insertedItem) {
+        refresh_working_time_fields(insertedItem);
+      });
+
+      $("#sortable").sortable();
+      $("#sortable div.module-toggle-button").disableSelection();
+
+      $('#easy_helpdesk_project_form').submit(function (event) {
+        $('div.easy_helpdesk_project_sla_container div.nested-fields').each(function (idx) {
+          var inputField = $(this).find("[id$='position']");
+          $(inputField).val(idx);
+        });
+      });
+    });
+  </script>
+<% end %>

@@ -1,0 +1,36 @@
+<ul>
+  <% if @test_case && !@test_case.new_record? %>
+    <li><%= link_to l(:button_edit), edit_polymorphic_path([@project, @test_case]), title: l(:button_edit), class: 'icon icon-edit button' %></li>
+    <%= link_to l(:button_test_case_issue_execution_new), new_polymorphic_path([@project, :test_case_issue_execution], test_case_id: @test_case), title: l(:title_test_case_issue_execution_new), class: 'icon icon-add button button-positive' %>
+  <% end %>
+  <% if @test_case.nil? %>
+    <li>
+      <%= link_to l(:button_test_case_new), new_polymorphic_path([@project, :test_case]), title: l(:title_test_case_new), class: 'icon icon-add button button-positive' %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to l(:label_test_cases), polymorphic_path([@project, :test_cases], set_filter: '1'), title: l(:label_test_cases), class: 'icon icon-folder button' %>
+  </li>
+  <li>
+    <%= link_to l(:label_test_case_issue_executions), polymorphic_path([@project, :test_case_issue_executions], set_filter: '1'), title: l(:label_test_case_issue_execution), class: 'icon icon-warning button' %>
+  </li>
+
+  <% if Redmine::Plugin.installed? :easy_extensions %>
+    <% if EasyTestCaseCsvImport.any? %>
+      <%= link_to(l(:button_csv_import), test_cases_csv_import_index_path, class: 'icon icon-import button') %>
+    <% else %>
+      <%= link_to(l(:button_new_csv_import), new_test_cases_csv_import_path(type: 'EasyTestCaseCsvImport'), class: 'icon icon-import button') %>
+    <% end %>
+  <% end %>
+
+  <li>
+    <%= link_to l(:label_test_case_statistics), statistics_test_cases_path, class: 'icon icon-report button' %>
+  </li>
+
+  <li>
+    <%= link_to l(:button_test_plan_new), new_polymorphic_path([@project, :test_plan]), title: l(:title_test_plan_new), class: 'icon icon-add button button-positive' %>
+  </li>
+  <li>
+    <%= link_to l(:label_test_plans), polymorphic_path([@project, :test_plans], set_filter: '1'), title: l(:label_test_plans), class: 'icon icon-folder button' %>
+  </li>
+</ul>

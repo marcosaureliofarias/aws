@@ -1,0 +1,8 @@
+api.array :positions do
+  @positions.each do |position|
+    api.position do
+      api.issue_id position[:issue_id]
+      api.position position[:position]
+    end
+  end
+end

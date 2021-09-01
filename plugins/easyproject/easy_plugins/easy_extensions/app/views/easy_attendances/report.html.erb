@@ -1,0 +1,6 @@
+<h2><%= l(:'easy_attendance.label') -%></h2>
+<%= render_tabs easy_attandance_tabs -%>
+
+<% content_for :sidebar do  -%>
+  <%= render(:partial => 'easy_attendances/all_users_queries') if User.current.allowed_to_globally?(:view_easy_attendance_other_users) %>
+<% end -%>

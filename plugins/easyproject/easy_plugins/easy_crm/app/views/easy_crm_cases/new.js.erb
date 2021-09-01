@@ -1,0 +1,6 @@
+$('#updatable_attributes_container').html("<%= j render(:partial => 'easy_crm_cases/form/updatable_attributes', :locals => {:project => @project, :easy_crm_case => @easy_crm_case}) %>");
+initEasyAutocomplete();
+$('#easy_crm_case_form_bottom_container').html('<%= j render(:partial => 'easy_crm_cases/form/form_bottom', :locals => {:easy_crm_case => @easy_crm_case, :project => @project}) %>');
+//$('input[type=radio].star').rating();
+$(".easy-lookup.easy_crm_case_easy_contact_ids").toggleClass('required', <%= @easy_crm_case.easy_crm_case_status.try(:is_easy_contact_required?) %>);
+$(document).trigger("erui_new_dom");

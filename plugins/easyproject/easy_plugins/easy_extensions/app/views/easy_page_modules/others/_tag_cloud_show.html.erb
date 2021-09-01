@@ -1,0 +1,17 @@
+<% query = @easy_page_modules_data[block_name][:query] %>
+<% tags = @easy_page_modules_data[block_name][:tags] %>
+<% if query.present? %>
+  <div class="box">
+    <div class="entity-array">
+      <% if tags.present? %>
+        <% tag_cloud(tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+          <%= link_to tag.name, query.entity_easy_query_path({:set_filter => '1', :tags => tag.name, :project => query.project}), :class => css_class %>
+        <% end %>
+      <% else %>
+        <p class="nodata"><%= l(:label_no_data) %></p>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:error_tag_cloud_module_not_setup) %></p>
+<% end %>

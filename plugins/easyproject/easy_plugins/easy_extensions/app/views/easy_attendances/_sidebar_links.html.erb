@@ -1,0 +1,5 @@
+<%= link_to(l(:label_calendar), easy_attendances_path(:tab => 'calendar'), :class => 'button-2 icon icon-calendar-month') %>
+<%= link_to(l(:label_list), easy_attendances_path(:tab => 'list'), :class => 'button-2 icon icon-bullet-list') %>
+<%= link_to(l(:label_report), {:controller => 'easy_attendances', :action => 'report', :tab => 'report'}, :class => 'button-2 icon icon-report') %>
+<%= link_to(l(:label_detailed_report), {:controller => 'easy_attendances', :action => 'detailed_report', :tab => 'detailed_report'}, :class => 'button-2 icon icon-report') if User.current.allowed_to_globally? :view_easy_attendance_other_users %>
+<%= link_to(l(:button_settings, scope: :easy_attendance), easy_attendance_settings_path, :class => 'button-2 icon icon-settings') if User.current.admin? %>

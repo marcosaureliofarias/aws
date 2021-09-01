@@ -1,0 +1,13 @@
+$('#<%= "#{@block_name}_updatable_attributes_container" %>').html("<%= j render(partial: 'easy_page_modules/easy_crm/easy_crm_case_create_new_updatable_attributes',
+  locals: {
+    project: @project,
+    block_name: @block_name,
+    shown_fields: @shown_fields,
+    only_selected: @only_selected,
+    easy_crm_case: @easy_crm_case,
+    custom_field_values: @custom_field_values,
+    shown_custom_field_ids: @shown_custom_field_ids
+  }
+) %>");
+initEasyAutocomplete();
+$(document).trigger("erui_new_dom");

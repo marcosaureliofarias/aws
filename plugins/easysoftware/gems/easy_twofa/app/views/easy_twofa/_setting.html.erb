@@ -1,0 +1,49 @@
+<%
+  easy_twofa_mode = EasySetting.value(:easy_twofa_mode)
+  easy_twofa_enabled_schemes = EasySetting.value(:easy_twofa_enabled_schemes)
+  is_posibilities = [
+    [l('easy_twofa.optional'), 'optional'],
+    [l('easy_twofa.required'), 'required'],
+    [l('easy_twofa.disabled'), 'disabled'],
+  ]
+%>
+
+<fieldset>
+  <legend><%= l('easy_twofa.twofa') %></legend>
+
+  <div class="tabular">
+    <p>
+      <%= label_tag 'easy_setting[easy_twofa_mode]', l('easy_twofa.mode') %>
+      <%= select_tag 'easy_setting[easy_twofa_mode]', options_for_select(is_posibilities, easy_twofa_mode) %>
+    </p>
+
+    <p>
+      <%= label_tag 'easy_setting[easy_twofa_enabled_schemes][]', l('easy_twofa.enabled_scheme') %>
+      <%= hidden_field_tag 'easy_setting[easy_twofa_enabled_schemes][]', '', id: nil %>
+
+      <% EasyTwofa::Auth.schemes.each do |key, scheme| %>
+        <label class="block">
+          <%= check_box_tag 'easy_setting[easy_twofa_enabled_schemes][]', key, easy_twofa_enabled_schemes.include?(key.to_s) %>
+          <%= l("easy_twofa.schemes.#{key}.name") %>
+          <em class="info">
+            <%= l("easy_twofa.schemes.#{key}.small_description") %>
+          </em>
+        </label>
+      <% end %>
+
+      <em class="help">
+        <%= l('easy_twofa.setting_enabled_schemes_info') %>
+      </em>
+    </p>
+  </div>
+
+  <% EasyTwofa::Auth.schemes.each do |key, scheme| %>
+    <% if scheme.setting_partial_path %>
+      <h3><%= l("easy_twofa.schemes.#{key}.name") %></h3>
+
+      <div class="tabular">
+        <%= render scheme.setting_partial_path %>
+      </div>
+    <% end %>
+  <% end %>
+</fieldset>

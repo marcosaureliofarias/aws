@@ -1,0 +1,167 @@
+---
+da:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: kan ikke være tom eller findes ikke
+              empty: kan ikke være tom eller findes ikke
+        easy_data_template:
+          attributes:
+            type:
+              blank: kan ikke være tom eller findes ikke
+              empty: kan ikke være tom eller findes ikke
+  button_easy_data_template_assignment: field opgaver
+  button_easy_data_template_edit: Rediger skabelon
+  button_easy_data_template_export_data: Eksport af data
+  button_easy_data_template_import: importere
+  button_easy_data_template_import_data: Importér data
+  button_easy_data_template_import_preview: forhåndsvisning
+  button_easy_data_template_new_export: Eksporter CSV
+  button_easy_data_template_new_import: Importer CSV
+  button_easy_data_template_new_msproject: Importer fra MS Project
+  button_easy_data_template_settings: tilpasning
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Nej
+    xyes: Ja
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: navn solver
+      assigned_to_id: id solver
+      assigned_to_lastname: efternavn solver
+      assigned_to_login: login solver
+      assigned_to_mail: e-mail-solver
+      author_firstname: forfatterens navn
+      author_id: id forfatter
+      author_lastname: efternavn
+      author_login: login forfatter
+      author_mail: e-mail forfatteren
+      description: beskrivelse af opgaven
+      due_date: End of opgave (dato)
+      estimated_hours: anslåede opgave tid (timer)
+      id: opgave id
+      priority_id: id prioritet
+      priority_name: prioritet titel
+      project_id: id projekt
+      project_name: projektets navn
+      start_date: begyndelsen af ​​opgaven (dato)
+      subject: emne for opgaven
+      tracker_id: id Opgavetypen
+      tracker_name: navnet på opgavetypen
+    Project:
+      description: beskrivelse af projektet
+      enabled_modules: modulnavn
+      id: id projekt
+      is_public: offentlige (A / N)
+      name: projektets navn
+      parent_id: id forælder projekt
+      parent_name: Navnet på den overordnede projekt
+      trackers_ids: id Opgavetypen
+      trackers_names: navnet på opgavetypen
+    TimeEntry:
+      activity: aktivitet
+      activity_id: id aktiviteter
+      activity_name: navn aktivitet
+      comments: kommentar
+      easy_range_from: rapporteret fra
+      easy_range_to: rapporteret at
+      hours: ur
+      issue: opgave
+      issue_id: opgave id
+      issue_subject: opgave titel
+      project: projekt
+      project_id: id projekt
+      project_name: projektets navn
+      spent_on: dato
+      user: bruger
+      user_id: bruger-id
+    User:
+      admin: Administrator (A / N)
+      firstname: brugernavn
+      id: bruger-id
+      language: brugerens sprog
+      lastname: efternavn for brugeren
+      login: Bruger login
+      mail: e-mail-brugere
+      password: adgangskode
+      send_mail: log-on til at sende e-mail (A / N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Opgave
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Projekt
+    EasyDataTemplateTimeEntry: Rapporteret tid
+    EasyDataTemplateUser: Bruger
+  easy_data_templates_plugin_author: Easy Software
+  easy_data_templates_plugin_author_url: http://www.easyredmine.com
+  easy_data_templates_plugin_description: "- Data skabeloner til at importere og eksportere
+    data i CSV-format"
+  easy_data_templates_plugin_name: Data-skabeloner
+  error_during_import: Når du importerer fejlen opstod. Tjek venligst de indtastede
+    data.
+  error_easy_data_template_attachment_not_uploaded: Blevet registreret nogen supplement
+    til at importere
+  error_easy_data_template_ms_project_not_valid_xml: Den vedhæftede fil er ikke gyldig
+    XML fra MS Project 2010 og højere.
+  field_easy_data_template_allowed_import: Importer
+  label_check_preview: Husk at tjekke data ved hjælp af 'Preview'
+  label_easy_data_template_assignment: Field opgaver
+  label_easy_data_template_author_name: Forfatter
+  label_easy_data_template_edit: Redigering af skabeloner
+  label_easy_data_template_entity_type: Enhed
+  label_easy_data_template_export_new: Ny eksport skabelon
+  label_easy_data_template_import_file: Importer en fil
+  label_easy_data_template_import_new: Ny import skabelon
+  label_easy_data_template_import:
+    assignments:
+      all: tildelte position kolonner
+      entity_attribute_name: kolonnenavn enheder
+      file_column_position: position af kolonnen i csv
+      new: Opgave kolonne positioner
+    errors:
+      erow: fejl i linje
+      errors_count: antallet af fejl
+      errors_rows: fejlbehæftede linjer
+      errors_rows_count: række forkerte linier
+      errors_sum: helt
+      row: forkert linjenummer
+      show: vise defekte linier
+    preview:
+      row: linjenummer
+      table: forhåndsvisning
+    settings:
+      col_sep: feltseparator
+      encoding: kodning
+      import_all: Alt eller intet
+      new: Justering
+      preview_rows: antallet af linjer for at få vist
+      project_template: Brug designskabelon
+      quote_char: separator tekst
+      return_headers: første linje indeholder navnet på den kolonne
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Tildelt en opgave)"
+    other: "(Overdraget til %{count} opgaver)"
+    zero: "(Ikke tildelt)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Navn i små og mellemstore
+    virksomheder
+  label_easy_data_template_ms_project_user_name_in_ep: Navn EP
+  label_easy_data_template_name: Navn
+  label_easy_data_template_public: offentlig
+  label_easy_data_template_template_type: Type
+  label_easy_data_template_template_type_export: eksportere
+  label_easy_data_template_template_type_import: importere
+  label_easy_data_template_user_name: Owner
+  label_easy_data_templates: Data-skabeloner
+  label_easy_data_templates_choose_project: Vælg et projekt
+  label_easy_data_templates_choose_query: Vælge et filter
+  label_easy_data_templates_source_settings: Vælg en datakilde
+  label_easy_data_templates_target_settings: Valg af destination data
+  notice_easy_data_templates_import_ok: Import var fint.
+  text_easy_data_template_ms_project_upload_file: Filen skal være i XML-format (i
+    MS Project fra den øverste menu, Filer klik -> Gem som -> Gem som type XML).
+  title_easy_data_templates_apply_to_all_rows: Klik for at indstille denne værdi på
+    alle lignende linjer.

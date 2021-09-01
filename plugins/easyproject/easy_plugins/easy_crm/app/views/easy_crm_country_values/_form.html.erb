@@ -1,0 +1,14 @@
+<%= fields_for :easy_crm_country_value, easy_crm_country_value do |f| %>
+  <% if easy_crm_country_value.safe_attribute?('country') %>
+    <p>
+      <%= f.label :country, ::EasyCrmCountryValue.human_attribute_name(:country) %>
+      <%= f.select :country, ISO3166::Country.all_names_with_codes(::I18n.locale.to_s) %>
+    </p>
+  <% end %>
+  <% custom_field_values = easy_crm_country_value.visible_custom_field_values %>
+  <% custom_field_values.each do |value| %>
+    <p>
+      <%= custom_field_tag_with_label :easy_crm_country_value, value %>
+    </p>
+  <% end %>
+<% end %>

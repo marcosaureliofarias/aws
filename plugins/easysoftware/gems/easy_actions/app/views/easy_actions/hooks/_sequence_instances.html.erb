@@ -1,0 +1,9 @@
+<% if entity.easy_action_sequence_instances.any? %>
+  <% include_easy_actions_assets %>
+
+  <%= render_easy_entity_assignments(entity, EasyActionSequenceInstance,
+                                     referenced_collection_name: :easy_action_sequence_instances,
+                                     easy_query_class:           EasyActionSequenceInstanceQuery,
+                                     heading:                    l(:heading_easy_action_sequence_instances, scope: [:easy_actions]),
+                                     display_style:              'list') %>
+<% end %>

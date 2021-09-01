@@ -1,0 +1,16 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+
+  <%= javascript_include_tag 'jquery.layout.js', defer: true %>
+  <%= javascript_include_tag 'jquery.layout.state.js', defer: true %>
+  <%= javascript_include_tag 'redmine_re.js', defer: true %>
+<% end %>
+
+<div id="infobar" class="ui-layout-west ui-layout-content">
+  <%= render "requirements/treebar" %>
+</div>
+
+<div id="detail-view" class="ui-layout-center">
+  <h2><%= t(:re_create_a_new) + ' ' + (rendered_artifact_type(@artifact_type)) %></h2>
+  <%= render :partial => 'form' %>
+</div>

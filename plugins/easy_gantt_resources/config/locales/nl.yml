@@ -1,0 +1,152 @@
+---
+nl:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: Toewijzingen bestaan al
+  button_hide_planned_tasks: Verberg geplande taken
+  button_top_menu_easy_gantt_resources: Resource management
+  easy_gantt_resources:
+    allocator:
+      evenly: Gelijkmatig (langzaam)
+      from_end: Van eind
+      from_start: Van start
+      future_evenly: Toekomst gelijkmatig
+      label_allocator: Toewijzer
+    buttons:
+      button_project_menu: Resource management
+      rm_with_milestones: met Mijlpalen
+      rm_with_projects: met Projecten
+    context:
+      heading_allocator_setting: Toewijzings instelling
+      label_maximal_hours: Maximaal uur/dag
+      pseudo_even_allocation: Pseudo-even allocaties
+      text_setting_for: Instelling voor
+    errors:
+      assigned_to_is_blank: Toegewezene moet ingesteld zijn
+      estimated_hours_is_blank: Geschatte uren is niet geldig
+      issue_is_closed: Kwestie is gesloten
+      negative_allocation: heeft een negatief aantal toegewezen uren op %{date}
+      no_rights_for_allocation: U heeft geen rechten voor toewijzingen op %{issue}
+      non_member_assignee: Kwestie %{issue} behoort toe aan project %{project} en
+        gebruiker %{assignee} is hier geen lid van
+      over_allocation: heeft meer toegewezen uren dan mogelijk op %{date}
+      project_is_baseline: Project is baseline
+      save_error: 'Toewijzingen [%{allocations}] van kwestie "%{name}" voor %{assignee}
+        niet opgeslagen door: %{reason}'
+      start_or_due_is_required: Start of einddatum is verplicht
+    event_types:
+      generic: Gebeurtenis
+      holiday: Vakantie
+      meeting: Vergadering
+    global_resource_title: Wereldwijd Resource management
+    label_events: Gebeurtenissen
+    label_other_allocations_sum: Toewijzingen van onzichtbare kwesties
+    label_whole_day: Hele dag
+    legend:
+      day_custom_allocation: handmatig aangepaste toewijzing
+      day_over_allocation: gebruik overladen op specifieke dag
+      full_allocations: gebruiker heeft optimale workload
+      no_allocations: gebruiker heeft geen toegewezen werk
+      over_allocations: gebruikers is overladen
+      some_allocations: gebruiker heeft gratis capaciteit
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: Resource management
+    text_easy_resources_footer: Redmine Resource management mogelijk gemaakt door
+      Easy
+    title_rm_short: RM
+  easy_pages:
+    modules:
+      easy_gantt_resources: Resource management
+      personal_easy_gantt_resources: Persoonlijk Resource management
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: Resource Management
+        description: Ga naar Globaal Resource management
+  easy_query:
+    name:
+      easy_resource_easy_query: Resource management
+  error_allocation_uniqueness: Resource bestaat al.
+  error_epm_resource_already_active: Pagina module op de pagina is al actief
+  error_invalid_dates: Ongeldige data in het verleden
+  error_resources_not_authorized: Resources zijn niet opgeslagen, u heeft geen authorisatie
+    om alle opgevraagde resources aan te passen.
+  field_advance_hours_definition: Definitie handmatige uren
+  field_advance_hours_per_days: Uren per dag aanpassen
+  field_assigned_to_admin: Administrator
+  field_assigned_to_created_on: Aangemaakt op
+  field_assigned_to_email: E-mail
+  field_assigned_to_firstname: Voornaam
+  field_assigned_to_lastname: Achternaam
+  field_assigned_to_login: Login
+  field_assigned_to_status: Status
+  field_change_allocator_enabled: Wijzig toewijzer
+  field_decimal_allocation: Decimale toewijzing
+  field_default_allocator: Standaard toewijzer
+  field_hide_planned_tasks_enabled: Verberg geplande taak buttons
+  field_hide_unassigned: Verberg niet toegewezen
+  field_hours_per_day: Uren per dag
+  field_resource_allocator: Resource toewijzer
+  field_show_groups: Toon groepen
+  field_show_total_project_allocations: Toon totale project toewijzingen
+  field_watchdog_enabled: Waakhond
+  help_easy_gantt_resources_users_estimated_ratios: Geschatte tijd voor taken toegewezen
+    aan gebruiker vermeningvuldigd met deze constante in toewijzingen
+  help_easy_gantt_resources_users_hours_limits: Dagelijkse werkuren gebruiker voor
+    toewijzingen zijn beperkt door deze waarde
+  help_easy_gantt_resources_users_hours_limits_blank: Laat leeg om standaard waarde
+    te gebruiken
+  label_easy_gantt_allocations: Toewijzingen
+  label_easy_gantt_period: Periode
+  label_easy_gantt_resources_get_from_users: aantal van gebruikers
+  label_easy_gantt_resources_get_from_users_for_all_groups: Tel van alle gebruikers
+  label_easy_gantt_resources_global_query_filters: Globale standaard filters
+  label_easy_gantt_resources_groups_selection: Groep selectie
+  label_easy_gantt_resources_hours_from_calendar: Uren van kalender
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: Uren van kalender
+    voor alle gebruikers
+  label_easy_gantt_resources_settings: Resource instellingen
+  label_easy_gantt_resources_show_free_capacities: Toon vrije capaciteit
+  label_easy_gantt_resources_users_estimated_ratios: Geschatte tijdsratio
+  label_easy_gantt_resources_users_hours_limits: Urenlimiet per dag
+  label_easy_gantt_resources_users_selection: Gebruikersselectie
+  label_easy_gantt_resources_with_projects: Toon project toewijzingen op standaard
+  label_easy_meeting_easy_resource_dont_allocate: Niet opnieuw toewijzen
+  project_module_easy_gantt: Easy Gantt & Resource Management
+  text_easy_gantt_resources_advance_hours_definition: Uren kunnen gedefinieerd worden
+    voor elke dag van de week
+  text_easy_gantt_resources_advance_hours_per_days: Max toewijsbare uren per dag in
+    de week
+  text_easy_gantt_resources_change_allocator_enabled: Toestaam om toewijzer op aanpassen
+    taken te wijzigen
+  text_easy_gantt_resources_change_default_allocator: Om prestatieredenen zal het
+    wijzigen van deze optie geen invloed hebben op bestaande standaard toewijzers
+    op taken
+  text_easy_gantt_resources_decimal_allocation: Uren worden toegewezen door decimale
+    cijfers (0.5)
+  text_easy_gantt_resources_default_allocator: Hoe geschatte uren voor taken worden
+    toegewezen. (Gelijkmatig type kan langzaam zijn)
+  text_easy_gantt_resources_default_zoom: Standaard zoom voor globaal resource management
+  text_easy_gantt_resources_hide_planned_tasks_enabled: Toon buttons "verberg geplande
+    taken" voor resource management
+  text_easy_gantt_resources_hours_per_day: Max toewijsbare uren per dag
+  text_easy_gantt_resources_overloaded_assigned: Deze taak overladen toegewezen aan
+    %{errors}. U kunt het veranderen op %{link}.
+  text_easy_gantt_resources_show_free_capacities: Sta toggling van display vrije capaciteit
+    toe in plaats van toegewezen uren voor opgedragen taken op resource management
+  text_easy_gantt_resources_show_groups: Toon groepen voor global resource management
+  text_easy_gantt_resources_show_total_project_allocations: Toon totale toegewezen
+    uren voor project resource management
+  text_easy_gantt_resources_watchdog_enabled: Bekijk overladen toegewezen gebruiker
+    tijdens bewerken taak
+  text_easy_gantt_resources_with_projects: Schakel "Met projecten" optie standaard
+    in  voor Global RM
+  text_easy_meeting_easy_resource_dont_allocate: Een vergadering vermindert de allocatie
+    voor resource management niet
+  title_easy_gantt_personal_resources: Mijn resources
+  title_easy_gantt_resources_settings: Resource management door Easy
+  title_easy_gantt_resources_users_settings: Individuele gebruikersinstellingen

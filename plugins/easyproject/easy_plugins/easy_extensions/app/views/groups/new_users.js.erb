@@ -1,0 +1,9 @@
+$('#ajax-modal').html('<%= escape_javascript(render :partial => 'groups/new_users_modal') %>');
+showModal('ajax-modal', '700px');
+$('#ajax-modal').dialog({
+  title: '<%= j l(:label_user_add) %>',
+  buttons: [
+    { text: '<%= j l(:button_cancel) %>', click: function() { $(this).dialog('close'); }, 'class': 'button'},
+    { text: '<%= j l(:button_save) %>', click: function() {$(this).find('form').submit()}, 'class': 'button-positive' }
+  ]
+});

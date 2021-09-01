@@ -1,0 +1,38 @@
+<%= form_tag({}) do -%>
+  <%= hidden_field_tag 'back_url', original_url %>
+   <div class="autoscroll">
+    <table class="list projects">
+      <thead>
+        <tr>
+          <%= '<th class="grouped-space"></th>'.html_safe if query.grouped? -%>
+          <% query.columns.each do |column| -%>
+            <%= easy_query_column_header(query, column, :disable_sort => true) -%>
+          <% end -%>
+          <th></th>
+        </tr>
+      </thead>
+      <% previous_group = params[:previous_group] || false %>
+      <% groups_opened = query.groups_opened %>
+      <tbody>
+        <% projects.each do |project| -%>
+          <% if query.grouped? && (group = query.group_by_column.value(project)).to_param.to_s.rstrip != previous_group %>
+            <tr class="group<%= groups_opened ? ' open' : '' %>">
+              <td colspan="<%= query.columns.size + 2 %>" class="inline_expander">
+                <span class="expander" onclick="toggleRowGroup(this); return false;" alt="Expander" title="<%=l :collapse_expand %>">&nbsp;</span>
+                <% counting_contition = group.is_a?(ActiveRecord::Base) && !query.group_by_column.is_a?(EasyQueryCustomFieldColumn) %>
+                <%= format_groupby_html_entity_attribute(project.class, query.group_by_column, query.group_by_column.value(project), {:entity => project}) %> <span class="count"><%= query.entity_count_by_group[counting_contition ? group.id : group] %></span>
+              </td>
+            </tr>
+            <% previous_group = group.to_param.to_s.rstrip %>
+          <% end %>
+          <tr id="project-<%= project.id %>" style='<%= (groups_opened ? '' : 'display: none;') %>'>
+            <%= '<td class="grouped-space"></td>'.html_safe if query.grouped? -%>
+            <% query.columns.each do |column| %>
+              <%= content_tag :td, format_html_entity_attribute(project.class, column, column.value(project, {:params => params}), {:entity => project}), :class => column.css_classes -%>
+            <% end %>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+   </div>
+<% end -%>

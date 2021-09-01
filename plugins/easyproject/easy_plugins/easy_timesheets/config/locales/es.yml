@@ -1,0 +1,94 @@
+---
+es:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Hay otra plantilla de control
+                de horas en este periodo
+  button_copy_easy_time_sheet: Copiar filas a nueva hoja de control de tiempo
+  button_easy_timesheet_by_easy_query: Hojas de tiempo por filtro guardado
+  button_easy_timesheet_delete_with_time_entries: Eliminar fila y tiempo empleado
+  button_easy_timesheet_delete_without_time_entries: Eliminar solo la fila
+  button_easy_timesheets_approve: Aprobar
+  button_easy_timesheets_lock: Bloquear
+  button_easy_timesheets_new_row: Nueva fila
+  button_easy_timesheets_reject: Rechazar
+  button_easy_timesheets_unlock: Desbloquear
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Extracto personal - Hojas de tiempo
+        description: Ver hojas de tiempo
+  easy_query:
+    name:
+      easy_timesheet_query: Hojas de control de tiempo
+  easy_timesheets_date_must_be_first_day_of_week: Debe ser el primer día de la semana.
+    (%{day})
+  easy_timesheets_periods:
+    day: Semanal
+    month: Mensual
+    week: Semanal
+  easy_timesheets_plugin_name: Hojas de tiempo
+  error_timesheet_invalid_time_entries: 'No se puede crear la hoja de tiempo debido
+    a entradas de tiempo inválidas: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: ID de horas extras de campo personalizado
+    label_new_monhly_timesheet: Nueva hoja de tiempo mensual
+    label_overtime: Horas extra
+    label_set_cf_overtime_id_in_rys_plugins: La función de horas extra está activada.
+      Selecciona el campo personalizado de horas extra %{link}.
+  field_easy_timesheet_period: Periodo
+  heading_easy_timesheets_edit: Editar hoja de tiempo
+  heading_easy_timesheets_new: Nueva hoja de tiempo semanal
+  heading_easy_timesheets_show: Hoja de tiempo %{start_date} - %{end_date}
+  label_easy_timesheet: Hoja de control de tiempo
+  label_easy_timesheet_approved: "¿Aprobada?"
+  label_easy_timesheet_approved_by: Aprobada por
+  label_easy_timesheet_end_date: Fecha de finalización
+  label_easy_timesheet_lock_description: Razón por la que se aprueba/rechaza
+  label_easy_timesheet_lock_prompt: Razón para aprobar
+  label_easy_timesheet_locked_at: Aprobada/rechazada
+  label_easy_timesheet_rejected_by: Rechazada por
+  label_easy_timesheet_unlock_prompt: Razón para rechazar
+  label_easy_timesheets: Hojas de tiempo
+  label_enabled_timesheet_periods: Periodos habilitados
+  label_filter_group_easy_timesheet_query: Hoja de tiempo
+  notice_easy_timesheet_both_periods: Si eliges ambos, algunos registros podrían mezclarse
+    o no funcionar correctamente si los periodos se solapan.
+  notice_extended_timesheet_period_not_enabled: El control de horas de %{period} no
+    está activo
+  permission_create_easy_timesheets_for_other_user: Crear hoja de tiempo para otros
+    usuarios
+  permission_edit_easy_timesheets: Editar hojas de tiempo
+  permission_edit_own_easy_timesheets: Editar hojas de tiempo propias
+  permission_view_easy_timesheets: Ver hojas de tiempo
+  project_module_easy_timesheets: Hojas de tiempo
+  text_easy_timesheet_destroy_cell_are_you_sure: "¿Seguro que quieres eliminar el
+    tiempo empleado?"
+  text_easy_timesheet_destroy_row_are_you_sure: Vas a eliminar una fila de la hoja
+    de tiempo. No tienes que borrar automáticamente el tiempo gastado en esta fila.
+    ¿Cómo deseas continuar?
+  text_easy_timesheet_prompt_text: Añadir tiempo
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: La fecha de inicio
+    se alineará automáticamente con el comienzo de la semana elegida
+  text_time_sheet_copy_from: Las filas se cumplimentarán automáticamente desde la hoja
+    de tiempo %{entity}
+  text_warning_after_time_sheet_copied: Si no guardas al menos una celda en la fila,
+    se perderá la fila.
+  title_easy_timesheet_destroy: Eliminar hoja de tiempo
+  title_easy_timesheet_edit_with_period: Editar hoja de tiempo %{period}
+  title_easy_timesheet_new_with_period: Nueva hoja de tiempo %{period}
+  title_easy_timesheet_show: Mostrar hoja de tiempo
+  title_next_time_sheet: Mostrar la siguiente hoja de tiempo de %{user}
+  title_previous_time_sheet: Mostrar la hoja de tiempo anterior de %{user}
+  validation_entry_already_exists: La hoja de tiempo entre (%{start_date}) y (%{end_date})
+    ya existe
+  validation_greater_than_start_date: "(%{end_date}) debe ser mayor que la fecha de
+    inicio (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: No se han podido destruir algunas
+    entradas
+  validation_week_period: El periodo entre (%{start_date}) y (%{end_date}) debe ser
+    una semana

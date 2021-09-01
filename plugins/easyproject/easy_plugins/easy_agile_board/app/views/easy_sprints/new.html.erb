@@ -1,0 +1,50 @@
+<%= title l(:label_agile_sprint_new) %>
+
+<%= call_hook(:view_easy_sprint_new_top, easy_sprint: @easy_sprint) %>
+
+<%= form_for [@project, @easy_sprint], html: { class: 'easy-sprint tabular form-box', remote: request.xhr? } do |f| %>
+  <%= error_messages_for @easy_sprint %>
+
+  <div>
+    <%= render partial: 'form', locals: { f: f, project: @project, easy_sprint: @easy_sprint } %>
+  </div>
+  <div>
+    <p>
+      <%= radio_button_tag 'move_task', 'no', true, onchange: '$("#sprint_relations_container").hide();' %>
+      <%= label_tag 'move_task_no', l(:label_easy_agile_board_move_task_no), class: 'inline' %>
+    </p>
+    <p>
+      <%= radio_button_tag 'move_task', 'selected', false, onchange: '$("#sprint_relations_container").show();' %>
+      <%= label_tag 'move_task_selected', l(:label_easy_agile_board_move_task_selected), class: 'inline' %>
+
+      <% if @project.current_easy_sprint.nil? %>
+        <% selected_sprint_id_opt = { name: l(:label_easy_agile_board_select_sprint), id: '' } %>
+      <% else %>
+        <% selected_sprint_id_opt = { name: @project.current_easy_sprint.name, id: @project.current_easy_sprint.id } %>
+      <% end %>
+      <%= easy_autocomplete_tag('selected_sprint_id', selected_sprint_id_opt, autocomplete_project_easy_sprints_path(@project, format: :json), root_element: 'easy_sprints', html_options: { id: 'selected_sprint_id' }) %>
+    </p>
+    <p>
+      <%= radio_button_tag 'move_task', 'all', false, onchange: '$("#sprint_relations_container").show();' %>
+      <%= label_tag 'move_task_all', l(:label_easy_agile_board_move_task_all), class: 'inline' %>
+    </p>
+    <% unless @project.easy_sprints.empty? %>
+      <p id="sprint_relations_container" style="display: none">
+        <%= check_box_tag 'sprint_relations[][relation_type]', IssueEasySprintRelation::TYPES[IssueEasySprintRelation::TYPE_BACKLOG], true, id: 'sprint_relations_relation_type_backlog' %>
+        <%= label_tag 'sprint_relations_relation_type_backlog', l(:label_agile_backlog), class: 'inline' %>
+        <% statuses = @easy_sprint.statuses_setting
+        in_progress_setting = statuses[IssueEasySprintRelation::TYPE_PROGRESS] || {}
+        in_progress_setting.each do |phase, setting| %>
+          <%= check_box_tag 'sprint_relations[][relation_type]', phase, phase.to_i <= 2, id: "sprint_relations_relation_type_#{phase}" %>
+          <%= label_tag "sprint_relations_relation_type_#{phase}", setting['name'], class: 'inline' %>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+
+  <% unless request.xhr? %>
+    <div class="form-actions">
+      <%= f.submit l(:button_create), class: 'button-positive' %>
+    </div>
+  <% end %>
+<% end %>

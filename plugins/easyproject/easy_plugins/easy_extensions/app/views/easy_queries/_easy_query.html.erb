@@ -1,0 +1,20 @@
+<%
+presenter = easy_query_to_presenter(easy_query, local_assigns)
+options ||= {}; form_options ||= {}
+options[:hascontextmenu] = true unless options.key?(:hascontextmenu)
+options[:render_index] = true unless options.key?(:render_index)
+%>
+
+<% if options[:render_index].to_boolean %>
+  <% if presenter.outputs.list? %>
+    <%= easy_render_format_options_dialog(easy_query, @groups, params, 'pdf') %>
+    <%= easy_render_format_options_dialog(easy_query, @groups, params, 'csv') %>
+    <%= easy_render_format_options_dialog(easy_query, @groups, params, 'xlsx') %>
+  <% end %>
+
+  <%= render partial: 'easy_queries/easy_query_index', locals: { query: easy_query, easy_query_name: presenter.name, options: options }.merge(form_options) %>
+<% end %>
+
+<% presenter.outputs.each do |o| %>
+  <%= o.render_data %>
+<% end %>

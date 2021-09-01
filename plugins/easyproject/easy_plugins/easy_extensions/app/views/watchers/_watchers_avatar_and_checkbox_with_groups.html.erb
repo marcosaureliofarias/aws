@@ -1,0 +1,17 @@
+<% available_watcher_groups ||= watchable.available_groups %>
+<% groups_role_names ||= project.try(:grouped_user_role_names, available_watcher_groups) %>
+
+<% if available_watcher_groups.any? %>
+  <ul class="issue_watchers link-list">
+    <%= render :partial => 'watchers/watchers_avatar_and_checkbox', :locals => {:principals => available_watcher_groups, :watchable => watchable, :project => project, :role_names => groups_role_names, :object_name => object_name, :principal_count => nil, :principal_pages => nil, :freetext_search_params => nil} -%>
+  </ul>
+<% end %>
+
+<% available_watcher_users ||= watchable.addable_watcher_users %>
+<% users_role_names ||= project.try(:grouped_user_role_names, available_watcher_users) %>
+
+<% if available_watcher_users.any? %>
+  <ul class="issue_watchers link-list">
+    <%= render :partial => 'watchers/watchers_avatar_and_checkbox', :locals => {:principals => available_watcher_users, :watchable => watchable, :project => project, :role_names => users_role_names, :object_name => object_name, :principal_count => nil, :principal_pages => nil, :freetext_search_params => nil} -%>
+  </ul>
+<% end %>

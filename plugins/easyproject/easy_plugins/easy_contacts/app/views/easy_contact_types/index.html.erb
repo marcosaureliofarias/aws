@@ -1,0 +1,11 @@
+<%= title l(:label_easy_contact_types) %>
+
+<% if @types.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <%= render partial: 'easy_contact_types/index', locals: { types: @types } %>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= render 'sidebar' %>

@@ -1,0 +1,9 @@
+<%= title l(:heading_easy_crm_case_status_index) %>
+
+<%= render :partial => 'easy_crm_case_statuses/index', :locals => {:easy_crm_case_statuses => @easy_crm_case_statuses, :project => @project} %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_easy_crm_add_status), new_easy_crm_case_status_path(:project_id => @project), :class => 'button-positive icon icon-add', :title => l(:button_easy_crm_add_status) %>
+<% end %>

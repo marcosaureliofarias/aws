@@ -1,0 +1,17 @@
+<%= labelled_fields_for :issue, @issue do |f| %>
+  <%= hidden_field_tag 'form_update_triggered_by', '' %>
+  <% if @issue.attributes_editable? %>
+    <%= render :partial => 'issues/edit_issue_attributes', :locals => {:f => f} %>
+  <% end %>
+  <% if @issue.editable? || !@allowed_statuses.empty? %>
+    <div class="edit-issue-attributes-visible">
+      <%= render_visible_issue_attributes_for_edit(@issue, f) %>
+    </div>
+    <% if @issue.tracker && @issue.tracker.easy_send_invitation? %>
+      <div class="splitcontentleft">
+        <p><%= label_tag 'issue_should_send_invitation_update', l(:lable_should_send_invitation_update) %><%= check_box_tag('issue[should_send_invitation_update]', 1, false) %></p>
+      </div>
+    <% end %>
+  <% end %>
+  <%= call_hook(:view_issues_form_details_bottom, { :issue => @issue, :form => f, :project => @project }) %>
+<% end %>

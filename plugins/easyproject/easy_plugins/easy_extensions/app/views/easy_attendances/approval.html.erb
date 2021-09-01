@@ -1,0 +1,35 @@
+<% back_url = params[:back_url].presence || easy_attendances_path %>
+<div id="easy-attendance-approval">
+  <%= title @title -%>
+  <%= form_tag(approval_save_easy_attendances_path) %>
+  <%= back_url_hidden_field_tag %>
+  <table>
+    <thead>
+      <tr>
+        <th><%=l(:label_user)%></th>
+        <th><%=l(:label_activity)%></th>
+        <th><%=l(:label_date_from)%> </th>
+        <th><%=l(:label_date_to)%></th>
+        <th><%=l(:field_status)%></th>
+        <% if @is_exceeded_attendance %>
+          <th></th>
+        <% end %>
+        <th><%= toggle_checkboxes_link('.approval_ids') %></th>
+      <tr>
+    </thead>
+    <tbody>
+      <%= render :partial => 'approval_list', :collection => @easy_attendances, :as => 'easy_attendance' %>
+    </tbody>
+  </table>
+
+  <div class="splitcontent">
+    <p class="textarea--approval">
+      <%= text_area_tag :notes,'', :rows => 10, :class => 'wiki-edit', :no_label => true %>
+      <%- wikitoolbar_for('notes') %>
+    </p>
+  </div>
+  <div class="submit-buttons form-actions">
+    <%= link_to(l(:button_approve, :scope => :easy_attendance), 'javascript:void(0);', :onclick => '$(this).closest("form").append($("<input>").attr("type", "hidden").attr("name", "approve").val(1)).submit()',class: 'button-positive')%>
+    <%= link_to(l(:button_reject, :scope => :easy_attendance), 'javascript:void(0);', :onclick => '$(this).closest("form").append($("<input>").attr("type", "hidden").attr("name", "approve").val(0)).submit()',class: 'button-negative')%>
+  </div>
+</div>

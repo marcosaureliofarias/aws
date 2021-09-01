@@ -1,0 +1,96 @@
+@mixin button($background:$button-base-background,$color:$button-base-color,$height:$button-height){
+  @extend %button;
+  line-height: $height - $gap - 2;
+  min-height: $height - $gap - 2;
+  background: $background;
+  //border-color: background-to-border($background);
+  border-color: darken($background, 0%);
+  color: $color;
+  &:hover{
+    color: $color;
+    text-decoration: none;
+    background: darken($background,5%);
+  }
+  &.selected{
+    background: darken($background,5%);
+    color: rgba($color,.75);
+  }
+  .ui-widget-content & { //hack to overide jui ****
+    color: $color;
+  }
+}
+@mixin button-small($background:$button-base-background,$color:$button-base-color,$height:$button-height){
+  @include button($background, $color, $height);
+  @extend %button-small;
+}
+@mixin button-mini($background:$button-base-background,$color:$button-base-color,$height:$button-height){
+  @include button($background, $color, $height);
+  color: $color !important;
+  @extend %button-mini;
+  //line-height: 1;
+}
+@mixin button-outlined($color:$color-main, $color-hover: $color-main-border){
+  color: $color !important;
+  background: transparent !important;
+  &:hover{
+    background:transparent !important;
+    color: $color-hover !important;
+  }
+}
+%button-base{
+  @include button($button-base-background,$button-base-color,$button-height);
+}
+%button-main{
+  @include button($button-main-background,$button-main-color,$button-height);
+}
+%button-important{
+  @include button($button-important-background,$button-important-color,$button-height);
+}
+%button-positive{
+  @include button($button-positive-background,$button-positive-color,$button-height);
+}
+%button-negative{
+  @include button($button-negative-background,$button-negative-color,$button-height);
+}
+%button-mini{
+  @include button-mini($button-base-background,$button-base-color,$button-mini-height);
+}
+%button-mini-positive{
+  @include button-mini($button-positive-background,$button-positive-color,$button-mini-height);
+}
+%button-mini-negative{
+  @include button-mini($button-negative-background,$button-negative-color,$button-mini-height);
+}
+%button-outlined{
+  @include button-outlined($color-text , darken($color-text,10%));
+  &.button-positive{
+    @include button-outlined($color-positive, $color-positive-border);
+  }
+  &.button-negative{
+    @include button-outlined($color-negative, $color-negative-border);
+  }
+  &.button-main{
+    @include button-outlined($color-main, $color-main-border);
+  }
+}
+%button-append{
+  display: inline-block;
+  @extend %box-sizing-border-box;
+  @extend %button-base;
+  @extend %truncate;
+  @include border-radius(0);
+  width: $form-field-height;
+  line-height: $form-field-height - 4;
+  height: $form-field-height;
+  text-align: center;
+  padding: 0 .5*$gap !important;
+  margin: 0;
+  margin-left: -1px;
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  flex-shrink: 0;
+  &:before{
+    width: 100% !important;
+  }
+}

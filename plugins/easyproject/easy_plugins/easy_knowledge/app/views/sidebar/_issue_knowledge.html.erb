@@ -1,0 +1,8 @@
+<h3><%= l(:label_easy_knowledge) -%></h3>
+<div class="box stories">
+  <% issue.easy_knowledge_stories.each do |story| -%>
+    <div class="story-#{story.id}">
+      <%= link_to(story.name, story, :title => l(:title_easy_knowledge_show_story)) -%>
+    </div>
+  <% end -%>
+</div>

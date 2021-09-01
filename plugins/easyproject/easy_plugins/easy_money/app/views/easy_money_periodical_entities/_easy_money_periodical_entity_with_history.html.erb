@@ -1,0 +1,10 @@
+<% if edit && easy_money_periodical_entity.editable? %>
+  <p>
+    <%= hidden_field_tag "easy_money_periodical_entities[][id]", easy_money_periodical_entity.id %>
+    <%= label_tag "easy_money_periodical_entities[][price1]", easy_money_periodical_entity.name, :class => 'required' %>
+    <%= text_field_tag "easy_money_periodical_entities[][price1]", easy_money_periodical_entity.edit_price_for_period(period_date), :size => 8 -%>
+  </p>
+<% else %>
+  <%= link_to easy_money_periodical_entity.name, easy_money_periodical_entity_path(easy_money_periodical_entity) %>
+  <%= format_price easy_money_periodical_entity.current_price %>
+<% end %>

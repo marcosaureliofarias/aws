@@ -1,0 +1,20 @@
+div.easy-calendar{
+  margin-left: -.5*$box-padding;
+  margin-right: -.5*$box-padding;
+  margin-bottom: .5*$box-padding;
+  &-fc{
+    margin-left: -.5*$box-padding; //-$retrace;
+    margin-right: -.5*$box-padding; //-$retrace;
+  }
+  &, &-fc {
+    table {
+      border-collapse: collapse;
+      thead {
+        th, td {
+          border-left: 1px solid $color-border-minor;
+          border-right: 1px solid $color-border-minor;
+        }
+      }
+    }
+  }
+}

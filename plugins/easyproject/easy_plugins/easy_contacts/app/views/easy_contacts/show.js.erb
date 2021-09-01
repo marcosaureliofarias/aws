@@ -1,0 +1,4 @@
+$("#ajax-modal").html("<%=j render(:partial => 'easy_contacts/detail', :locals => {:easy_contact => @easy_contact}) %>");
+$("#ajax-modal").append("<%=j link_to(l(:button_easy_contact_homepage), @easy_contact, :class => 'button-positive icon icon-user') %>")
+EASY.modalSelector.showModal();
+$("#ajax-modal").dialog("option", {"title": "<%= @easy_contact.name %>"});

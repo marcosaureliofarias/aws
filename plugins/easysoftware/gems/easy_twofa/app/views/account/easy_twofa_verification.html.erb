@@ -1,0 +1,35 @@
+<div class="easy-twofa-verification easy-twofa-verification--login">
+  <h3>
+    <%= l('easy_twofa.twofa') %> (<%= @easy_twofa_scheme.t_name %>)
+  </h3>
+
+  <p>
+    <%= l('easy_twofa.please_enter_verification_key') %>
+  </p>
+
+  <%= form_tag easy_twofa_verify_account_path, method: 'POST', class: 'tabular' do %>
+    <%= render @easy_twofa_scheme.verify_partial_path %>
+
+    <p>
+      <%= label_tag :remember_device, l('easy_twofa.remember_device') %>
+      <%= check_box_tag :remember_device, '1' %>
+      <em class="help"><%= l('easy_twofa.device_will_be_rememberd_for_x_days', count: EasyTwofa.config.remember_for) %></em>
+    </p>
+
+    <div class="form-actions">
+      <%= submit_tag l('easy_twofa.authentificate'), class: 'button-positive' %>
+
+      <% if @easy_twofa_scheme.enable_resending? %>
+        <%= link_to l('easy_twofa.send_new_code'), easy_twofa_verification_account_path(resend: '1'), class: 'button' %>
+      <% end %>
+
+      <% if session[:easy_twofa_selection] == 1 %>
+        <%= link_to l('easy_twofa.select_scheme'), easy_twofa_select_scheme_account_path, class: 'button' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_twofa' %>
+<% end %>

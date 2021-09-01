@@ -1,0 +1,17 @@
+<% if @issue.new_record? %>
+  $("#attributes").html("<%= j(render(:partial => 'issues/new_form_updatable_attributes', :locals => {:default_button_state => true})) %>");
+  $("#custom_fields_container").html("<%= j(render(:partial => 'issues/new_form_custom_fields', :locals => {:issue => @issue})) %>");
+  <% if @issue.new_record? && @issue.tracker.easy_distributed_tasks? %>
+    $('#easy_distributed_tasks').show();
+  <% else %>
+    $('#easy_distributed_tasks').hide();
+  <% end %>
+  $('#issue-form .description').toggle(<%= @issue.safe_attribute?('description') %>);
+  <%= call_hook :view_new_issue_update_form_js, {:issue => @issue} %>
+<% else %>
+  var issue_descr_fields_style = $('#issue_descr_fields').css('display');
+  $('#form-attributes').html("<%= j(render(:partial => 'issues/edit_form_attributes')) %>");
+  $('#issue_descr_fields').css('display', issue_descr_fields_style);
+<% end %>
+initEasyAutocomplete();
+if ($("#issue-form").length) $("#issue-form").trigger("new-issue-attribute-reloaded");

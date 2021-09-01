@@ -1,0 +1,114 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name %>
+<% if user && easy_user_working_time_calendar -%>
+<div class="toolbar">
+    <%= link_to(l(:button_easy_user_working_time_reset_to_parent), {:controller => 'easy_user_working_time_calendars', :action => 'reset', :id => easy_user_working_time_calendar, :back_url => original_url}, :class => 'button', :title => l(:title_easy_user_working_time_reset_to_parent), :data => {:confirm => l(:text_are_you_sure)}) -%>
+    <%= link_to(l(:button_easy_user_working_time_parent), {:controller => 'easy_user_working_time_calendars', :action => 'show', :id => easy_user_working_time_calendar.parent}, :class => 'button', :title => l(:title_easy_user_working_time_parent)) -%>
+</div>
+<% end -%>
+<div class="easy-user-working-time-calendar-settings-container">
+  <% if user -%>
+    <div class="box">
+      <%= toggling_container(modul_uniq_id + '_easy_user_working_time_calendar_settings', User.current, {:heading => l(:label_easy_user_working_time_calendar_settings), :container_html => {:class => 'easy-user-working-time-calendar-settings'}}) do %>
+        <%= form_tag({:controller => 'easy_user_working_time_calendars', :action => 'assign_to_user'}, :class => 'form-box') do -%>
+          <%= hidden_field_tag 'back_url', original_url -%>
+          <%= hidden_field_tag 'user_id', user.id -%>
+          <div class="splitcontent">
+            <div class="splitcontentleft tabular">
+              <p>
+                <%= label_tag 'select_working_time_calendar', l(:label_easy_user_working_time_calendar_change_calendar) -%>
+                <%= select_tag 'working_time_calendar', options_for_select([['', '']] + EasyUserWorkingTimeCalendar.templates.collect{|c| [c.translated_name, c.id.to_s]}, easy_user_working_time_calendar.parent.id.to_s), :id => 'select_working_time_calendar' -%>
+              </p>
+            </div>
+            <div class="splitcontentleft">
+              <% if easy_user_working_time_calendar -%>
+                <p>
+                  <%= check_box_tag 'preserve_calendar_exceptions', 1, true -%>
+                  <%= label_tag 'preserve_calendar_exceptions', l(:label_easy_user_working_time_calendar_preserve_calendar_exceptions) -%>
+                </p>
+              <% else -%>
+                <%= hidden_field_tag 'preserve_calendar_exceptions', '1' -%>
+              <% end -%>
+            </div>
+          </div>
+          <div class="form-actions">
+            <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+          </div>
+        <% end -%>
+      <% end %>
+    </div>
+  <% end %>
+  <% if easy_user_working_time_calendar -%>
+    <% if easy_user_working_time_calendar.user %>
+      <div class="box">
+        <%= toggling_container(modul_uniq_id + '_easy_user_working_time_day_settings', User.current, :heading => l(:label_easy_user_working_time_day_settings)) do %>
+          <%= labelled_form_for easy_user_working_time_calendar, :url => {:controller => 'easy_user_working_time_calendars', :action => 'update', :id => easy_user_working_time_calendar.id}, :html => {:method => :put, :class => 'form-box'} do |f| %>
+            <%= hidden_field_tag 'back_url', original_url -%>
+              <div class="splitcontent">
+                <div class="splitcontentleft size-33">
+                  <% time_from_value = (easy_user_working_time_calendar.time_from ? easy_user_working_time_calendar.time_from.strftime('%H:%M') : '') %>
+                  <%= f.text_field :time_from, type: 'time', required: true, label: l(:label_easy_user_working_time_calendar_time_from), value: time_from_value, placeholder: time_from_value.presence || '00:00', name: 'easy_user_working_time_calendar[time_from]', size: 5, class: 'time-select time-select-time_from' %>
+                </div>
+                <div class="splitcontentleft size-33">
+                  <% time_to_value = (easy_user_working_time_calendar.time_to ? easy_user_working_time_calendar.time_to.strftime('%H:%M') : '') %>
+                  <%= f.text_field :time_to, type: 'time', required: true, label: l(:label_easy_user_working_time_calendar_time_to), value: time_to_value, placeholder: time_to_value.presence || '00:00', name: 'easy_user_working_time_calendar[time_to]', size: 5, class: 'time-select time-select-time_to' %>
+                </div>
+                <div class="splitcontentleft size-33">
+                  <%= f.text_field :default_working_hours, required: true, label: l('activerecord.attributes.easy_user_working_time_calendar.default_working_hours'.to_sym), size: 5, class: 'inline' %>
+                </div>
+             </div>
+             <div class="form-actions">
+               <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+             </div>
+          <% end -%>
+        <% end -%>
+      </div>
+    <% end -%>
+    <div class="box">
+      <%= toggling_container(modul_uniq_id + '_easy_user_working_time_mass_exceptions', User.current, {:heading => l(:label_easy_user_working_time_mass_exceptions), :container_html => {:class => 'easy-user-working-time-mass-exceptions'}}) do %>
+        <%= form_tag({:controller => 'easy_user_working_time_calendars', :action => 'mass_exceptions', :id => easy_user_working_time_calendar}, :class => 'form-box') do -%>
+          <%= hidden_field_tag 'mass_exception[back_url]', original_url -%>
+          <div class="splitcontent">
+            <div class="splitcontentleft size-25">
+
+                <%= label_tag 'mass_exception_working_hours', l(:label_easy_user_working_time_calendar_mass_exceptions_working_hours) -%>
+                <%= text_field_tag 'mass_exception[working_hours]', 0, :size => 2, :maxlength => 4, :class => 'inline' -%>
+
+            </div>
+            <div class="splitcontentleft size-25">
+
+                <%= label_tag 'mass_exception_day_period', l(:label_easy_user_working_time_calendar_mass_exceptions_day_period) -%>
+                <%= select_tag('mass_exception[day_period]', options_for_select(7.times.collect{|d| [day_name(d+1), d+1]}), {:class => 'inline'}) -%>
+
+            </div>
+            <div class="splitcontentleft size-25 inline">
+
+                <%= label_tag '', l(:label_date_from) -%>
+                <%= text_field_tag('mass_exception[from]', User.current.today.to_s, :size => 10, :class => 'inline')%>
+                <%= calendar_for('mass_exception_from') %>
+
+            </div>
+            <div class="splitcontentleft size-25 inline">
+
+                <%= label_tag '', l(:label_date_to) -%>
+                <%= text_field_tag('mass_exception[to]', User.current.today.to_s, :size => 10, :class => 'inline')%>
+                <%= calendar_for('mass_exception_to') %>
+
+            </div>
+          </div>
+          <p>
+            <%= check_box_tag 'mass_exception[overwrite]', 1, true -%>
+            <%= label_tag 'mass_exception_overwrite', l(:label_easy_user_working_time_calendar_mass_exceptions_overwrite) -%>
+          </p>
+          <div class="form-actions">
+            <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+          </div>
+        <% end -%>
+      <% end %>
+    </div>
+
+    <%= render :partial => 'easy_attendance_activities/activity_user_limit_settings', :locals => {:user => user} if EasyAttendance.enabled? %>
+
+    <%= call_hook(:view_easy_extensions_user_working_time_calendars_setting_bottom, {:calendar => easy_user_working_time_calendar,:start_time =>params[:start_date]}) %>
+  <% end %>
+</div>
+

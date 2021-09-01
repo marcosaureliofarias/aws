@@ -1,0 +1,17 @@
+var modal = $("#ajax-modal");
+modal.html("<%=j render(:partial => 'easy_translations/form') %>");
+modal.find('form').append($("<input/>").attr({"type":'hidden', "name":"back_url","value": window.location.href}));
+showModal('ajax-modal', '80%');
+modal.dialog('option', {
+  title: "<%=j l(:title_modal_easy_translation_edit_for_column, :column => @entity.class.human_attribute_name(@entity_column)) %>",
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_update) %>',
+      click: function() {$(this).find('form').submit();}, 'class': 'button-positive submit'
+    }
+  ]
+});

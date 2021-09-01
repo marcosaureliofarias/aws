@@ -1,0 +1,9 @@
+<%= render @query %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do %>
+  <%= link_to l(:label_new_easy_button), new_easy_button_path, class: 'button-3 icon icon-add' %>
+<% end %>
+
+<%= context_menu context_menu_easy_buttons_path %>

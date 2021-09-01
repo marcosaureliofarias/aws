@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+<%= commented_modules_wrap <<-rb
+class MyJob < Rorys.task
+  def perform(*args)
+    log_info args.join(',')
+  end
+end
+rb
+%>

@@ -1,0 +1,29 @@
+<% projects = Project.active_and_planned.non_templates %>
+<%= error_messages_for 'enumeration' %>
+
+<div class="splitcontent tabular">
+  <div class="splitcontentleft">
+    <p><%= f.text_field :name %></p>
+    <p><%= f.text_field :description %></p>
+    <p><%= f.check_box :active %></p>
+    <p><%= f.check_box :is_default %></p>
+
+    <% @enumeration.custom_field_values.each do |value| %>
+      <p><%= custom_field_tag_with_label :enumeration, value %></p>
+    <% end %>
+    <%= call_hook(:view_enumerations_form_bottom, { enumeration: @enumeration, f: f }) %>
+  </div>
+
+  <div class="splitcontentright">
+    <% if projects.any? %>
+      <%= toggling_fieldset( l(:label_project_plural), id: 'enumeration_project_ids') do %>
+        <% project_ids = @enumeration.project_ids.to_a %>
+        <%= render_project_nested_lists(projects) do |p|
+          content_tag('label', check_box_tag('enumeration[project_ids][]', p.id, project_ids.include?(p.id), id: nil) + ' ' + h(p)) unless p.archived?
+        end %>
+        <%= hidden_field_tag('enumeration[project_ids][]', '', id: nil) %>
+        <p><%= check_all_links 'enumeration_project_ids' %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

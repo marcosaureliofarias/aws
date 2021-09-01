@@ -1,0 +1,14 @@
+<%= title l("title_easy_user_target_modal_#{@entity_type}") %>
+<%= form_tag(add_user_easy_user_targets_path(back_url: back_url)) do %>
+  <div class="tabular">
+    <p>
+      <%= hidden_field_tag :entity, @entity_type %>
+      <%= label_tag :entity_id, l(:"field_#{@entity_type}") %>
+      <%= select_tag :entity_id, options_for_select(select_options_by_entity(@entity_type)) %>
+    </p>
+  </div>
+  <% if !request.xhr? %>
+    <%= submit_tag l(:button_easy_user_target_add_users), class: 'button-positive' %>
+  <% end %>
+<% end %>
+

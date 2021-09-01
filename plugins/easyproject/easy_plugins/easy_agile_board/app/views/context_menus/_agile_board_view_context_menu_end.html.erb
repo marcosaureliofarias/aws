@@ -1,0 +1,16 @@
+<li class="context-menu-autocomplete">
+  <a class="icon icon-agile">
+    <%= easy_autocomplete_tag(
+                'issue[easy_sprint_id]',
+                { name: l(:label_agile_sprint), id: nil },
+                sprints.map {|sprint| { label: sprint[0], id: sprint[1] } },
+                html_options: {
+                        id: 'easy_sprint_id_for_context_menu_issue'
+                },
+                easy_autocomplete_options: {
+                        activate_on_input_click: 'true'
+                },
+                onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_issues_path(ids: @issue_ids, back_url: @back_url)}', data: { issue: { easy_sprint_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });".html_safe
+        ) %>
+  </a>
+</li>

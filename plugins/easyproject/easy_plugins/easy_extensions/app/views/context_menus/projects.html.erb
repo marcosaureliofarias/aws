@@ -1,0 +1,247 @@
+<% current_back_url = back_url %>
+<ul>
+  <% if @project %>
+    <% if User.current.allowed_to?(:edit_project, @project) %>
+      <%= content_tag(:li, context_menu_link(l(:button_edit), settings_project_path(@project), class: 'icon icon-edit')) %>
+    <% end %>
+
+    <% if User.current.admin? && @projects.size == 1 %>
+
+      <% if @project.safe_attribute?('parent_id') %>
+        <li class="context-menu-autocomplete">
+          <a class="submenu icon icon-list">
+            <%= easy_autocomplete_tag(
+                    'project[parent_id]',
+                    { name: l(:field_parent), id: nil },
+                    easy_autocomplete_path('visible_projects'),
+                    preload: false,
+                    root_element: 'projects',
+                    html_options: {
+                        id: 'project_parent_id',
+                        placeholder: l(:field_parent)
+                    },
+                    force_autocomplete: true,
+                    easy_autocomplete_options: {
+                        activate_on_input_click: true,
+                    },
+                    onchange: "if(!ui['item']) { return };
+                    if(confirm('#{l(:confirm_bulk_update_project)}')) {
+                     projectEditAjaxCall('#{project_path(id: @project.id)}', { project: { parent_id: ui['item']['id'] } }, '#{l(:notice_successful_update)}', '#{l(:notice_failed_to_update)}')
+                    }
+                    else {
+                      return
+                    };"
+                ) %>
+          </a>
+        </li>
+      <% end %>
+
+      <% if @project.safe_attribute?('author_id') %>
+        <li class="context-menu-autocomplete">
+          <a class="submenu icon icon-user">
+            <%= easy_autocomplete_tag(
+                    'project[author_id]',
+                    { name: l(:field_author), id: nil },
+                    easy_autocomplete_path('visible_principals', source_options: { internal_non_system: true, select_options_ignored: "my_subordinates;my_subordinates_tree;me" }),
+                    preload: false,
+                    root_element: 'users',
+ 	            html_options: {
+                        id: 'project_author_id',
+                        placeholder: l(:field_author),
+                    },
+                    force_autocomplete: true,
+                    easy_autocomplete_options: {
+                        activate_on_input_click: true,
+                        delay: 50,
+                        minLength: 0
+                    },
+                    onchange: "if(!ui['item']) { return };
+                    projectEditAjaxCall('#{project_path(id: @project.id)}', { project: { author_id: ui['item']['id'] } }, '#{l(:notice_successful_update)}', '#{l(:notice_failed_to_update)}')"
+                ) %>
+          </a>
+        </li>
+      <% end %>
+
+      <% if !EasySetting.value('project_calculate_start_date') %>
+        <li class="folder">
+          <a href="#" class="submenu icon icon-list"><%= l(:field_start_date) %>:</a>
+          <ul>
+            <li>
+              <a><%= text_field_tag 'project[easy_start_date]', @project.start_date, size: 10,
+                                    placeholder: 'YYYY-MM-DD',
+                                    onchange: "projectEditAjaxCall('#{project_path(id: @project.id)}', { project: { easy_start_date: project_easy_start_date.value } }, '#{l(:notice_successful_update)}', '#{l(:notice_failed_to_update)}')"
+              %>
+                <%= calendar_for('project_easy_start_date') %></a>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+
+      <% if !EasySetting.value('project_calculate_due_date') %>
+        <li class="folder">
+          <a href="#" class="submenu icon icon-list"><%= l(:field_due_date) %>:</a>
+          <ul>
+            <li>
+              <a><%= text_field_tag 'project[easy_due_date]', @project.due_date, size: 10,
+                                    placeholder: 'YYYY-MM-DD',
+                                    onchange: "projectEditAjaxCall('#{project_path(id: @project.id)}', { project: { easy_due_date: project_easy_due_date.value } }, '#{l(:notice_successful_update)}', '#{l(:notice_failed_to_update)}')"
+                %>
+                <%= calendar_for('project_easy_due_date') %></a>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+
+      <li class="folder">
+        <%= link_to l(:label_time_tracking_activity), settings_project_path(id: @project, tab: 'activities') %>
+      </li>
+
+      <% activated = EasyCurrency.activated.to_a %>
+      <% if activated.any? %>
+        <li class="folder">
+          <a href="#" class="submenu icon icon-list"><%= l(:field_currency) %></a>
+          <ul>
+            <% activated.each do |p| %>
+              <li onclick="projectEditAjaxCall('<%= project_path(id: @project.id) %>', { project: { easy_currency_code: '<%= p.iso_code %>' } }, '<%= l(:notice_successful_update) %>', '<%= l(:notice_failed_to_update) %>')" style="cursor: pointer;"><a><p><%= p.name %></p></a></li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+
+      <% if @project.safe_attribute?('easy_priority_id') && @project_priorities.any? %>
+        <li class="folder">
+          <a href="#" class="submenu icon icon-list"><%= l(:field_priority) %></a>
+          <ul>
+            <% @project_priorities.each do |priority| %>
+              <li onclick="projectEditAjaxCall('<%= project_path(id: @project.id) %>', { project: { easy_priority_id: '<%= priority.id %>' } }, '<%= l(:notice_successful_update) %>', '<%= l(:notice_failed_to_update) %>')" style="cursor: pointer;"><a><p><%= priority.name %></p></a></li>
+          <% end %>
+          </ul>
+        </li>
+      <% end %>
+
+      <% if @options_by_custom_field.present? && @options_by_custom_field.any? %>
+        <li class="folder context-menu-submenu-autocomplete">
+          <a href="#" class="icon icon-cf submenu"><%= l(:label_custom_field_plural) %></a>
+          <ul>
+            <% @options_by_custom_field.each do |field, options| %>
+              <% if field.autocomplete_supported? %>
+                <li class="context-menu-autocomplete ui-front">
+                  <a>
+                    <% autocomplete_options = options.map { |text, value| { label: text, id: value || text } }%>
+                    <% unless field.is_required? %>
+                      <% autocomplete_options = [{ label: l(:label_none), id: '' }] + autocomplete_options %>
+                    <% end %>
+                    <%= easy_autocomplete_tag(
+                            "project_cf_#{field.id}",
+                            { name: field.name, id: nil },
+                            autocomplete_options,
+                            html_options: {
+                                placeholder: field.name
+                            },
+                            easy_autocomplete_options: {
+                                activate_on_input_click: 'true',
+                                id: "project_#{field.id}_autocomplete",
+                            },
+                            onchange: "if(!ui['item']) {
+                              return
+                            };
+                            projectEditAjaxCall('#{project_path(id: @project.id)}', {
+                                project: {
+                                  custom_field_values: {
+                                    '#{field.id}': ui['item']['id']
+                                  }
+                                }
+                              }, '#{l(:notice_successful_update)}', '#{l(:notice_failed_to_update)}')") %>
+                  </a>
+                </li>
+              <% else %>
+                <li class="folder cf_<%= field.id %>">
+                  <a href="#" class="submenu"><%= field.name %></a>
+                  <ul>
+                    <% options.each do |text, value| %>
+                      <li><%= custom_field_context_menu_link('project', "project_path", @project.id, field, text, value || text, @project.custom_field_value(field)) %></li>
+                    <% end %>
+                    <% unless field.is_required? %>
+                      <li><%= custom_field_context_menu_link('project', "project_path", @project.id, field, l(:label_none), '', @project.custom_field_value(field)) %></li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    <% end %>
+
+    <% menu_items = render_easy_custom_project_menu(@project) %>
+    <% if menu_items %>
+      <li class="folder">
+        <a href="#" class="submenu icon icon-list"><%= l(:label_module_jump) %></a>
+        <%= menu_items %>
+      </li>
+    <% end %>
+
+    <% if User.current.allowed_to?(:manage_members, @project) %>
+      <%= content_tag(:li, context_menu_link(l(:label_add_members), new_project_membership_path(@project), remote: true, class: 'icon icon-add')) %>
+    <% end %>
+
+    <% if User.current.allowed_to?(:copy_project, @project) %>
+      <%= content_tag(:li, link_to_project_copy(@project)) -%>
+    <% end %>
+
+    <% if User.current.allowed_to?(:add_subprojects, @project) %>
+      <%= content_tag(:li, context_menu_link(l(:label_create_subproject), new_project_path(parent_id: @project), class: 'icon icon-add')) %>
+    <% end %>
+
+    <% if User.current.allowed_to?(:create_project_template, @project) %>
+      <%= content_tag(:li, context_menu_link(l(:button_easy_page_create_template), { controller: 'templates', action: 'add', id: @project }, class: 'icon icon-add')) %>
+    <% end %>
+  <% end -%>
+
+  <% if User.current.allowed_to?(:select_project_modules, @project || @projects) %>
+      <%= content_tag(:li, context_menu_link(l(:label_module_manage), @projects.count > 1 ? bulk_modules_projects_path(ids: params[:ids]) : modules_project_path(@project), remote: true, method: :post, class: 'icon icon-add')) %>
+  <% end %>
+
+  <%= call_hook(:view_context_menu_bulk_projects_top, projects: @projects) %>
+
+  <% if @all_active && User.current.allowed_to?(:close_project, @project || @projects) %>
+    <%= content_tag(:li, context_menu_link(l(:button_close), bulk_close_projects_path(data: {ids: params[:ids], status: params[:status]}, back_url: current_back_url),
+                                           class: 'icon icon-lock',
+                                           method: :post,
+                                           remote: :true,
+                                           data: { confirm: l(:text_are_you_sure) }
+    )) -%>
+  <% end %>
+
+  <% if @all_closed && User.current.allowed_to?(:close_project, @project || @projects) %>
+    <%= content_tag(:li, context_menu_link(l(:button_reopen), bulk_reopen_projects_path(data: {ids: params[:ids], status: params[:status]}, back_url: current_back_url),
+                                           class: 'icon icon-unlock',
+                                           method: :post,
+                                           remote: :true,
+                                           data: { confirm: l(:text_are_you_sure) }
+    )) -%>
+  <% end %>
+
+  <% if User.current.allowed_to?(:archive_project, @project || @projects) %>
+    <%= content_tag(:li, context_menu_link(l(:button_archive), bulk_archive_projects_path(data: {ids: params[:ids], status: params[:status]}, back_url: current_back_url),
+                                           class: 'icon icon-archive',
+                                           method: :post,
+                                           data: { confirm: l(:text_are_you_sure) }
+    )) -%>
+  <% end %>
+
+  <% if @all_archived && @can_unarchive %>
+    <%= content_tag(:li, context_menu_link(l(:button_unarchive), bulk_unarchive_projects_path(data: {ids: params[:ids], status: params[:status]}, back_url: current_back_url),
+                                           class: 'icon icon-unlock',
+                                           method: :post,
+                                           data: { confirm: l(:text_are_you_sure) }
+    )) -%>
+  <% end %>
+
+  <% if User.current.allowed_to?(:delete_project, @project || @projects) && @projects.size == 1 %>
+    <%= content_tag :li, context_menu_link(l(:button_delete), bulk_destroy_projects_path(data: {ids: params[:ids], status: params[:status]}, back_url: current_back_url),
+                                           class: 'icon icon-del',
+                                           method: :delete
+    ) -%>
+  <% end %>
+</ul>

@@ -1,0 +1,46 @@
+<%  if User.current.allowed_to?(:manage_alert_types, nil, :global => true) %>
+  <div id="alerts-type">
+    <% uniq_id = controller_name + '_' + action_name + '_alerts_type_administration' %>
+    <%= module_plus_button(User.current, l(:label_alerts_types) ,uniq_id )  %>
+    <div id="<%= uniq_id %>" <%= detect_hide_elements(uniq_id) %> class="module-content">
+
+
+      <% @types = AlertType.all; if (@types.empty?) -%>
+        <p class="nodata"><%= l(:label_no_data) %></p>
+      <% else -%>
+        <div class="autoscroll">
+          <table class="list reorder">
+            <thead>
+              <tr>
+                <th></th>
+                <%= content_tag :th, l(:label_alerts_type_name)%>
+                <%= content_tag :th, l(:field_color), :style => 'width:19%'  %>
+                <%= content_tag :th, '&nbsp;', :style => 'width:25%'  %>
+              </tr>
+            </thead>
+            <tbody>
+              <% @types.each do |type| %>
+                <tr>
+                  <td class="center reorder-handler"><%= render_reorder_handle(type, 'alert_type') %></td>
+                  <td class="name"><%= type.translated_name %></td>
+                  <td style="color:<%= type.color %>"><%= type.color %></td>
+                  <td>
+                    <%= link_to(l(:button_edit), {:controller => 'alert_types', :action => 'edit', :id => type.id}, :class => 'icon icon-edit') -%>
+                    <%= link_to(l(:button_delete), {:controller => 'alert_types', :action => 'destroy', :id => type.id}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del') -%>
+                  </td>
+                </tr>
+              <% end -%>
+            </tbody>
+          </table>
+        </div>
+      <% end -%>
+      <%= content_tag :p,  link_to(l(:button_alerts_add_new_type), {:controller => 'alert_types', :action => 'new' }, :class => 'icon icon-add') %>
+    </div>
+  </div>
+
+  <% ### PAGE CUSTOMS ########################################################## %>
+
+  <% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+  <% end %>
+<%end -%>

@@ -1,0 +1,19 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name + '_assigned_entities_to_issue'
+user ||= User.current
+final_categories_collection = []
+final_categories_collection << current_category
+final_categories_collection << current_category.parent
+final_categories_collection << current_category.siblings if !current_category.root?
+final_categories_collection << current_category.children
+final_categories_collection = final_categories_collection.flatten.compact.uniq.sort_by(&:lft) %>
+<%= toggling_container('sidebar-project-family-info', User.current, {:heading =>  l(:label_easy_knowledge_category_tree_sidebar), :container_html => {:class => 'project-family-info'}}) do %>
+    <table class="list easy-knowledge-categories">
+      <tbody>
+        <% final_categories_collection.each do |category| -%>
+          <tr class="<%= "idnt-#{category.level}" -%><%= css_category_classes(category) -%><%= " selected" if category.id == current_category.id -%>">
+            <td class="name"><%= link_to( h(category.name.truncate(38 - (category.level * 2), :omission => '...')), {:id => category}, :class => 'icon') -%></td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+<% end -%>

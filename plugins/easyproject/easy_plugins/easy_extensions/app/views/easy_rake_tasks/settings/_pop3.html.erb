@@ -1,0 +1,56 @@
+<div class="flash warning">
+  <%= l(:text_warning_pop3_processed) %>
+</div>
+<fieldset>
+  <legend><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.email_section_label') -%></legend>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_pop3_host', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.host'), :class => 'required' %>
+    <%= text_field_tag 'easy_rake_task[settings][pop3][host]', task.settings['pop3']['host'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.host_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_pop3_port', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.port') %>
+    <%= text_field_tag 'easy_rake_task[settings][pop3][port]', task.settings['pop3']['port'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.port_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_pop3_username', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.username'), :class => 'required' %>
+    <%= text_field_tag 'easy_rake_task[settings][pop3][username]', task.settings['pop3']['username'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.username_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_pop3_password', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.password'), :class => 'required' %>
+    <%= password_field_tag 'easy_rake_task[settings][pop3][password]', task.settings['pop3']['password'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.password_example') %></em>
+  </p>
+  <p>
+    <% task.settings['pop3']['use_custom_sender'] = task.settings['pop3']['use_custom_sender'] == 'true' %>
+    <%= hidden_field_tag('easy_rake_task[settings][pop3][use_custom_sender]', false, :id => '') %>
+    <% box = check_box_tag('easy_rake_task[settings][pop3][use_custom_sender]', true, task.settings['pop3']['use_custom_sender'], :onchange => "toggleSenderMail('pop3')") %>
+    <%= label_tag(:easy_rake_task_settings_pop3_use_custom_sender, box + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.use_custom_sender'), :class => 'checkbox inline' ) %>
+  </p>
+  <p class="easy_rake_task_header_sender_container" style="<%= 'display:none' unless task.settings['pop3']['use_custom_sender'] %>">
+    <%= label_tag 'easy_rake_task_settings_pop3_sender_mail', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.sender_mail') %>
+    <%= text_field_tag 'easy_rake_task[settings][pop3][sender_mail]', task.settings['pop3']['sender_mail'], :disabled => !task.settings['pop3']['use_custom_sender'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.sender_mail_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_pop3_ssl', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.ssl') %>
+    <% box = check_box_tag 'easy_rake_task[settings][pop3][ssl]', '1', task.settings['pop3']['ssl'] == '1', :onchange => "toggleVerifyCert('pop3')" %>
+    <%= label_tag 'easy_rake_task_settings_pop3_ssl', box + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.ssl_example'), :class => 'checkbox inline' %>
+  </p>
+  <p class="easy_rake_task_header_cert_container" style="<%= 'display:none' unless task.settings['pop3']['ssl'] %>">
+    <% box = check_box_tag('easy_rake_task[settings][pop3][dont_verify_server_cert]', '1', task.settings['pop3']['dont_verify_server_cert'] == '1') -%>
+    <%= label_tag('easy_rake_task_settings_pop3_dont_verify_server_cert', box + l(:label_easy_setting_dont_verify_server_cert), :class => 'checkbox inline') %>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_pop3_apop', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.apop') %>
+    <% box = check_box_tag 'easy_rake_task[settings][pop3][apop]', '1', task.settings['pop3']['apop'] == '1' %>
+    <%= label_tag 'easy_rake_task_settings_pop3_apop', box + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.apop_example'), :class => 'checkbox inline'  %>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_pop3_delete_unprocessed', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.delete_unprocessed') %>
+    <% box = check_box_tag 'easy_rake_task[settings][pop3][delete_unprocessed]', '1', task.settings['pop3']['delete_unprocessed'] == '1' %>
+    <%= label_tag 'easy_rake_task_settings_pop3_delete_unprocessed', box + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.delete_unprocessed_example'), :class => 'checkbox inline' %>
+  </p>
+</fieldset>

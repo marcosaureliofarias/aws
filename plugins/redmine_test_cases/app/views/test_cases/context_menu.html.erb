@@ -1,0 +1,9 @@
+<ul>
+<% if @test_case -%>
+  <li><%= context_menu_link l(:button_edit), edit_test_case_path(@test_case), class: 'icon icon-edit', disabled: !@can[:edit] %></li>
+  <li><%= context_menu_link l(:button_add_test_case_execution), new_test_case_issue_execution_path(@test_case, test_case_issue_execution: {issue_id: @issue.try(:id)}), class: 'icon icon-add' %></li>
+<% end %>
+  <li><%= context_menu_link l(:button_delete), test_cases_path(ids: @test_case_ids, back_url: @back), method: :delete, data: {confirm: l(:text_are_you_sure)}, class: 'icon icon-del', disabled: !@can[:delete] %></li>
+
+  <%= call_hook(:view_test_cases_context_menu_end, {test_case: @test_case, test_cases: @test_cases, can: @can, back: @back, project: @project}) %>
+</ul>

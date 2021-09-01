@@ -1,0 +1,121 @@
+---
+fr:
+  button_create_easy_baseline: Créer une base de référence
+  easy_gantt_pro:
+    add_task_modal:
+      no_parent: ''
+      title: Ajouter la tâche
+    add_task:
+      body: Vous pouvez créer une nouvelle tâche ou un nouveau jalon en cliquant sur
+        le bouton Tâche (ou Jalon) ou en les glissant n'importe où dans le diagramme
+      title: 'Aide : Ajouter une tâche'
+    baselines:
+      confirm_delete: Voulez-vous vraiment supprimer cette base de référence
+      create_failed: La nouvelle base de référence n'a pas pu être créée
+      delete_failed: La base de référence n'a pas pu être supprimée
+      error_missing_delete_permission: Vous n’êtes pas autorisé à supprimer la base
+        de référence
+      error_not_saved: Vous devez enregistrer toutes les modifications dans le projet
+        avant de créer sa base de référence
+      label_baseline: Base de référence
+      label_same: "-idem-"
+      off_desc: Activer le module de base de référence du projet pour la consultation
+        et la création de bases de référence.
+      off_link: Paramètres du module
+      off_title: Le module de base de référence du projet est désactivé
+    cashflow:
+      difference: Différence
+      expense: Dépenses
+      full_price: Plein tarif
+      label_cashflow: Flux de trésorerie
+      planned: Plan
+      planned_Cashflow: Flux de trésorerie planifié
+      real: Réalité
+      real_Cashflow: Flux de trésorerie réel
+      revenue: Recettes
+      timeflow: EAC
+      total: Total
+      total_price: Prix total
+      week: Semaine
+    critical:
+      hide_button: Masquer le chemin critique
+      legend_issues: Tâche sur le chemin critique
+      show_button: Afficher le chemin critique
+    lowest_progress:
+      label_progress_date: Date d'avancement
+    project_move:
+      error_opening_unsaved: Vous devez d'abord sauvegarder les modifications avant
+        d'ouvrir le projet
+    resources:
+      label_resources: Ressources
+    unfix_relations:
+      label_unfix_relations: Séparer les relations
+    warning_no_permission_to_edit: Vous n'avez pas la permission d'effectuer des modifications.
+  easy_gantt:
+    button:
+      bulk_edit: Modifier en bloc
+      delayed_issue_filter: Filtrer les tâches en retard
+      show_lowest_progress_tasks: Afficher les tâches avec la plus faible date d'avancement
+      show_only_critical: Filtrer par critique
+    popup:
+      add_task:
+        heading: Ajouter l'aide de la tâche
+        text: Une nouvelle tâche ou un jalon peuvent être créés par un clic sur le
+          bouton Tâche (bouton Jalon correspondant) ou en étant glissés n'importe
+          où sur le graphique
+      baseline:
+        heading: Description de la base de référence
+        heading_new_baseline: Nouvelle base de référence
+        text: Crée une copie du projet pour d'autres comparaisons
+      cashflow:
+        definition: EAC = « Estimation du projet à la réalisation » - À l’heure actuelle,
+          combien estimons-nous le coût total du projet ?
+        difference: Différence (flux de trésorerie réel moins le flux de trésorerie
+          prévu, "Réel - Plan")
+        eac: EAC (dans le passé et le présent c'est le flux de trésorerie réel "Réalité";
+          dans le futur c'est le flux de trésorerie prévu "Plan")
+        heading: Définition du flux de trésorerie
+        planned: Plan (flux de trésorerie prévu)
+        real: Réalité (flux de trésorerie réel)
+      critical:
+        heading: Description du chemin critique
+        text: Dans une planification de projet, la plus longue séquence d'activités qui
+          doivent être achevées à temps pour que le projet se termine à la date d'échéance.
+          Une activité sur le chemin critique ne peut pas être démarrée avant que
+          l'activité qui la précède soit terminée ; si elle est retardée d'une journée,
+          l'ensemble du projet sera retardé d'une journée, à moins que l'activité
+          faisant suite à l'activité retardée se termine un jour plus tôt. Pour qu'un
+          chemin critique fonctionne correctement, le projet doit avoir seulement
+          1 tâche de départ et 1 tâche de fin, et les tâches doivent être liées par
+          des relations .
+    scheme_by:
+      label_by_priority: par priorité
+      label_by_status: par statut
+      label_by_tracker: par tracker
+      label_color_by: Couleur par
+    title:
+      delayed_issue_filter: Affiche uniquement les tâches dont la date d'avancement
+        est antérieure à aujourd'hui
+      show_only_critical: Afficher uniquement les tâches sur le chemin critique
+  easy_pages:
+    modules:
+      easy_global_gantt: Gantt Global
+      easy_project_gantt: Gantt du projet
+  easy_proposer:
+    easy_gantt:
+      index:
+        caption: Easy Gantt PRO
+        description: Aller sur Easy Gantt PRO
+  heading_easy_gantts_issues: Easy Gantt PRO
+  label_show_lowest_progress_tasks: Tâches les moins avancées
+  label_show_project_milestones: Afficher les jalons du projet
+  label_show_spent_time_progress_tasks: ''
+  text_show_lowest_progress_tasks: Afficher les tâches avec la pire date d'avancement
+    (= date correspondant à la barre de ratio effectué de la tâche dans gantt)
+  text_show_project_milestones: Les jalons du projet seront affichées dans la barre
+    de projet
+  text_show_spent_time_progress_tasks: Afficher le pourcentage du temps passé au lieu
+    de l'avancement sur les tâches
+  warning_easy_gantt_recalculate_fixed_delay: Ce nouveau calcul affecte le retard
+    des relations sur chaque tâche dans le système. Voulez-vous vraiment continuer
+    ?

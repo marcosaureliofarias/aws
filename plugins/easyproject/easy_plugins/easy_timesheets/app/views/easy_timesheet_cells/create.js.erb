@@ -1,0 +1,45 @@
+<% if @time_entry.valid? %>
+  var day;
+  if (document.activeElement.nodeName == "INPUT") {
+    day = $(document.activeElement).closest("td").data().day;
+  }
+  var content = "<%=j render(:partial => 'easy_timesheet_rows/row', :locals => {:easy_timesheet => @easy_timesheet, :row => @row}) -%>";
+
+  if ($("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %>")[0]) {
+    $("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %> input:focus")
+    $("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %>").replaceWith(content);
+  } else {
+    $("#<%= dom_id(@easy_timesheet) %> tbody").append(content);
+    $("#<%= dom_id(@easy_timesheet) %> .nodata").closest("tr").remove();
+  };
+
+  <% if @was_new_row %>
+    <% if EasySetting.value('easy_timesheets_over_time') == '1' && @easy_timesheet.monthly? %>
+      var overtime = $("#<%= @row.dom_id %>").data('overTime')
+    <% end %>
+    $("#<%= dom_id(@easy_timesheet) %> #<%= j@easy_timesheet.build_new_row.dom_id %>").remove();
+    var row = $("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %>");
+    <% if EasySetting.value('easy_timesheets_over_time') == '1' && @easy_timesheet.monthly? %>
+      overtime ? $("#<%= dom_id(@easy_timesheet) %> tbody").append(row) : row.insertBefore('.overtime-row');
+    <% end %>
+    row.effect("highlight", 1000);
+    <% if @easy_timesheet.rows.count.zero? # current rows count is 0, but becouse we just create new line, we know thats 1 :) %>
+      if (!$("tfoot *")[0]) {
+        $("#<%= dom_id(@easy_timesheet) %> tfoot").append("<%=j render(:partial => 'easy_timesheets/footer', :locals => {:easy_timesheet => @easy_timesheet}) -%>");
+      };
+    <% end %>
+  <% end %>
+  if (day) {
+    $("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %> td[data-day='"+day+"'] input").focus().select();
+  }
+
+  $("#<%= dom_id(@easy_timesheet) -%> tfoot [data-sum-day='<%= @time_entry.spent_on.to_s %>']").html("<%=j easy_format_hours(@easy_timesheet.sum_row.each_cell.detect{|i| i.spent_on == @time_entry.spent_on.to_s}.try(:sum_hours) || 0, format: 'short') %>");
+  <% @easy_timesheet.each_row do |row| %>
+    $("#<%= dom_id(@easy_timesheet) -%>  #<%=row.dom_id %> td.row-sum").html("<%= format_locale_number(row.sum_hours) -%>");
+  <% end %>
+  var head = "<%= j format_date @easy_timesheet.start_date %> - <%= j format_date @easy_timesheet.end_date %> (<%= j html_hours(@easy_timesheet.total) -%>)";
+  $('span.easy-calendar-title.easy-cal-title').html(head);
+  $("#<%= dom_id(@easy_timesheet) -%> tfoot .row-sum.total-sum").html("<%= j easy_format_hours(@easy_timesheet.total, format: 'short') %>");
+<% else %>
+  alert("<%=j @time_entry.errors.full_messages.join("\n").html_safe %>");
+<% end %>

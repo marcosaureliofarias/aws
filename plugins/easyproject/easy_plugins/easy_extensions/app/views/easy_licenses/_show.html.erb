@@ -1,0 +1,30 @@
+<% if license_key %>
+  <fieldset>
+    <legend>License key details:</legend>
+    <div>
+      Valid type: <%= license_key.valid_type %>
+    </div>
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <h3>Products to activate:</h3>
+        <% license_key.products.each do |product| %>
+          <%= product.name %> (<%= product.marketing_code %>)<br/>
+        <% end %>
+      </div>
+      <div class="splitcontentright">
+        <h3>Plugins to activate:</h3>
+        <% license_key.plugins.each do |plugin| %>
+          <%= plugin.name %> (Plugin: <%= plugin.easy_hosting_plugin ? 'EXIST' : 'NOT EXIST' %>)<br/>
+        <% end %>
+      </div>
+    </div>
+    <div>
+      <h3>Additional settings:</h3>
+      <% license_key.license_key_settings.each do |license_key_setting| %>
+        <%= license_key_setting.name %>: <%= license_key_setting.value %><br/>
+      <% end %>
+    </div>
+  </fieldset>
+<% else %>
+  Not valid
+<% end %>

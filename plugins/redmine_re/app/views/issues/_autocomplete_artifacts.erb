@@ -1,0 +1,39 @@
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+  <%= stylesheet_link_tag 'suggestible.css', :media => 'all' %>
+
+  <%= javascript_include_tag 'query_form.js', defer: true %>
+  <%= javascript_include_tag 'suggestible.js', defer: true %>
+  <%= javascript_include_tag 'suggestible_custom.js', defer: true %>
+
+<% if @project && @project.module_enabled?(:requirements) %>
+  <%= late_javascript_tag do %>
+    EASY.schedule.late(function () {
+      $('#artifacts_filter_input').attr("selected", "selected");
+
+      // Make specific fields suggestible
+      $('#artifacts_filter_input').suggestible(suggestibleOptions({
+        suggestionsUrl: '<%= suggest_artifacts_re_queries_path(@project.id) %>',
+        suggestionsLayout: function(helpers) {
+          return new ArtifactsSuggestBoxItems(helpers);
+        },
+        bitsUrl: '<%= artifacts_bits_re_queries_path(@project.id) %>'
+      }));
+    });
+  <% end %>
+
+  <% if User.current.allowed_to?(:view_requirements, @project) %>
+    <%= content_tag(:p, class: "attribute nowrap") do %>
+      <%= label_tag :add_related_artifact, l(:re_add_associated_requirements) %>
+      <span id="artifacts_filter">
+        <span class="inputs">
+          <% @issue.re_artifact_properties << ReArtifactProperties.where(id: [params[:artifact_id]] + [params[:artifactid]]) %>
+
+          <%=
+            select_tag 'artifact_id[]', options_for_select(@issue.re_artifact_properties.collect{ |u| [u.name, u.id] },
+            @issue.re_artifact_properties.collect{ |u| u.id }), :id => 'artifacts_filter_input', :class => 'artifact_filter_input', :multiple => true;
+          %>
+        </span>
+      </span>
+    <% end %>
+  <% end %>
+<% end %>

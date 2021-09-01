@@ -1,0 +1,11 @@
+<% if @issue.valid? %>
+  <% notice = l(:notice_issue_successful_create,
+                id: link_to("#{@issue.to_s}", issue_path(@issue), title: @issue.subject)).html_safe %>
+  $("#content").prepend($("<div/>").attr({"class":"flash notice"}).prepend($("<span/>").html("<%= j notice %>")))
+  EASY.modalSelector.closeModal();
+  var additionalParams = $('#backlog_query_q').serializeArray();
+  additionalParams.push({ name: 'check_capacities', value: '1' });
+  getAgileData(additionalParams);
+<% else %>
+  $("#ajax-modal").prepend("<%= j error_messages_for(@issue) %>");
+<% end %>

@@ -1,0 +1,149 @@
+&__attribute, &__custom-field {
+  $color-attr: $color-background__atributes;
+  font-size: 1rem !important;
+  width: calc(50% - #{$padding-modal-main});
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: .5*$gap $input-padding;
+  position: relative;
+  @media only screen and (max-width: $breakpoint--small) {
+    width: 100% !important;
+    font-size: 1rem !important;
+    span {
+      font-size: 1rem !important;
+    }
+  }
+  &s {
+    background: $color-attr;
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom:1px solid $color-border;
+    margin: 0 (-$padding-modal-main) 0 (-$padding-modal-main);
+    padding: $gap $padding-modal-main 2*$gap $padding-modal-main;
+    @media only screen and (min-width: $breakpoint--small) {
+      margin: 0 (-$padding-modal-main) 0 (-$padding-modal-main - $left-offset);
+      padding: $gap $padding-modal-main 2*$gap (.5*($left-offset + $padding-modal-main - $width-heading-icon) - $input-padding);
+    }
+    .easy-attendance-indicator {
+      font-size: 11px !important;
+    }
+  }
+
+  &-group{
+    display: flex;
+    flex-basis: 100%;
+  }
+
+  &-label {
+    @extend %legend;
+    margin: .25rem 0 0;
+    line-height: 1rem;
+    box-sizing: border-box;
+    width: 100%;
+    order: -1;
+    font-size: .89em !important;
+    //---
+    &--required{
+      color: $color-negative;
+    }
+  }
+
+  &-bar {
+    position: absolute;
+    display: block;
+    left: -.25*$gap;
+    //left: -.5*$gap;
+    right: -.25*$gap;
+    //right: -.5*$gap;
+    bottom: 0;
+    &:before,
+    &:after {
+      content: "";
+      height: 3px;
+      width: 0;
+      bottom: -1px;
+      position: absolute;
+      background: $color-main;
+      transition: 0.2s ease all;
+      -moz-transition: 0.2s ease all;
+      -webkit-transition: 0.2s ease all;
+      border-radius: 3px;
+    }
+    &:before {
+      left: 50%;
+    }
+    &:after {
+      right: 50%;
+    }
+    .u-editing ~ &{
+      &:before,
+      &:after {
+        width: 50%;
+      }
+    }
+  }
+
+  .editable-input__wrapper{
+    border-bottom-color: $color-border;
+    flex-grow: 1;
+    &.u-showing{
+      border-radius: 0px;
+    }
+  }
+  & > {
+    .editable-input__wrapper{
+      border-bottom-color: $color-border;
+      margin-left: -$input-padding;
+      margin-right: -$input-padding;
+      flex-grow: 1;
+      &.u-showing{
+        border-radius: 0px;
+      }
+    }
+  }
+
+  input, select {
+  }
+
+  &--fake {
+    width: 49%; // not 50% to create small gap between fake attributes
+    height: 65px;
+    .label{
+      height: 14px;
+      margin-bottom: 5px;
+    }
+    .editable-input__wrapper--fake{
+      height: 30px;
+    }
+  }
+  &--long {
+    flex-basis: 90% !important;
+  }
+  &--inline{
+
+  }
+
+  .multiple {
+    height: auto;
+    & .vs__selected {
+      max-height: 2*$gap;
+    }
+  }
+}
+
+&__attributes {
+  &--invitations {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    .v-select {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<%= form.fields_for :action_settings, entity.action do |f| %>
+  <p>
+    <%= f.select :new_status_id, IssueStatus.sorted.map { |status| [status.name, status.id.to_s] }, class: 'required' %>
+  </p>
+<% end %>

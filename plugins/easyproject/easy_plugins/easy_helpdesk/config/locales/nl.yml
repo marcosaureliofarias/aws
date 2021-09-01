@@ -1,0 +1,407 @@
+---
+nl:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: E-mail body (HTML)
+        body_plain: Mailinhoud (PLAIN TEXT)
+        issue_status_id: Status taak
+        mailboxes: 'Gebruik voor postbus:'
+        reply_to: Antwoorden op
+        sender: Afzender
+        subject: Onderwerp
+    models:
+      easy_helpdesk_mail_template: Mailsjabloon
+  aggregated_periods:
+    half-yearly: Halfjaarlijks
+    quarterly: Elk kwartaal
+    yearly: Jaarlijks
+  button_easy_helpdesk_add_domain_name: Mail of domein toevoegen
+  button_easy_helpdesk_add_mail_template: Mailsjabloon toevoegen
+  button_easy_helpdesk_add_mailbox: Postbus toevoegen
+  button_easy_helpdesk_add_project: Project toevoegen
+  button_easy_helpdesk_add_project_from_sidebar: Aan helpdesk toevoegen
+  button_easy_helpdesk_add_signature: Handtekening toevoegen
+  button_easy_helpdesk_add_sla: SLA toevoegen
+  button_easy_helpdesk_all_mail_templates_index: Alle e-mail sjablonen
+  button_easy_helpdesk_all_mailboxes_index: Alle mailboxen
+  button_easy_helpdesk_all_projects_index: Alle Help desk projecten
+  button_easy_helpdesk_mail_templates_index: Sjabloonlijst
+  button_easy_helpdesk_mailboxes_index: Postbuslijst
+  button_easy_helpdesk_projects_index: Projectenlijst
+  button_easy_helpdesk_reports_index: Rapporten
+  button_easy_helpdesk_settings_index: Help desk instellingen
+  confirm_edit_remaining_hours: Dit veld wordt uitgevoerd op de achtergrond, weet
+    u zeker dat u het handmatig wil aanpassen?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_name: Helpdesk
+  easy_helpdesk_plugin_description: "- complexe oplossing voor de helpdesk"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Helpdesk
+    modules:
+      easy_helpdesk_create_mail_template_button: Maak mail sjabloon button aan
+      easy_helpdesk_create_mailbox_button: Maak mailbox button aan
+      easy_helpdesk_mailboxes: Helpdesk mailboxen
+      easy_helpdesk_mailtemplates: Helpdesk mail sjablonen
+      easy_helpdesk_project_query: Helpdesk projecten uit filters
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Easy helpdesk e-mail sjablonen
+        description: Easy helpdesk e-mail sjablonen
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Easy helpdesk mailboxen
+        description: Bekijk Easy helpdesk mailboxen
+    easy_helpdesk:
+      index:
+        caption: Helpdesk
+        description: Bekijk Helpdesk dashboard
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - projecten
+      easy_helpdesk_report_monthly_query: Helpdesk - maandelijkse rapportages
+      easy_helpdesk_report_yearly_query: Helpdesk - jaarlijkse rapportages
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Privé filters van projecten in Helpdesk
+        easy_helpdesk_report_monthly_query: Private filters voor maandelijkse rapportages
+          in Helpdesk
+        easy_helpdesk_report_yearly_query: Private filters op jaarlijkse rapporten
+          in Helpdesk
+      public:
+        easy_helpdesk_project_query: Openbare filters van projecten in Helpdesk
+        easy_helpdesk_report_monthly_query: Publieke filters op maandelijkse rapporten
+          in Helpdesk
+        easy_helpdesk_report_yearly_query: Publieke filters op jaarlijkse rapporten
+          in Helpdesk
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Helpdesk - bereken samengevoegde uren
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Helpdesk - automatisch tickets bijwerken
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - ontvangen mails
+      settings:
+        imap:
+          allow_override: Overschrijven waardes toestaan
+          allow_override_example: 'Voorbeeld: tracker, prioriteit - deze kenmerken
+            moeten door mail worden overschreven'
+          application_section_label: Andere instellingen
+          category_example: 'Voorbeeld: Categorie - nieuwe taken zullen de categorie
+            Categorie hebben'
+          email_section_label: Postbusinstellingen
+          folder: Map
+          folder_example: 'IMAP-map om te lezen (standaard: INBOX)'
+          folders: Mappen om te lezen
+          folders_example: 'IMAP mappen om te lezen (een per regel) (standaard: INBOX,
+            gebruik om map te kiezen "/" voorbeeld: inbox/sales)'
+          host: Host
+          host_example: 'Voorbeeld: mail.company.com'
+          label: IMAP
+          move_on_failure: Bij mislukking volgen door
+          move_on_failure_example: mails die genegeerd zijn verplaatsen naar POSTBUS
+          move_on_success: Bij succes volgen door
+          move_on_success_example: mails verplaatsen die succesvol door de postbus
+            POSTBUS zijn vervangen, anders deze verwijderen
+          no_permission_check: Geen controle machtigingen gebruiker
+          password: Wachtwoord
+          password_example: 'Voorbeeld: geheimwachtwoord'
+          port: Poort
+          port_example: 'Voorbeeld: 143'
+          priority_example: 'Voorbeeld: Hoog - nieuwe taken zullen de prioriteit Hoog
+            hebben'
+          project_example: 'Voorbeeld: 205 - nieuwe taken zullen worden gemaakt op
+            project-id 205'
+          sender_mail: Afzender
+          sender_mail_example: 'Voorbeeld: support@company.com'
+          ssl: SSL
+          ssl_example: SSL-authenticatie gebruiken
+          status_example: 'Voorbeeld: Nieuw - nieuwe taken zullen de status Nieuw
+            hebben'
+          tracker_example: 'Voorbeeld: Fout - nieuwe taken zullen de tracker Fout
+            hebben'
+          unknown_user: Onbekende gebruiker
+          unknown_user_example: accepteren - Anonieme gebruiker zal worden gebruikt;
+            maken - gebruiker zal vanaf mail worden aangemaakt; daadwerkelijke login
+            - deze gebruiker zal worden gebruikt
+          use_custom_sender: Andere afzender gebruiken
+          username: Gebruiker
+          username_example: 'Voorbeeld: accessuser@domain.com'
+        pop3:
+          allow_override: Overschrijven waardes toestaan
+          allow_override_example: 'Voorbeeld: tracker, prioriteit - deze kenmerken
+            moeten door mail worden overschreven'
+          apop: APOP
+          apop_example: APOP-authenticatie gebruiken
+          application_section_label: Andere instellingen
+          category_example: 'Voorbeeld: Categorie - nieuwe taken zullen de categorie
+            Categorie hebben'
+          delete_unprocessed: Onverwerkte verwijderen
+          delete_unprocessed_example: Mails verwijderen die niet verwerkt kunnen worden
+          email_section_label: Postbusinstellingen
+          host: Host
+          host_example: 'Voorbeeld: mail.company.com'
+          label: POP3
+          no_permission_check: Geen controle machtigingen gebruiker
+          password: Wachtwoord
+          password_example: 'Voorbeeld: secretpassword'
+          port: Poort
+          port_example: 'Voorbeeld: 110'
+          priority_example: 'Voorbeeld: Hoog - nieuwe taken zullen de prioriteit Hoog
+            hebben'
+          project_example: 'Voorbeeld: 205 - nieuwe taken zullen worden gemaakt op
+            project-ID 205'
+          sender_mail: Afzender
+          sender_mail_example: support@company.com
+          status_example: 'Voorbeeld: Nieuw - nieuwe taken zullen de status Nieuw
+            hebben'
+          tracker_example: 'Voorbeeld: Fout - nieuwe taken zullen de fout status hebben'
+          unknown_user: Onbekende gebruiker
+          unknown_user_example: accepteren - Anonieme gebruiker zal worden gebruikt;
+            maken - gebruiker zal vanaf mail worden aangemaakt; daadwerkelijke login
+            - deze gebruiker zal worden gebruikt
+          use_custom_sender: Andere afzender gebruiken
+          username: Gebruiker
+          username_example: 'Voorbeeld: accessuser@domain.com'
+  error_update_easy_setting_helpdesk: Instelling kan niet opgeslagen worden
+  field_aggregated_hours: Samengevoegde Helpdesk uren
+  field_aggregated_hours_period: Samengevoegde periode
+  field_aggregated_hours_remaining: Resterende Helpdesk uren
+  field_aggregated_hours_start_date: Samenvoeging startdatum
+  field_automatically_issue_closer_enable: Automatisch tickets bijwerken inschakelen?
+  field_default_for_mailbox: Standaard voor postbus
+  field_easy_helpdesk_has_sla: Heeft SLA
+  field_easy_helpdesk_need_reaction: Reactie nodig?
+  field_easy_helpdesk_project_keyword: Keyword voor project
+  field_easy_helpdesk_project_matching:
+    domain_name: Mail of domein
+    email_field_from: is genomen van veld VAN
+    email_field_to: is genomen van veld NAAR
+  field_easy_helpdesk_project_monthly_hours: Contractuele maandelijkse uren Helpdesk
+  field_easy_helpdesk_project_sla:
+    blank_keyword: SLA naam ontbreekt
+    hours_to_response: Uren om te reageren
+    hours_to_solve: Uren om op te lossen
+    keyword: Trefwoord
+    title: Naam van SLA
+  field_easy_helpdesk_project_spent_time_current_month: Uren gewerkt aan HD (deze
+    maand)
+  field_easy_helpdesk_project_spent_time_last_month: Uren gewerkt aan HD (vorige maand)
+  field_easy_helpdesk_project_spent_time_total: Totaal bestede tijd aan HD
+  field_easy_reopen_at: Opnieuw geopend om
+  field_easy_response_date_time: SLA (respons)
+  field_easy_time_to_solve_paused_at: SLA gepauzeerd om
+  field_email_footer: Voettekst mail
+  field_email_header: Koptekst mail
+  field_hours_mode_from: Werkuren SLA
+  field_hours_to_response: SLA (respons)
+  field_hours_to_solve: SLA (oplossing)
+  field_is_under_helpdesk: Is onder Helpdesk
+  field_issue_closer_done_issue_status: Wijzig status naar
+  field_issue_closer_done_issue_user: en wijs toe aan
+  field_issue_closer_inactive_interval: en er is geen update binnen
+  field_issue_closer_observe_issue_status_id: in status
+  field_monitor_due_date: Toezichtg vervaldatum supporttickets
+  field_monitor_spent_time: Toezichtg gespendeerde tijd supporttickets
+  field_monthly_hours: Vooruitbetaalde ondersteuningsuren
+  field_use_working_time: Tel SLA gebaseerd op werktijd
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: Mailsjabloon bewerken
+  heading_easy_helpdesk_mail_templates_index: Mailsjablonen
+  heading_easy_helpdesk_mail_templates_new: Nieuw mailsjabloon
+  heading_easy_helpdesk_mail_templates_show: Detail van mailsjabloon
+  heading_easy_helpdesk_mailboxes_edit: Postbus bewerken
+  heading_easy_helpdesk_mailboxes_index: Postbussen
+  heading_easy_helpdesk_mailboxes_new: Nieuwe postbus
+  heading_easy_helpdesk_projects_edit: Project bewerken
+  heading_easy_helpdesk_projects_index: Projecten
+  heading_easy_helpdesk_projects_new: Nieuw project
+  heading_easy_helpdesk_projects_show: Detail van project
+  heading_easy_helpdesk_reports_index: Helpdesk - rapporten
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Maandelijks rapport van vooruitbetaalde
+    uren
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Jaarlijks rapport van vooruitbetaalde
+    uren
+  heading_easy_helpdesk_settings: Instellingen
+  issue_closer_inactive_interval_units:
+    days: dagen
+    hours: uren
+  label_automatically_issue_closer: Automatisch tickets bijwerken als ze
+  label_copy_settings_sla_from_project: Kopieer instellingen SLA van project
+  label_easy_hekodesk_additional_task_info_received_emails: Processed mails
+  label_easy_helpdesk: Helpdesk
+  label_easy_helpdesk_actual_budget: Helpdesk uren om deze maand te besteden
+  label_easy_helpdesk_actual_budget_to_spend: Uren over
+  label_easy_helpdesk_aggregated_from_last_period: Opgeteld met laatste periode
+  label_easy_helpdesk_alerts: Meldingeninstellingen
+  label_easy_helpdesk_allow_custom_sender: Sta aangepaste verzender toe (per project)
+  label_easy_helpdesk_allow_override: Bijwerken taak attributen inschakelen
+  label_easy_helpdesk_client_response_status: Wijzig status na respons van client
+    aan
+  label_easy_helpdesk_domain_name: Maildomein
+  label_easy_helpdesk_emails: Mailinstellingen - kop- en voettekst
+  label_easy_helpdesk_enable_email_footer: Voettekst voor dit project wijzigen?
+  label_easy_helpdesk_enable_email_header: Koptekst voor dit project wijzigen?
+  label_easy_helpdesk_hours_comulated: Opgetelde uren
+  label_easy_helpdesk_hours_comulated_range: van %{from} tot %{to}
+  label_easy_helpdesk_hours_per_month: Uren gewerkt deze maand
+  label_easy_helpdesk_ignore_cc: Negeer CC van ontvangen e-mails
+  label_easy_helpdesk_mail_signature: Helpdesk - handtekening
+  label_easy_helpdesk_matching: Mail- of domeininstellingen
+  label_easy_helpdesk_message_above_variables: Taak opmerking is getoond boven mail
+    sjabloon
+  label_easy_helpdesk_need_reaction: Reactie nodig!
+  label_easy_helpdesk_project_helpdesk_tab: Helpdesk
+  label_easy_helpdesk_project_managed_by_helpdesk: Helpdeskinstellingen
+  label_easy_helpdesk_project_plural: Helpdesk projecten
+  label_easy_helpdesk_projects_sla_working_time_calendar: SLA werkdagen
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: Stel SLA opnieuw in nadat
+    taak opnieuw is geopend
+  label_easy_helpdesk_sender: Verzender
+  label_easy_helpdesk_sender_current_user: Huidige gelogde gebruiker
+  label_easy_helpdesk_sender_is_user: Verzender is gelogde gebruiker
+  label_easy_helpdesk_sender_mailbox_address: Mailbox adres
+  label_easy_helpdesk_sender_redmine_default: Standaard vanuit mail notificatie
+  label_easy_helpdesk_signature: Handtekening
+  label_easy_helpdesk_signature_name: Naam handtekening
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Accepteer automatisch gegenereerde
+    mails
+  label_easy_helpdesk_sla: SLA-instellingen - prioriteiten, tijd om een ticket te
+    verhelpen
+  label_easy_helpdesk_sla_start_states: Tel SLA voor ticket als status is
+  label_easy_helpdesk_sla_stop_states: Stel SLA uit voor ticket als status is
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - project
+  label_filter_group_easy_helpdesk_report_monthly_query: Helpdesk - rapportage
+  label_filter_group_easy_helpdesk_report_query: Helpdesk - rapportage
+  label_filter_group_easy_helpdesk_report_yearly_query: Helpdesk - rapportage
+  label_filter_show_spent_time_current_month_equal_to_zero: Uren gewerkt aan HD (deze
+    maand) is nul
+  label_filter_show_spent_time_last_month_equal_to_zero: Uren gewerkt aan HD (afgelopen
+    maand) is nul
+  label_issue_bottom_from_easy_helpdesk: Taak was gemaakt vanuit helpdesk (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Maandelijkse contractuele uren
+  label_sla_calendar_settings: Kalender instellingen
+  permission_manage_easy_helpdesk: Helpdesk beheren
+  permission_manage_easy_helpdesk_project: Manage Helpdesk projecten
+  project_module_easy_helpdesk: Helpdesk
+  setting_easy_helpdesk_custom_sender: Helpdesk verzender
+  text_easy_helpdesk_change_default_sender: Deze instelling wijzigt het antwoord-aan
+    veld niet
+  text_easy_helpdesk_custom_sender: Overschrijf standaard Help desk verzender. Hou
+    leeg om deze functie uit te schakelen.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: huidige toegewezen persoon
+    date: huidige datum
+    spent_time: totaal gespendeerde tijd
+    task_closed_on: taak gesloten op datum
+    task_description: taak beschrijving
+    task_done_ratio: taak afgerond ratio
+    task_due_date: taak einddatum
+    task_estimated_hours: taak geschatte uren
+    task_history: geschiedenis van alle reacties op de taak
+    task_id: gepaste taak-ID
+    task_id_without_hash: het huidige taak ID zonder hash
+    task_last_journal: laatste publieke reactie op de taak
+    task_note: laatste notities
+    task_priority: taak prioriteit
+    task_project: project naam
+    task_public_url: taak publieke url
+    task_start_date: taak startdatum
+    task_status: taak status
+    task_subject: gepaste onderwerp taakt
+    task_tracker: taak tracker
+    user_first_name: Voornaam huidige gebruiker
+    user_last_name: achternaam huidige gebruiker
+    user_name: volledige naam gebruiker
+    user_signature: handtekening huidige gebruiker
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - Onderwerp en inhoud mail kunnen dynamische tekst bevatten
+  - "%task_id% (vervanging voor gepaste taak-ID)"
+  - "%task_subject% (vervanging voor gepaste onderwerp taakt)"
+  - "%task_note% (vervanging voor laatste notities)"
+  - "%time_spent% (vervanging voor totaal gespendeerde tijd)"
+  - "%assignee% (vervanging voor huidige toegewezen persoon)"
+  - "%user_signature% (vervanging voor handtekening huidige gebruiker)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Onderwerp en inhoud mail
+    kunnen dynamische tekst bevatten:'
+  text_easy_helpdesk_mail_template_issue_status_id: Maakt het mogelijk om een postbussjabloon
+    aan een specifieke taakstatus te koppelen
+  text_easy_helpdesk_mail_template_replacement_for: vervanging voor
+  text_easy_helpdesk_mail_template_reply_to: Mr. Voorbeeld) - mail is hier niet toegestaan
+  text_easy_helpdesk_mail_template_reply_to2: Velden "Antwoorden op" en "Afzender
+    " zijn uit de postbus gehaald zodat communicatie binnen een kwestie kan worden
+    bewaard
+  text_easy_helpdesk_non_default_mailboxes_warning_below: U dient deze postbussen
+    aan projecten toe te wijzen. Indien u dit niet doet zullen onbekende inkomende
+    mails niet worden verwerkt!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Deze postbussen hebben geen
+    standaardproject:'
+  text_easy_helpdesk_projects_alerts_list: 'Lijst van waarschuwingen:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Lijst van waarschuwingen waarvoor
+    een meldingsmail moet worden opgesteld (zal in een nieuw leeg scherm openen):'
+  text_easy_helpdesk_projects_is_default: Als een mail van een onbekende afzender
+    aankomt zal de ticket hier worden gemaakt.
+  text_easy_helpdesk_projects_keyword_description: Als het e-mail onderwerp de gedefinieerde
+    string bevat wordt het ticket toegewezen aan dit project. Het zoekwoord is hoofdlettergevoelig.
+  text_easy_helpdesk_projects_keywords: Als een mailonderwerp een gedefinieerde string
+    bevat, zal bepaalde prioriteit en vervaldatum worden ingesteld (* betekend elk
+    onderwerp).
+  text_easy_helpdesk_projects_monitor_due_date: Deze vooraf ingestelde waarschuwing
+    zal u een e-mailmelding sturen indien de ticket in overtreding is op SLA - niet
+    is opgelost in de periode zoals gedefinieerd in SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Deze vooraf ingestelde waarschuwing
+    zal u een e-mailmelding sturen indien de totaal gespendeerde tijd in een bepaalde
+    maand van de agenda groter is dan de vooruitbetaalde ondersteuningsuren
+  text_easy_helpdesk_projects_new_priority: Als keywords niet gespecificeerd zijn
+    wordt SLA ingesteld volgens de gekozen prioriteit
+  text_easy_helpdesk_projects_priority: SLA wordt ingesteld volgens de gekozen prioriteit
+  text_easy_helpdesk_projects_sla_hours_to_response: De maximale hoeveelheid tijd
+    die nodig is vanaf de ontvangen mail tot het begin van realisatie.
+  text_easy_helpdesk_projects_sla_hours_to_solve: De maximale tijd om een kwestie
+    po te lossen. Helpdeskticket kan worden gevisualiseerd in een Gantt-diagram -
+    als 75% van de tijd voor het oplossen van de ticket over is - ticket is gekleurd
+    in oranje, als de ticket te laat is - ticket is gekleurd in rood.
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Enkele taken (%{count}/%{total})
+    konden niet worden bijgewerkt:'
+  text_isseu_closer_close_notice: Deze taak is automatisch bijgewerkt door de Helpdesk
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: antwoord
+    moet richting %{time} zijn'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: antwoord
+    moet richting %{time} zijn'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: oplossing
+    moet richting %{time} zijn'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: oplossing
+    moet richting %{time} zijn'
+  title_easy_helpdesk_add_project_from_sidebar: Klik om project aan Helpdesk toe te
+    voegen
+  title_easy_helpdesk_allow_custom_sender: Sta instelling aangepaste verzender toe
+    per project
+  title_easy_helpdesk_allow_override: Sta overschrijven taak attributen vanuit bericht
+    toe
+  title_easy_helpdesk_client_response_status: Selecteer in welke status een ticket
+    wijzigt als deze is bijgewerkt via e-mail.
+  title_easy_helpdesk_ignore_cc: Als de e-mail is ontvangen worden alle e-mails in
+    de CC toegevoegd aan de  kijkers, externe e-mail en als een automatisch antwoord
+    is verzonden voorkomt deze optie dit.
+  title_easy_helpdesk_message_above_variables: Sjabloon berichten staan boven de sjabloon
+    variabelen
+  title_easy_helpdesk_sender: Wie staat in het 'van' veld
+  title_easy_helpdesk_sender_current_user: De gebruiker die momenteel is gelogd
+  title_easy_helpdesk_sender_is_user: Veld 'van' is de gelogde gebruiker
+  title_easy_helpdesk_sender_mailbox_address: E-mailadres van mailbox
+  title_easy_helpdesk_sender_redmine_default: Standaard emissie e-mailadres
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'WAARSCHUWING: Helpdesk ontvangt
+    mails van andere systemen en kan oneindige mail-uitwisseling veroorzaken!'
+  title_easy_helpdesk_sla_start_states: Selecteer statussen, als een SLA meting wordt
+    voortgezet na gepauzeerd te zijn door de instelling hierboven.
+  title_easy_helpdesk_sla_stop_states: Selecteer statussen als LSA niet gemeten is.
+    Bijvoorbeeld, gesloten tickets of als u wacht op een reactie van de client.
+  title_sla_waiting_for_client: SLA verlopen
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Uitgeschakeld, nadat de taak is gesloten stopt de SLA. Als een taak
+      heropend is wordt de SLA berekend vanaf de originele aanmaaktijd.
+    enabled: Uitgeschakeld - nadat de taak is gesloten is de SLA gestopt. Als de taak
+      is heropend wordt de SLA berekend vanaf het moment van heropenen.

@@ -1,0 +1,44 @@
+<%= render @query, easy_query_name: l(:label_easy_money_cash_flow), form_options: { show_free_search: false }, options: { hascontextmenu: false, table_class: 'no-table-head' }  %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render partial: 'sidebar/saved_easyqueries_by_type', locals: {query_class: @query.class, project: @project} -%>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'easy_money/index_sidebar' -%>
+<% end %>
+
+<% content_for :header_tags do -%>
+    <%= stylesheet_link_tag 'easy_money' -%>
+    <%= stylesheet_link_tag 'easy_datatables' -%>
+    <%= javascript_include_tag 'easy_datatables', defer: true -%>
+<% end -%>
+
+<% unless @query.grouped? %>
+    <script type="application/javascript" >
+      EASY.schedule.main( function () {
+        var table = $('table.list.entities.projects');
+        if(table.length !== 0) {
+          table.addClass('display').DataTable( {
+            "ordering": false,
+            "scrollY": "520px",
+            "scrollX": "100%",
+            "scrollCollapse": true,
+            "paging": false,
+            "bFilter": false
+          } );
+
+          new $.fn.dataTable.FixedColumns( table, {
+            "leftColumns": <%=@query.non_period_inline_columns.count + 1%>
+          });
+        }
+        function refreshDataTables() {
+          var tables = $($.fn.dataTable.tables(true));
+          tables.DataTable().columns.adjust().draw();
+        }
+        $(window).on('resize', function(){
+          refreshDataTables();
+        });
+      });
+    </script>
+<% end %>

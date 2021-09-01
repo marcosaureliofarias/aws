@@ -1,0 +1,165 @@
+---
+ko:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: 빈값이 아니거나 존재하지 않음
+              empty: 빈값이 아니거나 존재하지 않음
+        easy_data_template:
+          attributes:
+            type:
+              blank: 빈값이 아니거나 존재하지 않음
+              empty: 빈값이 아니거나 존재하지 않음
+  button_easy_data_template_assignment: 필드 지정
+  button_easy_data_template_edit: 템플릿 편집
+  button_easy_data_template_export_data: 데이터 내보내기
+  button_easy_data_template_import: 가져오기
+  button_easy_data_template_import_data: 데이터 가져오기
+  button_easy_data_template_import_preview: 미리보기
+  button_easy_data_template_new_export: CSV 내보내기
+  button_easy_data_template_new_import: CSV 가져오기
+  button_easy_data_template_new_msproject: MS Project에서 가져오기
+  button_easy_data_template_settings: 수정
+  button_new_advance_import: 사용자 정의 가져오기
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: 아니오
+    xyes: 예
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: 이름 해석기
+      assigned_to_id: id 해석기
+      assigned_to_lastname: 성 해석기
+      assigned_to_login: 로그인 해석기
+      assigned_to_mail: 이메일 해석기
+      author_firstname: 작성자 이름
+      author_id: id 작성자
+      author_lastname: 성
+      author_login: 로그인 작성자
+      author_mail: 이메일 작성자
+      description: 일감 설명
+      due_date: 마지막 일감(날짜)
+      estimated_hours: 추정 일감시간(시)
+      id: 일감 id
+      priority_id: id 우선순위
+      priority_name: 우선순위 제목
+      project_id: id 프로젝트
+      project_name: 프로젝트 명
+      start_date: 일감 시작(일자)
+      subject: 일감 주제
+      tracker_id: id 일감 유형
+      tracker_name: 일감 유형 이름
+    Project:
+      description: 프로젝트 설명
+      enabled_modules: 모듈명
+      id: id 프로젝트
+      is_public: 공공 (A / N)
+      name: 프로젝트명
+      parent_id: id 상위 프로젝트
+      parent_name: 상위 프로젝트명
+      trackers_ids: id 일감 유형
+      trackers_names: 일감 유형의 이름
+    TimeEntry:
+      activity: 활동
+      activity_id: id 액티비티
+      activity_name: 액티비티명
+      comments: 코멘트
+      easy_range_from: 에게 보고된
+      easy_range_to: 에게 보고
+      hours: 시계
+      issue: 일감
+      issue_id: 일감 id
+      issue_subject: 일감 제목
+      project: 프로젝트
+      project_id: id 프로젝트
+      project_name: 프로젝트명
+      spent_on: 날짜
+      user: 사용자
+      user_id: 사용자 id
+    User:
+      admin: 관리자 (A / N)
+      firstname: 사용자 이름
+      id: 사용자 id
+      language: 사용자 언어
+      lastname: 사용자 성
+      login: 사용자 로그인
+      mail: 이메일 사용자
+      password: 비밀번호
+      send_mail: 로그온하고 이메일 보내기 (A / N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: 일감
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: 프로젝트
+    EasyDataTemplateTimeEntry: 보고된 시간
+    EasyDataTemplateUser: 사용자
+  easy_data_templates_plugin_description: "-데이터 템플릿을 CSV 형식으로 데이터를 내보내고(import) 가져오기(Export)"
+  easy_data_templates_plugin_name: 데이터 템플릿
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: 데이터 템플릿
+        description: 데이터 템플릿 관리
+  error_during_import: 가져오기할 때 에러가 발생하면, 입력된 데이터를 확인하세요.
+  error_easy_data_template_ms_project_not_valid_xml: 첨부 파일은 MS Project 2010 이나 그 이상에서
+    유효한 XML 없습니다.
+  field_easy_data_template_allowed_import: 가져오기
+  label_check_preview: "'미리보기'를 사용하여 데이터를 확인하시기 바랍니다"
+  label_easy_data_template_assignment: 필드 지정
+  label_easy_data_template_author_name: 작성자
+  label_easy_data_template_edit: 템플릿 편집하기
+  label_easy_data_template_entity_type: 엔티티
+  label_easy_data_template_export_new: 신규 템플릿 내보내기
+  label_easy_data_template_import_file: 파일로 가져오기
+  label_easy_data_template_import_new: 신규 템플릿 가져오기
+  label_easy_data_template_import:
+    assignments:
+      all: 지정된 위치의 열
+      entity_attribute_name: 컬럼명 엔티티
+      file_column_position: csv에서 열의 위치
+      new: 지정 열 위치
+    errors:
+      erow: 그 줄에서 오류
+      errors_count: 에러 수
+      errors_rows: 결함 라인
+      errors_rows_count: 잘못된 줄 수
+      errors_sum: 전부
+      row: 잘못된 라인 번호
+      show: 잘못된 라인 보기
+    preview:
+      row: 라인 번호
+      table: 미리보기
+    settings:
+      col_sep: 필드 분할
+      encoding: 인코딩
+      import_all: 모 아니면 도
+      new: 조정
+      preview_rows: 라인 수 미리보기
+      project_template: 디자인 템플릿을 사용
+      quote_char: 텍스트 분리
+      return_headers: 첫번째 라인은 열 이름을 포함합니다.
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(일감 한개에 지정)"
+    other: "(Assigned to %{count} tasks)"
+    zero: "(지정되지 않음)"
+  label_easy_data_template_ms_project_resource_name_in_msp: MSP에서 이름
+  label_easy_data_template_ms_project_user_name_in_ep: 내부 이름
+  label_easy_data_template_name: 이름
+  label_easy_data_template_public: 공공
+  label_easy_data_template_template_type: 유형
+  label_easy_data_template_template_type_export: 내보내기
+  label_easy_data_template_template_type_import: 가져오기
+  label_easy_data_template_user_name: 소유자
+  label_easy_data_templates: 데이터 템플릿
+  label_easy_data_templates_choose_project: 프로젝트 선택
+  label_easy_data_templates_choose_query: 필터 선택
+  label_easy_data_templates_source_settings: 데이터 소스 선택
+  label_easy_data_templates_target_settings: 목적지 데이터 선택
+  notice_easy_data_templates_import_ok: 가져오기가 잘 처리되었습니다.
+  text_easy_data_template_ms_project_upload_file: 이 파일은 XML 형식이어야 합니다. (in MS Project
+    from the top menu, click File -&gt; Save As -&gt; Save as type XML).
+  title_easy_data_templates_apply_to_all_rows: 모든 유사한 라인에 이 값을 설정하십시오.

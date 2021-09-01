@@ -1,0 +1,6 @@
+<% if settings['attributes'] && !settings['attributes']['src'].blank? %>
+  <%= content_tag(:iframe, settings['attributes']) do %>
+  <% end %>
+<% else %>
+  <%= render :partial => 'easy_page_modules/page_module_cannot_be_displayed', :locals => { :page_module => page_module } %>
+<% end %>

@@ -1,0 +1,154 @@
+<%
+  plugin = Redmine::Plugin.find('easy_gantt')
+  easy_extensions = EasyGantt.easy_extensions?
+
+  unless defined?(show_query)
+    show_query = true
+  end
+
+  back_url = Addressable::URI.unescape(request.fullpath)
+%>
+
+<% if !easy_extensions || !in_mobile_view? %>
+  <div id="easy_gantt" class="<%= easy_extensions ? 'easy' : 'redmine' %> gantt clear">
+    <% if show_query %>
+      <% if User.current.admin? && project.nil? %>
+        <div class="contextual settings">
+          <% # Easy is called URI.escape before redirect to back
+             # So a%7Cb" is transformed into "a%257Cb" (original "a|b") %>
+          <%= link_to '', plugin_settings_path(plugin, back_url: back_url), class: 'icon icon-settings', title: l(:label_easy_gantt_settings)%>
+        </div>
+      <% end %>
+
+      <%= render query,
+                 query: query,
+                 easy_query_name: l(:heading_easy_gantts_issues),
+                 wrapper_class: '',
+                 additional_elements_to_serialize: '$("input#easy_gantt_type")',
+                 easy_query_clear_url: { set_filter: 0,
+                                         project_id: (project unless query.try(:dont_use_project)),
+                                         gantt_type: params[:gantt_type] },
+                 options: { show_free_search: false,
+                            show_custom_formatting: false,
+                            additional_tagged_url_options: { gantt_type: params[:gantt_type] } } %>
+    <% end %>
+
+    <%= hidden_field_tag 'gantt_type', '', id: 'easy_gantt_type' %>
+
+    <%= render 'easy_gantt/menu_graph', project: project %>
+
+    <div id="easy_gantt_footer" class="gantt-footer">
+      <div id="easy_gantt_footer_legend" class="gantt-footer-legend"></div>
+      <div id="gantt_footer_buttons" class="gantt-footer-menu">
+        <% # Print doesn't work on RM but be carefull of page modules %>
+        <% if EasyGantt.easy_printable_templates? && !params[:gantt_type].present? %>
+          <%
+            # Prepare options for selection
+            # - easy_gantt category should be first
+            # - select first option on easy_gantt category if this category contains only one option
+            gantt_category = EasyPrintableTemplate.category_caption('easy_gantt')
+            options = { gantt_category => [] }
+            print_template_url = preview_easy_printable_template_path(':id', entity_type: 'Project', entity_id: project.try(:id), back_url: back_url);
+
+            templates = EasyPrintableTemplate.pluck(:name, :category, :id)
+            templates.each do |name, category, id|
+              key = EasyPrintableTemplate.category_caption(category)
+              options[key] ||= []
+              options[key] << [name, id]
+            end
+
+            if options[gantt_category].size == 1
+              selected_key = options[gantt_category].first
+              prompt = false
+            else
+              prompt = true
+            end
+          %>
+          <% content_for :body_bottom do %>
+            <script type="application/javascript">
+              function printableTemplatePrint(){
+                const $select = $("#easy-printable-templates");
+                const value = $select.val();
+                const printDateFrom = document.getElementById("gantt_print_from");
+                const printDateTo = document.getElementById("gantt_print_to");
+
+                if (value === "") {
+                  // $select.css({border: "1px solid red"})
+                  return false
+                }
+
+                const printFromValue = printDateFrom && printDateFrom.value;
+                const printToValue = printDateTo && printDateTo.value;
+
+                if (printFromValue && printToValue) {
+                  if (moment(printToValue).isBefore(printFromValue, "day")) {
+                    window.showFlashMessage("error", "<%= l(:error_start_date_before_end_date) %>");
+                    return;
+                  }
+                }
+
+                let url = "<%= print_template_url %>";
+                url = url.replace(":id", value);
+
+                easyModel.print.preview({href: url})
+              }
+            </script>
+          <% end %>
+
+          <%= select_tag :print, grouped_options_for_select(options, selected_key, prompt: prompt), id: 'easy-printable-templates', style: 'width: auto' %>
+          <div class="gantt-footer-menu_print">
+            <div class="gantt-footer-menu_print_datepicker">
+              <%= label_tag 'gantt_print_from', l(:label_date_from) %>
+              <%= text_field_tag 'gantt_print[from]' %>
+              <%= calendar_for('gantt_print_from') %>
+            </div>
+            <div class="gantt-footer-menu_print_datepicker">
+              <%= label_tag 'gantt_print_to', l(:label_date_to) %>
+              <%= text_field_tag 'gantt_print[to]' %>
+              <%= calendar_for('gantt_print_to') %>
+            </div>
+          </div>
+          <%= link_to_function l(:button_print), 'printableTemplatePrint()', class: 'button button-2 icon icon-print' %>
+          <label title="<%= l('easy_gantt.title.print_fit') %>">
+            <%= l('easy_gantt.button.print_fit') %>
+            <input type="checkbox" id="easy_gantt_print_fit_checkbox" checked>
+          </label>
+        <% else %>
+          <%= easy_gantt_js_button(l(:button_print), icon: 'icon-print', id: 'button_print') %>
+        <% end %>
+
+        <% unless EasyGantt.easy_gantt_pro? %>
+          <%= easy_gantt_js_button(:load_sample_data, id: 'button_sample') %>
+        <% end %>
+      </div>
+
+      <% unless EasyGantt.easy_extensions? %>
+        <p><%= link_to l(:text_easy_gantt_footer), l(:link_easy_gantt_plugin), target: '_blank' %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render 'easy_gantt/includes', project: project %>
+
+  <%= content_for :body_bottom do %>
+    <%= render 'easy_gantt/test_includes', project: project if params[:jasmine] %>
+    <%= render 'easy_gantt/js_prepare', project: project, query: query %>
+    <%= render 'easy_gantt/gantt_js_prepare', project: project, query: query %>
+  <% end %>
+
+  <%= call_hook(:view_easy_gantt_index_bottom, project: project, query: query) %>
+
+  <!--  we dont need sidebar in gantt -->
+  <%# content_for :sidebar do %>
+    <%#= call_hook(:view_easy_gantt_index_sidebar, project: project, query: query, gantt_type: params[:gantt_type]) %>
+
+    <%# # DEPRECATED %>
+    <%#= call_hook(:view_easy_gantts_issues_sidebar, project: project, query: query) %>
+  <%# end %>
+
+  <%= yield :body_bottom unless easy_extensions %>
+<% else %>
+  <p class="flash notice">
+    <%= l(:error_small_screen) %>
+  </p>
+<% end %>

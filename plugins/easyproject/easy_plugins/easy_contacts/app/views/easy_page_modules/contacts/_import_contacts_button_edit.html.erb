@@ -1,0 +1,1 @@
+<%= link_to l(:label_easy_contacts_import), import_preview_easy_contacts_path, :class => 'button icon icon-import' if User.current.allowed_to_manage_easy_contacts?  -%>

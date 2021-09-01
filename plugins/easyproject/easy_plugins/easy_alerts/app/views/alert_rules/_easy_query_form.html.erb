@@ -1,0 +1,14 @@
+<% operator_select = @settings[:operator] || '>'
+   query_class = "Easy#{entity.classify}Query"
+   query_const = query_class.safe_constantize
+   select_collection = query_const.nil? ? [] : query_const.visible.sorted.to_a.collect {|p| [p.name, p.id]}
+%>
+<p>
+  <label class="required"><%= l("label_#{entity}_query_before") -%>*</label>
+  <label class="inline"><%= select_tag 'query_id', options_for_select(select_collection, @settings[:query_id].to_i), include_blank: true, class: 'inline' -%>
+
+    <%= select_tag 'operator', options_for_select(['>', '>=', '=', '<=', '<'], operator_select), class: 'inline select-small' %>
+    <%= text_field_tag 'entity_count', @settings[:entity_count] || 0, {maxlength: 3, size: 3} -%>
+    <%= l(:label_issue_query_after) -%></label>
+  <em class="help"><%= l(:label_easy_alerts_easy_query_permissions_warning) %></em>
+</p>

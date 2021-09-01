@@ -1,0 +1,32 @@
+<h1>asdas</h1>
+
+<% EasyIntegrations::Categories.each do |category| %>
+  <% next if category.easy_integrations.blank? %>
+  <h3><%= category.name %></h3>
+  <p><%= simple_format category.description %></p>
+
+  <table class="list">
+    <thead>
+    <tr>
+      <th>Icon</th>
+      <th class="name">Name</th>
+      <th>Description</th>
+      <th class="buttons"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% category.easy_integrations.each do |easy_integration| %>
+      <tr>
+        <td><%= easy_integration.icon %></td>
+        <td><%= easy_integration.name %></td>
+        <td><%= simple_format easy_integration.description %></td>
+        <td>
+          <% if easy_integration.available? %>
+            <%= link_to 'Configure', settings_easy_integrations_path(slug: easy_integration.slug), class: 'button-positive icon icon-settings' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,4 @@
+var entity_name = '<%= params[:entity_type].underscore %>';
+var container = $("#"+entity_name+"_<%= params[:custom_field_id] %>_container")
+$('#non-primary-custom-fields-select').append($('<option>').val('<%= params[:custom_field_id] %>').text(container.find('label').text()))
+container.remove();

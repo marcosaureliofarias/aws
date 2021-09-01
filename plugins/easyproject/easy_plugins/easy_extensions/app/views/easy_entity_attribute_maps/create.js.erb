@@ -1,0 +1,16 @@
+<% if @easy_entity_attribute_map.valid? %>
+var container = $("table#easy_entity_attribute_maps");
+$("p.nodata").remove();
+container.find('tbody').append("<%=j render(:partial => @easy_entity_attribute_map) -%>").effect("highlight");
+container.find('tfoot').empty();
+var dialogSubmit = $(".ui-dialog-buttonset #easy_entity_attribute_map_submit_button");
+if (dialogSubmit[0]) {
+  dialogSubmit.button("option", "disabled", false);
+  // $.get('<%#=raw new_easy_entity_attribute_map_path(:entity_from => @easy_entity_attribute_map.entity_from_type, :entity_to => @easy_entity_attribute_map.entity_to_type, :format => 'js') %>');
+} else {
+  showFlashMessage('notice', "<%= l(:notice_successful_create) %>").delay(1000).fadeOut();
+}
+
+<% else %>
+showFlashMessage('error', "<%= @easy_entity_attribute_map.errors.full_messages.join(', ') %>");
+<% end %>

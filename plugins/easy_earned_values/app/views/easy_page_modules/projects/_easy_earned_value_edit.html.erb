@@ -1,0 +1,30 @@
+<%
+  project = if @project
+              @project
+            elsif @project.nil? && page_params[:page].page_name == 'project-overview'
+              Project.find_by(id: page_params[:entity_id])
+            end
+
+  if project
+    earned_values = project.easy_earned_values.pluck('name', 'id')
+    select_options = options_for_select(earned_values, settings['easy_earned_value_id'])
+  else
+    p_table = Project.table_name
+    e_table = EasyEarnedValue.table_name
+
+    project_conditions = Project.allowed_to_condition(User.current, :view_easy_earned_values)
+    earned_values = EasyEarnedValue.joins(:project).
+                                    where(project_conditions).
+                                    pluck("#{e_table}.name", "#{p_table}.name", "#{e_table}.id")
+
+    select_options = grouped_options_for_select(earned_values.group_by(&:second), settings['easy_earned_value_id'])
+  end
+%>
+
+<div class="tabular">
+  <p>
+    <%= label_tag "#{block_name}[easy_earned_value_id]", l(:label_easy_earned_values) %>
+    <%= select_tag "#{block_name}[easy_earned_value_id]", select_options, include_blank: true %>
+  </p>
+</div>
+

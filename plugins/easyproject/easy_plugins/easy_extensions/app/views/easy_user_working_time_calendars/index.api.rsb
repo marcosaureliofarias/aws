@@ -1,0 +1,5 @@
+api.array :easy_user_working_time_calendars do
+  @easy_user_working_time_calendars.each do |easy_user_working_time_calendar|
+    render_api_easy_user_working_time_calendar(api, easy_user_working_time_calendar)
+  end
+end

@@ -1,0 +1,23 @@
+<% if action_name != 'login' && (Setting.login_required? ? User.current.logged? : true) && menu_items_for(:easy_servicebar_items).any? %>
+  <div id="easy_servicebar">
+    <ul>
+      <% menu_items_for(:easy_servicebar_items).each do |node| -%>
+        <%= render_menu_easy_node(node, @project).html_safe %>
+      <% end %>
+    </ul>
+    <%# link_to('', easy_short_urls_path(:entity_type => @entity ? @entity.class.name : nil, :entity_id => @entity ? @entity.id : nil, :source_url => url_for(request.query_parameters.merge(:only_path => false))), :class => 'icon icon-crm-1', :remote => true, :title => l(:heading_easy_short_urls_new)) %>
+    <div id="back_to_top" style="opacity: 0;">
+      <a href="javascript:EASY.utils.backToTop();" class="icon icon-arrow"><span class="tooltip"><%= l(:label_back_to_top) %></span></a>
+    </div>
+    <div id="easy_servicebar_component" style="display:none;">
+      <span id="easy_servicebar_component_beak">
+        <a id="easy_servicebar_close_toggler" class="icon-close" href="javascript:void(0);"></a>
+      </span>
+      <div id="easy_servicebar_component_body"></div>
+    </div>
+    <%= call_hook :view_layouts_servicebar_bottom %>
+  </div>
+  <% if User.current.logged? %>
+    <%#= render(:partial => 'easy_issue_timers/menu_trigger', :locals => {:easy_issue_timers => @easy_issue_timers}) %>
+  <% end %>
+<% end -%>

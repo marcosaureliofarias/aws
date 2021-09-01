@@ -1,0 +1,9 @@
+<% if @success %>
+  showFlashMessage('notice', '<%= l(:text_easy_checklist_success_add_to_entity) %>').delay(1000).fadeOut();
+
+  $('#easy_checklists_container').replaceWith('<%= j(render :partial => "easy_checklists/easy_checklists_list", :locals => {:entity => @entity}) %>');
+  $('#easy_checklist_template_id').val("");
+
+  <%= render :partial => 'easy_checklists/update_inline_containers' %>
+  <%= render :partial => 'easy_checklists/add_item_delete_buttons', locals: { entity: @entity } %>
+<% end %>

@@ -1,0 +1,261 @@
+<%
+  entity_type, entity_id = entity.class.name, entity.id
+  url_params ||= {}
+  url_params[:easy_currency_code] = easy_currency_code
+  url_params[:easy_money] = {entity_type: entity_type, entity_id: entity_id}
+  easy_money_settings ||= project.easy_money_settings
+  easy_money = entity.easy_money(easy_currency_code)
+
+  expenses_planned_sum, expenses_other_sum = easy_money.sum_planned_and_other_expenses
+  project_tree_has_time_tracking = (project.self_and_descendants.has_module(:time_tracking).size > 0)
+
+  other_profit_cache = easy_money.other_profit
+  sum_other_expenses_cache = easy_money.sum_other_expenses
+  sum_time_entry_expenses_cache = easy_money.sum_time_entry_expenses
+
+  show_expected_payroll_expenses = project_tree_has_time_tracking && (User.current.allowed_to?(:easy_money_show_expected_payroll_expense, project) || User.current.allowed_to?(:easy_money_manage_expected_payroll_expense, project)) && easy_money_settings.show_expected?
+  show_time_entry_expenses = project_tree_has_time_tracking && User.current.allowed_to?(:easy_money_show_time_entry_expenses, project)
+  show_expected_revenues = (User.current.allowed_to?(:easy_money_show_expected_revenue, project) || User.current.allowed_to?(:easy_money_manage_expected_revenue, project)) && easy_money_settings.show_expected?
+  show_other_revenues = User.current.allowed_to?(:easy_money_show_other_revenue, project) || User.current.allowed_to?(:easy_money_manage_other_revenue, project)
+  show_expected_expenses = (User.current.allowed_to?(:easy_money_show_expected_expense, project) || User.current.allowed_to?(:easy_money_manage_expected_expense, project)) && easy_money_settings.show_expected?
+  show_other_expenses = User.current.allowed_to?(:easy_money_show_other_expense, project) || User.current.allowed_to?(:easy_money_manage_other_expense, project)
+
+  show_travel_costs = User.current.allowed_to?(:easy_money_show_travel_cost, project) && project.easy_money_settings.use_travel_costs?
+  show_travel_expenses = User.current.allowed_to?(:easy_money_show_travel_expense, project) && project.easy_money_settings.use_travel_expenses?
+  show_expected_profit = User.current.allowed_to?(:easy_money_show_expected_profit, project) && easy_money_settings.show_expected?
+  show_other_profit = User.current.allowed_to?(:easy_money_show_other_profit, project)
+
+  title_net_margin = l(:title_easy_money_net_margin_formula, net_margin: l(:label_easy_money_net_margin), profit: l('easy_reports_fields._project_other_profit'), incomes: l(:field_easy_money_sum_other_revenues), purchases: l(:label_easy_money_project_purchases))
+
+  title_profit_margin = l(:title_easy_money_profit_margin_formula, profit_margin: l(:label_easy_money_profit_margin), profit: l('easy_reports_fields._project_other_profit'), incomes: l(:field_easy_money_sum_other_revenues))
+%>
+  <div class="autoscroll">
+    <% sum_expenses = sum_other_expenses_cache + sum_time_entry_expenses_cache %>
+    <% cls = (sum_expenses.zero? || ((other_profit_cache / sum_expenses) * 100).round(2) > 0) ? 'color-positive' : 'color-negative' %>
+    <table class="list">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="text-right"><%= content_tag(:b, l(:label_easy_money_expected_budget)) if show_expected_revenues -%></th>
+          <th class="text-right"><%= content_tag(:b, l(:label_easy_money_real_budget)) -%></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if show_expected_revenues || show_other_revenues %>
+          <tr>
+            <th><%= l(:button_easy_money_project_expected_revenues) -%></th>
+            <td class="text-right">
+              <% if show_expected_revenues -%>
+                  <% if easy_money_settings.revenues_type == 'list' -%>
+                      <span id="expected-revenues">
+                        <%= link_to format_easy_money_price(easy_money.sum_expected_revenues, project, easy_currency_code), {controller: 'easy_money_expected_revenues', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_expected_revenues), class: 'expected-revenue-index-link index-link'} %>
+                      </span>
+                  <% else %>
+                      <%= form_tag({controller: 'easy_money_expected_revenues', action: 'inline_update'}.merge(url_params), id: 'easy-money-expected-revenues', data: {remote: true}) do %>
+                          <span id="expected-revenues">
+                            <%= render 'easy_money_expected_revenues/inline_show', project: project, sum_expected_revenues: easy_money.sum_expected_revenues, entity_type: entity_type, entity_id: entity_id, easy_currency_code: easy_currency_code -%>
+                          </span>
+                      <% end %>
+                  <% end -%>
+              <% end -%>
+            </td>
+            <td class="text-right">
+              <% if show_other_revenues -%>
+                  <% if easy_money_settings.revenues_type == 'list' %>
+                      <span id="other-revenues">
+                        <%= link_to format_easy_money_price(easy_money.sum_other_revenues, project, easy_currency_code), {controller: 'easy_money_other_revenues', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_other_revenues), class: 'other-revenue-index-link index-link'} %>
+                      </span>
+                  <% else %>
+                      <%= form_tag({controller: 'easy_money_other_revenues', action: 'inline_update'}.merge(url_params), id: 'easy-money-other-revenues', data: {remote: true}) do %>
+                          <span id="other-revenues">
+                            <%= render 'easy_money_other_revenues/inline_show', project: project, sum_other_revenues: easy_money.sum_other_revenues, entity_type: entity_type, entity_id: entity_id, easy_currency_code: easy_currency_code -%>
+                          </span>
+                      <% end -%>
+                  <% end -%>
+              <% end -%>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if show_expected_payroll_expenses || show_time_entry_expenses || show_expected_expenses || show_other_expenses %>
+          <tr>
+            <th><%= l(:button_easy_money_project_expenses) -%></th>
+            <td class="text-right">
+              <% if show_expected_expenses || show_expected_payroll_expenses  %>
+                  <span id="expected-expenses-sum"><%= format_easy_money_price(expenses_planned_sum, project, easy_currency_code) %></span>
+              <% end %>
+            </td>
+            <td class="text-right">
+              <% if show_other_expenses || show_time_entry_expenses  %>
+                  <span id="other-expenses-sum"><%= format_easy_money_price(expenses_other_sum, project, easy_currency_code) %></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
+        <tr class="idnt-1 child">
+          <th class="name"><%=l(:button_easy_money_project_time_entry_expenses)-%></th>
+          <td class="text-right">
+            <% if show_expected_payroll_expenses -%>
+                <% case easy_money_settings.expected_payroll_expense_type %>
+                <% when 'amount' %>
+                  <%= form_tag({controller: 'easy_money_expected_payroll_expenses', action: 'inline_update'}.merge(url_params).merge(project_id: project), id: 'easy-money-expected_payrol-expenses', data: {remote: true}) do %>
+                    <span id="expected-payroll-expenses">
+                      <%= render 'easy_money_expected_payroll_expenses/inline_show', project: project, sum_expected_payroll_expenses: easy_money.sum_expected_payroll_expenses, entity_type: entity_type, entity_id: entity_id, easy_currency_code: easy_currency_code -%>
+                    </span>
+                  <% end -%>
+                <% when 'hours' %>
+                  <%= form_tag({controller: 'easy_money_expected_hours', action: 'inline_update'}.merge(url_params).merge(project_id: project), id: 'easy-money-expected_payrol-expenses', data: {remote: true}) do %>
+                    <span id="expected-hours">
+                      <%= render 'easy_money_expected_hours/inline_show', project: project, expected_hours: easy_money.sum_expected_hours,
+                                 entity_type: entity_type, entity_id: entity_id, easy_currency_code: easy_currency_code,
+                                 easy_money: easy_money, hourly_total_with_currency: easy_money.sum_expected_payroll_expenses -%>
+                    </span>
+                  <% end -%>
+                <% else -%>
+                    <span id="expected-payroll-expenses"><%= format_easy_money_price(easy_money.sum_expected_payroll_expenses, project, easy_currency_code) -%></span>
+                <% end -%>
+            <% end -%>
+          </td>
+          <td class="text-right">
+            <% if show_time_entry_expenses %>
+              <span id="other-hours" class="small">
+                <%= link_to l(:button_easy_money_project_time_entry_hours), {controller: 'easy_money_time_entry_expenses', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_time_entry_expenses), class: 'time-entry-expense-index-link index-link'} %>
+                <%= l(:label_easy_money_hour, :hours => easy_money.sum_time_entry_hours.round(2)) -%> /
+              </span>
+              <span id="time-entry-expenses">
+                <%= link_to format_easy_money_price(sum_time_entry_expenses_cache, project, easy_currency_code), {controller: 'easy_money_time_entry_expenses', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_time_entry_expenses), class: 'time-entry-expense-index-link index-link'} %>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+
+        <% if show_expected_expenses || show_other_expenses %>
+          <tr class="idnt-1 child">
+            <th class="name"><%= l(:label_easy_money_project_purchases) -%>:</th>
+            <td class="text-right">
+              <% if show_expected_expenses -%>
+                  <% if easy_money_settings.expenses_type == 'list' %>
+                      <p id="expected-expenses">
+                        <%= link_to format_easy_money_price(easy_money.sum_expected_expenses, project, easy_currency_code), {controller: 'easy_money_expected_expenses', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_expected_expenses), class: 'expected-expense-index-link index-link'} %>
+                      </p>
+                  <% else -%>
+                      <%= form_tag({controller: 'easy_money_expected_expenses', action: 'inline_update'}.merge(url_params), id: 'easy-money-expected-expenses', data: {remote: true}) do %>
+                          <p id="expected-expenses">
+                            <%= render 'easy_money_expected_expenses/inline_show', project: project, sum_expected_expenses: easy_money.sum_expected_expenses, entity_type: entity_type, entity_id: entity_id, easy_currency_code: easy_currency_code -%>
+                          </p>
+                      <% end -%>
+                  <% end -%>
+              <% end -%>
+            </td>
+            <td class="text-right">
+              <% if show_other_expenses -%>
+                  <% if easy_money_settings.expenses_type == 'list' -%>
+                      <p id="other-expenses">
+                        <%= link_to format_easy_money_price(sum_other_expenses_cache, project, easy_currency_code), {controller: 'easy_money_other_expenses', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_other_expenses), class: 'other-expense-index-link index-link'} %>
+                      </p>
+                  <% else %>
+                      <%= form_tag({controller: 'easy_money_other_expenses', action: 'inline_update'}.merge(url_params), id: 'easy-money-other-expenses', data: {remote: true}) do %>
+                          <p id="other-expenses">
+                            <%= render 'easy_money_other_expenses/inline_show', project: project, sum_other_expenses: sum_other_expenses_cache, entity_type: entity_type, entity_id: entity_id, easy_currency_code: easy_currency_code -%>
+                          </p>
+                      <% end -%>
+                  <% end -%>
+              <% end -%>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if show_travel_costs -%>
+          <tr class="idnt-1 child">
+            <th class="name"><%=l(:button_easy_money_project_travel_costs)-%></th>
+            <td class="text-right"></td>
+            <td class="text-right">
+              <span id="travel-costs">
+                <%= link_to format_easy_money_price(easy_money.sum_travel_costs, project, easy_currency_code), {controller: 'easy_money_travel_costs', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_other_expenses), class: 'travel-costs-index-link index-link'} %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+
+        <%= call_hook :view_easy_money_entity_overview_body_bottom, project: project, easy_money: easy_money, easy_currency_code: easy_currency_code, entity_type: entity_type, entity_id: entity_id, entity: entity, easy_money_settings: easy_money_settings %>
+
+        <% if show_travel_expenses -%>
+          <tr class="idnt-1 child">
+            <th class="name"><%=l(:button_easy_money_project_travel_expenses)-%></th>
+            <td class="text-right"></td>
+            <td class="text-right">
+              <span id="travel-expense">
+                <%= link_to format_easy_money_price(easy_money.sum_travel_expenses, project, easy_currency_code), {controller: 'easy_money_travel_expenses', action: 'index'}.merge(url_params), {title: l(:title_easy_money_project_travel_expenses), class: 'travel-expenses-index-link index-link'} %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <% if show_expected_profit || show_other_profit %>
+          <tr>
+            <th><%= l(:label_easy_money_project_index_profit) -%></th>
+            <td class="big text-right">
+              <% if show_expected_profit -%>
+                  <span id="expected-profit">
+                    <%= render 'easy_money/inline_expected_profit', project: project, expected_profit: easy_money.expected_profit, easy_currency_code: easy_currency_code %>
+                  </span>
+              <% end -%>
+            </td>
+            <td class="big <%= cls -%> text-right">
+              <% if show_other_profit -%>
+                <span id="other-profit" class="tooltip real_hourly_rate">
+                  <%= render 'easy_money/inline_other_profit', project: project, other_profit: other_profit_cache, easy_currency_code: easy_currency_code -%>
+                </span>
+                <script type="application/javascript">
+                  EASY.schedule.late(function () {
+                    new easyClasses.EasyTooltip(
+                        '<%= j "#{l(:tooltip_real_hourly_rate, :average_hourly_rate => Sanitize.clean(format_easy_money_price(entity.easy_money.average_hourly_rate, project, easy_currency_code), :output => :html))}" %>',
+                        $('#other-profit'), -10, -60, 40);
+                  }, -15);
+                </script>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
+        <%= call_hook :view_easy_money_entity_overview_profit_bottom, easy_money: easy_money, easy_currency_code: easy_currency_code, project: project %>
+
+        <% if (sum_other_expenses_cache + sum_time_entry_expenses_cache) > 0 %>
+          <tr>
+            <th title="<%= title_profit_margin %>"><%= l(:label_easy_money_profit_margin) -%></th>
+            <td class="text-right"></td>
+            <td class="<%= cls -%> text-right" title="<%= title_profit_margin %>">
+              <span id="profit-margin">
+                <%= render 'easy_money/inline_profit_margin', project: project, gross_margin: easy_money.gross_margin -%>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <th title="<%= title_net_margin %>"><%= l(:label_easy_money_net_margin) -%></th>
+          <td class="text-right"></td>
+          <td class="<%= cls -%> text-right" title="<%= title_net_margin %>">
+              <span id="net-margin">
+                <%= easy_money.net_margin -%> %
+              </span>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+<div class="clear"></div>
+<%= call_hook(:view_easy_money_entity_overview_bottom, :project => project, :entity_type => entity_type, :entity_id => entity_id, :entity => entity, :easy_money_settings => easy_money_settings) %>
+<script type="text/javascript">
+  function renderExpectedProfit() {
+    $('#expected-profit').load('<%= url_for({controller: 'easy_money', action: 'inline_expected_profit'}.merge(url_params).merge(project_id: project.id)) -%>');
+  }
+  function renderExpectedPayrollExpenses() {
+    $('#expected-payroll-expenses').load('<%= url_for({controller: 'easy_money_expected_payroll_expenses', action: 'inline_expected_payroll_expenses'}.merge(url_params).merge(project_id: project.id)) %>');
+  }
+  function renderOtherProfit() {
+    $('#other-profit').load('<%= url_for({controller: 'easy_money', action: 'inline_other_profit'}.merge(url_params).merge(project_id: project.id)) %>');
+  }
+</script>

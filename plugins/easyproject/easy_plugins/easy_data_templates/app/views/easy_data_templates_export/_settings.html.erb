@@ -1,0 +1,17 @@
+<fieldset>
+  <legend><%= l(:label_easy_data_templates_source_settings) -%></legend>
+  <p>
+    <%= radio_button_tag 'easy_data_template[settings][source_type]', 'project', (settings['source_type'] == 'project'), :id => 'cbx_easy_data_template_project_selector_project' %>
+    <span onclick="javascript:$('cbx_easy_data_template_project_selector_project').checked = true;">
+      <%= l(:label_easy_data_templates_choose_project) %>
+      <%= select_tag 'easy_data_template[settings][source_project_id]', project_tree_options_for_select(Project.visible.non_templates.sorted, :selected => settings['source_project_id']) %>
+    </span>
+  </p>
+  <p>
+    <%= radio_button_tag 'easy_data_template[settings][source_type]', 'easy_time_entry_query', (settings['source_type'] == 'easy_time_entry_query'), :id => 'cbx_easy_data_template_project_selector_easy_time_entry_query' %>
+    <span onclick="javascript:$('cbx_easy_data_template_project_selector_easy_time_entry_query').checked = true;">
+      <%= l(:label_easy_data_templates_choose_query) %>
+      <%= select_tag 'easy_data_template[settings][source_query_id]', options_for_select([[]] + EasyTimeEntryQuery.private_queries.to_a.collect{|q| [q.name, q.id.to_s]}, settings['source_project_id']) %>
+    </span>
+  </p>
+</fieldset>

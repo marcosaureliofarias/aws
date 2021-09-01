@@ -1,0 +1,56 @@
+<p class="contextual">
+  <%= link_to(l(:button_back), easy_crm_kanban_project_path(@project), class: 'back') %>
+</p>
+<%= title l(:title_kanban_settings) %>
+<%= form_tag easy_crm_kanban_settings_save_project_path(@project) do %>
+  <div id="kanban_columns_container">
+    <% @easy_crm_kanban_settings.each_with_index do |setting, index| %>
+      <%= fields_for "easy_setting[easy_crm_case_kanban_project_settings][#{index}]" do |f| %>
+        <fieldset class="section">
+          <%= render partial: 'easy_crm_kanban/kanban_column_form', locals: {f: f, setting: setting, i: index} %>
+        </fieldset>
+      <% end %>
+    <% end %>
+    <%= fields_for "easy_setting[easy_crm_case_kanban_project_settings][new_index]" do |f| %>
+      <div style="display: none" class="section">
+        <%= render partial: 'easy_crm_kanban/kanban_column_form', locals: {f: f, setting: nil, i: @easy_crm_kanban_settings.size + 1} %>
+      </div>
+    <% end %>
+  </div>
+  <div class="form-actions">
+    <%= link_to l(:label_easy_crm_new_kanban_column), 'javascript:void(0)', class: 'icon icon-add addsection button' %>
+    <%= submit_tag l(:button_save), class: 'button-positive' %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    //define template
+    var template = $('#kanban_columns_container .section:last').clone().toggle(true);
+
+    //define counter
+    var sectionsCount = <%= @easy_crm_kanban_settings.count %>;
+
+    $(document).on('click', '.addsection', function () {
+
+      //increment
+      sectionsCount++;
+
+      //loop through each input
+      var section = template.clone();
+      section.find(':input').each(function () {
+        this.id = this.id.replace('new_index', sectionsCount);
+        this.name = this.name.replace('new_index', sectionsCount);
+        $(this).closest('label').attr('for', this.id);
+
+      }).end()
+      //inject new section
+          .insertBefore('#kanban_columns_container .section:last');
+      return false;
+    });
+    $(document).on('click', '.remove_status', function () {
+      $(this).closest('fieldset.section').remove();
+      $(document).trigger("erui_new_dom");
+    });
+  });
+</script>
+

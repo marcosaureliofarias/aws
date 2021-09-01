@@ -1,0 +1,218 @@
+---
+cs:
+  activerecord:
+    attributes:
+      display_closed_tasks_in_last_n_days: Počet dnů
+  attribute_undefined: Nenastaveno
+  button_agile_board: Agile board
+  button_create_sprint: Vytvořit sprint
+  button_delete_sprint: Odstranit sprint
+  button_global_easy_sprint_query: Přehled sprintů
+  button_recalculate_agile_board: Přepočítat stavy
+  button_scrum_board: Scrum board
+  easy_agile_board_button_go_to: Jdi na
+  easy_agile_board_overview: Přehledová stránka sprintů
+  easy_agile_board_plugin_description: ''
+  easy_agile_board_plugin_name: Agilní nástěnka pro SCRUM, KANBAN
+  easy_agile_board_query: Scrum board
+  easy_agile_board:
+    label_search_tasks_for_backlog: Vyhledat v úkolech pro backlog
+    text_you_are_offline: Jste offline
+  easy_agile_default_settings: Výchozí scrum/kanban nastavení
+  easy_agile_default_settings_kanban: Výchozí nastavení kanbanu
+  easy_agile_default_settings_scrum: Výchozí nastavení scrumu
+  easy_agile_issue_rating_mode_names:
+    disabled: Nepoužívat ohodnocení úkolu
+    easy_story_points: Story points
+    estimated_hours: Odhadovaný čas
+    estimated_time: Předepsaná doba
+    estimated_time_minus_spent_time: Předepsaná doba mínus odpracovaný čas
+    remaining_timeentries: Odhadovaný čas mínus odpracovaný čas
+    value_from_custom_field: Hodnota z uživatelského pole
+  easy_agile_show_resalloc: Zobrazit vytížení zdrojů
+  easy_agile_show_sprint_fullscreen: Zobrazit sprint
+  easy_pages:
+    module_category:
+      easy_agile_board: Scrum/Kanban
+    modules:
+      current: Aktuální sprinty
+      easy_kanban_board: Kanban nástěnka
+      easy_sprint_query: Přehled sprintů
+      personal_easy_agile_board: Agilní nástěnka
+  easy_query:
+    name:
+      easy_agile_board_query: Scrum/Kanban
+      easy_sprint_query: Sprinty
+    sidebar_filters:
+      personal:
+        easy_agile_board_query: Osobní filtry na Agile board
+      public:
+        easy_agile_board_query: Veřejné filtry na Agile board
+  easy_sprint:
+    label_easy_story_points:
+      backlog: Story pointy v backlogu
+      done: Story pointy na ukončených úkolech
+      progress: Story pointy na úkolech v realizaci
+    label_estimated_time:
+      backlog: Předepsaná doba v backlogu
+      done: Předepsaná doba ukončených úkolů
+      progress: Předepsaná doba úkolů v realizaci
+    label_spent_time:
+      all: Celkový odpracovaný čas
+      backlog: Odpracovaný čas v backlogu
+      done: Odpracovaný čas na ukončených úkolech
+      progress: Odpracovaný čas na úkolech v realizaci
+  error_agile_board_sprint_is_already_closed: Sprint je již uzavřen
+  error_assign_closed_issues_to_project_backlog: V projektovém backlogu mohou být
+    pouze otevřené úkoly
+  error_assign_issue_to_closed_easy_sprint: Úkol může být přiřazen pouze do otevřeného
+    sprintu
+  error_default_server_error: Interní chyba, prosím kontaktujte support.
+  error_effective_date_must_be_lower_than_due_date: Datum dokončení (%{due_date})
+    musí být nižší nebo shodné s datem platnosti milníku (%{effective_date})
+  error_start_date_must_be_lower_than_due_date: Datum začátku (%{start_date}) musí
+    být nižší než datum konce (%{due_date})
+  field_closed: Uzavřen
+  field_cross_project: Napříč projekty
+  field_easy_agile_board_cross_project: Použít úkoly ze všech projektů
+  field_easy_agile_board_display_closed_tasks_in_last_n_days: Zobrazit úkoly dokončené
+    za posledních
+  field_easy_sprint: Sprint
+  field_easy_sprint_close_all_tasks: Uzavřít všechny úkoly ve sprintu vybraným stavem
+  field_easy_story_points: Story points
+  field_goal: Cíl
+  field_kanban_phase: Fáze Kanban
+  field_scrum_backlog: Scrum backlog
+  field_scrum_phase: Fáze Scrum
+  field_sprint_capacity: Kapacita
+  field_sprint_title: Název sprintu
+  field_sum_estimated_time_closed_false: Předepsaná doba
+  field_sum_estimated_time_closed_true: Předepsaná doba na uzavřených úkolech
+  field_sum_story_points_closed_false: Story pointy
+  field_sum_story_points_closed_true: Story pointy na uzavřených úkolech
+  heading_easy_agile_sprint_edit: Upravit sprint
+  heading_easy_sprint_close: Uzavřít sprint
+  heading_easy_sprints_overview: Přehledová stránka sprintů
+  heading_populate_backlog_modal: Nový úkoly nebo skupina úkolů
+  label_add_estimate: Přidat odhad
+  label_add_new_issues_to_project_kanban: Přidat úkoly do kanbanu
+  label_agile_add_status: Přidat stav
+  label_agile_backlog: Sprint backlog
+  label_agile_board: Scrum/Kanban
+  label_agile_done: Dokončeno
+  label_agile_filter_sprints_by_assignee: Filtrovat podle přiřazení
+  label_agile_fullness: Kapacita sprintu založená na hodnocení úkolu
+  label_agile_go_to_sprint: Jít na sprint
+  label_agile_in_progress: V realizaci
+  label_agile_new: New
+  label_agile_realization: Realization
+  label_agile_remove_status: Smazat stav
+  label_agile_sprint: Sprint
+  label_agile_sprint_new: Nový sprint
+  label_agile_sprint_reload: Zobrazit sprint
+  label_agile_state_name: Dílčí stav
+  label_agile_state_return_to: 'a změnit řešitele na:'
+  label_agile_state_return_to_author: Předat autorovi
+  label_agile_state_state_statuses: 'obsahuje tyto stavy úkolů:'
+  label_agile_state_status_id: Stav úkolu
+  label_agile_story_points: Story points
+  label_agile_to_check: To check
+  label_chart_real: Skutečnost
+  label_create_columns_by: Seskupení kanbanu podle
+  label_create_task_for_backlog: Vytvořit úkol do backlogu
+  label_current_load: Aktuální vytížení
+  label_current_sprint: Aktuální sprint
+  label_easy_agile_board_chart_burndown: Burndown diagram
+  label_easy_agile_board_chart_ideal_work_remaining: Optimálně zbývá odpracovat
+  label_easy_agile_board_chart_issues_completed: Úkoly jsou dokončené
+  label_easy_agile_board_chart_issues_remaining: Zbývající práce
+  label_easy_agile_board_chart_real_work_remaining: Reálně zbývá odpracovat
+  label_easy_agile_board_chart_unlimited_end: Spočítat dokončení úkoly po termínu
+    k poslednímu dni
+  label_easy_agile_board_charts: Grafy
+  label_easy_agile_board_move_task_all: Přesunout úkoly ze všech sprintů
+  label_easy_agile_board_move_task_no: Nepřesouvat úkoly
+  label_easy_agile_board_move_task_selected: Přesunout úkoly z vybraného sprintu
+  label_easy_agile_board_project_cf: Vybrat projektové uživatelské pole pro zobrazení
+    na úkolu
+  label_easy_agile_board_select_sprint: Vyberte sprint...
+  label_easy_agile_number_of_issues: Počet úkolů
+  label_easy_agile_settings: Agilní nastavení
+  label_easy_agile_sprint_close: Uzavřít sprint
+  label_easy_agile_sprint_open: Otevřít sprint
+  label_easy_agile_sum_issue_rating: Zbývající práce
+  label_easy_agile_use_workflow_on_kanban: Na kanbanu používat workflow
+  label_easy_agile_use_workflow_on_sprint: Na sprintu aplikovat workflow
+  label_easy_kanban_sort_by_priority: Řezení dle priority
+  label_easy_scrum_board_sprint_history_chart: Historická výkonnost na sprintech
+  label_easy_sprint_goal: Cíl pro tento sprint
+  label_easy_sprints: Sprinty
+  label_filter_group_easy_agile_board_query: Úkoly
+  label_filter_group_easy_sprint_query: Sprinty
+  label_issue_rating: Ohodnocení úkolů
+  label_issues_for_backlog: Úkoly pro backlog
+  label_kanban: Kanban
+  label_kanban_board: Kanban nástěnka
+  label_kanban_visible_groups: Skupiny viditelné v kanban zobrazení
+  label_load_history_sprints: Načítat historii
+  label_main_attribute: Podnadpis
+  label_not_assigned: Nepřiřazeno
+  label_permissions_easy_agile_board: Agilný nástenka (Scrum/Kanban)
+  label_personal_easy_agile_board_heading: Nadpis
+  label_personal_easy_agile_board_only_me: Zobrazit jen mé úkoly
+  label_project_backlog: Projektový backlog
+  label_project_backlog_loading_finished: Gratulujeme, došli jste až na konec internetu
+  label_project_backlog_loading_issues: Načítají se další úkoly...
+  label_save_to: Uložit do
+  label_scrum_board: Scrum
+  label_sprints_project: Projekt sprintu
+  label_summable_column: Ohodnocení úkolu
+  label_swimlane: Swimlane
+  label_without_category: Úkoly bez kategorie
+  label_without_milestone: Úkoly bez milníku
+  label_without_parent: Úkoly bez rodiče
+  label_without_swimlane: Žádná swimlane
+  notice_agile_board_sprint_was_successfully_closed: Sprint byl úspěšně uzavřen
+  notice_agile_board_sprint_was_successfully_opened: Sprint byl úspěšně otevřen
+  notice_agile_board_statuses_were_recalculated: Stavy scrum/kanban byli přepočítány
+  permission_edit_easy_agile_board: Upravit Agile board
+  permission_edit_easy_kanban_board: Upravit Kanban
+  permission_edit_easy_scrum_board: Upravit Scrum
+  permission_manage_easy_scrum_overview: Spravovat globální přehled Scrum
+  permission_manage_sprint_backlog: Spravovat backlog sprintu
+  permission_view_easy_agile_board: Zobrazit Agile board
+  permission_view_easy_kanban_board: Zobrazit Kanban
+  permission_view_easy_scrum_board: Zobrazit Scrum
+  permission_view_easy_scrum_overview: Zobrazit globální přehled Scrum
+  permission_view_global_easy_sprints: Zobrazit globální výpis sprintů
+  project_default_page:
+    easy_agile_board: Agile board
+    easy_kanban_board: Kanban nástěnka
+    easy_scrum_board: Scrum
+  project_module_easy_agile_board: Agile board
+  project_module_easy_kanban_board: Kanban
+  project_module_easy_scrum_board: Scrum
+  text_add_new_issues_to_project_kanban: Nově vytvorěné úkoly jsou automaticky přidány
+    do projektového kanbanu
+  text_capacity_units: Použito pro kapacitu sprintu a graf "burn-down"
+  text_easy_agile_board_sprint_due_date_is_empty: Datum dokončení je prázdné
+  text_easy_agile_board_sprint_loading: Prosím čekejte, sprint se načítá...
+  text_easy_agile_board_version: Všechny úkoly ve sprintu budou spojeny s tímto milníkem
+  text_easy_agile_use_workflow_on_kanban: Zkontrolujte, zda má být workflow aplikován
+    na kanban
+  text_easy_agile_use_workflow_on_sprint: Zkontrolujte, zda má být workflow aplikován
+    na sprint
+  text_easy_sprint_capacity_zero: 0 znamená bez omezení
+  title_easy_agile_board_drag_coworker: Kliknutím na avatara můžete filtrovat úkoly
+    podle %{user_name}. Přetažením avatara na úkol můžete změnit přiřaditele na %{user_name}.
+  title_easy_agile_board_show: Kliknutím zobrazit detaily sprintu %{sprint_name}.
+  title_easy_agile_board_toggle_swimlane: Zobrazit úkoly podle uživatelů
+  title_easy_agile_hide_goal: Skrýt cíl tohoto sprintu
+  title_easy_agile_show_goal: Zobrazit cíl tohoto sprintu
+  title_edit_sprint: Upravit sprint
+  title_kanban_settings: Nastavení Kanbanu
+  title_reorder_project_backlog: Řadit projektový backlog podle priority úkolu
+  title_reorder_sprint_backlog: Seřadit sprintový backlog podle priority úkolu
+  title_sprint_settings: Nastavení sprintu
+  warning_missing_setting: Scrum/Kanban není nastaven
+  warning_sprint_over_capacity: Kapacitu sprintu je překročena!

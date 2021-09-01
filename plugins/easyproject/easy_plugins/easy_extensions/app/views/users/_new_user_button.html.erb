@@ -1,0 +1,23 @@
+<%
+internal_limit = EasyLicenseManager.get_license_limit(:internal_user_limit)
+external_limit = EasyLicenseManager.get_license_limit(:external_user_limit)
+has_internal_limit = EasyLicenseManager.has_license_limit?(:internal_user_limit)
+has_external_limit = EasyLicenseManager.has_license_limit?(:external_user_limit) %>
+
+<% unless has_internal_limit%>
+  <p class='<%= 'overdrawn' unless has_internal_limit %>'>
+    <%= l(:'license_manager.user_limit_status_internal', :count => User.active.easy_type_internal.count, :max_count => internal_limit) if internal_limit > 0 %>
+  </p>
+<% end %>
+
+<% unless has_external_limit %>
+  <p class='<%= 'overdrawn' unless has_external_limit %>'>
+    <%= l(:'license_manager.user_limit_status_external', :count => User.active.easy_type_external.count, :max_count => external_limit) if external_limit > 0 %>
+  </p>
+<% end %>
+
+<% if has_internal_limit || has_external_limit %>
+  <%= link_to(l(:label_user_new), new_user_path, :class => 'button-positive icon icon-add') %>
+<% else %>
+  <%= l(:'license_manager.user_limit', :email => EasyExtensions::EasyProjectSettings.app_email) %>
+<% end %>

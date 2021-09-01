@@ -1,0 +1,123 @@
+table{
+  width: 100% !important;
+  border-collapse: collapse;
+  page-break-inside: auto;
+  table-layout: fixed;
+  &.list{
+    //border: 1px solid $color-print;
+    tbody{
+      tr{
+        & + tr{
+          border-top: 1px solid $color-print;
+        }
+      }
+    }
+    .progress {
+      width: 80px !important;
+    }
+  }
+}
+
+tr{
+  page-break-inside:avoid;
+  page-break-after:auto
+}
+
+td, th{
+  padding: 0 .5*$gap;
+  text-align: left;
+  &.checkbox{
+    display: none;
+  }
+}
+
+th{
+  @extend %print_bg_hack;
+  background: $color-print--accent;
+  border-bottom: 1px solid $color-print;
+  &+&:not(.hide-when-print){
+    //border-left: 1px solid $color-print;
+  }
+  &:before {
+    border-top: none !important;
+  }
+}
+
+thead{
+  display: table-header-group;
+  border-bottom: 1px solid $color-print;
+  tr{
+    th{
+      &:first-child{
+        border-left: 1px solid $color-print;
+        .autoscroll &{
+          border: none;
+        }
+      }
+      &:last-child{
+        border-right: 1px solid $color-print;
+        .autoscroll &{
+          border: none;
+        }
+      }
+    }
+  }
+}
+
+tfoot{
+  tr{
+    border-top: 1px solid $color-print;
+    background: $color-print--accent;
+  }
+}
+.affix-cell-wrap{
+  @extend %display_none;
+}
+
+.autoscroll{
+  overflow: inherit;
+  margin: 1px;
+  &__wrapper{
+    border: 1px solid $color-print !important;
+    margin-bottom: $gap;
+  }
+}
+.easy-entity-card-detail table th {
+  width: 40%;
+}
+.highlight {
+  th {
+    float: left;
+    width: 45%;
+    line-height: 2;
+  }
+  td {
+    float: right;
+    width: 45%;
+    line-height: 1.5;
+  }
+}
+$tab-list-indent: 2*$gap;
+.idnt{
+  @for $i from 1 through 9 {
+    &-#{$i} {
+      td, th {
+        &.subject, &.name {
+          padding-left: $tab-list-indent * $i !important;
+        }
+      }
+    }
+  }
+}
+#easy_invoice_line_items table.list{
+  th, td {
+    font-size: 11px;
+    padding: 3px 8px !important;
+  }
+}
+.tab-spent_time-content {
+  border: 1px solid $color-print;
+  & > em {
+    display: none;
+  }
+}

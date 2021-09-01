@@ -1,0 +1,52 @@
+<script type="text/javascript">
+  EASY.schedule.require(function (registerAssignableEntity) {
+    registerAssignableEntity('easy_contact', {
+      dropAction: 'easy_contact',
+      assignToTitle: '<%= j l(:assign_to_contact, scope: :easy_contacts_toolbar) %>',
+      url: '<%= j assign_entities_easy_contacts_path(entity_type: 'EasyContact', not_remove_related_contacts: true, format: 'json').html_safe %>',
+      ajaxParams: {
+        complete: function () {
+          window.location.reload();
+        }
+      },
+      getAttributes: function (zoneData, itemData) {
+        return {'entity_ids': itemData.easyContactId, 'id': zoneData.entityId};
+      }
+    });
+    registerAssignableEntity('issue', {
+      dropAction: 'issue',
+      url: '<%= j assign_entities_easy_contacts_path(:entity_type => 'Issue', :format => 'json') %>',
+      assignToTitle: '<%= j l(:assign_to_issue, scope: :easy_contacts_toolbar) %>',
+      ajaxParams: {
+        complete: function () {
+          window.location.reload();
+        }
+      },
+      getAttributes: function (zoneData, itemData) {
+        var issue_params = {'entity_ids[]': zoneData.issueId || zoneData.entityId, 'ids[]': itemData.easyContactId};
+        return issue_params;
+      }
+    });
+    registerAssignableEntity('project', {
+      dropAction: 'project',
+      url: '<%= j assign_entities_easy_contacts_path(:entity_type => 'Project', :format => 'json') %>',
+      assignToTitle: '<%= j l(:assign_to_project, scope: :easy_contacts_toolbar) %>',
+      getAttributes: function (zoneData, itemData) {
+        return {
+          'entity_ids[]': zoneData.projectId || zoneData.entityId,
+          'ids[]': itemData.easyContactId
+        };
+      }
+    });
+    EASY.contacts.easyContactToolbarLocalize = function () {
+      return {
+        wrongParams: '<%=j l('easy_contacts_toolbar.wrong_params') %>'
+      };
+    };
+
+  }, function () {
+    return EASY.contacts && EASY.contacts.registerAssignableEntity;
+  });
+</script>
+
+<%= call_hook :easy_contacts_toolbar_assignable_entities_bottom %>

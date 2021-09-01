@@ -1,0 +1,20 @@
+<div id="story_comments">
+  <% if @story.visible? %>
+    <div id="story_notes">
+      <%= labelled_form_for @story, url: easy_knowledge_story_add_comment_path(@story), html: {class: 'form-box', method: 'POST', remote: true} do |f| -%>
+        <%= text_area_tag 'notes', @story.notes, cols: 60, rows: 10, class: 'wiki-edit' %>
+        <%= wikitoolbar_for 'notes' %>
+        <div class="form-actions">
+          <%= f.submit l(:button_easy_knowledge_save_comment), class: 'button-positive' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% if @story.journals.present? %>
+    <%= easy_journal_render_history(@journals,
+                                  entity: @story,
+                                  collapsible: false,
+                                  wrapping_heading_element_classes: 'icon icon-workflow',
+      ) %>
+  <% end %>
+</div>

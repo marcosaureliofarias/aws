@@ -1,0 +1,73 @@
+<%
+  plugin = Redmine::Plugin.find('easy_gantt_resources')
+  easy_extensions = EasyGantt.easy_extensions?
+  # project ||= nil
+
+  unless defined?(show_query)
+    show_query = true
+  end
+%>
+
+<% if !easy_extensions || !in_mobile_view? %>
+  <div id="easy_gantt" class="<%= easy_extensions ? 'easy' : 'redmine' %> gantt clear">
+    <% if show_query %>
+      <% if User.current.admin? && project.nil? %>
+        <div class="contextual settings">
+          <% # Easy is called URI.escape before redirect to back
+             # So a%7Cb" is transformed into "a%257Cb" (original "a|b") %>
+          <%= link_to '', plugin_settings_path(plugin, back_url: Addressable::URI.unescape(request.fullpath)), class: 'icon icon-settings', title: l(:label_easy_gantt_settings)%>
+        </div>
+      <% end %>
+
+      <%= render query,
+                 query: query,
+                 easy_query_name: l('easy_gantt_resources.global_resource_title'),
+                 wrapper_class: '',
+                 form_path: easy_gantt_resources_path,
+                 options: { hide_heading_counts: true } %>
+    <% end %>
+
+    <%= render 'easy_gantt/menu_graph', project: project %>
+
+    <div id="easy_gantt_footer" class="gantt-footer">
+      <div id="easy_gantt_footer_legend" class="gantt-footer-legend"></div>
+      <div id="gantt_footer_buttons" class="gantt-footer-menu">
+        <div class="gantt-footer-menu_print">
+          <div class="gantt-footer-menu_print_datepicker">
+            <%= label_tag 'gantt_print_from', l(:label_date_from) %>
+            <%= text_field_tag 'gantt_print[from]' %>
+            <%= calendar_for('gantt_print_from') %>
+          </div>
+          <div class="gantt-footer-menu_print_datepicker">
+            <%= label_tag 'gantt_print_to', l(:label_date_to) %>
+            <%= text_field_tag 'gantt_print[to]' %>
+            <%= calendar_for('gantt_print_to') %>
+          </div>
+        </div>
+        <%= easy_gantt_js_button(l(:button_print), icon: 'icon-print', id: 'button_print') %>
+      </div>
+
+      <% unless easy_extensions %>
+        <p>
+          <%= link_to l('easy_gantt_resources.text_easy_resources_footer'), l('easy_gantt_resources.link_easy_resources_plugin'), target: '_blank' %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render 'easy_gantt/includes', project: project %>
+  <%= call_hook(:view_easy_gantt_resources_index_bottom, project: project, query: query) %>
+
+  <%= content_for :body_bottom do %>
+    <% if params[:jasmine] %>
+      <%= render 'easy_gantt/test_includes', project: project %>
+      <%= render 'easy_gantt_resources/test_includes', project: project %>
+    <% end %>
+    <%= render 'easy_gantt/js_prepare', project: project, query: query %>
+    <%= render 'easy_gantt_resources/global_js_prepare', project: project %>
+  <% end %>
+<% else %>
+  <p class="flash notice">
+    <%= l(:error_small_screen) %>
+  </p>
+<% end %>

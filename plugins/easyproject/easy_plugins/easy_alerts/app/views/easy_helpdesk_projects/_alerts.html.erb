@@ -1,0 +1,67 @@
+<p>
+  <span><%= f.check_box :monitor_due_date %> <%= f.label :monitor_due_date %></span>
+  <br/>
+  <em class="help-block"><%= l(:text_easy_helpdesk_projects_monitor_due_date) %></em>
+</p>
+<p>
+  <span><%= f.check_box :monitor_spent_time %> <%= f.label :monitor_spent_time %></span>
+  <br/>
+  <em class="help-block"><%= l(:text_easy_helpdesk_projects_monitor_spent_time) %></em>
+</p>
+<% all_alerts = [EasyHelpdesk.alert_helpdesk_monitor_due_time_assignee_warning, EasyHelpdesk.alert_helpdesk_monitor_due_time_assignee_alert]
+to_edit_alerts = []
+
+if EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_warning && EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_warning.mail_for == 'custom' && EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_warning.mail.blank?
+  to_edit_alerts << EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_warning
+  else
+  all_alerts << EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_warning
+  end
+
+if EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_alert && EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_alert.mail_for == 'custom' && EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_alert.mail.blank?
+  to_edit_alerts << EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_alert
+  else
+  all_alerts << EasyHelpdesk.alert_helpdesk_monitor_due_time_manager_alert
+  end
+
+if EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_warning && EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_warning.mail_for == 'custom' && EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_warning.mail.blank?
+  to_edit_alerts << EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_warning
+  else
+  all_alerts << EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_warning
+  end
+
+if EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_alert && EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_alert.mail_for == 'custom' && EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_alert.mail.blank?
+  to_edit_alerts << EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_alert
+  else
+  all_alerts << EasyHelpdesk.alert_helpdesk_monitor_prepaid_hours_alert
+  end
+
+if EasyHelpdesk.alert_helpdesk_monitor_hours_to_response_alert && EasyHelpdesk.alert_helpdesk_monitor_hours_to_response_alert.mail_for == 'custom' && EasyHelpdesk.alert_helpdesk_monitor_hours_to_response_alert.mail.blank?
+  to_edit_alerts << EasyHelpdesk.alert_helpdesk_monitor_hours_to_response_alert
+  else
+  all_alerts << EasyHelpdesk.alert_helpdesk_monitor_hours_to_response_alert
+  end
+%>
+<% to_edit_alerts.compact! %>
+<% unless to_edit_alerts.empty? %>
+  <p class="small">
+    <strong class="h4"><%= l(:text_easy_helpdesk_projects_alerts_list_to_edit) %></strong>
+    <br/>
+    <span class="link-list">
+      <% to_edit_alerts.each do |alert| %>
+        <span class="link-list-item"><%= link_to(alert.caption, {:controller => :alerts, :action => :edit, :id => alert}, :target => '_blank', :title => alert.caption) %></span>
+      <% end %>
+    </span>
+  </p>
+<% end %>
+<% all_alerts.compact! %>
+<% unless all_alerts.empty? %>
+  <p class="small">
+    <strong class="h4"><%= l(:text_easy_helpdesk_projects_alerts_list) %></strong>
+    <br/>
+    <span class="link-list">
+      <% all_alerts.each do |alert| %>
+        <span class="link-list-item"><%= link_to(alert.caption, {:controller => :alerts, :action => :edit, :id => alert}, :target => '_blank', :title => alert.caption) %></span>
+      <% end %>
+    </span>
+  </p>
+<% end %>

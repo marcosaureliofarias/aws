@@ -1,0 +1,105 @@
+---
+th:
+  easy_gantt_pro:
+    add_task_modal:
+      title: เพิ่มภารกิจ
+    add_task:
+      body: คุณสามารถสร้างภารกิจ/เหตุการณ์สำคัญใหม่ ได้โดยคลิกที่ปุ่มภารกิจ (หรือเหตุการณ์สำคัญ)
+        หรือลากที่ใดก็ได้ในแผนภูมิ
+      title: 'ช่วยเหลือ: เพิ่มภารกิจ'
+    baselines:
+      confirm_delete: คุณต้องการลบ baseline นี้จริงๆ
+      create_failed: ไม่สามารถสร้าง baseline ใหม่
+      delete_failed: ไม่สามารถลบ baseline ได้
+      error_missing_delete_permission: คุณไม่ได้รับสิทธิ์ให้ลบ baseline
+      error_not_saved: คุณต้องบันทึกการเปลี่ยนแปลงทั้งหมดในโครงการก่อนสร้าง baseline
+      label_baseline: Baseline
+      label_same: "-เหมือนกัน-"
+      off_desc: เปิดใช้งาน baseline ของโมดูลโครงการเพื่อดูและสร้าง baseline
+      off_link: ตั้งค่าโมดูล
+      off_title: baseline ของโมดูลโครงการถูกปิดใช้งาน
+    cashflow:
+      difference: ส่วนต่าง
+      expense: ค่าใช้จ่าย
+      full_price: ราคาเต็ม
+      label_cashflow: กระแสเงินสด
+      planned: วางแผน
+      planned_Cashflow: กระแสเงินสดตามที่วางแผนไว้
+      real: ตามจริง
+      real_Cashflow: กระแสเงินสดตามจริง
+      revenue: รายได้
+      timeflow: EAC
+      total: รวม
+      total_price: ราคารวม
+      week: สัปดาห์
+    critical:
+      hide_button: ซ่อนCritical path
+      legend_issues: ภารกิจบนCritical path
+      show_button: แสดงCritical path
+    lowest_progress:
+      label_progress_date: วันที่คืบหน้า
+    project_move:
+      error_opening_unsaved: คุณต้องบันทึกการเปลี่ยนแปลงก่อนที่จะเปิดโครงการ
+    resources:
+      label_resources: ทรัพยากร
+    unfix_relations:
+      label_unfix_relations: ความสัมพันธ์ที่ไม่ต่อเนื่อง
+    warning_no_permission_to_edit: คุณไม่ได้รับสิทธิ์ให้แก้ไข
+  easy_gantt:
+    button:
+      bulk_edit: แก้ไขเป็นกลุ่ม
+      delayed_issue_filter: กรองภารกิจที่ล่าช้า
+      show_lowest_progress_tasks: แสดงภารกิจที่มีวันที่ความคืบหน้าต่ำสุด
+      show_only_critical: ตัวกรองสำคัญ
+    popup:
+      add_task:
+        heading: เพิ่มความช่วยเหลือภารกิจ
+        text: สามารถสร้างภารกิจหรือเหตุการณ์สำคัญใหม่ได้โดยคลิกที่ปุ่มภารกิจ (ปุ่มเหตุการณ์สำคัญตามลำดับ)
+          หรือโดยการลากที่ใดก็ได้ในกราฟ
+      baseline:
+        heading: รายละเอียดของ Baseline
+        heading_new_baseline: Baselinesใหม่
+        text: สร้างสำเนาของโครงการเพื่อการเปรียบเทียบเพิ่มเติม
+      cashflow:
+        definition: EAC = "ประมาณการเมื่อเสร็จสิ้น" - ณ ตอนนี้ เราคาดว่าโครงการทั้งหมดจะมีค่าใช้จ่ายเท่าไหร่?
+        difference: ส่วนต่าง (กระแสเงินสดตามจริงลบด้วยกระแสเงินสดตามแผนงาน = "จริง
+          - แผน")
+        eac: EAC (ในอดีตและปัจจุบันคือกระแสเงินสดตามจริง "จริง" ในอนาคตคือกระแสเงินสดตามแผน
+          "แผน")
+        heading: นิยามของกระแสเงินสด
+        planned: แผน (กระแสเงินสดตามแผน)
+        real: จริง (กระแสเงินสดตามจริง)
+      critical:
+        heading: รายละเอียดCritical path
+        text: ลำดับกิจกรรมที่ยาวที่สุดในแผนโครงการซึ่งจะต้องทำให้เสร็จทันเวลาเพื่อให้โครงการเสร็จสมบูรณ์ในวันที่กำหนด
+          กิจกรรมบน critical path ไม่สามารถเริ่มได้จนกว่ากิจกรรมก่อนหน้าจะเสร็จสมบูรณ์; ถ้าล่าช้าไปหนึ่งวันโครงการทั้งหมดจะล่าช้าออกไปหนึ่งวัน
+          เว้นแต่ว่ากิจกรรมที่ตามมาหลังจากกิจกรรมล่าช้าจะเสร็จสมบูรณ์ในวันก่อนหน้า.
+          สำหรับการทำงานที่เหมาะสมของ critical path โครงการควรมีเพียง 1 ภารกิจเริ่มต้นและ 1
+          ภารกิจที่แล้วเสร็จ และภารกิจควรเชื่อมโยงกันกับความสัมพันธ์
+    scheme_by:
+      label_by_priority: ตามลำดับความสำคัญ
+      label_by_status: ตามสถานะ
+      label_by_tracker: ตามตัวติดตาม
+      label_color_by: ตามสี
+    title:
+      delayed_issue_filter: แสดงเฉพาะภารกิจที่มีวันดำเนินการก่อนหน้าวันนี้
+      show_only_critical: แสดงเฉพาะภารกิจบนCritical path
+  easy_pages:
+    modules:
+      easy_global_gantt: Global Gantt
+      easy_project_gantt: โครงการ Gantt
+  easy_proposer:
+    easy_gantt:
+      index:
+        caption: Easy Gantt PRO
+        description: ไปที่ Easy Gantt PRO
+  heading_easy_gantts_issues: Easy Gantt PRO
+  label_show_lowest_progress_tasks: ภารกิจที่มีความคืบหน้าน้อยที่สุด
+  label_show_project_milestones: แสดงเหตุการณ์สำคัญของโครงการ
+  label_show_spent_time_progress_tasks: แสดงอัตราส่วนเวลาที่ใช้ไปของภารกิจ
+  text_show_lowest_progress_tasks: แสดงภารกิจที่มีวันที่ความคืบหน้าเลวร้ายที่สุด (=
+    วันที่ที่สอดคล้องกับแถบอัตราส่วนที่ทำของภารกิจใน Gantt)
+  text_show_project_milestones: เหตุการณ์สำคัญของโครงการจะปรากฏในแถบโครงการ
+  text_show_spent_time_progress_tasks: แสดงอัตราส่วนเวลาที่ใช้ไปแทนทีความคืบหน้าของภารกิจ
+  warning_easy_gantt_recalculate_fixed_delay: การคำนวณซ้ำนี้มีผลต่อความล่าช้าของความสัมพันธ์ในทุกภารกิจในระบบ
+    คุณแน่ใจหรือว่าจะดำเนินการต่อ?

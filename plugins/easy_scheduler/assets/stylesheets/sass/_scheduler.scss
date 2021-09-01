@@ -1,0 +1,95 @@
+@import "scheduler_variables";
+@import "scheduler_mixins";
+@import "scheduler_colors";
+@import "scheduler_dhx";
+@import "scheduler_servicebar";
+
+.easy-calendar{
+  /*@import "scheduler_main";*/
+  @import "scheduler_tasks";
+  @import "scheduler_events";
+  @import "scheduler_calendar";
+  @import "scheduler_assignees";
+  @import "scheduler_modal";
+  @import "scheduler_control";
+  &__wrapper{
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      position: static !important;
+    }
+    &-parent{
+      &.fullscreen{
+        padding: $box-padding;
+      }
+    }
+  }
+}
+/*@import "scheduler_other";*/
+
+#scheduler{
+  margin: $box-padding (-$retrace);
+  margin-bottom: $retrace-mod;
+}
+#easy_scheduler_modal_tabs{
+  display: block;
+  .tabs{
+    margin: -$box-padding (-$gap) 0;
+    border-bottom: 1px solid $color-border-minor;
+    ul{
+      padding: 0;
+    }
+    li > a {
+      padding: 0 $gap;
+    }
+    &.jstTabs {
+      margin: 0;
+    }
+  }
+  .entity-tabs-content{
+    padding-top: 0;
+  }
+  .form-box{
+    margin-top: 0;
+  }
+  .tab-content-container{
+    margin-top: $gap;
+    width: 100%;
+  }
+}
+@include respond-to(max-#{$scheduler__breakpoint}) {
+  .easy-page__module--scheduler{
+    .module-heading {
+      .hidden {
+        display: none;
+      }
+    }
+    .open .module-heading{
+
+      &:before{
+        content: "a";
+        color: mix($color-foreground, $color-background);
+      }
+      &-title{
+        display: none !important;
+      }
+    }
+  }
+}
+
+
+.easy-page__module--scheduler{
+  @include respond-to(max-small-screen){
+    .module-heading-links{
+      display: block;
+      a + a {
+        display: none;
+      }
+    }
+  }
+}
+#clear-all-assignees {
+  @include icon-parent(close);
+  position: absolute;
+  top: 0.2*$gap;
+  left: calc(30% + #{$gap});
+  color: $color-negative;
+}

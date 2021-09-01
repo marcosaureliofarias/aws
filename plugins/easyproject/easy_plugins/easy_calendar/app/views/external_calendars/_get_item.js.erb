@@ -1,0 +1,5 @@
+<% if params[:_new] %>
+  $("#icalendar_form_container_<%= params[:modul_uniq_id] %>").append("<%= j render('external_calendars/easy_icalendar_form', ical: @ical, block_name: params[:block_name], modul_uniq_id: params[:modul_uniq_id]) %>");
+<% else %>
+  $("#icalendars_items_<%= params[:modul_uniq_id] %>").append("<%= j render('external_calendars/easy_icalendar_item', ical: @ical, block_name: params[:block_name], modul_uniq_id: params[:modul_uniq_id]) %>");
+<% end %>

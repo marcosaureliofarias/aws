@@ -1,0 +1,418 @@
+---
+hr:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: Tijelo E-maila (HTML)
+        body_plain: Tijelo E-Maila (ČISTI TEKST)
+        issue_status_id: Status zadatka
+        mailboxes: 'Koristi kao poštanski sandučić:'
+        reply_to: Odgovori
+        sender: Pošiljatelj
+        subject: Subjekt
+    models:
+      easy_helpdesk_mail_template: E-mail predložak
+  aggregated_periods:
+    half-yearly: Polugodišnje
+    quarterly: Kvartalno
+    yearly: Godišnje
+  button_easy_helpdesk_add_domain_name: Dodaj e-mail ili domenu
+  button_easy_helpdesk_add_mail_template: Dodaj predložak e-maila
+  button_easy_helpdesk_add_mailbox: Dodaj poštanski sandučić
+  button_easy_helpdesk_add_project: Dodaj projekt
+  button_easy_helpdesk_add_project_from_sidebar: Dodaj na Podršku
+  button_easy_helpdesk_add_signature: Dodaj potpis
+  button_easy_helpdesk_add_sla: Dodaj SLA
+  button_easy_helpdesk_all_mail_templates_index: Svi predlošci e-maila
+  button_easy_helpdesk_all_mailboxes_index: Svi poštanski sandučići
+  button_easy_helpdesk_all_projects_index: Svi projekti podrške
+  button_easy_helpdesk_mail_templates_index: Lista predložaka
+  button_easy_helpdesk_mailboxes_index: Lista poštanskih sandučića
+  button_easy_helpdesk_projects_index: Lista projekata
+  button_easy_helpdesk_reports_index: Izvješća
+  button_easy_helpdesk_settings_index: Postavke podrške
+  confirm_edit_remaining_hours: Ovo polje se izračunava u pozadini, jeste li sigurni
+    da ga želite ručno izmjeniti?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_name: Podrška
+  easy_helpdesk_plugin_description: "- kompleksno rješenje podrške"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Podrška
+    modules:
+      easy_helpdesk_create_mail_template_button: Gumb za stvaranje predloška maila
+      easy_helpdesk_create_mailbox_button: Gumb za stvaranje poštanskog sandučića
+      easy_helpdesk_mailboxes: Poštanski sandučići podrške
+      easy_helpdesk_mailtemplates: Predlošci maila za podršku
+      easy_helpdesk_project_query: Projekti podrške iz filtera
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Easy - preldožak maila podrške
+        description: Easy helpdesk mail templates
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Easy poštanski sandučići podrške
+        description: Pogledaj Easy poštanske sandučiće podrške
+    easy_helpdesk:
+      index:
+        caption: Podrška
+        description: Pogledaj nadzornu ploču podrške
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Podrška - projekti
+      easy_helpdesk_report_monthly_query: Podrška - mjesečna izvješća
+      easy_helpdesk_report_yearly_query: Podrška - godišnji izvještaji
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Privatni filteri na projekte u podršci
+        easy_helpdesk_report_monthly_query: Privatni filteri na mjesečna izvješća
+          podrške
+        easy_helpdesk_report_yearly_query: Privatni filteri na godišnja izvješća podrške
+      public:
+        easy_helpdesk_project_query: Javni filteri na projekte podrške
+        easy_helpdesk_report_monthly_query: Javni filteri na mjesečna izvješća podrške
+        easy_helpdesk_report_yearly_query: Javni filteri na godišnja izvješća podrške
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Podrška - izračunaj skupljeni broj sati
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Podrška - automatski ažurira karte
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Podrška - Dolazeća pošta
+      settings:
+        imap:
+          allow_override: Omogući ažuriranje atributa zadataka
+          allow_override_example: 'Primjer: tracker, prioritet - ovi atributi se mogu
+            promjeniti koristeći mail'
+          application_section_label: Ostale postavke
+          category_example: 'Primjer: Kategorija - Novi zadaci će imati kategoriju
+            Kategorija'
+          email_section_label: Postavke poštanskog sandučića
+          folder: Mapa
+          folder_example: 'IMAP mapa za pročitati (pretpostavljeno: INBOX, za odabrati
+            folder koristite "/" npr: inbox/prodaje)'
+          folders: Mape za pročitati
+          folders_example: 'IMAP mape za pročitati (jedna po liniji) (pretpostavljeno:
+            INBOX, za odabrati folder koristite "/" naprimjer: inbox/prodaje)'
+          host: Domaćin
+          host_example: 'Primjer: mail.company.com'
+          label: IMAP
+          move_on_failure: U slučaju pogreške pomakni na
+          move_on_failure_example: pomakni mailove koji su bili ignorirani u mapu
+            MAILBOX
+          move_on_success: U slučaju uspjeha, pomakni na
+          move_on_success_example: pomakni mailove koji su uspješno primljeni u folder
+            MAILBOX, u suprotnom će biti obrisani
+          no_permission_check: Nema kvačice sa korisnikovim dozvolama
+          password: Zaporka
+          password_example: 'Primjer: tajnazaporka'
+          port: Port
+          port_example: 'Primjer: 143'
+          priority_example: 'Primjer: Visoki - novi zadaci će imati prioritet Visoki'
+          project_example: Primjer 205 - novi zadaci će biti kreirani na projekt ID-a
+            205
+          sender_mail: Pošiljatelj
+          sender_mail_example: 'Primjer: support@company.com'
+          ssl: SSL
+          ssl_example: Koristi SSL autentifikaciju
+          status_example: 'Primjer: Novi - novi zadaci će imati status Novi'
+          tracker_example: 'Primjer: Bug - novi zadaci će imati lokator / tracker
+            Bug'
+          unknown_user: Nepoznati korisnik
+          unknown_user_example: prihvati - anonimni korisnik će biti korišten; kreiraj
+            - korisnik će biti kreiran iz maila; konkretna prijava - ovaj korisnik
+            će biti korišten
+          use_custom_sender: Koristi drugačijeg pošiljatelja
+          username: Korisnik
+          username_example: 'Primjer: accessuser@domain.com'
+        pop3:
+          allow_override: Omogući ažuriranje atributa zadataka
+          allow_override_example: 'Primjer: tracker, prioritet - ovi atributi mogu
+            biti promjenjeni koristeći e-mail'
+          apop: APOP
+          apop_example: Koristi APOP autentifikaciju
+          application_section_label: Ostale postavke
+          category_example: 'Primjer: Kategorija - novi zadaci će imati kategoriju
+            Kategorija'
+          delete_unprocessed: Obriši neprocesuirane
+          delete_unprocessed_example: Obriši mailove koji se ne mogu procesirati
+          email_section_label: Postavke poštanskog sandučića
+          host: Domaćin
+          host_example: 'Primjer: mail.company.com'
+          label: POP3
+          no_permission_check: Nema kvačice za dozvole korisnika
+          password: Zaporka
+          password_example: 'Primjer: tajnazaporka'
+          port: Port
+          port_example: 'Primjer: 110'
+          priority_example: 'Primjer: Visoki - novi zadaci će imati prioritet Visoki'
+          project_example: 'Primjer: 205 - novi zadaci će biti kreirani za projekt
+            ID 205'
+          sender_mail: Pošiljatelj
+          sender_mail_example: support@company.com
+          status_example: 'Primjer: Novi - novi zadaci će imati status Novi'
+          tracker_example: 'Primjer: Bug - novi zadaci će imati tracker / lokator
+            Bug'
+          unknown_user: Nepoznati korisnik
+          unknown_user_example: prihvati - anonimni korisnik će biti korišten; kreiraj
+            - korisnik će biti kreiran iz maila; konkretna prijava - ovaj korisnik
+            će biti korišten
+          use_custom_sender: Koristi drugačijeg pošiljatelja
+          username: Korisnik
+          username_example: 'Primjer: accessuser@domain.com'
+  error_update_easy_setting_helpdesk: Postavka ne može biti spremljena
+  field_aggregated_hours: Agregirani sati Podrške
+  field_aggregated_hours_period: Skupljeni period (agregirani period)
+  field_aggregated_hours_remaining: Preostalo sati Podrške
+  field_aggregated_hours_start_date: Početni datum sakupljanja (agregacije)
+  field_automatically_issue_closer_enable: Omogući automatsko ažuriranje tiketa
+  field_default_for_mailbox: Pretpostavljeno za poštanski sandučić
+  field_easy_helpdesk_has_sla: Ima SLA
+  field_easy_helpdesk_need_reaction: Treba li reakcija?
+  field_easy_helpdesk_project_keyword: Ključna riječ za projekt
+  field_easy_helpdesk_project_matching:
+    domain_name: Mail ili domena
+    email_field_from: je preuzeto iz polja OD
+    email_field_to: je preuzeto iz polja DO
+  field_easy_helpdesk_project_monthly_hours: Ugovorni mjesečni sati podrške
+  field_easy_helpdesk_project_sla:
+    blank_keyword: SLA ime nedostaje
+    hours_to_response: Sati za odgovoriti
+    hours_to_solve: Sati za riješiti
+    keyword: SLA ključna riječ
+    title: Ime SLA
+  field_easy_helpdesk_project_spent_time_current_month: Sati rađeno na Podršci (ovaj
+    mjesec)
+  field_easy_helpdesk_project_spent_time_last_month: Sati rađeno na Podršci (prošli
+    mjesec)
+  field_easy_helpdesk_project_spent_time_total: Ukupno utrošeno vrijeme na Podršci
+  field_easy_reopen_at: Ponovno otvoren na
+  field_easy_response_date_time: SLA (odgovor)
+  field_easy_time_to_solve_paused_at: SLA pauziran na
+  field_email_footer: Podnožje maila
+  field_email_header: Zaglavlje maila
+  field_hours_mode_from: SLA radni sati
+  field_hours_to_response: SLA (odgovor)
+  field_hours_to_solve: SLA (rješenje)
+  field_is_under_helpdesk: Je pod podrškom
+  field_issue_closer_done_issue_status: Promjeni status u
+  field_issue_closer_done_issue_user: i pridodijeli na
+  field_issue_closer_inactive_interval: i nema ažuriranja u roku od
+  field_issue_closer_observe_issue_status_id: u statusu
+  field_monitor_due_date: Krajnji rok tiketa promatrajuće podrške
+  field_monitor_spent_time: Utrošeno vrijeme tiketa promatrajuće podrške
+  field_monthly_hours: Ugovorni mjesečni sati podrške
+  field_use_working_time: Prebroj SLA temeljeći na radnom vremenu
+  heading_easy_helpdesk_index: Podrška
+  heading_easy_helpdesk_mail_templates_edit: Izmjeni predložak maila
+  heading_easy_helpdesk_mail_templates_index: Mail predlošci
+  heading_easy_helpdesk_mail_templates_new: Novi predložak maila
+  heading_easy_helpdesk_mail_templates_show: Detalji predloška maila
+  heading_easy_helpdesk_mailboxes_edit: Uredi poštanski sandučić
+  heading_easy_helpdesk_mailboxes_index: Podrška - poštanski sandučići
+  heading_easy_helpdesk_mailboxes_new: Novi poštanski sandučić
+  heading_easy_helpdesk_projects_edit: Uredi projekt
+  heading_easy_helpdesk_projects_index: Projekti podrške
+  heading_easy_helpdesk_projects_new: Novi projekt podrške
+  heading_easy_helpdesk_projects_show: Detalji projekta
+  heading_easy_helpdesk_reports_index: Podrška - izvješća
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Mjesečno izvješće unaprijed
+    plaćenih sati
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Godišnje izvješće unaprijed
+    plaćenih sati
+  heading_easy_helpdesk_settings: Postavke
+  issue_closer_inactive_interval_units:
+    days: dana
+    hours: sati
+  label_automatically_issue_closer: Automatski ažuriraj tikete kada su
+  label_copy_settings_sla_from_project: Kopiraj postavke SLA iz projekta
+  label_easy_hekodesk_additional_task_info_received_emails: Procesirani mailovi
+  label_easy_helpdesk: Podrška
+  label_easy_helpdesk_actual_budget: Podrška - sati za potrošiti ovaj mjesec
+  label_easy_helpdesk_actual_budget_to_spend: Sati preostalo
+  label_easy_helpdesk_aggregated_from_last_period: Akumulirani iz posljednjeg perioda
+  label_easy_helpdesk_alerts: Postavke uzbune / alarma
+  label_easy_helpdesk_allow_custom_sender: Omogući prilagođenog pošiljatelja (po projektu)
+  label_easy_helpdesk_allow_override: Omogući ažuriranje atributa zadataka
+  label_easy_helpdesk_client_response_status: Promjeni status nakon odgovora klijenta
+    u
+  label_easy_helpdesk_domain_name: Domena maila
+  label_easy_helpdesk_emails: Mail postavke - zaglavlje i podnožje
+  label_easy_helpdesk_enable_email_footer: Promjeni podnožje ovog projekta?
+  label_easy_helpdesk_enable_email_header: Promjeni zaglavlje za ovaj projekt?
+  label_easy_helpdesk_hours_comulated: Sati akumulirano
+  label_easy_helpdesk_hours_comulated_range: od %{from} do %{to}
+  label_easy_helpdesk_hours_per_month: Sati odrađeno ovaj mjesec
+  label_easy_helpdesk_ignore_cc: Ignoriraj CC primljenih mailova
+  label_easy_helpdesk_mail_signature: Podrška - potpis
+  label_easy_helpdesk_matching: Mailovi, domene i ključne riječi procesirane u ovaj
+    projekt
+  label_easy_helpdesk_message_above_variables: Komentar zadatka je prikazan iznad
+    predloška maila
+  label_easy_helpdesk_need_reaction: Potrebna je reakcija!
+  label_easy_helpdesk_project_helpdesk_tab: Podrška
+  label_easy_helpdesk_project_managed_by_helpdesk: Podrška - postavke
+  label_easy_helpdesk_project_plural: Podrška - projekti
+  label_easy_helpdesk_projects_sla_working_time_calendar: SLA radni dani
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: Resetiraj SLA nakon što je
+    zadatak ponovno otvoren
+  label_easy_helpdesk_sender: Pošiljatelj
+  label_easy_helpdesk_sender_current_user: Trenutni prijavljeni korisnik
+  label_easy_helpdesk_sender_is_user: Pošiljatelj je prijavljeni korisnik
+  label_easy_helpdesk_sender_mailbox_address: Adresa poštanskog sandučića
+  label_easy_helpdesk_sender_redmine_default: Pretpostavljeno iz obavijesti mailom
+  label_easy_helpdesk_signature: Potpis
+  label_easy_helpdesk_signature_name: Ime potpisa
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Prihvati automatski generirane
+    mailove
+  label_easy_helpdesk_sla: SLA postavke - prioriteti, vrijeme za rješavanje tiketa
+  label_easy_helpdesk_sla_start_states: Prebroj SLA za tikete kada je status
+  label_easy_helpdesk_sla_stop_states: Suspendiraj SLA za tikete kada je status
+  label_filter_group_easy_helpdesk_project_query: Podrška - Projekt
+  label_filter_group_easy_helpdesk_report_monthly_query: Podrška - izvješće
+  label_filter_group_easy_helpdesk_report_query: Podrška - izvješće
+  label_filter_group_easy_helpdesk_report_yearly_query: Podrška - izvješće
+  label_filter_show_spent_time_current_month_equal_to_zero: Sati rada na podršci (ovaj
+    mjesec) je nula
+  label_filter_show_spent_time_last_month_equal_to_zero: Sati rada na podršci (prošli
+    mjesec) je nula
+  label_issue_bottom_from_easy_helpdesk: Zadatak je bio stvoren iz Podrške (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Ugovorni sati mjesečno
+  label_sla_calendar_settings: Postavke kalendara
+  permission_manage_easy_helpdesk: Upravljanje podrškom
+  permission_manage_easy_helpdesk_project: Upravljanje projektima podrške
+  project_module_easy_helpdesk: Podrška
+  setting_easy_helpdesk_custom_sender: Pošiljatelj podrške
+  text_easy_helpdesk_change_default_sender: Ova postavka neće promjeniti 'odgovori'
+    polje
+  text_easy_helpdesk_custom_sender: Nadjačaj pretpostavljenog pošiljatelja podrške.
+    Držite ovo polje praznim da biste onemogućili ovu funkciju.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: trenutni opunomoćenik
+    date: trenutni datum
+    spent_time: vrijeme potrošeno na zadatku
+    task_closed_on: zadatak zatvoren na datum
+    task_description: opis zadatka
+    task_done_ratio: udio završenosti zadatka
+    task_due_date: krajnji rok zadatka
+    task_estimated_hours: procjenjeni sati zadatka
+    task_history: povijest komentara zadatka
+    task_id: trenutni ID zadatka
+    task_id_without_hash: 'trenutni ID zadatka bez #'
+    task_last_journal: posljednji javni komentar zadatka
+    task_note: posljednji komentar zadatka
+    task_priority: prioritet zadatka
+    task_project: ime projekta
+    task_public_url: javni url zadatka
+    task_start_date: početni datum zadatka
+    task_status: status zadatka
+    task_subject: trenutni subjekt zadatka
+    task_tracker: tracker zadatka
+    user_first_name: ime trenutnog korisnika
+    user_last_name: prezime trenutnog korisnika
+    user_name: puno ime trenutnog korisnika
+    user_signature: potpis trenutnog korisnika
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Subjekt i tijelo maila može sadržavati dinamički tekst:'
+  - "%task_id% (zamjena za trenutni ID zadatka)"
+  - "%task_subject% (zamjena za subjekt trenutnog zadatka)"
+  - "%task_note% (zamjena za posljednji komentar zadatka)"
+  - "%task_history% (zamjena za povijest svih javnih komentara zadatka)"
+  - "%time_spent% (zamjena za utrošeno vrijeme na zadatku)"
+  - "%assignee% (zamjena za trenutnog opunomoćenika)"
+  - "%user_signature% (zamjena za potpis trenutnog korisnika)"
+  - "%date% (zamjena za trenutni datum)"
+  - "%task_tracker% (zamjena za trackera zadatka)"
+  - "%task_project% (zamjena za ime projekta)"
+  - "%task_description% (zamjena za opis zadatka)"
+  - "%task_status% (zamjena za status zadatka)"
+  - "%task_priority% (zamjena za prioritet zadatka)"
+  - "%task_estimated_hours% (zamjena za procjenjeni broj sati zadatka)"
+  - "%task_done_ratio% (zamjena za udio završenosti zadatka)"
+  - "%task_public_url% (zamjena za javni url zadatka)"
+  - "%task_closed_on% (zamjena za zadatak zatvoren na datum)"
+  - "%task_due_date% (zamjena za krajnji rok zadatka)"
+  - "%task_start_date% (zamjena za početni datum zadatka)"
+  - "%user_name% (zamjena za puno ime korisnika)"
+  - "%user_first_name% (zamjena za ime korisnika)"
+  - "%user_last_name% (zamjena za prezime korisnika)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Subjekt i tijelo maila može
+    sadržavati dinamički tekst:'
+  text_easy_helpdesk_mail_template_issue_status_id: Dozvoli povezivanje predloška
+    poštanskog sandučića na specifični status zadatka
+  text_easy_helpdesk_mail_template_replacement_for: zamjena za
+  text_easy_helpdesk_mail_template_reply_to: "(Mr. Primjer) - mail nije dozvoljen
+    ovdje"
+  text_easy_helpdesk_mail_template_reply_to2: Polja "Odgovori" i "Pošiljatelj" su
+    preuzeta iz predloška poštanskog sandučića kako bi se zadržala komunikacija unutar
+    jednog zadatka
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Morali biste pridodijeliti
+    ove poštanske sandučiće projektima. Ako to ne napravite, nepoznata nadolazeća
+    pošta neće biti procesuirana!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Ovi poštanski sandučići nemaju
+    pretpostavljeni projekt:'
+  text_easy_helpdesk_projects_alerts_list: 'Lista konfiguriranih uzbuna / alarma:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Lista uzbuna / alarma koje trebaju
+    imati postavljenog primatelja:'
+  text_easy_helpdesk_projects_is_default: Ako e-mail nepoznatog pošiljatelja stigne,
+    tiket će biti stvoren ovdje.
+  text_easy_helpdesk_projects_keyword_description: Ako subjekt maila sadrži definirani
+    string, tiket će biti pridodijeljen ovom projektu. Ključna riječ je osjetljiva
+    na velika i mala slova.
+  text_easy_helpdesk_projects_keywords: Ako mail subjekta sadrži definirani string,
+    određeni prioritet i krajnji rok će biti postavljeni (* znači svaki subjekt).
+    Ostavite prazno da postavite SLA za tikete ručno stvorene.
+  text_easy_helpdesk_projects_monitor_due_date: Ova predefinirana uzbuna (alarm) će
+    vam slati e-mail notifikacije, ako tiket koji je povrijedio SLA nije rješen unutar
+    perioda definiranog u SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Ova predefinirana uzbuna će vam
+    slati e-mail notifikaciju ako ukupno potrošeno vrijeme u određenom kalendarskom
+    mjesecu prelazi preko unaprijed plaćenih sati podrške
+  text_easy_helpdesk_projects_new_priority: Ako ključne riječi nisu specificirane,
+    SLA će biti postavljen prema odabranom prioritetu
+  text_easy_helpdesk_projects_priority: SLA će biti postavljen prema odabranom prioritetu
+  text_easy_helpdesk_projects_sla_hours_to_response: Maksimalna količina vremena dozvoljena
+    prije početka rada na tiketu (prva promjena statusa).
+  text_easy_helpdesk_projects_sla_hours_to_solve: Maksimalni broj sati za riješiti
+    tiket (zatvoren status).
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Neki zadaci (%{count}/%{total})
+    nisu mogli biti ažurirani:'
+  text_isseu_closer_close_notice: Ovaj zadatak je automatski ažuriran od strane Podrške
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: odgovor
+    je trebao biti do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: odgovor
+    mora biti do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: rješenje
+    je trebalo biti do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: rješenje
+    mora biti do %{time}'
+  title_easy_helpdesk_add_project_from_sidebar: Klikni da bi dodao projekt podršci
+  title_easy_helpdesk_allow_custom_sender: Omogući postavljanje prilagođenog pošiljatelja
+    po projektu
+  title_easy_helpdesk_allow_override: Omogući nadjačavanje atributa zadatka iz poruke
+  title_easy_helpdesk_client_response_status: Odaberi u koji status će se promjeniti
+    tiket kada je ažuriran koristeći e-mail.
+  title_easy_helpdesk_ignore_cc: Kada je e-mail stigao, svi e-mailovi u CC su dodani
+    u promatrače, eksterni e-mail i automatski odgovor su im poslani; ova opcija to
+    onemogućava.
+  title_easy_helpdesk_message_above_variables: Poruka predloška će biti iznad varijabli
+    predloška
+  title_easy_helpdesk_sender: Tko će biti u "od" polju
+  title_easy_helpdesk_sender_current_user: Korisnik koji je trenutno prijavljen
+  title_easy_helpdesk_sender_is_user: Polje 'od' će biti prijavljeni korisnik
+  title_easy_helpdesk_sender_mailbox_address: Mail adresa iz poštanskog sandučića
+  title_easy_helpdesk_sender_redmine_default: Pretpostavljena emisijska e-mail adresa
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'UPOZORENJE: Help desk će
+    dobiti mailove od ostalih sustava i to može uzrokovati beskončanu razmjenu mailova!'
+  title_easy_helpdesk_sla_start_states: Odaberi statuse, kad SLA mjerenje je nastavljeno
+    nakon što je pauzirano koristeći postavke iznad.
+  title_easy_helpdesk_sla_stop_states: Odaberi statuse kad SLA nije mjeren. Npr, zatvoreni
+    tiketi ili kad se čeka odgovor klijenta.
+  title_sla_waiting_for_client: SLA suspendiran
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Onemogućen - nakon zadatka je zatvoreni SLA zaustavljen. Kada je zadatak
+      ponovno otvoren, SLA je prebrojan od vremena kad je originalno stvoren
+    enabled: Omogućeno - nakon što je zadatak zatvoren, SLA je zaustavljen. Kada se
+      zadatak ponovno otvori, SLA se broji od vremena kad je ponovno otvoren

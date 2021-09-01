@@ -1,0 +1,119 @@
+  <div id="watchers">
+      <%= form_tag({ :action => :build_json_according_to_user_choice }, {:id => "visualization", :remote => true }) do %>
+    <%= hidden_field_tag 'artifact_id', @re_artifact_properties.id %>
+    <table>
+      <tr>
+        <td colspan="3">
+          <h4><%= l(:re_artifacts) %></h4>
+        </td>
+      </tr>
+      <% @re_artifact_order.each_with_index do |artifact_type, i| %>
+        <% if ReSetting.get_serialized(artifact_type, @project.id)['in_use'] %>
+        <tr>
+					<% colors = ReSetting.get_serialized(artifact_type, @project.id)['color'] %>
+        <td>
+            <%= rendered_artifact_type(artifact_type.underscore) %>
+          </td>
+          <td>
+            <span style="padding-left: 20px; alpha=0.2; background-color:<%= colors %>; color:<%= colors %>;">&nbsp;</span>
+          </td>
+          <td>
+			  <% @filter = ReVisualizationConfig.is_filter_set_for_visualization(@project.id,session[:visualization_type],artifact_type.to_s)%>
+			  <%= check_box_tag 'artifact_filter[]', artifact_type.to_s, @filter, :id => "artifact_filter_"+artifact_type.to_s, :onclick=>  "clear_canvas(); $('#visualization').submit();" %>
+		  </td>
+        </tr>
+        <% end %>
+      <% end %>
+	  <tr>
+		  
+		  <td>
+			  <%=l(:issue_menue_visualization)%>
+		  </td>
+		  <td>
+			  <% colors ='#123456'%>
+		  	<span style="padding-left: 20px; alpha=0.2; background-color:<%= colors %>; color:<%= colors %>;">&nbsp;</span>
+		  </td>
+          <td>
+			  <% artifact_type = "issue"%>
+			  <% @filter = ReVisualizationConfig.is_filter_set_for_visualization(@project.id,session[:visualization_type],artifact_type)%>
+
+			  <%= check_box_tag 'artifact_filter[]', artifact_type.to_s, @filter, :id => "artifact_filter_"+artifact_type.to_s, :onclick=>  "clear_canvas(); $('#visualization').submit();" %>
+	      </td>
+	  </tr>
+      <tr>
+        <td colspan="3">
+          <h4><%= l(:re_artifact_relationships) %></h4>
+        </td>
+      </tr>
+      <% tmp = ReRelationtype.relation_types(@project.id, false) %>
+      <% tmp.each do |relation_type| %>
+      <tr>
+        <% settings = ReRelationtype.find_by_relation_type_and_project_id(relation_type, @project.id) %>
+        
+        <% if settings == nil %>
+           <% color = "#fff" %>
+        <% else%>
+           <% color = settings.color %>
+        <% end%>
+        <td>
+          <%= rendered_relation_type(relation_type) %>
+        </td>
+        <td>
+          <span style="padding-left: 20px; background-color:<%= color %>; color:<%= color %>;">&nbsp;</span>
+        </td>
+        <td>
+			<% @filter = ReVisualizationConfig.is_filter_set_for_visualization(@project.id,session[:visualization_type],relation_type)%>
+		
+		<% if(session[:visualization_type]!= "sunburst")%>	
+          <%= check_box_tag 'relation_filter[]', relation_type.to_s,  @filter, :id => "relation_filter_"+relation_type.to_s, :onclick=>  "clear_canvas(); $('#visualization').submit();" %>
+		  <% else %>
+		   <%= radio_button_tag 'relation_filter[]', relation_type.to_s, @filter, :onclick=>  "clear_canvas(); $('#visualization').submit();" %>
+		  <% end %>
+        </td>
+      </tr>
+      <% end %>
+      <% ReRelationtype::relation_types(@project.id, true).each do |relation_type| %>
+      <tr>
+        <% settings = ReRelationtype.find_by_relation_type_and_project_id(relation_type.underscore, @project.id) %>
+        
+        <% if settings == nil %>
+           <% color = "#fff" %>
+        <% else%>
+           <% color = settings.color %>
+        <% end%>
+        <td>
+          <%= rendered_relation_type(relation_type) %>
+        </td>
+        <td>
+          <span style="padding-left: 20px; background-color:<%= color %>; color:<%= color %>;">&nbsp;</span>
+        </td>
+        <td>
+			<% @filter = ReVisualizationConfig.is_filter_set_for_visualization(@project.id,session[:visualization_type],relation_type)%>
+			<% if(session[:visualization_type]!= "sunburst")%>	
+			<%= check_box_tag 'relation_filter[]', relation_type.to_s,  @filter, :id => "relation_filter_"+relation_type.to_s, :onclick=>  "clear_canvas(); $('#visualization').submit();" %>
+  		  <% else %>
+  		   <%= radio_button_tag 'relation_filter[]', relation_type.to_s, @filter, :onclick=>  "clear_canvas(); $('#visualization').submit();" %>
+  		  <% end %>
+        </td>
+      </tr>
+      <% end %>
+      <tr>
+		  <td colspan="3">
+			  <h4><%= l(:re_visualization_config)%></h4>
+		  </td>
+	  </tr>
+	  <tr>
+		  <td colspan="3">
+			  <%= number_field_tag 'deep', ReVisualizationConfig.get_max_deep(@project.id, session[:visualization_type])%>
+		  </td>
+	  </tr>
+	  <tr>
+		  <td colspan="3">
+			  <%= l(:re_visualitation_deep_graph_explain)%>
+		  </td>
+	  </tr>
+      
+    </table>
+    <% end %>
+	  
+  </div>

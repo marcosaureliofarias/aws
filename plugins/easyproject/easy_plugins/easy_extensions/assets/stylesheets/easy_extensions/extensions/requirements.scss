@@ -1,0 +1,90 @@
+#infobar, #re-index, #detail_view {
+  background: $color-foreground !important;
+  color: $color-text !important;
+}
+.ui-layout-resizer {
+  background: $color-border !important;
+}
+#sidebar_filter .inputs {
+  border: 1px solid $color-border !important;
+}
+form.filters {
+  .group:nth-child(odd) {
+    background: $color-background !important;
+  }
+  .group:nth-child(even) {
+    background: $color-foreground !important;
+  }
+  .group .fields .field {
+    border-top-color: $color-border !important;
+  }
+}
+table.list.artifacts tbody tr:nth-child(odd) {
+  background: $color-background !important;
+}
+#detail_view {
+  .requirement_upper {
+    background: $color-foreground !important;
+    border-color: $color-border !important;
+  }
+  .requirement_lower {
+    background: $color-background !important;
+    border-color: $color-border !important;
+    box-shadow: none !important;
+  }
+}
+.jstree-hovered {
+  background: $color-highlight !important;
+}
+.jstree-default .jstree-clicked {
+  background: $color-highlight !important;
+}
+.vakata-context {
+  background: $color-foreground !important;
+  border-color: $color-border !important;
+  box-shadow: none !important;
+  li a {
+    color: $color-text !important;
+    text-shadow: none !important;
+    &:hover {
+      background: $color-highlight !important;
+      box-shadow: none !important;
+    }
+  }
+  ul {
+    background: $color-foreground !important;
+    box-shadow: none !important;
+    border-color: $color-border !important;
+  }
+  & &-hover > a {
+    background: $color-highlight !important;
+    box-shadow: none !important;
+  }
+  &menu-sep {
+    border: none !important;
+    background: $color-border !important;
+  }
+  &-separator {
+    display: none !important;
+  }
+}
+#infobar + #detail-view {
+  background: $color-foreground !important;
+  border-color: $color-border !important;
+}
+.suggestible .input {
+  background: $color-foreground !important;
+  border-color: $color-border !important;
+}
+#artifacts_filter {
+  p & {
+    display: block;
+    max-width: $form-field-max-width;
+    div.input {
+      border: none !important;
+      input {
+        @extend %form-field;
+      }
+    }
+  }
+}

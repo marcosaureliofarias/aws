@@ -1,0 +1,30 @@
+<%= title l(:label_room_plural) %>
+
+<% if @easy_rooms.any? %>
+  <div class="autoscroll">
+    <table class="list easy_rooms">
+      <thead>
+        <tr>
+          <th><%=l(:label_room)%></th>
+          <th><%=l(:field_capacity)%></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @easy_rooms.each do |easy_room| %>
+          <tr>
+            <td class="name"><%= link_to h(easy_room), edit_easy_room_path(easy_room) %></td>
+            <td><%= easy_room.capacity || l(:label_no_limit) %></td>
+            <td class="buttons"><%= delete_link easy_room %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_room_new), new_easy_room_path, :class => 'button-positive' %>
+<% end %>

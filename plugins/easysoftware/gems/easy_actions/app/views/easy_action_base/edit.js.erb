@@ -1,0 +1,15 @@
+initEasyAutocomplete();
+$('#ajax-modal').html("<%= j(render(template: 'easy_action_base/edit', formats: [:html])) %>");
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+    buttons: [
+        {
+            text: '<%=j l(:button_cancel) %>',
+            click: function() {$(this).dialog('close');}, 'class': 'button'
+        },
+        {
+            text: '<%=j l(:button_update) %>',
+            click: function() {EASY.utils.submitModalForm(this)}, 'class': 'button-positive'
+        }
+    ]
+});

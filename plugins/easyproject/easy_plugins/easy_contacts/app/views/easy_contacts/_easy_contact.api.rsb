@@ -1,0 +1,53 @@
+local_assigns[:api].easy_contact do
+  local_assigns[:api].id easy_contact.id
+  local_assigns[:api].easy_contact_type(id: easy_contact.easy_contact_type.id) do
+    local_assigns[:api].name(easy_contact.easy_contact_type.name)
+  end
+  local_assigns[:api].firstname easy_contact.firstname
+  local_assigns[:api].lastname easy_contact.lastname
+  local_assigns[:api].assigned_to(id: easy_contact.assigned_to_id, name: easy_contact.assigned_to.name) if easy_contact.assigned_to
+  if easy_contact.external_assigned_to && EasyUserType.easy_type_partner.any?
+    local_assigns[:api].external_assigned_to(id: easy_contact.external_assigned_to_id, name: easy_contact.external_assigned_to.name)
+  end
+  local_assigns[:api].is_global easy_contact.is_global
+  local_assigns[:api].eu_member easy_contact.eu_member?
+  local_assigns[:api].country_code easy_contact.cf_country_value
+  local_assigns[:api].easy_external_id easy_contact.easy_external_id
+  local_assigns[:api].guid easy_contact.guid
+
+  render_api_custom_values easy_contact.custom_field_values, local_assigns[:api]
+
+  local_assigns[:api].created_on easy_contact.created_on
+  local_assigns[:api].updated_on easy_contact.updated_on
+
+  local_assigns[:api].array :attachments do
+    easy_contact.attachments.each do |attachment|
+      render_api_attachment(attachment, local_assigns[:api])
+    end
+  end if include_in_api_response?('attachments')
+
+  local_assigns[:api].author_note easy_contact.author_note
+
+  local_assigns[:api].array :journals do
+    easy_contact.journals.each do |journal|
+      render_api_journal(journal, local_assigns[:api])
+    end
+  end if include_in_api_response?('journals')
+
+  local_assigns[:api].array :references do
+    easy_contact.references_to.each do |reference|
+      local_assigns[:api].easy_contact do
+        local_assigns[:api].id reference.id
+        local_assigns[:api].easy_contact_type(:id => reference.easy_contact_type.id) do
+          local_assigns[:api].name(reference.easy_contact_type.name)
+        end
+        local_assigns[:api].firstname reference.firstname
+        local_assigns[:api].lastname reference.lastname
+
+        render_api_custom_values reference.custom_field_values, local_assigns[:api]
+      end
+    end
+  end if include_in_api_response?('references')
+
+  call_hook :helper_render_api_easy_contact, { api: local_assigns[:api], easy_contact: easy_contact }
+end

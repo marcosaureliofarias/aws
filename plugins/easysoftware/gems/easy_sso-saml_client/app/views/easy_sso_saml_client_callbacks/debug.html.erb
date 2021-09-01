@@ -1,0 +1,98 @@
+<%= easy_breadcrumb([
+                        link_to(l(:heading_easy_sso, scope: :easy_sso),
+                                easy_sso_path,
+                                title: l(:heading_easy_sso, scope: :easy_sso)),
+                        link_to(l(:heading_settings, scope: :easy_sso_saml_client),
+                                easy_sso_saml_client_settings_path,
+                                title: l(:heading_settings, scope: :easy_sso_saml_client)),
+                        l(:label_debug, scope: :easy_sso_saml_client)
+                    ]) %>
+
+<% if @test_user && @test_user.valid? %>
+  <h2 style="color: green"><%= l(:heading_debug_saml_ok, scope: :easy_sso_saml_client, user: @test_user.name) %></h2>
+<% else %>
+  <h2 style="color: red"><%= l(:heading_debug_saml_fail, scope: :easy_sso_saml_client) %></h2>
+  <% if @test_user %>
+    <h3><%= l(:heading_debug_user_cannot_be_created, scope: :easy_sso_saml_client) %>:</h3>
+    <p class="warning">
+      <%= @test_user.errors.full_messages.join('<br>').html_safe %>
+    </p>
+  <% end %>
+<% end %>
+<h3><%= l(:heading_debug_errors_in_saml, scope: :easy_sso_saml_client) %>:</h3>
+<% if @saml_response.errors.present? %>
+  <p class="warning">
+    <% @saml_response.errors.each do |msg| %>
+      <%= msg %><br/>
+    <% end %>
+  </p>
+<% else %>
+  <p>
+    <%= l(:text_debug_no_errors, scope: :easy_sso_saml_client) %>
+  </p>
+<% end %>
+<hr/>
+<h3><%= l(:heading_debug_user_identificator, scope: :easy_sso_saml_client) %>:</h3>
+<p>
+  <%= @saml_response.name_id %>
+</p>
+<hr/>
+<h3><%= l(:heading_debug_user_attributes, scope: :easy_sso_saml_client) %>:</h3>
+<table class="list">
+  <thead>
+  <tr>
+    <th><%= l(:field_name) %></th>
+    <th><%= l(:field_value) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @saml_response.attributes.attributes.each do |att| %>
+    <tr>
+      <td><%= att.first %></td>
+      <td><%= att.second.first %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<hr/>
+<h3><%= l(:heading_debug_mapped_attributes, scope: :easy_sso_saml_client) %>:</h3>
+<table class="list">
+  <thead>
+  <tr>
+    <th><%= l(:field_name) %></th>
+    <th><%= l(:field_value) %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= l(:field_login) %></td>
+    <td><%= EasySso::SamlClient::User.login(@saml_response) || 'missing !!' %></td>
+  </tr>
+  <tr>
+    <td><%= l(:field_mail) %></td>
+    <td><%= EasySso::SamlClient::User.mail(@saml_response) || 'missing !!' %></td>
+  </tr>
+  <tr>
+    <td><%= l(:field_firstname) %></td>
+    <td><%= EasySso::SamlClient::User.first_name(@saml_response) || 'missing !!' %></td>
+  </tr>
+  <tr>
+    <td><%= l(:field_lastname) %></td>
+    <td><%= EasySso::SamlClient::User.last_name(@saml_response) || 'missing !!' %></td>
+  </tr>
+  </tbody>
+</table>
+<hr/>
+<h3><%= l(:heading_debug_decoded_response, scope: :easy_sso_saml_client) %>:</h3>
+<% if @xml_response %>
+  <textarea rows="10" style="max-width: inherit"><%= @xml_response.to_xml %></textarea>
+<% else %>
+  <p class="warning">
+    <%= l(:text_debug_invalid_response, scope: :easy_sso_saml_client) %>
+  </p>
+<% end %>
+<hr/>
+<h3><%= l(:heading_debug_raw_response, scope: :easy_sso_saml_client) %>:</h3>
+<p>
+  <textarea rows="10" style="max-width: inherit"><%= params[:SAMLResponse] %></textarea>
+</p>

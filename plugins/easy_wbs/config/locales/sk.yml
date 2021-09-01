@@ -1,0 +1,204 @@
+---
+sk:
+  easy_printable_templates_categories:
+    easy_wbs: WBS
+  easy_query:
+    name:
+      easy_wbs_easy_issue_query: WBS
+  easy_wbs:
+    button_actions: Ostatné akcie
+    button_add_child: Pridať podúlohu
+    button_add_comment: Pridať komentár
+    button_add_parent: Pridať nadradenú úlohu‌
+    button_add_sibling: Pridať úlohu
+    button_all_icons: Ikony
+    button_budget: Otvoriť rozpočet
+    button_collapse: Zbaliť‌
+    button_collapse_all: Rozbaliť/zbaliť
+    button_cut: Vystrihnúť
+    button_display: Možnosti zobrazenia
+    button_edit_data: Upraviť údaje‌
+    button_expand: Rozbaliť
+    button_expand_all: Rozbaliť všetko
+    button_expand_collapse: Rozbaliť/Zbaliť
+    button_legend: Legenda
+    button_one_side: Jedna strana
+    button_paste: Vložiť
+    button_project_menu: WBS
+    button_redo: Vpred
+    button_remove_comment: Odstrániť komentár
+    button_remove_node: Odstrániť uzol
+    button_show_links: Zobraziť väzby‌
+    button_undo: Späť‌
+    edit_issue: Upraviť úlohu
+    error_create: nepodarilo sa vytvoriť
+    error_delete: nedá sa odstrániť
+    error_update: nedá sa aktualizovať
+    errors:
+      not_subtaskable: Úloha " %{task_name} " nemôže byť podúlohou kvôli nastaveniu
+        jej typu úlohy
+    free:
+      button_upgrade: Získať plnú verziu
+      button_upgrade_href: https://www.easyredmine.com/redmine-wbs-plugin
+      feature_coloring: Zafarbenie uzlov podľa vlastností
+      feature_context_menu: Zmena vlastností uzlov‌
+      feature_filtering: Filtrovanie uzlov podľa vlastností
+      header_not_available: K dispozícii iba v plnej verzii‌
+      text_not_available: je k dispozícii iba v plnej verzii Easy WBS.
+    hotkeys:
+      info_mac_metakey: Na Mac OS X klávesy Ctrl a Cmd môžu byť použité pre skratky
+        nižšie - niektoré prehliadače môžu určitým klávesovým skratkám brániť. Napríklad
+        ak Cmd + Space nefunguje v prehliadači, skúste Ctrl + Space.
+      keyboard:
+      - title: Manipulácia s uzlami
+        hotkeys:
+        - hotkey: Enter
+          info: Pridať pri-úlohu
+        - hotkey: Shift+Enter
+          info: Pridať pri-úlohu nad, alebo zalomenie riadka (pri premenovaní uzla)
+        - hotkey: Tab alebo Insert
+          info: Pridať podúlohu
+        - hotkey: Shift+Tab
+          info: Pridať nadúlohu
+        - hotkey: medzerník
+          info: Premenovať uzol
+        - hotkey: Shift+medzerník
+          info: Upraviť údaje uzla
+        - hotkey: Backspace alebo Delete
+          info: Odstrániť uzol
+        - hotkey: Ctrl+hore/dole
+          info: Posunúť uzol hore/dole
+      - title: Úpravy
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Uložiť
+        - hotkey: Ctrl+X alebo C
+          info: Vystrihnúť
+        - hotkey: Ctrl+C alebo Y
+          info: Kopírovať
+        - hotkey: Ctrl+V alebo P
+          info: Vložiť
+        - hotkey: U alebo Ctrl+Z
+          info: Späť
+        - hotkey: R alebo Ctrl+Y alebo Ctrl+Shift+Z
+          info: Vpred
+      - title: Výber
+        hotkeys:
+        - hotkey: šípky
+          info: Vyberte uzol hore/dole/vľavo/vpravo alebo aktuálne vybraný
+        - hotkey: Shift + šípky
+          info: Pridať uzol hore / dole / doľava / doprava k výberu (užitočné pre
+            viacnásobné označenie pri-úloh)
+        - hotkey: "{"
+          info: Viacnásobný výber aktuálneho uzla a celého podstromu pod ním
+        - hotkey: "["
+          info: Viacnásobný výber iba v podstrome pod aktuálnym uzlom (nie uzol sám)
+        - hotkey: "="
+          info: Viacnásobný výber všetkých pri-úloh aktuálneho uzla (ktoré majú rovnakú
+            nadúlohu)
+        - hotkey: "."
+          info: Zrušiť viacnásobný výber a vybrať znovu iba aktuálny uzol
+        - hotkey: 1 - 9
+          info: Vybrať všetky uzly na určitej úrovni (napr. 1 vyberie všetky uzly
+            prvej úrovne)
+      - title: Navigácia a obrazovka
+        hotkeys:
+        - hotkey: "/ alebo F"
+          info: Rozbaliť alebo zbaliť uzol (zložiť alebo rozložiť podúlohy)
+        - hotkey: Ctrl + alebo Z
+          info: Priblížiť
+        - hotkey: Ctrl - alebo Shift Z
+          info: Oddialiť
+        - hotkey: Esc, 0, Ctrl+0
+          info: Resetovať zobrazenie mapy - vyberte koreňový uzol a pretiahnite ho
+            do stredu obrazovky
+      mouse:
+      - action: Presunutie mapy
+        gesture: kliknite a pretiahnite stredový uzol, kliknite a pretiahnite pozadie
+          alebo skrolujte na trackpade / touchpade.
+      - action: Vybrať uzol
+        gesture: kliknite priamo naň
+      - action: Vybrať viac uzlov
+        gesture: Shift+klic
+      - action: Zmena poradia uzlov
+        gesture: Pretiahnite uzol medzi svojimi pri-úlohami, horizontálne blízko k
+          miestu zmeny poradia. Pri zmene poradia sa zobrazí bod s čiernou šípkou.
+      - action: Ručne umiestniť uzol
+        gesture: stačí pretiahnuť uzol, pokiaľ šípka pre zmenu poradia nezmizne. Ak
+          chcete vynútiť ručné postavenie aj keď sa šípka pre zmenu poradia ukazuje,
+          podržte klávesu Shift počas ťahania. Upozorňujeme, že podúlohy z koreňového
+          uzla je možné pretiahnuť v ľubovoľnom smere, ale uzly nižšej úrovne môžu
+          byť umiestnené len v smere svojej nadúlohy ku koreňu.
+      - action: Premenovanie uzla
+        gesture: Dvojitý klik alebo dvojité ťuknutie
+      - action: Zobraziť kontextové menu s operáciami
+        gesture: 'Kliknite pravým tlačidlom na uzol (myšou) alebo dvakrát kliknite
+          na pozadí, alebo podržte uzol: zobraziť (na dotykových zariadeniach)'
+      - action: Zmena nadúlohy
+        gesture: pretiahnite uzol na iný uzol (kruhové pustenie nie je povolené, takže
+          nemožno pustiť uzol na jednom zo svojich podúloh alebo úlohy nižšie)
+      - action: Otvoriť úlohu alebo projekt v samostatnom okne
+        gesture: Alt+klik
+      title_key_shortcuts: Klávesové operácie
+      title_mouse_shortcuts: Operácie s myšou a dotykom
+      title_shortcuts: Skratky
+    info_all_saved: Všetko sa úspešne uložilo
+    info_any_failed: 'Niektoré požiadavky zlyhali:'
+    info_no_permission: Nemáte potrebné oprávnenia k tejto akcii
+    label_additional_data: Dodatočné dáta‌
+    label_all: Všetko
+    label_basic_data: Základné dáta‌
+    label_budget: Rozpočet
+    label_color_by: Farba podľa
+    label_currency: Mena
+    label_detail_budget_issue: Rozpočet úlohy‌
+    label_detail_budget_project: Rozpočet projektu
+    label_go_to: Ísť do
+    label_money_negative_value: Záporné
+    label_money_neutral_value: Neutrálne
+    label_money_positive_value: Kladné
+    label_or: alebo
+    label_planned_costs: Celkové plánované náklady
+    label_planned_profit: Plánovaný zisk
+    label_planned_revenue: Plánované príjmy
+    label_real_costs: Celkové náklady‌
+    label_real_profit: Reálny zisk
+    label_real_revenue: Reálne príjmy‌
+    label_show: Zobraziť‌
+    label_spent_time_ratio: Pomer vykázaného času‌
+    label_task_cumulative: Zahrnúť rozpočet podúloh
+    last_state_modal:
+      label_differencies: Rozdiely na serveri
+      message_changed: majú rozdielne atribúty (prehliadač => server) ({{changes}})
+      message_missing: nemá nadradenú úlohu "{{from}}"
+      message_moved: je podúlohou "{{to}}", nie "{{from}}"
+      message_present: je prítomný ako podúloha "{{to}}"
+      text_reload_appeal: Chcete obnoviť stav zo servera?
+      title: Posledný stav WBS je odlišný od stavu servera‌
+    name_an_entity_first: Najskôr pomenujte entitu
+    reload_modal:
+      label_errors: Chyby
+      text_reload_appeal: Chcete ignorovať neuložené položky a znova načítať údaje
+        zo servera?
+      title: WBS sa nepodarilo správne uložiť‌
+    stored_modal:
+      text_load_appeal: Chcete to načítať namiesto aktuálneho stavu zo serveru?
+      title: Bol zistený neuložený stav‌
+    text_issue_not_saved: Úloha nie je uložená. Najskôr ju prosím uložte.
+    title_save_and_open_modal: Toto tlačidlo uloží údaje a otvorí podrobnosti úlohy
+    title_save_and_open_project_modal: Toto tlačidlo uloží údaje a otvorí podrobnosti
+      projektu
+    warning_delete_node: Naozaj chcete odstrániť uzol {{name}} a všetky jeho poduzly?
+    warning_not_saved: nie je správne uložené‌
+  heading_easy_wbs_issues: WBS
+  label_easy_wbs: WBS
+  label_filter_group_easy_wbs_easy_issue_query: Úlohy
+  label_filter_group_easy_wbs:
+    easy_issue_query: Úlohy
+  permission_edit_easy_wbs: Upraviť WBS
+  permission_view_easy_wbs: Zobraziť WBS
+  project_default_page:
+    easy_wbs: WBS
+  project_module_easy_wbs: WBS
+  text_easy_wbs_print_easy_wbs_current: Zobraziť aktuálne WBS (funguje iba zo stránky,
+    kde je WBS načítané)

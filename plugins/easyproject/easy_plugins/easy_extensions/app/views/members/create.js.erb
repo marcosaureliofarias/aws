@@ -1,0 +1,11 @@
+<% if @members.present? && @errors.blank? %>
+  $('#principals_for_new_member').html('<%= j(render :partial => 'members/easy_principals_for_new_members', :locals => {:project => @project}) %>');
+  $('#principals_for_new_groups').html('<%= j(render :partial => 'members/easy_principals_for_new_groups', :locals => {:project => @project}) %>');
+  $('#tab-content-members').html('<%= j(render :partial => 'projects/settings/members', :locals => {:project => @project}) %>');
+  hideOnLoad();
+<% elsif @members.present? %>
+  alert('<%= raw(j(l(:notice_failed_to_save_members, :errors => @errors))) %>');
+<% end %>
+<% if params[:hide_modal] && @errors.blank? %>
+  hideModal();
+<% end %>

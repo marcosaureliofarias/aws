@@ -1,0 +1,15 @@
+<tr id="entity-<%= issue.id %>" data-id="<%= issue.id %>" class="<%= issue.css_classes(User.current, issue.easy_level) %>" data-url="<%= issue_path(issue, :format => 'json').html_safe %>">
+  <% quick_planner_columns.each do |column, field| %>
+    <td class="<%= column.css_classes %>" rowspan="<%= (column.full_rows_column? ? 2 : nil) %>">
+      <%= format_html_entity_attribute(Issue, column, column.value(issue, {:params => params}), {:entity => issue, :editable => true}) if field -%>
+    </td>
+  <% end %>
+  <td class="easy-additional-ending-buttons">
+    <span class="display">
+      <a class="delete-issue-button icon icon-del"><span class="tooltip"><%= l(:button_delete) %></span></a>
+    </span>
+    <span class="edit" style="display:none;">
+      <a class="save-issue-button icon icon-save"><span class="tooltip"><%= l(:button_save) %></span></a>
+    </span>
+  </td>
+</tr>

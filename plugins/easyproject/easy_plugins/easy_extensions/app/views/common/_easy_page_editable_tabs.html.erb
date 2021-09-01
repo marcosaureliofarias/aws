@@ -1,0 +1,33 @@
+<%
+  selected_tab ||= nil
+
+  if selected_tab.blank? && params[:tab_id]
+    tab_id = params[:tab_id].to_i
+    selected_tab = tabs.find{|t| t.id == tab_id }.try(:position)
+  end
+
+  if selected_tab.blank? && params[:t]
+    selected_tab = params[:t].to_i
+  end
+
+  if selected_tab.blank?
+    selected_tab = 1
+  end
+%>
+<% if tabs.size > 1 || editable -%>
+    <div id="easy_page_tabs" class="<%= easy_page_context[:page_params][:edit] ? 'editable-tabs tabs' : 'tabs' %> easy-page-editable-tabs tabs-container">
+      <ul>
+        <%= render 'common/easy_page_editable_tabs_inline_show', tabs: tabs, editable: editable, selected_tab: selected_tab, render_li: true %>
+      </ul>
+      <div class="tabs-buttons" style="display:none;">
+        <button class="tab-left" onclick="EASY.utils.moveTabLeft(this);"></button>
+        <button class="tab-right" onclick="EASY.utils.moveTabRight(this);"></button>
+      </div>
+    <script type="text/javascript">
+      EASY.schedule.main(function(){
+        EASY.utils.displayTabsButtons('div.easy-page-editable-tabs');
+        $(window).resize(function() { EASY.utils.displayTabsButtons('div.easy-page-editable-tabs'); });
+      });
+    </script>
+    </div>
+<% end %>

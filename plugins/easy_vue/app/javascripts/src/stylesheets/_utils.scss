@@ -1,0 +1,36 @@
+.l{
+  &__w{
+    &--full{
+      width: 100%;
+    }
+    &--half{
+      width: 50%;
+    }
+    &--quarter{
+      width: 25%;
+    }
+    &--33,&--third{
+      width: 33%;
+      display: inline-block;
+    }
+    &--auto{
+      width: auto !important;
+    }
+  }
+  &__h{
+    &--auto{
+      height: auto !important;
+    }
+  }
+}
+
+.u{
+  &__nowrap {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  &__wrap{
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+}

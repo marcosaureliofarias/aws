@@ -1,0 +1,29 @@
+.state-indicator-circle{
+  width: $gap;
+  height: $gap;
+  @extend %box-sizing-border-box;
+  @extend %border-radius-infinite;
+  @extend %color-box-base;
+  &.easy-indicator-warning{
+    @extend %color-box-notice;
+  }
+  &.easy-indicator-alert{
+    @extend %color-box-warning;
+  }
+  &.easy-indicator-ok{
+    @extend %color-box-positive;
+  }
+}
+.indicator-beta {
+  margin-right: 4*$gap;
+  position: relative;
+  &:after {
+    content: "Beta";
+    display: inline-block;
+    position: absolute;
+    padding: $gap/4;
+    font-size: $gap;
+    top: -.5*$gap;
+    color: $color-main;
+  }
+}

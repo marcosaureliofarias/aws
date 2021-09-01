@@ -1,0 +1,18 @@
+<%= title l(:heading_test_case_issue_execution_new) %>
+
+<%= form_for(@test_case_issue_execution, html: {multipart: true, id: 'test_case_issue_execution_form', class: 'tabular'}) do |f| %>
+  <%= error_messages_for @test_case_issue_execution %>
+
+  <div class="box">
+    <%= render partial: 'form', locals: {test_case_issue_execution: @test_case_issue_execution} %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_create), title: l(:button_create), class: 'button-positive' %>
+    <%= submit_tag l(:button_create_and_report), title: l(:button_create_and_report), class: 'button-positive', onclick: '$("#report_issue").val("true"); return true;' %>
+  </div>
+<% end %>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'test_case_issue_executions/sidebar' %>
+<% end %>

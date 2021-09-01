@@ -1,0 +1,23 @@
+<%
+  event_update_datetime = event_update_datetime(e)
+  event_last_journal = event_last_journal(e)
+  event_author = event_last_journal.try(:user) || e.try(:event_author)
+%>
+<dt class="<%= e.event_type %> <%= "grouped" if in_group %> <%= User.current.logged? && e.respond_to?(:event_author) && User.current == e.event_author ? 'me' : nil %>">
+  <span class="time"><%= format_time(event_update_datetime, false) %></span>
+  <% if event_author %>
+    <span class="author">
+      <%= avatar(event_author, :size => "24")  %>
+      <span class="name"><%= link_to_user(event_author) %></span>
+    </span>
+  <% end %>
+  <%= content_tag('span', h(e.project), :class => 'project') if @project.nil? || @project != e.project %>
+  <%= render partial: 'easy_activities/event_links', locals: { e: e } %>
+</dt>
+<dd class="<%= "grouped" if in_group %>">
+  <% if event_last_journal %>
+    <span class="description">
+      <%= format_activity_description(event_last_journal.notes) %>
+    </span>
+  <% end %>
+</dd>

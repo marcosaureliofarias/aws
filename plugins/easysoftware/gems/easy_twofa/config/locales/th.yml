@@ -1,0 +1,67 @@
+---
+th:
+  easy_twofa:
+    activate_scheme: เปิดใช้งาน %{name}
+    address: ที่อยู่
+    authentificate: รับรองความถูกต้อง
+    code_was_resend: ส่งรหัสอีกครั้งแล้ว
+    continue: ทำต่อไป
+    device_will_be_rememberd_for_x_days: อุปกรณ์นี้จะถูกจดจำไว้เป็นเวลา%{count} วัน
+    disable_scheme: ปิดใช้งาน%{name}
+    disabled: ปิดใช้งาน
+    disabling_twofa: ปิดใช้งานการรับรองความถูกต้องสองปัจจัย
+    enabled_scheme: รูปแบบที่เปิดใช้งาน
+    expired_at: หมดอายุเมื่อ
+    global_settings: การตั้งค่าทั่วโลก
+    http_method: วิธี HTTP
+    mode: โหมด
+    optional: ไม่บังคับ
+    plain_key: รหัสทั่วไป
+    please_enter_verification_key: กรุณากรอกรหัสยืนยัน
+    plugin_name: Easy Twofa
+    plugin_name_long: การรับรองความถูกต้องแบบสองปัจจัย Easy
+    provider: ผู้ให้บริการ
+    remember_device: จดจำอุปกรณ์
+    remembered_devices: อุปกรณ์ที่จำได้
+    required: จำเป็น
+    scheme_is_active: "%{name} เปิดใช้งานอยู่"
+    schemes:
+      sms:
+        errors:
+          missing_telephone: หมายเลขโทรศัพท์หายไป
+        name: SMS
+        providers:
+          custom:
+            body: ข้อความของข้อความ
+            name: กำหนดเอง
+            telephone: หมายเลขโทรศัพท์
+          messagebird:
+            name: MessageBird
+        small_description: รับรองความถูกต้องโดยใช้ตัวเลขจากSMS คุณจำเป็นต้องระบุหมายเลขโทรศัพท์
+      totp:
+        disable_title: ปิดการใช้งาน TOTP
+        name: TOTP
+        setup_info: สแกนคิวอาร์โค้ดนี้หรือป้อนรหัสข้อความธรรมดาลงในแอพ TOTP (เช่น
+          Google Authenticator, Authy, Duo Mobile) และป้อนรหัสในฟิลด์ด้านล่างเพื่อเปิดใช้งานการตรวจสอบสิทธิ์แบบสองปัจจัย
+        setup_title: ติดตั้ง TOTP
+        small_description: ตรวจสอบสิทธิ์โดยใช้อัลกอริทึมรหัสผ่านครั้งเดียวตามเวลาโดยใช้แอป
+          TOTP (เช่น Google Authenticator, ... )
+    select_scheme: เลือกรูปแบบ
+    select_scheme_is_required: จำเป็นต้องรับรองความถูกต้องด้วยสองปัจจัย เพื่อดำเนินการต่อโปรดเลือกชุดรูปแบบที่คุณจะใช้
+      คุณสามารถเปลี่ยนได้ในภายหลังในโปรไฟล์ของคุณ
+    send_new_code: ส่งรหัสใหม่
+    setting_enabled_schemes_info: ต้องเลือกอย่างน้อยหนึ่งรูปแบบ หากไม่มีรูปแบบที่ถูกเลือกทั้งหมดจะเปิดใช้งาน
+    successfully_disabled: ปิดใช้งานสำเร็จ
+    successfully_verified: ยืนยันสำเร็จ
+    telephone_cf: ฟิลด์ของหมายเลขโทรศัพท์ที่กำหนดเอง
+    text_activation: รูปแบบที่เลือกยังไม่ได้เปิดใช้งาน คุณต้องยืนยันก่อนเพื่อหลีกเลี่ยงความยุ่งยากในระหว่างการเข้าสู่ระบบ
+    text_disable: รูปแบบยังคงใช้งานอยู่ โปรดยืนยันว่าเป็นคุณ ติดต่อผู้ดูแลระบบหากคุณไม่สามารถทำได้
+    too_much_attempts: พยายามหลายครั้งเกินไป
+    twofa: การรับรองความถูกต้องด้วยสองปัจจัย
+    twofa_is_required: จำเป็นต้องได้รับการรับรองความถูกต้องด้วยสองปัจจัย
+    twofa_verification_failed: การตรวจสอบสิทธิ์แบบสองปัจจัยล้มเหลว
+    twofa_was_saved: บันทึกการรับรองความถูกต้องด้วยสองปัจจัยแล้ว
+    user_agent: ตัวแทนผู้ใช้
+    verification_failed_contact_administrator: การตรวจสอบสองปัจจัยไม่สามารถตรวจสอบได้
+      กรุณาติดต่อผู้ดูแล
+    verify_code: ตรวจสอบรหัส

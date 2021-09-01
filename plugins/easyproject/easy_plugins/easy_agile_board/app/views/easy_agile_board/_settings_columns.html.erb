@@ -1,0 +1,128 @@
+<%
+type_progress = IssueEasySprintRelation::TYPE_PROGRESS.to_s
+type_done = IssueEasySprintRelation::TYPE_DONE.to_s
+easy_setting = (EasySetting.value(easy_setting_name, project) || {}).stringify_keys
+
+if !easy_setting[type_progress].is_a?(ActionController::Parameters) && !easy_setting[type_progress].is_a?(Hash)
+  easy_setting[type_progress] = { '1' => { 'state_statuses' => [] } }
+end
+
+if !easy_setting[type_done].is_a?(ActionController::Parameters) && !easy_setting[type_done].is_a?(Hash)
+  first_close_status = IssueStatus.where(is_closed: true).order(:position).limit(1).pluck(:id).collect(&:to_s)
+  easy_setting[type_done] = { 'state_statuses' => first_close_status, 'status_id' => first_close_status.first }
+end
+
+assigned_to_collection = project_assignable_users_collection(project, show_author: true, last_assigned_to: true, show_nobody: true, show_no_change: true, show_me: false, show_me_substitute: true) || [] if project
+all_statuses = IssueStatus.sorted.to_a
+%>
+
+<fieldset>
+  <legend class="icon icon-reload"><%= l(:label_agile_in_progress) %></legend>
+  <div id="agile_board_states_container" data-nextpos="<%= easy_setting[type_progress].keys.map{|p| p.to_i }.max.to_i + 1 %>" data-confirm="<%= l(:text_are_you_sure) %>">
+    <table style="width: 100%" >
+      <tr>
+        <th><%= l(:label_agile_state_name) %></th>
+        <th><%= l(:label_agile_state_state_statuses) %></th>
+        <th><%= l(:label_agile_state_status_id) %></th>
+        <% if project %>
+          <th><%= l(:label_agile_state_return_to) %></th>
+        <% end %>
+        <th>&nbsp;</th>
+      </tr>
+      <% easy_setting[type_progress].each do |position, state| %>
+        <tr data-position="<%= position %>">
+          <td><%= text_field_tag("easy_setting[#{easy_setting_name}][#{type_progress}][#{position}][name]", state['name']) %></td>
+          <td>
+            <ul class="cols-3">
+              <% all_statuses.each do |status| %>
+                <li>
+                  <% box = check_box_tag "easy_setting[#{easy_setting_name}][#{type_progress}][#{position}][state_statuses][]", status.id, state['state_statuses'].is_a?(Array) && state['state_statuses'].include?(status.id.to_s), id: "easy_setting_#{easy_setting_name}_#{type_progress}_#{position}_state_statuses_#{status.id}", class: 'status_checkbox', data: {statusid: status.id} %>
+                  <%= label_tag "easy_setting_#{easy_setting_name}_#{type_progress}_#{position}_state_statuses_#{status.id}", box + status.name, class: 'inline checkbox' %>
+                </li>
+              <% end %>
+            </ul>
+          </td>
+          <td>
+            <%= select_tag "easy_setting[#{easy_setting_name}][#{type_progress}][#{position}][status_id]", content_tag(:option, '', value: '') + options_from_collection_for_select(all_statuses, :id, :name, state['status_id']), class: 'status_select' %>
+          </td>
+          <% if project %>
+            <td>
+              <%= select_tag "easy_setting[#{easy_setting_name}][#{type_progress}][#{position}][return_to]", grouped_options_for_select(assigned_to_collection, state['return_to'] || ["<< #{l(:label_no_change)} >>", "__no_change__"]), class: 'return_to_select' %>
+            </td>
+          <% end %>
+          <td><%= link_to l(:button_delete), '#', class: 'icon icon-del remove_status button', title: l(:label_agile_remove_status) %></td>
+        </tr>
+      <% end %>
+      <tr class="new-state" style="display: none;">
+        <td><%= text_field_tag("easy_setting[#{easy_setting_name}][#{type_progress}][NEW_POSITION][name]", '', class: 'easy_agile_change_new_position') %></td>
+        <td>
+          <ul class="cols-3">
+            <% all_statuses.each do |status| %>
+              <li>
+                <% box = check_box_tag "easy_setting[#{easy_setting_name}][#{type_progress}][NEW_POSITION][state_statuses][]", status.id, false, id: "easy_setting_#{easy_setting_name}_#{type_progress}_NEW_POSITION_state_statuses_#{status.id}", class: 'status_checkbox easy_agile_change_new_position', data: { statusid: status.id } %>
+                <%= label_tag "easy_setting_#{easy_setting_name}_#{type_progress}_NEW_POSITION_state_statuses_#{status.id}", box + status.name, class: 'inline easy_agile_change_new_position checkbox' %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <%= select_tag "easy_setting[#{easy_setting_name}][#{type_progress}][NEW_POSITION][status_id]",
+            content_tag(:option, '', value: '') + options_from_collection_for_select(all_statuses, :id, :name), class: 'easy_agile_change_new_position status_select' %>
+        </td>
+        <% if project %>
+          <td>
+            <%= select_tag "easy_setting[#{easy_setting_name}][#{type_progress}][NEW_POSITION][return_to]", grouped_options_for_select(assigned_to_collection), class: 'easy_agile_change_new_position return_to_select' %>
+          </td>
+        <% end %>
+        <td><%= link_to l(:button_delete), '#', class: 'icon icon-del remove_status button', title: l(:label_agile_remove_status) %></td>
+      </tr>
+    </table>
+    <div class="toolbar">
+      <%= link_to l(:label_agile_add_status), '#', class: 'icon icon-add button-positive', id: 'add_button' %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend class="icon icon-checked-circle"><%= l(:label_agile_done) %></legend>
+  <table id="agile_board_done_container" style="width: 100%">
+    <tr>
+      <th> </th>
+      <th><%= l(:label_agile_state_state_statuses) %></th>
+      <th><%= l(:label_agile_state_status_id) %></th>
+      <% if project %>
+        <th><%= l(:label_agile_state_return_to) %></th>
+      <% end %>
+      <th>&nbsp;</th>
+    </tr>
+    <tr>
+      <td><label for="easy_setting_<%= easy_setting_name + '_' + type_done.to_s %>_status_id" class="inline"><%= l(:label_agile_done) %></label></td>
+      <td>
+        <ul class="cols-3">
+          <% all_statuses.each do |status| %>
+            <li>
+              <% box = check_box_tag "easy_setting[#{easy_setting_name}][#{type_done}][state_statuses][]", status.id, easy_setting[type_done]['state_statuses'].is_a?(Array) && easy_setting[type_done]['state_statuses'].include?(status.id.to_s), id: "easy_setting_#{easy_setting_name}_#{type_done}_state_statuses_#{status.id}", class: 'status_checkbox', data: {statusid: status.id} %>
+              <%= label_tag "easy_setting_#{easy_setting_name}_#{type_done}_state_statuses_#{status.id}", box + status.name, class: 'inline checkbox' %>
+            </li>
+          <% end %>
+        </ul>
+      <td>
+        <%= select_tag "easy_setting[#{easy_setting_name}][#{type_done}]][status_id]", content_tag(:option, '', value: '') + options_from_collection_for_select(all_statuses, :id, :name, easy_setting[type_done]['status_id']), class: 'status_select' %>
+      </td>
+      <% if project %>
+        <td>
+          <%= select_tag "easy_setting[#{easy_setting_name}][#{type_done}][return_to]", grouped_options_for_select(assigned_to_collection, easy_setting[type_done]['return_to']), class: 'return_to_select' %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+</fieldset>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag('easy_agile_board_helpers.js', plugin: 'easy_agile_board', defer: true) %>
+  <script type="text/javascript">
+    EASY.schedule.main(function() {
+      $('#agile_board_states_container').agileboardstatuses({doneContainer: '#agile_board_done_container'});
+    });
+  </script>
+<% end %>

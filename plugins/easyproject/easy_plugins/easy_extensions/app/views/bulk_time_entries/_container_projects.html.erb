@@ -1,0 +1,12 @@
+<% unless @user.blank? %>
+  <div class="combo-container no-label-required-by-css">
+    <p>
+      <%= label_for_field(:project_id, {required: true}) -%><%= easy_select_tag(
+        'project_id',
+        {name: @time_entry.project ? @time_entry.project.family_name : '', id: @time_entry.project_id}, nil,
+        url_for(action: 'load_assigned_projects', format: 'json', user_id: @user.id),
+        include_blank: true, root_element: 'projects', force_autocomplete: true
+      ) -%>
+    </p>
+  </div>
+<% end %>

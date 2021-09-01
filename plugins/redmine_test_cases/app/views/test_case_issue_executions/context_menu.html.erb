@@ -1,0 +1,18 @@
+<ul>
+<% if @test_case_issue_execution -%>
+  <li><%= context_menu_link l(:button_edit), edit_test_case_issue_execution_path(@test_case_issue_execution), class: 'icon icon-edit', disabled: !@can[:edit] %></li>
+<% end %>
+  <li class="folder">
+    <a href="#" class="submenu"><%= TestCaseIssueExecution.human_attribute_name :result %></a>
+    <ul>
+      <% TestCaseIssueExecutionResult.active.sorted.to_a.prepend(nil).each do |res| -%>
+        <li>
+          <%= context_menu_link res.try(:name) || l(:label_none), bulk_update_test_case_issue_executions_path(ids: @test_case_issue_execution_ids, test_case_issue_execution: {result_id: res.try(:id)}, back_url: @back), method: :put, selected: (@test_case_issue_execution && res.try(:id) == @test_case_issue_execution.result_id), disabled: !@can[:edit] %>
+        </li>
+      <% end -%>
+    </ul>
+  </li>
+  <li><%= context_menu_link l(:button_delete), test_case_issue_executions_path(ids: @test_case_issue_execution_ids, back_url: @back), method: :delete, data: {confirm: l(:text_are_you_sure)}, class: 'icon icon-del', disabled: !@can[:delete] %></li>
+
+  <%= call_hook(:view_test_case_issue_executions_context_menu_end, {test_case_issue_execution: @test_case_issue_execution, test_case_issue_executions: @test_case_issue_executions, can: @can, back: @back, project: @project}) %>
+</ul>

@@ -1,0 +1,37 @@
+<%
+before_functions ||= ''; after_functions ||= ''
+remote_function_url ||= modal_selectors_path('search', :t => 0, :modal_action => params[:modal_action] || action_name)
+remote_function_method ||= 'POST';
+freetext_reset ||= params[:freetext_reset]
+freetext_reset = url_for(params.to_unsafe_hash.merge(only_path: true)) if freetext_reset.blank?
+modal_freetext_options ||= {}
+modal_selector = local_assigns.fetch(:modal_selector, false)
+%>
+<div class="contextual">
+  <%= hidden_field_tag :freetext_reset, freetext_reset %>
+  <%= render(:partial => 'common/freetext_quick_search', :locals => {:modal_selector => modal_selector, :free_search_options => {
+    :free_search_field_name => :easy_query_q,
+    :free_search_ajax_type => remote_function_method,
+    :free_search_url => remote_function_url,
+    :free_search_element_to_update => 'modal-selector-entities',
+    :free_search_after_function => after_functions,
+    :free_search_before_function => before_functions,
+    :free_search_reset_type => :custom_js,
+    :free_search_ajax_parameters => "$('.modal-selected-values form, input#easy_query_q, #freetext_reset').serialize()",
+    :free_search_after_done => "
+
+  EASY.modalSelector.bindInfiniteScroll(function() {
+        return ['#{j remote_function_url}' + '&' + $('#modal_selector_query_form, .modal-selected-values form').serialize() + '&page=', ''];
+    });
+    $('.easy-query-heading .buttons').hide();
+    $('#easy_query_q').focus();
+
+    ",
+    :free_search_reset_custom_js => "$.ajax({'url': '#{freetext_reset}', 'type':'#{remote_function_method}', data: $('.modal-selected-values form, #freetext_reset').serialize()}).done(function(data) {
+        EASY.modalSelector.bindInfiniteScroll(function() {
+          return ['#{j remote_function_url}' + '&' + $('#modal_selector_query_form, .modal-selected-values form, input#easy_query_q, #freetext_reset').serialize() + '&page=', '']
+        });
+        $('#easy_modal').html(data);
+      })"
+  }.merge(modal_freetext_options)}) %>
+</div>

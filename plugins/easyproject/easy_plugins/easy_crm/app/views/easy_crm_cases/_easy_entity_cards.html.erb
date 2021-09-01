@@ -1,0 +1,2 @@
+<%= render_easy_entity_assignments(easy_crm_case, EasyInvoice, :project => project, :context_menus_path => false) %>
+<%= context_menu context_menus_easy_invoices_path(:project_id => project, :crm_case_id => easy_crm_case, :back_url => params[:back_url]), "#entity_easy_crm_case_#{easy_crm_case.id}_easy_invoices" %>

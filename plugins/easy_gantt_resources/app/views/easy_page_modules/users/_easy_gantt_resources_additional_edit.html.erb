@@ -1,0 +1,5 @@
+<%= hidden_field_tag "#{block_name}[hide_unassigned]", '0', id: nil %>
+<p>
+  <%= label_tag "#{block_name}[hide_unassigned]", l(:field_hide_unassigned) %>
+  <%= check_box_tag "#{block_name}[hide_unassigned]", '1', (settings['hide_unassigned'] == '1') %>
+</p>

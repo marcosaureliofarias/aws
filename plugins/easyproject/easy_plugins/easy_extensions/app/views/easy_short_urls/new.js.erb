@@ -1,0 +1,15 @@
+$("#ajax-modal").html("<%=j render(:template => 'easy_short_urls/new', :formats => [:html]) %>");
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_save) %>',
+      click: function() {$(this).find('form:first').submit();}, 'class': 'button-positive'
+    }
+  ],
+  title: '<%= j(l(:heading_easy_short_urls_new)) %>'
+});

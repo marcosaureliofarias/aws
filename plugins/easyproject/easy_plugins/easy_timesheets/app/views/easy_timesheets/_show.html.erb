@@ -1,0 +1,41 @@
+<div id="easy_timesheet_form_container" class="autoscroll">
+  <table id="<%= dom_id(easy_timesheet) -%>" class="easy-timesheet-table" data-cell-prompt-text="<%=l :text_easy_timesheet_prompt_text %>" data-cell-path="<%= cell_easy_timesheet_path(easy_timesheet) if easy_timesheet.editable? || easy_timesheet.addable? -%>" data-row-path="<%= row_easy_timesheet_path(easy_timesheet) if easy_timesheet.editable? || easy_timesheet.addable? %>" data-text-confirm-destroy-cell="<%= l(:text_easy_timesheet_destroy_cell_are_you_sure) %>">
+  <thead>
+    <tr id="timesheet_header">
+      <th class="easy-timesheet-label border"><%= l(:label_project) %></th>
+      <th class="easy-timesheet-label border"><%= l(:label_issue) %></th>
+      <th class="easy-timesheet-label border"><%= l(:label_activity) %></th>
+      <% easy_timesheet.working_dates.each do |day| %>
+      <th class="easy-timesheet-label time-entry-hour">
+        <big><%= day_name(day.cwday) %></big>
+        <br />
+        <%= format_date(day) %>
+      </th>
+      <% end %>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if easy_timesheet.rows.any? %>
+      <%= render(:partial => 'easy_timesheet_rows/row', :collection => easy_timesheet.rows, :locals => {:easy_timesheet => easy_timesheet}) -%>
+    <% else %>
+      <tr>
+        <td colspan="<%= 3 + easy_timesheet.working_days + 2 %>">
+          <p class="nodata">
+            <%= l(:label_no_data) -%>
+          </p>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+  <tfoot>
+    <%= render(:partial => 'easy_timesheets/footer', :locals => {:easy_timesheet => easy_timesheet}) if easy_timesheet.rows.any? -%>
+  </tfoot>
+</table>
+</div>
+
+<p class="text-center form-actions">
+  <%= link_to(l(:button_easy_timesheets_new_row), row_easy_timesheet_path(easy_timesheet), :class => 'icon icon-add button', :remote => true) if easy_timesheet.addable? -%>
+</p>
+<%= render 'easy_user_working_time_calendars/legend' %>

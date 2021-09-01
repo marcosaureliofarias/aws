@@ -1,0 +1,82 @@
+<div id="alerts">
+  <h2><%= params[:for_all] == '1' ? l(:label_alerts_for_all) : l(:label_alerts_my_alerts) -%></h2>
+
+  <% if (@alerts.empty?) -%>
+    <p class="nodata"><%= l(:label_no_data) -%></p>
+  <% else -%>
+    <div class="autoscroll">
+      <table class="list reorder">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th><%= l(:field_name) -%></th>
+            <th><%= l(:field_alert_is_for) -%></th>
+            <th><%= l(:field_alert_mail_for) -%></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @alerts.each do |alert| -%>
+            <tr>
+              <td class="center reorder-handler"><%= render_reorder_handle(alert, 'alert') if alert.editable_by?(User.current) %></td>
+              <td style="color:<%= alert.type.color %>"><%= alert.type.translated_name -%></td>
+              <td class="name"><%= alert.name -%></td>
+              <td>
+                <% if alert.is_for == 'only_me' -%>
+                  <%= l(:label_alerts_for_only_me) -%>
+                <% elsif alert.is_for == 'all' -%>
+                  <%= l(:label_alerts_for_all) -%>
+                <% elsif alert.is_for == 'group' -%>
+                  <%= alert.group.name if alert.group -%>
+                <% end %>
+              </td>
+              <td>
+                <% if alert.mail_for == 'all' -%>
+                  <%= l(:label_alerts_for_all) -%>
+                <% elsif alert.mail_for == 'group' -%>
+                  <% if alert.mail_group %>
+                    <%= alert.mail_group.name -%>
+                  <% else %>
+                    <%= l(:label_alerts_for_group) -%>
+                  <% end %>
+                <% end %>
+              </td>
+              <td class="easy-additional-ending-buttons">
+                <% if alert.can_generate_report?(User.current) %>
+                  <%= link_to(content_tag(:span, l(:button_alerts_report), :class => 'tooltip'), { :action => 'report', :id => alert.id}, { :class => 'icon icon-stats', :title => l(:title_alerts_report)} ) -%>
+                <% end %>
+                <% if alert.editable_by?(User.current) %>
+                  <%= link_to(content_tag(:span, l(:button_edit), :class => 'tooltip'), { :action => 'edit', :id => alert.id}, { :class => 'icon icon-edit', :title => l(:button_edit)} ) -%>
+                  <%= link_to(content_tag(:span, l(:button_delete), :class => 'tooltip'), { :action => 'destroy', :id => alert.id, :back_url => original_url}, { :method => :delete, :class => 'icon icon-del', :data => {:confirm => l(:text_are_you_sure)}, :title => l(:button_delete)} ) if alert.deletable? -%>
+                <% end %>
+              </td>
+            </tr>
+          <% end -%>
+        </tbody>
+      </table>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:button_alerts_add_new_alert), { :controller => 'alerts', :action => 'new', :for_all => params[:for_all] }, :title => l(:title_alerts_add_new_alert), :class => 'button-positive' -%>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_alerts_reports), { :controller => 'alert_reports', :action => 'index' }, :title => l(:title_alerts_reports), :class => 'button' -%>
+  <% if params[:for_all] == '1' %>
+    <%= link_to l(:button_alerts_my_alerts), { :controller => 'alerts', :action => 'index' }, :title => l(:title_alerts_my_alerts), :class => 'button' -%>
+  <% else %>
+    <%= link_to(l(:button_manage_alerts_for_all), { :controller => 'alerts', :action => 'index', :for_all => 1 }, :title => l(:title_manage_alerts_for_all), :class => 'button') if User.current.allowed_to?(:manage_alerts_for_all, nil, :global => true) -%>
+  <% end %>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar/alerts' %>
+<% end %>

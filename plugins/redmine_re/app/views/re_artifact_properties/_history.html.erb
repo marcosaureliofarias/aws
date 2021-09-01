@@ -1,0 +1,38 @@
+<div id="change-1" class="journal">
+  <div class="journal-details-container" style='margin: 0px 15px;' >
+    <span>
+      <%= l(:re_artifact_properties_version, version: version.version) %>
+    </span>
+    <span class="journal-timestamp"><%= version.timestamp_to_s %></span>
+    <span class='add-user-links' data-id='<%= version.user_id %>'>
+      <a class='user active' data-remote='true' href="<%= profile_user_path(version.user_id) %>">
+        <%= version.user_name %>
+      </a>
+    </span>
+
+    <div id="journal-1-notes" class="wiki">
+      <% version.changes.each_with_index do |change, index| %>
+        <% unless index.zero? %>
+          <hr>
+        <% end %>
+        <p><%= change.html_safe %></p>
+      <% end %>
+
+      <% if version.changes.empty? %>
+        <p>Unchanged</p>
+      <% end %>
+    </div>
+
+    <% if version.version != @re_artifact_properties.current_version %>
+      <span>
+        <%= link_to_if_authorized(t(:re_artifact_properties_version_revert), {
+          controller: 're_artifact_properties',
+          action: 'revert_to_version',
+          id: @re_artifact_properties,
+          re_artifact_properties_version_id: version.id },
+          class: 'icon icon-workflow button') %>
+      </span>
+    <% end %>
+    <hr>
+  </div>
+</div>

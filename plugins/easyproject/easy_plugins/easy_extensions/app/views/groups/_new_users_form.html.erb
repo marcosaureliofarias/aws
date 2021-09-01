@@ -1,0 +1,9 @@
+<h3>
+  <%= label_tag('user_search', l(:label_user_search)) %>
+  <%= search_field_tag('user_search', nil, :size => 30, :class => 'pull-right', :placeholder => l(:label_user_search)) %>
+</h3>
+<br>
+<%= late_javascript_tag "observeSearchfield('user_search', null, '#{ j autocomplete_for_user_group_path(@group) }'); $('#user_search').keypress(function( event ) { if(event.which == 13) { event.preventDefault(); }});" %>
+<div id="principals_for_new_member">
+  <%= render(:partial => 'members/easy_principals_for_new_members', :locals => { :group => @group }) %>
+</div>

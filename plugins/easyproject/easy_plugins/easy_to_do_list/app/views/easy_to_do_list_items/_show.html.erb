@@ -1,0 +1,37 @@
+<% if easy_to_do_list_item.new_record? %>
+  <div class="new-record">
+    <div class="toolbar-bottom">
+    <%= link_to_function(l(:button_easy_to_do_list_add_new_todo), '', title: l(:button_easy_to_do_list_add_new_todo), class: 'add-easy-to-do-lists-item icon icon-add button-positive') %>
+      <div class="easy-to-do-lists-item-new-form-container" style="display:none">
+        <%= form_for([easy_to_do_list, easy_to_do_list_item], html: {class: 'easy-to-do-lists-item-new-form'}) do |f| %>
+          <p>
+            <%= f.text_field :name, placeholder: l(:label_easy_to_do_list_field_name_on_todo), size: nil, class: 'block'%>
+          </p>
+          <div>
+            <%= f.submit l(:button_add), title: l(:button_add), class: 'button-positive' %>
+            <%= link_to_function(l(:button_close), '', title: l(:button_close), class: 'close-easy-to-do-lists-item button') %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <li class="movable-list-item ui-state-default" title="<%= l(:title_easy_to_do_list_movable_list_item) -%>"
+      data-url="<%= easy_to_do_list_easy_to_do_list_item_path(easy_to_do_list_item, easy_to_do_list_id: easy_to_do_list_item.easy_to_do_list) -%>"
+      data-text="<%= easy_to_do_list_item.name -%>">
+      <div class="list-item-buttons push-right">
+        <% if !easy_to_do_list_item.entity.nil? %>
+          <%= link_to('', url_to_entity(easy_to_do_list_item.entity), target: '_blank', class: 'entity-easy-to-do-lists-item icon icon-move', title: easy_to_do_list_item.entity.to_s) %>
+        <% end %>
+        <%= link_to_function('', '', title: l(:button_delete), class: 'delete-easy-to-do-lists-item icon icon-del', :'data-text' => l(:text_are_you_sure)) %>
+      </div>
+    <span class="list-item-checkbox"><%= check_box_tag 'easy_to_do_list_item[is_done]', '1', easy_to_do_list_item.is_done? -%></span>
+    <span class="list-item-text">
+      <% if easy_to_do_list_item.is_done? %>
+        <del><%= textilizable(h(easy_to_do_list_item.name).to_str) -%></del>
+      <% else %>
+        <%= textilizable(h(easy_to_do_list_item.name).to_str) -%>
+      <% end %>
+    </span>
+  </li>
+<% end %>

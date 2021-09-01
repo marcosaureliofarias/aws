@@ -1,0 +1,9 @@
+$(".easy-contextual").hide();
+var description = $("#show_issue_description").hide();
+var description_form = $('#issue_description_form');
+if(description_form.length > 0) {
+  description_form.show();
+}
+else {
+  description.after('<%= j(render :partial => 'description_form') %>');
+}

@@ -1,0 +1,7 @@
+<p class="">
+  <%= content_tag(:label, l(:label_zoom)) %>:
+  <% ['day', 'week', 'month'].each do |zoom| %>
+    <%= radio_button_tag("easy_query[settings][zoom]", zoom, query.zoom == zoom) %>
+    <%= label_tag("easy_query_settings_zoom_#{zoom}", l("button_gantt_zoom_#{zoom}")) %>
+  <% end -%>
+</p>

@@ -1,0 +1,305 @@
+<ul>
+  <%= call_hook(:view_issues_context_menu_start, {:issues => @issues, :can => @can, :back => @back}) %>
+
+  <% if @issue && (@can[:edit] || @can[:edit_basic_attrs]) -%>
+    <li><%= context_menu_link l(:button_edit), {:controller => 'issues', :action => 'edit', :id => @issue}, :class => 'icon icon-edit' %></li>
+  <% elsif @can[:edit] %>
+    <li><%= context_menu_link l(:button_edit), bulk_edit_issues_path(:ids => @issue_ids, :back_url => @back), :class => 'icon icon-edit' %></li>
+  <% end %>
+  <% if @easy_issue_timer_setting && @easy_issue_timer_setting.is_a?(Hash) %>
+    <li><%= context_menu_link(@easy_issue_timer_setting[:label], @easy_issue_timer_setting[:url], :remote => !@easy_issue_timer_setting[:is_running], :class => "icon #{@easy_issue_timer_setting[:icon]}", :method => :post, onclick: "$(this).closest('div').hide()" ) %></li>
+  <% end -%>
+
+  <% if @allowed_statuses.present? && (@can[:edit] || @can[:edit_basic_attrs]) %>
+    <li class="folder">
+      <a href="#" class="submenu icon icon-issue-status" onclick="return false;"><%= l(:field_status) %></a>
+      <ul>
+        <% @allowed_statuses.each do |s| -%>
+          <li><%= context_menu_link s.name, bulk_update_issues_path(:ids => @issue_ids, :issue => {:status_id => s}, :back_url => @back), :method => :post, :selected => (@issue && s == @issue.status), :confirm => (@subtasks_to_close && s.is_closed? && @subtasks_to_close > 0 ? l(:text_issues_close_descendants_confirmation, :count => @subtasks_to_close) : nil) %></li>
+        <% end -%>
+      </ul>
+    </li>
+  <% end %>
+
+  <% if @safe_attributes.include?('tracker_id') && @can[:edit] && !@trackers.nil? && @trackers.size > 1 %>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-tracker">
+        <%= easy_autocomplete_tag(
+              'issue[tracker_id]',
+              {name: l(:field_tracker), id: nil},
+              @trackers.map { |a| {label: a.name, id: a.id} },
+              html_options: {
+                id: 'tracker_for_context_menu_issue',
+                placeholder: l(:field_tracker)
+              },
+              easy_autocomplete_options: {
+                activate_on_input_click: 'true'
+              },
+              onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_issues_path(:ids => @issue_ids, :back_url => @back)}', data: { issue: { tracker_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });"
+            ) %>
+      </a>
+    </li>
+  <% end %>
+
+  <% if @safe_attributes.include?('priority_id') && @priorities.present? && @can[:edit] && !@issues.any?(&:priority_derived?) -%>
+    <li class="folder">
+      <a href="#" class="submenu icon icon-list"><%= l(:field_priority) %></a>
+      <ul>
+        <% @priorities.each do |p| -%>
+          <li><%= context_menu_link p.name, {:controller => 'issues', :action => 'bulk_update', :ids => @issue_ids, :issue => {'priority_id' => p}, :back_url => @back}, :method => :post, :selected => (@issue && p == @issue.priority) %></li>
+        <% end -%>
+      </ul>
+    </li>
+  <% end %>
+
+  <% if @safe_attributes.include?('fixed_version_id') && @versions.present? && @can[:edit] -%>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-stack">
+        <%= easy_autocomplete_tag(
+              'issue[fixed_version_id]',
+              {name: l(:field_fixed_version), id: nil},
+              @versions.map { |a| {label: format_version_name(a), id: a.id} }.unshift(label: l(:label_none), id: 'none'),
+              html_options: {
+                id: 'fixed_version_for_context_menu_issue',
+                placeholder: l(:field_fixed_version)
+              },
+              easy_autocomplete_options: {
+                activate_on_input_click: 'true'
+              },
+              onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_issues_path(:ids => @issue_ids, :back_url => @back)}', data: { issue: { fixed_version_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });"
+            ) %>
+      </a>
+    </li>
+  <% end -%>
+
+  <% if @safe_attributes.include?('assigned_to_id') && @assignables.present? && @can[:edit] && !@easy_distributed_tasks -%>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-user">
+        <%= easy_autocomplete_tag(
+              'issue[assigned_to_id]',
+              {name: l(:field_assigned_to), id: nil},
+              assignables_autocomplete_options_for_edit(@assignables),
+              html_options: {
+                id: 'assigned_to_for_context_menu_issue',
+                placeholder: l(:field_assigned_to)
+              },
+              easy_autocomplete_options: {
+                activate_on_input_click: 'true'
+              },
+              onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_issues_path(:ids => @issue_ids, :back_url => @back)}', data: { issue: { assigned_to_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });"
+            ) %>
+      </a>
+    </li>
+  <% end %>
+
+  <% if @safe_attributes.include?('author_id') && @available_authors.present? && @can[:edit] -%>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-user">
+        <%= easy_autocomplete_tag(
+              'issue[author_id]',
+              {name: l(:field_author), id: nil},
+              @available_authors.map { |a| {label: a.name, id: a.id} },
+              html_options: {
+                id: 'author_for_context_menu_issue',
+                placeholder: l(:field_author)
+              },
+              easy_autocomplete_options: {
+                activate_on_input_click: 'true'
+              },
+              onchange: "if(!ui['item']) { return }; $.ajax({ type: 'POST', url: '#{bulk_update_issues_path(:ids => @issue_ids, :back_url => @back)}', data: { issue: { author_id: ui['item']['id'] } } }).done(function() { window.location.reload(); });"
+            ) %>
+      </a>
+    </li>
+  <% end %>
+
+  <% if @safe_attributes.include?('category_id') && @project && @project.issue_categories.any? && @can[:edit] -%>
+    <li class="folder">
+      <a href="#" class="submenu"><%= l(:field_category) %></a>
+      <ul>
+        <% issue_category_tree_with_level_and_name_prefix(@project.issue_categories) do |cat, lvl, prefix| -%>
+          <li><%= context_menu_link prefix + cat.name, bulk_update_issues_path(:ids => @issue_ids, :issue => {'category_id' => cat}, :back_url => @back), :method => :post, :selected => (@issue && cat == @issue.category) %></li>
+        <% end %>
+        <li><%= context_menu_link l(:label_none), bulk_update_issues_path(:ids => @issue_ids, :issue => {'category_id' => 'none'}, :back_url => @back), :method => :post, :selected => (@issue && @issue.category.nil?) %></li>
+      </ul>
+    </li>
+  <% end -%>
+
+  <% if @safe_attributes.include?('done_ratio') && Issue.use_field_for_done_ratio? && @can[:edit] && !@issues.any?(&:done_ratio_derived?) %>
+    <li class="folder">
+      <a href="#" class="submenu"><%= l(:field_done_ratio) %></a>
+      <ul>
+        <% (0..10).map { |x| x*10 }.each do |p| -%>
+          <li><%= context_menu_link "#{p}%", bulk_update_issues_path(:ids => @issue_ids, :issue => {'done_ratio' => p}, :back_url => @back), :method => :post, :selected => (@issue && p == @issue.done_ratio) %></li>
+        <% end -%>
+      </ul>
+    </li>
+  <% end %>
+
+  <% if @safe_attributes.include?('project_id') && @can[:edit] %>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-project">
+        <%= easy_autocomplete_tag(
+              'issue[project_id]',
+              {name: l(:label_project), id: nil},
+              easy_autocomplete_path('visible_projects'),
+              html_options: {
+                id: 'project_for_context_menu_issue',
+                placeholder: l(:label_project)
+              },
+              easy_autocomplete_options: {
+                activate_on_input_click: 'true'
+              },
+              root_element: 'projects',
+              onchange: "if(!ui['item']) { return }; window.location = '#{issue_move_to_project_path(ids: @issues.map(&:id))}' + '&project_id=' + ui['item']['id'] + '&back_url=' + encodeURIComponent(window.location.toString());"
+            ) %>
+      </a>
+    </li>
+  <% end %>
+
+  <% if @options_by_custom_field.present? && @options_by_custom_field.any? %>
+    <li class="folder context-menu-submenu-autocomplete">
+      <a href="#" class="icon icon-cf submenu"><%= l(:label_custom_field_plural) %></a>
+      <ul>
+        <% @options_by_custom_field.each do |field, options| %>
+          <% if field.field_format == 'list' %>
+            <li class="context-menu-autocomplete ui-front">
+              <a>
+                <%= easy_autocomplete_tag(
+                        "issue_cf_#{field.id}",
+                        { name: field.name, id: nil },
+                        options.map { |text, value| { label: text, id: value || text } },
+                        html_options: {
+                            placeholder: field.name
+                        },
+                        easy_autocomplete_options: {
+                            activate_on_input_click: 'true',
+                            id: "issue_#{field.id}_autocomplete",
+                        },
+                        onchange: "
+                  if(!ui['item']) {
+                    return
+                  };
+                  $.ajax({
+                    type: 'POST',
+                    url: '#{bulk_update_issues_path(ids: @issue_ids, back_url: @back)}',
+                    data: {
+                      issue: {
+                        custom_field_values: {
+                          '#{field.id}': ui['item']['id']
+                        }
+                      }
+                    }
+                  }).done(function() {
+                    window.location.reload();
+                  });
+                "
+                    ) %>
+              </a>
+            </li>
+          <% else %>
+            <li class="folder cf_<%= field.id %>">
+              <a href="#" class="submenu"><%= field.name %></a>
+              <ul>
+                <% options.each do |text, value| %>
+                  <li><%= bulk_update_custom_field_context_menu_link(field, text, value || text) %></li>
+                <% end %>
+                <% unless field.is_required? %>
+                  <li><%= bulk_update_custom_field_context_menu_link(field, l(:label_none), '__none__') %></li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+  <% if @can[:add_watchers] %>
+    <li class="folder">
+      <a href="#" class="submenu"><%= l(:label_issue_watchers) %></a>
+      <ul>
+        <li><%= context_menu_link l(:button_add),
+                                  new_watchers_path(:object_type => 'issue', :object_id => @issue_ids),
+                                  :remote => true,
+                                  :class => 'icon-add' %></li>
+      </ul>
+    </li>
+  <% end %>
+
+  <% if @can[:watch] %>
+    <li><%= watcher_link(@issues, User.current) %></li>
+  <% end %>
+
+  <% if @issue %>
+    <li>
+      <%= context_menu_link l(:label_details),
+                            issue_path(@issue),
+                            target: '_blank',
+                            class: 'icon icon-issue' %>
+    </li>
+  <% end %>
+
+  <% unless @issue %>
+    <li><%= context_menu_link l(:button_filter), _project_issues_path(@project, :set_filter => 1, :status_id => '*', :issue_id => @issue_ids.join(',')), :class => 'icon-list' %></li>
+  <% end %>
+
+  <% if @issue.present? %>
+    <% if @can[:log_time] -%>
+      <li><%= context_menu_link l(:button_log_time), new_easy_time_entry_path(issue_id: @issue, modal: true), class: 'icon icon-time-add', remote: true %></li>
+    <% end %>
+
+    <% if @can[:copy] -%>
+      <li><%= context_menu_link l(:button_copy), project_copy_issue_path(@project, @issue), :class => 'icon icon-copy' %></li>
+    <% end -%>
+  <% else %>
+    <% if @can[:copy] -%>
+      <li><%= context_menu_link l(:button_copy), bulk_edit_issues_path(:ids => @issue_ids, :copy => '1'), :class => 'icon icon-copy' %></li>
+    <% end -%>
+
+    <% if @can[:edit] -%>
+      <li class="folder">
+        <a href="#" class="submenu icon icon-list"><%= l(:button_merge_to) %></a>
+        <ul>
+          <li><%= context_menu_link l(:button_merge_to_oldest), bulk_update_issues_path(:ids => @issue_ids, :back_url => @back, :issue => {:merge_to_id => @issues_by_created_on.first.id}, :merge => '1'), method: 'post' %></li>
+          <li><%= context_menu_link l(:button_merge_to_newest), bulk_update_issues_path(:ids => @issue_ids, :back_url => @back, :issue => {:merge_to_id => @issues_by_created_on.last.id}, :merge => '1'), method: 'post' %></li>
+          <li class="context-menu-autocomplete">
+            <a class="icon icon-integrate ui-front">
+              <%= easy_autocomplete_tag(
+                    'issue[merge_to_id]',
+                    {name: l(:button_merge_to), id: nil},
+                    @issues.map { |a| {label: a.subject, id: link_to(a.subject, bulk_update_issues_path(:ids => @issue_ids, :back_url => @back, :issue => {:merge_to_id => a.id}, :merge => '1'), method: 'post')
+                    } },
+                    html_options: {
+                      id: 'merge_to_context_menu_issue',
+                      placeholder: l(:button_merge_to)
+                    },
+                    easy_autocomplete_options: {
+                      activate_on_input_click: 'true'
+                    },
+                    onchange: "
+                if(!event.toElement || !($(event.toElement).find('a').length > 0)) {
+                  return;
+                };
+                $(event.toElement).find('a')[0].click();
+                ",
+                    render_item: '
+                  function (ul, item) {
+                    return $("<li>")
+                    .data("item.autocomplete", item)
+                    .append(item.id)
+                    .appendTo(ul);
+                  }'
+                  ) %>
+            </a>
+          </li>
+        </ul>
+      </li>
+    <% end -%>
+  <% end %>
+
+  <% if @can[:delete] -%>
+    <li><%= context_menu_link l(:button_delete), issues_path(:ids => @issue_ids, :back_url => @back), :method => :delete, :data => {:confirm => issues_destroy_confirmation_message(@issues)}, :class => 'icon icon-del' %></li>
+  <% end -%>
+
+  <%= call_hook(:view_issues_context_menu_end, {:issue => @issue, :issues => @issues, :can => @can, :back => @back, :ids => @issue_ids, :options => @options}) %>
+</ul>

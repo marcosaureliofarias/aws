@@ -1,0 +1,30 @@
+<% if page_module.entity_id.blank? -%>
+  <%= render partial: 'easy_page_modules/page_module_cannot_be_displayed', locals: { page_module: page_module } %>
+<% else -%>
+  <% project = @easy_page_modules_data[block_name][:project] %>
+
+  <% if User.current.wants_comments_in_reverse_order? %>
+    <% if User.current.allowed_to?(:edit_project_custom_fields, project) %>
+      <div id="project-history-comments-form">
+        <%= render partial: 'projects/edit_custom_fields_form', locals: { project: project, journals_limit: @easy_page_modules_data[block_name][:journals_limit] } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div id="project-history">
+    <%= render partial: 'common/entity_tabs', locals: {tabs: easy_project_history_module_tabs(@easy_page_modules_data[block_name]), tabs_container: 'project-history'} %>
+  </div>
+
+  <% unless User.current.wants_comments_in_reverse_order? %>
+    <% if User.current.allowed_to?(:edit_project_custom_fields, project) %>
+      <div id="project-history-comments-form">
+        <%= render partial: 'projects/edit_custom_fields_form', locals: { project: project, journals_limit: @easy_page_modules_data[block_name][:journals_limit] } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <script type="text/javascript">
+    EASY.schedule.main(function(){EASY.journals.collapseUnnecessary()});
+  </script>
+
+<% end %>

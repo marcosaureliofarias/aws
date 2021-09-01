@@ -1,0 +1,17 @@
+<tr id="easy_entity_attribute_new">
+  <%= fields_for(:easy_entity_attribute_map, @easy_entity_attribute_map) do |f| %>
+    <td class="name">
+      <%= f.hidden_field :entity_from_type %>
+      <%= f.hidden_field :entity_to_type %>
+      <%= f.select(:entity_from_attribute, f.object.entity_from_possible_attributes.map { |c| [c.caption, c.name] }) %>
+    </td>
+    <td>=></td>
+    <td class="name">
+      <%= f.select(:entity_to_attribute, f.object.entity_to_possible_attributes.map { |c| [c.caption, c.name] }) %>
+    </td>
+    <td>
+      <a href="javascript:void(0)" onclick="$.post('<%=j easy_entity_attribute_maps_path(:format => 'js') -%>', $('#easy_entity_attribute_new').find('select, input').serialize())" class="icon icon-save" title="<%= l(:button_create) -%>"></a>
+      <a href="javascript:void(0)" onclick="$(this).closest('tr').remove()" class="icon icon-false" title="<%= l(:button_delete) %>"></a>
+    </td>
+  <% end %>
+</tr>

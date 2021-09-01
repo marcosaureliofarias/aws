@@ -1,0 +1,43 @@
+  <p>
+    <%= label_tag "#{block_name}[name]", l(:field_name) %>
+    <%= text_field_tag "#{block_name}[name]", settings['name'], :size => 30 %>
+  </p>
+  <p>
+    <%= radio_button_tag "#{block_name}[calculate]", 'sum', settings['calculate'] == 'sum' || settings['calculate'].blank? %>
+    <%= label_tag "#{block_name}_calculate_sum", l(:label_page_module_chart_calculate_sum, :field => EasyCrmCase.human_attribute_name(:price)) %>
+    <%= radio_button_tag "#{block_name}[calculate]", 'count', settings['calculate'] == 'count' %>
+    <%= label_tag "#{block_name}_calculate_count", l(:label_page_module_chart_calculate_count) %>
+  </p>
+  <fieldset>
+    <legend><%= l(:label_custom_field_plural) %>:</legend>
+    <% EasyCrmCaseCustomField.where(:multiple => false).to_a.each do |cf| %>
+      <p class="floating">
+        <%= radio_button_tag "#{block_name}[custom_field]", cf.id, settings['custom_field'] == cf.id.to_s %>
+        <%= label_tag "#{block_name}_custom_field_#{cf.id}", cf.name %>
+      </p>
+    <% end %>
+  </fieldset>
+  <fieldset>
+    <legend><%= EasyCrmCase.human_attribute_name(:easy_crm_case_status) %>:</legend>
+    <% EasyCrmCaseStatus.sorted.each do |status| %>
+      <p class="floating">
+        <%= check_box_tag "#{block_name}[easy_crm_case_status_id][]", status.id, settings['easy_crm_case_status_id'] && settings['easy_crm_case_status_id'].include?(status.id.to_s), :id => "#{block_name}_easy_crm_case_status_id_#{status.id}" %>
+        <%= label_tag "#{block_name}_easy_crm_case_status_id_#{status.id}", status.name %>
+      </p>
+    <% end %>
+  </fieldset>
+  <fieldset>
+    <legend><%= l(:label_page_module_chart_dates) %>:</legend>
+    <p>
+      <%= radio_button_tag "#{block_name}[period_type]", '1', settings['period_type'] == '1' || settings['period_type'].nil?, :id => "#{block_name}_period_type_date_period_1" %>
+      <%= select_tag "#{block_name}[period]", options_for_period_select(settings['period'], nil, :show_future => true), :onfocus => "$('##{block_name}_period_type_date_period_1').prop('checked', true);" %>
+    </p>
+    <p>
+      <%= radio_button_tag "#{block_name}[period_type]", '2', settings['period_type'] == '2', :id => "#{block_name}_period_type_date_period_2" %>
+      <span onclick="<%= "$('##{block_name}_period_type_date_period_2').prop('checked', true);" -%>">
+        <%= l(:label_date_from_to, :start => (text_field_tag("#{block_name}[date_from]", settings['date_from'], :size => 10, :id => "#{block_name}_date_from", :onchange => "$(this).closest('span').click();") + calendar_for("#{block_name}_date_from")), :end => (text_field_tag("#{block_name}[date_to]", settings['date_to'], :size => 10, :id => "#{block_name}_date_to", :onchange => "$(this).closest('span').click();") + calendar_for("#{block_name}_date_to"))).html_safe %>
+      </span>
+    </p>
+  </fieldset>
+  <%= render :partial => 'easy_page_modules/pie_chart_settings', :locals => {:settings => settings, :block_name => block_name} %>
+

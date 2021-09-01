@@ -1,0 +1,52 @@
+<%
+  queries = EasyQuery.constantized_subclasses.select{|query| query.report_support? }.collect {|klass| [klass.translated_name, klass.name] }.sort
+  query ||= @easy_page_modules_data[block_name][:query]
+%>
+
+<div id="<%= modul_uniq_id %>basic_attrs" class="tabular" data-to-serialize="true">
+  <p>
+    <%= label_tag "#{block_name}[easy_query_type]", l(:field_entity) %>
+    <%= select_tag("#{block_name}[easy_query_type]", options_for_select([[l(:actionview_instancetag_blank_option), '']] + queries, settings['easy_query_type']), id: "#{modul_uniq_id}_easy_query_type", class: 'easy-query-type' ) %>
+  </p>
+</div>
+
+<% if query %>
+  <div class="basic-query">
+    <%= render 'easy_page_modules/easy_query_edit', local_assigns %>
+  </div>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<style type="text/css">
+  <%= '#' + modul_uniq_id %> .easy-query-output-list{ display: none; }
+  <%= '#' + modul_uniq_id %> .easy-query-type-settings-container{ margin-top: 30px; }
+</style>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    var $currency = $("#<%= modul_uniq_id %> .basic-query .easy-query-type-settings-container-static-attributes .currency");
+    if( $currency.length > 0 ) {
+      $("#<%= modul_uniq_id %>basic_attrs").append( "<hr/>" ).append($currency);
+    }
+    var $currency2 = $("#<%= modul_uniq_id %>2 .easy-query-type-settings-container-static-attributes .currency");
+    if( $currency2.length > 0 ) {
+      $("#<%= modul_uniq_id %>_easy_query_type2_container").append( "<hr/>" ).append($currency2);
+    }
+
+    $("#<%= modul_uniq_id %> .easy-query-type").change(function (evt) {
+      var targetUrl = "<%= raw update_my_page_module_view_path(page_module.uuid, template: page_module.is_a?(EasyPageTemplateModule) ? '1' : '0', block_name: block_name, edit: true, modal_edit: page_params[:modal_edit], with_container: false) %>";
+      var module = $("#<%= modul_uniq_id %>");
+
+      $.post(targetUrl, module.find(".easy-page-module-form").serialize(), function (data) {
+        module.html(data);
+        module.find(".easy-page-module-form").attr('data-changed', true);
+      });
+    });
+
+    $("#<%= modul_uniq_id %> .additional-data-series").click(function(evt) {
+      $('#<%= modul_uniq_id %>_easy_query_type2_container').show();
+      $(this).hide();
+    });
+  }, 2);
+</script>

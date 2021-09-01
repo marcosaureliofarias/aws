@@ -1,0 +1,39 @@
+<%= easy_breadcrumb([
+                        link_to(l(:heading_easy_sso, scope: :easy_sso),
+                                easy_sso_path,
+                                title: l(:heading_easy_sso, scope: :easy_sso)),
+                        link_to(l(:heading_easy_oauth2_applications, scope: :easy_oauth2),
+                                easy_oauth2_applications_path,
+                                title: l(:heading_easy_oauth2_applications, scope: :easy_oauth2)),
+                        link_to(@entity.name,
+                                easy_oauth2_application_path(@entity),
+                                title: @entity.name)
+                    ]) %>
+
+<%= title(@entity.name) %>
+
+<div>
+  <div class="easy-entity-details-header-attributes open">
+    <div id="issue-detail-attributes" class="easy-entity-details-attributes">
+      <div class="easy-git-repository__detail attributes">
+        <%= render_partial_show_view(@entity) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<%= render_easy_entity_assignments(@entity, EasyOauth2AccessGrant, easy_query_class: EasyOauth2AccessGrantQuery, heading: l(:easy_oauth2_access_grant_query, scope: [:easy_query, :name])) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:button_edit), edit_easy_oauth2_application_path(@entity), title: l(:button_edit), class: 'icon icon-edit button-positive') %>
+  <%= link_to l(:button_delete),
+              easy_oauth2_application_path(@entity),
+              title:  l(:button_delete),
+              method: :delete,
+              data:   { confirm: l(:text_are_you_sure) },
+              class:  'icon icon-del button' %>
+<% end %>

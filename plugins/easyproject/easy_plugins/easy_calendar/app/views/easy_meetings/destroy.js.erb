@@ -1,0 +1,3 @@
+var $dialogContainer = $('#edit_easy_meeting_<%= @easy_meeting.id %>').closest(':ui-dialog');
+if ( $dialogContainer.length == 0 )
+  window.location = '<%= easy_calendar_path %>';

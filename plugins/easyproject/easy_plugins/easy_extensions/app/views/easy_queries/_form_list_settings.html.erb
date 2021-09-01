@@ -1,0 +1,87 @@
+<% modul_uniq_id ||= ''; block_name ||= ''; page_module ||= nil
+   action ||= 'index'
+   hide_columns_selection = local_assigns.fetch(:hide_columns_selection, false)
+   show_sort_criteria = query.send("display_filter_sort_on_#{action}")
+   show_columns_criteria = query.send("display_filter_columns_on_#{action}")
+   show_group_by_criteria = query.send("display_filter_group_by_on_#{action}")
+   show_settings_criteria = query.send("display_filter_settings_on_#{action}")
+   options = { query: query, modul_uniq_id: modul_uniq_id, block_name: block_name }
+%>
+<table class="filters-table">
+<% if show_sort_criteria -%>
+  <%= content_tag(:tr, class: 'sort-container', id: "#{modul_uniq_id}sort_criteria") do %>
+    <td class="sort-heading"><%= content_tag(:label, l(:label_sort)) %></td>
+    <td>
+      <% render_query_sort_criteria(query, options) %>
+    </td>
+  <% end %>
+<% end %>
+<% if show_columns_criteria %>
+  <tr class="columns-container" id="<%= "#{modul_uniq_id}columns" %>" style="<%= 'display:none;' if (query.has_default_columns? && hide_columns_selection) %>">
+    <td class="columns-heading"><%= content_tag(:label, l(:field_column_names)) %></td>
+    <td><%= render 'easy_queries/columns', :query => query, :modul_uniq_id => modul_uniq_id, :block_name => block_name %></td>
+  </tr>
+<% end %>
+<% if show_group_by_criteria %>
+  <% group_by_select_name = (block_name.blank? ? 'group_by[]' : "#{block_name}[group_by][]") %>
+  <%= content_tag(:tr, id: modul_uniq_id + 'group_by', class: 'group-container gray-background', style: ('display:none' unless query.send("display_filter_group_by_on_#{action}"))) do %>
+    <td class="columns-heading"><%= content_tag(:label, l(:field_group_by)) %></td>
+    <td>
+      <%= autocomplete_field_tag(group_by_select_name, query.groupable_columns.map { |c| [c.caption, c.name.to_s] }, query.group_by) %>
+    </td>
+  <% end %>
+  <script type="application/javascript">
+    EASY.schedule.late(() => {
+      const autocomplete = $('#<%= modul_uniq_id -%>group_by input.ui-autocomplete-input');
+      function showLoadGroupsOpenedCheckbox() {
+        const value = autocomplete.easymultiselect('getValue');
+        if (value !== null && value.length > 0) {
+          $('#<%= modul_uniq_id -%>load_groups_opened_0').closest('span').show();
+        }
+        else {
+          $('#<%= modul_uniq_id -%>load_groups_opened_1').attr('checked', false);
+          $('#<%= modul_uniq_id -%>load_groups_opened_0').closest('span').hide();
+        }
+      }
+      autocomplete.change(event => {
+        showLoadGroupsOpenedCheckbox();
+      });
+      autocomplete.easymultiselect('setMultiselectOnChange', showLoadGroupsOpenedCheckbox);
+    });
+  </script>
+<% end %>
+
+<% if show_settings_criteria %>
+  <%= render :partial => 'easy_queries/settings_criteria', :locals => {:query => query, :modul_uniq_id => modul_uniq_id, :block_name => block_name} %>
+<% end -%>
+
+<% if query.period_columns? %>
+  <tr class="period-container gray-background easy_query_additional_options">
+    <%= render :partial => 'easy_queries/settings_period_criteria', :locals => {:query => query, :modul_uniq_id => modul_uniq_id, :block_name => block_name, :show_zoom => '0'} %>
+  </tr>
+<% end %>
+
+<% if query.currency_columns? && EasyCurrency.activated.any? && page_module.nil? %>
+  <tr class="currency-container gray-background easy_query_additional_options">
+    <%= render 'easy_queries/currency_settings', query: query %>
+  </tr>
+<% end %>
+</table>
+
+<% if page_module %>
+  <% if page_module.module_definition.custom_end_buttons? %>
+    <%= render partial: 'easy_page_modules/easy_query_end_buttons_settings', locals: { block_name: block_name, page_module: page_module } %>
+  <% end %>
+
+  <div class="toolbar preview-options">
+    <%= hidden_field_tag :block_name, block_name -%>
+    <%= hidden_field_tag :easy_query_type, query.type -%>
+    <%= hidden_field_tag :easy_query_render, 'table' -%>
+    <%= hidden_field_tag :query_name, query.name -%>
+    <%= hidden_field_tag :project_id, query.project_id if query.project_id -%>
+    <%= adhoc_preview_button(modul_uniq_id, {:query => query, :update => "#{modul_uniq_id}issues_preview"}) if page_module.module_definition.show_preview? %>
+  </div>
+
+  <div id="<%= modul_uniq_id %>issues_preview" class="adhoc-entities-preview"></div>
+<% end %>
+<%= call_hook(:view_easy_query_filter_settings_bottom, :query => query) %>

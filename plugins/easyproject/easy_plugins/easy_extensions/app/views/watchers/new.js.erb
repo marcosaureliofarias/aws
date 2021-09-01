@@ -1,0 +1,15 @@
+var modal = $('#ajax-modal');
+modal.html("<%= j(render(:partial => 'watchers/new', :locals => {:watched => @watched, :watchables => @watchables, :available_watchers => @available_watchers, :groups => @available_watcher_groups } )) %>");
+showModal('ajax-modal', 800);
+modal.dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_add).html_safe %>',
+      click: function() {$(this).find('form').submit()}, 'class': 'button-positive'
+    },
+    {
+      text: '<%=j l(:button_add_and_close).html_safe %>',
+      click: function() {var frm=$(this).find('form'); frm.append("<%= j hidden_field_tag(:close,true) %>"); frm.submit()}, 'class': 'button-positive'
+    }
+  ]
+})

@@ -1,0 +1,10 @@
+<% if User.current.allowed_to_globally?(:execute_easy_buttons) %>
+  <div class="tags">
+    <% entity.easy_buttons.each do |button| %>
+      <%= link_to button.name, execute_easy_button_path(button, entity_id: entity.id, format: 'js'),
+        class: "easy-action-button #{button.color}",
+        remote: true
+      %>
+    <% end %>
+  </div>
+<% end %>

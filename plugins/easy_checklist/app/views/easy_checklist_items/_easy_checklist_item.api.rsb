@@ -1,0 +1,16 @@
+local_assigns[:api].easy_checklist_item do
+  local_assigns[:api].id easy_checklist_item.id
+  local_assigns[:api].subject easy_checklist_item.subject
+  local_assigns[:api].done easy_checklist_item.done
+  if easy_checklist_item.author
+    local_assigns[:api].author(id: easy_checklist_item.author_id, name: easy_checklist_item.author.name)
+  end
+  if easy_checklist_item.changed_by
+    local_assigns[:api].changed_by(id: easy_checklist_item.changed_by.id, name: easy_checklist_item.changed_by.name)
+  end
+  local_assigns[:api].position easy_checklist_item.position
+  local_assigns[:api].easy_checklist_id easy_checklist_item.easy_checklist_id
+  local_assigns[:api].created_at easy_checklist_item.created_at
+  local_assigns[:api].updated_at easy_checklist_item.updated_at
+
+end

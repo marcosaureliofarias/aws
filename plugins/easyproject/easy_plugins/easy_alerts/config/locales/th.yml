@@ -1,0 +1,249 @@
+---
+th:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: คุณทำอะไรอยู่กันแน่? นำไปที่ timesheet.
+      b: timesheet ของคุณรู้สึกเศร้า คุณไม่คิดงั้นเหรอ?
+      c: อย่าทำงานฟรี กรอก timesheet สิ
+      d: วันนี้คุณมีวันหยุดไหม?
+      e: ตื่นได้แล้ว! ต้องกรอก Timesheet!
+  alerts_plugin_description: "- การแจ้งเตือนอัตโนมัติตามพารามิเตอร์ที่กำหนด"
+  alerts_plugin_name: การแจ้งเตือน - ระบบแจ้งเตือนล่วงหน้า
+  alerts_rule_project_filters: 'จำกัด โครงการ:'
+  alerts_type_alert: สัญญาณเตือน
+  alerts_type_notice: แจ้งให้ทราบ
+  alerts_type_warning: คำเตือน
+  button_alerts_add_new_alert: แจ้งเตือนใหม่
+  button_alerts_add_new_context: บริบทใหม่
+  button_alerts_add_new_type: ประเภทใหม่
+  button_alerts_manage_contexts: จัดการบริบท
+  button_alerts_manage_types: จัดการประเภทสัญญาณเตือน
+  button_alerts_my_alerts: การแจ้งเตือนของฉัน
+  button_alerts_report: รายงาน
+  button_alerts_report_archive: เก็บถาวร
+  button_alerts_report_unarchive: เลิกเก็บถาวร
+  button_alerts_reports: รายงานของฉัน
+  button_alerts_reports_archive: เก็บถาวร
+  button_issue_sidebar_add_alert: การแจ้งเตือนใหม่
+  button_manage_alerts_for_all: การแจ้งเตือนสาธารณะ
+  easy_alert:
+    issue_providing_rule_required_error: รายงานประเภทนี้ไม่สามารถส่งไปยังเป้าหมายดังกล่าวได้
+  easy_alerts_context:
+    helpdesk: Help desk
+    invoice: ใบแจ้งหนี้
+    issue: ภารกิจ
+    milestone: เหตุการณ์สำคัญ
+    project: โครงการ
+    timeentry: เวลาที่ใช้ไป
+  easy_alerts_rule:
+    easy_invoice_query: ตัวกรองที่บันทึกไว้
+    easy_issue_query: ตัวกรองที่บันทึกไว้
+    easy_project_query: ตัวกรองที่บันทึกไว้
+    easy_version_query: ตัวกรองที่บันทึกไว้
+    helpdesk_monitor_due_time: Help desk - ภารกิจครบกำหนดเวลาตาม SLA
+    helpdesk_monitor_due_time_assignee: Help desk - เวลาที่จะทำงานให้เสร็จตาม SLA
+    helpdesk_monitor_due_time_manager: Help desk - เวลาของความสำเร็จของภารกิจตาม SLA
+    helpdesk_monitor_hours_to_response: Help desk - เวลาถึงจุดเริ่มต้นของการแก้ปัญหาของภารกิจตาม
+      SLA
+    helpdesk_monitor_prepaid_hours: Help desk - เวลาที่ชำระล่วงหน้าเป็นรายเดือน
+    invoice_due_date: วันที่ครบกำหนด
+    issue_due_date: วันที่ครบกำหนด
+    issue_updated_date: วันที่อัพเดต
+    project_due_date: วันที่ครบกำหนด
+    project_estimated_hours: รวมชั่วโมงโดยประมาณ
+    timeentry_time_watcher: ช่วงเวลาที่ใช้ไป
+    timeentry_time_watcher_previous_day: เวลาที่ใช้ไปของวันก่อนหน้า
+    timeentry_time_watcher_previous_period: เวลาที่ใช้ไปของช่วงเวลาก่อนหน้า
+    version_due_date: วันที่ครบกำหนด
+  easy_pages:
+    modules:
+      easy_alerts: การแจ้งเตือน - รายงาน
+  easy_proposer:
+    alert_reports:
+      index:
+        caption: แจ้งเตือน - รายงานของฉัน
+        description: ดูรายงานของฉัน
+    alerts:
+      new:
+        caption: แจ้งเตือน - การแจ้งเตือนใหม่
+        description: สร้างการแจ้งเตือนใหม่
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: การแจ้งเตือน - การประเมินผล
+  field_alert_is_for: การประเมินผลสำหรับ
+  field_alert_mail_for: อีเมลถึง
+  field_alerts_report_text: สถานะ
+  field_alerts_rule: ดู
+  field_budget: งบประมาณ
+  field_context: ที่
+  field_custom_hours: เวลา
+  field_date: วันที่
+  field_delta: จำนวนวัน
+  field_entity_count: จำนวนของภารกิจ
+  field_period_from: จาก
+  field_period_to: ถึง
+  field_query_id: ตัวกรอง
+  field_rule: ดู
+  field_time_check: กำลังเช็คอิน
+  field_version_ids: เหตุการณ์สำคัญ
+  label_alert_condition_was_satisfied: เงื่อนไขการแจ้งเตือนเป็นที่น่าพอใจ
+  label_alerts: การแจ้งเตือน - ระบบการแจ้งเตือน Easy
+  label_alerts_active_projects_only: เฉพาะโครงการที่ใช้งานอยู่ (ไม่ปิดและไม่ได้เก็บถาวร)
+  label_alerts_additional_settings: การตั้งค่าอื่นๆ
+  label_alerts_context: 'ที่:'
+  label_alerts_contexts: รายการของบริบท
+  label_alerts_executing_settings: เวลาปฏิบัติงาน
+  label_alerts_for_all: ผู้ใช้ทั้งหมด
+  label_alerts_for_group: กลุ่ม
+  label_alerts_for_only_me: เฉพาะผู้เขียน
+  label_alerts_hourstimecheck_after_time: ชั่วโมง
+  label_alerts_hourstimecheck_before_time: ตรวจทุกวันใน
+  label_alerts_hourstimecheck_whenever: ตลอดเวลา<< >>
+  label_alerts_issue_select_before: 'ในภารกิจ:'
+  label_alerts_mail_group: 'การแจ้งเตือนจะส่งไปที่:'
+  label_alerts_mail_group_all: ผู้เข้าร่วมทั้งหมด (ดูด้านบน)
+  label_alerts_mail_group_assignees: ผู้รับมอบภารกิจ
+  label_alerts_mail_group_coworkers: ผู้ร่วมภารกิจ
+  label_alerts_mail_group_custom: 'หากต้องการอีเมลที่กำหนดเอง (คั่นด้วยเครื่องหมายจุลภาค,
+    เว้นวรรคหลังเครื่องหมายจุลภาค):'
+  label_alerts_mail_group_only_group: 'เฉพาะสมาชิกกลุ่ม:'
+  label_alerts_manage_alerts_for: 'ข้อมูลที่จะได้รับการประเมิน:'
+  label_alerts_my: 'การแจ้งเตือนของฉันตามประเภท:'
+  label_alerts_my_alerts: การแจ้งเตือนของฉัน
+  label_alerts_my_reports: รายงานของฉัน
+  label_alerts_my_reports_archive: รายงานของฉัน (เก็บถาวร)
+  label_alerts_name: 'ชื่อของการแจ้งเตือน:'
+  label_alerts_project_select_before: 'ในภารกิจ:'
+  label_alerts_projects: 'การแจ้งเตือนของโครงการ:'
+  label_alerts_query_columns: คอลัมน์ตัวกรอง
+  label_alerts_report: รายงาน
+  label_alerts_rule: 'เอนทิตี้ที่ดู:'
+  label_alerts_select_context: 'เลือกบริบท:'
+  label_alerts_select_rule: 'เลือกกฎ:'
+  label_alerts_type: ความเข้มงวด
+  label_alerts_type_name: ชื่อ
+  label_alerts_types: ประเภทการแจ้งเตือน
+  label_choose_type: 'เลือกเวลาที่การแจ้งเตือนจะประเมิน:'
+  label_day_singular: วัน
+  label_easy_alerts_easy_query_permissions_warning: คำเตือน, ผู้ใช้ที่เลือกสามารถรับบันทึกที่ไม่ได้รับอนุญาตให้ดู
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: เวลาที่ครบกำหนดของภารกิจ (ตาม
+    SLA)
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: ดูเมื่อเวลาปัจจุบันมากกว่าหรือเท่ากับ
+  label_easy_alerts_helpdesk_monitor_due_time_report: กำหนดเวลาของภารกิจคือเมื่อ%{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_after: ชั่วโมงเพื่อตอบสนองต่องาน
+    (ตาม SLA)
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_before: ดูเมื่อเวลาปัจจุบันมากกว่าหรือเท่ากับ
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: ต้องแก้ไขงานใน %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: ชั่วโมงจ่ายล่วงหน้า
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: ดูว่าเวลาที่ใช้ไปกับโครงการมากหรือเท่ากับ
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: ใช้แล้ว %{sum_time_entries}
+    จาก %{prepaid_hours}
+  label_easy_alerts_project_estimated_hours_form_after: ของเวลาโดยประมาณ
+  label_easy_alerts_project_estimated_hours_form_before: ดูเมื่อเปิดใช้เวลา
+  label_easy_alerts_project_estimated_hours_report: การใช้เวลาอยู่ที่ %{current_percentage}
+    % - %{sum_time_entries} จาก %{sum_estimated_hours}
+  label_invoice_due_date_invoice_select_before: ในใบแจ้งหนี้
+  label_invoice_due_date_warning_date_before: 'เตือนเมื่อ:'
+  label_invoice_due_date_warning_delta_after: วัน (+) หลังจากวันที่ครบกำหนด (-) ก่อน
+  label_invoice_due_date_warning_delta_before: เตือน
+  label_invoice_query_after: บันทึก
+  label_invoice_query_before: 'เตือนถ้าจำนวนของใบแจ้งหนี้ในตัวกรอง:'
+  label_invoice_query_middle: จะต้องมากกว่า
+  label_invoice_query_report: เกินจำนวนที่กำหนดของใบแจ้งหนี้ในตัวกรอง
+  label_issue_due_date_report: เกินกำหนดเงื่อนไขของภารกิจ
+  label_issue_due_date_warning_date_before: 'เตือนเมื่อ:'
+  label_issue_due_date_warning_delta_after: วัน (+) หลังวันครบกำหนด (-) ก่อนกำหนด
+  label_issue_due_date_warning_delta_before: เตือน
+  label_issue_due_date_where_iam: 'เฉพาะเมื่อฉันอยู่:'
+  label_issue_due_date_where_iam_assignee: ผู้รับมอบหมายของภารกิจ
+  label_issue_due_date_where_iam_author: ผู้เขียนภารกิจ
+  label_issue_overdrawn_budget_before: 'เตือนความสิ้นเปลืองของงบประมาณ:'
+  label_issue_overdrawn_budget_report: หมดไปจาก %{costs} %{budget}
+  label_issue_query_after: บันทึก
+  label_issue_query_before: 'เตือนถ้าจำนวนภารกิจในตัวกรอง:'
+  label_issue_query_middle: จะต้องมากกว่า
+  label_issue_query_report: เกินจำนวนที่กำหนดของภารกิจในตัวกรอง
+  label_issue_updated_date_warning_date_before: 'เตือนเมื่อ:'
+  label_issue_updated_date_warning_delta_after: วัน (+) หลังวันครบกำหนด (-) ก่อนกำหนด 
+  label_issue_updated_date_warning_delta_before: เตือน
+  label_milestone_due_date_milestone_select_before: ในเหตุการณ์สำคัญ
+  label_milestone_due_date_report: เกินกำหนดเงื่อนไขของเหตุการณ์สำคัญ
+  label_milestone_due_date_warning_date_before: 'เตือนเมื่อ:'
+  label_milestone_due_date_warning_delta_after: วัน (+) หลังวันครบกำหนด, (-) ก่อนกำหนด
+  label_milestone_due_date_warning_delta_before: เตือน
+  label_project_due_date_not_overdue: 'วันเกินกำหนด:'
+  label_project_due_date_overdue: 'วันจนกว่าจะถึงกำหนด:'
+  label_project_due_date_report: เกินกำหนดเวลาเส้นตายของโครงการแล้ว
+  label_project_due_date_warning_date_before: 'เตือนเมื่อ:'
+  label_project_due_date_warning_delta_after: วัน (+) หลังวันครบกำหนด, (-) ก่อนกำหนด
+  label_project_due_date_warning_delta_before: เตือน
+  label_project_overdrawn_budget_before: 'เตือนความสิ้นเปลืองของงบประมาณ:'
+  label_project_overdrawn_budget_report: ความสิ้นเปลืองจาก %{costs} %{budget}
+  label_project_query_after: บันทึก
+  label_project_query_before: 'เตือนถ้าจำนวนโครงการอยู่ในตัวกรอง:'
+  label_project_query_middle: จะต้องมากกว่า
+  label_project_query_report: เกินจำนวนโครงการที่กำหนดในตัวกรอง
+  label_select_project: 'เลือกโครงการ:'
+  label_show_alerts: แสดงการแจ้งเตือน
+  label_timeentry_time_watcher_after: ชั่วโมง
+  label_timeentry_time_watcher_before: ฉันต้องการตรวจสอบเวลาที่ใช้ไป
+  label_timeentry_time_watcher_before_from: จาก
+  label_timeentry_time_watcher_before_to: ถึง
+  label_timeentry_time_watcher_mail_body: 'timesheet ของคุณ, คุณสามารถกรอกได้ที่นี่:'
+  label_timeentry_time_watcher_mail_body_link: timesheet ของคุณ
+  label_timeentry_time_watcher_middle: น้อยกว่าหรือเท่ากับ
+  label_timeentry_time_watcher_previous_day_after_time: ชั่วโมง
+  label_timeentry_time_watcher_previous_day_before: ฉันต้องการตรวจสอบว่าเวลาที่ใช้ไปจากวันทำการก่อนหน้านี้
+  label_timeentry_time_watcher_previous_day_before_calendar: เล็กกว่ากลุ่มของแรงงาน
+    (เวลาทำงานของผู้ใช้หรือเทมเพลตเวลาทำงานเริ่มต้น)
+  label_timeentry_time_watcher_previous_day_before_custom: น้อยกว่าหรือเท่ากับ
+  label_timeentry_time_watcher_previous_day_before_time: ตรวจสอบทุกวันเมื่อ
+  label_timeentry_time_watcher_previous_day_mail_body: เมื่อวานนี้คุณเข้าสู่ระบบทุกชั่วโมงหรือไม่?
+    ตรวจสอบ timesheet ของคุณ
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'คนเหล่านี้กรอกแค่ไม่กี่ชั่วโมงเมื่อวานนี้:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: รายชื่อคนเหล่านี้,
+    คุณสามารถตรวจสอบได้ที่นี่
+  label_timeentry_time_watcher_previous_day_mail_body_link: timesheet ของคุณ
+  label_timeentry_time_watcher_previous_day_mail_subject: เมื่อวานนี้คุณเข้าสู่ระบบทุกชั่วโมงหรือไม่?
+    ตรวจสอบ timesheet ของคุณ
+  label_timeentry_time_watcher_previous_period_before: ฉันต้องการตรวจสอบเวลาที่ใช้ไปจากธุรกรรมก่อนหน้านี้่
+  label_timeentry_time_watcher_previous_report: เมื่อวานนี้คุณโพสต์ไปไม่กี่ชั่วโมง
+  label_timeentry_time_watcher_previous_week_mail_body_for_group: 'คนเหล่านี้กรอกสัปดาห์ที่ผ่านมาน้อยเกินไป:'
+  label_timeentry_time_watcher_previous_week_report: 'สัปดาห์ที่ผ่านมาคุณกรอกน้อยชั่วโมงเกินไป:'
+  label_timeentry_time_watcher_report: ได้รายงานเวลาไม่เพียงพอจาก %{from} to %{to}
+  label_version_query_after: บันทึก
+  label_version_query_before: 'เตือนถ้าจำนวนเหตุการณ์สำคัญในตัวกรอง:'
+  label_version_query_middle: มากกว่า
+  label_version_query_report: เกินจำนวนเหตุการณ์สำคัญที่กำหนดในตัวกรอง
+  label_week_singular: สัปดาห์
+  permission_manage_alert_contexts: จัดการบริบท
+  permission_manage_alert_types: จัดการประเภทของการแจ้งเตือน
+  permission_manage_alerts_for_all: สร้างการแจ้งเตือนสำหรับผู้ใช้ทั้งหมด
+  permission_view_alerts: ดูการแจ้งเตือน
+  project_default_page:
+    easy_alerts: แจ้งเตือน
+  project_module_easy_alerts: แจ้งเตือน
+  text_alerts_is_for_all: เช่น. ในค่าตัวกรองที่บันทึกไว้ <> จะถูกแทนที่โดยผู้ใช้แต่ละคน
+    หรือการแจ้งเตือนเวลาที่ใช้จะดูผู้ใช้ทั้งหมดที่ใช้เวลา
+  title_alert_type_color: เลือกสี
+  title_alerts_add_new_alert: สร้างการแจ้งเตือนใหม่
+  title_alerts_alert_edit: แก้ไขการแจ้งเตือน
+  title_alerts_alert_new: การแจ้งเตือนใหม่
+  title_alerts_context_edit: การแก้ไขบริบท
+  title_alerts_context_new: บริบทใหม่
+  title_alerts_edit_alert: ปรับเปลี่ยนการแจ้งเตือน
+  title_alerts_manage_contexts: จัดการบริบท
+  title_alerts_manage_types: จัดการประเภทการแจ้งเตือน
+  title_alerts_my_alerts: ดูการแจ้งเตือนของฉัน
+  title_alerts_report: ดูรายงานเกี่ยวกับการแจ้งเตือน
+  title_alerts_report_entity_invoice: แสดงใบแจ้งหนี้ %{entityname}
+  title_alerts_report_entity_issue: แสดงภารกิจ %{entityname}
+  title_alerts_report_entity_project: ดูโครงการ %{entityname}
+  title_alerts_report_entity_user: ดูผู้ใช้ %{entityname}
+  title_alerts_reports: ดูรายงานของฉัน
+  title_alerts_reports_archive: ดูรายงานที่ถูกเก็บถาวร
+  title_alerts_show_alert: แสดงการแจ้งเตือน%{alertname}
+  title_alerts_sidebar_type: ดูรายงานตามประเภท %{typename}
+  title_alerts_type_edit: การปรับเปลี่ยนประเภท
+  title_alerts_type_new: ประเภทใหม่
+  title_manage_alerts_for_all: คลิกเพื่อดูการแจ้งเตือนทั้งหมด

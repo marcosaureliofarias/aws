@@ -1,0 +1,74 @@
+---
+it:
+  easy_twofa:
+    activate_scheme: Attiva %{name}
+    address: Indirizzo
+    authentificate: Autenticazione
+    code_was_resend: Il codice è stato reinviato
+    continue: Continua
+    device_will_be_rememberd_for_x_days: Il dispositivo verrà memorizzato per %{count}
+      giorni
+    disable_scheme: Disattiva %{name}
+    disabled: Disattivato
+    disabling_twofa: Disattivazione dell'autenticazione a due fattori
+    enabled_scheme: Schema abilitato
+    expired_at: Scaduto il
+    global_settings: Impostazioni globali
+    http_method: Metodo HTTP
+    mode: Modalità
+    optional: Facoltativo
+    plain_key: Chiave semplice
+    please_enter_verification_key: Immettere la chiave di verifica
+    plugin_name: Easy Twofa
+    plugin_name_long: Autenticazione a due fattori Easy
+    provider: Provider
+    remember_device: Memorizza dispositivo
+    remembered_devices: Dispositivi memorizzati
+    required: Obbligatorio
+    scheme_is_active: "%{name} è attivo"
+    schemes:
+      sms:
+        errors:
+          missing_provider: Provider di autenticazione sms mancante
+          missing_telephone: Telefono mancante
+        name: SMS
+        providers:
+          custom:
+            body: Testo del messaggio
+            name: Personalizzato
+            telephone: Telefono
+          messagebird:
+            name: MessageBird
+        small_description: Autenticazione tramite numero SMS. È necessario impostare
+          il numero di telefono.
+      totp:
+        disable_title: Disabilita TOTP
+        name: TOTP
+        setup_info: Digitalizzare il codice QR o immettere la chiave di testo normale
+          in un'app TOTP (ad esempio, Google Authenticator, Authy, Duo Mobile) e immettere
+          il codice nel campo seguente per attivare l'autenticazione a due fattori.
+        setup_title: Imposta TOTP
+        small_description: Eseguire l'autenticazione utilizzando l'algoritmo Time-based
+          One-Time Password tramite l'app TOTP (ad esempio Google Authenticator, ecc.).
+    select_scheme: Seleziona schema
+    select_scheme_is_required: È richiesta l'autenticazione a due fattori. Per continuare,
+      selezionare la combinazione da utilizzare. È possibile modificarla in seguito nel profilo.
+    send_new_code: Invia nuovo codice
+    setting_enabled_schemes_info: È necessario selezionare almeno uno schema. Se non
+      viene selezionato alcuno schema, tutte le opzioni verranno attivate.
+    successfully_disabled: Disabilitazione completata
+    successfully_verified: Verifica completata
+    telephone_cf: Campo telefonico personalizzato
+    text_activation: Lo schema selezionato non è ancora attivato. È necessario verificarlo
+      per evitare complicazioni durante l'accesso.
+    text_disable: Lo schema è ancora attivo. Verificare l'autorizzazione. Se non è
+      possibile eseguire questa operazione, contattare l'amministratore.
+    too_much_attempts: Troppi tentativi
+    twofa: Autenticazione a due fattori
+    twofa_is_required: È richiesta l'autenticazione a due fattori
+    twofa_verification_failed: Verifica dell'autenticazione a due fattori non riuscita
+    twofa_was_saved: Autenticazione a due fattori salvata
+    user_agent: Agente utente
+    verification_failed_contact_administrator: Impossibile verificare l'autenticazione
+      a due fattori. Contattare l'amministratore.
+    verify_code: Verifica codice

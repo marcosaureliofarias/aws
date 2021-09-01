@@ -1,0 +1,26 @@
+$scheduler__color-background: mix($color-foreground, $color-background);
+$scheduler-schemes: ();
+@for $i from 1 through length($palette) {
+        $scheduler-schemes: append($scheduler-schemes, mix(nth($palette,$i), $color-foreground, 40%),comma);
+}
+$scheduler__color-entity--selection: $color-highlight;
+$scheduler__color-entity--meeting: nth($scheduler-schemes, 4);
+$scheduler__color-entity--attendance: nth($scheduler-schemes, 6);
+$scheduler__color-entity--generic: nth($scheduler-schemes, 8);
+$scheduler__color-entity--issue: nth($scheduler-schemes, 1);
+$scheduler__color-entity--entity_activity: nth($scheduler-schemes, 3);
+$scheduler__color-entity--ical_event: desaturate(nth($scheduler-schemes, 13), 80%);
+$scheduler__color-entity--holiday_event: nth($scheduler-schemes, 10);
+$scheduler__color-entity--date_separator: nth($scheduler-schemes, 9);
+
+
+$scheduler__color-entity--low: rgba( if(($color-negative!=$color-important), $color-important, mix($color-important, $color-positive)), 0.5);
+$scheduler__color-entity--high: rgba($color-positive, 0.5);
+$scheduler__color-entity--over: rgba($color-negative, 0.5);
+
+$scheduler__breakpoint: menu-collapse;
+$scheduler__min-height: 480px;
+$scheduler__month-event-bar-width: 4px;
+$scheduler-color-warning: #fa9b30;
+
+$color-text: #324164 !default; //text

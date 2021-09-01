@@ -1,0 +1,81 @@
+.is-mobile-device {
+  #top-menu-rich-more {
+    .top-menu-rich-more-item > li > a.others {
+      display: none;
+    }
+  }
+  #project_principal_members {
+    .pagination {
+      display: none;
+    }
+  }
+  &.controller {
+    &-enumerations {
+      .module-heading-links {
+        right: 16px;
+        top: 9.5px;
+        font-size: 20px;
+      }
+    }
+    &-easy_printable_templates {
+      #ajax-modal {
+        .autoscroll {
+          overflow-x: scroll;
+        }
+      }
+    }
+    &-dmsf {
+      .dmsf_list {
+        overflow-x: scroll;
+        display: block;
+        border-left: 1px solid $color-border;
+        border-right: 1px solid $color-border;
+        @extend %box-sizing-border-box;
+      }
+      .plupload_wrapper {
+        min-width: 0;
+        .plupload {
+          &_header_content {
+            padding-left: $gap;
+            padding-right: 6*$gap;
+          }
+          &_logo {
+            display: none;
+          }
+          &_filelist {
+            overflow-x: scroll;
+            display: block;
+            @extend %box-sizing-border-box;
+          }
+        }
+        .ui-resizable-handle {
+          display: none !important;
+        }
+      }
+    }
+    &-easy_agile_board, &-easy_kanban {
+      td {
+        min-width: 100px;
+      }
+      form:not(#top_quick_search) {
+        overflow-x: scroll;
+      }
+    }
+  }
+  table.list {
+    td, th {
+      &.url {
+        word-break: initial;
+      }
+    }
+  }
+  table.easy-rake-tasks {
+    td, th {
+      padding-left: $gap;
+      padding-right: 0.5*$gap;
+    }
+    td.easy-query-additional-ending-buttons {
+      display: table-cell;
+    }
+  }
+}

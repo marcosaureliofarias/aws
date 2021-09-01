@@ -1,0 +1,31 @@
+/***** Diff *****/
+.diff_out {
+  background: mix($color-negative, $color-foreground, 15%);
+}
+
+.diff_out span {
+  background: mix($color-negative, $color-foreground, 40%);
+}
+
+.diff_in {
+  background: mix($color-positive, $color-foreground, 15%);
+}
+
+.diff_in span {
+  background: mix($color-positive, $color-foreground, 40%);
+}
+
+.text-diff {
+  padding: $box-padding;
+  background-color: mix($color-background, $color-foreground);
+  color: $color-text;
+  border: 1px solid $color-border-minor;
+  margin-bottom: $box-padding;
+  .easy-content-page &{
+    margin-left: -$box-padding;
+    margin-right: -$box-padding;
+    border-right: none;
+    border-left: none;
+  }
+
+}

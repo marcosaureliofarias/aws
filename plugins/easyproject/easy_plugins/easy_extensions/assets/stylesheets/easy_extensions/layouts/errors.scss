@@ -1,0 +1,12 @@
+body.status{
+  &-402, &-500, &-502, &-404{
+    @extend %splash-screen;
+    h2{
+      margin-top: 0 !important;
+      margin-bottom: $gap !important;
+    }
+    h2,h3{
+      color: $color-login-text;
+    }
+  }
+}

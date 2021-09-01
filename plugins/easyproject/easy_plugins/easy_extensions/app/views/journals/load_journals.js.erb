@@ -1,0 +1,21 @@
+$('#<%= j params[:update_element_id] %>').replaceWith('<%= j(render partial: 'load_journals') %>');
+<% if !User.current.wants_comments_in_reverse_order? %>
+<% last_id = @journals.last.id %>
+EASY.utils.showAndScrollTo('change-<%= last_id %>', -50);
+<% end %>
+$('.journals_link_show_all').remove();
+
+EASY.utils.contentHeightSwitchable('easy_long_note', '<%= j l(:label_note_show_more) %>', '<%= j l(:label_note_show_less) %>');
+EASY.journals.collapseUnnecessary();
+var selector = $("a[data-tab-id=tab-comments]");
+if(selector.hasClass("selected")){
+    EntityTabs.showComments((selector)[0])
+};
+if(typeof(EASY.utils.initGalereya) === "function") {
+  EASY.utils.initGalereya($('.thumbnails:visible'));
+}
+EASY.utils.syntaxHighlight();
+$('#<%= j params[:update_element_id] %> div.module-toggle-button.manual').click(function () {
+  $(this).next('div').toggle();
+  $('div.group:first', this).toggleClass('open');
+});

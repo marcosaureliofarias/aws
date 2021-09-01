@@ -1,0 +1,214 @@
+---
+de:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: Zuordnungen bereits vorhanden
+  button_hide_planned_tasks: Geplante Aufgaben
+  button_top_menu_easy_gantt_resources: Ressourcen management
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: neue Ressourcenmanagement-Ansicht für Easy Gantt
+  easy_gantt_resources_plugin_name: Ressourcenmanagement
+  easy_gantt_resources:
+    allocator:
+      evenly: Gleichmäßig (langsam)
+      from_end: Vom Ende
+      from_start: Vom Anfang
+      future_evenly: Zukunft gleichmäßig
+      future_from_end: Zukunft vom Ende
+      future_from_start: Zukunft vom Anfang
+      label_allocator: Verteiler
+      random: Zufällig
+    buttons:
+      button_project_menu: Ressourcenmanagement
+      rm_balance: Saldo
+      rm_hide_reservations: Reservierungen ausblenden
+      rm_hide_tasks: Aufgaben
+      rm_reservations: Reservierungen
+      rm_with_milestones: Meilensteine
+      rm_with_projects: Projekte
+    context:
+      heading_allocator_setting: Verteiler-Einstellung
+      label_maximal_hours: Maximale Stunden/Tag
+      pseudo_even_allocation: Pseudogleiche Zuordnungen
+      text_setting_for: Einstellung für
+    errors:
+      assigned_to_is_blank: Beauftragter muss festgelegt werden
+      estimated_hours_is_blank: Geschätzte Stunden sind ungültig
+      issue_is_closed: Aufgabe ist geschlossen
+      negative_allocation: hat eine negative Anzahl von zugewiesenen Stunden am %{date}
+      no_rights_for_allocation: Sie haben keine Rechte für Zuweisungen für %{issue}
+      non_member_assignee: Aufgabe %{issue} gehört zum Projekt %{project} und der
+        Benutzer %{assignee} ist kein Mitglied davon
+      over_allocation: hat mehr zugewiesene Stunden als möglich am %{date}
+      project_is_baseline: Projekt ist Baseline
+      save_error: 'Zuweisungen [%{allocations}] der Aufgabe "%{name}" für %{assignee}
+        nicht gespeichert aufgrund von: %{reason}'
+      start_or_due_is_required: Anfangsdatum oder Fälligkeitsdatum ist erforderlich
+      under_estimation: ist unterschätzt. Erhöhen Sie die Schätzung um mindestens
+        %{over} Stunden.
+    event_types:
+      generic: Ereignis
+      holiday: Feiertag
+      meeting: Meeting
+      symbols:
+        holiday_short: F
+        meeting_short: M
+        nonworking_attendance_short: NA
+        unapproved_nonworking_attendance_short: NG
+    global_resource_title: Globales Ressourcenmanagement
+    label_allocations_sum: Aufgabenzuweisungen
+    label_events: Ereignisse
+    label_other_allocations_sum: Zuweisungen von nicht sichtbaren Aufgaben
+    label_reservations_sum: Zuweisungen von Reservierungen
+    label_whole_day: Ganzer Tag
+    legend:
+      day_custom_allocation: manuell angepasste Zuweisung
+      day_over_allocation: Benutzer ist an einem bestimmten Tag überlastet
+      full_allocations: Benutzer hat eine optimale Auslastung
+      no_allocations: Dem Benutzer ist keine Arbeit zugewiesen
+      over_allocations: Benutzer ist überlastet
+      reservation: Reservierung
+      some_allocations: Benutzer hat freie Kapazität
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: Ressourcenmanagement
+    text_easy_resources_footer: Redmine Ressourcenmanagement powered by Easy
+    title_rm_short: RM
+  easy_gantt:
+    button:
+      rm_reallocate: Neu zuweisen
+    title:
+      rm_reallocate: Neuberechnung der Zuweisungen für jede Aufgabe
+  easy_pages:
+    modules:
+      easy_gantt_resources: Ressourcenmanagement
+      personal_easy_gantt_resources: Persönliches Ressourcenmanagement
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: Ressourcenmanagement
+        description: Zum Globalen Ressourcenmanagement gehen
+  easy_query:
+    name:
+      easy_light_resource_query: Zuweisungen
+      easy_resource_easy_query: Ressourcenmanagement
+  easy_rake_tasks:
+    easy_rake_task_issue_allocations_recalculation:
+      caption: Aufgabenzuweisungen neu berechnen
+  error_allocation_uniqueness: Ressource existiert bereits.
+  error_epm_resource_already_active: Seitenmodul auf der Seite ist bereits aktiv
+  error_invalid_dates: Ungültige Daten übermittelt
+  error_resources_not_authorized: Ressourcen wurden nicht gespeichert. Sie sind nicht
+    berechtigt, alle angeforderten Ressourcen zu bearbeiten.
+  field_advance_hours_definition: Manuelle Stundendefinition
+  field_advance_hours_per_days: Stunden pro Tage anpassen
+  field_assigned_to_admin: Administrator
+  field_assigned_to_created_on: Erstellt am
+  field_assigned_to_email: E-Mail
+  field_assigned_to_firstname: Vorname
+  field_assigned_to_lastname: Nachname
+  field_assigned_to_login: Login
+  field_assigned_to_status: Status
+  field_change_allocator_enabled: Verteiler wechseln
+  field_decimal_allocation: Dezimalverteilung
+  field_default_allocator: Standardverteiler
+  field_easy_gantt_show_task_latest_due: Neuestes Fälligkeitsdatum anzeigen
+  field_hide_planned_tasks_enabled: Umschalttaste für geplante Aufgaben
+  field_hide_unassigned: Nicht zugewiesene ausblenden
+  field_hours_in_hour: Geschätzte Zeit
+  field_hours_in_percent: Geschätzte Zeit
+  field_hours_per_day: Stunden pro Tag
+  field_max_allocation: 'Max Zuweisungszeit:'
+  field_resource_allocator: Ressourcenverteiler
+  field_show_groups: Gruppen anzeigen
+  field_show_total_project_allocations: Gesamtprojektzuweisungen anzeigen
+  field_watchdog_enabled: Watchdog
+  heading_easy_gantt_resources_index: Ressourcen
+  help_easy_gantt_resources_users_estimated_ratios: Die geschätzte Zeit für Aufgaben,
+    die dem Benutzer zugewiesen wurden, wird mit dieser Konstanten in den Zuweisungen
+    multipliziert
+  help_easy_gantt_resources_users_hours_limits: Die täglichen Arbeitszeiten der Benutzer
+    für Zuweisungen sind durch diesen Wert begrenzt
+  help_easy_gantt_resources_users_hours_limits_blank: Leer lassen, um den Standardwert
+    zu verwenden
+  label_allocated_dates: Zugewiesene Daten
+  label_allocated_hours: Zugewiesene Stunden
+  label_easy_gantt_allocations: Zuweisungen
+  label_easy_gantt_original_allocations: Vollzuweisungen
+  label_easy_gantt_period: Zeitraum
+  label_easy_gantt_resources_balance: Saldo
+  label_easy_gantt_resources_get_from_users: Von den Benutzern zählen
+  label_easy_gantt_resources_get_from_users_for_all_groups: Von allen Benutzern zählen
+  label_easy_gantt_resources_global_query_filters: Globale Standardfilter
+  label_easy_gantt_resources_groups_holidays_enabled: Feiertage für Gruppen aktivieren
+  label_easy_gantt_resources_groups_selection: Gruppenauswahl
+  label_easy_gantt_resources_hours_from_calendar: Stunden vom Kalender
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: Stunden vom Kalender
+    für alle Benutzer
+  label_easy_gantt_resources_new_reservation: Neue Reservierung
+  label_easy_gantt_resources_reservation_enabled: Reservierungen aktivieren
+  label_easy_gantt_resources_settings: Ressourceneinstellungen
+  label_easy_gantt_resources_show_free_capacities: Freie Kapazitäten
+  label_easy_gantt_resources_user_unassigned: Nicht zugewiesen
+  label_easy_gantt_resources_users_estimated_ratios: Verhältnis der geschätzten Zeit
+  label_easy_gantt_resources_users_hours_limits: Stundenlimit pro Tag
+  label_easy_gantt_resources_users_selection: Benutzerauswahl
+  label_easy_gantt_resources_with_projects: Projektzuweisungen standardmäßig anzeigen
+  label_easy_meeting_easy_resource_dont_allocate: Nicht zuweisen
+  permission_edit_easy_gantt_resources: Ressourcenmanagement in einem Projekt bearbeiten
+  permission_edit_global_easy_gantt_resources: Globales Ressourcenmanagement bearbeiten
+  permission_edit_personal_easy_gantt_resources: Persönliches Ressourcenmanagement
+    bearbeiten
+  permission_manage_user_easy_gantt_resources: Vom Benutzer geschätzte Verhältnisse
+    / Stundenlimits verwalten
+  permission_view_easy_gantt_resources: Ressourcenmanagement für ein Projekt anzeigen
+  permission_view_global_easy_gantt_resources: Globales Ressourcenmanagement anzeigen
+  permission_view_personal_easy_gantt_resources: Persönliches Ressourcenmanagement
+    anzeigen
+  project_module_easy_gantt: Easy Gantt
+  text_easy_gantt_resources_advance_hours_definition: Stunden können für jeden Tag
+    der Woche definiert werden
+  text_easy_gantt_resources_advance_hours_per_days: Max. zuweisbare Stunden pro Tag
+    in der Woche
+  text_easy_gantt_resources_change_allocator_enabled: Änderung des Zuweisers bei der
+    Aufgabenbearbeitung zulassen
+  text_easy_gantt_resources_change_default_allocator: Die Änderung dieser Option hat
+    aus Leistungsgründen keine Auswirkungen auf den derzeit bestehenden Standardzuweiser
+    für Aufgaben. Bei Reservierungen ist der Standardzuweiser immer einheitlich, kann
+    aber nach der Erstellung der Reservierung geändert werden.
+  text_easy_gantt_resources_decimal_allocation: Die Stunden werden nach Dezimalzahlen
+    aufgeteilt (0.5)
+  text_easy_gantt_resources_default_allocator: Wie die geschätzten Stunden für Aufgaben
+    verteilt werden. (Der gleichmäßige Typ kann langsam sein)
+  text_easy_gantt_resources_default_zoom: Standardzoom für das globale Ressourcenmanagement
+  text_easy_gantt_resources_groups_holidays_enabled: Zuweisungen werden reduziert,
+    wenn Mitglieder der Gruppe Urlaub haben.
+  text_easy_gantt_resources_hide_planned_tasks_enabled: Toggle "Geplante Aufgaben"
+    im Ressourcenmanagement anzeigen
+  text_easy_gantt_resources_hours_per_day: Max. zuweisbare Stunden pro Tag
+  text_easy_gantt_resources_overloaded_assigned: 'Die geschätzten Stunden für diese
+    Aufgabe werden an den Tagen vergeben, an denen der Beauftragte überlastet ist:
+    %{errors}. Überprüfen Sie %{link}, um die richtigen Änderungen vorzunehmen.'
+  text_easy_gantt_resources_reservation_enabled: Stundenreservierung für Benutzer
+    aktivieren.
+  text_easy_gantt_resources_show_free_capacities: Aktivieren Sie das Umschalten der
+    Anzeige freier Kapazitäten anstelle der zugewiesenen Stunden für zugewiesene Aufgaben
+    des Ressourcenmanagements.
+  text_easy_gantt_resources_show_groups: Gruppen zum globalen Ressourcenmanagement
+    anzeigen
+  text_easy_gantt_resources_show_total_project_allocations: Gesamte zugewiesene Stunden
+    für das Projekt-Ressourcenmanagement anzeigen
+  text_easy_gantt_resources_watchdog_enabled: Überlastung des zugewiesenen Benutzers
+    während der Aufgabenbearbeitung beobachten
+  text_easy_gantt_resources_with_projects: Aktivieren Sie standardmäßig die Option
+    "Mit Projekten" im globalen RM
+  text_easy_gantt_show_task_latest_due: Die aktuellsten gültigen Daten für Aufgaben
+    anzeigen, die durch Beziehungen oder Überordnungen definiert sind
+  text_easy_meeting_easy_resource_dont_allocate: Das Meeting wird die Zuweisung beim
+    Ressourcenmanagement nicht reduzieren
+  title_easy_gantt_personal_resources: Meine Ressourcen
+  title_easy_gantt_resources_settings: Ressourcenmanagement mit Easy
+  title_easy_gantt_resources_users_settings: Individuelle Benutzereinstellungen

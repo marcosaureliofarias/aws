@@ -1,0 +1,64 @@
+$mindmup-icons: (
+  add: material-icon('plus-circle-outline'),
+  add_sibling: material-icon('plus-circle-outline'),
+  insert_between: material-icon('plus-circle-multiple-outline'),
+  remove: material-icon('delete-forever'),
+  rename: material-icon('border-color'),
+  edit_data: material-icon('file-find'),
+  edit: material-icon('pencil'),
+  follow_url: material-icon('share'),
+  zoom_in: material-icon('magnify-plus-outline'),
+  zoom_out:material-icon('magnify-minus-outline'),
+  refresh_view: material-icon('find-replace'),
+  filter: material-icon('filter-variant'),
+  cancel: material-icon('close-circle'),
+  cancel_filter: material-icon('close-circle'),
+  close: material-icon('close'),
+  display: material-icon('eye'),
+  links: material-icon('link'),
+  icons: material-icon('emoticon-outline'),
+  collapse: material-icon('minus-box'),
+  expand: material-icon('plus-box'),
+  one_side: material-icon('book-open'),
+  settings: material-icon('cog-outline'),
+  undo: material-icon('undo'),
+  redo: material-icon('redo'),
+  print: material-icon('printer'),
+  cut: material-icon('content-cut'),
+  copy: material-icon('content-copy'),
+  paste: material-icon('content-paste'),
+  save: material-icon('content-save'),
+  legend: material-icon('menu'),
+  legend_hide: material-icon('close'),
+  money: material-icon('cash'),
+  bank: material-icon('bank')
+);
+
+.easy-mindmup {
+  &__icon {
+    @include icon-parent;
+    &:before {
+      font-family: "Material Icons", sans-serif;
+      pointer-events: none;
+    }
+    @each $icon, $sign in $mindmup-icons {
+      &--#{$icon}:before {
+        content: unicode($sign);
+      }
+    }
+    &.button {
+      @extend %button-with-icon;
+      padding-left: 3 * $mindmup__gap;
+      @media (min-width: 300px) and (max-width: 480px) {
+        padding: px2rem(5px) px2rem(25px);
+        &::before {
+          width: px2rem(25px);
+        }
+      }
+    }
+  }
+}
+.material-icons {
+  font-family: "Material Icons", sans-serif;
+  font-style: normal;
+}

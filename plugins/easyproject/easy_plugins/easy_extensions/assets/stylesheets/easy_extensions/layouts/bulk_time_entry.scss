@@ -1,0 +1,21 @@
+.top-ten-project-container{
+  @extend %list-style-counter;
+}
+
+#bulk-time-entry-form, #issue_timeentry_fields {
+  * {
+    @extend %box-sizing-border-box;
+  }
+  .logtime-form {
+    padding-top: $gap;
+    @include respond-to(max-small-screen) {
+      padding-top: 0;
+    }
+  }
+  .timeentry-hours-inputs, .timeentry-comments {
+    width: 100%;
+  }
+  #time_entry_comments {
+    max-width: $form-field-max-width;
+  }
+}

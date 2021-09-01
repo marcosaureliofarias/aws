@@ -1,0 +1,6 @@
+<% if User.current.allowed_to?(:easy_money_manage_expected_payroll_expense, project) %>
+    <% inline_edit_url = url_for(controller: 'easy_money_expected_payroll_expenses', action: 'inline_edit', project_id: project.id, easy_money: {entity_type: entity_type, entity_id: entity_id}, easy_currency_code: easy_currency_code) %>
+
+  <%= link_to('', inline_edit_url, class: 'icon icon-edit button-icon', title: l(:button_edit), data: {remote: true}) -%>
+<% end -%>
+<span><%= format_easy_money_price(sum_expected_payroll_expenses, project, easy_currency_code) -%></span>

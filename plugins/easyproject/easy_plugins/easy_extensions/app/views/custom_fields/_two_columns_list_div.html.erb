@@ -1,0 +1,12 @@
+<% inline_editable = local_assigns.fetch(:inline_editable, true) %>
+<div class="splitcontentleft">
+  <% i = 0 %>
+  <% split_on = (custom_field_values.size / 2.0).ceil - 1 %>
+  <% custom_field_values.each do |value| %>
+    <%= content_tag(:div, "#{content_tag(:span, h(value.custom_field.translated_name) + ':')} #{show_value(value, true, inline_editable: inline_editable)}".html_safe ) %>
+    <% if i == split_on -%>
+    </div><div class="splitcontentright">
+    <% end -%>
+    <% i += 1 -%>
+  <% end -%>
+</div>

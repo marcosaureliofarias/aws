@@ -1,0 +1,21 @@
+<tr class="calculation-item-form hide-when-print">
+  <% if @calculation.show_phases? %>
+    <td></td>
+  <% end %>
+  <td></td>
+  <td><%= text_field_tag 'easy_calculation_item[name]', item.name, placeholder: l('calculation.item') %></td>
+  <td></td>
+  <td class="nowrap text-right"><%= text_field_tag 'easy_calculation_item[hours]', item.hours, size: 3, placeholder: l('calculation.count') %>
+                     <%= text_field_tag 'easy_calculation_item[unit]', item.unit, size: 3, placeholder: l('calculation.units') %></td>
+  <td class="text-right"><%= text_field_tag 'easy_calculation_item[rate]', item.rate, size: 3, placeholder: l('calculation.rate') %></td>
+  <td class="text-right"><%= text_field_tag 'easy_calculation_item[calculation_discount]', item.calculation_discount, size: 10, placeholder: l('calculation.absolute_discount') %></td>
+  <td class="text-right"><%= text_field_tag 'easy_calculation_item[value]', item.value, size: 10, placeholder: l('calculation.price') %></td>
+  <td class="calculation-item-actions easy-query-additional-ending-buttons">
+    <% if item.new_record? %>
+      <a class="icon icon-save save-calculation" href="<%= easy_calculation_items_path(:project_id => @project.id, :format => 'json') %>" data-save-method="POST"></a>
+    <% else %>
+      <a class="icon icon-save save-calculation" href="<%= easy_calculation_item_path(item, :format => 'json') %>" data-save-method="PUT"></a>
+      <a class="icon icon-cancel cancel-calculation-edit"></a>
+    <% end -%>
+  </td>
+</tr>

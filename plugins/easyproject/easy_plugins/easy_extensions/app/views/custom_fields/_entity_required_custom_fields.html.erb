@@ -1,0 +1,6 @@
+<% entity.required_custom_field_values.each do |custom_value| %>
+  <%= render partial: 'custom_fields/non_primary_custom_field', locals: { entity_name: entity.class.to_s.underscore,
+                                                                          custom_value: custom_value,
+                                                                          entity_id: entity.id,
+                                                                          entity_type: entity.class } %>
+<% end %>

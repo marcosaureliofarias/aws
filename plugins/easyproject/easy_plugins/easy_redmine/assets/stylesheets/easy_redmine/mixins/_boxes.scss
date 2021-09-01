@@ -1,0 +1,67 @@
+%box-control{
+  top: $box-padding;
+  right: $box-padding;
+  @extend %module-control;
+}
+%box-border{
+  border: initial;
+  @extend %border-radius-large;
+}
+%box-appearance{
+  @extend %box-border;
+  background: $color-foreground;
+}
+%box {
+  //@extend %box-shadow;
+  @extend %box-padding;
+  @extend %box-border;
+  @extend %box-inside;
+  @extend %clearfix;
+
+  margin-bottom: $gap;
+
+  @include respond-to(min-menu-collapse) {
+    margin-bottom: $box-margin;
+  }
+
+  background: $color-foreground;
+
+  position: relative;
+  overflow: initial;
+  .box{
+    @extend %reset-box;
+    margin: 0 (-$box-padding);
+    padding: 0 $box-padding;
+    &~.box{
+      border-top: initial;
+      //margin-top: $box-padding;
+    }
+    .box{
+      margin: 0;
+      padding: 0;
+    }
+    .module-toggle-button {
+      .expander{
+        right: 0
+      }
+    }
+    .module-heading-links{
+      right: 2*$box-padding;
+    }
+  }
+  .easy-content-page &{
+    //border-top: 1px solid $color-border;
+    @extend %compositor-layer;
+  }
+  .easy-entity-update &{
+    border-top: none;
+  }
+  .easy-content-page{
+    @extend %reset-box;
+    overflow: visible;
+  }
+  #sidebar &,#easy_grid_sidebar &,#sidebarClone &,#easy_grid_sidebarClone &{
+    @extend %reset-box;
+    border-top: 1px solid $color-border;
+  }
+}

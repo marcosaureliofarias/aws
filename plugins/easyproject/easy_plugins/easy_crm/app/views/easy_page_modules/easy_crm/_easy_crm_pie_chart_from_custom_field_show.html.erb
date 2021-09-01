@@ -1,0 +1,37 @@
+<% include_jqplot_scripts %>
+
+  <% if settings['autorefresh'].to_i > 0 %>
+    <span>
+      <%= l(:label_page_module_chart_countdown) %> <span id="<%= block_name %>_next_update"></span>s
+    </span>
+  <% end %>
+  <div id="<%= block_name %>_chart" data-renderchart='true'></div>
+
+<script type="text/javascript">
+  EASY.schedule.require(function () {
+    $('#<%= block_name %>_chart').easy_chart({
+      dataUrl: '<%= url_for(:controller => 'easy_crm_charts', :action => 'pie_chart_from_custom_field', :uuid => page_module.uuid, :format => 'json') %>'
+
+    });
+    $('#<%= block_name %>_chart').height($('#<%= block_name %>_chart').parent().width());
+
+    <% if settings['autorefresh'].to_i > 0 %>
+    $('#<%= block_name %>_next_update').html(<%= settings['autorefresh'].to_i * 60 %>);
+
+
+    setInterval(function () {
+      $('#<%= block_name %>_chart').easy_chart('reload');
+      $('#<%= block_name %>_next_update').html(<%= settings['autorefresh'].to_i * 60 %>);
+    }, <%= settings['autorefresh'].to_i * 60000 %>);
+
+    setInterval(function () {
+      var last_time = parseInt($('#<%= block_name %>_next_update').html());
+      if (isNaN(last_time)) {
+        $('#<%= block_name %>_next_update').html(<%= settings['autorefresh'].to_i * 60 %>);
+      } else {
+        $('#<%= block_name %>_next_update').html(last_time - 1);
+      }
+    }, 1000);
+    <% end %>
+  }, jQueryPluginGetter("easy_chart"));
+</script>

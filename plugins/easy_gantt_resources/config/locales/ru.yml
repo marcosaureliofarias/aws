@@ -1,0 +1,216 @@
+---
+ru:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: Распределения уже существуют
+  button_hide_planned_tasks: Запланированные задачи
+  button_top_menu_easy_gantt_resources: Управление ресурсами
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: Новое отображение управления ресурсами для диаграммы
+    Гантта Easy
+  easy_gantt_resources_plugin_name: Управление ресурсами
+  easy_gantt_resources:
+    allocator:
+      evenly: Равномерно (медленно)
+      from_end: С конца
+      from_start: С начала
+      future_evenly: Равномерно в будущем
+      future_from_end: Отсчёт с конца
+      future_from_start: Отсчёт с начала
+      label_allocator: Распределитель
+      random: В случайном порядке
+    buttons:
+      button_project_menu: Управление ресурсами
+      rm_balance: Баланс
+      rm_hide_reservations: Скрыть резервирование
+      rm_hide_tasks: Скрыть задачи
+      rm_reservations: Резервирование
+      rm_with_milestones: Вехи
+      rm_with_projects: Проекты
+    context:
+      heading_allocator_setting: Настройки распределителя
+      label_maximal_hours: Макс. кол-во часов/дней
+      pseudo_even_allocation: Псевдоравномерное распределение
+      text_setting_for: Настройки для
+    errors:
+      assigned_to_is_blank: не назначен исполнитель
+      estimated_hours_is_blank: неверное значение расчётного времени
+      issue_is_closed: Задача закрыта
+      negative_allocation: отрицательное количество распределённых часов для %{date}
+      no_rights_for_allocation: У вас нет прав для распределения часов в задаче %{issue}.
+      non_member_assignee: Пользователь %{assignee} не является участником проекта
+        %{project}, которому принадлежит задача %{issue}
+      over_allocation: превышено допустимое количество часов для %{date}
+      project_is_baseline: Проект по базовому плану
+      save_error: 'Не удалось сохранить распределённые часы [%{allocations}] в задаче
+        "%{name}" для исполнителя %{assignee}: %{reason}'
+      start_or_due_is_required: не указана дата начала или завершения
+      under_estimation: ошибка расчёта времени. Добавьте к расчётному времени не менее %{over} часов.
+    event_types:
+      generic: Событие
+      holiday: Праздник
+      meeting: Совещание
+      symbols:
+        holiday_short: П
+        meeting_short: с
+        nonworking_attendance_short: н
+        unapproved_nonworking_attendance_short: У
+    global_resource_title: Глобальное управление ресурсами
+    label_allocations_sum: Распределение задач
+    label_events: События
+    label_other_allocations_sum: Распределение скрытых задач
+    label_reservations_sum: Распределение резервирования
+    label_whole_day: Весь день
+    legend:
+      day_custom_allocation: ручная настройка распределения
+      day_over_allocation: пользователь перегружен в определённый день
+      full_allocations: пользователь загружен оптимально
+      no_allocations: пользователю не назначены задачи
+      over_allocations: пользователь перегружен
+      reservation: резервирование
+      some_allocations: у пользователя есть свободное время
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: Управление ресурсами
+    text_easy_resources_footer: Управление ресурсами Redmine от разработчиков Easy
+    title_rm_short: RM
+  easy_gantt:
+    button:
+      rm_reallocate: Перераспределить
+    title:
+      rm_reallocate: Пересчитать часы по каждой задаче
+  easy_pages:
+    modules:
+      easy_gantt_resources: Управление ресурсами
+      personal_easy_gantt_resources: Управление личными ресурсами
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: Управление ресурсами
+        description: Перейти в глобальное управление ресурсами
+  easy_query:
+    name:
+      easy_light_resource_query: Распределения
+      easy_resource_easy_query: Управление ресурсами
+  easy_rake_tasks:
+    easy_rake_task_issue_allocations_recalculation:
+      caption: Пересчитать часы по задачам
+  error_allocation_uniqueness: Ресурс уже существует.
+  error_epm_resource_already_active: На данной странице модуль уже активирован.
+  error_invalid_dates: Указаны недопустимые даты.
+  error_resources_not_authorized: Ресурсы не сохранены. У вас нет прав для редактирования
+    этих ресурсов.
+  field_advance_hours_definition: Задать кол-во часов вручную
+  field_advance_hours_per_days: Подстройка часов по дням
+  field_assigned_to_admin: Администратор
+  field_assigned_to_created_on: Создано
+  field_assigned_to_email: Эл. почта
+  field_assigned_to_firstname: Имя
+  field_assigned_to_lastname: Фимилия
+  field_assigned_to_login: Логин
+  field_assigned_to_status: Статус
+  field_change_allocator_enabled: Изменить распределение
+  field_decimal_allocation: Десятичное распределение
+  field_default_allocator: Распределение по умолчанию
+  field_easy_gantt_show_task_latest_due: Показать последнюю дату завершения
+  field_hide_planned_tasks_enabled: Переключатель «Запланированные задачи»
+  field_hide_unassigned: Скрыть неназначенные
+  field_hours_in_hour: Расчётное время
+  field_hours_in_percent: Расчётное время
+  field_hours_per_day: Кол-во часов в день
+  field_max_allocation: 'Макс. кол-во распределяемых часов:'
+  field_resource_allocator: Распределение ресурсов
+  field_show_groups: Показать группы
+  field_show_total_project_allocations: Показать распределённые часы по проекту
+  field_watchdog_enabled: Модуль наблюдения
+  heading_easy_gantt_resources_index: Ресурсы
+  help_easy_gantt_resources_users_estimated_ratios: Расчётное время на выполнение
+    задач, закреплённых за пользователем, умножается на данный коэффициент
+  help_easy_gantt_resources_users_hours_limits: При распределении учитывается дневной
+    лимит нормо-часов пользователя
+  help_easy_gantt_resources_users_hours_limits_blank: Оставьте пустым, чтобы использовать
+    значение по умолчанию
+  label_allocated_dates: Распределённые даты
+  label_allocated_hours: Распределённые часы
+  label_easy_gantt_allocations: Распределение часов
+  label_easy_gantt_original_allocations: Всё распределённое время
+  label_easy_gantt_period: Период
+  label_easy_gantt_resources_balance: Баланс
+  label_easy_gantt_resources_get_from_users: Рассчитать  по пользователям
+  label_easy_gantt_resources_get_from_users_for_all_groups: Считать по всем пользователям
+  label_easy_gantt_resources_global_query_filters: Общие фильтры по умолчанию
+  label_easy_gantt_resources_groups_holidays_enabled: Разрешить праздники для групп
+  label_easy_gantt_resources_groups_selection: Выбор групп
+  label_easy_gantt_resources_hours_from_calendar: Часы по календарю
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: Часы по календарю
+    для всех пользователей
+  label_easy_gantt_resources_new_reservation: Новое резервирование
+  label_easy_gantt_resources_reservation_enabled: Разрешить резервирование
+  label_easy_gantt_resources_settings: Настройки ресурсов
+  label_easy_gantt_resources_show_free_capacities: Свободные ресурсы
+  label_easy_gantt_resources_user_unassigned: Пользователь не назначен
+  label_easy_gantt_resources_users_estimated_ratios: Коэффициент расчётного времени
+  label_easy_gantt_resources_users_hours_limits: Лимит часов в день
+  label_easy_gantt_resources_users_selection: Выбор пользователей
+  label_easy_gantt_resources_with_projects: Показать распределение по умолчанию с
+    проектами
+  label_easy_meeting_easy_resource_dont_allocate: Не распределять
+  permission_edit_easy_gantt_resources: Редактировать проектные настройки управления
+    ресурсами
+  permission_edit_global_easy_gantt_resources: Редактировать общие настройки управления
+    ресурсами
+  permission_edit_personal_easy_gantt_resources: Редактировать личные настройки управления
+    ресурсами
+  permission_manage_user_easy_gantt_resources: Управлять расчётным коэффициентом /
+    временем пользователя
+  permission_view_easy_gantt_resources: Просматривать проектные настройки управления
+    ресурсами
+  permission_view_global_easy_gantt_resources: Просматривать общие настройки управления
+    ресурсами
+  permission_view_personal_easy_gantt_resources: Просматривать личные настройки управления
+    ресурсами
+  project_module_easy_gantt: Диаграмма Гантта Easy
+  text_easy_gantt_resources_advance_hours_definition: Кол-во часов можно настроить
+    для каждого дня недели
+  text_easy_gantt_resources_advance_hours_per_days: Макс. кол-во часов на каждый день
+    недели
+  text_easy_gantt_resources_change_allocator_enabled: Разрешить изменение распределения при
+    редактировании задачи
+  text_easy_gantt_resources_change_default_allocator: В целях сохранения рабочих характеристик
+    изменение этой опции не повлияет на текущие, установленные по умолчанию настройки
+    распределения ресурсов по задачам. Для бронирования ресурсов по умолчанию установлено
+    равномерное распределение, но эту настройку можно изменить после создания брони.
+  text_easy_gantt_resources_decimal_allocation: В распределении часов будут использоваться
+    десятичные числа (0.5)
+  text_easy_gantt_resources_default_allocator: Распределение расчётного времени по
+    задачам (равномерное распределение может снизить производительность).
+  text_easy_gantt_resources_default_zoom: Масштаб по умолчанию для глобального управления
+    ресурсами
+  text_easy_gantt_resources_groups_holidays_enabled: Отпуск членов группы будет учтён
+    при распределении задач.
+  text_easy_gantt_resources_hide_planned_tasks_enabled: Показать переключатель «Запланированные
+    задачи» в управлении ресурсами
+  text_easy_gantt_resources_hours_per_day: Макс. кол-во часов в день
+  text_easy_gantt_resources_overloaded_assigned: 'При распределении часов были выбраны дни,
+    когда исполнитель перегружен: %{errors}. Внесите необходимые изменения по ссылке
+    %{link}.'
+  text_easy_gantt_resources_reservation_enabled: Разрешить резервирование часов пользователей.
+  text_easy_gantt_resources_show_free_capacities: Включить отображение свободных ресурсов
+    вместо распределённых часов по задачам в управлении ресурсами
+  text_easy_gantt_resources_show_groups: Показать группы в глобальном управлении ресурсами
+  text_easy_gantt_resources_show_total_project_allocations: Показать все распределённые
+    часы по проекту в управлении ресурсами
+  text_easy_gantt_resources_watchdog_enabled: Контролировать загрузку исполнителя
+    при редактировании задачи
+  text_easy_gantt_resources_with_projects: Включить опцию «с проектами» в глобальном
+    управлении ресурсами по умолчанию
+  text_easy_gantt_show_task_latest_due: Показать самые поздние даты выполнения задач
+    с учётом связей или родительской задачи
+  text_easy_meeting_easy_resource_dont_allocate: Совещание не приведёт к сокращению
+    распределённых часов в управлении ресурсами.
+  title_easy_gantt_personal_resources: Мои ресурсы
+  title_easy_gantt_resources_settings: Управление ресурсами Easy
+  title_easy_gantt_resources_users_settings: Пользовательские настройки

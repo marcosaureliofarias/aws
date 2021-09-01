@@ -1,0 +1,22 @@
+EASY.modalSelector.closeModal();
+
+<% if params[:modul_uniq_id].present? %>
+  <% modul_uniq_id = params[:modul_uniq_id].rpartition('_')[0] %>
+  <% easy_attendances = @easy_attendances.inject([]) { |array, attendance| array.concat(attendance.attendances_created_from_range) << attendance }.sort_by(&:arrival) %>
+
+  <% easy_attendances.each do |attendance| %>
+    <% modul_day_uniq_id = modul_uniq_id + '_' + attendance.arrival.to_date.to_s %>
+
+//    prepare for replace day hours, now blocked time formats
+//
+//  var hoursInfo = $('#<%#= modul_day_uniq_id %>').prev('.calendar-hours-info')
+//  var newHours = <%#= attendance.spent_time %>
+//  var originalHours = parseFloat(hoursInfo.text())
+//  var sumHours = originalHours + newHours
+//  hoursInfo.text(`${hoursInfo.text().replace(originalHours.toString(), sumHours.toString())}`)
+
+    $('#<%= modul_day_uniq_id %>').append("<%=j render partial: 'easy_attendances/calendar_event', locals: { event: attendance, day: attendance.arrival.to_date } -%>");
+  <% end %>
+<% else %>
+  window.location.reload()
+<% end %>

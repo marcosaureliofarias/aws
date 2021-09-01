@@ -1,0 +1,71 @@
+<%= content_tag :h2, @easy_contact_group.group_name %>
+<div id="contact-detail-container">
+  <div id="left">
+    <% @easy_contact_group.visible_custom_field_values.each_with_index do |cf,i| %>
+      <% unless !cf.custom_field.show_empty && cf.value.blank? %>
+        <p class="floating"><%= content_tag :strong, cf.custom_field.translated_name %>:
+          <%= show_value(cf) %>
+        </p>
+      <%end%>
+
+    <%end%>
+  </div>
+  <div id="contacts-in-group" class="autoscroll">
+    <table class="list">
+      <thead>
+        <tr><%= content_tag :th, l(:title_easy_contacts_in_group), :class => 'name' -%></tr>
+      </thead>
+      <tbody>
+        <% @easy_contact_group.easy_contacts.each do |contact| %>
+          <tr><%= content_tag :td, link_to( contact.name, easy_contact_path(contact,{:project_id => @project})), :class => 'name' %></tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<% if @easy_contact_group.author_note.present? %>
+  <div class="wiki easy-entity-details-description kicker" id="show_issue_description">
+    <%= textilizable(@easy_contact_group, :author_note) %>
+  </div>
+<% end %>
+
+<%= easy_journal_render_history(@journals, :entity => @easy_contact, :wrapping_heading_element_classes => 'icon icon-workflow') %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_edit), edit_easy_contact_group_path(@easy_contact_group, :project_id => @project), :class => 'button-positive icon icon-edit') %>
+  <%= link_to(l(:button_easy_contact_new), new_easy_contact_path(:easy_contact_group_id => @easy_contact_group), :class => 'button-positive icon icon-add') %>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l('easy_contacts_toolbar.contact_exit'), {:controller => 'easy_contact_groups', :action => 'index', :project_id => @project }, :class => 'button' -%>
+  <%= link_to(l(:button_delete), easy_contact_group_path(@easy_contact_group, :project_id => @project), :method => :delete, :class => 'button icon icon-del', :data => {:confirm => l(:text_are_you_sure)}) if User.current.allowed_to_globally?(:delete_easy_contact_groups, {}) %>
+<% end %>
+<% content_for :sidebar do %>
+  <%= hidden_field_tag 'ids[]', @easy_contact_group.id, :id => 'entity-id' %>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' %>
+<%end%>
+
+<script type="application/javascript">
+  EASY.schedule.require(function () {
+    $('#contacts-in-group').droppable({
+      activeClass: 'drag-ready',
+      hoverClass: 'drag-over',
+      accept: '.easy-contact-toolbar-item',
+      tolerance: 'pointer',
+      drop: function (event, ui) {
+        var easyContactId = ui.draggable.data('easy-contact-id');
+        var $container = $(this);
+        $(ui.helper).remove();
+        $.post(location.href + '/assign_contact', {
+          easy_contact_id: easyContactId
+        }, function () {
+          var newElement = $('<tr>').append($('<td>').append($(ui.draggable).clone().find('a').removeAttr('class')));
+          $container.find('.list tbody').append(newElement);
+        });
+      }
+    });
+  }, jQueryPluginGetter("droppable"));
+</script>

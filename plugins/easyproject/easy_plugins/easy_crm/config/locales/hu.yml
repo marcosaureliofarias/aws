@@ -1,0 +1,326 @@
+---
+hu:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: Levélszöveg (HTML)
+        body_plain: Levélszöveg (PLAIN TEXT)
+        easy_crm_case_status: Állapot
+        project: Projekt
+        subject: Tárgy
+      easy_crm_case_status:
+        is_closed: Lezárva?
+        is_default: Alapértelmezett?
+        is_easy_contact_required: Partner hozzáadása kötelező?
+        is_paid: Fizetve?
+        is_won: Megnyert?
+        name: Név
+        only_for_admin: Csak adminok részére
+        show_in_search_results: Kereshető?
+      easy_crm_case:
+        account_manager: Értékesítő‌
+        assigned_to: Felelős
+        author: Szerző
+        closed_on: Lezárva ekkor
+        contract_date: Szerződés dátuma
+        created_at: Létrehozva
+        currency: Pénznem
+        description: Leírás
+        easy_closed_by: Lezárta
+        easy_contacts: Partnerek
+        easy_crm_case_items:
+          amount: Összeg
+          description: Leírás
+          discount: Kedvezmény
+          easy_crm_case: CRM eset
+          name: Név
+          price_per_unit: Egységár
+          product_code: Termékkód
+          total_price: Teljes érték
+          unit: Egység
+        easy_crm_case_status: Állapot
+        email: Email
+        email_cc: E-mail CC
+        is_canceled: Meghiúsult?
+        is_finished: Befejezve?
+        lead_value: Vezető érték
+        main_easy_contact_id: Ügyfél
+        name: Név
+        need_reaction: Válaszra vár?
+        next_action: Következő lépés
+        price: Érték
+        probability: Valószínűség
+        project: Projekt
+        send_to_external_mails: Értesítés külső email-re?
+        telephone: Telefon
+        updated_at: Frissítve
+      easy_lead_score:
+        country: Ország
+        created_at: Létrehozva
+        updated_at: Frissítve
+      easy_user_target:
+        currency: Pénznem
+        target: Cél
+        valid_from: Innen
+        valid_to: Ide
+    models:
+      easy_crm_case_mail_template: Levélsablon
+      easy_mail_campaign_easy_crm_case: CRM eset
+  button_change_easy_crm_cases_status: Újrakiosztás és törlés
+  button_easy_crm_add_item: Tétel hozzáadása
+  button_easy_crm_add_mail_template: Sablon hozzáadása
+  button_easy_crm_add_mailbox: Postafiók hozzáadása
+  button_easy_crm_add_or_create_related_contact: Kapcsolódó partner hozzáadása vagy
+    létrehozása
+  button_easy_crm_add_or_create_related_invoice: Kapcsolódó számla hozzáadása vagy
+    létrehozása
+  button_easy_crm_add_or_create_related_issue: Kapcsolódó feladat hozzáadása vagy
+    létrehozása
+  button_easy_crm_add_related_contact: Partner hozzárendelése
+  button_easy_crm_add_related_invoice: Számla hozzárendelése
+  button_easy_crm_add_related_issue: Feladat kiosztása
+  button_easy_crm_add_sales_activity: Értékesítési tevékenység hozzáadása
+  button_easy_crm_add_status: Állapot hozzáadása
+  button_easy_crm_country_value_new: Új érték létrehozása
+  button_easy_crm_create_related_contact: Új partner létrehozása
+  button_easy_crm_create_related_invoice: Új számla létrehozása
+  button_easy_crm_create_related_issue: Új feladat létrehozása
+  button_easy_crm_merge_cases: Esetek összevonása
+  button_easy_crm_merge_cases_inteligent_merge: CRM esetek összevonása
+  button_easy_crm_merge_cases_quick_merge: CRM esetek gyors összevonása
+  button_easy_crm_new_case: Új eset
+  button_easy_crm_related_case: Kapcsolódó CRM eset hozzáadása
+  button_easy_crm_view_sales_activities: Értékesítési tevékenységek áttekintése
+  button_easy_lead_score_new: Új Easy Lead pont
+  button_easy_user_target_add_all_users_of_type: Minden felhasználó típus megadása
+  button_easy_user_target_add_users: Felhasználók hoszáadása
+  button_easy_user_target_add_users_from_group: Felhasználók hozzáadása a csoportból
+  button_manage_user_targets: Felhasználói célok kezelése
+  button_merge_and_follow: Összevonás és követés
+  button_set_easy_user_target_currency: Pénznem hozzáadása
+  easy_crm_plugin_author: Easy Software
+  easy_crm_plugin_author_url: http://www.easyproject.cz/en
+  easy_crm_plugin_description: CRM az értékesítési tevékenység nyomonkövetésére és
+    a teljesítmény mérésére
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: Értékesítési tevékenység módosítva
+  easy_entity_activity_destroyed: Értékesítési tevékenység törölve
+  easy_entity_activity_is_planned: "%{category} tervezett %{time}-kor"
+  easy_entity_activity_was_finished: "%{category}  %{time} -kor befejezve"
+  easy_entity_activity_was_reported: "%{category} riportolva lett %{time}-kor"
+  easy_invoice_already_has_crm_case: A számla már hozzárendelésre került egy CRM esethez
+  easy_lookup:
+    easy_crm_case:
+      label: CRM esetek
+  easy_mail_template_token:
+    caption:
+      crm_case_id: CRM eset ID
+      crm_case_name: CRM eset neve
+      crm_case_note: CRM eset utolsó előzményadat
+    title:
+      crm_case_id: Kattintson a CRM ID megadásához
+      crm_case_name: Kattintson a CRM eset nevének (Tárgy) megadásához
+      crm_case_note: Kattintson a CRM eset utolsó előzményadat hozzáadásához
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: CRM esetek szűrő alapján
+      easy_crm_create_easy_crm_case_button: Új CRM eset
+      easy_crm_pie_chart_from_custom_field: Egyedi kördiagram
+      easy_crm_user_performance: Értékesítői teljesítmény
+      easy_crm_user_target: Felhasználó céljai
+      easy_entity_activity_crm_case_query: Értékesítési tevékenységek szűrő alapján
+    pages_description:
+      easy_crm_overview: CRM áttekintés
+      easy_crm_project_overview: CRM projekt áttekintése
+    pages:
+      easy_crm_overview: CRM áttekintés
+      easy_crm_project_overview: CRM projekt áttekintése
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: Új CRM eset létrehozása
+        description: Hozzon létre egy áj CRM esetet
+    easy_crm_settings:
+      index:
+        caption: CRM beállítások
+        description: CRM beállítások kezelése
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: CRM esetek
+          related_easy_crm_case: Kapcsolódó CRM eset
+    name:
+      easy_crm_case_item_query: CRM eset tételei
+      easy_crm_case_query: CRM esetek
+      easy_crm_contact_query: CRM partnerek
+      easy_crm_country_value_query: CRM ország-specifikus értékek
+      easy_lead_score_query: Easy Lead pont
+      easy_user_target_query: Felhasználói célok
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: Egyéni CRM szűrők(esetek)
+        easy_crm_contact_query: Privát CRM szűrők (Partnerek)
+      public:
+        easy_crm_case_query: Közös CRM szűrők(esetek)
+        easy_crm_contact_query: Nyilvános CRM szűrők (Partnerek)
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: CRM postafiók
+  error_can_not_delete_easy_crm_status: Ez az állapot használatban van CRM eseteknél
+    ezért nem törölhető.
+  error_easy_crm_case_can_not_assign_custom_field: A CRM eset az egyedi mezőben nem
+    társítható, mert nem tartozik ehhez a projekthez.
+  error_easy_crm_case_could_not_merge: CRM esetek összevonása sikertelen
+  field_easy_crm_case: CRM eset
+  field_easy_crm_case_contract_date: Szerződés dátum
+  field_easy_crm_case_created_date: Létrehozva
+  field_easy_crm_case_next_action: Következő lépés
+  field_easy_crm_cases: CRM eset
+  field_easy_crm_cases_visibility: CRM esetek láthatósága
+  field_easy_lead_score: Lead pont
+  heading_easy_crm_case_edit: CRM eset szerkesztése
+  heading_easy_crm_case_item_index: CRM eset tételei
+  heading_easy_crm_case_mail_template_edit: Levélsablon szerkesztése
+  heading_easy_crm_case_mail_template_index: Levélsablonok
+  heading_easy_crm_case_mail_template_new: Új levélsablon
+  heading_easy_crm_case_new: Új CRM eset
+  heading_easy_crm_case_sidebar_filters_by_member: Projekttagok esetei
+  heading_easy_crm_case_status_edit: CRM eset állapot szerkesztése
+  heading_easy_crm_case_status_index: CRM eset állapotok
+  heading_easy_crm_case_status_new: Új CRM eset állapot
+  heading_easy_crm_country_value_new: Új CRM országspecifikus érték
+  heading_easy_crm_mailboxes_index: Postafiókok
+  heading_easy_crm_related_case: Kapcsolódó CRM eset
+  heading_easy_crm_related_case_plural: Kötődő CRM esetek
+  heading_easy_crm_related_contacts: Kapcsolódó partnerek
+  heading_easy_crm_related_issues: Kapcsolódó feladatok
+  heading_easy_lead_score_edit: Easy Lead pont szerkesztése
+  heading_easy_lead_score_new: Új Easy Lead pont
+  label_advanced_custom_fields: Összetett egyedi mező
+  label_assign_to_easy_crm_case: Csatolás CRM esethez
+  label_attribute_of_easy_crm_cases: CRM eset %{name}
+  label_bulk_edit_selected_easy_crm_case: CRM esetek együttes szerkesztése
+  label_change_crm_cases_status_explanation: 'CRM eset állapotának módosítása:'
+  label_chart_target: Felhasználói cél
+  label_crm_currency_rate: Árfolyam az alap pénznemhez
+  label_crm_fields_permissions: CRM mezőengedélyek
+  label_easy_contact_customer_business: CRM eset
+  label_easy_contact_easy_crm_cases: CRM esetek
+  label_easy_contact_indirect_business: Indirekt ügylet (CRM)
+  label_easy_crm: CRM
+  label_easy_crm_case: CRM
+  label_easy_crm_case_added: CRM eset hozzáadva
+  label_easy_crm_case_assignee: CRM eset felelős
+  label_easy_crm_case_customer: Ügyfél
+  label_easy_crm_case_customer_query_group_custom_fields: Ügyfél egyedi mező
+  label_easy_crm_case_default_values: Alapértelmezet értékek
+  label_easy_crm_case_filters: Szűrő
+  label_easy_crm_case_is_associated_to_easy_invoice: Van hozzárendelt CRM eset?
+  label_easy_crm_case_need_reaction: Válaszra vár!
+  label_easy_crm_case_new: Új CRM eset
+  label_easy_crm_case_plural: CRM esetek
+  label_easy_crm_case_query_includes_descendants: CRM esetek megjelenítése minden
+    alprojektből
+  label_easy_crm_case_searchable_all: Keresés az összes CRM státusz között
+  label_easy_crm_case_status: CRM eset állapota
+  label_easy_crm_case_updated: CRM eset frissítve
+  label_easy_crm_case_watchers_heading: Munkatársak
+  label_easy_crm_cases: CRM esetek
+  label_easy_crm_cases_merge_into: CRM esetek összevonása
+  label_easy_crm_cases_visibility_all: Az összes CRM eset a felhasználó projektjein
+  label_easy_crm_cases_visibility_own: CRM esetek, amelyeknél a felhasználó szerző,
+    felelős vagy munkatárs
+  label_easy_crm_country_values: CRM országspecifikus értékek
+  label_easy_crm_default_assignee: Új eset felelőse
+  label_easy_crm_find_by_worker: Munkatárs keresése
+  label_easy_crm_kanban: Kanban megtekintés
+  label_easy_crm_kanban_columns_name: Oszlop név
+  label_easy_crm_kanban_drop_in: Megérkező státusz
+  label_easy_crm_kanban_settings: Kanban nézet beállíátsok
+  label_easy_crm_kanban_status_not_uniq: Kanban oszlopoknak követniük kell a különböző
+    státuszokat
+  label_easy_crm_kanban_statuses: Oszlop állapota
+  label_easy_crm_kanban_sum_column: Oszlop összegző mező
+  label_easy_crm_new_kanban_column: Új oszlop hozzáadása
+  label_easy_crm_project: CRM projekt
+  label_easy_crm_related_case: Kapcsolódó eset
+  label_easy_crm_search_fo_easy_contact: Partner keresése
+  label_easy_crm_search_for_easy_invoice: Számla keresése
+  label_easy_crm_search_for_issue: Feladat keresése
+  label_easy_crm_settings: Crm beálltások
+  label_easy_crm_use_items: CRM tételek használata
+  label_easy_lead_score: Easy Lead pont
+  label_easy_lead_scores: Easy Lead pont
+  label_easy_money_sidebar:
+    easy_crm_case: Pénzügy CRM esetekhez
+  label_easy_user_target: Felhasználói célok
+  label_easy_user_target_currency: Pénznem
+  label_easy_user_with_targets: Felhasználók céllal
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: Partner
+  label_filter_group_easy_crm_contact_query_custom_fields: Partnerek egyedi mezők
+  label_filter_group_easy_user_target_query: Felhasználói célok
+  label_filter_group_sales_activity_additional_filters: További értékesítői szűrő 
+  label_page_module_compare: Összehasonlítás
+  label_prefix_easy_contacts_query_filter: Partnerek
+  label_set_crm_fields_permissions: CRM mezőengedélyek beállítása állapot alapján
+  label_show_assigned_crm_cases: "%{username} felhasználó CRM eseteinek megjelenítése."
+  label_statuses_not_selected: Nem lett státusz kiválasztva. Kérem válasszon ki legalább
+    egyet.
+  label_unknown_user: Ismeretlen
+  label_use_values_from_crm_case: Értékek használata innen
+  label_validation_only_for_admin: Csak admin használhatja ezt az állapotot.
+  mail:
+    subject:
+      easy_crm_case_add: "%{name}"
+      easy_crm_case_edit: "%{name}"
+      my_easy_crm_case_add: ">>> Saját CRM eset [%{projectname}] hozzáadva - %{name}"
+      my_easy_crm_case_edit: ">>> Saját CRM eset [%{projectname}] frissítve - %{name}
+        (%{status})"
+  notice_easy_crm_case_successful_create: "%{id} CRM létrehozva."
+  notice_easy_crm_update_conflict: A szerkesztés közben a CRM esetet más felhasználó
+    frissítette.
+  notice_failed_to_save_easy_crm_cases: "%{count} CRM eset mentése sikertelen a kijejölt
+    \ %{total}  közül: %{titles}"
+  permission_add_crm_case_notes: Jegyzetek hozzáadása
+  permission_add_easy_crm_case_watchers: CRM eset követők hozzáadása
+  permission_add_easy_crm_cases: CRM esetek hozzáadása
+  permission_delete_easy_crm_case_watchers: CRM eset követők törlése
+  permission_delete_easy_crm_cases: CRM esetek törlése
+  permission_edit_crm_case_notes: Jegyzetek szerkesztése
+  permission_edit_easy_crm_cases: CRM esetek szerkesztése
+  permission_edit_easy_crm_country_values: CRM országadat értékek szerkesztés
+  permission_edit_own_crm_case_notes: Saját jegyzetek szerkesztése
+  permission_edit_own_easy_crm_cases: Saját CRM esetek szerkesztése
+  permission_manage_easy_crm_page: CRM oldalak kezelése
+  permission_manage_easy_crm_settings: CRM beállítások kezelése
+  permission_manage_easy_lead_scores: Easy Lead pontok kezelése
+  permission_manage_easy_user_targets: Felhasználói célok kezelése
+  permission_view_easy_crm_case_watchers: CRM eset követők megtekintése
+  permission_view_easy_crm_country_values: CRM országadat értékek megtekintése
+  permission_view_easy_crms: CRM megtekintése
+  permission_view_easy_lead_scores: Easy Lead pontok megtekintése
+  permission_view_own_easy_crms: Saját CRM esetek megtekintése
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: Eltávolítás
+  remove_related_invoice: Számla eltávolítása
+  setting_show_description_on_crm_case: CRM tétel leírások megjelenítése
+  setting_show_easy_entity_activity_on_crm_case: Értékesítési tevékenységek megjelenítése
+    a CRM esetnél
+  sidebar_crm_case_button_move: CRM eset áthelyezése
+  text_are_you_sure_remove_user: Minden negyedből el akarja távolítani a felhasználót?
+  text_easy_crm_case_updated: CRM eset %{id} %{user} által frissítve .
+  title_easy_crm_case_delete: CRM eset törlése
+  title_easy_crm_country_value_new: Kattintson új országspecifikus érték létrehozásához
+  title_easy_crm_new_case: Kattintson új CRM eset létrehozásához
+  title_easy_lead_score_new: Kattintson, az új  Easy Lead pontok létrehozásához
+  title_easy_user_target_modal_easy_user_type: Felhasználók kiválasztása típus alapján
+  title_easy_user_target_modal_group: Felhasználók kiválasztása csoport alapján
+  title_easy_user_target_remove_user: Felhasználó eltávolítása
+  title_kanban_settings: Kanban beállítások

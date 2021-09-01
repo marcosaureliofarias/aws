@@ -1,0 +1,28 @@
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:button_edit), edit_document_path(@document), :class => 'icon icon-edit button', :accesskey => accesskey(:edit)) if User.current.allowed_to?(:edit_documents, @project) %>
+  <%= delete_link document_path(@document), class: 'icon icon-del button' if User.current.allowed_to?(:delete_documents, @project) %>
+<% end %>
+
+<h2><%=h @document.title %></h2>
+
+<% if @document.visible_custom_field_values.any? %>
+  <%= render :partial => 'custom_field_values', :locals => {:custom_field_values => @document.visible_custom_field_values} %>
+<% end -%>
+
+<div class="wiki">
+  <%= textilizable(@document, :description, :attachments => @document.attachments) %>
+</div>
+
+<%= link_to_attachments @document %>
+
+<% if authorize_for('documents', 'add_attachment') %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to l(:label_attachment_new), {}, onclick: "$('#add_attachment_form').show(); $(document).scrollTop($('#add_attachment_form')[0].offsetTop); $(document).trigger('erui_interface_change_vertical'); return false;", id: 'attach_files_link', class: 'button-positive icon icon-add' %>
+  <% end %>
+  <%= form_tag({ :controller => 'documents', :action => 'add_attachment', :id => @document }, :class => 'form-box', :multipart => true, :id => "add_attachment_form", :style => "display:none;") do %>
+    <%= render :partial => 'attachments/form', :locals => {:container => @document} %>
+    <div class="form-actions"><%= submit_tag l(:button_save), :class => 'button-positive' %></div>
+  <% end %>
+<% end %>
+
+<% html_title @document.title -%>

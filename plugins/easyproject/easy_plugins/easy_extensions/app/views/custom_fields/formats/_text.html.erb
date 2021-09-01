@@ -1,0 +1,8 @@
+<%= render partial: 'custom_fields/formats/regexp', locals: {f: f, custom_field: custom_field} %>
+<p>
+  <%= f.check_box :text_formatting, {label: :setting_text_formatting}, 'full', '' %>
+</p>
+<p>
+  <%= f.label(:default_value, class: "text_cf") %>
+  <%= f.text_area(:default_value, rows: 5, no_label: true, class: 'wiki-edit') %><%= wikitoolbar_for('custom_field_default_value') %>
+</p>

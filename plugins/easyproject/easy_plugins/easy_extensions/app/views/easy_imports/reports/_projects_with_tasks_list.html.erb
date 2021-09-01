@@ -1,0 +1,72 @@
+<%
+  projects ||= (@importer.log[:projects] || {})
+  render_created ||= projects[:created].present?
+  render_mapped ||= projects[:mapped].present?
+  render_errors ||= projects[:errors].present?
+  wbs_installed = Redmine::Plugin.installed?(:easy_wbs)
+  created_issues = @importer.log[:issues].try(:[], :created) || {}
+  mapped_issues = @importer.log[:issues].try(:[], :mapped) || {}
+  issue_errors =  @importer.log[:issues].try(:[], :errors) || {}
+  issue_warnings = @importer.log[:issues].try(:[], :warnings) || []
+%>
+<%= title(l('easy_imports.title_projects_and_tasks')) %>
+<% if render_created %>
+  <% projects[:created].each do |project_id, project| %>
+    <ul class="easy_imports__created_entities">
+      <li>
+        <% project_link_url = (wbs_installed && project.module_enabled?('easy_wbs')) ? project_easy_wbs_index_path(project) : project %>
+        <%= "#{l(:label_project)} #{link_to(project.name, project_link_url, target: '_blank')} #{l('easy_imports.entity_successfully_imported')}".html_safe %>
+        <% if projects[:warnings][project_id].present? %>
+          <ul class="easy_imports__warnings">
+            <% Array(projects[:warnings][project_id]).each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <%
+          project_issues = {}
+          project_issues[:created] = created_issues.select { |_, issue| issue.project_id == project_id }
+          project_issues[:mapped] = mapped_issues.select { |_, issue| issue.project_id == project_id }
+          project_issues[:warnings] = issue_warnings
+        %>
+        <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: project_issues, entity_type: :issue, path_method: :issue_path, skip_title: true } %>
+        <% if issue_errors[project_id] %>
+          <ul>
+            <% Array(issue_errors[project_id]).each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+
+<% if render_mapped %>
+  <% projects[:mapped].each do |project_id, project| %>
+    <ul class="easy_imports__created_entities">
+      <li>
+        <% project_link_url = (wbs_installed && project.module_enabled?('easy_wbs')) ? project_easy_wbs_index_path(project) : project %>
+        <%= "#{l(:label_project)} #{link_to(project.name, project_link_url, target: '_blank')} #{l('easy_imports.entity_already_exists')} #{l('easy_imports.import_skipped')}".html_safe %>
+        <%
+          project_issues = {}
+          project_issues[:created] = created_issues.select { |_, issue| issue.project_id == project_id }
+          project_issues[:mapped] = mapped_issues.select { |_, issue| issue.project_id == project_id }
+          project_issues[:warnings] = issue_warnings
+        %>
+        <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: project_issues, entity_type: :issue, path_method: :issue_path, skip_title: true } %>
+        <% if issue_errors[project_id] %>
+          <ul>
+            <% Array(issue_errors[project_id]).each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+
+<% if render_errors %>
+  <%= render partial: 'easy_imports/reports/entities_list', locals: {entities: projects, entity_type: :project, path_method: :project_path, hide_created: true, hide_mapped: true } %>
+<% end %>

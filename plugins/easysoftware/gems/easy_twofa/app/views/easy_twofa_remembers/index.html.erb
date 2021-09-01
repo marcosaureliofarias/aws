@@ -1,0 +1,9 @@
+<%= title l('easy_twofa.remembered_devices') %>
+
+<% if @remembers.blank? %>
+  <p class="nodata">
+    <%= l(:label_no_data) %>
+  </p>
+<% else %>
+  <%= render 'easy_twofa_remembers/list' %>
+<% end %>

@@ -1,0 +1,14 @@
+%reset-table{
+  border: 1px solid $color-border-minor;
+  th{
+    background: mix($color-background,$color-foreground);
+  }
+  th,td{
+    border: 1px solid $color-border-minor;
+    padding-left: .5*$gap;
+    padding-right: .5*$gap;
+  }
+}
+%table-cell{
+  display: table-cell !important;
+}

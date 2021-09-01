@@ -1,0 +1,10 @@
+<%= render(:partial => page_module.module_definition.show_path,
+           :locals => {
+             :user => page_params[:user] || User.current,
+             :block_name => page_module.module_name,
+             :settings => page_module.settings,
+             :page_module => page_module,
+             :modul_uniq_id => "module_inside_#{page_module.uuid.dasherize}",
+             :page_params => page_params,
+             :easy_page_modules_data => @easy_page_modules_data[page_module.module_name]
+           }) %>

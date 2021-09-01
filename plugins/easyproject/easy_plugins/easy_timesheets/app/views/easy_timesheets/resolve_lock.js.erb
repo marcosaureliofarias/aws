@@ -1,0 +1,13 @@
+<% if @easy_timesheet.locked? %>
+$("#easy_timesheet_form_container a.icon-add, #easy_timesheet_form_container a.icon-del").remove();
+$("#easy_timesheet_form_container input:text, #easy_timesheet_form_container td.cell-data a").each(function(index, item) {
+  var val = ($("#cell:first")[0].nodeName == 'INPUT') ? $(item).val() : $(item).text();
+  $(item).closest('td').append(val);
+  $(item).remove();
+})
+$("#content .contextual").html("<%=j link_to(l(:button_easy_timesheets_reject), resolve_lock_easy_timesheet_path(@easy_timesheet, 'false'), :class => 'icon icon-unlock', :data => {:confirm => l(:text_are_you_sure)}, :remote => true, :method => 'post') if @easy_timesheet.locked? && User.current.allowed_to_globally?(:timelog_can_unlocking, {}) -%>");
+showFlashMessage("<%= @locked && 'notice' || 'error' -%>", "<%= @locked && l(:notice_successful_update) || l(:notice_failed_to_update) %>");
+<% else %>
+window.location.reload();
+$("#easy_timesheet_form_container").html('<p><i class="indicator icon-loading icon-spin big"></i></p>');
+<% end %>

@@ -1,0 +1,2 @@
+$('#easy_rake_task_info_detail_receive_mail_status_<%= status -%>_offset').val('<%= offset -%>');
+$('#easy_rake_task_info_detail_receive_mail_status_<%= status -%>_table tbody').append('<%= j(render :partial => 'easy_rake_tasks/additional_task_info/easy_rake_task_easy_helpdesk_receive_mail_status_detail', :formats => [:html], :locals => {:task => task, :details => details}) -%>');

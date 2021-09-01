@@ -1,0 +1,5 @@
+<% if @entity.errors.any? %>
+$('#ajax-modal').html("<%= j(render_new_view(@entity)) %>");
+<% else %>
+window.location = '<%= back_url || polymorphic_path(@entity.to_route) %>'
+<% end %>

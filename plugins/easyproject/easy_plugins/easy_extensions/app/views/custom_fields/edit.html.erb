@@ -1,0 +1,13 @@
+<%= custom_field_title @custom_field %>
+
+<%= labelled_form_for :custom_field, @custom_field, :url => custom_field_path(@custom_field), :html => {:method => :put, :id => 'custom_field_form', :class => 'form-box'} do |f| %>
+  <div id="custom_field_form_container">
+    <%= render :partial => 'form' %>
+  </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ##########################################################  -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to l(:label_custom_field_new), new_custom_field_path(:selected => @custom_field.type), :class => 'icon icon-add button-positive' %>
+<% end %>

@@ -1,0 +1,62 @@
+<% continue_to ||= params[:continue_to] %>
+<%= hidden_field_tag('continue_to', continue_to) unless continue_to.blank? %>
+<%= hidden_field_tag('entity_type', params[:entity_type]) unless params[:entity_type].blank? %>
+<%= hidden_field_tag('entity_id', params[:entity_id]) unless params[:entity_id].blank? %>
+<%= hidden_field_tag('entity_settings', params[:entity_settings]) unless params[:entity_settings].blank? %>
+<%= hidden_field_tag('project_id', params[:project_id]) unless params[:project_id].blank? %>
+<%= hidden_field_tag('selected_ids', params[:selected_ids]) unless params[:selected_ids].blank? %>
+<%= hidden_field_tag('back_url', params[:back_url]) unless params[:back_url].blank? %>
+<%= hidden_field_tag('back_url2', params[:back_url2]) unless params[:back_url2].blank? %>
+
+<div class="splitcontent">
+  <div class="splitcontentleft size-5">
+    <p>
+      <%= f.text_field :name, :label => l(:'activerecord.attributes.easy_printable_template.name'), :required => true %>
+    </p>
+    <p>
+      <%= f.text_field :description, :label => l(:'activerecord.attributes.easy_printable_template.description'), :maxlength => 255 %>
+    </p>
+    <% if User.current.allowed_to_globally?(:manage_easy_printable_templates) %>
+      <p>
+        <%= f.select :author_id, User.active.non_system_flag.sorted.all.collect{|u| [u.name, u.id] }, {:label => l(:'activerecord.attributes.easy_printable_template.author'), :required => true} %>
+      </p>
+    <% end %>
+    <p>
+      <%= f.select :category, options_for_select(EasyPrintableTemplate.all.pluck(:category).uniq.map{|s| [EasyPrintableTemplate.category_caption(s), s]}, f.object.category), {:label => l(:'activerecord.attributes.easy_printable_template.category')} %>
+    </p>
+  </div>
+  <div class="splitcontentleft size-5">
+    <p>
+      <%= f.select :pages_size, easy_printable_template_pages_size, {:label => l(:'activerecord.attributes.easy_printable_template.pages_size')}, {:onchange => nil} %>
+    </p>
+    <p>
+      <%= f.select :pages_orientation, easy_printable_template_pages_orientation, {:label => l(:'activerecord.attributes.easy_printable_template.pages_orientation')} %>
+    </p>
+  </div>
+  <% if false %>
+    <p>
+      <%= f.check_box :private, :label => l(:'activerecord.attributes.easy_printable_template.private') %>
+    </p>
+  <% end %>
+</div>
+<div>
+  <%= toggling_container("easy-printable-template-form-attachments", User.current, { heading: l(:label_issue_attachments_heading), default_button_state: false, wrapping_heading_element_classes: ' icon icon-attachment' }) do %>
+    <%= render partial: 'attachments/form', locals: { container: f.object, show_attached: true } %>
+  <% end %>
+</div>
+
+<div>
+  <%= f.fields_for :easy_printable_template_pages do |builder| %>
+    <%= render :partial => 'pages', :locals => {:f => builder} %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $('#content').on('cocoon:after-insert', function(_, insertedItem) {
+      var i = $(insertedItem);
+      var new_page = i.find('.page-number');
+      new_page.html($('.page-number').length);
+    });
+  });
+</script>

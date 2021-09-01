@@ -1,0 +1,38 @@
+<% unless options[:do_not_show_context_menu] %>
+  <form method="post" action="<%= url_for -%>">
+<% end %>
+<div class="attachments autoscroll">
+  <table style="border-collapse: collapse;" class="list attachments context-menu-container">
+    <tbody>
+    <% attachments.each do |attachment| %>
+      <%# easy_cache ['attachments/_link_rows/row', attachment, I18n.locale] do %>
+      <%= attachment_row(attachment, options) %>
+      <%# end %>
+    <% end %>
+    </tbody>
+    <%= call_hook(:view_issues_show_attachments_table_bottom, { :container => container, :attachments => attachments, :options => options }) %>
+  </table>
+</div>
+<% unless options[:do_not_show_context_menu] %>
+  </form>
+<% end %>
+
+<% if defined?(thumbnails) && thumbnails %>
+  <% images = attachments.select(&:thumbnailable?) %>
+  <div class="thumbnails">
+    <% images.each do |attachment| %>
+      <%= thumbnail_tag(attachment) %>
+    <% end %>
+    <%= call_hook(:view_issues_show_thumbnails, { :container => container, :options => options }) %>
+  </div>
+
+  <% include_galereya_tags %>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      if(typeof(EASY.utils.initGalereya) === "function") {
+        EASY.utils.initGalereya($('.thumbnails:visible'));
+      };
+    });
+  </script>
+
+<% end %>

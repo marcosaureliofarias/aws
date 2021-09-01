@@ -1,0 +1,16 @@
+<%= title(l(:heading_easy_entity_actions_edit)) unless request.xhr? %>
+<%= form_for(@easy_entity_action, :as => :easy_entity_action, :url => easy_entity_action_path(@easy_entity_action), :method => :put, :remote => request.xhr?, :html => {:id => 'easy_entity_action_form'}) do |f| %>
+  <%= error_messages_for @easy_entity_action %>
+
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+
+  <div id="easy_entity_action_container">
+    <%= render :partial => 'form', :locals => {:easy_entity_action => @easy_entity_action} %>
+  </div>
+
+  <% unless request.xhr? %>
+    <p class="buttons">
+      <%= f.submit l(:button_update) %>
+    </p>
+  <% end %>
+<% end %>

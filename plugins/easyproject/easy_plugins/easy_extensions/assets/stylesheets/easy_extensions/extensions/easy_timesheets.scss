@@ -1,0 +1,350 @@
+.table-monthly {
+  table-layout: fixed;
+  &-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  & > thead {
+    & > tr {
+      th:not(.cell-without-border) {
+        background-color: $color-background;
+        color: $color-text;
+        font-size: $font-small;
+      }
+    }
+
+    & > tr:first-child {
+      th {
+        font-weight: bold;
+      }
+    }
+
+    .cell-day {
+      min-width: 30px;
+    }
+    .header {
+      &-project, &-issue, &-activity {
+        @extend %sticky;
+        background-color: mix($color-background,$color-foreground);
+        z-index: 100;
+      }
+      &-project {
+        margin: 0;
+        width: 130px;
+        border-right: 0;
+        border-bottom: 0;
+        //left: 0;
+      }
+      &-issue {
+        width: 130px;
+        //left: 156px;
+      }
+      &-activity {
+        width: 100px;
+        //left: 311px;
+      }
+    }
+
+    .cell-without-border {
+      width: 70px;
+    }
+  }
+
+  tfoot {
+    th {
+      font-size: 12px;
+      &.time-entry-hour {
+        padding: 0 !important;
+        text-align: center;
+      }
+    }
+
+  }
+
+  th, td {
+    border: 1px solid $color-border;
+    padding: .5*$gap $gap !important;
+    &.cell-without-border {
+      background-color: transparent;
+    }
+    &.project, &.issue, &.activity {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100px;
+      overflow: hidden;
+      @extend %sticky;
+      background-color: mix($color-background,$color-foreground);
+      z-index: 10;
+    }
+
+    &.project {
+      //left: 0;
+    }
+
+    &.issue {
+      //left: 155px;
+    }
+
+    &.activity {
+      //left: 311px;
+      text-overflow: initial;
+      white-space: initial;
+      & > label {
+        vertical-align: middle;
+      }
+    }
+
+    &[colspan="3"] {
+      @extend %sticky;
+      left: 0;
+      z-index: 100;
+      background-color: $color-background;
+    }
+
+    &.row-sum, &.buttons {
+      @extend %sticky;
+      right: 0;
+      background-color: mix($color-background,$color-foreground);
+      z-index: 100;
+      font-size: 12px;
+    }
+
+    &.row-sum, &.head-row-sum {
+      right: 38px;
+      width: 48px;
+    }
+
+    &.buttons, &.head-buttons {
+      width: 20px;
+    }
+
+    &.cell-day {
+      text-align: center;
+
+      &.day-number {
+        padding:0 !important;
+        width: 50px;
+      }
+    }
+  }
+  .sum-row {
+    border-top: 2px solid $color-border;
+  }
+
+  .overtime-row {
+    font-weight: bold;
+    font-size: $font-small;
+    background-color: $color-background;
+    @extend %sticky;
+    left: 0;
+
+    & > td:first-child {
+      border-right: none;
+    }
+    & > td:nth-child(2) {
+      border-left: none;
+    }
+  }
+
+  .weekend {
+    background-color: darken($color-background, 1%) !important;
+  }
+
+  .cell-overtime {
+    width: 6px;
+    margin: 0;
+    text-align: center;
+    & input[type="checkbox"] {
+      margin: 0;
+    }
+  }
+
+  .cell-data:not(.issue):not(.project):not(.activity) {
+    padding: 0 !important;
+    text-align: center;
+    font-size: 12px;
+    & > p {
+      margin-bottom: 0;
+      text-align: center;
+
+      & > input.time-entry-input-hours {
+        margin: 0;
+        width: 100%;
+        background: transparent;
+        border: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+      }
+    }
+
+    & > a {
+      margin-left: -$gap;
+    }
+  }
+
+  .time-entry-input-comments {
+    display: none;
+  }
+
+  p.extended-timesheet-top-buttons {
+    a.disabled {
+      pointer-events: none;
+    }
+  }
+
+  .cell-without-border {
+    border: 0px;
+  }
+}
+
+table.easy-timesheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $color-foreground;
+  td,th{
+    height: 28px;
+    padding: $gap;
+    &:first-child{
+      padding-left: $box-padding;
+    }
+    &:last-child{
+      padding-right: $box-padding;
+    }
+    &.buttons{
+      padding-right: $gap;
+      a{
+        @extend %button-link;
+      }
+    }
+    &.today {
+      background: $color-calendar-background-today !important;
+    }
+    &.weekend {
+      background: $color-calendar-background-weekend !important;
+    }
+    &.holiday {
+      background: $color-calendar-background-holiday !important;
+    }
+    &.exception {
+      background: $color-calendar-background-exception !important;
+    }
+  }
+  th{
+    &.name,&.border{
+      background-color: mix($color-background,$color-foreground);
+    }
+  }
+  td{
+    &.estimated, &.buttons {
+      text-align: center;
+    }
+  }
+  thead{
+    td{
+      background-color: mix($color-background,$color-foreground);
+    }
+  }
+  tbody{
+    td{
+      border: 1px solid $color-border-minor;
+      &.subject,&.project-name{
+        a{
+          margin: 0 5px;
+          max-width: 300px;
+          display: block;
+          @extend %truncate;
+        }
+      }
+      //&:first-child{
+      //  border-left: none;
+      //}
+      //&:last-child{
+      //  border-right: none;
+      //}
+
+    }
+    tr{
+      &:last-child{
+        td{
+          border-bottom: none;
+        }
+      }
+      &:nth-child(even), .time-entry-hour:nth-child(even){
+        background-color: mix($color-background,$color-foreground);
+      }
+      &:nth-child(odd){
+        background-color: $color-foreground;
+      }
+      &.invalid-row {
+        border: 2px dashed $color-negative;
+      }
+      &.is-new-row{
+        background-color: $color-highlight;
+      }
+      &:not(.is-new-row).invalid-row {
+        td:first-child:before {
+          content: "\2691";
+          color: $color-negative;
+          font-size: $font-h3;
+        }
+      }
+    }
+  }
+  input {
+    @include small;
+  }
+  .plan-hour{
+    border-left: 1px solid $color-border-minor;
+    border-right: none;
+  }
+  .time-entry{
+    &-hour{
+      border-right: 1px solid $color-border-minor;
+      border-left: 1px solid $color-border-minor;
+      text-align: center;
+      vertical-align: middle;
+      &.cell-data {
+        min-width: 120px;
+        p {
+          height: 32px;
+          margin-top: 3px;
+        }
+      }
+    }
+    &-input-comments{
+      width: 100%;
+    }
+    &-input-hours{
+      text-align: center;
+    }
+  }
+}
+
+table.easy-timesheet-table tbody td .icon-edit {
+  cursor: pointer;
+}
+
+
+table.easy-timesheet-table td.comment input, table.easy-timesheet-table input.time-entry-input-comments {
+  //display: block;
+  //margin: auto;
+  //width: 90%;
+}
+table.easy-timesheet-table *[class*=hour], table.easy-timesheet-table td.buttons {
+  //text-align: center;
+}
+table.easy-timesheet-table th[class*=hour] {
+  //font-size: 80%;
+  //color: #595959;
+}
+table.easy-timesheet-table tfoot tr > * {
+  //border-top: 1px solid #d7d7d7;
+}
+table.easy-timesheet-table th.day-name {
+  //border-color: #d7d7d7;
+  //border-style: solid;
+  //border-width: 1px 1px 0 1px;
+}

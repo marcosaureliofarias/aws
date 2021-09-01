@@ -1,0 +1,297 @@
+---
+hr:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: Tijelo maila (HTML)
+        body_plain: Tijelo maila (ČISTI TEKST)
+        easy_crm_case_status: Status
+        project: Projekt
+        subject: Subjekt
+      easy_crm_case_status:
+        is_closed: Jel zatvoren?
+        is_default: Je li pretpostavljen?
+        is_easy_contact_required: Je li potreban kontakt?
+        is_paid: Je li plaćen?
+        is_won: Je li dobiven?
+        name: Ime
+        show_in_search_results: Pretraživ?
+      easy_crm_case:
+        assigned_to: Dodijeljen
+        author: Autor
+        closed_on: Zatvoren na
+        contract_date: Datum ugovora
+        created_at: Stvoren na
+        currency: Valuta
+        description: Opis
+        easy_closed_by: Zatvorio
+        easy_contacts: Kontakti
+        easy_crm_case_items:
+          amount: Iznos
+          description: Opis
+          discount: Popust
+          easy_crm_case: CRM slučaj
+          name: Ime
+          price_per_unit: Cijena po jedinici
+          product_code: Kod proizvoda
+          total_price: Ukupna cijena
+          unit: Jedinica
+        easy_crm_case_status: Status
+        email: E-mail
+        is_canceled: Je li otkazan?
+        is_finished: Je li završen?
+        lead_value: Vodeća vrijednost
+        name: Ime
+        need_reaction: Zahtjeva li reakciju?
+        next_action: Iduća akcija
+        price: Cijena
+        probability: Vjerojatnost
+        project: Projekt
+        send_to_external_mails: Šalji ažuriranje na eksterni e-mail?
+        telephone: Telefon
+        updated_at: Ažurirano na
+      easy_lead_score:
+        country: Država
+        created_at: Stvoreno na
+        updated_at: Ažurirano na
+      easy_user_target:
+        currency: Valuta
+        target: Cilj
+        valid_from: Od
+        valid_to: Do
+    models:
+      easy_crm_case_mail_template: Predložak maila
+      easy_mail_campaign_easy_crm_case: CRM slučaj
+  button_change_easy_crm_cases_status: Ponovno dodijeli i obriši
+  button_easy_crm_add_item: Dodaj stavku
+  button_easy_crm_add_mail_template: Dodaj predložak
+  button_easy_crm_add_mailbox: Dodaj poštanski sandučić
+  button_easy_crm_add_or_create_related_contact: Dodaj povezan kontakt
+  button_easy_crm_add_or_create_related_invoice: Dodaj povezani invoice (dostavnicu,
+    fakturu)
+  button_easy_crm_add_or_create_related_issue: Dodaj povezani zadatak
+  button_easy_crm_add_related_contact: Dodijeli kontakt
+  button_easy_crm_add_related_invoice: Dodijeli invoice (dostavnicu, fakturu)
+  button_easy_crm_add_related_issue: Dodijeli zadatak
+  button_easy_crm_add_sales_activity: Dodaj aktivnost prodaje
+  button_easy_crm_add_status: Dodaj status
+  button_easy_crm_country_value_new: Stvori novu vrijednost
+  button_easy_crm_create_related_contact: Stvori novog kontakta
+  button_easy_crm_create_related_invoice: Stvori novi invoice (dostavnicu, fakturu)
+  button_easy_crm_create_related_issue: Stvori novi zadatak
+  button_easy_crm_merge_cases: Spoji slučajeve
+  button_easy_crm_merge_cases_inteligent_merge: Spoji CRM slučajeve
+  button_easy_crm_merge_cases_quick_merge: Brzo spajanje CRM slučajeva
+  button_easy_crm_new_case: Novi CRM slučaj
+  button_easy_crm_related_case: Dodaj povezani CRM slučaj
+  button_easy_crm_view_sales_activities: Pregled aktivnosti prodaje
+  button_easy_lead_score_new: Novi Easy Lead Score
+  button_easy_user_target_add_all_users_of_type: Dodaj sve korisnike ove vrste
+  button_easy_user_target_add_users: Dodaj korisnike
+  button_easy_user_target_add_users_from_group: Dodaj korisnike iz grupe
+  button_manage_user_targets: Upravljaj korisničkim ciljevima
+  button_merge_and_follow: Spoji i prati (motri)
+  button_set_easy_user_target_currency: Postavi valutu
+  easy_crm_plugin_author: Easy Software
+  easy_crm_plugin_author_url: http://www.easyproject.cz/en
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: Aktivnost prodaje je izmjenjena
+  easy_entity_activity_destroyed: Aktivnost prodaje je obrisana
+  easy_entity_activity_is_planned: "%{category} je planirano u %{time}"
+  easy_entity_activity_was_finished: "%{category} u %{time} dovršeno"
+  easy_entity_activity_was_reported: "%{category} je prijavljeno u %{time}"
+  easy_invoice_already_has_crm_case: Invoice (dostavnica, faktura) već ima CRM slučaj
+  easy_lookup:
+    easy_crm_case:
+      label: CRM slučajevi
+  easy_mail_template_token:
+    caption:
+      crm_case_id: ID CRM slučaja
+      crm_case_name: Naziv CRM slučaja
+      crm_case_note: Posljednji komentar žurnala CRM slučaja
+    title:
+      crm_case_id: Klikni da bi dodao vrijednost ID-a CRM slučaja
+      crm_case_name: Klikni da bi dodao vrijednost imena CRM slučaja (subjekt)
+      crm_case_note: Klikni za dodati sadržaj posljednjeg ažuriranja žurnala CRM slučaja
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: CRM slučajevi po filtru
+      easy_crm_create_easy_crm_case_button: Gumb za novi CRM slučaj
+      easy_crm_pie_chart_from_custom_field: Prilagođeni kružni graf
+      easy_crm_user_performance: Performansa članova
+      easy_crm_user_target: Korisnički ciljevi
+      easy_entity_activity_crm_case_query: Aktivnosti prodaje po filtru
+    pages_description:
+      easy_crm_overview: CRM pregled
+      easy_crm_project_overview: Pregled CRM projekta
+    pages:
+      easy_crm_overview: CRM pregled
+      easy_crm_project_overview: Pregled CRM projekta
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: Dodaj novi CRM slučaj
+        description: Stvori novi CRM slučaj
+    easy_crm_settings:
+      index:
+        caption: CRM postavke
+        description: Upravljanje CRM postavkama
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: CRM Slučajevi
+          related_easy_crm_case: Povezani CRM slučaj
+    name:
+      easy_crm_case_item_query: Stavke CRM slučaja
+      easy_crm_case_query: CRM slučajevi
+      easy_crm_contact_query: CRM kontakti
+      easy_crm_country_value_query: CRM državne specifične vrijednosti
+      easy_lead_score_query: Easy Lead Scores
+      easy_user_target_query: Korisnički ciljevi
+    sidebar_filters:
+      personal:
+        easy_crm_contact_query: Privatni filteri na CRM kontakte
+      public:
+        easy_crm_case_query: Javni filteri na CRM slučajeve
+        easy_crm_contact_query: Javni filteri na CRM kontakte
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: CRM poštanski sandučić
+  error_can_not_delete_easy_crm_status: Ovaj status sadrži CRM slučajeve i ne može
+    biti obrisan.
+  error_easy_crm_case_can_not_assign_custom_field: CRM slučaj u prilagođenom polju
+    ne može biti dodijeljen jer ne pripada ovom projektu.
+  error_easy_crm_case_could_not_merge: CRM slučajevi nisu mogli biti spojeni.
+  field_easy_crm_case: CRM slučaj
+  field_easy_crm_case_contract_date: Datum ugovora
+  field_easy_crm_case_created_date: Stvoreni datum
+  field_easy_crm_case_next_action: Iduća akcija
+  field_easy_crm_cases: CRM slučaj
+  field_easy_lead_score: Lead Score
+  heading_easy_crm_case_edit: Izmjeni CRM slučaj
+  heading_easy_crm_case_item_index: Stavke CRM slučaja
+  heading_easy_crm_case_mail_template_edit: Izmjeni mail predložak
+  heading_easy_crm_case_mail_template_index: Predlošci mail-a
+  heading_easy_crm_case_mail_template_new: Novi mail predložak
+  heading_easy_crm_case_new: Novi CRM slučaj
+  heading_easy_crm_case_sidebar_filters_by_member: Slučajevi člana
+  heading_easy_crm_case_status_edit: Izmjeni status CRM slučaja
+  heading_easy_crm_case_status_index: Statusi CRM slučaja
+  heading_easy_crm_case_status_new: Novi status CRM slučaja
+  heading_easy_crm_country_value_new: Nova CRM vrijednost specifična za državu
+  heading_easy_crm_mailboxes_index: Poštanski sandučići
+  heading_easy_crm_related_case: Povezani CRM slučaj
+  heading_easy_crm_related_case_plural: Povezani CRM slučajevi
+  heading_easy_crm_related_contacts: Povezani kontakti
+  heading_easy_crm_related_issues: Povezani zadaci
+  heading_easy_lead_score_edit: Izmjeni Easy Lead Score
+  heading_easy_lead_score_new: Novi Easy Lead Score
+  label_advanced_custom_fields: Napredna prilagođena polja
+  label_assign_to_easy_crm_case: Dodijeli CRM slučaju
+  label_attribute_of_easy_crm_cases: CRM Slučaj %{name}
+  label_bulk_edit_selected_easy_crm_case: Masovna izmjena odabranih CRM slučajeva
+  label_change_crm_cases_status_explanation: 'Promjeni status CRM slučaja u:'
+  label_chart_target: Korisnički cilj
+  label_crm_currency_rate: Stopa za osnovnu valutu
+  label_crm_fields_permissions: Dozvole CRM polja
+  label_easy_contact_easy_crm_cases: CRM slučajevi
+  label_easy_crm: CRM
+  label_easy_crm_case: CRM
+  label_easy_crm_case_added: CRM slučaj dodan
+  label_easy_crm_case_assignee: Opunomoćenik CRM slučaja
+  label_easy_crm_case_default_values: Pretpostavljene vrijednosti
+  label_easy_crm_case_filters: Filter
+  label_easy_crm_case_is_associated_to_easy_invoice: Ima li povezani CRM slučaj?
+  label_easy_crm_case_need_reaction: Zahtjeva reakciju!
+  label_easy_crm_case_new: Novi CRM slučaj
+  label_easy_crm_case_plural: CRM slučajevi
+  label_easy_crm_case_query_includes_descendants: Prikaži CRM slučajeve sa svih potprojekata
+  label_easy_crm_case_searchable_all: Pretraži sve CRM statuse
+  label_easy_crm_case_status: Status CRM slučaja
+  label_easy_crm_case_updated: CRM slučaj ažuriran
+  label_easy_crm_case_watchers_heading: Suradnici
+  label_easy_crm_cases: CRM slučajevi
+  label_easy_crm_cases_merge_into: 'Spojeni su CRM slučajevi u:'
+  label_easy_crm_country_values: CRM državne specifične vrijednosti
+  label_easy_crm_default_assignee: Opunomoćenik za novi slučaj
+  label_easy_crm_find_by_worker: Traži radnika
+  label_easy_crm_kanban: Kanban pogled
+  label_easy_crm_kanban_columns_name: Naziv stupca
+  label_easy_crm_kanban_drop_in: Drop in status
+  label_easy_crm_kanban_settings: Postavke kanban pogleda
+  label_easy_crm_kanban_status_not_uniq: Kanban stupci moraju pratiti različite statuse
+  label_easy_crm_kanban_statuses: Statusi stupaca
+  label_easy_crm_kanban_sum_column: Stupac suma polja
+  label_easy_crm_new_kanban_column: Dodaj novi stupac
+  label_easy_crm_project: CRM projekt
+  label_easy_crm_related_case: Povezani slučaj
+  label_easy_crm_search_fo_easy_contact: Traži kontakta
+  label_easy_crm_search_for_easy_invoice: Traži invoice (dostavnicu, fakturu)
+  label_easy_crm_search_for_issue: Traži zadatak
+  label_easy_crm_settings: CRM postavke
+  label_easy_crm_use_items: Koristi CRM stavke
+  label_easy_lead_score: Easy Lead Score
+  label_easy_lead_scores: Easy Lead Scores
+  label_easy_money_sidebar:
+    easy_crm_case: Novac za CRM slučaj
+  label_easy_user_target: Korisnički ciljevi
+  label_easy_user_target_currency: Valuta
+  label_easy_user_with_targets: Korisnici sa ciljevima
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: Kontakt
+  label_filter_group_easy_user_target_query: Ciljevi korisnika
+  label_page_module_compare: Usporedi
+  label_set_crm_fields_permissions: Postavi dozvole CRM polja po statusu
+  label_show_assigned_crm_cases: Pokaži CRM slučajeve dodijeljene korisniku %{username}.
+  label_statuses_not_selected: Nijedan status nije odabran. Molimo vas odaberite barem
+    jedan.
+  label_unknown_user: Nepoznat
+  label_use_values_from_crm_case: Koristi vrijednosti iz
+  mail:
+    subject:
+      easy_crm_case_add: "[%{projectname}] CRM slučaj dodan - %{name}"
+      easy_crm_case_edit: "[%{projectname}] CRM slučaj ažuriran - %{name} (%{status})"
+      my_easy_crm_case_add: ">>> Moj CRM slučaj [%{projectname}] dodan - %{name}"
+      my_easy_crm_case_edit: ">>> Moj CRM slučaj [%{projectname}] ažuriran - %{name}
+        (%{status})"
+  notice_failed_to_save_easy_crm_cases: 'Neuspješno spremanje %{count} CRM slučaja(eva)
+    na %{total} odabranih: %{titles}'
+  permission_add_crm_case_notes: Dodaj bilješke
+  permission_add_easy_crm_case_watchers: Dodaj promatrače CRM slučajeva
+  permission_add_easy_crm_cases: Dodaj CRM slučajeve
+  permission_delete_easy_crm_case_watchers: Obriši promatrače CRM slučaja
+  permission_delete_easy_crm_cases: Obriši CRM slučajeve
+  permission_edit_crm_case_notes: Izmjeni bilješke
+  permission_edit_easy_crm_cases: Izmjeni CRM slučajeve
+  permission_edit_own_crm_case_notes: Izmjeni vlastite bilješke
+  permission_edit_own_easy_crm_cases: Izmjeni vlastite CRM slučajeve
+  permission_manage_easy_crm_page: Upravljanje CRM stranicama
+  permission_manage_easy_crm_settings: Upravljanje CRM postavkama
+  permission_manage_easy_lead_scores: Upravljanje - Easy Lead Scores
+  permission_manage_easy_user_targets: Upravljanje korisničkim ciljevima
+  permission_view_easy_crm_case_watchers: Pregled promatrača CRM slučaja
+  permission_view_easy_crms: Pregled CRM slučajeva
+  permission_view_easy_lead_scores: Pregled Easy Lead Scores
+  permission_view_own_easy_crms: Pogledaj vlastite CRM slučajeve
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: Ukloni
+  remove_related_invoice: Ukloni invoice (dostavnicu, fakturu)
+  setting_show_easy_entity_activity_on_crm_case: Prikaži aktivnost prodaje na CRM
+    slučaju
+  sidebar_crm_case_button_move: Premjesti CRM slučaj
+  text_are_you_sure_remove_user: Želite li zaista ukloniti korisnika iz svih kvartala?
+  text_easy_crm_case_updated: CRM slučaj %{id} je bio ažuriran od strane %{user}.
+  title_easy_crm_case_delete: Obriši CRM slučaj
+  title_easy_crm_country_value_new: Klikni da bi kreirao novu državnu specifičnu vrijednost
+  title_easy_crm_new_case: Klikni da bi kreirao novi CRM slučaj.
+  title_easy_lead_score_new: Klikni za kreirati novi Easy Lead Score
+  title_easy_user_target_modal_easy_user_type: Odaberi korisnike po vrsti
+  title_easy_user_target_modal_group: Odaberi korisnike po grupi
+  title_easy_user_target_remove_user: Ukloni korisnika
+  title_kanban_settings: Kanban postavke

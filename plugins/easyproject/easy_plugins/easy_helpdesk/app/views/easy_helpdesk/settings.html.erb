@@ -1,0 +1,43 @@
+<h2 class="icon icon-settings"> <%= l(:heading_easy_helpdesk_index) -%> - <%= l(:heading_easy_helpdesk_settings) -%></h2>
+<%= form_for(:easy_setting, :html => {:method => :put, :class => 'tabular settings form-box'}) do |f| %>
+  <div class="splitcontent">
+    <div id="easy_helpdesk_basic_settings" class="splitcontentleft">
+      <p>
+        <%= f.label l("label_easy_helpdesk_sender"), :title => l("title_easy_helpdesk_sender") %>
+        <% EasyHelpdesk.sender_setting.each do |attribute| %>
+
+          <%= f.label("easy_helpdesk_sender_#{attribute}", class: 'block', :title => l("title_easy_helpdesk_sender_#{attribute}")) do %>
+            <%= f.radio_button(:easy_helpdesk_sender, attribute, :checked => (attribute == @easy_helpdesk_sender)) %>
+            <%= l("label_easy_helpdesk_sender_#{attribute}") %>
+          <% end %>
+
+        <% end %>
+        <em>(<%= l(:text_easy_helpdesk_change_default_sender) %>)</em>
+      </p>
+
+      <% EasyHelpdesk.easy_setting_booleans.each do |attribute| %>
+        <p>
+          <%= f.label(attribute, l("label_#{attribute}"), :title => l("title_#{attribute}")) %>
+          <%= f.check_box(attribute, :checked => EasySetting.value(attribute)) %>
+        </p>
+      <% end -%>
+    </div>
+
+    <div id="easy_helpdesk_timer_settings" class="splitcontentright">
+      <%= render :partial => 'timer_settings', :locals => {:f => f} %>
+    </div>
+
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag(l(:button_save), :class => 'button-positive') %>
+  </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_helpdesk_index)) -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_helpdesk/sidebar_links' %>
+<% end %>

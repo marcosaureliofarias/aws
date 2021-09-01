@@ -1,0 +1,34 @@
+<% total_count ||= 0 %>
+<% if events && events.count > 0 %>
+  <div class="easy-activity-feed__activity-event-wrapper">
+    <% events.each do |_date, event_group| %>
+      <% event_group.each_with_index do |event, index| %>
+        <% options = { new_day: true } if index == 0 %>
+        <%= render partial: 'easy_activities/event', locals: { event: event, options: options } %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if total_count > events.count %>
+    <%= link_to l(:label_easy_activity_feed_show_all), easy_events_from_activity_feed_module_path(module_id: module_uid) %>
+  <% end %>
+
+<% else -%>
+  <%= l(:label_easy_activity_feed_nothing_to_display) %>
+<% end %>
+
+<% if request.xhr? %>
+  <script>
+    EASY.schedule.late(function () {
+      let selector = ".easy-activity-feed__activity-event-wrapper";
+      let param = "";
+      const isModalTimeline = document.querySelector(`.modal ${selector}`);
+      if (isModalTimeline) {
+        selector = `.modal ${selector}`;
+        param = "modal";
+      }
+      new ActivityTimeline(selector, param);
+      $('.easy-activity-feed__activity-event-header').customTooltip({});
+    });
+  </script>
+<% end %>

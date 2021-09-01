@@ -1,0 +1,31 @@
+<% unless params[:spent_on_changed] %>
+  if (window.CKEDITOR !== undefined) {
+    CKEDITOR.instances.time_entry_comment && CKEDITOR.instances.time_entry_comment.destroy();
+  }
+<% end %>
+
+<% if params[:user_changed] %>
+  $('#container_projects').html('<%= j(render :partial => 'bulk_time_entries/container_projects') %>').show();
+  $('#top_last_entries').html('<%= j(render :partial => 'bulk_time_entries/top_last_entries', :locals => {:top_last_entries => @top_last_entries}) %>').show();
+<% end %>
+<% if params[:project_changed] %>
+$('#container_users').html('<%= j(render :partial => 'bulk_time_entries/container_users') %>').show();
+<% end %>
+<% if params[:user_changed] || params[:project_changed] %>
+$('#container_issues').html('<%= j(render :partial => 'bulk_time_entries/container_issues') %>').show();
+<% end %>
+<% if params[:user_changed] || params[:project_changed] || params[:issue_changed] || params[:activity_changed] %>
+  $('#container_time_entry').html('<%= j(render :partial => 'bulk_time_entries/container_time_entry') %>').show();
+<% end %>
+<% if params[:user_changed] || params[:spent_on_changed] %>
+  $('#user-spent-time').html('<%= j(render :partial => 'timelog/user_spent_time', :locals => {:spent_on => @time_entry.spent_on, :user => @time_entry.user, :back_url => new_easy_time_entry_path(:spent_on => @time_entry.spent_on )}) %>');
+  $('#easy_worker_gauge_meter_container').html('<%= j(render :partial => 'common/charts/gauge_meter', :locals => {:modul_uniq_id => '', :value => @gauge_meter_spent_time, :max_value => @gauge_meter_max_value, :chart_label => @gauge_meter_label}) %>').show();
+<% end %>
+
+<% unless params[:spent_on_changed] %>
+  if (window.CKEDITOR !== undefined) {
+    CKEDITOR.instances.time_entry_comment && CKEDITOR.instances.time_entry_comment.setData( '<%= raw j(@time_entry.comments) %>' );
+  }
+<% end %>
+$('#save_buttons').show();
+initEasyAutocomplete();

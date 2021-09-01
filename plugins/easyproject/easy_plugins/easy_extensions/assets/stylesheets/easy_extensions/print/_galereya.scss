@@ -1,0 +1,21 @@
+.galereya{
+  overflow: hidden;
+  margin-bottom: $gap;
+  &-grid{
+    width:auto !important;
+    height:auto !important;
+  }
+  &-cell{
+    float: left;
+    height: 120px;
+    img{
+      height: 100px;
+    }
+    & + & {
+      margin-left: $gap;
+    }
+    &-desc{
+      @include small;
+    }
+  }
+}

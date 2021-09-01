@@ -1,0 +1,29 @@
+<div class="autoscroll">
+<table class="list">
+  <thead>
+    <tr>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_description) %></th>
+      <th><%= l(:field_active) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% features.sort_by{|r| r.name.split('.') }.each do |feature| %>
+      <tr>
+        <td class="subject" style="color: <%= feature.active? ? 'green' : 'red' %>"><%= feature.feature.title %></td>
+        <td><%= feature.feature.description %></td>
+        <td><%= checked_image(feature.active) %></td>
+        <td class="buttons text-right">
+          <% if feature.active? %>
+            <%= link_to l('rys_management.deactivate'), rys_management_toggle_feature_path(feature, active: '0', back_url: request.fullpath), method: 'POST' %>
+          <% else %>
+            <%= link_to l('rys_management.activate'), rys_management_toggle_feature_path(feature, active: '1', back_url: request.fullpath), method: 'POST' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

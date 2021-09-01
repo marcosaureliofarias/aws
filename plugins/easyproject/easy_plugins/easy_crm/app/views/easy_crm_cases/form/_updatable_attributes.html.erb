@@ -1,0 +1,221 @@
+<% hidden_options = easy_crm_case.new_record? ? {} : {:class => 'attribute-hidden', :style => 'display: none'}
+   unless defined?(select_project)
+     select_project = easy_crm_case.project_id.blank? || params[:select_project] == '1' || !easy_crm_case.new_record?
+   end
+%>
+<%= fields_for :easy_crm_case, easy_crm_case do |f| %>
+  <% if easy_crm_case.new_record? %>
+    <div class="box tabular">
+      <%= toggling_container('easy-crm-contacts-heading', User.current, { heading: l(:button_easy_crm_add_or_create_related_contact), wrapping_heading_element_classes: EasyContact.css_icon }) do %>
+        <%= render partial: 'easy_crm_cases/form/customer', locals: { form: f, easy_contact: easy_crm_case.main_easy_contact } %>
+      <% end %>
+    </div>
+
+    <% if easy_crm_case.new_record? %>
+      <%= call_hook(:new_easy_crm_case_form_bottom, { :easy_crm_case => easy_crm_case, :form => f, :project => easy_crm_case.project }) %>
+    <% end %>
+  <% end %>
+  <% watchers = easy_crm_case.new_record? && User.current.allowed_to?(:add_easy_crm_case_watchers, @project) %>
+    <%= conditional_content_tag watchers, :div, :class => 'splitcontent' do %>
+      <%= conditional_content_tag watchers, :div, :class => 'splitcontentleft size-6' do %>
+        <div class="tabular box">
+          <%= toggling_container('easy-crm-updatable-attributes-heading', User.current, {:heading => l(:label_issue_updatable_attributes_heading), :wrapping_heading_element_classes => "#{easy_crm_case.new_record? ? nil : 'attribute-hidden'} icon icon-tracker", :wrapping_heading_element_styles => easy_crm_case.new_record? ? nil : 'display: none', :no_expander => !easy_crm_case.new_record?}) do %>
+              <%= conditional_content_tag !easy_crm_case.new_record?, :div, :class => 'splitcontent' do %>
+                  <%= conditional_content_tag !easy_crm_case.new_record?, :div, :class => 'splitcontentleft' do %>
+                      <% if select_project && easy_crm_case.safe_attribute?('project_id') %>
+                          <%= hidden_field_tag 'select_project', '1' %>
+                          <%= content_tag :p, hidden_options do %>
+                              <%= f.label :project_id, :class => 'required' -%>
+                              <%= easy_select_tag('easy_crm_case[project_id]', {:name => easy_crm_case.project && easy_crm_case.project.name, :id => easy_crm_case.project && easy_crm_case.project.id}, nil, easy_autocomplete_path('easy_crm_projects'), :onchange => "EASY.utils.updateCKE();$.get('#{j easy_crm_case.new_record? ? new_easy_crm_case_path(:format => :js) : edit_easy_crm_case_path(easy_crm_case, :format => :js, :show_hidden_attributes => '1', :no_scroll => '1')}', $('#easy_crm_case_form').serialize())", :include_blank => true, :root_element => 'projects', :html_options => {:id => 'easy_crm_case_project_id'}) -%>
+                          <% end %>
+                      <% elsif easy_crm_case.new_record? %>
+                          <%= hidden_field_tag 'easy_crm_case[project_id]', easy_crm_case.project_id %>
+                      <% end %>
+
+                      <% if easy_crm_case.safe_attribute? 'easy_crm_case_status_id' %>
+                          <%= content_tag :p do %>
+                              <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'easy_crm_case_status_id', {required: true, label: EasyCrmCase.human_attribute_name('easy_crm_case_status')}) %>
+                              <%= f.select :easy_crm_case_status_id, EasyCrmCaseStatus.sorted.collect { |u| [u.name, u.id.to_s] }, {include_blank: false}, {onchange: "EASY.utils.updateCKE();$.get('#{j easy_crm_case.new_record? ? new_easy_crm_case_path(format: :js) : edit_easy_crm_case_path(easy_crm_case, format: :js, no_scroll: '1')}', $('#easy_crm_case_form').serialize() + '&show_hidden_attributes=' + ($('#easy_crm_case_form .icon-arrow').hasClass('open') ? '1' : '0'))"} %>
+                          <% end %>
+                      <% end %>
+
+                      <%= call_hook(:easy_crm_case_form_after_status, { easy_crm_case: easy_crm_case, f: f }) %>
+
+                      <% if easy_crm_case.safe_attribute? 'assigned_to_id' %>
+                          <%= content_tag :p do %>
+                              <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'assigned_to_id', label: EasyCrmCase.human_attribute_name(:account_manager)) %>
+                              <% required_assignee = easy_crm_case.required_attribute?('assigned_to_id') %>
+                              <%= easy_autocomplete_tag 'easy_crm_case[assigned_to_id]',
+                                      { name: easy_crm_case.assigned_to&.name, id: easy_crm_case.assigned_to&.id },
+                                      easy_autocomplete_path('assignable_principals_easy_crm_case', easy_crm_case_id: easy_crm_case.id, project_id: easy_crm_case.project_id, required: required_assignee),
+                                      preload: false,
+                                      required: required_assignee,
+                                      root_element: 'users',
+                                      html_options: { tabindex: 50, class: 'block', id: 'assigned_to_id' },
+                                      force_autocomplete: true,
+                                      easy_autocomplete_options: {
+                                          no_button: true,
+                                          auto_focus: false,
+                                          widget: 'catcomplete',
+                                          activate_on_input_click: true,
+                                          delay: 50,
+                                          minLength: 0
+                                      } %>
+                          <% end %>
+                      <% end %>
+
+                      <% if easy_crm_case.safe_attribute?('external_assigned_to_id') && EasyUserType.easy_type_partner.any? %>
+                          <%= content_tag :p do %>
+                              <% required_assignee = easy_crm_case.required_attribute?('external_assigned_to_id') %>
+                              <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'external_assigned_to_id', label: EasyCrmCase.human_attribute_name(:external_account_manager)) %>
+                              <%= easy_autocomplete_tag 'easy_crm_case[external_assigned_to_id]',
+                                      { name: easy_crm_case.external_assigned_to&.name, id: easy_crm_case.external_assigned_to&.id },
+                                      easy_autocomplete_path('assignable_principals_easy_crm_case', easy_crm_case_id: easy_crm_case.id, project_id: easy_crm_case.project_id, required: required_assignee, external: true),
+                                      preload: false,
+                                      required: required_assignee,
+                                      root_element: 'users',
+                                      html_options: { tabindex: 50, class: 'block', id: 'external_assigned_to_id' },
+                                      force_autocomplete: true,
+                                      easy_autocomplete_options: {
+                                          no_button: true,
+                                          auto_focus: false,
+                                          widget: 'catcomplete',
+                                          activate_on_input_click: true,
+                                          delay: 50,
+                                          minLength: 0
+                                      } %>
+                          <% end %>
+                      <% end %>
+
+
+                      <% if easy_crm_case.new_record? && easy_crm_case.safe_attribute?('tag_list') %>
+                        <% tag_list_hidden_options = hidden_options.dup %>
+                        <% tag_list_hidden_options[:class] = 'easy-tag-list-field ' + tag_list_hidden_options[:class].to_s %>
+                        <%= content_tag :p, tag_list_hidden_options do %>
+                          <%= label_tag 'easy_crm_case_tag_list', l(:label_easy_tags) %>
+                          <%= easy_tag_list_autocomplete_field_tag easy_crm_case, 'easy_crm_case', id: 'easy_crm_case_tag_list' %>
+                        <% end %>
+                      <% end %>
+                  <% end %>
+
+                  <%= conditional_content_tag !easy_crm_case.new_record?, :div, :class => 'splitcontentright' do %>
+                      <% if !easy_crm_case.new_record? %>
+                          <%= content_tag :p, hidden_options do %>
+                          <% end %>
+                      <% end %>
+
+                      <% if easy_crm_case.safe_attribute? 'contract_date' %>
+                          <%= content_tag :p, :class => 'nowrap' do %>
+                              <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'contract_date') %>
+                              <%= f.text_field :contract_date, size: 10 -%>
+                              <%= calendar_for('easy_crm_case_contract_date') %>
+                          <% end %>
+                      <% end %>
+
+                      <% if easy_crm_case.safe_attribute? 'next_action' %>
+                        <p>
+                          <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'next_action') %>
+                          <span class="input-append">
+                            <%= text_field_tag 'easy_crm_case[next_action][date]', easy_crm_case.next_action_date.to_s, :size => 10 %>
+                            <%= calendar_for('easy_crm_case_next_action_date') %>
+                            <%= render(:partial => 'common/form_field_time_select', :locals => {:field_name_prefix => 'easy_crm_case', :attribute => 'next_action', :value => easy_crm_case.next_action_in_zone}) %>
+                            <%= hidden_field_tag('easy_crm_case[all_day]', '0', :id => nil) %>
+                            <% box = check_box_tag('easy_crm_case[all_day]', '1', @easy_crm_case.all_day?) %>
+                            <%= label_tag('easy_crm_case_all_day', box + l(:field_all_day), :class => 'checkbox inline') %>
+                          </span>
+                        </p>
+                      <% end %>
+                  <% end %>
+                  <div class="clear"></div>
+
+                  <%= conditional_content_tag !easy_crm_case.new_record?, :div, :class => 'splitcontentleft' do %>
+                    <%= content_tag :p do %>
+                      <% if easy_crm_case.safe_attribute? 'price' %>
+                        <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'price') %>
+                        <%= f.text_field :price, size: 10 -%>
+                      <% end %>
+                      <% if easy_crm_case.safe_attribute?('currency') && EasyCurrency.activated.any? %>
+                        <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'currency') if !easy_crm_case.safe_attribute?('price') %>
+                        <%= f.select(:currency, options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, easy_crm_case.currency || easy_crm_case.project&.easy_currency_code || EasyCurrency.default_code), {}, class: 'inline') %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+
+                  <%= conditional_content_tag !easy_crm_case.new_record?, :div, :class => 'splitcontentright' do %>
+                    <%= render partial: 'easy_crm_cases/form/customer', locals: { form: f, easy_contact: easy_crm_case.main_easy_contact } unless easy_crm_case.new_record? %>
+
+                    <% if easy_crm_case.safe_attribute? 'email' %>
+                      <%= content_tag :p do %>
+                        <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'email') %>
+                        <%= f.text_field :email -%>
+                      <% end %>
+                    <% end %>
+
+                    <% if easy_crm_case.safe_attribute? 'email_cc' %>
+                        <%= content_tag :p do %>
+                            <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'email_cc') %>
+                            <%= f.text_field :email_cc -%>
+                        <% end %>
+                    <% end %>
+
+                    <% if easy_crm_case.safe_attribute? 'telephone' %>
+                      <%= content_tag :p, hidden_options do %>
+                        <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'telephone') %>
+                        <%= f.text_field :telephone -%>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <div class="clear"></div>
+
+                  <%= conditional_content_tag !easy_crm_case.new_record?, :div, :class => 'splitcontentleft' do %>
+                    <% if !easy_crm_case.new_record? %>
+                      <% if easy_crm_case.safe_attribute? 'is_canceled' %>
+                        <%= content_tag :p do %>
+                          <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'is_canceled') %>
+                          <%= f.check_box :is_canceled -%>
+                        <% end %>
+                      <% end %>
+
+                      <% if easy_crm_case.safe_attribute? 'is_finished' %>
+                        <%= content_tag :p do %>
+                          <%= render_label_for_crm_case_field_by_workflow(easy_crm_case, f, 'is_finished') %>
+                          <%= f.check_box :is_finished -%>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+              <% end %>
+              <% if easy_crm_case.safe_attribute?('custom_field_values') && easy_crm_case.editable_custom_field_values.size > 0 %>
+                  <div class="tabular <%= !easy_crm_case.new_record? ? 'toggle-box' : 'box' %>">
+                    <%= toggling_container('easy-crm-custom-field-values-heading', User.current, {:heading => l(:label_custom_field_plural), :wrapping_heading_element_classes => "#{easy_crm_case.new_record? ? nil : 'attribute-hidden'} icon icon-db-key", :wrapping_heading_element_styles => easy_crm_case.new_record? ? nil : 'display: none', :no_expander => !easy_crm_case.new_record?}) do %>
+                        <%= render :partial => 'form_custom_fields', :locals => {:easy_crm_case => easy_crm_case} %>
+                    <% end %>
+                  </div>
+              <% end %>
+          <% end %>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+      <% if watchers %>
+          <div class="splitcontentright size-4">
+            <div class="<%= easy_crm_case.new_record? ? 'splitcontent' : '' %>">
+              <div id="easy_crm_case_watchers_container" class="tabular box">
+                <%= labelled_fields_for @easy_crm_case do |f| %>
+                  <%= toggling_container("easy-crm-case-watcher-toggle-container-#{params[:format]}", User.current, {:heading => l(:label_easy_crm_case_watchers_heading), :default_button_state => !in_mobile_view?, :wrapping_heading_element_classes => ' icon icon-group'}) do %>
+                    <%= render :partial => 'watchers/watchers_avatar_and_checkbox_with_groups', :locals => {:watchable => @easy_crm_case, :project => @project, :object_name => 'easy_crm_case'} -%>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    <% end %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $('#easy_crm_case_all_day').change(function(){
+      $(".time-select-next_action").prop('disabled', $(this).prop("checked"))
+    }).change();
+  });
+</script>

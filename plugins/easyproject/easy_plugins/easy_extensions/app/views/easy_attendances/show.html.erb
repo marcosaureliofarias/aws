@@ -1,0 +1,25 @@
+<div id="easy-attendance-detail">
+  <div class="easy-dropper-target easy-drop-attendance" data-drop-action="easy_attendance" data-entity-id="<%= @easy_attendance.id %>">
+    <%= render(partial: 'easy_attendances/detail', locals: { attendance: @easy_attendance }) %>
+  </div>
+
+  <% if @easy_attendance.description.present? %>
+    <div class="wiki easy-entity-details-description kicker" id="show_attendance_description">
+      <%= textilizable(@easy_attendance, :description) %>
+    </div>
+  <% end %>
+  
+  <div class="clear"></div>
+  <%= easy_journal_render_history(@journals, entity: @easy_attendance) %>
+</div>
+
+<%= late_javascript_tag "EASY.journals.collapseUnnecessary();" %>
+
+<% ### PAGE CUSTOMS ##########################################################  %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:button_approve, scope: :easy_attendance), approval_save_easy_attendances_path(ids: Array.wrap(@easy_attendance.id), approve: 1, back_url: easy_attendance_path(@easy_attendance)), method: :post, class: 'button-positive' if @easy_attendance.need_approve? %>
+  <%= link_to l(:button_reject, scope: :easy_attendance), approval_save_easy_attendances_path(ids: Array.wrap(@easy_attendance.id), approve: 0, back_url: easy_attendance_path(@easy_attendance)), method: :post, class: 'button-negative' if @easy_attendance.need_approve? %>
+  <%= link_to l(:button_update), edit_easy_attendance_path(@easy_attendance, back_url: easy_attendance_path(@easy_attendance)), class: 'button icon icon-edit' if @easy_attendance.can_edit? %>
+  <%= link_to l(:button_delete), easy_attendance_path(@easy_attendance), method: :delete, class: 'button icon icon-delete' if @easy_attendance.can_delete? %>
+<% end %>

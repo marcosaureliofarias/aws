@@ -1,0 +1,10 @@
+<tr class="total">
+  <td><%= l(:label_total_time) %></td>
+  <%= ('<td></td>' * (report.criteria.size - 1)).html_safe %>
+  <% total = 0 -%>
+  <% report.periods.each do |period| -%>
+    <% sum = sum_hours(select_hours(report.hours, report.columns, period.to_s)); total += sum -%>
+    <td class="hours nowrap"><%= easy_format_hours(sum) if sum > 0 %></td>
+  <% end -%>
+  <td class="hours nowrap"><%= easy_format_hours(total) if total > 0 %></td>
+</tr>

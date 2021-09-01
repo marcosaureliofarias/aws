@@ -1,0 +1,32 @@
+/***** Tabular forms ******/
+.tabular{
+  * {
+    @extend %box-sizing-border-box;
+  }
+  //@extend %form-box;
+  p {
+    & > label:first-child{
+      @extend %tabular-label;
+      &.inline,&.floating,&.block{
+        @extend %reset-tabular-label;
+      }
+    }
+  }
+  p {
+	@extend %tabular-content;
+    overflow: hidden;
+  }
+  //fieldset{
+  //  border: none;
+  //  padding-top: 0;
+  //  padding-bottom: 0;
+  //  padding-right: 0;
+  //  margin-left: 0;
+  //  margin-right: 0;
+  //}
+  & > h1,& > h2,& > h3{
+    &:first-child{
+      margin-top: 0;
+    }
+  }
+}

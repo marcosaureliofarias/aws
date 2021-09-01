@@ -1,0 +1,173 @@
+---
+sk:
+  easy_mindmup:
+    button_add_child: Pridať podúlohu
+    button_add_parent: Pridať nadúlohu
+    button_add_sibling: Pridať pri-úlohu
+    button_all_icons: Ikony
+    button_collapse: Zbaliť
+    button_collapse_all: Rozbaliť/zbaliť
+    button_cut: Vystrihnúť
+    button_edit_data: Upraviť údaje
+    button_expand: Rozbaliť
+    button_expand_all: Rozbaliť všetko
+    button_expand_collapse: Rozbaliť/zbaliť
+    button_hotkeys: Klávesové skratky
+    button_legend: Legenda
+    button_one_side: Jedna strana‌
+    button_paste: Vložiť‌
+    button_project_menu: Easy MindMup
+    button_redo: Vpred‌
+    button_remove_node: Odstrániť uzol
+    button_show_links: Zobraziť väzby
+    button_undo: Späť
+    error_create: nie je možné vytvoriť‌
+    error_delete: nepodarilo sa odstrániť‌
+    error_update: nepodarilo sa aktualizovať‌
+    errors:
+      no_rest_api: REST API je vypnuté. Zapnúť ho môžete v administrácii.
+      not_subtaskable: Úloha "%{task_name}" nemôže byť podúlohou kvôli nastaveniu
+        jej typu úlohy
+    free:
+      button_upgrade: Chcem plnú verziu
+      feature_coloring: Zafarbenie uzlov podľa ich vlastností‌
+      feature_context_menu: Úprava vlastností uzla cez kontextové menu
+      feature_dnd_property: Úprava vlastností uzla pretiahnutím myšou
+      feature_filtering: Filtrovanie uzlov podľa vlastností
+      header_not_available: Dostupné len v plnej verzii
+    hotkeys:
+      info_mac_metakey: Na Mac OSX, klávesy Ctrl a Cmd môžu byť použité pre skratky
+        nižšie - niektoré prehliadače nepoznajú určité klávesové skratky. Napríklad
+        ak Cmd + Space nefunguje v prehliadači, skúste Ctrl + Space.
+      keyboard:
+      - title: Manipulácia s uzlami
+        hotkeys:
+        - hotkey: Enter
+          info: Pridať pri-úlohu
+        - hotkey: Shift+Enter
+          info: Pridať pri-úlohu nad, alebo zalomenie riadka (pri premenovaní uzla)
+        - hotkey: Tab alebo Insert
+          info: Pridať podúlohu
+        - hotkey: Shift+Tab
+          info: Pridať nadúlohu
+        - hotkey: medzerník
+          info: Premenovať uzol
+        - hotkey: Shift+medzerník
+          info: Upraviť údaje uzla
+        - hotkey: Backspace alebo Delete
+          info: Odstrániť uzol
+        - hotkey: Ctrl+hore/dole
+          info: Posunúť uzol hore/dole
+      - title: Úpravy
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Uložiť
+        - hotkey: Ctrl+X alebo C
+          info: Vystrihnúť
+        - hotkey: Ctrl+C alebo Y
+          info: Kopírovať
+        - hotkey: Ctrl+V alebo P
+          info: Vložiť
+        - hotkey: U alebo Ctrl+Z
+          info: Späť
+        - hotkey: R alebo Ctrl+Y alebo Ctrl+Shift+Z
+          info: Vpred
+      - title: Výber
+        hotkeys:
+        - hotkey: šípky
+          info: Vyberte uzol hore/dole/vľavo/vpravo alebo aktuálne vybraný
+        - hotkey: Shift + šípky
+          info: Pridať uzol hore / dole / doľava / doprava k výberu (užitočné pre
+            viacnásobné označenie pri-úloh)
+        - hotkey: "{"
+          info: Viacnásobný výber aktuálneho uzla a celého podstromu pod ním
+        - hotkey: "["
+          info: Viacnásobný výber iba v podstrome pod aktuálnym uzlom (nie uzol sám)
+        - hotkey: "="
+          info: Viacnásobný výber všetkých pri-úloh aktuálneho uzla (ktoré majú rovnakú
+            nadúlohu)
+        - hotkey: "."
+          info: Zrušiť viacnásobný výber a vybrať znovu iba aktuálny uzol
+        - hotkey: 1 - 9
+          info: Vybrať všetky uzly na určitej úrovni (napr. 1 vyberie všetky uzly
+            prvej úrovne)
+      - title: Navigácia a obrazovka
+        hotkeys:
+        - hotkey: "/ alebo F"
+          info: Rozbaliť alebo zbaliť uzol (zložiť alebo rozložiť podúlohy)
+        - hotkey: Ctrl + alebo Z
+          info: Priblížiť
+        - hotkey: Ctrl - alebo Shift Z
+          info: Oddialiť
+        - hotkey: Esc, 0, Ctrl+0
+          info: Resetovať zobrazenie mapy - vyberte koreňový uzol a pretiahnite ho
+            do stredu obrazovky
+      mouse:
+      - action: Presunutie mapy
+        gesture: kliknite a pretiahnite stredový uzol, kliknite a pretiahnite pozadie
+          alebo skrolujte na trackpade / touchpade.
+      - action: Vybrať uzol
+        gesture: kliknite priamo naň
+      - action: Vybrať viac uzlov
+        gesture: Shift+klic
+      - action: Zmena poradia uzlov
+        gesture: Pretiahnite uzol medzi svojimi pri-úlohami, horizontálne blízko k
+          miestu zmeny poradia. Pri zmene poradia sa zobrazí bod s čiernou šípkou.
+      - action: Ručne umiestniť uzol
+        gesture: stačí pretiahnuť uzol, pokiaľ šípka pre zmenu poradia nezmizne. Ak
+          chcete vynútiť ručné postavenie aj keď sa šípka pre zmenu poradia ukazuje,
+          podržte klávesu Shift počas ťahania. Upozorňujeme, že podúlohy z koreňového
+          uzla je možné pretiahnuť v ľubovoľnom smere, ale uzly nižšej úrovne môžu
+          byť umiestnené len v smere svojej nadúlohy ku koreňu.
+      - action: Premenovanie uzla
+        gesture: Dvojitý klik alebo dvojité ťuknutie
+      - action: Zobraziť kontextové menu s operáciami
+        gesture: 'Kliknite pravým tlačidlom na uzol (myšou) alebo dvakrát kliknite
+          na pozadí, alebo podržte uzol: zobraziť (na dotykových zariadeniach)'
+      - action: Zmena nadúlohy
+        gesture: pretiahnite uzol na iný uzol (kruhové pustenie nie je povolené, takže
+          nemožno pustiť uzol na jednom zo svojich podúloh alebo úlohy nižšie)
+      - action: Otvoriť úlohu alebo projekt v samostatnom okne
+        gesture: Alt+klik
+      title_key_shortcuts: Klávesové operácie
+      title_mouse_shortcuts: Operácie s myšou a dotykom (touchpad)
+      title_shortcuts: Skratky
+    info_all_saved: Všetko úspešne uložené
+    info_any_failed: 'Niektoré z požiadaviek boli neúspešné:'
+    info_no_permission: Nemáte potrebné oprávnenia k tejto akcii
+    label_color_by: Farba podľa
+    label_go_to: Ísť na
+    label_hide_unused: Skryť nepoužité‌
+    label_less: Menej
+    label_or: alebo
+    label_save_progress: Prosím počkajte, prebieha ukladanie
+    label_show_unused: Zobraziť nepoužité
+    label_tooltip_display_info: Legenda zobrazuje všetky stavy, ale niektoré môžete
+      mať zakázané použiť.
+    last_state_modal:
+      label_differencies: Rozdiely na serveri
+      message_changed: majú rozdielne hodnoty (prehliadač => server) ({{zmeny}})
+      message_missing: nemá nadradenú úlohu "{{from}}"
+      message_moved: je podúlohou "{{to}}", nie "{{from}}"
+      message_present: je prítomný ako podúloha "{{to}}"
+      text_reload_appeal: Prajete si znovu načítať stav zo serveru?
+      title: Posledné klientský stav Myšlienkovej mapy je odlišný od stavu servera‌
+    reload_modal:
+      label_errors: Chyby
+      text_reload_appeal: Chcete ignorovať neuložené položky a znova načítať dáta
+        zo servera?
+      title: Myšlienkovú mapu sa nepodarilo správne uložiť
+    save_info:
+      at: o
+      autosaved: Automaticky uložené
+      loaded: Stiahnuté
+      saved: Uložené
+    stored_modal:
+      button_local: Lokálna verzia
+      button_server: Verzia na serveri
+      text_load_appeal: Chcete ho načítať, alebo radšej obnoviť stav zo serveru?
+      title: Bol nájdený neuložený stav
+    title_node_changed: Tento uzol sa zmenil a bude uložený
+    warning_delete_node: Naozaj chcete odstrániť uzol {{name}} a všetky jeho poduzly?
+    warning_delete_nodes: Naozaj chcete odstrániť tieto uzly a všetky ich poduzly?
+    warning_not_saved: nie je správne uložené

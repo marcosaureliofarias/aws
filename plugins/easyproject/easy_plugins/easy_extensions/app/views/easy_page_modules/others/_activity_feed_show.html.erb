@@ -1,0 +1,42 @@
+<%
+  events = @easy_page_modules_data[block_name][:events]
+  total_count = @easy_page_modules_data[block_name][:total_count]
+  current_limit =  @easy_page_modules_data[block_name][:current_limit]
+  module_uid = modul_uniq_id.sub('module_inside_', '')
+  submit_options = request.query_parameters
+  submit_options[:format] = :js
+  submit_url = easy_show_selected_event_type_path(submit_options)
+
+  selected_event_types = EpmActivityFeed.event_types_for_settings(settings)
+  selected_event_types = selected_event_types.map { |u| [l("label_#{u.singularize}_plural"), u, ''] }
+  selected_event_types << [l('label_all'), 'all', 'easy-activity-selected'] if selected_event_types.present?
+%>
+
+<div id="epm_activity_feed_form_for_<%= module_uid %>">
+  <span class="easy-query-heading">
+    <span class="entity-array">
+      <% selected_event_types.each do |activity_name, activity_id, activity_class| %>
+        <% data = { module_id: module_uid, event_type_id: activity_id } %>
+        <%= link_to activity_name, '#',
+                    class: "activity-feed-type-selector #{activity_class}",
+                    id: "#{module_uid}_#{activity_id}",
+                    data: { activity_id: activity_id },
+                    onclick: "EasyGem.loadModule('easyPageModules/others/activityFeed', function (submitForm) { event.preventDefault(); submitForm('#{submit_url}', '#{data.to_json}') })" %>
+      <% end %>
+    </span>
+  </span>
+</div>
+
+<div id="<%= module_uid %>_all_activities">
+  <%= render partial: 'easy_activities/module_list_activity', locals: { events: events, total_count: total_count, module_uid: module_uid } %>
+</div>
+
+<% data = { module_id: module_uid, load_more: 1 } %>
+
+<div class="toolbar">
+  <%= button_tag l(:label_more),
+                 id: "#{module_uid}_button_load_more",
+                 class: "button",
+                 data: { current_limit: current_limit },
+                 onclick: "EasyGem.loadModule('easyPageModules/others/activityFeed', function (submitForm) { submitForm('#{submit_url}', '#{data.to_json}') })" %>
+</div>

@@ -1,0 +1,8 @@
+<tr id="<%= dom_id(easy_entity_attribute_map) %>">
+  <%= content_tag(:td, easy_entity_attribute_map.entity_from_attribute_name, :class => 'name') %>
+  <td> => </td>
+  <%= content_tag(:td, easy_entity_attribute_map.entity_to_attribute_name, :class => 'name') %>
+  <td>
+    <%= link_to('', easy_entity_attribute_map, :method => 'delete', :data => {:remote => true, :confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:button_delete)) -%>
+  </td>
+</tr>

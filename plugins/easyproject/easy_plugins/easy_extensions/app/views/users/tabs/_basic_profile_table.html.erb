@@ -1,0 +1,83 @@
+<% generals_custom_fields = @user.visible_custom_field_values_primary %>
+<% file_custom_fields = [] %>
+<div class="splitcontent character-details">
+  <div class="splitcontentleft size-9">
+    <div class="splitcontent">
+      <div class="size-5">
+        <table class="attributes">
+          <% if User.current.admin? %>
+            <tr>
+              <th><%= l(:field_login) %>:</th>
+              <td><%= @user.login %></td>
+            </tr>
+          <% end %>
+          <% unless @user.pref.hide_mail %>
+            <tr>
+              <th><%= l(:field_mail) %>:</th>
+              <td><%= mail_to(@user.mail, nil, :encode => (request.xhr? ? nil : 'javascript')) %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <th><%= l(:label_registered_on) %>:</th>
+            <td><%= content_tag(:span, format_date(@user.created_on)) %></td>
+          </tr>
+          <% unless @user.last_login_on.nil? %>
+            <tr>
+              <th><%= l(:field_last_login_on) %>:</th>
+              <td><%= content_tag(:span, format_date(@user.last_login_on)) %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <th><%= l(:label_reported_issues) %>:</th>
+            <td><%= Issue.where(:author_id => @user.id).count %></td>
+          </tr>
+          <% if @user.easy_global_rating && @user.easy_global_rating.value %>
+            <tr>
+              <th><%= l(:label_easy_global_rating) %>:</th>
+              <td><%= rating_stars(@user.easy_global_rating.value) %></td>
+            </tr>
+          <% end %>
+          <% if @activity && (User.current == @user || User.current.allowed_to_globally?(:view_easy_attendance_other_users)) %>
+            <tr class="easy-user-profile-vacation-limit">
+              <th><%= l(:label_report_vacation_limits, scope: :easy_attendance) %>:</th>
+              <td><%= content_tag(:span, formated_vacation_this_year(@activity, @user)) %></td>
+            </tr>
+            <tr class="easy-user-profile-remaing-vacation">
+              <th><%= l(:label_report_vacation_remaining, scope: :easy_attendance) %>:</th>
+              <td><%= content_tag(:span, formated_remaing_vacation_this_year(@activity, @user)) %></td>
+            </tr>
+        <% end %>
+        </table>
+      </div>
+    </div>
+
+    <div class="splitcontent">
+      <% generals_custom_fields.in_groups_of(12, false).each do |group| %>
+        <div class="size-5">
+          <table class="attributes">
+            <% group.each do |custom_field_value| %>
+               <tr>
+                <th><%= h custom_field_value.custom_field.translated_name %>:</th>
+                <td><%= show_value(custom_field_value) %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+  <div class="splitcontentright size-1">
+    <h1><%= link_to_entity_mapper(content_tag(:i, '', :class => 'xl-icon icon-qr') + 'qr', user_path(@user, :format => 'qr'), User, EasyExtensions::Export::EasyVcard, :class => '', :remote => true) %></h1>
+    <%= call_hook(:view_users_easy_profile_bottom, { :user => @user }) %>
+  </div>
+</div>
+<fieldset>
+  <%= render :partial => 'easy_taggables/easy_taggables', :locals => { :entity => @user } %>
+</fieldset>
+<div id="general_custom_field_files">
+  <% file_custom_fields.each do |custom_field_value| %>
+    <%= link_to_attachments(@user.custom_value_for(custom_field_value.custom_field), { label: custom_field_value.custom_field.name }) -%>
+  <% end %>
+</div>
+<div id="qr_popup" style="display: none"></div>

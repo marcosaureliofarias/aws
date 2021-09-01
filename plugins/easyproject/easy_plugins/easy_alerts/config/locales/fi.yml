@@ -1,0 +1,218 @@
+---
+fi:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: Mitä sinä teet? Kuljettaa ne tuntilomakkeen.
+      b: Tuntilomakkeen on surullinen, älä luulet?
+      c: Älä työskentele ilmaiseksi. Täytä tuntilomakkeen.
+      d: Onko sinulla lomaa jo tänään?
+      e: Herätys! Tuntilomakkeen tarvitsee ruokkia!
+  alerts_plugin_author: Easy Software
+  alerts_plugin_author_url: http://www.easyredmine.com
+  alerts_plugin_description: "- Automaattinen mukainen ilmoitus määriteltyjen parametrien"
+  alerts_rule_project_filters: 'Rajaa projekti:'
+  alerts_type_alert: Hälytys
+  alerts_type_notice: Huomata
+  alerts_type_warning: Varoitus
+  button_alerts_add_new_alert: Uusi hälytys
+  button_alerts_add_new_context: Uusi toimintaympäristö
+  button_alerts_add_new_type: Uusi tyyppi
+  button_alerts_manage_contexts: Hallitse yhteyksissä
+  button_alerts_manage_types: Hallitse hälytys tyypit
+  button_alerts_my_alerts: Omat hälytykset
+  button_alerts_report: Ilmoita
+  button_alerts_report_archive: Arkisto
+  button_alerts_report_unarchive: Arkistosta
+  button_alerts_reports: Omat raportit
+  button_alerts_reports_archive: Arkistoidut
+  button_issue_sidebar_add_alert: Uusi hälytys
+  button_manage_alerts_for_all: Julkiset kuulutukset
+  easy_alerts_context:
+    helpdesk: Helpdesk
+    issue: Tehtävä
+    milestone: Virstanpylväs
+    project: Hanke
+    timeentry: Käytetty aika
+  easy_alerts_rule:
+    easy_issue_query: Tallennetut kysely
+    easy_project_query: Tallennetut kysely
+    easy_version_query: Tallennettuun kyselyyn
+    helpdesk_monitor_due_time: Helpdesk - kysymys ajoissa mukaan SLA
+    helpdesk_monitor_due_time_assignee: Helpdesk - aika täydellinen minun tehtävän
+      mukaan SLA
+    helpdesk_monitor_due_time_manager: Helpdesk - valmistumisaika tehtävän mukaan
+      SLA
+    helpdesk_monitor_hours_to_response: Helpdesk - aika alkuun ratkaista tehtävän
+      mukaan SLA
+    helpdesk_monitor_prepaid_hours: Helpdesk - kuukausittain prepaid kertaa
+    issue_due_date: Eräpäivä
+    issue_updated_date: Päivitetty päivämäärä
+    project_due_date: Eräpäivä
+    project_estimated_hours: Summa arvioidusta tuntia
+    timeentry_time_watcher: Käytetty aika
+    timeentry_time_watcher_previous_day: Edellinen päivä viettänyt aikaa
+    version_due_date: Eräpäivä
+  easy_pages:
+    modules:
+      easy_alerts: Hälytykset - raportit
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: Hälytykset - arviointi
+  field_alert_is_for: Arviointi
+  field_alert_mail_for: Lähetä ja
+  field_alerts_report_text: Tila
+  field_alerts_rule: Katsella
+  field_budget: talousarvio
+  field_context: missä
+  field_custom_hours: Kello
+  field_date: päivämäärä
+  field_delta: päivien
+  field_entity_count: useita tehtäviä
+  field_period_from: Alkaen
+  field_period_to: Voit
+  field_query_id: suodattaa
+  field_rule: Katsella
+  field_time_check: Tarkastus
+  field_version_ids: virstanpylväs
+  label_alerts_additional_settings: Muut asetukset
+  label_alerts_context: 'Missä:'
+  label_alerts_contexts: Luettelo yhteyksissä
+  label_alerts_for_all: Kaikkien
+  label_alerts_for_group: 'Ryhmälle:'
+  label_alerts_for_only_me: Vain hälytys kirjoittaja
+  label_alerts_hourstimecheck_after_time: tuntia
+  label_alerts_hourstimecheck_before_time: Tarkista se joka päivä
+  label_alerts_hourstimecheck_whenever: Anytime << >>
+  label_alerts_issue_select_before: 'on tehtävä (t):'
+  label_alerts_mail_group: Arviointi hälytykset lähetetään sähköpostitse
+  label_alerts_mail_group_all: Kaikki osallistujat (ks. yllä)
+  label_alerts_mail_group_custom: 'Mukautettu sähköposti:'
+  label_alerts_mail_group_only_group: 'Vain ryhmän jäsenet:'
+  label_alerts_manage_alerts_for: 'Tämä hälytys arvioidaan käyttäjille:'
+  label_alerts_my: 'Omat hälytykset tyypin:'
+  label_alerts_my_alerts: Omat hälytykset
+  label_alerts_my_reports: Omat raportit
+  label_alerts_my_reports_archive: Omat raportit (arkisto)
+  label_alerts_name: 'Nimi:'
+  label_alerts_project_select_before: 'hankkeen:'
+  label_alerts_report: Ilmoita
+  label_alerts_rule: 'Watch:'
+  label_alerts_select_context: 'Valitse tausta:'
+  label_alerts_select_rule: 'Valitse sääntö:'
+  label_alerts_type: 'Vakavuus:'
+  label_alerts_type_name: Nimi
+  label_alerts_types: Alert tyypit
+  label_choose_type: 'Valitse kun hälytys arvioi:'
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: ajoissa on task (mukaan
+    SLA).
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: Katso, että nykyinen aika
+    on enemmän tai yhtä suuri kuin
+  label_easy_alerts_helpdesk_monitor_due_time_report: Ajoissa tehtävä on %{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: Tehtävä oli ratkaistava
+    %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: prepaid tuntia.
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: Katso että kuukausittaiset
+    vietti aikaa hanke on enemmän tai yhtä suuri kuin
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: Käytetty %{sum_time_entries}
+    alkaen %{prepaid_hours}
+  label_easy_alerts_project_estimated_hours_form_after: vs. vietti aikaa
+  label_easy_alerts_project_estimated_hours_form_before: Katso, että arvioitu aika
+    on
+  label_easy_alerts_project_estimated_hours_report: Aika menot on %{current_percentage}%
+    -%{sum_time_entries} alkaen %{sum_estimated_hours}
+  label_issue_due_date_report: aikavälin tehtävä on ylitetty
+  label_issue_due_date_warning_date_before: 'Varoita:'
+  label_issue_due_date_warning_delta_after: päivää (+) määräajan jälkeen, (-) ennen
+    määräaikaa
+  label_issue_due_date_warning_delta_before: Varoittaa
+  label_issue_due_date_where_iam: 'Vain jos olen:'
+  label_issue_due_date_where_iam_assignee: Saaja tehtävän
+  label_issue_due_date_where_iam_author: Kirjoittaja tehtävän
+  label_issue_overdrawn_budget_before: 'Varoita loppuun talousarvio:'
+  label_issue_overdrawn_budget_report: uupunut %{costs}%{budget}
+  label_issue_query_after: kirjaa.
+  label_issue_query_before: 'Varoita jos useita tehtäviä suodatin:'
+  label_issue_query_middle: on suurempi kuin
+  label_issue_query_report: ylitti useita tehtäviä suodattimen
+  label_issue_updated_date_warning_date_before: 'Varoita:'
+  label_issue_updated_date_warning_delta_after: päivää (+) määräajan jälkeen, (-)
+    ennen määräaikaa
+  label_issue_updated_date_warning_delta_before: Varoittaa
+  label_milestone_due_date_milestone_select_before: koskeva välitavoite (s)
+  label_milestone_due_date_report: Termi virstanpylväs on ylitetty
+  label_milestone_due_date_warning_date_before: 'Varoita:'
+  label_milestone_due_date_warning_delta_after: päivää (+) määräajan jälkeen, (-)
+    ennen määräaikaa
+  label_milestone_due_date_warning_delta_before: Varoittaa
+  label_project_due_date_not_overdue: 'Päivää yli koska:'
+  label_project_due_date_overdue: 'Päiviä koska:'
+  label_project_due_date_report: Hanke määräaika on ylittynyt
+  label_project_due_date_warning_date_before: 'Varoita:'
+  label_project_due_date_warning_delta_after: päivää (+) määräajan jälkeen, (-) ennen
+    määräaikaa
+  label_project_due_date_warning_delta_before: Varoittaa
+  label_project_overdrawn_budget_before: 'Varoita loppuun talousarvio:'
+  label_project_overdrawn_budget_report: uupunut %{costs}%{budget}
+  label_project_query_after: kirjaa.
+  label_project_query_before: 'Varoita jos hankkeiden määrä on suodatin:'
+  label_project_query_middle: on suurempi kuin
+  label_project_query_report: ylitti määrän hankkeita suodatin
+  label_select_project: 'Valitse projekti:'
+  label_timeentry_time_watcher_after: tuntia.
+  label_timeentry_time_watcher_before: Haluan tarkistaa, että vietti aikaa
+  label_timeentry_time_watcher_before_from: alkaen
+  label_timeentry_time_watcher_before_to: ja
+  label_timeentry_time_watcher_mail_body: 'Tuntilomakkeen, voit täyttää täällä:'
+  label_timeentry_time_watcher_mail_body_link: tuntilomakkeen
+  label_timeentry_time_watcher_middle: on suurempi tai yhtä suuri kuin
+  label_timeentry_time_watcher_previous_day_before: Haluan tarkistaa, että vietti
+    aikaa edellisestä pankkipäivänä
+  label_timeentry_time_watcher_previous_day_before_calendar: suurempi tai yhtä suuri
+    kuin työvoimaa.
+  label_timeentry_time_watcher_previous_day_before_custom: suurempi tai yhtä suuri
+    kuin
+  label_timeentry_time_watcher_previous_day_before_time: Tarkista se joka päivä klo
+  label_timeentry_time_watcher_previous_day_mail_body: Kirjoitin sinulle eilen ympäri
+    vuorokauden? Tarkista tuntilomakkeen.
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'Nämä ihmiset täytetty
+    liian vähän aikaa eilen:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: Luettelo
+    näistä ihmisistä, voit tarkistaa täältä.
+  label_timeentry_time_watcher_previous_day_mail_body_link: tuntilomakkeen
+  label_timeentry_time_watcher_previous_day_mail_subject: Kirjoitin sinulle eilen
+    ympäri vuorokauden? Tarkista tuntilomakkeen.
+  label_timeentry_time_watcher_previous_report: Eilen sinä lähetetty muutama tunti.
+  label_timeentry_time_watcher_report: on puutteellisesti raportoitu aika %{from}
+    ja %{to}
+  label_version_query_after: kirjaa.
+  label_version_query_before: 'Kerro, jos määrä virstanpylväitä suodatin:'
+  label_version_query_middle: on suurempi kuin
+  label_version_query_report: ylitti määrä virstanpylväitä suodatin
+  permission_manage_alert_contexts: Toimitusjohtaja yhteyksissä
+  permission_manage_alert_types: Johdon tyyppisiä ilmoituksia
+  permission_manage_alerts_for_all: Se voi tuottaa hälytykset kaikille käyttäjille
+  permission_view_alerts: Katsoo ilmoituksia
+  project_default_page:
+    easy_alerts: Hälytykset
+  project_module_easy_alerts: Hälytykset
+  title_alert_type_color: Valitse väri
+  title_alerts_add_new_alert: Luo uusi ilmoitus
+  title_alerts_alert_edit: Muokkaa ilmoituksia
+  title_alerts_alert_new: Uusi hälytys
+  title_alerts_context_edit: Muokkaaminen yhteydessä
+  title_alerts_context_new: Uusi toimintaympäristö
+  title_alerts_edit_alert: Muokkaa hälytys
+  title_alerts_manage_contexts: Hallitse yhteyksissä
+  title_alerts_manage_types: Hallitse hälytys tyypit
+  title_alerts_my_alerts: Näytä Omat ilmoitukset
+  title_alerts_report: Tarkastele raportteja hälytys
+  title_alerts_report_entity_issue: Näytä Tehtävä%{entityname}
+  title_alerts_report_entity_project: Näytä Project %{entityname}
+  title_alerts_report_entity_user: Näytä käyttäjän %{entityname}
+  title_alerts_reports: Tarkastella raportteja
+  title_alerts_reports_archive: Katso arkistoidut raportit.
+  title_alerts_show_alert: "%{alertname} Näyttää varoituksen"
+  title_alerts_sidebar_type: Näytä raportit tyyppi %{typename}
+  title_alerts_type_edit: Muuttaminen tyyppiä
+  title_alerts_type_new: Uusi tyyppi
+  title_manage_alerts_for_all: Klikkaa nähdäksesi hälytykset kaikille

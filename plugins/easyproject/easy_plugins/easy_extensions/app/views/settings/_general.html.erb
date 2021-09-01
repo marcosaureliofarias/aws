@@ -1,0 +1,167 @@
+<%= form_tag({:action => 'edit'},:class => 'form-box') do %>
+  <div class="box tabular settings">
+    <p><%= setting_text_field :app_title %></p>
+    <p style="display:none"><%= setting_text_area :welcome_text, :cols => 60, :rows => 5, :class => 'wiki-edit' %></p>
+    <%= wikitoolbar_for 'settings_welcome_text' %>
+    <p>
+      <label><%= l(:label_easy_setting_attachment_description) %></label>
+      <label class="inline">
+        <%= radio_button_tag 'easy_setting[attachment_description]', 'required',
+          EasySetting.value('attachment_description_required') -%>
+        <%= l(:label_easy_setting_attachment_description_required) %>
+      </label>
+      <label class="inline">
+        <%= radio_button_tag 'easy_setting[attachment_description]', '1',
+          EasySetting.value('attachment_description') && !EasySetting.value('attachment_description_required') -%>
+        <%= l(:label_easy_setting_attachment_description_enabled) %>
+      </label>
+      <label class="inline">
+        <%= radio_button_tag 'easy_setting[attachment_description]', '0', !EasySetting.value('attachment_description') -%>
+        <%= l(:label_easy_setting_attachment_description_disabled) %>
+      </label>
+    </p>
+    <p><%= setting_text_field :per_page_options %>
+      <em class="help"><%= l(:text_comma_separated) %></em></p>
+    <p><%= setting_text_field :search_results_per_page, :size => 6 %></p>
+    <p>
+      <%= label_tag('easy_setting[easy_select_limit]', l(:setting_easy_maximum_results_shown_in_autocomplete)) %>
+      <%= text_field_tag 'easy_setting[easy_select_limit]', EasySetting.value('easy_select_limit'), :size => 6 %>
+    </p>
+    <p><%= setting_text_field :activity_days_default, :size => 6 %> <%= l(:label_day_plural) %></p>
+    <p><%= setting_text_field :host_name %>
+      <em class="help"><%= l(:label_example) %>: <%= @guessed_host_and_path %></em></p>
+    <p><%= setting_select :protocol, [['HTTP', 'http'], ['HTTPS', 'https']] %></p>
+    <p>
+      <%= setting_select :text_formatting, Redmine::WikiFormatting.formats_for_select, :blank => :label_none %>
+      <em class="help"><%= l(:text_textile_migration) -%></em>
+    </p>
+    <p>
+      <%= hidden_field_tag('easy_setting[query_string_enabled]', '0', id: nil) %>
+      <% box = check_box_tag('easy_setting[query_string_enabled]', '1', EasySetting.value('query_string_enabled')) -%>
+      <%= label_tag('easy_setting_query_string_enabled', box + l(:setting_query_string_enabled), class: 'checkbox inline') %>
+      <br>
+      <em class="help"><%= l(:text_query_string_enabled) %></em>
+    </p>
+
+    <script type="text/javascript">
+      EASY.schedule.late(function(){
+        $("#settings_text_formatting").change(function(event) {
+          $("#ckeditor-settings").toggle(event.target.value === 'HTML');
+          $(document).trigger("erui_interface_change_vertical");
+        });
+      });
+    </script>
+
+    <fieldset id="ckeditor-settings" style="<%= Setting.text_formatting.to_s == 'HTML' ? '' : 'display:none' %>">
+      <p>
+        <%= label_tag(:easy_setting_ckeditor_toolbar_config, l(:field_ckeditor_toolbar_config)) %><%= select_tag('easy_setting[ckeditor_toolbar_config]', options_for_select(%w(Basic Extended Full).collect{|c| [l(c.downcase, :scope => :editor_config_names), c]}, EasySetting.value('ckeditor_toolbar_config'))) %>
+      </p>
+      <p>
+        <%= hidden_field_tag('easy_setting[ckeditor_syntax_highlight_enabled]', '0', :id => nil) -%>
+        <% box = check_box_tag('easy_setting[ckeditor_syntax_highlight_enabled]', '1', EasySetting.value('ckeditor_syntax_highlight_enabled')) -%>
+        <%= label_tag('easy_setting_ckeditor_syntax_highlight_enabled', box + l(:setting_ckeditor_syntax_highlight_enabled), :class => 'checkbox inline') %>
+      </p>
+      <p>
+        <%= label_tag(:easy_setting_ckeditor_syntax_highlight_theme, l(:field_ckeditor_syntax_highlight_theme)) %>
+        <%= select_tag('easy_setting[ckeditor_syntax_highlight_theme]', options_for_select(EasyCKEditor.syntaxt_higlight_templates, EasySetting.value('ckeditor_syntax_highlight_theme'))) %>
+      </p>
+      <p>
+        <%= hidden_field_tag('easy_setting[ckeditor_autolink_file_protocols]', '0', :id => nil) -%>
+        <% box = check_box_tag('easy_setting[ckeditor_autolink_file_protocols]', '1', EasySetting.value('ckeditor_autolink_file_protocols')) -%>
+        <%= label_tag('easy_setting_ckeditor_autolink_file_protocols', box + l(:setting_ckeditor_autolink_file_protocols), :class => 'checkbox inline') %>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <p>
+        <%= label_tag(:easy_setting_attachment_reminder_words, l(:field_attachment_reminder_words)) %>
+        <%= text_area_tag('easy_setting[attachment_reminder_words]', EasySetting.value('attachment_reminder_words'), :rows => '2') %>
+        <%= content_tag(:em, l(:text_easy_attachment_reminder_explanatory_html).html_safe, :class => 'help') %>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <p><%= setting_check_box :cache_formatted_text %></p>
+      <p style="display:none"><%= setting_select :wiki_compression, [['Gzip', 'gzip']], :blank => :label_none %></p>
+      <p><%= setting_text_field :feeds_limit, :size => 6 %></p>
+      <p>
+        <%= label_tag 'easy_setting[fiscal_month]', l(:setting_fiscal_period) %>  1.
+        <%= select_tag 'easy_setting[fiscal_month]', options_for_select(1.upto(12).collect{|n| [month_name(n), n.to_s]}, EasySetting.value('fiscal_month')), :class => 'inline' -%>
+      </p>
+      <% if false %>
+      <p>
+        <%= hidden_field_tag('easy_setting[use_easy_cache]', '0', :id => nil) -%>
+        <%= label_tag('easy_setting_use_easy_cache', l(:setting_use_easy_cache)) %><%= check_box_tag('easy_setting[use_easy_cache]', '1', EasySetting.value('use_easy_cache')) -%>
+        <%= link_to(l(:button_release_cache), {:controller => 'settings', :action => 'release_cache'}, :remote => true, :class => 'button', :title => l(:button_release_cache)) %>
+      </p>
+      <% end %>
+    </fieldset>
+
+    <table id="easy_suggester_setting" class="filters-table columns">
+      <tr>
+        <%
+          suggester_setting = EasySetting.value('easy_search_suggester') || Hash.new
+          selected_types = Array(suggester_setting['entity_types'])
+          available_search_types = EasyExtensions::Suggester.available_search_types
+          selected = selected_types & available_search_types
+          sorted_search_types = selected + (available_search_types - selected)
+
+          options_for_select = options_for_select(sorted_search_types.map { |type|
+            [l("label_#{type.singularize}_plural"), type]
+          }, selected)
+        %>
+        <td>
+          <%= hidden_field_tag('easy_setting[easy_search_suggester][enabled]', '0', id: nil) %>
+          <%= check_box_tag('easy_setting[easy_search_suggester][enabled]', '1', suggester_setting && suggester_setting['enabled'].try(:to_boolean)) %>
+          <%= label_tag 'easy_setting[easy_search_suggester][enabled]', l(:setting_easy_search_suggester) %>
+        </td>
+        <td>
+          <%= select_tag 'easy_setting[easy_search_suggester][entity_types]', options_for_select, id: 'easy_search_suggester', class: 'block', multiple: true, size: available_search_types.size %>
+        </td>
+        <td style="vertical-align: middle; text-align: center; width: 5%">
+          <input class="button" type="button" value="&#8648;" onclick="moveOptionTop(this.form.<%= 'easy_search_suggester' %>);"/><br/>
+          <input class="button" type="button" value="&#8593;" onclick="moveOptionUp(this.form.<%= 'easy_search_suggester' %>);"/><br/>
+          <input class="button" type="button" value="&#8595;" onclick="moveOptionDown(this.form.<%= 'easy_search_suggester' %>);"/><br/>
+          <input class="button" type="button" value="&#8650;" onclick="moveOptionBottom(this.form.<%= 'easy_search_suggester' %>);"/>
+        </td>
+        <td style="vertical-align: middle;">
+          <em><%= l(:search_suggester_instructions) %></em>
+        </td>
+      </tr>
+    </table>
+
+    <fieldset id="easy_search_default_object_types" class="filters-table">
+      <% selected_default_search_types = EasySetting.value('easy_search_default_object_types') || Array.new %>
+      <% available_default_search_types = Redmine::Search.available_search_types %>
+      <legend>
+        <%= l(:setting_easy_search_default_object_types) %>
+      </legend>
+      <p>
+        <%= hidden_field_tag('easy_setting[easy_search_default_object_types][]', '') -%>
+        <% available_default_search_types.each do |t| %>
+          <label class="inline"><%= check_box_tag "easy_setting[easy_search_default_object_types][]", t, selected_default_search_types.include?(t) %> <%= type_label(t) %></label>
+        <% end %>
+      </p>
+    </fieldset>
+
+    <%= call_hook(:view_settings_general_form) %>
+
+    <fieldset>
+      <legend><%= l(:heading_webdav) %></legend>
+      <p>
+        <%= hidden_field_tag('easy_setting[easy_webdav_enabled]', '0', :id => nil) -%>
+        <% box = check_box_tag('easy_setting[easy_webdav_enabled]', '1', EasySetting.value('easy_webdav_enabled')) -%>
+        <%= label_tag('easy_setting_easy_webdav_enabled', box + l(:setting_easy_webdav_enabled), :class => 'checkbox inline') %>
+      </p>
+      <%= call_hook(:view_settings_general_webdav) %>
+      <p>
+        <%= link_to(l(:label_delete_locks), {:controller => 'settings', :action => 'webdav_delete_locks'}, :class => 'button', :remote => true, :method => :post, :data => {:confirm => l(:text_are_you_sure)}) %>
+        <em class="help"><%= l(:text_webdav_delete_locks) %></em>
+      </p>
+    </fieldset>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+<% end %>

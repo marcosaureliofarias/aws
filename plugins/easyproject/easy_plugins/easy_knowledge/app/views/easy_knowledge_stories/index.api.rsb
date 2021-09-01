@@ -1,0 +1,3 @@
+api.array :easy_crm_cases, api_meta(total_count: @entity_count, offset: @offset, limit: @limit) do
+  render(@stories, { api: api })
+end

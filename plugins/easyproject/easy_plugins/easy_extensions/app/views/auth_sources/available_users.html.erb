@@ -1,0 +1,24 @@
+<%= title "#{@auth_source.name}: #{l(:label_available_users)} (#{@available_users.count})" %>
+
+<div class="autoscroll">
+  <table class="list">
+    <thead><tr>
+      <th><%= l(:field_login) %></th>
+      <th><%= l(:field_firstname) %></th>
+      <th><%= l(:field_lastname) %></th>
+      <th><%= l(:label_email) %></th>
+      <th><%= 'DN' %></th>
+    </tr></thead>
+    <tbody>
+      <% @available_users.each do |user| %>
+        <tr>
+          <td><%= user['login'] %></td>
+          <td><%= user['firstname'] %></td>
+          <td><%= user['lastname'] %></td>
+          <td><%= user['mail'] %></td>
+          <td><%= user['dn'] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

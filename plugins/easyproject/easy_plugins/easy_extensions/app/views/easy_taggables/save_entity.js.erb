@@ -1,0 +1,4 @@
+$('#entity_tag_list_container').html('<%= j(render :partial => 'easy_taggables/index', :locals => {:entity => @entity}) %>');
+<% if @entity.respond_to?(:lock_version) %>
+  window.easy_lock_version = <%= @entity.lock_version %>;
+<% end %>

@@ -1,0 +1,295 @@
+@mixin agile-scheme($color, $bg: false, $border: true){
+  $color-adjusted: mix($color,$color-foreground, 10%);
+  @extend %pseudo-after;
+  &:before {
+    @extend %priority;
+    background: $color;
+    top: 1px;
+    bottom: 0;
+    left: 0;
+    width: .2rem;
+  }
+  &:after{
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    left: -1px;
+    border: 1px solid $color;
+  }
+
+  @if ($border == true) {
+  }
+
+  @if ($bg == true) {
+    background-color: $color-adjusted !important;
+  }
+}
+@import "../components/_agile_schemes";
+$agile-item-height: px2rem(100px);
+%agile__item{
+  page-break-inside:avoid;
+  margin: .1*$box-padding;
+  background: white;
+  border: 1px solid $color-print;
+  height: $agile-item-height;
+  position: relative;
+  a{
+    color: $color-print;
+  }
+}
+
+%agile__list{
+  @extend %flex-grow-1;
+  border: 1px solid $color-print;
+  //border-top: 3px solid $color-print;
+  //padding-bottom: .5*$gap;
+  min-height: $agile-item-height;
+  width: 100%;
+  //background: $color-foreground;//mix($color-background, mix($color-background, $color-foreground));
+  background: $color-print--accent;
+}
+
+.agile {
+  &__row {
+    @extend %flex;
+    @extend %align-items-stretch;
+    @extend %justify-content-space-between;
+    @extend %box-sizing-border-box;
+    width: 100%;
+
+    &:last-child {
+      @extend %flex-grow-1;
+    }
+  }
+
+  &__col {
+    $tile-height: 1.5*$box-padding;
+
+    @extend %flex;
+    @extend %flex-grow-1;
+    @include flex-direction(column);
+    @extend %align-items-stretch;
+
+    min-width: 100px;
+    @include flex-basis(100%);
+
+    &+&{
+      margin-left: $gap;
+    }
+
+    &--indent {
+      margin-top: $tile-height;
+    }
+
+    &__title {
+      @extend %flex;
+      @extend %align-items-center;
+      @extend %justify-content-center;
+      @extend %flex-wrap-wrap;
+      height: $tile-height;
+      text-align: center;
+      @include small;
+      font-weight: bold;
+      line-height: 1;
+      padding-left: .5*$gap;
+      padding-right: .5*$gap;
+      &.sticky{
+        display: none !important;
+      }
+      &__details {
+        position: relative;
+        font-weight: normal;
+        display: block;
+        width: 100%;
+      }
+      &-right_icon {
+        padding-left: $gap;
+      }
+      &-icon {
+        padding-right: $gap;
+      }
+    }
+
+    &__contents {
+      @extend %flex;
+      @extend %flex-grow-1;
+      //padding: 0 .5*$gap;
+    }
+
+    &-sort {
+      @include small;
+      cursor: pointer;
+      @extend %pseudo-before;
+      @extend %pseudo-after;
+      @extend %tooltip-parent;
+      z-index: 1;
+      &:after, &:before {
+        right: -$box-padding;
+        opacity: .3;
+      }
+    }
+    hr {
+      margin: 0;
+      .row0 & {
+        display: none;
+      }
+    }
+  }
+
+  &__main-col {
+    @include flex-grow(2);
+    //overflow-x: auto;
+  }
+
+  &__main-col &__col{
+    width: 100%;
+  }
+
+  &__item {
+    @extend %agile__item;
+    margin: .15*$box-padding;
+  }
+
+  &__list {
+    @extend %agile__list;
+
+  }
+  &__group-select{
+    display: none;
+  }
+  &__card {
+    touch-action: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: $gap/2;
+    @extend %box-sizing-border-box;
+    padding-bottom: 2.5*$gap;
+    border: none;
+    overflow: visible !important;
+
+    &--error {
+      border-right: 2px solid $button-negative-background;
+      @extend %pseudo-after;
+      &:after {
+        right: 0;
+        position: absolute;
+        background: $button-negative-background;
+        top: 49%;
+        z-index: 1;
+        padding: 4px;
+        padding-left: 6px;
+        color: $button-negative-color;
+        @include translateY(-50%);
+        @include icon(error);
+      }
+    }
+
+    &__title {
+      position: relative;
+      font-size: $font-size;
+      font-weight: normal;
+      color: inherit;
+      margin: 0 0 3px 0;
+      overflow: hidden;
+      max-height: 3*1.125em;
+    }
+
+    &__subtitle {
+      @include smaller;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__info {
+      @extend %flex;
+      @extend %align-items-center;
+      @extend %justify-content-space-between;
+      position: absolute;
+      bottom: $gap/2;
+      left: $gap/2;
+      width: calc(100% - #{$gap});
+      height: 2.5*$gap;
+
+      .gravatar {
+        width: 2.5*$gap;
+      }
+
+      .avatar-container {
+        margin: 0;
+      }
+
+      &__item {
+        line-height: 1.125;
+      }
+    }
+
+    &__summable {
+      @include smaller;
+      float: right;
+      margin-left: .4*$gap;
+      line-height: 1.4;
+      max-width: 32px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__context-menu {
+      float: right;
+      position: relative;
+      margin-left: 6px;
+      line-height: 1.4;
+      max-width: 32px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    &__avatar {
+      width: auto;
+    }
+
+    &__dates {
+      line-height: 1.15;
+      @extend %flex;
+      @extend %flex-wrap-wrap;
+    }
+
+    &__date {
+      display: block;
+      @include smallest;
+      color: $color-text;
+      padding: 0 2px;
+      margin: 0 2px;
+      //outline: rgba(0, 0, 0, 0.1) solid thin;
+    }
+
+    &__icons {
+      line-height: 1;
+    }
+
+    &__icon {
+      display: block;
+    }
+  }
+
+  &__backlog & {
+    @extend %flex;
+    @extend %justify-content-center;
+    & > .agile__row {
+      max-width: 640px;
+    }
+
+  }
+
+  &__dash {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 3px;
+    &--highlight {
+      background: $color-important;
+    }
+  }
+}

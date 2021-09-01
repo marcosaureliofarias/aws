@@ -1,0 +1,35 @@
+<% wikitoolbar = @easy_page_modules_data[block_name][:wikitoolbar] %>
+<fieldset>
+  <div class="clear">
+    <p class="floating">
+      <%= label_tag "#{block_name}_heading", l(:label_heading) %>
+      <%= page_module_settings_text_field_tag(page_module, %w[heading], value: settings['heading'] || l('easy_pages.modules.noticeboard')) %>
+    </p>
+  </div>
+
+  <div class="wikitoolbar-wrap">
+    <%= text_area_tag "#{block_name}[text]", settings['text'], cols: 60, rows: 10, class: 'wiki-edit' %>
+    <%= wikitoolbar_for("#{block_name}_text", preview_text_path, {toolbar: wikitoolbar}) %>
+  </div>
+</fieldset>
+<% if Setting.text_formatting == :HTML %>
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    var saved_text = '',
+        ckeditor_id = '<%= block_name.underscore %>_text',
+        ckeditor_instance;
+
+    window.draggable_onstart_module_<%= page_module.uuid.underscore %> = function(draggable, event) {
+      ckeditor_instance = CKEDITOR.instances[ckeditor_id];
+      saved_text = ckeditor_instance.getData();
+    };
+    window.draggable_onend_module_<%= page_module.uuid.underscore %> = function(draggable, event) {
+      var ckeditor_config = ckeditor_instance.config;
+      CKEDITOR.remove(ckeditor_instance);
+      $('#cke_' + ckeditor_id).remove();
+      $('#' + ckeditor_id).value = saved_text;
+      CKEDITOR.replace(ckeditor_id, ckeditor_config);
+    };
+  });
+</script>
+<% end %>

@@ -1,0 +1,18 @@
+<% Rys::Feature.on('issue_duration') do %>
+  <% if issue.safe_attribute? 'easy_duration' %>
+    <%= issue_fields_rows do |rows| %>
+      <% rows.right l('issue_duration.field_easy_duration'), issue_easy_duration_formatter(issue.easy_duration), id: 'issue_duration_row', class: 'issue-duration' %>
+    <% end %>
+
+    <script type="text/javascript">
+      (function () {
+        const nextElement = document.getElementById('start_date_row');
+        const newRow = document.getElementById('issue_duration_row');
+
+        if (nextElement) {
+          nextElement.parentNode.insertBefore(newRow, nextElement);
+        }
+      })();
+    </script>
+  <% end %>
+<% end %>

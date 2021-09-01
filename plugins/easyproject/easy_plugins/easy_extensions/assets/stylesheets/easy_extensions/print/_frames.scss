@@ -1,0 +1,38 @@
+body {
+  background-color: white !important;
+  background-image: none !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  overflow: visible !important;
+}
+
+#top-menu, #main-menu, #sidebar, #easy_grid_sidebar, #footer, #easy_servicebar, #wiki_add_attachment, .contextual, .easy-contextual, .menu-manager, .pagination, .flash, .module-heading-links{
+  @extend %display_none;
+}
+
+//[id^="resalloc-container"], #easy_gantt{
+//  @extend %display_none;
+//}
+
+.easy-content-page{
+  padding: 0;
+  border: none;
+  margin: 0;
+}
+.other-formats{
+  display: none;
+}
+#header{
+  h1{
+    margin-bottom: 0;
+  }
+}
+#user_detail_header{
+  text-align: center;
+  .gravatar{
+    min-width: 60px;
+  }
+}
+.nowrap{
+  white-space: nowrap;
+}

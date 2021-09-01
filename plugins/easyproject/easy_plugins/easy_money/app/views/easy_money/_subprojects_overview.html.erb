@@ -1,0 +1,41 @@
+<% if subprojects.any? -%>
+  <%
+    show_scope = project.self_and_descendants.non_templates
+    options = {
+        show_time_tracking: show_scope.has_module(:time_tracking).exists?,
+        show_travel_costs: show_scope.travel_costs_enabled.exists?,
+        show_travel_expenses: show_scope.travel_expenses_enabled.exists?
+    }
+  %>
+
+  <div class="overview subproject-easy-money autoscroll">
+    <table id="easy-money-subproject" class="list">
+      <thead>
+        <tr>
+          <th class="project-name"><%= l(:label_project) -%></th>
+          <th class="easy-money-sum-revenues"><%= l(:label_easy_money_subproject_sum_revenues) -%></th>
+          <th class="easy-money-sum-expenses"><%= l(:label_easy_money_subproject_sum_expenses) -%></th>
+          <% if options[:show_time_tracking] %>
+            <th class="easy-money-sum-payroll-expenses"><%= l(:label_easy_money_subproject_sum_payroll_expenses) -%></th>
+          <% end %>
+          <% if options[:show_travel_costs] %>
+            <th class="easy-money-sum-travel-costs"><%= l(:label_easy_money_subproject_sum_travel_costs) -%></th>
+          <% end %>
+          <% if options[:show_travel_expenses] %>
+            <th class="easy-money-sum-travel-expenses"><%= l(:label_easy_money_subproject_sum_travel_expenses) -%></th>
+          <% end %>
+          <th class="easy-money-profit"><%= l(:label_easy_money_subproject_profit) -%></th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render 'easy_money/subproject_overview', project: project, easy_currency_code: easy_currency_code, options: options %>
+        <%= render partial: 'easy_money/subproject_overview', collection: subprojects, as: :project, locals: {easy_currency_code: easy_currency_code, options: options} %>
+      </tbody>
+    </table>
+  </div>
+  <p id="easy-money-overview-subproject-explication" class="legend">
+    <%= l(:label_easy_money_subproject_explication) -%>
+  </p>
+  <%= call_hook(:view_easy_money_suprojects_overview_bottom, :project => project, :subprojects => subprojects) %>
+<% end -%>

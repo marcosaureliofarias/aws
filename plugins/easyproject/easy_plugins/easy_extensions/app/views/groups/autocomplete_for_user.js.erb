@@ -1,0 +1,18 @@
+var selected = [];
+var selectedObj = {};
+
+$("#principals input:checked").each(function(){
+  $this = $(this);
+  var val = $this.val();
+  selectedObj[val] = ($this.parent());
+  selected.push(val);
+});
+
+$('div#principals_for_new_member').html('<%= j render(:partial => 'members/easy_principals_for_new_members', :locals => { :group => @group }) %>');
+
+var principals = $("#principals");
+$.each(selected,function(i, val){
+  principals.find("input[value='"+ val +"']").parent().remove();
+  principals.prepend(" "); // whitespace
+  principals.prepend(selectedObj[val]);
+});

@@ -1,0 +1,20 @@
+showModal('ajax-modal', '50%');
+$('#ajax-modal').html("<%= j(render(partial: 'easy_action_sequence_templates/chart', locals: {
+    easy_action_sequence_template: @entity.easy_action_sequence.template,
+    current_state:        @entity.current_state })) %>");
+$('#ajax-modal').dialog("option", {
+    buttons: [
+        {
+            text: '<%=j l(:button_save_as_png, scope: :easy_actions) %>',
+            click: function () {
+                saveSvgAsPng(document.getElementById('chart'), '<%= @entity.easy_action_sequence.template.name %>-<%= Time.now.iso8601 %>.png', {backgroundColor: 'white'})
+            }, 'class': 'button'
+        },
+        {
+            text: '<%=j l(:button_cancel) %>',
+            click: function () {
+                $(this).dialog('close');
+            }, 'class': 'button'
+        }
+    ]
+});

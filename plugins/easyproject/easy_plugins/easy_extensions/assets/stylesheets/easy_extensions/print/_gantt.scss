@@ -1,0 +1,40 @@
+.gantt{
+  &_hor_scroll{
+    display: none;
+  }
+}
+
+div.gantt_grid div.gantt_grid_head_cell, div.gantt-print__grid .gantt_grid_scale .gantt_grid_head_cell,
+div.gantt_grid_scale,
+div#gantt_grid,
+div.gantt_scale_cell,
+div.gantt_task_scale,
+div.gantt_cell,
+div.gantt_grid_scale,
+div.gantt_task_scale,
+div.gantt_container,
+div.gantt_task div.gantt_task_scale div.gantt_scale_cell,
+div.gantt_grid,
+div.gantt_scale_line,
+div.gantt_row,
+div.gantt_task_row,
+div.gantt_container,
+div.gantt-print__strip{
+    border-color: $color-print !important;
+    color: $color-print !important;
+}
+div.gantt_task_bg {
+  background: $color-print--background !important;
+  path {
+    stroke: $color-print--accent !important;
+  }
+  rect{
+    fill: $color-print--accent !important;
+  }
+}
+div.gantt_row.gantt_selected{
+  background:  $color-print--accent !important;
+}
+.gantt_tree_content{
+  display: inline-block !important;
+}

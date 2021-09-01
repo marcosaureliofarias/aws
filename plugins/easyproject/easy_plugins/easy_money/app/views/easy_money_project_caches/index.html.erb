@@ -1,0 +1,13 @@
+<%= render @query, :easy_query_name => l(:label_easy_money_project_cache), :options => { :hascontextmenu => false } %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :header_tags do -%>
+  <%= stylesheet_link_tag 'easy_money' -%>
+  <%= javascript_include_tag 'easy_money', defer: true -%>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'easy_money/index_sidebar' -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+<% end -%>

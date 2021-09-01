@@ -1,0 +1,13 @@
+<% data = @easy_page_modules_data[block_name] %>
+
+<% if data[:query] && data[:project] %>
+  <div id="<%= modul_uniq_id %>kanban-placeholder"></div>
+
+  <script type="text/javascript">
+    EasyGem.loadModule("easyAgile", function (agile) {
+      agile.kanbanLoader("#<%= modul_uniq_id %>kanban-placeholder", '<%= raw output_data_easy_queries_path(data[:query].to_params.merge(output: 'kanban', project_id: data[:project], setting: settings, data: data, format: 'json')) %>', '<%= data[:settings]['swimlane'] %>');
+    });
+  </script>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

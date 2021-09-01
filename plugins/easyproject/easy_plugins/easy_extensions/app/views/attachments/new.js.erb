@@ -1,0 +1,18 @@
+$("#ajax-modal").html("<%=j render(:partial => 'attachments/attachment_form', :locals => {:container => @container}) %>");
+$( "#ajax-modal" ).on( "dialogopen", function( event, ui ) {
+  setupFileDrop();
+  EASY.utils.initFileUploads();
+} );
+showModal('ajax-modal', '550px','<%= l(:label_attachment_new) %>');
+$('#ajax-modal').dialog( {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_save) %>',
+      click: function() {$(this).find('form:first').submit();}, 'class': 'button-positive'
+    }
+  ]
+});

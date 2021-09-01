@@ -1,0 +1,7 @@
+<%= toggling_container('issue_descr_fields', User.current, {:heading => l(:label_attribute_plural), :wrapping_heading_element_classes => ' icon icon-attribute', :default_button_state => false, :ajax_call => false}) do %>
+  <%= render :partial => 'issues/edit_issue_attributes_hidden', :locals => {:f => f} %>
+  <hr style="margin-top: 0;">
+<% end %>
+<p>
+  <%= link_to_function content_tag(:span, l(:label_change_properties), :class => 'tooltip'), "EASY.utils.toggleMyPageModule($(this).closest('.module-heading').next(),'issue_descr_fields','#{User.current.id}', false);", :class => 'icon icon-edit button issue-edit-hidden-attributes' %>
+</p>

@@ -1,0 +1,458 @@
+---
+sk:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Nastavenia
+      easy_helpdesk_mail_template:
+        body_html: Telo emailu (HTML)
+        body_plain: Telo emailu (jednoduchý text)
+        issue_status_id: Stav tiketu
+        mailboxes: 'Použiť pre schránku:'
+        reply_to: Odpoveď komu
+        sender: Odosielateľ
+        subject: Predmet
+      easy_helpdesk_project_matching:
+        domain_name: Doména
+      easy_helpdesk_project_sla:
+        base: SLA
+    models:
+      easy_helpdesk_mail_template: Šablóna emailu
+  aggregated_periods:
+    half-yearly: Polročne
+    quarterly: Kvartálne
+    yearly: Ročne‌
+  button_easy_helpdesk_add_domain_name: Pridať email alebo doménu
+  button_easy_helpdesk_add_mail_template: Pridať šablónu mailu
+  button_easy_helpdesk_add_mailbox: Pridať schránku
+  button_easy_helpdesk_add_project: Pridať projekt
+  button_easy_helpdesk_add_project_from_sidebar: Pridať do Helpdesku
+  button_easy_helpdesk_add_signature: Pridať podpis
+  button_easy_helpdesk_add_sla: Pridať SLA
+  button_easy_helpdesk_all_mail_templates_index: Všetky emailové šablóny
+  button_easy_helpdesk_all_mailboxes_index: Všetky schránky
+  button_easy_helpdesk_all_projects_index: Všetky projekty Helpdesku
+  button_easy_helpdesk_mail_templates_index: Zoznam šablón
+  button_easy_helpdesk_mailboxes_index: Zoznam schránok
+  button_easy_helpdesk_projects_index: Zoznam projektov‌
+  button_easy_helpdesk_reports_index: Reporty
+  button_easy_helpdesk_settings_index: Nastavenia Helpdesku
+  confirm_edit_remaining_hours: Toto pole je počítané na pozadí, naozaj ho chcete
+    upraviť manuálne?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Helpdesk
+  easy_helpdesk_plugin_description: "- komplexné riešenie pre zákaznícku podporu"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Help desk
+    modules:
+      easy_helpdesk_create_mail_template_button: Tlačidlo pre vytvorenie emailovej
+        šablóny
+      easy_helpdesk_create_mailbox_button: Tlačidlo pre vytvorenie emailovej schránky
+      easy_helpdesk_mailboxes: Emailové schránky Helpdesku
+      easy_helpdesk_mailtemplates: Emailové šablóny Helpdesku
+      easy_helpdesk_project_query: Helpdesk projekty z filtrov‌
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Emailové šablóny pre helpdesk
+        description: Emailové šablóny pre helpdesk
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Schránky helpdesku‌
+        description: Zobraziť emailové schránky helpdesku
+    easy_helpdesk:
+      index:
+        caption: Help desk
+        description: Zobraziť prehľad helpdesku‌
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - projekty
+      easy_helpdesk_report_monthly_query: Helpdesk - mesačné reporty
+      easy_helpdesk_report_yearly_query: Helpdesk - ročné reporty
+      easy_sla_event_query: SLA udalosti
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Súkromné filtre helpdesk projektov
+        easy_helpdesk_report_monthly_query: Osobné filtre mesačných reportov v Helpdesku
+        easy_helpdesk_report_yearly_query: Súkromné filtre ročných reportov v Helpdesku
+      public:
+        easy_helpdesk_project_query: Verejné filtre projektov v helpdesku
+        easy_helpdesk_report_monthly_query: Verejné filtre mesačných reportov v Helpdesku‌
+        easy_helpdesk_report_yearly_query: Verejné filtre ročných reportov v Helpdesku‌
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Helpdesk - výpočet agregovaných hodín
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Helpdesk - automatická aktualizácia tiketov‌
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - príjem emailov
+      settings:
+        imap:
+          allow_override: Povoliť prepisovanie hodnôt
+          allow_override_example: 'Príklad: typ úlohy, priorita - tieto atribúty môžu
+            byť prepísané podľa emailu‌'
+          application_section_label: Ostatné nastavenia
+          category_example: 'Príklad: Kategória - tikety sa budú zakladať s kategóriou
+            Kategória‌'
+          email_section_label: Nastavenie schránky
+          folder: Zložka
+          folder_example: 'IMAP zložka na čítanie (predvolené: INBOX, pre nastavenie
+            zložiek použite oddeľovač "." Príklad: inbox.obchod)'
+          folders: Zložky na čítanie‌
+          folders_example: 'IMAP zložky pre výber (jeden záznam na riadok) (predvolené:
+            INBOX, pre výber zložky použite "/" napr .: inbox/sales)'
+          host: Host
+          host_example: 'Príklad: mail.company.com'
+          label: IMAP
+          move_on_failure: Pri zlyhaní presunúť do
+          move_on_failure_example: presunút emaily, ktoré boli ignorované do zložky
+            MAILBOX
+          move_on_success: Pri úspešnom spracovaní presunúť do
+          move_on_success_example: presunúť emaily, ktoré boli úspešne prijaté do
+            zložky MAILBOX, inak budú zmazané‌
+          no_permission_check: Nekontrolovať používateľské práva‌
+          password: Heslo
+          password_example: 'Príklad: secretpassword'
+          port: Port
+          port_example: 'Napríklad: 143'
+          priority_example: 'Príklad: Vysoká - tikety sa budú zakladať s vysokou prioritou‌'
+          project_example: 'Príklad: 205 - tikety sa budú zakladať do projektu s ID
+            205'
+          sender_mail: Odosielateľ
+          sender_mail_example: 'Napríklad: support@company.com'
+          ssl: SSL
+          ssl_example: Použiť SSL autentifikáciu
+          status_example: 'Príklad: Nová - tikety sa budú zakladať so stavom Nová‌'
+          tracker_example: 'Príklad: Bug - úlohy sa budú zakladať s typom tiketu Bug'
+          unknown_user: Neznámy používateľ
+          unknown_user_example: accept - použije sa anonymný používateľ; create -
+            založí sa používateľa z emailu; existujúci login - tiket sa založí pod
+            týmto používateľom‌
+          use_custom_sender: Použiť iného odosielateľa
+          username: Používateľ‌
+          username_example: 'Napríklad: accessuser@domain.com'
+        pop3:
+          allow_override: Povoliť prepisovanie hodnôt
+          allow_override_example: 'Príklad: typ tiketu, priorita - tieto atribúty
+            môžu byť prepísané podľa emailu‌'
+          apop: APOP
+          apop_example: Použite overenie APOP
+          application_section_label: Ostatné nastavenia‌
+          category_example: 'Príklad: Kategória - tikety sa budú zakladať s kategóriou
+            Kategória‌'
+          delete_unprocessed: Odstrániť nespracované‌
+          delete_unprocessed_example: Odstrániť emaily, ktoré nemôžu byť spracované‌
+          email_section_label: Nastavenie schránky
+          host: Host
+          host_example: 'Napríklad: mail.company.com'
+          label: POP3
+          no_permission_check: Nekontrolovať používateľské práva‌
+          password: Heslo
+          password_example: 'Napríklad: secretpassword'
+          port: Port
+          port_example: 'Napríklad: 110'
+          priority_example: 'Príklad: Vysoká - tikety sa budú zakladať s prioritou
+            Vysoká‌'
+          project_example: 'Príklad: 205 - tikety sa budú zakladať do projektu s ID
+            205'
+          sender_mail: Odosielateľ
+          sender_mail_example: support@company.com
+          status_example: 'Príklad: Nová - tikety sa budú zakladať so stavom Nová‌'
+          tracker_example: 'Príklad: Bug - úlohy sa budú zakladať s typom tiketu Bug'
+          unknown_user: Neznámy používateľ
+          unknown_user_example: accept - použije sa anonymný používateľ; create -
+            založí používateľa z mailu; existujúci login - tiket sa založí pod týmto
+            používateľom‌
+          use_custom_sender: Použiť iného odosielateľa
+          username: Používateľ
+          username_example: 'Príklad: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: polia „Hodiny na reakciu“ a
+    „Hodiny na vyriešenie“ nemôžu byť prázdne. Vyplňte aspoň jedno z nich.
+  error_easy_sla_hours_mode_greater_than: "%{title} %{to} musí byť väčšie ako %{from}"
+  error_update_easy_setting_helpdesk: Nastavenie nie je možné uložiť
+  field_aggregated_hours: Agregované hodiny v helpdesku
+  field_aggregated_hours_period: Agregované obdobie
+  field_aggregated_hours_remaining: Zvyšné hodiny v helpdesku
+  field_aggregated_hours_start_date: Začiatok doby agregácie
+  field_automatically_issue_closer_enable: Povoliť automatickú aktualizáciu tiketov?
+  field_date_to_response: SLA (dátum reakcie)
+  field_date_to_solve: SLA (dátum vyriešenia)
+  field_default_for_mailbox: Predvolený pre schránku‌
+  field_easy_helpdesk_has_sla: Má SLA
+  field_easy_helpdesk_hours_to_response_before_expired: Hodín do reakcie
+  field_easy_helpdesk_hours_to_solve_before_expired: Hodín do vyriešenia
+  field_easy_helpdesk_ignorate_suspend_statuses: Vytvárať SLA udalosti zo všetkých
+    stavov
+  field_easy_helpdesk_mail_template: 'Poslať zákazníkovi rýchly e-mail zo šablóny:'
+  field_easy_helpdesk_need_reaction: Reagovať?
+  field_easy_helpdesk_project_keyword: Kľúčové slovo pre projekt
+  field_easy_helpdesk_project_matching:
+    domain_name: Email alebo doména‌
+    email_field_from: sa berie z poľa OD
+    email_field_to: sa berie z poľa KOMU
+  field_easy_helpdesk_project_monthly_hours: Predplatené hodiny podpory za mesiac
+  field_easy_helpdesk_project_sla:
+    blank_keyword: SLA bez názvu
+    hours_to_response: Hodiny na reakciu
+    hours_to_solve: Hodiny na vyriešenie
+    keyword: Kľúčové slovo pre SLA
+    title: Názov SLA
+  field_easy_helpdesk_project_spent_time_current_month: Vykazaný hodín na helpdesku
+    (tento mesiac)
+  field_easy_helpdesk_project_spent_time_last_month: Vykázaných hodín na helpdesku
+    (posledný mesiac)
+  field_easy_helpdesk_project_spent_time_total: Celkový vykázaný čas na helpdesku
+  field_easy_helpdesk_ticket_owner: Vlastník helpdesk tiketu
+  field_easy_reopen_at: Znovu otvorené
+  field_easy_response_date_time: SLA (reakcia)
+  field_easy_time_to_solve_paused_at: SLA pozastavené‌
+  field_email_footer: Pätička emailu‌
+  field_email_header: Hlavička emailu
+  field_first_response: Prvá reakcia
+  field_has_easy_sla_event: Má SLA udalosti
+  field_hide_sla_data: Skryť SLA údaje
+  field_hours_mode_from: Pracovné hodiny SLA
+  field_hours_to_response: SLA (reakcia)
+  field_hours_to_solve: SLA (vyriešenie)
+  field_is_under_helpdesk: Patrí pod Helpdesk
+  field_issue_closer_done_issue_status: Zmeniť stav na
+  field_issue_closer_done_issue_user: a priradiť
+  field_issue_closer_inactive_interval: ", neboli aktualizované viac ako"
+  field_issue_closer_observe_issue_status_id: sú v stave
+  field_monitor_due_date: Kontroluje dátum a čas dokončenia tiketov‌
+  field_monitor_spent_time: Kontroluje čerpanie predplatených hodín na helpdesku
+  field_monthly_hours: Predplatené hodiny na mesiac‌
+  field_occurence_time: Čas výskytu‌
+  field_sla_resolve: SLA k vyriešeniu
+  field_sla_resolve_fulfilment: SLA k vyriešeniu - splnenie
+  field_sla_response: SLA k reakcii
+  field_sla_response_fulfilment: SLA k reakcii - splnenie‌
+  field_use_working_time: Počítať SLA podľa pracovného času‌
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: Upraviť šablóny e-mailu‌
+  heading_easy_helpdesk_mail_templates_index: Šablóny e-mailu‌
+  heading_easy_helpdesk_mail_templates_new: Nová emailová šablóna
+  heading_easy_helpdesk_mail_templates_show: Detail emailovej šablóny‌
+  heading_easy_helpdesk_mailboxes_edit: Upraviť schránku
+  heading_easy_helpdesk_mailboxes_index: Schránky helpdesku
+  heading_easy_helpdesk_mailboxes_new: Nová schránka‌
+  heading_easy_helpdesk_projects_edit: Upraviť projekt
+  heading_easy_helpdesk_projects_index: Projekty helpdesku
+  heading_easy_helpdesk_projects_new: Nový Helpdesk projekt
+  heading_easy_helpdesk_projects_show: Detail projektu
+  heading_easy_helpdesk_reports_index: Helpdesk - reporty
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Mesačný súhrn predplatených
+    hodín
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Ročný súhrn predplatených hodín
+  heading_easy_helpdesk_settings: Nastavenia
+  issue_closer_inactive_interval_units:
+    days: dní
+    hours: hodín‌
+  label_automatically_issue_closer: Automaticky aktualizovať tikety, ktoré‌
+  label_copy_settings_sla_from_project: Kopírovať nastavenie SLA z projektu
+  label_easy_hekodesk_additional_task_info_received_emails: Spracované emaily‌
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: Zostávajúce hodiny pre tento mesiac
+  label_easy_helpdesk_actual_budget_to_spend: Zostávajúce hodiny
+  label_easy_helpdesk_aggregated_from_last_period: Prenesené z predošlého obdobia
+  label_easy_helpdesk_alerts: Nastavenia upozornení
+  label_easy_helpdesk_allow_custom_sender: Povoliť svojho iného odosielateľa (nastavenie
+    na projekte)
+  label_easy_helpdesk_allow_override: Povoliť prepísanie hodnôt na tiketoch‌
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: Zmena polí na tikete‌
+    notify: Poslať email zo šablóny‌
+  label_easy_helpdesk_client_response_status: Zmeniť stav po reakcii klienta na
+  label_easy_helpdesk_domain_name: Doména emailu‌
+  label_easy_helpdesk_emails: Nastavenie emailov - hlavička a pätička‌
+  label_easy_helpdesk_enable_email_footer: Zmenit pätičku pre tento projekt?
+  label_easy_helpdesk_enable_email_header: Zmeniť hlavičku pre tento projekt?
+  label_easy_helpdesk_hours_comulated: Nazbierané hodiny‌
+  label_easy_helpdesk_hours_comulated_range: od %{from} do %{to}
+  label_easy_helpdesk_hours_per_month: Vykázané hodiny tento mesiac‌
+  label_easy_helpdesk_ignore_cc: Ignorovať emaily ak je schránka helpdesku v CC
+  label_easy_helpdesk_mail_signature: Helpdesk - podpis‌
+  label_easy_helpdesk_matching: Emaily, domény a kľúčové slová pre tento projekt
+  label_easy_helpdesk_message_above_variables: Komentár k tiketu je nad šablónou emailu‌
+  label_easy_helpdesk_need_reaction: Reagovať!
+  label_easy_helpdesk_project_helpdesk_tab: Help desk
+  label_easy_helpdesk_project_managed_by_helpdesk: Nastavenia helpdesku
+  label_easy_helpdesk_project_plural: Projekty helpdesku
+  label_easy_helpdesk_projects_sla_working_time_calendar: Pracovné dni pre SLA
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: Obnoviť dobu SLA od znovuotvorenia
+    tiketu‌
+  label_easy_helpdesk_sender: Odosielateľ
+  label_easy_helpdesk_sender_current_user: Aktuálne prihlásený používateľ‌
+  label_easy_helpdesk_sender_is_user: Odosielateľom je prihlásený používateľ‌
+  label_easy_helpdesk_sender_mailbox_address: Adresa emailovej schránky‌
+  label_easy_helpdesk_sender_redmine_default: Predvolené z nastavení emailových notifikácií
+  label_easy_helpdesk_signature: Podpis
+  label_easy_helpdesk_signature_name: Názov podpisu‌
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Prijímať automaticky generované
+    emaily‌
+  label_easy_helpdesk_sla: Nastavenie SLA - priority a čas do vyriešenia tiketu‌
+  label_easy_helpdesk_sla_start_states: Počítať SLA tiketu pre stavy‌
+  label_easy_helpdesk_sla_stop_states: Pozastaviť počítanie SLA tiketu pre stavy‌
+  label_easy_sla_event: SLA udalosť
+  label_easy_sla_events: SLA udalosti
+  label_easy_sla_events_reports: SLA reporty
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - projekt
+  label_filter_group_easy_helpdesk_report_monthly_query: Helpdesk - report
+  label_filter_group_easy_helpdesk_report_query: Helpdesk - report
+  label_filter_group_easy_helpdesk_report_yearly_query: Helpdesk - report
+  label_filter_group_easy_sla_event_query: SLA udalosť
+  label_filter_show_spent_time_current_month_equal_to_zero: Vykázaných hodín na helpdesku
+    (tento mesiac) je 0
+  label_filter_show_spent_time_last_month_equal_to_zero: Vykázaných hodín na helpdesku
+    (minulý mesiac) je 0
+  label_issue_bottom_from_easy_helpdesk: Tiket bol vytvorený z Helpdesku (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Predplatené hodiny za mesiac
+  label_sla_calendar_settings: Nastavenia kalendára‌
+  label_tab_sla_events: SLA udalosti
+  permission_manage_easy_helpdesk: Spravovať Helpdesk
+  permission_manage_easy_helpdesk_project: Spravovať Helpdesk projekty
+  permission_manage_easy_sla_events: Spravovať SLA udalosti‌
+  permission_view_easy_helpdesk_sla: Zobraziť SLA na tiketoch
+  permission_view_easy_sla_events: Zobraziť SLA udalosti
+  project_module_easy_helpdesk: Help desk
+  setting_easy_helpdesk_custom_sender: Odosielateľ help desk správ‌
+  text_easy_helpdesk_change_default_sender: Toto nastavenie nezmení pole 'Odpoveď
+    komu'
+  text_easy_helpdesk_custom_sender: Prepísať predvoleného odosielateľa helpdesku.
+    Pre deaktiváciu tejto funkcie ponechajte prázdne.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: aktuálny riešiteľ
+    author: aktuálny autor
+    date: aktuálny dátum‌
+    mail_to: email komu
+    spent_time: vykázaný čas na tikete‌
+    task_closed_on: čas uzavretia tiketu‌
+    task_description: popis tiketu
+    task_done_ratio: "% hotovo tiketu"
+    task_due_date: dátum dokončenia tiketu‌
+    task_estimated_hours: odhadovaný čas tiketu‌
+    task_history: história všetkých komentárov tiketu‌
+    task_id: ID tiketu‌
+    task_id_without_hash: príslušné ID tiketu bez mriežky‌
+    task_last_journal: posledný verejný komentár tiketu‌
+    task_note: posledný komentár k tiketu
+    task_priority: priorita tiketu
+    task_project: názov projektu
+    task_public_url: verejná URL tiketu‌
+    task_start_date: dátum začiatku tiketu
+    task_status: stav tiketu
+    task_subject: predmet tiketu
+    task_tracker: typ tiketu
+    user_first_name: meno aktuálneho používateľa
+    user_last_name: priezvisko aktuálneho používateľa
+    user_name: celé meno aktuálneho používateľa‌
+    user_signature: podpis aktuálneho používateľa‌
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Predmet a telo e-mailu môžu obsahovať dynamický text:'
+  - "%task_id% (ID úlohy)"
+  - "%task_subject% (predmet úlohy)"
+  - "%task_note% (posledný/aktuálny komentár na úlohe)"
+  - "%task_history% (všetky komentáre na úlohe, ktoré nie sú súkromné)"
+  - "%time_spent% (vykázaný čas na úlohe)"
+  - "%assignee% (aktuálne priradený používateľ na úlohe)"
+  - "%user_signature% (podpis používateľa, nastaviteľný na jeho profile)"
+  - "%date% (aktuálny dátum)"
+  - "%task_tracker% (typ úlohy)"
+  - "%task_project% (názov projektu, kde sa nachádza úloha)"
+  - "%task_description% (popis úlohy)"
+  - "%task_status% (stav úlohy)"
+  - "%task_priority% (priorita úlohy)"
+  - "%task_estimated_hours% (odhadovaný čas úlohy)"
+  - "%task_done_ratio% (% hotovo úlohy)"
+  - "%task_public_url% (URL úlohy)"
+  - "%task_closed_on% (dátum posledného uzavretia úlohy)"
+  - "%task_due_date% (dátum dokončenia úlohy)"
+  - "%task_start_date% (dátum začiatku úlohy)"
+  - "%user_name% (celé meno aktuálneho používateľa)"
+  - "%user_first_name% (krstné meno aktuálneho používateľa)"
+  - "%user_last_name% (priezvisko aktuálneho používateľa)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Predmet a správa môžu obsahovať
+    dynamický text:'
+  text_easy_helpdesk_mail_template_issue_status_id: Umožňuje prepojiť šablónu s konkrétnym
+    stavom tiketu. Výberom predvoleného stavu v ktorom sa tikety vytvárajú, bude šablóna
+    použitá ako automatická odpoveď po vytvorení tiketu z e-mailu.
+  text_easy_helpdesk_mail_template_replacement_for: nahradí sa za
+  text_easy_helpdesk_mail_template_reply_to: "(Pán Mrkvička) - e-mail tu nie je povolený"
+  text_easy_helpdesk_mail_template_reply_to2: Polia "Odosielateľ" a "Odpoveď komu"
+    sú prevzaté z vybranej šablóny aby sa komunikácia držala v jednom tikete‌
+  text_easy_helpdesk_mailbox_too_long_to_process: Táto schránka sa spracováva príliš
+    dlho bez akejkoľvek odozvy zo servera. Je to pravdepodobne spôsobené množstvom
+    správ v schránke. Odstráňte prosím staré správy zo zložiek, ktoré sú napojené
+    na Help desk. Zároveň skontrolujte bezpečnostné pravidlá pre opakovaný prístup
+    externých aplikácií do vášho mail servera.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Priraďte tieto schránky
+    do jednotlivých projektov. Ak tak neurobíte, tak neznáme prichádzajúce emaily
+    nebudú spracované!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Tieto schránky nemajú nastavený
+    predvolený projekt:'
+  text_easy_helpdesk_projects_alerts_list: 'Zoznam nakonfigurovaných upozornení:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Zoznam upozornení, ktoré potrebujú
+    nastaviť notifikačný email:'
+  text_easy_helpdesk_projects_is_default: Ak príde email od neznámeho odosielateľa,
+    tiket sa založí do tohto projektu.
+  text_easy_helpdesk_projects_keyword_description: Ak predmet emailu obsahuje definované
+    kľúčové slovo, bude tiket priradený tomuto projektu. Kľúčové slovo je case-sensitive.
+  text_easy_helpdesk_projects_keywords: Ak predmet emailu obsahuje definované slovo,
+    nastaví sa daná priorita a SLA. * znamená akýkoľvek predmet. Nechajte prázdne
+    pre tikety vytvárané ručne.
+  text_easy_helpdesk_projects_monitor_due_date: Toto prednastavené upozornenie odošle
+    email, ak tiket nie je vyriešený v rámci intervalu SLA.
+  text_easy_helpdesk_projects_monitor_spent_time: Toto prednastavené upozornenie odošle
+    email ak na projekte sú prekročené mesačné predplatené hodiny
+  text_easy_helpdesk_projects_new_priority: Ak nie sú uvedené kľúčové slová, SLA sa
+    nastaví podľa zvolenej priority (a typu tiketu)
+  text_easy_helpdesk_projects_priority: SLA sa nastaví podľa zvolenej priority
+  text_easy_helpdesk_projects_sla_hours_to_response: Maximálny potrebný čas od prijatia
+    tiketu k začiatku realizácie.
+  text_easy_helpdesk_projects_sla_hours_to_solve: Maximálny potrebný čas na vyriešenie
+    tiketu (uzavretý stav).
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Niektoré tikety (%{count} / %{total})
+    neboli uložené:'
+  text_easy_rake_task_helpdesk_issue_closer_updated: '%{updated_count} <small class="help">aktualizované</small>
+    / %{notified_count} <small class="help">poslaný email zákazníkovi</small>'
+  text_isseu_closer_close_notice: Tento tiket bol automaticky aktualizovaný helpdeskom
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: reakcia
+    mala byť do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: reakcia
+    musí byť do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: vyriešené
+    malo byť do %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: vyriešené
+    musí byť do %{time}'
+  text_mailbox_delete_confirmation: 'Chystáte sa zmazať e-mailovú schránku. Zmazanie
+    schránky môže spôsobiť nasledujúce problémy: Na tiketoch vytvorených z tejto schránky
+    už nebude možné použiť šablóny e-mailov. Skutočne si želáte pokračovať?'
+  title_easy_helpdesk_add_project_from_sidebar: Kliknutím pridáte projekt do helpdesku
+  title_easy_helpdesk_allow_custom_sender: Umožniť nastavenie vlastného odosielateľa
+    podľa projektu
+  title_easy_helpdesk_allow_override: Povoliť úpravy hodnôt polí tiketov e-mailom
+  title_easy_helpdesk_client_response_status: Vyberte na ktorý stav sa tiket zmení
+    ak je aktualizovaný e-mailom.
+  title_easy_helpdesk_ignore_cc: Po prijatí emailu sa všetky adresy v CC automaticky
+    pridajú ako spolupracovníci a prijímajú správy z tiketu. Toto nastavenie ruší
+    popísané správanie.
+  title_easy_helpdesk_message_above_variables: Preddefinovaná správa bude nad preddefinovanými
+    premennými‌
+  title_easy_helpdesk_sender: 'Kto bude v poli "odosielateľ":'
+  title_easy_helpdesk_sender_current_user: Práve prihlásený používateľ‌
+  title_easy_helpdesk_sender_is_user: V poli 'od' bude prihlásený používateľ
+  title_easy_helpdesk_sender_mailbox_address: Emailová adresa zo schránky
+  title_easy_helpdesk_sender_redmine_default: Predvolená odosielacia e-mailová adresa
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'VAROVANIE: Helpdesk bude
+    prijímať e-maily z iných systémov, čo môže viesť k nekonečnej výmene emailov!'
+  title_easy_helpdesk_sla_start_states: Vyberte stavy ktoré sa použijú po obnovení
+    merania SLA po tom, čo bolo prerušené nastavením vyššie.
+  title_easy_helpdesk_sla_stop_states: Vyberte stavy kým sa nemeria SLA. Napríklad
+    stavy, keď sa čaká na odpoveď klienta.
+  title_sla_waiting_for_client: Čaká sa na klienta (SLA sa nepočíta)
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Vypnuté - po uzavretí tiketu je SLA zastavené. Keď sa tiket znovu otvorí,
+      SLA sa bude počítať od okamihu, kedy bol pôvodne vytvorený‌
+    enabled: Povolené - potom, čo tiket je uzavretý, SLA sa zastaví. Ak sa tiket opäť
+      otvorí, SLA sa bude počítať od okamihu, kedy bol znovu otvorený‌

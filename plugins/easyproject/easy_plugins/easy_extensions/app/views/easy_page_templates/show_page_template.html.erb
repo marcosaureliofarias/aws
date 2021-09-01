@@ -1,0 +1,28 @@
+<%
+  breadcrumb_items = []
+  breadcrumb_items << link_to(l('breadcrumb.label.easy_pages_administration'), easy_pages_path,
+                              title: l('breadcrumb.title.easy_pages_administration'))
+
+  if @page.built_in?
+    breadcrumb_items << link_to(l('easy_pages.label_built_in'), easy_pages_built_in_path,
+                                title: l('breadcrumb.title.easy_page_templates', pagename: @page.translated_name))
+  end
+
+  breadcrumb_items << link_to(l('breadcrumb.label.easy_page_templates', pagename: @page.translated_name),
+                              easy_page_templates_path(page_id: @page.id),
+                              title: l('breadcrumb.title.easy_page_templates', pagename: @page.translated_name))
+
+  breadcrumb_items << l('breadcrumb.label.easy_page_template_user_modules')
+%>
+
+<%=
+  if User.current.allowed_to_globally?(:manage_my_page)
+    render_easy_page_bottom_buttons(easy_page_templates_edit_page_template_path(id: @page_template.id, t: params[:t]))
+  end
+%>
+
+<h2><%= l(:label_easy_page_template_user_modules, templatename: @page_template.template_name) %></h2>
+<%= breadcrumb breadcrumb_items %>
+
+<% html_title(l(:label_easy_page_template_show)) %>
+<%= context_menu issues_context_menu_path, 'table.issues' %>

@@ -1,0 +1,3 @@
+<% @test_case_issue_executions.each do |test_case| %>
+  document.getElementById("entity-<%= test_case.id %>").remove();
+<% end %>

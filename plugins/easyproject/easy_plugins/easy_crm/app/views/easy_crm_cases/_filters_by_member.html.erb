@@ -1,0 +1,17 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name -%>
+<div class="box filters">
+  <%= toggling_container(modul_uniq_id, User.current, {:heading => l(:heading_easy_crm_case_sidebar_filters_by_member)}) do %>
+    <ul class="link-list" >
+      <% project.members_list(system_users: false, limit: 100) do |member| %>
+        <li class="<%= "user-#{member.user_id}" -%> member easy-dropper-target easy-drop-user link-list-item" data-user-id="<%= member.user_id %>" data-drop-action="user">
+          <%= avatar(member.user, :style => :small) %>
+          <div class="link-list-item-content two-lines">
+            <div class="member-name"><%= link_to(member.user.name, project_easy_crm_cases_path(project, {:set_filter => 1, :assigned_to_id => member.user_id, :is_canceled => '0', :is_finished => '0', :group_by => 'easy_crm_case_status'}), :title => l(:label_show_assigned_crm_cases, :username => member.user.name)) %></div>
+            <div class="member-roles"><%= member.roles.uniq.sort_by(&:position).collect(&:name).join(', ') -%></div>
+          </div>
+          <div class="clear"></div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

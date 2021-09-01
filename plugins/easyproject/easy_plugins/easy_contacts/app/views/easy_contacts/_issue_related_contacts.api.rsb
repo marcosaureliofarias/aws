@@ -1,0 +1,5 @@
+local_assigns[:api].array :related_contacts do
+  local_assigns[:issue].easy_contacts.each do |easy_contact|
+    render(easy_contact, { api: local_assigns[:api] })
+  end
+end if include_in_api_response?('related_contacts') && User.current.allowed_to_globally?(:view_easy_contacts, {})

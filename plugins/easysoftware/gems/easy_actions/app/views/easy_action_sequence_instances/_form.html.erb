@@ -1,0 +1,8 @@
+<%= labelled_fields_for :easy_action_sequence_instance, entity do |f| %>
+  <p>
+    <%= f.text_field :entity_type, class: 'required' %>
+  </p>
+  <p>
+    <%= f.text_field :entity_id, class: 'required' %>
+  </p>
+<% end %>

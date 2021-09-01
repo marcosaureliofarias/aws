@@ -1,0 +1,5 @@
+<%= easy_theme_tag(theme_file: EasySetting.value('ui_theme').presence && 'easy_redmine/er18.css') %>
+<%= stylesheet_link_tag 'easy_extensions' %>
+<%= javascript_include_tag('easy_extensions_blocking') %>
+<%= javascript_include_tag('easy_extensions', defer: true) %>
+<%= render 'application/favicon' %>

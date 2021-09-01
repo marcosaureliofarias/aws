@@ -1,0 +1,32 @@
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <span title="<%= j l(:field_assigned_to) %>"><%= issue.assigned_to %></span>
+    </p>
+    <p>
+      <span title="<%= j l(:field_priority) %>" class="priority-<%= issue.priority.position %> <%= issue.priority.easy_color_scheme %>"><%= issue.priority.name %></span>
+    </p>
+    <p>
+      <span title="<%= j l(:field_status) %>" class="status"><%= issue.status.name %></span>
+    </p>
+  </div>
+  <div class="splitcontentright">
+    <p>
+      <span title="<%= j l(:field_start_date) %>" class="start-date"><%= format_date_or_time(issue.start_date) %></span>
+    </p>
+    <p>
+      <span title="<%= j l(:field_due_date) %>" class="due-date <%= 'overdue' if issue.overdue? %>"> <%= format_date_or_time(issue.due_date) %></span>
+    </p>
+    <% if User.current.allowed_to?(:view_estimated_hours, options[:project] || issue.project) && User.current.allowed_to?(:view_time_entries, options[:project] || issue.project) %>
+      <p>
+        <span title="<%= j l(:label_spent_time) %>"><%= easy_format_hours(issue.total_spent_hours, :format => 'short') %></span> /
+        <span title="<%= j l(:field_estimated_hours) %>"><%= easy_format_hours(issue.estimated_hours, :format => 'short') %></span>
+      </p>
+    <% end %>
+  </div>
+</div>
+<% if issue.description.present? %>
+  <p>
+    <span title="<%= j l(:field_description) %>" class="description"><%= Sanitize.clean(issue.description, :output => :html).truncate(300).to_s.html_safe %></span>
+  </p>
+<% end %>

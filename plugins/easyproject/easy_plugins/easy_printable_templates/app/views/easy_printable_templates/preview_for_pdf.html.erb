@@ -1,0 +1,8 @@
+<% @easy_printable_template.easy_printable_template_pages.each_with_index do |page, idx| %>
+  <% if idx > 0 %>
+    <div class="easy-page-brake-before"></div>
+  <% end %>
+  <div class="easy-printable-template-page <%= pages_size %> <%= pages_orientation %>" id="page_content_<%= page.id %>">
+    <%= raw replace_easy_printable_template_page_text(page.page_text, @entity) %>
+  </div>
+<% end %>

@@ -1,0 +1,7 @@
+$("#author_note_container").html("<%= j(text_area_tag('easy_contact[author_note]', @easy_contact.author_note,
+        :cols => 60,
+        :rows => (@easy_contact.author_note.blank? ? 10 : [[10, @easy_contact.author_note.length / 50].max, 100].min),
+        :class => 'wiki-edit',
+        :no_label => true) + wikitoolbar_for('easy_contact_author_note').to_s ) %>");
+
+$("#description_toggler").remove();

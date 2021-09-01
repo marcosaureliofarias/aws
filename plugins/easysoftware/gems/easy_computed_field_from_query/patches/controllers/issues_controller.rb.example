@@ -1,0 +1,36 @@
+Rys::Patcher.add('IssuesController') do
+  # apply_if_plugins :easy_extensions
+
+  included do
+    before_action :easy_computed_field_from_query_add_flash_notice, only: [:show]
+  end
+
+  instance_methods do
+    def show
+      Rys::Feature.on('easy_computed_field_from_query.issue.show') do
+        @easy_computed_field_from_query_test_1 = 'Test 2'
+      end
+
+      super
+    end
+
+    private
+
+      def easy_computed_field_from_query_add_flash_notice
+        if Rys::Feature.active?('easy_computed_field_from_query.issue.show', 'easy_computed_field_from_query.project.show')
+          flash.now[:notice] = 'Features are activated'
+        end
+      end
+  end
+
+  instance_methods(feature: 'easy_computed_field_from_query.issue.show') do
+    def show
+      @easy_computed_field_from_query_test_2 = 'Test 2'
+
+      super
+    end
+  end
+
+  class_methods do
+  end
+end

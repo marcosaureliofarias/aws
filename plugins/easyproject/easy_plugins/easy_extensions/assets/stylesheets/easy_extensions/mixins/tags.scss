@@ -1,0 +1,86 @@
+@mixin tag-color($color){
+  background: $color;
+  border-color: darken($color,10%);
+  &:after{
+    border-color: darken($color,10%);
+    background-color: darken($color,10%);
+  }
+}
+%tag-palette{
+  $factor: 1;
+  @for $i from 1 through (length($palette) - 1) {
+    $curent-color: palete-color($palette,$i);
+    $curent-color: rgba($curent-color,$palette-lighten-factor);
+    &[class*=palette].palette-#{$i}{
+      @include tag-color($curent-color);
+    }
+  }
+}
+%tag{
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 0.5*$tag-size;
+  padding: 0.4em 0.6em 0.4em 0.8em;
+  margin: 2px 0;
+  @include small;
+  position: relative;
+  font-weight: bold;
+  background: mix(mix($color-background,$color-foreground),$color-foreground);
+  border: 1px solid $color-border;
+  @extend %border-radius;
+  color: $button-base-color;
+  overflow: hidden;
+  &:before{
+    margin-right: 0.5*$gap;
+    line-height: 1;
+  }
+  //&:hover{
+  //  $hover-color: $color-positive;
+  //  background: $hover-color;
+  //  border: 1px solid darken($hover-color, 10%);
+  //  color: $white;
+  //  &:after{
+  //    border-color: darken($hover-color, 10%);;
+  //  }
+  //}
+  &:after{
+    $width: 3px;
+    @extend %pseudo-block;
+    position: absolute;
+    width: $width;
+    //height: 2*$width;
+    top: 0;
+    bottom: 0;
+    //top: 50%;
+    //margin-top: -$width - 1;
+    background: $color-border-minor;
+    border: 1px solid $color-border;
+    border-left: none;
+    left: -2px;
+    z-index: 1;
+    //@extend %border-radius-circle-half-right;
+    @include border-radius( 0 2px 2px 0);
+  }
+  .icon{
+    //vertical-align: middle;
+  }
+  .icon-close{
+    cursor: pointer;
+  }
+  #sidebar &,#easy_grid_sidebar &,#sidebarClone &,#easy_grid_sidebarClone &{
+    font-size: 1em;
+  }
+  table.list &{
+    @include smaller;
+  }
+  @extend %tag-palette;
+  &.positive{
+    @include tag-color($color-positive);
+    color: $button-positive-color;
+  }
+  &.negative{
+    @include tag-color($color-negative);
+    color: $button-negative-color;
+  }
+}

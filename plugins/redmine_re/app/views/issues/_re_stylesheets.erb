@@ -1,0 +1,5 @@
+<% if @project && @project.module_enabled?(:requirements) %>
+  <% content_for :body_bottom do %>
+    <%= stylesheet_link_tag 'icons.css', :media => 'all' %>
+  <% end %>
+<% end %>

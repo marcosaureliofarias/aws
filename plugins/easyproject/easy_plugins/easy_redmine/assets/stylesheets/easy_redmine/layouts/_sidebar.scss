@@ -1,0 +1,19 @@
+#sidebar,#easy_grid_sidebar{
+  .sidebar-control{
+    &:before{
+      display: none;
+    }
+    &:after{
+      border-left-color: $color-foreground;
+    }
+  }
+  #easy_page_layout_service_box{
+    .button-positive:nth-child(n+2), li:nth-child(n+2)>.button-positive{
+      @extend %button-outlined;
+      background: $color-background !important;
+      &:hover {
+        background: $color-background !important;
+      }
+    }
+  }
+}

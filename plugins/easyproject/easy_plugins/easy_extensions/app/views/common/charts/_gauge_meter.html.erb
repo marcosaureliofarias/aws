@@ -1,0 +1,81 @@
+<%
+modul_uniq_id ||= ''
+value ||= 0
+value = value.to_f
+min_value ||= 0
+max_value ||= 0
+first_limit ||= (max_value * 0.5)
+second_limit ||= (max_value * 0.8)
+chart_label ||= ''
+chart_height ||= nil
+%>
+<% include_jqplot_scripts %>
+<div class="chart-wrapper">
+  <div id="<%= modul_uniq_id %>_chart" class="chart-gauge"></div>
+  <div style="margin-top: -8px;text-align:center"><%= chart_label %></div>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.require(function () {
+    // var chart = $('#<%= modul_uniq_id %>_chart');
+    // var parent = chart.parent();
+    // chart.width(parent.width()).height(parent.width()*0.7);
+    // var plot_<%= modul_uniq_id %>_chart;
+    var defaultColors = ['#FF0000', '#F97600', /*'#F6C600',*/ '#60B044'];
+
+    function gaugeColors() {
+      if (ERUI.sassData && ERUI.sassData['color-positive'] && ERUI.sassData['color-negative'] && ERUI.sassData['color-important']) {
+        return [ERUI.sassData['color-negative'], ERUI.sassData['color-important'], ERUI.sassData['color-positive']];
+      } else {
+        return defaultColors;
+      }
+
+    }
+
+    c3.generate({
+      bindto: '#<%= modul_uniq_id %>_chart',
+      data: {
+        columns: [
+          <% unless max_value.zero? %>
+          ['<%= chart_label %>', <%= value.round(2) %>]
+          <% end %>
+        ],
+        type: 'gauge'
+      },
+      <% if chart_height %>
+      size: {
+        height: <%= chart_height %>
+      },
+      <% end %>
+      gauge: {
+        min: <%= min_value.round(2) %>,
+        max: <%= max_value.round(2) %>
+      },
+      color: {
+        pattern: gaugeColors(),
+        threshold: {
+          //            unit: 'value', // percentage is default
+          //            max: 200, // 100 is default
+          unit: 'value',
+          max: <%= max_value %>,
+          values: [<%= first_limit %>, <%= second_limit %>, <%= max_value %>]
+        }
+      },
+      oninit: function () { //TODO: pridat defs pro gradient
+//        d3.select('defs')
+//          .append('pattern')
+//          .attr('id', 'diagonal-stripe-1')
+//          .attr('patternUnits', 'userSpaceOnUse')
+//          .attr('width', 10)
+//          .attr('height', 10)
+//          .append('image')
+//          .attr('xlink:href', 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScvPgogIDxwYXRoIGQ9J00tMSwxIGwyLC0yCiAgICAgICAgICAgTTAsMTAgbDEwLC0xMAogICAgICAgICAgIE05LDExIGwyLC0yJyBzdHJva2U9J2JsYWNrJyBzdHJva2Utd2lkdGg9JzEnLz4KPC9zdmc+Cg==')
+//          .attr('x', 0)
+//          .attr('y', 0)
+//          .attr('width', 10)
+//          .attr('height', 10);
+         EASY.utils.EasyChartsOnInit;
+      }
+    });
+  }, jQueryPluginGetter("easy_chart"));
+</script>

@@ -1,0 +1,32 @@
+<% if params[:format].nil? %>
+initEasyAutocomplete();
+$('#ajax-modal').html("<%= j(render_edit_view(@entity)) %>");
+$('#ajax-modal .form-actions').remove();
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+    buttons: [
+        {
+            text: '<%=j l(:button_close) %>',
+            click: function () {
+                $(this).dialog('close');
+            }, 'class': 'button'
+        },
+        {
+            text: '<%=j l(:button_update) %>',
+            click: function () {
+                EASY.utils.submitModalForm(this);
+            }, 'class': 'button-positive'
+        }
+    ]
+});
+<% else %>
+var cid = '#<%= params[:cid] || "content .easy-content-page" %>'
+var modal_visible = $('#ajax-modal').is(':visible');
+if (modal_visible) {
+    cid = '#ajax-modal';
+}
+$(cid).html("<%= j(render_edit_view(@entity)) %>");
+if (modal_visible) {
+    $('#ajax-modal .form-actions').remove();
+}
+<% end %>

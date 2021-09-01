@@ -1,0 +1,25 @@
+<%= labelled_fields_for :easy_action_state_action, entity do |f| %>
+  <p>
+    <%= f.text_field :name, class: 'required' %>
+  </p>
+  <p>
+    <%= f.auto_complete :easy_action_state_id, autocomplete_easy_action_sequence_template_easy_action_states_path(entity.easy_action_sequence_template),
+                        rootElement: 'entities',
+                        label:       EasyActionStateAction.human_attribute_name(:easy_action_state_id),
+                        preload:     false, required: true,
+                        selected:    [value: entity.easy_action_state&.name, id: entity.easy_action_state&.id] %>
+  </p>
+  <p>
+    <%= f.select :action_class,
+                 [['', '']] + EasyActions::Actions.registered.map { |klass| [klass, klass] },
+                 { class: 'required' },
+                 onchange: "javascript:$.ajax({url: '#{j entity.new_record? ? new_polymorphic_path(entity.to_route, format: :js) : edit_polymorphic_path(entity.to_route, format: :js) }', type: 'GET', data: $(this.form).serialize(), processData: false, contentType: false, dataType: 'script'})",
+                 disabled: entity.persisted? %>
+  </p>
+  <% if entity.action && entity.action.form_template_exists?(lookup_context) %>
+    <fieldset>
+      <legend><%= entity.action.model_name.human %></legend>
+      <%= render entity.action, entity: entity, form: f %>
+    </fieldset>
+  <% end %>
+<% end %>

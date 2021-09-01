@@ -1,0 +1,38 @@
+<%
+  modul_uniq_id ||= controller_name + '_' + action_name
+  modul_uniq_id = modul_uniq_id + '_watchers'
+  permission = ('add_' + watched.class.name.underscore + '_watchers').to_sym
+  watchers = watched.watchers.includes(:principal => :easy_avatar).order(["#{Principal.table_name}.type DESC"] + User.fields_for_order_statement)
+  remove_allowed = User.current.allowed_to?("delete_#{watched.class.name.underscore}_watchers".to_sym, watched.project)
+  add_allowed = User.current.allowed_to?(permission, watched.project)
+%>
+<%= render_module_easy_box(modul_uniq_id, l(:label_issue_watchers)) do |m| %>
+  <% m.heading_links do %>
+    <%= quick_watcher_link(watched, User.current) %>
+    <% if add_allowed %>
+      <%= link_to(content_tag(:span, l(:button_add), :class => 'tooltip'), new_watchers_path({:object_type => watched.class.name.underscore, :object_id => watched}), :remote => true, :class => 'icon icon-add', :id => 'watchers_button_add' ) %>
+    <% end %>
+  <% end %>
+  <div class="watchers-list">
+    <ul class="link-list">
+      <% sort_wrapped_principals(watchers, :include_group_members => false).each do |watcher| %>
+        <%= content_tag(:li, :class => "user-#{watcher.user_id} easy-dropper-target easy-drop-user link-list-item", :data => {:user_id => watcher.user_id, 'drop-action' => 'user'}) do %>
+          <%= avatar(watcher.principal, :style => :small) -%>
+          <div class="link-list-item-content">
+            <%= link_to_user(watcher.principal, :class => 'user') -%>
+            <span class="watchers-actions link-list-item-actions">
+              <%= link_to('', {
+                :controller => 'watchers',
+                :action => 'destroy',
+                :object_type => watched.class.to_s.underscore,
+                :object_id => watched.id,
+                :user_id => watcher.user_id
+              }, :remote => true, :method => 'delete', :title => l(:button_delete), :class => 'icon-del delete') if remove_allowed || (add_allowed && User.current.id == watcher.user_id) -%>
+            </span>
+          </div>
+          <div class="clear"></div>
+        <% end -%>
+      <% end -%>
+    </ul>
+  </div>
+<% end -%>

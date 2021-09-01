@@ -1,0 +1,82 @@
+.easy-gantt {
+  &__menu {
+    @extend %box-sizing-border-box !optional;
+    //@extend %material__elevation--inline !optional;
+    @extend %flex !optional;
+    @extend %flex-wrap-wrap !optional;
+    @extend %justify-content-space-between !optional;
+    @extend %align-items-center;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+    background-color: $gantt__background--menu;
+    padding: $gantt__box-padding;
+    margin: 0 (-$gantt__box-padding);
+    &:after {
+      display: none;
+    }
+    &-item {
+      display: inline-block;
+      text-align: left;
+    }
+    &-group {
+      display: inline-block;
+      ul {
+        margin: 0;
+      }
+      .easy &--tooltiped {
+        @extend %menu-tooltip !optional;
+        & > ul {
+          display: none;
+          right: 0;
+        }
+        &:hover {
+          & > ul {
+            display: block;
+          }
+        }
+      }
+    }
+    .problem-finder {
+      @include small;
+      color: $gantt__color--text;
+      &.active {
+        color: $gantt__color--negative;
+        background: none;
+        border: none;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .gantt-menu-problems-reason {
+      color: $gantt__color--negative !important;
+    }
+    .gantt-menu-problems-list {
+      @extend %material__elevation--depth_2 !optional;
+      border: 1px solid $gantt__color--border !important;
+      background: $gantt__color--foreground;
+      a, ol {
+        color: $gantt__color--text;
+      }
+      li {
+        border-bottom: 1px solid $gantt__color--border;
+      }
+    }
+    .gantt-menu-problems-count.gantt-with-problems {
+      @extend %border-radius-infinite !optional;
+      font-weight: bold;
+      background: $gantt__color--negative;
+      border: 1px solid darken($gantt__color--negative, 5%);
+      text-align: center;
+      width: auto;
+      min-width: 3*$gantt__gap;
+      line-height: 3*$gantt__gap;
+      display: inline-block;
+      color: white;
+      padding: .25*$gantt__gap;
+      margin-right: $gantt__gap;
+
+    }
+  }
+}

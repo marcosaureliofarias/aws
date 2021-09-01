@@ -1,0 +1,43 @@
+<div class="easy-money-other-revenue-container">
+  <h2 class="easy_money_form_title"><%= l(:label_easy_money_other_revenue_new) %></h2>
+  <%= form_for(@easy_money_object, :as => :easy_money, :html => { :multipart => true, :id => 'easy-money-other-revenue-form', :class => 'easy-money-form form-box' }) do |f| -%>
+    <%= error_messages_for @easy_money_object %>
+    <%= hidden_field_tag('back_url', params[:back_url], :id => nil) unless params[:back_url].blank? %>
+    <% if User.current.allowed_to?(:easy_money_manage_expected_revenue, @project) && User.current.allowed_to?(:easy_money_manage_other_revenue, @project) -%>
+      <% if @project.easy_money_settings.show_expected? && ((@project.easy_money_settings.revenues_type == 'sum' && @project.expected_revenues.size == 0) || @project.easy_money_settings.revenues_type == 'list') -%>
+        <%= render :partial => 'easy_money/tabs_revenues', :locals => {:selected_entity_type => 'other_revenue'} %>
+      <% end -%>
+    <% end -%>
+    <br/>
+    <div class="box">
+      <%= render :partial => 'easy_money_other_revenues/form', :locals => { :f => f, :project => @project, :other_revenue => @easy_money_object } -%>
+    </div>
+    <div class="form-actions">
+      <%= f.submit l(:button_save), :class => 'button-positive' -%>
+      <%= f.submit l(:button_issue_create_and_continue), :name => 'continue', :class => 'link_new icon-save-issue button' -%>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% content_for :header_tags do -%>
+  <%= stylesheet_link_tag 'easy_money' -%>
+  <%= javascript_include_tag 'easy_money', defer: true -%>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'easy_money/index_sidebar' -%>
+<% end -%>
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    $("#revenue_type_expected_revenue").change(function() {
+      var url = '<%= url_for(:controller => 'easy_money_expected_revenues', :action => 'new', :only_path => false) -%>';
+      url += (url.indexOf('?') >= 0) ? '&' : '?';
+      url += $('#easy-money-other-revenue-form').serialize();
+      window.location = url;
+    });
+    easyMoneyOnFormSubmit('easy-money-other-revenue-form');
+  });
+</script>

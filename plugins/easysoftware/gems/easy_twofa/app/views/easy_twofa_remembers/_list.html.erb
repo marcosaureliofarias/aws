@@ -1,0 +1,26 @@
+<div class="autoscroll">
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l('easy_twofa.user_agent') %></th>
+        <th><%= l('field_remote_ip') %></th>
+        <th><%= l('easy_twofa.address') %></th>
+        <th><%= l('easy_twofa.expired_at') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @remembers.each do |remember| %>
+        <tr>
+          <td><%= remember.user_agent %></td>
+          <td><%= remember.ip %></td>
+          <td><%= remember.address %></td>
+          <td><%= format_date remember.expired_at %></td>
+          <td>
+            <%= link_to l('button_delete'), destroy_remembered_easy_twofa_path(remember), class: 'icon icon-del', method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

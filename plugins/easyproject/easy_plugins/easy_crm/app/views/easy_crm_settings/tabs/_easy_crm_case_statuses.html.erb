@@ -1,0 +1,8 @@
+<% back_url = url_for(easy_crm_settings_global_path(tab: 'easy_crm_case_statuses')) %>
+
+<%= render partial: 'easy_crm_case_statuses/index', locals: { easy_crm_case_statuses: @easy_crm_case_statuses, back_url: back_url } %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_easy_crm_add_status), new_easy_crm_case_status_path(:project_id => @project, back_url: back_url), :class => 'button-positive icon icon-add', :title => l(:button_easy_crm_add_status) %>
+  <%= link_to l(:label_set_crm_fields_permissions), workflows_crm_permissions_path, class: 'crm-permissions button-positive' %>
+<% end %>

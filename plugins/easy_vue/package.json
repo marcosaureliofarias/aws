@@ -1,0 +1,127 @@
+{
+  "name": "webpack-4-quickstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development --watch",
+    "start": "webpack-dev-server --hot --mode development",
+    "build": "webpack --mode production",
+    "pretest": "eslint --debug --max-warnings 0 --ext .vue .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --forceExit --coverage --colors --no-cache",
+    "test:coverage-report": "jest --forceExit --coverage --colors --no-cache --coverageReporters='text-summary'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.0",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.12.0",
+    "@vue/test-utils": "^1.0.0-beta.32",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-es2015": "^6.0.15",
+    "babel-preset-stage-0": "^6.0.15",
+    "babel7-jest": "^1.0.1",
+    "css-loader": "^2.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^5.2.3",
+    "jest": "^24.9.0",
+    "jest-fetch-mock": "^2.1.2",
+    "jest-serializer-vue": "^2.0.2",
+    "node-sass": "^4.13.1",
+    "prettier": "^1.18.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.13.2",
+    "vue-jest": "^3.0.5",
+    "vue-loader": "^15.9.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuedraggable": "^2.23.1",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.8.7",
+    "@ckeditor/ckeditor5-build-classic": "^12.3.1",
+    "@ckeditor/ckeditor5-vue": "^1.0.1",
+    "@easy/vue-select": "^1.0.9",
+    "@rails/webpacker": "^4.2.2",
+    "@vue/babel-preset-app": "^4.2.3",
+    "ant-design-vue": "^1.6.4",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link": "^1.2.13",
+    "apollo-link-error": "^1.1.12",
+    "apollo-link-http": "^1.5.16",
+    "axios": "^0.18.1",
+    "babel-polyfill": "^6.22.0",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.3",
+    "idempotent-babel-polyfill": "^7.0.0",
+    "less-loader": "^6.2.0",
+    "lodash": "^4.17.20",
+    "unfetch": "^4.1.0",
+    "url-loader": "^1.1.2",
+    "vue": "^2.6.11",
+    "vue-gallery": "^2.0.0",
+    "vue2-datepicker": "^3.4.1",
+    "vuex": "^3.1.3",
+    "weekstart": "^1.0.0",
+    "xml-loader": "^1.2.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      "^.+\\.(js|jsx)?$": "<rootDir>/node_modules/babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!@easy)"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/javascript/src/$1"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "testMatch": [
+      "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/*.config.{js,jsx}",
+      "!**/graphql/**",
+      "!assets/**",
+      "!coverage/**",
+      "!**/tests/mocks/**"
+    ],
+    "testURL": "http://localhost/"
+  }
+}

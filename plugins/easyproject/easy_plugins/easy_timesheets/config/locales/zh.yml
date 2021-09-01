@@ -1,0 +1,71 @@
+---
+zh:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: 在此期间还有一张工作时间记录单
+  button_copy_easy_time_sheet: 将若干行复制到新的时间表
+  button_easy_timesheet_by_easy_query: 按筛选条件分的时间表
+  button_easy_timesheet_delete_with_time_entries: 移除行和花费的工时
+  button_easy_timesheet_delete_without_time_entries: 仅移除行
+  button_easy_timesheets_approve: 审核
+  button_easy_timesheets_lock: 锁定
+  button_easy_timesheets_new_row: 新的一行
+  button_easy_timesheets_reject: 驳回
+  button_easy_timesheets_unlock: 解锁
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: 个人陈述  -- 时间表
+        description: 查看时间表
+  easy_query:
+    name:
+      easy_timesheet_query: 工时时间表
+  easy_timesheets_date_must_be_first_day_of_week: 必须是一周的第一天. (%{day})
+  easy_timesheets_periods:
+    day: 每周
+    month: 每月
+    week: 每月
+  easy_timesheets_plugin_author: Easy Software
+  easy_timesheets_plugin_author_url: http://www.easyproject.cz/en
+  easy_timesheets_plugin_name: 工时时间表_Timesheets
+  error_timesheet_invalid_time_entries: '由于有无效的工时录入, 无法创建时间表: %{errors}'
+  field_easy_timesheet_period: 时间区间
+  heading_easy_timesheets_edit: 编辑时间表
+  heading_easy_timesheets_new: 新时间表
+  heading_easy_timesheets_show: 时间表 %{start_date} - %{end_date}
+  label_easy_timesheet: 时间表
+  label_easy_timesheet_approved: 同意?
+  label_easy_timesheet_approved_by: 批准者
+  label_easy_timesheet_end_date: 结束日期
+  label_easy_timesheet_lock_description: 同意/驳回的原由
+  label_easy_timesheet_lock_prompt: 同意的原因
+  label_easy_timesheet_locked_at: 已批准/已驳回
+  label_easy_timesheet_rejected_by: 驳回.
+  label_easy_timesheet_unlock_prompt: 驳回的原由
+  label_easy_timesheets: 时间表
+  label_filter_group_easy_timesheet_query: 时间表
+  permission_create_easy_timesheets_for_other_user: 为其它用户创建时间表
+  permission_edit_easy_timesheets: 编辑时间表
+  permission_edit_own_easy_timesheets: 编辑我的时间表
+  permission_view_easy_timesheets: 查看时间表
+  project_module_easy_timesheets: 时间表
+  text_easy_timesheet_destroy_cell_are_you_sure: 确定要移除花费的时间么?
+  text_easy_timesheet_destroy_row_are_you_sure: 你将移除时间表内的一行. 你不能删除在这一行内的工时, 想要继续么?
+  text_easy_timesheet_prompt_text: 增加工时
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: 开始的日期将自动变为指定的一周的开始日期
+  text_time_sheet_copy_from: 将按时间表%{entity}预先填好各行
+  text_warning_after_time_sheet_copied: 如有一个单元格没保存, 则该单元格所在行将丢失.
+  title_easy_timesheet_destroy: 移除时间表
+  title_easy_timesheet_edit_with_period: 编辑 %{period} 时间表
+  title_easy_timesheet_new_with_period: 新建%{period}的时间表
+  title_easy_timesheet_show: 显示时间表
+  title_next_time_sheet: 显示用户 %{user}的下一个时间表
+  title_previous_time_sheet: 显示用户%{user}的上一个时间表
+  validation_entry_already_exists: 在日期 (%{start_date}) 和日期 (%{end_date}) 间已存在了一个时间表
+  validation_greater_than_start_date: 日期(%{end_date})必须晚于起始日期 (%{start_date})
+  validation_timesheet_cant_destroy_time_entries: 无法销毁某些已录入的工时
+  validation_week_period: 从日期 (%{start_date}) 到(%{end_date}) 之间必须是一周

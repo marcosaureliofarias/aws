@@ -1,0 +1,98 @@
+<%= error_messages_for 'easy_user_type' %>
+<div class="tabular">
+  <%= f.hidden_field :is_copy %>
+  <p>
+    <% if f.object.is_copy %>
+      <%= label_tag "#{f.object_name}_name", l(:field_name) %>
+      <%= text_field_tag "#{f.object_name}[name]", f.object.name, required: true %>
+    <% else %>
+      <%= f.text_field :name, required: true %>
+    <% end %>
+  </p>
+  <p>
+    <% if f.object.is_copy %>
+      <%= label_tag "#{f.object_name}_description", l(:field_description) %>
+      <%= text_field_tag "#{f.object_name}[description]", f.object.description %>
+    <% else %>
+      <%= f.text_field :description %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.check_box :is_default, :label => :label_default %>
+    <%= f.check_box :internal, :label => :label_internal %>
+    <%= f.check_box :show_in_meeting_calendar, :label => :label_show_in_meeting_calendar %>
+    <% if Redmine::Plugin.installed?(:easy_crm) || Redmine::Plugin.installed?(:easy_contacts) %>
+      <%= f.check_box :partner, :label => :label_easy_partner %>
+    <% end %>
+  </p>
+  <%= call_hook(:easy_user_type_options_top, f: f) %>
+  <% if (templates = EasyPageTemplate.joins(:page_definition).where(easy_pages: {page_name: 'my-page'}).pluck(:template_name, :id)).any? %>
+    <p>
+      <%= f.select :easy_page_template_id, templates, prompt: l(:label_select_page_template), label: l(:field_easy_user_type_default_page_template) -%>
+    </p>
+  <% end %>
+
+  <% roles = Role.givable.sorted.map { |role| [role.name, role.id] } %>
+  <p>
+    <%= f.select :role_id, roles, include_blank: true, label: l(:label_default_role) %>
+  </p>
+
+  <% EasyUserType.available_settings.each do |category, settings| %>
+    <div id="<%= category %>_settings">
+      <%= toggling_fieldset l_or_humanize(category, :prefix => 'easy_user_type_category_') do %>
+        <%= content_tag(:p, :class => 'clear') do %>
+          <% settings.each do |setting| %>
+            <label class="inline">
+              <%= check_box_tag('easy_user_type[settings][]', setting, @easy_user_type.settings.include?(setting), :id => setting == :custom_menu ? 'custom_menu_checkbox' : nil) %>
+              <%= l_or_humanize(setting, :prefix => 'easy_user_type_setting_') %>
+            </label>
+          <% end %>
+        <% end if settings.present? %>
+        <% if category == :custom_menu %>
+          <%= render :partial => 'easy_custom_menus/easy_custom_menus', :locals => {:f => f, :easy_user_type => @easy_user_type} %>
+        <% else %>
+          <%= content_tag(:p, check_all_links("#{category}_settings"), :class => 'small text-right') %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= toggling_fieldset l(:easy_user_type_visibility_options) do %>
+    <p>
+      <%= label_tag 'easy_user_type_easy_user_visible_type_ids__autocomplete', l(:easy_user_type_visible_user_types) %>
+      <%= autocomplete_field_tag('easy_user_type[easy_user_visible_type_ids][]', easy_user_types_for_select, @easy_user_type.easy_user_visible_type_ids.presence || '0') %>
+    </p>
+    <p>
+      <%= label_tag 'easy_user_type_easy_user_visible_to_type_ids__autocomplete', l(:easy_user_type_visible_to_user_types) %>
+      <%= autocomplete_field_tag('easy_user_type[easy_user_visible_to_type_ids][]', easy_user_types_for_select, @easy_user_type.easy_user_visible_to_type_ids.presence || '0') %>
+    </p>
+    <%= call_hook(:easy_user_type_visibility_options_bottom, easy_user_type: @easy_user_type) %>
+    <% unless Redmine::Plugin.installed?(:easy_project_com) %>
+      <p>
+        <label class="inline">
+          <%= check_box_tag 'easy_user_type[settings][]', :hide_new_issue_button, @easy_user_type.settings.include?(:hide_new_issue_button) %>
+          <%= l_or_humanize(:hide_new_issue_button, :prefix => 'easy_user_type_setting_') %>
+        </label>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= hidden_field_tag 'easy_user_type[settings][]', '' %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    var top_menu_check_all_links = $('#top_menu_settings a');
+    var custom_menu_checkbox = $('#custom_menu_checkbox');
+    var custom_menu_settings = $('#custom_menu_settings');
+    custom_menu_settings.toggle(custom_menu_checkbox.is(":checked"));
+
+    custom_menu_checkbox.change(function () {
+      custom_menu_settings.toggle(this.checked);
+    });
+
+    top_menu_check_all_links.click(function () {
+      custom_menu_settings.toggle(custom_menu_checkbox.is(":checked"));
+    });
+  });
+</script>

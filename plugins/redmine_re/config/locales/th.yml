@@ -1,0 +1,589 @@
+---
+th:
+  activerecord:
+    attributes:
+      re_artifact_properties:
+        acceptance_criteria: เกณฑ์การยอมรับ
+        created_by: กำลังสร้างผู้ใช้
+        parent: วัตถุหลัก
+        updated_by: กำลังอัปเดตผู้ใช้
+      re_artifact_relationship:
+        relation_type: ประเภทของความสัมพันธ์
+        sink: วัตถุรอง
+        source: แหล่งที่มาของวัตถุ
+        source_id: แหล่งที่มาของวัตถุ
+    errors:
+      models:
+        re_artifact_relationship:
+          attributes:
+            source_id:
+              re_the_specified_relation_already_exists: ความสัมพันธ์เฉพาะที่มีอยู่แล้ว
+    models:
+      re_artifact_properties: วัตถุ
+      re_artifact_relationship: ความสัมพันธ์
+  add_issue_to_requirement: เพิ่มภารกิจที่เกี่ยวข้อง
+  artifact_issue_coverage: 'ความครอบคลุมของภารกิจ/วัตถุ:'
+  artifactcount: จำนวนของวัตถุ
+  artifacts_wo_issues: จำนวนของวัตถุไม่สัมพันธ์กับภารกิจใดๆ
+  comments: ความคิดเห็น
+  conflict: ความขัดแย้ง
+  connect_issue: ภารกิจที่สัมพันธ์กัน
+  dates: วันที่
+  datetime:
+    formats:
+      short: "%m/%d/%y, %H:%M"
+  dependency: สัมพันธ์กัน
+  field_re_artifact: ช่องวัตถุ
+  field_re_artifact_properties:
+    created_by: 'กำลังสร้างผู้ใช้:'
+    name: 'ชื่อ:'
+    parent: 'วัตถุหลัก:'
+    project: 'โครงการ:'
+    updated_by: 'กำลังอัปเดตผู้ใช้:'
+  field_subtasks: ภารกิจย่อย
+  general_visualization_settings: การตั้งค่าการแสดงภาพทั่วไป
+  implementation_of: การใช้งานของ
+  issue_menue_visualization: ภารกิจ
+  issuecount: จำนวนของภารกิจ
+  issues_wo_artifacts: จำนวนของภารกิจไม่สัมพันธ์กับวัตถุใดๆ
+  label_any: ใดๆ
+  label_asc: จากน้อยไปมาก
+  label_attachments: ไฟล์แนบ
+  label_desc: จากมากไปน้อย
+  label_is_me: คือฉัน
+  label_is_not_me: ไม่ใช่ฉัน
+  label_re_artifact_baseline: แก้ไข้อมูลพื้นฐาน
+  label_re_artifact_baseline_modal: ข้อกำหนดโมเดลพื้นฐาน
+  label_re_artifact_baseline_new: สร้างข้อมูลพื้นฐาน
+  label_re_artifact_properties_plural: วัตถุ
+  label_re_artifact_property_plural: วัตถุ
+  label_redmine_re_artifact_custom_field_plural: ข้อกำหนด
+  label_some: บางส่วน
+  main_tab: แถบหลัก
+  new_comment: ความคิดเห็นใหม่
+  new_comment_text: 'ข้อความแสดงความคิดเห็น:'
+  open_requirements: เปิดข้อกำหนด
+  own_rating: คะแนนของคุณ
+  parentchild: หลัก-ย่อย
+  part_of: เป็นส่วนหนึ่งของ
+  permission_administrate_requirements: ข้อกำหนดในการดูแล
+  permission_edit_requirements: แก้ไขข้อกำหนด
+  permission_view_requirements: ดูข้อกำหนด
+  progress: ความคืบหน้า
+  project: โครงการ
+  project_module_requirements: ข้อกำหนด
+  rating: คะแนน
+  rating_average: คะแนนเฉลี่ย
+  rationale: ด้วยเหตุนี้
+  re_404_artifact_not_found: ไม่พบวัตถุ (หรือรหัสวัตถุ)
+  re_404_artifact_not_found_or_project_missing: ไม่พบวัตถุและไม่มีการระบุรหัสโครงการ
+  re_404_invalid_project_id: ไม่พบโครงการ (หรือรหัสโครงการ) ไม่ถูกต้อง
+  re_actors: ตัวแสดง
+  re_add_associated_requirements: เพิ่มวัตถุที่เกี่ยวข้อง
+  re_add_secondary_actor: เพิ่มตัวแสดงรอง
+  re_administrate: ข้อกำหนด
+  re_alias_name: ชื่อของความสัมพันธ์
+  re_apply_filter: ใช้ตัวกรอง
+  re_are_you_sure: คุณแน่ใจไหม?
+  re_artifact: วัตถุ
+  re_artifact_attributes: คุณลักษณะของวัตถุ
+  re_artifact_baseline_deleted: ลบข้อมูลพื้นฐานสำเร็จแล้ว
+  re_artifact_baseline_destroy: ลบข้อมูลพื้นฐาน
+  re_artifact_baseline_edit: แก้ไขข้อมูลพื้นฐาน
+  re_artifact_baseline_revert: เปลี่ยนกลับเป็นค่าพื้นฐาน
+  re_artifact_baseline_reverted: เปลี่ยนกลับเป็นค่าพื้นฐานสำเร็จแล้ว %{baseline}
+  re_artifact_comments_count: จำนวนความคิดเห็น
+  re_artifact_configuration: การกำหนดค่าวัตถุ
+  re_artifact_create: สร้างข้อกำหนดวัตถุใหม่
+  re_artifact_created_by: สร้างโดย
+  re_artifact_description: รายละเอียด
+  re_artifact_details: รายละเอียดวัตถุ
+  re_artifact_export: ส่งออกวัตถุ
+  re_artifact_history: ประวัติ
+  re_artifact_id: "#"
+  re_artifact_name: ชื่อ
+  re_artifact_order: ลำดับการแสดงวัตถุ
+  re_artifact_priority: ลำดับความสำคัญ
+  re_artifact_properties_attachment_missing: วัตถุไม่มีไฟล์แนบ
+  re_artifact_properties_created: วัตถุถูกสร้างแล้ว
+  re_artifact_properties_diff_added: "%{key} เปลี่ยนเป็น %{new_value}"
+  re_artifact_properties_diff_changed: "%{key} เปลี่ยนจาก %{value} เป็น %{new_value}"
+  re_artifact_properties_diff_deleted: "%{key} ถูกลบแล้ว (value was %{value})"
+  re_artifact_properties_import: นำเข้าวัตถุ
+  re_artifact_properties_import_invalid_extension: นามสกุลไฟล์แนบไม่ถูกต้อง
+  re_artifact_properties_import_success: นำเข้าวัตถุสำเร็จแล้ว
+  re_artifact_properties_import_with_errors: 'นำเข้าวัตถุสำเร็จโดยมีข้อผิดพลาด: %{errors}.'
+  re_artifact_properties_not_enought_chars: ตัวอักษรต่ำสุด %d
+  re_artifact_properties_to_many_chars: ตัวอักษรสูงสุด %d
+  re_artifact_properties_updated: อัปเดตคุณสมบัติวัตถุแล้ว
+  re_artifact_properties_validates_presence_of_artifact: ไม่มีวัตถุที่สัมพันธ์กับคุณสมบัติวัตถุเหล่านี้
+  re_artifact_properties_validates_presence_of_created_by: โปรดระบุว่าถูกสร้างโดย
+  re_artifact_properties_validates_presence_of_name: กรอกชื่อวัตถุ
+  re_artifact_properties_validates_presence_of_parent: วัตถุนี้ดูเหมือนจะไม่มีการกำหนดวัตถุหลัก
+  re_artifact_properties_validates_presence_of_project: ไม่มีโครงการที่สัมพันธ์กับวัตถุนี้
+  re_artifact_properties_validates_presence_of_updated_by: โปรดระบุว่าถูกอัปเดตโดย
+  re_artifact_properties_validates_uniqueness_of_artifact: วัตถุที่สัมพันธ์กับคุณสมบัติวัตถุเหล่านี้จะต้องไม่ซ้ำกัน
+  re_artifact_properties_validates_uniqueness_of_name: ชื่อนี้ถูกใช้ในวัตถุอื่นแล้ว
+  re_artifact_properties_version: 'เวอร์ชั่น #%{version}'
+  re_artifact_properties_version_revert: เปลี่ยนกลับเป็นเวอร์ชัน
+  re_artifact_properties_version_reverted: 'เปลี่ยนกลับเป็นเวอร์ชันเรียบร้อยแล้ว #%{version}'
+  re_artifact_rating_average: คะแนนเฉลี่ย
+  re_artifact_related_content: เนื้อหาที่เกี่ยวข้อง
+  re_artifact_relationships: ความสัมพันธ์
+  re_artifact_relationships_incoming: ความสัมพันธ์ขาเข้า
+  re_artifact_relationships_outgoing: ความสัมพันธ์ขาออก
+  re_artifact_responsible: ความรับผิดชอบ
+  re_artifact_responsibles: ความรับผิดชอบ
+  re_artifact_type: ประเภท
+  re_artifact_type_description: รายละเอียดของประเภทวัตถุ
+  re_artifact_type_description_configuration: การกำหนดค่ารายละเอียดของประเภทวัตถุ
+    %{artifact_type}
+  re_artifact_updated_by: อัปเดตโดย
+  re_artifacts: วัตถุ
+  re_asscociated_requirements: ข้อกำหนด
+  re_associated_issues: ภารกิจที่เกี่ยวข้อง
+  re_at: ที่
+  re_attachment: ไฟล์แนบ
+  re_attachment_deleted: ไฟล์แนบ %{name} ถูกลบแล้ว
+  re_attachment_file: ไฟล์
+  re_attachment_no_file_error: โปรดเลือกไฟล์!
+  re_attachment_not_deleted: ไม่สามารถลบไฟล์แนบ %{name} 
+  re_attachment_not_found: ไม่พบไฟล์แนบที่มีรหัส %{id} ที่จะลบ
+  re_attachment_priority: ลำดับความสำคัญ
+  re_attachment_saved: บันทึกไฟล์แนบสำเร็จ
+  re_attachment_size_greater_zero: ไฟล์ควรมีขนาดใหญ่กว่า 0 ไบต์!
+  re_attachment_validation_error: 'ไฟล์แนบล้มเหลว: %{msg}'
+  re_baselines: ข้อมูลพื้นฐาน
+  re_by: โดย
+  re_cancel: ยกเลิก
+  re_cannnot_delete_project_artifact: วัตถุนี้เป็นวัตถุของโครงการซึ่งไม่สามารถลบได้.
+    หากต้องการลบโครงการ, โปรดใช้
+  re_change_request: เปลี่ยนคำขอ
+  re_changed_by: ถูกเปลี่ยนโดย
+  re_child_artifacts: วัตถุรอง
+  re_children: รอง
+  re_color: สี
+  re_common_attributes: คุณลักษณะทั่วไป
+  re_common_linked_artifacts: วัตถุที่เกี่ยวข้อง
+  re_conf_add_relation: เพิ่มความสัมพันธ์
+  re_conf_add_status: เพิ่มสถานะ
+  re_conf_alias_name: คุณสามารถตั้งชื่ออื่นให้กับประเภทของวัตถุนี้เพื่อให้ตรงกับข้อกำหนดในกระบวนการจัดการของคุณ
+  re_conf_artifact_directed: สั่ง
+  re_conf_artifact_display_order: ใช้การลากและวางเพื่อเปลี่ยนลำดับการแสดงผล (เช่นในเมนูด้านข้างหรือหน้าดัชนี)
+  re_conf_artifact_in_use: คุณต้องการใช้ (แสดง) ประเภทวัตถุนี้ในโครงการนี้หรือไม่
+    (วัตถุที่มีอยู่จะไม่ถูกลบ)
+  re_conf_color: รหัสสีของวัตถุนี้ตลอดทั้งแอปพลิเคชัน. สิ่งนี้มีประโยชน์อย่างยิ่งในการสร้างภาพ
+  re_conf_directed: สั่ง
+  re_conf_display_order: ลำดับการแสดงผล
+  re_conf_fields: กำหนดค่าช่องที่กำหนดเองของประเภทวัตถุนี้
+  re_conf_internal_name: ชื่อภายใน
+  re_conf_show_in_visualization: กำหนดว่าจะแสดงประเภทความสัมพันธ์นี้ในการแสดงภาพตามค่าเริ่มต้นหรือไม่
+  re_configs_saved: บันทึกการกำหนดค่าสำเร็จ
+  re_configure: กำหนดค่า
+  re_configure_fields_treebar: กำหนดค่าช่องของ %{artifact_type}
+  re_configure_plugin: การตั้งค่าข้อกำหนด
+  re_confirm: ยืนยัน
+  re_confirm_deletion_by_choosing: โปรดยืนยันการลบโดยเลือกตัวเลือกด้านล่าง
+  re_conflict: ความขัดแย้ง
+  re_conflict_relation_type: ความขัดแย้ง
+  re_connected_nodes: โหนดที่เชื่อมต่อกัน
+  re_contains: ประกอบด้วย
+  re_continue_here: ดูข้อมูลเพิ่มเติมได้ที่นี่
+  re_create: สร้าง
+  re_create_a_new: สร้างใหม่
+  re_create_baseline: สร้างข้อมูลพื้นฐาน
+  re_create_below: สร้างวัตถุในระดับเดียวกัน...
+  re_create_child: สร้างลำดับรอง
+  re_create_in: สร้างวัตถุภายใต้...
+  re_create_new: สร้างใหม่
+  re_create_new_artifacts: สร้างวัตถุใหม่
+  re_create_new_relation: สร้างความสัมพันธ์ใหม่
+  re_create_new_relation_prompt: โปรดเพิ่มความสัมพันธ์อย่างน้อยหนึ่งประเภท
+  re_create_new_relationship: สร้างความสัมพันธ์ใหม่
+  re_create_re_attachment: สร้างไฟล์แนบใหม่
+  re_create_re_goal: สร้างเป้าหมาย
+  re_create_re_processword: สร้างการประมวลผลคำใหม่
+  re_create_re_rationale: สร้างเหตุผลใหม่
+  re_create_re_requirement: สร้างข้อกำหนด
+  re_create_re_scenario: สร้างสถานการณ์
+  re_create_re_section: สร้างส่วนใหม่
+  re_create_re_subtask: สร้างภารกิจย่อยใหม่
+  re_create_re_task: สร้างภารกิจใหม่
+  re_create_re_use_case: สร้างกรณีการใช้งานใหม่
+  re_create_re_user_profile: สร้างโปรไฟล์ผู้ใช้ใหม่
+  re_create_re_vision: สร้างวิสัยทัศน์ใหม่
+  re_create_re_workarea: สร้างพื้นที่ทำงานใหม่
+  re_create_relation: สร้างความสัมพันธ์กับ ...
+  re_create_wiki_page_for_re_artifact: สร้างหน้า Wiki ใหม่
+  re_created_by: ถูกสร้างโดย
+  re_creating_a_new: สร้างใหม่
+  re_data_expansion: ข้อมูล
+  re_delete: ลบ
+  re_delete_and_move_children: ลบวัตถุและย้ายลำดับรอง
+  re_delete_artifact: ลบวัตถุ
+  re_delete_confirm: คุณต้องการลบจริงๆ %{what}?
+  re_delete_project_artifact: ลบวัตถุโครงการ
+  re_delete_project_artifact_error: ไม่สามารถลบวัตถุของโครงการได้
+  re_delete_recursively: ลบซ้ำ
+  re_delete_subtask: ลบ
+  re_delete_use_case_expansion: ลบ
+  re_delete_use_case_step: ลบ
+  re_delete_use_case_step_expansion: ลบ
+  re_deleted_artifact_and_children: ลบวัตถุและลำดับรองของวัตถุสำเร็จ
+  re_deleted_artifact_and_moved_children: แนบวัตถุลำดับรองทั้งหมดเข้ากับลำดับหลักสำเร็จและลบวัตถุ
+  re_dependency: ความสัมพันธ์
+  re_dependency_relation_type: ความสัมพันธ์
+  re_description_fieldset: รายละเอียดวัตถุ
+  re_description_updated_successfully: อัปเดตรายละเอียดสำเร็จ
+  re_diagrams: แผนภาพ
+  re_directed: สั่ง
+  re_display_order: ลำดับการแสดง
+  re_drag_list_items_to_reorder_artifacts: ลากรายการเพื่อจัดลำดับวัตถุใหม่. คำสั่งที่กำหนดค่าไว้จะถูกใช้ทุกที่ในปลั๊กอินข้อกำหนด
+  re_edit: แก้ไข
+  re_edit_artifact_type_description: แก้ไขรายละเอียดสำหรับวัตถุ "%{artifact_type}" 
+  re_edit_default_description: แก้ไขรายละเอียดเริ่มต้น
+  re_editor_for: โปรดรอสักครู่ กำลังแก้ไขเพื่อ
+  re_ends_with: ลงท้ายด้วย
+  re_enhanced_filter: ตัวกรองขั้นสูง
+  re_equals: เท่ากับ
+  re_exception_expansion: ยกเว้น
+  re_expansion_description: รายละเอียด
+  re_expansion_type: ประเภท
+  re_export: ส่งออก
+  re_export_error: เกิดข้อผิดพลาดระหว่างการส่งออก โปรดตรวจสอบให้แน่ใจว่าได้ติดตั้ง
+    pandoc แล้วและกำหนดรูปแบบผลลัพธ์ในการตั้งค่า
+  re_export_format_configuration: ส่งออกการกำหนดค่ารูปแบบ
+  re_extension_description: รายละเอียด
+  re_extension_type: ประเภท
+  re_field_configuration: การกำหนดค่าช่องสำหรับประเภทวัตถุ %{artifact_type}
+  re_fields: ช่อง
+  re_filter: ตัวกรอง
+  re_filter_apply: ใช้
+  re_filter_order: คำสั่ง
+  re_filter_related_issues: ภารกิจที่เกี่ยวข้อง
+  re_filter_save: บันทึก
+  re_filter_save_and_apply: บันทึกและใช้
+  re_filter_sink_artifacts: รอง
+  re_filter_source_artifacts: ที่มา
+  re_find_secondary_actor: ค้นหาตัวแสดงรอง
+  re_first_use: นี่เป็นครั้งแรกที่คุณใช้ปลั๊กอินข้อกำหนด
+  re_from: จาก
+  re_goal: เป้าหมาย
+  re_goal_deleted: ลบเป้าหมาย %{name} แล้ว
+  re_goal_not_deleted: ไม่สามารถลบเป้าหมาย %{name} 
+  re_goal_not_found: ไม่สามารถค้นหาเป้าหมายที่มีรหัส %{id} เพื่อลบได้
+  re_goal_saved: บันทึกเป้าหมายสำเร็จ
+  re_goals: เป้าหมาย
+  re_greater_than: มากกว่า
+  re_hide: ซ่อน
+  re_incoming_relationship_count: ขาเข้า
+  re_index: ปลั๊กอินข้อกำหนด
+  re_insert_pr_after: แทรกปัญหา
+  re_insert_st_after: แทรกภารกิจย่อย
+  re_insert_st_before: แทรก
+  re_insert_va_after: แทรกตัวแปร
+  re_is_being_loaded: กำลังโหลด...
+  re_last_update: อัปเดตล่าสุด
+  re_lesser_than: น้อยกว่า
+  re_link_to_configure: หรือกำหนดค่าปลั๊กอิน
+  re_linked_artifact: วัตถุที่เกี่ยวข้อง
+  re_linked_artifact_name: ชื่อวัตถุที่เกี่ยวข้อง
+  re_linked_artifact_type: ประเภทวัตถุที่เกี่ยวข้อง
+  re_linked_artifacts: วัตถุที่เกี่ยวข้อง
+  re_linked_artifacts_count: วัตถุที่เกี่ยวข้อง
+  re_more: เพิ่มเติม
+  re_my_artifacts: วัตถุของฉัน
+  re_netmap: Netmap
+  re_new_re_attachment: ไฟล์แนบ
+  re_new_re_goal: เป้าหมาย
+  re_new_re_processword: ประมวลผลคำใหม่
+  re_new_re_rationale: เหตุผลใหม่
+  re_new_re_requirement: ข้อกำหนด
+  re_new_re_scenario: เหตุการณ์
+  re_new_re_section: ส่วน
+  re_new_re_subtask: ภารกิจย่อย
+  re_new_re_task: ภารกิจ
+  re_new_re_use_case: กรณีการใช้ใหม่
+  re_new_re_user_profile: โปรไฟล์ผู้ใช้
+  re_new_re_vision: ถ้อยแถลงวิสัยทัศน์
+  re_new_re_workarea: พื้นที่ทำงาน
+  re_no_one_line_view_existent: 'ไม่มีเทมเพลต: ยังไม่มีการกำหนด One_line_view'
+  re_no_responsible_user_defined: ไม่มีการกำหนดผู้ใช้ที่รับผิดชอบ
+  re_none_specific: ไม่เฉพาะเจาะจง
+  re_of_type: ของประเภท
+  re_other_expansion: อื่นๆ
+  re_outgoing_relationship_count: ขาออก
+  re_pandoc_error_first: ใช้ปลั๊กอินข้อกำหนด
+  re_pandoc_error_second: เพื่อส่งออกข้อมูลวัตถุ์ไปยังรูปแบบต่างๆ โปรดตรวจสอบให้แน่ใจว่าได้ติดตั้ง
+    pandoc แล้ว
+  re_parent: หลัก
+  re_parentchild: หลัก-รอง
+  re_part_of: เป็นส่วนหนึ่งของ
+  re_please_choose: โปรดเลือก
+  re_please_select_visualization_type: โปรดเลือกวิธีการแสดงภาพข้อมูลของคุณโดยเลือกประเภทการแสดงภาพ
+  re_plugin_configuration: ตั้งค่าข้อกำหนด
+  re_plugin_description: รายละเอียดปลั๊กอิน
+  re_preparing_deletion: กำลังเตรียมลบ
+  re_preview_wiki_page_for_re_artifact: 'ตัวอย่างหน้า Wiki:'
+  re_primary_actor: ตัวแสดงหลัก
+  re_priority_responsible: ลำดับความสำคัญและความรับผิดชอบ
+  re_processword: ประมวลผลคำ
+  re_processword_default_description: การประมวลผลคำจำเป็นสำหรับการใช้เทมเพลตข้อกำหนดทางวากยสัมพันธ์
+    คุณสามารถกำหนดคำพ้องความหมายสำหรับคำที่นี่ และให้คำจำกัดความที่เหมาะสมของคำศัพท์
+  re_processword_deleted: ลบการประมวลผลคำ %{name} แล้ว
+  re_processword_not_deleted: ไม่สามารถลบ %{name} 
+  re_processword_priority: ลำดับความสำคัญ
+  re_processword_saved: บันทึกการประมวลผลคำเรียบร้อยแล้ว
+  re_processword_specific_attributes: ประมวลผลคุณลักษณะเฉพาะของคำ
+  re_processword_synonyms: คำพ้องความหมาย
+  re_processword_validation_error: 'การประมวลผลคำผิดพลาด: %{msg}'
+  re_project_was_setup: ฉันเพิ่งตั้งค่าฐานข้อมูลของคุณ
+  re_query_name: ชื่อ
+  re_query_visibility_me: เฉพาะฉัน
+  re_query_visibility_public: สาธารณะ
+  re_query_visibility_roles: สำหรับ
+  re_rationale: เหตุผล
+  re_rationale_deleted: ลบเหตุผล %{name} แล้ว
+  re_rationale_not_deleted: ไม่สามารถลบเหตุผล %{name} 
+  re_rationale_not_found: ไม่พบเหตุผลที่มีรหัส %{id} เพื่อลบ
+  re_rationale_saved: บันทึกเหตุผลสำเร็จ
+  re_rationale_specific_attributes: คุณลักษณะเฉพาะของเหตุผล
+  re_redmine_project_administration: การบริหารโครงการ Easy Redmine
+  re_refinement: การปรับแต่ง
+  re_related_diagrams: แผนภาพที่เกี่ยวข้อง
+  re_related_issues: ภารกิจ
+  re_related_test_case: กรณีทดสอบ
+  re_related_test_cases: กรณีทดสอบ
+  re_relation_management_pane: แสดงหน้าต่างการจัดการความสัมพันธ์เสมอ
+  re_relation_saved: บันทึกความสัมพันธ์สำเร็จ
+  re_relation_saved_error: บันทึกความสัมพันธ์ไม่สำเร็จ
+  re_relation_sucessfull_created: '"%{relation_type}"-สร้างความสัมพันธ์จาก %{source_name}
+    ไปยัง %{sink_name} สำเร็จ'
+  re_relation_type: ประเภทความสัมพันธ์
+  re_relationship: ความสัมพันธ์
+  re_relationship_configuration: การกำหนดค่าความสัมพันธ์
+  re_relationship_create_error: ไม่สามารถสร้างความสัมพันธ์ได้
+  re_relationship_visualization: การแสดงภาพ
+  re_remove: ลบ
+  re_requirement: ข้อกำหนด
+  re_requirement_priority: ลำดับความสำคัญ
+  re_requirement_saved: บันทึกข้อกำหนดสำเร็จ
+  re_requirements: ข้อกำหนด
+  re_requirements_overview: ภาพรวมข้อกำหนด
+  re_save: บันทึก
+  re_scenario: เหตุการณ์
+  re_scenario_default_description: การจัดการสถานการณ์ เพื่อแสดงกระบวนการในระบบของคุณ
+    ระบุเหตุผลและจัดเตรียมบริบทให้กับภารกิจและภารกิจย่อย
+  re_scenario_priority: ลำดับความสำคัญ
+  re_scenario_saved: บันทึกเหตุการณ์สำเร็จ
+  re_scroll_to_top: เลื่อนไปด้านบน
+  re_secondary_actor: ตัวแสดงรอง
+  re_section: ส่วน
+  re_section_deleted: ลบส่วน %{name} สำเร็จ
+  re_section_not_deleted: ไม่สามารถลบส่วน %{name} 
+  re_section_not_found: ไม่พบส่วนที่มีรหัส %{id}.
+  re_section_priority: ลำดับความสำคัญ
+  re_section_saved: บันทึกส่วนสำเร็จ
+  re_select_all: เลือกทั้งหมด
+  re_select_artifact: เลือกวัตถุ
+  re_set_parent: กำหนดวัตถุหลัก
+  re_settings_display_requirement_id_description: แสดงรหัสข้อกำหนดในมุมมองแผนภูมิต้นไม้
+  re_settings_have_to_save: 'ยังไม่ได้บันทึกการกำหนดค่า: คุณต้องคลิกบันทึกก่อนออกจากหน้านี้!'
+  re_settings_have_to_save_again: อัพเดทระบบแล้ว! โปรดตรวจสอบการกำหนดค่า คุณต้องคลิกบันทึกก่อนออกจากหน้านี้!
+  re_settings_project_hierarchy: ลำดับชั้นของโครงการ
+  re_settings_project_hierarchy_description: อนุญาตให้เชื่อมโยงภารกิจจากโครงการอื่น
+    ๆ
+  re_settings:
+    project_hierarchy_types:
+      all: ทุกโครงการ
+      descendants: โครงการย่อย
+      hierarchy: แผนภูมิต้นไม้โครงการ
+      none: ไม่มี
+  re_show: แสดง
+  re_show_goals: แสดงเป้าหมาย
+  re_show_in_visualization: แสดงในการแสดงภาพ
+  re_show_relationships: แสดงความสัมพันธ์
+  re_show_subtasks: แสดงภารกิจย่อย
+  re_show_tasks: แสดงภารกิจ
+  re_show_wiki_page_for_re_artifact: หน้า Wiki
+  re_shows_after_reload: จะแสดงหลังจากโหลดหน้าซ้ำ
+  re_sink_artifact: วัตถุรอง
+  re_sink_artifact_name: ชื่อวัตถุรอง
+  re_sink_artifact_type: ประเภทวัตถุรอง
+  re_source_artifact: ที่มาของวัตถุ
+  re_source_artifact_name: ที่มาของชื่อวัตถุ
+  re_source_artifact_type: ที่มาของประเภทวัตถุ
+  re_space_tree: พื้นที่แผนภูมิต้นไม้
+  re_specification_overview: แผนภูมิต้นไม้ข้อกำหนด
+  re_st_position_not_allowed: ไม่อนุญาตให้ใช้ตำแหน่งภารกิจย่อยนี้
+  re_st_type_not_allowed: ไม่อนุญาตให้ใช้ประเภทภารกิจย่อยนี้
+  re_stakeholders: ผู้มีส่วนได้ส่วนเสีย
+  re_starts_with: เริ่มด้วย
+  re_status: สถานะ
+  re_status_alias_name: ชื่อ
+  re_status_color: สี
+  re_status_configuration: การกำหนดค่าสถานะ
+  re_status_internal_name: ชื่อภายใน
+  re_structuring_elements: การจัดโครงสร้างองค์ประกอบ
+  re_subtask: ภารกิจย่อย
+  re_subtask_default_description: แม้ว่าคุณจะสามารถสร้างภารกิจย่อยด้วยเครื่องมือนี้ได้
+    แต่จะสะดวกกว่าหากคุณสร้างภารกิจและเพิ่มภารกิจย่อยจากมุมมองภารกิจ
+  re_subtask_deleted: ลบภารกิจย่อย %{name} แล้ว
+  re_subtask_name: ชื่อ
+  re_subtask_not_deleted: ไม่สามารถลบภารกิจย่อย %{name}
+  re_subtask_not_found: ไม่พบภารกิจย่อยที่มีรหัส %{id} เพื่อลบ
+  re_subtask_priority: ลำดับความสำคัญ
+  re_subtask_problem: ปัญหา
+  re_subtask_saved: บันทึกภารกิจย่อย %{name} สำเร็จ
+  re_subtask_solution: แนวทางแก้ไข
+  re_subtask_type: ประเภท
+  re_subtask_variant: ตัวแปร
+  re_subtasks: ภารกิจย่อย
+  re_subtasks_not_valid: ภารกิจย่อยไม่ถูกต้อง!
+  re_subtasks_saved: บันทึกภารกิจย่อยสำเร็จ
+  re_sunburst: แผนภูมิวงแหวน
+  re_system_step: ขั้นตอนของระบบ
+  re_system_steps: ขั้นตอนของระบบ
+  re_task: ภารกิจ
+  re_task_and_subtasks_saved: บันทึกภารกิจและภารกิจย่อยสำเร็จ
+  re_task_attributes: คุณลักษณะเฉพาะของภารกิจ
+  re_task_deleted: ลบภารกิจ %{name} แล้ว
+  re_task_difficult: ยาก
+  re_task_difficulties: ความยาก
+  re_task_end: สิ้นสุด
+  re_task_frequency: ความถี่
+  re_task_not_deleted: ไม่สามารถลบภารกิจ %{name} 
+  re_task_not_found: ไม่พบภารกิจที่มีรหัส %{id} เพื่อลบ
+  re_task_priority: ลำดับความสำคัญ
+  re_task_saved: บันทึกภารกิจสำเร็จ
+  re_task_specific_attributes: คุณลักษณะเฉพาะของภารกิจ
+  re_task_start: เริ่ม
+  re_tasks: ภารกิจ
+  re_text_artifact_added: วัตถุ %{id} ถูกเพิ่มโดย %{author}.
+  re_text_artifact_updated: วัตถุ %{id} ถูกอัปเดตโดย %{author}.
+  re_text_artifact_updated_new_comment: 'ความคิดเห็นใหม่ถูกเพิ่มโดย %{author}:'
+  re_to: ถึง
+  re_traces_from: ติดตามจาก
+  re_traces_to: ติดตามถึง
+  re_tree_loading: กำลังโหลดแผนภูมิต้นไม้...
+  re_tree:
+    mode:
+      unknown: โหมดที่ไม่รู้จัก
+    node:
+      closed: ปิดโหนด #{node_id} แล้ว
+      opened: 'เปิดโหนด #{node_id} แล้ว'
+  re_treefilter: ตัวกรอง
+  re_type: ประเภท
+  re_uc_add: เพิ่ม
+  re_uc_add_below: เพิ่มด้านล่าง
+  re_uc_dialog: บทสนทนา
+  re_uc_insert: เพิ่ม
+  re_uc_system: ระบบ
+  re_uc_user: ผู้ใช้
+  re_unsaved: ยังไม่ได้บันทึก
+  re_unselect_all: ไม่เลือกทั้งหมด
+  re_update_description: อัปเดตรายละเอียด
+  re_update_difficult: อัปเดตความยาก
+  re_update_plugin_description: อัปเดตรายละเอียดปลั๊กอิน
+  re_updated_at: อัปเดตแล้ว
+  re_use: กำลังใช้งาน
+  re_use_case: กรณีการใช้งาน
+  re_use_case_abstract_overview: ภาพรวมนามธรรม
+  re_use_case_and_steps_saved: บันทึกการใช้งานและขั้นตอนทั้งหมดเรียบร้อยแล้ว
+  re_use_case_attributes: คุณลักษณะเฉพาะกรณีการใช้งาน
+  re_use_case_default_description: เทมเพลตกรณีการใช้งาน ตามที่พบในหนังสือกรณีการใช้งานที่มีประสิทธิภาพของที่เขียนโดย
+    Cockburn
+  re_use_case_deleted: ลบกรณีการใช้งาน %{name} แล้ว
+  re_use_case_expansion: ขยาย
+  re_use_case_expansions: ขยายกรณีการใช้งาน
+  re_use_case_function: ฟังก์ชัน
+  re_use_case_level: ระดับ
+  re_use_case_low: ต่ำ
+  re_use_case_not_deleted: ไม่สามารถลบกรณีการใช้งาน %{name}
+  re_use_case_not_found: ไม่พบกรณีการใช้งานที่มีรหัส %{id} เพื่อลบ 
+  re_use_case_overview: ภาพรวม
+  re_use_case_postcondition: เงื่อนไขภายหลัง
+  re_use_case_precondition: เงื่อนไขเบื้องต้น
+  re_use_case_primary_actor: ตัวแสดงหลัก
+  re_use_case_saved: บันทึกกรณีการใช้งานสำเร็จ
+  re_use_case_secondary_actors: ตัวแสดงรอง
+  re_use_case_specific_attributes: คุณลักษณะเฉพาะของกรณีการใช้งาน
+  re_use_case_step: ขั้นตอน
+  re_use_case_steps: ขั้นตอนของกรณีการใช้งาน
+  re_use_case_trigger: สิ่งเร้า
+  re_use_case_user_goal: เป้าหมายของผู้ใช้
+  re_user_defined_fields: ช่องที่ผู้ใช้กำหนด
+  re_user_profile: โปรไฟล์ผู้ใช้
+  re_user_profile_deleted: ลบโปรไฟล์ผู้ใช้ %{name} แล้ว
+  re_user_profile_not_deleted: ไม่สามารถลบโปรไฟล์ผู้ใช้ %{name}
+  re_user_profile_not_found: ไม่พบโปรไฟล์ผู้ใช้ที่มีรหัส %{id} เพื่อลบ
+  re_user_profile_priority: ลำดับความสำคัญ
+  re_user_profile_saved: บันทึกโปรไฟล์ผู้ใช้สำเร็จ
+  re_user_step: ขั้นตอนของผู้ใช้
+  re_user_steps: ขั้นตอนของผู้ใช้
+  re_vision: ถ้อยแถลงวิสัยทัศน์
+  re_vision_deleted: ลบการแก้ไข %{name} สำเร็จ
+  re_vision_not_deleted: ไม่สามารถลบการแก้ไข %{name}
+  re_vision_not_found: ไม่พบการแก้ไขที่มีรหัส %{id} 
+  re_vision_priority: ลำดับความสำคัญ
+  re_vision_saved: บันทึกวิสัยทัศน์สำเร็จ
+  re_visualitation_deep_graph_explain: ขั้นตอนการทำซ้ำสูงสุด 0 = ปิดใช้งาน
+  re_visualization_config: กำหนดค่า
+  re_visualization_show: การแสดงภาพ
+  re_visualization_show_graph: แสดงเป็นกราฟ
+  re_visualization_show_netmap: แสดงเป็น netmap
+  re_visualization_show_sunburst: แสดงเป็นแผนภูมิวงแหวน
+  re_visualization_size: ขนาดการแสดงภาพ (เป็นพิกเซล)
+  re_visualization_type: ประเภทการแสดงภาพ
+  re_was_created: ถูกสร้าง
+  re_was_updated: ถูกอัปเดต
+  re_what_will_be_deleted: หากคุณลบวัตถุนี ้ความสัมพันธ์ที่แสดงด้านล่างจะถูกลบด้วย
+  re_wiki_page_available_after_save: คุณสามารถเชื่อมต่อหน้า Wiki หลังจากบันทึก
+  re_wiki_page_for_artifact: หน้า Wiki
+  re_will_delete_artifact_and_all_children: การเลือกตัวเลือกนี้จะลบวัตถุนี้ (%{name})
+    และความสัมพันธ์ (ตามรายการด้านบน) นอกจากนี้ลำดับรองทั้งหมดและรองๆลงมา (ตามรายการด้านบน)
+    ตลอดจนความสัมพันธ์ของอันดับรองกับวัตถุอื่นจะถูกลบ คุณอาจต้องตรวจสอบอีกครั้ง ก่อนเลือกตัวเลือกนี้
+  re_will_delete_artifact_and_move_children: การเลือกตัวเลือกนี้ จะแนบอันดับรองของวัตถุนี้
+    (ตามรายการด้านบน) กับอันดับหลักของวัตถุนี้ (%{parent}) หลังจากนั้นวัตถุนี้ (%{name})
+    และความสัมพันธ์ทั้งหมดกับวัตถุอื่นจะถูกลบออก
+  re_will_delete_artifact_and_relations: การเลือกตัวเลือกนี้ จะลบวัตถุนี้ (%{name})
+    และความสัมพันธ์ (ตามรายการด้านบน)
+  re_workarea: พื้นที่ทำงาน
+  re_workarea_default_description: พื้นที่ทำงานสามารถใช้เพื่อจัดโครงสร้างภารกิจได้
+    ให้ความสามารถในการเก็บวัตถุเข้าด้วยกัน ซึ่งเกิดขึ้นในพื้นที่เดียวกัน (เช่น ห้อง,
+    บริษัท หรือแผนก)
+  re_workarea_deleted: ลบพื้นที่ทำงาน %{name} สำเร็จ
+  re_workarea_not_deleted: ไม่สามารถลบพื้นที่ทำงาน %{name}
+  re_workarea_not_found: ไม่พบพื้นที่ทำงานที่มีรหัส %{id}
+  re_workarea_priority: ลำดับความสำคัญ
+  re_workarea_saved: บันทึกพื้นที่ทำงานสำเร็จ
+  re_you_asked_for_deleting_the_following_artifact: คุณขอให้ลบวัตถุต่อไปนี้
+  ReArtifactRelationship: ความสัมพันธ์ของข้อกำหนด
+  ReAttachment: ไฟล์แนบ
+  ReChangeRequest: เปลี่ยนคำขอ
+  redmine_re_plugin_author: Easy Software Ltd
+  redmine_re_plugin_author_url: http://www.easyredmine.com
+  redmine_re_plugin_name: Easy Requirements Plugin
+  refinement: ปรับแต่ง
+  ReGoal: เป้าหมาย
+  relations: ความสัมพันธ์
+  relationship: ความสัมพันธ์
+  ReProcessword: การประมวลผลคำ
+  requirement_progress: ความคืบหน้าของข้อกำหนด
+  Requirements: ข้อกำหนด
+  requirements_artifact: ข้อกำหนดวัตถุ
+  ReRationale: เหตุผล
+  ReRequirement: ข้อกำหนด
+  ReScenario: เหตุการณ์
+  ReSection: ส่วน
+  ReSubtask: ภารกิจย่อย
+  ReTask: ภารกิจ
+  ReUseCase: กรณีการใช้งาน
+  ReUserProfile: โปรไฟล์ผู้ใช้
+  ReVision: ถ้อยแถลงวิสัยทัศน์
+  ReWorkarea: พื้นที่ทำงาน
+  status: สถานะ
+  subject: หัวข้อ
+  ticketend_overdue: ตั๋วที่มีวันครบกำหนดค้างชำระ
+  ticketstart_overdue: ตั๋วที่มีวันที่เริ่มต้นเกินกำหนด
+  todo: เปิดตั๋ว

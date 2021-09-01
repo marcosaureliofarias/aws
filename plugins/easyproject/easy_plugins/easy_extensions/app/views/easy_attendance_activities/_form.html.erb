@@ -1,0 +1,75 @@
+<%= error_messages_for easy_attendance_activity -%>
+<div class="box">
+  <p>
+    <%= f.text_field :name -%>
+  </p>
+  <p>
+    <%= label_tag( :easy_attendance_activity_easy_color_scheme, l(:label_easy_color_schemes)) -%>
+    <%= easy_color_scheme_select_tag( 'easy_attendance_activity[color_schema]', :selected => easy_attendance_activity.color_schema, :class => easy_attendance_activity.color_schema) -%>
+  </p>
+  <p>
+    <%= f.text_field :mail, :label => l(:'easy_attendance.label_mail') -%>
+  </p>
+  <p>
+    <%= f.check_box :at_work -%>
+  </p>
+  <p>
+    <%= f.check_box :system_activity -%>
+  </p>
+  <p>
+    <%= label_tag '', l(:'easy_attendance.specify_time.label') %>
+    <span class="check_box_group">
+      <%= radio_button_tag 'easy_attendance_activity[use_specify_time]', 1, easy_attendance_activity.use_specify_time?, :id => 'easy_attendance_activity_use_specify_time_1' %>
+      <%= label_tag 'easy_attendance_activity_use_specify_time_1', l(:'easy_attendance.specify_time.by_time') %>
+      <%= radio_button_tag 'easy_attendance_activity[use_specify_time]', 0, !easy_attendance_activity.use_specify_time?, :id => 'easy_attendance_activity_use_specify_time_0' %>
+      <%= label_tag 'easy_attendance_activity_use_specify_time_0', l(:'easy_attendance.specify_time.by_day') %>
+    </span>
+  </p>
+  <p>
+    <%= f.check_box :is_default -%>
+  </p>
+  <p>
+    <%= f.check_box :approval_required -%>
+  </p>
+  <% if easy_attendance_activity.mapped_project || Project.non_templates.sorted.active.first %>
+    <p id="toggler-container-no-project" class="long1">
+      <%= radio_button_tag 'easy_attendance_activity[project_mapping]', false, !easy_attendance_activity.project_mapping, :id => 'easy_attendance_activity_project_mapping_0' %>
+      <%= label_tag 'easy_attendance_activity_project_mapping_0', l(:'easy_attendance.project_mapping_0') %>
+    </p>
+    <p id="toggler-container-with-project" class="long1">
+      <%= radio_button_tag 'easy_attendance_activity[project_mapping]', true, easy_attendance_activity.project_mapping, :id => 'easy_attendance_activity_project_mapping_1' %>
+      <%= label_tag 'easy_attendance_activity_project_mapping_1', l(:'easy_attendance.project_mapping_1') %>
+      <%= select_tag 'easy_attendance_activity[mapped_project_id]', project_tree_options_for_select(Project.non_templates.sorted.active, {:selected => easy_attendance_activity.mapped_project}), { :id => 'mapped_project_id' } %>
+      <em class="help"><%= l(:notice_easy_attendance_activity_project_member) %></em>
+      <span id="mapped_time_entry_activity_id_container">
+        <%= render :partial => 'easy_attendance_activities/time_entry_activities', :locals => {:project => easy_attendance_activity.mapped_project || Project.non_templates.sorted.active.first, :selected => (easy_attendance_activity.mapped_time_entry_activity && easy_attendance_activity.mapped_time_entry_activity.id.to_s)} %>
+      </span>
+    </p>
+  <% end %>
+</div>
+
+<%= call_hook(:view_easy_attendance_activity_edit_form_bottom, { f: f, easy_attendance_activity: easy_attendance_activity }) %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    //var is_project_mapped = <%#= easy_attendance_activity.project_mapping %>;
+    if ($("#easy_attendance_activity_project_mapping_0").is(":checked")) {
+      $('#mapped_project_id').attr("disabled", true);
+      $('#mapped_time_entry_activity_id').attr("disabled", true);
+    }
+    $("input#easy_attendance_activity_project_mapping_0").on("change", function () {
+      $('#mapped_project_id').attr("disabled", true);
+      $('#mapped_time_entry_activity_id').attr("disabled", true);
+    });
+    $("input#easy_attendance_activity_project_mapping_1").on("change", function () {
+      $('#mapped_project_id').attr("disabled", false);
+      $('#mapped_time_entry_activity_id').attr("disabled", false);
+    });
+
+    $("#mapped_project_id").change(function () {
+      $.post("<%= j(reload_time_entry_activities_easy_attendance_activities_path) %>", $(this.form).serialize(), function (data) {
+        $("#mapped_time_entry_activity_id_container").html(data)
+      });
+    });
+  });
+</script>

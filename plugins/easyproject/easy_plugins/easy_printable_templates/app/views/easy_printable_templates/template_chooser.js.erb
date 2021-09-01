@@ -1,0 +1,7 @@
+var ajaxModal = $("#ajax-modal");
+ajaxModal.html("<%=j render('easy_printable_templates/template_chooser') %>");
+showModal("ajax-modal", "90%");
+
+$(".row-control .expander").click(function(){
+  ajaxModal.dialog("option", "position", { my: "center top", at: "center top", of: $("#main"), collision: "fit" });
+});

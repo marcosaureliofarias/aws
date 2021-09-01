@@ -1,0 +1,26 @@
+<%- content_for :header_tags do -%>
+  <%= javascript_include_tag('ckeditor/ckeditor', :plugin => 'ckeditor', defer: true) -%>
+<%- end -%>
+<%- @easy_printable_template.easy_printable_template_pages.each_with_index do |page, idx| -%>
+  <%- if idx > 0 -%>
+    <div class="easy-page-brake-before"></div>
+  <%- end -%>
+  <div class="easy-printable-template-page <%= pages_size %> <%= pages_orientation %>" style="margin: auto;">
+    <div class="padding" id="page_content_<%= page.id %>" contenteditable="true">
+      <%= raw replace_easy_printable_template_page_text(page.page_text, @entity) -%>
+    </div>
+  </div>
+  <script type="text/javascript">
+    EASY.schedule.require(function (CKEDITOR) {
+      CKEDITOR.disableAutoInline = true;
+      CKEDITOR.inline('page_content_<%= page.id %>', {
+        removePlugins: 'htmlwriter',
+        toolbar: 'Full',
+        resize_enabled: false,
+        width: '210mm',
+        height: '297mm',
+        extraAllowedContent: 'span(count);style;link[*](*);*[id,rel,contenteditable](*){*};svg path rect g[*](*){*}'
+      });
+    }, "CKEDITOR");
+  </script>
+<%- end -%>

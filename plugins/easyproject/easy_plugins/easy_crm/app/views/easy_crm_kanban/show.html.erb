@@ -1,0 +1,107 @@
+<% if @kanban_columns.empty? %>
+  <%= title l(:label_easy_crm_kanban) %>
+  <p class="nodata">
+    <%= l(:label_no_data) %>
+    <%= link_to(l(:button_settings), easy_crm_kanban_settings_project_path(@project), class: 'icon icon-settings button', title: l(:button_settings)) %>
+  </p>
+<% else %>
+  <%= render partial: 'easy_queries/easy_query_index', locals: {query: @query, easy_query_name: l(:label_easy_crm_kanban), show_free_search: false, options: {hide_heading_counts: true, additional_tagged_url_options: {kanban: true}}} %>
+
+  <div id="easy_crm_kanban_container" class="multieditable-container autoscroll">
+    <table class="easy-crm-kanban-table">
+      <thead>
+      <tr>
+        <% @kanban_columns.each do |column| %>
+          <th class="big text-center">
+            <%= h column[:name] %><span class="count">(<%= column[:count] %>)</span>
+          </th>
+        <% end %>
+      </tr>
+      <tr>
+        <% @kanban_columns.each do |column| %>
+          <th class="big positive text-center"><%= format_html_entity_attribute(@query.entity, column[:sum_column], column[:sum], project: @project) %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <%= render partial: 'easy_crm_kanban/kanban_column', collection: @kanban_columns, as: :column %>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'easy_crm' %>
+  <% end %>
+
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to l(:label_easy_crm), project_easy_crm_path(@project), :title => l(:label_easy_crm), :class => 'icon icon-bullet-list button' %>
+    <%= link_to(l(:button_settings), easy_crm_kanban_settings_project_path(@project), :class => 'icon icon-settings button', :title => l(:button_settings)) %>
+  <% end %>
+
+  <% content_for :easy_page_layout_service_box do -%>
+    <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => EasyCrmCaseQuery, :project => @project, query_link: {kanban: true}} -%>
+  <% end -%>
+
+
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      initDroppableColumn();
+      $('table.easy-crm-kanban-table ul').each(function () {
+        var index = Number($(this).data('position'));
+        $(this).infinitescroll({
+          navSelector: '.pagination',
+          nextSelector: 'ul.kanban-column[data-position=' + index + '] .pagination.next > a',
+          itemSelector: 'ul.kanban-column',
+          dataType: 'html+callback',
+          path: ["<%= easy_crm_kanban_project_path(@project, @query.to_params)%>" + '&kanban_column=' + index + '&page=', ''],
+          appendCallback: false
+        }, function (data, opts) {
+          $('ul.kanban-column[data-position=' + index + '] li.pagination.next').remove();
+          var column_items = $(data).find('ul li');
+          $('ul.kanban-column[data-position=' + index + ']').append(column_items);
+          $('ul.kanban-column[data-position=' + index + '] > div').remove();
+        });
+      });
+
+
+      function initDroppableColumn() {
+        $('.kanban-column').sortable({
+          items: "li.drag-on",
+          connectWith: ".kanban-column",
+          tolerance: 'pointer',
+          revert: 0,
+          update: function (event, ui) {
+
+            if (this === ui.item.parent()[0]) {
+              if (this.dataset.unassignable || !ui.sender) {
+                return;
+              }
+              var data = {
+                easy_crm_case_id: ui.item.data('id'),
+                kanban_column_position: $(this).data("position"),
+                easy_crm_case_status_id: this.parentElement.dataset.dropInStatus
+              };
+              $.ajax({
+                url: '<%= j easy_crm_kanban_assign_entity_project_path(@project) %>',
+                data: data,
+                method: 'POST',
+                dataType: 'script'
+              });
+            }
+          }
+        });
+        $('.drop-enabled').droppable({
+          activeClass: 'droppable-active',
+          hoverClass: 'droppable-hover',
+          accept: function (item) {
+            return item.hasClass('agile-issue-item')
+          },
+          tolerance: 'pointer'
+        });
+      }
+    });
+  </script>
+
+<% end %>

@@ -1,0 +1,36 @@
+<%= content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_edit_user_profile), {:controller => 'my', :action => 'account'}, :class => 'button-positive edit-user-profile icon icon-user', :title => l(:title_edit_user_profile)) if @user.id == User.current.id && User.current.allowed_to?(:edit_profile, nil, :global => true) %>
+  <%= link_to(l(:button_edit), edit_user_path(@user), :class => 'button-positive icon icon-edit') if User.current.easy_lesser_admin_for?('users') %>
+<% end %>
+
+<%= content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:label_issue_view_all), {:controller => 'issues', :set_filter => 1, :assigned_to_id => ([@user.id] + @user.group_ids).join("|"), :status_id => 'o'}, :title => l(:label_show_assigned_issues, :username => @user.name), :class => 'button icon-gradient') %>
+  <%= link_to(l(:field_anonymize), anonymize_user_path(id: @user.id), method: :post, data: {confirm: l(:text_are_you_sure)}, class: 'button icon-lock') if User.current.admin? -%>
+  <%= call_hook :view_account_easy_page_layout_service_box, user: @user %>
+<% end %>
+<%= content_for :sidebar_exports do %>
+  <div class="other-formats links">
+    <h6 class="floating"><%= l(:label_easy_query_export_links) %></h6>
+    <span><%= link_to_entity_mapper(content_tag(:i, '', :class => 'xl-icon icon-vcard') + 'vCard', user_path(@user, :format => 'vcf'),  User, EasyExtensions::Export::EasyVcard, :class => '') %></span>
+    <span><%= link_to_entity_mapper(content_tag(:i, '', :class => 'xl-icon icon-qr') + 'qr', user_path(@user, :format => 'qr'),  User, EasyExtensions::Export::EasyVcard, :class => '', :remote => true) %></span>
+    <span><%= link_to_function content_tag(:i, '', :class => 'icon icon-file-xml') + 'XML', "EASY.utils.downloadRemoteDataAsFile('#{user_path(@user, format: :xml)}', '#{@user.name}.xml', '#{l(:text_easy_service_is_unavailable)}')" %></span>
+  </div>
+<% end %>
+
+<div id="user_detail_header" class="easy-entity-details-header">
+  <div class="entity-detail-header-avatar"><%= avatar @user, :style => :large, :no_link => true %></div>
+  <h1 class="add-user-links" data-id="<%= @user.id %>"><%= @user.name %></h1>
+  <%= render_menu :user_profile %>
+</div>
+
+<span id="user_tabs" data-entity-type="User">
+  <span class="tabs tab-container">
+    <%= render :partial => 'common/entity_tabs', :locals => {:tabs => user_profile_tabs(@user), :tabs_container => 'user_tabs'} %>
+  </span>
+</span>
+
+<%= call_hook :view_account_left_bottom, :user => @user %>
+
+<%= call_hook :view_account_right_bottom, :user => @user %>
+
+<% html_title @user.name %>

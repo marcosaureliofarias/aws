@@ -1,0 +1,10 @@
+<% if @easy_knowledge_stories.size > 1 %>
+<% else %>
+  li = $("#easy_knowledge_story_<%= @easy_knowledge_stories.first.id %>_<%= @entity.class.name.underscore %>_<%= @entity.id %>");
+  ul = li.closest('ul');
+  if (ul.children().size() > 1) {
+    li.remove();
+  } else {
+    ul.closest('div.easy-knowledge-story-categories-list-container').remove();
+  }
+<% end %>

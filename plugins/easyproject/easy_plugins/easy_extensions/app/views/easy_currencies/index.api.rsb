@@ -1,0 +1,9 @@
+api.array :easy_currencies do
+  @easy_currencies.each do |easy_currency|
+    api.easy_currency do
+      api.id easy_currency.id
+      api.name easy_currency.name
+      api.iso_code easy_currency.iso_code
+    end
+  end
+end

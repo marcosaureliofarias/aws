@@ -1,0 +1,128 @@
+&__tasklist{
+  list-style: none;
+  margin: 24px 0 0 0;
+  padding-left: 0px;
+  a{
+    color: $color-text;
+    text-decoration: none;
+  }
+  &-item {
+    display: flex;
+    height: $gap*5;
+    margin-top: 5px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid $color-border;
+    border-left: 4px solid transparent;
+    &-subject{
+      flex-basis: 35%;
+      position: relative;
+      padding-left: $gap;
+      width: 100%;
+      &-text{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+        display: inline-block;
+      }
+    }
+    &-level-icon {
+      &:before{
+        content: "";
+        display: block;
+        width: 6px;
+        height: 6px;
+        top: 50%;
+        position: absolute;
+        border-left: 2px solid #c7c7c7;
+        border-bottom: 2px solid #c7c7c7;
+        float: left;
+        margin-top: -4px;
+        margin-left: -15px;
+      }
+    }
+    &-done-ratio{
+      display: flex;
+    }
+    &-edit-buttons{
+      flex-basis: 10%;
+      a {
+        color: $backdrop__color !important;
+      }
+    }
+    &-status{
+      text-align: center;
+      flex-basis: 25%;
+    }
+
+  }
+  &-item:first-child{
+    border-top: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
+  }
+  &-avatar{
+    width: 30px;
+  }
+  &popup {
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      list-style: none;
+      margin: 0 0 .5*$gap 0;
+      padding-left: 0;
+      &-item {
+        padding: 5px;
+        border: 1px solid $color-border;
+        margin-right: $gap;
+        margin-bottom: 2px;
+        & > a {
+          margin-left: $gap;
+        }
+      }
+    }
+    &-input {
+      flex-grow: 1;
+      max-width: initial !important;
+    }
+    &-input-relations {
+      width: auto;
+    }
+    &-filter{
+      margin-bottom: .5*$gap;
+      width: 60%;
+      min-width: 240px;
+      display: flex;
+      flex-grow: 1;
+      @media only screen and (max-width: $breakpoint--small) {
+        width: 100%;
+      }
+      &-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        position: sticky;
+        top: -$gap;
+        background: mix($color-background,$color-front);
+        z-index: 1;
+        padding-top: .5*$gap;
+        margin-top: -.5*$gap;
+      }
+      button {
+        margin: 0 $gap;
+        @media only screen and (max-width: $breakpoint--small) {
+          margin-right: 0;
+        }
+      }
+    }
+    &-relations {
+      margin-bottom: .5*$gap;
+    }
+    &-delay {
+      & > input {
+        width: 50px;
+      }
+    }
+  }
+}

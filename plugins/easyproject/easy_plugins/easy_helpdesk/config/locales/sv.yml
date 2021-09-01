@@ -1,0 +1,354 @@
+---
+sv:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Inställningar
+      easy_helpdesk_mail_template:
+        body_html: E-postinnehåll (HTML)
+        body_plain: E-postinnehåll (oformatterad text)
+        issue_status_id: Aktivitetsstatus
+        mailboxes: 'Användning för brevlådan:'
+        reply_to: Svara
+        sender: Avsändare
+        subject: Ämne
+      easy_helpdesk_project_matching:
+        domain_name: Domännamn
+    models:
+      easy_helpdesk_mail_template: E-postmall
+  button_easy_helpdesk_add_domain_name: Lägg till e-post eller domän
+  button_easy_helpdesk_add_mail_template: Lägg till e-postmall
+  button_easy_helpdesk_add_mailbox: Lägg till brevlåda
+  button_easy_helpdesk_add_project: Lägg till projekt
+  button_easy_helpdesk_add_project_from_sidebar: Lägg till Helpdesk
+  button_easy_helpdesk_add_signature: Lägg till signatur
+  button_easy_helpdesk_add_sla: Lägg till SLA
+  button_easy_helpdesk_all_mail_templates_index: Alla e-postmallar
+  button_easy_helpdesk_all_mailboxes_index: Alla brevlådor
+  button_easy_helpdesk_all_projects_index: Alla Helpdesk-projekt
+  button_easy_helpdesk_mail_templates_index: Mallar lista
+  button_easy_helpdesk_mailboxes_index: Brevlådelista
+  button_easy_helpdesk_projects_index: Projektlista
+  button_easy_helpdesk_reports_index: Rapporter
+  button_easy_helpdesk_settings_index: Helpdesk-inställningar
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Helpdesk
+  easy_helpdesk_plugin_description: "- Komplex Helpdesk-lösning"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Helpdesk
+    modules:
+      easy_helpdesk_create_mail_template_button: Skapa e-postmall-knapp
+      easy_helpdesk_create_mailbox_button: Skapa e-postknapp
+      easy_helpdesk_mailboxes: Helpdesk-brevlådor
+      easy_helpdesk_mailtemplates: Helpdesk e-postmallar
+      easy_helpdesk_project_query: Helpdesk-projekt från filter
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Helpdesk e-postmallar
+        description: Helpdesk e-postmallar
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Helpdesk brevlådor
+        description: Visa Helpdesk brevlådor
+    easy_helpdesk:
+      index:
+        caption: Helpdesk
+        description: Visa Helpdesk dashboard
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - projekt
+      easy_helpdesk_report_monthly_query: Helpdesk - månadsrapporter
+      easy_helpdesk_report_yearly_query: Helpdesk - årsrapporter
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Privata filter på projekt i Helpdesk
+        easy_helpdesk_report_monthly_query: Privata filter på månadsrapporter i Helpdesk
+        easy_helpdesk_report_yearly_query: Privata filter på årsrapporter i Helpdesk
+      public:
+        easy_helpdesk_project_query: Offentliga filter på projekt i Helpdesk
+        easy_helpdesk_report_monthly_query: Publika filter på månadsrapporter i Helpdesk
+        easy_helpdesk_report_yearly_query: Publika filter på årsrapporter i Helpdesk
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Helpdesk - beräkna aggregerade timmar
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Helpdesk - automatiskt uppdatera ticket
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - ta emot e-post
+      settings:
+        imap:
+          allow_override: Aktivera uppdatering av aktivitetsattribut
+          allow_override_example: 'Exempel: tracker, prioritering - dessa attribut
+            bör åsidosätta per post'
+          application_section_label: Övriga inställningar
+          category_example: 'Exempel: Kategori - nya aktiviteter har kategori Kategori'
+          email_section_label: Brevlådeinställningar
+          folder: Mapp
+          folder_example: 'IMAP-mapp att läsa (default: Inkorg)'
+          folders: Mappar att läsa
+          folders_example: 'IMAP mapp att läsa (en per rad) (default: INBOX, för att
+            ange mapp använd "/" till exempel: inbox/sales)'
+          host: Värd
+          host_example: 'Exempel: mail.company.com'
+          label: IMAP
+          move_on_failure: Vid fel flytta till
+          move_on_failure_example: flytta postmeddelanden som har ignorerats till
+            mapp POSTLÅDAN
+          move_on_success: Vid lyckad hantering flytta till
+          move_on_success_example: flyttar e-postmeddelanden som framgångsrikt har
+            hanterats till mappen MAILBOX, annars kommer e-postmeddelandet att raderas
+          no_permission_check: Ingen användarbehörighetskontroll
+          password: Lösenord
+          password_example: 'Exempel: secretpassword'
+          port: Port
+          port_example: 'Exempel: 143'
+          priority_example: 'Exempel: Hög - nya aktiviteter kommer att prioriteras
+            Hög'
+          project_example: 'Exempel: 205 - nya aktiviteter kommer att skapas för projekt-ID
+            205'
+          sender_mail: Avsändare
+          sender_mail_example: 'Till exempel: support@company.com'
+          ssl: SSL
+          ssl_example: Använd SSL-autentisering
+          status_example: 'Exempel: Ny - nya aktiviteter kommer att ha statusen Ny'
+          tracker_example: 'Exempel: Bugg - nya aktiviteter kommer att ha aktivitetstyp
+            Bugg'
+          unknown_user: Okänd användare
+          unknown_user_example: acceptera - Anonym användare kommer att användas,
+            skapa - användare kommer att skapas från e-post, konkret inloggning -
+            denna användaren kommer att användas
+          use_custom_sender: Använd en annan avsändare
+          username: Användare
+          username_example: 'Exempel: accessuser@domain.com'
+        pop3:
+          allow_override: Aktivera uppdatering av aktivitetsattribut
+          allow_override_example: 'Exempel: aktivitetstyp, prioritering - dessa attribut
+            kan ändras via e-post'
+          apop: APOP
+          apop_example: Använd APOP autentisering
+          application_section_label: Övriga inställningar
+          category_example: 'Exempel: Kategori - nya uppgifter har kategori Kategori'
+          delete_unprocessed: Radera obearbetade
+          delete_unprocessed_example: Radera e-post som inte kan behandlas
+          email_section_label: Brevlådeinställningarna
+          host: Värd
+          host_example: 'Exempel: mail.company.com'
+          label: POP3
+          no_permission_check: Ingen användarbehörighetskontroll
+          password: Lösenord
+          password_example: 'Exempel: secretpassword'
+          port: Port
+          port_example: 'Exempel: 110'
+          priority_example: 'Exempel: Hög - nya aktiviteter kommer att prioriteras
+            Hög'
+          project_example: 'Exempel: 205 - nya aktiviteter kommer att skapas för projektet-ID
+            205'
+          sender_mail: Avsändare
+          sender_mail_example: support@company.com
+          status_example: 'Exempel: Ny - nya aktiviteter kommer att få statusen Ny'
+          tracker_example: 'Exempel: Bugg - nya aktiviteter har aktivitetstypen Bugg'
+          unknown_user: Okänd användare
+          unknown_user_example: acceptera - Anonym användare kommer att användas,
+            skapa - användare kommer att skapas från e-post, konkret inloggning -
+            denna användaren kommer att användas
+          use_custom_sender: Använd en annan avsändare
+          username: Användare
+          username_example: 'Exempel: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: fälten "Timmar att återkoppla"
+    och "Timmar att lösa" kan inte bägge vara tomma. Ange ett värde i något av dessa.
+  error_update_easy_setting_helpdesk: Inställningarna kan inte sparas
+  field_aggregated_hours: Aggregera Helpdesk-timmar
+  field_aggregated_hours_remaining: Kvarvarande Helpdesk timmar
+  field_default_for_mailbox: Default för brevlådan
+  field_easy_helpdesk_has_sla: Har SLA
+  field_easy_helpdesk_ignorate_suspend_statuses: Skapa SLA händelser från alla statustyper
+  field_easy_helpdesk_mail_template: 'Skicka e-post snabbt till kund från mall:'
+  field_easy_helpdesk_need_reaction: Behöver hanteras?
+  field_easy_helpdesk_project_keyword: Nyckelord för projekt
+  field_easy_helpdesk_project_matching:
+    domain_name: E-post eller domän
+    email_field_from: hämtas från fältet FRÅN
+    email_field_to: hämtas från fältet TILL
+  field_easy_helpdesk_project_monthly_hours: Avtalat Helpdesk månatliga timmar
+  field_easy_helpdesk_project_sla:
+    blank_keyword: SLA namn saknas
+    hours_to_response: Timmar till återkoppling
+    hours_to_solve: Timmar för att lösa
+    keyword: Nyckelord
+    title: Namn på SLA
+  field_easy_helpdesk_project_spent_time_current_month: Timmar arbetat i Helpdesk (denna
+    månad)
+  field_easy_helpdesk_project_spent_time_last_month: Timmar arbetat i Helpdesk (förra
+    månaden)
+  field_easy_helpdesk_project_spent_time_total: Totalt spenderad tid i Helpdesk
+  field_email_footer: Mail sidfot
+  field_email_header: Brevhuvudet
+  field_hours_mode_from: SLA arbetstid
+  field_is_under_helpdesk: är under Helpdesk
+  field_monitor_due_date: Övervaka supportärenden förfallodagen
+  field_monitor_spent_time: Bildskärmar biljetter tillbringade tid
+  field_monthly_hours: Förbetalda support timmar
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: Redigera e-postmallen
+  heading_easy_helpdesk_mail_templates_index: E-postmallar
+  heading_easy_helpdesk_mail_templates_new: Ny e-postmall
+  heading_easy_helpdesk_mail_templates_show: Detalj av postmallen
+  heading_easy_helpdesk_mailboxes_edit: Redigera brevlåda
+  heading_easy_helpdesk_mailboxes_index: Brevlådor
+  heading_easy_helpdesk_mailboxes_new: Nytt e-postkonto
+  heading_easy_helpdesk_projects_edit: Redigera projekt
+  heading_easy_helpdesk_projects_index: Helpdeskprojekt
+  heading_easy_helpdesk_projects_new: Nytt Helpdeskprojekt
+  heading_easy_helpdesk_projects_show: Detalj av projekt
+  heading_easy_helpdesk_reports_index: Helpdesk - rapporter
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Månadsrapport över förbetalda
+    timmar
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Årsrapport över förbetalda timmar
+  heading_easy_helpdesk_settings: Inställningar
+  label_easy_hekodesk_additional_task_info_received_emails: Bearbetade postmeddelanden
+  label_easy_helpdesk: Helpdesk
+  label_easy_helpdesk_actual_budget: Timmar att spendera i Helåpdesk denna månad
+  label_easy_helpdesk_actual_budget_to_spend: Kvarvarande timmar
+  label_easy_helpdesk_aggregated_from_last_period: Ackumulerat från förra perioden
+  label_easy_helpdesk_alerts: Inställningar för varningar
+  label_easy_helpdesk_allow_custom_sender: Tillåt anpassad avsändare (per projekt)
+  label_easy_helpdesk_allow_override: Aktivera möjligheten att uppdatera aktivitetsattribut
+  label_easy_helpdesk_auto_issue_closer_settings:
+    notify: Skicka e-post från mall
+  label_easy_helpdesk_client_response_status: Ändra status efter klients återkoppling
+    till
+  label_easy_helpdesk_domain_name: E-postdomän
+  label_easy_helpdesk_emails: E-postinställningar - sidhuvud och sidfot
+  label_easy_helpdesk_enable_email_footer: Ändra sidfot för detta projekt?
+  label_easy_helpdesk_enable_email_header: Ändra sidhuvud för detta projekt?
+  label_easy_helpdesk_hours_comulated: Ackumulerade timmar
+  label_easy_helpdesk_hours_comulated_range: från %{from} till %{to}
+  label_easy_helpdesk_hours_per_month: Timmar arbetade denna månad
+  label_easy_helpdesk_ignore_cc: Ignorera CC från mottaget e-post
+  label_easy_helpdesk_mail_signature: Helpdesk - signatur
+  label_easy_helpdesk_matching: E-post, domäner, nyckelord som hanteras i detta projekt
+  label_easy_helpdesk_message_above_variables: Kommentarer visas ovanför e-postmallen
+  label_easy_helpdesk_need_reaction: Behöver hanteras?
+  label_easy_helpdesk_project_helpdesk_tab: Helpdesk
+  label_easy_helpdesk_project_managed_by_helpdesk: Helpdesk-inställningar
+  label_easy_helpdesk_project_plural: Helpdesk-projekt
+  label_easy_helpdesk_projects_sla_working_time_calendar: SLA arbetsdagar
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: Återställ SLA när ärendet
+    återöppnas
+  label_easy_helpdesk_sender: Avsändare
+  label_easy_helpdesk_sender_current_user: Inloggad användare
+  label_easy_helpdesk_sender_is_user: Avsändare är inloggad användare
+  label_easy_helpdesk_sender_mailbox_address: Brevlådans e-postadress
+  label_easy_helpdesk_sender_redmine_default: Standard från e-postnotifiering
+  label_easy_helpdesk_signature: Signatur
+  label_easy_helpdesk_signature_name: Signaturnamn
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Acceptera automatiskt genererad
+    e-post
+  label_easy_helpdesk_sla: SLA inställningar - prioriteringar, tid för att lösa en
+    ticket
+  label_easy_helpdesk_sla_start_states: Starta SLA för ticket när status är
+  label_easy_helpdesk_sla_stop_states: Pausa SLA för ticket när status är
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - projekt
+  label_filter_group_easy_helpdesk_report_monthly_query: Helpdesk-rapport
+  label_filter_group_easy_helpdesk_report_query: Helpdesk - rapport
+  label_filter_group_easy_helpdesk_report_yearly_query: Helpdesk - rapport
+  label_filter_show_spent_time_current_month_equal_to_zero: Timmar arbetat i Helpdesk (denna
+    månad) är noll
+  label_filter_show_spent_time_last_month_equal_to_zero: Timmar arbetat i Helpdesk
+    (förra månaden) är noll
+  label_issue_bottom_from_easy_helpdesk: Aktivitet skapades av Helpdesk (%{easy_helpdesk_mailbox_username})
+  permission_manage_easy_helpdesk: Hantera Helpdesk
+  permission_manage_easy_helpdesk_project: Hantera Helpdesk-projekt
+  permission_view_easy_helpdesk_sla: Visa SLA för aktivitet
+  project_module_easy_helpdesk: Helpdesk
+  setting_easy_helpdesk_custom_sender: Helpdesk-avsändare
+  text_easy_helpdesk_change_default_sender: Denna inställning påverkar inte reply-to
+    fältet
+  text_easy_helpdesk_custom_sender: Åsidosätt standardavsändaren för Helpdesk. Håll
+    tomt för att inaktivera den här funktionen.
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Ämne och meddelandets innehåll
+    kan innehålla dynamisk text:'
+  text_easy_helpdesk_mail_template_issue_status_id: Gör det möjligt att koppla en
+    e-postmall till en specifik aktivitetsstatus. Genom att välja standardstatus (som aktiviteter
+    skapas med) kommer den här mallen att användas som autosvar när en aktivitet skapas
+    via e-post.
+  text_easy_helpdesk_mail_template_replacement_for: ersättning för
+  text_easy_helpdesk_mail_template_reply_to: "(Mr Exempel) - e-post är inte tillåten
+    här"
+  text_easy_helpdesk_mail_template_reply_to2: Fälten "Svara" och "Avsändare" är hämtade
+    från brevlådemall för att bibehålla kommunikationen inom en aktivitet
+  text_easy_helpdesk_mailbox_too_long_to_process: Det tar för lång tid att behandla
+    denna e-postlåda - utan svar från servern. Anledningen är troligtvis för många
+    e-postmeddelanden i brevlådan. Ta bort gamla e-postmeddelanden från mappen / mapparna
+    som behandlas av Helpdesk. Kontrollera också alla säkerhetspolicyer för kontinuerlig
+    åtkomst av externa applikationer till din e-postserver.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Du bör tilldela dessa e-postlådor
+    till projekt. Om du inte gör det kommer ej identifierade e-postmeddelanden inte att
+    bearbetas!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Dessa e-postbrevlådor har
+    inget standard-projektet tilldelat sig:'
+  text_easy_helpdesk_projects_alerts_list: Lista med konfigurerade varningar
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Lista över varningar som måste
+    ha en definierad mottagare:'
+  text_easy_helpdesk_projects_is_default: Om e-post mottages från okänd avsändare
+    kommer en ticket att skapas här.
+  text_easy_helpdesk_projects_keyword_description: Om ämnesraden i ett e-post innehåller
+    en definierad textsträng kommer en ticket automatiskt att tilldelas detta projekt.
+    Nyckelord är skiftlägeskänsliga.
+  text_easy_helpdesk_projects_keywords: Om ämnesraden i e-postmeddelandet innehåller
+    en specificerad text, kommer definierad prioritet och förfallodatum att ställas
+    in (* betyder varje ämne). Lämna fältet tomt för att ställa in SLA för tickets
+    som skapas manuellt.
+  text_easy_helpdesk_projects_monitor_due_date: Denna fördefinierade varning kommer
+    att skicka ett e-postmeddelande till dig, om en ticket har brutit SLA - dvs. löstes
+    inte innanför den tid som anges i SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Denna fördefinierade varning kommer
+    att skicka e-postmeddelande om den totala tiden som spenderas i en viss kalendermånad
+    överskrider förbetalda supporttimmar
+  text_easy_helpdesk_projects_new_priority: Om nyckelord inte anges kommer SLA att
+    ställas in enligt den valda prioriteten
+  text_easy_helpdesk_projects_priority: SLA kommer sättas utifrån vald prioritet
+  text_easy_helpdesk_projects_sla_hours_to_response: Maximal tillåten tid som får
+    passera innan arbete måste påbörjas (första statusändring).
+  text_easy_helpdesk_projects_sla_hours_to_solve: Maximal tillåten tid att lösa en
+    ticket (stängd status).
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'En del aktiviteter (%{count}/%{total})
+    kunde inte uppdateras:'
+  text_isseu_closer_close_notice: Denna uppgift var automatiskt uppdaterad av Helpdesk
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: Svaret
+    bör har skett %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: åtgärden
+    måste vara att %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: lösning borde
+    ha funnits %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: lösning
+    måste vara framtagen %{time}'
+  title_easy_helpdesk_add_project_from_sidebar: Klicka för att lägga till projekt
+    till Helpdesk
+  title_easy_helpdesk_allow_custom_sender: Tillåt att ange anpassad avsändare per
+    projekt
+  title_easy_helpdesk_allow_override: Tillåt att åsidosätta attribut på aktivitet
+    från meddelande
+  title_easy_helpdesk_client_response_status: Välj vilken status som en ticket ska
+    ändras till när den uppdateras via e-post.
+  title_easy_helpdesk_ignore_cc: När e-post tas emot läggs alla e-postmeddelanden
+    i CC som bevakare, extern e-post och automatisk svar skickas till dem, detta alternativ
+    inaktiverar denna möjlighet.
+  title_easy_helpdesk_sender: Vem som kommer att stå som avsändare
+  title_easy_helpdesk_sender_current_user: Användare som är inloggad
+  title_easy_helpdesk_sender_is_user: Fältet 'från' kommer vara inloggad användare
+  title_easy_helpdesk_sender_mailbox_address: E-postadress från brevlåda
+  title_easy_helpdesk_sender_redmine_default: Standard e-postadress för utskick
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'VARNING: Helpdesk tar emot
+    e-postmeddelanden från andra system och det kan orsaka konstant skickande av e-post!'
+  title_easy_helpdesk_sla_start_states: Välj status när SLA-mätningen ska återupptas
+    efter att ha pausats av inställningen ovan.
+  title_easy_helpdesk_sla_stop_states: Välj status när SLA inte ska mätas. Till exempel
+    avslutade tickets eller när du väntar på svar från klient.
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Inaktiverad - efter att aktiviteten är stängd stoppas SLA. När aktiviteten
+      öppnas igen beräknas SLA från den tidpunkt då den ursprungligen skapades  
+    enabled: Aktiverad - när aktiviteten är stängd stoppas SLA. När aktiviteten öppnas
+      på nytt beräknas SLA från det att den öppnades igen

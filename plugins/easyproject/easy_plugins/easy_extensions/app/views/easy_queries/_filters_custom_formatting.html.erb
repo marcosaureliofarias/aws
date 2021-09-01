@@ -1,0 +1,35 @@
+<% schemes ||= query.custom_formatting %>
+<div class="add-easy-color-scheme tabular">
+  <p>
+    <label><%= l(:label_scheme_add) %>:</label>
+    <%= select_tag 'add_scheme_select',
+                   options_for_easy_color_scheme(:hidden_schemes => query.custom_formatting.keys),
+                   :class => 'select-small scheme-select', :name => nil,
+                   :id => 'add_scheme_select'
+    %>
+  </p>
+</div>
+<div id="schemes-table">
+  <% schemes.each do |scheme, filters| %>
+      <%= render :partial => 'easy_queries/filters_custom_formatting_row', :locals => {:query => query, :scheme => scheme, :filters => filters} %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $('#schemes-table').on('click', '.remove_scheme', function(evt){
+      var select = $('.scheme-select');
+      var row = $(this).closest('[class^="row-scheme-"]');
+      $("option[value='" + row.data('scheme') + "']", select).show();
+      row.remove();
+    });
+
+    $('#add_scheme_select').on('change', function(evt){
+      var select = $(this);
+      var scheme = select.val();
+      select.find("option[value='" + scheme + "']").hide();
+      var partial = "<%= j(render(:partial => 'easy_queries/filters_custom_formatting_row', :locals => {:query => query, :scheme => 'customformattingschemetoken'})) %>";
+      $('#schemes-table').append(partial.replace(/customformattingschemetoken/g, scheme));
+    });
+  });
+</script>

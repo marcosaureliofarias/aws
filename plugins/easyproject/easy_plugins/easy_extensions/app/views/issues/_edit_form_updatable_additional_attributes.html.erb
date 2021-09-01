@@ -1,0 +1,5 @@
+<div class="view_issues_edit_form_additional_attributes_bottom">
+  <%= labelled_fields_for :issue, @issue do |f| %>
+    <%= call_hook(:view_issues_edit_form_additional_attributes_bottom, { :issue => @issue, :form => f, :project => @issue.project, :show_on_more_form => false }) %>
+  <% end %>
+</div>

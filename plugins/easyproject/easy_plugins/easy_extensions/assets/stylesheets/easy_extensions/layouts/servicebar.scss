@@ -1,0 +1,312 @@
+#easy_servicebar {
+  $servicebar-item-padding: $box-padding;
+  $servicebar-component-background: mix($color-background,$color-foreground);//darken($color-foreground,3%);
+  $servicebar-component-border: $color-border;//darken($color-foreground, 10%);
+  background-color: $servicebar-background;
+  border-left: 1px solid $servicebar-border;
+  //z-index: z($z-priority, sidebar) !important;
+  overflow: visible; //overflow-x: hidden;
+  @extend %box-sizing-border-box;
+  & > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li {
+      text-align: center;
+      padding: $servicebar-item-padding 0;
+      position: relative;
+      &+li{
+        border-top: 1px solid rgba($color-border-minor,0.7);
+        @include respond-to(max-menu-collapse) {
+          border-top: 0;
+        }
+      }
+      & > a{
+        &[class^=icon] {
+          font-size: 2em;
+          display: inline-block;
+          width: 100%;
+          color: $servicebar-color;
+          &:hover{
+            color: $color-negative;
+          }
+        }
+        span{
+          font-size: 0.375em;
+          font-weight: bold;
+          background: $color-negative;
+          border: 1px solid darken($color-negative,5%);
+          text-align: center;
+          width: 1.25*$gap;
+          line-height: 1.25*$gap;
+          color: white;
+          position: absolute;
+          border-radius: 50%;
+          left: auto;
+          right: 2px;
+          margin-left: -$gap;
+          top: $gap;
+        }
+      }
+      @include respond-to(min-max-medium-screen) {
+        padding: 0.5*$servicebar-item-padding 0;
+      }
+    }
+    & > li {
+      //padding-left: .2*$servicebar-width;
+      //padding-right: .2*$servicebar-width;
+      width: $servicebar-width;
+      @include respond-to(max-menu-collapse) {
+        padding: .3*$servicebar-width;
+      }
+      @include respond-to(max-sidebar-collapse) {
+        padding: .1*$servicebar-width 0;
+      }
+    }
+    @include respond-to(max-menu-collapse) {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      border-top: 1px solid $color-border-minor;
+      border-left: none;
+    }
+  }
+
+  &_component {
+    background-color: $servicebar-component-background;
+    border-color: $servicebar-component-border;
+    //overflow: hidden;
+    @include respond-to(max-menu-collapse) {
+      bottom: $servicebar-height;
+      margin: auto;
+      left: 0;
+      right:0;
+      top: calc(-100vh + #{$topmenu-height});
+      height: calc(100vh - #{$topmenu-height} - #{$topmenu-height} - 1px);
+      bottom: 0;
+      z-index: z($z-priority, sidemenu) !important;
+    }
+    @include respond-to(max-sidebar-collapse) {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      height: auto;
+      bottom: calc(.65*#{$servicebar-height} - 1px);
+      margin: 0;
+      border-top: none;
+    }
+    &_beak{
+      position: absolute;
+      right: -$servicebar-width - 1;
+      width: $servicebar-width;
+      font-size: 2em;
+      text-align: center;
+      padding: ($servicebar-item-padding) 0;
+      margin-top: -$servicebar-item-padding - 1;
+      background: $color-foreground;
+      @include triangle-right(0.5*$gap, $servicebar-component-background, $servicebar-component-border, 1.5*$gap + $box-padding);
+      &:after{
+        right: auto;
+        left: - 1px;
+      }
+      &:before{
+        right: auto;
+        left: 0;
+      }
+      @include gradient-horizontal($color-foreground,lighten($servicebar-component-background,2%));
+      a{
+        color: $color-negative;//darken($servicebar-component-border,25%);
+      }
+      @include respond-to(max-menu-collapse) {
+        @include display(flex);
+        @include justify-content(center);
+        @include align-items(center);
+        height: calc(#{$servicebar-height} - 2px);
+        top: auto !important;
+        bottom: -$servicebar-height + 1px !important;
+        padding: 0;
+        &:before, &:after {
+          display: none;
+        }
+      }
+      @include respond-to(max-sidebar-collapse) {
+        height: (.65*$servicebar-height) - 2px;
+        top: auto !important;
+        bottom: calc( -.65*#{$servicebar-height} + 1px) !important;
+      }
+    }
+
+    &_body{
+      padding: $gap;
+      @extend %absolute;
+      word-wrap: break-word;
+      overflow-y: hidden;
+      color: $color-text;
+      .hint{
+        text-align: center;
+        display: block;
+        line-height: 1;
+      }
+      .servicebar-content{
+        @extend %jqui-widget-content-reset;
+        @extend %absolute;
+        bottom: $toolbar-height + 1;
+        padding: $gap;
+        right: 0;//-$scrollbar-width;
+        //border-top: 1px solid $servicebar-component-border;
+        top: 0; //95px;
+        background:mix($color-background,$color-foreground);
+        li {
+          a[class^=icon] {
+            color: $color-text;
+          }
+        }
+        &#easy_im_inline_message_history{
+          top: 40px;
+          bottom: 109px;
+        }
+        &#easy_contacts_toolbar_content{
+          top: 50px;
+          #easy_contacts_toolbar_list {
+            border: 1px solid $color-border-minor;
+            li:nth-child(odd) {
+              background: $color-foreground;
+            }
+          }
+        }
+        &#easy_issue_timer_notify_container{
+          top:0;
+          margin-top: -1px;
+          bottom: 0;
+        }
+        &.to-do-lists{
+          border: none;
+          top: 0;
+        }
+        &.activity-feed{
+          border: none;
+          top: 40px;
+        }
+        .easy-knowledge-indicator{
+          color: $color-important;
+        }
+      }
+      #easy_knowledge_toolbar_hint + .servicebar-content {
+        top: 95px;
+      }
+      .easy-to-do-lists-item-new-form{
+        padding: 0 $gap;
+      }
+      p{
+        margin-bottom: $gap;
+      }
+      .header{
+        background: none;
+        border: none;
+        padding: 0.5*$gap;
+        &, a{
+          color: $color-text;
+        }
+      }
+      .icon-magnifier{
+        @include respond-to(max-menu-collapse){
+          top: 5px !important;
+        }
+      }
+      .servicebar-actions{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-top: 1px solid $servicebar-component-border;
+        padding: $gap;
+        background: $color-foreground;
+        text-align: center;
+        @extend %toolbar;
+        @extend %box-sizing-border-box;
+        [class*='button']{
+          margin-bottom: 0;
+        }
+      }
+      .to-do-list + .to-do-list{
+        margin-top: $gap;
+      }
+      //.ui-sortable, .to-do-list, .list{
+      //  background: $color-foreground;
+      //  border: 1px solid $color-border;
+      //  ul{
+      //    padding: 0;
+      //  }
+      //}
+      .ui-state-default, .list-item{
+        background: $color-foreground;
+        border: 1px solid transparent;
+        padding: 0.5*$gap;
+        @extend %flex;
+        @extend %align-items-center;
+        .push-right {
+          order: 99;
+          margin-left: auto;
+        }
+        &+li{
+          border-top: 1px solid $color-border-minor;
+        }
+        &:hover{
+          border-color: $color-important;
+          border-style: dashed;
+        }
+      }
+      .list-item-text{
+        overflow: hidden;
+      }
+      .easy-freetext-search{
+        margin-bottom: $gap;
+        position: relative;
+        input{
+          @extend %input-block;
+          &+a{
+            @extend %input-button-absolute;
+          }
+        }
+      }
+    }
+    .easy-calendar-fc {
+      margin-right: -2px !important;
+    }
+  }
+
+  @include respond-to(max-menu-collapse) {
+    padding-top: 0;
+    li + li:after {
+      border-top: 0;
+    }
+  }
+
+  @include respond-to(max-sidebar-collapse) {
+    height: .65 * $servicebar-height;
+    ul {
+      height: 100%;
+    }
+    li {
+      height: auto;
+      padding: 0;
+      & > a{
+        &[class^=icon] {
+          @include display(flex);
+          @include justify-content(center);
+          @include flex-direction(column);
+          font-size: 0.9rem;
+          height: 100%;
+          &.icon-globe {
+            display: inline-block;
+          }
+        }
+        span {
+          line-height: $gap;
+          width: $gap;
+          top: 2px;
+        }
+      }
+    }
+  }
+}

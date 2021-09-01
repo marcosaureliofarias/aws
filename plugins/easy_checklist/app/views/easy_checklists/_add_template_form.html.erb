@@ -1,0 +1,9 @@
+<%= form_tag(add_to_entity_easy_checklists_path(:entity_type => entity.class.name, :entity_id => entity.id), :remote => true, :id => 'easy_checklist_add_template') do |f| %>
+  <p>
+    <label><%= l :label_easy_checklist_new_from_template %></label>
+    <span class="input-append">
+      <%= select_tag :easy_checklist_template_id, options_from_collection_for_select(entity.easy_checklist_templates, 'id', 'name'), :label => l(:label_easy_checklist_template), :prompt => l(:label_easy_checklist_template_select_placeholder) %>
+      <%= link_to_function '', '$("#easy_checklist_add_template").submit()', :class => 'icon-save button-positive' %>
+    </span>
+  </p>
+<% end %>

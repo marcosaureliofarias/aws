@@ -1,0 +1,41 @@
+<div class="autoscroll">
+  <table>
+    <thead>
+      <tr>
+        <th><%= l('label_easy_data_template_import.assignments.file_column_position') %></th>
+        <th><%= l('label_easy_data_template_import.assignments.entity_attribute_name') %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= form_for(datatemplatesassignment, :url => {:controller => 'easy_data_template_assignments', :action => 'create'}) do |f| %>
+        <%= hidden_field_tag 'easy_data_template_id', datatemplate.id %>
+        <%= hidden_field_tag 'show_assignment', show_assignment, :id => 'show_assignment_1' %>
+        <tr>
+          <td><%= f.text_field :file_column_position -%></td>
+          <td><%= f.select :entity_attribute_name, (datatemplate.allowed_attributes.collect{|x| [l("easy_data_template_entity_attributes_select.#{datatemplate.entity_type}.#{x}"),x]}.sort+datatemplate.allowed_custom_field_attributes.sort) -%></td>
+          <td><%= f.submit l(:button_add) %></td>
+        </tr>
+      <% end %>
+      <% unless datatemplate.assignments.blank? %>
+        <tr>
+          <td colspan="3" align="center"><%= l('label_easy_data_template_import.assignments.all') %></td>
+        </tr>
+        <%= form_tag({:controller => 'easy_data_template_assignments', :action => 'update'}) do %>
+          <%= hidden_field_tag 'easy_data_template_id', datatemplate.id %>
+          <%= hidden_field_tag 'show_assignment', show_assignment, :id => 'show_assignment_2' %>
+          <% datatemplate.assignments.sort_by(&:file_column_position).each do |assignment|%>
+            <tr>
+              <td><%= text_field_tag "easy_data_template_assignments[#{assignment.id}][file_column_position]", assignment.file_column_position -%></td>
+              <td><%= select_tag "easy_data_template_assignments[#{assignment.id}][entity_attribute_name]", options_for_select((datatemplate.allowed_attributes.collect{|x| [l("easy_data_template_entity_attributes_select.#{datatemplate.entity_type}.#{x}"),x]}.sort+datatemplate.allowed_custom_field_attributes.sort), assignment.entity_attribute_name) -%></td>
+              <td><%= link_to(l(:button_delete), { :controller => 'easy_data_template_assignments', :action => 'destroy', :id => assignment.id, :easy_data_template_id => datatemplate.id, :show_assignment => '1'}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del') -%></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="3" align="center"><%= submit_tag l(:button_update) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

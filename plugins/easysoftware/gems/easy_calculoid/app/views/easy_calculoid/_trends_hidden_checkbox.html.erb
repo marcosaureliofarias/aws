@@ -1,0 +1,7 @@
+<% if Rys::Feature.active?('easy_calculoid') %>
+  <p>
+    <%= label_tag "#{block_name}[hidden]", l(:label_hidden) %>
+    <%= hidden_field_tag "#{block_name}[hidden]", '0', id: nil %>
+    <%= check_box_tag "#{block_name}[hidden]", '1', settings['hidden'].to_s.to_boolean, id: block_name + '_hidden' %>
+  </p>
+<% end %>

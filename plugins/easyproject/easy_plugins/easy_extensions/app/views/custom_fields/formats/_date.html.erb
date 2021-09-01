@@ -1,0 +1,16 @@
+<%
+  enabled = custom_field.settings['default_is_today'] == '1'
+%>
+<%= hidden_field_tag('custom_field[settings][default_is_today]', '0') %>
+<p><%= label_tag 'default_is_today', l(:field_default_is_today) %><%= check_box_tag 'custom_field[settings][default_is_today]', '1', enabled, :id => 'default_is_today', :onchange => 'if ($(this).is(":checked")) { $("#custom_field_default_value_container").hide();$("#custom_field_default_value").val(""); } else { $("#custom_field_default_value_container").show(); }' %></p>
+<div id="custom_field_default_value_container">
+  <p><%= f.date_field(:default_value, :value => @custom_field.default_value, :size => 10) %></p>
+</div>
+<%= calendar_for('custom_field_default_value') %>
+<p><%= f.text_field :url_pattern, :label => :label_link_values_to %></p>
+
+<script type="application/javascript">
+  EASY.schedule.late(function(){
+  $('#default_is_today').trigger('onchange');
+  });
+</script>

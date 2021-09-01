@@ -1,0 +1,33 @@
+<% [User.current, @project, EasyKnowledge::EasyKnowledgeGlobalCategory.new].compact.each do |category_entity| %>
+  <% category_name = category_entity.class.to_s.downcase
+  next if case category_name
+  when 'global' then !@can[:view_global_categories]
+  when 'user' then !@can[:manage_own_personal_categories]
+  when 'project' then !@can[:view_project_categories]
+  else false
+  end %>
+  <% current_categories = category_entity.send(:easy_knowledge_categories) %>
+  <% if current_categories.any? %>
+    <%= toggling_fieldset l(:"label_easy_knowledge_index_#{category_name}") do -%>
+      <%= render :partial => "easy_knowledge/categories_basic", :locals => { :categories => current_categories, :categories_with_checkboxes => true, :story => story, :form => f, :id => "#{category_name}_categories" } %>
+    <% end -%>
+  <% end -%>
+<% end -%>
+<!-- Used unchange categories -->
+<% unless story.new_record? %>
+  <% unchange_categories = Array.new; story.easy_knowledge_categories.where(EasyKnowledgeCategory.arel_table[:entity_type].not_eq(nil)).each do |used_category| %>
+    <% next if used_category.entity == User.current || used_category.entity == @project %>
+
+    <%= unchange_categories << used_category; hidden_field_tag(f.object_name + '[easy_knowledge_category_ids][]', used_category.id,:id => "#{f.object_name}_easy_knowledge_category_ids_#{used_category.id}") %>
+  <% end -%>
+  <% if unchange_categories.any? %>
+    <%= toggling_fieldset l(:label_easy_knowledge_form_edit_unchagend_categories_legend) do -%>
+       <section>
+         <%= render_project_nested_lists(unchange_categories) do |p|
+         ("<blockquote title=\"#{p.entity.to_s}\">"+content_tag(:span, l(:"label_easy_knowledge_index_#{p.entity_type.downcase}") + ' > ' + p.name, :class => 'disabled')+'</blockquote>').html_safe
+       end %>
+       </section>
+    <% end -%>
+  <% end -%>
+<% end -%>
+<%= hidden_field_tag f.object_name + '[easy_knowledge_category_ids][]' %>

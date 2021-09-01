@@ -1,0 +1,11 @@
+api.easy_money_rates do
+  EasyMoneyRateType.rate_type_cache.each do |rate_type|
+    api.easy_money_rate_type(:id => rate_type.id, :name => rate_type.translated_name) do
+      @roles.each do |role|
+        api.easy_money_rate(:id => role.id, :name => role.name) do
+          api.unit_rate(EasyMoneyRate.get_unit_rate(rate_type.id, 'Role', role.id, @project.nil? ? nil : @project.id))
+        end
+      end
+    end
+  end
+end

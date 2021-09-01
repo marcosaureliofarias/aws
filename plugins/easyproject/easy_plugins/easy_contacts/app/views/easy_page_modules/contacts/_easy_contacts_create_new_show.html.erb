@@ -1,0 +1,49 @@
+<%
+  easy_contact = @easy_page_modules_data[block_name][:easy_contact]
+  shown_fields = @easy_page_modules_data[block_name][:shown_fields]
+  only_selected = @easy_page_modules_data[block_name][:only_selected]
+  block_settings = @easy_page_modules_data[block_name][:settings]
+%>
+
+<div id="<%= block_name %>" class="my-page-updatable-attributes new-easy-contact-form">
+  <% if block_settings['show_fields_option'] == 'all' %>
+    <p><i class="indicator icon-loading icon-spin"></i></p>
+
+    <script type="text/javascript">
+        EASY.schedule.late(function () {
+            $.get('<%=  new_easy_contact_path %>', {}, function (data) {
+                $("#<%= block_name %>").html(data);
+                $("#<%= block_name %> h2.title").remove();
+                setupFileDrop();
+                EASY.utils.initFileUploads();
+                initEasyAutocomplete();
+            });
+        });
+    </script>
+  <% else %>
+    <%= labelled_form_for :"#{block_name}easy_contact", easy_contact, html: {multipart: true, id: "#{block_name}easy_contact_form", class: 'new-easy-contact-form easy-page-module-selected-fields form-box'}, url: my_create_contact_from_module_path(t: params[:t]), remote: true do |f| %>
+      <%= hidden_field_tag 'block_name', block_name %>
+      <%= hidden_field_tag 'uuid', page_module.uuid %>
+      <%= hidden_field_tag 'user_id', user.id %>
+      <%= hidden_field_tag 'show_fields_option', block_settings['show_fields_option'] %>
+      <%= hidden_field_tag 'back_url', params[:back_url] || original_url %>
+      <%= error_messages_for easy_contact %>
+
+      <div class="box">
+        <%= render partial: 'easy_page_modules/contacts/easy_contact_create_new_show_fields_only_required',
+                   locals: {easy_contact: easy_contact, settings: settings, custom_field_values: @easy_page_modules_data[block_name][:custom_field_values],
+                            user: user, block_name: block_name, shown_custom_field_ids: @easy_page_modules_data[block_name][:shown_custom_field_ids],
+                            show_fields_option: block_settings['show_fields_option'],
+                            shown_fields: shown_fields, only_selected: only_selected} %>
+      </div>
+
+      <div class="clear"></div>
+      <div class="form-actions">
+        <%= submit_tag l(:button_create), class: 'button-positive' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= include_attachment_tags %>
+<%= include_calendar_headers_tags %>

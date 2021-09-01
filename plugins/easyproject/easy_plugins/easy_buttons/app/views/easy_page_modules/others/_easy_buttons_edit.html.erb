@@ -1,0 +1,43 @@
+<%
+  available_buttons = @easy_page_modules_data[block_name][:available_buttons].map { |button|
+                        [button.name, button.entity_type, button.id]
+                      }.group_by(&:second)
+%>
+<div class="tabular">
+  <p>
+    <%= label_tag "#{block_name}[button_type]", l(:field_type) %>
+    <%= select_tag "#{block_name}[button_type]",
+      options_for_select(available_buttons.keys, settings['button_type']),
+      id: modul_uniq_id + '_type'
+    %>
+  </p>
+
+  <p id="<%= modul_uniq_id %>_all_buttons">
+    <%= label_tag "#{block_name}[button_ids]", l(:field_easy_buttons) %>
+    <% available_buttons.each do |group, buttons| %>
+      <%= select_tag "#{block_name}[button_ids]",
+        options_for_select(buttons, settings['button_ids']),
+        multiple: true,
+        size: 10,
+        disabled: true,
+        id: modul_uniq_id + group,
+        style: 'display: none'
+      %>
+    <% end %>
+  </p>
+</div>
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $("#<%= modul_uniq_id %>_type").on('change', function(){
+      var all = $("#<%= modul_uniq_id %>_all_buttons select");
+      all.prop("disabled", true);
+      all.hide();
+
+      var selected = $("#<%= modul_uniq_id%>" + this.value);
+      selected.prop("disabled", false);
+      selected.show();
+    });
+
+    $("#<%= modul_uniq_id %>_type").trigger('change');
+  });
+</script>

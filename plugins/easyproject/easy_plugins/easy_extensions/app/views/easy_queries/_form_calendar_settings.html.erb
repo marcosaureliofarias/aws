@@ -1,0 +1,9 @@
+<%
+  settings ||= query.settings
+  settings = settings['settings'] if settings.key?('settings')
+  block_name = "#{block_name}[settings]"
+%>
+<p>
+  <%= label_tag "#{block_name}[period]", l(:label_my_page_timelog_calendar_period_select) %>
+  <%= select_tag "#{block_name}[period]", options_for_select([[l('my_page_timelog_calendar_period.month'), 'month'], [l('my_page_timelog_calendar_period.week'), 'week']], settings['period']) -%>
+</p>

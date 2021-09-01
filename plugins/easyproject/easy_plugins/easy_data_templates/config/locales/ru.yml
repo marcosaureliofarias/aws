@@ -1,0 +1,170 @@
+---
+ru:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: не может быть пустым или не существует
+              empty: не может быть пустым или не существует
+        easy_data_template:
+          attributes:
+            type:
+              blank: требует заполнения или не существует
+              empty: не может быть пустым или не существует
+  button_easy_data_template_assignment: назначения
+  button_easy_data_template_edit: Редактировать шаблон
+  button_easy_data_template_export_data: Экспорт данных
+  button_easy_data_template_import: импортировать
+  button_easy_data_template_import_data: Импорт данных
+  button_easy_data_template_import_preview: предпросмотр
+  button_easy_data_template_new_export: Экспорт CSV
+  button_easy_data_template_new_import: Импорт CSV
+  button_easy_data_template_new_msproject: Импорт из MS Project
+  button_easy_data_template_settings: настройки
+  button_new_advance_import: Расширенный импорт
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Нет
+    xyes: Да
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: имя ответственного
+      assigned_to_id: ID ответственного
+      assigned_to_lastname: фамилия ответственного
+      assigned_to_login: логин ответственного
+      assigned_to_mail: эл. почта ответственного
+      author_firstname: имя автора
+      author_id: ID автора
+      author_lastname: фамилия
+      author_login: логин автора
+      author_mail: эл. почта автора
+      description: Описание задачи
+      due_date: Завершение задачи (дата)
+      estimated_hours: расчётное время на задачу (в часах)
+      id: ID задачи
+      priority_id: ID приоритета
+      priority_name: имя приоритета
+      project_id: ID проекта
+      project_name: имя проекта
+      start_date: Начало задачи (дата)
+      subject: предмет задачи
+      tracker_id: ID трекера
+      tracker_name: имя трекера
+    Project:
+      description: описание проекта
+      enabled_modules: имя модуля
+      id: ID проекта
+      is_public: Открытый (да/нет)
+      name: имя проекта
+      parent_id: ID родительского проекта
+      parent_name: имя родительского проекта
+      trackers_ids: ID трекера
+      trackers_names: имя трекера
+    TimeEntry:
+      activity: действие
+      activity_id: ID действий
+      activity_name: имя действия
+      comments: комментарий
+      easy_range_from: учёт ведётся с
+      easy_range_to: учёт ведётся до
+      hours: часы
+      issue: задача
+      issue_id: ID задачи
+      issue_subject: название задачи
+      project: проект
+      project_id: ID проекта
+      project_name: имя проекта
+      spent_on: дата
+      user: пользователь
+      user_id: ID пользователя
+    User:
+      admin: Администратор (да/нет)
+      firstname: имя пользователя
+      id: ID пользователя
+      language: язык пользователя
+      lastname: фамилия пользователя
+      login: Логин пользователя
+      mail: эл. почта пользователя
+      password: пароль
+      send_mail: уведомлять по эл. почте о входе в систему (да/нет)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Задача
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Проект
+    EasyDataTemplateTimeEntry: Учтённое время
+    EasyDataTemplateUser: Пользователь
+  easy_data_templates_plugin_description: "- Шаблоны данных для импорта и экспорта
+    данных в формате CSV"
+  easy_data_templates_plugin_name: Шаблоны данных
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Шаблоны данных
+        description: Управление шаблонами данных
+  error_during_import: При импорте произошла ошибка. Проверьте введённые данные.
+  error_easy_data_template_attachment_not_uploaded: В импорте отсутствует вложение
+  error_easy_data_template_ms_project_not_valid_xml: Вложенный XML-файл несовместим с
+    MS Project 2010 и выше.
+  field_easy_data_template_allowed_import: Импортировать
+  field_easy_do_not_export: Не экспортировать
+  label_check_preview: Проверьте данные в режиме предпросмотра
+  label_easy_data_template_assignment: Назначение полей
+  label_easy_data_template_author_name: Автор
+  label_easy_data_template_edit: Редактировать шаблоны
+  label_easy_data_template_entity_type: Объект
+  label_easy_data_template_export_new: Новый шаблон экспорта
+  label_easy_data_template_import_file: Импортировать файл
+  label_easy_data_template_import_new: Создать шаблон импорта
+  label_easy_data_template_import:
+    assignments:
+      all: заданное положение столбцов
+      entity_attribute_name: имена столбцов
+      file_column_position: положение столбца в CSV
+      new: задать расположение столбца
+    errors:
+      erow: ошибка в строке
+      errors_count: количество ошибок
+      errors_rows: некорректные строки
+      errors_rows_count: количество некорректных строк
+      errors_sum: всего
+      row: неправильный номер строки
+      show: показать некорректные строки
+    preview:
+      row: номер строки
+      table: предпросмотр
+    settings:
+      col_sep: разделитель полей
+      encoding: кодировка
+      import_all: Всё или ничего
+      new: Настройки
+      preview_rows: количество строк для предпросмотра
+      project_template: Использовать шаблон дизайна
+      quote_char: текстовый разделитель
+      return_headers: первая строка содержит имя столбца
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Исполнитель по 1 задаче)"
+    other: "(Исполнитель по %{count} задачам)"
+    zero: "(Нет задач)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Имя в MSP
+  label_easy_data_template_ms_project_user_name_in_ep: Внутреннее имя
+  label_easy_data_template_name: Имя
+  label_easy_data_template_public: общий
+  label_easy_data_template_template_type: Тип
+  label_easy_data_template_template_type_export: экспорт
+  label_easy_data_template_template_type_import: импорт
+  label_easy_data_template_user_name: Владелец
+  label_easy_data_templates: Шаблоны данных
+  label_easy_data_templates_choose_project: Выберите проект
+  label_easy_data_templates_choose_query: Выберите фильтр
+  label_easy_data_templates_source_settings: Выберите источник данных
+  label_easy_data_templates_target_settings: Выберите назначение данных
+  label_import_summaries_as_milestones: Импортировать суммарные задачи как вехи
+  notice_easy_data_templates_import_ok: Импорт прошёл успешно.
+  text_easy_data_template_ms_project_upload_file: Файл должен быть в формате XML (в
+    MS Project в верхнем меню выберите Файл -> Сохранить как -> Сохранить как XML).
+  title_easy_data_templates_apply_to_all_rows: Нажмите, чтобы установить это значение
+    для всех однотипных строк.

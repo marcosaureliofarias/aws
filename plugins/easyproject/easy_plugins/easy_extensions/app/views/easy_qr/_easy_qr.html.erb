@@ -1,0 +1,6 @@
+<% modul_uniq_id ||= ''; size ||= nil %>
+<% if easy_qr %>
+  <div id="<%= modul_uniq_id %>" class="easy-qr <%= "size-#{size}" if size %>" contenteditable="false">
+    <%= raw easy_qr.as_html %>
+  </div>
+<% end %>

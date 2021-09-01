@@ -1,0 +1,15 @@
+<%= title @easy_crm_country_value %>
+
+<div class="issue">
+  <div class="attributes">
+    <%= issue_fields_rows do |rows| %>
+      <% rows.left ::EasyCrmCountryValue.human_attribute_name(:country), format_object(@easy_crm_country_value.country) %>
+    <% end %>
+    <%= render_half_width_custom_fields_rows(@easy_crm_country_value) %>
+    <%= call_hook(:view_easy_crm_country_values_show_details_bottom, :easy_crm_country_value => @easy_crm_country_value) %>
+  </div>
+</div>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'easy_crm_country_values/sidebar' %>
+<% end %>

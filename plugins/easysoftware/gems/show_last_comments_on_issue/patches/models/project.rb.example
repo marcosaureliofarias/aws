@@ -1,0 +1,28 @@
+Rys::Patcher.add('Project') do
+
+  included do
+    # has_many :things
+
+    after_commit :show_last_comments_on_issue_ensure_something, if: -> { Rys::Feature.active?('show_last_comments_on_issue.project') }
+  end
+
+  instance_methods do
+
+    private
+
+      def show_last_comments_on_issue_ensure_something
+        puts 'Features are activated'
+      end
+
+  end
+
+  instance_methods(feature: 'show_last_comments_on_issue.project') do
+    def to_s
+      "I'am cool " + super
+    end
+  end
+
+  class_methods do
+  end
+
+end

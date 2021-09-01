@@ -1,0 +1,24 @@
+<div class="tabular">
+  <p>
+    <%= label_tag "#{block_name}_heading", l(:label_heading) %>
+    <%= page_module_settings_text_field_tag(page_module, %w[heading], placeholder: l('easy_pages.modules.project_info')) %>
+  </p>
+  <p>
+    <%= label_tag l('select_easy_page_module_project_info.label') -%>
+    <%= select_tag "#{block_name}[action]", options_for_select(@easy_page_modules_data[block_name][:select_options], settings["action"]) -%>
+  </p>
+  <p id="<%= "#{block_name}_group" %>">
+    <%= label_tag l(:label_group_plural) -%>
+    <%= select_tag "#{block_name}[group]", options_for_select(@easy_page_modules_data[block_name][:groups], settings["group"]) -%>
+  </p>
+  <%= call_hook(:view_project_info_edit_bottom, settings: settings, project: @project, block_name: block_name, page_module: page_module) %>
+</div>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $("#<%= block_name %>_action").on("change", function () {
+      var $group = $("#<%= "#{block_name}_group" %>");
+      $group.toggle(this.value === "customfields");
+    }).change();
+  });
+</script>

@@ -1,0 +1,3 @@
+<% if User.current.allowed_to_globally?(:add_issue_to_easy_calculation, {}) && @issue.in_easy_calculation_tracker? && !@issue.in_easy_calculation? %>
+  <li><%= link_to(l(:button_easy_calcucation_add_to_calculations), add_issue_easy_calculation_item_path(@issue), :class => 'icon icon-calculation-2', :title => l(:button_easy_calcucation_add_to_calculations), :method => :post, :remote => true) -%></li>
+<% end %>

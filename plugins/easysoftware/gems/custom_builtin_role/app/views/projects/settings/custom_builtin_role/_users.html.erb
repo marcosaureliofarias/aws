@@ -1,0 +1,41 @@
+<%
+if @project.users_with_builtin_roles.any?
+%>
+  <h3 style="padding-top: 30px"><%= l('custom_builtin_role.users_with_builtin_role') %></h3>
+
+  <div class="autoscroll">
+    <table class="list members">
+      <thead>
+        <tr>
+          <th><%= l(:label_member) %></th>
+          <th><%= l(:label_easy_user_type) %></th>
+          <th><%= l(:label_role) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @project.users_with_builtin_roles.each do |user| %>
+          <tr>
+            <td class="name icon icon-<%= user.class.name.downcase %>">
+              <%- if user.visible? %><%= link_to_user user %><% else %><%= user.name %><% end -%>
+            </td>
+            <td>
+              <% if User.current.easy_lesser_admin_for?(:easy_user_types) %>
+                <%= link_to user.easy_user_type.name, edit_easy_user_type_path(user.easy_user_type) %>
+              <% else %>
+                <%= user.easy_user_type.name %>
+              <% end %>
+            </td>
+            <td>
+              <% if User.current.easy_lesser_admin_for?(:roles) %>
+                <%= link_to user.easy_user_type.builtin_role.name, edit_role_path(user.easy_user_type.builtin_role) %>
+              <% else %>
+                <%= user.easy_user_type.builtin_role.name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>

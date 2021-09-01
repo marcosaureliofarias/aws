@@ -1,0 +1,58 @@
+<%= form_tag(action: 'import') do %>
+  <%= hidden_field_tag 'back_url', params['back_url'] if params['back_url'] %>
+  <% if params[:auto_mappings].present? %>
+    <% params[:auto_mappings].each do |auto_mapping| %>
+      <%= hidden_field_tag 'auto_mappings[]', auto_mapping %>
+    <% end %>
+  <% end %>
+  <% hidden = false %>
+  <% @mapping_data.each do |entity_type, entities_for_mapping, existing_entities| %>
+    <%= render partial: 'easy_xml_data/entity_mapping', locals: { entity_type: entity_type, entities_for_mapping: entities_for_mapping, existing_entities: existing_entities, hidden: hidden } %>
+    <% hidden = true %>
+  <% end %>
+  <div class="form-actions">
+    <%= button_tag l(:button_back), type: 'button', id: 'entity_mapping__button_prev_mapping', class: 'big button-positive hidden', onclick: 'EASY.easy_xml_data.changeActiveMapping("back");' %>
+    <%= button_tag l(:button_xml_data_continue), type: 'button', id: 'entity_mapping__button_next_mapping', class: "big button-positive #{@mapping_data.size < 2 ? 'hidden' : ''}", onclick: 'EASY.easy_xml_data.changeActiveMapping("next");' %>
+    <%= button_tag l(:button_xml_data_import), type: 'submit', id: 'entity_mapping__button_submit', class: "button big button-positive #{@mapping_data.size < 2 ? '' : 'hidden'}" %>
+  </div>
+<% end %>
+
+<script>
+  window.EASY = EASY || {};
+  EASY.easy_xml_data = EASY.easy_xml_data || {};
+
+  EASY.easy_xml_data = {
+
+    changeActiveMapping: function (action) {
+      var $current_mapping = $('.easy_xml_data__entity_mapping').not('.hidden');
+      var $nextActiveMapping = action == 'next' ? $current_mapping.next('.easy_xml_data__entity_mapping') : $current_mapping.prev('.easy_xml_data__entity_mapping');
+
+      $current_mapping.toggleClass('hidden');
+      $nextActiveMapping.toggleClass('hidden');
+      EASY.easy_xml_data.resolveMappingButtons($nextActiveMapping);
+    },
+
+    resolveMappingButtons: function ($active_mapping) {
+      var $prev_mapping = $active_mapping.prev('.easy_xml_data__entity_mapping');
+      var $next_mapping = $active_mapping.next('.easy_xml_data__entity_mapping');
+
+      var $prev_button = $('#entity_mapping__button_prev_mapping');
+      var $next_button = $('#entity_mapping__button_next_mapping');
+      var $submit_button = $('#entity_mapping__button_submit');
+
+      if ($prev_mapping.length > 0) {
+        $prev_button.removeClass('hidden');
+      } else {
+        $prev_button.addClass('hidden');
+      }
+
+      if ($next_mapping.length > 0) {
+        $next_button.removeClass('hidden');
+        $submit_button.addClass('hidden');
+      } else {
+        $next_button.addClass('hidden');
+        $submit_button.removeClass('hidden');
+      }
+    }
+  }
+</script>

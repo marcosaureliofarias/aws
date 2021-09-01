@@ -1,0 +1,60 @@
+<fieldset>
+  <legend><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.email_section_label') -%></legend>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_host', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.host'), :class => 'required' %>
+    <%= text_field_tag 'easy_rake_task[settings][imap][host]', task.settings['imap']['host'] %>
+
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.host_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_port', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.port') %>
+    <%= text_field_tag 'easy_rake_task[settings][imap][port]', task.settings['imap']['port'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.port_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_username', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.username'), :class => 'required' %>
+    <%= text_field_tag 'easy_rake_task[settings][imap][username]', task.settings['imap']['username'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.username_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_password', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.password'), :class => 'required' %>
+    <%= password_field_tag 'easy_rake_task[settings][imap][password]', task.settings['imap']['password'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.password_example') %></em>
+  </p>
+  <p>
+    <% task.settings['imap']['use_custom_sender'] = task.settings['imap']['use_custom_sender'] == 'true' %>
+    <%= hidden_field_tag('easy_rake_task[settings][imap][use_custom_sender]', false, :id => '') %>
+    <% box = check_box_tag('easy_rake_task[settings][imap][use_custom_sender]', true, task.settings['imap']['use_custom_sender'], :onchange => "toggleSenderMail('imap')") %>
+    <%= label_tag(:easy_rake_task_settings_imap_use_custom_sender, box + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.use_custom_sender'), :class => 'checkbox inline' ) %>
+  </p>
+  <p class="easy_rake_task_header_sender_container" style="<%= 'display:none' unless task.settings['imap']['use_custom_sender'] %>">
+    <%= label_tag 'easy_rake_task_settings_imap_sender_mail', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.sender_mail') %>
+    <%= text_field_tag 'easy_rake_task[settings][imap][sender_mail]', task.settings['imap']['sender_mail'], :disabled => !task.settings['imap']['use_custom_sender'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.sender_mail_example') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_ssl', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.ssl') %>
+    <% box = check_box_tag 'easy_rake_task[settings][imap][ssl]', '1', task.settings['imap']['ssl'] == '1', :onchange => "toggleVerifyCert('imap')" %>
+    <%= label_tag 'easy_rake_task_settings_imap_ssl', box + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.ssl_example'), :class => 'checkbox inline' %>
+  </p>
+  <p class="easy_rake_task_header_cert_container" style="<%= 'display:none' unless task.settings['imap']['ssl'] %>">
+    <% box = check_box_tag('easy_rake_task[settings][imap][dont_verify_server_cert]', '1', task.settings['imap']['dont_verify_server_cert'] == '1') -%>
+    <%= label_tag('easy_rake_task_settings_imap_dont_verify_server_cert', box + l(:label_easy_setting_dont_verify_server_cert), :class => 'checkbox inline') %>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_folders', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.folders') %>
+    <%= text_area_tag 'easy_rake_task[settings][imap][folder]', task.settings['imap']['folder'], :class => 'auto-expand' %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.folders_example') %></em>
+    <%= link_to_function('', "$.post('#{imap_folders_easy_rake_tasks_path}', $('#easy_rake_task_form').serialize())", :class => 'button icon-adressbook') %>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_move_on_success', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.move_on_success') %>
+    <%= text_field_tag 'easy_rake_task[settings][imap][move_on_success]', task.settings['imap']['move_on_success'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.move_on_success') %></em>
+  </p>
+  <p>
+    <%= label_tag 'easy_rake_task_settings_imap_move_on_failure', l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.move_on_failure') %>
+    <%= text_field_tag 'easy_rake_task[settings][imap][move_on_failure]', task.settings['imap']['move_on_failure'] %>
+    <em class="help"><%= l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.move_on_failure') %></em>
+  </p>
+</fieldset>

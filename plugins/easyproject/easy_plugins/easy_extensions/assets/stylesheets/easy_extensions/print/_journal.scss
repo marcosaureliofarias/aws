@@ -1,0 +1,23 @@
+.journal{
+  page-break-inside: avoid;
+  border-bottom: 1px solid $color-print;
+  margin-bottom: $gap;
+  padding-bottom: $gap;
+  & + &{
+
+  }
+  ul.details{
+    @include small;
+    margin: 0;
+    padding: 0;
+  }
+  .avatar-container{
+    width: $avatar-size;
+  }
+  ul.details, .wiki{
+    margin-left: $avatar-size + .25*$gap;
+  }
+  .switchFull{
+    @extend %display_none;
+  }
+}

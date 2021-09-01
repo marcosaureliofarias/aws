@@ -1,0 +1,44 @@
+<table class="list reorder">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="text-right"><%= EasyCrmCaseItem.human_attribute_name('amount') %></th>
+      <th><%= EasyCrmCaseItem.human_attribute_name('unit') %></th>
+      <th><%= EasyCrmCaseItem.human_attribute_name('name') %></th>
+      <% if EasySetting.value(:show_description_on_crm_case, @project) %>
+        <th><%=EasyCrmCaseItem.human_attribute_name('description')%></th>
+      <% end %>
+      <th class="text-right"><%= EasyCrmCaseItem.human_attribute_name('price_per_unit') %></th>
+      <th class="text-right"><%= EasyCrmCaseItem.human_attribute_name('discount') %></th>
+      <th class="text-right"><%= EasyCrmCaseItem.human_attribute_name('total_price') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% easy_crm_case.easy_crm_case_items.sorted.each do |easy_crm_case_item| %>
+      <tr>
+        <td class="center reorder-handler"><%= render_reorder_handle(easy_crm_case_item, 'easy_crm_case_item') %></td>
+        <td class="text-right"><%= format_locale_number(easy_crm_case_item.amount) %></td>
+        <td><%= easy_crm_case_item.unit %></td>
+        <td><%= easy_crm_case_item.name %></td>
+        <% if EasySetting.value(:show_description_on_crm_case, @project) %>
+          <td><%= easy_crm_case_item.description %></td>
+        <% end %>
+        <td class="text-right"><%= format_locale_number(easy_crm_case_item.price_per_unit) %></td>
+        <td class="text-right"><%= easy_crm_case_item.discount %></td>
+        <td class="text-right"><%= format_locale_number(easy_crm_case_item.total_price) %></td>
+        <td class="buttons">
+          <%= link_to '', edit_items_easy_crm_case_path(easy_crm_case), :remote => true, :class => 'icon icon-edit', :title => l(:button_edit) %>
+          <%= link_to '', easy_crm_case_item_path(easy_crm_case_item), :remote => true, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:button_delete) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="<%= EasySetting.value(:show_description_on_crm_case, @project) ? 7 : 6 %>"></td>
+    <td class="text-right"><%= format_price(easy_crm_case.price, easy_crm_case.currency) %></td>
+    <td></td>
+  </tr>
+  </tfoot>
+</table>

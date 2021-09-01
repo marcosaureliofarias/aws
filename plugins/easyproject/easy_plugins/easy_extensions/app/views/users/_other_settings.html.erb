@@ -1,0 +1,4 @@
+<p>
+  <%= label_tag 'copy_roles_from', l(:label_user_copy_roles_from) %>
+  <%= easy_autocomplete_tag 'copy_roles_from', {}, easy_autocomplete_path('users'), {root_element: 'users', html_options: {id: 'copy_roles_from_id'}} %>
+</p>

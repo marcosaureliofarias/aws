@@ -1,0 +1,10 @@
+<%= title(l(:heading_easy_entity_import_edit)) %>
+
+<%= labelled_form_for(@easy_entity_import, {:url => test_cases_csv_import_path(@easy_entity_import), :html => {:multipart => true, :class => 'tabular easy-entity-import-form'}}) do |f| %>
+  <%= error_messages_for(f.object) %>
+  <%= render(:partial => 'test_cases_csv_import/form', :locals => {:f => f}) -%>
+  <br/>
+  <p class="buttons">
+    <%= f.submit(l(:button_update), :class => 'button-positive') %>
+  </p>
+<% end %>

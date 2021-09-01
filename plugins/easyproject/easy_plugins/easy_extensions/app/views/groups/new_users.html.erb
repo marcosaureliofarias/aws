@@ -1,0 +1,6 @@
+<h2><%= l(:label_user_add) %></h2>
+
+<%= form_for @group, :url => group_users_path(@group), :method => :post, :remote => true, :class => 'form-box' do |f| %>
+  <%= render :partial => 'new_users_form' %>
+  <div class="form-actions"><%= submit_tag l(:button_save), :class => 'button-positive', :name => nil %></div>
+<% end %>

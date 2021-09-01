@@ -1,0 +1,18 @@
+<p>
+  <%= l("label_timeentry_time_watcher_previous_#{@period}_mail_body_for_group") %><br/>
+
+  <% if @reports_with_time %>
+    <% @reports_with_time.each do |report, time, from, to| %>
+      <%= link_to(report.entity.name, easy_time_entries_url(:user_id => report.entity.id, :from => from.to_s, :to => to.to_s)) %>
+      (<%= easy_format_hours(time) -%>)
+    <br/>
+    <% end %>
+  <% end %>
+</p>
+<% if Redmine::Plugin.installed?(:easy_budgetsheet) %>
+  <p>
+    <%= link_to l(:label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet), budgetsheet_url(:set_filter => '1', :spent_on => "#{@minmax[0].to_s}|#{@minmax[1].to_s}", :user_id => @user_ids.join('|'), :group_by => 'user', :only_path => false) %>
+  </p>
+<% end %>
+<br/>
+<%= link_to(@alert.caption, {:controller => 'alerts', :action => 'show', :id => @alert, :only_path => false}, :title => l(:title_alerts_show_alert, :alertname => @alert.caption)) %>

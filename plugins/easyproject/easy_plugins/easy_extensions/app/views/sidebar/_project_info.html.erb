@@ -1,0 +1,101 @@
+<% if (defined?(project) && !project.nil?)
+     sidebar_highlight ||= :project
+     sidebar_highlight_template = "sidebar/#{sidebar_highlight}_info_highlight"
+-%>
+
+  <div class="easy-entity-details-sidebar-attributes">
+    <table class="highlight">
+      <%= render :partial => sidebar_highlight_template, :locals => {:project => project} %>
+      <% unless project.due_date.blank? -%>
+        <tr>
+          <td class="due-date"><%= format_date(project.due_date) -%></td>
+          <th class="due-date"><%= l(:field_due_date) -%></th>
+        </tr>
+      <% end -%>
+      <% unless project.start_date.blank? %>
+        <tr>
+          <td class="start-date"><%= format_date(project.start_date) %></td>
+          <th class="start-date"><%= l(:field_start_date) %></th>
+        </tr>
+      <% end %>
+      <% if project.issues.exists? %>
+        <% done_ratio = project.completed_percent_with_easy_extensions({:include_subprojects => true}) %>
+        <tr>
+          <td><%= progress_bar(done_ratio, :width => '80px', :title => "#{done_ratio} %") %></td>
+          <th><%= content_tag :label, "#{l(:label_progress)}" -%></th>
+        </tr>
+      <% end %>
+      <% if easy_indicator = project.easy_indicator %>
+        <tr>
+          <td><%= format_html_entity_attribute(project.class, 'easy_indicator', easy_indicator, {}) %></td>
+          <th><%= content_tag :label, l(:label_easy_indicator, :scope => :easy_indicator) -%></th>
+        </tr>
+      <% end %>
+      <% if priority = project.priority %>
+        <tr>
+          <td class='big'><div class='wrap <%= priority.easy_color_scheme %>'><%= priority.name %></div></td>
+          <th><%= content_tag :label, l(:field_priority) -%></th>
+        </tr>
+      <% end %>
+      <%= call_hook(:view_issue_sidebar_project_info, :project => project) %>
+      <%= call_hook(:view_sidebar_project_info_bottom, :project => project) %>
+      <% if params[:controller] != 'issues' %>
+        <%= call_hook(:view_sidebar_project_info_attributes_bottom, :project => project) %>
+      <% end %>
+    </table>
+
+    <% if params[:controller] != 'issues' %>
+      </div>
+
+      <%= render :partial => 'easy_taggables/easy_taggables', :locals => { :entity => project } %>
+
+      <div class="easy-entity-details-sidebar-attributes-buttons">
+        <ul>
+          <% if User.current.allowed_to?(:view_issues, project) && User.current.allowed_to?(:view_project_activity, project) && User.current.internal_client? %>
+            <li>
+              <%= link_to l(:label_overall_activity), {:controller => 'activities', :action => 'index', :id => project}, {:class => 'button icon icon-stack', :title => l(:label_overall_activity)} %>
+            </li>
+          <% end %>
+
+          <% if User.current.allowed_to?(:add_subprojects, project) %>
+            <li>
+              <%= link_to_project_new_subproject(project) -%>
+            </li>
+          <% end %>
+
+          <% if project.allowed_to_create_subproject_from_template? %>
+            <li>
+              <%= link_to_project_new_subproject_from_template(project) -%>
+            </li>
+          <% end %>
+
+
+
+
+          <% if !project.easy_is_easy_template? && User.current.allowed_to?(:close_project, project) %>
+            <% if project.active? %>
+              <li>
+                <%= link_to l(:button_close), close_project_path(project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'button icon icon-lock', :title => l(:button_close) %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to l(:button_reopen), reopen_project_path(project), :data => {:confirm => l(:text_are_you_sure)}, :method => :post, :class => 'button icon icon-unlock', :title => l(:button_reopen) %>
+              </li>
+              <% if User.current.allowed_to?(:archive_project, @project) %>
+                <li>
+                  <%= link_to_project_archive(@project, :class => 'button icon icon-archive') if !@project.archived? -%>
+                </li>
+                <li>
+                  <%= link_to_project_unarchive(@project, :class => 'button icon icon-unlock') if @project.archived? && (@project.parent.nil? || @project.parent.active?) -%>
+                </li>
+              <% end -%>
+            <% end %>
+          <% end %>
+
+          <%= call_hook(:view_sidebar_project_info_links_bottom_new_box, :project => project) %>
+        </ul>
+      </div>
+    <% else %>
+      </div>
+    <% end %>
+<% end %>

@@ -1,0 +1,3 @@
+<div class="<%= event.css_classes %> <%= 'starting' if day == event.start_date(event.user) %> <%= 'ending' if day == event.due_date(event.user) %> approval-status-<%= event.approval_status %>">
+  <%= render :partial => 'easy_attendances/calendar_item', :locals => { :event => event, :day => day } -%>
+</div>

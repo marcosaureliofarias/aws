@@ -1,0 +1,25 @@
+<%= form_tag(journal_path(@journal),
+             :remote => true,
+             :method => 'put',
+             :id => "journal-#{@journal.id}-form") do %>
+  <div class="clear"></div>
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+  <%= text_area_tag 'journal[notes]', @journal.notes, :class => 'wiki-edit',
+                    :rows => (@journal.notes.blank? ? 10 : [[10, @journal.notes.length / 50].max, 100].min), :id => "notes-#{@journal.id}" %>
+  <% if @journal.safe_attribute? 'private_notes' %>
+    <%= hidden_field_tag 'journal[private_notes]', '0' %>
+    <%= check_box_tag 'journal[private_notes]', '1', @journal.private_notes, :id => "journal_#{@journal.id}_private_notes" %>
+    <label for="journal_<%= @journal.id %>_private_notes"><%= l(:field_private_notes) %></label>
+  <% end %>
+  <%= call_hook(:view_journals_notes_form_after_notes, {:journal => @journal}) %>
+  <p>
+    <%= submit_tag l(:button_save), :class => 'button-positive floatleft', :style => 'clear:left' -%>
+    <%= link_to l(:button_cancel), '#', :onclick => "
+      if (typeof CKEDITOR !== 'undefined') { var n; (n = CKEDITOR.instances['notes-#{@journal.id}']) && n.destroy(); };
+      $('#journal-#{@journal.id}-form').remove();
+      $('#journal-#{@journal.id}-notes').show(); return false;",
+      :class => 'button' -%>
+  </p>
+
+  <%= wikitoolbar_for "notes-#{@journal.id}", preview_issue_path(:project_id => @project, :issue_id => @journal.issue) %>
+<% end %>

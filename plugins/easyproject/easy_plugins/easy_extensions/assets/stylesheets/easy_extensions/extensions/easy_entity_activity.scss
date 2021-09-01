@@ -1,0 +1,79 @@
+.entity-activity{
+  &__form{
+    background: mix($color-background, $color-foreground);
+   .input-append-date,
+   .input-append-time{
+     margin: .25*$gap 0;
+   }
+  }
+  &__attendees{
+    &-col{
+      width: 500px;
+    }
+    label{
+      width: 100px;
+      display: inline-block;
+    }
+    .entity-array{
+      margin-left: 103px;
+    }
+  }
+  &__item{
+    border-color: transparent !important;
+    &-wrapper{
+      //& + &{
+      //  border-top: 1px solid $color-border-minor !important;
+      //}
+      &:hover{
+        tr{
+          background: $color-highlight;
+        }
+      }
+      tr:first-child{
+        td{
+          padding-bottom: 0;
+        }
+      }
+      tr:last-child{
+        border-bottom: 1px solid $color-border-minor !important;
+        td{
+          padding-top: 0;
+        }
+      }
+      tr:only-child, .entity-activity__form{
+        td{
+          padding-bottom: $gap !important;
+          padding-top: $gap !important;
+        }
+      }
+    }
+    &--desc {
+
+    }
+    &--finished {
+      &:hover{
+        &, a{
+          color: $color-text;
+        }
+      }
+      &, a{
+        color: $color-text-muted;
+      }
+    }
+  }
+}
+
+tbody.entity_activity__item--new td {
+  vertical-align: top;
+  div.splitcontentleft {
+    margin-bottom: 12px;
+  }
+  div.splitcontentleft, div.splitcontentright  {
+    width: 100%;
+    @extend %inline-flex;
+    @extend %flex-wrap-wrap;
+    label {
+      width: 100%;
+    }
+  }
+}

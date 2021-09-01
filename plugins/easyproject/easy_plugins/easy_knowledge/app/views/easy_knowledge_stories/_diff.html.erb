@@ -1,0 +1,6 @@
+<h2><%= "#{l(:label_easy_knowledge_story)} ##{@story.id}" %></h2>
+<p><%= authoring @current_version.updated_on, @current_version.author, label: :label_updated_time_by %></p>
+
+<div class="text-diff">
+  <%= simple_format_without_paragraph @diff.to_html %>
+</div>

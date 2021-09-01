@@ -1,0 +1,24 @@
+.timelog{
+  &-calendar{
+    .day-add-time{
+      text-align: center;
+    }
+    .day-time-entry{
+      text-align: center;
+      margin-top: 0.5*$gap;
+      a{
+        color: $color-positive;
+      }
+      &.too-few{
+        a{
+          color: $color-negative;
+        }
+      }
+      &.to-much, .ok{
+        a{
+          color: $color-positive;
+        }
+      }
+    }
+  }
+}

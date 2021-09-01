@@ -1,0 +1,89 @@
+---
+ar:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: هناك جدول زمني آخر في هذه
+                الفترة
+  button_copy_easy_time_sheet: نسخ الصفوف إلى الجدول الزمني الجديد
+  button_easy_timesheet_by_easy_query: الجداول الزمنية بحسب الفلتر المحفوظ
+  button_easy_timesheet_delete_with_time_entries: قم بإزالة الصف والوقت المستغرق
+  button_easy_timesheet_delete_without_time_entries: قم بإزالة الصف فقط
+  button_easy_timesheets_approve: موافقة
+  button_easy_timesheets_lock: قفل
+  button_easy_timesheets_new_row: صف جديد
+  button_easy_timesheets_reject: رفض
+  button_easy_timesheets_unlock: فتح
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: البيان الشخصي - الجداول الزمنية
+        description: عرض الجداول الزمنية
+  easy_query:
+    name:
+      easy_timesheet_query: الجداول الزمنية
+  easy_timesheets_date_must_be_first_day_of_week: يجب أن يكون اليوم الأول من الأسبوع (%{day})
+  easy_timesheets_periods:
+    day: أسبوعيًا
+    month: "شهري\r\n\r\n "
+    week: شهريًا
+  easy_timesheets_plugin_description: ''
+  easy_timesheets_plugin_name: الجداول الزمنية
+  error_timesheet_invalid_time_entries: لا يمكن إنشاء الجدول الزمني بسبب مدخلات الزمن
+    غير السارية: %{errors}
+  extended_timesheet:
+    field_custom_field_overtime_id: الرقم التعريفي لحقل الوقت الإضافي المخصص
+    label_new_monhly_timesheet: الجدول الزمني الشهري الجديد
+    label_overtime: الوقت الإضافي
+    label_set_cf_overtime_id_in_rys_plugins: وظيفة الوقت الإضافي نشطة. ييرجى اختيار
+      حقل تخصيص الوقت الإضافي %{link}.
+  field_easy_timesheet_period: الفترة
+  heading_easy_timesheets_edit: تعديل الجدول الزمني
+  heading_easy_timesheets_new: الجدول الزمني الجديد
+  heading_easy_timesheets_show: الجدول الزمني %{start_date} - %{end_date}
+  label_easy_timesheet: الجدول الزمني
+  label_easy_timesheet_approved: "تمت الموافقة؟\r\n\r\n "
+  label_easy_timesheet_approved_by: تمت الموافقة من قبل
+  label_easy_timesheet_end_date: تاريخ النهاية
+  label_easy_timesheet_lock_description: سبب الموافقة/الرفض
+  label_easy_timesheet_lock_prompt: سبب الموافقة
+  label_easy_timesheet_locked_at: الموافقة/الرفض
+  label_easy_timesheet_rejected_by: تم الرفض من قبل
+  label_easy_timesheet_unlock_prompt: سبب الرفض
+  label_easy_timesheets: الجداول الزمنية
+  label_enable_timesheet_over_time: تفقعيل وظيفة الوقت الإضافي
+  label_enabled_timesheet_periods: تفعيل الفترات
+  label_filter_group_easy_timesheet_query: جدول زمني
+  notice_easy_timesheet_both_periods: إذا اخترت الاثنين، بعض السجلات يمكنها أن تختلط
+    أو لا تعمل بشكل جيد إذا تداخلت الفترات.
+  notice_extended_timesheet_period_not_enabled: الجدول الزمني %{period} غير فعال
+  permission_create_easy_timesheets_for_other_user: إنشاء الجدول الزمني للمستخدمين
+    الآخرين
+  permission_edit_easy_timesheets: تعديل الجداول الزمنية
+  permission_edit_own_easy_timesheets: تعديل الجداول الزمنية الخاصة
+  permission_view_easy_timesheets: عرض الجداول الزمنية
+  project_module_easy_timesheets: الجداول الزمنية
+  text_easy_timesheet_destroy_cell_are_you_sure: هل تريد حقًا إزالة الوقت المستغرق؟
+  text_easy_timesheet_destroy_row_are_you_sure: هل ستقوم بإزالة صف الجدول الزمني الآن.
+    لست مضطرًا للحذف التقائي للوقت المستغرق على هذا الصف. كيف تريد الاستمرار؟
+  text_easy_timesheet_prompt_text: إضافة وقت
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: سيتم ضبط تاريخ
+    البداية تلقائيًا مع بداية الأسبوع المختار
+  text_time_sheet_copy_from: يتم تعبئة الصفوف مسبقًا من الجدول الزمني %{entity}
+  text_warning_after_time_sheet_copied: إن لم تقم بحفظ خانة واحدة على الأقل في الصف،
+    سيتم فقدان الصف.
+  title_easy_timesheet_destroy: إزالة الجدول الزمني
+  title_easy_timesheet_edit_with_period: تعديل الجدول الزمني %{period}
+  title_easy_timesheet_new_with_period: جدول زمني %{period} جديد
+  title_easy_timesheet_show: عرض الجدول الزمني
+  title_next_time_sheet: عرض الجدول الزمني التالي من %{user}
+  title_previous_time_sheet: عرض الجدول لازنتي نت %{user}
+  validation_entry_already_exists: الجدول الزمني بين (%{start_date}) و (%{end_date})
+    موجود بالفعل
+  validation_greater_than_start_date: "(%{end_date}) ينبغي أن يكون أكبر من تاريخ البداية (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: بعض المدخلات الزمنية لا يمكن تدميرها
+  validation_week_period: الفترة بين (%{start_date}) و(%{end_date}) ينبغي أن تكون
+    أسبوعًا

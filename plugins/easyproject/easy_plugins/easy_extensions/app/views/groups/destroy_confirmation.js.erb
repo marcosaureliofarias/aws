@@ -1,0 +1,16 @@
+$('#ajax-modal').html("<%= j(render(:template => 'groups/destroy_confirmation', :formats => [:html], locals: {group: @group})) %>");
+showModal('ajax-modal', '550px', '<%= l(:label_group_delete) %>');
+$('#ajax-modal').dialog( {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    }
+  ]
+});
+<% uiButtonClass = 'ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-state-hover' %>;
+$('<a />', {
+    class: 'button-negative icon icon-del <%=j uiButtonClass%>',
+    href: '<%=j group_path(@group, {back_url: back_url}) -%>',
+    'data-method': 'delete'
+  }).html($('<span />', {text: '<%=j l(:button_delete) -%>', class: 'ui-button-text'})).appendTo($(".ui-dialog-buttonpane .ui-dialog-buttonset"));

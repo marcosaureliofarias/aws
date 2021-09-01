@@ -1,0 +1,37 @@
+&__mergerequests-wrapper{
+  margin-bottom: $gap;
+  padding-bottom: $gap;
+  border-bottom: 1px solid rgba($color-border, .5);
+  &-heading{
+    //font-weight: bold;
+    margin-bottom: .5*$gap;
+  }
+  &-attribute{
+    &, &s{
+      margin: 0;
+    }
+    &-label{
+      @extend %legend;
+      width: 25%;
+      display: inline-block;
+    }
+  }
+  &-list{
+    margin: 0;
+    padding: 0;
+    margin-bottom: $gap;
+  }
+  .list .one-line-row{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+}
+.vue-modal__merge-request-detail {
+  width: 100%;
+  .vue-modal__button-panel > span {
+    margin: 0.4rem 0.2rem;
+  }
+}

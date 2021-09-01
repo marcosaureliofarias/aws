@@ -1,0 +1,92 @@
+# How to add credentials for the source (choose one option)
+#
+# 1. Run:
+#   bundle config gems.easysoftware.com API_KEY
+#
+# 2. Set environment variable:
+#   BUNDLE_GEMS__EASYSOFTWARE__COM=API_KEY
+#
+# 3. In a gemfile:
+#   Bundler.settings.temporary('gems.easysoftware.com' => API_KEY)
+#
+source 'https://gems.easysoftware.com' do
+
+  # EASYBUNDLER # gem 'rys', '~> 1.4.17'
+
+  # Rys dependencies
+  # EASYBUNDLER # gem 'rys_management', '~> 1.1.0'
+  # EASYBUNDLER # gem 'rorys', '~> 1.2.2'
+
+  # =Features into core=
+  # EASYBUNDLER # gem 'advanced_importer', '~> 2.0.0'
+  # EASYBUNDLER # gem 'custom_builtin_role', '~> 1.1.0'
+  # EASYBUNDLER # gem 'dependent_list_custom_field', '~> 1.0.7'
+  # EASYBUNDLER # gem 'easy_actions', '~> 0.5.4'
+  # EASYBUNDLER # gem 'easy_calculoid'
+  # EASYBUNDLER # gem 'easy_computed_field_from_query', '~> 1.0.0'
+  # EASYBUNDLER # gem 'easy_money_cashflow', '~> 1.0.0'
+  # EASYBUNDLER # gem 'easy-redmine', '~> 0.6.2'
+  # EASYBUNDLER # gem 'easy_service_manager'
+  # EASYBUNDLER # gem 'easy_twofa', '~> 1.2.2'
+  # EASYBUNDLER # gem 'extended_users_context_menu'
+  # EASYBUNDLER # gem 'easy_watchers_list_autocomplete', '~> 1.0.0'
+  # EASYBUNDLER # gem 'email_field_autocomplete', '~> 1.1.0'
+  # EASYBUNDLER # gem 'issue_duration', '~> 1.0.0'
+  # EASYBUNDLER # gem 'project_flags', '~> 1.1.0'
+  # EASYBUNDLER # gem 'resource_reports', '~> 1.1.0'
+  # EASYBUNDLER # gem 'search_in_administration', '~> 1.1.0'
+  # EASYBUNDLER # gem 'security_user_lock', '~> 1.0.9'
+  # EASYBUNDLER # gem 'show_last_comments_on_issue', '~> 1.1.0'
+
+  # Integrations
+  # EASYBUNDLER # gem 'easy', '~> 2.1.1'
+  # EASYBUNDLER # gem 'easy_integrations', '~> 0.2.0'
+  # EASYBUNDLER # gem 'easy_sso', '~> 1.2.2'
+  # EASYBUNDLER # gem 'easy_sso-saml_client', '~> 1.5.1'
+  # EASYBUNDLER # gem 'easy_sso-saml_server', '~> 0.2.0'
+
+  # Core-Core-Core things
+  # EASYBUNDLER # gem 'easy_core', '~> 0.0.17'
+  # EASYBUNDLER # gem 'easy_graphql', '~> 1.4.17'
+  # EASYBUNDLER # gem 'easy_monitoring', '~> 0.2.0'
+  # EASYBUNDLER # gem 'easy_oauth2', '~> 1.6.0'
+  # EASYBUNDLER # gem 'easy_swagger', '~> 3.2.3'
+
+  group :test do
+    # EASYBUNDLER # gem 'ryspec', '~> 0.2.20'
+  end
+end
+
+
+# The build.yml indicates that easy gems were built.
+# So there is no need for easygems server connection.
+#
+# Otherwise, it could fail if user doesn't have an access key.
+#
+if File.exist?(File.join(__dir__, 'gems/build.yml'))
+  Bundler.settings.temporary(
+    'mirror.https://gems.easysoftware.com' => Bundler.settings.mirror_for('https://rubygems.org')
+  )
+end
+
+# Add a packaged gems
+# `gems` copied source code for the package
+# `local` gitignored and for local developemnt
+#
+gemspecs_pattern = File.join(__dir__, '{gems,local}/*/*.gemspec')
+Dir.glob(gemspecs_pattern) do |gemspec_file|
+
+  # To prefer packaged gems before gemfile definition because
+  # - commenting gems during build process is not bullet-proof
+  # - somebody can copy gems without commenting definition
+  #
+  spec = Bundler.load_gemspec(gemspec_file)
+  @dependencies.delete_if do |dep|
+    if dep.name == spec.name && dep.type != :development
+      Bundler.ui.warn "Multiple definition of '#{spec.name}' (#{gemspec_file})"
+      true
+    end
+  end
+
+  gemspec path: File.dirname(gemspec_file)
+end

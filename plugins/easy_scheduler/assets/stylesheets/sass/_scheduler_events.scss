@@ -1,0 +1,360 @@
+&__avatar {
+  width: 16px;
+  height: 16px;
+  min-width: auto;
+  padding: 0;
+  border: 1px solid $color-foreground;
+  position: relative;
+  float: right;
+  @include box-shadow(0 0 1px 1px rgba($black, .33));
+  & + & {
+    margin-right: -.5*$gap;
+  }
+  &__agenda {
+    float: none;
+  }
+  @include transform(translateY(-2px));
+  &:hover {
+    z-index: 1;
+    @include transform(scale(2) translateY(-2px));
+  }
+  &s {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1px;
+    z-index: 2;
+    max-height: 100%;
+    max-width: 50%;
+    //overflow: hidden;
+    &:hover {
+      max-height: none;
+    }
+  }
+}
+
+&-legend {
+  @include respond-to(min-#{$scheduler__breakpoint}) {
+    @include display(flex);
+    @include flex-direction(row-reverse);
+    @include justify-content(space-between);
+  }
+  &__item {
+    position: relative;
+    white-space: nowrap;
+    &:before {
+      display: inline-block;
+      position: static;
+      @extend %calendar__sign--issue;
+    }
+  }
+  &__scheduler {
+    &--issue:before {
+      background-color: $scheduler__color-entity--issue;
+    }
+    &--meeting:before {
+      background-color: $scheduler__color-entity--meeting;
+    }
+    &--attendance:before {
+      background-color: ($scheduler__color-entity--attendance);
+    }
+    &--generic:before {
+      background-color: $scheduler__color-entity--generic;
+    }
+    &--entity_activity:before {
+      background-color: $scheduler__color-entity--entity_activity;
+    }
+    &--ical_event:before {
+      background-color: $scheduler__color-entity--ical_event;
+    }
+    &--holiday_event:before {
+      background-color: $scheduler__color-entity--holiday_event;
+    }
+    &--low:before {
+      background-color: $scheduler__color-entity--low;
+    }
+    &--high:before {
+      background-color: $scheduler__color-entity--high;
+    }
+    &--over:before {
+      background-color: $scheduler__color-entity--over;
+    }
+    @for $i from 1 through length($schemes) {
+      &--scheme-#{nth(map_keys($schemes), $i) - 1}:before {
+        background-color: nth(map_values($schemes), $i);
+      }
+      &--scheme-#{nth(map_keys($schemes), $i)}:before {
+        //background-color: nth(map_values($schemes), $i);
+      }
+    }
+    &--show_button{
+      margin-top: -.5*$gap;
+    }
+  }
+  &__main {
+    @include display(flex);
+    @include flex-basis(auto);
+    @include flex-grow(2);
+    @include flex-wrap(wrap);
+    .easy-calendar-legend__item{
+      margin-right: $gap;
+    }
+    .easy-calendar__mode--year & {
+      display: none !important;
+    }
+  }
+  &__year {
+    display: none;
+    .easy-calendar__mode--year & {
+      display: inline;
+    }
+  }
+  .easy-calendar__legend--mobile > & {
+    text-align: center;
+    @include respond-to(min-#{$scheduler__breakpoint}) {
+      display: none;
+      padding: $gap 0;
+    }
+    .push-right, .easy-calendar-legend__main {
+      float: none;
+      display: block;
+      margin: 0;
+    }
+  }
+  .easy-calendar__calendar-cont > & {
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      display: none;
+    }
+  }
+  .push-right {
+    float: none;
+    @include display(flex);
+    @include flex-grow(0);
+    @include  flex-shrink(0);
+  }
+}
+
+&__event {
+  &-title {
+    @extend %truncate;
+    display: block;
+  }
+  .dhx_title {
+    cursor: pointer; //move;
+  }
+  &--half-hour {
+    .dhx_body {
+      display: none;
+    }
+  }
+  &--read-only {
+    .dhx_title {
+      //cursor: not-allowed;
+      background-image: none;
+    }
+  }
+  &_month {
+    &-bar {
+      z-index: -1;
+      position: absolute;
+      top: ($scheduler__month-event-bar-width - 2);
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    &-indicator {
+      top: 0;
+      z-index: -1;
+      position: absolute;
+      border-top: $scheduler__month-event-bar-width solid;
+      &--full {
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+  &_year {
+    &--low {
+      &#{&}{
+        background-color: $scheduler__color-entity--low !important;
+      }
+
+    }
+    &--high {
+      &#{&} {
+        background-color: $scheduler__color-entity--high !important;
+      }
+    }
+    &--over {
+      &#{&}{
+        background-color: $scheduler__color-entity--over !important;
+      }
+    }
+  }
+  &--primary {
+    .dhx_title {
+      font-weight: normal;
+    }
+    &.dhx_cal_event_clear {
+      font-weight: bold;
+    }
+    .easy-calendar__event_month-bar {
+      @include pattern-diagonal-stripes (50deg, 10px, transparent, rgba(0,0,0,0.02));
+    }
+    .dhx_body {
+      @include pattern-diagonal-stripes (50deg, 10px, transparent, rgba(0,0,0,0.02));
+    }
+  }
+  &--primary &-name {
+    font-weight: bold;
+  }
+  $tooltip-distance: 20px;
+  &-attribute {
+    @extend %flex;
+    width: 100%;
+    @include respond-to(min-small-screen){
+      width: 50%;
+    }
+    &-label {
+      //font-weight: bold;
+      @include small;
+      display: block;
+      margin-top: .5*$gap;
+      flex-basis: 30%;
+      width: 30%;
+      max-width: 30%;
+      min-width: 30%;
+    }
+    &-value {
+
+      @include display(inline-flex);
+      @include align-items(center);
+      margin-top: .25*$gap;
+      & > img.gravatar {
+        margin-right: .5*$gap;
+      }
+    }
+  }
+  &-icon {
+    &s {
+      //display: inline;
+      //list-style: none;
+      right: 0 !important;
+      &-wrapper {
+        float: right;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        right: 36px;
+        top: $gap;
+        @extend %menu-tooltip-parent;
+        @include icon-parent('reorder');
+        &:before {
+          width: 1.5*$box-padding;
+          text-align: center;
+        }
+        &:hover:before {
+          cursor: pointer;
+        }
+      }
+    }
+    &.icon--remove-event, &.icon--remove-all-further {
+      @include icon-parent(del);
+      &:before {
+        width: 1.5*$box-padding;
+      }
+    }
+    &.icon--link{
+      &:before{
+        content: "\e0e2";
+      }
+    }
+    &-meeting{
+      %event-icon{
+
+      }
+      &--confirmed{
+        @include icon-parent(checked);
+        @extend %flex;
+        background: $color-positive;
+        color: $button-positive-color;
+
+      }
+      &--canceled{
+        @include icon-parent(question);
+        @extend %flex;
+        background: $color-important;
+        color: $button-important-color;
+      }
+      &--rejected{
+        @include icon-parent(close);
+        @extend %flex;
+        background: $color-important;
+        color: $button-important-color;
+      }
+      &--approvable{
+        @include icon-parent(question);
+        @extend %flex;
+        background: $color-notice;
+        color: $button-important-color;
+      }
+    }
+  }
+  &-data {
+    width: 100%;
+    margin-bottom: .5*$gap;
+    //flex-basis: 75%;
+    @extend %flex;
+    @extend %flex-wrap-wrap;
+
+    &:hover{
+      span.icon-edit{
+        opacity: 1;
+      }
+    }
+
+  }
+  &-modal {
+    @include respond-to(min-medium-screen) {
+      @include display(flex);
+      @include flex-wrap(wrap);
+    }
+    .title{
+      display: none;
+    }
+    &-external-sync{
+      width: 100%;
+      text-align: center;
+      margin-top: $gap;
+    }
+  }
+  &-comments{
+    .journal{
+      &-details{
+        &-container{
+          margin: 0 (-$box-padding);
+          padding: 0 $box-padding;
+          //background: mix($color-foreground, $color-background);
+        }
+      }
+    }
+  }
+  &-update{
+    margin: $gap (-$gap) 0;
+    border-top: 1px solid $color-border;
+    padding: $gap;
+    button{
+      display: block;
+      margin: $gap auto;
+      @extend %button-large;
+    }
+  }
+  &-issue-detail{
+    width: 100%;
+  }
+  &_body-action{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

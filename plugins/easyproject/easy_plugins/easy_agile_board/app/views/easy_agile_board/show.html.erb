@@ -1,0 +1,25 @@
+<h2 id="easy_sprint_head"><%= easy_sprint_head(@project, @easy_sprint) %></h2>
+<% if @easy_sprint.goal.present? %>
+  <a id="sprint_more" style="cursor: pointer" onclick="$('#show_easy_sprint_goal, #sprint_more, #sprint_less').toggleClass('hidden');"><%= l(:title_easy_agile_show_goal) %> : </a>
+  <a class="hidden " id="sprint_less" style="cursor: pointer" onclick="$('#show_easy_sprint_goal, #sprint_more, #sprint_less').toggleClass('hidden');">
+    <%= l(:title_easy_agile_hide_goal) %> :
+  </a>
+  <div class="wiki easy-entity-details-description kicker hidden" id="show_easy_sprint_goal">
+    <%= textilizable(@easy_sprint, :goal) %>
+  </div>
+<% end %>
+<div id="agile_board_container">
+  <%#= render partial: 'easy_agile_board/coworkers', locals: {project: @project, easy_sprint: @easy_sprint, coworkers: @coworkers} %>
+
+  <div class="sprint-container" data-sprint_id="<%= @easy_sprint.id %> " id="scrum-sprint-container"></div>
+</div>
+
+<script type="text/javascript">
+  EasyGem.loadModule("easyAgile", function (agile) {
+    agile.scrumLoader("#scrum-sprint-container", '<%= raw output_data_easy_queries_path(@query.to_params.merge(output: 'scrum', format: 'json')) %>', '<%= EasySetting.value('scrum_output_setting')['default_swimlane'] %>');
+  });
+</script>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'easy_agile_board/sidebar', locals: { project: @project, easy_sprint: @easy_sprint } %>
+<% end %>

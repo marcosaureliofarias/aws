@@ -1,0 +1,70 @@
+<%= render :partial => 'action_menu' %>
+
+<%= title l(:label_workflow) %>
+<%= render :partial => 'tabs' %>
+
+<div class="tab-content">
+  <%= render(:partial => 'workflows/workflow_form') %>
+
+  <% if @trackers && @roles && @statuses.any? %>
+    <%= form_tag({}, :id => 'workflow_form', :class => 'form' ) do %>
+      <%= @trackers.map {|tracker| hidden_field_tag 'tracker_id[]', tracker.id}.join.html_safe %>
+      <%= @roles.map {|role| hidden_field_tag 'role_id[]', role.id}.join.html_safe %>
+      <%= hidden_field_tag 'used_statuses_only', params[:used_statuses_only] %>
+
+      <%= render :partial => 'form', :locals => {:name => 'always', :workflows => @workflows['always']} %><br/>
+
+      <%= toggling_fieldset( l(:label_additional_workflow_transitions_for_author), :id => 'author_workflows') do %>
+        <%= render :partial => 'form', :locals => {:name => 'author', :workflows => @workflows['author']} %>
+      <% end %>
+
+
+      <%= toggling_fieldset( l(:label_additional_workflow_transitions_for_assignee), :id => 'assignee_workflows') do %>
+        <%= render :partial => 'form', :locals => {:name => 'assignee', :workflows => @workflows['assignee']} %>
+      <% end %>
+
+      <script type="application/javascript">
+        EASY.schedule.main(function () {
+          var data = {type: "multivalueselect", name: "test", source: workflowOptions, title: ' '};
+          var $statuses = $('.select-workflow-status');
+          $statuses.each(function () {
+            var $me = $(this);
+            $me.wrap('<span class="editable-parent"></span>');
+            $me.editable(data)
+              .attr('title', I18n.titleInlineEditable);
+            $('<span/>')
+              .addClass('icon-edit')
+              .attr('title', I18n.titleInlineEditableAll)
+              .css('z-index', 2)
+              .insertAfter($me)
+              .click(function () {
+                $(this).prev().editable('toggle');
+                return false;
+              });
+          });
+        });
+      </script>
+
+      <div class="form-actions">
+        <%= submit_tag l(:button_save), :class => 'button-positive' %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <script type="application/javascript">
+    EASY.schedule.late(function () {
+      $("a[data-expands]").click(function (e) {
+        e.preventDefault();
+        var target = $($(this).attr("data-expands"));
+        if (target.attr("multiple")) {
+          target.attr("multiple", false);
+          target.find("option[value=all]").show();
+        } else {
+          target.attr("multiple", true);
+          target.find("option[value=all]").attr("selected", false).hide();
+        }
+      });
+    });
+  </script>
+</div>
+<%= call_hook(:view_workflows_edit_bottom, trackers: @trackers, roles: @roles, statuses: @statuses, workflows: @workflows) %>

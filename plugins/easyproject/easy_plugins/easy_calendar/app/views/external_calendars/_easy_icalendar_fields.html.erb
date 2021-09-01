@@ -1,0 +1,8 @@
+<% wrapp ||= false %>
+<% if wrapp %>
+  <div class="nested-fields">
+    <%= render 'external_calendars/easy_icalendar_nested_fields', f: f %>
+  </div>
+<% else %>
+  <%= render 'external_calendars/easy_icalendar_nested_fields', f: f %>
+<% end %>

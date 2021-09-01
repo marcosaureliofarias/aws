@@ -1,0 +1,10 @@
+<%= l(:label_alerts_my_reports) %>
+<%= @reports_url %>
+
+<% @reports.each do |report|
+  next if report.entity.nil? %>
+  *<%= report.alert.type.translated_name -%>* <%= render :partial => report.alert.rule.get_render_view_email_plain, :locals => { :report => report} %>
+
+  <%= render :partial => 'alert_mailer/easy_query_columns', :locals => { :query => @query, :report => report} -%>
+<% end %>
+<%= link_to(@alert.caption, {:controller => 'alerts', :action => 'show', :id => @alert, :only_path => false}, :title => l(:title_alerts_show_alert, :alertname => @alert.caption)) %>

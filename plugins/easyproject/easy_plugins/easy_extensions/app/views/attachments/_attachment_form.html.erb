@@ -1,0 +1,7 @@
+<%= call_hook(:view_attachments_form_top, {:container => container}) %>
+<%= form_tag(new_attachment_for_entity_path(:entity_type => container.class.name, :entity_id => container.id), :multipart => true, :id => 'attachment_form' ) do %>
+  <%= back_url_hidden_field_tag %>
+  <div class="gray-background box">
+    <%= render(:partial => 'attachments/form', :locals => {:container => container}) %>
+  </div>
+<% end %>

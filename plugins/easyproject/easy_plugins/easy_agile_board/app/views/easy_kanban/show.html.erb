@@ -1,0 +1,11 @@
+<div id="kanban-placeholder"></div>
+
+<script type="text/javascript">
+  EasyGem.loadModule("easyAgile", function (agile) {
+    agile.kanbanLoader("#kanban-placeholder", '<%= raw output_data_easy_queries_path(@query.to_params.merge(output: 'kanban', project_id: @project, format: 'json')) %>', '<%= EasySetting.value('kanban_output_setting')['default_swimlane'] %>');
+  });
+</script>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'easy_kanban/sidebar', locals: { project: @project, easy_sprint: nil, hide_show_action: true } %>
+<% end %>

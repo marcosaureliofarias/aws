@@ -1,0 +1,5 @@
+<div class="box">
+  <%= toggling_fieldset( l(:label_easy_helpdesk_alerts), :collapsed => true) do %>
+    <%= render :partial => 'easy_helpdesk_projects/alerts', :locals => {:f => f, :options => options} %>
+  <% end %>
+</div>

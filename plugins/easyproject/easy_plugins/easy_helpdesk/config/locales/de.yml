@@ -1,0 +1,492 @@
+---
+de:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: Einstellungen
+      easy_helpdesk_mail_template:
+        body_html: E-Mail-Text (HTML)
+        body_plain: E-Mail-Text (KLARTEXT)
+        issue_status_id: Aufgabenstatus
+        mailboxes: 'Für Postfach verwenden:'
+        reply_to: Antworten auf
+        sender: Absender
+        subject: Betreff
+      easy_helpdesk_project_matching:
+        domain_name: Domainname
+      easy_helpdesk_project_sla:
+        base: SLA
+    models:
+      easy_helpdesk_mail_template: E-Mail-Vorlage
+  aggregated_periods:
+    half-yearly: Halbjährlich
+    quarterly: Vierteljährlich
+    yearly: Jährlich
+  button_easy_helpdesk_add_domain_name: E-Mail oder Domain hinzufügen
+  button_easy_helpdesk_add_mail_template: E-Mail-Vorlage hinzufügen
+  button_easy_helpdesk_add_mailbox: Postfach hinzufügen
+  button_easy_helpdesk_add_project: Projekt hinzufügen
+  button_easy_helpdesk_add_project_from_sidebar: Zu Help Desk hinzufügen
+  button_easy_helpdesk_add_signature: Unterschrift hinzufügen
+  button_easy_helpdesk_add_sla: SLA hinzufügen
+  button_easy_helpdesk_all_mail_templates_index: Alle E-Mail-Vorlagen
+  button_easy_helpdesk_all_mailboxes_index: Alle Postfächer
+  button_easy_helpdesk_all_projects_index: Alle Help-Desk-Projekte
+  button_easy_helpdesk_mail_templates_index: Vorlagenliste
+  button_easy_helpdesk_mailboxes_index: Postfächerliste
+  button_easy_helpdesk_projects_index: Projektliste
+  button_easy_helpdesk_reports_index: Berichte
+  button_easy_helpdesk_settings_index: Help-Desk-Einstellungen
+  confirm_edit_remaining_hours: Dieses Feld wird im Hintergrund berechnet, sind Sie
+    sicher, dass Sie es manuell bearbeiten möchten?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_name: Help Desk
+  easy_helpdesk_plugin_description: "- Komplexe Help-Desk-Lösung"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Help Desk
+    modules:
+      easy_helpdesk_create_mail_template_button: Schaltfläche für E-Mail-Vorlage erstellen
+      easy_helpdesk_create_mailbox_button: Schaltfläche für Postfach erstellen
+      easy_helpdesk_mailboxes: Help-Desk-Postfächer
+      easy_helpdesk_mailtemplates: Help Desk - Mailvorlagen
+      easy_helpdesk_project_query: Help-Desk-Projekte aus Filtern
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: Help-Desk-Mailvorlagen
+        description: Help-Desk-Mailvorlagen
+    easy_helpdesk_mailboxes:
+      index:
+        caption: Help-Desk-Postfächer
+        description: Help-Desk-Postfächer anzeigen
+    easy_helpdesk:
+      index:
+        caption: Help Desk
+        description: Help-Desk-Dashboard anzeigen
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Help Desk - Projekte
+      easy_helpdesk_report_monthly_query: Help Desk - monatliche Berichte
+      easy_helpdesk_report_yearly_query: Help Desk - jährliche Berichte
+      easy_sla_event_query: DLV-Ereignisse
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Private Filter für Projekte in Help Desk
+        easy_helpdesk_report_monthly_query: Private Filter für monatliche Berichte
+          in Help Desk
+        easy_helpdesk_report_yearly_query: Private Filter für jährliche Berichte in
+          Help Desk
+      public:
+        easy_helpdesk_project_query: Öffentliche Filter für Projekte in Help Desk
+        easy_helpdesk_report_monthly_query: Öffentliche Filter für monatliche Berichte
+          in Help Desk
+        easy_helpdesk_report_yearly_query: Öffentliche Filter für jährliche Berichte
+          in Help Desk
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Help Desk - aggregierte Stunden berechnen
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Help Desk - automatische Aktualisierung von Tickets
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Help Desk – Empfangen von E-Mails
+      settings:
+        imap:
+          allow_override: Aktualisieren von Aufgabenattributen aktivieren
+          allow_override_example: 'Beispiel: Tracker, Priorität - diese Attribute
+            können per Mail geändert werden'
+          application_section_label: Andere Einstellungen
+          category_example: 'Beispiel: Kategorie - neue Aufgaben werden Kategorie
+            Kategorie haben'
+          email_section_label: Postfach-Einstellungen
+          folder: Ordner
+          folder_example: 'IMAP-Ordner zum Lesen (Standard: POSTEINGANG, zur Auswahl
+            des Ordners verwenden Sie "/" Beispiel: Posteingang/Vertrieb)'
+          folders: Ordner zum Lesen
+          folders_example: 'IMAP-Ordner zum Lesen (einer pro Zeile) (STandard: POSTEINGANG,
+            zur Auswahl des Ordners verwenden Sie "/" Beispiel: Posteingang/Vertrieb)'
+          host: Host
+          host_example: 'Beispiel: mail.company.com'
+          label: IMAP
+          move_on_failure: Bei Misserfolg verschieben nach
+          move_on_failure_example: Mails, die ignoriert wurden, in den Ordner POSTFACH
+            verschieben
+          move_on_success: Bei Erfolg verschieben nach
+          move_on_success_example: Mails, die erfolgreich empfangen wurden, in den
+            Ordner POSTFACH verschieben, sonst werden sie gelöscht
+          no_permission_check: Keine Überprüfung der Benutzerrechte
+          no_permission_check_example: ''
+          password: Passwort
+          password_example: 'Beispiel: Geheimespasswort'
+          port: Port
+          port_example: 'Beispiel: 143'
+          priority_example: 'Beispiel: Hoch - neue Aufgaben werden die Priorität Hoch
+            haben'
+          project_example: 'Beispiel: 205 - neue Aufgaben werden zur Projekt-ID 205
+            erstellt'
+          sender_mail: Absender
+          sender_mail_example: 'Beispiel: support@company.com'
+          ssl: SSL
+          ssl_example: SSL-Authentifizierung verwenden
+          status_example: 'Beispiel: Neu - neue Aufgaben werden den Status Neu haben'
+          tracker_example: 'Beispiel: Fehler - neue Aufgaben werden den Tracker Fehler
+            haben'
+          unknown_user: Unbekannter Benutzer
+          unknown_user_example: akzeptieren - Anonymer Benutzer wird verwendet; erstellen
+            - Benutzer wird aus der Mail erstellt; konkreter Login - dieser Benutzer
+            wird verwendet
+          use_custom_sender: Einen anderen Absender verwenden
+          username: Benutzer
+          username_example: 'Beispiel: accessuser@domain.com'
+        pop3:
+          allow_override: Aktualisieren von Aufgabenattributen aktivieren
+          allow_override_example: 'Beispiel: Tracker, Priorität - diese Attribute
+            können per Mail geändert werden'
+          apop: APOP
+          apop_example: APOP-Authentifizierung verwenden
+          application_section_label: Andere Einstellungen
+          category_example: 'Beispiel: Kategorie - neue Aufgaben werden die Kategorie
+            Kategorie haben'
+          delete_unprocessed: Unbearbeitete löschen
+          delete_unprocessed_example: E-Mails löschen, die nicht bearbeitet werden
+            können
+          email_section_label: Postfach-Einstellungen
+          host: Host
+          host_example: 'Beispiel: mail.company.com'
+          label: POP3
+          no_permission_check: Keine Überprüfung der Benutzerrechte
+          no_permission_check_example: ''
+          password: Passwort
+          password_example: 'Beispiel: geheimespasswort'
+          port: Port
+          port_example: 'Beispiel: 110'
+          priority_example: 'Beispiel: Hoch - neue Aufgaben werden die Priorität Hoch
+            haben'
+          project_example: 'Beispiel: 205 - neue Aufgaben werden zur Projekt-ID 205
+            erstellt'
+          sender_mail: Absender
+          sender_mail_example: support@company.com
+          status_example: 'Beispiel: Neu - neue Aufgaben werden den Status Neu haben'
+          tracker_example: 'Beispiel: Fehler - neue Aufgaben werden den Tracker Fehler
+            haben'
+          unknown_user: Unbekannter Benutzer
+          unknown_user_example: akzeptieren - Anonymer Benutzer wird verwendet; erstellen
+            - Benutzer wird aus der Mail erstellt; konkreter Login - dieser Benutzer
+            wird verwendet
+          use_custom_sender: Einen anderen Absender benutzen
+          username: Benutzer
+          username_example: 'Beispiel: accessuser@domain.com'
+  error_easy_helpdesk_project_sla_hours_fields_empty: Die Felder „Stunden zur Beantwortung“
+    und „Stunden zur Lösung“ dürfen nicht beide leer sein. Bitte füllen Sie eines
+    davon aus.
+  error_easy_sla_hours_mode_greater_than: "%{title} %{to} muss größer sein als %{from}"
+  error_update_easy_setting_helpdesk: Einstellung kann nicht gespeichert werden
+  field_aggregated_hours: Aggregierte Help-Desk-Stunden
+  field_aggregated_hours_period: Aggregierter Zeitraum
+  field_aggregated_hours_remaining: Verbleibende Help-Desk-Stunden
+  field_aggregated_hours_start_date: Anfangsdatum der Aggregation
+  field_automatically_issue_closer_enable: Automatische Ticketaktualisierung aktivieren?
+  field_date_to_response: DLV (Antwortdatum)
+  field_date_to_solve: DLV (Lösungsdatum)
+  field_default_for_mailbox: Standard für das Postfach
+  field_easy_helpdesk_has_sla: Hat DLV
+  field_easy_helpdesk_hours_to_response_before_expired: Stunden zur Beantwortung
+  field_easy_helpdesk_hours_to_solve_before_expired: Stunden zur Lösung
+  field_easy_helpdesk_ignorate_suspend_statuses: DLV-Ereignisse aus allen Status erstellen
+  field_easy_helpdesk_mail_template: 'Schnelle E-Mail aus der Vorlage an den Kunden
+    senden:'
+  field_easy_helpdesk_need_reaction: Reaktion erforderlich?
+  field_easy_helpdesk_project_keyword: Schlüsselwort für das Projekt
+  field_easy_helpdesk_project_matching:
+    domain_name: E-Mail oder Domain
+    email_field_from: wird dem Feld VON entnommen
+    email_field_to: wird dem Feld AN entnommen
+  field_easy_helpdesk_project_monthly_hours: Monatliche Stunden des vertraglichen
+    Help Desks
+  field_easy_helpdesk_project_sla:
+    blank_keyword: DLV-Name fehlt
+    hours_to_response: Stunden für die Antwort
+    hours_to_solve: Stunden für die Lösung
+    keyword: DLV-Schlüsselwort
+    title: Name der DLV
+  field_easy_helpdesk_project_spent_time_current_month: Stunden an HD gearbeitet (diesen
+    Monat)
+  field_easy_helpdesk_project_spent_time_last_month: Stunden an HD gearbeitet (letzten
+    Monat)
+  field_easy_helpdesk_project_spent_time_total: Gesamter Zeitaufwand an HD
+  field_easy_helpdesk_ticket_owner: Ticketinhaber
+  field_easy_reopen_at: Wiedereröffnet am
+  field_easy_response_date_time: DLV (Antwort)
+  field_easy_time_to_solve_paused_at: DLV pausiert am
+  field_email_footer: E-Mail-Fußzeile
+  field_email_header: E-Mail-Kopf
+  field_first_response: Erste Antwort
+  field_has_easy_sla_event: Hat DLV-Ereignisse
+  field_hide_sla_data: DLV-Daten ausblenden
+  field_hours_mode_from: DLV-Arbeitszeiten
+  field_hours_to_response: DLV (Antwort)
+  field_hours_to_solve: DLV (Lösung)
+  field_is_under_helpdesk: Ist unter Help Desk
+  field_issue_closer_done_issue_status: Status ändern zu
+  field_issue_closer_done_issue_user: und zuweisen an
+  field_issue_closer_inactive_interval: und es gibt keine Aktualisierung innerhalb
+    von
+  field_issue_closer_observe_issue_status_id: im Status
+  field_monitor_due_date: Fälligkeitsdatum der Support-Tickets überwachen
+  field_monitor_spent_time: Zeitaufwand der Support-Tickets überwachen
+  field_monthly_hours: Monatliche Stunden des vertraglichen Help Desks
+  field_occurence_time: Ereigniszeit
+  field_sla_resolve: DLV-Lösung
+  field_sla_resolve_fulfilment: DLV-Lösungserfüllung
+  field_sla_response: DLV-Antwort
+  field_sla_response_fulfilment: DLV-Antworterfüllung
+  field_use_working_time: DLV basierend auf der Arbeitszeit zählen
+  heading_easy_helpdesk_index: Help Desk
+  heading_easy_helpdesk_mail_templates_edit: E-Mail-Vorlage bearbeiten
+  heading_easy_helpdesk_mail_templates_index: E-Mail-Vorlagen
+  heading_easy_helpdesk_mail_templates_new: Neue E-Mail-Vorlage
+  heading_easy_helpdesk_mail_templates_show: Detail der E-Mail-Vorlage
+  heading_easy_helpdesk_mailboxes_edit: Postfach bearbeiten
+  heading_easy_helpdesk_mailboxes_index: Help-Desk-Postfächer
+  heading_easy_helpdesk_mailboxes_new: Neues Postfach
+  heading_easy_helpdesk_projects_edit: Projekt bearbeiten
+  heading_easy_helpdesk_projects_index: Help-Desk-Projekte
+  heading_easy_helpdesk_projects_new: Neues Help-Desk-Projekt
+  heading_easy_helpdesk_projects_show: Projektdetail
+  heading_easy_helpdesk_reports_index: Help Desk - Berichte
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Monatlicher Bericht über die
+    vorausbezahlten Stunden
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Jährlicher Bericht über die
+    vorausbezahlten Stunden
+  heading_easy_helpdesk_settings: Einstellungen
+  hint_automatically_issue_closer_enable: ''
+  issue_closer_inactive_interval_units:
+    days: Tage
+    hours: Stunden
+  label_automatically_issue_closer: Automatische Aktualisierung von Tickets, wenn
+    diese
+  label_copy_settings_sla_from_project: DLV-Einstellungen aus dem Projekt kopieren
+  label_easy_hekodesk_additional_task_info_received_emails: Bearbeitete Mails
+  label_easy_helpdesk: Help Desk
+  label_easy_helpdesk_actual_budget: Help-Desk-Stunden für diesen Monat
+  label_easy_helpdesk_actual_budget_to_spend: Verbleibende Stunden
+  label_easy_helpdesk_aggregated_from_last_period: Kumuliert aus dem letzten Zeitraum
+  label_easy_helpdesk_alerts: Benachrichtigungseinstellungen
+  label_easy_helpdesk_allow_custom_sender: Benutzerdefinierten Absender zulassen (pro
+    Projekt)
+  label_easy_helpdesk_allow_override: Aktualisieren von Aufgabenattributen aktivieren
+  label_easy_helpdesk_auto_issue_closer_settings:
+    change: Ticketfelder ändern
+    notify: E-Mail aus Vorlage senden
+  label_easy_helpdesk_client_response_status: Status nach der Antwort des Kunden ändern
+    in
+  label_easy_helpdesk_domain_name: Mail-Domain
+  label_easy_helpdesk_emails: E-Mail-Einstellungen – Kopf- und Fußzeile
+  label_easy_helpdesk_enable_email_footer: Fußzeile für dieses Projekt ändern?
+  label_easy_helpdesk_enable_email_header: Kopfzeile für dieses Projekt ändern?
+  label_easy_helpdesk_hours_comulated: Kumulierte Stunden
+  label_easy_helpdesk_hours_comulated_range: von %{from} bis %{to}
+  label_easy_helpdesk_hours_per_month: Arbeitsstunden in diesem Monat
+  label_easy_helpdesk_ignore_cc: CC der empfangenen E-Mails ignorieren
+  label_easy_helpdesk_mail_signature: Help Desk - Signatur
+  label_easy_helpdesk_matching: E-Mails, Domains, Schlüsselwörter, die in diesem Projekt
+    bearbeitet wurden
+  label_easy_helpdesk_message_above_variables: Aufgabenkommentar wird über der Mailvorlage
+    angezeigt
+  label_easy_helpdesk_need_reaction: Reaktion erforderlich!
+  label_easy_helpdesk_project_helpdesk_tab: Help Desk
+  label_easy_helpdesk_project_managed_by_helpdesk: Help-Desk-Einstellungen
+  label_easy_helpdesk_project_plural: Help-Desk-Projekte
+  label_easy_helpdesk_projects_sla_working_time_calendar: DLV-Arbeitstage
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: DLV zurücksetzen, nachdem
+    die Aufgabe wieder geöffnet wurde
+  label_easy_helpdesk_sender: Absender
+  label_easy_helpdesk_sender_current_user: Aktuell angemeldeter Benutzer
+  label_easy_helpdesk_sender_is_user: Absender ist ein angemeldeter Benutzer
+  label_easy_helpdesk_sender_mailbox_address: Postfachadresse
+  label_easy_helpdesk_sender_redmine_default: Standard von E-Mail-Benachrichtigung
+  label_easy_helpdesk_signature: Signatur
+  label_easy_helpdesk_signature_name: Signaturname
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Automatisch generierte E-Mails
+    akzeptieren
+  label_easy_helpdesk_sla: DLV-Einstellungen - Prioritäten, Zeit zum Lösen eines Tickets
+  label_easy_helpdesk_sla_start_states: DLV für das Ticket zählen, wenn der Status
+    wie folgt ist
+  label_easy_helpdesk_sla_stop_states: DLV für das Ticket aussetzen, wenn der Status
+    wie folgt ist
+  label_easy_sla_event: DLV-Ereignis
+  label_easy_sla_events: DLV-Ereignisse
+  label_easy_sla_events_reports: DLV-Berichte
+  label_filter_group_easy_helpdesk_project_query: Help Desk - Projekt
+  label_filter_group_easy_helpdesk_report_monthly_query: Help Desk - Bericht
+  label_filter_group_easy_helpdesk_report_query: Help Desk - Bericht
+  label_filter_group_easy_helpdesk_report_yearly_query: " Help Desk - Bericht"
+  label_filter_group_easy_sla_event_query: DLV-Ereignis
+  label_filter_show_spent_time_current_month_equal_to_zero: Arbeitsstunden in HD (diesen
+    Monat) sind Null
+  label_filter_show_spent_time_last_month_equal_to_zero: Arbeitsstunden in HD (letzten
+    Monat) sind Null
+  label_issue_bottom_from_easy_helpdesk: Erstellt von Help Desk (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Monatliche Vertragsstunden
+  label_sla_calendar_settings: Kalendereinstellungen
+  label_tab_sla_events: DLV-Ereignisse
+  permission_manage_easy_helpdesk: Help Desk verwalten
+  permission_manage_easy_helpdesk_project: Help-Desk-Projekte verwalten
+  permission_manage_easy_sla_events: DLV-Ereignisse verwalten
+  permission_view_easy_helpdesk_sla: SLAs für Aufgaben anzeigen
+  permission_view_easy_sla_events: DLV-Ereignisse anzeigen
+  project_module_easy_helpdesk: Help Desk
+  setting_easy_helpdesk_custom_sender: Help-Desk-Absender
+  text_easy_helpdesk_change_default_sender: Diese Einstellung ändert nichts am Antwortfeld
+  text_easy_helpdesk_custom_sender: Standardmäßigen Help-Desk-Absender überschreiben.
+    Leer lassen, um diese Funktion zu deaktivieren.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: aktueller Beauftragter
+    author: aktueller Autor
+    date: aktuelles Datum
+    mail_to: E-Mail an
+    spent_time: Zeitaufwand für die Aufgabe
+    task_closed_on: Aufgabe abgeschlossen am Datum
+    task_description: Aufgabenbeschreibung
+    task_done_ratio: Anteil der erledigten Aufgabe
+    task_due_date: Fälligkeitsdatum der Aufgabe
+    task_estimated_hours: Geschätzte Stunden für die Aufgabe
+    task_history: Verlauf aller Kommentare der Aufgabe
+    task_id: die aktuelle Aufgaben-ID
+    task_id_without_hash: die aktuelle Aufgaben-ID ohne Raute
+    task_last_journal: Letzter öffentlicher Kommentar der Aufgabe
+    task_note: der letzte Kommentar zur Aufgabe
+    task_priority: Aufgabenpriorität
+    task_project: Projektname
+    task_public_url: öffentliche URL der Aufgabe
+    task_start_date: Anfangsdatum der Aufgabe
+    task_status: Aufgabenstatus
+    task_subject: das aktuelle Aufgabenthema
+    task_tracker: Aufgabentracker
+    user_first_name: Vorname des aktuellen Benutzers
+    user_last_name: Nachname des aktuellen Benutzers
+    user_name: vollständiger Name des aktuellen Benutzers
+    user_signature: Signatur des aktuellen Benutzers
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Betreff und Mailtext können dynamischen Text enthalten:'
+  - "%task_id% (Platzhalter für die aktuelle Aufgaben-ID)"
+  - "%task_subject% (Platzhalter für das aktuelle Aufgabenthema)"
+  - "%task_note% (Platzhalter für den letzten Kommentar zur Aufgabe)"
+  - "%time_spent% (Platzhalter für den Verlauf aller nicht-privaten Kommentare der
+    Aufgabe)"
+  - "%assignee% (Platzhalter für den Zeitaufwand für die Aufgabe)"
+  - "%assignee% (Platzhalter für den aktuellen Beauftragten)"
+  - "%user_signature% (Platzhalter für die Signatur des aktuellen Benutzers)"
+  - "%date% (Platzhalter für das aktuelle Datum)"
+  - "%task_tracker% (Platzhalter für den Aufgabentracker)"
+  - "%task_project% (Platzhalter für den Projektnamen)"
+  - "%task_description% (Platzhalter für die Aufgabenbeschreibung)"
+  - "%task_status% (Platzhalter für den Aufgabenstatus)"
+  - "%task_priority% (Platzhalter für die Aufgabenpriorität)"
+  - "%task_estimated_hours% (Platzhalter für die geschätzten Stunden der Aufgabe)"
+  - "%task_done_ratio% (Platzhalter für den Anteil der erledigten Aufgaben)"
+  - "%task_public_url% (Platzhalter für die öffentliche URL der Aufgabe)"
+  - "%task_closed_on% (Platzhalter für Aufgabe geschlossen am Datum)"
+  - "%task_due_date% (Platzhalter für das Fälligkeitsdatum der Aufgabe)"
+  - "%task_start_date% (Platzhalter für das Anfangsdatum der Aufgabe)"
+  - "%user_name% (Platzhalter für den vollständigen Namen des aktuellen Benutzers)"
+  - "%user_first_name% (Platzhalter für den Vornamen des aktuellen Benutzers)"
+  - "%user_last_name% (Platzhalter für den Nachnamen des aktuellen Benutzers)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Betreff und Mailtext können
+    dynamischen Text enthalten:'
+  text_easy_helpdesk_mail_template_issue_status_id: Ermöglicht es, eine Postfach-Vorlage
+    an einen bestimmten Aufgabenstatus zu binden. Durch die Auswahl des Standardstatus
+    (mit dem Aufgaben erstellt werden) wird diese Vorlage nach der Erstellung der
+    Aufgabe aus einer E-Mail automatisch als Antwort verwendet.
+  text_easy_helpdesk_mail_template_replacement_for: Platzhalter für
+  text_easy_helpdesk_mail_template_reply_to: "(Herr Beispiel) - Mail ist hier nicht
+    erlaubt"
+  text_easy_helpdesk_mail_template_reply_to2: Das "Antwort-" und "Absenderfeld werden"
+    aus der Postfachvorlage übernommen, um die Kommunikation innerhalb einer Aufgabe
+    aufrechtzuerhalten
+  text_easy_helpdesk_mailbox_too_long_to_process: Die Bearbeitung dieses Postfachs
+    dauert zu lange - ohne Antwort des Servers. Das wird wahrscheinlich durch zu viele
+    E-Mails im Postfach verursacht. Bitte entfernen Sie alte E-Mails aus den Ordnern,
+    die vom Help Desk bearbeitet werden. Überprüfen Sie auch alle Sicherheitsrichtlinien
+    für den wiederholten Zugriff externer Anwendungen auf Ihren Mailserver.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Sie sollten diese Postfächer
+    Projekten zuordnen. Andernfalls werden unbekannte eingehende Mails nicht bearbeitet!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Diese Postfächer haben kein
+    Standardprojekt:'
+  text_easy_helpdesk_projects_alerts_list: 'Liste konfigurierter Benachrichtigungen:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Liste der Benachrichtigungen,
+    bei denen ein Empfänger festgelegt werden muss:'
+  text_easy_helpdesk_projects_is_default: Wenn eine Mail von einem unbekannten Absender
+    eintrifft, wird das Ticket hier erstellt.
+  text_easy_helpdesk_projects_keyword_description: Wenn der Betreff der E-Mail einen
+    definierten String enthält, wird das Ticket diesem Projekt zugeordnet. Bei Schlüsselwörtern
+    wird zwischen Groß- und Kleinschreibung unterschieden.
+  text_easy_helpdesk_projects_keywords: Wenn der Betreff der E-Mail einen definierten
+    String enthält, wird eine bestimmte Priorität und ein bestimmtes Fälligkeitsdatum
+    festgelegt (* heißt für jeden Betreff). Leer lassen, um DLV für manuell erstellte
+    Tickets festzulegen.
+  text_easy_helpdesk_projects_monitor_due_date: Diese vordefinierte Benachrichtigung
+    sendet Ihnen eine E-Mail-Benachrichtigung, wenn ein Ticket gegen DLV verstößt
+    - nicht innerhalb des in der DLV definierten Zeitraumes gelöst wurde
+  text_easy_helpdesk_projects_monitor_spent_time: Diese vordefinierte Benachrichtigung
+    sendet Ihnen eine E-Mail-Benachrichtigung, wenn der gesamte Zeitaufwand in einem
+    bestimmten Kalendermonat die vorausbezahlten Supportstunden überschreitet.
+  text_easy_helpdesk_projects_new_priority: Wenn keine Schlüsselwörter angegeben werden,
+    wird DLV entsprechend der gewählten Priorität festgelegt
+  text_easy_helpdesk_projects_priority: DLV wird entsprechend der gewählten Priorität
+    gesetzt
+  text_easy_helpdesk_projects_sla_hours_to_response: Maximale Zeitspanne, die vor
+    Beginn der Arbeit am Ticket zulässig ist (erster Statuswechsel).
+  text_easy_helpdesk_projects_sla_hours_to_solve: Maximale Zeitspanne, um das Ticket
+    zu lösen (geschlossener Status).
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Einige Aufgaben (%{count}/%{total})
+    konnten nicht aktualisiert werden:'
+  text_easy_rake_task_helpdesk_issue_closer_updated: '%{updated_count} <small class="help">
+    aktualisiert</small> / %{notified_count} <small class="help"> Kunden-E-Mail</small>'
+  text_isseu_closer_close_notice: Diese Aufgabe wurde automatisch vom Help Desk aktualisiert.
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'DLV: Antwort
+    hätte bis %{time} erfolgen sollen'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'DLV: Antwort
+    muss bis %{time} erfolgen'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'DLV: Lösung hätte
+    bis %{time} erfolgen sollen'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'DLV: Lösung muss
+    bis %{time} erfolgen'
+  text_mailbox_delete_confirmation: 'Sie sind dabei, das Postfach zu löschen. Das
+    Löschen des Postfachs kann folgende Probleme verursachen: - Tickets, die über
+    dieses Postfach erstellt wurden, können keine Vorlagen mehr verwenden. Möchten
+    Sie wirklich fortfahren?'
+  title_easy_helpdesk_add_project_from_sidebar: Klicken Sie hier, um das Projekt zum
+    Help Desk hinzufügen
+  title_easy_helpdesk_allow_custom_sender: Einstellung eines benutzerdefinierten Absenders
+    pro Projekt erlauben
+  title_easy_helpdesk_allow_override: Überschreiben von Aufgabenattributen aus der
+    Nachricht zulassen
+  title_easy_helpdesk_client_response_status: Wählen Sie aus, in welchen Status sich
+    ein Ticket ändert, wenn es per E-Mail aktualisiert wird.
+  title_easy_helpdesk_ignore_cc: Wenn eine E-Mail empfangen wird, werden alle E-Mails
+    im CC zu den Beobachtern hinzugefügt, externe E-Mails und die automatische Antwort
+    werden an sie gesendet. Diese Option deaktiviert das.
+  title_easy_helpdesk_message_above_variables: Vorlagennachricht wird über den Vorlagenvariablen
+    angezeigt
+  title_easy_helpdesk_sender: Wer wird im Feld "von" stehen?
+  title_easy_helpdesk_sender_current_user: Benutzer, der gerade angemeldet ist
+  title_easy_helpdesk_sender_is_user: Das Feld "von" wird der angemeldete Benutzer
+    sein
+  title_easy_helpdesk_sender_mailbox_address: E-Mail-Adresse aus dem Postfach
+  title_easy_helpdesk_sender_redmine_default: Standardmäßige Emissions-E-Mail-Adresse
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'WARNUNG: Help Desk wird
+    E-Mails von anderen Systemen empfangen und es kann zu einem unendlichen E-Mail-Austausch
+    kommen!'
+  title_easy_helpdesk_sla_start_states: Status auswählen, wenn die DLV-Messung nach
+    der Pause durch die obige Einstellung wieder aufgenommen wird.
+  title_easy_helpdesk_sla_stop_states: Status auswählen, wenn DLV nicht gemessen wird.
+    Zum Beispiel geschlossene Tickets oder wenn Sie auf eine Antwort des Kunden warten.
+  title_sla_waiting_for_client: DLV ausgesetzt
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: Deaktiviert - nachdem die Aufgabe geschlossen wurde, wird die DLV gestoppt.
+      Wenn die Aufgabe wieder geöffnet wird, wird die DLV ab dem Zeitpunkt gezählt,
+      an dem sie ursprünglich erstellt wurde.
+    enabled: Aktiviert - nachdem die Aufgabe geschlossen wurde, wird die DLV gestoppt.
+      Wenn die Aufgabe wieder geöffnet wird, wird die DLV ab dem Zeitpunkt gezählt,
+      an dem sie wieder geöffnet wurde

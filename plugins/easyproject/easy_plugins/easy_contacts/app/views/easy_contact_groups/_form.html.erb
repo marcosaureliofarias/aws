@@ -1,0 +1,69 @@
+<div class="grid_9 alpha omega">
+  <p>
+    <%= f.text_field :group_name, :required => true -%>
+  </p>
+  <%= content_tag :p do %>
+    <%= f.select :parent_id, grouped_options_for_select(available_groups, @easy_contact_group.parent_id, prompt: true), :label =>  l(:label_easy_contact_parent_group) -%>
+  <% end  unless @available_groups.blank? -%>
+  <p>
+    <% box = check_box_tag('is_global', true, @easy_contact_group.global?, :disabled => (@easy_contact_group.child?)) -%>
+    <%= label_tag('is_global', box + l(:field_is_global), :class => 'inline') -%>
+  </p>
+  <p id='contact-type-attributes'>
+    <%= render :partial => 'custom_fields/edit_custom_fields', :locals => {:entity_name => 'easy_contact_group', :entity => @easy_contact_group} -%>
+  </p>
+</div>
+<div class="grid_3 alpha omega">
+  <% if @easy_contact_group.unused_non_primary_custom_fields.present? %>
+    <%= toggling_container("non-primary-custom-fields-toggling-#{@easy_contact_group.id || 'new'}", User.current, {:heading => l(:label_easy_contacts_add_non_primary_custom_fields), :default_button_state => false}) do %>
+        <%= select_tag :non_primary_custom_fields, content_tag(:option, l(:label_easy_contacts_add_non_primary_custom_fields_select)) + options_for_select(@easy_contact_group.unused_non_primary_custom_fields.collect{|p| [p.name, p.id]}), { :id => 'non-primary-custom-fields-select' } -%>
+    <% end %>
+  <% end %>
+
+</div>
+<div class="clear"></div>
+
+  <% if @easy_contact_group.safe_attribute? 'author_note' %>
+    <p>
+      <% if @easy_contact_group.new_record? %>
+        <%= f.text_area :author_note, :label => l(:field_easy_contact_author_note) -%>
+        <%= wikitoolbar_for('easy_contact_group_author_note') %>
+      <% else %>
+        <%= f.label :author_note, l(:field_easy_contact_author_note) -%>
+        <%= link_to('', {:controller => 'easy_contact_groups', :action => 'toggle_author_note', :id => @easy_contact_group, :element => 'author_note_container'}, :class => 'icon icon-edit', :title => l(:button_edit), :remote => true, :id => 'description_toggler') %>
+        <span id="author_note_container"></span>
+      <% end %>
+    </p>
+  <% end %>
+
+<% if @easy_contact_group.safe_attribute? 'notes' %>
+  <div class="box">
+    <p class="textarea-editor-container">
+      <%= f.text_area :notes,
+                      :cols => 60,
+                      :rows => 2,
+                      :accesskey => accesskey(:edit),
+                      :class => 'wiki-edit',
+                      :label => l(:field_notes) -%>
+      <%= wikitoolbar_for 'easy_contact_group_notes', preview_text_path, {:custom => 'height: 100'} -%>
+    </p>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    $("#non-primary-custom-fields-select").change(function (event) {
+      var select = $(event.target);
+      if (select.val() != '') {
+        $.get('<%= j(url_for({:action => 'add_custom_field' })) %>', {
+          'custom_field_id': select.val(),
+          'entity_type': '<%= @easy_contact_group.class.name %>',
+          'entity_id': '<%= @easy_contact_group.id %>'
+        });
+      }
+    });
+  });
+</script>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :media => 'all', :plugin => 'easy_contacts' -%>
+<%end%>

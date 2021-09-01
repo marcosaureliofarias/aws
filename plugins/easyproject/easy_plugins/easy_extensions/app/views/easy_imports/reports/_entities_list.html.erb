@@ -1,0 +1,45 @@
+<%
+  entities ||= {}
+  skip_title ||= false
+  hide_created ||= false
+  hide_mapped ||= false
+  hide_errors ||= false
+  render_created ||= !hide_created && entities[:created].present?
+  render_mapped ||= !hide_mapped && entities[:mapped].present?
+  render_errors ||= !hide_errors && entities[:errors].present?
+%>
+<% if render_created ||  render_mapped || render_errors %>
+  <%= title(l("label_#{entity_type}_plural")) unless skip_title %>
+  <% if render_created %>
+    <ul>
+      <% entities[:created].each do |entity_id, entity| %>
+        <li>
+          <%= l("easy_imports.#{entity_type}_created", entity_link: link_to(entity, send(path_method, entity), target: '_blank')).html_safe %>
+          <% if entities[:warnings][entity_id].present? %>
+            <ul class="easy_imports__warnings">
+              <% Array(entities[:warnings][entity_id]).each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if render_mapped %>
+    <ul>
+      <% entities[:mapped].each do |_, entity| %>
+        <li>
+          <%= l("easy_imports.#{entity_type}_exists", entity_link: link_to(entity, send(path_method, entity), target: '_blank')).html_safe %> <%= l('easy_imports.import_skipped') %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if render_errors %>
+    <ul>
+      <% entities[:errors].each do |_, message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

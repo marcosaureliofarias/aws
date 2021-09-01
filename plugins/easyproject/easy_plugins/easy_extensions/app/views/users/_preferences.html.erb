@@ -1,0 +1,36 @@
+<%= labelled_fields_for :pref, @user.pref do |pref_fields| %>
+  <p><%= pref_fields.select :hours_format, [[l(:hours_format_short, value: easy_format_hours(1.5, {no_html: true, format: 'short'})),'short'], [l(:hours_format_long, value: easy_format_hours(1.5, {no_html: true, format: 'long'})),'long']] %></p>
+  <p><%= pref_fields.select :user_time_entry_setting, [[l('user_time_entry_setting.all'),'all'], [l('user_time_entry_setting.hours'),'hours'], [l('user_time_entry_setting.range'),'range']] %></p>
+  <p><%= pref_fields.select :number_alignment, [[l(:label_align_to_right), '0'], [l(:label_align_to_left), '1']] %></p>
+  <p class="long-label"><%= pref_fields.check_box :hide_mail %></p>
+  <p><%= pref_fields.select :time_zone, ActiveSupport::TimeZone.all.collect {|z| [ z.to_s, z.name ]}, :include_blank => true %></p>
+
+  <p><%= pref_fields.select :comments_sorting, [[l(:label_chronological_order), 'asc'], [l(:label_reverse_chronological_order), 'desc']] %></p>
+  <p><%= pref_fields.check_box :hide_notification_passwd_expiration %></p>
+  <% if false %>
+  <p><%= pref_fields.check_box :display_journal_details %></p>
+  <% end %>
+
+  <p><%= pref_fields.check_box :disable_automatic_loading %></p>
+  <% if User.current.admin? %>
+    <p><%= pref_fields.check_box :global_time_entries_visibility %></p>
+  <% end %>
+  <p class="long-label"><%= pref_fields.check_box :warn_on_leaving_unsaved %></p>
+  <p><%= pref_fields.select :textarea_font, textarea_font_options %></p>
+    <%= call_hook(:view_user_preferences_form_bottom, {f: pref_fields}) %>
+<% end %>
+<%= fields_for :user, @user do |f| %>
+  <% if @user.id %>
+    <% if @user.safe_attribute?('rss_key') %>
+      <div id="user_rss_key">
+        <%= render :partial => 'users/user_rss_key', :locals => {:div_id => 'user_rss_key', :rss_key => @user.rss_key} -%>
+      </div>
+    <% end %>
+    <% if @user.safe_attribute?('api_key') %>
+      <div id="user_api_key">
+        <%= render :partial => 'users/user_api_key', :locals => {:div_id => 'user_api_key', :api_key => @user.api_key} -%>
+      </div>
+    <% end %>
+  <% end %>
+  <%= call_hook(:easy_view_users_preferences_token) %>
+<% end %>

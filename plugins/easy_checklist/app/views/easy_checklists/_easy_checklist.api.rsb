@@ -1,0 +1,16 @@
+local_assigns[:api].easy_checklist do
+  local_assigns[:api].id easy_checklist.id
+  local_assigns[:api].name easy_checklist.name
+  local_assigns[:api].author(id: easy_checklist.author_id, name: easy_checklist.author.name) if easy_checklist.author
+  local_assigns[:api].is_default_for_new_projects easy_checklist.is_default_for_new_projects
+  local_assigns[:api].type easy_checklist.type if easy_checklist.type
+  if easy_checklist.entity
+    local_assigns[:api].entity(entity_id: easy_checklist.entity_id, entity_type: easy_checklist.entity_type)
+  end
+  local_assigns[:api].created_at easy_checklist.created_at
+  local_assigns[:api].updated_at easy_checklist.updated_at
+
+  local_assigns[:api].array :easy_checklist_items do
+    render(easy_checklist.easy_checklist_items, { api: local_assigns[:api] })
+  end
+end

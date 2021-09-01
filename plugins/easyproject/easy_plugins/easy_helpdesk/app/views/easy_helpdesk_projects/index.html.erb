@@ -1,0 +1,25 @@
+<%= breadcrumb([
+    link_to(l(:heading_easy_helpdesk_index), {:controller => 'easy_helpdesk', :action => :index}, :title => l(:heading_easy_helpdesk_index)),
+    link_to(l(:heading_easy_helpdesk_projects_index), {:controller => 'easy_helpdesk_projects', :action => :index}, :title => l(:heading_easy_helpdesk_projects_index))]) %>
+
+<%= render_non_default_mailboxes_warning_if_needed %>
+
+<%= render @query, :easy_query_name => l(:heading_easy_helpdesk_projects_index) %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_helpdesk_index), l(:heading_easy_helpdesk_projects_index)) -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_easy_helpdesk_add_project), {:action => :new}, :class => 'button-positive icon icon-add', :title => l(:button_easy_helpdesk_add_project)) -%>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_helpdesk/sidebar_links' %>
+<% end %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+<% end -%>
+
+<%= context_menu({:controller =>'context_menus', :action => 'easy_helpdesk_projects' }) -%>

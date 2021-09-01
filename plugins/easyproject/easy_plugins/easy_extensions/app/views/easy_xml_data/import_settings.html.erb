@@ -1,0 +1,11 @@
+<%= title(l(:label_xml_data_import_dashboards_and_project_templates)) %>
+
+<%= form_tag(easy_xml_data_file_preview_path, multipart: true, class: 'form-box') do %>
+  <%= hidden_field_tag 'back_url', params['back_url'] if params['back_url'] %>
+  <p><%= file_field_tag 'archivefile' %></p>
+  <div class="form-actions"><%= submit_tag l(:button_data_save_n_preview), class: 'button-positive' %></div>
+<% end %>
+
+<%= content_for(:easy_page_layout_service_box_primary_actions) do %>
+  <%= link_to(l(:button_new_advanced_import), easy_entity_imports_path, class: 'button-positive icon icon-import') %>
+<% end %>

@@ -1,0 +1,258 @@
+.gantt {
+  &_task {
+    &_line.gantt_selected &_drag,
+    &_line.gantt_selected &_progress_drag,
+    &_line:hover &_drag,
+    &_line:hover &_progress_drag {
+      display: block
+    }
+
+    &_ticks {
+      height: 0;
+      margin-top: -6px;
+      margin-left: -1px;
+      margin-right: -1px;
+      border-width: 7px 7px 3px;
+      border-style: solid;
+      border-color: inherit;
+      border-top-color: transparent !important;
+      border-bottom-color: transparent !important;
+      background-color: transparent !important;
+    }
+
+    &_drag {
+      cursor: w-resize;
+      height: 100%;
+      display: none;
+      position: absolute;
+      width: 9px;
+      z-index: 1;
+      top: 50%;
+      transform: translateY(-50%);
+      background: radial-gradient(var(--gantt__line-color--drag) 25%, transparent 10%) 1px 1px;
+      background-size: 4px 4px;
+
+      &:hover{
+        box-shadow: 0 0 2px 2px var(--gantt__line-color--control-hover) ;
+      }
+
+      &.task_left {
+        left: 5px;
+      }
+
+      &.task_right {
+        right: 5px;
+      }
+    }
+
+    &_link {
+      @include gantt-relation(darken($gantt__color--important, 10))
+    }
+    &_link.gantt-relation-unlocked {
+      @include gantt-relation(darken($gantt__color--positive, 10))
+    }
+    &_link.gantt-relation-simple {
+      @include gantt-relation(darken($gantt__color--main, 10))
+    }
+
+    &_progress {
+      //border: 3px solid transparent;
+      height: calc(100% - 6px);
+      max-width: calc(100% - 6px) !important;
+      box-sizing: border-box;
+      margin: 3px;
+
+      &_drag {
+        width: 10px;
+        display: none;
+        margin-left: -5px;
+        bottom: -4px;
+        top: -4px;
+        &:hover{
+          box-shadow: 0 0 2px 2px var(--gantt__line-color--control-hover);
+        }
+        &:after, &:before{
+          content: "";
+          display: block;
+          width: 0;
+          height: 0;
+          border-right: 5px solid transparent;
+          border-left: 5px solid transparent;
+          cursor: w-resize;
+          position: absolute;
+          z-index: 1;
+        }
+        &:after{
+          bottom: 0;
+          border-bottom: 5px solid var(--gantt__line-color--progress-drag);
+        }
+        &:before{
+          top: 0;
+          border-top: 5px solid var(--gantt__line-color--progress-drag);
+        }
+      }
+    }
+
+    &_line {
+      @mixin gantt-line-color($color-bg){
+        --gantt__line-color--bg: #{mix($color-bg, $gantt__color--foreground)};
+        --gantt__line-color--progress: #{$color-bg};
+
+        //TODO: remove following after pdf tech upgrade
+        background-color: mix($color-bg, $gantt__color--foreground);
+        border-color: mix($color-bg, $gantt__color--foreground);
+        .gantt_task_progress {
+          background-color: $color-bg;
+        }
+      }
+
+      @mixin gantt-line-control-color($control-color){
+        --gantt__line-color--drag: #{$control-color};
+        --gantt__line-color--link: #{$control-color};
+        --gantt__line-color--progress-drag: #{$control-color};
+        --gantt__line-color--control-hover: #{$control-color};
+      }
+
+      border-radius: 20px;
+      box-sizing: border-box;
+      border: 1px solid;
+
+      $control-color: darken($gantt__color--positive,20%);
+      @include gantt-line-control-color($control-color);
+      @include gantt-line-color($gantt__color--positive);
+
+      .gantt_task_progress {
+        z-index: 0 !important;
+        border-radius: 20px;
+      }
+
+      &.wrong {
+        $control-color: darken($gantt__color--negative,35%);
+        @include gantt-line-control-color($control-color);
+        @include gantt-line-color($gantt__color--negative);
+      }
+
+      &.closed {
+        $control-color: darken($gantt__color--closed,20%);
+        @include gantt-line-control-color($control-color);
+        @include gantt-line-color($gantt__color--closed);
+      }
+
+      &.critical {
+        $control-color: darken($gantt__color--critical,20%);
+        @include gantt-line-control-color($control-color);
+        @include gantt-line-color($gantt__color--critical);
+      }
+
+      &.gantt_project-type {
+        $control-color: darken($gantt__color--main,20%);
+        @include gantt-line-control-color($control-color);
+        @include gantt-line-color($gantt__color--main);
+        &.wrong {
+          $control-color: darken(mix($gantt__color--negative, $color-main, 75%),35%);
+          @include gantt-line-control-color($control-color);
+          @include gantt-line-color(mix($gantt__color--negative, $color-main, 75%));
+        }
+      }
+
+      &.gantt_milestone-type {
+        border-radius: 0;
+        transform: scale(1.25);
+        .gantt_task_content {
+          @include transform(#{scale(.45) rotate(45deg)});
+          background-color: rgba($gantt__color--text, 1);
+          border-color: rgba($gantt__color--text, 1);
+        }
+
+        &.gantt_milestone_shared {
+          .gantt_task_content {
+            @include transform(#{scale(.45) rotate(45deg)});
+            background-color: rgba($gantt__color--text, 0.5);
+            border-color: rgba($gantt__color--text, 0.5);
+          }
+        }
+      }
+
+      &.gantt_task-type{
+        $invalidColor: mix($gantt__color--negative,$gantt__color--foreground, 25%);
+        $validColor: mix($gantt__color--positive,$gantt__color--foreground);
+        &.no-start-date, &.no-due-date{
+          --gantt__line-color--invalid: #{$invalidColor};
+          --gantt__line-color--valid: #{$validColor};
+          border-top-color: transparent !important;
+          border-right-color: transparent !important;
+          border-bottom-color: transparent !important;
+          //.gantt_task_drag.task_left{
+          //  left: -10px;
+          //}
+          //.gantt_task_drag.task_right{
+          //  right: -10px;
+          //}
+          //&:after, &:before{
+          //  content:"";
+          //  display: block;
+          //  position: absolute;
+          //  left: 0;
+          //  right: 0;
+          //  top: -1px;
+          //  bottom: -1px;
+          //  border: 1px solid rgba($gantt__color--positive, 1);
+          //}
+          //&:before{
+          //  left: -5px;
+          //  border-left: transparent;
+          //  background: linear-gradient(90deg, #{rgba($gantt__color--positive, 0)},#{rgba($gantt__color--positive, .25)})
+          //}
+          //&:after{
+          //  right: -5px;
+          //  border-right: transparent;
+          //  background: linear-gradient(90deg, #{rgba($gantt__color--positive, .25)},#{rgba($gantt__color--positive, 0)})
+          //}
+        }
+        &.no-due-date{
+          background: linear-gradient(90deg, var(--gantt__line-color--valid) calc(100% - 50vw), var(--gantt__line-color--invalid) 100%);
+          background: linear-gradient(90deg, $validColor calc(100% - 50vw), $invalidColor 100%);  //TODO: remove after pdf tech upgrade
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+          border-right-color: var(--gantt__line-color--invalid) !important;
+          border-right-color: $invalidColor !important; //TODO: remove after pdf tech upgrade
+        }
+
+        &.no-start-date{
+          background: linear-gradient(90deg, var(--gantt__line-color--invalid), var(--gantt__line-color--valid));
+          background: linear-gradient(90deg, $invalidColor, $validColor); //TODO: remove after pdf tech upgrade
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+          border-left-color: var(--gantt__line-color--invalid) !important;
+          border-left-color: $invalidColor !important; //TODO: remove after pdf tech upgrade
+        }
+        &.no-start-date.no-due-date{
+          background: linear-gradient(90deg, var(--gantt__line-color--invalid), var(--gantt__line-color--valid), var(--gantt__line-color--invalid));
+          background: linear-gradient(90deg, $invalidColor, $invalidColor); //TODO: remove after pdf tech upgrade
+          border-radius: 0px;
+          border-right-color: var(--gantt__line-color--invalid) !important;
+          border-left-color: var(--gantt__line-color--invalid) !important;
+          border-right-color: $invalidColor !important; //TODO: remove after pdf tech upgrade
+          border-left-color: $invalidColor!important; //TODO: remove after pdf tech upgrade
+        }
+      }
+    }
+  }
+}
+
+%too-small-line{
+  .gantt_task_progress_drag{
+    display: none !important;
+  }
+  .gantt_task_drag.task_left{
+    left: -10px;
+  }
+  .gantt_task_drag.task_right{
+    right: -10px;
+  }
+}
+@for $i from 0 through 30 {
+  .gantt_task_line[style*="width: #{$i}px"]{
+    @extend %too-small-line;
+  }
+}

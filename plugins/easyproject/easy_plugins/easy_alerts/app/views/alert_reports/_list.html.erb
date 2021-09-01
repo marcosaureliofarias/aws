@@ -1,0 +1,35 @@
+<% if (reports.empty?) -%>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else -%>
+  <div class="autoscroll">
+    <table class="alerts-report list">
+      <thead>
+        <th colspan="2"></th>
+        <th colspan="2"><%= l(:field_name) -%></th>
+      </thead>
+      <% reports.each do |report| %>
+        <tr class="alerts-report-row">
+          <td class="alerts-report-created-on" style="color:<%= report.alert.type.color %>"><%= format_time(report.created_on) -%></td>
+          <td class="alerts-report-type" style="color:<%= report.alert.type.color %>"><%= report.alert.type.translated_name -%></td>
+          <td class="alerts-report-entity name">
+            <div class="alerts-report-entity-rule">
+              <% if report.alert.editable_by?(User.current) -%>
+                <%= link_to(report.alert.name, { :controller => 'alerts', :action => 'edit', :id => report.alert.id}) -%>
+              <% else %>
+                <%= report.alert.name -%>
+              <% end -%>
+            </div>
+            <%= render :partial => report.alert.rule.get_render_view, :locals => { :report => report} -%>
+          </td>
+          <td class="alerts-report-entity-links easy-additional-ending-buttons">
+            <% if report.archived -%>
+              <%= link_to(content_tag(:span, l(:button_alerts_report_unarchive), :class => 'tooltip'), { :controller => 'alert_reports', :action => 'unarchive_report', :id => report.id}, :class => 'icon icon-unlock')  -%>
+            <% else -%>
+              <%= link_to(content_tag(:span, l(:button_alerts_report_archive), :class => 'tooltip'), { :controller => 'alert_reports', :action => 'archive_report', :id => report.id}, :class => 'icon icon-lock') -%>
+            <% end -%>
+          </td>
+        </tr>
+      <% end -%>
+    </table>
+  </div>
+<% end -%>

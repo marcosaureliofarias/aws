@@ -1,0 +1,39 @@
+%breadcrumb__child {
+  padding: 0.25*$box-padding 0.5*$box-padding 0.25*$box-padding $box-padding;
+  display: inline-block;
+  line-height: 0.75*$box-padding;
+  background: $breadcrumb-color-foreground;
+  @extend %border-radius-small;
+  &:first-child {
+    //border-left: 1px solid $color-border;
+    padding-left: 0.75*$box-padding;
+  }
+  &:last-child {
+    //border-right: 1px solid $color-border;
+    margin-right: 0.75*$box-padding;
+  }
+}
+@mixin breadcrumb__child() {
+  @extend %breadcrumb__child;
+}
+%breadcrumb__separator {
+  font-size: 0;
+  position: relative;
+  padding: 0%;
+  width: 0;
+  display: inline-block;
+  margin-left: -4px;
+  border: none;
+  background: none;
+  &:before,&:after{
+    @extend %border-radius-small;
+  }
+  & + .separator{
+    display: none;
+  }
+}
+
+@mixin breadcrumb__separator($offset){
+  @extend %breadcrumb__separator;
+  @include triangle-right(0.666*$box-padding, $breadcrumb-color-foreground, $color-border, $offset, 0.75);
+}

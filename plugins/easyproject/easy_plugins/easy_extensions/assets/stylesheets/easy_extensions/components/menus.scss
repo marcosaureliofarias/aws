@@ -1,0 +1,54 @@
+.menu{
+  &--tooltip{
+    @extend %menu-tooltip-parent;
+  }
+  &__toggler{
+    $settings: (
+        toggler-height: 12px,
+        toggler-width: 20px,
+        toggler-padding: 2px,
+        toggler-offset-left: 6px
+    );
+
+    $toggler-height:      map-get($settings, toggler-height);
+    $toggler-width:       map-get($settings, toggler-width);
+    $toggler-padding:     map-get($settings, toggler-padding);
+    $toggler-offset-left: map-get($settings, toggler-offset-left);
+
+    @include cool-toggler($settings);
+
+    &:before{
+      left: $toggler-offset-left !important;
+      position: absolute;
+    }
+    &:before,&:after{
+      top: 50%;
+      margin-top: -.5*$toggler-height;
+    }
+    &:after{
+      margin-top: -.5*$toggler-height + $toggler-padding;
+    }
+    &.active{
+      &:after{
+        left: calc(#{$toggler-offset-left + $toggler-width } - #{$toggler-height}) ;
+      }
+    }
+  }
+}
+#easy_gantt_tool_panel {
+  &:after {
+    left: 30px;
+  }
+  & > li {
+    padding-left: 30px;
+    & > a {
+      padding-left: 40px;
+      margin-left: -30px;
+      &[class*=icon-] {
+        &:before {
+          width: 30px !important;
+        }
+      }
+    }
+  }
+}

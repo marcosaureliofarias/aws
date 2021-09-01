@@ -1,0 +1,13 @@
+<%= form_tag close_project_easy_sprint_path(@project, @easy_sprint), { class: 'easy-sprint tabular form-box', remote: request.xhr? } do |f| %>
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+  <% if @easy_sprint.open? %>
+    <p>
+      <%= check_box_tag 'easy_sprint[close_all_issues]', '1', true, onchange: 'if ($(this).is(":checked")) { $("#easy_sprint_close_issue_status").prop("disabled", false) } else { $("#easy_sprint_close_issue_status").prop("disabled", true) }' %>
+      <%= label_tag 'easy_sprint[close_all_issues]', l(:field_easy_sprint_close_all_tasks), class: 'inline' %>
+    </p>
+    <p>
+      <%= label_tag 'easy_sprint[close_issue_status]', l(:label_issue_status) %>
+      <%= select_tag 'easy_sprint[close_issue_status]', options_for_select(@allowed_issue_statuses.collect {|p| [p.name, p.id] }), { include_blank: false } %>
+    </p>
+  <% end %>
+<% end %>

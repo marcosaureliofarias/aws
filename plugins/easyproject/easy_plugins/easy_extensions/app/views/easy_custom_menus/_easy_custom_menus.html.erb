@@ -1,0 +1,37 @@
+<table class="list reorder">
+  <tbody>
+    <%= f.fields_for :easy_custom_menus, f.object.easy_custom_menus.select(&:root?) do |m| %>
+      <tr class="top-item">
+        <td class="center reorder-handler" style="vertical-align:top">
+          <%= render_reorder_handle(reorder_custom_menus_easy_user_types_path(easy_custom_menu_id: m.object.id), 'easy_custom_menu') %>
+        </td>
+        <td class="hidden name"><%= m.object.name %></td>
+        <td class="custom-menu-container">
+          <%= render partial: 'easy_custom_menus/easy_custom_menu_fields', locals: { f: m, is_top_item: true } %>
+
+          <%= m.fields_for :submenus, m.object.submenus do |m2| %>
+            <%= render partial: 'easy_custom_menus/easy_custom_menu_fields', locals: { f: m2, is_top_item: false } %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to_add_association l(:button_add), f, :easy_custom_menus, :class => 'icon icon-add button', :partial => 'easy_custom_menus/easy_custom_menu_fields', :render_options => { :locals => { :is_top_item => true, :cocoon_template => true } } %>
+</p>
+
+<script type="text/javascript"  charset="utf-8" >
+  EASY.schedule.late(function(){
+    $(document).on('cocoon:after-insert', function(event, i) {
+      var $item = i.find(".easy-autocomplete-tag[data-easy-autocomplete]");
+      var autocompleteSource = $.base64.decode($item.data().easyAutocomplete, true);
+      eval(autocompleteSource.replace(/(.*easyAutocomplete\(')([a-z_\-\d]+)(.*)/, "$1"+i.find("input.easy-icon-select")[0].nextElementSibling.id+"$3"));
+      $item.data().autocompleteLoaded = true;
+    });
+    $('tr.top-item').each(function() {
+      $(this).find('td.custom-menu-container').prepend($(this).next());
+    });
+  });
+</script>

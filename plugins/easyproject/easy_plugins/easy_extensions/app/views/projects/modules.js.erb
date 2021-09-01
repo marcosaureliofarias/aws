@@ -1,0 +1,3 @@
+$("#ajax-modal").html("<%= j(render partial: 'projects/settings/modules', locals: {rendering_in_modal: true}, formats: ['html']) %>");
+showModal('ajax-modal', '50%');
+$(".ui-dialog-title").html("<%= l(:label_module_plural) %>");

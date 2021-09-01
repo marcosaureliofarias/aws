@@ -1,0 +1,241 @@
+---
+ko:
+  activerecord:
+    attributes:
+      re_artifact_properties:
+        acceptance_criteria: 협의된 내용
+        created_by: 사용자 생성
+        parent: 상위 항목
+        updated_by: 사용자 업데이트
+      re_artifact_relationship:
+        relation_type: 관계 형식
+        sink: 싱크 항목
+        source: 소스 항목
+        source_id: 소스 항목
+    errors:
+      models:
+        re_artifact_relationship:
+          attributes:
+            source_id:
+              re_the_specified_relation_already_exists: 이미 지정된 관계가 존재합니다.
+    models:
+      re_artifact_properties: 항목
+      re_artifact_relationship: 관계
+  add_issue_to_requirement: 연결된 일감 추가
+  artifact_issue_coverage: '일감/항목 범위:'
+  artifactcount: 항목의 갯수
+  artifacts_wo_issues: 어떠한 일감과도 연결되지 않는 항목의 수
+  comments: 코멘트
+  conflict: 이견
+  connect_issue: 일감 연결하기
+  dates: 날짜
+  field_re_artifact: 필드 항목
+  field_re_artifact_properties:
+    parent: '상위 항목:'
+    project: '프로젝트:'
+  field_subtasks: 하위 일감
+  issue_menue_visualization: 일감
+  issuecount: 일감의 갯수
+  issues_wo_artifacts: 어떤 항목에도 연결되지않은 일감의 갯수
+  label_attachments: 첨부
+  label_re_artifact_baseline: 베이스라인 편집
+  label_re_artifact_baseline_modal: 요구사항 베이스라인 모달
+  label_re_artifact_baseline_new: 베이스라인 생성
+  label_re_artifact_properties_plural: 항목
+  label_re_artifact_property_plural: 항목
+  label_redmine_re_artifact_custom_field_plural: 요구사항
+  open_requirements: 요구사항 열기
+  permission_administrate_requirements: 요구사항 관리
+  permission_edit_requirements: 요구사항 편집
+  permission_view_requirements: 요구사항 보기
+  project: 프로젝트
+  project_module_requirements: 요구사항
+  re_404_artifact_not_found: 항목(또는 항목ID)를 찾을 수 없습니다.
+  re_404_artifact_not_found_or_project_missing: 항목을 찾을 수 없고 프로젝트ID가 제공되지 않았습니다.
+  re_404_invalid_project_id: 프로젝트(또는 프로젝트ID)를 찾을 수 없거나 유효하지 않습니다.
+  re_add_associated_requirements: 연결된 항목 추가
+  re_administrate: 관리
+  re_alias_name: 변경할 이름
+  re_apply_filter: 필터 적용
+  re_artifact: 항목
+  re_artifact_attributes: 항목 속성
+  re_artifact_baseline_deleted: 베이스라인이 삭제되었습니다.
+  re_artifact_baseline_destroy: 베이스라인 삭제
+  re_artifact_baseline_edit: 베이스라인 편집
+  re_artifact_comments_count: 코멘트 갯수
+  re_artifact_configuration: 항목 설정
+  re_artifact_create: 새로운 요구사항 항목 만들기
+  re_artifact_created_by: 작성자
+  re_artifact_history: 변경사항
+  re_artifact_name: 이름
+  re_artifact_properties_created: 항목 생성
+  re_artifact_properties_validates_presence_of_created_by: 작성자는 빈칸으로 둘 수 없습니다.
+  re_artifact_properties_validates_presence_of_project: 이 항목과 관련된 프로젝트는 없습니다.
+  re_artifact_properties_validates_uniqueness_of_name: 이미 다른 항목에서 그 이름을 사용하고 있습니다.
+  re_artifact_properties_version: '버전 #%{version}'
+  re_artifact_properties_version_revert: 이전 버전으로 되돌리기
+  re_artifact_properties_version_reverted: 성공적으로 버전 #%{version}으로 되돌렸습니다.
+  re_artifact_relationships: 관계
+  re_artifact_relationships_incoming: 내부에서의 관계
+  re_artifact_relationships_outgoing: 외부에서의 관계
+  re_artifact_responsible: 담당자
+  re_artifact_responsibles: 담당자
+  re_artifact_type_description: 항목 형식 설명
+  re_artifacts: 항목
+  re_asscociated_requirements: 요구사항
+  re_associated_issues: 연관된 일감
+  re_attachment: 파일 첨부
+  re_attachment_deleted: 첨부파일 %{name}이(가) 삭제되었습니다.
+  re_attachment_not_deleted: 첨부파일 %{name}을 삭제할 수 없습니다.
+  re_attachment_saved: 첨부 파일이 성공적으로 저장되었습니다.
+  re_baselines: 베이스라인
+  re_cancel: 취소
+  re_cannnot_delete_project_artifact: 이 항목은 프로젝트 항목이라 삭제할 수 없습니다. 삭제하려면 링크를 따라가서 삭제하십시오.
+  re_color: 색상
+  re_common_attributes: 공통 속성
+  re_conf_add_relation: 관계 추가
+  re_conf_add_status: 상태 추가
+  re_conf_alias_name: 요구사항 관리 프로세스와 일치되도록 항목 유형에 다른 이름을 지정할 수 있습니다.
+  re_conf_artifact_in_use: 이 프로젝트에서 이 항목 유형을 사용하시겠습니까(기존 항목들은 삭제되지 않습니다)?
+  re_conf_internal_name: 기본 이름
+  re_configs_saved: 환경설정이 성공적으로 저장되었습니다.
+  re_configure_plugin: 요구사항 설정
+  re_conflict: 이견
+  re_conflict_relation_type: 이견
+  re_create: 생성하기
+  re_create_a_new: 새로 만들기
+  re_create_baseline: 베이스라인 생성
+  re_create_below: 동일 레벨 항목 만들기
+  re_create_child: 하위 생성
+  re_create_in: 하위 레벨 항목 만들기
+  re_create_new: 새로 생성하기
+  re_create_new_artifacts: 항목 새로 만들기
+  re_create_new_relation: 새로운 관계 만들기
+  re_create_new_relation_prompt: 관계 유형을 하나 이상 추가하십시오
+  re_create_new_relationship: 새로운 관계 만들기
+  re_create_re_attachment: 새로운 첨부 파일 생성
+  re_create_re_goal: 목표 생성
+  re_create_re_processword: 새로운 프로세스워드 생성
+  re_create_re_rationale: 근거 만들기
+  re_create_re_requirement: 요구사항 생성
+  re_create_re_scenario: 시나리오 생성
+  re_create_re_section: 새 섹션 생성
+  re_create_re_subtask: 새 하위일감 생성
+  re_create_re_task: 새 일감 만들기
+  re_create_re_use_case: 새 사용자 사례 생성
+  re_create_re_user_profile: 새 사용자 프로파일 생성
+  re_create_wiki_page_for_re_artifact: 새 위키 페이지 생성
+  re_created_by: 작성자
+  re_delete: 삭제
+  re_delete_and_move_children: 항목을 삭제하고 하위로 이동
+  re_delete_artifact: 항목 삭제
+  re_delete_confirm: 정말로 %{what}을 삭제하시겠습니까?
+  re_delete_project_artifact: 프로젝트 항목 삭제
+  re_delete_project_artifact_error: 프로젝트 항목은 삭제할 수 없습니다.
+  re_delete_subtask: 삭제
+  re_delete_use_case_expansion: 삭제
+  re_delete_use_case_step: 삭제
+  re_delete_use_case_step_expansion: 삭제
+  re_deleted_artifact_and_children: 항목과 모든 하위 항목들을 성공적으로 삭제했습니다.
+  re_deleted_artifact_and_moved_children: 성공적으로 모든 하위 항목들을 상위 항목에 첨부하고 해당 항목을 삭제했습니다.
+  re_drag_list_items_to_reorder_artifacts: 항목을 재정렬 하려면 목록을 드래그하면 됩니다. 구성된 순서는 요구사항
+    플러그인 모든 곳에서 사용됩니다.
+  re_edit: 편집
+  re_edit_artifact_type_description: '"%{artifact_type}" 항목에 대한 설명 편집'
+  re_edit_default_description: 기본 설명 편집
+  re_editor_for: 잠시만 기다려주세요.
+  re_field_configuration: 항목 형식 %{artifact_type}에 대한 필드 구성
+  re_fields: 필드
+  re_filter: 검색
+  re_filter_apply: 적용
+  re_filter_related_issues: 연결된 일감
+  re_filter_save: 저장하기
+  re_filter_save_and_apply: 저장 후 적용하기
+  re_first_use: 요구사항 플러그인을 처음 사용합니다.
+  re_goal_saved: 목표가 성공적으로 저장되었습니다.
+  re_incoming_relationship_count: 내부
+  re_insert_st_after: 하위 일감 입력
+  re_last_update: 마지막 업데이트
+  re_new_re_attachment: 파일 첨부
+  re_new_re_requirement: 요구사항
+  re_new_re_subtask: 하위 일감
+  re_new_re_task: 일감
+  re_no_responsible_user_defined: 담당자가 누락되었습니다.
+  re_outgoing_relationship_count: 외부
+  re_pandoc_error_first: 요구사항 플러그인 사용
+  re_plugin_configuration: 요구사항 설정
+  re_processword_saved: 프로세스워드가 성공적으로 저장되었습니다.
+  re_rationale_saved: 근거가 성공적으로 저장되었습니다.
+  re_related_issues: 일감
+  re_relation_saved: 관계가 성공적으로 저장되었습니다.
+  re_relation_saved_error: 관계가 성공적으로 저장되지 않았습니다.
+  re_relation_type: 관계 형식
+  re_relationship_configuration: 관계 설정
+  re_relationship_create_error: 관계가 생성되지 않았습니다.
+  re_remove: 삭제
+  re_requirement: 요구사항
+  re_requirement_priority: 우선순위
+  re_requirement_saved: 요구사항이 성공적으로 저장되었습니다.
+  re_requirements: 요구사항
+  re_requirements_overview: 요구사항 개요
+  re_save: 저장
+  re_scenario_default_description: 시스템의 프로세스를 표시하고 합리성을 식별하여 일감 및 하위 일감에 컨텍스트를 제공하는
+    시나리오 관리
+  re_scenario_saved: 시나리오가 성공적으로 저장되었습니다.
+  re_section_saved: 섹션이 성공적으로 저장되었습니다.
+  re_settings_display_requirement_id_description: 트리뷰에 요구사항ID 표시
+  re_settings_have_to_save: '환경설정이 아직 저장되지 않았습니다: 이 페이지를 떠나기전에 저장 버튼을 클릭하십시오.'
+  re_settings_have_to_save_again: 시스템이 업데이트 되었습니다. 환경설정을 확인해주세요. 이 페이지를 떠나기전에 저장 버튼을
+    클릭해야 합니다.
+  re_settings_project_hierarchy: 프로젝트 계층
+  re_settings_project_hierarchy_description: 다른 프로젝트로 부터 일감 연결 허옹
+  re_settings:
+    project_hierarchy_types:
+      all: 모든 프로젝트
+      descendants: 하위 프로젝트
+      hierarchy: 프로젝트 트리
+      none: 없음
+  re_show_relationships: 관계 보이기
+  re_show_subtasks: 하위 일감 보기
+  re_show_tasks: 일감 보기
+  re_specification_overview: 요구사항 구성도
+  re_st_position_not_allowed: 하위 일감의 위치가 허용되지 않습니다.
+  re_st_type_not_allowed: 하위 일감의 유형은 허용되지 않습니다.
+  re_status: 상태
+  re_status_alias_name: 변경할 이름
+  re_status_color: 색상
+  re_status_configuration: 상태 구성
+  re_status_internal_name: 기본 이름
+  re_subtask: 하위 일감
+  re_subtask_default_description: 이 툴을 사용하면 하위 일감을 만들수 있지만, 일감보기에서 일감을 생성하고 하위 일감을
+    추가하는것이 더 편리 합니다.
+  re_subtask_deleted: 하위 일감 %{name}이 삭제되었습니다.
+  re_subtask_not_deleted: 하위 일감 %{name}를 삭제할 수 없습니다.
+  re_subtask_not_found: 삭제할 ID가 %{id}인 하위 일감을 찾을 수 없습니다.
+  re_subtask_saved: 하위 일감 %{name}이(가) 성공적으로 저장되었습니다.
+  re_subtasks: 하위 일감
+  re_subtasks_not_valid: 하위 일감이 유효하지 않습니다!
+  re_subtasks_saved: 하위 일감이 성공적으로 저장되었습니다.
+  re_task: 일감
+  re_task_and_subtasks_saved: 일감과 하위일감이 성공적으로 저장되었습니다.
+  re_task_attributes: 일감 별 속성
+  re_task_saved: 일감이 성공적으로 저장되었습니다.
+  re_text_artifact_added: "%{author}에 의해 항목 %{id}를 추가했습니다."
+  re_text_artifact_updated_new_comment: "%{author}의해 추가된 새로운 코멘트:"
+  re_traces_from: 추적 위치
+  re_traces_to: 추적 대상
+  re_treefilter: 검색
+  re_use: 활성화
+  re_use_case_abstract_overview: 개요
+  re_use_case_overview: 개요
+  re_user_defined_fields: 사용자 정의 필드
+  re_was_created: 만들어졌습니다.
+  re_what_will_be_deleted: 이 항목을 지운다면 나열된 관계들도 삭제됩니다.
+  re_you_asked_for_deleting_the_following_artifact: 다음의 항목에 대해서 삭제요청을 했습니다.
+  ReAttachment: 파일 첨부
+  redmine_re_plugin_name: 요구사항
+  requirement_progress: 요구사항 프로세스
+  Requirements: 요구사항
+  requirements_artifact: 요구사항 항목
+  ReRequirement: 요구사항
+  status: 상태

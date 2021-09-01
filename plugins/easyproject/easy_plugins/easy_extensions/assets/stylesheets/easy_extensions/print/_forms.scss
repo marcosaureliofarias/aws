@@ -1,0 +1,89 @@
+button, textarea, input[type=submit]{
+  @extend %display_none;
+}
+
+label {
+  display: inline-flex !important;
+  align-items: center;
+  p &:first-child{
+    float: left;
+    width: 25%;
+  }
+  &~em{
+    display: none;
+  }
+}
+
+.help{
+  display: none;
+}
+
+form{
+  p{
+    overflow: hidden;
+  }
+}
+
+select, input, .easy-lookup{
+  background: none;
+  border: none;
+  border-bottom: 1px solid $color-print;
+  color: $color-print--text;
+  margin: 0 .5*$gap;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: "Open Sans", sans-serif;
+  font-size: .8rem;
+  &.block{
+    display: inline-block;
+  }
+}
+
+input[type=checkbox],
+select{
+  display: inline-block !important;
+}
+
+input[type=file]{
+  display: none;
+}
+
+input[type=checkbox]{
+  width: $gap;
+  height: $gap;
+  border: 1px solid $color-print;
+  &:checked{
+    &:after {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 7px;
+
+      /* "Center" the checkmark */
+      position:relative;
+      top:0px;
+      left:2px;
+
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+fieldset{
+  margin-bottom: $gap;
+  border: 1px solid $color-print;
+}
+
+#cbp_images_form{
+  display: none !important;
+}
+.attachments-container{
+  .info{
+    display: none;
+  }
+}
+#project-history-comments-form {
+  display: none;
+}

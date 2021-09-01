@@ -1,0 +1,102 @@
+<% render_sidebar = sidebar_content? %>
+<% render_left_sidebar = !in_mobile_view? && content_for?(:left_sidebar) %>
+<!DOCTYPE html>
+<html lang="<%= current_language %>">
+<%= render :partial => 'layouts/base_html_header' %>
+<body class="<%= body_css_classes %>">
+<%= call_hook :view_layouts_base_body_top %>
+<div id="wrapper">
+  <div id="wrapper2">
+    <div id="wrapper3">
+      <%= render 'layouts/base_body_header', render_sidebar: render_sidebar %>
+      <% if render_left_sidebar %>
+        <div id="easy_left_servicebar">
+          <%= yield :left_sidebar %>
+        </div>
+      <% end %>
+
+      <div id="main">
+        <%= render :partial => 'layouts/easy_project_header' %>
+        <% if render_sidebar %>
+          <div id="sidebar">
+            <div id="sidebar_inner">
+              <% if content_for?(:easy_page_layout_service_box_primary_actions) %>
+                <div class="primary-actions">
+                  <%= yield(:easy_page_layout_service_box_primary_actions) %>
+                </div>
+              <% end -%>
+              <div id="sidebar_content">
+                <div class="easy-scroller">
+                  <div>
+                    <% if content_for?(:easy_page_layout_service_box) || content_for?(:easy_page_layout_service_box_top) %>
+                      <div id="easy_page_layout_service_box">
+                        <%= yield(:easy_page_layout_service_box_top) %>
+                        <%= yield(:easy_page_layout_service_box) %>
+                      </div>
+                    <% end -%>
+                    <%= yield :sidebar %>
+                  </div>
+                </div>
+              </div>
+              <div id="sidebar_footer">
+                <div id="sidebar_exports">
+                  <%= yield :sidebar_exports %>
+                  <%= view_layouts_base_sidebar_hook_response %>
+                </div>
+              </div>
+              <span class="sidebar-control"><a href="javascript:EASY.utils.toggleSidebar();" title="Toggle sidebar"></a></span>
+            </div>
+            <script type="text/javascript">
+              EASY.utils.loadSidebar();
+            </script>
+          </div>
+        <% end -%>
+
+        <div id="content">
+          <%= render_flash_messages %>
+          <%= content_tag(:div, :class => 'easy-content-page') do %>
+            <%= yield %>
+            <%= call_hook :view_layouts_base_content %>
+          <% end -%>
+        </div>
+      </div>
+
+    </div>
+
+    <%= render(:partial => 'layouts/base_body_footer_wrapper') %>
+
+  </div>
+</div>
+<%= javascript_tag('window.measureTools.beforeBodyBottom = window.performance.now();') if Rails.env.development? %>
+<%= call_hook :view_layouts_base_body_bottom %>
+<%= yield :body_bottom %>
+<% if Rails.env.development? %>
+<script type="application/javascript">
+  window.measureTools.beforeOnload = window.performance.now();
+  EASY.schedule.main(function () {
+    window.measureTools.beforeLate = window.performance.now();
+  }, -100);
+  EASY.schedule.late(function () {
+    var now = window.performance.now();
+    var marks = window.measureTools;
+
+    function round(number) {
+      return Math.round(number / 10) * 10;
+    }
+    var text="Measure: ("+round(now - marks.start)+")\n"
+        + "- CSS:         " + round(marks.afterCss - marks.start) + " ms\n"
+        + "- extension:   " + round(marks.beforeCustomHeader - marks.afterCss) + " ms\n"
+        + "- header_tags: " + round(marks.afterHeader - marks.beforeCustomHeader) + " ms\n"
+        + "- body:        " + round(marks.beforeBodyBottom - marks.afterHeader) + " ms\n"
+        + "- body_bottom: " + round(marks.beforeOnload - marks.beforeBodyBottom) + " ms\n"
+        + "- onload:      " + round(marks.beforeLate - marks.beforeOnload) + " ms\n"
+        + "- late:        " + round(now - marks.beforeLate) + " ms\n";
+    if(marks.preSpecial && marks.postSpecial){
+      text += "- special:" + round(marks.postSpecial - marks.preSpecial)+ " ms\n"
+    }
+    console.debug(text);
+  }, -100);
+</script>
+<% end %>
+</body>
+</html>

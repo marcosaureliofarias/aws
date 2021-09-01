@@ -1,0 +1,26 @@
+<% modul_uniq_id ||= ''; root ||= nil -%>
+<% expanded_rows = local_assigns.fetch(:expanded_rows, true) -%>
+<% unless projects.nil? -%>
+  <% uniq_prefix = "#{controller_name}_#{action_name}_#{modul_uniq_id}" %>
+  <% Project.each_with_easy_level(projects) do |project, level| -%>
+    <% uniq_id = uniq_prefix + 'project-' + project.id.to_s %>
+    <tr id="<%= uniq_id %>" class="indnt-<%= level %> <%= project.css_project_classes(uniq_prefix) -%> <%= 'open' if expanded_rows %>" <% if (level > (root ? root.easy_level + 1 : 1)) && !expanded_rows -%>style="display: none;"<% end -%>>
+      <td class="name has-expander">
+        <div class="row-control">
+          <% if project.has_visible_children? && !project.leaf? -%>
+            <%= project_plus_button(true, project.id, uniq_prefix) %>
+          <% else -%>
+            <i class="expander-placeholder icon icon-project"></i>
+          <% end -%>
+        </div>
+        <%= link_to_project(project) -%>
+        <% if (defined?(show_desc) && show_desc && !in_mobile_view?) -%>
+          <div class="long_descr"><%= truncate_html(textilizable(project.description, {:project => project}), 255) %></div>
+        <% end -%>
+      </td>
+      <td class="time" title="<%=l(:field_due_date) + ' ' + format_date(project.easy_due_date.to_time).to_s unless project.easy_due_date.nil? %>">
+        <%= format_date(project.easy_due_date) unless project.easy_due_date.nil? -%>
+      </td>
+    </tr>
+  <% end -%>
+<% end -%>

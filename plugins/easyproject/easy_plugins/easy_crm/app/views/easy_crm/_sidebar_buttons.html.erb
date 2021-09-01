@@ -1,0 +1,18 @@
+<% if project %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to(l(:button_easy_crm_new_case), new_project_easy_crm_case_path(project), :title => l(:button_easy_crm_new_case), :class => 'icon icon-add button-positive') %>
+  <% end %>
+
+  <%= link_to(l(:label_easy_crm_cases), project_easy_crm_cases_path(project), :title => l(:label_easy_crm_cases), :class => 'button') %>
+  <%= link_to(l(:label_easy_contacts), easy_crm_contacts_project_path(project), :title => l(:label_easy_crm_cases), :class => 'button') %>
+  <%= link_to(l(:label_easy_crm_kanban), easy_crm_kanban_project_path(project), :title => l(:label_easy_crm_kanban), :class => 'button') %>
+<% else %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to(l(:button_easy_crm_new_case), new_easy_crm_case_path, :title => l(:button_easy_crm_new_case), :class => 'icon icon-add button-positive') %>
+  <% end %>
+  <%= link_to(l(:label_easy_crm_cases), easy_crm_cases_path, :title => l(:label_easy_crm_cases), :class => 'button') %>
+  <% if User.current.allowed_to_globally?(:manage_easy_user_targets, {})%>
+    <%= link_to l(:button_manage_user_targets), bulk_edit_easy_user_targets_path, :title => l(:button_manage_user_targets), class: 'button' %>
+  <% end %>
+  <%= link_to(l(:label_settings), easy_crm_settings_global_path, :title => l(:label_settings), :class => 'icon icon-settings button') if User.current.admin? %>
+<% end %>

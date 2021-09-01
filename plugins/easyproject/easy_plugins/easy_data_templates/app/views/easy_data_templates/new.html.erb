@@ -1,0 +1,18 @@
+<div id="data-template-container">
+  <h2><%= l(:label_easy_data_template_new) %></h2>
+
+  <%= labelled_form_for(@datatemplate, :html => {:id => 'easy_data_templates_form', :class => 'form-box'}) do |f| %>
+    <%= error_messages_for 'datatemplate' %>
+
+    <%= render :partial => 'form', :locals => {:f => f, :fid => @datatemplate.id}  %>
+
+    <div class="form-actions"><%= f.submit l(:button_add), :class => 'button-positive' %></div>
+  <% end %>
+
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= render :partial => 'easy_data_templates/sidebar_buttons', :locals => {:datatemplate => @datatemplate} %>
+<% end %>

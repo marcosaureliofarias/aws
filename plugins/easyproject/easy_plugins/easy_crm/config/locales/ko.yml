@@ -1,0 +1,302 @@
+---
+ko:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: 메일 본문(HTML)
+        body_plain: 메일 본문(일반 텍스트)
+        easy_crm_case_status: 상태
+        project: 프로젝트
+        subject: 제목
+      easy_crm_case_status:
+        is_closed: 종료 되었나요?
+        is_default: 기본값은?
+        is_easy_contact_required: 연락처가 필요합니까?
+        is_paid: 결제 되었나요?
+        is_won: 계약 되었나요?
+        name: 이름
+        only_for_admin: 관리자 전용
+        show_in_search_results: 검색?
+      easy_crm_case:
+        account_manager: 담당자
+        assigned_to: 에게 지정
+        author: 저자
+        closed_on: 영업 종료
+        contract_date: 계약 일자
+        created_at: 에서 생성
+        currency: 통화
+        description: 설명
+        easy_closed_by: 에 의해 종료되었습니다.
+        easy_contacts: 연락처
+        easy_crm_case_items:
+          amount: 수량
+          description: 설명
+          discount: 할인
+          easy_crm_case: CRM 사례
+          name: 이름
+          price_per_unit: 단가
+          product_code: 제품 코드
+          total_price: 총 가격
+          unit: 단위
+        easy_crm_case_status: 상태
+        email: 이메일
+        external_account_manager: 외부 담당자
+        is_canceled: 취소 되었나요?
+        is_finished: 끝났나요?
+        lead_value: Lead value
+        main_easy_contact_id: 고객
+        name: 이름
+        need_reaction: 반응이 필요한가요?
+        next_action: 다음 활동
+        price: 가격
+        probability: 가능성
+        project: 프로젝트
+        send_to_external_mails: 변경사항을 외부 메일로 보내시겠습니까?
+        telephone: 전화번호
+        updated_at: 업데이트 날짜
+      easy_lead_score:
+        country: 국가
+        created_at: 만든
+        updated_at: 업데이트된
+      easy_user_target:
+        currency: 통화
+        target: 대상
+        valid_from: From
+        valid_to: To
+    models:
+      easy_crm_case_mail_template: 메일 템플릿
+      easy_mail_campaign_easy_crm_case: CRM 사례
+  button_change_easy_crm_cases_status: 재지정과 삭제
+  button_easy_crm_add_item: 항목 추가
+  button_easy_crm_add_mail_template: 템플릿 추가
+  button_easy_crm_add_mailbox: 메일박스 추가
+  button_easy_crm_add_or_create_related_contact: 관련 연락처 추가
+  button_easy_crm_add_or_create_related_invoice: 관련된 송장 추가
+  button_easy_crm_add_or_create_related_issue: 관련된 일감 추가
+  button_easy_crm_add_related_contact: 연락처 할당
+  button_easy_crm_add_related_invoice: 송장 할당
+  button_easy_crm_add_related_issue: 일감 할당
+  button_easy_crm_add_sales_activity: 영업 활동 추가
+  button_easy_crm_add_status: 상태 추가
+  button_easy_crm_country_value_new: 새로운 값 만들기
+  button_easy_crm_create_related_contact: 신규 연락처 생성
+  button_easy_crm_create_related_invoice: 신규 송장 생성
+  button_easy_crm_create_related_issue: 신규 일감 생성
+  button_easy_crm_merge_cases: CRM사례 병합
+  button_easy_crm_merge_cases_inteligent_merge: CRM 사례 병합
+  button_easy_crm_merge_cases_quick_merge: CRM 사례 빠른 병합
+  button_easy_crm_new_case: 신규 CRM 사례
+  button_easy_crm_related_case: 관련된 CRM 사례 추가
+  button_easy_crm_view_sales_activities: 영업 활동 개요
+  button_easy_lead_score_new: New Easy Lead Score
+  button_easy_user_target_add_all_users_of_type: 모든 사용자 유형 추가
+  button_easy_user_target_add_users: 사용자 추가
+  button_easy_user_target_add_users_from_group: 그룹으로부터 사용자 추가
+  button_manage_user_targets: 유저 타겟 관리
+  button_merge_and_follow: 병합과 수행
+  button_set_easy_user_target_currency: 통화 설정
+  easy_crm_plugin_author: Easy Software Ltd
+  easy_crm_plugin_author_url: http://www.easyproject.cz/en
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: 영업 활동이 변경되었습니다.
+  easy_entity_activity_destroyed: 영업 활동이 삭제되었습니다.
+  easy_entity_activity_is_planned: "%{category}는 %{time}에 계획되었다."
+  easy_entity_activity_was_finished: "%{time} 종료된 %{category}"
+  easy_entity_activity_was_reported: "%{category}는 %{time}에 보고 되었다."
+  easy_invoice_already_has_crm_case: 송장에 이미 CRM 사례가 있습니다.
+  easy_lookup:
+    easy_crm_case:
+      label: CRM 사례
+  easy_mail_template_token:
+    caption:
+      crm_case_id: CRM 사례 ID
+      crm_case_name: CRM  사례명
+      crm_case_note: CRM 사례 마지막 저널 변경
+    title:
+      crm_case_id: 클릭으로 CRM 사례 ID 값 추가
+      crm_case_name: 클릭으로 CRM 사례명의 값 추가 (주제)
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: 필터에 의해 CRM 사례
+      easy_crm_cases_create_new: 신규 CRM
+      easy_crm_create_easy_crm_case_button: 신규 CRM 사례 버튼
+      easy_crm_pie_chart_from_custom_field: 사용자 정의 원형 차트
+      easy_crm_user_performance: 회원 성과
+      easy_crm_user_target: 사용자 목표
+      easy_entity_activity_crm_case_query: 필터된 영업 활동
+    pages_description:
+      easy_crm_overview: CRM 개요
+      easy_crm_project_overview: CRM 프로젝트 개요
+    pages:
+      easy_crm_overview: CRM 개요
+      easy_crm_project_overview: CRM 프로젝트 개요
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: 새로운 CRM 케이스 추가
+        description: 새로운 CRM 케이스 제작
+    easy_crm_settings:
+      index:
+        caption: CRM 설정
+        description: CRM 설정 관리
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: CRM 사례
+          related_easy_crm_case: 관련된 CRM 사례
+    name:
+      easy_crm_case_item_query: CRM 사례 항목
+      easy_crm_case_query: CRM 사례들
+      easy_crm_contact_query: CRM 연락처
+      easy_crm_country_value_query: CRM 국가 상세 가치
+      easy_lead_score_query: 이지 리드 점수
+      easy_user_target_query: 사용자 목표
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: CRM 사례에 개인 필터
+        easy_crm_contact_query: CRM 연락처에 대한 개인 필터
+      public:
+        easy_crm_case_query: CRM 사례에서 공용 필터
+        easy_crm_contact_query: CRM 연락처에서 공용 필터
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: CRM 메일박스
+  error_can_not_delete_easy_crm_status: 이 상태는 CRM 사례를 포함하고 있어서 삭제할 수 없습니다.
+  error_easy_crm_case_can_not_assign_custom_field: CRM 사례가  이 프로젝트에 속하지 않기 때문에 사용자
+    정의 필드에서 CRM 사례는 할당할 수 없습니다.
+  error_easy_crm_case_could_not_merge: CRM 사례는 병합 할 수 없습니다.
+  field_easy_crm_case: CRM 사례
+  field_easy_crm_case_contract_date: 계약 날짜
+  field_easy_crm_case_created_date: 만든 날짜
+  field_easy_crm_case_next_action: 다음 작업
+  field_easy_crm_cases: CRM 사례
+  field_easy_crm_cases_visibility: CRM사례 가시성
+  field_easy_lead_score: 리드 점수
+  heading_easy_crm_case_edit: CRM 사례 편집
+  heading_easy_crm_case_item_index: CRM 사례 항목
+  heading_easy_crm_case_mail_template_edit: 메일 템플릿 편집
+  heading_easy_crm_case_mail_template_index: 메일 템플릿
+  heading_easy_crm_case_mail_template_new: 신규 메일 템플릿
+  heading_easy_crm_case_new: 신규 CRM 사례
+  heading_easy_crm_case_sidebar_filters_by_member: 회원의 사례
+  heading_easy_crm_case_status_edit: CRM 사례 상태 편집
+  heading_easy_crm_case_status_index: CRM 사례 상태
+  heading_easy_crm_case_status_new: 신규 CRM 사례 상태
+  heading_easy_crm_country_value_new: 새로운  CRM 국가 상세 가치
+  heading_easy_crm_mailboxes_index: 메일박스
+  heading_easy_crm_related_case: 관련 CRM 사례
+  heading_easy_crm_related_case_plural: 관련  CRM 케이스
+  heading_easy_crm_related_contacts: 관련 연락처
+  heading_easy_crm_related_issues: 관련 일감
+  heading_easy_lead_score_edit: 이지 리드 점수 편집
+  heading_easy_lead_score_new: 신규 이지 리드 점수
+  label_advanced_custom_fields: 고급 사용자 정의 필드
+  label_assign_to_easy_crm_case: CRM 사례에 할당
+  label_attribute_of_easy_crm_cases: CRM 사례의 %{name}
+  label_bulk_edit_selected_easy_crm_case: 선택된 CRM 사례들 대량 편집
+  label_change_crm_cases_status_explanation: 'CRM 사례 상태 변경 :'
+  label_chart_target: 사용자 목표
+  label_crm_currency_rate: 기준 통화로 평가
+  label_crm_fields_permissions: CRM 필드 권한
+  label_easy_contact_easy_crm_cases: CRM 사례
+  label_easy_crm: CRM
+  label_easy_crm_case: CRM
+  label_easy_crm_case_account_manager: CRM 사례 담당자
+  label_easy_crm_case_added: 추가된 CRM 사례
+  label_easy_crm_case_assignee: CRM 사례 담당자
+  label_easy_crm_case_default_values: 기본 값
+  label_easy_crm_case_filters: 필터
+  label_easy_crm_case_is_associated_to_easy_invoice: CRM 사례에 연결 했습니까?
+  label_easy_crm_case_need_reaction: 반응이 필요함!
+  label_easy_crm_case_new: 신규 CRM 사례
+  label_easy_crm_case_plural: CRM 사례
+  label_easy_crm_case_query_includes_descendants: 모든 하위 프로젝트로부터 CRM 사례 출력
+  label_easy_crm_case_searchable_all: 모든 CRM 상태 검색
+  label_easy_crm_case_status: CRM 사례 상태
+  label_easy_crm_case_updated: CRM 케이스 업데이트
+  label_easy_crm_case_watchers_heading: 동료
+  label_easy_crm_cases: CRM 사례
+  label_easy_crm_cases_merge_into: '병합된 CRM 사례 :'
+  label_easy_crm_cases_visibility_all: 사용자의 프로젝트에서 모든 CRM 사례
+  label_easy_crm_cases_visibility_own: 사용자가 등록 또는 지켜보기 또는 사용자에게 할당된 CRM사례
+  label_easy_crm_country_values: CRM 국가 상세 가치
+  label_easy_crm_default_assignee: 신규 사례에 대한 담당자
+  label_easy_crm_find_by_worker: 작업자 검색
+  label_easy_crm_kanban: 칸반보기
+  label_easy_crm_kanban_columns_name: 컬럼 이름
+  label_easy_crm_kanban_drop_in: 드롭 상태
+  label_easy_crm_kanban_settings: 칸반 보기 설정
+  label_easy_crm_kanban_status_not_uniq: 칸반 칼럼은 다른 상태를 추적해야 한다.
+  label_easy_crm_kanban_statuses: 칼럼 상태
+  label_easy_crm_kanban_sum_column: 컬럼 합계 필더
+  label_easy_crm_new_kanban_column: 신규 칼럼 추가
+  label_easy_crm_project: CRM 프로젝트
+  label_easy_crm_related_case: 관련 사례
+  label_easy_crm_search_fo_easy_contact: 연락처 검색
+  label_easy_crm_search_for_easy_invoice: 송장 검색
+  label_easy_crm_search_for_issue: 일감 검색
+  label_easy_crm_settings: CRM 설정
+  label_easy_crm_use_items: CRM 항목을 사용
+  label_easy_lead_score: 이지 리드 점수
+  label_easy_lead_scores: 이지 리드 점수
+  label_easy_money_sidebar:
+    easy_crm_case: CRM 사례에 대한 자금
+  label_easy_user_target: 사용자 목표
+  label_easy_user_target_currency: 통화
+  label_easy_user_with_targets: 목표와 사용자
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: 연락처
+  label_filter_group_easy_user_target_query: 사용자 목표
+  label_page_module_compare: 비교
+  label_set_crm_fields_permissions: 상태로 CRM 필드 권한 설정
+  label_show_assigned_crm_cases: 사용자 %{username}에 할당 된 CRM 사례를 보여줍니다.
+  label_statuses_not_selected: 선택된 상태가 없습니다. 적어도 하나는 선택하세요.
+  label_unknown_user: 알 수 없는
+  label_use_values_from_crm_case: 로부터 가치 사용
+  mail:
+    subject:
+      easy_crm_case_add: "[%{projectname}]에 추가된 CRM 사례 - %{name}"
+      easy_crm_case_edit: "[%{projectname}]에 업데이트된 CRM 사례 - %{name} (%{status})"
+      my_easy_crm_case_add: ">>>  [%{projectname}]에 추가된 나의 CRM 사례 - %{name}"
+      my_easy_crm_case_edit: ">>> [%{projectname}] 업데이트된 나의 CRM 사례 - %{name} (%{status})"
+  notice_failed_to_save_easy_crm_cases: '선택된%{titles}의 %{total} 중 CRM 사례 %{count}는
+    저장하지 못했습니다 :'
+  permission_add_crm_case_notes: 노트 추가
+  permission_add_easy_crm_case_watchers: CRM 사례에 감시자 추가
+  permission_add_easy_crm_cases: CRM 사례 추가
+  permission_delete_easy_crm_case_watchers: CRM 사례 감시자 삭제
+  permission_delete_easy_crm_cases: CRM 사례 삭제
+  permission_edit_crm_case_notes: 노트 수정
+  permission_edit_easy_crm_cases: CRM 사례 편집
+  permission_edit_own_crm_case_notes: 사용자 노트 수정
+  permission_edit_own_easy_crm_cases: 자신의 CRM 사례  편집
+  permission_manage_easy_crm_page: CRM 페이지 관리
+  permission_manage_easy_crm_settings: CRM 설정 관리
+  permission_manage_easy_lead_scores: 이지 리드 점수 관리
+  permission_manage_easy_user_targets: 사용자 목표 관리
+  permission_view_easy_crm_case_watchers: CRM 사례 감시자 보기
+  permission_view_easy_crms: CRM 사례 보기
+  permission_view_easy_lead_scores: 이지 리드 점수 보기
+  permission_view_own_easy_crms: 자신의 CRM 사례 보기
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: 제거
+  remove_related_invoice: 송장 제거
+  setting_show_description_on_crm_case: CRM사례 항목 설명 보기
+  setting_show_easy_entity_activity_on_crm_case: CRM 사례에서 영업 활동 보기
+  sidebar_crm_case_button_move: CRM 사례 이동
+  text_are_you_sure_remove_user: 정말로 모든 분기에서 사용자를 제거합니까?
+  text_easy_crm_case_updated: CRM 사례 %{id}가 %{user}에 의해 업데이트되었습니다.
+  title_easy_crm_case_delete: CRM 사례 삭제
+  title_easy_crm_country_value_new: 새로운 국가 상세 가치 작성을 위해 클릭하기
+  title_easy_crm_new_case: 신규 CRM 사례를 만들기 위해 클릭하기
+  title_easy_lead_score_new: 신규 이지 리드 점수를 만들기 위해 클릭하세요.
+  title_easy_user_target_modal_easy_user_type: 유형으로 사용자 선택
+  title_easy_user_target_modal_group: 그룹으로 사용자 선택
+  title_easy_user_target_remove_user: 사용자 제거
+  title_kanban_settings: 칸반 설정

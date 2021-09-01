@@ -1,0 +1,9 @@
+$(".easy-calendar-upcoming__calendar-trigger").toggleClass('open');
+$(".easy-calendar-upcoming__calendar-content").toggleClass('open');
+
+var tooltip = $("#top-menu .easy-calendar-upcoming .easy-calendar-upcoming__calendar-content");
+<% c = 'top_menu_calendar_mini_tooltip_container' %>
+tooltip[0].id = "<%= c %>";
+<% modul_uniq_id = 'module_inside_top_menu_calendar_mini_tooltip' %>
+tooltip.html("<%=j content_tag :div, render( partial: 'easy_calendar/calendar', locals: {modul_uniq_id: modul_uniq_id, cal_id: "easy-calendar-#{modul_uniq_id}", settings: @settings, users: @users, easy_autocomplete_options_for_users: { append_to: '#top_menu_calendar_mini_tooltip_container' }}), id: modul_uniq_id %>");
+setTimeout(function(){ $('#easy-calendar-module_inside_top_menu_calendar_mini_tooltip').fullCalendar("render"); }, 0);

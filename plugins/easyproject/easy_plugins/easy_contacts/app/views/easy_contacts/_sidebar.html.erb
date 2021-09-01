@@ -1,0 +1,24 @@
+<%= render_menu_more(nil, nil, :menu_more_class => 'menu-more-sidebar', :menu_expander_class => 'button icon icon-add') do %>
+  <%= content_tag :li, easy_contact_send_mail_link -%>
+  <% if EasyLicenseManager.has_license_limit?(:active_project_limit) && (User.current.allowed_to_globally?(:add_project) || User.current.allowed_to_globally?(:add_subprojects)) %>
+    <%= content_tag(:li, link_to(l(:label_project_new), new_project_path(project: {easy_contact_ids: [@easy_contact.id]}), class: 'icon icon-add')) %>
+  <% end %>
+  <% if Project.allowed_to_create_project_from_template? %>
+    <%= content_tag(:li, link_to(l(:label_new_project_from_template), templates_path(assign_entity_id: @easy_contact.id, assign_entity_type: @easy_contact.class.base_class), class: 'icon icon-add')) %>
+  <% end %>
+  <%= content_tag :li do %>
+    <%= @project.nil? ? easy_contacts_assign_contact_to_projects_link :
+      link_to(l('easy_contact_action.add_to_project'), assign_entities_project_easy_contacts_path(@project, {:ids => [entity], :entity_type => 'Project', :entity_ids => [@project.id]}), :method => :post, :class => 'icon icon-add')-%>
+
+    <%= link_to(l(:label_easy_contact_add_sub_contact), new_polymorphic_path([@project, :easy_contact], parent_id: @easy_contact.id), class: 'button-positive icon icon-add')  -%>
+  <% end unless entity.projects.include?(@project) %>
+  <%= content_tag :li, easy_contact_reference_link(EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(entity.references_by)) -%>
+  <%= content_tag :li, easy_contacts_assign_contact_to_group_link(entity) %>
+  <%= content_tag :li, link_to(l(:field_anonymize), anonymize_easy_contact_path(id: @easy_contact.id), method: :post, data: {confirm: l(:text_are_you_sure)}, class: 'icon icon-lock') if User.current.allowed_to_globally?(:anonymize_easy_contacts) -%>
+  <%= content_tag :li, link_to( l('easy_contact_action.destroy'),{:action => :destroy_items, :ids => [entity.id], :project_id => @project}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del') if @easy_contact.deletable? -%>
+  <%= call_hook(:view_easy_contacts_sidebar_buttons, :project => @project, :easy_contact => @easy_contact) %>
+<% end -%>
+
+<% content_for :header_tags do %>
+  <%= javascript_include_tag 'easy_contacts', defer: true %>
+<% end %>

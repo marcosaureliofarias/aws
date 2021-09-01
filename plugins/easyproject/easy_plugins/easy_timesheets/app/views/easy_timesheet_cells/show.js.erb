@@ -1,0 +1,17 @@
+$("#ajax-modal").html("<%=j render(:partial => 'easy_timesheet_cells/time_entries', :locals => {:time_entries => @time_entries, :easy_timesheet => @easy_timesheet}) -%>");
+showModal("ajax-modal", '70%');
+$("#ajax-modal").dialog("option", {
+  title: "<%= format_date(@cell.spent_on.to_date) %>",
+  buttons: [
+  {
+    text: "<%=j l(:button_close) -%>",
+    click: function() {window.location.reload();$(this).dialog('close');},
+    'class': 'button'
+  },
+  {
+    text:"<%=j l(:button_save) -%>",
+    click: function() {$(this).dialog('close');$.get("<%=j new_easy_time_entry_path(:time_entry => {:user_id => @easy_timesheet.user_id, :project_id => @row.project_id, :issue_id => @row.issue_id, :activity_id => @row.activity_id, :spent_on => @cell.spent_on}) -%>", {modal: true, back_url: "<%=j easy_timesheet_path(@easy_timesheet) -%>"})},
+    'class': 'button-positive icon icon-add'
+  }
+  ]
+});

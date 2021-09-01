@@ -1,0 +1,19 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+
+  <%= javascript_include_tag 'jquery.layout.js', defer: true %>
+  <%= javascript_include_tag 'jquery.layout.state.js', defer: true %>
+  <%= javascript_include_tag 'redmine_re.js', defer: true %>
+<% end %>
+
+<div id="infobar" class="ui-layout-west ui-layout-content">
+  <%= render "requirements/treebar" %>
+</div>
+
+<div id='detail_view' class='ui-layout-center'>
+  <h2><ins class="<%= @re_artifact_properties.artifact_type.underscore + "-icon" %>"></ins> <%= t :re_edit %> <%= artifact_heading(@re_artifact_properties) %></h2>
+  <%= render :partial => 'edit' %>
+  <% content_for :header_tags do %>
+    <%= robot_exclusion_tag %>
+  <% end %>
+</div>

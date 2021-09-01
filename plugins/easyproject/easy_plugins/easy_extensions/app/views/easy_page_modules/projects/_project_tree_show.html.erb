@@ -1,0 +1,23 @@
+<% if page_module.entity_id.blank? || !@easy_page_modules_data[block_name] -%>
+  <%= render :partial => 'easy_page_modules/page_module_cannot_be_displayed', :locals => { :page_module => page_module } %>
+<% else -%>
+  <% projects = Array(@easy_page_modules_data[block_name][:projects]) %>
+  <div class="autoscroll project-tree">
+    <table class="list my_projects">
+      <tbody>
+        <%= render :partial => 'projects/projects_tree', :locals => {:root => @easy_page_modules_data[block_name][:project], :projects => projects, :user => user, :modul_uniq_id => modul_uniq_id, :expanded_rows => false} %>
+      </tbody>
+    </table>
+  </div>
+
+  <% uniq_prefix = "#{controller_name}_#{action_name}_#{modul_uniq_id}" -%>
+  <script type="text/javascript">
+    EASY.schedule.main(function() {
+      <% projects.each do |p| -%>
+        <% uniq_id = uniq_prefix + 'project-' + p.id.to_s -%>
+        <% next if toggle_button_expanded?(uniq_id, user) -%>
+        EASY.utils.hideTableRow('<%= uniq_prefix -%>', 'project', <%= p.id -%>, true);
+      <% end -%>
+    });
+  </script>
+<% end -%>

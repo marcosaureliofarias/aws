@@ -1,0 +1,6 @@
+<% unless @role.anonymous? %>
+  <p>
+    <%= form.select :easy_printable_templates_visibility, Role::EASY_PRINTABLE_TEMPLATES_VISIBILITY_OPTIONS.collect { |v| [l(v.last), v.first] } %>
+    <%= render partial: 'tooltip_for_role_generals', locals: { name: :easy_printable_templates_visibility } %>
+  </p>
+<% end %>

@@ -1,0 +1,9 @@
+<%  if hook_id %>
+  <span class="easy_knowledge_story_assign_to_group_link_with_date_label">
+    <%= l(:label_easy_knowledge_story_assign_to_user_link_with_date) -%>
+  </span>
+  <span class="easy_knowledge_story_assign_to_group_link_with_date">
+    <%= text_field_tag('easy_knowledge_story_assign_to_group_link_with_date', params[:easy_knowledge_story_assign_to_user_link_with_date]) -%>
+    <%= calendar_for('easy_knowledge_story_assign_to_group_link_with_date') -%>
+  </span>
+<% end %>

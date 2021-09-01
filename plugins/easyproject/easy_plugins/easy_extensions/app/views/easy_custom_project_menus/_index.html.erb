@@ -1,0 +1,32 @@
+<p>
+  <%= link_to l(:button_easy_custom_menu_add), new_project_easy_custom_project_menu_path(project), :class => 'button-positive icon icon-add', :remote => true %>
+</p>
+<div class="autoscroll">
+  <table class="list reorder">
+    <thead>
+    <tr>
+      <th></th>
+      <th><%= l(:field_name) %></th>
+      <th><%= l(:field_url) %></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% easy_custom_project_menus.each do |item| %>
+      <tr>
+        <td class="center reorder-handler"><%= render_reorder_handle(project_easy_custom_project_menu_path(project, item, :format => :js), 'easy_custom_project_menu') %></td>
+        <td class="name"><%= item.name %></td>
+        <td class="url"><%= link_to item.url, item.url %></td>
+        <td>
+          <% if item.original_item? %>
+            <%= link_to_function '', '', :class => 'icon icon-lock', :title => l(:title_easy_custom_menu_lock) %>
+          <% else %>
+            <%= link_to l(:button_edit), edit_project_easy_custom_project_menu_path(project, item), :class => 'icon icon-edit', :remote => true %>
+            <%= link_to l(:button_delete), project_easy_custom_project_menu_path(project, item, :back_url => original_url), :method => 'delete', :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:title_delete) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

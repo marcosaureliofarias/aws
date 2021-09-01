@@ -1,0 +1,24 @@
+<%
+  options = {}
+  options[:include_cocoon] ||= false
+  options[:display_link_to_remove_association] = true
+  options[:display_link_to_remove_item_association] = true
+  options[:show_checklist_name] = true
+%>
+
+<%= toggling_fieldset l(:label_easy_checklist_plural), :id => 'easy_checklist_form_container', :class => 'box tabular' do %>
+
+  <%= form.fields_for :easy_checklists do |builder| %>
+    <%= render :partial => 'easy_checklists/easy_checklist_form_attributes_fieldset', :locals => {:f => builder, :f_parent => form, :easy_checklist => builder.object, :options => options, :display_link_to_remove_association => true} %>
+  <% end %>
+
+  <span>
+    <%= link_to_add_association l(:button_new_easy_checklist), form, :easy_checklists, :class => 'button icon icon-add', :partial => 'easy_checklists/easy_checklist_form_attributes_fieldset', :render_options => {:locals => {:easy_checklist => EasyChecklist.new(entity: entity, :prepare_items => true), :options => options}} %>
+    <% if entity.project.easy_checklist_templates.count > 0 %>
+      <%= select_tag :easy_checklist_template_id, options_from_collection_for_select(entity.easy_checklist_templates, 'id', 'name'), :label => '', :prompt => l(:label_easy_checklist_template_select_placeholder), :onchange => "$.get('#{append_template_easy_checklists_path(:entity_type => entity.class.name, :entity_id => entity.id)}' + '&easy_checklist_template_id=' + $('#easy_checklist_template_id').val());$(this).val('')", :class => "easy-checklist-template-add-select" %>
+    <% end %>
+  </span>
+
+<% end %>
+
+<%= render :partial => 'easy_checklists/easy_checklist_form_bottom', :locals => {:options => options} %>

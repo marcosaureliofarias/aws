@@ -1,0 +1,30 @@
+<div id="alerts-reports">
+  <h2><%= l(:label_alerts_my_reports) -%></h2>
+  <%= render :partial => 'list', :locals => { :reports => @reports} %>
+</div>
+
+<span class="pagination" style="display: none"><%= pagination_links_full @reports_pages, @reports_count %></span>
+
+<%= render :partial => 'common/infinite_scroll' %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:button_alerts_add_new_alert), { :controller => 'alerts', :action => 'new', :for_all => params[:for_all] }, :title => l(:title_alerts_add_new_alert), :class => 'button-positive' -%>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= link_to l(:button_alerts_my_alerts), { :controller => 'alerts', :action => 'index' }, :title => l(:title_alerts_my_alerts), :class => 'button' -%>
+  <%= link_to(l(:button_manage_alerts_for_all), { :controller => 'alerts', :action => 'index', :for_all => 1 }, :title => l(:title_manage_alerts_for_all), :class => 'button') if User.current.allowed_to?(:manage_alerts_for_all, nil, :global => true) -%>
+  <%= link_to l(:button_alerts_reports_archive), { :controller => 'alert_reports', :action => 'archive'}, :title => l(:title_alerts_reports_archive), :class => 'button' -%>
+  <%= render :partial => 'sidebar/alerts' %>
+<% end %>
+<% content_for :sidebar_exports do %>
+  <% easy_other_formats_links(utm_content: 'alert_reports') do |f| %>
+    <%= f.link_to 'Atom', :url => { :key => User.current.rss_key } %>
+  <% end %>
+<% end %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>
+

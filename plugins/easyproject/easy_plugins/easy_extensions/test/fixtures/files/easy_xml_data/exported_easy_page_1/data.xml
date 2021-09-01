@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<easy_xml_data>
+  <easy-pages type="array">
+    <easy-page>
+      <id type="integer">51</id>
+      <page-name>easy-custom</page-name>
+      <layout-path>easy_page_layouts/two_column_header_three_rows_right_sidebar</layout-path>
+      <identifier>cusom-page</identifier>
+      <entity-type nil="true"/>
+      <entity-id type="integer" nil="true"/>
+      <user-id type="integer" nil="true"/>
+      <user-defined-name>Cusom Page</user-defined-name>
+      <page-scope nil="true"/>
+      <has-template type="boolean">false</has-template>
+      <is-user-defined type="boolean">true</is-user-defined>
+      <created-at type="dateTime">2017-12-18T13:39:37Z</created-at>
+      <updated-at type="dateTime">2017-12-18T13:39:37Z</updated-at>
+    </easy-page>
+  </easy-pages>
+  <easy-page-zone-modules type="array">
+    <easy-page-zone-module>
+      <user-id type="integer" nil="true"/>
+      <entity-id type="integer" nil="true"/>
+      <tab-id type="integer" nil="true"/>
+      <tab type="integer">1</tab>
+      <created-at type="dateTime">2017-12-18T13:40:23Z</created-at>
+      <updated-at type="dateTime">2017-12-18T13:40:42Z</updated-at>
+      <id>4df8b160-f9f4-49dd-86cd-2105dd4cac3d</id>
+      <easy-page>51</easy-page>
+      <easy-page-zone>top-left</easy-page-zone>
+      <easy-page-module>EpmTrends</easy-page-module>
+      <settings type="yaml">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        easy_query_type: EasyIssueQuery
+        use_query_to_compare: 'false'
+        name: Trends - Tasks
+        description: Trends - Tasks
+        easy_icon: ''
+        color: palette-1
+        type: count
+        column_to_sum: estimated_hours
+        query: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        set_filter: '1'
+        query_type: '2'
+        query_name: name of filter
+        row_limit: '10'
+        outputs:
+        - list
+        sort_criteria: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        '0':
+        - ''
+        - ''
+        '1':
+        - ''
+        - ''
+        '2':
+        - ''
+        - ''
+        column_names:
+        - tracker
+        - status
+        - priority
+        - subject
+        - assigned_to
+        - updated_on
+        group_by:
+        - ''
+        show_sum_row: '0'
+        load_groups_opened: '0'
+        show_avatars: '1'
+        chart_settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        primary_renderer: line
+        axis_x_column: assigned_to
+        axis_y_type: sum
+        axis_y_column: cf_55
+        y_label: ''
+        secondary_axis_y_column: ''
+        period_column: ''
+        bar_direction: vertical
+        bar_limit: '0'
+        legend_enabled: '0'
+        legend: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        location: nw
+        period_zoom: month
+        settings: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        period: month
+        report_group_by:
+        - ''
+        - ''
+        report_sum_column:
+        - ''
+        kanban: !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+        kanban_group: ''
+        kanban_group_trackers:
+        - '4'
+        - '5'
+        - '3'
+        - '2'
+        - '6'
+        - '7'
+        - '8'
+        - '9'
+        - '10'
+        - '11'
+        - '12'
+        - '13'
+        - '14'
+        - '15'
+        - '16'
+        - '17'
+        - '18'
+        - '19'
+        - '20'
+        - '21'
+        - '22'
+        kanban_group_statuses:
+        - '11'
+        - '2'
+        - '6'
+        - '3'
+        - '9'
+        - '10'
+        - '8'
+        - '13'
+        - '7'
+        - '4'
+        - '12'
+        main_attribute: ''
+        summable_column: ''
+        avatar_attribute: ''
+        date_details:
+        - ''
+        icon_details:
+        - ''
+        operator: "&gt;"
+        easy_query_type_to_compare: EasyIssueQuery
+        type_to_compare: sum
+        column_to_sum_to_compare: estimated_hours
+      </settings>
+    </easy-page-zone-module>
+  </easy-page-zone-modules>
+</easy_xml_data>

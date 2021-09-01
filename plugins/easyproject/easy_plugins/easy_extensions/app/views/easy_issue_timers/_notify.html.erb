@@ -1,0 +1,20 @@
+<div id="easy_issue_timer_notify_container"class="servicebar-content">
+  <ul class="link-list easy-issue-timers">
+    <% easy_issue_timers.each do |timer| %>
+      <li id="<%= dom_id(timer) %>" class="list-item easy-issue-timers-item">
+        <span class="easy-issue-timers-item-breadcrumb"><%= project_header_breadcrump(timer.issue, :link_tail => true) %></span>
+          <span class="timer-time icon icon-time"><%= easy_format_hours(timer.current_hours) %></span>
+          <div class="easy-issue-timers-item-buttons">
+            <%= link_to('', easy_issue_timer_path(timer), :remote => true, :class => 'icon-del push-right button-mini icon-only', :title => l(:title_delete), :method => :delete, :data => {:confirm => l(:text_are_you_sure)}) %>
+            <% if !timer.paused? %>
+              <%= content_tag(:span, link_to(l(:button_easy_issue_timer_stop), easy_issue_timer_stop_path(timer.issue, :timer_id => timer), :class => 'icon icon-checked-circle button-mini-positive', :method => :post, :title => l(:title_easy_issue_timer_button_stop), :onclick => "$(this).css({'z-index': -1})", :id => dom_id(timer))) %>
+              <%= content_tag(:span, link_to(l(:button_easy_issue_timer_pause), easy_issue_timer_pause_path(timer.issue, :timer_id => timer), :remote => true, :class => 'icon icon-pause button-mini-negative', :method => :post, :title => l(:title_easy_issue_timer_button_pause), :onclick => "$(this).css({'z-index': -1})")) %>
+            <% else %>
+              <%= content_tag(:span, link_to(l(:button_easy_issue_timer_resume), easy_issue_timer_play_path(timer.issue, :timer_id => timer), :remote => true,  :class => 'icon icon-play button-mini-positive', :method => :post, :title => l(:title_easy_issue_timer_button_resume), :onclick => "$(this).css({'z-index': -1})", :id => dom_id(timer))) %>
+            <% end %>
+          </div>
+        <div class="clear"></div>
+      </li>
+    <% end -%>
+  </ul>
+</div>

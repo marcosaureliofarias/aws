@@ -1,0 +1,49 @@
+<%
+  current_tab = easy_page_context[:page_params][:current_tab]
+
+  js_options = {
+    availableFilters: EasyExtensions::GlobalFilters.prepare_available_filters(view_context: self),
+    availableCurrencies: EasyCurrency.activated.pluck(:name, :iso_code),
+    I18n: {
+      label_in_modules: l(:label_in_modules),
+      label_easy_currency: l(:label_easy_currency),
+      actionview_instancetag_blank_option: l(:actionview_instancetag_blank_option),
+    }
+  }
+
+  if current_tab
+    js_options[:tabId] = current_tab.id
+    js_options[:savedFilters] = EasyExtensions::GlobalFilters.prepare_saved_filters(current_tab.settings['global_filters'])
+    js_options[:lastFilterId] = current_tab.settings['last_global_filter_id']
+    js_options[:settings] = current_tab.settings
+  else
+    js_options[:tabId] = 0
+  end
+
+  div_id = "global-filters-#{js_options[:tabId]}"
+%>
+
+<div id="<%= div_id %>" class="definition-global-filters hidden" data-tab-id="<%= js_options[:tabId] %>">
+  <h3><i class="icon icon-filter"></i> <%= l(:label_global_filters) %></h3>
+
+  <div class="definition-global-filters__settings">
+  </div>
+
+  <table class="filters-table">
+    <tbody>
+      <tr>
+        <td><label><%= l(:label_filter_add) %></label></td>
+        <td>
+          <%= select_tag 'f', options_for_select(EasyExtensions::GlobalFilters.all.map{|type, f| [f.name, type] }), include_blank: true %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<% include_calendar_headers_tags %>
+<script>
+  EASY.schedule.late(function(){
+    $("#<%= div_id %>").globalFilters(<%= js_options.to_json.html_safe %>)
+  }, 1)
+</script>

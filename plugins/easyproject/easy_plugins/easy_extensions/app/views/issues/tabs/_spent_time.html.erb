@@ -1,0 +1,17 @@
+<% if @query.entities.any? %>
+  <em>
+    <%= l(:label_spent_time_hardcoded_table_tooltip) %>
+    <%= link_to l(:label_spent_time_hardcoded_table_tooltip_link), easy_time_entries_path({ issue_id: @issue, period: 'all', set_filter: '1' }) %>
+  </em>
+  <%=
+    render 'easy_queries/easy_query_entities_list',
+      entities: @query.entities,
+      query: @query,
+      options: {
+        disable_sort: true
+      }
+  %>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+

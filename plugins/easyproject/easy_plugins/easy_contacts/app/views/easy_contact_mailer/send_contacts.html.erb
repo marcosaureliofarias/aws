@@ -1,0 +1,14 @@
+<%= content_tag(:h1, l(:title_easy_contact_mailer, :contact_name => @contacts.map(&:name).join(', '))) -%>
+<p>
+  <%=l :header_text_of_mail, :user => @user -%>
+</p>
+<% @contacts.each do |contact| %>
+
+  <%= content_tag :h2, link_to(contact.name, url_for(:controller => 'easy_contacts', :action => 'show', :id => contact, :only_path => false)) -%>
+  <% contact.visible_custom_field_values.each do |cf| %>
+    <p><%= content_tag :strong, cf.custom_field.translated_name %>: <%= cf.value %> </p>
+  <%end%>
+
+  <%= textilizable(contact, :author_note, {:only_path => false}) %>
+  <hr />
+<%end%>

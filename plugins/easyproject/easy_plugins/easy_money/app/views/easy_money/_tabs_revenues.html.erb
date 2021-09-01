@@ -1,0 +1,7 @@
+<% selected_entity_type ||= 'other_revenue' %>
+<div id="money-type-select" class="tabs">
+  <ul>
+    <%= render :partial => 'easy_money/tab_item', :locals => {:money_type => 'revenue', :entity_type => 'expected_revenue', :selected => (selected_entity_type == 'expected_revenue')} %>
+    <%= render :partial => 'easy_money/tab_item', :locals => {:money_type => 'revenue', :entity_type => 'other_revenue', :selected => (selected_entity_type == 'other_revenue')} %>
+  </ul>
+</div>

@@ -1,0 +1,263 @@
+---
+de:
+  button_print: Drucken
+  button_project_menu_easy_gantt: Easy Gantt
+  button_top_menu_easy_gantt: Globales Gantt
+  button_use_actual_delay: Aktuelle Verzögerung verwenden
+  easy_gantt_toolbar:
+    day: Tage
+    month: Monate
+    week: Wochen
+  easy_gantt:
+    button:
+      close_all: Alles schließen
+      close_all_parent_issues: Alle übergeordneten Aufgaben schließen
+      create_baseline: Baselines
+      critical_path: Kritischer Pfad
+      day_zoom: Tage
+      delayed_project_filter: Nur verzögerte Projekte
+      jump_today: Zum heutigen Tag springen
+      load_sample_data: Beispieldaten laden
+      month_zoom: Monate
+      print_fit: Der Seite anpassen
+      problem_finder: Probleme
+      reload: Neu laden (speichern)
+      remove_delay: Verzögerung entfernen
+      resource_management: Ressourcenmanagement
+      tool_panel: Werkzeuge
+      week_zoom: Wochen
+    critical_path:
+      disabled: Deaktiviert
+      last: Zuletzt
+      last_text: Aufgaben, die nicht verzögert werden dürfen
+      longest: Längste
+      longest_text: Längste Sequenz von Aufgaben anzeigen
+    errors:
+      change_link_length: Die Verzögerung zwischen {{source_task}} und {{target_task}}
+        wurde auf eine Mindestlänge von {{minimum_link_length}} geändert
+      duplicate_link: Doppelter Link kann nicht erstellt werden
+      fresh_milestone: Aufgabe kann nicht zu einem nicht gespeicherten Meilenstein
+        hinzugefügt werden. Speichern Sie zuerst den Meilenstein.
+      integrity:
+        ends_too_late: endet zu spät
+        gantt_is_too_long: Gantt-Diagramm ist zu breit (mehr als {{limit}} Tage)
+        out_of_limits: Einige Entitäten wurden weggelassen, weil sie außerhalb der
+          Grenzen von {{minLimit}} bis {{maxLimit}} liegen
+        starts_too_early: beginnt zu früh
+        truncated: gekürzt
+      link_target_new: Es kann keine Verbindung zu einer nicht gespeicherten Aufgabe
+        hergestellt werden. Speichern Sie zuerst die Änderungen.
+      link_target_readonly: Zielaufgabe schreibgeschützt
+      loop_link: Loop-Link kann nicht erstellt werden
+      no_rest_api: REST API muss für Easy Gantt aktiviert sein. Aktivieren Sie es
+        unter Administration -> Einstellungen -> API -> REST Webservice aktivieren
+      overdue: sollte in der Zukunft enden oder bereits geschlossen sein
+      overmile: sollte am %{effective_date} enden, um den Meilenstein einzuhalten
+      progress_date_overdue: liegt %{days} Tage hinter dem Plan
+      project_link: Link zum Projekt kann nicht erstellt werden
+      reservation_for_unassignee: Reservierung für einen Nichtzugewiesenen kann nicht
+        erstellt werden.
+      save_gantt: Bitte speichern Sie Gantt, bevor Sie gehen.
+      short_delay: sollte um %{diff} Tage länger sein
+      subproject_precedes_parent: Unterprojekt geht dem übergeordneten Projekt voraus
+      too_short: enthält nicht genügend Tage für %{rest} Stunden der geschätzten Zeit
+      unsaved_parent: Aufgabe kann nicht zur nicht gespeicherten Überordnung hinzugefügt
+        werden. Speichern Sie zuerst die Änderungen.
+      unsupported_link_type: Nicht unterstützter Link-Typ
+    gateway:
+      entity_save_failed: "%{entityType} %{entityName} konnte aufgrund eines Fehlers
+        nicht gespeichert werden"
+      send_failed: Anfrage fehlgeschlagen
+    label_pro_upgrade: Upgrade auf PRO-Version
+    legend:
+      heading: Gantt-Diagramm-Legende
+      heading_tips: Tipps und Tricks
+      label_dates_calculated: Anfangs- und Fälligkeitsdatum werden aus den Aufgaben
+        berechnet
+      label_dates_set_manually: Anfangs- und Fälligkeitsdatum werden manuell festgelegt
+      label_milestone: Meilenstein
+      label_milestone_shared: Geteilter Meilenstein
+      label_project: Projekt
+      label_project_done: Visualisierung des Projektabschlusses (% done)
+      label_project_problem: Projekt mit Problem
+      label_relation_fixed: Gesperrte (feste) Beziehung
+      label_relation_unfixed: Entsperrte (flexible) Beziehung
+      label_relations_handle: Griff zum Ziehen von Beziehungen
+      label_task: Aufgabe
+      label_task_delay: Zahl gibt die Verzögerung an - Anzahl der Tage zwischen den
+        Aufgaben. Die Zahl in Klammern gibt die für Wochenenden und Feiertage angepasste
+        Verzögerung an
+      label_task_done: Visualisierung der Aufgabenerfüllung (% done)
+      label_task_due_missing: Aufgabe mit unbestimmtem Fälligkeitsdatum
+      label_task_movers: Griffe zum Verschieben von Anfangs-/Fälligkeitsdatum
+      label_task_parent_dates_missing: Die Überordnung dieser Aufgabe hat ein unbestimmtes
+        Anfangs- und Fälligkeitsdatum
+      label_task_problem: Aufgabe mit Problem
+      label_task_start_missing: Aufgabe mit unbestimmtem Anfangsdatum
+      label_today: Visualisierung des aktuellen Tages
+      notice_due_date_set: Anfangsdatum ist nicht festgelegt, Fälligkeitsdatum ist
+        festgelegt
+      notice_future_due_date: Wenn Sie ein Projekt mit einem in der Vergangenheit
+        liegenden Anfangsdatum verschieben, ist das neue Datum das gleiche wie das
+        Fälligkeitsdatum - die Projektdauer beträgt 1 Tag
+      notice_future_start_date: Wenn Sie das Anfangsdatum in die Zukunft verschieben,
+        wird das Fälligkeitsdatum auf den gleichen Tag wie das Anfangsdatum festgelegt
+        - die Projektdauer beträgt 1 Tag
+      notice_move_expanded_project: Das ausgeklappte Projekt kann nicht verschoben
+        werden - klappen Sie das Projekt ein, aktualisieren Sie die Seite und verschieben
+        Sie dann das Projekt.
+      notice_past_due_date: Wenn Sie das Projekt verschieben, wird das Anfangsdatum
+        auf den aktuellen Tag (heute) festgelegt.
+      notice_past_start_date: Wenn Sie das Anfangsdatum in die Vergangenheit verschieben,
+        wird das Fälligkeitsdatum auf den aktuellen Tag (heute) festgelegt.
+      notice_project_needs_task: Ein Projekt kann nicht verschoben und gespeichert
+        werden, wenn es nicht mindestens eine Aufgabe enthält. Fügen Sie dem Projekt
+        oder seinem Unterprojekt eine Aufgabe hinzu, um es verschieben zu können.
+      notice_start_date_set: Anfangsdatum ist festgelegt, Fälligkeitsdatum ist nicht
+        festgelegt
+    link_dir:
+      link_end: wie vorhergehend
+      link_start: wie folgt
+    popup:
+      add_task:
+        heading: Aufgabenfunktion hinzufügen
+        text: "Die neue Aufgaben-/Meilenstein-Funktion ist nur in Easy Gantt PRO verfügbar.
+          \r\n<a href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Schauen
+          Sie nach Update!</a>"
+      baseline:
+        heading: Baseline-Funktion
+        text: "Die Baseline-Funktion ist nur in Easy Gantt PRO verfügbar.\r\n<a href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Schauen
+          Sie nach Update!</a>"
+      critical:
+        heading: Funktion des kritischen Pfades
+        text: "Die Funktion des kritischen Pfades ist nur in Easy Gantt PRO verfügbar.\r\n<a
+          href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Schauen Sie
+          nach Update!</a>"
+      resource:
+        easy_text: Ressourcenmanagement-Plugin ist nicht installiert - holen Sie es
+          sich <a href="https://www.easyredmine.com/pricing-buy">hier!</a>
+        heading: Ressourcemanager-Funktion
+        text: Die Ressourcenmanagementfunktion ist nur in <a href="https://www.easyredmine.com/">Easy
+          Redmine</a> verfügbar
+    reload_modal:
+      label_errors: Fehler
+      text_reload_appeal: Möchten Sie nicht gespeicherte Elemente ignorieren und Daten
+        vom Server neu laden?
+      title: Gantt konnte nicht richtig speichern
+    sample_global_free:
+      text: Beispieldaten können nicht geschlossen werden. Gantt über alle Projekte
+        ist nur in der PRO-Version verfügbar.
+      video:
+        text: Hier sehen Sie die meisten Funktionen von Gantt über alle Projekte hinweg
+        title: Beispielvideo von Gantt über alle Projekte hinweg
+        video_id: zd3M0KYxcXM
+    sample:
+      close_label: Schließen Sie dieses Fenster und laden Sie echte Projektdaten
+      header: Beispieldaten sind geladen!
+      text: Wir haben einige Beispieldaten für Sie vorbereitet, damit Sie alle Easy
+        Gantt-Funktionen stressfrei testen können. Wir möchten Sie auch ermutigen,
+        sich einen Video-Guide anzusehen, der nützliche Optimierungen zeigt. Wenn
+        Sie dieses Fenster schließen, werden echte Projektdaten geladen.
+      video_label: Video-Tutorial ansehen‌
+      video:
+        text: Hier sehen Sie die meisten Funktionen dieses Gantt-Moduls
+        title: Beispielvideo
+        video_id: UHgqfsrD59Q
+    text_blocker_milestone: Der Meilenstein verhindert das Verschieben der Aufgabe
+      über dieses Datum hinaus
+    text_blocker_move_end: Mindestens eine folgende Aufgabe wird verschoben, wenn
+      sie nach diesem Datum platziert wird
+    text_blocker_move_pre: Die Aufgabe hat eine Beziehung, die das Verschieben der
+      Aufgabe über das Datum hinaus verhindert
+    title:
+      button_test: Test-Taste (nur zum Testen)
+      day_zoom: Zoom auf Tagesskala
+      jump_today: Zeitachse am heutigen Tag anzeigen
+      month_zoom: Zoom auf Monatsskala
+      print_fit: Gantt auf eine Seite skalieren
+      week_zoom: Zoom auf Wochenskala
+  easy_printable_templates_categories:
+    easy_gantt: Easy Gantt
+  easy_query:
+    name:
+      easy_gantt_easy_issue_query: Easy Gantt
+      easy_gantt_easy_project_query: Globales Gantt
+  error_easy_gantt_view_permission: Sie haben keine Berechtigung, Easy Gantt zu sehen
+  error_epm_easy_gantt_already_active: Easy Gantt ist auf der Seite bereits aktiv
+  error_small_screen: Die Bildschirmgröße Ihres Geräts ist zu klein, um ein Gantt-Diagramm
+    anzuzeigen
+  error_start_date_before_end_date: Enddatum muss größer als das Anfangsdatum sein
+  field_easy_gantt_default_zoom: Standard-Zoom
+  field_easy_gantt_fixed_delay: Feste Verzögerung
+  field_easy_gantt_relation_delay_in_workdays: Relationsverzögerungen in Arbeitstagen
+  field_easy_gantt_show_holidays: Feiertage anzeigen
+  field_easy_gantt_show_project_progress: Projektfortschritt anzeigen
+  field_easy_gantt_show_task_soonest_start: Frühesten Start anzeigen
+  field_keep_link_delay_in_drag: Konstante Verbindungsverzögerung beim Ziehen (Drag)
+  field_relation: Beziehung
+  heading_delay_popup: Verzögerung in Tagen definieren
+  heading_demo_feature_popup: Demnächst verfügbar
+  heading_easy_gantts_issues: Easy Gantt Free
+  label_easy_gantt: Easy Gantt
+  label_easy_gantt_critical_path: Kritischer Pfad
+  label_easy_gantt_global: Global
+  label_easy_gantt_issue_loaded: Alle Aufgaben geladen
+  label_easy_gantt_load: Laden
+  label_easy_gantt_next_level_close: Nächste Ebene schließen
+  label_easy_gantt_next_level_open: Nächste Ebene öffnen
+  label_easy_gantt_recalculate_fixed_delay: feste Verzögerung neu berechnen
+  label_easy_gantt_settings: Gantt-Einstellungen
+  label_filter_group_easy_gantt_easy_issue_query: Aufgabenfelder
+  label_finish_to_finish: Ende zu Ende
+  label_not_available: Nicht verfügbar
+  label_parent_issue_plural: Übergeordnete Aufgaben
+  label_start_to_finish: Anfang zu Ende
+  label_start_to_start: Anfang zu Anfang
+  link_easy_gantt_plugin: https://www.easyredmine.com/easy-gantt-upgrade-to-pro
+  notice_easy_gantt_fixed_delay_recalculated: Die feste Verzögerung wurde für alle
+    Beziehungen neu berechnet
+  permission_edit_easy_gantt: Easy Gantt für ein Projekt bearbeiten
+  permission_edit_global_easy_gantt: Globales Gantt bearbeiten
+  permission_edit_personal_easy_gantt: Persönliches Easy Gantt bearbeiten
+  permission_view_easy_gantt: Easy Gantt für ein Projekt anzeigen
+  permission_view_global_easy_gantt: Globales Gantt anzeigen
+  permission_view_personal_easy_gantt: Persönliches Easy Gantt anzeigen
+  project_default_page:
+    easy_gantt: Easy Gantt
+  project_module_easy_gantt: Gantt
+  sample_global_free:
+    text: Beispieldaten können nicht geschlossen werden. Gantt ist für alle Projekte
+      nur in der PRO-Version verfügbar.
+    video:
+      text: Hier können Sie die meisten Gantt-Funktionen für alle Projekte sehen
+      title: Beispielvideo von Gantt für alle Projekte
+      video_id: UHgqfsrD59Q
+  sample:
+    close_label: Schließen Sie dieses Fenster und laden Sie echte Projektdaten
+    header: Beispieldaten sind geladen!
+    text: Wir haben für Sie einige Beispieldaten vorbereitet, damit Sie alle Gantt-Funktionen
+      stressfrei ausprobieren können. Wir möchten Sie außerdem ermutigen, sich eine
+      Videoanleitung mit nützlichen Optimierungen anzusehen. Wenn Sie dieses Fenster
+      schließen, werden echte Projektdaten geladen.
+    video_label: Video-Tutorial ansehen
+    video:
+      text: Hier können Sie die meisten Funktionen dieses Gantt-Moduls sehen
+      title: Beispielvideo
+      video_id: UHgqfsrD59Q
+  text_demo_feature_popup: Diese Funktion wird in Kürze verfügbar sein.
+  text_easy_gantt_fixed_delay: Beziehungsverzögerung beibehalten, wenn die Aufgabe
+    gezogen wird
+  text_easy_gantt_footer: Redmine Gantt powered by Easy
+  text_easy_gantt_keep_link_delay_in_drag: Beziehungsverzögerung konstant halten,
+    während die Aufgabe zurückgezogen wird
+  text_easy_gantt_print_easy_gantt_current: Aktuelles Easy Gantt anzeigen (funktioniert
+    nur von der Seite, auf der Easy Gantt geladen ist)
+  text_easy_gantt_relation_delay_in_workdays: Keine arbeitsfreien Tage in der Beziehungsverzögerung
+    mitzählen
+  text_easy_gantt_show_holidays: Feiertage aus dem Kalender des aktuellen Benutzers
+    anzeigen
+  text_easy_gantt_show_project_progress: Fertigstellungsgrad in Prozent auf der Projektleiste
+    anzeigen (das Laden kann sehr langsam sein)
+  text_easy_gantt_show_task_soonest_start: Niedrigste gültige Daten für Aufgaben anzeigen,
+    die durch Beziehungen oder Überordnungen definiert sind
+  title_easy_gantt_settings: Gantt-Einstellungen

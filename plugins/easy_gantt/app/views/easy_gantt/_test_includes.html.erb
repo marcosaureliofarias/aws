@@ -1,0 +1,23 @@
+<%
+  gantt_jasmine_tests = [
+      # test framework
+      'helpers/test',
+
+      # common tests
+      'main',
+      'loader',
+      'working_helper',
+      'working_helper_add',
+      'pos_date',
+      'history',
+      'model_relations',
+      'load_reorder'
+  ]
+%>
+<%= javascript_include_tag(*gantt_jasmine_tests.map { |test| 'easy_gantt/jasmine/' + test }, plugin: 'easy_gantt') %>
+
+<% extra_test_names = get_jasmine_tags
+ extra_tests = prepare_test_includes extra_test_names
+ extra_tests.each do |test, plugin| %>
+  <%= javascript_include_tag("#{plugin}/jasmine/#{test}", plugin: plugin) %>
+<% end %>

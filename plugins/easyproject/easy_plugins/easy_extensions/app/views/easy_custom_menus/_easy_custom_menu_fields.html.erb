@@ -1,0 +1,46 @@
+<% cocoon_template ||= false %>
+<% index ||= 0 %>
+<% if cocoon_template && is_top_item %>
+<div class="top-item custom-menu-container">
+<% end %>
+
+<div class="nested-fields splitcontent">
+
+  <div class="splitcontentleft size-3">
+    <p>
+      <%= f.text_field :name %>
+    </p>
+  </div>
+
+  <div class="splitcontentleft size-3">
+    <p><%= f.text_field :url, :placeholder => '/issues' %></p>
+  </div>
+
+  <div class="splitcontentleft size-2 easy-custom-menu-easy-icon-select">
+    <p><%= f.easy_icon_select(:easy_icon) %></p>
+  </div>
+
+  <div class="splitcontentright size-2 text-right">
+    <% if is_top_item %>
+      <%= link_to_add_association f, :submenus, class: 'button', partial: 'easy_custom_menus/easy_custom_menu_fields', render_options: { locals: { is_top_item: false, cocoon_template: true, index: (index + 1) } },
+                                  :'data-association-insertion-method'    => 'append',
+                                  :'data-association-insertion-node'      => '.custom-menu-container',
+                                  :'data-association-insertion-traversal' => 'closest' do %>
+        <i class="icon icon-add"></i>
+      <% end %>
+      <%= link_to_remove_association f, wrapper_class: 'top-item', class: 'button', title: l(:button_delete) do %>
+        <i class="icon icon-del"></i>
+      <% end %>
+    <% else %>
+      <%= link_to_remove_association f, class: 'button', title: l(:button_delete) do %>
+        <i class="icon icon-del"></i>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+
+<% if cocoon_template && is_top_item %>
+
+</div>
+<% end %>

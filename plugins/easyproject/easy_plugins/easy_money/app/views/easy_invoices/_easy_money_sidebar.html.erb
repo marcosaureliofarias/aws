@@ -1,0 +1,18 @@
+<%
+  if !easy_invoice.is_template? && !(other_revenue = easy_invoice.easy_money_other_revenues.first).nil?
+    if User.current.allowed_to?(:easy_money_manage_other_revenue, project)
+      path = edit_easy_money_other_revenue_path(other_revenue)
+    elsif User.current.allowed_to?(:easy_money_show_other_revenue, project)
+      path = other_revenue
+    end
+
+    if path
+%>
+      <p>
+        <%= l :label_filter_group_easy_money_other_revenue_query %>
+        <%= link_to other_revenue.name, path %>
+      </p>
+<%
+    end
+  end
+%>

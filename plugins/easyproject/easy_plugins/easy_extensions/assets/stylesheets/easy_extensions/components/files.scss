@@ -1,0 +1,26 @@
+table.filecontent{
+  background: $color-foreground !important;
+  border: 1px solid $color-border !important;
+  margin-bottom: $box-padding;
+  & > thead{
+    & > tr > th{
+      padding-left: $box-padding;
+      padding-right: $box-padding;
+    }
+  }
+  & > tbody{
+    & > tr > th{
+      background: $color-foreground !important;
+      border: 1px solid $color-border !important;
+    }
+  }
+  &, table{
+    width: 100% !important;
+  }
+}
+#bodyCell{
+  text-align: center;
+}
+#templateContainer{
+  margin: auto;
+}

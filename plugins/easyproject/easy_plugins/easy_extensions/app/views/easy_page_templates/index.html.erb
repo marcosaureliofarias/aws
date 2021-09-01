@@ -1,0 +1,60 @@
+<%
+  breadcrumb_items = []
+  breadcrumb_items << link_to(l('breadcrumb.label.easy_pages_administration'), easy_pages_path,
+                              title: l('breadcrumb.title.easy_pages_administration'))
+
+  if @page.built_in?
+    breadcrumb_items << link_to(l('easy_pages.label_built_in'), easy_pages_built_in_path,
+                                title: l('breadcrumb.title.easy_page_templates', pagename: @page.translated_name))
+  end
+
+  breadcrumb_items << content_tag(:span, l('breadcrumb.label.easy_page_templates', pagename: @page.translated_name))
+%>
+<div id="easy-page-templates">
+  <%= content_tag :h2, l(:label_easy_page_templates, :pagename => @page.translated_name) -%>
+  <%= breadcrumb breadcrumb_items %>
+  <% if (@page_templates.empty?) -%>
+    <p class="nodata"><%= l(:label_no_data) -%></p>
+  <% else -%>
+    <div class="autoscroll">
+      <table class="list reorder">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= l(:field_template_name) -%></th>
+          <th><%= l(:field_description) -%></th>
+          <th><%= l(:field_is_default) -%></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @page_templates.each do |page_template| -%>
+          <tr>
+            <td class="center reorder-handler"><%= render_reorder_handle(url_for({action: 'update', id: page_template.id, page_id: @page.id}), 'easy_page_template') %></td>
+            <td class="easy-page-template-name name"><%= page_template.template_name -%></td>
+            <td class="easy-page-template-description"><%= page_template.description -%></td>
+            <td class="easy-page-template-is-default"><%= checked_image page_template.is_default? %></td>
+            <td class="easy-page-template-links">
+              <div><%= link_to l(:label_easy_page_template_show), { action: 'show_page_template', id: page_template.id }, { title: l(:title_easy_page_template_show), class: 'icon icon-slab' } -%></div>
+              <div class="additional-links"><%= call_hook(:view_easy_page_templates_index_additional_actions, page: @page, page_template: page_template) -%></div>
+              <div><%= link_to l(:button_edit), { action: 'edit', id: page_template.id, page_id: @page.id }, { class: 'icon icon-edit', title: l(:title_button_edit) } -%></div>
+              <div><%= link_to l(:button_duplicate), new_easy_page_template_path(page_id: @page.id, copy_from_type: 'template', copy_from_template_id: page_template), class: 'icon icon-duplicate' %></div>
+              <% if (User.current.easy_lesser_admin_for?(:easy_xml_data_import) && Redmine::Plugin.installed?(:easy_data_templates)) %>
+                <div><%= link_to(l(:button_export), easy_xml_easy_page_templates_export_path(format: :xml, id: page_template.id), title: l(:button_export), method: :post, class: 'icon icon-export') %></div>
+              <% end %>
+              <div><%= link_to l(:button_delete), { action: 'destroy', id: page_template.id, page_id: @page.id}, { method: :delete, class: 'icon  texticon icon-del', data: {confirm: l(:text_are_you_sure)}, title: l(:title_button_delete)} -%></div>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+    </div>
+  <% end -%>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_easy_page_templates_new), { action: 'new', page_id: @page.id }, {class: 'button-positive icon icon-add', title: l(:title_easy_page_templates_new)} -%>
+  <%= link_to l(:label_import_easy_page_template), easy_xml_data_import_settings_path(back_url: request.fullpath), remote: true, class: 'icon icon-import button-positive' if User.current.easy_lesser_admin_for?(:easy_xml_data_import) && Redmine::Plugin.installed?(:easy_data_templates) -%>
+<% end %>

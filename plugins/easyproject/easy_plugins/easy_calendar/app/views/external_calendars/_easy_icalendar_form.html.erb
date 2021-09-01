@@ -1,0 +1,8 @@
+<%= labelled_form_for ical, url: easy_icalendars_path, html: {class: 'nested-fields', data: {remote: true}} do |form| %>
+  <%= hidden_field_tag :modul_uniq_id, modul_uniq_id %>
+  <%= hidden_field_tag :block_name, block_name %>
+  <%= render 'external_calendars/easy_icalendar_fields', f: form %>
+  <p>
+    <%= link_to l(:button_save), 'javascript:void(0)', onclick: "$(this).closest('form').submit(); $(this).attr('disabled', true);", class: 'button button-positive' %>
+  </p>
+<% end %>

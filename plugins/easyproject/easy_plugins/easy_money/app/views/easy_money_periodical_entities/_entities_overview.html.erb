@@ -1,0 +1,32 @@
+<%= form_tag({:controller => 'easy_money_periodical_entities', :action => 'entity_bulk_update', :project_id => project, :entity_type => 'Project', :entity_id => project.id}, :remote => true, :id => 'entity_overview_form', :class => 'tabular') do %>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <div class="box">
+        <h3>Overview</h3>
+        <% render_ul_act_as_tree(entities[0]) do |easy_money_periodical_entity| %>
+          <%= render :partial => 'easy_money_periodical_entities/easy_money_periodical_entity', :locals => {:easy_money_periodical_entity => easy_money_periodical_entity, :period_date => period_date, :edit => edit} %>
+        <% end %>
+      </div>
+    </div>
+    <div class="splitcontentright">
+      <div class="box">
+        <h3>Report</h3>
+        <% render_ul_act_as_tree(entities[1]) do |easy_money_periodical_entity| %>
+          <%= render :partial => 'easy_money_periodical_entities/easy_money_periodical_entity', :locals => {:easy_money_periodical_entity => easy_money_periodical_entity, :period_date => period_date, :edit => edit} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <% if edit %>
+    <p>
+      <%= label_tag 'period_date', 'period_date' %>
+      <%= text_field_tag 'period_date', period_date, :size => 10, :onchange => "$.get('#{j url_for({:controller => 'easy_money_periodical_entities', :action => 'toggle_entities_overview', :id => project, :edit => '1'})}', $('#entity_overview_form').serialize())" %>
+      <%= calendar_for 'period_date' %>
+    </p>
+    <p>
+      <%= link_to l(:button_cancel), {:controller => 'easy_money_periodical_entities', :action => 'project_index', :id => project}, :class => 'button', :title => l(:button_cancel) %>
+      <%= submit_tag l(:button_create), :title => l(:button_cancel) %>
+    </p>
+  <% end %>
+<% end %>

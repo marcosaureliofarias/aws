@@ -1,0 +1,12 @@
+$("#contact-type-attributes").html("<%= j(render :partial => 'form_attributes', :locals => {:contact => @easy_contact}) %>");
+
+$("#easy-contact-non-primary-custom-fields-selector").html("<%= j(render(:partial => 'easy_contacts/non_primary_custom_fields_toggler', :locals => {:easy_contact => @easy_contact})) %>");
+
+$("#non-primary-custom-fields-select").change(function(event) {
+    select = $(event.target);
+    if (select.val() != '') {
+      $.get('<%= j(url_for({:action => 'add_custom_field' })) %>', {'custom_field_id': select.val(),'entity_type': '<%= @easy_contact.class.name %>','entity_id':'<%= @easy_contact.id %>'});
+    }
+})
+
+initEasyAutocomplete();

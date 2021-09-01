@@ -1,0 +1,86 @@
+.contextual{
+  white-space: nowrap;
+  text-align: center;
+  @include small;
+  a, span.icon-del {
+    @extend %button-light;
+  }
+  a.icon {
+    @extend %button-with-icon;
+  }
+  span.icon-del {
+    opacity: 0.5;
+    cursor: default;
+    margin-bottom: 2px;
+  }
+  ul{
+    @extend %list-reset;
+  }
+
+  #bulk-selection {
+    white-space: normal;
+  }
+
+  li{
+    display: inline-block;
+  }
+  @include respond-to(min-sidebar-collapse){
+    text-align: right;
+    float: right;
+    padding-left: $gap;
+    //margin: $gap 0;
+    //.easy-content-page > &,#content > &{
+    //  margin: 1.25em 0;
+    //}
+    .box &{
+      //margin-top: -0.75em;
+    }
+  }
+  .easy-content-page > .breadcrumb ~ & {
+    margin-top: 0;
+  }
+  .easy-content-page > h2 ~ & {
+    margin-top: -.5*$gap;
+  }
+  .easy-content-page > &{
+   margin-top: $box-padding;
+   a {
+     margin-bottom: 2px;
+   }
+ }
+  .fake-responsive &{
+    float: none;
+    text-align: center;
+    //margin: 0 !important;
+    padding-left: 0;
+    white-space: normal;
+  }
+  .modal &{
+    float: none;
+  }
+  //.easy-query-filter-container &{
+  //  margin-top: 0;
+  //}
+  .autoscroll ~ &{
+    margin-top: 0.5*$gap;
+  }
+
+  .wiki-page &{
+    @include smaller;
+    position: relative;
+    top: -1.5*$box-padding;
+    a{
+      padding: 1px .5*$gap;
+    }
+  }
+
+  & + h3, & + h4, & + h5{
+      line-height: $button-height - 0.5*$gap;
+  }
+  //.easy-content-page > &{
+  //  margin-top: $box-padding;
+  //}
+  .categories-list-container + &{
+    margin-top: $gap - 2;
+  }
+}

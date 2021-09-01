@@ -1,0 +1,32 @@
+<%
+  only_custom_fields ||= false
+  modal ||= params[:modal]
+%>
+
+<% if @time_entry.project.present? && !only_custom_fields %>
+  <p>
+    <%= label_for_field :spent_on, {:required => true } -%><%= text_field_tag :spent_on, @time_entry.spent_on, :size => 10, :class => 'spent_on', :autocomplete => 'off' -%><%= calendar_for('spent_on') unless in_mobile_view? -%>
+  </p>
+  <%= call_hook(:timelog_form_spent_on_bottom, {time_entry: @time_entry}) %>
+  <script type="application/javascript">
+    EASY.schedule.late(function(){
+      $('#spent_on').change(function(){
+        fillFormTextAreaFromCKEditor('<%= "#{'modal_' if modal}time_entry_comment" %>');
+        $.ajax({url: '<%= j new_easy_time_entry_path(:spent_on_changed => '1', :format => 'js').html_safe %>', data: $('#bulk-time-entry-form').serialize()});
+      });
+    });
+  </script>
+  <div id="timelog-user-time-entry-container">
+    <% tag_name_prefix = 'time_entry' %>
+    <%= render :partial => 'timelog/user_time_entry', :locals => {
+      :required => true,
+      :tag_name_prefix => tag_name_prefix,
+      :time_entry => @time_entry,
+      :activities => @activity_collection,
+      :modal => modal,
+      :project => @time_entry.project, :issue => @time_entry.issue}
+    -%>
+  </div>
+<% end %>
+
+<%= render partial: 'issues/edit_issue_time_entry_hidden' %>

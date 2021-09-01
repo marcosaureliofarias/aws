@@ -1,0 +1,26 @@
+<%
+  attach_allowed_statuses ||= false
+  if attach_allowed_statuses
+    allowed_statuses = issue.new_statuses_allowed_to(User.current).map(&:id).join(',')
+  end
+%>
+
+<li id="el-<%= issue.id %>" data-id="<%= issue.id %>" data-new-statuses-allowed="<%= allowed_statuses %>" class="hascontextmenu agile-issue-item <%= issue.css_classes %>">
+  <%= check_box_tag 'ids[]', issue.id, false, id: nil, class: 'checkbox hide-when-print hidden' %>
+  <%= avatar(issue.assigned_to, style: :small, no_link: true) if issue.assigned_to %>
+  <div class="issue-link <%= "priority-#{issue.priority.position} #{issue.priority.easy_color_scheme}" %>">
+    <% if issue.tracker %>
+      <span class="icon <%= issue.tracker.easy_icon %>"></span>
+    <% end %>
+    <%= easy_agile_issue_rating(issue, sprint_project.id) %>
+    <%= link_to_issue(issue, tracker: false) %>
+  </div>
+  <hr/>
+  <div class="project-link">
+    <% if cv = issue.project.custom_field_value_for(EasySetting.value('easy_agile_project_cf', sprint_project)) %>
+      <% name_suffix = content_tag(:b, show_value(cv)) %>
+    <% end %>
+    <%= link_to_project(issue.project, name_suffix: name_suffix) %>
+  </div>
+  <div id="tooltip-<%= issue.id %>" style="display:none;" class="tooltip"><%= render_issue_tooltip issue %></div>
+</li>

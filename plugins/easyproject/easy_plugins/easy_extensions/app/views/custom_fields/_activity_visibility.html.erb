@@ -1,0 +1,20 @@
+<p>
+  <label><%= l(:field_visible) %></label>
+  <label class="block">
+    <%= radio_button_tag 'custom_field[visible]', 1, @custom_field.visible?, :id => 'custom_field_visible_on',
+      :data => {:disables => '.custom_field_activity input'} %>
+      <%= l(:label_visibility_all_activities) %>
+  </label>
+  <label class="block">
+    <%= radio_button_tag 'custom_field[visible]', 0, !@custom_field.visible?, :id => 'custom_field_visible_off',
+      :data => {:enables => '.custom_field_activity input'} %>
+    <%= l(:label_visibility_selected_activities) %>:
+  </label>
+  <% TimeEntryActivity.shared.sorted.each do |activity| %>
+    <label class="block custom_field_activity" style="padding-left:2em;">
+      <%= check_box_tag 'custom_field[activity_ids][]', activity.id, @custom_field.activities.include?(activity), :id => nil %>
+      <%= activity.name %>
+    </label>
+  <% end %>
+  <%= hidden_field_tag 'custom_field[activity_ids][]', '' %>
+</p>

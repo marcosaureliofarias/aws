@@ -1,0 +1,28 @@
+<%= call_hook(:view_easy_crm_case_item_edit_top, easy_crm_case: easy_crm_case, f: f) %>
+<tr class="nested-fields">
+  <td>
+    <%= call_hook(:view_easy_crm_case_item_edit_hidden_fields, easy_crm_case: easy_crm_case, f: f, easy_price_book_quote: @easy_price_book_quote) %>
+    <%= f.text_field :amount, size: 5, class: 'easy_crm_case_item_amount', onchange: 'EASY.crm.recalculateCrmCaseItemTotalPrice(this);' %>
+  </td>
+  <td>
+    <%= f.text_field :unit, size: 5, class: 'easy_crm_case_item_unit' %>
+  </td>
+  <td>
+    <%= f.text_field :name, size: 5, class: 'easy_crm_case_item_name' %>
+  </td>
+  <% if EasySetting.value(:show_description_on_crm_case, @project) %>
+    <td>
+      <%= f.text_field :description %>
+    </td>
+  <% end %>
+  <td class="nowrap">
+    <%= f.text_field :price_per_unit, size: 5, class: 'easy_crm_case_item_price_per_unit', onchange: 'EASY.crm.recalculateCrmCaseItemTotalPrice(this);' %> <%= content_tag(:span, f.object.currency, class: 'easy_crm_case_item_currency') %>
+  </td>
+  <%= call_hook(:view_easy_crm_case_item_edit_before_total_price, easy_crm_case: easy_crm_case, f: f) %>
+  <td class="nowrap">
+    <%= f.text_field :total_price, size: 5, class: 'easy_crm_case_item_total' %> <%= content_tag(:span, f.object.currency, class: 'easy_crm_case_item_currency') %>
+  </td>
+  <td>
+    <%= link_to_remove_association '', f, class: 'icon icon-del', title: l(:button_delete) %>
+  </td>
+</tr>

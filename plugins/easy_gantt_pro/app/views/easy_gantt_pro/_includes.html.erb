@@ -1,0 +1,34 @@
+<%
+  include_calendar_headers_tags
+  project ||= nil
+%>
+
+<%= content_for :header_tags do %>
+  <%= easy_gantt_include_css('easy_gantt_pro', media: 'all', from_plugin: 'easy_gantt_pro') %>
+<% end %>
+<%= content_for :body_bottom do %>
+  <% if EasyGantt.combine_by_pipeline?(params) %>
+    <% if project %>
+      <%= javascript_include_tag('easy_gantt_pro/easy_gantt_pro') %>
+    <% else %>
+      <%= javascript_include_tag('easy_gantt_pro/easy_gantt_pro_global') %>
+    <% end %>
+  <% else %>
+    <% # DONT FORGET TO ADD FILE INTO {plugin}.js !!!!! %>
+    <% easy_gantt_pro_files = [
+        'common', 'sorting', 'email_silencer',
+        (['baseline', 'add_task', 'empty_gantt'] if project),
+        ('critical' if project && EasySetting.value(:easy_gantt_critical_path) != 'disabled'),
+        ('grid_context' if project && EasyGantt.easy_extensions?),
+        ('project_move' if project.nil?),
+        ('lowest_progress' if project.nil? && EasySetting.value(:easy_gantt_show_lowest_progress_tasks)),
+        ('delayed_projects' if project.nil? && EasySetting.value(:easy_gantt_show_project_progress)),
+        ('gg_resource' if project.nil? && EasyGantt.easy_gantt_resources?),
+        ('project_milestones' if project.nil? && EasySetting.value(:easy_gantt_show_project_milestones)),
+        (['cashflow', 'cashflow_loader'] if EasyGantt.easy_money?),
+        # ('delayed_issues' if params[:controller] == 'easy_gantt'),
+        ('unfix_relations' if params[:controller] == 'easy_gantt'),
+    ].compact.flatten %>
+    <%= javascript_include_tag(*easy_gantt_pro_files.map { |file| 'easy_gantt_pro/' + file }, plugin: 'easy_gantt_pro') %>
+  <% end %>
+<% end %>

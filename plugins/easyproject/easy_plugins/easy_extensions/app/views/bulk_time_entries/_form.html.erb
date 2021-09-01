@@ -1,0 +1,85 @@
+<%
+  modal ||= false
+  time_entry_selector = '#main'
+  comment_field_class = 'time_entry_comment'
+  url = @time_entry.new_record? ? easy_time_entries_path : easy_time_entry_path(id: @time_entry.id)
+%>
+<%= title l(:label_bulk_time_entries) if modal %>
+<%= form_for @time_entry, url: url, html: { class: 'tabular form-disabled-on-ajax form-box', id: 'bulk-time-entry-form', remote: modal } do |f| %>
+  <%= hidden_field_tag(:page_module_uuid, params[:page_module_uuid]) if params[:page_module_uuid] -%>
+  <%= hidden_field_tag(:modal, true) if modal -%>
+  <%= hidden_field_tag(:next, params[:next]) if params[:next] -%>
+  <%= back_url_hidden_field_tag %>
+  <%= error_messages_for 'time_entry' %>
+
+  <div <%='class="splitcontent logtime-form"'.html_safe unless in_mobile_view? || modal %>>
+    <div <%='class="splitcontentleft"'.html_safe unless in_mobile_view? || modal %>>
+      <!-- hidden input hack to prevent jquery dialog to focus on first autocomplete input -->
+      <span class="ui-helper-hidden-accessible"><input type="text"/></span>
+
+      <div class="combo-container no-label-required-by-css" id="container_users">
+        <%= render :partial => 'bulk_time_entries/container_users' %>
+      </div>
+      <div class="timeentry-projects combo-container no-label-required-by-css" id="container_projects">
+        <%= render :partial => 'bulk_time_entries/container_projects' %>
+      </div>
+
+      <% if [nil, 'Project', 'Issue'].include?(@time_entry.entity_type) %>
+        <div class="timeentry-issues combo-container no-label-required-by-css" id="container_issues">
+          <%= render :partial => 'bulk_time_entries/container_issues' %>
+        </div>
+      <% end %>
+
+      <div id="container_time_entry">
+        <%= render :partial => 'bulk_time_entries/container_time_entry', :locals => {:modal => modal} %>
+      </div>
+      <%= call_hook(:view_timelog_edit_form_bottom, { :time_entry => @time_entry, :form => f }) %>
+    </div>
+    <% unless in_mobile_view? || modal %>
+      <div class="splitcontentright">
+        <div class="splitcontent">
+          <div class="bulk-time-entry-topprojects" id="top_last_entries">
+            <%= render :partial => 'bulk_time_entries/top_last_entries', :locals => {:top_last_entries => @top_last_entries} -%>
+          </div>
+          <div id="easy_worker_gauge_meter_container">
+            <%= render :partial => 'common/charts/gauge_meter', :locals => {:modul_uniq_id => '', :value => @gauge_meter_spent_time, :max_value => @gauge_meter_max_value, :chart_label => @gauge_meter_label, :chart_height => 120} %>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+  <% unless modal %>
+    <div class="form-actions">
+      <%= submit_tag l(:button_create_and_continue), :class => 'button-positive', :name => 'continue', :title => l(:button_create_and_continue) -%>
+      <%= submit_tag(l(:button_create_and_back), :class => 'button-positive', :name => 'back', :title => l(:button_create_and_back)) if back_url.present? -%>
+      <% if params[:next].to_s == 'logout' %>
+        <%= link_to l(:label_logout), force_user_logout_path, :class => 'button', :title => l(:label_logout) %>
+      <% elsif back_url.present? %>
+        <%= link_to l(:button_back), back_url, :class => 'button', :title => l(:button_back) -%>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% unless modal %>
+    <script type="text/javascript">
+      EASY.schedule.late(function() {
+        $(document).on('change', '<%= time_entry_selector %> #project_id', function(event){
+          fillFormTextAreaFromCKEditor('<%= comment_field_class %>');
+          if (event.target.value !== '') {
+            $.ajax({url: '<%= j new_easy_time_entry_path(:project_changed => '1', :format => 'js').html_safe %>', data: $('#bulk-time-entry-form').serialize()});
+          }
+        });
+        $(document).on('change', '<%= time_entry_selector %> #issue_id', function(){
+          fillFormTextAreaFromCKEditor('<%= comment_field_class %>');
+          $.ajax({url: '<%= j new_easy_time_entry_path(:issue_changed => '1', :format => 'js', :project_id => @project).html_safe %>', data: $('#bulk-time-entry-form').serialize()});
+        });
+        $(document).on('change', '<%= time_entry_selector %> .timeentry-activity', function(){
+          fillFormTextAreaFromCKEditor('<%= comment_field_class %>');
+          fillCustomFieldsFormTextAreasFromCKEditor(this.closest('form'));
+          $.ajax({url: '<%= j new_easy_time_entry_path(:activity_changed => '1', :format => 'js', :project_id => @project).html_safe %>', data: $('#bulk-time-entry-form').serialize()});
+        });
+      });
+    </script>
+  <% end %>
+<% end %>
+

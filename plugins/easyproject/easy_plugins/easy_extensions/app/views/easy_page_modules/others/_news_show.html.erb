@@ -1,0 +1,3 @@
+<%# easy_cache("my_page_others_news_user_#{user.id}") do %>
+  <%= render(:partial => 'news/news', :collection => @easy_page_modules_data[block_name][:news]) -%>
+<%# end %>

@@ -1,0 +1,22 @@
+<%
+  settings[:enabled_calendars] ||= []
+%>
+
+  <div class="box tabular">
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <p>
+          <label><%= l(:label_calendar_display_range) %></label>
+          <%= text_field_tag "#{block_name}[display_from]", settings[:display_from], :size => 3, :type => 'time' %>
+          <%= text_field_tag "#{block_name}[display_to]", settings[:display_to], :size => 3, :type => 'time' %>
+        </p>
+        <p>
+          <label><%= l(:label_calendar_default_view) %></label>
+          <%= select_tag "#{block_name}[default_view]", options_for_select([[l(:button_gantt_zoom_month), 'month'], [l(:button_gantt_zoom_week), 'agendaWeek'], [l(:button_gantt_zoom_day), 'agendaDay']], settings[:default_view]) %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <% calendars = EasyCalendar::AdvancedCalendar.allowed_registered_calendars %>
+  <%= render :partial => 'easy_calendar/calendar_select', :locals => {:settings => settings, :block_name => block_name, :calendars => calendars} %>

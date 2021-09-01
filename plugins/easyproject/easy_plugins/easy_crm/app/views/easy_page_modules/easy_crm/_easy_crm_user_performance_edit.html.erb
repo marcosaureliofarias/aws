@@ -1,0 +1,45 @@
+<% users = @easy_page_modules_data[block_name][:users] %>
+
+  <p>
+    <%= label_tag "#{block_name}[name]", l(:field_name) %>
+    <%= text_field_tag "#{block_name}[name]", settings['name'], :size => 30 %>
+  </p>
+  <fieldset>
+    <legend><%= EasyCrmCase.human_attribute_name(:easy_crm_case_status) %>:</legend>
+    <% EasyCrmCaseStatus.sorted.each do |status| %>
+      <p class="floating">
+        <%= check_box_tag "#{block_name}[easy_crm_case_status_id][]", status.id, settings['easy_crm_case_status_id'] && settings['easy_crm_case_status_id'].include?(status.id.to_s), :id => "#{block_name}_easy_crm_case_status_id_#{status.id}" %>
+        <%= label_tag "#{block_name}_easy_crm_case_status_id_#{status.id}", status.name %>
+      </p>
+    <% end %>
+  </fieldset>
+  <fieldset>
+    <legend><%= l(:field_member) %>:</legend>
+    <table>
+      <tbody>
+        <% if user.allowed_to_globally?(:view_easy_crms, {}) %>
+          <tr>
+            <td><%= check_box_tag "#{block_name}[users][0][show]", '1', settings['users'] && settings['users']['0'] && settings['users']['0']['show'] == '1' %></td>
+            <td><%= label_tag "#{block_name}[users][0][show]", l(:label_nobody) %></td>
+            <% color = settings['users'] && settings['users']['0'] && settings['users']['0']['color'] || EasyExtensions::EasyProjectSettings.default_chart_colors[0] %>
+            <td><%= text_field_tag "#{block_name}[users][0][color]", color %></td>
+          </tr>
+        <% end %>
+        <% users.each_with_index do |user, idx| %>
+          <tr>
+            <td><%= check_box_tag "#{block_name}[users][#{user.id}][show]", '1', settings['users'] && settings['users'][user.id.to_s] && settings['users'][user.id.to_s]['show'] == '1' %></td>
+            <td><%= label_tag "#{block_name}[users][#{user.id}][show]", user.name %></td>
+            <% color = settings['users'] && settings['users'][user.id.to_s] && settings['users'][user.id.to_s]['color'] || EasyExtensions::EasyProjectSettings.default_chart_colors[(idx % (EasyExtensions::EasyProjectSettings.default_chart_colors.size - 1)) + 1] %>
+            <td><%= text_field_tag "#{block_name}[users][#{user.id}][color]", color %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </fieldset>
+  <%= render :partial => 'easy_page_modules/bar_chart_settings', :locals => {:settings => settings, :block_name => block_name} %>
+<% if EasyCurrency.activated.any? %>
+  <p>
+    <%= label_tag "#{block_name}[currency]", l(:field_currency) %>
+    <%= select_tag "#{block_name}[currency]", options_for_select(EasyCurrency.activated.map{ |c| [c.name, c.iso_code] }, settings['currency'] || 'EUR' ) %>
+  </p>
+<% end %>

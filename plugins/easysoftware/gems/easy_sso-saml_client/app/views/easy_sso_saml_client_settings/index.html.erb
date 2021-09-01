@@ -1,0 +1,192 @@
+<%= easy_breadcrumb([
+                        link_to(l(:heading_easy_sso, scope: :easy_sso),
+                                easy_sso_path,
+                                title: l(:heading_easy_sso, scope: :easy_sso)),
+                        link_to(l(:heading_settings, scope: :easy_sso_saml_client),
+                                easy_sso_saml_client_settings_path,
+                                title: l(:heading_settings, scope: :easy_sso_saml_client))
+                    ]) %>
+
+<%= title(l(:heading_settings, scope: :easy_sso_saml_client)) %>
+
+<%= form_tag(easy_sso_saml_client_settings_path) do %>
+  <%= hidden_field_tag('back_url', params[:back_url]) %>
+  <div class="box tabular">
+    <p>
+      <%= label_tag 'easy_setting[easy_sso_saml_client_name]',
+                    l(:label_name, scope: :easy_sso_saml_client), class: 'required' %>
+      <%= text_field_tag 'easy_setting[easy_sso_saml_client_name]',
+                         EasySso::SamlClient::Settings.name %>
+    </p>
+    <fieldset>
+      <legend><%= l(:label_idp_settings, scope: :easy_sso_saml_client) %></legend>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_idp_sso_target_url]',
+                      l(:label_idp_sso_target_url, scope: :easy_sso_saml_client), class: 'required' %>
+        <%= text_field_tag 'easy_setting[easy_sso_saml_client_idp_sso_target_url]',
+                           EasySso::SamlClient::Settings.idp_sso_target_url %>
+        <em class="help"><%= l(:text_idp_sso_target_url, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <% if false %>
+        <p>
+          <%= label_tag 'easy_setting[easy_sso_saml_client_single_logout_service_url]',
+                        l(:label_single_logout_service_url, scope: :easy_sso_saml_client) %>
+          <%= text_field_tag 'easy_setting[easy_sso_saml_client_single_logout_service_url]',
+                             EasySso::SamlClient::Settings.single_logout_service_url %>
+          <em class="help"><%= l(:text_single_logout_service_url, scope: :easy_sso_saml_client) %></em>
+        </p>
+      <% end %>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_idp_cert]',
+                      l(:label_idp_cert, scope: :easy_sso_saml_client), class: 'required' %>
+        <%= text_area_tag 'easy_setting[easy_sso_saml_client_idp_cert]',
+                          EasySso::SamlClient::Settings.idp_cert, size: "50x10" %>
+        <em class="help"><%= l(:text_idp_cert, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_idp_cert_fingerprint]',
+                      l(:label_idp_cert_fingerprint, scope: :easy_sso_saml_client), class: 'required' %>
+        <%= text_field_tag 'easy_setting[easy_sso_saml_client_idp_cert_fingerprint]',
+                           EasySso::SamlClient::Settings.idp_cert_fingerprint %>
+        <em class="help"><%= l(:text_idp_cert_fingerprint, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_name_identifier_format]',
+                      l(:label_name_identifier_format, scope: :easy_sso_saml_client) %>
+        <%= text_field_tag 'easy_setting[easy_sso_saml_client_name_identifier_format]',
+                           EasySso::SamlClient::Settings.name_identifier_format %>
+        <em class="help"><%= l(:text_name_identifier_format, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_name_identifier_value]',
+                      l(:label_name_identifier_value, scope: :easy_sso_saml_client) %>
+        <%= select_tag 'easy_setting[easy_sso_saml_client_name_identifier_value]',
+                       options_for_select(%w[mail login], EasySso::SamlClient::Settings.name_identifier_value) %>
+        <em class="help"><%= l(:text_name_identifier_value, scope: :easy_sso_saml_client, app_name: EasyExtensions::EasyProjectSettings.app_name) %></em>
+      </p>
+      <% if false %>
+        <p>
+          <%= label_tag 'easy_setting[easy_sso_saml_client_idp_slo_target_url]',
+                        l(:label_idp_slo_target_url, scope: :easy_sso_saml_client) %>
+          <%= text_field_tag 'easy_setting[easy_sso_saml_client_idp_slo_target_url]',
+                             EasySso::SamlClient::Settings.idp_slo_target_url %>
+          <em class="help"><%= l(:text_idp_slo_target_url, scope: :easy_sso_saml_client) %></em>
+        </p>
+      <% end %>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_onthefly_creation]',
+                      l(:label_onthefly_creation, scope: :easy_sso_saml_client) %>
+        <%= hidden_field_tag 'easy_setting[easy_sso_saml_client_onthefly_creation]', '0', id: false %>
+        <%= check_box_tag 'easy_setting[easy_sso_saml_client_onthefly_creation]', '1',
+                          EasySso::SamlClient::Settings.onthefly_creation? %>
+        <em class="help"><%= l(:text_onthefly_creation, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_login_button]',
+                      l(:label_login_button, scope: :easy_sso_saml_client) %>
+        <%= hidden_field_tag 'easy_setting[easy_sso_saml_client_login_button]', '0', id: false %>
+        <%= check_box_tag 'easy_setting[easy_sso_saml_client_login_button]', '1',
+                          EasySso::SamlClient::Settings.login_button? %>
+        <em class="help"><%= l(:text_login_button, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_debug]',
+                      l(:label_debug, scope: :easy_sso_saml_client) %>
+        <%= hidden_field_tag 'easy_setting[easy_sso_saml_client_debug]', '0', id: false %>
+        <%= check_box_tag 'easy_setting[easy_sso_saml_client_debug]', '1',
+                          EasySso::SamlClient::Settings.debug? %>
+        <em class="help"><%= l(:text_debug, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_validation]',
+                      l(:label_validation, scope: :easy_sso_saml_client) %>
+        <%= hidden_field_tag 'easy_setting[easy_sso_saml_client_validation]', '0', id: false %>
+        <%= check_box_tag 'easy_setting[easy_sso_saml_client_validation]', '1',
+                          EasySso::SamlClient::Settings.validation? %>
+        <em class="help"><%= l(:text_validation, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_client_use_sp_certificate]',
+                      l(:label_use_sp_certificate, scope: :easy_sso_saml_client) %>
+        <%= hidden_field_tag 'easy_setting[easy_sso_saml_client_use_sp_certificate]', '0', id: false %>
+        <%= check_box_tag 'easy_setting[easy_sso_saml_client_use_sp_certificate]', '1',
+                          EasySso::SamlClient::Settings.use_sp_certificate? %>
+        <em class="help"><%= l(:text_use_sp_certificate, scope: :easy_sso_saml_client) %></em>
+      </p>
+    </fieldset>
+    <fieldset>
+      <legend><%= l(:label_attribute_mappings, scope: :easy_sso_saml_client) %></legend>
+      <p>
+        <em><%= l(:text_attribute_mappings, scope: :easy_sso_saml_client) %></em>
+      </p>
+      <div class="splitcontent">
+        <div class="splitcontentleft">
+          <p>
+            <%= label_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_login]',
+                          l(:label_attribute_mapping_login, scope: :easy_sso_saml_client), class: 'required' %>
+            <%= text_field_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_login]',
+                               EasySso::SamlClient::Settings.attribute_mapping_login %>
+          </p>
+          <p>
+            <%= label_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_mail]',
+                          l(:label_attribute_mapping_mail, scope: :easy_sso_saml_client), class: 'required' %>
+            <%= text_field_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_mail]',
+                               EasySso::SamlClient::Settings.attribute_mapping_mail %>
+          </p>
+          <p>
+            <%= label_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_firstname]',
+                          l(:label_attribute_mapping_firstname, scope: :easy_sso_saml_client), class: 'required' %>
+            <%= text_field_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_firstname]',
+                               EasySso::SamlClient::Settings.attribute_mapping_firstname %>
+          </p>
+          <p>
+            <%= label_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_lastname]',
+                          l(:label_attribute_mapping_lastname, scope: :easy_sso_saml_client), class: 'required' %>
+            <%= text_field_tag 'easy_setting[easy_sso_saml_client_attribute_mapping_lastname]',
+                               EasySso::SamlClient::Settings.attribute_mapping_lastname %>
+          </p>
+        </div>
+        <div class="splitcontentright">
+          <button type="button" class="button-positive" onclick="userAttributesAzureMappings()"><%= l(:label_attribute_mappings_azure, scope: :easy_sso_saml_client) %></button>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><%= l(:label_my_settings, scope: :easy_sso_saml_client) %></legend>
+      <em><%= l(:text_my_settings, scope: :easy_sso_saml_client) %></em>
+      <p>
+        <%= label_tag 'assertion_consumer_service_url', l(:label_assertion_consumer_service_url, scope: :easy_sso_saml_client) %>
+        <%= text_field_tag 'assertion_consumer_service_url', EasySso::SamlClient::Settings.assertion_consumer_service_url %>
+      </p>
+      <p>
+        <%= label_tag 'issuer', l(:label_issuer, scope: :easy_sso_saml_client) %>
+        <%= text_field_tag 'issuer', EasySso::SamlClient::Settings.issuer %>
+      </p>
+      <p>
+        <%= label_tag 'metadata_url', l(:label_metadata_url, scope: :easy_sso_saml_client) %>
+        <%= text_field_tag 'metadata_url', EasySso::SamlClient::Settings.metadata_url %>
+      </p>
+      <p>
+        <%= label_tag 'login_url', l(:label_login_url, scope: :easy_sso_saml_client) %>
+        <%= text_field_tag 'login_url', EasySso::SamlClient::Settings.login_url %>
+      </p>
+      <p>
+        <%= label_tag 'sp_certificate', l(:label_sp_certificate, scope: :easy_sso_saml_client) %>
+        <%= text_area_tag 'sp_certificate', EasySso::SamlClient::Settings.sp_certificate, size: "50x10" %>
+        <%= link_to l(:button_generate_certificate, scope: :easy_sso_saml_client), easy_sso_saml_client_new_sp_certificate_path, remote: true, method: :post, class: 'button' %>
+      </p>
+    </fieldset>
+  </div>
+  <p class="buttons">
+    <%= submit_tag l(:button_update), class: 'button-positive' %>
+  </p>
+
+<script>
+  function userAttributesAzureMappings() {
+    document.getElementById('easy_setting_easy_sso_saml_client_attribute_mapping_login').value     = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
+    document.getElementById('easy_setting_easy_sso_saml_client_attribute_mapping_mail').value      = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'
+    document.getElementById('easy_setting_easy_sso_saml_client_attribute_mapping_firstname').value = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname'
+    document.getElementById('easy_setting_easy_sso_saml_client_attribute_mapping_lastname').value  = 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname'
+  }
+</script>
+<% end %>

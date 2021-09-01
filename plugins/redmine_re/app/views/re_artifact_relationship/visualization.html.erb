@@ -1,0 +1,216 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+  <%= stylesheet_link_tag 're_print.css', :media => 'print' %>
+
+  <%= javascript_include_tag 'jquery.layout.js', defer: true %>
+  <%= javascript_include_tag 'jquery.layout.state.js', defer: true %>
+  <%= javascript_include_tag 'jit.js', defer: true %>
+  <%= javascript_include_tag 'redmine_re.js', defer: true %>
+<% end%>
+
+<!--[if IE]><script language="javascript" type="text/javascript" src="../../Extras/excanvas.js"></script><![endif]-->
+
+<div id="infobar" class="ui-layout-west ui-layout-content">
+   <%= render "requirements/treebar" %>
+</div>
+
+
+<div id='detail_view' class='ui-layout-center'>
+	<h2><%= @artifact_name %> - <%= l(:re_relationship_visualization)%></h2>
+	<% canvas_size = ReSetting.get_plain("visualization_size", @project.id) %>
+	<div id="infovis" style="<%="width: #{canvas_size}px; height: #{canvas_size}px" %>" ></div>
+	<div id="visualization_filters">
+ 	   <h4><%= t(:re_artifact_details) %></h4>
+    	<div id="node-details"></div>
+  </div>
+</div>
+<div id="infobar2" class="ui-layout-east ui-layout-content" style="height:900px">
+	<%= render :partial => 'infobar_visualization' %>
+</div>
+
+<%= late_javascript_tag do %>
+  //<![CDATA[
+$('#visualization').submit(function() {
+  clear_canvas();
+  });
+
+$('#visualization').on('ajax:success', function(evt, data, status, xhr){
+	init(data);
+});
+$('#detail_view').scroll(function()
+{
+	if(visualization!=null)
+	{
+		visualization.canvas.getPos(true);
+	}
+});
+
+var visualization = null;
+var form = null;
+
+function clear_canvas() {
+  $jit.id('infovis').innerHTML = '';
+};
+
+function init(data) {
+
+	var visualization_type = "<%= params[:visualization_type]%>";
+	if (visualization_type == "sunburst")
+	{
+		size = $('#deep').val();
+		size = parseInt(size)
+		if(size != 0 && size < data.max_deep)
+		{
+			size = 180*(parseInt(size)+1)+40;
+		}else
+		{
+			size = 180*(data.max_deep)+40;
+		}
+		$('#infovis').css( "width", size );
+		$('#infovis').css( "height", size );
+	}
+	var visualization_config = {
+
+      //id container for the visualization
+   injectInto: 'infovis',
+   width: $("#infovis").width(),
+   height: $("#infovis").height(),
+      //Change node and edge styles such as
+      //color, width, lineWidth and edge types
+
+	NodeStyles: {
+		enable: true,
+		alpha: 2,
+		type: 'Native',
+		stylesClick: {
+	    	height: 105
+		},
+		stylesHover: {
+		    height: 100
+		},
+		duration: 700
+	},
+
+      Node: {
+        overridable: true,
+		height: 50
+      },
+      Edge: {
+        overridable: true,
+        type: 'line',
+        alpha: 1,
+		lineWidth: 2
+      },
+
+      //Draw canvas text. Can also be
+      //'HTML' or 'SVG' to draw DOM labels
+      Label: {
+        type: 'Native',
+        color: '#000000'
+      },
+      Tips: {
+        enable: true,
+        onShow: function(tip, node, elem) {
+          var data = node.data;
+          var html = "<b>" + data.full_name + "</b>";
+          if(data.description) {
+            html += "<br />" + data.description.replace("\n", "<br />");
+          }
+          if(data.user) {
+            html += "<br /><b>Last modified:</b> " + data.updated_at + " by " + data.user;
+          }
+          if(data.responsibles) {
+            html += "<br /><b>Responsible user:</b> " + data.responsibles;
+          }
+          tip.innerHTML = html;
+        }
+      },
+      Events: {
+        enable: true,
+        type: 'Native',
+        //List node connections onClick
+        onClick: function(node, eventInfo, e) {
+          if (!node) return;
+          var data = node.data
+          var id = node.id.replace('node_','');
+
+
+          if(id.charAt(0)!='i'){
+		 	 var link = "<%= re_artifact_properties_path %>";
+		  }else
+		  {
+		  	id = id.replace('issue_','');
+	 		var link = "/issues";
+		  }
+	      var html = "<b>Name: <a href=" + link + "/" + id + ">" + data.full_name + "</a></b>"
+          if (data.description) {
+            html += "<br/><br/><b><%= t(:re_artifact_description) %></b><br/>"
+            html += data.description.replace("\n", "<br />")
+          }
+          html += "<br/><br/><b><%= t(:re_connected_nodes) %></b><br/>"
+          html += "<ul class=\"filterdetails\"><li>", ans = [];
+
+          var relationships = data.relationship_data;
+          for (i=0; i<relationships.length; i++) {
+	          if(relationships[i].relation_type!='Issue'){
+			 	  link = "<%= re_artifact_properties_path %>";
+			  }else{
+				 link = "/issues";
+		      }
+
+            ans.push(relationships[i].direction +  " <a href=" + link + "/" + relationships[i].id + ">" + relationships[i].full_name + "</a> as " + relationships[i].relation_type);
+          }
+          $jit.id('node-details').innerHTML = html + ans.join("</li><li>") + "</li></ul>";
+        },
+        onRightClick: function(node) {
+          if(node.collapsed) {
+            visualization.op.expand(node, {
+              'type': 'animate',
+              'duration': 700,
+              'transition': $jit.Trans.Back.easeOut
+            });
+          } else {
+            visualization.op.contract(node, {
+              'type': 'animate',
+              'duration': 700,
+              'transition': $jit.Trans.Quart.easeInOut
+            });
+          }
+        }
+
+      }
+	};
+
+  switch(visualization_type) {
+	  case "sunburst":
+			visualization_config.levelDistance=90;
+			visualization = new $jit.Sunburst(visualization_config);
+	    break;
+	  case "netmap":
+			var width = $("#infovis").width();
+			var height = $("#infovis").height();
+			var size = width > height ? width:height;
+			visualization_config.levelDistance=size/2-110;
+			visualization = new $jit.Sunburst(visualization_config);
+	    break;
+	  case "graph":
+	  		visualization = new $jit.ForceDirected(visualization_config);
+		  break;
+	  default :
+	  	alert ("<%= t(:re_please_select_visualization_type) %>");
+	    break;
+  }
+//  visualization.canvas.getPos(true);
+  visualization.loadJSON(data);
+  visualization.refresh();
+
+};
+
+var easttoggler = $("div.ui-layout-toggler-east-closed > span.content-closed");
+var eastspan = easttoggler.first()
+eastspan.html('');
+$('#visualization').submit();
+
+//]]>
+<% end %>
+

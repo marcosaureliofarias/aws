@@ -1,0 +1,9 @@
+<%
+  header_tags_content = content_for(:header_tags)
+
+  if header_tags_content.present? && header_tags_content.include?('/jstoolbar/')
+    content_for :header_tags do
+      stylesheet_link_tag('redmine_jstoolbar_buttons.css', plugin: 'diagrams')
+    end
+  end
+-%>

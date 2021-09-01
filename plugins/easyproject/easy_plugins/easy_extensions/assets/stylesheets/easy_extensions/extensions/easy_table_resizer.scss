@@ -1,0 +1,42 @@
+.table-resizer {
+  table-layout: fixed;
+
+  th {
+    position: relative;
+    &:hover{
+      .column__handle{
+        opacity: 1;
+      }
+    }
+  }
+  .column__handle {
+    border-left: 1px solid $color-border;
+    border-right: 1px solid $color-border;
+    top: 0 !important;
+    bottom: 0 !important;
+    height: auto !important;
+    width: 1px !important;
+    right: 1px !important;
+    padding: 0 1px;
+    opacity: 0;
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+
+  .affix-cell-wrap {
+    padding-left: 2 * $gap !important;
+    padding-right: 2 * $gap !important;
+  }
+
+  .hide-when-print:not(.checkbox) {
+    width: 0;
+  }
+
+  .easy-query-additional {
+    &-beginning-buttons,
+    &-ending-buttons {
+      width: 50px;
+    }
+  }
+}

@@ -1,0 +1,597 @@
+---
+it:
+  activerecord:
+    attributes:
+      easy_contacts:
+        account_manager: Account manager
+        accounted_by: Contabilizzato dal partner
+        external_account_manager: Account manager esterno
+    models:
+      easy_mail_campaign_easy_contact: Contatto
+  administration:
+    label_easy_contact: Campi utente - contatti
+    label_easy_contact_group: Campi utente - gruppi
+    label_easy_contact_type: Tipo di contatto
+  attributes:
+    easy_contacts:
+      account_manager: Account manager
+      external_account_manager: Account manager esterno
+  button_assign_to_me: Aggiungi ai contatti preferiti
+  button_easy_contact_by_easy_query: Contatti per filtro salvato
+  button_easy_contact_homepage: Mostra tutto
+  button_easy_contact_new: Nuovo contatto
+  button_easy_contact_show_contact_on_google_map: Mostra contatto in Google map
+  button_easy_entity_attribute_vcard_map: Impostazioni mappatura Vcard
+  button_new_easy_contact_csv_import: Nuova importazione contatto CSV
+  button_ok_continue_import: Va bene - Importa
+  button_reasign_and_delete_easy_contact: Riassegna ed elimina tipo
+  button_remove_from_me: Rimuovi dai contatti preferiti
+  button_remove_from_project: Rimuovere dai contatti del progetto
+  button_save_contact_and_add_reference: Salva e continua
+  button_show_contact_account: Account
+  button_show_contact_corporate: Società
+  button_show_contact_personal: Persone
+  custom_field_names:
+    easy_contacts_city:
+      label: Città
+    easy_contacts_country:
+      label: Paese
+    easy_contacts_email:
+      label: E-mail
+    easy_contacts_organization:
+      label: Organizzazione
+    easy_contacts_postal_code:
+      label: CAP
+    easy_contacts_region:
+      label: Stato
+    easy_contacts_street:
+      label: Via
+    easy_contacts_telephone:
+      label: Telefono
+  easy_contact_action:
+    action: Azione
+    add_note: Aggiungi commento
+    add_to_contact: Collega contatti
+    add_to_global: Aggiungi a contatti globali
+    add_to_group: Aggiungi al gruppo
+    add_to_project: Aggiungi al progetto
+    add_to_user: Aggiungi ai contatti personali
+    assign_to_partner: Assegna al partner
+    destroy: Elimina
+    edit: Modifica
+    refresh: Aggiorna
+    send_mail: Invia contatto tramite e-mail
+  easy_contact_country_select:
+    ABW: Aruba
+    AFG: Afghanistan
+    AGO: Angola
+    AIA: Anguilla
+    ALA: Isole Åland
+    ALB: Albania
+    AND: Andorra
+    ANT: Antille Olandesi
+    ARE: Emirati Arabi Uniti
+    ARG: Argentina
+    ARM: Armenia
+    ASM: Samoa Americane
+    ATA: Antartide
+    ATF: Territori Australi Francesi
+    ATG: Antigua e Barbuda
+    AUS: Australia
+    AUT: Austria
+    AZE: Azerbaigian
+    BDI: Burundi
+    BEL: Belgio
+    BEN: Benin
+    BES: Bonaire, Sint Eustatius e Saba
+    BFA: Burkina Faso
+    BGD: Bangladesh
+    BGR: Bulgaria
+    BHR: Bahrain
+    BHS: Bahamas
+    BIH: Bosnia-Herzegovina
+    BLM: Saint-Barthélemy
+    BLR: Bielorussia
+    BLZ: Belize
+    BMU: Bermuda
+    BOL: Bolivia
+    BRA: Brasile
+    BRB: Barbados
+    BRN: Brunei
+    BTN: Bhutan
+    BVT: Isola Bouvet
+    BWA: Botswana
+    CAF: Repubblica Centrafricana
+    CAN: Canada
+    CCK: Isole Cocos (Keeling)
+    CHE: Svizzera
+    CHL: Cile
+    CHN: Cina
+    CIV: Costa d'Avorio
+    CMR: Camerun
+    COD: Congo (Repubblica Democratica del)
+    COG: Congo
+    COK: Isole Cook
+    COL: Colombia
+    COM: Comore
+    CPV: Capo Verde
+    CRI: Costa Rica
+    CUB: Cuba
+    CUW: Curaçao
+    CXR: Isola di Natale
+    CYM: Isole Cayman
+    CYP: Cipro
+    CZE: Repubblica Ceca
+    DEU: Germania
+    DJI: Gibuti
+    DMA: Dominica
+    DNK: Danimarca
+    DOM: Repubblica Dominicana
+    DRC: Repubblica Democratica del Congo
+    DZA: Algeria
+    ECU: Ecuador
+    EGY: Egitto
+    ERI: Eritrea
+    ESH: Sahara Occidentale
+    ESP: Spagna
+    EST: Estonia
+    ETH: Etiopia
+    FIN: Finlandia
+    FJI: Fiji
+    FLK: Isole Falkland (Malvine)
+    FRA: Francia
+    FRO: Isole Faroe
+    FSM: Stati Federati di Micronesia
+    GAB: Gabon
+    GBR: Regno Unito
+    GEO: Georgia
+    GGY: Guernsey
+    GHA: Ghana
+    GIB: Gibilterra
+    GIN: Guinea
+    GLP: Guadalupa
+    GMB: Gambia
+    GNB: Guinea-Bissau
+    GNQ: Guinea Equatoriale
+    GRC: Grecia
+    GRD: Grenada
+    GRL: Groenlandia
+    GTM: Guatemala
+    GUF: Guyana Francese
+    GUM: Guam
+    GUY: Guyana
+    HKG: Hong Kong
+    HMD: Isole Heard e McDonald
+    HND: Honduras
+    HRV: Croazia
+    HTI: Haiti
+    HUN: Ungheria
+    IDN: Indonesia
+    IND: India
+    IOT: Territorio Britannico dell'Oceano Indiano
+    IRL: Irlanda
+    IRN: Iran
+    IRQ: Iraq
+    ISL: Islanda
+    ISR: Israele
+    ITA: Italia
+    JAM: Giamaica
+    JEY: Jersey
+    JOR: Giordania
+    JPN: Giappone
+    KAZ: Kazakistan
+    KEN: Kenya
+    KGZ: Kirghizistan
+    KHM: Cambogia
+    KIR: Kiribati
+    KNA: Saint Kitts e Nevis
+    KOR: Corea del Sud
+    KWT: Kuwait
+    LAO: Laos
+    LBN: Libano
+    LBR: Liberia
+    LBY: Libia
+    LCA: Santa Lucia
+    LIE: Liechtenstein
+    LKA: Sri Lanka
+    LSO: Lesotho
+    LTU: Lituania
+    LUX: Lussemburgo
+    LVA: Lettonia
+    MAC: Macao
+    MAF: Sint Maarten (Antille Francesi)
+    MAR: Marocco
+    MCO: Monaco
+    MDA: Repubblica di
+    MDG: Madagascar
+    MDV: Maldive
+    MEX: Messico
+    MHL: Isole Marshall
+    MKD: Ex Jugoslavia
+    MLI: Mali
+    MLT: Malta
+    MMR: Birmania (Myanmar)
+    MNE: Montenegro
+    MNG: Mongolia
+    MNP: Isole Marianne Settentrionali
+    MOZ: Mozambico
+    MRT: Mauritania
+    MSR: Montserrat
+    MTQ: Martinica
+    MUS: Mauritius
+    MWI: Malawi
+    MYS: Malesia
+    MYT: Mayotte
+    NAM: Namibia
+    NCL: Nuova Caledonia
+    NER: Niger
+    NFK: Isola Norfolk
+    NGA: Nigeria
+    NIC: Nicaragua
+    NIU: Niue
+    NLD: Paesi Bassi
+    NOR: Norvegia
+    NPL: Nepal
+    NRU: Nauru
+    NZL: Nuova Zelanda
+    OMN: Oman
+    PAK: Pakistan
+    PAN: Panama
+    PCN: Pitcairn
+    PER: Perù
+    PHL: Filippine
+    PLW: Palau
+    PNG: Papua Nuova Guinea
+    POL: Polonia
+    PRI: Porto Rico
+    PRK: Corea del Nord
+    PRT: Portogallo
+    PRY: Paraguay
+    PSE: Palestina, Stato di
+    PYF: Polinesia Francese
+    QAT: Qatar
+    REU: La Réunion
+    ROM: Romania
+    ROU: Romania
+    RUS: Russia
+    RWA: Ruanda
+    SAU: Arabia Saudita
+    SDN: Sudan
+    SEN: Senegal
+    SGP: Singapore
+    SGS: Georgia del Sud e Isole Sandwich Meridionali
+    SHN: Sant'Elena
+    SJM: Svalbard e Jan Mayen
+    SLB: Isole Salomone
+    SLE: Sierra Leone
+    SLV: El Salvador
+    SMR: San Marino
+    SOM: Somalia
+    SPM: Saint-Pierre e Miquelon
+    SRB: Serbia
+    SSD: Sudan del Sud
+    STP: Sao Tomé e Príncipe
+    SUR: Suriname
+    SVK: Slovacchia
+    SVN: Slovenia
+    SWE: Svezia
+    SWZ: Swaziland
+    SXM: Sint Maarten (Antille Olandesi)
+    SYC: Seychelles
+    SYR: Siria
+    TCA: Turks e Caicos
+    TCD: Ciad
+    TGO: Togo
+    THA: Thailandia
+    TJK: Tagikistan
+    TKL: Tokelau
+    TKM: Turkmenistan
+    TLS: Timor Est
+    TMP: Timor Est
+    TON: Tonga
+    TTO: Trinidad e Tobago
+    TUN: Tunisia
+    TUR: Turchia
+    TUV: Tuvalu
+    TWN: Taiwan
+    TZA: Tanzania
+    UGA: Uganda
+    UKR: Ucraina
+    UMI: Isole minori esterne degli Stati Uniti d'America
+    URY: Uruguay
+    USA: Stati Uniti
+    UZB: Uzbekistan
+    VAT: Città del Vaticano
+    VCT: Saint Vincent e Grenadine
+    VEN: Venezuela
+    VGB: Isole Vergini britanniche
+    VIR: Isole Vergini americane
+    VNM: Vietnam
+    VUT: Vanuatu
+    WLF: Wallis e Futuna
+    WSM: Samoa
+    XCA: Isole Canarie
+    XET: Timor Est
+    XSB: Saint-Barthélemy
+    XSE: Sint Eustatius
+    YEM: Yemen
+    ZAF: Sudafrica
+    ZMB: Zambia
+    ZWE: Zimbabwe
+  easy_contact_toolbar_label_search: Cerca
+  easy_contact_types:
+    account: Account
+    corporate: Azienda
+    personal: Personale
+  easy_contacts_plugin_author: Easy Software
+  easy_contacts_plugin_author_url: http://www.easyproject.cz/en
+  easy_contacts_plugin_description: "- directory di contatti per progetti e azienda"
+  easy_contacts_plugin_name: Contatti
+  easy_contacts_toolbar:
+    assign_to_contact: Assegna a contatto
+    assign_to_issue: Assegna a problema
+    assign_to_project: Assegna a progetto
+    contact_all_delete: Elimina
+    contact_delete: Rimuovi dal gruppo
+    contact_edit: Modifica
+    contact_edit_save: Salva
+    contact_exit: Indietro
+    contact_new_save: Salva
+    group_delete: Elimina
+    group_edit: Modifica
+    group_edit_save: Salva
+    group_exit: Annulla
+    group_new: Nuovo gruppo
+    group_new_save: Salva
+    new_contact: Nuovo contatto
+    projectgroup_new: Nuovo gruppo
+    wrong_params: L'entità assegnabile contiene parametri errati
+  easy_lookup:
+    easy_contact:
+      label: Contatti
+  easy_pages:
+    module_category:
+      contacts: Contatti
+    modules:
+      easy_contact_create_button: Pulsante per nuovo contatto
+      easy_contact_query: Contatti da filtro
+      easy_contacts_create_new: Nuovo contatto
+      group_of_contacts_button: Pulsante per gruppo di contatti
+      import_contacts_button: Pulsante per importazione contatti
+      my_contacts_button: Pulsante per I miei contatti
+      project_contacts_overview: Contatti del progetto
+      user_contacts_overview: Contatti preferiti
+  easy_proposer:
+    easy_contacts:
+      new:
+        caption: Crea un nuovo contatto
+        description: Crea un nuovo contatto
+  easy_query:
+    button_apply:
+      easy_contact: Filtra contatti
+      easy_contact_group: Filtra gruppi
+    easy_lookup:
+      name:
+        easy_contact_group:
+          default: Seleziona gruppi di contatti
+        easy_contact_partner:
+          default: Seleziona contatto partner
+        easy_contact:
+          default: Seleziona contatti
+    name:
+      easy_contact_group_query: Gruppi di contatti
+      easy_contact_query: Contatti
+    sidebar_filters:
+      personal:
+        easy_contact_group_project_query: Filtri privati ​​sui gruppi di contatti
+          del progetto
+        easy_contact_group_query: Filtri privati ​​su gruppi di contatti
+        easy_contact_group_user_query: Filtri privati sui miei gruppi di contatti
+        easy_contact_query: Filtri privati ​​su contatti
+      public:
+        easy_contact_group_project_query: Filtri pubblici sui gruppi di contatti del
+          progetto
+        easy_contact_group_query: Filtri pubblici sui gruppi di contatti
+        easy_contact_group_user_query: Filtri pubblici sui miei gruppi di contatti
+        easy_contact_query: Filtri pubblici sui contatti
+  easy_user_type_visible_contact_types: Tipi di contatti visibili
+  error_can_not_delete_easy_contact_type: Esistono dei contatti creati con questo
+    tipo, quindi non puoi cancellarlo.
+  error_contact_already_assigned: Contatto già assegnato.
+  error_easy_contact_could_not_merge: I contatti non potrebbero essere uniti
+  error_import_data_integrity: I dati importati contengono %{count} errori, controllali.
+  error_import_file_encoding: Importazione da file fallita (forse hai selezionato
+    la codifica sbagliata)
+  error_import_file_malformed: Il file da importare non ha un formato CSV corretto.
+  error_import_file_missing: File da importare mancante
+  error_no_contacts_select: Non hai selezionato nessun contatto
+  error_no_groups_select: Non hai selezionato nessun gruppo
+  error_no_projects_select: Non hai selezionato nessun progetto
+  error_no_recipients_select: Non si sceglie alcun destinatario
+  field_assigned_to_id: Assegnato a
+  field_author_id: Autore
+  field_author_note: Note
+  field_contact_groups: Gruppi di contatti
+  field_contact_name: Nome
+  field_csv_has_headers: Nomi delle colonne sulla prima linea
+  field_easy_contact: Contatto
+  field_easy_contact_author_note: Descrizione
+  field_easy_contact_from_eu: Da EU
+  field_easy_contact_group: Gruppo di contatti
+  field_easy_contact_group_entity: Gruppi personali
+  field_easy_contact_group_entity_type: Tipo di gruppi
+  field_easy_contact_group_parent: Gruppo di contatti padre
+  field_easy_contact_group_root: Gruppo di contatti top
+  field_easy_contact_guid: GUID
+  field_easy_contact_parent: Contatto padre
+  field_easy_contact_private: Contatto privato
+  field_easy_contact_root: Contatto principale
+  field_easy_contact_type: Tipo di contatto
+  field_easy_contacts: Contatti
+  field_easy_contacts_parent: Contatto padre
+  field_easy_contacts_visibility: Visibilità contatti
+  field_group_name: Nome
+  field_group_type: Tipo di gruppo
+  field_icon_path: Icona
+  field_is_global: È un contatto generale?
+  field_main_easy_contact: Contatto principale
+  field_parent_id: Padre
+  field_project_group: Gruppi di progetti
+  field_type_name: Nome
+  filter:
+    global_groups: Gruppi generali
+    personal_groups: Gruppi personali
+    project_groups: Gruppi di progetto
+  header_text_of_mail: Questo contatto è stato inviato al tuo utente '%{user}'.
+  heading_easy_contacts_toolbar: Contatti
+  help_fields_limit_visibility_settings: Seleziona gli utenti per consentire loro
+    di visualizzare questo campo. Lascia vuoto per disabilitare la visibilità speciale.
+  label_account_name: Nome account
+  label_add_subcontact: Nuovo contatto collegato
+  label_assign_to_contact: Aggiungi a contatto
+  label_assign_to_issue: Aggiungi a task
+  label_assign_to_me: Aggiungi ai miei contatti
+  label_assign_to_project: Aggiungi al progetto
+  label_attribute_of_easy_contacts: Contatto di %{name}
+  label_bulk_edit_selected_contacts: Modifica massiccia dei contatti selezionati
+  label_change_easy_contact_type_to: Cambia tipo in
+  label_contact_references: Contatti correlati
+  label_contact_references_to_account: Collegamento con gli account
+  label_contact_references_to_corporate: Collegamento con le organizzazioni
+  label_contact_references_to_personal: Collegamento con i contatti
+  label_contacts_attribute: Attributo
+  label_contacts_groups: Gruppi del contatto
+  label_contacts_main_crm_cases: Casi CRM personali
+  label_corporate_name: Nome azienda
+  label_easy_contact: Contatto
+  label_easy_contact_accounted_by: Contabilizzato da %{name}
+  label_easy_contact_add_sub_contact: Aggiungi sottocontatto
+  label_easy_contact_assigned_to: Contatto assegnato a
+  label_easy_contact_change_avatar: Cambia avatar
+  label_easy_contact_client_custom_fields: Campi personalizzati del cliente
+  label_easy_contact_country_select: Scegli Paese
+  label_easy_contact_easy_contact_groups: Gruppi di contatti
+  label_easy_contact_encoding_chooser: Scegli codifica vCard
+  label_easy_contact_fields_settings: Impostazioni dei campi
+  label_easy_contact_global: Contatti globali
+  label_easy_contact_group: Gruppo di contatti
+  label_easy_contact_groups: Gestione gruppi di contatti
+  label_easy_contact_is_global_false: Il contatto non è globale
+  label_easy_contact_is_global_true: Il contatto è globale
+  label_easy_contact_is_my: Il contatto è fra i preferiti
+  label_easy_contact_is_not_my: Il contatto non è fra i preferiti
+  label_easy_contact_is_private_false: Il contatto non è privato
+  label_easy_contact_is_private_true: Il contatto è privato
+  label_easy_contact_issues: 'Task:'
+  label_easy_contact_managed_accounts: Account gestiti
+  label_easy_contact_managed_by_partner: 'Contabilizzato dal partner:'
+  label_easy_contact_note: Note del contatto
+  label_easy_contact_parent_contact_plural: Contatti padre
+  label_easy_contact_parent_group: Gruppo principale
+  label_easy_contact_personal: I miei contatti
+  label_easy_contact_plural: Contatti
+  label_easy_contact_principals: 'Utenti:'
+  label_easy_contact_projects: 'Progetti:'
+  label_easy_contact_queries_plural: Contatti
+  label_easy_contact_references: Contatti correlati
+  label_easy_contact_references_groups: Gruppi di contatti
+  label_easy_contact_root_contact: Contatto radice
+  label_easy_contact_sub_contact: Sottocontatto
+  label_easy_contact_sub_contact_plural: Sottocontatti
+  label_easy_contact_type: È azienda?
+  label_easy_contact_type_edit: Modifica tipologia di contatto
+  label_easy_contact_type_new: Nuova tipologia di contatto
+  label_easy_contact_types: Tipologie di contatti
+  label_easy_contact_used_in_type: Utilizzato in
+  label_easy_contacts: Contatti
+  label_easy_contacts_add_non_primary_custom_fields: Aggiungi altro attributo
+  label_easy_contacts_add_non_primary_custom_fields_select: Scegli attributo...
+  label_easy_contacts_import: Importa contatti
+  label_easy_contacts_name: Nome del contatto
+  label_easy_contacts_reg_no_query: Precompila con il n° di reg. della query
+  label_easy_contacts_settings: Impostazioni contatto
+  label_easy_contacts_validate_vat_no: Valida n° di partita IVA UE
+  label_easy_contacts_visibility_all: Tutti i contatti
+  label_easy_contacts_visibility_assigned: Contatti assegnati all’utente
+  label_easy_contacts_visibility_author: Contatti creati dall’utente
+  label_easy_contacts_visibility_own: Contatti creati da o assegnati all’utente
+  label_edit_contact_field_settings: Impostazioni campo %{name}
+  label_filter_group_easy_contact_group_query: Gruppo di contatto
+  label_filter_group_easy_contact_query: Contatto
+  label_new_import_file_toggling_button: Ulteriori file/impostazioni
+  label_personal_name: Nome proprio
+  label_project_easy_contact_groups: Gruppi di progetto
+  label_project_easy_contacts: Contatti del progetto
+  label_show_easy_contacts: Mostra contatti
+  menu_easy_contacts: Contatti
+  modal_labels:
+    cancel: Annulla
+    mail: Invia selezionato
+  modal_query:
+    groups: Assegna a gruppi
+    mail: Invia per e-mail
+    projects: Assegna a progetti
+  modal_titles:
+    cancel: Chiudi
+    mail: Invia gli utenti selezionati ai contatti selezionati.
+  notice_easy_contact_successful_create: Contatto %{id} creato.
+  notice_failed_to_save_contacts: Salvataggio contatti fallito.
+  notice_successfull_contacts_import: Contatti importati con successo
+  notice_successfully_assignable_easy_contacts: I contatti selezionati (%{count})
+    sono stati assegnati
+  notice_successfully_remove: Il contatto è stato rimosso dal gruppo -%{ecg}
+  notice_successfully_send_by_mail: I contatti selezionati (%{count}) sono stati inviati
+  permission_add_note_easy_contact_groups: Aggiungi commenti ai gruppi
+  permission_add_note_easy_contacts: Aggiungi commenti ai contatti
+  permission_anonymize_easy_contacts: Rendi anonimi i contatti
+  permission_assign_easy_contacts: Assegna contatti
+  permission_assign_to_project: Possibilità di aggiungere / rimuovere i contatti ai
+    progetti
+  permission_delete_assigned_easy_contacts: Elimina contatti assegnati
+  permission_delete_author_easy_contacts: Elimina contatti personali
+  permission_delete_easy_contact_groups: Cancella gruppi di contatto
+  permission_delete_easy_contact_types: Cancella tipologie di contatto
+  permission_delete_easy_contacts: Cancella contatti
+  permission_edit_contact_note: Modifica commenti ai contatti
+  permission_manage_assigned_easy_contacts: Gestisci contatti assegnati
+  permission_manage_author_easy_contacts: Gestisci contatti personali
+  permission_manage_easy_contact_groups: Gestisci gruppi di contatti
+  permission_manage_easy_contact_types: Gestisci tipologie di contatto
+  permission_manage_easy_contacts: Gestisci contatti
+  permission_view_easy_contacts: Visualizza contatti
+  project_contacts_overview:
+    header: Elenco dei contatti nel progetto
+    warning_easy_contacts_disabled: Il progetto ha il modulo dei contatti disabilitato
+  project_default_page:
+    easy_contacts: Contatti
+  project_module_easy_contacts: Contatti
+  search_field_placeholders:
+    easy_contacts: Cerca contatti
+  setting_easy_carddav_enabled: Abilita cardDAV
+  text_are_you_sure_easy_contact_destroy: ELIMINA CONTATTO! Questa azione eliminerà il
+    contatto in modo permanente. Sei davvero sicuro di continuare?
+  text_easy_contact_missing_comments: Non ci sono commenti
+  text_easy_contacts_encoding_help: Per gli utenti Windows probabilmente è 'windows-1250',
+    altrimenti 'UTF-8'
+  text_easy_contacts_import_help: Scegli un file CSV da importare e codificare che
+    sia stato salvato.
+  text_easy_contacts_import_preview: Controlla i dati mostrati sotto. Se il risultato
+    è quello desiderato, prosegui cliccando sul pulsante Importa per salvarli, altrimenti
+    prova un altro file o impostazione.
+  title_easy_contact_assign: Assegna contatto al gruppo
+  title_easy_contact_groups_edit: Modifica gruppo
+  title_easy_contact_mailer: Contatti - %{contact_name}
+  title_easy_contact_type_delete: Elimina contatto
+  title_easy_contact_type_edit: Modifica contatto
+  title_easy_contact_type_new: Nuovo contatto
+  title_easy_contacts_in_group: Contatti nel gruppo
+  title_easy_modal_selector_trigger:
+    easy_contact: Clicca per selezionare il contatto dall'elenco.
+    easy_contact_group: Clicca per selezionare il gruppo di contatti dall'elenco
+  title_issue_contacts_display_changer_list: Mostra contatti come elenco
+  title_issue_contacts_display_changer_slab: Mostra contatti come allocazioni di memoria
+  title_issue_contacts_display_changer_tile: Mostra contatti come riquadri
+  title_maybe_you_can: Forse puoi creare uno di questi contatti
+  title_other_formats_links_vcf: Esporta a vCard
+  title_reasign_easy_contact: 'Riassegna contatto: %{contact}'
+  title_remove_easy_contact_from_entity: Rimuovi contatto dall'entità

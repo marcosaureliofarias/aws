@@ -1,0 +1,140 @@
+<%
+  modul_uniq_id ||= ''
+  block_name ||= ''
+  easy_page_zone_module_uuid = local_assigns.fetch(:easy_page_zone_module_uuid, nil)
+  list_multiple = local_assigns.fetch(:list_multiple, true)
+  select_first_value = local_assigns.fetch(:select_first_value, true)
+  query_filters ||= query.filters
+  query_filters = query_filters.deep_dup
+  allow_repeating_filter_values ||= false
+  list_values_additional_params ||= {}
+  list_values_url ||= filter_values_easy_queries_path #/-/-/-/-/+++
+  filters ||= query.filters_for_select
+  filters = filters.to_a # some modifications pass a Hash
+  available_operators ||= nil
+  filter_groups ||= { nil => nil }
+  list_values_params = query.to_params.merge(
+      modul_uniq_id: modul_uniq_id,
+      block_name: block_name,
+      easy_page_zone_module_uuid: easy_page_zone_module_uuid,
+      project_id: query.project_id,
+      query_param: params[:query_param]
+    ).merge(list_values_additional_params)
+  additional_select_options ||= {}
+
+  # { name => type }
+  available_filters = filters.each_with_object({}) do |(name, definition), result|
+    result[name] = definition[:type]
+  end
+
+  # { name => { url => URL, root => ROOT } }
+  autocomplete_sources = filters.each_with_object({}) do |(name, definition), result|
+    if definition[:type] == :list_autocomplete
+      result[name] = {
+        url: easy_autocomplete_path(definition[:source] || 'query_entities', autocomplete_options: definition[:autocomplete_options], source_options: definition[:source_options]),
+        root: definition[:source_root] || definition[:source] || 'entities'
+      }
+    end
+  end
+
+  # Add to definition { label => LABEL, values => VALUES }
+  query_filters.each do |name, definition|
+    field = filters.find{|f, _| f == name }
+    definition[:label] = field[1][:name] if field
+    definition[:label] ||= l('field_' + name.to_s.gsub(/_id$/, ''))
+
+    type = query.type_for(name)
+    klass = case type
+      when :relation
+        definition[:operator].in?(['=p', '!p', '=!p']) ? Project : query.entity
+      when :list_autocomplete
+        query.available_filters[name].try(:[], :klass)
+      end
+
+    if klass || (type == :list_autocomplete)
+      if additional_select_options.has_key?(name)
+        obj = query.objects_for(name, klass, query_filters, additional_select_options: additional_select_options[name])
+      else
+        obj = query.objects_for(name, klass, query_filters)
+      end
+
+      definition[:values] = obj.map{|o| { id: o.id, value: o.to_s } } if obj
+      definition[:values] ||= query.values_for(name, query_filters)
+    else
+      if query.respond_to?(met = "values_for_#{name.tr('.', '_')}_filter")
+        definition[:values] = query.send(met, query_filters)
+      else
+        definition[:values] =  query.values_for(name, query_filters)
+      end
+    end
+  end
+
+  jquery_filters = {
+    blockName: block_name,
+    modulUniqId: modul_uniq_id,
+    queryEntity: query.entity.to_s,
+    filter_groups: filter_groups.keys.compact,
+    listValuesUrl: list_values_url,
+    listValuesParams: list_values_params.compact.to_json.html_safe,
+    listMultiple: list_multiple,
+    selectListFirstValue: select_first_value,
+    availableFilters: available_filters,
+    autocompleteSources: autocomplete_sources,
+    filters: query_filters
+  }
+
+  if available_operators
+    jquery_filters[:availableOperators] = available_operators
+  end
+%>
+
+<% if EasySetting.value('query_string_enabled') %>
+  <%
+    jquery_filters[:availableFilters]['query_string'] = 'query_string'
+
+    if query.query_string.present?
+      query_filters['query_string'] = {
+        label: l(:field_query_string),
+        values: query.query_string
+      }
+    else
+      filters << ["query_string", {
+        type: :query_string,
+        group: l(:label_experimental).capitalize,
+        name: l(:field_query_string)
+      }]
+    end
+  %>
+
+  <%= render 'easy_queries/query_string_help', block_name: block_name, modul_uniq_id: modul_uniq_id %>
+<% end %>
+
+<div id="<%= modul_uniq_id %>easyquery-filters" class="easyquery-filters">
+  <div class="add-filter tabular">
+    <p>
+      <label><%= l(:label_filter_add) %>:</label>
+      <%= select_tag (block_name.blank? ? 'add_filter_select' : "#{block_name}[add_filter_select]"), options_for_filters(filters, query, !allow_repeating_filter_values), include_blank: true, class: 'select-small', name: nil, id: (modul_uniq_id + 'add_filter_select') %>
+    </p>
+  </div>
+
+  <% filter_groups.each do |group, label| %>
+    <fieldset>
+      <%= content_tag(:legend, label) if label %>
+      <table id="<%= modul_uniq_id %><%= group.to_s %>filters-table" class="filters-table">
+        <!--<colgroup>
+            <col style="width: 200px;" />
+            <col style="width: 150px" />
+            <col />
+          </colgroup>-->
+        <tbody>
+        </tbody>
+      </table>
+    </fieldset>
+  <% end %>
+
+  <script type="text/javascript">
+    EASY.schedule.late(function(){
+      $("#<%= modul_uniq_id %>easyquery-filters").filters(<%= jquery_filters.to_json.html_safe %>)
+    });
+  </script>
+</div>

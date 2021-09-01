@@ -1,0 +1,109 @@
+<% roles = Role.find_all_givable
+   members = @project.memberships.active.visible.includes(:member_roles, :roles, :principal).preload({:group => :users}).order(User.fields_for_order_statement)
+   hide_side_bar ||= false
+%>
+<% if members.any? %>
+  <div class="autoscroll">
+    <table id="members-list" class="list members">
+    <thead>
+    <tr>
+      <th><%= l(:label_user) %> / <%= l(:label_group) %></th>
+      <th><%= l(:label_role_plural) %></th>
+      <th style="width:15%"></th>
+      <%= call_hook(:view_projects_settings_members_table_header, :project => @project) %>
+    </tr>
+    </thead>
+    <tbody>
+    <% sort_wrapped_principals(members).each do |member| %>
+      <tr id="member-<%= member.id %>" class="member" data-id="<%= member.id %>">
+        <td class="name <%= member.principal.class.name.downcase %>"><%= link_to_user member.principal %></td>
+        <td class="roles" data-url="<%= membership_path(member) %>" data-roles="<%= member.role_ids.to_json %>" data-inherited-roles="<%= member.member_roles.inject([]) {|ids, mr| ids << mr.role_id.to_s if mr.inherited_from.present?; ids } %>">
+          <span><%= member.roles.sort.collect(&:to_s).join(', ') %></span>
+        </td>
+        <td class="easy-query-additional-ending-buttons">
+          <%= link_to content_tag(:span, l(:button_edit), :class => 'tooltip'), 'javascript:void(0)', :class => 'icon icon-edit' %>
+          <%= delete_link membership_path(member),
+                          :remote => true,
+                          :data => (!User.current.admin? && member.include?(User.current) ? {:confirm => l(:text_own_membership_delete_confirmation)} : {}) if member.deletable? %>
+        </td>
+        <%= call_hook(:view_projects_settings_members_table_row, { :project => @project, :member => member}) %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+
+  <script type="text/javascript">
+    EASY.schedule.main(function(){
+      function Member(elem) {
+        var self = this;
+        this.element = $(elem);
+        this.rolesElem = $('.roles', this.element);
+        this.rolesSpan = $('span', this.rolesElem);
+        this.inRoles = this.rolesElem.data('roles');
+        this.inheritedRoles = this.rolesElem.data('inherited-roles');
+        this.rolesEditUrl = this.rolesElem.data('url');
+        this.member_id = this.element.data('id');
+        this.editLink = $('.icon-edit', this.element);
+
+        this.editLink.click(function(evt){
+          evt.preventDefault();
+          if( self.form === undefined ) {
+            self.form = self.createForm();
+            self.rolesElem.append(self.form.form);
+          }
+          self.form.form.show();
+          self.rolesSpan.hide();
+        });
+      }
+
+      Member.prototype.i18n = {
+        button_save: '<%= l(:button_save) %>',
+        button_cancel: '<%= l(:button_cancel) %>'
+      };
+
+      Member.prototype.available_roles = <%= raw roles.inject({}){|h, r| h[r.id] = (j r.to_s); h }.to_json %>;
+      Member.prototype.managed_roles = <%= raw User.current.managed_roles(@project).map{|role| role.id.to_s } %>;
+
+      Member.prototype.createForm = function() {
+        var self = this;
+        var $form = $('<form>', {action: this.rolesEditUrl, method: 'post', class: 'hol', 'accept-charset': "UTF-8", 'data-remote': true });
+        $form.append('<input type="hidden" name="_method" value="put">')
+        var $container = $('<p></p>').appendTo($form);
+        var editable_roles = self.managed_roles.filter(function(id) {return self.inheritedRoles.indexOf(id) < 0});
+        for( var roleid in self.available_roles ) {
+          $container.append( '<label><input type="checkbox" name="membership[role_ids][]" value="'+roleid.toString()+'"'+(this.inRoles.indexOf(parseInt(roleid)) !== -1 ? 'checked="true"' : '')+((editable_roles.indexOf(roleid) !== -1) ? '' : ' disabled="true"')+'>'+this.available_roles[roleid]+'</label><br />' );
+        }
+        $form.append( '<input name="membership[role_ids][]" type="hidden" value="">' );
+        var $container2 = $('<p></p>').appendTo($form);
+        $container2.append('<input type="submit" name="commit" value="'+this.i18n.button_save+'" class="small button-positive">');
+        var stornoLink = $('<a href="javascript:void(0)" class="small button" style="margin-left:0.8rem;">'+this.i18n.button_cancel+'</a>').appendTo($container2);
+        stornoLink.on('click', function(evt){
+          evt.preventDefault();
+          self.rolesSpan.show();
+          $form.hide();
+        });
+        return { form: $form, storno: stornoLink };
+      };
+
+      function MembersList(elem){
+        var self = this;
+        this.element = $(elem);
+        this.members = [];
+        $( '.member', this.element).each(function(){
+          self.members.push( new Member(this) );
+        });
+      }
+
+      var membersTable = $('#members-list');
+      membersTable.data('members', new MembersList(membersTable));
+    });
+  </script>
+
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_member_new), new_project_membership_path(@project), :remote => true, :class => "icon icon-add button-positive" %>
+<% end unless hide_side_bar %>

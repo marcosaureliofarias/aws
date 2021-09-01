@@ -1,0 +1,54 @@
+.button, .button-positive, .button-2, .button-3, input[type=submit], html .button-positive.ui-button.ui-widget, html .button.ui-button.ui-widget {
+  @extend %button;
+}
+.button, input[type=submit], .button, .button-2 {//,input[type=submit], input[type=submit], html .button.ui-button.ui-widget
+  @extend %button-base;
+}
+.button-important, a.button-3, a.button-positive.orange, html .button-3.ui-button.ui-widget, input[type=submit].button-3 {
+  @extend %button-important;
+}
+.button-positive, .ui-dialog-buttonset > button.button-1, button-1, input[type=submit].button-positive, input[type=submit].button-1, html .button-positive.ui-button.ui-widget {
+  @extend %button-positive;
+}
+.button-negative, .ui-dialog-buttonset > button.button-1, button-1, input[type=submit].button-negative, input[type=submit].button-1, html .button-negative.ui-button.ui-widget {
+  @extend %button-negative;
+}
+.button-main{
+  @extend %button-main;
+}
+.button-large{
+  @extend %button-large;
+}
+.button-mini{
+  @extend %button-mini;
+}
+.button-mini-positive{
+  @extend %button-mini-positive;
+}
+.button-mini-negative{
+  @extend %button-mini-negative;
+}
+.button-group {
+  @extend %button-group;
+}
+.button-icon{
+  @extend %button-link;
+}
+.button-icon-only{
+  @extend %button-icon-only;
+}
+.button-positive, .button-small-positive, .button-mini-positive {
+  .control-down:before {
+    border-color: $button-positive-color;
+  }
+}
+.button-negative, .button-small-negative, .button-mini-negative {
+  .control-down:before {
+    border-color: $button-negative-color;
+  }
+}
+.button-important {
+  .control-down:before {
+    border-color: $button-important-color;
+  }
+}

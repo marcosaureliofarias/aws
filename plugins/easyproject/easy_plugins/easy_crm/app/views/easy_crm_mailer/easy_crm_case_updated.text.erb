@@ -1,0 +1,10 @@
+<%= "(#{l(:field_private_notes)}) " if @journal.private_notes? -%><%= l(:'mail.field_updated_by') -%> <%= @journal.user -%> <%= format_time(@journal.created_on) -%>
+<% details_to_strings(@journal.visible_details, true, :only_path => false, :entity => @easy_crm_case).each do |string| %>
+  <%= string -%>
+<% end %>
+
+<%= Sanitize.clean(@journal.notes, :output => :html) if @journal.notes? %>
+
+--------------------------------------------------------------------------------
+
+<%= render :partial => 'easy_crm_mailer/easy_crm_case', :formats => [:text], :locals => { :easy_crm_case => @easy_crm_case, :users => @users, :easy_crm_case_url => @easy_crm_case_url } %>

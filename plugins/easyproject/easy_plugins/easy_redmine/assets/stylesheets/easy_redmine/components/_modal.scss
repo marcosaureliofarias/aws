@@ -1,0 +1,24 @@
+.modal{
+  &-opened{
+    #main,#easy_servicebar{
+      @include filter(blur(0));
+    }
+    //#wrapper{
+      //@extend %blur;
+    //}
+    .ui-widget-overlay{
+      z-index: z($z-priority,modal) - 1;
+      opacity: $modal__opacity--backdrop;
+      background: $modal__color--backdrop;
+      top: 0%;
+    }
+  }
+  z-index: z($z-priority,modal) !important;
+}
+
+.ui-dialog {
+  @include respond-to(max-medium-screen) {
+    width: 100% !important;
+    left: -1px !important;
+  }
+}

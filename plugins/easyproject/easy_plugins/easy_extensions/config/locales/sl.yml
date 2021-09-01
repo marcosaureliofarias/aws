@@ -1,0 +1,3040 @@
+---
+sl:
+  actionview_instancetag_blank_option: Prosimo izberite
+  activerecord:
+    attributes:
+      easy_currency:
+        digits_after_decimal_separator: Število mest za decimalko
+        iso_code: Oznaka valute
+        name: Ime
+        symbol: Simbol valute
+      easy_email_template:
+        body_html: Vsebina e-pošte v HTML
+        body_plain: E-pošta je navadno besedilo
+        name: Ime
+        subject: Tema / Naslov
+      easy_entity_action:
+        action_name: Akcija
+        active: Aktiven
+        execute_as: Izvrši kot
+        name: Ime
+        repeatedly: Ponavljajoče?
+        type: Tip
+        use_journal: Zapiši rezultat v dnevnik entitete
+      easy_page:
+        identifier: Oznaka
+        page_layout_identifier: Razporeditev
+        page_scope: Obseg
+        page_scope_identifier: Obseg strani
+        translated_name: Naslov
+        url: Naslov strani (url)
+      easy_short_url:
+        allow_external: Dovoli anonimni dostop
+        shortcut: Bližnjica
+        source_url: Izvorni url naslov
+        valid_to: Poteče
+      easy_user_working_time_calendar_holiday:
+        holiday_date: Dan
+        is_repeating: Ponavljajoči praznik
+        name: Naziv
+      easy_user_working_time_calendar:
+        default_working_hours: Delovnih ur na dan
+        first_day_of_week: Prvi dan tedna
+        is_default: Privzeti koledar
+        name: Ime
+        parent_id: Nadrejeni koledar
+        working_week_days: Delovni dnevi v tednu
+    errors:
+      messages:
+        accepted: mora biti sprejet
+        after_project_start: "(%{start_date}) mora biti večji od začetnega datuma
+          projekta (%{project_start_date})"
+        before_milestone: "(%{due_date}) mora biti pred datumom mejnika (%{effective_date})"
+        before_project_end: "(%{due_date}) mora biti pred rokom projekta (%{project_due_date})"
+        blank: ne sme biti neizpolnjen
+        cant_link_an_issue_with_a_descendant: Zahtevek ne more biti povezan s svojo
+          podnalogo
+        cant_link_an_project_with_a_descendant: Projekt ne more biti povezan z enim
+          od svojih podzahtevkov
+        cant_link_an_version_with_a_descendant: Mejnik ne more biti povezan z enim
+          svojim podzahtevkom
+        circular_dependency: Ta odnos bi povzročil krožno odvisnost
+        confirmation: ne ustreza potrdilu
+        due_date_after_start: mora biti večji od začetnega datuma
+        earlier_than_minimum_start_date: cannot be earlier than %{date} because of
+          preceding issues
+        easy_query_filter_relation_invalid: ni veljaven. Morate izbrati vrednost
+        empty: ne sme biti prazen
+        equal_to: mora biti enak kot %{count}
+        even: mora biti liho
+        exclusion: je rezerviran
+        greater_than: mora biti večji kot %{count}
+        greater_than_or_equal_to: mora biti večji ali enak kot %{count}
+        greater_than_soonest_start: "(%{start_date}) mora biti večji od najzgodnejšega
+          datuma začetka (%{soonest_start}) povezanih zahtevkov (preverite zakasnitev
+          v povezavi zahtevkov)"
+        greater_than_start_date: mora biti kasnejši kot začetni datum
+        greater_than_start_date2: "(%{due_date}) mora biti večji od začetnega datuma
+          (%{start_date}) (preverite zakasnitev v povezavi zahtevkov)"
+        inclusion: ni vključen na seznamu
+        invalid: je napačen
+        invalid_plural: so neveljavni
+        less_than: mora biti manjši kot %{count}
+        less_than_duration: je prekmalu glede na ocenjene ure (delovnih ur ni mogoče
+          dodeliti v toliko delovnih dneh)
+        less_than_or_equal_to: mora biti manjši ali enak kot %{count}
+        not_a_amount: ni veljaven vnos
+        not_a_date: ni veljaven datum
+        not_a_number: ni število
+        not_same_project: ne pripada istemu projektu
+        odd: mora biti sodo
+        taken: je že zaseden
+        too_long: je predolg
+        too_short: je prekratek
+        wrong_length: je napačne dolžine
+      models:
+        time_entry:
+          attributes:
+            base:
+              is_locked: Zapis je zaklenjen
+              limit_exceeded: 'presega dnevno omejitev! Trenutno: %{total}/%{limit}
+                ur'
+            project_id:
+              can_not_log_time_on_archived_project: je arhiviran, beleženje časa ni
+                mogoče
+            spent_on:
+              out_of_range: je izven dovoljenega območja
+      template:
+        header:
+          one: 1. napaka je preprečila temu %{model} da bi se shranil
+          other: "%{count} napak je preprečilo temu %{model} da bi se shranil"
+    models:
+      easy_email_template: Predloga e-pošte
+      easy_user_working_time_calendar: Koledar
+      easy_user_working_time_calendar_holiday: Prazniki
+  activity_has_no_default_value: nima privzete vrednosti
+  after_project_start_human_error: Začetni datum je treba premakniti %{distance} naprej
+    - na %{project_start_date}, da obdržite začetni datum projekta
+  are_you_sure_delete_avatar: Res želite zbrisati svoj avatar?
+  attachments:
+    attachments_missing: Manjkajo priponke.
+    no_more_versions: Ni več verzij
+    other_attachments: Druge priponke
+    revert_to:
+      failed: 'Priponke ni bilo možno vrniti na verzijo %{version}. Trenutna verzija
+        je: %{current_v}.'
+      successfully: Priponka uspešno vrnjena na verzijo %{version}.
+  attribute_in_currency: "%{attribute} v %{currency}"
+  avatar_deleted: Avatar zbrisan
+  avatar_invalid_file: Neveljavna vrsta datoteke
+  base_currency: Osnovna valuta
+  before_milestone_human_error: Rok zahtevka je treba premakniti %{distance} nazaj
+    - na %{effective_date}, da obdržite mejnik
+  before_project_end_human_error: Rok zahtevka je treba premakniti %{distance} nazaj
+    - na %{project_due_date}, da obdržite rok projekta
+  breadcrumb:
+    label:
+      easy_page_edit: Uredi stran %{pagename}
+      easy_page_new: Nova stran
+      easy_page_show: Moduli na strani %{pagename}
+      easy_page_template_edit: Urejanje razporeditve modulov
+      easy_page_template_user_modules: Razporeditev modulov
+      easy_page_template_view: Razporeditev modulov
+      easy_page_templates: Stran predlog %{pagename}
+      easy_page_templates_edit: Uredi predlogo %{templatename}
+      easy_page_templates_new: Nova predloga strani
+      easy_pages_administration: Prilagoditev strani
+    title:
+      easy_page_edit: Klik za ureditev strani %{pagename}.
+      easy_page_new: Klik za ustvarjanje nove strani.
+      easy_page_show: Klik za prikaz modulov na strani %{pagename}.
+      easy_page_template_edit: Klik za urejanje modulov v predlogi.
+      easy_page_template_user_modules: Klik za ogled razporeditve modulov.
+      easy_page_template_view: Klik za ogled razporeditve modulov.
+      easy_page_templates: Klik za seznam predlog %{pagename}.
+      easy_page_templates_edit: Klik za urejanje predlog %{templatename}.
+      easy_page_templates_new: Klik za ustvarjanje nove predloge na strani %{pagename}.
+      easy_pages_administration: Klik za administracijo strani.
+  bulk_time_entry_title: Zabeleži čas
+  bundle_description_advanced: "This is a bundle of %{appname} extensions for fostering
+    project efficiency\r\nin the following processes: agile, knowledge management,
+    time management etc."
+  bundle_description_basic: "This is a starting solution that has all the features
+    as basic Redmine + many improvements\r\nsuch as easy user interface for higher
+    users satisfactions, project templates & Quick Project Planner,\r\nSmart Gantt
+    Chart for project managers and also much more for business owners."
+  bundle_description_customers: "The %{appname} solutions that streamlines all customer
+    processes. In particular,\r\nit fosters your customer service and drives your
+    sales including invoicing."
+  bundle_description_finance: "This is a bundle of %{appname} extensions solving everything
+    regarding project finance.\r\nIn particular, it helps increase project profitability
+    and financial monitoring."
+  bundle_description_resource: "This is an %{appname} extension package for professional
+    and exact planning of work.\r\nResource allocation and attendance makes your capacities
+    100% utilized."
+  button_activate: Aktiviraj
+  button_add: Dodaj
+  button_add_and_close: Dodaj in zapri
+  button_add_project_and_roles: Dodaj projekt in vloge
+  button_additional_context_menu: Druge možnosti
+  button_advanced_search: Napredno iskanje
+  button_annotate: Zapiši pripombo
+  button_apply: Uporabi
+  button_apply_projectquery: Uporabi
+  button_archive: Arhiviraj
+  button_attachment_context_menu: Pokaži zgodovino verzij.
+  button_auth_source_move_users: Ponovno dodeli in izbriši
+  button_back: Nazaj
+  button_back_to_calendar: Nazaj na koledar
+  button_back_to_top: Nazaj na vrh
+  button_bulk_time_save_and_continue: Shrani in dodaj nov zapis
+  button_cancel: Prekliči
+  button_change: Spremeni
+  button_change_avatar: Spremeni lokalni avatar
+  button_change_password: Spremeni geslo
+  button_check_all: Označi vse
+  button_check_and_uncheck_subprojects: Označi / odznači podprojekte
+  button_check_rootprojects: Označi korenske projekte
+  button_check_subprojects: Označi podprojekte
+  button_choose_actions: Izberi podatke za kopiranje
+  button_clear: Počisti
+  button_clear_projectquery: Privzeti filtri
+  button_clone_as_subtask: Kopiraj kot podzahtevek
+  button_close: Zapri
+  button_collapse_all: Skrči vse
+  button_configure: Konfiguriraj
+  button_context_menu: Pokaži hitri meni
+  button_copy: Kopiraj
+  button_copy_and_follow: Kopiraj in sledi
+  button_copy_project_from_template: Kopiraj v projekt
+  button_create: Shrani
+  button_create_and_back: Shrani in se vrni
+  button_create_and_continue: Shrani in nadaljuj
+  button_create_issue_from_journal: Ustvari zahtevek
+  button_create_project_from_template: Ustvari nov projekt
+  button_data_import: Uvozi
+  button_data_save_n_preview: Shrani in prikaži predogled
+  button_delete: Izbriši
+  button_delete_avatar: Odstrani avatar
+  button_delete_my_account: Delete my account
+  button_delete_projectquery: Izbriši filter
+  button_disable_show_query_in_tree: Izklopi drevesni prikaz
+  button_document_by_easy_query: Dokumenti po shranjenem filtru
+  button_dont_send_email: Ne pošlji e-pošte
+  button_down: Dol
+  button_download: Prenesi
+  button_download_email: Prenesi e-pošto
+  button_duplicate: Podvoji
+  button_easy_copy_to_project: Ustvari projekt
+  button_easy_custom_menu_add: Dodaj lastno opcijo menija
+  button_easy_entity_actions_query: Filter
+  button_easy_exchange_rates_add_currency: Dodaj valuto
+  button_easy_exchange_rates_currency_index: Seznam valut
+  button_easy_exchange_rates_settings_index: Posodobi tečaje
+  button_easy_is_not_easy_repeating: Odstrani ponavljanje
+  button_easy_issue_timer_pause: Pavza
+  button_easy_issue_timer_play: Začni beleženje dela
+  button_easy_issue_timer_resume: Nadaljuj
+  button_easy_issue_timer_stop: Končano
+  button_easy_lookup_modal_close: Zapri
+  button_easy_lookup_modal_selector_assign: Dodeli izbrano
+  button_easy_page_add_page: Dodaj stran
+  button_easy_page_add_tab: Dodaj zavihek
+  button_easy_page_create_template: Ustvari predlogo
+  button_easy_page_templates: Pregled predlog
+  button_easy_user_working_time_back_to_calendar: Nazaj na koledar
+  button_easy_user_working_time_back_to_calendars: Nazaj na koledarje
+  button_easy_user_working_time_calendar_holidays: Prazniki
+  button_easy_user_working_time_calendar_holidays_new: Nov praznik
+  button_easy_user_working_time_calendar_show: Podrobnosti koledarja
+  button_easy_user_working_time_calendars_new: Nov koledar
+  button_easy_user_working_time_parent: Pojdi na nadrejeni koledar
+  button_easy_user_working_time_reset_to_parent: Resetiraj koledar (odstrani izjeme)
+  button_easy_version_by_easy_query: Mejniki po shranjenem filtru
+  button_edit: Uredi
+  button_edit_anonymous_user: Uredi anonimnega uporabnika
+  button_edit_associated_wikipage: 'Uredi povezano Wiki stran: %{page_title}'
+  button_edit_easy_entity_xml_import: Uredi XML uvoz
+  button_edit_mobile_page: Uredi mobilno verzijo
+  button_edit_projectquery: Uredi filter
+  button_edit_section: Edit this section
+  button_edit_user_profile: Uredi profil
+  button_execute: Izvrši
+  button_expand_all: Razširi vse
+  button_export: Export
+  button_filter: Filter
+  button_fullscreen: Celoten ekran
+  button_fullscreen_close: X
+  button_gantt_hide_sidebar: Skrij shranjene filtre
+  button_gantt_issue_update: Posodobi zahtevek
+  button_gantt_issue_update_plural: Posodobi
+  button_gantt_project_update: Posodobi projekt
+  button_gantt_project_update_plural: Posodobi
+  button_gantt_relation_destroy: Odstrani povezanost
+  button_gantt_relation_new: Nova povezava
+  button_gantt_show_sidebar: Pokaži shranjene filtre
+  button_gantt_zoom_confirm: Ste prepričani? Neshranjene spremembe bodo izgubljene
+  button_gantt_zoom_day: Dan
+  button_gantt_zoom_month: Mesec
+  button_gantt_zoom_quartal: Četrtletje
+  button_gantt_zoom_quarter: Četrtletje
+  button_gantt_zoom_week: Teden
+  button_gantt_zoom_year: Leto
+  button_generate_api_key: Generiraj API ključ
+  button_generate_rss_key: Generiraj RSS ključ
+  button_go_up: GOR
+  button_hide: Hide
+  button_history: Zgodovina
+  button_import: Import
+  button_issue_create: Shrani zahtevek
+  button_issue_create_and_continue: Shrani in nadaljuj
+  button_issue_put_between: Vstavi med
+  button_issue_submit: Shrani posodobitev
+  button_issue_update: 'Posodobi zahtevek:'
+  button_journal_unprivate_note: Objavi komentar
+  button_link_easy_google_map_address: Pokaži na Google zemljevidu
+  button_link_journal: Povezava na zabeležko
+  button_list: Seznam
+  button_load_additional_records: Naloži dodatne zapise
+  button_lock: Zakleni
+  button_log_time: Beleži čas
+  button_login: Prijavi se
+  button_manage_versions: Upravljaj z mejniki
+  button_meeting_accept: Sprejmi
+  button_meeting_decline: Zavrni
+  button_merge: Združi
+  button_merge_to: Združi z
+  button_merge_to_newest: Združi z najnovejšim
+  button_merge_to_oldest: Združi z najstarešim
+  button_mobile_saved_filters: Shranjeni filtri
+  button_move: Premakni
+  button_move_and_follow: Premakni in sledi
+  button_my_page_google_maps_url_helper: Pomoč za dodajanje zemljevida iz Googla
+  button_new_advanced_import: Napredni uvoz
+  button_new_easy_entity_csv_import: Nov CSV uvoz
+  button_new_easy_entity_xml_import: Nov XML uvoz
+  button_new_easy_issue_csv_import: Nov CSV uvoz zahtevkov
+  button_new_easy_user_csv_import: Nov CSV uvoz uporabnikov
+  button_new_issue_relation: Dodaj povezane zahtevke
+  button_new_project_from_template: Ustvari nov projekt
+  button_new_subtask: Dodaj podzahtevek
+  button_new_template_from_project: Ustvari predlogo iz tega projekta
+  button_pdf: PDF
+  button_print: Print
+  button_project_mass_copy: Skupinsko urejanje projektov
+  button_quote: Citiraj
+  button_release_cache: Sprosti predpomnilnik
+  button_remove: Odstrani
+  button_rename: Preimenuj
+  button_reopen: Ponovno odpri
+  button_reply: Odgovori
+  button_reset: Ponastavi
+  button_role_move_members: Znova dodeli in izbriši
+  button_rollback: Povrni na to verzijo
+  button_save: Shrani
+  button_save_and_continue: Shrani in nadaljuj
+  button_save_easy_page: Shrani stran in pojdi nazaj
+  button_save_projectquery: Shrani
+  button_select_file: Izberi datoteko
+  button_send: Pošlji
+  button_send_email: Pošlji e-pošto
+  button_settings: Nastavitve
+  button_show: Prikaži
+  button_show_all_issue_statuses: Pokaži vse
+  button_show_all_issues: Pokaži vse
+  button_show_all_projects: Pokaži vse
+  button_show_favorite_issues: Pokaži označene z zvezdico
+  button_show_favorite_projects: Pokaži označene z zvezdico
+  button_show_issue_report: Poročilo zahtevkov
+  button_show_on_google_map: Pokaži na zemljevidu
+  button_show_query_in_tree: Pokaži v drevesnem pogledu
+  button_sort: Razvrsti
+  button_submit: Shrani
+  button_template_restore_project: Obnovi projekt
+  button_test: Testiraj
+  button_timelog_calendar_new: Zabeleži čas
+  button_timelog_calendar_next:
+    month: Naslednji mesec
+    week: Naslednji teden
+    year: Naslednje leto
+  button_timelog_calendar_prev:
+    month: Prejšnji mesec
+    week: Prejšnji teden
+    year: Prejšnje leto
+  button_timelog_easy_lock: Zakleni
+  button_timelog_easy_unlock: Odkleni
+  button_tracker_move_issues: Znova dodeli in izbriši
+  button_unarchive: Odarhiviraj
+  button_uncheck_all: Odznači vse
+  button_uncheck_rootprojects: Odznači korenske projekte
+  button_uncheck_subprojects: Odznači podprojekte
+  button_uninstall: Odstrani namestitev
+  button_unlock: Odkleni
+  button_unwatch: Ne opazuj več
+  button_update: Posodobi
+  button_user_field_mappings: Mapiranje lastnosti
+  button_view: Pogled
+  button_view_complete_history: Poglej celotno zgodovino
+  button_watch: Opazuj
+  button_xml_data_continue: Nadaljuj
+  button_xml_data_export: Izvozi
+  button_xml_data_import: Uvozi
+  charts:
+    label_legend_enabled: Omogoči legendo
+    label_legend_location: Lokacija legende
+    label_legend_placement: Položaj
+    legend:
+      location:
+        e: Desno
+        n: Gor
+        ne: Gor desno
+        nw: Gor levo
+        s: Dol
+        se: Dol desno
+        sw: Dol levo
+        w: Levo
+      placement:
+        insideGrid: Znotraj mreže
+        outsideGrid: Zunaj mreže
+  collapse_expand: združi/razširi
+  confirm_admininstration_display_all_project: Prikaz vseh projektov bo trajal zelo
+    dolgo. Želite nadaljevati?
+  currency_dates: Datumi
+  custom_field_names:
+    external_mails:
+      label: Zunanja e-pošta
+  dashboard:
+    legends:
+      extensions: Razširitve
+      issues: Zahtevki
+      others: Drugo
+      projects: Projekti
+      security: Varnost
+      settings: Nastavitve
+      users: Uporabniki
+      xml: XML
+  date:
+    abbr_day_names:
+    - Ned
+    - Pon
+    - To
+    - Sr
+    - Čet
+    - Pet
+    - Sob
+    abbr_month_names:
+    - 
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - Maj
+    - Jun
+    - Jul
+    - Aug
+    - Sep
+    - Okt
+    - Nov
+    - Dec
+    day_names:
+    - Nedelja
+    - Ponedeljek
+    - Torek
+    - Sreda
+    - Četrtek
+    - Petek
+    - Sobota
+    formats:
+      default: "%d.%m.%Y"
+      long: "%d. %B, %Y"
+      short: "%d. %b"
+    month_names:
+    - 
+    - Januar
+    - Februar
+    - Marec
+    - April
+    - Maj
+    - Junij
+    - Julij
+    - Avgust
+    - September
+    - Oktober
+    - November
+    - December
+    order:
+    - :day
+    - :month
+    - :year
+    quartal_names: '["Q1", "Q2", "Q3", "Q4"]'
+    quarter_names:
+    - Q1
+    - Q2
+    - Q3
+    - Q4
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: okrog 1 ure
+        other: okrog %{count} ur
+      about_x_months:
+        one: okrog 1. mesec
+        other: okrog %{count} mesecev
+      about_x_years:
+        one: okrog 1. leto
+        other: okrog %{count} let
+      almost_x_years:
+        one: skoraj 1. leto
+        other: skoraj %{count} let
+      half_a_minute: pol minute
+      less_than_x_minutes:
+        one: manj kot minuto
+        other: manj kot %{count} minut
+      less_than_x_seconds:
+        one: manj kot 1. sekundo
+        other: manj kot %{count} sekund
+      over_x_years:
+        one: več kot 1. leto
+        other: več kot %{count} let
+      x_days:
+        one: 1 dan
+        other: "%{count} dni"
+      x_hours:
+        one: 1 ura
+        other: "%{count} h"
+      x_minutes:
+        one: 1 minuta
+        other: "%{count} minut"
+      x_months:
+        one: 1 mesec
+        other: "%{count} mesecev"
+      x_seconds:
+        one: 1. sekunda
+        other: "%{count} sekund"
+  default_activity_design: Oblikovanje
+  default_activity_development: Razvoj
+  default_doc_category_tech: Tehnična dokumentacija
+  default_doc_category_user: Uporabniška dokumentacija
+  default_issue_status_closed: Zaključen
+  default_issue_status_feedback: Povratna informacija
+  default_issue_status_in_progress: V teku
+  default_issue_status_new: Nov
+  default_issue_status_rejected: Zavrnjen
+  default_issue_status_resolved: Rešen
+  default_priority_high: Visoka
+  default_priority_immediate: Takojšnje ukrepanje
+  default_priority_low: Nizka
+  default_priority_normal: Običajna
+  default_priority_urgent: Urgentna
+  default_role_developer: Razvijalec
+  default_role_manager: Vodja
+  default_role_reporter: Poročevalec
+  default_tracker_bug: Hrošč
+  default_tracker_feature: Funkcija
+  default_tracker_support: Podpora
+  description_all_columns: All Columns
+  description_available_columns: Available Columns
+  description_choose_project: Projects
+  description_count_on_different_column: Grupirani zapisi v ločenem stolpcu
+  description_date_from: Enter start date
+  description_date_range_interval: Choose range by selecting start and end date
+  description_date_range_list: Choose range from list
+  description_date_to: Enter end date
+  description_filter: Filter
+  description_issue_category_reassign: Choose issue category
+  description_message_content: Message content
+  description_notes: Zabeležke
+  description_project_scope: Search scope
+  description_query_sort_criteria_attribute: Sort attribute
+  description_query_sort_criteria_direction: Sort direction
+  description_search: Searchfield
+  description_selected_columns: Selected Columns
+  description_user_mail_notification: Mail notification settings
+  description_wiki_subpages_reassign: Choose new parent page
+  direction: ltr
+  easy_attendance:
+    activities:
+      enumerations:
+        label: Prisotnost
+        new: Nova aktivnost za prisotnost
+    advanced_settings: Razporejanje
+    approval_actions:
+      '2': Odobri
+      '3': Zavrni
+    approval_detail: Podrobnosti zahteve
+    approval_details: Odgovori zahtevi
+    approval_not_required: Odobritev ni potrebna
+    approval_status: Status odobritve
+    approval_statuses:
+      '1': Čakanje na odobritev
+      '2': Odobreno
+      '3': Zavrnjeno
+      '4': Prekliči zahtevo
+      '5': Preklicano
+    approval:
+      actions:
+        '0': Zavrni
+        '1': Odobritev
+    arrival: Prihod
+    button_approve: Odobritev
+    button_reject: Zavrni
+    description:
+      advanced_infobox: 'Example: I take holidays from %{from} to %{to}.'
+    edit: Edit attendance %{date}
+    label: Prisotnost in odsotnost
+    label_back_to_basic: Zapri
+    label_report_sum_attendance: Total for year %{year} [Attendance]
+    label_report_sum_time_entry: Total for year %{year} [Spent time]
+    label_statistic_supplement: from %{hours}, eg. %{percent} %
+    limit_for_currencies_hit: There can be only %{limit} currencies active.
+    mail_added:
+      body_top: "%{user} announces %{activity} on the workplace from %{from} to %{to}."
+      subject: "%{user} announces absence from the workplace"
+    mail_approval_new_pending_subject: User %{user_name} is requesting approval for
+      %{activity}
+    mail_approval_new_response_subject: Your attendance request has been %{status}
+    mail_approval_new_response_subject_admin: Attendance request from users %{user_list}
+      has been %{status}
+    mail_delete_attendance_subject: Attendance %{activity} has been deleted
+    mail_updated:
+      body_top: "%{user} announces %{activity} on the workplace from %{from} to %{to}."
+      subject: "%{user} announces absence from the workplace"
+    notice:
+      warning_missing_departure: The attendance report is missing departure time from
+        day %{arrival_date}. Please enter it.
+    text_activity_destroy_with_attendances: The activity is reported in total %{count}
+      attendance records. Are you sure you want to delete the activity and all records?
+    vacation_limit_exceed: You don't have enough %{activity} days (%{days} days remaining)
+  easy_color_scheme_not_available: Color scheme by %{current}, you can change it
+  easy_currency_synchronization_failure: Synchronization of currencies %{codes} failed,
+    please select different date or try again later
+  easy_entity_action:
+    easy_entity_action:
+      caption: Splošne akcije
+  easy_indicator:
+    alert: Opozorilo
+    label_easy_indicator: Indikator
+    title_easy_indicator_alert: Projekt prekoračuje rok
+    title_easy_indicator_ok: Vse je videti v redu
+    title_easy_indicator_warning: Vsaj en zahtevek prekoračuje svoj rok izvedbe
+    titles:
+      '0': Vse je videti v redu
+      '20': Vse je videti v redu
+      '21': Vsaj en zahtevek prekoračuje svoj rok izvedbe
+      '22': Projekt prekoračuje svoj rok
+    warning: Opozorilo
+  easy_lookup:
+    document:
+      label: Dokumenti
+    group:
+      label: Skupine
+    issue:
+      label: Zahtevki
+    project:
+      label: Projekti
+    user:
+      label: Uporabniki
+    version:
+      label: Mejniki
+  easy_mail_template_token:
+    caption:
+      assignee: Izvajalec
+      spent_time: Porabljen čas
+      user_signature: Podpis uporabnika
+    title:
+      assignee: Klikni za dodajanje zamenjave izvajalca
+  easy_page_module:
+    attendance:
+      adhoc_query: Ad-hoc ime filtra
+      adhoc_query_default_text: Moja prisotnost in odsotnost
+    document_query:
+      adhoc_query: Ad-hoc ime filtra
+      adhoc_query_default_text: ime filtra
+    generic_gauge:
+      label_plan: Načrt
+      label_quick_tag: Oznaka %{tag_no}
+      label_total_made: Skupaj
+    issue_query:
+      adhoc_query: Ad-hoc ime filtra
+      adhoc_query_default_text: ime filtra
+    new_issue:
+      default_value: Privzeta vrednost (prazno pomeni brez spremembe)
+      field: Polje
+      show: Prikazano
+    project_history:
+      heading_project_edit_custom_fields: Uredi polja po meri za projekte
+    project_query:
+      adhoc_query: Ad-hoc ime filtra
+      adhoc_query_default_text: ime filtra
+    resource_availability:
+      label_available: na razpolago
+      label_day_end_time: Čas zaključka
+      label_day_start_time: Čas začetka
+      label_description_prompt: 'Vpiši komentar:'
+      label_resource_name: Ime izvajalca
+      label_set_available: Nastavi kot razpoložljivo
+      label_set_day_available: Nastavi cel dan kot razpoložljiv
+      label_set_day_unavailable: Nastavi cel dan kot zaseden
+      label_set_unavailable: Nastavi kot zasedeno
+      label_unavailable: zasedeno
+    saved_queries:
+      label_select_queries: Izbrane vrste filtrov
+    user_query:
+      adhoc_query: Ad-hoc ime filtra
+      adhoc_query_default_text: ime filtra
+  easy_pages:
+    label_overview: Pregled
+    module_category:
+      activity_feed: Obveščanje o aktivnostih
+      calendars: Koledarji
+      charts: Grafi
+      easy_attendances: Prisotnost in odsotnost
+      issues: Zahtevki
+      lists: Seznami
+      others: Drugo
+      project_sidebar: Moduli za stranski meni
+      projects: Projekti
+      timelog: Uporaba časa
+      users: Uporabniki
+    modules:
+      activity_feed: Obveščanje o aktivnostih
+      attendance: Prisotnost in odsotnost
+      attendance_report: Poročilo o prisotnosti in odsotnosti
+      attendance_user_list: Prisotnost in odsotnost po uporabnikih
+      bar_chart_query: Stolpični graf
+      documents: Dokumenti
+      generic_gauge: Splošni merilnik
+      google_maps: Google zemljevid
+      issue_query: Zahtevki iz filtra
+      issue_timers_query: Kaj kdo dela
+      issues_assigned_to_me: Moji zahtevki
+      issues_create_new: Nov zahtevek
+      issues_reported_by_me: Zahtevki, kjer sem avtor
+      issues_rss_reader: Zahtevki iz drugega strežnika
+      issues_watched_by_me: Zahtevki, ki jih opazujem
+      line_chart_query: Graf
+      mobile_issue_query: Mobilni zahtevek iz filtra
+      mobile_issues_assigned_to_me: Moji zahtevki
+      my_calendar: Moj koledar
+      my_projects_simple: Seznam projektov
+      news: Novice
+      noticeboard: Tabla z obvestili
+      pie_chart_query: Tortni diagram
+      project_history: Zgodovina projekta
+      project_info: Opis projekta
+      project_issues: Zahtevki
+      project_news: Novice
+      project_sidebar_all_users_queries: Zahtevki delavca
+      project_sidebar_family_info: Drevo projekta
+      project_sidebar_project_info: Informacije o projektu
+      project_sidebar_project_members: Projektni tim
+      project_sidebar_saved_queries: Shranjeni filtri
+      project_tree: Podprojekti
+      projects_query: Projekti iz filtra
+      resource_availability: Razpoložljivost izvajalcev
+      saved_queries: Seznam shranjenih filtrov
+      tag_cloud: Oznake
+      timelog_calendar: Koledar porabljenega časa
+      timelog_query: Porabljeni čas iz filtra
+      timelog_simple: Porabljeni čas
+      users_query: Projektni tim iz filtra
+      version_query: Mejniki po filtru
+    pages_description:
+      easy_resource_booking_module: Rezervacija sredstev
+      my_mobile_page: Moja mobilna stran
+      my_page: Moja stran
+      project_overview: Projekt - domača stran
+    pages:
+      easy_resource_booking_module: Rezervacija sredstev
+      my_mobile_page: Moja mobilna stran
+      my_page: Moja stran
+      project_overview: Projekt - domača stran
+    scope:
+      nothing_label: Nič
+      project_and_user_label: Projekt in uporabnik
+      project_label: Projekt
+      user_label: Uporabnik
+    zones_description:
+      bottom_left: opis
+      bottom_middle: opis
+      bottom_right: opis
+      middle_left: opis
+      middle_middle: opis
+      middle_right: opis
+      right_sidebar: opis
+      top_left: opis
+      top_middle: opis
+      top_right: opis
+    zones:
+      bottom_left: spodaj levo
+      bottom_middle: spodaj na sredi
+      bottom_right: spodaj desno
+      middle_left: sredina levo
+      middle_middle: sredina
+      middle_right: sredina desno
+      right_sidebar: desni stranski meni
+      top_left: zgoraj levo
+      top_middle: zgoraj na sredi
+      top_right: zgoraj desno
+  easy_plugin_bundles:
+    advanced: Napredno upravljanje projektov
+    basic: Easy Redmine
+    customers: Upravljanje strank
+    finance: Upravljanje financ
+    other: Drugo
+    resource: Upravljanje izvajalcev
+  easy_proposer:
+    action_label: "(Akcija)"
+    admin:
+      manage_plugins:
+        caption: Dodatni moduli
+        description: Upravljanje dodatkov
+    bulk_time_entries:
+      index:
+        caption: Osebno poročilo - zabeleženi čas
+        description: Zabeleži čas
+    custom_fields:
+      index:
+        caption: Polja po meri
+        description: Upravljaj polja po meri
+    easy_documents:
+      index:
+        caption: Dokumenti
+        description: Poglej dokumente
+    easy_issue_timers:
+      settings:
+        caption: Nastavitve časovnika
+    easy_pages:
+      index:
+        caption: Nastavitve strani
+    easy_query_management:
+      edit:
+        caption: Upravljanje shranjenih filtrov
+    easy_query_settings:
+      index:
+        caption: Nastavitve filtrov
+    easy_user_types:
+      index:
+        caption: Vrste uporabnikov
+    easy_versions:
+      index:
+        caption: Mejniki
+    enumerations:
+      index:
+        caption: Kategorije
+    groups:
+      index:
+        caption: Skupine
+    issue_statuses:
+      index:
+        caption: Statusi zahtevkov
+    issues:
+      index:
+        caption: Zadeve / Zahtevki
+    projects:
+      index:
+        caption: Projekti
+    roles:
+      index:
+        caption: Role in dovoljenja
+    settings:
+      index:
+        caption: Nastavitve
+    templates:
+      index:
+        caption: Predloge
+    trackers:
+      index:
+        caption: Sledilniki
+        description: Izberi povezane projekte
+    users:
+      index:
+        caption: Uporabniki
+      new:
+        caption: Nov uporabnik
+    workflows:
+      edit:
+        caption: Delovni tok
+  easy_query:
+    button_apply:
+      issue: Uporabi nastavitve
+      project: Uporabi nastavitve
+      user: Uporabi nastavitve
+    easy_lookup:
+      name:
+        document:
+          default: Izberi dokumente
+        group:
+          default: Izberi skupine
+        issue:
+          default: Izberi zahtevke
+          issue_relation: Izberi povezane zahtevke
+        project:
+          default: Izberi projekte
+          project_relation: Izberi povezane projekte
+        user:
+          default: Izberi uporabnike
+        version:
+          default: Izberi mejnike
+          version_relation: Izberi povezane mejnike
+    label:
+      default_columns: Privzeti stolpci
+      default_custom_formatting: Privzeto oblikovanje po meri
+      default_fitlers: Privzeti filtri
+    name:
+      easy_attendance_query: Prisotnost in odsotnost
+      easy_document_query: Dokumenti
+      easy_easy_query_query: Shranjeni filtri
+      easy_group_query: Skupine
+      easy_issue_gantt_query: Globalni gantt
+      easy_issue_query: Zahtevki
+      easy_issue_timer_query: Časovniki zahtevkov
+      easy_page_query: Strani po meri
+      easy_project_gantt_query: Gantt projekta
+      easy_project_query: Projekti
+      easy_project_template_query: Predloge projektov
+      easy_time_entry_query: Porabljeni čas
+      easy_user_query: Uporabniki
+      easy_version_query: Mejniki
+    sidebar_filters:
+      easy_user_type: Filtri za vrsto uporabnikov %{easy_user_type}
+      personal:
+        easy_document_query: Zasebni filtri za dokumente
+        easy_group_query: Zasebni filtri za skupine
+        easy_issue_query: Zasebni filtri za zahtevke
+        easy_member_query: Zasebni filtri za člane
+        easy_project_query: Zasebni filtri za projekte
+        easy_time_entry_query: Zasebni filtri za porabljeni čas
+        easy_user_query: Zasebni filtri za uporabnike
+        easy_version_query: Zasebni filtri za mejnike
+        other: Zasebni filtri
+      public:
+        easy_document_query: Skupni filtri za dokumente
+        easy_group_query: Skupni filtri za skupine
+        easy_issue_query: Skupni prikazi za zahtevke
+        easy_member_query: Skupni filtri za člane
+        easy_project_query: Skupni prikazi za projekte
+        easy_time_entry_query: Skupni filtri za porabljeni čas
+        easy_user_query: Skupni filtri za uporabnike
+        easy_version_query: Skupni filtri za mejnike
+        other: Skupni filtri
+      role: Filtri za %{role}
+  easy_rake_task_info_details:
+    receive_mail:
+      status:
+        cannot_be_processed: Ni mogoče obdelati
+        not_processed_and_deleted: NI obdelano in je izbrisano
+        not_processed_and_left_on_server: NI obdelano in je ostalo na strežniku
+        processed_and_deleted: Obdelano in izbrisano iz e-pošte
+        received: Prejeto
+        unknown: Neznano
+  easy_rake_task_infos:
+    status:
+      ended_failed: Prekinjeno z napako
+      ended_ok: Končano v redu
+      next_24hours: V 24 urah
+      next_2hours: V 2 urah
+      running: To je
+  easy_rake_tasks:
+    easy_rake_task_check_failure_tasks:
+      email_type:
+        email: Pošlji e-pošto na
+      mail:
+        heading: These scheduled tasks failed on %{date}
+    easy_rake_task_receive_mail:
+      caption: Prejemanje e-pošte
+    periods:
+      daily: vsakih %{interval} dni
+      hourly: na %{interval} h
+      minutes: na %{interval} min.
+      monthly: na %{interval} mesec(ev)
+      years: every %{interval} years
+    views:
+      button_index: Nadzor periodičnih opravil
+      heading_settings: Job settings %{task_name}
+      heading_task_infos: Job summary - %{task_name}
+      last_action: Zadnja akcija
+      next_run_at: Naslednji začetek
+  easy_repeating_simple_options:
+    custom: Napredno ...
+    daily: Dnevno
+    half_year: Na pol leta
+    monthly: Mesečno
+    quart_year: Na četrtletje
+    weekly: Tedensko
+    yearly: Letno
+  easy_scheduler_task_info:
+    ended_failed: Opravilo %{task_name} ni uspelo.
+    ended_ok: Opravilo %{task_name} se je končalo uspešno.
+    initialized: Opravilo %{task_name} je ustvarjeno.
+    planned: Opravilo %{task_name} je planirano.
+    running: Opravilo %{task_name} se izvaja.
+  easy_search:
+    label_column_type:
+      comment: Komentar
+      description: Opis
+      name: Ime
+      other: Drugo
+    legend_column_types: 'Iščem v:'
+    legend_entities: 'Išči:'
+  easy_user_type_category_custom_menu: Meni po meri
+  easy_user_type_category_top_menu: Glavni meni
+  easy_user_type_setting_administration: Administracija
+  easy_user_type_setting_custom_menu: Opcija po meri
+  easy_user_type_setting_hide_new_issue_button: Skrij gumb Nov zahtevek
+  easy_user_type_setting_home_icon: Ikona za začetno stran
+  easy_user_type_setting_issues: Zahtevki
+  easy_user_type_setting_jump_to_project: Skoči na projekt
+  easy_user_type_setting_more: Več
+  easy_user_type_setting_projects: Projekti
+  easy_user_type_setting_search: Iskanje
+  easy_user_type_setting_sign_out: Odjavi se
+  easy_user_type_setting_user_profile: Uporabniški profil
+  easy_user_type_visibility_options: Nastavitve vidljivosti
+  easy_user_type_visible_to_user_types: Vidno za vrste uporabnikov
+  easy_user_type_visible_user_types: Vidne vrste uporabnikov
+  easy_vcard_attributes:
+    city: Mesto
+    country: Država
+    degree: Diploma
+    firstname: Ime
+    lastname: Priimek
+    mail: E-pošta
+    organization: Organizacija
+    phone: Telefon
+    postal_code: Poštna številka
+    street: Ulica
+    updated_at: Posodobljeno
+  editor_config_names:
+    basic: Osnovno
+    extended: Napredno
+    full: Celotno
+  enumeration_activities: Aktivnosti (sledenje časa)
+  enumeration_doc_categories: Kategorije dokumentov
+  enumeration_easy_project_priority: Prioriteta projekta
+  enumeration_easy_version_cetegory: Kategorija mejnika
+  enumeration_issue_priorities: Prioritete zahtevkov
+  enumeration_system_activity: Sistemska aktivnost
+  error_attachment_extension_not_allowed: Attachment extension %{extension} is not
+    allowed
+  error_attachment_too_big: This file cannot be uploaded because it exceeds the maximum
+    allowed file size (%{max_size})
+  error_bulk_update_incompatible_tracker_or_issue_cfs: "%{count} tasks cannot be moved
+    automatically. Please verify tracker and custom fields."
+  error_bulk_update_save: "%{count} zapisov ni možno shraniti."
+  error_can_not_archive_project: Ta projekt ne more biti arhiviran
+  error_can_not_create_project_template: Error occured during creation of project
+    template from project %{projectname}.
+  error_can_not_delete_custom_field: Polja po meri ni mogoče izbrisati
+  error_can_not_delete_project: Projekta ni mogoče izbrisati.
+  error_can_not_delete_project_template: Predloge projekta ni mogoče izbrisati.
+  error_can_not_delete_tracker: Ta vrsta zahtevkov ima obstoječe zahtevke in se je
+    ne da izbrisati.
+  error_can_not_read_import_file: An error occurred while reading the file to import
+  error_can_not_remove_role: Ta vloga je v uporabi in je ni mogoče izbrisati.
+  error_can_not_reopen_issue_on_closed_version: Zahtevek, dodeljen zaprti verziji,
+    ne more biti ponovno odprt
+  error_can_not_unarchive_project: Projekta ni mogoče vzeti iz arhiva.
+  error_can_t_load_default_data: 'Privzetih nastavitev ni bilo mogoče naložiti: %{value}'
+  error_cannot_close_issue_due_to_subtasks: 'Task cannot be closed because it contains
+    open tasks: %{issues}'
+  error_copy_notes_to_parent: "- komentarji niso bili prekopirani"
+  error_create_repo_from_url_cannot_create_dir: Cannot create dir %{dir}
+  error_custom_value_autoincrement_equal: have to be %{count}
+  error_custom_value_autoincrement_greater: have to be greater than %{count}
+  error_entity_conditions_are_not_met: Pogoji niso izpolnjeni.
+  error_invalid_authenticity_token: Stran je potekla.
+  error_invalid_csv_file_or_settings: The file is not a CSV file or does not match
+    the settings below
+  error_invalid_file_encoding: The file is not a valid %{encoding} encoded file
+  error_issue_done_ratios_not_updated: Razmerje opravljenega zahtevka ni bilo posodobljeno.
+  error_issue_not_found: Zahtevka ni
+  error_issue_not_found_in_project: Zahtevek ni bil najden ali pa ne pripada temu
+    projektu
+  error_mailbox_already_exists: The mailbox already exists (%{link}).
+  error_no_default_issue_status: Privzeti zahtevek ni definiran. Prosimo preverite
+    svoje nastavitve (Pojdite na "Administracija -> Stanje zahtevkov").
+  error_no_file_selected_to_upload: Datoteka za prenos ni izbrana.
+  error_no_tracker_in_project: Nobena vrsta zahtevka ni povezana s tem projektom.
+    Prosimo preverite nastavitve projekta.
+  error_oauth_destroy_failed: "%{provider} account can not be removed."
+  error_password_expired: Your password has expired or the administrator requires
+    you to change it.
+  error_project_access_permission: "%{value} nima pravice dodeljevanja na tem projektu"
+  error_project_not_selected: Projekt ni izbran
+  error_put_between_issue_count: Prosim izberite dva zahtevka
+  error_query_copy_incomplete: 'Filter was not copied to all users, some users were
+    not found: %{user_name}.'
+  error_required_fields_missing: Manjkajo zahtevana polja
+  error_scm_annotate: Vnos ne obstaja ali pa ga ni mogoče komentirati.
+  error_scm_annotate_big_text_file: The entry cannot be annotated, as it exceeds the
+    maximum text file size.
+  error_scm_command_failed: 'Med vzpostavljem povezave s shrambo je prišlo do napake:
+    %{value}'
+  error_scm_not_found: Vnos ali revizija v shrambi ni bila najdena .
+  error_session_expired: Your session has expired. Please login again.
+  error_unable_delete_issue_status: Stanja zahtevka ni bilo možno spremeniti
+  error_unable_to_connect: Povezava ni mogoča (%{value})
+  error_update_easy_issue_timer_settings: Nastavitev ni bila shranjena
+  error_validates_max_size: datoteka je prevelika
+  error_workflow_copy_source: Prosimo izberite vir zahtevka ali vlogo
+  error_workflow_copy_target: Prosim izberite ciljne vrste zahtevkov in vloge
+  field_account: Račun
+  field_active: Aktiven
+  field_activity: Aktivnost
+  field_address: E-naslov
+  field_admin: Administrator
+  field_all_day: Cel dan
+  field_amount_type: Enota
+  field_api_key: API ključ
+  field_assignable: Zahtevki so lahko dodeljeni tej vlogi
+  field_assigned_to: Dodeljen
+  field_assigned_to_role: Izvajalčeva vloga
+  field_attachment: Datoteka
+  field_attachment_created_on: Priponka - ustvarjena
+  field_attachments: Priponke
+  field_attr_firstname: Oznaka za ime
+  field_attr_lastname: Oznaka za priimek
+  field_attr_login: Oznaka za prijavo
+  field_attr_mail: Oznaka za e-naslov
+  field_auth_source: Način overovljanja
+  field_auth_source_ldap_filter: LDAP filter
+  field_author: Avtor
+  field_background_color: Barva ozadja
+  field_base_dn: Bazni DN
+  field_board_parent: Parent forum
+  field_cached_group_names: Skupine
+  field_category: Kategorija
+  field_closed_on: Closed
+  field_color_schema: Barvna shema
+  field_column_names: Stolpci
+  field_comments: Komentar
+  field_comments_sorting: Prikaži komentarje
+  field_commit_logs_encoding: Kodiranje sporočil ob predaji
+  field_completed_percent: "% narejeno"
+  field_computed_token: Formula
+  field_content: Vsebina
+  field_core_fields: Standard fields
+  field_count: Števec
+  field_created_at: Ustvarjeno
+  field_created_by_who: Ustvaril/a
+  field_created_on: Shranjeno
+  field_currency: Valuta
+  field_current_hours: Porabljen čas (v živo)
+  field_cvs_module: Modul
+  field_cvsroot: CVSROOT
+  field_deactive: Deaktiviraj
+  field_default_is_today: Privzeto je danes
+  field_default_status: Default status
+  field_default_value: Privzeta vrednost
+  field_default_version: Default version
+  field_delay: Zamik
+  field_departure: Odhod
+  field_description: Opis
+  field_disable_automatic_loading: Onemogoči samodejno nalaganje
+  field_display_journal_details: Prikaži podrobnosti dnevnika
+  field_document: Dokument
+  field_done_ratio: "% Narejeno"
+  field_downloads: Prenosi
+  field_due_date: Do datuma
+  field_easy_attendance_activity: Aktivnost
+  field_easy_closed_by: Zaprl/a
+  field_easy_database_url: URL baze podatkov
+  field_easy_distributed_tasks: Razdeljeni zahtevki
+  field_easy_due_date: Rok
+  field_easy_entity_activity_attendees: Udeleženci
+  field_easy_entity_activity_finished: Je končano?
+  field_easy_entity_activity_start_time: Datum in ura
+  field_easy_entity_import_api_url: Uporabi url
+  field_easy_entity_import_example_file: Uporabi datoteko
+  field_easy_icon: Ikona
+  field_easy_indicator: Indikator
+  field_easy_invoicing_source_currency: Valuta projekta
+  field_easy_invoicing_target_currency: Dodatna valuta
+  field_easy_invoicing_vat_amount: Znesek DDV
+  field_easy_is_meeting: Sestanek
+  field_easy_is_repeating: Ponavljajoče
+  field_easy_issue_prefix: Predpona zahtevka
+  field_easy_issue_timer_assign_to_me: Dodeljeno meni
+  field_easy_issue_timer_round: Zaokroži čas
+  field_easy_issue_timer_start_now: Začni beleženje časa zdaj
+  field_easy_last_updated_by: Nazadnje posodobil/a
+  field_easy_lesser_admin: Delni administrator
+  field_easy_locked_by: Zaklenil/a
+  field_easy_meeting_day: Dan sestanka
+  field_easy_meeting_time: Ura sestanka
+  field_easy_next_start: Naslednja ponovitev
+  field_easy_password: Geslo
+  field_easy_query: Shranjen filter
+  field_easy_range_form_to: Do
+  field_easy_range_from: Od
+  field_easy_range_to: Do
+  field_easy_repeat_settings: Nastavitve ponavljanja
+  field_easy_send_invitation: Pošlji povabilo po e-pošti
+  field_easy_start_date: Datum pričetka
+  field_easy_start_date_time: Ura pričetka
+  field_easy_status_updated_on: Status posodobljen
+  field_easy_system_flag: Sistemska skupina
+  field_easy_unlocked_by: Odklenil/a
+  field_easy_user_type: Vrsta uporabnika
+  field_easy_user_type_default_page_template: Privzeta predloga za mojo stran
+  field_easy_user_type_filters: Filtri po vrsti uporabnika
+  field_easy_username: Uporabniško ime
+  field_easy_version_category: Kategorija mejnika
+  field_easy_version_category_id: Kategorija
+  field_editable: Uredljivo
+  field_effective_date: Datum
+  field_enable_activity_roles: Dodeli aktivnosti rolam
+  field_end_time: Konec
+  field_entity: Entiteta
+  field_entity_type: Vrsta entitete
+  field_estimated_hours: Ocenjen čas
+  field_favorited: Favorit
+  field_field_format: Format
+  field_filename: Datoteka
+  field_filesize: Velikost
+  field_finished_at: Konec v
+  field_firstname: Ime
+  field_fixed_version: Ciljna verzija
+  field_font_color: Barva znakov
+  field_generate_password: Generate password
+  field_group: Skupina uporabnikov
+  field_group_by: Združi rezultate po
+  field_groups: Skupina
+  field_header_color: Barva ozadja
+  field_header_font_color: Barva besedila
+  field_hide_mail: Skrij moj e-naslov
+  field_homepage: Domača stran
+  field_host: Gostitelj
+  field_hours: Ure
+  field_identifier: Identifikator
+  field_identity_url: OpenID URL
+  field_in_status: Čas v statusu %{status}
+  field_inherit_members: Inherit members
+  field_is_automatic: Je samodejno
+  field_is_closed: Zahtevek zaključen
+  field_is_confidential: Zaupno
+  field_is_default: Privzeta vrednost
+  field_is_filter: Uporabljen kot filter
+  field_is_for_all: Za vse projekte
+  field_is_for_subprojects: Za podprojekte
+  field_is_in_roadmap: Zahtevki prikazani v načrtu
+  field_is_planned: Planirano
+  field_is_primary: Primarni
+  field_is_private: Zaseben
+  field_is_project_closed: Zaprt
+  field_is_public: Javno
+  field_is_required: Zahtevano
+  field_is_subproject_of: Je podprojekt
+  field_issue: Zahtevek
+  field_issue_closed_on: Zahtevek zaprt
+  field_issue_created_on: Zahtevek ustvarjen
+  field_issue_id: ID zahtevka
+  field_issue_open_duration_in_hours: Trajanje izvedbe zahtevka
+  field_issue_to: Povezan zahtevek
+  field_issue_to_id: Povezani zahtevek
+  field_issue_updated_on: Zahtevek posodobljen
+  field_issues_visibility: Vidljivost zahtevkov
+  field_language: Jezik
+  field_last_access_on: Zadnji dostop
+  field_last_login_on: Zadnjič povezan(a)
+  field_last_updated_on: Zadnja posodobitev
+  field_lastname: Priimek
+  field_load_groups_opened: Razkrij združene podatke
+  field_login: Prijava
+  field_mail: E-naslov
+  field_mail_notification: E-poštna obvestila
+  field_mails: E-poštni naslovi
+  field_main_project: Vrhovni projekt
+  field_max_length: Maksimalna dolžina
+  field_member: Člani projekta
+  field_member_of_group: Pooblaščenčeva skupina
+  field_min_length: Minimalna dolžina
+  field_multiple: Multiple values
+  field_must_change_passwd: Must change password at next logon
+  field_name: Ime
+  field_new_password: Novo geslo
+  field_note: Komentar
+  field_notes: Zabeležka
+  field_onthefly: Sprotna izdelava uporabnikov
+  field_page_name: Ime strani
+  field_parent: Podprojekt projekta
+  field_parent_issue: Nadrejena naloga
+  field_parent_project: Nadrejeni projekt
+  field_parent_title: Matična stran
+  field_parent_user: Nadrejeni
+  field_participant: Udeleženec
+  field_password: Geslo
+  field_password_confirmation: Potrditev
+  field_path_to_repository: Pot do shrambe
+  field_pause_time: Premor
+  field_paused_at: Zaustavljeno
+  field_period_end_date: Konec obdobja
+  field_period_options: Možnosti obdobja
+  field_period_start_date: Začetek obdobja
+  field_period_zoom: Zoom obdobja
+  field_port: Vrata
+  field_possible_values: Možne vrednosti
+  field_precision: Natančnost
+  field_predicted_cost: Predvideni stroški
+  field_price: Cena
+  field_principal: Upravnik varnosti
+  field_priority: Prioriteta
+  field_privacy: Zasebnost
+  field_private_notes: Zasebne zabeležke
+  field_project: Projekt
+  field_project_journal_comments: Komentarji projekta
+  field_project_last_journal_comment: Zadnji komentar
+  field_project_parent: Nadrejeni projekt
+  field_project_root: Vrhovni projekt
+  field_qr_code: QR koda
+  field_read_by: Pogledal uporabnik
+  field_redirect_existing_links: Preusmeri obstoječe povezave
+  field_regexp: Regularni izraz
+  field_relations_from: povezava
+  field_remaining_timeentries: Preostali čas
+  field_remote_ip: IP naslov
+  field_repository_is_default: Main repository
+  field_role: Vloga
+  field_role_filters: Filtri po roli
+  field_roles: Rola
+  field_root: Vrhovni projekt
+  field_root_category: Vrhovna kategorija
+  field_root_directory: Korenska mapa
+  field_scm_path_encoding: Pot do kodiranja
+  field_searchable: Zmožen iskanja
+  field_sharing: Deljenje
+  field_show_avatars: Pokaži sličice
+  field_show_on_list: Pokaži v seznamu
+  field_show_on_more_form: Pokaži kot dodatni atribut
+  field_show_sum_row: Prikaži vrstico s seštevki
+  field_silent_mode: Tihi način
+  field_spent_estimated_timeentries: Razmerje porabe časa
+  field_spent_on: Datum
+  field_spinned: Obdrži na vrhu
+  field_start_date: Začetek
+  field_start_page: Začetna stran
+  field_start_time: Začni
+  field_started_at: Začetek ob
+  field_status: Status
+  field_status_count: Spremenjeno v status %{status}
+  field_status_time_current: Čas v sedanjem statusu
+  field_strip_insignificant_zeros: Odstrani decimalne ničle
+  field_subject: Tema / Naslov
+  field_subproject: Podprojekt
+  field_subprojects_of: Vsi podprojekti
+  field_sum_estimated_hours: Skupni ocenjeni čas
+  field_sum_of_timeentries: Porabljeni čas
+  field_sumable_column: Stolpec z vsoto
+  field_summary: Povzetek
+  field_target: Cilj
+  field_template_name: Ime predloge
+  field_text: Besedilno polje
+  field_time_entries: Beleži porabljeni čas
+  field_time_entries_visibility: Vidnost evidence časa
+  field_time_entry: Porabljen čas
+  field_time_zone: Časovni pas
+  field_timeout: Timeout (in seconds)
+  field_title: Naslov
+  field_tmonth: Mesec
+  field_total_estimated_hours: Skupni ocenjeni čas
+  field_total_remaining_timeentries: Skupni preostali čas
+  field_total_spent_estimated_timeentries: Skupno razmerje porabe časa
+  field_total_spent_hours: Skupni porabljeni čas
+  field_tracker: Vrsta zahtevka
+  field_tweek: Teden
+  field_tyear: Leto
+  field_type: Tip
+  field_updated_at: Posodobljeno
+  field_updated_by_who: Posodobil/a
+  field_updated_on: Posodobljeno
+  field_url: URL
+  field_user: Uporabnik
+  field_user_roles: Rola
+  field_user_time_entry_setting: Beleženje časa
+  field_users_visibility: Users visibility
+  field_valid_from: Od
+  field_valid_to: Do
+  field_value: Vrednost
+  field_version: Verzija
+  field_versions: Mejniki
+  field_visible: Viden
+  field_warn_on_leaving_unsaved: Opozori me, kadar zapuščam stran z neshranjenim besedilom
+  field_watcher: Opazovalec
+  field_xproject: Projekti
+  field_zone_name: ime področja
+  filter_active: aktiven
+  filter_default: privzeto
+  gantt_completed: Dokončan
+  gantt_day: dan
+  gantt_day_plural: dni
+  gantt_day_plural5: dni
+  gantt_duration: Rok
+  gantt_end: Rok
+  gantt_new_child_issue: Nov podzahtevek
+  gantt_new_following_issue: Nov zahtevek, ki sledi
+  gantt_new_preceding_issue: Nov predhodni zahtevek
+  gantt_start: Začetni datum
+  general_all: vse
+  general_csv_decimal_separator: "."
+  general_csv_encoding: UTF-8
+  general_csv_separator: ","
+  general_first_day_of_week: '1'
+  general_lang_name: Slovene (Slovenščina)
+  general_only_required: samo zahtevano
+  general_pdf_fontname: freesans
+  general_pdf_monospaced_fontname: freemono
+  general_text_No: Ne
+  general_text_Yes: Da
+  greater_than_soonest_start_human_error: You need to move task start date %{distance}
+    back - on %{sonnest_start} or change task delay in order to keep task relations
+    soonest start date
+  greater_than_start_date_human_error: You need to move task start date %{distance}
+    back - on %{due_date} in order to keep task due date
+  heading_easy_currency_edit: Uredi valuto
+  heading_easy_custom_project_menu_edit: Uredi opcijo v meniju
+  heading_easy_custom_project_menu_new: Nova opcija v meniju
+  heading_easy_entity_actions_edit: Uredi akcijo
+  heading_easy_entity_actions_filters: 'Definiraj filter:'
+  heading_easy_entity_actions_new: Nova akcija
+  heading_easy_entity_actions_show_filters: 'Definirani filter:'
+  heading_easy_entity_import_edit: Uredi uvoz
+  heading_easy_entity_import_new: Dodaj nov uvoz
+  heading_easy_entity_imports_from_file: Iz datoteke
+  heading_easy_short_urls_index: Kratki url naslovi
+  heading_easy_short_urls_new: Nov kratki url
+  heading_easy_short_urls_show: Kratek url
+  heading_easy_user_working_time_calendar_index: Vsi koledarji delovnega časa
+  heading_easy_user_working_time_calendar_new: Nov koledar
+  heading_easy_user_working_time_calendar_show: Koledar %{calendarname}
+  heading_easy_user_working_time_calendars_holiday_edit: Uredi praznike
+  heading_easy_user_working_time_calendars_holiday_index: Kazalo praznikov
+  heading_easy_user_working_time_calendars_holiday_new: Nov praznik
+  heading_edit_custom_field: Uredi polje po meri
+  heading_issues_settings_behaviour: Obnašanje
+  helper_module:
+    button_close_help: Zapri pomoč
+    button_show_help: Pokaži pomoč
+    button_show_youtube: Predvajaj video
+    title_contact: Kontakt
+    title_help: Izberi svojo rešitev
+  hint_easy_repeating_repeat_hour_field: h
+  hours_format_long: long (%{value})
+  hours_format_short: short (%{value})
+  image_tag:
+    alt:
+      bullet_toggle_plus: Preklopi na več izborov
+  issue_predecessor_error: Task %{issue_name} is already following another task.
+  label_accesses: Dostopov
+  label_action_range_filters: Filtri za območje
+  label_activity: Aktivnosti
+  label_activity_all: Vse
+  label_add_action: Dodaj akcijo
+  label_add_another_file: Dodaj še eno datoteko
+  label_add_members: Dodaj člane
+  label_add_note: Dodaj zabeležko
+  label_add_projects: Add projects
+  label_add_related_issues: Dodaj povezane zahtevke
+  label_add_related_projects: Dodaj povezane projekte
+  label_add_related_versions: Dodaj povezane verzije
+  label_added: dodano
+  label_added_datetime_by: Dodal/a %{author}, %{datetime}
+  label_added_time_by: Dodal %{author} %{age} nazaj
+  label_adding: Dodajam ...
+  label_additional_workflow_transitions_for_assignee: Dovoljeni dodatni prehodi kadar
+    je uporabnik izvajalec
+  label_additional_workflow_transitions_for_author: Dovoljeni dodatni prehodi kadar
+    je uporabnik avtor
+  label_admin_easy_user_working_time_calendars: Delovni čas
+  label_administration: Upravljanje
+  label_advanced: Napredno
+  label_after_due_date: po izteku roka
+  label_age: Starost
+  label_ago: dni nazaj
+  label_ago_description: 'Opomba: = n dni v preteklosti'
+  label_align_to_left: proti levi
+  label_align_to_right: proti desni
+  label_all: vsi
+  label_all_time: v vsem času
+  label_all_words: Vse besede
+  label_amount: Znesek
+  label_and_its_subprojects: "%{value} in njegovi podprojekti"
+  label_any: vsi
+  label_any_issues_in_project: any issues in project
+  label_any_issues_not_in_project: any issues not in project
+  label_any_open_issues: katerikoli odprti zahtevki
+  label_api: API
+  label_api_access_key: API dostopni ključ
+  label_api_access_key_created_on: API dostopni ključ generiran pred %{value}
+  label_applied_status: Uveljavljeno stanje
+  label_ascending: Naraščajoče
+  label_ask: Ask
+  label_assigned_issues: Dodeljeni zahtevki
+  label_assigned_to_me_issues: Zahtevki dodeljeni meni
+  label_associated_revisions: Povezane revizije
+  label_attachment: Datoteka
+  label_attachment_delete: Izbriši datoteko
+  label_attachment_new: Nova datoteka
+  label_attachment_plural: Datoteke
+  label_attribute: Lastnost
+  label_attribute_of_assigned_to: Assignee's %{name}
+  label_attribute_of_author: Author's %{name}
+  label_attribute_of_fixed_version: Target version's %{name}
+  label_attribute_of_issue: Issue's %{name}
+  label_attribute_of_project: Project's %{name}
+  label_attribute_of_user: User's %{name}
+  label_attribute_plural: Lastnosti
+  label_auth_source: Način overovitve
+  label_auth_source_new: Nov način overovitve
+  label_auth_source_plural: Načini overovitve
+  label_authentication: Overovitev
+  label_author_assigned_to: "<< Avtor >>"
+  label_auto_mapping: Samodejno mapiranje za
+  label_autocomplete: samodejno dokončanje
+  label_autoincrement: Samodejna povečava
+  label_available_users: Uporabniki na razpolago
+  label_back_to_top: Nazaj na vrh
+  label_between: med
+  label_blank_value: prazno
+  label_blocked_by: blokiral/a
+  label_blocks: blok
+  label_board: Forum
+  label_board_locked: Zaklenjeno
+  label_board_new: Nov forum
+  label_board_plural: Forumi
+  label_board_sticky: Lepljivo
+  label_boolean: Boolean
+  label_branch: Veja
+  label_branches: Veje
+  label_browse: Prebrskaj
+  label_bulk_edit_selected_issues: Uredi izbrane zahtevke skupaj
+  label_bulk_edit_selected_time_entries: Skupinsko urejanje izbranih časovnih zapisov
+  label_bulk_edit_selected_users: Skupno urejanje izbranih uporabnikov
+  label_bulk_time_add_another: Dodaj naslednji zapis
+  label_bulk_time_entries: Zabeleži čas
+  label_bulk_time_entries_edit: Uredi porabljeni čas
+  label_bulk_time_flash_comment: 'Komentar:'
+  label_bulk_time_flash_hours: 'Ure:'
+  label_bulk_time_flash_issue: 'Zahtevek:'
+  label_bulk_time_flash_project: 'Projekt:'
+  label_bulk_time_flash_spent_on: 'Datum:'
+  label_bulk_time_flash_user: 'Uporabnik:'
+  label_calendar: Koledar
+  label_canceled: Preklicano
+  label_change_plural: Spremembe
+  label_change_properties: Sprememba lastnosti
+  label_change_status: Spremeni stanje
+  label_change_to: 'Spremeni v:'
+  label_change_view_all: Poglej vse spremembe
+  label_changes_details: Podrobnosti o vseh spremembah
+  label_changeset_plural: Zapisi sprememb
+  label_chart_is_loading: Graf se nalaga, prosim počakajte.
+  label_check_for_updates: Check for updates
+  label_checkboxes: checkboxes
+  label_child_revision: Child
+  label_choose_template: Izberi predlogo
+  label_chronological_order: Kronološko
+  label_close_versions: Zapri dokončane verzije
+  label_closed_issues: zaprt zahtevek
+  label_closed_issues_plural: zaprti zahtevki
+  label_collapse_editor: Skrči urejevalnik
+  label_column_group_other: Drugo
+  label_comma_char: Comma
+  label_comment: Komentar
+  label_comment_add: Dodaj komentar
+  label_comment_added: Komentar dodan
+  label_comment_delete: Izbriši komentarje
+  label_comment_plural: Komentarji
+  label_commits_per_author: Predaj na avtorja
+  label_commits_per_month: Predaj na mesec
+  label_completed_versions: Completed versions
+  label_confirmation: Potrditev
+  label_contains: vsebuje
+  label_contracts: Pogodbe
+  label_copied: kopirano
+  label_copied_from: copied from
+  label_copied_to: copied to
+  label_copy_attachments: Copy attachments
+  label_copy_from_page: Kopiraj s strani
+  label_copy_notes_to_parent: Kopiraj komentarje na nadrejenega
+  label_copy_relations: Kopiraj povezave
+  label_copy_same_as_target: Enako kot cilj
+  label_copy_source: Vir
+  label_copy_subtasks: Kopiraj podzahtevke
+  label_copy_target: Cilj
+  label_copy_workflow_from: Kopiraj potek dela od
+  label_country_select: Izberi državo
+  label_create_chart_baseline: Ustvari referenčno točko
+  label_create_missing_values: Create missing values
+  label_create_subproject: Ustvari podprojekt
+  label_cross_project_descendants: S podprojekti
+  label_cross_project_hierarchy: S projektno hierarhijo
+  label_cross_project_system: Z vsemi projekti
+  label_cross_project_tree: Z drevesom projekta
+  label_current: trenutno
+  label_current_status: Trenutno stanje
+  label_current_version: Trenutna verzija
+  label_custom_field: Polje po meri
+  label_custom_field_mapping: Mapiranje polj po meri
+  label_custom_field_new: Novo polje po meri
+  label_custom_field_plural: Polja po meri
+  label_custom_field_select_type: Select the type of object to which the custom field
+    is to be attached
+  label_custom_formatting: Oblikovanje po meri
+  label_customize_gantt_export: Izvoz nastavitve prikaza
+  label_date: Datum
+  label_date_from: Od
+  label_date_from_to: Od %{start} do %{end}
+  label_date_range: Razpon datumov
+  label_date_to: Do
+  label_datetime_custom_field: Datum in čas
+  label_datetime_custom_field_tag_hour: h
+  label_day_plural: dni
+  label_day:
+    four: "%{count} dni"
+    half: "%{count} dni"
+    one: 1 dan
+    other: "%{count} dni"
+    three: "%{count} dni"
+    two: "%{count} dni"
+  label_days: dni
+  label_default: Privzeto
+  label_default_color_schema: Privzeta barva
+  label_default_columns: Privzeti stolpci
+  label_default_project_page: Privzeta stran projekta
+  label_default_query_mapping_new: Dodaj nastavitev za vloge
+  label_default_values_for_new_users: Default values for new users
+  label_deleted: izbrisano
+  label_descending: Padajoče
+  label_details: Podrobnosti
+  label_diff: diff
+  label_diff_inline: znotraj
+  label_diff_side_by_side: vzporedno
+  label_disable_notifications: Disable notifications
+  label_disabled: onemogoči
+  label_display: Prikaz
+  label_display_per_page: 'Na stran: %{value}'
+  label_display_used_statuses_only: Prikaži samo stanja, ki jih uporablja ta vrsta
+    zahtevka
+  label_document: Dokument
+  label_document_added: Dokument dodan
+  label_document_category_custom_roles_n: Uporabi privzete nastavitve
+  label_document_category_custom_roles_y: Uporabi nastavitve po meri
+  label_document_global: Dokumenti
+  label_document_new: Nov dokument
+  label_document_plural: Dokumenti
+  label_done: narejeno
+  label_double_quote_char: Double quote
+  label_downloads_abbr: D/L
+  label_drop_down_list: drop-down list
+  label_drop_entity_to: Drop here to assign with %{source_name}
+  label_duplicated_by: Podvojil/a
+  label_duplicates: duplikati
+  label_dynamic_action_range: Dinamično
+  label_easy_activities: Aktivnosti
+  label_easy_activity_feed: Obveščanje o aktivnostih
+  label_easy_activity_feed_all_activity: Vse aktivnosti
+  label_easy_activity_feed_discart_all: Počisti vse
+  label_easy_activity_feed_displayed_activities: Prikazane aktivnosti
+  label_easy_activity_feed_my_page_row_count: Število obvestil
+  label_easy_activity_feed_nothing_to_display: Ni novih aktivnosti.
+  label_easy_activity_feed_select_activities: Aktivnosti
+  label_easy_activity_feed_select_projects: Projekti
+  label_easy_activity_feed_show_all: Pokaži vse
+  label_easy_attendance_plural: Prisotnost
+  label_easy_attendance_report_attendence_time: attendance has %{sum_attendance} of
+    %{total_working_hours}, ie %{working_percent} %
+  label_easy_attendance_report_working_time: zabeleženo %{sum_timeentries} od %{total_working_hours},
+    to je %{timeentries_percent} %
+  label_easy_color_schemes: 'Izberi barvno shemo:'
+  label_easy_currency: Valuta
+  label_easy_custom_field_disable: Onemogoči
+  label_easy_custom_field_enable: Omogoči
+  label_easy_default_query_mappings: Privzeti filter za role
+  label_easy_entity_activity: Prodajne aktivnosti
+  label_easy_external_authentication_attach: Attach %{provider} account
+  label_easy_gantt_theme_new: Nova konfiguracija
+  label_easy_gantt_theme_plural: PDF nastavitve
+  label_easy_global_rating: Globalna ocena
+  label_easy_google_maps_address: Naslov - Google zemljevid
+  label_easy_invoicing_currecy: Nastavitve valute
+  label_easy_is_easy_repeating_create_now: Ustvarim zapise zdaj?
+  label_easy_issue_easy_reccuring_after_recurs: ponovitev
+  label_easy_issue_queries_plural: Zahtevki
+  label_easy_issue_timer: Časovnik zahtevka
+  label_easy_issue_timer_end: Zaustavi časovnik
+  label_easy_issue_timer_settings: Nastavitve časovnika za zahtevke
+  label_easy_issue_timer_start: Startaj časovnik
+  label_easy_page_assign_zone: Add zone to page layout of %{pagename}
+  label_easy_page_edit: Uredi stran
+  label_easy_page_module_empty: Module <b>%{modulename}</b> cannot be shown in template.
+    When you apply the template to a user/project, it will be shown.
+  label_easy_page_module_missing: Modul <b>%{modulename}</b> cannot be shown, because
+    it doesn't exist.
+  label_easy_page_new: Nova stran
+  label_easy_page_plural: Strani
+  label_easy_page_tab_default_name: Tab %{count}
+  label_easy_page_template_edit: Uredi predlogo strani %{pagename}
+  label_easy_page_template_new: Nova predloga strani %{pagename}
+  label_easy_page_template_show: Razporeditev modulov
+  label_easy_page_template_user_modules: Razporeditev modulov v predlogi %{templatename}
+  label_easy_page_templates: Seznam predlog na strani %{pagename}
+  label_easy_page_templates_new: Nova predloga
+  label_easy_page_user_layout_modules: Razporeditev modulov na strani
+  label_easy_page_user_modules: Moduli na strani %{pagename}
+  label_easy_page_zone_show: Show zone %{zonename}
+  label_easy_page_zones: zones on page %{pagename}
+  label_easy_pages_project_administration: Prilagoditev začetnih strani
+  label_easy_query_default_for_roles: privzeto za vloge
+  label_easy_query_export_links: Izvozi
+  label_easy_query_management: Upravljanje shranjenih prikazov
+  label_easy_query_management_query_types: Vrste entitet
+  label_easy_query_output_options:
+    calendar: Nastavitve koledarja
+    kanban: Nastavitve kanban
+    list: Nastavitve seznama
+    table: Nastavitve seznama
+  label_easy_query_outputs: Rezultati
+  label_easy_query_saved_filters: Shranjeni filtri
+  label_easy_query_settings: Nastavitve filtrov
+  label_easy_query_visible_for_roles: vidno za vloge
+  label_easy_report_issues_sidebar_statuses: Omeji graf na statuse
+  label_easy_setting_attachment_description: Opis priponk
+  label_easy_setting_attachment_description_disabled: onemogočeno
+  label_easy_setting_attachment_description_enabled: omogočeno
+  label_easy_setting_attachment_description_required: zahtevno
+  label_easy_system_flag: "(used for special operations in %{appname}, not human user)"
+  label_easy_tags: Oznake
+  label_easy_translation_original_value: Privzeta vrednost
+  label_easy_user_queries_plural: Uporabniki
+  label_easy_user_type: Vrsta uporabnika
+  label_easy_user_type_new: Nova vrsta uporabnika
+  label_easy_user_type_plural: Tipi uporabnikov in menijev
+  label_easy_user_working_time_calendar_default_time: Default working time is %{count}
+    hours per day.
+  label_easy_user_working_time_calendar_explanatory_notes_holiday: Praznik
+  label_easy_user_working_time_calendar_explanatory_notes_today: Danes
+  label_easy_user_working_time_calendar_explanatory_notes_weekend: Vikend
+  label_easy_user_working_time_calendar_settings: Nastavitve
+  label_easy_version_queries_plural: Mejniki
+  label_easy_versions: Mejniki
+  label_easy_versions_top_menu: Mejniki
+  label_edit_attachments: Edit attached files
+  label_email: E-pošta
+  label_email_address_add: Add email address
+  label_email_address_plural: Emails
+  label_email_field:
+    from: OD
+    to: ZA
+  label_enable_notifications: Enable notifications
+  label_encoding: Encoding
+  label_enumeration_new: Nova vrednost
+  label_enumerations: Seznami
+  label_environment: Okolje
+  label_equals: je enako
+  label_estimated_time_total: Vsota ocenjenega časa
+  label_example: Vzorec
+  label_export_options: "%{export_format} export options"
+  label_export_template: Izvoz predloge
+  label_export_to: 'Na razpolago tudi v:'
+  label_f_hour: "%{value} h"
+  label_f_hour_abbreviation: "%{value}h"
+  label_f_hour_plural: "%{value} h"
+  label_f_hour_short: "%{value} h"
+  label_f_minute_abbreviation: "%{value}m"
+  label_favorite: Dodaj v favorite
+  label_feed_plural: Atom viri
+  label_feeds_access_key: Atom dostopni ključ
+  label_feeds_access_key_created_on: Atom dostopni ključ narejen %{value} nazaj
+  label_field_format_autoincrement_from_to: Od - do
+  label_field_format_enumeration: Key/value list
+  label_field_format_rating_star_no: Zvezda
+  label_fields_mapping: Mapiranje polj
+  label_fields_permissions: Fields permissions
+  label_fields_separator: Field separator
+  label_fields_wrapper: Field wrapper
+  label_file_added: Datoteka dodana
+  label_file_content_preview: File content preview
+  label_file_plural: Datoteke
+  label_filter_add: Dodaj filter
+  label_filter_group_custom_fields: Polja po meri
+  label_filter_group_custom_fields_suffix: polja po meri
+  label_filter_group_easy_attachment_query: Datoteka
+  label_filter_group_easy_document_query: Dokumenti
+  label_filter_group_easy_easy_query_query: Filtri
+  label_filter_group_easy_entity_activity_crm_case_query: Prodajne aktivnosti
+  label_filter_group_easy_entity_activity_query: Prodajne aktivnosti
+  label_filter_group_easy_group_query: Skupine
+  label_filter_group_easy_issue_gantt_query: Zahtevki
+  label_filter_group_easy_issue_query: Zahtevki
+  label_filter_group_easy_issue_timer_query: Časovnik zahtevka
+  label_filter_group_easy_member_query: Člani
+  label_filter_group_easy_page_query: Strani po meri
+  label_filter_group_easy_project_gantt_query: Projekti
+  label_filter_group_easy_project_query: Projekti
+  label_filter_group_easy_project_template_query: Predloge projekta
+  label_filter_group_easy_time_entry_query: Evidenca časa
+  label_filter_group_easy_user_query: Uporabniki
+  label_filter_group_easy_version_query: Mejniki
+  label_filter_group_project_fields: Projekt
+  label_filter_group_relations: Povezave
+  label_filter_group_status_count: Spremenjeno v status
+  label_filter_group_status_time: Čas v statusu
+  label_filter_group_unknown: Neznano
+  label_filter_plural: Filtri
+  label_fix_action_range: Popravljeno
+  label_fixed_version: Mejnik
+  label_float: Decimalno število
+  label_following: sledi
+  label_follows: sledi
+  label_from: Od
+  label_from_tomorrow: od jutri
+  label_gantt: Gantogram
+  label_gantt_pdf_date: Od datuma
+  label_gantt_progress_line: Progress line
+  label_gauge_range: Območje
+  label_gauge_range_max_value: Največja vrednost
+  label_general: Splošno
+  label_general_offline: Ni prijavljen
+  label_generate_key: Generiraj ključ
+  label_git_report_last_commit: Sporoči zadnje uveljavljanje datotek in map
+  label_greater_or_equal: ">="
+  label_green: zeleno
+  label_group: Skupina
+  label_group_anonymous: Anonimni uporabniki
+  label_group_by: Grupiraj po %{value}
+  label_group_new: Nova skupina
+  label_group_non_member: Non member users
+  label_group_plural: Skupine
+  label_help: Pomoč
+  label_hidden: Hidden
+  label_history: Zgodovina
+  label_home: Domov
+  label_hour_plural: ure
+  label_import_issues: Import issues
+  label_import_template: Uvoz predloge
+  label_in: v
+  label_in_less_than: v manj kot
+  label_in_more_than: v več kot
+  label_in_the_next_days: in the next
+  label_in_the_past_days: in the past
+  label_incoming_emails: Prihajajoča e-pošta
+  label_index_by_date: Razvrsti po datumu
+  label_index_by_title: Razvrsti po naslovu
+  label_information: Informacija
+  label_information_plural: Informacije
+  label_integer: Celo število
+  label_internal: Notranji
+  label_invitations: Povabila
+  label_is_not_null: ni prazno
+  label_is_null: je prazno
+  label_issue: Zahtevek
+  label_issue_added: Zahtevek dodan
+  label_issue_assigned_to_groups: 'Skupine:'
+  label_issue_assigned_to_updated: Pooblaščeni posodobljen
+  label_issue_assigned_to_users: 'Uporabniki:'
+  label_issue_attachments_heading: Priponke
+  label_issue_automatic_recalculate_attributes: Samodejna sprememba iz podzahtevka
+    %{issue_id}
+  label_issue_by_unassigned_to: nedodeljen
+  label_issue_category: Kategorija zahtevka
+  label_issue_category_new: Nova kategorija
+  label_issue_category_plural: Kategorije zahtevkov
+  label_issue_close_plural: Zahtevki - zaprti
+  label_issue_color_scheme_for: 'Uporabi barvno shemo za:'
+  label_issue_due_date: Čas do roka
+  label_issue_due_date_not_overdue: Po roku za
+  label_issue_due_date_overdue: 'Preostalo do dokončanja:'
+  label_issue_index: Seznam zahtevkov
+  label_issue_new: Nov zahtevek
+  label_issue_new_relation_after: 'zahtevki:'
+  label_issue_new_relation_before: Izberi povezavo
+  label_issue_note_added: Dodan zaznamek
+  label_issue_notice_recipients: 'E-pošta poslana na:'
+  label_issue_open_plural: Zahtevki - odprti
+  label_issue_plural: Zahtevki
+  label_issue_priority: Prioriteta zahtevka
+  label_issue_priority_mapping: Mapiranje prioritete zahtevkov
+  label_issue_priority_plural: Prioritete zahtevkov
+  label_issue_priority_updated: Prioriteta posodobljena
+  label_issue_static_attributes_heading: Osnovne lastnosti
+  label_issue_status: Stanje zahtevka
+  label_issue_status_mapping: Mapiranje statusov zahtevkov
+  label_issue_status_new: Novo stanje
+  label_issue_status_plural: Stanje zahtevkov
+  label_issue_status_updated: Status posodobljen
+  label_issue_tracking: Sledenje zahtevkom
+  label_issue_updatable_attributes_heading: Dodatne lastnosti
+  label_issue_updated: Zahtevek posodobljen
+  label_issue_view_all: Poglej vse zahtevke
+  label_issue_watchers: Sodelavci
+  label_issue_watchers_heading: Sodelavci
+  label_issues_after_due_date: Prekoračen rok
+  label_issues_assigned_to: Dodeljen
+  label_issues_assigned_to_me: Moji zahtevki
+  label_issues_assigned_to_me_visible_issues_assigned: Samo zahtevki, ki so mi dodeljeni.
+  label_issues_assigned_to_me_visible_issues_conserns: Zahtevki, kjer sem avtor, dodeljeni
+    izvajalec ali sodelavec.
+  label_issues_by: Zahtevki od %{value}
+  label_issues_closed: Zaprto
+  label_issues_find_by_easy_query: Odpri shranjen prikaz
+  label_issues_not_updated: Ni posodobljeno
+  label_issues_opened: Odprto
+  label_issues_overdue: Rok prekoračen
+  label_issues_visibility_all: Vsi zahtevki
+  label_issues_visibility_own: Zahtevek dodan ali opazovan s strani uporabnika ali
+    dodeljen uporabniku
+  label_issues_visibility_own_short: Zahtevki, ki se nanašajo name
+  label_issues_visibility_public: Vsi nezasebni zahtevki
+  label_item_position: "%{position}/%{count}"
+  label_journal_as_search_result: Dnevnik
+  label_jump_to_a_project: Skoči na projekt...
+  label_language_based: Glede na uporabnikov jezik
+  label_last_changes: zadnjih %{count} sprememb
+  label_last_login: Zadnja povezava
+  label_last_month: zadnji mesec
+  label_last_n_days: zadnjih %{count} dni
+  label_last_n_days_next_m_days: "- %{last} dni + %{next} dni"
+  label_last_n_weeks: last %{count} weeks
+  label_last_user_assigned_to: "<< Zadnji dodeljeni izvajalec >>"
+  label_last_week: pretekli teden
+  label_last_year: preteklo leto
+  label_latest_compatible_version: Latest compatible version
+  label_latest_revision: Zadnja revizija
+  label_latest_revision_plural: Zadnje revizije
+  label_ldap_authentication: LDAP overovljanje
+  label_less: Manj
+  label_less_or_equal: "<="
+  label_less_than_ago: manj kot dni nazaj
+  label_link: Link
+  label_link_copied_issue: Link copied issue
+  label_link_values_to: Link values to URL
+  label_link_with: Link with %{attribute}
+  label_link_with_and_custom_field: Link with %{attribute} and custom field
+  label_list: Seznam
+  label_loading: Nalaganje...
+  label_log_time: Beleži čas
+  label_logged_as: Prijavljen(a) kot
+  label_login: Prijava
+  label_login_with_open_id_option: ali se prijavi z OpenID
+  label_logo: Logotip
+  label_logout: Odjava
+  label_mail_received_at: Sprejeto ob
+  label_max_size: Največja velikost
+  label_me: jaz
+  label_meetings: Sestanki
+  label_member: Član
+  label_member_management: Upravljanje članov
+  label_member_management_all_roles: Vse vloge
+  label_member_management_selected_roles_only: Samo te vloge
+  label_member_new: Nov član
+  label_member_plural: Člani
+  label_menu_more: Več ...
+  label_merge_to: Združi z %{entity_name}
+  label_merged_from: Združeno iz %{ids}
+  label_merged_into: Združeno v %{id}
+  label_message_last: Zadnje sporočilo
+  label_message_new: Novo sporočilo
+  label_message_plural: Sporočila
+  label_message_posted: Sporočilo dodano
+  label_message_subject: Zadeva
+  label_milestone_sharing_info: 'Pojasnila:'
+  label_min_max_length: Min - Max dolžina
+  label_minute: "%{value} minuta"
+  label_minute_plural: "%{value} minut"
+  label_missing_api_access_key: Manjkajoč API dostopni ključ
+  label_missing_feeds_access_key: Manjkajoč Atom dostopni ključ
+  label_modified: spremenjeno
+  label_module_jump: Skoči na modul
+  label_module_plural: Moduli
+  label_month: Mesec
+  label_months_from: mesecev od
+  label_more: Več ...
+  label_more_than_ago: več kot dni nazaj
+  label_most_used: Najbolj uporabljano
+  label_move: 'Premakni:'
+  label_my_account: Moj račun
+  label_my_issues_plural: moji
+  label_my_page: Moja stran
+  label_my_page_block: Moj gradnik strani
+  label_my_page_document_query_select: 'Shranjeni filtri:'
+  label_my_page_document_row_count: 'Število dokumentov:'
+  label_my_page_issue_output_select: 'Format izdelka:'
+  label_my_page_issue_output:
+    calendar: koledar
+    chart: graf
+    list: seznam
+    map: zemljevid
+    report: poročilo
+    table: seznam
+    tiles: ploščice
+  label_my_page_issue_query: Shranjeni filtri
+  label_my_page_issue_query_new_link: tukaj
+  label_my_page_issue_query_select: Shranjeni filtri
+  label_my_page_issue_row_count: 'Število zahtevkov:'
+  label_my_page_issue_show_fields_option_part1: Pokaži
+  label_my_page_issue_show_fields_option_part2: zemljevid
+  label_my_page_issues_rss_reader_url: 'Vir:'
+  label_my_page_journal_row_count: 'Število komentarjev:'
+  label_my_page_journal_view_all_journals: Poglej vse komentarje
+  label_my_page_news_row_count: 'Število novic:'
+  label_my_page_project_output_select: 'Oblika prikaza:'
+  label_my_page_project_output:
+    calendar: koledar
+    list: seznam
+    map: zemljevid
+    report: poročilo
+    table: seznam
+  label_my_page_project_query_select: 'Shranjeni filtri:'
+  label_my_page_projects_query: Shranjeni filtri
+  label_my_page_projects_query_select: 'Shranjeni filtri:'
+  label_my_page_projects_row_count: 'Število projektov:'
+  label_my_page_results_row_count: 'Število rezultatov:'
+  label_my_page_timelog_calendar: Koledar evidence časa
+  label_my_page_timelog_calendar_period_select: 'Obdobje koledarja:'
+  label_my_page_user_output_select: 'Oblika prikaza:'
+  label_my_page_user_query_select: 'Shranjeni filtri:'
+  label_my_page_users_row_count: 'Število uporabnikov:'
+  label_my_projects: Moji projekti
+  label_my_queries: Moje poizvedbe po meri
+  label_name_and_date: "%{attribute} in datum"
+  label_new: Nov
+  label_new_project_from_template: Nov projekt iz predloge
+  label_new_project_issue_tab_enabled: Prikaži zavihek "Nov zahtevek"
+  label_new_project_name: Ime novega projekta
+  label_new_statuses_allowed: Novi zahtevki dovoljeni
+  label_new_subproject_from_template: Nov podprojekt iz predloge
+  label_news: Novica
+  label_news_added: Dodane novice
+  label_news_comment_added: Komentar dodan novici
+  label_news_latest: Zadnje novice
+  label_news_new: Dodaj novico
+  label_news_plural: Novice
+  label_news_unread: Neprebrane novice
+  label_news_view_all: Poglej vse novice
+  label_next: Naslednji
+  label_next_issue: Naslednji zahtevek
+  label_next_month: naslednji mesec
+  label_next_n_days: naslednjih %{days} dni
+  label_next_week: naslednji teden
+  label_next_year: naslednje leto
+  label_no_change: Ni sprememb
+  label_no_change_option: "(Ni spremembe)"
+  label_no_color: prazno
+  label_no_data: Ni podatkov za prikaz
+  label_no_issues_in_project: no issues in project
+  label_no_open_issues: ni odprtih zahtevkov
+  label_no_options_available: "- ni možnih izbir -"
+  label_no_preview: Ni predogleda
+  label_nobody: nihče
+  label_none: noben
+  label_not_available: "---"
+  label_not_contains: ne vsebuje
+  label_not_equals: ni enako
+  label_not_updated_on: Ni bilo posodobljeno
+  label_note_show_less: Pokaži manj ...
+  label_note_show_more: Klikni tu, da prikažete več ...
+  label_older_than_n_days: starejše od %{count} dni
+  label_only: only
+  label_open_issues: odprt zahtevek
+  label_open_issues_plural: odprti zahtevki
+  label_optional_description: Neobvezen opis
+  label_options: Možnosti
+  label_other_issues_plural: drugo
+  label_others: Drugo
+  label_overall_activity: Celotna aktivnost
+  label_overall_spent_time: Skupni porabljeni čas
+  label_overview: Povzetek
+  label_page_module_chart_add_additional_data_serie: Dodaj serijo podatkov iz druge
+    poizvedbe
+  label_page_module_chart_autorefresh_after: minut (nič pomeni brez osveževanja).
+  label_page_module_chart_autorefresh_before: Samodejno posodobi graf vsakih
+  label_page_module_chart_axis_x: X os
+  label_page_module_chart_axis_y: Y os
+  label_page_module_chart_axis_y_between: ali
+  label_page_module_chart_axis_y_count: Število elementov
+  label_page_module_chart_axis_y_sum: Vsota
+  label_page_module_chart_axis_y2: Druga Y os
+  label_page_module_chart_bar_direction: Smer stolpcev
+  label_page_module_chart_bar_direction_horizontal: Horizontalna
+  label_page_module_chart_bar_direction_vertical: Vertikalna
+  label_page_module_chart_bar_limit: Omejitev stolpcev
+  label_page_module_chart_calculate_count: Izračunaj število
+  label_page_module_chart_calculate_sum: Izračunaj vsoto
+  label_page_module_chart_columns: Stolpci v grafu
+  label_page_module_chart_countdown: Graf bo posodobljen čez
+  label_page_module_chart_dates: Nastavitve datuma
+  label_page_module_chart_period: Filter obdobja
+  label_page_module_chart_renderer_choice: Izberi obliko grafa
+  label_page_module_chart_renderer:
+    bar: Stolpci
+    line: Črta
+    pie: Torta
+  label_page_module_chart_season_future: Prihodnost
+  label_page_module_chart_season_past: Preteklost
+  label_page_module_chart_settings: Nastavitve grafa
+  label_page_module_chart_stacked: Nakopičeni stolpci?
+  label_page_module_chart_time_window: Časovni okvir
+  label_page_module_chart_time_window_disabled: Celoten čas
+  label_page_module_chart_y_label: Napis na Y osi
+  label_page_module_default_period: Privzeto obdobje
+  label_page_module_default_season: Privzeti pogled
+  label_parent_directory: Nadrejeni imenik
+  label_parent_revision: Parent
+  label_parent_task_attributes: Lastnosti nadrejenega zahtevka
+  label_parent_task_attributes_derived: Izračunano iz podzahtevkov
+  label_parent_task_attributes_independent: Neodvisno od podrejenih zahtevkov
+  label_parenttask_plural: Nadrejeni zahtevki
+  label_password_lost: Spremeni geslo
+  label_password_required: Confirm your password to continue
+  label_per_page: Na stran
+  label_percent: Odstotkov
+  label_period_custom: Po meri
+  label_period_fiscal: Fiskalno
+  label_period_future: Prihodnost
+  label_period_past: Preteklost
+  label_period_present: Sedanjost
+  label_permissions: Dovoljenja
+  label_permissions_global: Globalna dovoljenja
+  label_permissions_project: Dovoljenja na projektu
+  label_permissions_report: Poročilo o dovoljenjih
+  label_personal_statement: Osebno poročilo
+  label_personal_visibility: Prikaz samo lastne vrednosti
+  label_personalize_page: Prilagodi si to stran
+  label_personalize_user_page: Uredi ali dodaj module
+  label_personalize_user_page_from_layout: Prerazporedi stran po predlogi
+  label_planning: Načrtovanje
+  label_please_login: Prosimo prijavite se
+  label_plugins: Vtičniki
+  label_precedes: ima prednost pred
+  label_preceding: je pred
+  label_preferences: Preference
+  label_preview: Predogled
+  label_preview_external_email_mail_body_html: Vsebina e-pošte v HTML
+  label_preview_external_email_mail_body_plain: Vsebina e-pošte v navadnem besedilu
+  label_preview_external_email_mail_cc: Kopija e-pošte
+  label_preview_external_email_mail_recepient: Prejemnik e-pošte
+  label_preview_external_email_mail_reply_to: Odgovor za
+  label_preview_external_email_mail_sender: Pošiljatelj
+  label_preview_external_email_mail_subject: Zadeva
+  label_previous: Prejšnji
+  label_previous_issue: Prejšnji zahtevek
+  label_principal_search: 'Poišči uporabnika ali skupino:'
+  label_probability: Verjetnost
+  label_profile: Profil
+  label_progress: Napredek
+  label_project: Projekt
+  label_project_all: Vsi projekti
+  label_project_copy_notifications: Med kopiranjem projekta pošlji e-poštno sporočilo
+  label_project_copy_tracker_issues:
+    four: 4 zahtevki
+    one: 1 zahtevek
+    other: "%{count} zahtevkov"
+    three: 3 zahtevki
+    two: 2 zahtevka
+    zero: nobenega zahtevka
+  label_project_custom_fields: Polja po meri za projekt
+  label_project_description: Opis
+  label_project_index: Seznam projektov
+  label_project_latest: Zadnji projekti
+  label_project_name: Ime projekta
+  label_project_new: Nov projekt
+  label_project_new_relation_after: 'projekti:'
+  label_project_new_relation_before: Ta projekt
+  label_project_notifications: Pošlji e-poštno obvestilo
+  label_project_overview_project_info: Pregled projekta
+  label_project_plural: Projekti
+  label_project_templates_change_issues_author: Spremeni avtorja na vseh zahtevkih
+  label_project_templates_update_dates: Posodobi vse podatke projekta glede na začetni
+    datum projekta
+  label_projectquery_plural: Fitri projektov
+  label_projects_find_by_easy_query: Odpri shranjen prikaz
+  label_public_projects: Javni projekti
+  label_query: Iskanje po meri
+  label_query_new: Novo iskanje
+  label_query_plural: Iskanja po meri
+  label_quick_search: Hitro iskanje
+  label_quote_char: Quote
+  label_radio_buttons: radio buttons
+  label_range: Območje (od - do)
+  label_rating: Ocena
+  label_read: Preberi...
+  label_readonly: Read-only
+  label_register: Registracija
+  label_registered_on: Registriran
+  label_registration_activation_by_email: aktivacija računa po e-pošti
+  label_registration_automatic_activation: samodejna aktivacija računa
+  label_registration_manual_activation: ročna aktivacija računa
+  label_related_issues: Povezani zahtevki
+  label_related_projects: Povezani projekti
+  label_related_versions: Povezane verzije
+  label_relates_to: povezan z
+  label_relation_delete: Izbriši povezavo
+  label_relation_new: Nova povezava
+  label_relations: Povezave
+  label_renamed: preimenovano
+  label_reply_plural: Odgovori
+  label_report: Poročilo
+  label_report_left_group_by: Grupiranje na strani
+  label_report_plural: Poročila
+  label_report_top_group_by: Grupiranje na vrhu
+  label_reported_issues: Prijavljeni zahtevki
+  label_repository: Repozitorij (shramba)
+  label_repository_new: Nov repozitorij
+  label_repository_plural: Shrambe
+  label_required: Required
+  label_required_description: Zahtevan opis
+  label_restrictions_users: Prikaži samo
+  label_result_plural: Rezultati
+  label_reverse_chronological_order: Obrnjeno kronološko
+  label_revert_to_version: Vrni na to verzijo
+  label_revision: Revizija
+  label_revision_id: Revizija %{value}
+  label_revision_plural: Revizije
+  label_roadmap: Načrt
+  label_roadmap_due_in: Do %{value}
+  label_roadmap_no_issues: Ni zahtevkov za to verzijo
+  label_roadmap_options: Opcije načrta
+  label_roadmap_overdue: "%{value} zakasnel"
+  label_role: Vloga
+  label_role_and_permissions: Vloge in dovoljenja
+  label_role_anonymous: Anonimni
+  label_role_mapping: Mapiranje rol
+  label_role_move_members_explanation: 'Spremeni rolo na:'
+  label_role_new: Nova vloga
+  label_role_non_member: Nečlan
+  label_role_plural: Vloge
+  label_saved_query_and_author: Shrani ime filtra in avtorja
+  label_saved_query_name: Ime filtra
+  label_scheme_add: Dodaj barvno shemo
+  label_scheme_preview: Predogled sheme
+  label_scm: SCM
+  label_search: Išči
+  label_search_attachments_no: Do not search attachments
+  label_search_attachments_only: Search attachments only
+  label_search_attachments_yes: Search attachment filenames and descriptions
+  label_search_entities: 'Iskanje:'
+  label_search_for_user_or_group: Išči uporabnika ali skupino
+  label_search_for_watchers: Poišči sodelavce
+  label_search_open_issues_only: Samo odprti zahtevki
+  label_search_result_journal_header: 'Išči besedilo v dnevniku (%{count}):'
+  label_search_titles_only: Preišči samo naslove
+  label_select_easy_tag_source: Izberi vir oznak
+  label_select_file_to_import: Select the file to import
+  label_select_my_page_template: Izberi predlogo moje strani
+  label_select_no_change_assignee: "<< ne spremeni dodeljenega >>"
+  label_select_none_assignee: "<< ni dodeljenega izvajalca >>"
+  label_select_page_assign_zone: 'Izberi področje:'
+  label_select_page_template: 'Izberi predlogo strani:'
+  label_semi_colon_char: Semicolon
+  label_send_email_to_all_users: Pošlji e-pošto vsem uporabnikom
+  label_send_information: Pošlji informacijo o računu uporabniku
+  label_send_test_email: Pošlji testno e-pismo
+  label_session_expiration: Session expiration
+  label_setting_allow_time_entry_negative_hours: Dovoli negativne ure?
+  label_setting_allow_time_entry_zero_hours: Dovoli nič ur?
+  label_settings: Nastavitve
+  label_settings_default_project_indicator: Privzeta barva indikatorja
+  label_show_as_tree: Prikaži kot drevo
+  label_show_assigned_issues: Pokaži zahtevke, dodeljene uporabniku %{username}.
+  label_show_closed_projects: Poglej zaprte projekte
+  label_show_completed_versions: Prikaži zaključene verzije
+  label_show_document_global: Pokaži dokumente
+  label_show_email_with_images: Prilepljena slika, glej originalno e-pošto
+  label_show_in_meeting_calendar: Pokaži v koledarju sestankov
+  label_show_issue_info: Pokaži podrobnosti zahtevka %{issuename}.
+  label_show_more_members: Pokaži več članov
+  label_show_project_info: Pokaži informacije projekta %{projectname}.
+  label_show_user_info: Pokaži informacije o %{username}.
+  label_simple_add_project_task: Projekti
+  label_simple_add_project_task_on_project: Podprojekti
+  label_sort: Razvrsti
+  label_sort_by: Razporedi po %{value}
+  label_sort_higher: Premakni gor
+  label_sort_highest: Premakni na vrh
+  label_sort_lower: Premakni dol
+  label_sort_lowest: Premakni na dno
+  label_source_project: Izvorni projekt
+  label_spent_time: Porabljen čas
+  label_spent_time_total: Skupni porabljeni čas
+  label_spent_to_estimated_time_ratio: Poraba/ocena časa
+  label_start_to_end: začetek - konec
+  label_start_to_start: začetek - začetek
+  label_starts_with: začne z
+  label_statistics: Statistika
+  label_status_transitions: Status transitions
+  label_stay_logged_in: Ostani prijavljen(a)
+  label_string: Besedilo
+  label_subproject_new: Nov podprojekt
+  label_subproject_plural: Podprojekti
+  label_subtask: Podzahtevek
+  label_subtask_plural: Podrejeni zahtevki
+  label_subtemplate_new: Nova podpredloga
+  label_sum: 'Vsota:'
+  label_switch_to_full_version: Namizna stran
+  label_switch_to_mobile_version: Mobilna stran
+  label_tag: Oznaka
+  label_target_projects: Ciljni projekti
+  label_template_easy_start_date: Nastavi začetni datum projekta
+  label_template_new: Nov projekt iz predloge
+  label_template_to_selected_projects: Uporabi predlogo za projekte
+  label_templates_easy_start_date: Nastavi začetni datum na projektih
+  label_templates_plural: Predloge za projekte
+  label_text: Dolgo besedilo
+  label_theme: Tema
+  label_this_month: ta mesec
+  label_this_week: ta teden
+  label_this_year: to leto
+  label_time: Čas
+  label_time_entries_visibility_all: Vsi zapisi evidence časa
+  label_time_entries_visibility_own: Evidenca časa za prijavljenega uporabnika
+  label_time_entry_activity_mapping: Mapiranje aktivnosti
+  label_time_entry_plural: Porabljen čas
+  label_time_tracking: Sledenje času
+  label_timelog_calendar_link_after: h
+  label_timelog_view_all: Celoten pogled zabeleženega časa dela
+  label_to: do
+  label_to_now: do zdaj
+  label_to_today: do danes
+  label_today: danes
+  label_tomorrow: jutri
+  label_too_many_mambers: 'Preveč uporabnikov, uporabi iskanje:'
+  label_top_ten_projects: Zadnjih 10 projektov
+  label_topic_plural: Teme
+  label_total: Skupaj
+  label_total_lines: Skupaj %{count} vrstic
+  label_total_plural: Seštevki
+  label_total_spent_time: Skupni porabljeni čas
+  label_total_time: Skupaj
+  label_total_total: 'Skupaj:'
+  label_tracker: Vrsta zahtevka
+  label_tracker_all: Vsi sledilniki
+  label_tracker_mapping: Mapiranje sledilnikov
+  label_tracker_move_issues: Ponovna dodelitev zahtevka
+  label_tracker_move_issues_explanation: 'Spremeni sledilnik na:'
+  label_tracker_new: Nova vrsta zahtevka
+  label_tracker_plural: Vrste zahtevkov
+  label_unfavorite: Odstrani iz favoritov
+  label_unknown_plugin: Unknown plugin
+  label_unread_entity: Neprebrano
+  label_update_issue_done_ratios: Posodobi razmerje opravljenega zahtevka
+  label_update_repeated: Uporabi za ponavljanje
+  label_updated_datetime_by: Posodobila/a %{author} %{datetime}
+  label_updated_on: Posodobil/a
+  label_updated_time: Posodobljeno %{value} nazaj
+  label_updated_time_by: Posodobil %{author} %{age} nazaj
+  label_used_by: V uporabi od
+  label_user: Uporabnik
+  label_user_activities: Aktivnosti
+  label_user_activity: Aktivnost %{value}
+  label_user_add: Dodaj uporabnika
+  label_user_anonymous: Anonimni
+  label_user_mail_no_self_notified: Ne želim biti opozorjen(a) na spremembe, ki jih
+    naredim sam(a)
+  label_user_mail_option_all: Za vsak dogodek v vseh mojih projektih
+  label_user_mail_option_none: Noben dogodek
+  label_user_mail_option_only_assigned: Samo za stvari, ki smo mi dodeljene
+  label_user_mail_option_only_my_events: Samo za stvari, ki jih opazujem ali sem v
+    njih vpleten
+  label_user_mail_option_only_owner: Samo za stvari, katerih lastnik sem
+  label_user_mail_option_selected: Za vsak dogodek samo na izbranih projektih...
+  label_user_my_page: Moja stran
+  label_user_new: Nov uporabnik
+  label_user_new_issue: Ustvari nov zahtevek za uporabnika %{username}.
+  label_user_plural: Uporabniki
+  label_user_projects: Projekti
+  label_user_role_select: 'za rolo:'
+  label_user_saved_projectquery: Prikaži uporabniški filter %{queryname}.
+  label_user_saved_query: Prikaži uporabnikov filter %{queryname}.
+  label_user_search: 'Poišči uporabnikia:'
+  label_userquery_plural: Uporabniški filtri
+  label_users_find_by_user: Išči uporabnika
+  label_users_visibility_all: All active users
+  label_users_visibility_members_of_visible_projects: Members of visible projects
+  label_version: Verzija
+  label_version_new: Nova verzija
+  label_version_new_relation_after: 'verzije:'
+  label_version_new_relation_before: Ta verzija
+  label_version_plural: Verzije
+  label_version_sharing_descendants: S podprojekti
+  label_version_sharing_hierarchy: S projektno hierarhijo
+  label_version_sharing_none: Ni deljeno
+  label_version_sharing_system: Z vsemi projekti
+  label_version_sharing_tree: Z drevesom projekta
+  label_version_show_closed_issues: Pokaži zaprte zahtevke.
+  label_version_update_database: Ustrezno spremenim datume zahtevkov?
+  label_view_all_revisions: Poglej vse revizije
+  label_view_diff: Preglej razlike
+  label_view_revisions: Poglej revizije
+  label_visibility_all_activities: vse aktivnosti
+  label_visibility_private: samo zame
+  label_visibility_public: za vsakega uporabnika
+  label_visibility_roles: samo za te vloge
+  label_visibility_selected_activities: samo izbrane aktivnosti
+  label_visibility_user_types: samo za te vrste uporabnikov
+  label_watched_issues: Spremljani zahtevki
+  label_week: Teden
+  label_wiki: Wiki (članki)
+  label_wiki_content_added: Wiki stran dodana
+  label_wiki_content_updated: Wiki stran posodobljena
+  label_wiki_edit: Uredi stran
+  label_wiki_edit_plural: Uredi strani
+  label_wiki_page: Članek
+  label_wiki_page_new: New wiki page
+  label_wiki_page_plural: Predstavitvene strani
+  label_with_non_shared_versions: Prikaži ne-deljene mejnike iz podprojektov
+  label_without_notifications: Ne pošlji obvestil
+  label_workflow: Potek dela
+  label_working_time: Delovni čas
+  label_x_closed_issues_abbr:
+    one: 1 zaprt
+    other: "%{count} zaprtih"
+    zero: 0 zaprtih
+  label_x_comments:
+    four: 4 komentarji
+    one: 1 komentar
+    other: "%{count} komentarjev"
+    three: 3 komentarji
+    two: 2 komentarja
+    zero: ni komentarjev
+  label_x_issues:
+    one: 1 zahtevek
+    other: "%{count} zahtevki"
+    zero: 0 zahtevek
+  label_x_open_issues_abbr_on_total:
+    one: 1 odprt / %{total}
+    other: "%{count} odprtih / %{total}"
+    zero: 0 odprtih / %{total}
+  label_x_open_issues_abbr:
+    one: 1 odprt
+    other: "%{count} odprtih"
+    zero: 0 odprtih
+  label_x_projects:
+    one: 1 projekt
+    other: "%{count} projektov"
+    zero: ni projektov
+  label_xml_data_notify: Pošlji obvestilo
+  label_xml_data_select_exportables: Izberi podatke za izvoz
+  label_xml_data_select_projects: Izberi projekte
+  label_year: Leto
+  label_yesterday: včeraj
+  lable_should_send_invitation_update: Pošljem povabilo?
+  legend_easy_query_end_buttons_chooser: Gumbi na seznamu
+  legend_mobile_issue_query_end_buttons_chooser: Gumbi na seznamu zahtevkov
+  license_manager:
+    project_limit: Your maximum number of projects has been exhausted, to extend please
+      contact us at %{email}.
+    project_limit_exceed: You have reached the maximum number (%{limit}) of active
+      projects.
+    user_limit: Your maximum number of users has been exhausted, to extend please
+      contact us at %{email}.
+    user_limit_status_external: 'External user: %{count} users out of %{max_count}
+      users'
+    user_limit_status_internal: 'Internal user: %{count} users out of %{max_count}
+      users'
+  mail_body_account_activation_request: 'Registriral se je nov uporabnik (%{value}).
+    Račun čaka na vašo odobritev:'
+  mail_body_account_information: Informacije o vašem računu. Za spremembo gesla sledite
+    linku 'Spremeni geslo' na naslovu za prijavo, spodaj.
+  mail_body_account_information_external: Za prijavo lahko uporabite vaš %{value}
+    račun.
+  mail_body_easy_query_migration_nonsaved_query_begin: 'Migration of your saved filters
+    failed to save this filter:'
+  mail_body_easy_query_migration_unsupported_query_begin: 'Migration of your saved
+    filters failed to save this filter:'
+  mail_body_lost_password: 'Za spremembo glesla kliknite na naslednjo povezavo:'
+  mail_body_password_updated: Vaše geslo je bilo spremenjeno.
+  mail_body_register: 'Za aktivacijo vašega računa kliknite na naslednjo povezavo:'
+  mail_body_reminder: "%{count} zahtevek(zahtevki), ki so vam dodeljeni bodo zapadli
+    v naslednjih %{days} dneh:"
+  mail_body_security_notification_add: "%{field} %{value} dodano."
+  mail_body_security_notification_change: "%{field} spremenjeno."
+  mail_body_security_notification_change_to: "%{field} spremenjeno v %{value}."
+  mail_body_security_notification_notify_disabled: Naslov %{value} ne bo več prejemal
+    obvestil.
+  mail_body_security_notification_notify_enabled: Naslov %{value} zdaj prejema obvestila.
+  mail_body_security_notification_remove: "%{field} %{value} odstranjeno."
+  mail_body_settings_updated: 'Spremenjeno:'
+  mail_body_wiki_content_added: "%{author} je dodal '%{id}' wiki stran"
+  mail_body_wiki_content_updated: "%{author} je posodobil '%{id}' wiki stran."
+  mail_subject_account_activation_request: "%{value} zahtevek za aktivacijo računa"
+  mail_subject_lost_password: Vaše %{value} geslo
+  mail_subject_register: Aktivacija %{value} vašega računa
+  mail_subject_reminder: "%{count} zahtevek(zahtevki) zapadejo v naslednjih %{days}
+    dneh"
+  mail_subject_security_notification: Varnostno obvestilo
+  mail_subject_wiki_content_added: "'%{id}' wiki stran je bila dodana"
+  mail_subject_wiki_content_updated: "'%{id}' wiki stran je bila posodobljena"
+  mail:
+    field_author: Avtor
+    field_before: pred
+    field_updated_by: Posodobil/a
+    field_updated_time: Posodobljeno pred
+    label_attachment_new: Dodana nova datoteka
+    subject:
+      document_added: "[%{projectname}] nov dokument - %{documenttitle}"
+      issue_add: "[%{projectname}] nov zahtevek - %{issuesubject}"
+      issue_edit: "[%{projectname}] posodobljeno - %{issuesubject} (%{issuestatus})"
+      my_issue_add: ">>> Moj %{tasksubtask} - [%{projectname}] nov zahtevek - %{issuesubject}"
+      my_issue_edit: ">>> Moj %{tasksubtask} - [%{projectname}] posodobljen - %{issuesubject}
+        (%{issuestatus})"
+      news_added: "[%{projectname}] novo sporočilo - %{newstitle}"
+    text_attachment_added: "%{user} dodal/a ob %{time} v %{added_to} naslednje datoteke:"
+  menu:
+    admin:
+      easy_pages_administration: Prilagoditev strani
+  my_page_timelog_calendar_period:
+    month: Mesečno
+    week: Tedensko
+  notice_account_activated: Vaš račun je bil aktiviran. Sedaj se lahko prijavite.
+  notice_account_deleted: Your account has been permanently deleted.
+  notice_account_invalid_credentials: Napačno uporabniško ime ali geslo
+  notice_account_locked: Your account is locked.
+  notice_account_lost_email_sent: Poslano vam je bilo e-pismo z navodili za izbiro
+    novega gesla.
+  notice_account_not_activated_yet: Niste še aktivirali svoje prijave v program. Če
+    želite prejeti novo obvestilo za aktivacijo, prosim <a href="%{url}">kliknite
+    to povezavo</a>.
+  notice_account_password_updated: Geslo je bilo uspešno posodobljeno.
+  notice_account_pending: Vaš račun je bil kreiran in čaka na potrditev s strani administratorja.
+  notice_account_register_done: Račun je bil uspešno kreiran. Za aktiviranje potrdite
+    povezavo, ki vam je bila poslana v e-nabiralnik.
+  notice_account_unknown_email: Neznan uporabnik.
+  notice_account_updated: Račun je bil uspešno posodobljen.
+  notice_account_wrong_password: Napačno geslo
+  notice_api_access_key_reseted: Vaš API dostopni ključ je bil ponastavljen.
+  notice_can_t_change_password: Ta račun za overovljanje uporablja zunanji. Gesla
+    ni mogoče spremeniti.
+  notice_default_data_loaded: Privzete nastavitve so bile uspešno naložene.
+  notice_easy_attendance_activity_project_member: Uporabnik mora biti član projekta,
+    da lahko vidi porabljeni čas.
+  notice_easy_attendance_departured: Departured at %{at}
+  notice_easy_custom_field_disabled: Polje po meri onemogočeno
+  notice_easy_custom_field_enabled: Polje po meri omogočeno
+  notice_easy_external_authorization_destroyed: "%{provider} account was successfuly
+    disconnected."
+  notice_email_error: Ob pošiljanju e-sporočila je prišlo do napake (%{value})
+  notice_email_sent: E-poštno sporočilo je bilo poslano %{value}
+  notice_failed_create_project_from_template: 'Projekt ni bil ustvarjen: %{errors}'
+  notice_failed_to_save_issues: 'Neuspelo shranjevanje %{count} zahtevkov od %{total}
+    izbranih: %{ids}.'
+  notice_failed_to_save_issues2: 'Napaka pri shranjevanju zahtevka %{issue}: %{error}'
+  notice_failed_to_save_members: 'Shranjevanje uporabnika(ov) ni uspelo: %{errors}.'
+  notice_failed_to_save_money: 'Failed to save %{count} money on %{total} selected:
+    %{ids}.'
+  notice_failed_to_save_projects2: 'Projekt %{project} ni shranjen zaradi napake:
+    %{error}'
+  notice_failed_to_save_time_entries: 'Neuspelo shranjevanje %{count} zapisov evidence
+    dela od %{total} izbranih: %{ids}.'
+  notice_failed_to_save_users: 'Failed to save %{count} users(s) on %{total} selected:
+    %{ids}.'
+  notice_failed_to_update: Napaka pri shranjevanju.
+  notice_feedback_sent: Uspešno poslane povratne informacije. Hvala!
+  notice_feeds_access_key_reseted: Vaš Atom dostopni ključ je bil ponastavljen.
+  notice_file_not_found: Stran na katero se želite povezati ne obstaja ali pa je bila
+    umaknjena.
+  notice_gantt_chart_truncated: Graf je bil odrezan, ker je prekoračil največje dovoljeno
+    število elementov, ki se jih lahko prikaže (%{max})
+  notice_history_collapsed_rest: Klikni tu za prikaz preostalega.
+  notice_import_finished: All %{count} items have been imported.
+  notice_import_finished_with_errors: "%{count} od skupaj %{total} ni bilo uvoženih."
+  notice_issue_done_ratios_updated: Razmerje opravljenega zahtevka posodobljeno.
+  notice_issue_successful_create: Zahtevek %{id} shranjen.
+  notice_issue_update_conflict: The issue has been updated by an other user while
+    you were editing it.
+  notice_issues_successful_create: 'Uspešno ustvarjeno za uporabnike:'
+  notice_journal_published: Posodobljeno!
+  notice_locking_conflict: Drug uporabnik je posodobil podatke.
+  notice_new_password_must_be_different: Novo geslo mora biti različno od sedanjega.
+  notice_no_issue_selected: Izbran ni noben zahtevek! Prosimo preverite zahtevke,
+    ki jih želite urediti.
+  notice_not_authorized: Nimate privilegijev za dostop do te strani.
+  notice_not_authorized_archived_project: Projekt, do katerega poskušate dostopati,
+    je bil arhiviran.
+  notice_plugin_successful_uninstall: Plugin-%{plugin} was successfully removed and
+    now need to restart your web server.
+  notice_project_successful_archive: Projekt uspešno arhiviran.
+  notice_project_successful_unarchive: Projekt vrnjen iz arhiva.
+  notice_successful_connection: Povezava uspela.
+  notice_successful_create: Uspešno shranjeno.
+  notice_successful_create_project_from_template: Projekt uspešno ustvarjen.
+  notice_successful_delete: Izbris uspel.
+  notice_successful_merge: Successfuly merged into %{id}.
+  notice_successful_update: Posodobitev uspela.
+  notice_too_many_projects: Preveč projektov (%{count}), uporabite iskanje.
+  notice_unable_delete_time_entry: Brisanje zapisa porabe časa ni mogoče.
+  notice_unable_delete_version: Verzije ni bilo mogoče izbrisati.
+  notice_user_successful_create: User %{id} created.
+  number:
+    currency:
+      format:
+        precision: 0
+    format:
+      delimiter: "."
+      precision: 2
+      separator: "."
+    human:
+      format:
+        delimiter: ''
+        precision: 2
+        separator: "."
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  option_dont_map: "-- ne mapiraj --"
+  option_map_to_new_issue_custom_field: novo polje
+  option_only_selected: samo izbrano
+  order:
+  - :year
+  - :month
+  - :day
+  permission_action_duplicate_issue: Podvoji zahtevek
+  permission_add_documents: Add documents
+  permission_add_issue_notes: Dodaj zabeležke
+  permission_add_issue_watchers: Dodaj sodelavce
+  permission_add_issues: Dodaj zahtevke
+  permission_add_messages: Objavi sporočila
+  permission_add_project: Dodaj projekt
+  permission_add_subprojects: Dodaj podprojekte
+  permission_add_timeentries_for_other_users: Zabeleži čas za drugega uporabnika
+  permission_archive_project: Arhiviraj projekt
+  permission_browse_repository: Prebrskaj shrambo
+  permission_close_project: Zapri / ponovno odpri projekt
+  permission_comment_news: Komentiraj novice
+  permission_commit_access: Dostop za predajo
+  permission_copy_issues: Copy issues
+  permission_copy_project: Kopiraj projekt
+  permission_create_project_from_template: Ustvari projekt iz predloge
+  permission_create_project_template: Ustvari predlogo iz projekta
+  permission_create_subproject_from_template: Ustvari podprojekt iz predloge
+  permission_delete_documents: Delete documents
+  permission_delete_issue_watchers: Izbriši opazovalce
+  permission_delete_issues: Izbriši zahtevke
+  permission_delete_messages: Izbriši sporočila
+  permission_delete_own_comments: Izbriši svoje komentarje
+  permission_delete_own_messages: Izbriši lastna sporočila
+  permission_delete_wiki_pages: Izbriši wiki strani
+  permission_delete_wiki_pages_attachments: Izbriši priponke
+  permission_edit_documents: Edit documents
+  permission_edit_issue_notes: Uredi zabeležke
+  permission_edit_issues: Uredi zahtevke
+  permission_edit_messages: Uredi sporočila
+  permission_edit_own_issue_notes: Uredi lastne zabeležke
+  permission_edit_own_messages: Uredi lastna sporočila
+  permission_edit_own_time_entries: Uredi lastno evidenco časa
+  permission_edit_project: Uredi projekt
+  permission_edit_time_entries: Uredi evidenco časa
+  permission_edit_wiki_pages: Uredi wiki strani
+  permission_export_wiki_pages: Izvozi wiki strani
+  permission_import_issues: Import issues
+  permission_log_time: Beleži porabljen čas
+  permission_manage_boards: Uredi forume
+  permission_manage_categories: Urejanje kategorij zahtevkov
+  permission_manage_files: Uredi datoteke
+  permission_manage_issue_relations: Uredi odnose med zahtevki
+  permission_manage_members: Uredi člane
+  permission_manage_news: Uredi novice
+  permission_manage_project_activities: Uredi aktivnosti projekta
+  permission_manage_public_queries: Uredi skupne filtre
+  permission_manage_related_issues: Manage related issues
+  permission_manage_repository: Uredi shrambo
+  permission_manage_subtasks: Uredi podrejene zahtevke
+  permission_manage_versions: Uredi verzije
+  permission_manage_wiki: Uredi wiki
+  permission_move_issues: Premakni zahtevke
+  permission_protect_wiki_pages: Zaščiti wiki strani
+  permission_rename_wiki_pages: Preimenuj wiki strani
+  permission_save_queries: Shrani filtre
+  permission_select_project_modules: Izberi module projekta
+  permission_set_issues_private: Nastavi zahtevke kot javne ali zasebne
+  permission_set_notes_private: Nastavi zabeležke kot zasebne
+  permission_set_own_issues_private: Nastavi lastne zahtevke kot javne ali zasebne
+  permission_view_calendar: Poglej koledar
+  permission_view_changesets: Poglej zapis sprememb
+  permission_view_documents: Poglej dokumente
+  permission_view_files: Poglej datoteke
+  permission_view_gantt: Poglej gantogram
+  permission_view_issue_watchers: Poglej seznam sodelavcev
+  permission_view_issues: Poglej zahtevke
+  permission_view_messages: Poglej sporočila
+  permission_view_private_notes: Poglej zasebne zabeležke
+  permission_view_time_entries: Poglej porabljen čas
+  permission_view_wiki_edits: Poglej wiki zgodovino
+  permission_view_wiki_pages: Poglej wiki
+  project_default_page:
+    boards: Forumi
+    calendar: Koledar
+    documents: Dokumenti
+    files: Datoteke
+    issue_tracking: Zahtevki
+    news: Novice
+    project_overview: Pregled projekta
+    repository: Repozitorij
+    roadmap: Mejniki
+    time_tracking: Porabljeni čas
+  project_module_boards: Forumi za sporočila
+  project_module_calendar: Koledar
+  project_module_documents: Dokumenti
+  project_module_easy_action_buttons: Gumbi za akcijo
+  project_module_easy_other_permissions: Drugo
+  project_module_files: Datoteke
+  project_module_gantt: Gantogram
+  project_module_issue_tracking: Sledenje zahtevkom
+  project_module_news: Novice
+  project_module_repository: Repozitorij (shramba)
+  project_module_time_tracking: Sledenje časa
+  project_module_wiki: Wiki (članki)
+  project_predecessor_error: Projekt %{project_name} že sledi drugemu projektu.
+  project_status_active: aktiven
+  project_status_archived: archived
+  project_status_closed: zaprt
+  project_status_planned: planirano
+  project_template:
+    label_name: Ime predloge
+    label_new_project: Ime projekta
+  prompt_easy_repeat_simple_repeat: Nikoli
+  round_values:
+    dont_round: Ne zaokrožuj
+    five: 5 minut
+    half: 30 minut
+    one: 1 minuta
+    quarter: 15 minut
+    six: 6 minut
+    ten: 10 minut
+    three_quarters: 45 minut
+  search_field_placeholders:
+    issues: Išči po zahtevkih
+    projects: Išči po projektih
+  select_easy_page_module_project_info:
+    description: opis
+  setting_activity_days_default: Prikaz dni na aktivnost projekta
+  setting_app_subtitle: Podnaslov aplikacije
+  setting_app_title: Naslov aplikacije
+  setting_attachment_extensions_allowed: Allowed extensions
+  setting_attachment_extensions_denied: Disallowed extensions
+  setting_attachment_max_size: Maksimalna velikost priponk
+  setting_autofetch_changesets: Samodejni izvleček zapisa sprememb
+  setting_autologin: Avtomatska prijava
+  setting_bcc_recipients: Prejemniki slepih kopij (bcc)
+  setting_cache_formatted_text: Predpomni oblikovano besedilo
+  setting_commit_cross_project_ref: Allow issues of all the other projects to be referenced
+    and fixed
+  setting_commit_fix_keywords: Urejanje ključne besede
+  setting_commit_logtime_activity_id: Aktivnost zabeleženega časa
+  setting_commit_logtime_enabled: Omogoči beleženje časa
+  setting_commit_ref_keywords: Sklicne ključne besede
+  setting_cross_project_issue_relations: Dovoli povezave zahtevkov med različnimi
+    projekti
+  setting_cross_project_subtasks: Dovoli podrejene zahtevke na drugih projektih
+  setting_date_format: Oblika datuma
+  setting_default_issue_start_date_to_creation_date: Uporabi današnji datum kot začetni
+    datum za nove zahtevke
+  setting_default_language: Privzeti jezik
+  setting_default_notification_option: Privzeta možnost obveščanja
+  setting_default_projects_modules: Privzeti moduli za nove projekte
+  setting_default_projects_public: Novi projekti so privzeto javni
+  setting_default_projects_tracker_ids: Privzete vrste zahtevkov za nove projekte
+  setting_diff_max_lines_displayed: Maksimalno število prikazanih vrstic različnosti
+  setting_display_subprojects_issues: Privzeti prikaz zahtevkov podprojektov v glavnem
+    projektu
+  setting_emails_footer: Noga e-sporočil
+  setting_emails_header: Glava e-pošte
+  setting_enabled_scm: Omogočen SCM
+  setting_feeds_limit: Meja obsega Atom virov
+  setting_file_max_size_displayed: Največja velikost besedilnih datotek v vključenem
+    prikazu
+  setting_force_default_language_for_anonymous: Force default language for anonymous
+    users
+  setting_force_default_language_for_loggedin: Force default language for logged-in
+    users
+  setting_gantt_items_limit: Največje število elementov prikazano na gantogramu
+  setting_gravatar_default: Privzeta Gravatar slika
+  setting_gravatar_enabled: Uporabljaj Gravatar ikone
+  setting_host_name: Ime gostitelja in pot
+  setting_issue_done_ratio: Izračunaj razmerje opravljenega zahtevka z
+  setting_issue_done_ratio_issue_field: Uporabi polje zahtevka
+  setting_issue_done_ratio_issue_status: Uporabi stanje zahtevka
+  setting_issue_group_assignment: Dovoli dodeljevanje zahtevka skupinam
+  setting_issue_list_default_columns: Privzeti stolpci prikazani na seznamu zahtevkov
+  setting_issues_export_limit: Skrajna meja za izvoz zahtevkov
+  setting_jsonp_enabled: Enable JSONP support
+  setting_link_copied_issue: Link issues on copy
+  setting_login_required: Zahtevano overovljanje
+  setting_lost_password: Spremeni geslo
+  setting_mail_from: E-naslov za emisijo
+  setting_mail_handler_api_enabled: Omogoči WS za prihajajočo e-pošto
+  setting_mail_handler_api_key: API ključ
+  setting_mail_handler_body_delimiters: Odreži e-pošto po eni od teh vrstic
+  setting_mail_handler_excluded_filenames: Exclude attachments by name
+  setting_max_additional_emails: Maximum number of additional email addresses
+  setting_new_project_user_role_id: Vloga, dodeljena uporabniku, ki kreira nov projekt
+  setting_non_working_week_days: Non-working days
+  setting_openid: Dovoli OpenID prijavo in registracijo
+  setting_password_max_age: Require password change after
+  setting_password_min_length: Minimalna dolžina gesla
+  setting_per_page_options: Število elementov na stran
+  setting_plain_text_mail: navadno e-sporočilo (ne HTML)
+  setting_protocol: Protokol
+  setting_repositories_encodings: Attachments and repositories encodings
+  setting_repository_log_display_limit: Največje število prikazanih revizij v log
+    datoteki
+  setting_rest_api_enabled: Omogoči REST spletni servis
+  setting_search_results_per_page: Search results per page
+  setting_self_registration: Samostojna registracija
+  setting_sequential_project_identifiers: Generiraj projektne identifikatorje sekvenčno
+  setting_session_lifetime: Session maximum lifetime
+  setting_session_timeout: Session inactivity timeout
+  setting_start_of_week: Začni koledarje z
+  setting_sys_api_enabled: Omogoči WS za upravljanje shrambe
+  setting_sys_api_key: API ključ
+  setting_text_formatting: Oblikovanje besedila
+  setting_thumbnails_enabled: Display attachment thumbnails
+  setting_thumbnails_size: Thumbnails size (in pixels)
+  setting_time_format: Oblika časa
+  setting_unsubscribe: Allow users to delete their own account
+  setting_user_format: Oblika prikaza uporabnikov
+  setting_welcome_text: Pozdravno besedilo
+  setting_wiki_compression: Stiskanje Wiki zgodovine
+  sidebar_all_users_queries: Zahtevki sodelavcev
+  sidebar_issue_button_clone_as_subtask: Kloniraj zahtevek v podzahtevek
+  sidebar_issue_button_copy: Kopiraj zahtevek
+  sidebar_issue_button_delete: Izbriši zahtevek
+  sidebar_issue_button_duplicate: Podvoji zahtevek
+  sidebar_issue_button_log_time: Zabeleži čas
+  sidebar_issue_button_move: Premakni zahtevek
+  sidebar_issue_button_update: Dodaj komentar ali uredi zahtevek
+  sidebar_issue_info: O zahtevku
+  sidebar_issue_spent_time: Poglej porabo časa na zahtevku
+  sidebar_issues_buttons: Urniki
+  sidebar_project_family_info: Drevo projektov
+  sidebar_project_info: O projektu
+  sidebar_project_members: Projektni tim
+  sidebar_project_spent_time: Poglej porabo časa na projektu
+  status_active: aktivni
+  status_archived: arhivirano
+  status_locked: zaklenjen
+  status_registered: registriran
+  support:
+    array:
+      sentence_connector: in
+      skip_last_comma: false
+  text_account_destroy_confirmation: |-
+    Are you sure you want to proceed?
+    Your account will be permanently deleted, with no way to reactivate it.
+  text_are_you_sure: Ali ste prepričani?
+  text_assign_time_entries_to_project: Predaj opravljene ure projektu
+  text_bulk_time_entry_permission: Ta uporabnik nima dovoljenja za beleženje časa.
+  text_caracters_maximum: največ %{count} znakov.
+  text_caracters_minimum: Mora biti vsaj dolg vsaj %{count} znakov.
+  text_comma_separated: Dovoljenih je več vrednosti (ločenih z vejico).
+  text_convert_available: ImageMagick convert available (optional)
+  text_create_easy_page: Upravljaj strani po meri
+  text_custom_field_possible_values_info: Ena vrstica za vsako vrednost
+  text_default_administrator_account_changed: Spremenjen privzeti administratorski
+    račun
+  text_destroy_time_entries: Izbriši evidentirane ure
+  text_destroy_time_entries_question: "%{hours} ur je bilo opravljenih na zahtevku,
+    ki ga želite izbrisati. Kaj želite storiti?"
+  text_diff_truncated: "... Ta sprememba je bila odrezana, ker presega največjo velikost,
+    ki je lahko prikazana."
+  text_easy_attendance_user_notify_already_exists_warning: Warning! Notification already
+    exists. Total %{count}x
+  text_easy_attendance_user_notify_default_message: "%{user} just logged in"
+  text_easy_attendance_user_notify_title: 'Notification will be sent to: %{email}'
+  text_easy_entity_action_journal: Entity action %{link} executed.
+  text_easy_entity_action_repeatedly: "(Execute repeatedly on entity, e.g. for every
+    day checking)"
+  text_easy_entity_import_result_key: External ID %{key}
+  text_easy_entity_imported_fail_entity: 'could not be imported: %{errors}'
+  text_easy_entity_imported_success_entity: successfully imported as %{entity}
+  text_easy_mail_campaigns_sent_email: Sent mail from entity action %{link}.
+  text_easy_plugin_setting_admin_whitelist: If not selected any administrator rights
+    are controlled by the setting in %{role_link}. Otherwise, this setting can be
+    changed only by an administrator who is allowed here
+  text_email_delivery_not_configured: "E-poštna dostava ni nastavljena in obvestila
+    so onemogočena.\r\nNastavite vaš SMTP strežnik v config/configuration.yml in ponovno
+    zaženite aplikacijo, da ga omogočite."
+  text_enumeration_category_reassign_to: 'Ponastavi jih na to vrednost:'
+  text_enumeration_destroy_question: "%{count} objektov je določenih tej vrednosti."
+  text_external_email_sent: The attached message (.eml type file) was sent to external
+    mail %{email}.
+  text_file_repository_writable: Omogočeno pisanje v shrambo datotek
+  text_gantt_query_settings_description: 'Note: "%{field}" will always be listed in
+    the first column regardless of this setting'
+  text_gantt_unsaved_changes: Spremembe v gantu niso shranjene. Želite nadaljevati?
+  text_git_repository_note: Repozitorij je prazen in lokalen (npr. /gitrepo, c:\gitrepo)
+  text_issue_added: Zahtevek %{id} je sporočil(a) %{author}.
+  text_issue_category_destroy_assignments: Odstrani naloge v kategoriji
+  text_issue_category_destroy_question: Nekateri zahtevki (%{count}) so dodeljeni
+    tej kategoriji. Kaj želite storiti?
+  text_issue_category_reassign_to: Ponovno dodeli zahtevke tej kategoriji
+  text_issue_conflict_resolution_add_notes: Dodaj moje zabeležke in prezri moje ostale
+    spremembe
+  text_issue_conflict_resolution_cancel: Prezri vse moje spremembe in znova prikaži
+    %{link}
+  text_issue_conflict_resolution_overwrite: Uporabi moje spremembe (prejšnje zabeležke
+    bodo ohranjene, a lastnosti zahtevka bodo morda prepisane)
+  text_issue_updated: Zahtevek %{id} je posodobil(a) %{author}.
+  text_issues_close_descendants_confirmation: S tem zahtevkom zaprete tudi %{count}
+    podzahtevkov. Ste prepričani?
+  text_issues_destroy_confirmation: Ali ste prepričani, da želite izbrisati izbrani(e)
+    zahtevek(ke)?
+  text_issues_destroy_descendants_confirmation: To bo izbrisalo tudi  %{count} podnalog(o).
+  text_issues_ref_in_commit_messages: Zahtevki sklicev in popravkov v sporočilu predaje
+  text_journal_added: "%{label} %{value} dodan"
+  text_journal_changed: "%{label} se je spremenilo iz %{old} v %{new}"
+  text_journal_changed_no_detail: "%{label} posodobljen"
+  text_journal_deleted: "%{label} izbrisan (%{old})"
+  text_journal_set_to: "%{label} nastavljeno na %{value}"
+  text_length_between: Dolžina med %{min} in %{max} znakov.
+  text_line_separated: Dovoljenih več vrednosti (ena vrstica za vsako vrednost).
+  text_load_default_configuration: Naloži privzeto konfiguracijo
+  text_meeting_created: "%{author} vas vabi na sestanek: %{name}"
+  text_meeting_updated: "%{author} has updated a meeting: %{name}"
+  text_mercurial_repository_note: Lokalni repozitorij (npr. /hgrepo, c:\hgrepo)
+  text_milestone_effective_date_from_issue: 'Dejanski datum prilagojen zahtevku: #%{issue}'
+  text_min_max_length_info: 0 pomeni brez omejitev
+  text_minimagick_available: MiniMagick je na voljo(neobvezno)
+  text_new_easy_query_body: Filter %{query} was copied to you by %{author}.
+  text_new_easy_query_subject: You have new filter "%{query}"
+  text_no_configuration_data: "Vloge, vrste zahtevkov, statusi zahtevkov in potek
+    dela še niso bili določeni. \nZelo priporočljivo je, da naložite privzeto  konfiguracijo,
+    ki jo lahko kasneje tudi prilagodite."
+  text_own_membership_delete_confirmation: |-
+    Odstranili boste nekatere ali vse od dovoljenj zaradi česar morda ne boste mogli več urejati tega projekta.
+    Ali ste prepričani, da želite nadaljevati?
+  text_plugin_assets_writable: Zapisljiva mapa za vtičnike
+  text_project_archive_confirmation: Res želite arhivirati ta projekt in povezane
+    podatke?
+  text_project_close_confirmation: Res želite zapreti ta projekt?
+  text_project_closed: Ta projekt je zaprt in samo na ogled.
+  text_project_destroy_confirmation: Ali ste prepričani da želite izbrisati izbrani
+    projekt in vse z njim povezane podatke?
+  text_project_identifier_info: Dovoljene so samo male črke (a-z), številke, pomišljaji
+    in podčrtaji.<br />Po shranjevanju se te oznake ne more več spremeniti.
+  text_project_reopen_confirmation: Res želite znova odpreti ta projekt?
+  text_reassign_time_entries: 'Prenesi opravljene ure na ta zahtevek:'
+  text_regexp_info: npr. ^[A-Z0-9]+$
+  text_repository_identifier_info: Dovoljene so samo male črke (a-z), številke, pomišljaji
+    in podčrtaji.<br />Po shranjevanju se te oznake ne more več spremeniti.
+  text_repository_usernames_mapping: |-
+    Izberite ali posodobite Redmine uporabnika dodeljenega vsakemu uporabniškemu imenu najdenemu v zapisniku shrambe.
+     Uporabniki z enakim Redmine ali shrambinem uporabniškem imenu ali e-poštnem naslovu so samodejno dodeljeni.
+  text_rmagick_available: RMagick je na voljo(neobvezno)
+  text_scm_command: Ukaz
+  text_scm_command_not_available: SCM ukaz ni na voljo. Prosimo preverite nastavitve
+    v upravljalskem podoknu.
+  text_scm_command_version: Verzija
+  text_scm_config: Svoje SCM ukaze lahko nastavite v datoteki config/configuration.yml.
+    Po urejanju prosimo ponovno zaženite aplikacijo.
+  text_scm_path_encoding_note: 'Privzeto: UTF-8'
+  text_select_mail_notifications: Izberi dejanja, za katera naj bodo poslana obvestila
+    preko e-pošte.
+  text_select_project_modules: 'Izberite module, ki jih želite omogočiti za ta projekt:'
+  text_session_expiration_settings: 'Warning: changing these settings may expire the
+    current sessions including yours.'
+  text_status_changed_by_changeset: Dodano v zapis sprememb %{value}.
+  text_subprojects_destroy_warning: 'Njegov(i) podprojekt(i): %{value} bodo prav tako
+    izbrisani.'
+  text_subversion_repository_note: 'Examples: file:///, http://, https://, svn://,
+    svn+[tunnelscheme]://'
+  text_time_entries_destroy_confirmation: Ali ste prepričani, da želite izbristai
+    izbran(e) časovn(i/e) zapis(e)?
+  text_time_logged_by_changeset: Uporabljeno v spremembi %{value}.
+  text_tip_issue_begin_day: naloga z začetkom na ta dan
+  text_tip_issue_begin_end_day: naloga ki se začne in konča ta dan
+  text_tip_issue_end_day: naloga z zaključkom na ta dan
+  text_tracker_no_workflow: Potek dela za to vrsto zahtevka ni določen
+  text_turning_multiple_off: If you disable multiple values, multiple values will
+    be removed in order to preserve only one value per item.
+  text_unallowed_characters: Nedovoljeni znaki
+  text_user_mail_option: Na neizbrane projekte boste prejemali le obvestila o zadevah,
+    ki jih spremljate ali v katere ste vključeni, npr. zahtevki katerih avtor(ica)
+    ste.
+  text_user_wrote: "%{value} je napisal(a):"
+  text_user_wrote_in: "%{value} je napisal(a) (%{link}):"
+  text_warn_on_leaving_unsaved: Trenutna stran vsebuje neshranjeno besedilo ki bo
+    izgubljeno, če zapustite to stran.
+  text_webdav_modal: "For online editing, copy this link\r\n%{link}\r\nand past it
+    to your editor. Make sure that editor supports webdav protocol."
+  text_wiki_destroy_confirmation: Ali ste prepričani da želite izbrisati to wiki stran
+    in vso njeno vsebino?
+  text_wiki_page_destroy_children: Izbriši podstrani in vse njihove naslednike
+  text_wiki_page_destroy_question: Ta stran ima %{descendants} podstran(i) in naslednik(ov).
+    Kaj želite storiti?
+  text_wiki_page_nullify_children: Obdrži podstrani kot glavne strani
+  text_wiki_page_reassign_children: Znova dodeli podstrani tej glavni strani
+  text_workflow_edit: Izberite vlogo in zahtevek za urejanje poteka dela
+  text_zoom_in: Oddalji
+  text_zoom_out: Približaj
+  time:
+    am: am
+    formats:
+      default: "%a, %d. %b, %Y %H:%M:%S %z"
+      long: "%d. %B, %Y %H:%M"
+      short: "%d. %b %H:%M"
+      time: "%H:%M"
+    pm: pm
+  title_button_delete: Klikni za brisanje tega zapisa.
+  title_button_template: Create template from project %{projectname}.
+  title_button_template_create_project: Ustvari projekt iz predloge.
+  title_clear_projectquery: Ponovno naloži privzeti filter
+  title_copy_projectquery: Kopiraj filter drugim uporabnikom
+  title_create_issue_from_journal: Ustvari nov zahtevek, besedilo tega komentarja
+    bo njegov opis
+  title_default_query: Privzeti filter
+  title_delete: Klikni za brisanje zapisa
+  title_delete_projectquery: Klikni za brisanje sedanjega filtra.
+  title_delete_selected: Klikni za brisanje izbranega zapisa
+  title_disable_show_query_in_tree: Onemogoči drevesni prikaz
+  title_download_attachment: Prenesi datoteko
+  title_easy_card_display_changer_list: Prikaži kot seznam
+  title_easy_card_display_changer_tile: Prikaži kot ploščice
+  title_easy_copy_to_project: Ustvari projekt iz zahtevka
+  title_easy_entity_attribute_map_entity_a_to_b: Map entity %{a} to %{b}
+  title_easy_issue_timer_button_pause: Začasno zaustavi merjenje časa
+  title_easy_issue_timer_button_play: Začni meriti čas dela na tem zahtevku
+  title_easy_issue_timer_button_resume: Nadaljuj z merjenjem časa
+  title_easy_issue_timer_button_stop: Prekini merjenje časa ter odpri posodobitev
+    zahtevka in evidence dela
+  title_enter_title: Vnesite naslov
+  title_jump_to_project: Izberi projekt
+  title_modal_easy_translation_edit_for_column: 'Edit translation for: %{column}'
+  title_new_issue_relation: Dodaj povezane zahtevke.
+  title_new_meeting: Nov sestanek
+  title_new_subtask: Dodaj podzahtevek.
+  title_preview_link: Prikaži predogled
+  title_project_edit: Uredi projekt
+  title_project_new_issue: Add task to project %{projectname}
+  title_project_show: Show project %{projectname}
+  title_remove_referenced_entity_from_entity: Click to remove entity from this %{source_entity}.
+  title_reorder_button: Prerazporedi
+  title_says: 'pravi:'
+  title_toggle_sidebar: Vklopi/izklopi stranski meni
+  title_user_profile: By clicking show %{username} profile.
+  user_time_entry_setting:
+    hours: h
+    range: območje (od - do)
+  user:
+    easy_user_type:
+      external: Stranka
+      internal: Uporabnik
+  version_predecessor_error: Milestone %{version_name} is already following another
+    milestone.
+  version_status_closed: zaprt
+  version_status_locked: zaklenjen
+  version_status_open: odprt
+  warning_attachments_not_saved: "%{count} datotek(e) ni bilo mogoče shraniti."

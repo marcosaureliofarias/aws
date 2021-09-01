@@ -1,0 +1,8 @@
+<div class="box">
+  <h3 class="icon icon-message">
+    <%= l(:heading_easy_helpdesk_mail_templates_index) + " (#{easy_helpdesk_mail_templates.size}/#{easy_helpdesk_mail_templates_count})"-%>
+  </h3>
+  <div>
+    <%= render :partial => 'easy_helpdesk_mail_templates/index', :locals => {:easy_helpdesk_mail_templates => easy_helpdesk_mail_templates} %>
+  </div>
+</div>

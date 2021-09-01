@@ -1,0 +1,21 @@
+.box{
+  //page-break-inside:avoid;
+  margin: 0;
+  &.collapsed{
+    //display: none;
+  }
+  .expander, &.epm_onboarding{
+    @extend %display_none;
+  }
+}
+
+.module-toggle-button{
+  page-break-after:avoid;
+  page-break-inside:avoid
+}
+.module-content{
+  page-break-before:avoid;
+}
+.ps__rail-x, .ps__rail-y {
+  display: none;
+}

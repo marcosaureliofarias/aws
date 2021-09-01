@@ -1,0 +1,26 @@
+<%
+  stories_destroy_path = polymorphic_path([:bulk_destroy, @project, :easy_knowledge_stories], :ids => @easy_knowledge_stories.map(&:id), :back_url => back_url) if @easy_knowledge_stories
+  prefix = 'easy_knowledge_'
+  tags = [
+    {method: "#{prefix}#{type}_assign_to_global_link", permission: @can[:edit_all_global_stories]},
+    {method: "#{prefix}#{type}_assign_to_personal_link", permission: @can[:manage_own_personal_categories]},
+    {method: "#{prefix}#{type}_assign_to_project_category_link", permission: @can[:edit_all_project_stories], only: ['story']},
+    {method: "#{prefix}#{type}_assign_to_project_link", permission: @can[:stories_assignment], only: ['story', 'stories']},
+    {method: "#{prefix}#{type}_recommend_mail_link", permission: @can[:stories_assignment], only: ['stories']},
+    {method: "#{prefix}#{type}_assign_to_user_link", permission: @can[:stories_assignment], only: ['story']},
+    {method: "#{prefix}#{type}_assign_to_group_link", permission: @can[:stories_assignment], only: ['story']},
+    {method: "#{prefix}#{type}_assign_to_issue_link", permission: @can[:stories_assignment], only: ['story']},
+    {method: "#{prefix}#{type}_assign_to_issue_link", permission: @can[:stories_assignment], only: ['stories']},
+    {method: 'link_to', permission: easy_knowledge_stories_editable?, only: ['story'],
+     args: [l(:button_easy_knowledge_delete_all_category), {controller: 'easy_knowledge_stories', action: 'destroy', id: @story}, method:(:delete), data: {confirm: l(:text_are_you_sure_delete_story)}, class: 'icon icon-del button', title: l(:title_easy_knowledge_delete_story)]},
+    {method: 'context_menu_link', permission: easy_knowledge_stories_editable?, only: ['stories'],
+     args: [l(:button_delete), stories_destroy_path, {method: 'delete', class: 'icon icon-del button'}]}
+  ]
+%>
+
+<ul class="easy-knowledge__story-buttons">
+  <%= hidden_field_tag 'ids[]', @story.id, :id => 'story-id' if type == 'story' %>
+  <% tags.each do |tag| %>
+    <%= content_tag(:li, send(tag[:method], *(tag[:args]) || back_url || ''), :class=>"easy-knowledge__story-buttons__item") if ((tag[:only] ? tag[:only].include?(type) : true) && respond_to?(tag[:method]) && tag[:permission]) %>
+  <% end %>
+</ul>

@@ -1,0 +1,10 @@
+:root{
+  @each $key, $val in $css-variables {
+    $submap: $val;
+    @each $subkey, $subval in $submap {
+      --#{$key}--#{$subkey}: #{$subval};
+      $submap: map-merge($submap, ($subkey: var(--#{$key}--#{$subkey})));
+    }
+    $css-vars: map-merge($css-vars, ($key: $submap)) !global;
+  }
+}

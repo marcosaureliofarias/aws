@@ -1,0 +1,55 @@
+<div class="contextual">
+  <ul id="bulk-selection">
+    <% @easy_moneys.each do |money| %>
+     <li><%= "##{money}" %></li>
+    <% end %>
+  </ul>
+</div>
+<h2>Bulk edit <%= easy_money_name %></h2>
+<% if @unsaved_money.present? %>
+  <div id="errorExplanation">
+    <span>
+      <%= l(:notice_failed_to_save_money,
+            :count => @unsaved_money.size,
+            :total => @saved_money.size,
+            :ids => @unsaved_money.map {|i| "##{i.id}:#{i.name}"}.join(', ')) %>
+    </span>
+    <ul>
+      <% bulk_edit_error_messages(@unsaved_money).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= labelled_form_for( 'easy_money_entity_class', :url => {:controller => params[:controller], :action => 'bulk_update', :project_id => @project}, :html => {:id => 'bulk_edit_form', :method => :put}) do |f| %>
+  <%= hidden_field_tag(:project_id, @project) %>
+  <%= back_url_hidden_field_tag %>
+  <%= @easy_moneys.collect {|i| hidden_field_tag('ids[]', i.id)}.join("\n").html_safe %>
+  <div class="box tabular">
+    <p>
+      <%= f.text_field :price2, :id => 'price2', :size => 10, :onblur => "computePriceWithVat('price1','price2','vat');" -%>
+    </p>
+    <p>
+      <%= f.text_field :vat, :id => 'vat', :size => 3, :maxlength => 6-%>%
+      <%= check_box_tag 'use_vat', '1' -%><%= label_tag 'use_vat', l(:label_easy_money_use_vat), :class => 'inline' -%>
+    </p>
+    <p>
+      <%= f.text_field :price1, :id => 'price1', :size => 10, :onblur => "computePriceWithoutVat('price1','price2','vat');" -%>
+    </p>
+    <% @custom_fields.each do |custom_field| %>
+      <p><label><%= custom_field.translated_name %></label> <%= custom_field_tag_for_bulk_edit('easy_money_entity_class', custom_field, @project) %></p>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_submit), :class => 'button-positive' %>
+  </div>
+<%end%>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :header_tags do -%>
+  <%= stylesheet_link_tag 'easy_money' -%>
+  <%= javascript_include_tag 'easy_money', defer: true -%>
+<% end -%>

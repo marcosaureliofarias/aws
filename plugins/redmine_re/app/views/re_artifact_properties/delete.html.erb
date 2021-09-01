@@ -1,0 +1,79 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'redmine_re.css', :media => 'all' %>
+  <%= javascript_include_tag 'jquery.layout.js', defer: true %>
+  <%= javascript_include_tag 'jquery.layout.state.js', defer: true %>
+  <%= javascript_include_tag 'redmine_re.js', defer: true %>
+<% end %>
+
+<div id="infobar" class="ui-layout-west ui-layout-content">
+  <%= render "requirements/treebar" %>
+</div>
+
+<div id='detail_view' class='ui-layout-center'>
+  <h2> <%= t(:re_preparing_deletion) %></h2>
+  <p>
+    <%= t(:re_you_asked_for_deleting_the_following_artifact) %>: <b><%= @re_artifact_properties.name %></b> (#<%= @re_artifact_properties.id %>).
+    <br />
+    <%= t(:re_what_will_be_deleted) %>
+  </p>
+
+  <p>
+    <div id="relationship_link_list" class="splitcontentleft">
+      <%= render 're_artifact_relationship/relationship_links' %>
+    </div>
+
+    <div class="splitcontentright">
+      <p>
+        <b><%= t(:re_parent) %></b>
+        <ul>
+          <% if @parent %>
+            <li>
+              <% if @parent.artifact_type == "Project" %>
+                <%= @parent.name %>
+              <% else %>
+                <%= link_to @parent.name, re_artifact_properties_path+"/"+@parent.id.to_s+"/edit" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </p>
+
+      <p>
+        <b><%= t(:re_children) %></b>
+        <ul>
+        	<% unless @children.blank? %>
+  	        <% for child in @children %>
+  	          <li>
+                   <%= link_to child.name, re_artifact_properties_path+"/"+child.id.to_s+"/edit" %>
+  	          </li>
+  	        <% end %>
+          <% end %>
+        </ul>
+      </p>
+    </div>
+  </p>
+
+  <div style="clear:both;"> </div>
+
+  <p>
+    <h3><%= t(:re_confirm_deletion_by_choosing) %></h3>
+    <ul>
+      <% if @children.empty? %>
+      <li>
+        <%= link_to t(:re_delete_artifact), re_artifact_property_path(@re_artifact_properties.id), :method => 'delete', :confirm => t(:re_are_you_sure) %>:<br />
+        <%= t(:re_will_delete_artifact_and_relations, :name => @re_artifact_properties.name) %>
+        </li>
+      <% else %>
+      <li>
+        <%= link_to t(:re_delete_and_move_children), re_artifact_property_path(@re_artifact_properties.id), :method => 'delete', :confirm => t(:re_are_you_sure) %>:<br />
+        <%= t(:re_will_delete_artifact_and_move_children, { :name => @re_artifact_properties.name, :parent => @parent.name }) %>
+      </li>
+      <br />
+      <li>
+        <%= link_to t(:re_delete_recursively), { :action => "recursive_destroy", :id => @re_artifact_properties.id }, :method => 'delete', :confirm => t(:re_are_you_sure) %>: <br />
+        <%= t(:re_will_delete_artifact_and_all_children, { :name => @re_artifact_properties.name }) %>
+      </li>
+      <% end %>
+    </ul>
+  </p>
+</div>

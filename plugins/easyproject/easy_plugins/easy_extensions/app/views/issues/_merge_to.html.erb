@@ -1,0 +1,20 @@
+<div id="merge_to_form" class="box" style="display: none;">
+  <% modul_uniq_id ||= controller_name + '_' + action_name %>
+  <% entity_name = l(:issue, scope: :label_merge_to_entities) %>
+  <%= toggling_container(modul_uniq_id, User.current, {:heading => l(:label_merge_to, :entity_name => entity_name) + ':', :default_button_state => true, :wrapping_heading_element_classes => ' icon icon-integrate'}) do %>
+    <%= form_for(:merge_to,
+                 :url => bulk_update_issues_path(:ids => [@issue.id], :back_url => issue_path(@issue), :merge => '1'),
+                 :method => :post,
+                 :html => {:class => 'form-box tabular'}) do |f| %>
+      <p class="gray-background">
+        <label class="label-before"><%= l(:label_merge_to, :entity_name => entity_name) -%></label>
+        <span class="issue-selector"><%= issues_relations_field_tag 'issue[merge_to_id]', 'merge_to_id', false, :url => {:modal_project_id => @issue.project.id, :query_name => 'issue_relation'}, :multiple => '0' %></span>
+      </p>
+      <div class="form-actions">
+        <%= submit_tag l(:button_merge), :class => 'button-positive' %>
+        <%= link_to_function l(:button_cancel), '$("#merge-to-form").hide();', :class => 'button' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

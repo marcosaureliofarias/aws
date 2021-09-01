@@ -1,0 +1,21 @@
+$("#ajax-modal").html("<%= j(render(template: 'easy_entity_imports/new', formats: [:html])) %>");
+$("#ajax-modal .form-actions").remove();
+
+EASY.modalSelector.showModal();
+$("#ajax-modal").dialog("option", {
+    buttons: [
+        {
+            text: '<%=j l(:button_close) %>',
+            click: function () {
+                $(this).dialog("close");
+            },
+            'class': 'button'
+        },
+        {
+            text: '<%=j l("button_new_#{@easy_entity_import.class.name.underscore}", default: l(:button_submit)) %>',
+            click: function () {
+                $(this).find('form').submit()
+            }, 'class': 'button-positive'
+        }
+    ]
+});

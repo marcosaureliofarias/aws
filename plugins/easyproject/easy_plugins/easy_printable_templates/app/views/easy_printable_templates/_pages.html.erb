@@ -1,0 +1,25 @@
+<% uniq_id_prefix = convert_form_name_to_id(f.object_name) + '_' %>
+<div class="nested-fields box">
+  <h3 class="icon icon-page">
+    <span class="page-title">
+      <%= l(:heading_easy_printable_templates_page_no, :number => "<span class='page-number'>#{f.object.new_record? ? '1' : f.object.position}</span>").html_safe -%>
+    </span>
+    <span class="contextual">
+      <%= link_to(l(:button_easy_printable_templates_show_tokens), 'javascript:void(0)', :onclick => "$('#ajax-modal').html($('##{uniq_id_prefix}tokens_list').clone().html());showModal('ajax-modal', '90%')".html_safe, :class => 'icon icon-add') %>
+      <%= link_to_remove_association l(:button_easy_printable_templates_delete_page), f, :class => 'icon icon-del', :title => l(:button_easy_printable_templates_delete_page) %>
+    </span>
+  </h3>
+  <div class="clear"></div>
+  <div class="splitcontent">
+    <div class="splitcontentleft size-7">
+      <%= f.text_area :page_text, :no_label => true %>
+      <%= wikitoolbar_for(convert_form_name_to_id(f.object_name + '[page_text]'), preview_text_path, {:toolbar => 'Full', :resize_enabled => false, :width => '210mm', :height => '297mm', extraAllowedContent: 'style;*[id,rel](*){*}'}) %>
+    </div>
+    <div class="splitcontentright size-3">
+      <div id="<%= uniq_id_prefix -%>tokens_list" style="height:297mm;overflow:auto;display:none">
+        <%= render(:partial => 'easy_printable_templates/token_list', :locals => {:field_name => f.object_name, :entity => f.object}) %>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

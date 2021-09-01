@@ -1,0 +1,65 @@
+---
+es:
+  button_easy_earned_values_reload_planned: Recargar planeados
+  easy_earned_values:
+    axes:
+      costs: Costes
+      time: Tiempo
+    baseline: Base de referencia
+    chart_types:
+      bar: Barra
+      line: Línea
+      spline: Spline
+    field_reload_constantly: Recargar constantemente
+    help_reload_constantly: Los datos se recargan completamente hasta cada ejecución
+      (esta operación podría llevar mucho tiempo)
+    types:
+      estimated_hours:
+        name: Horas estimadas
+        values:
+          ac_long: Coste real (Tiempo empleado)
+          ev_long: Valor ganado (Valorado % realizado, valorado es Tiempo estimado)
+          pv_long: Valor planificado (Tiempo estimado)
+    use_current_project: Emplear proyecto actual
+    values:
+      ac: Coste real
+      cpi: Rendimiento del coste
+      cpi_help: Representa la cantidad de trabajo que se está realizando en un proyecto
+        por cada unidad de coste empleada. El CPI se obtiene por medio del Valor obtenido/Coste
+        real. Un valor superior a 1 significa que el proyecto avanza correctamente
+        con respecto al presupuesto.
+      cv: Variación del coste
+      cv_help: Variación del coste
+      ev: Valor obtenido
+      pv: Valor previsto
+      spi: Rendimiento del programa
+      spi_help: Representa cómo se está realizando el trabajo real en comparación
+        con el calendario. El SPI se obtiene por el Valor obtenido/Valor planificado.
+        Un valor superior a uno significa que el proyecto avanza correctamente con
+        respecto a la programación.
+      sv: Variación del programa
+      sv_help: Este es el trabajo realizado cuando se compara con el programa planificado.
+        La variación de la fecha se obtiene al calcular la diferencia entre el valor
+        obtenido y el valor previsto
+  easy_pages:
+    modules:
+      easy_earned_value: Valor obtenido
+  easy_rake_tasks:
+    easy_earned_values_updater:
+      caption: Actualizador de valor obtenido
+  label_easy_earned_value: Valor obtenido
+  label_easy_earned_values: Valores obtenidos
+  label_edit_easy_earned_value: Editar valor obtenido
+  label_new_easy_earned_value: Nuevo valor obtenido
+  permission_edit_easy_earned_value: Editar valor obtenido
+  permission_edit_easy_earned_values: Editar valor obtenido
+  permission_view_easy_earned_value: Ver valor obtenido
+  permission_view_easy_earned_values: Ver valor obtenido
+  project_module_easy_earned_values: Valores ganados
+  text_easy_earned_values_baseline_disabled: El módulo de referencia está desactivado.
+    Actívalo.
+  text_easy_earned_values_no_data: Los valores ganados no contienen datos. Se está
+    volviendo a calcular.
+  text_easy_earned_values_not_authorized: No tienes autorización para consultar el
+    valor obtenido.
+  text_easy_earned_values_select_ev: Seleccionar primero el valor obtenido.

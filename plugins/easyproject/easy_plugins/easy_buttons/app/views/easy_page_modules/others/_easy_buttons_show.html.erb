@@ -1,0 +1,78 @@
+<%
+  buttons = @easy_page_modules_data[block_name][:buttons]
+%>
+
+<div id="<%= modul_uniq_id %>_errors" class="easy-button-drop-zone-errors">
+</div>
+
+<div id="<%= modul_uniq_id %>" class="">
+  <% buttons.each do |button| %>
+    <a class="easy-button-drop-zone fc-event <%= button.color %>" href="#" data-css-to-entity="fc-event <%= button.color %>" data-url="<%= execute_easy_button_path(button, format: 'js') %>">
+      <span class="name"><%= button.name %></span>
+
+      <ul></ul>
+    </a>
+  <% end %>
+</div>
+
+<script>
+  EASY.schedule.late(function(){
+    $("#<%= modul_uniq_id %> .easy-button-drop-zone").droppable({
+      hoverClass: "hover",
+      accept: function(item) {
+        if (!item.data("entity-type")) return false;
+        return "<%= settings['button_type'].to_s.downcase %>" === item.data("entity-type").toLowerCase();
+      },
+      drop: function(event, ui) {
+        // Issue, CRMCase, ...
+        var $tr = ui.draggable.closest("tr");
+
+        // Current dropzone
+        var dropZone = $(this);
+
+        // Execute entity on dropzone
+        $.ajax({
+          url: dropZone.data().url,
+          data: { entity_id: ui.draggable.data("entity-id"), api: true },
+          dataType: 'text',
+          success: function(data){
+            // Got new ajax
+            var response = eval(data);
+
+            response.done(function(response2) {
+              // Set css to entity row
+              $tr.addClass(dropZone.data().cssToEntity);
+
+              // Append to list - changed entity
+              var text = $tr.find("*[data-handler=true]").text()
+              $("ul", dropZone).append("<li>" + text + "</li>");
+            }).error(function(response2){
+              var errorContainer = $("#<%= modul_uniq_id %>_errors");
+              errorContainer.html('');
+
+              switch(response.status){
+                // Forbidden
+                case 403:
+                    errorContainer.html(response2.statusText);
+                    errorContainer.effect("highlight", "slow");
+                    break;
+
+                // Unprocessable Entity
+                case 422:
+                    errorContainer.html(response2.responseJSON.errors.join('<br>'));
+                    errorContainer.effect("highlight", "slow");
+                    break;
+              }
+
+            });
+          }
+        });
+      }
+    });
+  });
+</script>
+
+
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'easy_buttons' %>
+<% end %>

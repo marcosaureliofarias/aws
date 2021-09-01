@@ -1,0 +1,54 @@
+<% url_params = { :project_id => @project } -%>
+
+<h2 class="easy_money_time_entry_expenses_title">
+  <%= l(:label_easy_money_time_entry_expenses) -%>
+  <%= select_tag :easy_currency_code, options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, @current_easy_currency_code), class: 'select-easy-currency' %>
+</h2>
+
+<%= render 'project_time_entry', url_params: url_params, easy_currency_code: @current_easy_currency_code -%>
+
+<div class="easy-money-project-time-entry-expenses-container">
+
+</div>
+
+<div id="easy-money-content" class="easy-money-issue-time-entry-expenses-container">
+  <%= render 'issue_time_entry', url_params: url_params, easy_currency_code: @current_easy_currency_code -%>
+</div>
+
+<span class="pagination"><%= pagination_links_full @issues_pages, @issues_count %></span>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :header_tags do -%>
+  <%= stylesheet_link_tag 'easy_money' -%>
+<% end -%>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'easy_money/index_sidebar' -%>
+<% end -%>
+
+<% content_for :easy_page_layout_service_box do -%>
+  <%= link_to_easy_money_overview -%>
+  <%= render :partial => 'easy_money/sidebar_entities_links', :locals => { :entity_type => @entity_type || 'Project', :entity_id => @entity_id || @project.id, :show_new_links => true, :project => @project } %>
+<% end -%>
+
+<% content_for :sidebar_exports do -%>
+  <% easy_other_formats_links(utm_content: 'easy_money_time_entry_expenses') do |f| %>
+    <%= f.link_to 'CSV', :url => { }.merge(url_params), :title => l(:title_other_formats_links_csv) %>
+  <% end %>
+<% end -%>
+
+<% content_for :body_bottom do %>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      var code = document.getElementById('easy_currency_code');
+      if(code) {
+        code.onchange = function () {
+          var uri = new URL(window.location.href);
+          uri.searchParams.set('easy_currency_code', this.value);
+          window.location.href = uri.href;
+        };
+      }
+    });
+  </script>
+<% end %>

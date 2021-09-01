@@ -1,0 +1,13 @@
+@mixin anim--bliprotate{
+  &:active{
+    @include animation(blip 0.1s infinite ease-out);
+    @include animation(shake 0.1s ease-out);
+    &:hover{
+      @include rotate(2deg);
+    }
+  }
+  &:hover{
+    @include scale(1.025);
+    @include box-shadow( 0 1px 2px rgba($black, .1));
+  }
+}

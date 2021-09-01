@@ -1,0 +1,141 @@
+<%
+  user_query = @easy_page_modules_data[block_name][:user_query]
+  group_query = @easy_page_modules_data[block_name][:group_query]
+  issue_query = @easy_page_modules_data[block_name][:issue_query]
+
+  query_form_uniq_id = "#{modul_uniq_id}_query"
+
+  periods = EasyExtensions::EasyQueryHelpers::PeriodSetting::ALL_PERIODS.each do |period|
+    [query_period_zoom_name(period), period]
+  end
+
+  period_type_1_id = "#{modul_uniq_id}_period_type_1"
+  period_type_2_id = "#{modul_uniq_id}_period_type_2"
+%>
+
+<%= form.fields_for :config do |config_form| %>
+  <div class="tabular">
+    <p>
+      <%= config_form.label :title, l(:field_title) %>
+      <%= config_form.text_field :title %>
+    </p>
+
+    <p>
+      <%= config_form.label :period_zoom, l(:label_zoom) %>
+      <%= config_form.select :period_zoom, periods, include_blank: true %>
+    </p>
+
+    <p>
+      <label><%= l(:label_period) %></label>
+
+      <%= config_form.radio_button :period_type, '1', id: period_type_1_id %>
+      <%= config_form.select :period_name, options_for_period_select(config_form.object.period_name, nil, show_future: true, hide_custom: true), {}, onchange: "document.getElementById('#{period_type_1_id}').click()" %>
+    </p>
+
+    <p>
+      <%= config_form.radio_button :period_type, '2', id: period_type_2_id %>
+      <%=
+        from_tag = config_form.date_field(:period_from, value: params.dig(:config, :period_from).presence || config_form.object.period_from, size: 10, onchange: "document.getElementById('#{period_type_2_id}').click()")
+        to_tag = config_form.date_field(:period_to, value: params.dig(:config, :period_to).presence || config_form.object.period_to,  size: 10, onchange: "document.getElementById('#{period_type_2_id}').click()")
+
+        l(:label_date_from_to, start: from_tag, end: to_tag).html_safe
+      %>
+    </p>
+
+    <p>
+      <label><%= l(:label_easy_query_outputs) %></label>
+
+      <label class="radio inline">
+        <%= config_form.radio_button :output_type, '1', id: 'as_list' %> <%= l('label_my_page_issue_output.list') %>
+      </label>
+
+      <label class="radio inline">
+        <%= config_form.radio_button :output_type, '2', id: 'as_chart' %> <%= l('label_my_page_issue_output.chart') %>
+      </label>
+    </p>
+
+    <p>
+      <label><%= l(:description_available_columns) %></label>
+
+      <label class="checkbox inline">
+        <%= config_form.check_box :show_capacity %> <%= l('resource_reports.show_capacity') %>
+      </label>
+      <br>
+      <em class="help"><%= l('resource_reports.help_show_capacity') %></em>
+    </p>
+
+    <p>
+      <label class="checkbox inline">
+        <%= config_form.check_box :show_allocations %> <%= l('resource_reports.show_allocations') %>
+      </label>
+    </p>
+
+<!--    <p>-->
+<!--      <label class="checkbox inline">-->
+        <%#= config_form.check_box :show_full_allocations %> <%#= l('resource_reports.show_full_allocations') %>
+<!--      </label>-->
+<!--      <br>-->
+<!--      <em class="help"><%#= l('resource_reports.help_show_full_allocations') %></em>-->
+<!--    </p>-->
+
+    <p>
+      <label class="checkbox inline">
+        <%= config_form.check_box :show_free_capacity %> <%= l('resource_reports.show_free_capacity') %>
+      </label>
+      <br>
+      <em class="help"><%= l('resource_reports.help_show_free_capacity') %></em>
+    </p>
+
+    <p>
+      <label class="checkbox inline">
+        <%= config_form.check_box :show_all_spent_time %> <%= l('resource_reports.show_all_spent_time') %>
+      </label>
+      <br>
+      <em class="help"><%= l('resource_reports.help_show_all_spent_time') %></em>
+    </p>
+
+    <p>
+      <label class="checkbox inline">
+        <%= config_form.check_box :show_allocations_percentage %> <%= l('resource_reports.show_allocations_percentage') %>
+      </label>
+      <br>
+      <em class="help"><%= l('resource_reports.help_show_allocations_percentage') %></em>
+    </p>
+  </div>
+<% end %>
+
+<div class="form-box form-fields form-fields--odd">
+  <%= render 'resource_reports/query_edit', heading: l('easy_query.name.easy_user_query'),
+                                            key: 'user_query',
+                                            query: user_query,
+                                            modul_uniq_id: modul_uniq_id,
+                                            form: form,
+                                            page_params: page_params,
+                                            page_module: page_module %>
+</div>
+
+
+<div class="form-box form-fields form-fields--even">
+  <%= render 'resource_reports/query_edit', heading: l('easy_query.name.easy_group_query'),
+                                            key: 'group_query',
+                                            query: group_query,
+                                            modul_uniq_id: modul_uniq_id,
+                                            form: form,
+                                            page_params: page_params,
+                                            page_module: page_module %>
+</div>
+
+<div class="form-box form-fields form-fields--odd">
+  <%= render 'resource_reports/query_edit', heading: l('easy_query.name.easy_issue_query'),
+                                            key: 'issue_query',
+                                            query: issue_query,
+                                            modul_uniq_id: modul_uniq_id,
+                                            form: form,
+                                            page_params: page_params,
+                                            page_module: page_module %>
+</div>
+
+
+
+
+

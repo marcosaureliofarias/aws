@@ -1,0 +1,21 @@
+<%  include_galereya_tags
+   include_attachment_tags
+   is_page_module ||= false;
+%>
+<% params[:format] = 'json' %>
+<script type="application/javascript">
+    window.easyDartLoaders = window.easyDartLoaders || [];
+
+    document.write("<ng-root-" + window.easyDartLoaders.length + "></ng-root-" + window.easyDartLoaders.length + ">");
+    window.easyDartLoaders.push({
+        "plugin": "knowledgeBase",
+        "id": "mainKnowledgeBase",
+        "data": JSON.stringify(<%= raw(render(template: 'easy_knowledge/show_as_tree', locals:{is_page_module: is_page_module, categories: categories, stories_without_category: stories_without_category, favorite_story_ids: favorite_story_ids}, formats: [:json])) %>)
+    });
+</script>
+<% params[:format] = 'html' %>
+
+<%# TODO: move to parent template multiple include hazard %>
+<%# include_front_end_commons %>
+
+<%= stylesheet_link_tag 'easy_knowledge' %>

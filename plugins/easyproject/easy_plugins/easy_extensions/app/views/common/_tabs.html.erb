@@ -1,0 +1,56 @@
+<%
+  default_url ||= {}; static_url ||= false; hide_tabs ||= false; do_not_change_url ||= false
+  if !defined?(utm_campaign)
+    utm_campaign = 'tabs'
+  end
+  if !defined?(utm_content)
+    utm_content = nil
+  end
+%>
+<% unless hide_tabs %>
+  <div class="tabs">
+    <ul>
+      <% tabs.each do |tab| %>
+        <% next if tab[:if] && !tab[:if].call %>
+        <li class="<%= (tab[:name] != selected_tab ? nil : 'selected') %>">
+          <% tab_label = tab[:label].is_a?(Symbol) ? l(tab[:label]) : tab[:label] %>
+          <% if tab[:no_js_link] %>
+            <%
+              tab_url = static_url ? default_url : default_url.merge(tab: tab[:name])
+              tab_url.merge!(EasyExtensions::Tracking.to_params(utm_campaign: utm_campaign, utm_content: utm_content, utm_term: tab[:name])) if utm_content
+            %>
+            <%= link_to tab_label, tab_url,
+                        id:    "tab-#{tab[:name]}",
+                        class: (tab[:name] != selected_tab ? nil : 'selected') %>
+          <% elsif tab[:redirect_link] %>
+            <%= link_to tab_label, tab[:url],
+                        id:    "tab-#{tab[:name]}",
+                        class: (tab[:name] != selected_tab ? nil : 'selected') %>
+          <% else %>
+            <%
+              tab_url = static_url ? default_url : default_url.merge(tab: tab[:name])
+              tab_url.merge!(EasyExtensions::Tracking.to_params(utm_campaign: utm_campaign, utm_content: utm_content, utm_term: tab[:name])) if utm_content
+            %>
+            <%= link_to tab_label, tab_url,
+                        id:      "tab-#{tab[:name]}",
+                        class:   (tab[:name] != selected_tab ? nil : 'selected'),
+                        onclick: "showTab('#{tab[:name]}'#{do_not_change_url ? '' : ', this.href'}); this.blur(); return false;" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <div class="tabs-buttons" style="display:none;">
+      <button class="tab-left" type="button" onclick="EASY.utils.moveTabLeft(this);"></button>
+      <button class="tab-right" type="button" onclick="EASY.utils.moveTabRight(this);"></button>
+    </div>
+  </div>
+<% end %>
+
+<% tabs.each do |tab| %>
+  <% next if (tab[:redirect_link] || tab[:no_js_link]) && (selected_tab != tab[:name]) %>
+  <% render_type ||= 'partial' %>
+  <%= content_tag('div', render(render_type.to_sym => tab[render_type.to_sym], locals: { tab: tab }),
+                  id:    "tab-content-#{tab[:name]}",
+                  style: (tab[:name] != selected_tab ? 'display:none' : nil),
+                  class: 'tab-content ' + tab[:css_classes].to_s) %>
+<% end %>

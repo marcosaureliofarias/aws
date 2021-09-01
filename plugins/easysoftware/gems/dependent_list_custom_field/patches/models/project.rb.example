@@ -1,0 +1,28 @@
+Rys::Patcher.add('Project') do
+
+  included do
+    # has_many :things
+
+    after_commit :dependent_list_custom_field_ensure_something, if: -> { Rys::Feature.active?('dependent_list_custom_field.project') }
+  end
+
+  instance_methods do
+
+    private
+
+      def dependent_list_custom_field_ensure_something
+        puts 'Features are activated'
+      end
+
+  end
+
+  instance_methods(feature: 'dependent_list_custom_field.project') do
+    def to_s
+      "I'am cool " + super
+    end
+  end
+
+  class_methods do
+  end
+
+end

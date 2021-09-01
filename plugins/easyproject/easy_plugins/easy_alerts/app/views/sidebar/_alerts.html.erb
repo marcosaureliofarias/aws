@@ -1,0 +1,11 @@
+<% if User.current.allowed_to?(:view_alerts, nil, :global => true) -%>
+  <div class="box alerts-sidebar-types">
+    <h3><%= l(:label_alerts_my) -%></h3>
+    <% AlertType.all.each do |type|
+      reports_size = AlertReport.visible.by_type(type.id).size -%>
+      <%= link_to((type.translated_name +
+          content_tag(:span, "&nbsp;(#{reports_size})".html_safe, :style => ("color:#{type.color}" if reports_size > 0) )).html_safe,
+        { :controller => 'alert_reports', :action => 'index', :type_id => type.id}, :title => l(:title_alerts_sidebar_type, :typename => type.translated_name), :class => 'button') -%>
+    <% end -%>
+  </div>
+<% end -%>

@@ -1,0 +1,142 @@
+api.form_attributes do
+  api.issue :id => @issue.id do
+    api.id(@issue.id)
+    api.subject @issue.subject
+    api.description @issue.description.to_s
+    api.done_ratio(@issue.done_ratio.to_f)
+
+    api.project(:id => @issue.project_id, :name => @issue.project.try(:family_name), :reloadable => true, :collection => 'available_projects')
+    if @issue.safe_attribute?('tracker_id')
+      api.tracker(:id => @issue.tracker_id, :name => @issue.tracker.to_s, :reloadable => true, :collection => 'available_trackers')
+    end
+
+    if @issue.safe_attribute?('assigned_to_id') && (@issue.tracker.nil? || !@issue.tracker.easy_distributed_tasks?)
+      api.assigned_to(:id => @issue.assigned_to_id, :name => @issue.assigned_to.to_s, :reloadable => true, :collection => 'available_assignees')
+    end
+    if @issue.safe_attribute?('category_id') && @issue.project && @issue.project.issue_categories.any?
+      api.category(:id => @issue.category_id, :name => @issue.category.to_s, :reloadable => true, :collection => 'available_categories')
+    end
+    if @issue.safe_attribute? 'priority_id'
+      api.priority(:id => @issue.priority_id, :name => @issue.priority.to_s, :reloadable => true, :collection => 'available_priorities')
+    end
+    if @issue.safe_attribute?('status_id') && @allowed_statuses.any?
+      api.status(:id => @issue.status_id, :name => @issue.status.to_s, :collection => 'available_statuses')
+    end
+    if @issue.safe_attribute?('fixed_version_id') && @issue.assignable_versions.any?
+      api.fixed_version(:id => @issue.fixed_version_id, :name => @issue.fixed_version.to_s, :reloadable => true, :collection => 'available_fixed_versions')
+    end
+
+    api.start_date @issue.start_date, :value => @issue.start_date if @issue.safe_attribute? 'start_date'
+    api.due_date @issue.due_date, :value => @issue.due_date if @issue.safe_attribute? 'due_date'
+    if @issue.project.module_enabled?(:time_tracking) && @issue.safe_attribute?('estimated_hours') && (@issue.tracker.nil? || !@issue.tracker.easy_distributed_tasks?)
+      api.estimated_hours(@issue.estimated_hours.to_f) unless @issue.estimated_hours.nil?
+      api.estimated_hours_present @issue.estimated_hours.nil?
+    end
+    if EasySetting.value('enable_private_issues') && @issue.safe_attribute?('is_private')
+      api.is_private @issue.is_private?
+    end
+    if @issue.project && @issue.project.module_enabled?(:time_tracking) && @issue.safe_attribute_names.include?('activity_id')
+      api.activity(:id => @issue.activity_id, :name => @issue.activity.to_s, :collection => 'available_activities')
+    end
+    if @issue.safe_attribute? 'custom_field_values'
+      render_api_custom_values(@issue.editable_custom_field_values, api)
+    end
+  end
+
+  api.array :available_projects do
+    Array(@available_projects).each do |project|
+      api.project(project.id, :name => j(project.family_name).html_safe, :parent_id => project.parent_id)
+    end
+  end
+  api.array :available_trackers do
+    @issue.project.available_trackers.each do |tracker|
+      api.tracker(tracker.id, :name => tracker.name)
+    end
+  end
+  api.array :available_statuses do
+    Array(@allowed_statuses).each do |status|
+      api.status(status.id, :name => status.name)
+    end
+  end
+  api.array :available_priorities do
+    Array(@priorities).each do |priority|
+      api.priority(priority.id, :name => priority.name)
+    end
+  end
+  api.array :available_assignees do
+    entity_assigned_to_collection_for_select_options(@issue).each do |group|
+      if group.last.is_a?(Array)
+        api.group(:name => group.first) do
+          api.array(:values) do
+            group.last.each do |option|
+              api.assignee(option.last, :name => option.first)
+            end
+          end
+        end
+      else
+        api.assignee(group.last, :name => group.first)
+      end
+    end
+  end
+  api.array :available_categories do
+    @issue.project.issue_categories.each do |category|
+      api.category(category.id, :name => category.to_s)
+    end
+  end
+  api.array :available_fixed_versions do
+    @issue.assignable_versions.each do |version|
+      api.fixed_version(version.id, :name => version.to_s, :due_date => version.due_date)
+    end
+  end
+  api.array :available_activities do
+    if @issue.project.fixed_activity?
+      @issue.project.activities.each do |activity|
+        api.activity(activity.id, :name => activity.to_s)
+      end
+    end
+  end
+  available_cfs = @issue.available_custom_fields
+  if available_cfs.any?
+    api.array :available_custom_fields_values do
+      available_cfs.each do |cf|
+
+      api.custom_field(
+          :id => cf.id,
+          :name => cf.name,
+          :field_format => cf.field_format,
+          :settings => cf.settings,
+          :default_value => cf.default_value,
+          :class_name => cf.format.class.name,
+          :position => cf.position,
+          :is_required => cf.is_required
+      ) do
+
+        if cf.format.is_a?(EasyExtensions::FieldFormats::Percent)
+          api.easy_min_value cf.easy_min_value
+          api.easy_max_value cf.easy_max_value
+        end
+
+        if cf.format.is_a?(EasyExtensions::FieldFormats::EasyLookup)
+          api.settings cf.settings
+          api.multiple cf.multiple
+          api.controller cf.settings["entity_type"].underscore
+        elsif cf.format.is_a?(Redmine::FieldFormat::Numeric)
+          api.min_length cf.min_length
+          api.max_length cf.max_length
+          if cf.format.is_a?(EasyExtensions::FieldFormats::Autoincrement)
+            api.autoincrement_value CustomValue.get_next_autoincrement(cf, @issue).to_s
+          end
+        elsif cf.format.is_a?(Redmine::FieldFormat::List)
+          api.array :values do
+            cf.possible_values_options(@issue.project).each do |name, value|
+              api.value((value || name), :name => name)
+            end
+          end
+          api.multiple cf.multiple
+          api.format_store cf.format_store
+        end
+      end
+      end
+    end
+  end
+end

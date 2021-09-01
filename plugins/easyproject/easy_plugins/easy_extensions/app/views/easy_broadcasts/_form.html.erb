@@ -1,0 +1,38 @@
+<div class="tabular">
+  <div class="splitcontent">
+
+    <div class="splitcontentleft size-2">
+      <%= link_to_function("#{l(:button_check_all)}/#{l(:button_uncheck_all)}", "toggleCheckboxesBySelector('input.user_type')", :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", class: 'icon icon-checked')  %>
+      <%= f.collection_check_boxes(:easy_user_type_ids, EasyUserType.sorted, :id, :name) do |c| %>
+          <br>
+          <%= c.label { c.check_box(class: "user_type") + c.text } %>
+      <% end %>
+    </div>
+
+    <div class="splitcontentright size-8">
+      <div class="splitcontent">
+        <div class="splitcontentleft">
+          <p>
+            <%= label_tag(:start_at, l(:field_easy_broadcast_start_at)) %>
+            <%= text_field_tag :start_at_date, f.object.start_at.strftime('%F'), size: 10, class: 'date-select start_at_date', id: 'start_at_date' -%><%= calendar_for('start_at_date') -%>
+            <%= text_field_tag :start_at_time, f.object.start_at.localtime.strftime('%H:%M'), type: 'time', class: 'time-select time-select-start_at_time', size: 3 %>
+          </p>
+        </div>
+        <div class="splitcontentright">
+          <p>
+            <%= label_tag(:end_at, l(:field_easy_broadcast_end_at)) %>
+            <%= text_field_tag :end_at_date, f.object.end_at.strftime('%F'), size: 10, class: 'date-select end_at_date', id: 'end_at_date' -%><%= calendar_for('end_at_date') -%>
+            <%= text_field_tag :end_at_time, f.object.end_at.localtime.strftime('%H:%M'), type: 'time', class: 'time-select time-select-end_at_time', size: 3 %>
+          </p>
+        </div>
+      </div>
+
+      <div class="box">
+        <p>
+          <%= f.label l(:label_easy_broadcast_message) %>
+          <%= f.text_area :message, rows: 4, class: 'block', no_label: true%>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

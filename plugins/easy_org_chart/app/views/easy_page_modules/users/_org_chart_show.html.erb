@@ -1,0 +1,26 @@
+<%= render 'easy_org_chart/initialization_tags' %>
+
+<div class="orgchart-wrapper">
+  <div class="orgchart-menu text-right">
+    <%= content_tag :button, l(:button_easy_org_chart_collapse), type: 'button', class: 'button icon icon-remove', data: {org_chart_action: 'toggle', status: 'expanded', org_chart_collapse: l(:button_easy_org_chart_collapse), org_chart_expand: l(:button_easy_org_chart_expand)} %>
+    <%= content_tag :button, l(:button_easy_org_chart_export), type: 'button', class: 'button icon icon-print', data: {org_chart_action: 'export'} %>
+  </div>
+  <div class="orgchart-container-wrapper">
+    <div class="orgchart-zoom-icons">
+      <a class="icon icon-zoom-in" href="#" data-org-chart-zoom="in"></a>
+      <a class="icon icon-zoom-out" href="#" data-org-chart-zoom="out"></a>
+      <a class="icon icon-refresh" href="#" data-org-chart-zoom="reset"></a>
+    </div>
+    <div class="orgchart-container" data-role="easy-org-chart" data-path="<%= tree_easy_org_chart_path(format: 'json', page_module_id: page_module.id) %>" data-org-chart-editable="false" data-org-chart-vertical-depth="<%= settings[:vertical_depth] %>"></div>
+  </div>
+  <div class="orgchart-menu">
+    <div class="orgchart-legend push-right">
+      <% %w[root_node parent_node node].each do |node_type| %>
+        <span class="orgchart-legend-label">
+          <span class="orgchart-legend-symbol orgchart-legend-symbol-<%= node_type %>"></span>
+          <%= l("label_easy_org_chart_legend_#{node_type}") %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>

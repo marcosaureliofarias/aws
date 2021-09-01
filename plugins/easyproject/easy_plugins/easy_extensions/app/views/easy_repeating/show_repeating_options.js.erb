@@ -1,0 +1,48 @@
+if (!$("#ajax-modal_easy_acts_as_easy_is_easy_repeating")[0]) {
+  $("#<%= params[:object_name] %>_easy_is_easy_repeating_form_loader").append($("<div/>").attr({id: "ajax-modal_easy_acts_as_easy_is_easy_repeating"}).hide());
+  var easyRepetingModal = $("#ajax-modal_easy_acts_as_easy_is_easy_repeating");
+  easyRepetingModal.html("<%=j render('easy_repeating_advanced_form') %>");
+}
+easyRepetingModal.prepend("<%=j content_tag(:h3, l(:title_easy_repeating_advanced_header), :class => 'title') %>");
+<% unless params[:dont_show_modal] %>
+  showModal('ajax-modal_easy_acts_as_easy_is_easy_repeating', '900');
+  $('#easy_section_repeating_options').show().appendTo('#ajax-modal_easy_acts_as_easy_is_easy_repeating');
+<% end %>
+
+easyRepetingModal.find("h3.title").remove();
+easyRepetingModal.find("#remove_repeat_settings").addClass('hidden');
+
+<% unless params[:dont_show_modal] %>
+  $('#ajax-modal_easy_acts_as_easy_is_easy_repeating').dialog("option", {
+    buttons: [
+      {
+        text: '<%=j l(:button_submit) %>',
+        click: function() {
+          easyRepetingModal.dialog("close");
+        }, 'class': 'button-positive'
+      }
+      <% if !@entity.new_record? && @entity.read_attribute(:easy_is_repeating) == true %>
+      ,
+      {
+        text: '<%=j l(:button_easy_is_not_easy_repeating) %>',
+        click: function() {
+          $('#update_repeating').hide();
+          $('#remove_repeat_settings').click();
+        }, 'class': 'button icon icon-del'
+      }
+      <% end %>
+    ]
+  });
+<% end %>
+
+$('.ui-dialog-titlebar-close').on('click', function(){
+  $('#easy_section_repeating_options').appendTo('#<%= params[:object_name] %>_easy_is_easy_repeating_form_loader').hide();
+});
+
+$("#easy_section_repeating_options_<%= @settings['period'] || 'daily' %>" ).show();
+$('input[name="<%= params[:object_name] || @entity.class.name.underscore %>[easy_repeat_settings][period]"]').change(function( e ){
+  if($(this).is(':checked')) {
+    $('.easy-section-repeating-period').hide();
+    $('#easy_section_repeating_options_' + $(this).val() ).show();
+  }
+});

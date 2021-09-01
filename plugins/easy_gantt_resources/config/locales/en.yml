@@ -1,0 +1,209 @@
+---
+en:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: Allocations already exist
+  button_hide_planned_tasks: Planned tasks
+  button_top_menu_easy_gantt_resources: Resource management
+  easy_gantt_resources_author: Easy Software
+  easy_gantt_resources_author_url: https://www.easysoftware.com/
+  easy_gantt_resources_description: new Resources management view for Easy Gantt
+  easy_gantt_resources_plugin_name: Resource Management
+  easy_gantt_resources:
+    allocator:
+      evenly: Evenly (slow)
+      from_end: From end
+      from_start: From start
+      future_evenly: Future evenly
+      future_from_end: Future from end
+      future_from_start: Future from start
+      label_allocator: Allocator
+      random: Random
+    buttons:
+      button_project_menu: Resource management
+      rm_balance: Balance
+      rm_hide_reservations: Hide Reservations
+      rm_hide_tasks: Tasks
+      rm_reservations: Reservations
+      rm_with_milestones: Milestones
+      rm_with_projects: Projects
+    context:
+      heading_allocator_setting: Allocator setting
+      label_maximal_hours: Maximal hours/day
+      pseudo_even_allocation: Pseudo-even allocations
+      text_setting_for: Setting for
+    errors:
+      assigned_to_is_blank: Assignee must be set
+      estimated_hours_is_blank: Estimated hours is not valid
+      issue_is_closed: Task is closed
+      negative_allocation: has negative number of allocated hours on %{date}
+      no_rights_for_allocation: You do not have rights for allocations on %{issue}
+      non_member_assignee: Task %{issue} belongs to project %{project} and user %{assignee}
+        is not member of it
+      over_allocation: has more allocated hours than possible on %{date}
+      project_is_baseline: Project is baseline
+      project_is_template: Project is template
+      save_error: 'Allocations [%{allocations}] of task "%{name}" for %{assignee}
+        not saved due to: %{reason}'
+      start_or_due_is_required: Start or due date is required
+      under_estimation: is underestimated. Increase the estimation by at least %{over}
+        hours.
+    event_types:
+      generic: Event
+      holiday: Holiday
+      meeting: Meeting
+      symbols:
+        holiday_short: H
+        meeting_short: m
+        nonworking_attendance_short: N
+        unapproved_nonworking_attendance_short: U
+    global_resource_title: Global Resource management
+    label_allocations_sum: Allocations of tasks
+    label_events: Events
+    label_other_allocations_sum: Allocations of non-visible tasks
+    label_reservations_sum: Allocations of reservations
+    label_whole_day: Whole day
+    legend:
+      day_custom_allocation: manually adjusted allocation
+      day_over_allocation: user is overloaded in particular day
+      full_allocations: user has optimal workload
+      no_allocations: user has no work assigned
+      over_allocations: user is overloaded
+      reservation: reservation
+      some_allocations: user has free capacity
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: Resource management
+    text_easy_resources_footer: Redmine Resource management powered by Easy
+    title_rm_short: RM
+  easy_gantt:
+    button:
+      rm_reallocate: Reallocate
+    title:
+      rm_reallocate: Recalculate allocations on every task
+  easy_pages:
+    modules:
+      easy_gantt_resources: Resource management
+      personal_easy_gantt_resources: Personal Resource management
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: Resource Management
+        description: Go to Global Resource management
+  easy_query:
+    name:
+      easy_light_resource_query: Allocations
+      easy_resource_easy_query: Resource management
+  easy_rake_tasks:
+    easy_rake_task_issue_allocations_recalculation:
+      caption: Recalculate task allocations
+  error_allocation_uniqueness: Resource already exists.
+  error_epm_resource_already_active: Page module on the page is already active
+  error_invalid_dates: Invalid dates passed
+  error_resources_not_authorized: Resources weren't saved, you're not authorized to
+    edit all of requested resources.
+  field_advance_hours_definition: Manual hours definition
+  field_advance_hours_per_days: Adjust hours per days
+  field_assigned_to_admin: Administrator
+  field_assigned_to_created_on: Created on
+  field_assigned_to_email: E-mail
+  field_assigned_to_firstname: First name
+  field_assigned_to_lastname: Last name
+  field_assigned_to_login: Login
+  field_assigned_to_status: Status
+  field_change_allocator_enabled: Change allocator
+  field_decimal_allocation: Decimal allocation
+  field_default_allocator: Default allocator
+  field_easy_gantt_show_task_latest_due: Show latest due date
+  field_hide_planned_tasks_enabled: Planned tasks toggle button
+  field_hide_unassigned: Hide unassigned
+  field_hours_in_hour: Estimated time
+  field_hours_in_percent: Estimated time
+  field_hours_per_day: Hours per day
+  field_max_allocation: 'Max allocation time:'
+  field_resource_allocator: Resource allocator
+  field_show_groups: Show groups
+  field_show_total_project_allocations: Show total project allocations
+  field_watchdog_enabled: Watchdog
+  heading_easy_gantt_resources_index: Resources
+  help_easy_gantt_resources_users_estimated_ratios: Estimated time on tasks assigned
+    to user is multiplied by this constant in allocations
+  help_easy_gantt_resources_users_hours_limits: User daily working hours for allocations
+    are limited by this value
+  help_easy_gantt_resources_users_hours_limits_blank: Leave blank to use default value
+  label_allocated_dates: Allocated dates
+  label_allocated_hours: Allocated hours
+  label_easy_gantt_allocations: Allocations
+  label_easy_gantt_original_allocations: Full allocations
+  label_easy_gantt_period: Period
+  label_easy_gantt_resources_balance: Balance
+  label_easy_gantt_resources_get_from_users: count from users
+  label_easy_gantt_resources_get_from_users_for_all_groups: Count from all users
+  label_easy_gantt_resources_global_query_filters: Global default filters
+  label_easy_gantt_resources_groups_holidays_enabled: Enable holidays for groups
+  label_easy_gantt_resources_groups_selection: Groups selection
+  label_easy_gantt_resources_hours_from_calendar: Hours from calendar
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: Hours from calendar
+    for all users
+  label_easy_gantt_resources_new_reservation: New reservation
+  label_easy_gantt_resources_reservation_enabled: Enable reservations
+  label_easy_gantt_resources_settings: Resource settings
+  label_easy_gantt_resources_show_free_capacities: Free capacities
+  label_easy_gantt_resources_user_unassigned: Unassigned
+  label_easy_gantt_resources_users_estimated_ratios: Estimated time ratio
+  label_easy_gantt_resources_users_hours_limits: Hour limit per day
+  label_easy_gantt_resources_users_selection: Users selection
+  label_easy_gantt_resources_with_projects: Show project allocations by default
+  label_easy_meeting_easy_resource_dont_allocate: Don't allocate
+  permission_edit_easy_gantt_resources: Edit Resource management on a project
+  permission_edit_global_easy_gantt_resources: Edit global Resource management
+  permission_edit_personal_easy_gantt_resources: Edit personal Resource management
+  permission_manage_user_easy_gantt_resources: Manage user estimated ratios / hours
+    limits
+  permission_view_easy_gantt_resources: View Resource management on a project
+  permission_view_global_easy_gantt_resources: View global Resource management
+  permission_view_personal_easy_gantt_resources: View personal Resource management
+  project_module_easy_gantt: Easy Gantt
+  text_easy_gantt_resources_advance_hours_definition: Hours can be defined for every
+    day of the week
+  text_easy_gantt_resources_advance_hours_per_days: Max allocable hours per days in
+    the week
+  text_easy_gantt_resources_change_allocator_enabled: Allow to change allocator on
+    task edit
+  text_easy_gantt_resources_change_default_allocator: For performace reasons, changing
+    this option will not affect current existing default allocators on tasks. For
+    reservations, the default allocator is always evenly, but it can be changed after
+    reservation is created.
+  text_easy_gantt_resources_decimal_allocation: Hours will be allocated by decimal
+    numbers (0.5)
+  text_easy_gantt_resources_default_allocator: How estimated hours on tasks will be
+    allocated. (Evenly type may be slow)
+  text_easy_gantt_resources_default_zoom: Default zoom for global resource management
+  text_easy_gantt_resources_groups_holidays_enabled: Allocations are reduced if members
+    of the group have holidays.
+  text_easy_gantt_resources_hide_planned_tasks_enabled: Show toggle "Planned tasks"
+    in resource management
+  text_easy_gantt_resources_hours_per_day: Max allocable hours per day
+  text_easy_gantt_resources_overloaded_assigned: 'Estimated hours on this task are
+    allocated on day(s) where the assignee is overloaded: %{errors}. Check %{link}
+    to make proper changes.'
+  text_easy_gantt_resources_reservation_enabled: Enable hours reservation on users.
+  text_easy_gantt_resources_show_free_capacities: Enable toggling  of display free
+    capacities instead of allocated hours for assigned tasks on resource management
+  text_easy_gantt_resources_show_groups: Show groups on global resource management
+  text_easy_gantt_resources_show_total_project_allocations: Show total allocated hours
+    on project resource management
+  text_easy_gantt_resources_watchdog_enabled: Watch assigned user overloading during
+    task editing
+  text_easy_gantt_resources_with_projects: Turn on "With projects" option in Global
+    RM by default
+  text_easy_gantt_show_task_latest_due: Show latest valid dates for tasks defined
+    by relations or parent
+  text_easy_meeting_easy_resource_dont_allocate: Meeting won't decrease capacity in
+    resource management
+  title_easy_gantt_personal_resources: My resources
+  title_easy_gantt_resources_settings: Resource management by Easy
+  title_easy_gantt_resources_users_settings: Individual user settings

@@ -1,0 +1,10 @@
+<%= title(l(:heading_easy_entity_import_new)) %>
+
+<%= labelled_form_for(@easy_entity_import, { as: 'easy_entity_import', url: easy_entity_imports_path, html: { multipart: true, class: 'tabular easy-entity-import-form form-box' } }) do |f| %>
+  <%= error_messages_for(f.object) %>
+  <%= render(partial: 'easy_entity_imports/form', locals: { f: f }) -%>
+  <br/>
+  <div class="form-actions">
+    <%= f.submit(l(:button_create), class: 'button-positive') %>
+  </div>
+<% end %>

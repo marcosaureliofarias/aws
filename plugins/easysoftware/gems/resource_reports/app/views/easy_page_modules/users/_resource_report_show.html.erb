@@ -1,0 +1,15 @@
+<%
+  period_range = easy_page_modules_data[:period_range]
+  as_list = easy_page_modules_data[:as_list]
+  as_chart = easy_page_modules_data[:as_chart]
+%>
+
+<h3 class="text-center"><%= format_date(period_range[:from]) %> - <%= format_date(period_range[:to]) %></h3>
+
+<% if as_list %>
+  <%= render 'resource_reports/list', local_assigns %>
+<% end %>
+
+<% if as_chart %>
+  <%= render 'resource_reports/chart', local_assigns %>
+<% end %>

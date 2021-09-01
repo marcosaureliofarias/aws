@@ -1,0 +1,24 @@
+<h1><%= l('easy_imports.title_import_report') %></h1>
+<p><%= l('easy_imports.learn_how_to_work_with_imported_data', link: link_to(easy_imports_help_path(help: (@help_page || :workflow_and_members)), easy_imports_help_path(help: (@help_page || :workflow_and_members)), target: '_blank')).html_safe %>.</p>
+<div>
+  <!--Projects with tasks-->
+  <%= render partial: 'easy_imports/reports/projects_with_tasks_list' %>
+
+  <!--Users-->
+  <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: @importer.log[:users], entity_type: :user, path_method: :edit_group_path } %>
+
+  <!--Groups-->
+  <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: @importer.log[:groups], entity_type: :group, path_method: :edit_user_path } %>
+
+  <!--Task statuses-->
+  <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: @importer.log[:issue_statuses], entity_type: :issue_status, path_method: :edit_issue_status_path } %>
+
+  <!--Task priorities-->
+  <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: @importer.log[:issue_priorities], entity_type: :issue_priority, path_method: :edit_enumeration_path } %>
+
+  <!--Trackers-->
+  <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: @importer.log[:trackers], entity_type: :tracker, path_method: :edit_tracker_path } %>
+
+  <!--Milestones-->
+  <%= render partial: 'easy_imports/reports/entities_list', locals: { entities: @importer.log[:versions], entity_type: :version, path_method: :version_path } %>
+</div>

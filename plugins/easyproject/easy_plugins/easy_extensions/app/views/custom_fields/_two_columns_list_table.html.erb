@@ -1,0 +1,12 @@
+<% inline_editable = local_assigns.fetch(:inline_editable, true) %>
+<% half_size = (custom_field_values.size / 2.0).ceil %>
+<% 0.upto(half_size - 1).each do |row|
+  left_value = custom_field_values[row]
+  right_value = custom_field_values[row + half_size] %>
+  <tr>
+    <th<% if left_value && left_value.custom_field.description %> title="<%= h(left_value.custom_field.description) %>"<% end %>><%= left_value ? h(custom_field_name_tag(left_value.custom_field)) : '--' %></th>
+    <td><%= left_value ? show_value(left_value, true, inline_editable: inline_editable) : '--' %></td>
+    <th<% if right_value && right_value.custom_field.description %> title="<%= h(right_value.custom_field.description) %>"<% end %>><%= right_value ? h(custom_field_name_tag(right_value.custom_field)) : '--' %></th>
+    <td><%= right_value ? show_value(right_value, true, inline_editable: inline_editable) : '--' %></td>
+  </tr>
+<% end %>

@@ -1,0 +1,8 @@
+<div id="user-query-automatic-filter">
+  <ul>
+    <% User.active.visible.non_system_flag.easy_type_internal.sorted.each do |user| %>
+      <li><%= link_to(user.name, {:controller => 'issues', :set_filter => 1, :assigned_to_id => user.id, :status_id => 'o'}, :title => l(:label_show_assigned_issues, :username => user.name)) %></li>
+    <% end %>
+  </ul>
+  <%= call_hook(:view_issue_sidebar_user_query) %>
+</div>

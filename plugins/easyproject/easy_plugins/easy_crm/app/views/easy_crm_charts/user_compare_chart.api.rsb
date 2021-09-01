@@ -1,0 +1,14 @@
+api.ticks @users_name
+api.data do
+  api.columns [@targets, @real_sales]
+  api.type 'bar'
+end
+api.title @title
+
+api.chart_options do
+  api.axis do
+    api.y do
+      api.label @currency
+    end
+  end
+end

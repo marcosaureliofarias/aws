@@ -1,0 +1,20 @@
+<% if (defined?(project) && !project.nil?)  -%>
+      <%final_projects_collection = []
+      final_projects_collection << project
+      final_projects_collection << project.parent if project.parent && project.parent.visible?
+      final_projects_collection << project.siblings.visible if EasySetting.value('default_projects_tree_display') == 'with_siblings' && !project.root?
+      final_projects_collection << project.children.visible
+      final_projects_collection = final_projects_collection.flatten.compact.uniq.sort_by(&:lft) -%>
+      <div class="autoscroll">
+        <table class="list projects">
+          <tbody>
+            <% Project.each_with_easy_level(final_projects_collection, :zero_start => true) do |subproject, level| -%>
+              <%  project_url = url_for(:controller => 'projects', :action => 'show', :id => subproject.id, :jump => current_menu_item) %>
+              <tr id="project-<%= subproject.id -%>" class="<%= subproject.css_project_classes(nil, {:level => level}) -%> <%= 'subproject' if subproject.child? -%> <%= "parentproject_#{subproject.parent_id}" if subproject.child? -%><%= " selected" if subproject.id == project.id -%>">
+                <td class="name"><%= link_to h(subproject.name.truncate(38 - (level * 2), :omission => '...')), project_url, { :title => l(:title_project_show, :projectname => subproject.name)} -%></td>
+              </tr>
+            <% end -%>
+          </tbody>
+        </table>
+      </div>
+<% end -%>

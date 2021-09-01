@@ -1,0 +1,5 @@
+api.array :easy_crm_country_values, api_meta(total_count: @entity_count, offset: @offset, limit: @limit) do
+  @entities.each do |easy_crm_country_value|
+    render_api_easy_crm_country_value(api, easy_crm_country_value)
+  end
+end

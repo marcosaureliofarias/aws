@@ -1,0 +1,7 @@
+<%
+additional_elements_to_serialize ||= ''
+additional_hidden_fields ||= {}
+easy_query_apply_url = url_for({:issue_id => @issue, :t => params[:t], :set_filter => '1'}) if @issue
+%>
+<%= render :partial => 'easy_queries/easy_query_index', :locals => {:query => @query, :easy_query_name => (@only_me == true ? l(:label_personal_statement) : l(:label_spent_time)), :additional_elements_to_serialize => additional_elements_to_serialize, :additional_hidden_fields => additional_hidden_fields, :easy_query_apply_url => easy_query_apply_url} %>
+<%= render :partial => 'timelog/tabs' %>

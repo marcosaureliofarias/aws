@@ -1,0 +1,116 @@
+<%
+  data_items = easy_page_modules_data[:data_items]
+  principals = easy_page_modules_data[:principals]
+  zoom = easy_page_modules_data[:zoom]
+  all_periods = easy_page_modules_data[:all_periods]
+  show_settings = easy_page_modules_data[:show_settings]
+  aggregated_items = easy_page_modules_data[:aggregated_items]
+
+  columns_per_period = show_settings.count {|(_, value)| value }
+%>
+
+<div class="autoscroll">
+  <table class="list">
+    <thead>
+      <tr>
+        <th></th>
+        <% all_periods.each do |period_date| %>
+          <th colspan="<%= columns_per_period %>"><%= format_period(period_date, zoom.to_sym) %></th>
+        <% end %>
+      </tr>
+      <tr>
+        <th></th>
+        <% all_periods.each do |period_date| %>
+          <% if show_settings[:capacity] %>
+            <th title="<%= l('resource_reports.help_show_capacity') %>"><%= l('resource_reports.capacity') %></th>
+          <% end %>
+
+          <% if show_settings[:allocations] %>
+            <th><%= l('resource_reports.allocations') %></th>
+          <% end %>
+
+          <%# if show_settings[:full_allocations] -%>
+<!--            <th title="<%#= l('resource_reports.help_show_full_allocations') %>"><%#= l('resource_reports.full_allocations') %></th>-->
+          <%# end %>
+
+          <% if show_settings[:free_capacity] %>
+            <th title="<%= l('resource_reports.help_show_free_capacity') %>"><%= l('resource_reports.free_capacity') %></th>
+          <% end %>
+
+          <% if show_settings[:all_spent_time] %>
+            <th title="<%= l('resource_reports.help_show_all_spent_time') %>"><%= l('resource_reports.all_spent_time') %></th>
+          <% end %>
+
+          <% if show_settings[:allocations_percentage] %>
+            <th title="<%= l('resource_reports.help_show_allocations_percentage') %>"><%= l('resource_reports.allocations_percentage') %></th>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% principals.each do |principal| %>
+        <tr>
+          <td><%= link_to_user(principal) %></td>
+
+          <% all_periods.each do |period_date| %>
+            <% data_item = data_items[period_date][principal.id] %>
+
+            <% if show_settings[:capacity] %>
+              <td><%= easy_format_hours(data_item.capacity) %></td>
+            <% end %>
+
+            <% if show_settings[:allocations] %>
+              <td><%= easy_format_hours(data_item.allocations) %></td>
+            <% end %>
+
+            <%# if show_settings[:full_allocations] %>
+<!--              <td><%#= easy_format_hours(data_item.full_allocations) %></td>-->
+            <%# end %>
+
+            <% if show_settings[:free_capacity] %>
+              <td><%= easy_format_hours(data_item.free_capacity) %></td>
+            <% end %>
+
+            <% if show_settings[:all_spent_time] %>
+              <td><%= easy_format_hours(data_item.all_spent_time) %></td>
+            <% end %>
+
+            <% if show_settings[:allocations_percentage] %>
+              <td><%= format_number(data_item.allocations_percentage, nil, { percentage: true, precision: 2 }) %></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td><%= l('resource_reports.total_average') %></td>
+        <% all_periods.each do |period_date| %>
+          <% if show_settings[:capacity] %>
+            <td class="nowrap"><%= easy_format_hours aggregated_items[period_date].capacity %></td>
+          <% end %>
+
+          <% if show_settings[:allocations] %>
+            <td class="nowrap"><%= easy_format_hours aggregated_items[period_date].allocations %></td>
+          <% end %>
+
+          <%# if show_settings[:full_allocations] %>
+<!--            <td class="nowrap"><%#= easy_format_hours aggregated_items[period_date].full_allocations %></td>-->
+          <%# end %>
+
+          <% if show_settings[:free_capacity] %>
+            <td class="nowrap"><%= easy_format_hours aggregated_items[period_date].free_capacity %></td>
+          <% end %>
+
+          <% if show_settings[:all_spent_time] %>
+            <td class="nowrap"><%= easy_format_hours aggregated_items[period_date].all_spent_time %></td>
+          <% end %>
+
+          <% if show_settings[:allocations_percentage] %>
+            <td class="nowrap"><%= format_number(aggregated_items[period_date].allocations_percentage, nil, { percentage: true, precision: 2 }) %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    </tfoot>
+  </table>
+</div>

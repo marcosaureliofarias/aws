@@ -1,0 +1,175 @@
+---
+da:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: Mail organ (HTML)
+        body_plain: Mail organ (almindelig tekst)
+        issue_status_id: Udstedelse status
+        mailboxes: 'Brug til postkassen:'
+        reply_to: Svar til
+        sender: Sender
+        subject: Emne
+    models:
+      easy_helpdesk_mail_template: Mail skabelon
+  button_easy_helpdesk_add_domain_name: Tilføj mail eller domæne
+  button_easy_helpdesk_add_mail_template: Tilføj mail-skabelon
+  button_easy_helpdesk_add_mailbox: Tilføj postkasse
+  button_easy_helpdesk_add_project: Tilføj projekt
+  button_easy_helpdesk_add_sla: Tilføj SLA
+  button_easy_helpdesk_mail_templates_index: Skabeloner liste
+  button_easy_helpdesk_mailboxes_index: Postkasser liste
+  button_easy_helpdesk_projects_index: Projekter liste
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_plugin_description: "- Kompleks Help Desk løsning"
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Helpdesk - projekter
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Private filtre på projekter i Helpdesk
+      public:
+        easy_helpdesk_project_query: Offentlige filtre på projekter i Helpdesk
+  easy_rake_tasks:
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Helpdesk - modtagelse af mails
+      settings:
+        imap:
+          allow_override: Tillad at tilsidesætte værdier
+          allow_override_example: 'Eksempel: tracker, prioritet - disse egenskaber
+            bør tilsidesætte via mail'
+          application_section_label: Andre indstillinger
+          category_example: 'Eksempel: Kategori - nye opgaver vil have kategori Kategori'
+          email_section_label: Indstillinger for en postkasse
+          folder: Folder
+          folder_example: 'IMAP-mappe til at læse (standard: INBOX)'
+          host: Host
+          host_example: 'Eksempel: mail.company.com'
+          label: IMAP
+          move_on_failure: I fiasko flytte på
+          move_on_failure_example: flytte mails, som er blevet ignoreret til mappe
+            MAILBOX
+          move_on_success: I succes flytte på
+          move_on_success_example: flytte mails, der er blevet modtaget til mappe
+            postkasse, vil ellers blive slettet
+          no_permission_check: Ingen brugers tilladelser tjek
+          password: Adgangskode
+          password_example: 'Eksempel: secretpassword'
+          port: Port
+          port_example: Eksempel 143
+          priority_example: 'Eksempel: Høj - nye opgaver skal have prioriteret højt'
+          project_example: 'Eksempel: 205 - nye opgaver vil blive oprettet til projektet
+            ID 205'
+          ssl: SSL
+          ssl_example: Brug SSL-godkendelse
+          status_example: 'Eksempel: New - nye opgaver vil have status Ny'
+          tracker_example: 'Eksempel: Bug - nye opgaver vil have tracker Bug'
+          unknown_user: Ukendt bruger
+          unknown_user_example: acceptere - Anonym bruger vil blive anvendt skabe
+            - brugeren vil blive oprettet fra post, beton login - denne bruger vil
+            blive brugt
+          username: Bruger
+          username_example: 'Eksempel: accessuser@domain.com'
+        pop3:
+          allow_override: Tillad at tilsidesætte værdier
+          allow_override_example: 'Eksempel: tracker, prioritet - disse egenskaber
+            bør tilsidesætte via mail'
+          apop: APOP
+          apop_example: Brug APOP-godkendelse
+          application_section_label: Andre indstillinger
+          category_example: 'Eksempel: Kategori - nye opgaver vil have kategori Kategori'
+          delete_unprocessed: Slet uforarbejdede
+          delete_unprocessed_example: Slet mails som ikke kan behandles
+          email_section_label: Indstillinger for en postkasse
+          host: Host
+          host_example: 'Eksempel: mail.company.com'
+          label: POP3
+          no_permission_check: Ingen brugers tilladelser tjek
+          password: Adgangskode
+          password_example: 'Eksempel: secretpassword'
+          port: Port
+          port_example: 'Example: 110'
+          priority_example: 'Eksempel: Høj - nye opgaver skal have prioriteret højt'
+          project_example: 'Eksempel: 205 - nye opgaver vil blive oprettet til projektet
+            ID 205'
+          status_example: 'Eksempel: New - nye opgaver vil have status Ny'
+          tracker_example: 'Eksempel: Bug - nye opgaver vil have tracker Bug'
+          unknown_user: Ukendt bruger
+          unknown_user_example: acceptere - Anonym bruger vil blive anvendt skabe
+            - brugeren vil blive oprettet fra post, beton login - denne bruger vil
+            blive brugt
+          username: Bruger
+          username_example: 'Eksempel: accessuser@domain.com'
+  field_default_for_mailbox: Standard for postkasse
+  field_easy_helpdesk_project_matching:
+    domain_name: Mail eller domæne
+    email_field_from: er taget fra felt fra
+    email_field_to: er taget fra felt til
+  field_easy_helpdesk_project_sla:
+    hours_to_response: Timer til svar
+    hours_to_solve: Timer til at løse
+    keyword: Keyword
+  field_email_footer: Mail footer
+  field_email_header: Mail header
+  field_hours_mode_from: SLA arbejdstid
+  field_monitor_due_date: Overvåg støtte billetter forfaldsdato
+  field_monitor_spent_time: Monitor Support billetter brugt tid
+  field_monthly_hours: Forudbetalte support timer
+  heading_easy_helpdesk_index: Helpdesk
+  heading_easy_helpdesk_mail_templates_edit: Rediger mail-skabelon
+  heading_easy_helpdesk_mail_templates_index: Mail skabeloner
+  heading_easy_helpdesk_mail_templates_new: Ny mail-skabelon
+  heading_easy_helpdesk_mail_templates_show: Detalje af mail-skabelon
+  heading_easy_helpdesk_mailboxes_edit: Edit postkasse
+  heading_easy_helpdesk_mailboxes_index: Postkasser
+  heading_easy_helpdesk_mailboxes_new: Ny postkasse
+  heading_easy_helpdesk_projects_edit: Rediger projekt
+  heading_easy_helpdesk_projects_index: Projekter
+  heading_easy_helpdesk_projects_new: Nyt projekt
+  heading_easy_helpdesk_projects_show: Detalje af projekt
+  label_easy_hekodesk_additional_task_info_received_emails: Forarbejdede mails
+  label_easy_helpdesk_alerts: Alarmer indstillinger
+  label_easy_helpdesk_domain_name: Mail-domæne
+  label_easy_helpdesk_emails: Mail-indstillinger - header og footer
+  label_easy_helpdesk_enable_email_footer: Skift footer til dette projekt?
+  label_easy_helpdesk_enable_email_header: Skift header for dette projekt?
+  label_easy_helpdesk_matching: Mail eller domæne indstillinger
+  label_easy_helpdesk_sla: SLA indstillinger - prioriteter, tid til at løse en billet
+  label_filter_group_easy_helpdesk_project_query: Helpdesk - projekt
+  label_issue_bottom_from_easy_helpdesk: Opgave blev skabt af helpdesk (%{easy_helpdesk_mailbox_username})
+  text_easy_helpdesk_mail_template_issue_status_id: Gør det muligt at binde en postkasse
+    skabelon til en konkret opgave status
+  text_easy_helpdesk_mail_template_reply_to: "(Mr. eksempel) - mail er ikke tilladt
+    her"
+  text_easy_helpdesk_mail_template_reply_to2: Fields "Svar til" og "Sender" er taget
+    fra postkasse skabelon for at bevare kommunikation inden for et emne
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Du bør tildele disse postkasser
+    til projekter. Hvis du ikke gør det, vil ukendte indkommende mails ikke behandles!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Disse postkasser har ikke
+    standard projekt:'
+  text_easy_helpdesk_projects_alerts_list: 'Liste af indberetninger:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Liste over indberetninger, der
+    har brug for nedsat en anmeldelsespligtig mail (vil være åben i et tomt vindue):'
+  text_easy_helpdesk_projects_keywords: Hvis mail-emne indeholder defineret streng,
+    særlig prioritet og forfaldsdato vil blive sat. (* Betyder hvert emne)
+  text_easy_helpdesk_projects_monitor_due_date: Denne foruddefinerede advarsel vil
+    sende dig e-mail-meddelelse, hvis en billet overtrådt SLA - blev ikke løst inden
+    periode defineret i SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Denne foruddefinerede advarsel vilsende
+    dig e-mail-meddelelse, hvis samlede tid tilbringer i bestemt kalendermåned exeeds
+    forudbetalte støtte time
+  text_easy_helpdesk_projects_sla_hours_to_response: Den maksimale tid, der kræves
+    fra modtagne mail til starten af ​​realisering.
+  text_easy_helpdesk_projects_sla_hours_to_solve: Den maksimale tid for at løse problemet.
+    Help Desk billet kan visualiseres i et Gantt-diagram - hvis 75% af tid til at
+    løse billetten er ovre - billet er farvet i orange, hvis billetten er over tiden
+    - billet er farvet røde.
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: reaktion
+    bør være at %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: svar
+    må være at %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: beslutsomhed
+    bør være at %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: beslutsomhed
+    må være at %{time}'

@@ -1,0 +1,559 @@
+---
+hr:
+  button_easy_money_copy_to_expected: Kopiraj u očekivano
+  button_easy_money_copy_to_other: Kopiraj u stvarno
+  button_easy_money_move: Promjeni projekt za odabrano
+  button_easy_money_move_to_expected: Premjesti u očekivano
+  button_easy_money_move_to_other: Premjesti u stvarno
+  button_easy_money_priorities_use_in_all_projects: Koristi prioritete tečajeva u
+    svim projektima
+  button_easy_money_priorities_use_in_all_subprojects: Koristi prioritete tečajeva
+    u svim potprojektima
+  button_easy_money_project_expected_expenses: 'Izdatci:'
+  button_easy_money_project_expected_revenues: 'Dohodci:'
+  button_easy_money_project_expenses: 'Izdatci::'
+  button_easy_money_project_index_show_details: Prikaži detalje
+  button_easy_money_project_index_show_empty: Prikaži prazna polja
+  button_easy_money_project_new_expense: Novi izdatak
+  button_easy_money_project_new_revenue: Novi dohodak
+  button_easy_money_project_other_expenses: 'Izdatci:'
+  button_easy_money_project_other_revenues: Proračun po završetku (PPČ / BAC)
+  button_easy_money_project_settings: Postavke novca
+  button_easy_money_project_time_entry_expenses: 'Izdatci za plaću:'
+  button_easy_money_project_time_entry_hours: 'Utrošeno vrijeme:'
+  button_easy_money_project_travel_costs: 'Putni troškovi:'
+  button_easy_money_project_travel_expenses: 'Putni izdatci - nadoknade:'
+  button_easy_money_rate_use_in_all_projects: Koristi tečaj u svim projektima
+  button_easy_money_rate_use_in_all_subprojects: Koristi tečaj u svim potprojektima
+  button_easy_money_save_expected_expense: Spremi planirani izdatak
+  button_easy_money_save_expected_hours: Spremi planirane sate
+  button_easy_money_save_expected_revenue: Spremi očekivani dohodak
+  button_easy_money_save_in_all_projects: Koristi u svim projektima
+  button_easy_money_save_in_all_subprojects: Koristi u svim potprojektima
+  button_easy_money_save_other_expense: Spremi prave izdatke
+  button_easy_money_save_other_revenue: Spremi pravi dohodak
+  button_easy_money_update_all_projects_time_entry_expenses: Ponovno izračunaj izdatke
+    za plaću na svim projektima
+  button_easy_money_update_project_and_subprojects_time_entry_expenses: Ponovno izračunaj
+    izdatke za plaće na projektu i svim potprojektima
+  button_easy_money_update_project_time_entry_expenses: Ponovno izračunaj izdatke
+    za plaće na projektu
+  button_new_easy_entity_csv_import: Novi CSV uvoz
+  easy_money_date_greater_or_equal: "%{due_date} mora biti jednak ili veci od %{start_date}"
+  easy_money_entity:
+    role: Uloga
+    time_entry_activity: Aktivnost
+    user: Korisnik
+  easy_money_expected_expense_custom_field: Planirani izdatci
+  easy_money_expected_payroll_expense_type:
+    amount: izdatci plaće (ukupna suma)
+    estimated_hours: izdatci za plaću (suma procjenjenog vremena svih zadataka na
+      projektu * planirana satnica)
+    hours: izdatci za plaću (očekivani sati na čitavom projektu * planirana satnica)
+    planned_hours_and_rate: zadatak bez opunomoćenika (procjenjeni sati * planirana
+      satnica), zadatak sa opunomoćenikom (procjenjeni sati * satnica po hijerarhiji)
+  easy_money_expected_revenue_custom_field: Planirani dohodci
+  easy_money_expenses_type:
+    list: Detaljna lista
+    sum: ukupni izdatci
+  easy_money_other_expense_custom_field: Stvarni izdatci
+  easy_money_other_revenue_custom_field: Stvarni dohodci
+  easy_money_other_settings_default_currency_format: Pretpostavljeno - prema jeziku
+  easy_money_other_settings_expected_count_price:
+    price1: ukupni iznos
+    price2: iznos bez PDV
+  easy_money_other_settings_expected_rate_type:
+    external: eksterni tečajevi
+    internal: interni tečajevi
+  easy_money_other_settings_price_visibility:
+    all: iznos bez PDV i ukupni iznos
+    price1: samo ukupni iznos
+    price2: samo iznos bez PDV
+  easy_money_other_settings_rate_type:
+    all: interni i eksterni tečaj
+    internal: samo 1 tečaj
+  easy_money_period:
+    daily: Dnevno
+    monthly: Mjesečno
+    weekly: Tjedno
+    yearly: Godišnje
+  easy_money_periodical_entity_invoiced_custom_field: Easy novac - fakturiran
+  easy_money_periodical_entity_project_booking_custom_field: Easy novac - rezervacije
+  easy_money_plugin_author: Easy Software
+  easy_money_plugin_author_url: http://www.easyproject.cz/en
+  easy_money_plugin_description: "- nadzor i upravljanje očekivanim i stvarnim financijskim
+    rezultatima projekta"
+  easy_money_plugin_name: Novac
+  easy_money_rate_entity:
+    role: Tečaj / satnica po ulozi
+    time_entry_activity: Tečaj / satnica po aktivnosti
+    user: Tečaj / satnica po korisniku
+  easy_money_rate_type:
+    external: Eksterni trošak plaća
+    internal: Interni trošak plaća
+    one: Tečaj / satnica
+  easy_money_revenues_type:
+    list: detaljna lista
+    sum: Ukupni iznos
+  easy_money_travel_cost_custom_field: Putni trošak
+  easy_money_travel_expense_custom_field: Putni izdatci
+  easy_pages:
+    categories:
+      easy_money: Novac
+    module_category:
+      easy_money: Novac
+    modules:
+      easy_money_expected_expense_query: Planirani izdatci
+      easy_money_expected_revenue_query: Planirani prihodi
+      easy_money_other_expense_query: Stvarni izdatci
+      easy_money_other_revenue_query: Stvarni prihodi
+      easy_money_project_cache_query: Pregled portfelja
+      easy_money_travel_cost_query: Putni troškovi
+      easy_money_travel_expense_query: Putni izdatci
+    pages_description:
+      easy_money_projects_overview: Novac - početna stranica
+    pages:
+      easy_money_projects_overview: Novac - početna stranica
+  easy_proposer:
+    easy_money_cash_flow:
+      index:
+        caption: Novac - Tok novca
+        description: Pogledaj tok novca
+    easy_money_settings:
+      index:
+        caption: Novac
+        description: Upravljanje postavkama novca
+  easy_query:
+    name:
+      easy_money_cash_flow_query: Tok novca
+      easy_money_expected_expense_query: Planirani izdatci
+      easy_money_expected_revenue_query: Planirani prihodi
+      easy_money_other_expense_query: Stvarni izdatci
+      easy_money_other_revenue_query: Stvarni prihodi
+      easy_money_project_cache_query: Pregled portfelja (Budžeti projekta)
+      easy_money_travel_cost_query: Putni troškovi
+      easy_money_travel_expense_query: Putni izdatci
+    sidebar_filters:
+      personal:
+        easy_money_expected_expense_query: Osobni filteri na planirane izdatke
+        easy_money_expected_revenue_query: Osobni filteri na planirane prihode
+        easy_money_other_expense_query: Osobni filteri na stvarne izdatke
+        easy_money_other_revenue_query: Osobni filteri na stvarne prihode
+        easy_money_project_cache_query: Osobni filteri na pregled budžeta
+        easy_money_travel_cost_query: Osobni filteri na putne troškove
+        easy_money_travel_expense_query: Osobni filteri na putne izdatke
+      public:
+        easy_money_expected_expense_query: Javni filteri na planirane izdatke
+        easy_money_expected_revenue_query: Javni filteri na planirane prihode
+        easy_money_other_expense_query: Javni filteri na stvarne izdatke
+        easy_money_other_revenue_query: Javni filteri na stvarne prihode
+        easy_money_project_cache_query: Javni filteri na pregled budžeta
+        easy_money_travel_cost_query: Javni filteri na putne troškove
+        easy_money_travel_expense_query: Javni filteri na putne izdatke
+  easy_rake_tasks:
+    easy_rake_task_easy_money_project_cache:
+      caption: Ponovni izračun pregleda budžeta projekta
+  easy_reports_categories:
+    easy_money: Novac
+  easy_reports_fields:
+    _project_other_profit: Profit
+    _project_recovery: Oporavak
+    _project_timeentry_average_hourly_expense: Prosječni trošak po satu
+    _time_entry_externalrate: Izdatci za plaće - eksterna stopa
+    _time_entry_internalrate: Izdatci za plaće - interna stopa
+    easy_money_expected_expense_id: Planirani izdatci
+    easy_money_expected_expense_name: Planirani izdatci - Ime
+    easy_money_expected_expense_price1: Planirani izdatci - Ukupna cijena
+    easy_money_expected_expense_price2: Planirani izdatci - Cijena bez PDV
+    easy_money_expected_revenue_id: Planirani dohodak
+    easy_money_expected_revenue_name: Planirani dohodak - Ime
+    easy_money_expected_revenue_price1: Planirani dohodak - Ukupna cijena
+    easy_money_expected_revenue_price2: Planirani dohodak - Cijena bez PDV
+    easy_money_other_expense_id: Stvarni izdatci
+    easy_money_other_expense_name: Stvarni izdatci - Ime
+    easy_money_other_expense_price1: Stvarni izdatci - Ukupna cijena
+    easy_money_other_expense_price2: Stvarni izdatci - cijena bez PDV
+    easy_money_other_revenue_id: Stvarni dohodci
+    easy_money_other_revenue_name: Stvarni dohodci - Ime
+    easy_money_other_revenue_price1: Stvarni dohotci - Ukupna cijena
+    easy_money_other_revenue_price2: Stvarni dohodci - Cijena bez PDV
+    project_expected_hours: Planirani radni sati
+    project_expected_payroll_expense: Planirani izdatci za plaće
+  easy_scheduler_tasks:
+    ep_update_projects_time_entry_expenses: Konverzija troškova plaće
+  error_easy_money_project_selector_select_values: Nema odabranih vrijednosti
+  field_average_hourly_rate_price_1: Prosječna satnica (uključujući PDV)
+  field_average_hourly_rate_price_2: Prosječna satnica (bez PDV)
+  field_easy_money_days_count: Broj dana
+  field_easy_money_expected_expense: Planirani izdatci
+  field_easy_money_expected_expense_description: 'Opis:'
+  field_easy_money_expected_expense_name: 'Ime:'
+  field_easy_money_expected_expense_price1: 'Ukupni iznos:'
+  field_easy_money_expected_expense_price2: 'Iznos bez PDV:'
+  field_easy_money_expected_expense_spent_on: 'Datum:'
+  field_easy_money_expected_expense_vat: 'PDV:'
+  field_easy_money_expected_revenue: Planirani dohodak
+  field_easy_money_expected_revenue_description: 'Opis:'
+  field_easy_money_expected_revenue_name: 'Ime:'
+  field_easy_money_expected_revenue_price1: 'Ukupni iznos:'
+  field_easy_money_expected_revenue_price2: 'Iznos bez PDV:'
+  field_easy_money_expected_revenue_spent_on: 'Datum:'
+  field_easy_money_expected_revenue_vat: 'PDV:'
+  field_easy_money_metric_units: Jedinice
+  field_easy_money_other_expense_description: 'Opis:'
+  field_easy_money_other_expense_name: 'Ime:'
+  field_easy_money_other_expense_price1: 'Ukupni iznos:'
+  field_easy_money_other_expense_price2: 'Iznos bez PDV:'
+  field_easy_money_other_expense_spent_on: 'Datum:'
+  field_easy_money_other_expense_vat: 'PDV:'
+  field_easy_money_other_revenue_description: 'Opis:'
+  field_easy_money_other_revenue_name: 'Ime:'
+  field_easy_money_other_revenue_price1: 'Ukupni iznos:'
+  field_easy_money_other_revenue_price2: 'Iznos bez PDV:'
+  field_easy_money_other_revenue_spent_on: 'Datum:'
+  field_easy_money_other_revenue_vat: 'PDV:'
+  field_easy_money_price_per_day: Cijena po danu
+  field_easy_money_price_per_unit: Cijena po jedinici
+  field_easy_money_project_cache: Pregled projekta
+  field_easy_money_rate_entity_role_name: Naziv uloge
+  field_easy_money_rate_entity_time_entry_activity_name: Naziv aktivnosti
+  field_easy_money_rate_entity_user_name: Ime korisnika
+  field_easy_money_rate_type_external: Eksterna stopa
+  field_easy_money_rate_type_internal: Interna stopa
+  field_easy_money_sum_other_expenses: Izdatci
+  field_easy_money_sum_other_profit: Profit
+  field_easy_money_sum_other_revenues: Dohodci
+  field_easy_money_sum_time_entry_expenses: izdatci za plaće
+  field_easy_money_travel_cost: Putni troškovi
+  field_easy_money_travel_cost_description: 'Opis:'
+  field_easy_money_travel_cost_name: 'Ime:'
+  field_easy_money_travel_cost_price1: 'Ukupni iznos:'
+  field_easy_money_travel_cost_spent_on: 'Datum:'
+  field_easy_money_travel_expense: Putni izdatci
+  field_easy_money_travel_expense_description: 'Opis:'
+  field_easy_money_travel_expense_name: 'Ime:'
+  field_easy_money_travel_expense_price1: 'Ukupni iznos:'
+  field_easy_money_travel_expense_spent_on: 'Datum:'
+  field_easy_money_travel_expense_spent_on_from: 'Datum od:'
+  field_easy_money_travel_expense_spent_on_to: 'Datum do:'
+  field_easy_money_travel_expenses_user: 'Korisnik:'
+  field_empe_cashflow_expected_expenses_price1: Planirani izdatci (uključujući PDV)
+  field_empe_cashflow_expected_expenses_price2: Planirani izdatci (bez PDV)
+  field_empe_cashflow_expected_payroll_expenses_price: Planirani izdatci za plaću
+  field_empe_cashflow_expected_revenues_price1: Planirani prihodi (uz PDV)
+  field_empe_cashflow_expected_revenues_price2: Planirani prihodi (bez PDV)
+  field_empe_cashflow_history_price1: Stvarni profit (uključujući PDV)
+  field_empe_cashflow_history_price2: Stvarni profit (bez PDV)
+  field_empe_cashflow_other_expenses_price1: Stvarni izdatci (uz PDV)
+  field_empe_cashflow_other_expenses_price2: Stvarni izdatci (bez PDV)
+  field_empe_cashflow_other_revenues_price1: Stvarni prihodi (uz PDV)
+  field_empe_cashflow_other_revenues_price2: Stvarni prihodi (bez PDV)
+  field_empe_cashflow_prediction_price1: Planirani profit (uz PDV)
+  field_empe_cashflow_prediction_price2: Planirani profit (bez PDV)
+  field_empe_cashflow_time_entry_expenses_price: Stvarni izdatci za plaću
+  field_empe_cashflow_travel_costs_price1: Putni troškovi
+  field_empe_cashflow_travel_expenses_price1: Putni izdatci
+  field_expected_profit_price_1: Planirani profit (uz PDV)
+  field_expected_profit_price_2: Planirani profit (bez PDV)
+  field_inherit_easy_money_settings: Nasljedi postavke novca
+  field_other_profit_price_1_external: Profit (uz PDV, eksterna stopa)
+  field_other_profit_price_1_internal: Profit (uz PDV, interna stopa)
+  field_other_profit_price_2_external: Profit (bez PDV, eksterna stopa)
+  field_other_profit_price_2_internal: Profit (bez PDV, interna stopa)
+  field_price1: Ukupni iznos
+  field_price2: Iznos bez PDV
+  field_profit_margin: Profitna marža
+  field_spent_hours: Utrošeno vrijeme
+  field_sum_of_all_expected_expenses_price_1: Ukupni planirani izdatci (uz PDV)
+  field_sum_of_all_expected_expenses_price_2: Ukupni planirani izdatci (bez PDV)
+  field_sum_of_all_expected_revenues_price_1: Ukupni planirani prihodi (uz PDV)
+  field_sum_of_all_expected_revenues_price_2: Ukupni planirani prihodi (bez PDV)
+  field_sum_of_all_other_expenses_price_1_external: Ukupni izdatci (uz PDV, eksterna
+    stopa)
+  field_sum_of_all_other_expenses_price_1_internal: Ukupni izdatci (uz PDV, interna
+    stopa)
+  field_sum_of_all_other_expenses_price_2_external: Ukupni izdatci (bez PDV, eksterna
+    stopa)
+  field_sum_of_all_other_expenses_price_2_internal: Ukupni izdatci (bez PDV, interna
+    stopa)
+  field_sum_of_all_other_revenues_price_1: Ukupni prihodi (uz PDV)
+  field_sum_of_all_other_revenues_price_2: Ukupni prihodi (bez PDV)
+  field_sum_of_all_travel_costs_price_1: Putni troškovi
+  field_sum_of_all_travel_expenses_price_1: Putni izdatci
+  field_sum_of_expected_expenses_price_1: Planirani izdatci (uz PDV)
+  field_sum_of_expected_expenses_price_2: Planirani izdatci (bez PDV)
+  field_sum_of_expected_hours: Planirani sati
+  field_sum_of_expected_payroll_expenses: Planirani izdatci za plaću
+  field_sum_of_expected_revenues_price_1: Planirani prihodi (uz PDV)
+  field_sum_of_expected_revenues_price_2: Planirani prihodi (bez PDV)
+  field_sum_of_other_expenses_price_1: Stvarni izdatci (uz PDV)
+  field_sum_of_other_expenses_price_2: Stvarni izdatci (bez PDV)
+  field_sum_of_other_revenues_price_1: Stvarni prihodi (uz PDV)
+  field_sum_of_other_revenues_price_2: Stvarni prihodi (bez PDV)
+  field_sum_of_time_entries_expenses_external: Izdatci za plaću (eksterna stopa)
+  field_sum_of_time_entries_expenses_internal: Izdatci za plaću (interna stopa)
+  field_vat: PDV
+  heading_easy_money_mapping_setting: Mapiranje polja za premještanje / kopiranje
+    novca između stvarnog i planiranog budžeta
+  heading_easy_money_other_settings_prices_and_rates: Cijene i stope/tečajevi
+  heading_easy_money_other_settings_project_overview: Postavke novca
+  label_easy_money: Financije
+  label_easy_money_all_project: Novac za sve projekte
+  label_easy_money_attachments: 'Privitci:'
+  label_easy_money_cash_flow: Tok novca
+  label_easy_money_cash_flow_change_price_type: Koji iznos prikazati?
+  label_easy_money_cash_flow_history: Povijest toka novca
+  label_easy_money_cash_flow_prediction: Predviđanje toka novca
+  label_easy_money_currency: 'Valuta:'
+  label_easy_money_currency_format: Format valute
+  label_easy_money_currency_visible: Dozvoli promjenu valute po projektu
+  label_easy_money_entity_overview: Projekt/zadatak/milestone pregled
+  label_easy_money_expected_budget: Plan
+  label_easy_money_expected_expense: Planirani izdatak
+  label_easy_money_expected_expense_added: Planirani izdatak dodan
+  label_easy_money_expected_expense_edit: Planirani izdatak - izmjena
+  label_easy_money_expected_expense_new: Novi planirani izdatak
+  label_easy_money_expected_expense_plural: Planirani izdatci
+  label_easy_money_expected_expense_show: Planirani izdatak
+  label_easy_money_expected_expense_updated: Planirani izdatak ažuriran
+  label_easy_money_expected_expenses: Pregled planiranih izdataka
+  label_easy_money_expected_payroll_expense_per_hours: Planirana satnica
+  label_easy_money_expected_payroll_expenses: 'Izdatci za plaću:'
+  label_easy_money_expected_revenue: Planirani prihod
+  label_easy_money_expected_revenue_added: Planirani prihod dodan
+  label_easy_money_expected_revenue_edit: Izmjeni planirani dohodak
+  label_easy_money_expected_revenue_new: Novi planirani dohodak
+  label_easy_money_expected_revenue_plural: Planirani dohodci
+  label_easy_money_expected_revenue_show: Planirani dohodci
+  label_easy_money_expected_revenue_updated: Planirani prihod ažuriran
+  label_easy_money_expected_revenues: Pregled planiranih dohodaka
+  label_easy_money_hour: "%{hours} sati."
+  label_easy_money_mapping_setting: Mapiranje od %{from} do %{to}
+  label_easy_money_mass_copy_rates: Stopa vrijednosti troškova
+  label_easy_money_new_expense_description: izdatak
+  label_easy_money_new_expense_text: Izdatak
+  label_easy_money_new_revenue_description: prihod
+  label_easy_money_new_revenue_text: Prihod
+  label_easy_money_new_travel_cost_description: putni troškovi
+  label_easy_money_new_travel_cost_text: Putni troškovi
+  label_easy_money_other_expense: Stvarni izdatak
+  label_easy_money_other_expense_added: Stvarni izdatak dodan
+  label_easy_money_other_expense_edit: Izmjena izdataka
+  label_easy_money_other_expense_new: Novi stvarni izdatak
+  label_easy_money_other_expense_plural: Stvarni izdatci
+  label_easy_money_other_expense_show: Izdatak
+  label_easy_money_other_expense_updated: Stvarni izdatak ažuriran
+  label_easy_money_other_expenses: Pregled stvarnih izdataka
+  label_easy_money_other_revenue: Stvarni prihod
+  label_easy_money_other_revenue_added: Stvarni prihod dodan
+  label_easy_money_other_revenue_edit: Izmjena dohotka
+  label_easy_money_other_revenue_new: Novi stvarni dohodak
+  label_easy_money_other_revenue_plural: Stvarni dohodci
+  label_easy_money_other_revenue_show: Dohodak
+  label_easy_money_other_revenue_updated: Stvarni prihod ažuriran
+  label_easy_money_other_revenues: Pregled stvarnih dohodaka
+  label_easy_money_other_settings: Ostale postavke
+  label_easy_money_other_settings_expected_count_price: Prebroj dohotke i stvarne
+    izdatke koristeći
+  label_easy_money_other_settings_expected_payroll_expense_type: Planirani izdatci
+    za plaću su određeni po
+  label_easy_money_other_settings_expected_rate_type: Prebroj izdatke za plaću koristeći
+  label_easy_money_other_settings_expenses_type: Ostali izdatci će djelovati kao
+  label_easy_money_other_settings_include_childs: Prebroj iznose potprojekata u ukupni
+    novac projekta
+  label_easy_money_other_settings_price_visibility: 'Iznos je unesen kao:'
+  label_easy_money_other_settings_project_expected_visibility: Omogući planirane budžete
+  label_easy_money_other_settings_project_use_easy_money_for_easy_crm_cases: Koristi
+    novac na CRM slučajeve
+  label_easy_money_other_settings_project_use_easy_money_for_issues: Koristi novac
+    na zadatke
+  label_easy_money_other_settings_project_use_easy_money_for_versions: Koristi novac
+    na datume prekretnice (milestones)
+  label_easy_money_other_settings_rate_type: 'Za izdatke za plaću koristi:'
+  label_easy_money_other_settings_revenues_type: Prihodi će se ponašati kao
+  label_easy_money_other_settings_travel_cost_price_per_unit: Putni trošak - Cijena
+    po jedinici
+  label_easy_money_other_settings_travel_expense_price_per_day: Putni izdatak - Cijena
+    po danu
+  label_easy_money_other_settings_travel_metric_unit: Jedinica udaljenosti
+  label_easy_money_other_settings_use_travel_costs: Koristi putne troškove
+  label_easy_money_other_settings_use_travel_expenses: Koristi putne izdatke - nadoknade
+  label_easy_money_other_settings_vat: 'Ukoliko se prikazuje samo ukupni iznos, PDV
+    je:'
+  label_easy_money_price_per_day: Cijena po danu
+  label_easy_money_profit_margin: Profitna marža
+  label_easy_money_project_cache: Pregled portfelja
+  label_easy_money_project_index: Novac
+  label_easy_money_project_index_estimated_hours: 'Procjenjeno vrijeme:'
+  label_easy_money_project_index_profit: 'Profit:'
+  label_easy_money_project_index_sum_hours: 'Planirani sati:'
+  label_easy_money_project_issues_time_entry_expenses: Izdatci za plaću za projektne
+    zadatke
+  label_easy_money_project_name: 'Projektni budžet:'
+  label_easy_money_project_time_entry_expenses: Izdatci troškova plaće isključivo
+    na projektu
+  label_easy_money_project_usage_type: 'Koristi na projektu:'
+  label_easy_money_rate_priorities_settings: Postavke stopi izdataka
+  label_easy_money_real_budget: Stvarnost
+  label_easy_money_round_money_on_list: Zaokruži vrijednosti na listi
+  label_easy_money_select_project: Odaberi projekt
+  label_easy_money_settings: Postavke novca
+  label_easy_money_sidebar:
+    issue: Novac za zadatak
+    project: Budžet projekta
+    version: Novac za milestone
+  label_easy_money_subproject_explication: "*) (plan / stvarnost)"
+  label_easy_money_subproject_profit: Rezultat *
+  label_easy_money_subproject_sum_expenses: Izdatci *
+  label_easy_money_subproject_sum_payroll_expenses: Izdatci za plaću *
+  label_easy_money_subproject_sum_revenues: Dohodci *
+  label_easy_money_subproject_sum_travel_costs: Putni troškovi
+  label_easy_money_subproject_sum_travel_expenses: Putni izdatci
+  label_easy_money_subprojects: Pregled potprojekata
+  label_easy_money_time_entry_expenses: Pregled izdataka za plaću
+  label_easy_money_total: 'ukupno:'
+  label_easy_money_travel_cost: Putni trošak
+  label_easy_money_travel_cost_added: Putni trošak dodan
+  label_easy_money_travel_cost_edit: Izmjena putnog troška
+  label_easy_money_travel_cost_new: Novi putni trošak
+  label_easy_money_travel_cost_plural: Putni troškovi
+  label_easy_money_travel_cost_show: Putni trošak
+  label_easy_money_travel_cost_updated: Putni trošak ažuriran
+  label_easy_money_travel_costs: Pregled putnih troškova
+  label_easy_money_travel_expense: Putni izdatak
+  label_easy_money_travel_expense_added: Putni izdatak dodan
+  label_easy_money_travel_expense_edit: Putni izdatak - izmjena
+  label_easy_money_travel_expense_new: Novi putni izdatak
+  label_easy_money_travel_expense_plural: Putni izdatci
+  label_easy_money_travel_expense_show: Putni izdatak
+  label_easy_money_travel_expense_spent_on_from: Datum od
+  label_easy_money_travel_expense_spent_on_to: Datum do
+  label_easy_money_travel_expense_updated: Putni izdatak ažuriran
+  label_easy_money_travel_expenses: Putni izdatci - pregled nadoknada
+  label_easy_money_use_vat: koristi PDV računanje
+  label_filter_group_easy_money_expected_expense_query: Planirani izdatci
+  label_filter_group_easy_money_expected_revenue_query: Planirani prihodi
+  label_filter_group_easy_money_other_expense_query: Stvarni izdatci
+  label_filter_group_easy_money_other_revenue_query: Stvarni prihodi
+  label_filter_group_easy_money_project_cache_expenses: Izdatci
+  label_filter_group_easy_money_project_cache_profit: Profit
+  label_filter_group_easy_money_project_cache_query: Ostali
+  label_filter_group_easy_money_project_cache_revenues: Prihodi
+  label_filter_group_easy_money_project_cache_travel: Putovanje
+  label_filter_group_easy_money_travel_cost_query: Putni troškovi
+  label_filter_group_easy_money_travel_expense_query: Putni izdatci - nadoknade
+  menu_easy_money: Novac
+  notice_easy_money_recalculate: Iznosi će biti ponovno izračunati u roku od idućeg
+    posjeta pregledu stranice.
+  permission_easy_budgetsheet_view_external_rates: Prikaži eksterne stope
+  permission_easy_budgetsheet_view_internal_rates: Prikaži interne stope
+  permission_easy_money_cash_flow_history: Pregled povijesti toka novca
+  permission_easy_money_cash_flow_prediction: Pregled predviđanja toka novca
+  permission_easy_money_manage_expected_expense: Dodaj planirani izdatak
+  permission_easy_money_manage_expected_payroll_expense: Dodaj planirani izdatak za
+    plaće
+  permission_easy_money_manage_expected_revenue: Dodaj planirane dohotke
+  permission_easy_money_manage_other_expense: Dodaj stvarne izdatke
+  permission_easy_money_manage_other_revenue: Dodaj stvarne dohotke
+  permission_easy_money_manage_travel_cost: Dodaj putne troškove
+  permission_easy_money_manage_travel_expense: Dodaj putne izdatke
+  permission_easy_money_move: Premjesti novac između projekata
+  permission_easy_money_settings: Pristup postavkama novca
+  permission_easy_money_show_expected_expense: Prikaži planirane izdatke
+  permission_easy_money_show_expected_payroll_expense: Prikaži planirane izdatke za
+    plaće
+  permission_easy_money_show_expected_profit: Prikaži planirani profit
+  permission_easy_money_show_expected_revenue: Prikaži planirane dohotke
+  permission_easy_money_show_other_expense: Prikaži stvarne izdatke
+  permission_easy_money_show_other_profit: Prikaži stvarni profit
+  permission_easy_money_show_other_revenue: Prikaži stvarne dohotke
+  permission_easy_money_show_time_entry_expenses: Prikaži stvarne izdatke za plaće
+  permission_easy_money_show_travel_cost: Prikaži putne troškove
+  permission_easy_money_show_travel_expense: Prikaži putne izdatke
+  permission_view_easy_money: Pristup modulu novca (općenito)
+  project_default_page:
+    easy_money: Novac
+  project_module_easy_money: Novac
+  tab_easy_money_expected_expense_custom_field: Novac - Planirani izdatci
+  tab_easy_money_expected_revenue_custom_field: Novac - Planirani dohotci
+  tab_easy_money_other_expense_custom_field: Novac - Stvarni izdatci
+  tab_easy_money_other_revenue_custom_field: Novac - Stvarni dohotci
+  tab_easy_money_other_settings: Ostale postavke
+  tab_easy_money_rate_priorities: Hijerarhija tečaja
+  tab_easy_money_rate_role: Tečaj po ulozi
+  tab_easy_money_rate_time_entry_activity: Stope po aktivnosti
+  tab_easy_money_rate_user: Stope po korisniku
+  tab_easy_money_travel_cost_custom_field: Novac - Putni troškovi
+  tab_easy_money_travel_expense_custom_field: Novac - Putni izdatci - Nadoknade
+  text_easy_money_rate_priorities_settings: Neke aktivnosti, korisnici ili uloge možda
+    nemaju postavljenu stopu (tečaj). Prema ovoj hijerarhiji, prva stopa koja nije
+    nula je korištena za izvješća.
+  title_close: Klikom zatvarate ovaj panel.
+  title_easy_money_expected_profit: Planirani profit na projektu %{project} je %{value}.
+  title_easy_money_link_to_project: Idi na budžet od %{project}.
+  title_easy_money_link_to_subproject: Idi na budžet od %{subproject}.
+  title_easy_money_other_profit: Profit na projektu %{project} je %{value}.
+  title_easy_money_other_repeating_expense_show: Prikaži ponavljajuće izdatke.
+  title_easy_money_other_repeating_revenue_show: Prikaži ponavljajuće dohotke.
+  title_easy_money_priorities_use_in_all_projects: Koristi poredak stopa na svim projektima
+  title_easy_money_priorities_use_in_all_subprojects: Koristi poredak stopa (tečajeva)
+    na svim potprojektima
+  title_easy_money_project_expected_expenses: Prikaži planirane izdatke projekta
+  title_easy_money_project_expected_revenues: Prikaži planirane dohotke projekta
+  title_easy_money_project_expenses_per_month: Klikom možete prikazati mjesečne izdatke
+    na projektu.
+  title_easy_money_project_index_show_empty: Prikaži prazna polja.
+  title_easy_money_project_new_expense: Dodaj novi izdatak
+  title_easy_money_project_new_revenue: Dodaj novi dohodak
+  title_easy_money_project_other_expenses: Prikaži stvarne izdatke projekta
+  title_easy_money_project_other_revenues: Prikaži stvarne dohotke projekta
+  title_easy_money_project_revenues_per_month: Klikom možete prikazati mjesečne prihode
+    na projektu.
+  title_easy_money_project_time_entry_expenses: Prikaži stvarne izdatke za plaću na
+    projektu
+  title_easy_money_project_travel_costs: Prikaži putne troškove projekta
+  title_easy_money_project_travel_expenses: Prikaži izdatke putovanja - nadoknade
+    projekta
+  title_easy_money_rate_use_in_all_projects: Spremi stope i primjeni ih na sve projekte
+  title_easy_money_rate_use_in_all_subprojects: Spremi stope i primjeni ih na sve
+    potprojekte
+  title_easy_money_rates_save: Spremi stope
+  title_easy_money_settings: Idi na postavke novca projekta
+  title_easy_money_sum_expected_expenses: Suma planiranih izdataka na projekt %{project}
+    je %{value}.
+  title_easy_money_sum_expected_payroll_expenses: Suma planiranih plaća na projektu
+    %{project} je %{value}.
+  title_easy_money_sum_expected_revenues: Suma planiranih dohodaka na projektu %{project}
+    je %{value}.
+  title_easy_money_sum_other_expenses: Suma stvarnih izdataka na projektu %{project}
+    je %{value}.
+  title_easy_money_sum_other_revenues: Suma stvarnih dohodaka na projektu %{project}
+    je %{value}.
+  title_easy_money_sum_time_entry_expenses: Suma izdataka za plaću na projektu %{project}
+    je %{value}.
+  title_easy_money_sum_travel_costs: Suma putnih troškova na projektu %{project} je
+    %{value}.
+  title_easy_money_sum_travel_expenses: Suma putnih izdataka na projektu %{project}
+    je %{value}.
+  title_easy_money_update_all_projects_time_entry_expenses: Ponovno izračunaj putne
+    izdatke na svim projektima.
+  title_easy_money_update_project_and_subprojects_time_entry_expenses: Klikni da bi
+    započeo konverziju troška plaće projekta i svih potprojekata (može potrajati nekoliko
+    minuta).
+  title_easy_money_update_project_time_entry_expenses: Ponovno izračunaj izdatke za
+    plaću na projektu.
+  tooltip_real_hourly_rate: Projekt se temelji na prosječnoj satnici %{average_hourly_rate}
+    / hrs.
+  warning_easy_money_all_projects:
+    expenses_type: 'Svi prijašnje uneseni izdatci za sljedeće projekte će biti obrisani:
+      %{projects}'
+    question: Jeste li sigurni da želite koristiti ove postavke na svim projektima?
+    revenues_type: 'Svi prijašnje uneseni dohotci na sljedećim projektima će biti
+      obrisani: %{projects}'
+  warning_easy_money_settings:
+    expenses_type: Mjenjate ulaznu metodu izdataka (svi izdatci, koji su prije bili
+      uneseni, će biti obrisani!).
+    global_question: Želite li spremiti globalne postavke?
+    project_question: Želite li spremiti postavke u projektu?
+    revenues_type: Mjenjate ulaznu metodu dohodaka (svi dosadašnji dohotci, koji su
+      prije bili uneseni, će biti obrisani!).

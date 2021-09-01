@@ -1,0 +1,7 @@
+<p class="fullline">
+<label><%= l(:label_easy_mail_signature) %></label>
+<%= fields_for(user) do |user_form| %>
+    <%= user_form.text_area :easy_mail_signature, :class => 'wiki-edit' %>
+    <%= wikitoolbar_for "#{user_form.object_name}_easy_mail_signature" %>
+<% end %>
+</p>

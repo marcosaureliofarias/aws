@@ -1,0 +1,13 @@
+<% render_watchers_column = User.current.allowed_to?(:add_issue_watchers, @project || @issue.project) %>
+
+
+<%= title l(:label_issue_new) %>
+
+<%= call_hook(:view_issues_new_top, {:issue => @issue}) %>
+
+<%= render :partial => 'issues/new_form', :locals => {:render_watchers_column => render_watchers_column} -%>
+
+<div id="preview" class="wiki"></div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+<% include_calendar_headers_tags %>

@@ -1,0 +1,702 @@
+---
+en:
+  activerecord:
+    attributes:
+      re_artifact_properties:
+        acceptance_criteria: Acceptance criteria
+        created_by: Creating user
+        parent: Parent artifact
+        updated_by: Updating user
+      re_artifact_relationship:
+        relation_type: Relation type
+        sink: Sink artifact
+        source: Source artifact
+        source_id: Source artifact
+    errors:
+      models:
+        re_artifact_relationship:
+          attributes:
+            source_id:
+              re_the_specified_relation_already_exists: The specified relation already
+                exists
+    models:
+      re_artifact_properties: Artifact
+      re_artifact_relationship: Relation
+  add_issue_to_requirement: Add related task
+  artifact_issue_coverage: 'Task/Artifact coverage:'
+  artifactcount: Number of artifacts
+  artifacts_wo_issues: Number of artifacts not connected to any task
+  comments: Comments
+  conflict: Conflict
+  connect_issue: Connect task
+  dates: Dates
+  datetime:
+    formats:
+      short: "%m/%d/%y, %H:%M"
+  dependency: Dependency
+  field_re_artifact: field artifact
+  field_re_artifact_properties:
+    created_by: 'Creating User:'
+    name: 'Name:'
+    parent: 'Parent artifact:'
+    project: 'Project:'
+    updated_by: 'Updating User:'
+  field_subtasks: Subtasks
+  general_visualization_settings: General visualization settings
+  implementation_of: Implementation of
+  issue_menue_visualization: Tasks
+  issuecount: Number of tasks
+  issues_wo_artifacts: Number of tasks not connected to any artifact
+  label_any: any
+  label_asc: ascending
+  label_attachments: Attachments
+  label_desc: descending
+  label_is_me: is me
+  label_is_not_me: is not me
+  label_re_artifact_baseline: Edit baseline
+  label_re_artifact_baseline_modal: Requirements baseline modal
+  label_re_artifact_baseline_new: Create baseline
+  label_re_artifact_properties_plural: Artifacts
+  label_re_artifact_property_plural: Artifacts
+  label_redmine_re_artifact_custom_field_plural: Requirements
+  label_some: some
+  main_tab: Main tab
+  new_comment: New comment
+  new_comment_text: 'Comment text:'
+  open_requirements: Open requirements
+  own_rating: Your rating
+  parentchild: Parent-child
+  part_of: Part of
+  permission_administrate_requirements: Administrate requirements
+  permission_edit_requirements: Edit requirements
+  permission_view_requirements: View requirements
+  progress: Progress
+  project: Project
+  project_module_requirements: Requirements
+  rating: Rating
+  rating_average: Rating average
+  rationale: Rationale
+  re_404_artifact_not_found: The artifact (or artifact ID) could not be found
+  re_404_artifact_not_found_or_project_missing: No artifact could be found and no
+    project ID was supplied
+  re_404_invalid_project_id: The project (or project ID) could not be found or is
+    invalid
+  re_actors: Actors
+  re_add_associated_requirements: Add related artifacts
+  re_add_secondary_actor: Add secondary actor
+  re_administrate: Administration
+  re_alias_name: Name of relation
+  re_apply_filter: Apply filter
+  re_are_you_sure: Are you sure?
+  re_artifact: Artifact
+  re_artifact_attributes: Artifact attributes
+  re_artifact_baseline_deleted: Baseline successfuly deleted
+  re_artifact_baseline_destroy: Delete baseline
+  re_artifact_baseline_edit: Edit baseline
+  re_artifact_baseline_revert: Revert to baseline
+  re_artifact_baseline_reverted: Successfully reverted to baseline %{baseline}
+  re_artifact_comments_count: Number of comments
+  re_artifact_configuration: Artifact configuration
+  re_artifact_create: Create a new Requirements Artifact
+  re_artifact_created_by: Created by
+  re_artifact_description: Description
+  re_artifact_details: Artifact details
+  re_artifact_export: artifact_export
+  re_artifact_history: History
+  re_artifact_id: "#"
+  re_artifact_name: Name
+  re_artifact_order: Artifact display order
+  re_artifact_priority: Priority
+  re_artifact_properties_attachment_missing: Artifact is missing attachment
+  re_artifact_properties_created: Artifact created
+  re_artifact_properties_diff_added: "<b>%{key}</b> changed to <i>%{new_value}</i>"
+  re_artifact_properties_diff_changed: "<b>%{key}</b> changed from <i>%{value}</i>
+    to <i>%{new_value}</i>"
+  re_artifact_properties_diff_deleted: "<b>%{key}</b> deleted (value was <i>%{value}</i>)"
+  re_artifact_properties_import: Artifact import
+  re_artifact_properties_import_invalid_extension: Invalid attachment extension.
+  re_artifact_properties_import_success: Artifact import successful.
+  re_artifact_properties_import_with_errors: 'Artifact import completed with errors:
+    %{errors}.'
+  re_artifact_properties_not_enought_chars: Minimum chars %d
+  re_artifact_properties_to_many_chars: Maximum chars %d
+  re_artifact_properties_updated: Artifact properties updated
+  re_artifact_properties_validates_presence_of_artifact: No artifact has been associated
+    with these artifact properties
+  re_artifact_properties_validates_presence_of_created_by: Created by cannot be blank.
+  re_artifact_properties_validates_presence_of_name: Enter the name of the artifact.
+  re_artifact_properties_validates_presence_of_parent: This artifact does not seem
+    to have a parent artifact defined
+  re_artifact_properties_validates_presence_of_project: There is no project associated
+    to this artifact.
+  re_artifact_properties_validates_presence_of_updated_by: Updated by cannot be blank.
+  re_artifact_properties_validates_uniqueness_of_artifact: The artifact associated
+    with these artifact properties has to be unique
+  re_artifact_properties_validates_uniqueness_of_name: The name is already used in
+    another artifact.
+  re_artifact_properties_version: 'Version #%{version}'
+  re_artifact_properties_version_revert: Revert to version
+  re_artifact_properties_version_reverted: 'Successfully reverted to version #%{version}'
+  re_artifact_rating_average: Rating average
+  re_artifact_related_content: Related content
+  re_artifact_relationships: Relation
+  re_artifact_relationships_incoming: Incoming relations
+  re_artifact_relationships_outgoing: Outgoing relations
+  re_artifact_responsible: Responsible
+  re_artifact_responsibles: Responsibles
+  re_artifact_type: Type
+  re_artifact_type_description: Artifact type description
+  re_artifact_type_description_configuration: Configuration of description of artifact
+    type %{artifact_type}
+  re_artifact_updated_by: Updated by
+  re_artifacts: Artifacts
+  re_asscociated_requirements: Requirements
+  re_associated_issues: Related tasks
+  re_at: at
+  re_attachment: File attachment
+  re_attachment_deleted: The file attachment %{name} has been deleted
+  re_attachment_file: File
+  re_attachment_no_file_error: Please select a file!
+  re_attachment_not_deleted: The file attachment %{name} could not be deleted
+  re_attachment_not_found: Could not find a file attachment with id %{id} to delete
+  re_attachment_priority: Priority
+  re_attachment_saved: File attachment successfully saved
+  re_attachment_size_greater_zero: The filesize has to be >0 bytes !
+  re_attachment_validation_error: 'File attachment error: %{msg}'
+  re_baselines: Baselines
+  re_by: by
+  re_cancel: Cancel
+  re_cannnot_delete_project_artifact: This artifact is a project artifact which cannot
+    be deleted. To delete the project, please use
+  re_change_request: Change request
+  re_changed_by: Changed by
+  re_child_artifacts: Child artifacts
+  re_children: Children
+  re_color: Color
+  re_column_artifact_type: ''
+  re_column_create_child: ''
+  re_column_created_at: ''
+  re_column_description: ''
+  re_column_edit: ''
+  re_column_name: ''
+  re_column_priority: ''
+  re_column_updated_at: ''
+  re_common_attributes: Common attributes
+  re_common_linked_artifacts: Related artifacts
+  re_conf_add_relation: Add relation
+  re_conf_add_status: Add status
+  re_conf_alias_name: You can give another name to this artifact type to match your
+    requirements managment process
+  re_conf_artifact_directed: Directed
+  re_conf_artifact_display_order: Use Drag and Drop to change the display order (e.g.
+    in the side menu or the index page)
+  re_conf_artifact_in_use: Do you want do use (show) this artifact type in this project
+    (existing artifacts will not be deleted)?
+  re_conf_color: The color code of this artifact throughout the application. This
+    is especially useful in the visualization
+  re_conf_directed: Directed
+  re_conf_display_order: Display order
+  re_conf_fields: Configure the custom fields of this artifact type
+  re_conf_internal_name: Internal name
+  re_conf_show_in_visualization: Define if this relation type is shown in visualization
+    by default
+  re_configs_saved: Configurations saved successfully
+  re_configure: Configure
+  re_configure_fields_treebar: Configure fields of %{artifact_type}
+  re_configure_plugin: Requirements settings
+  re_confirm: Confirm
+  re_confirm_deletion_by_choosing: Please confirm the deletion by choosing an option
+    below
+  re_conflict: Conflict
+  re_conflict_relation_type: Conflict
+  re_connected_nodes: Connected nodes
+  re_contains: Contains
+  re_continue_here: For more information continue to here
+  re_create: Create
+  re_create_a_new: Create a new
+  re_create_baseline: Create baseline
+  re_create_below: Create artifact on same level...
+  re_create_child: Create child
+  re_create_goal: ''
+  re_create_in: Create artifact under...
+  re_create_new: Create a new
+  re_create_new_artifacts: Create new artifacts
+  re_create_new_relation: Create a new relation
+  re_create_new_relation_prompt: Please add at least one type of relation
+  re_create_new_relationship: Create new relation
+  re_create_re_attachment: Create a new file attachment
+  re_create_re_goal: Create a Goal
+  re_create_re_processword: Create a new processword
+  re_create_re_rationale: Create a new rationale
+  re_create_re_requirement: Create requirement
+  re_create_re_scenario: Create scenario
+  re_create_re_section: Create a new section
+  re_create_re_subtask: Create a new subtask
+  re_create_re_task: Create a new task
+  re_create_re_use_case: Create a new use case
+  re_create_re_user_profile: Create a new user profile
+  re_create_re_vision: Create a new vision statement
+  re_create_re_workarea: Create a new workarea
+  re_create_relation: create relation to...
+  re_create_wiki_page_for_re_artifact: Create new Wiki Page
+  re_created_by: Created by
+  re_creating_a_new: Creating a new
+  re_data_expansion: Data
+  re_delete: Delete
+  re_delete_and_move_children: Delete artifact and move children
+  re_delete_artifact: Delete artifact
+  re_delete_confirm: Do you really want to delete %{what}?
+  re_delete_project_artifact: Delete project artifact
+  re_delete_project_artifact_error: The project artifact cannot be deleted.
+  re_delete_recursively: Delete recursively
+  re_delete_subtask: delete
+  re_delete_use_case_expansion: Delete
+  re_delete_use_case_step: Delete
+  re_delete_use_case_step_expansion: Delete
+  re_deleted_artifact_and_children: Successfully deleted the artifact and all its
+    children.
+  re_deleted_artifact_and_moved_children: Successfully attached all child artifacts
+    to the parent and deleted the artifact.
+  re_dependency: Dependency
+  re_dependency_relation_type: Dependency
+  re_description_fieldset: Artifact description
+  re_description_of_plugin_usage: <h2>Artifact creation</h2><ul><li>Get started by
+    creating artifacts by right click on the top object in the tree to your left.
+    You may select from artifact types like "Section", "Requirement" and "Change request".
+    After saving, you will find the artifacts you created in the tree to your left.</li><li>You
+    can also right click on any artifact on the tree to add new artifacts. Use "create
+    artifact under" to create an artifact in the next level of the tree or "create
+    artifact on same level".</li></ul><h2>Structure</h2><ul><li>You can drag and drop
+    each artifact in the tree to reorder or restructure your RE artifacts. The tree
+    represents the structure of your requirements document.</li><li>You can create
+    traces between artifact by<ul><li>Editing an artifact and use the "relations"
+    section. Select the trace type with the radio button and start typing a name.
+    The artifacts will show up and a link can be created. You find all traces in the
+    top-right section.</li><li>You can also create traces by dragging and dropping
+    an artifact from the tree in the traces from/traces to sections.</li></ul></li></ul><h2>Connecting
+    tasks</h2><ul><li>You can use the Connect task link to create a task which gets
+    automatically linked to the selected artifact</li><li>You can also edit tasks
+    and artifacts to create links manually</li></ul>
+  re_description_updated_successfully: Description was updated successfully
+  re_diagrams: Diagrams
+  re_directed: directed
+  re_display_order: Display order
+  re_drag_list_items_to_reorder_artifacts: Drag the list items to reorder the artifacts.
+    The configured order will be used everywhere in the Requirements plugin.
+  re_edit: Edit
+  re_edit_artifact_type_description: Edit description for "%{artifact_type}" artifact
+  re_edit_default_description: Edit default description
+  re_editor_for: Please wait, the editor for
+  re_ends_with: Ends with
+  re_enhanced_filter: Enhanced filter
+  re_equals: Equals
+  re_exception_expansion: Exception
+  re_expansion_description: Description
+  re_expansion_type: Type
+  re_export: Export
+  re_export_error: Error during export. Please make sure pandoc is installed and an
+    output format is configured in the settings.
+  re_export_format_configuration: Export format configuration
+  re_extension_description: Description
+  re_extension_type: Type
+  re_field_configuration: Configuration of fields for artifact type %{artifact_type}
+  re_fields: Fields
+  re_filter: Filter
+  re_filter_apply: Apply
+  re_filter_order: Order
+  re_filter_related_issues: Related tasks
+  re_filter_save: Save
+  re_filter_save_and_apply: Save & apply
+  re_filter_sink_artifacts: Sink
+  re_filter_source_artifacts: Source
+  re_find_secondary_actor: Find secondary actor
+  re_first_use: This is the first time you are using the Requirements plugin
+  re_from: from
+  re_goal: Goal
+  re_goal_default_description: "<p>You may want to use goals as high level requirements
+    or to structure your requirements. There are also approaches using goals for the
+    whole RE, especially for understanding the requirements.</p> <p>Goals are a good
+    starting point to record the intentions of your stakeholders. Goals do not have
+    to be fully achieveable nor measureable. Goals can be regarded as a first sketch
+    of the requirements. You can use goals to discover conflicts between the intentions
+    of your stakeholders and solve this conflicts. This may helps you to establish
+    an overall agreement between your stakeholders. You should take care about that
+    a goal refines a vision statements. [Alexander 2009, S. 51]</p>"
+  re_goal_deleted: The Goal %{name} has been deleted
+  re_goal_not_deleted: The Goal %{name} could not be deleted
+  re_goal_not_found: Could not find a goal with id %{id} to delete
+  re_goal_priority: Priority
+  re_goal_saved: Goal successfully saved
+  re_goals: Goals
+  re_greater_than: Grater than
+  re_hide: hide
+  re_import_description_of_usage: "<h4>Fields:</h4><ul> <li>id - artifact ID</li>
+    <li>artifact_type (required) <ul> <li>ReSection</li> <li>ReRequirement</li> <li>ReChangeRequest</li>
+    </ul> </li> <li>project_id (required) - project ID</li> <li>parent_id - parent
+    artifact ID</li> <li>name (required) - artifact name</li> <li>responsible_id -
+    user ID</li> <li>status - status name</li> <li>description - artifact description</li>
+    <li>acceptance_criteria - artifact acceptance criteria</li> <li>issue_ids - task
+    IDs separated by comma</li> <li>dependency_ids - artifact IDs separated by comma</li>
+    <li>conflict_ids - artifact IDs separated by comma</li></ul>"
+  re_incoming_relationship_count: Incoming
+  re_index: Requirement plugin
+  re_insert_pr_after: insert problem
+  re_insert_st_after: insert subtask
+  re_insert_st_before: insert
+  re_insert_va_after: insert variant
+  re_is_being_loaded: is loading...
+  re_last_update: last update
+  re_lesser_than: Lesser than
+  re_link_to_configure: Or configure the plugin
+  re_linked_artifact: Related artifact
+  re_linked_artifact_name: Related artifact name
+  re_linked_artifact_type: Related artifact type
+  re_linked_artifacts: Related artifacts
+  re_linked_artifacts_count: Related artifacts
+  re_more: more
+  re_my_artifacts: My artifacts
+  re_netmap: Netmap
+  re_new_re_attachment: File attachment
+  re_new_re_goal: Goal
+  re_new_re_processword: New processword
+  re_new_re_rationale: New rationale
+  re_new_re_requirement: Requirement
+  re_new_re_scenario: Scenario
+  re_new_re_section: Section
+  re_new_re_subtask: Subtask
+  re_new_re_task: Task
+  re_new_re_use_case: New use case
+  re_new_re_user_profile: User profile
+  re_new_re_vision: Vision statement
+  re_new_re_workarea: Workarea
+  re_no_one_line_view_existent: 'Template missing: No One_line_view defined yet'
+  re_no_responsible_user_defined: No responsible user defined
+  re_none_specific: None specific
+  re_of_type: of type
+  re_other_expansion: Other
+  re_outgoing_relationship_count: Outgoing
+  re_pandoc_error_first: Requirements plugin uses
+  re_pandoc_error_second: to export artifact data to different formats. Please make
+    sure pandoc is installed.
+  re_parent: Parent
+  re_parentchild: Parent-child
+  re_part_of: Part of
+  re_please_choose: please choose
+  re_please_select_visualization_type: Please select how to visualize your data by
+    choosing the visualization type.
+  re_plugin_configuration: Requirements settings
+  re_plugin_description: Plugin description
+  re_preparing_deletion: Preparing deletion
+  re_preview_wiki_page_for_re_artifact: 'Wiki page preview:'
+  re_primary_actor: Primary actor
+  re_priority_responsible: Priority and responsibilities
+  re_processword: Processword
+  re_processword_default_description: "<p>Processwords are needed for the use of a
+    syntactic requirements template. You can define synonyms for the word here and
+    deliver a proper definition of the term.</p>"
+  re_processword_deleted: The processword %{name} has been deleted
+  re_processword_not_deleted: The processword %{name} could not be deleted
+  re_processword_priority: Priority
+  re_processword_saved: Processword successfully saved
+  re_processword_specific_attributes: Process word specific attributes
+  re_processword_synonyms: Synonyms
+  re_processword_validation_error: 'Processword error: %{msg}'
+  re_project_was_setup: I just set up your database
+  re_query_name: Name
+  re_query_settings: Settings
+  re_query_visibility_me: just me
+  re_query_visibility_public: public
+  re_query_visibility_roles: for
+  re_rationale: Rationale
+  re_rationale_default_description: "<p>Use rationales to justify your requirements
+    or other artifacts.</p> <p>Decisions on requirements and design are often based
+    on hidden assumptions. Making assumptions explicit through a rationale enables
+    decisions to be revised. Rationales also help to prioritize requirements and protect
+    them from being removed.</p>"
+  re_rationale_deleted: The rationale %{name} has been deleted
+  re_rationale_not_deleted: The rationale %{name} could not be deleted
+  re_rationale_not_found: Could not find a rationale with id %{id} to delete
+  re_rationale_saved: Rationale successfully saved
+  re_rationale_specific_attributes: Rationale specific attributes
+  re_redmine_project_administration: Easy Redmine project administration
+  re_refinement: Refinement
+  re_related_diagrams: Related diagrams
+  re_related_issues: Tasks
+  re_related_test_case: Test case
+  re_related_test_cases: Test Cases
+  re_relation_management_pane: Always show relation management pane
+  re_relation_saved: Relation saved successfully
+  re_relation_saved_error: Relation was not saved successfully
+  re_relation_sucessfull_created: '"%{relation_type}"-relation successfully created
+    from %{source_name} to %{sink_name}'
+  re_relation_type: Relation type
+  re_relationship: Relation
+  re_relationship_configuration: Relation configuration
+  re_relationship_create_error: Relation could not be created
+  re_relationship_visualization: Visualization
+  re_relationships: ''
+  re_remove: remove
+  re_requirement: Requirement
+  re_requirement_default_description: "<p>For managing the most important RE artifact.</p>
+    <p>Deriving requirements from scenarios helps to prevent you from inventing requirements
+    because these artifacts should be the basis for all requirements. You can obtain
+    new requirements from individual stakeholders with the help of interviews and
+    observation. Workshops are the best options for discovering requirements from
+    groups. [Pohl 2008, S. 183], [Alexander 2009, S.260 S. 315]</p>"
+  re_requirement_priority: Priority
+  re_requirement_saved: Requirement saved successfully
+  re_requirements: Requirements
+  re_requirements_overview: Requirements overview
+  re_save: Save
+  re_scenario: Scenario
+  re_scenario_default_description: "<p>Managing scenarios to show processes in your
+    system, identify rationales and provide context to tasks and subtasks.</p>"
+  re_scenario_priority: Priority
+  re_scenario_saved: Scenario saved successfully
+  re_scroll_to_top: Scroll to top
+  re_secondary_actor: Secondary actor(s)
+  re_section: Section
+  re_section_default_description: "<p>Use sections to structure your requirements
+    in the tree to the left.</p> <p>You should structure your requirements in sections
+    because this helps you to keep all your artifacts and their context-information
+    manageable. There exist a lot of reference structures for requirements. For example
+    you can use the IEEE Standard 1233-1998 which defines a structure for a system
+    requirement specification (SyRS) or the IEEE Standard 830-1998 which defines a
+    structure for a software requirements specification (SRS). <!-- Taken from: [Pohl
+    2008, S. 251 - 253] --></p>"
+  re_section_deleted: The Section %{name} has been successfully deleted.
+  re_section_not_deleted: The Section %{name} could not be deleted.
+  re_section_not_found: Could not find section with id %{id}.
+  re_section_priority: Priority
+  re_section_saved: Section successfully saved
+  re_select_all: Select all
+  re_select_artifact: Select artifact
+  re_set_parent: Set parent artifact
+  re_settings_display_requirement_id_description: Display requirement ID inside tree
+    view
+  re_settings_have_to_save: 'No configuration saved yet: You have to click on save
+    before you leave this page!'
+  re_settings_have_to_save_again: The system has been updated! Please check the configuration.
+    You have to click on save before you leave this page!
+  re_settings_project_hierarchy: Project hierarchy
+  re_settings_project_hierarchy_description: Allow connecting tasks from other projects
+  re_settings:
+    project_hierarchy_types:
+      all: all projects
+      descendants: subprojects
+      hierarchy: project tree
+      none: none
+  re_show: Show
+  re_show_goals: Show goals
+  re_show_in_visualization: Show in visualization
+  re_show_relationships: Show relations
+  re_show_subtasks: Show subtasks
+  re_show_tasks: Show tasks
+  re_show_wiki_page_for_re_artifact: Wiki page
+  re_shows_after_reload: will be shown after a page reload
+  re_sink_artifact: Sink artifact
+  re_sink_artifact_name: Sink artifact name
+  re_sink_artifact_type: Sink Artifact Type
+  re_source_artifact: Source artifact
+  re_source_artifact_name: Source artifact name
+  re_source_artifact_type: Source artifact type
+  re_space_tree: Space tree
+  re_specification_overview: Requirements tree
+  re_st_position_not_allowed: This subtask position is not allowed
+  re_st_type_not_allowed: This subtask type is not allowed
+  re_stakeholders: Stakeholders
+  re_starts_with: Start with
+  re_status: Status
+  re_status_alias_name: Name
+  re_status_color: Color
+  re_status_configuration: Status configuration
+  re_status_internal_name: Internal name
+  re_structuring_elements: Structuring elements
+  re_subtask: Subtask
+  re_subtask_default_description: "<p>Though you can create a subtask with this tool
+    it is more convenient if you create a Task and add subtasks from the task view.</p>"
+  re_subtask_deleted: The subtask %{name} has been deleted
+  re_subtask_name: Name
+  re_subtask_not_deleted: The subtask %{name} could not be deleted
+  re_subtask_not_found: Could not find a subtask with id %{id} to delete
+  re_subtask_priority: Priority
+  re_subtask_problem: Problem
+  re_subtask_saved: Subtask %{name} successfully saved
+  re_subtask_solution: Solution
+  re_subtask_type: Type
+  re_subtask_variant: Variant
+  re_subtasks: Subtasks
+  re_subtasks_not_valid: Subtasks are not valid!
+  re_subtasks_saved: Subtasks successfully saved
+  re_sunburst: Sunburst
+  re_system_step: system step
+  re_system_steps: System steps
+  re_task: Task
+  re_task_and_subtasks_saved: Task and subtasks successfully saved
+  re_task_attributes: Task specific attributes
+  re_task_default_description: <p>If you are unfamiliar with using Lauesen''s Task-Based
+    approach for RE - it is very similar to the famous Use-Cases by Cockburn - simply
+    <a href='http://www.itu.dk/~slauesen/SorenReqs.html'>check his website</a>.<br
+    /> Most important is that you recognize the demand solution principle coming with
+    the two columns of the approach.</p> <p>Tasks do not distinguish between who does
+    what. Task closure means that your task has a well defined start and end point.
+    A good starting point is something that happens in the user''s world, for instance
+    that a client calls. A good end point is that nothing more can be done about the
+    case right now - the user deserves a "coffee break". [Lauesen 2011, S. 34]</p>
+  re_task_deleted: The task %{name}} has been deleted
+  re_task_difficult: Difficult
+  re_task_difficulties: Difficulties
+  re_task_end: End
+  re_task_frequency: Frequency
+  re_task_not_deleted: The task %{name} could not be deleted
+  re_task_not_found: Could not find a task with id %{id} to delete
+  re_task_priority: Priority
+  re_task_saved: Task successfully saved
+  re_task_specific_attributes: Task specific attributes
+  re_task_start: Start
+  re_tasks: Tasks
+  re_text_artifact_added: Artifact %{id} has been added by %{author}.
+  re_text_artifact_updated: Artifact %{id} has been updated by %{author}.
+  re_text_artifact_updated_new_comment: 'New comment added by %{author}:'
+  re_to: to
+  re_traces_from: Traces from
+  re_traces_to: Traces to
+  re_tree_loading: Tree is loading...
+  re_tree:
+    mode:
+      unknown: Unknown mode.
+    node:
+      closed: 'Node #{node_id} closed.'
+      opened: 'Node #{node_id} opened.'
+  re_treefilter: Filter
+  re_type: Type
+  re_uc_add: add
+  re_uc_add_below: add below
+  re_uc_dialog: dialog
+  re_uc_insert: add
+  re_uc_system: System
+  re_uc_user: User
+  re_unsaved: unsaved
+  re_unselect_all: Unselect all
+  re_update_description: Update description
+  re_update_difficult: Update difficulties
+  re_update_plugin_description: Update plugin description
+  re_updated_at: Updated
+  re_use: Active
+  re_use_case: Use case
+  re_use_case_abstract_overview: Abstract overview
+  re_use_case_and_steps_saved: Use case and all steps successfully saved
+  re_use_case_attributes: Use case specific attributes
+  re_use_case_default_description: "<p>Use Case template as found in Cockburn''s Book
+    Writing effective Use-Cases.</p>"
+  re_use_case_deleted: Use case %{name} has been deleted
+  re_use_case_expansion: Expansion
+  re_use_case_expansions: Use case expansions
+  re_use_case_function: Function
+  re_use_case_level: Level
+  re_use_case_low: Low
+  re_use_case_not_deleted: Use case %{name} could not be deleted
+  re_use_case_not_found: Could not find a use case with id %{id} to delete
+  re_use_case_overview: Overview
+  re_use_case_postcondition: Postcondition
+  re_use_case_precondition: Precondition
+  re_use_case_primary_actor: Primary actor
+  re_use_case_saved: Use case successfully saved
+  re_use_case_secondary_actors: Secondary actor(s)
+  re_use_case_specific_attributes: Use case specific attributes
+  re_use_case_step: Step
+  re_use_case_steps: Use case steps
+  re_use_case_trigger: Trigger
+  re_use_case_user_goal: User goal
+  re_user_defined_fields: User defined fields
+  re_user_profile: User profile
+  re_user_profile_default_description: "<p>You can use user profiles to describe your
+    users.</p><p>Describing the stakeholder with user profiles is are very important
+    because all requirements come from people. Thus you should discover and document
+    all stakeholder which are involved in your project. [Alexander 2009, S 28]</p>"
+  re_user_profile_deleted: The user profile %{name} has been deleted
+  re_user_profile_not_deleted: The user profile %{name} could not be deleted
+  re_user_profile_not_found: Could not find a user profile with id %{id} to delete
+  re_user_profile_priority: Priority
+  re_user_profile_saved: User profile successfully saved
+  re_user_step: user step
+  re_user_steps: User steps
+  re_vision: Vision statement
+  re_vision_default_description: "<p>A vision statement for your project. Describe
+    ideas in Wiki style syntax with this artifact.</p> <p>You should use vision statement
+    to describe the basic purpose of your project. A vision should be clear and simple
+    so that everybody is able to understand the basic purpose the project. [Alexander
+    2009, S 53]</p>"
+  re_vision_deleted: The revision %{name} has been successfully deleted.
+  re_vision_not_deleted: The revision %{name} could not be deleted.
+  re_vision_not_found: Could not find revision with id %{id}.
+  re_vision_priority: Priority
+  re_vision_saved: Vision successfully saved
+  re_visualitation_deep_graph_explain: max. iteration steps 0 = disabled
+  re_visualization_config: Configure
+  re_visualization_show: Visualization
+  re_visualization_show_graph: show as graph
+  re_visualization_show_netmap: show as netmap
+  re_visualization_show_sunburst: show as sunburst
+  re_visualization_size: Visualization size (in pixels)
+  re_visualization_type: Visualization type
+  re_was_created: was created
+  re_was_updated: was updated
+  re_what_will_be_deleted: If you delete this artifact, the relations listed below
+    will also be deleted.
+  re_wiki_page_available_after_save: You can connect a wiki page after saving
+  re_wiki_page_for_artifact: Wiki page
+  re_will_delete_artifact_and_all_children: Choosing this option will delete this
+    artifact (%{name}) and the relations (listed above). Additionally all its children
+    and their children (listed above) as well as each childs relations to other artifacts
+    will be deleted. You may want to double check, before choosing this option.
+  re_will_delete_artifact_and_move_children: Choosing this option will attach all
+    children of this artifact (listed above) to the parent of this artifact (%{parent}).
+    Afterwards this artifact (%{name}) and all its relations to other artifacts will
+    be deleted.
+  re_will_delete_artifact_and_relations: Choosing this option will delete this artifact
+    (%{name}) and its relations (listed above).
+  re_workarea: Workarea
+  re_workarea_default_description: "<p>A workarea can be used to structure a couple
+    of tasks. It provides an ability to keep artifacts together, which take place
+    in the same area (e.g. a room, a company or a department).</p>"
+  re_workarea_deleted: The reworkarea %{name} has been successfully deleted.
+  re_workarea_not_deleted: The reworkarea %{name} could not be deleted.
+  re_workarea_not_found: Could not find reworkarea with id %{id}.
+  re_workarea_priority: Priority
+  re_workarea_saved: Workarea successfully saved
+  re_you_asked_for_deleting_the_following_artifact: You asked for deleting the following
+    artifact
+  ReArtifactRelationship: Requirement relation
+  ReAttachment: File attachment
+  ReChangeRequest: Change request
+  redmine_re_plugin_author: Easy Software Ltd
+  redmine_re_plugin_author_url: http://www.easyredmine.com
+  redmine_re_plugin_description: ''
+  redmine_re_plugin_name: Easy Requirements Plugin
+  refinement: Refinement
+  ReGoal: Goal
+  relations: Relations
+  relationship: Relation
+  ReProcessword: Processword
+  requirement_progress: Requirement progress
+  Requirements: Requirements
+  requirements_artifact: Requirements Artifact
+  ReRationale: Rationale
+  ReRequirement: Requirement
+  ReScenario: Scenario
+  ReSection: Section
+  ReSubtask: Subtask
+  ReTask: Task
+  ReUseCase: Use case
+  ReUserProfile: User profile
+  ReVision: Vision statement
+  ReWorkarea: Workarea
+  status: Status
+  subject: Subject
+  ticketend_overdue: Tickets with due date overdue
+  ticketstart_overdue: Tickets with start date overdue
+  todo: Open tickets
+  views:
+    defaults:
+      attachments: ''

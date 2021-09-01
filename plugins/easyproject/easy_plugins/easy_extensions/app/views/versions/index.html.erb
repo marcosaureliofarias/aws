@@ -1,0 +1,145 @@
+<div class="contextual">
+  <div class="filters" id="roadmap_filters">
+    <a href="javascript: void(0);" onclick="$('#roadmap_trackers').toggle();$(this).parent().toggleClass('open');$( document ).trigger( 'erui_interface_change_vertical' );">
+      <i class="icon-toggler"></i>
+      <%= l(:label_roadmap_options) -%>
+    </a>
+  </div>
+</div>
+
+<%= render_project_heading(@project) -%>
+
+<%= form_tag({}, :method => :get, :id => 'roadmap_trackers', :class => 'form-box', :style => 'display:none;') do %>
+  <div class="tabular">
+    <p class="cols-3">
+      <label><%= l(:label_tracker_plural) %>:</label>
+      <%= render :partial => 'versions/trackers', :locals => {:trackers => @trackers, :selected_tracker_ids => @selected_tracker_ids} %>
+    </p>
+    <p class="cols-3">
+      <label><%= l(:button_show) %>:</label>
+      <label for="completed" class="inline checkbox"><%= check_box_tag 'completed', 1, params[:completed] %> <%= l(:label_show_completed_versions) %></label>
+      <% if @project.descendants.non_templates.active.any? %>
+        <%= hidden_field_tag 'with_subprojects', 0 %>
+        <label class="inline checkbox"><%= check_box_tag 'with_subprojects', 1, @with_subprojects, :id => 'cbx-with-subprojects' %> <%= l(:label_subproject_plural) %></label>
+        <%= hidden_field_tag 'with_non_shared_versions', 0 %>
+        <label class="inline checkbox"><%= check_box_tag 'with_non_shared_versions', 1, @with_non_shared_versions, :disabled => !@with_subprojects, :id => 'cbx-with-non-shared-versions' %> <%= l(:label_with_non_shared_versions) %></label>
+      <% end %>
+      <label class="inline checkbox"><%= check_box_tag 'closed_issues', 1, @closed_issues %> <%= l(:label_version_show_closed_issues) %></label>
+    </p>
+    <div class="form-actions"><%= submit_tag l(:button_apply), :class => 'button-positive', :name => nil %></div>
+  </div>
+<% end %>
+
+
+<% if @versions.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <div id="roadmap">
+    <% @versions.each do |version| %>
+      <article class="version-article <%= version.css_classes %>">
+        <%
+          heading = link_to_version(version, :name => version_anchor(version))
+          heading << content_tag(:small, (l(:field_due_date) + ': ' + format_date(version.effective_date)), :class => 'push-right version-item-due').html_safe if version.effective_date
+        %>
+        <%= render_module_easy_box('version_item_' << version.id.to_s, heading, class: {container: 'version-item'}) do | m |%>
+          <% m.heading_links do %>
+            <%= link_to content_tag(:span, l(:button_edit), :class => 'tooltip'), edit_version_path(version), :title => l(:button_edit), :class => 'icon-only icon-edit' %>
+          <% end if User.current.allowed_to?(:manage_versions, version.project)%>
+          <div class="version-item-header gray-background border-radius-3">
+            <div class="text-center">
+              <% if (fixed_issues_count = @fixed_issues_count_by_version[version.id]) && fixed_issues_count > 0 %>
+                <div class="progress-bar easy-versions-roadmap-progress-container">
+                  <%= progress_bar([version.closed_percent, version.visible_fixed_issues.completed_percent], :width => '', :legend => ('%0.0f%%' % version.visible_fixed_issues.completed_percent)) %>
+                  <p class="progress-info">
+                    <%= link_to_if(version.visible_fixed_issues.closed_count > 0, l(:label_x_closed_issues_abbr, :count => version.visible_fixed_issues.closed_count), issues_path(status_id: 'c', fixed_version_id: version, set_filter: 1)) %>
+                    (<%= '%0.0f' % (version.visible_fixed_issues.closed_count.to_f / fixed_issues_count * 100) %>&nbsp;%)
+                    &#160;
+                    <%= link_to_if(version.visible_fixed_issues.open_count > 0, l(:label_x_open_issues_abbr, :count => version.visible_fixed_issues.open_count), issues_path(status_id: 'o', fixed_version_id: version, set_filter: 1)) %>
+                    (<%= '%0.0f' % (version.visible_fixed_issues.open_count.to_f / fixed_issues_count * 100) %>&nbsp;%)
+                    <% if version.completed? %>
+                      | <%= format_date(version.effective_date) %>
+                    <% elsif version.effective_date %>
+                      | <%= due_date_distance_in_words(version.effective_date) %>
+                    <% end %>
+                  </p>
+                </div>
+              <% else %>
+                <p><em><%= l(:label_roadmap_no_issues) %></em></p>
+              <% end %>
+            </div>
+          </div>
+
+          <% if !version.description.blank? %>
+            <div class="kicker"><%= textilizable(version.description.to_s) %></div>
+          <% end %>
+
+          <ul>
+            <% version.visible_custom_field_values.each do |custom_value| %>
+              <% if !custom_value.value.blank? %>
+                <li><%= custom_value.custom_field.translated_name %>: <%= show_value(custom_value) %></li>
+              <% end %>
+            <% end %>
+          </ul>
+          <%= call_hook :view_projects_roadmap_version_header_bottom, :version => version, :project => version.project %>
+
+          <%= render(:partial => "wiki/content", :locals => {:content => version.wiki_page.content}) if version.wiki_page %>
+
+
+          <% if (issues = @issues_by_version[version]) && issues.size > 0 %>
+            <%= render(:partial => 'versions/issues', :locals => {:issues => issues, :project => version.project}) -%>
+          <% end %>
+          <%= call_hook :view_projects_roadmap_version_bottom, :version => version %>
+        <% end %>
+      </article>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !@versions.empty? || @completed_versions.present? %>
+  <% content_for :sidebar do %>
+    <div class="box">
+      <%= toggling_container("versions-list", nil, {:heading => l(:label_version_plural), :container_html => {:class => 'module-content'}}) do %>
+        <ul class="version-list">
+          <% @versions.each do |version| %>
+            <li><%= link_to content_tag(:span, format_version_name(version)), "##{version_anchor(version)}" %></li>
+          <% end %>
+          <% if @completed_versions.present? %>
+            <li class="version-completed">
+              <%= link_to_function l(:label_completed_versions),
+                                   '$("#toggle-completed-versions").toggleClass("collapsed"); $("#completed-versions").toggle()',
+                                   :id => 'toggle-completed-versions', :class => 'collapsible collapsed' %>
+            </li>
+            <li>
+              <%= @completed_versions.map { |version| link_to content_tag(:span, format_version_name(version)), version_path(version) }.join("<br />\n").html_safe %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+
+<% html_title(l(:label_roadmap)) %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    var disable_cbx_with_non_shared_versions = function () {
+      $('#cbx-with-non-shared-versions')[0].disabled = !$('#cbx-with-subprojects')[0].checked;
+    };
+
+    $(function () {
+      $('#cbx-with-subprojects').change(function () {
+        $("#roadmap-trackers").load('<%= url_for(:controller => 'versions', :action => 'toggle_roadmap_trackers', :project_id => @project) %>', $('#roadmap-sidebar-form').serialize(), disable_cbx_with_non_shared_versions);
+      });
+    });
+  });
+</script>
+
+<% if User.current.allowed_to?(:manage_versions, @project) %>
+  <% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= link_to(l(:label_version_new), new_project_version_path(@project), :class => 'button-positive icon icon-add') %>
+  <% end %>
+  <% content_for :easy_page_layout_service_box do %>
+    <%= link_to(l(:button_manage_versions), {:controller => 'projects', :action => 'settings', :id => @project, :tab => 'versions'}, :class => 'button icon icon-settings') %>
+  <% end %>
+<% end %>

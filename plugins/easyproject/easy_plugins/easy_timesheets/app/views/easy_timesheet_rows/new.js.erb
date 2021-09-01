@@ -1,0 +1,11 @@
+if ($("#<%= @row.dom_id %>")[0]) {
+ $("#<%= @row.dom_id %>").effect("highlight");
+} else {
+  if ( $("table#<%= dom_id(@easy_timesheet) -%> tbody tr.overtime-row").length ) {
+    $("table#<%= dom_id(@easy_timesheet) -%> tbody tr.overtime-row").before("<%=j render(:partial => 'easy_timesheet_rows/row', :locals => {:easy_timesheet => @easy_timesheet, :row => @row}) -%>");
+  } else {
+    $("table#<%= dom_id(@easy_timesheet) -%> tbody").append("<%=j render(:partial => 'easy_timesheet_rows/row', :locals => {:easy_timesheet => @easy_timesheet, :row => @row}) -%>");
+  }
+  initEasyAutocomplete();
+  $("table#<%= dom_id(@easy_timesheet) -%> tbody #<%= @row.dom_id %> input").first().autocomplete().focus();
+}

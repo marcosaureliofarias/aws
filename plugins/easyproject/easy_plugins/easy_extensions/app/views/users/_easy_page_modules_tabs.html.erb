@@ -1,0 +1,36 @@
+<%= content_for :easy_page_layout_content do %>
+  <% if params[:tab] == 'my_page' %>
+    <% if (params[:tab_mode] == 'edit') -%>
+    <% elsif (params[:tab_mode] == 'template') -%>
+      <div class="easy-page-layout-from-template">
+        <%= render :partial => "easy_page_layout/page_layout_from_template", :locals => {:page => tab[:page], :user_id => tab[:user].id, :entity_id => nil, :back_url => url_for(:action => 'edit', :id => tab[:user].id, :tab => 'my_page')} -%>
+      </div>
+    <% else -%>
+      <p>
+        <span><%= link_to l(:label_personalize_user_page), { :action => 'edit', :id => tab[:user].id, :tab => 'my_page', :page_id => tab[:page].id, :tab_mode => 'edit', :t => params[:t]}, { :class => 'customize-button button icon icon-list', :title => l(:title_personalize_user_page) } -%></span>
+        <span>
+          <%= link_to(l(:label_personalize_user_page_from_layout), 'javascritp:void(0);', :class => 'button-3 icon icon-controls', :onclick => "showModal('select-default-layout'); return false;") %>
+        </span>
+      </p>
+
+      <div id="select-default-layout" style="display:none;">
+        <h3 class="title"><%= l(:label_select_my_page_template) %></h3>
+
+        <%= labelled_form_for :user, @user, url: user_path(@user), html: {method: :put, autocomplete: 'off'} do |f| %>
+          <% if templs = EasyPage.find_by(page_name: 'my-page').templates %>
+            <p>
+              <%= label_tag(:page_template_id, l(:label_select_my_page_template)) %>
+              <%= select_tag 'page_template_id', options_for_select(templs.collect{|p| [p.template_name, p.id]}, params[:page_template_id].to_i) -%>
+            </p>
+          <% end %>
+
+          <p class="buttons">
+            <%= submit_tag l(:button_cancel), :name => nil, :onclick => "hideModal(this);", :type => 'button', :class => 'button' %>
+            <%= submit_tag l(:button_save), :name => nil, :onclick => "hideModal(this);" %>
+          </p>
+        <% end %>
+      </div>
+
+    <% end -%>
+  <% end -%>
+<% end -%>

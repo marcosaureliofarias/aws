@@ -1,0 +1,43 @@
+<%
+  can_create = User.current.allowed_to?(:create_easy_checklists, entity.project)
+  can_create_template = User.current.allowed_to?(:create_easy_checklist_from_template, entity.project)
+  checked = entity.easy_checklists.joins(:easy_checklist_items).where(easy_checklist_items: {done: true}).count
+  total = entity.easy_checklists.joins(:easy_checklist_items).count
+  if can_create_template || can_create
+    heading_links = link_to(content_tag(:span, l(:button_new_easy_checklist),:class => 'tooltip'), 'javascript:void(false);', :onclick => 'jQuery("#easy_checklist_form_container").toggle(); EASY.utils.openTogglingContainer($("#expander_easy_checklists_toggling_container"), "easy_checklists_toggling_container");', :class => 'icon icon-add')
+  else
+    heading_links = ''
+  end
+%>
+
+<div class="box">
+  <%= toggling_container('easy_checklists_toggling_container', User.current, {:heading => l(:label_easy_checklist) + " (#{checked}/#{total})", :default_button_state => false, :wrapping_heading_element_classes => 'icon icon-workflow', :heading_links => heading_links}) do %>
+
+    <%= render :partial => 'easy_checklists/easy_checklists_list', :locals => {:entity => entity} %>
+
+    <div id="easy_checklist_form_container" class="form-box tabular" style="display: none">
+      <% if can_create %>
+        <div id="new_easy_checklist_form_container">
+          <%= form_for(entity.easy_checklists.build, :remote => true) do |f| %>
+            <p>
+              <label><%= l :label_easy_checklist_new %></label>
+            <span class="input-append">
+              <%= render :partial => 'easy_checklists/form', :locals => {:entity => entity, :f => f} %>
+              <%= link_to_function '', '$("#new_easy_checklist").submit()', :class => 'icon-save button-positive', :title => l(:button_save) %>
+            </span>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+      <% if can_create_template && entity.easy_checklist_templates.any? %>
+        <div id="easy_checklists_templates_container">
+          <%= render :partial => 'easy_checklists/add_template_form', :locals => {:entity => entity} %>
+        </div>
+      <% end%>
+    </div>
+  <% end %>
+</div>
+
+<% content_for :body_bottom do %>
+  <%= easy_cocoon_tags %>
+<% end %>

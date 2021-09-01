@@ -1,0 +1,31 @@
+<div class="contextual">
+  <% if User.current.allowed_to?(:edit_easy_earned_values, @project) %>
+    <%= link_to l(:label_new), new_project_easy_earned_value_path(@project), class: 'button button-important icon icon-add' %>
+  <% end %>
+</div>
+
+<%= title l(:label_easy_earned_values) %>
+
+<div class="autoscroll">
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_name) %></th>
+        <th><%= l(:field_type) %></th>
+        <th><%= l(:label_easy_baselines) %></th>
+        <th><%= l(:field_created_on) %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tbody>
+      <% @easy_earned_values.each do |earned_value| %>
+        <tr>
+          <td><%= link_to earned_value.name, easy_earned_value_path(earned_value) %></td>
+          <td><%= earned_value.type_name %></td>
+          <td><%= earned_value.baseline.presence || '-' %></td>
+          <td><%= format_date earned_value.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

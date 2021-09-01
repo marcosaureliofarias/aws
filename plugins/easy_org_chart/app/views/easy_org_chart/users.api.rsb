@@ -1,0 +1,5 @@
+api.array :entities do
+  @users.each do |user|
+    api.merge easy_org_chart_user_data(user)
+  end
+end

@@ -1,0 +1,76 @@
+<html>
+<head>
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      line-height: 1.45em;
+      color: #222;
+    }
+
+    h1, h2, h3 {
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      margin: 0px;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      line-height: 1.6em;
+    }
+
+    h2, h3 {
+      font-size: 1.3em;
+    }
+
+    a, a:link, a:visited {
+      color: #169;
+    }
+
+    a:hover, a:active {
+      color: #c61a1a;
+    }
+
+    a.wiki-anchor {
+      display: none;
+    }
+
+    fieldset.attachments {
+      border-width: 1px 0 0 0;
+    }
+
+    hr {
+      width: 100%;
+      height: 1px;
+      background: #ccc;
+      border: 0;
+      margin: 1.2em 0;
+    }
+
+    span.footer {
+      font-size: 0.8em;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+    <span class="header">
+      <%- if content_for?(:email_header) -%>
+        <%= yield :email_header -%>
+      <%- else -%>
+        <% if Setting.emails_header.present? -%>
+          <%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_header).html_safe %>
+        <% end -%>
+      <%- end -%>
+    </span>
+    <%= yield %>
+    <hr/>
+    <div class="footer">
+      <%- if content_for?(:email_footer) -%>
+        <%= yield :email_footer %>
+      <%- else -%>
+        <% if Setting.emails_footer.present? -%>
+          <%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_footer).html_safe -%>
+        <% end -%>
+      <%- end -%>
+    </div>
+</body>
+</html>

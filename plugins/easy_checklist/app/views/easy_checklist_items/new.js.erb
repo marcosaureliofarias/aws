@@ -1,0 +1,11 @@
+if ($("#easy_checklist<%= @easy_checklist.id %>_item_form")[0]) {
+  $("#easy_checklist<%= @easy_checklist.id %>_item_form").effect("highlight");
+} else {
+  $("#easy_checklist<%= (@easy_checklist.id) -%>_items_container").append("<%=j render(:partial => 'easy_checklist_items/remote_form') -%>");
+  $("#easy_checklist<%= @easy_checklist.id %> .easy-checklist-add-item").toggle();
+}
+
+var $subject_input = $("#easy_checklist<%= @easy_checklist.id %>_item_form").find('.easy_checklist_subject:first');
+if ($subject_input.length > 0) {
+  $subject_input.focus();
+}

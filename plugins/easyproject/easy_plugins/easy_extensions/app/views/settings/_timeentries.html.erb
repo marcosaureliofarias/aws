@@ -1,0 +1,29 @@
+<% egtes_default = EasyGlobalTimeEntrySetting.find_by(:role_id => nil) || EasyGlobalTimeEntrySetting.new
+  sorted_roles = Role.includes(:easy_global_time_entry_setting).sorted
+-%>
+<div class="form-box settings tabular">
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <%= form_for egtes_default do |f|%>
+        <%= render :partial => 'settings/per_role_form', :locals => { :f => f, :role => nil } %>
+        <p><%= submit_tag l(:button_save), :class => 'button-positive' -%></p>
+      <% end %>
+    </div>
+    <div class="splitcontentright">
+      <div class="toolbar">
+        <%= link_to l('edit_settings_per_role'),'javascript:void(0)', {:id => 'custom_settings_button', :class => "icon icon-edit button"} %>
+      </div>
+      <div id="egtes_wrap" data-ajax-url="<%= new_easy_global_time_entry_setting_path(:format => 'js') %>">
+        <div id="egtes_wrap_inner">
+          <p>
+            <label><%= l(:edit_settings_per_role) %></label>
+            <%= select_tag("egtes_select", options_from_collection_for_select(sorted_roles, :id, :name)) %>
+          </p>
+          <div id="easy_global_time_entry_setting">
+            <%= render :partial => 'easy_global_time_entry_settings/new', :locals => {:role => sorted_roles.first} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

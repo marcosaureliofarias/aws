@@ -1,0 +1,12 @@
+<%= easy_breadcrumb([
+                   link_to(l(:heading_easy_action_sequence_templates, scope: :easy_actions),
+                           easy_action_sequence_templates_path,
+                           title: l(:heading_easy_action_sequence_templates, scope: :easy_actions)),
+                   link_to(l(:button_new),
+                           new_easy_action_sequence_template_path,
+                           title: l(:title_new_easy_action_sequence_templates, scope: :easy_actions))
+               ]) %>
+
+<%= title(l(:heading_new_easy_action_sequence_template, scope: :easy_actions)) unless request.xhr? %>
+
+<%= render template: 'easy/redmine/basic/new', formats: [:html] %>

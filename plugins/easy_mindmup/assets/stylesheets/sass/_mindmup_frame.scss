@@ -1,0 +1,213 @@
+.mindmup {
+  &__legend {
+    &-container {
+      //@media (min-width: $mindmup__breakpoint--xsmall) and (max-width: $media-collapse-small) {
+      //  width: px2rem(200px) !important;
+      //}
+      //@media (min-width: $media-collapse-small) and (max-width: $media-collapse-xxxlarge) {
+      //  top: 110% !important;
+      //}
+      //@media (min-width: 640px) and (max-width: 700px) {
+      //  width: px2rem(200px) !important;
+      //}
+    }
+  }
+  &-cont {
+    margin: 0 (-$mindmup__retrace) $mindmup__retrace-mod;
+    width: auto;
+    overflow: hidden;
+    @include respond-to(max-small-screen) {
+      margin-top: -$mindmup__gap--box;
+    }
+  }
+  &-container {
+    @extend %user-select-none !optional;
+    position: relative;
+    cursor: all-scroll;
+    border-top: none;
+    box-sizing: border-box;
+    background-color: $mindmup__color--mixed !important;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    overflow-y: hidden !important;
+    @extend %pattern-grid-background !optional;
+  }
+  &-noselect {
+    @extend %user-select-none !optional;
+  }
+  &__menu {
+    @extend %box-sizing-border-box !optional;
+    //@extend %material__elevation--inline !optional;
+    @extend %flex !optional;
+    @extend %justify-content-space-between !optional;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+    background-color: $mup-background-menu;
+    //overflow-x: hidden;
+    //border-top: 1px solid $mindmup__border-color--minor;
+    border-bottom: 1px solid $mindmup__border-color--minor;
+    //margin: 0 (-$mindmup__retrace-mod);
+    padding: .5*$mindmup__gap $mindmup__gap;  //$mindmup__gap--box;
+    @media (min-width: $mindmup__breakpoint--xsmall) and (max-width: $media-collapse-small) {
+      //padding: $mindmup__gap;
+      font-size: $mindmup__gap;
+    }
+
+    .push-left, .push-right {
+      @extend %flex;
+    }
+    &_addons{
+      position: absolute;
+      top: 4*$mindmup__gap;
+      right: 0;
+      width: auto;
+      z-index: 5;
+      //@media only screen and (max-width: $mindmup__breakpoint--medium) {
+      //  top: 8.3333 * $mindmup__gap;
+      //}
+      > div {
+        margin: $mindmup__gap / 2 0;
+        width: auto;
+        position: static;
+        top: auto;
+        left: auto;
+        @media (min-width: $mindmup__breakpoint--xsmall) and (max-width: $media-collapse-small) {
+          margin: $mindmup__gap / 2;
+          padding-top: .5*$mindmup__gap;
+          display: block;
+        }
+        > ul {
+          @extend %flex;
+          @extend %flex-direction-row;
+          padding: 0;
+          @media (min-width: 320px) and (max-width: 640px) {
+            flex-direction: column;
+          }
+          @media (max-width: 770px) {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+    &-item {
+      display: inline-block;
+      text-align: left;
+      margin: 0 px2rem(4px);
+      &:first-child {
+        margin-right: px2rem(4px);
+      }
+      &:last-child {
+        margin-left: px2rem(4px);
+      }
+      a.active {
+        //* TODO - WILL BE REMOVED after changes in @menu-tooltip
+        // 035b00e84609610ee12cb93294ea823bd2f130ad
+        // 62002a072a0997a8b275a528c8e4aefa41a48412
+        color: $mindmup__color--positive !important;
+        &:before {
+          color: $mindmup__color--positive !important;
+        }
+      }
+      @include respond-to(max-medium-screen) {
+        & > a {
+          padding-right: 0;
+          & > span {
+            display: none;
+          }
+        }
+      }
+      @include respond-to(max-xlarge-screen) {
+        & > a {
+          &.easy-mindmup__icon--settings, &.easy-mindmup__icon--display, &.easy-mindmup__icon--money, &.easy-mindmup__icon--save {
+            padding-right: 0;
+            & > span {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    .right-menu {
+      float: right;
+    }
+    &-group {
+      ul {
+        margin: 0;
+      }
+      &--tooltiped {
+        .easy & {
+          @extend %menu-tooltip !optional;
+        }
+        & > ul {
+          display: none;
+        }
+        &:hover {
+          & > ul {
+            display: block;
+          }
+        }
+      }
+      &--sizing {
+        @extend %flex-grow-1 !optional;
+        text-align: center;
+        font-size: 1.5em;
+        position: absolute;
+        top: $mindmup__gap--box;
+        left: -$mindmup__gap--box - px2rem(90px);
+        line-height: $mindmup__gap--box;
+        @include respond-to(max-small-screen) {
+          display: none;
+        }
+        a {
+          color: rgba($mindmup__color--text, .5);
+          text-decoration: none;
+        }
+        li {
+          list-style: none;
+          display: inline-block;
+        }
+      }
+      &-display {
+      }
+      .mindmup__legend-container--hidden + &-display {
+        margin-left: 0
+      }
+    }
+    &-save {
+    }
+  }
+  &_hover_menu {
+    display: block;
+    position: absolute;
+    z-index: 99;
+    background-color: white;
+    min-width: px2rem(160px);
+    padding: px2rem(5px) 0;
+    margin: pax2rem(2px) 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    @extend %border-radius !optional;
+    @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+    @extend %background-clip-padding-box !optional;
+  }
+  &-reload-modal-errors li {
+    color: $mindmup__color--negative;
+  }
+  &-last-modal-diffs li {
+    color: $color-important;
+  }
+  &__button {
+    &--disabled {
+      opacity: 0.4;
+    }
+  }
+  &_modal {
+    &__flash_close {
+      position: absolute;
+      right: $mindmup__gap;
+      font-size: 2 * $mindmup__gap;
+      line-height: 2 * $mindmup__gap;
+    }
+  }
+}

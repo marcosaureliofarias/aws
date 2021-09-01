@@ -1,0 +1,47 @@
+.easy-qr{
+  text-align: center;
+  table {
+    margin: auto;
+    border-width: 0;
+    border-style: none;
+    border-color: #0000ff;
+    border-collapse: collapse;
+    margin-bottom: $box-padding;
+    width: auto !important;
+    tbody tr:first-child td{
+      border: none !important;
+    }
+    td {
+      border-width: 0;
+      border-style: none;
+      border-color: #0000ff;
+      border-collapse: collapse;
+      padding: 0;
+      margin: 0;
+      width: 10px;
+      height: 10px;
+      font-size: 1px;
+      line-height: 1px;
+      border: none !important;
+      &.black {
+        background-color: #000;
+      }
+      &.white {
+        background-color: #fff;
+      }
+    }
+  }
+  @for $i from 1 through 10 {
+    &.size-#{$i}{
+      table td{
+        width: $i*1px;
+        height: $i*1px;
+        min-width: $i*1px;
+        min-height: $i*1px;
+        max-width: $i*1px;
+        max-height: $i*1px;
+      }
+    }
+  }
+
+}

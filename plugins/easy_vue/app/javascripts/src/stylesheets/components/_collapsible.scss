@@ -1,0 +1,24 @@
+&__collapsible-wrapper {
+  margin: $gap 0;
+
+  .collapsible-close {
+    position: absolute;
+    top: 0;
+    right: .5*$gap;
+    transform: rotate(45deg);
+    transition: transform .5s;
+  }
+
+  &.open {
+    .collapsible-close {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+&__collapsible-header {
+  position: relative;
+  cursor: pointer;
+  font-weight: bold;
+  padding-right: 2*$gap;
+}

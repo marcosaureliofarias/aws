@@ -1,0 +1,16 @@
+api.easy_user_type do
+  api.id @easy_user_type.id
+  api.name @easy_user_type.name
+  api.position @easy_user_type.position
+  api.is_default @easy_user_type.is_default
+  api.internal @easy_user_type.internal
+  api.partner @easy_user_type.partner
+  api.show_in_meeting_calendar @easy_user_type.show_in_meeting_calendar
+  api.settings @easy_user_type.settings if @easy_user_type.settings.present?
+  api.easy_custom_menus @easy_user_type.easy_custom_menus if @easy_user_type.easy_custom_menus.present?
+  api.array :users do
+    @easy_user_type.users.each do |user|
+      api.user :id => user.id, :name => user.name
+    end
+  end if include_in_api_response?('users')
+end

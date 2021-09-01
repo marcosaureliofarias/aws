@@ -1,0 +1,75 @@
+<%
+formid = "timelog-calendar-form-#{page_module.uuid.dasherize}"
+calendar, perm_log_time, perm_view_time_entries = @easy_page_modules_data[block_name][:calendar], @easy_page_modules_data[block_name][:perm_log_time], @easy_page_modules_data[block_name][:perm_view_time_entries]
+is_week_displayed = settings && settings['period'] == 'week'
+spent_time_per_day = @easy_page_modules_data[block_name][:spent_time_per_day] || {}
+-%>
+<div class="timelog-calendar-container">
+
+  <div class="toolbar">
+    <%= render :partial => 'easy_page_modules/calendar_listing_links', :locals => {:formid => formid, :divid => modul_uniq_id, :page_module => page_module, :period => calendar.period, :calendar => calendar} -%>
+  </div>
+  <%= form_tag({}, {:id => formid, :class => :hidden}) do -%>
+    <%= hidden_field_tag 'uuid', page_module.uuid.dasherize -%>
+    <%= hidden_field_tag "#{block_name}[start_date]", calendar.startdt, :id => "start-date-#{page_module.uuid.dasherize}" -%>
+    <%= hidden_field_tag "#{block_name}[user_id]", user.id -%>
+  <% end -%>
+  <div class="easy-calendar">
+    <table class="timelog cal">
+      <thead>
+        <tr>
+          <th class='week-number'></th>
+          <% 7.times do |i| -%>
+            <th><%= day_name( (calendar.first_wday+i)%7 ) -%></th>
+          <% end -%>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% day = calendar.startdt
+          while day <= calendar.enddt -%>
+            <%= ("<td class='week-number' title='#{ l(:label_week) }'>#{(day+(11-day.cwday)%7).cweek}</td>").html_safe if day.cwday == calendar.first_wday %>
+            <% sum_of_day = spent_time_per_day[day] || 0
+            uwh = user.working_hours(day)
+            if sum_of_day.round(2) < uwh
+              css_sum = "too-few"
+              elsif sum_of_day > uwh
+              css_sum = "too-much"
+              else
+              css_sum = 'ok'
+            end
+            -%>
+            <td class="<%= ' today' if User.current.today == day -%> <%= css_sum -%>">
+              <div class="easy-dropper-target easy-calendar-inside easy-drop-calendar timelog-calendar" data-calendar-day="<%= day %>">
+               <!-- data-new-issue-attributes='{"issue[start_date]": "<%= day -%>", "issue[due_date]": "<%= day -%>"}' -->
+                <p class="day-num floatleft">
+                  <span class="day-name"><%= day_name(day.cwday) -%></span>
+                  <%= format_short_date(day) -%>
+                </p>
+                <div class="day-content" id="<%= "#{formid}_#{day}" %>">
+                  <p class="day-time-entry <%= css_sum -%>">
+                    <% if perm_view_time_entries %>
+                      <a href="<%= easy_time_entries_path(:from => day, :to => day, :only_me => true) -%>" title="<%= l(:button_edit) -%>" class="timelog-link">
+                        <span class="text"><%= l(:label_timelog_calendar_link_before) -%></span>
+                        <span class="log"><%= easy_format_hours(sum_of_day) -%></span><span class="text"></span>
+                      </a>
+                    <% else %>
+                      <span class="text"><%= l(:label_timelog_calendar_link_before) -%></span><span class="log"><%= easy_format_hours(sum_of_day) -%></span><span class="text"></span>
+                    <% end %>
+                  </p>
+                  <p class="day-add-time calendar-actions">
+                    <% if perm_log_time %>
+                      <%= link_to(l(:button_log_time), new_easy_time_entry_path(spent_on: day, page_module_uuid: page_module.uuid, period: calendar.period, back_url: back_url, modal: true), { class: 'icon icon-time-add', title: l(:title_timelog_calendar_new), remote: true }) -%>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            </td>
+          <%= '</tr><tr>'.html_safe if day.cwday==calendar.last_wday and day!=calendar.enddt -%>
+          <% day = day + 1
+          end -%>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

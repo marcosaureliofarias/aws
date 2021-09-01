@@ -1,0 +1,4 @@
+<% if report.entity %>
+<div class="alerts-report-entity-name"><%= link_to(report.entity.subject, issue_url(report.entity_id)) -%></div>
+<div class="alerts-report-entity-watch"><%= l(:label_alert_condition_was_satisfied) %></div>
+<% end %>

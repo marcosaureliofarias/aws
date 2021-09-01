@@ -1,0 +1,157 @@
+.icon {
+  @extend %icon-parent;
+  &__stack{
+    font-size: 1em;
+    position: relative;
+    & > [class*=icon]{
+      &:nth-child(n+2){
+        font-size: .7em;
+        background: $color-foreground;
+        border-radius: 50%;
+        width: 1em;
+        line-height: 1em;
+        display: inline-block;
+        box-shadow: 0 0 2px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
+    }
+  }
+}
+[class~='icon']{
+  @extend %icon-parent;
+}
+
+// Setup a class name for each icon
+@each $name, $char in $icons {
+  .icon-#{$name}, .icon--#{$name} {
+    @include icon-parent($name, before, false, $icons);
+  }
+}
+// split this coz google
+@each $name, $char in $icons {
+  .icon-#{$name}, .icon--#{$name} {
+    @include icon-parent($name, before, false, $icons);
+  }
+}
+
+@each $name, $char in $material-community-icons {
+  .icon--#{$name} {
+    @include icon-parent($name, before, false, $material-community-icons);
+  }
+}
+
+.icon-draggable.ui-draggable{
+  @extend %pseudo-draggable;
+  &:before {
+    content: "" !important;
+  }
+}
+
+.green-icon, .icon-positive, .icon-true {
+  color: $color-positive;
+}
+.blue-icon, .icon-main {
+  color: $color-main;
+}
+.orange-icon, .icon-important {
+  color: $color-important;
+}
+.red-icon, .icon-negative, .icon-false {
+  color: $color-negative;
+}
+.opaque-icon{
+  opacity: .15;
+}
+.xl-icon {
+  &:before{
+    font-size: 1.25em;
+  }
+}
+.xxl-icon {
+  &:before{
+    font-size: 2em;
+  }
+}
+
+@media screen {
+    body #easy_servicebar li > a.timer-active {
+        color: $color-positive;
+    }
+    body #easy_servicebar li > a.timer-inactive {
+        color: $color-negative;
+    }
+}
+
+.already-read{
+  color: $color-positive;
+}
+
+
+
+.overdue td.due_date .multieditable{
+  @include icon-parent(warning);
+  &:before{
+    margin-right: 0.5*$gap;
+    display: inline;
+  }
+}
+/////////////////////////////////////////////////////
+//old
+////////////////////////////////////////////////////
+[class*=icon]:before, a.ics:before, a.pdf:before, a.csv:before, a.xlsx:before, a.atom:before, a.txt:before, a.html:before, .ico-pic, a.print:before, a.vcf:before, a.msp:before, a.qr:before {
+  @include icon;
+}
+a.ics, a.pdf, a.csv, a.xlsx, a.atom, a.txt, a.html, .ico-pic, a.print, a.vcf, a.msp, a.qr  {
+  background: none;
+}
+
+//.icon-easy-bell{background-image:url(../images/bell.png);}
+//.icon-file.text-plain:before,.icon-txt:before,a.txt:before{content:'/';}
+//.icon-file.text-x-c{background-image:url(../images/files/c.png);}
+//.icon-file.text-x-csharp{background-image:url(../images/files/csharp.png);}
+//.icon-file.text-x-php{background-image:url(../images/files/php.png);}
+//.icon-file.text-x-ruby{background-image:url(../images/files/ruby.png);}
+//.icon-file.text-xml{background-image:url(../images/files/xml.png);}
+
+a.print:before{@include icon(print);}
+a.atom:before{@include icon(atom);}
+a.csv:before {@include icon(csv);}
+a.xlsx:before, a.xls:before {@include icon(xls);}
+.icon-file.application-pdf:before, a.pdf:before{@include icon(pdf);}
+a.html:before{@include icon(html);}
+a.ics:before{@include icon(ics);}
+a.qr:before{@include icon(qr);}
+.icon-external {
+  @extend .icon-popup;
+}
+//a.external:after, a[target]:after {
+//  @include icon(popup);
+//  font-size: 70%;
+//  margin-left: 2px;
+//  opacity: 0.5;
+//  vertical-align: text-top;
+//}
+a.easy_web_application:before {
+  @include icon(ruby);
+  color: $gray;
+}
+
+a.easy_web_application {
+  &.stopped, &.payment_required {
+    &:before{
+      @extend .red-icon;
+    }
+  }
+  &.deleted {
+    &:before{
+      color: #000;
+    }
+  }
+  &.running {
+    &:before{
+      @extend .green-icon;
+    }
+  }
+}

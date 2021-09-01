@@ -1,0 +1,17 @@
+<%
+  select_options = content_tag('option', l(:label_no_change_option), value: '') +
+    content_tag('option', l(:label_none), value: 'none') +
+    grouped_options_for_select(sprints, issue_params[:easy_sprint_id])
+%>
+
+<p>
+  <label for='issue_easy_sprint_id'><%= l(:label_agile_sprint) %></label>
+  <%= select_tag 'issue[easy_sprint_id]', select_options, { label: l(:label_agile_sprint) } %>
+</p>
+
+<!-- added easy_story_points field do -->
+<p>
+  <label for='issue_easy_story_points'><%= l(:label_agile_story_points) %></label>
+  <%= number_field_tag 'issue[easy_story_points]', issue_params[:easy_story_points], placeholder: l(:label_no_change_option) %>
+</p>
+<!-- end -->

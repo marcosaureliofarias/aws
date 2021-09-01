@@ -1,0 +1,3 @@
+<% if Rys::Feature.active?('easy_money_cashflow') && (User.current.allowed_to?(:easy_money_cash_flow_prediction, nil, global: true) || User.current.allowed_to?(:easy_money_cash_flow_history, nil, global: true)) %>
+  <%= link_to(l(:label_easy_money_cash_flow), { controller: 'easy_money_cash_flow', action: :index, set_filter: '1', project_id: 'mine' }, class: 'button icon icon-cashflow', title: l(:label_easy_money_cash_flow)) %>
+<% end %>

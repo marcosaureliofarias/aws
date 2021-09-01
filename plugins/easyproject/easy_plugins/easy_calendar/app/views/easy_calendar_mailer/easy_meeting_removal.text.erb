@@ -1,0 +1,3 @@
+<%= l(:title_meeting_removed, name: @name) %>
+<%= format_date(@start_time.to_date) %> <%= format_time(@start_time) unless @all_day %>
+<%= format_date(@end_time.to_date) %> <%= format_time(@end_time) unless @all_day %>

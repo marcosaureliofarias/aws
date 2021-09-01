@@ -1,0 +1,582 @@
+---
+tr:
+  activerecord:
+    attributes:
+      easy_contacts:
+        account_manager: Müşteri yöneticisi
+        accounted_by: İş ortağı tarafından müşteri
+        external_account_manager: Dış müşteri yöneticisi
+    models:
+      easy_mail_campaign_easy_contact: Bağlantı
+  administration:
+    label_easy_contact: Kullanıcı alanları - bağlantılar
+    label_easy_contact_group: Kullanıcı alanları - gruplar
+    label_easy_contact_type: Bağlantı tipi
+  attributes:
+    easy_contacts:
+      account_manager: Müşteri yöneticisi
+      external_account_manager: Dış müşteri yöneticisi
+  button_assign_to_me: Favori bağlantılarıma ekle
+  button_easy_contact_by_easy_query: Kayıtlı filtreye göre bağlantılar
+  button_easy_contact_homepage: Tümünü göster
+  button_easy_contact_new: Yeni bağlantı
+  button_easy_contact_show_contact_on_google_map: Bağlantıyı Google Haritasında göster
+  button_easy_entity_attribute_vcard_map: VCard eşleme ayarları
+  button_new_easy_contact_csv_import: Yeni CSV bağlantı içe aktarma
+  button_ok_continue_import: Tamam - İçe Aktar
+  button_reasign_and_delete_easy_contact: Tipi yeniden ata ve sil
+  button_remove_from_me: Favori bağlantılardan kaldır
+  button_remove_from_project: Proje bağlantılarından kaldır
+  button_save_contact_and_add_reference: Kaydet ve devam et
+  button_show_contact_account: Hesaplar
+  button_show_contact_corporate: Şirketler
+  button_show_contact_personal: İnsanlar
+  custom_field_names:
+    easy_contacts_city:
+      label: Şehir
+    easy_contacts_country:
+      label: Ülke
+    easy_contacts_email:
+      label: E-posta
+    easy_contacts_organization:
+      label: Organizasyon
+    easy_contacts_postal_code:
+      label: Posta kodu
+    easy_contacts_region:
+      label: Eyalet/Bölge
+    easy_contacts_street:
+      label: Sokak
+    easy_contacts_telephone:
+      label: Telefon
+  easy_contact_action:
+    action: Aksiyon
+    add_note: Yorum ekle
+    add_to_contact: Bağlantı bağla
+    add_to_global: Global bağlantılara ekle
+    add_to_group: Gruba ekle
+    add_to_project: Projeye ekle
+    add_to_user: Kişisel bağlantılara ekle
+    assign_to_partner: İş ortağına ata
+    destroy: Sil
+    edit: Düzenle
+    refresh: Yenile
+    send_mail: Bağlantıyı e-posta ile gönder
+  easy_contact_country_select:
+    ABW: Aruba
+    AFG: Afganistan
+    AGO: Angola
+    AIA: Anguilla
+    ALA: Aland Adaları
+    ALB: Arnavutluk
+    AND: Andora
+    ANT: Hollanda Antilleri
+    ARE: Birleşik Arap Emirlikleri
+    ARG: Arjantin
+    ARM: Ermenistan
+    ASM: Amerikan Samoası
+    ATA: Antarktika
+    ATF: Fransız Güney Toprakları
+    ATG: Antigua ve Barbuda
+    AUS: Avustralya
+    AUT: Avusturya
+    AZE: Azerbeycan
+    BDI: Burundi
+    BEL: Belçika
+    BEN: Benin
+    BFA: Burkina Faso
+    BGD: Bangladeş
+    BGR: Bulgaristan
+    BHR: Bahreyn
+    BHS: Bahamalar
+    BIH: Bosna Hersek
+    BLR: Belarus
+    BLZ: Belize
+    BMU: Bermuda
+    BOL: Bolivya
+    BRA: Brezilya
+    BRB: Barbados
+    BRN: Brunei Sultanlığı
+    BTN: Butan
+    BVT: Bouvet Adası
+    BWA: Botsvana
+    CAF: Orta Afrika Cumhuriyeti
+    CAN: Kanada
+    CCK: Cocos (Keeling) Adaları
+    CHE: İsviçre
+    CHL: Şili
+    CHN: Çin
+    CIV: Fildişi Sahili
+    CMR: Kamerun
+    COG: Kongo
+    COK: Cook Adaları
+    COL: Kolombiya
+    COM: Komorlar
+    CPV: Cape Verde
+    CRI: Kosta Rika
+    CUB: Küba
+    CXR: Christmas Adası
+    CYM: Cayman Adaları
+    CYP: Kıbrıs
+    CZE: Çek Cumhuriyeti
+    DEU: Almanya
+    DJI: Cibuti
+    DMA: Dominika
+    DNK: Danimarka
+    DOM: Dominik Cumhuriyeti
+    DRC: Demokratik Kongo Cumhuriyeti
+    DZA: Cezayir
+    ECU: Ekvador
+    EGY: Mısır
+    ERI: Eritre
+    ESH: Batı Sahra
+    ESP: İspanya
+    EST: Estonya
+    ETH: Etiyopya
+    FIN: Finlandiya
+    FJI: Fiji
+    FLK: Falkland Adaları (Malvinas)
+    FRA: Fransa
+    FRO: Faroe Adaları
+    FSM: Mikronezya Federe Devletleri
+    GAB: Gabon
+    GBR: Birleşik Krallık
+    GEO: Gürcistan
+    GHA: Gana
+    GIB: Cebelitarık
+    GIN: Gine
+    GLP: Guadelup
+    GMB: Gambiya
+    GNB: Gine Bisav
+    GNQ: Ekvator Ginesi
+    GRC: Yunanistan
+    GRD: Grenada
+    GRL: Grönland
+    GTM: Guatemala
+    GUF: Fransız Guyanası
+    GUM: Guam
+    GUY: Guyana
+    HKG: Hong Kong
+    HMD: Heard ve Mcdonald Adaları
+    HND: Honduras
+    HRV: Hırvatistan
+    HTI: Haiti
+    HUN: Macaristan
+    IDN: Endonezya
+    IND: Hindistan
+    IOT: İngiliz Hint Okyanusu Bölgesi
+    IRL: İrlanda
+    IRN: İran (İslam Cumhuriyeti)
+    IRQ: Irak
+    ISL: İzlanda
+    ISR: İsrail
+    ITA: İtalya
+    JAM: Jamaika
+    JEY: Jersey
+    JOR: Ürdün
+    JPN: Japonya
+    KAZ: Kazakistan
+    KEN: Kenya
+    KGZ: Kırgızistan
+    KHM: Kamboçya
+    KIR: Kiribati
+    KNA: Saint Kitts ve Nevis
+    KOR: Kore Cumhuriyeti
+    KWT: Kuveyt
+    LAO: Lao Demokratik Halk Cumhuriyeti
+    LBN: Lübnan
+    LBR: Liberya
+    LBY: Libya Arap Cemahiriyesi
+    LCA: Saint Lucia
+    LIE: Lihtenştayn
+    LKA: Sri Lanka
+    LSO: Lesoto
+    LTU: Litvanya
+    LUX: Lüksemburg
+    LVA: Letonya
+    MAC: Makao
+    MAF: Sint Maarten (Fransız Antilleri)
+    MAR: Fas
+    MCO: Monako
+    MDA: Moldova
+    MDG: Madagaskar
+    MDV: Maldivler
+    MEX: Meksika
+    MHL: Marşal Adaları
+    MKD: Makedonya
+    MLI: Mali
+    MLT: Malta
+    MMR: Myanmar
+    MNG: Moğolistan
+    MNP: Kuzey Mariana Adaları
+    MOZ: Mozambik
+    MRT: Moritanya
+    MSR: Montserrat
+    MTQ: Martinik
+    MUS: Morityus
+    MWI: Malavi
+    MYS: Malezya
+    MYT: Mayotte
+    NAM: Namibya
+    NCL: Yeni Kaledonya
+    NER: Nijer
+    NFK: Norfolk Adası
+    NGA: Nijerya
+    NIC: Nikaragua
+    NIU: Niue
+    NLD: Hollanda
+    NOR: Norveç
+    NPL: Nepal
+    NRU: Nauru
+    NZL: Yeni Zelanda
+    OMN: Umman
+    PAK: Pakistan
+    PAN: Panama
+    PCN: Pitcairn
+    PER: Peru
+    PHL: Filipinler
+    PLW: Palau
+    PNG: Papua Yeni Gine
+    POL: Polonya
+    PRI: Porto Riko
+    PRK: Kore Demokratik Halk Cumhuriyeti
+    PRT: Portekiz
+    PRY: Paraguay
+    PYF: Fransız Polinezyası
+    QAT: Katar
+    REU: Reunion
+    ROM: Romanya
+    ROU: Romanya
+    RUS: Rusya Federasyonu
+    RWA: Ruanda
+    SAU: Suudi Arabistan
+    SDN: Sudan
+    SEN: Senegal
+    SGP: Singapur
+    SGS: Güney Georgia ve Güney Sandwich Adaları
+    SHN: St. Helena
+    SJM: Svalbard ve Jan Mayen Adaları
+    SLB: Solomon Adaları
+    SLE: Sierra Leone
+    SLV: El Salvador
+    SMR: San Marino
+    SOM: Somali
+    SPM: St. Pierre ve Miquelon
+    SRB: Sırbistan
+    STP: Sao Tome ve Principe
+    SUR: Surinam
+    SVK: Slovakya
+    SVN: Slovenya
+    SWE: İsveç
+    SWZ: Svaziland
+    SXM: Sint Maarten (Hollanda Antilleri)
+    SYC: Seyşeller
+    SYR: Suriye Arap Cumhuriyeti
+    TCA: Turks ve Caicos Adaları
+    TCD: Çad
+    TGO: Togo
+    THA: Tayland
+    TJK: Tacikistan
+    TKL: Tokelau
+    TKM: Türkmenistan
+    TMP: Doğu Timor
+    TON: Tonga
+    TTO: Trinidad ve Tobago
+    TUN: Tunus
+    TUR: Türkiye
+    TUV: Tuvalu
+    TWN: Tayvan
+    TZA: Tanzanya Birleşik Cumhuriyeti
+    UGA: Uganda
+    UKR: Ukrayna
+    UMI: Amerika Birleşik Devletleri Küçük Dış Adaları
+    URY: Uruguay
+    USA: Amerika Birleşik Devletleri
+    UZB: Özbekistan
+    VAT: Vatikan Şehir Devleti
+    VCT: Saint Vincent ve Grenadinler
+    VEN: Venezuella
+    VGB: Virgin Adaları (İngiliz)
+    VIR: Virjin Adaları (ABD)
+    VNM: Vietnam
+    VUT: Vanuatu
+    WLF: Wallis ve Futuna Adaları
+    WSM: Samoa
+    XCA: Kanarya Adaları
+    XET: Doğu Timor
+    XSB: St. Barthelemy
+    XSE: St. Eustatius
+    YEM: Yemen
+    ZAF: Güney Afrika
+    ZMB: Zambiya
+    ZWE: Zimbabve
+  easy_contact_toolbar_label_search: Arama
+  easy_contact_types:
+    account: Hesap
+    corporate: Şirket
+    personal: Kişisel
+  easy_contacts_plugin_author: Easy Software
+  easy_contacts_plugin_author_url: http://www.easyproject.cz/en
+  easy_contacts_plugin_description: "- projeler ve şirket için rehber"
+  easy_contacts_plugin_name: Bağlantılar
+  easy_contacts_toolbar:
+    contact_all_delete: Sil
+    contact_delete: Gruptan çıkar
+    contact_edit: Düzenle
+    contact_edit_save: Kaydet
+    contact_exit: Geri
+    contact_new_save: Kaydet
+    group_delete: Sil
+    group_edit: Düzenle
+    group_edit_save: Kaydet
+    group_exit: İptal
+    group_new: Yeni grup
+    group_new_save: Kaydet
+    new_contact: Yeni bağlantı
+    projectgroup_new: Yeni grup
+  easy_lookup:
+    easy_contact:
+      label: Bağlantılar
+  easy_pages:
+    module_category:
+      contacts: Bağlantılar
+    modules:
+      easy_contact_create_button: Yeni bağlantı düğmesi
+      easy_contact_query: Filtreden bağlantılar
+      easy_contacts_create_new: Yeni bağlantı
+      group_of_contacts_button: Bağlantı grubu düğmesi
+      import_contacts_button: Bağlantıları içe aktar düğmesi
+      my_contacts_button: Favori bağlantılar düğmesi
+      project_contacts_overview: Proje bağlantıları
+      user_contacts_overview: Favori bağlantılar
+  easy_proposer:
+    easy_contacts:
+      new:
+        caption: Yeni bir bağlantı oluştur
+        description: Yeni bir bağlantı oluştur
+  easy_query:
+    button_apply:
+      easy_contact: Bağlantıları filtrele
+      easy_contact_group: Grupları filtrele
+    easy_lookup:
+      name:
+        easy_contact_group:
+          default: Bağlantı gruplarını seçin
+        easy_contact_partner:
+          default: İş ortağı bağlantısı seçin
+        easy_contact:
+          default: Bağlantıları seç
+    name:
+      easy_contact_group_query: Bağlantı grupları
+      easy_contact_query: Bağlantılar
+    sidebar_filters:
+      personal:
+        easy_contact_group_project_query: Proje bağlantı gruplarına özel filtreler
+        easy_contact_group_query: Bağlantı gruplarındaki özel filtreler
+        easy_contact_group_user_query: Bağlantı gruplarımdaki özel filtreler
+        easy_contact_query: Bağlantılardaki özel filtreler
+      public:
+        easy_contact_group_project_query: Proje bağlantısı gruplarındaki genel filtreler
+        easy_contact_group_query: Bağlantı gruplarındaki genel filtreler
+        easy_contact_group_user_query: Bağlantı gruplarımdaki genel filtreler
+        easy_contact_query: Bağlantılardaki genel filtreler
+  easy_user_type_visible_contact_types: Görünür bağlantı tipleri
+  error_can_not_delete_easy_contact_type: Bu tip ile oluşturulmuş bağlantılar var,
+    silinemiyor.
+  error_contact_already_assigned: Bağlantı zaten atanmış.
+  error_easy_contact_could_not_merge: Bağlantılar birleştirilemedi
+  error_import_data_integrity: İçe aktarılan veriler %{count} hata içeriyor, lütfen
+    kontrol ediniz.
+  error_import_file_encoding: Dosyadan içe aktarma başarısız oldu (yanlış kodlama
+    seçmiş olabilirsiniz).
+  error_import_file_malformed: İçe aktarılacak dosya doğru CSV formatında değil.
+  error_import_file_missing: İçe aktarılacak dosya eksik
+  error_no_contacts_select: Bağlantı seçmediniz
+  error_no_groups_select: Grup seçmediniz
+  error_no_projects_select: Proje seçmediniz
+  error_no_recipients_select: Alıcı seçmediniz
+  field_assigned_to_id: Atanan
+  field_author_id: Yazar
+  field_author_note: Yorumlar
+  field_contact_groups: Bağlantı grupları
+  field_contact_name: İsim
+  field_csv_has_headers: Sütun adları ilk satırda
+  field_easy_contact: Bağlantı
+  field_easy_contact_author_note: Açıklama
+  field_easy_contact_from_eu: AB' den
+  field_easy_contact_group: Bağlantı grubu
+  field_easy_contact_group_entity: Kişisel gruplar
+  field_easy_contact_group_entity_type: Grupların tipleri
+  field_easy_contact_group_parent: Ana bağlantı grubu
+  field_easy_contact_group_root: Üst bağlantı grubu
+  field_easy_contact_guid: GUID
+  field_easy_contact_parent: Ana bağlantı
+  field_easy_contact_private: Özel bağlantı
+  field_easy_contact_root: Üst bağlantı
+  field_easy_contact_type: Bağlantı tipi
+  field_easy_contacts: Bağlantılar
+  field_easy_contacts_parent: Ana bağlantı
+  field_easy_contacts_visibility: Bağlantıların görünürlüğü
+  field_group_name: İsim
+  field_group_type: Grubun tipi
+  field_icon_path: İkon
+  field_is_global: Global bağlantı mı?
+  field_main_easy_contact: Ana bağlantı
+  field_parent_id: Üst
+  field_project_group: Proje grupları
+  field_type_name: İsim
+  filter:
+    global_groups: Global gruplar
+    personal_groups: Kişisel gruplar
+    project_groups: Proje grupları
+  header_text_of_mail: Bu bağlantı '%{user}' kullanıcınıza gönderildi.
+  heading_easy_contacts_toolbar: Bağlantılar
+  help_fields_limit_visibility_settings: Bu alanı görmelerine izin vermek için kullanıcıları
+    seçin. Özel görünürlüğü devre dışı bırakmak için boş bırakın.
+  label_account_name: Hesap adı
+  label_add_subcontact: Yeni ilişkilendirilmiş bağlantı
+  label_assign_to_contact: Bağlantıya ekle
+  label_assign_to_issue: İşe ekle
+  label_assign_to_me: Favori bağlantılara ekle
+  label_assign_to_project: Projeye ekle
+  label_attribute_of_easy_contacts: Bağlantı %{name}
+  label_bulk_edit_selected_contacts: Seçilen bağlantıları toplu düzenle
+  label_change_easy_contact_type_to: Tipini buna değiştir
+  label_contact_references: İlgili bağlantılar
+  label_contact_references_to_account: Hesaplarla bağlantı kurma
+  label_contact_references_to_corporate: Kuruluşlarla bağlantı kurma
+  label_contact_references_to_personal: Bağlantılarla(kişiler) bağlantı kurma
+  label_contacts_attribute: Nitelik
+  label_contacts_groups: Bağlantının grupları
+  label_contacts_main_crm_cases: Kendi CRM girdileri
+  label_corporate_name: Şirket adı
+  label_easy_contact: Bağlantı
+  label_easy_contact_accounted_by: "%{name} tarafından müşteri"
+  label_easy_contact_add_sub_contact: Alt Bağlantı ekle
+  label_easy_contact_assigned_to: Bağlantı atanan
+  label_easy_contact_change_avatar: Avatarı değiştir
+  label_easy_contact_client_custom_fields: Müşteri özel alanları
+  label_easy_contact_country_select: Ülke Seçiniz
+  label_easy_contact_easy_contact_groups: Bağlantı grupları
+  label_easy_contact_encoding_chooser: Vcard kodlamasını seçin
+  label_easy_contact_fields_settings: Alan Ayarları
+  label_easy_contact_global: Global bağlantılar
+  label_easy_contact_group: Bağlantı grubu
+  label_easy_contact_groups: Bağlantı gruplarını yönet
+  label_easy_contact_is_global_false: Bağlantı global değil
+  label_easy_contact_is_global_true: Bağlantı global
+  label_easy_contact_is_my: Bağlantı favori
+  label_easy_contact_is_not_my: Bağlantı favori değil
+  label_easy_contact_is_private_false: Bağlantı kişisel değil
+  label_easy_contact_is_private_true: Bağlantı kişisel
+  label_easy_contact_issues: 'İşler:'
+  label_easy_contact_managed_accounts: Yönetilen müşteriler
+  label_easy_contact_managed_by_partner: 'Müşteri oluşturan iş ortağı:'
+  label_easy_contact_note: Bağlantı yorumları
+  label_easy_contact_parent_contact_plural: Ana bağlantılar
+  label_easy_contact_parent_group: Üst grup
+  label_easy_contact_personal: Favori Bağlantılar
+  label_easy_contact_plural: Bağlantılar
+  label_easy_contact_principals: 'Kullanıcılar:'
+  label_easy_contact_projects: 'Projeler:'
+  label_easy_contact_queries_plural: Bağlantılar
+  label_easy_contact_references: İlgili bağlantılar
+  label_easy_contact_references_groups: Bağlantı grupları
+  label_easy_contact_root_contact: Kök bağlantı
+  label_easy_contact_sub_contact: Alt bağlantı
+  label_easy_contact_sub_contact_plural: Alt bağlantılar
+  label_easy_contact_type: Şirket mi?
+  label_easy_contact_type_edit: Bağlantı türünü düzenle
+  label_easy_contact_type_new: Yeni bağlantı türü
+  label_easy_contact_types: Bağlantı türleri
+  label_easy_contact_used_in_type: Kullanıldığı yer
+  label_easy_contacts: Bağlantılar
+  label_easy_contacts_add_non_primary_custom_fields: Başka bir nitelik ekle
+  label_easy_contacts_add_non_primary_custom_fields_select: Nitelik seç
+  label_easy_contacts_import: Bağlantıları içe aktar
+  label_easy_contacts_name: Bağlantının ismi
+  label_easy_contacts_reg_no_query: reg. no. query ile önden doldur
+  label_easy_contacts_settings: Bağlantı ayarları
+  label_easy_contacts_validate_vat_no: Vergi numarasını onayla
+  label_easy_contacts_visibility_all: Tüm Bağlantılar
+  label_easy_contacts_visibility_assigned: Kullanıcıya atanan bağlantılar
+  label_easy_contacts_visibility_author: Kullanıcı tarafından yaratılan bağlantılar
+  label_easy_contacts_visibility_own: Kullanıcı tarafından oluşturulmuş veya atanmış
+    bağlantılar
+  label_edit_contact_field_settings: "%{name} alan ayarları"
+  label_filter_group_easy_contact_group_query: Bağlantı grubu
+  label_filter_group_easy_contact_query: Bağlantı
+  label_new_import_file_toggling_button: Başka bir dosya / ayar
+  label_personal_name: İsim
+  label_project_easy_contact_groups: Proje grupları
+  label_project_easy_contacts: Proje bağlantıları
+  label_show_easy_contacts: Bağlantıları göster
+  menu_easy_contacts: Bağlantılar
+  modal_labels:
+    cancel: İptal et
+    mail: Seçileni gönder
+  modal_query:
+    groups: Gruplara ata
+    mail: E-posta ile gönder
+    projects: Projelere ata
+  modal_titles:
+    cancel: Kapat
+    mail: Seçili kullanıcıları seçili bağlantılara gönder.
+  notice_easy_contact_successful_create: Bağlantı %{id} yaratıldı 
+  notice_failed_to_save_contacts: Bağlantılar kaydedilemedi.
+  notice_successfull_contacts_import: Bağlantılar başarıyla içe aktarıldı
+  notice_successfully_assignable_easy_contacts: Seçilen bağlantılar (%{count}) atandı
+  notice_successfully_remove: Bağlantı gruptan kaldırıldı -%{ecg}
+  notice_successfully_send_by_mail: Seçilen bağlantılar (%{count}) gönderildi
+  permission_add_note_easy_contact_groups: Gruplara yorum ekle
+  permission_add_note_easy_contacts: Bağlantılara yorum ekle
+  permission_anonymize_easy_contacts: Bağlantıları anonimleştir
+  permission_assign_easy_contacts: Bağlantıları e-posta ile gönder
+  permission_assign_to_project: Projelere bağlantı ekleme / çıkarma imkanı
+  permission_delete_assigned_easy_contacts: Atanan bağlantıları sil
+  permission_delete_author_easy_contacts: Kendi bağlantılarını sil
+  permission_delete_easy_contact_groups: Bağlantı gruplarını sil
+  permission_delete_easy_contact_types: Bağlantı türlerini sil
+  permission_delete_easy_contacts: Bağlantıları sil
+  permission_edit_contact_note: Bağlantılardaki yorumları düzenle
+  permission_manage_assigned_easy_contacts: Atanan bağlantıları yönet
+  permission_manage_author_easy_contacts: Kendi bağlantılarını yönet
+  permission_manage_easy_contact_groups: Bağlantı gruplarını yönet
+  permission_manage_easy_contact_types: Bağlantı türlerini yönet
+  permission_manage_easy_contacts: Bağlantıları yönet
+  permission_view_easy_contacts: Bağlantıları görüntüle
+  project_contacts_overview:
+    header: Projedeki bağlantıların listesi
+    warning_easy_contacts_disabled: Projenin bağlantılar modülü devre dışı bırakıldı
+  project_default_page:
+    easy_contacts: Bağlantılar
+  project_module_easy_contacts: Bağlantılar
+  search_field_placeholders:
+    easy_contacts: Bağlantıları arat
+  setting_easy_carddav_enabled: Carddav'ı etkinleştir
+  text_are_you_sure_easy_contact_destroy: BAĞLANTIYI YOKET! Bu işlem bağlantıyı kalıcı
+    olarak siler. Emin misiniz?
+  text_easy_contact_missing_comments: Yorum yok
+  text_easy_contacts_encoding_help: Windows kullanıcıları için muhtemelen 'windows-1250',
+    'UTF-8'
+  text_easy_contacts_import_help: Lütfen içe aktarılması ve kodlanması için kaydedileceği
+    bir CSV dosyası seçin.
+  text_easy_contacts_import_preview: Lütfen aşağıda gösterilen verileri kontrol edin.
+    Memnunsanız, verileri kaydetmek için İçe Aktar düğmesine tıklayın. Değilseniz,
+    lütfen başka bir dosya veya ayar deneyin.
+  title_easy_contact_assign: Bağlantıyı gruba ata
+  title_easy_contact_groups_edit: Grubu düzenle
+  title_easy_contact_mailer: Bağlantılar - %{contact_name}
+  title_easy_contact_type_delete: Bağlantıyı sil
+  title_easy_contact_type_edit: Bağlantıyı düzenle
+  title_easy_contact_type_new: Yeni Bağlantı
+  title_easy_contacts_in_group: Gruptaki bağlantılar
+  title_easy_modal_selector_trigger:
+    easy_contact: Listeden bağlantı seçmek için tıklayın.
+    easy_contact_group: Listeden bağlantı grubu seçmek için tıklayın
+  title_issue_contacts_display_changer_list: Bağlantıları liste olarak göster
+  title_issue_contacts_display_changer_slab: Bağlantıları döşeme şeklinde göster
+  title_issue_contacts_display_changer_tile: Bağlantıları karolar halinde göster
+  title_maybe_you_can: Belki bu bağlantılardan birini oluşturabilirsin.
+  title_other_formats_links_vcf: VCard'a dışa aktar
+  title_reasign_easy_contact: 'Bağlantıyı yeniden ata: %{contact}'
+  title_remove_easy_contact_from_entity: Bağlantıyı varlıktan kaldır

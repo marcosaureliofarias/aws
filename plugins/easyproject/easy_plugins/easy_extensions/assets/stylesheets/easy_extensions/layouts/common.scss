@@ -1,0 +1,101 @@
+.hidden.hidden, .hide.hide{
+  display: none;
+}
+.push-left{
+  float: left;
+}
+.push-right{
+  float: right;
+}
+.clear{
+  @extend %clearfix;
+}
+.flex-baseline {
+  @extend %flex;
+  @extend %align-items-baseline;
+}
+.flex-center {
+  @extend %flex;
+  @extend %align-items-center;
+}
+.flex{
+  @extend %flex;
+}
+
+.nowrap{
+  white-space: nowrap;
+}
+.wrap{
+  white-space: normal;
+}
+
+.u{
+  &-overflow--initial{
+    overflow: initial !important;
+  }
+}
+
+//----------------------------------------
+// Splitcontent implementation
+//----------------------------------------
+.splitcontent {
+  @extend %splitcontent;
+  @include respond-to(min-small-screen) {
+    &left{
+      float: left;
+      width: 50%;
+    }
+    &right{
+      width: 50%;
+    }
+    &right,& > &right{
+      float: right;
+      order: 99;
+    }
+    .clear {
+      order: 999;
+    }
+  }
+  //----------------------------------------
+  // Grid implementation
+  //----------------------------------------
+  @for $i from 1 through length($grid) {
+    $key: nth(map-keys($grid), $i);
+    $value: nth(map-values($grid), $i);
+    & > .size-#{$key}{
+      @include respond-to(min-medium-screen){
+        width: $value;
+        &:nth-of-type(#{($value/100%)*10}n){
+          //clear:both;
+        }
+      }
+    }
+  }
+  @for $i from 1 through length($grid) {
+    $key: nth(map-keys($grid), $i);
+    $value: nth(map-values($grid), $i);
+    & > .size-s-#{$key}{
+      @include respond-to(max-small-screen){
+        width: $value;
+      }
+    }
+  }
+  @for $i from 1 through length($grid) {
+    $key: nth(map-keys($grid), $i);
+    $value: nth(map-values($grid), $i);
+    & > .size-l-#{$key}{
+      @include respond-to(min-large-screen){
+        width: $value;
+      }
+    }
+  }
+  @for $i from 1 through length($grid) {
+    $key: nth(map-keys($grid), $i);
+    $value: nth(map-values($grid), $i);
+    & > .size-xl-#{$key}{
+      @include respond-to(min-xlarge-screen){
+        width: $value;
+      }
+    }
+  }
+}

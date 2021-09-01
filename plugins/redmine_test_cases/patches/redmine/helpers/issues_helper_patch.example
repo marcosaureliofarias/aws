@@ -1,0 +1,30 @@
+module RedmineTestCases
+  module IssuesHelperPatch
+
+    def self.included(base)
+      base.extend(ClassMethods)
+      base.send(:include, InstanceMethods)
+
+      base.class_eval do
+
+        alias_method_chain :issue_heading, :redmine_test_cases
+
+      end
+    end
+
+    module InstanceMethods
+
+      def issue_heading_with_redmine_test_cases(issue)
+        issue_heading_without_redmine_test_cases(issue)
+      end
+
+    end
+
+    module ClassMethods
+
+    end
+
+  end
+
+end
+RedmineExtensions::PatchManager.register_helper_patch 'IssuesHelper', 'RedmineTestCases::IssuesHelperPatch'

@@ -1,0 +1,83 @@
+@mixin calendar-scheme($color, $tasklike: false, $bg: false) {
+  &.dhx_cal_event,
+  &.easy-calendar__dropper,
+  &.easy-calendar__assignee, .easy-calendar__event_month-bar {
+    background-color: $color;
+    //border-color: $color;
+  }
+  .easy-calendar__event_month-indicator {
+    border-color: darken($color, 0%);
+  }
+  &.dhx_agenda_line {
+    background-color: $color;
+  }
+  .dhx_title {
+    background-color: darken($color, 7.5%);
+  }
+  .dhx_body {
+    background-color: rgba($color, 1);
+    &:hover {
+      background-color: darken($color, 4%);
+    }
+  }
+}
+//default event
+.dhx_cal_event, .dhx_cal_event_line{
+  @include calendar-scheme($scheduler__color-entity--selection);
+}
+
+//Entitiy based colors
+.easy-calendar {
+  &__meeting {
+    @include calendar-scheme($scheduler__color-entity--meeting);
+  }
+  &__generic-meeting {
+    @include calendar-scheme($scheduler__color-entity--generic);
+  }
+  &__attendance {
+    @include calendar-scheme($scheduler__color-entity--attendance);
+  }
+  &__issue {
+    @include calendar-scheme($scheduler__color-entity--issue);
+  }
+  &__entity-activity {
+    @include calendar-scheme($scheduler__color-entity--entity_activity);
+  }
+  &__ical-event {
+    @include calendar-scheme($scheduler__color-entity--ical_event);
+  }
+  &__holiday-event {
+    @include calendar-scheme($scheduler__color-entity--holiday_event);
+  }
+  //&__date-separator{
+  //  @include calendar-scheme($scheduler__color-entity--date_separator);
+  //}
+}
+
+// Asignee based colors
+//@for $i from 1 through length($scheduler-schemes) {
+//  $color: nth($scheduler-schemes, $i);
+//  .scheme_#{($i - 1)} {
+//    @include calendar-scheme($color)
+//  }
+//}
+
+//Priority based colors
+@for $i from 1 through length($schemes) {
+  //In tasks
+  .easy-calendar__task.scheme {
+    &-#{nth(map_keys($schemes), $i) - 1} {
+      @include agile-scheme(nth(map_values($schemes), $i));
+    }
+    &-#{nth(map_keys($schemes), $i)} {
+      @include agile-scheme(nth(map_values($schemes), $i), true);
+    }
+  }
+  //In calendar
+  //.scheme-#{nth(map_keys($schemes), $i) - 1}{
+  //  @include calendar-scheme(nth(map_values($schemes), $i), true);
+  //}
+  //.scheme-#{nth(map_keys($schemes), $i)}{
+  //  @include calendar-scheme(nth(map_values($schemes), $i), true, true);
+  //}
+}

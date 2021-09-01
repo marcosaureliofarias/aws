@@ -1,0 +1,40 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name -%>
+
+<h2><%=l(:label_enumerations)%></h2>
+
+<% Enumeration.get_subclasses.each do |klass| %>
+  <div class="box">
+    <%= toggling_container("#{modul_uniq_id}_#{klass}", User.current, { heading: l(klass::OptionName), default_button_state: false,
+        heading_links: link_to('', { action: 'new', type: klass.name }, class: 'icon icon-add') }) do %>
+      <% enumerations = klass.shared %>
+      <% if enumerations.any? %>
+        <div class="autoscroll">
+          <table class="list reorder"><thead>
+              <tr>
+                <th></th>
+                <th><%= l(:field_name) %></th>
+                <th><%= l(:field_description) %></th>
+                <th><%= l(:field_is_default) %></th>
+                <th><%= l(:field_active) %></th>
+                <th></th>
+              </tr></thead>
+            <% enumerations.each do |enumeration| %>
+              <tr class="<%= enumeration.easy_color_scheme %>">
+                <td class="center reorder-handler"><%= render_reorder_handle(enumeration_path(enumeration), 'enumeration') %></td>
+                <td class="name"><%= link_to(enumeration, edit_enumeration_path(enumeration)) %></td>
+                <td class="description"><%= enumeration.description %></td>
+                <td class="tick"><%= checked_image enumeration.is_default? %></td>
+                <td class="tick"><%= checked_image enumeration.active? %></td>
+                <td class="buttons"><%= delete_link(enumeration_path(enumeration)) %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= call_hook(:view_enumerations_index_bottom, {}) %>
+
+<% html_title(l(:label_enumerations)) -%>

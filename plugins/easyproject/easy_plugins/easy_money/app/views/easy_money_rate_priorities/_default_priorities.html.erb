@@ -1,0 +1,80 @@
+<% project = tab[:project]
+easy_money_settings = project.easy_money_settings unless project.nil?
+easy_money_settings ||= EasyMoney::SettingsResolver.new(EasyMoneySettings.project_settings_names) -%>
+<div class="easy-money-rate-priorities-container">
+  <h3><%= l(:label_easy_money_rate_priorities_settings) -%></h3>
+  <p class="description"><%= l(:text_easy_money_rate_priorities_settings) -%></p>
+  <% if easy_money_settings.show_rate?('all') %>
+    <% EasyMoneyRateType.rate_type_cache.each do |rate_type| -%>
+      <div class="rate-type-container">
+        <h3><%= rate_type.translated_name -%></h3>
+        <div class="autoscroll">
+          <table class="list reorder">
+            <% EasyMoneyRatePriority.rate_priorities_by_rate_type_and_project(rate_type.id, project && project.id).each do |rate_priority| -%>
+              <tr>
+                <td class="center reorder-handler"><%= render_reorder_handle(url_for({:controller => 'easy_money_settings', :action => 'move_rate_priority', :id => rate_priority.id, :project_id => (project.nil? ? nil : project.id)}), 'easy_money_rate_priority') %></td>
+                <td class="name"><%= l("easy_money_entity.#{rate_priority.entity_type.underscore}") -%></td>
+              </tr>
+            <% end -%>
+          </table>
+        </div>
+      </div>
+    <% end -%>
+  <% else %>
+    <div class="rate-type-container">
+      <h3><%= l('easy_money_rate_type.one') -%></h3>
+      <div class="autoscroll">
+        <table class="list reorder">
+          <% rate_type = EasyMoneyRateType.rate_type_cache.first %>
+          <% EasyMoneyRatePriority.rate_priorities_by_rate_type_and_project(rate_type.id, project && project.id).each do |rate_priority| -%>
+            <tr>
+              <td class="center reorder-handler"><%= render_reorder_handle(url_for({:controller => 'easy_money_settings', :action => 'move_rate_priority', :id => rate_priority.id, :project_id => (project.nil? ? nil : project.id)}), 'easy_money_rate_priority') %></td>
+              <td class="name"><%= l("easy_money_entity.#{rate_priority.entity_type.underscore}") -%></td>
+            </tr>
+          <% end if rate_type -%>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="toolbar">
+  <% planned = EasyRakeTaskInfo.where(:method_to_execute => 'update_projects_time_entry_expenses', :status => [EasyRakeTaskInfo::STATUS_PLANNED, EasyRakeTaskInfo::STATUS_RUNNING]).exists? %>
+  <% if project.nil? -%>
+    <%= link_to(l(:button_easy_money_priorities_use_in_all_projects),
+      update_priorities_to_projects_easy_money_priorities_path(:back_url => original_url),
+      :title => l(:title_easy_money_priorities_use_in_all_projects),
+      :class => 'button-positive') -%>
+    <% if planned %>
+      <%= render :partial => 'easy_money_rate_priorities/planned_info' %>
+    <% else %>
+      <%= link_to(l(:button_easy_money_update_all_projects_time_entry_expenses),
+        update_all_projects_time_entry_expenses_easy_money_time_entry_expenses_path(:back_url => original_url),
+        :title => l(:title_easy_money_update_all_projects_time_entry_expenses),
+        :class => 'button small') -%>
+      <% end %>
+  <% else -%>
+    <% has_subprojects_with_money = project.descendants.active_and_planned.has_module(:easy_money).any? %>
+    <% if has_subprojects_with_money %>
+      <%= link_to(l(:button_easy_money_priorities_use_in_all_subprojects),
+        update_priorities_to_subprojects_easy_money_priorities_path(:project_id => project, :back_url => original_url),
+        :title => l(:title_easy_money_priorities_use_in_all_subprojects),
+        :class => 'button-positive') -%>
+    <% end %>
+    <% if planned %>
+      <%= render :partial => 'easy_money_rate_priorities/planned_info' %>
+    <% else %>
+      <%= link_to(l(:button_easy_money_update_project_time_entry_expenses),
+        update_project_time_entry_expenses_easy_money_time_entry_expenses_path(:project_id => project, :back_url => original_url),
+        :title => l(:title_easy_money_update_project_time_entry_expenses),
+        :class => 'button small') -%>
+      <% if has_subprojects_with_money %>
+        <%= link_to(l(:button_easy_money_update_project_and_subprojects_time_entry_expenses),
+          update_project_and_subprojects_time_entry_expenses_easy_money_time_entry_expenses_path(:project_id => project, :back_url => original_url),
+          :title => l(:title_easy_money_update_project_and_subprojects_time_entry_expenses),
+          :class => 'button small') -%>
+      <% end %>
+    <% end %>
+  <% end -%>
+</div>
+

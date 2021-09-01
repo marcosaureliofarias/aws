@@ -1,0 +1,23 @@
+%print_bg_hack{
+  @extend %pseudo-before;
+  overflow: hidden;
+  &:before{
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top: 2000px solid lighten($color-print, 80%);
+  }
+}
+%print_bg_hack_minor{
+  @extend %print_bg_hack;
+  &:before{
+    border-top-color: lighten($color-print, 90%);
+  }
+}
+%avoid_break_inside{
+  position: relative;
+  page-break-inside: avoid;
+  -webkit-region-break-inside: avoid;
+}

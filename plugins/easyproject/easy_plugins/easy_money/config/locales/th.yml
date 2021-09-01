@@ -1,0 +1,595 @@
+---
+th:
+  button_easy_money_copy_to_expected: คัดลอกไปยังตามแผน
+  button_easy_money_copy_to_other: คัดลอกไปยังตามจริง
+  button_easy_money_crm_cases_budget: งบประมาณของกรณี CRM
+  button_easy_money_issues_budget: งบประมาณของภารกิจ
+  button_easy_money_move: เปลี่ยนโครงการเพื่อเลือก
+  button_easy_money_move_to_expected: ย้ายไปยังตามแผน
+  button_easy_money_move_to_other: ย้ายไปยังตามจริง
+  button_easy_money_priorities_use_in_all_projects: ใช้อัตราลำดับความสำคัญในทุกโครงการ
+  button_easy_money_priorities_use_in_all_subprojects: ใช้อัตราลำดับความสำคัญในโครงการย่อยทั้งหมด
+  button_easy_money_project_expected_expenses: 'ค่าใช้จ่าย:'
+  button_easy_money_project_expected_revenues: 'รายรับ:'
+  button_easy_money_project_expenses: 'ต้นทุนรวม:'
+  button_easy_money_project_index_show_details: แสดงรายละเอียด
+  button_easy_money_project_index_show_empty: แสดงฟิลด์ว่าง
+  button_easy_money_project_new_expense: ค่าใช้จ่ายใหม่
+  button_easy_money_project_new_revenue: รายรับใหม่
+  button_easy_money_project_other_expenses: 'ค่าใช้จ่าย:'
+  button_easy_money_project_other_revenues: 'BAC (งบประมาณเมื่อแล้วเสร็จ):'
+  button_easy_money_project_settings: ตั้งค่างบประมาณ
+  button_easy_money_project_time_entry_expenses: 'ต้นทุนบุคลากร:'
+  button_easy_money_project_time_entry_hours: 'เวลาที่ใช้ไป:'
+  button_easy_money_project_travel_costs: 'ต้นทุนค่าเดินทาง:'
+  button_easy_money_project_travel_expenses: 'ค่าใช้จ่ายในการเดินทาง - คืนเงิน:'
+  button_easy_money_rate_use_in_all_projects: ใช้อัตราในทุกโครงการ
+  button_easy_money_rate_use_in_all_subprojects: ใช้อัตราในทุกโครงการย่อย
+  button_easy_money_save_expected_expense: ประหยัดค่าใช้จ่ายตามแผน
+  button_easy_money_save_expected_hours: ประหยัดเวลาตามแผน
+  button_easy_money_save_expected_revenue: ประหยัดรายรับตามแผน
+  button_easy_money_save_in_all_projects: ใช้ในทุกโครงการ
+  button_easy_money_save_in_all_subprojects: ใช้ในทุกโครงการย่อย
+  button_easy_money_save_other_expense: ประหยัดค่าใช้จ่ายตามจริง
+  button_easy_money_save_other_revenue: ประหยัดรายรับตามจริง
+  button_easy_money_update_all_projects_time_entry_expenses: คำนวณต้นทุนบุคลากรอีกครั้งในทุกโครงการ
+  button_easy_money_update_project_and_subprojects_time_entry_expenses: คำนวณต้นทุนบุคลากรอีกครั้งในทุกโครงการย่อย
+  button_easy_money_update_project_time_entry_expenses: คำนวณต้นทุนบุคลากรอีกครั้งในโครงการ
+  button_new_easy_entity_csv_import: นำเข้า CSV ใหม่
+  easy_lookup:
+    easy_money_expected_expense:
+      label: ค่าใช้จ่ายตามแผน
+    easy_money_expected_payroll_expense:
+      label: ต้นทุนบุคลากรตามแผน
+    easy_money_expected_revenue:
+      label: รายรับตามแผน
+    easy_money_other_expense:
+      label: ค่าใช้จ่ายตามจริง
+    easy_money_other_revenue:
+      label: รายรับตามจริง
+    easy_money_travel_expense:
+      label: ค่าใช้จ่ายในการเดินทาง
+  easy_money_date_greater_or_equal: "%{due_date} จะต้องเท่ากับหรือมากกว่าวันที่เริ่มต้น %{start_date}"
+  easy_money_entity:
+    role: หน้าที่
+    time_entry_activity: กิจกรรม
+    user: ผู้ใช้
+  easy_money_expected_expense_custom_field: ค่าใช้จ่ายตามแผน
+  easy_money_expected_payroll_expense_type:
+    amount: ต้นทุนบุคลากร(รวมทั้งหมด)
+    estimated_hours: ต้นทุนบุคลากร (ผลรวมของเวลาโดยประมาณสำหรับภารกิจทั้งหมดในโครงการ
+      * อัตรารายชั่วโมงตามแผน)
+    hours: ต้นทุนบุคลากร (ชั่วโมงที่คาดหวังของโครงการทั้งหมด * อัตรารายชั่วโมงตามแผน)
+    planned_hours_and_rate: ภารกิจที่ไม่มีผู้รับมอบหมาย (ชั่วโมงโดยประมาณ * อัตรารายชั่วโมงตามแผน),
+      ภารกิจที่มีผู้รับมอบหมาย (ชั่วโมงโดยประมาณ * อัตราตามลำดับชั้น)
+  easy_money_expected_revenue_custom_field: รายรับตามแผน
+  easy_money_expenses_type:
+    list: รายการรายละเอียด
+    sum: ค่าใช้จ่ายรวม
+  easy_money_other_expense_custom_field: ค่าใช้จ่ายตามจริง
+  easy_money_other_revenue_custom_field: รายรับตามจริง
+  easy_money_other_settings_default_currency_format: ค่าเริ่มต้น - ตามภาษา
+  easy_money_other_settings_expected_count_price:
+    price1: จำนวนเงินรวม
+    price2: จำนวนเงิน ไม่รวม VAT
+  easy_money_other_settings_expected_rate_type:
+    external: อัตราภายนอก
+    internal: อัตราภายใน
+  easy_money_other_settings_price_visibility:
+    all: จำนวนเงิน ไม่รวม VAT และจำนวนเงินรวม
+    price1: เฉพาะจำนวนเงินรวม
+    price2: เฉพาะจำนวนเงิน ไม่รวมVAT
+  easy_money_other_settings_rate_type:
+    all: อัตราภายในและภายนอก
+    internal: อัตราเดียวเท่านั้น
+  easy_money_period:
+    daily: รายวัน
+    monthly: รายเดือน
+    weekly: รายสัปดาห์
+    yearly: รายปี
+  easy_money_periodical_entity_invoiced_custom_field: งบประมาณ - ออกใบแจ้งหนี้
+  easy_money_periodical_entity_project_booking_custom_field: งบประมาณ - การจอง
+  easy_money_plugin_description: "- การตรวจสอบและการจัดการผลลัพธ์ทางการเงินที่คาดหวังและเป็นจริง"
+  easy_money_plugin_name: งบประมาณโครงการและกระแสเงินสด
+  easy_money_rate_entity:
+    role: อัตราตามหน้าที่
+    time_entry_activity: อัตราตามกิจกรรม
+    user: อัตราตามผู้ใช้
+  easy_money_rate_type:
+    external: อัตราภายนอก
+    internal: อัตราภายนอก
+    one: อัตรา
+  easy_money_revenues_type:
+    change_confirm: 'คำเตือน: เมื่อบันทึกการตั้งค่านี้ รายการงบประมาณที่มีอยู่ทั้งหมดของคุณจะถูกลบ
+      เราขอแนะนำให้ส่งออกรายการงบประมาณปัจจุบันในโครงการเพื่อหลีกเลี่ยงการสูญเสียข้อมูล'
+    list: รายการรายละเอียด
+    sum: รายรับรวม
+  easy_money_travel_cost_custom_field: ต้นทุนค่าเดินทาง
+  easy_money_travel_expense_custom_field: ค่าใช้จ่ายในการเดินทาง
+  easy_money:
+    text_you_can_change_it_here: 'คุณสามารถอนุญาตได้ที่นี่:'
+    warning_budgets_are_not_allowed_for_tasks: ไม่อนุญาตให้ใช้งบประมาณสำหรับภารกิจ
+  easy_pages:
+    categories:
+      easy_money: งบประมาณ
+    module_category:
+      easy_money: งบประมาณ
+    modules:
+      easy_money_expected_expense_query: ค่าใช้จ่ายตามแผน
+      easy_money_expected_revenue_query: รายรับตามแผน
+      easy_money_other_expense_query: ค่าใช้จ่ายตามจริง
+      easy_money_other_revenue_query: รายรับตามจริง
+      easy_money_project_cache_query: ภาพรวมพอร์ตโฟลิโอ
+      easy_money_travel_cost_query: ต้นทุนค่าเดินทาง
+      easy_money_travel_expense_query: ค่าใช้จ่ายในการเดินทาง
+    pages_description:
+      easy_money_projects_overview: งบประมาณ - หน้าแรก
+    pages:
+      easy_money_projects_overview: งบประมาณ - หน้าแรก
+  easy_proposer:
+    easy_money_cash_flow:
+      index:
+        caption: งบประมาณ - กระแสเงินสด
+        description: ดูกระแสเงินสด
+    easy_money_settings:
+      index:
+        caption: งบประมาณ
+        description: จัดการการตั้งค่างบประมาณ
+  easy_query:
+    columns:
+      easy_money_query:
+        actual_expenses: ต้นทุนตามจริง
+        actual_incomes: รายรับตามจริง
+        actual_personal_costs: ต้นทุนบุคลากรตามจริง
+        actual_profit: กำไรตามจริง
+        actual_total_expenses: ต้นทุนรวมตามจริง
+        net_margin: กำไรสุทธิ
+        planned_expenses: ต้นทุนตามแผน
+        planned_incomes: รายได้ตามแผน
+        planned_personal_costs: ต้นทุนบุคลากรตามแผน
+        planned_profit: กำไรตามแผน
+        planned_total_expenses: ต้นทุนรวมตามแผน
+        profit_margin: กำไรขั้นต้น
+    name:
+      easy_money_cash_flow_query: กระแสเงินสด
+      easy_money_crm_cases_budget_query: ภาพรวมพอร์ตโฟลิโอ (งบประมาณกรณี CRM)
+      easy_money_expected_expense_query: ค่าใช้จ่ายตามแผน
+      easy_money_expected_revenue_query: รายรับตามแผน
+      easy_money_issues_budget_query: ภาพรวมพอร์ตโฟลิโอ (งบประมาณภารกิจ)
+      easy_money_other_expense_query: ค่าใช้จ่ายตามจริง
+      easy_money_other_revenue_query: รายรับตามจริง
+      easy_money_project_cache_query: ภาพรวมพอร์ตโฟลิโอ (งบประมาณโครงการ)
+      easy_money_travel_cost_query: ค่าเดินทาง
+      easy_money_travel_expense_query: ค่าใช้จ่ายในการเดินทาง
+    sidebar_filters:
+      personal:
+        easy_money_expected_expense_query: ตัวกรองส่วนตัวของค่าใช้จ่ายตามแผน
+        easy_money_expected_revenue_query: ตัวกรองส่วนตัวของรายรับตามแผน
+        easy_money_other_expense_query: ตัวกรองส่วนบุคคลเกี่ยวกับค่าใช้จ่ายจริง
+        easy_money_other_revenue_query: ตัวกรองส่วนตัวของรายรับตามจริง
+        easy_money_project_cache_query: ตัวกรองส่วนตัวของภาพรวมพอร์ตโฟลิโอ
+        easy_money_travel_cost_query: ตัวกรองส่วนตัวของต้นทุนค่าเดินทาง
+        easy_money_travel_expense_query: ตัวกรองส่วนตัวของค่าใช้จ่ายในการเดินทาง
+      public:
+        easy_money_expected_expense_query: ตัวกรองสาธารณะในค่าใช้จ่ายตามแผน
+        easy_money_expected_revenue_query: ตัวกรองสาธารณะในรายรับตามแผน
+        easy_money_other_expense_query: ตัวกรองสาธารณะในค่าใช้จ่ายตามจริง
+        easy_money_other_revenue_query: ตัวกรองสาธารณะในรายรับตามจริง
+        easy_money_project_cache_query: ตัวกรองสาธารณะในภาพรวมพอร์ตโฟลิโอ
+        easy_money_travel_cost_query: ตัวกรองสาธารณะในต้นทุนค่าเดินทาง
+        easy_money_travel_expense_query: ตัวกรองสาธารณะในค่าใช้จ่ายในการเดินทาง
+    suffixes:
+      easy_money_query:
+        with_vat: "(รวม VAT)"
+        without_vat: "(ไม่รวม VAT)"
+  easy_rake_tasks:
+    easy_rake_task_easy_money_project_cache:
+      caption: การคำนวณงบประมาณภาพรวมโครงการใหม่
+  easy_reports_categories:
+    easy_money: งบประมาณ
+  easy_reports_fields:
+    _project_other_profit: กำไร
+    _project_recovery: กู้คืน
+    _project_timeentry_average_hourly_expense: ตัวทุนรายชั่วโมงเฉลี่ย
+    _time_entry_externalrate: ต้นทุนบุคลากร - อัตราภายนอก
+    _time_entry_internalrate: ต้นทุนบุคลากร - อัตราภายใน
+    easy_money_expected_expense_id: ค่าใช้จ่ายตามแผน
+    easy_money_expected_expense_name: ค่าใช้จ่ายตามแผน - ชื่อ
+    easy_money_expected_expense_price1: ค่าใช้จ่ายตามแผน - ราคารวม
+    easy_money_expected_expense_price2: ค่าใช้จ่ายตามแผน - ราคาไม่รวม VAT
+    easy_money_expected_revenue_id: รายรับตามแผน
+    easy_money_expected_revenue_name: รายรับตามแผน - ชื่อ
+    easy_money_expected_revenue_price1: รายรับตามแผน - ราคารวม
+    easy_money_expected_revenue_price2: รายรับตามแผน - ราคาไม่รวม VAT
+    easy_money_other_expense_id: ค่าใช้จ่ายตามจริง
+    easy_money_other_expense_name: ค่าใช้จ่ายตามจริง - ชื่อ
+    easy_money_other_expense_price1: ค่าใช้จ่ายตามจริง - ราคารวม
+    easy_money_other_expense_price2: ค่าใช้จ่ายตามจริง - ราคาไม่รวม VAT
+    easy_money_other_revenue_id: รายรับตามจริง
+    easy_money_other_revenue_name: รายรับตามจริง - ชื่อ
+    easy_money_other_revenue_price1: รายรับตามจริง - ราคารวม
+    easy_money_other_revenue_price2: รายรับตามจริง - ราคาไม่รวม VAT
+    project_expected_hours: ชั่วโมงทำงานตามแผน
+    project_expected_payroll_expense: ต้นทุนบุคลากรตามแผน
+  easy_scheduler_tasks:
+    ep_update_projects_time_entry_expenses: การแปลงต้นทุนบุคลากร
+  error_easy_money_cant_copy_repeating: ไม่สามารถย้าย/คัดลอกรายการนี ้เนื่องจากตั้งค่าเป็นการทำซ้ำ.
+    ให้ปิดใช้งานการทำซ้ำในเอนทิตี้ก่อนแล้วลองอีกครั้ง
+  error_easy_money_project_selector_select_values: ไม่มีค่าที่เลือก
+  field_average_hourly_rate_price_1: อัตราเฉลี่ยต่อชั่วโมง (รวม VAT)
+  field_average_hourly_rate_price_2: อัตราเฉลี่ยต่อชั่วโมง (ไม่รวม VAT)
+  field_cost_ratio: อัตราส่วนต้นทุน
+  field_easy_money_days_count: จำนวนวัน
+  field_easy_money_expected_expense: ค่าใช้จ่ายตามแผน
+  field_easy_money_expected_expense_description: 'รายละเอียด:'
+  field_easy_money_expected_expense_name: 'ชื่อ:'
+  field_easy_money_expected_expense_price1: 'จำนวนเงินรวม:'
+  field_easy_money_expected_expense_price2: 'จำนวนเงินไม่รวม VAT:'
+  field_easy_money_expected_expense_spent_on: 'วันที่:'
+  field_easy_money_expected_expense_vat: 'VAT:'
+  field_easy_money_expected_revenue: รายรับตามแผน
+  field_easy_money_expected_revenue_description: 'รายละเอียด:'
+  field_easy_money_expected_revenue_name: 'ชื่อ:'
+  field_easy_money_expected_revenue_price1: 'จำนวนเงินรวม:'
+  field_easy_money_expected_revenue_price2: 'จำนวนเงินไม่รวม VAT:'
+  field_easy_money_expected_revenue_spent_on: 'วันที่:'
+  field_easy_money_expected_revenue_vat: 'VAT:'
+  field_easy_money_metric_units: หน่วย
+  field_easy_money_other_expense_description: 'รายละเอียด:'
+  field_easy_money_other_expense_name: 'ชื่อ:'
+  field_easy_money_other_expense_price1: 'จำนวนเงินรวม:'
+  field_easy_money_other_expense_price2: 'จำนวนเงินไม่รวม VAT:'
+  field_easy_money_other_expense_spent_on: 'วันที่:'
+  field_easy_money_other_expense_vat: 'VAT:'
+  field_easy_money_other_revenue_description: 'รายละเอียด:'
+  field_easy_money_other_revenue_name: 'ชื่อ:'
+  field_easy_money_other_revenue_price1: 'จำนวนเงินรวม:'
+  field_easy_money_other_revenue_price2: 'จำนวนเงินไม่รวม VAT:'
+  field_easy_money_other_revenue_spent_on: 'วันที่:'
+  field_easy_money_other_revenue_vat: 'VAT:'
+  field_easy_money_price_per_day: ราคาต่อวัน
+  field_easy_money_price_per_unit: ราคาต่อหน่วย
+  field_easy_money_project_cache: ภาพรวมโครงการ
+  field_easy_money_rate_entity_role_name: ชื่อหน้าที่
+  field_easy_money_rate_entity_time_entry_activity_name: ชื่อกิจกรรม
+  field_easy_money_rate_entity_user_name: ชื่อผู้ใช้
+  field_easy_money_rate_type_external: การเรียกเก็บเงิน (อัตราภายนอก)
+  field_easy_money_rate_type_internal: ต้นทุนบุคลากร (อัตราภายใน)
+  field_easy_money_sum_other_expenses: ค่าใช้จ่าย
+  field_easy_money_sum_other_profit: กำไร
+  field_easy_money_sum_other_revenues: รายรับ
+  field_easy_money_sum_time_entry_expenses: ต้นทุนบุคลากร
+  field_easy_money_travel_cost: ต้นทุนค่าเดินทาง
+  field_easy_money_travel_cost_description: 'รายละเอียด:'
+  field_easy_money_travel_cost_name: 'ชื่อ:'
+  field_easy_money_travel_cost_price1: 'จำนวนเงินรวม:'
+  field_easy_money_travel_cost_spent_on: 'วันที่:'
+  field_easy_money_travel_expense: ค่าใช้จ่ายในการเดินทาง
+  field_easy_money_travel_expense_description: 'รายละเอียด:'
+  field_easy_money_travel_expense_name: 'ชื่อ:'
+  field_easy_money_travel_expense_price1: 'จำนวนเงินรวม:'
+  field_easy_money_travel_expense_spent_on: 'วันที่:'
+  field_easy_money_travel_expense_spent_on_from: 'วันที่จาก:'
+  field_easy_money_travel_expense_spent_on_to: 'วันที่ถึง:'
+  field_easy_money_travel_expenses_user: 'ผู้ใช้:'
+  field_empe_cashflow_expected_expenses_price1: ค่าใช้จ่ายตามแผน (รวมVAT)
+  field_empe_cashflow_expected_expenses_price2: ค่าใช้จ่ายตามแผน(ไม่รวมVAT)
+  field_empe_cashflow_expected_payroll_expenses_price: ต้นทุนบุคลากรตามแผน
+  field_empe_cashflow_expected_revenues_price1: รายรับตามแผน (รวมVAT)
+  field_empe_cashflow_expected_revenues_price2: รายรับตามแผน (ไม่รวม VAT)
+  field_empe_cashflow_history_price1: กำไรตามจริง (รวม VAT)
+  field_empe_cashflow_history_price2: กำไรตามจริง (ไม่รวม VAT)
+  field_empe_cashflow_other_expenses_price1: ค่าใช้จ่ายตามจริง (รวม VAT)
+  field_empe_cashflow_other_expenses_price2: ค่าใช้จ่ายตามจริง (ไม่รวม VAT)
+  field_empe_cashflow_other_revenues_price1: รายรับตามจริง (รวม VAT)
+  field_empe_cashflow_other_revenues_price2: รายรับตามจริง (ไม่รวม VAT)
+  field_empe_cashflow_prediction_price1: กำไรตามแผน (รวม VAT)
+  field_empe_cashflow_prediction_price2: กำไรตามแผน (ไม่รวม VAT)
+  field_empe_cashflow_time_entry_expenses_price: ต้นทุนบุคลากรตามจริง
+  field_empe_cashflow_total_costs_price1: ต้นทุนรวม (รวม VAT)
+  field_empe_cashflow_travel_costs_price1: ต้นทุนค่าเดินทาง
+  field_empe_cashflow_travel_expenses_price1: ค่าใช้จ่ายในการเดินทาง
+  field_expected_profit_price_1: กำไรตามแผน (รวมVAT)
+  field_expected_profit_price_2: กำไรตามแผน (ไม่รวม VAT)
+  field_inherit_easy_money_settings: รับช่วงต่อการตั้งค่างบประมาณ
+  field_other_profit_price_1_external: กำไร (รวม VAT, อัตราภายนอก)
+  field_other_profit_price_1_internal: กำไร (รวม VAT, อัตราภายใน)
+  field_other_profit_price_2_external: กำไร (ไม่รวม VAT, อัตราภายนอก)
+  field_other_profit_price_2_internal: กำไร (ไม่รวม VAT, อัตราภายใน)
+  field_price1: จำนวนเงินรวม
+  field_price2: จำนวนเงินไม่รวม VAT
+  field_profit_margin: กำไรขั้นต้น
+  field_spent_hours: เวลาที่ใช้ไป
+  field_sum_of_all_expected_expenses_price_1: รวมต้นทุนตามแผน (รวม VAT)
+  field_sum_of_all_expected_expenses_price_2: รวมต้นทุนตามแผน (ไม่รวม VAT)
+  field_sum_of_all_expected_revenues_price_1: รวมรายรับตามแผน (รวม VAT)
+  field_sum_of_all_expected_revenues_price_2: รวมรายรับตามแผน (ไม่รวม VAT)
+  field_sum_of_all_other_expenses_price_1_external: ต้นทุนรวม (รวม VAT, อัตราภายนอก)
+  field_sum_of_all_other_expenses_price_1_internal: ต้นทุนรวม (รวม VAT, อัตราภายใน)
+  field_sum_of_all_other_expenses_price_2_external: ต้นทุนรวม (ไม่รวม VAT, อัตราภายนอก)
+  field_sum_of_all_other_expenses_price_2_internal: ต้นทุนรวม (ไม่รวม VAT, อัตราภายใน)
+  field_sum_of_all_other_revenues_price_1: รายรับรวม (รวม VAT)
+  field_sum_of_all_other_revenues_price_2: รายรับรวม (ไม่รวม VAT)
+  field_sum_of_all_travel_costs_price_1: ต้นทุนค่าเดินทาง
+  field_sum_of_all_travel_expenses_price_1: ค่าใช้จ่ายในการเดินทาง
+  field_sum_of_expected_expenses_price_1: ค่าใช้จ่ายตามแผน (รวม VAT)
+  field_sum_of_expected_expenses_price_2: ค่าใช้จ่ายตามแผน (ไม่รวม VAT)
+  field_sum_of_expected_hours: ชั่วโมงตามแผน
+  field_sum_of_expected_payroll_expenses: ต้นทุนบุคลากรตามแผน
+  field_sum_of_expected_revenues_price_1: รายรับตามแผน (รวม VAT)
+  field_sum_of_expected_revenues_price_2: รายรับตามแผน (ไม่รวม VAT)
+  field_sum_of_other_expenses_price_1: ค่าใช้จ่ายตามจริง (รวม VAT)
+  field_sum_of_other_expenses_price_2: ค่าใช้จ่ายตามจริง (ไม่รวม VAT)
+  field_sum_of_other_revenues_price_1: รายรับตามจริง (รวม VAT)
+  field_sum_of_other_revenues_price_2: รายรับตามจริง (ไม่รวม VAT)
+  field_sum_of_time_entries_expenses_external: ต้นทุนบุคลากร (อัตราภายนอก)
+  field_sum_of_time_entries_expenses_internal: ต้นทุนบุคลากร (อัตราภายใน)
+  field_vat: VAT
+  heading_easy_money_mapping_setting: จัดผังฟิลด์สำหรับย้าย/คัดลอกเงินระหว่างงบประมาณตามจริงและตามแผน
+  heading_easy_money_other_settings_prices_and_rates: อัตราและราคา
+  heading_easy_money_other_settings_project_overview: ตั้งค่างบประมาณ
+  label_easy_money: งบประมาณ
+  label_easy_money_affected_projects: โครงการที่ได้รับผลกระทบ
+  label_easy_money_all_project: งบประมาณสำหรับทุกโครงการ
+  label_easy_money_all_projects: บันทึกในทุกโครงการ
+  label_easy_money_attachments: 'สิ่งที่แนบมา:'
+  label_easy_money_cash_flow: กระแสเงินสด
+  label_easy_money_cash_flow_change_price_type: จำนวนที่จะแสดง?
+  label_easy_money_cash_flow_history: ประวัติกระแสเงินสด
+  label_easy_money_cash_flow_prediction: การประมาณการกระแสเงินสด
+  label_easy_money_create_to: สร้างเพื่อ
+  label_easy_money_currency: 'สกุลเงิน:'
+  label_easy_money_currency_format: รูปแบบสกุลเงิน
+  label_easy_money_currency_visible: 'อนุญาตให้เปลี่ยนสกุลเงินต่อโครงการ:'
+  label_easy_money_entity_overview: ภาพรวมโครงการ/ภารกิจ/เหตุการณ์สำคัญ
+  label_easy_money_expected_budget: วางแผน
+  label_easy_money_expected_expense: ค่าใช้จ่ายตามแผน
+  label_easy_money_expected_expense_added: ค่าใช้จ่ายตามแผนที่เพิ่มขึ้น
+  label_easy_money_expected_expense_edit: แก้ไขค่าใช้จ่ายตามแผน
+  label_easy_money_expected_expense_new: ค่าใช้จ่ายตามแผนใหม่
+  label_easy_money_expected_expense_plural: ค่าใช้จ่ายตามแผน
+  label_easy_money_expected_expense_show: ค่าใช้จ่ายตามแผน
+  label_easy_money_expected_expense_updated: อัพเดตค่าใช้จ่ายตามแผน
+  label_easy_money_expected_expenses: ภาพรวมค่าใช้จ่ายตามแผน
+  label_easy_money_expected_payroll_expense_per_hours: อัตรารายชั่วโมงตามแผน
+  label_easy_money_expected_payroll_expenses: 'ต้นทุนบุคลากร:'
+  label_easy_money_expected_revenue: รายรับตามแผน
+  label_easy_money_expected_revenue_added: รายรับตามแผนที่เพิ่มขึ้น
+  label_easy_money_expected_revenue_edit: แก้ไขรายรับตามแผน
+  label_easy_money_expected_revenue_new: รายรับตามแผนใหม่
+  label_easy_money_expected_revenue_plural: รายรับตามแผน
+  label_easy_money_expected_revenue_show: รายรับตามแผน
+  label_easy_money_expected_revenue_updated: อัพเดตรายรับตามแผนแล้ว
+  label_easy_money_expected_revenues: ภาพรวมรายรับตามแผน
+  label_easy_money_hour: "%{hours} ชม."
+  label_easy_money_mapping_setting: การจัดผังสำหรับ %{from} ถึง %{to}
+  label_easy_money_mass_copy_rates: ค่าอัตราต้นทุน
+  label_easy_money_net_margin: กำไรสุทธิ
+  label_easy_money_new_expense_description: ค่าใช้จ่าย
+  label_easy_money_new_expense_text: ค่าใช้จ่าย
+  label_easy_money_new_expense_text_new: ค่าใช้จ่ายใหม่
+  label_easy_money_new_revenue_description: รายรับ
+  label_easy_money_new_revenue_text: รายรับ
+  label_easy_money_new_revenue_text_new: รายรับใหม่
+  label_easy_money_new_travel_cost_description: ต้นทุนค่าเดินทาง
+  label_easy_money_new_travel_cost_text: ต้นทุนค่าเดินทาง
+  label_easy_money_other_expense: ค่าใช้จ่ายตามจริง
+  label_easy_money_other_expense_added: ค่าใช้จ่ายตามจริงที่เพิ่มขึ้น
+  label_easy_money_other_expense_edit: แก้ไขค่าใช้จ่าย
+  label_easy_money_other_expense_new: ค่าใช้จ่ายตามจริงใหม่
+  label_easy_money_other_expense_plural: ค่าใช้จ่ายตามจริง
+  label_easy_money_other_expense_show: ค่าใช้จ่าย
+  label_easy_money_other_expense_updated: อัพเดตค่าใช้จ่ายตามจริง
+  label_easy_money_other_expenses: ภาพรวมค่าใช้จ่ายตามจริง
+  label_easy_money_other_revenue: รายรับตามจริง
+  label_easy_money_other_revenue_added: รายรับตามจริงที่เพิ่มขึ้น
+  label_easy_money_other_revenue_edit: แก้ไขรายรับ
+  label_easy_money_other_revenue_new: รายรับตามจริงใหม่
+  label_easy_money_other_revenue_plural: รายรับตามจริง
+  label_easy_money_other_revenue_show: รายรับ
+  label_easy_money_other_revenue_updated: อัพเดตรายรับตามจริง
+  label_easy_money_other_revenues: ภาพรวมรายรับตามจริง
+  label_easy_money_other_settings: การตั้งค่าอื่น ๆ
+  label_easy_money_other_settings_expected_count_price: นับรายรับและค่าใช้จ่ายโดยใช้
+  label_easy_money_other_settings_expected_payroll_expense_type: ต้นทุนบุคลากรตามแผนถูกกำหนดโดย
+  label_easy_money_other_settings_expected_rate_type: นับต้นทุนบุคลากรโดยใช้
+  label_easy_money_other_settings_expenses_type: ค่าใช้จ่ายจะทำหน้าที่เป็น
+  label_easy_money_other_settings_include_childs: นับจำนวนเงินจากโครงการย่อยจนถึงงบประมาณโครงการทั้งหมด
+  label_easy_money_other_settings_price_visibility: 'จำนวนเงินถูกป้อนเป็น:'
+  label_easy_money_other_settings_project_expected_visibility: เปิดใช้งานงบประมาณตามแผน
+  label_easy_money_other_settings_project_use_easy_money_for_easy_crm_cases: ใช้งบประมาณในกรณี
+    CRM
+  label_easy_money_other_settings_project_use_easy_money_for_issues: ใช้งบประมาณในภารกิจ
+  label_easy_money_other_settings_project_use_easy_money_for_versions: ใช้งบประมาณในเหตุการณ์สำคัญ
+  label_easy_money_other_settings_rate_type: 'สำหรับต้นทุนบุคลากรใช้:'
+  label_easy_money_other_settings_revenues_type: รายรับจะทำหน้าที่เป็น
+  label_easy_money_other_settings_travel_cost_price_per_unit: ต้นทุนค่าเดินทาง - ราคาต่อหน่วย
+  label_easy_money_other_settings_travel_expense_price_per_day: ค่าใช้จ่ายในการเดินทาง
+    - ราคาต่อวัน
+  label_easy_money_other_settings_travel_metric_unit: หน่วยระยะทาง
+  label_easy_money_other_settings_use_travel_costs: ใช้ต้นทุนค่าเดินทาง
+  label_easy_money_other_settings_use_travel_expenses: ใช้ค่าใช้จ่ายในการเดินทาง -
+    เงินคืน
+  label_easy_money_other_settings_vat: 'หากแสดงเฉพาะจำนวนเงินทั้งหมด VAT เป็น:'
+  label_easy_money_overview: ภาพรวมงบประมาณ
+  label_easy_money_price_per_day: ราคาต่อวัน
+  label_easy_money_profit_margin: กำไรขั้นต้น
+  label_easy_money_project_cache: ภาพรวมพอร์ตโฟลิโอ
+  label_easy_money_project_index: งบประมาณ
+  label_easy_money_project_index_estimated_hours: 'เวลาโดยประมาณ:'
+  label_easy_money_project_index_profit: 'กำไร:'
+  label_easy_money_project_index_sum_hours: 'ชั่วโมงตามแผน:'
+  label_easy_money_project_issues_time_entry_expenses: ต้นทุนบุคลากรสำหรับภารกิจโครงการ
+  label_easy_money_project_name: 'งบประมาณโครงการ:'
+  label_easy_money_project_purchases: ค่าใช้จ่าย
+  label_easy_money_project_time_entry_expenses: เฉพาะต้นทุนบุคลากรในโครงการ
+  label_easy_money_project_usage_type: 'ใช้ในโครงการ:'
+  label_easy_money_rate_priorities_settings: การตั้งค่าอัตราต้นทุน
+  label_easy_money_real_budget: ตามจริง
+  label_easy_money_round_money_on_list: ปัดเศษค่าในรายการ
+  label_easy_money_save_options: บันทึกตัวเลือก
+  label_easy_money_select_project: เลือกโครงการ
+  label_easy_money_settings: การตั้งค่างบประมาณ
+  label_easy_money_settings_use_global_activity_rates: สำหรับกิจกรรมที่ใช้อัตราทั่วโลก
+  label_easy_money_settings_use_global_role_rates: สำหรับหน้าที่ที่ใช้อัตราทั่วโลก
+  label_easy_money_settings_use_global_setting: ใช้การตั้งค่าทั่วโลก
+  label_easy_money_settings_use_global_user_rates: สำหรับผู้ใช้ที่ใช้อัตราทั่วโลก
+  label_easy_money_sidebar:
+    issue: งบประมาณสำหรับภารกิจ
+    project: งบประมาณโครงการ
+    version: งบประมาณสำหรับเหตุการณ์สำคัญ
+  label_easy_money_subproject_explication: "*) (ตามแผน/ตามจริง)"
+  label_easy_money_subproject_profit: ผลลัพธ์ *
+  label_easy_money_subproject_sum_expenses: ค่าใช้จ่าย *
+  label_easy_money_subproject_sum_payroll_expenses: ต้นทุนบุคลากร *
+  label_easy_money_subproject_sum_revenues: รายรับ *
+  label_easy_money_subproject_sum_travel_costs: ต้นทุนค่าเดินทาง
+  label_easy_money_subproject_sum_travel_expenses: ค่าใช้จ่ายในการเดินทาง
+  label_easy_money_subprojects: ภาพรวมโครงการย่อย
+  label_easy_money_time_entry_expenses: ภาพรวมต้นทุนบุคลากร
+  label_easy_money_total: 'รวม:'
+  label_easy_money_travel_cost: ต้นทุนค่าเดินทาง
+  label_easy_money_travel_cost_added: ต้นทุนค่าเดินทางที่เพิ่มขึ้น
+  label_easy_money_travel_cost_edit: แก้ไขต้นทุนค่าเดินทาง
+  label_easy_money_travel_cost_new: ต้นทุนค่าเดินทางใหม่
+  label_easy_money_travel_cost_plural: ต้นทุนค่าเดินทาง
+  label_easy_money_travel_cost_show: ต้นทุนค่าเดินทาง
+  label_easy_money_travel_cost_updated: อัพเดตต้นทุนค่าเดินทาง
+  label_easy_money_travel_costs: ภาพรวมต้นทุนค่าเดินทาง
+  label_easy_money_travel_expense: ค่าใช้จ่ายในการเดินทาง
+  label_easy_money_travel_expense_added: ค่าใช้จ่ายในการเดินทางที่เพิ่มขึ้น
+  label_easy_money_travel_expense_edit: แก้ไขค่าใช้จ่ายในการเดินทาง
+  label_easy_money_travel_expense_new: ค่าใช้จ่ายในการเดินทางใหม่
+  label_easy_money_travel_expense_plural: ค่าใช้จ่ายในการเดินทาง
+  label_easy_money_travel_expense_show: ค่าใช้จ่ายในการเดินทาง
+  label_easy_money_travel_expense_spent_on_from: วันที่จาก
+  label_easy_money_travel_expense_spent_on_to: วันที่ถึง
+  label_easy_money_travel_expense_updated: อัพเดตค่าใช้จ่ายการเดินทาง
+  label_easy_money_travel_expenses: ภาพรวมค่าใช้จ่ายในการเดินทาง - เงินคืน
+  label_easy_money_use_vat: ใช้การนับ VAT
+  label_easy_money_using_global_settings: บันทึกในโครงการที่ใช้การตั้งค่าทั่วโลก
+  label_easy_money_using_next_rates: ใช้อัตราถัดไป
+  label_filter_group_easy_money_budget_entities: ฟิลด์งบประมาณ
+  label_filter_group_easy_money_expected_expense_query: ค่าใช้จ่ายตามแผน
+  label_filter_group_easy_money_expected_revenue_query: รายรับตามแผน
+  label_filter_group_easy_money_other_expense_query: ค่าใช้จ่ายตามจริง
+  label_filter_group_easy_money_other_revenue_query: รายรับตามจริง
+  label_filter_group_easy_money_project_cache_expenses: ต้นทุน
+  label_filter_group_easy_money_project_cache_profit: กำไร
+  label_filter_group_easy_money_project_cache_query: อื่น ๆ
+  label_filter_group_easy_money_project_cache_revenues: รายรับ
+  label_filter_group_easy_money_project_cache_travel: ค่าเดินทาง
+  label_filter_group_easy_money_travel_cost_query: ต้นทุนค่าเดินทาง
+  label_filter_group_easy_money_travel_expense_query: ค่าใช้จ่ายในการเดินทาง - คืนเงิน
+  label_ignore_changes: ละเว้นการเปลี่ยนแปลง
+  label_save_for_this_project: บันทึกสำหรับโครงการนี้
+  label_save_for_this_project_and_descendants: บันทึกสำหรับโครงการนี้และโครงการย่อยทั้งหมด
+  label_update_project_rates_for_selected_users: อัพเดตอัตราค่าใช้จ่ายสำหรับผู้ใช้ที่เลือก
+  menu_easy_money: บัญชีงบประมาณ
+  notice_easy_money_recalculate: จำนวนเงินจะถูกคำนวณใหม่ภายในการเยี่ยมชมหน้าภาพรวมครั้งต่อไป
+  permission_easy_budgetsheet_view_external_rates: ดูอัตราภายนอก
+  permission_easy_budgetsheet_view_internal_rates: ดูอัตราภายใน
+  permission_easy_money_cash_flow_history: ดูประวัติกระแสเงินสด
+  permission_easy_money_cash_flow_prediction: ดูประมาณการกระแสเงินสด
+  permission_easy_money_manage_expected_expense: เพิ่มค่าใช้จ่ายตามแผน
+  permission_easy_money_manage_expected_payroll_expense: เพิ่มต้นทุนบุคลากรตามแผน
+  permission_easy_money_manage_expected_revenue: เพิ่มรายรับตามแผน
+  permission_easy_money_manage_other_expense: เพิ่มค่าใช้จ่ายตามจริง
+  permission_easy_money_manage_other_revenue: เพิ่มรายรับตามจริง
+  permission_easy_money_manage_travel_cost: เพิ่มต้นทุนค่าเดินทาง
+  permission_easy_money_manage_travel_expense: เพิ่มค่าใช้จ่ายในการเดินทาง
+  permission_easy_money_move: ย้ายเงินข้ามโครงการ
+  permission_easy_money_settings: เข้าถึงการตั้งค่างบประมาณ
+  permission_easy_money_show_expected_expense: ดูค่าใช้จ่ายตามแผน
+  permission_easy_money_show_expected_payroll_expense: ดูต้นทุนบุคลากรตามแผน
+  permission_easy_money_show_expected_profit: ดูกำไรตามแผน
+  permission_easy_money_show_expected_revenue: ดูรายรับตามแผน
+  permission_easy_money_show_other_expense: ดูค่าใช้จ่ายตามจริง
+  permission_easy_money_show_other_profit: ดูกำไรตามจริง
+  permission_easy_money_show_other_revenue: ดูรายรับตามจริง
+  permission_easy_money_show_time_entry_expenses: ดูต้นทุนบุคลากรตามจริง
+  permission_easy_money_show_travel_cost: ดูต้นทุนค่าเดินทาง
+  permission_easy_money_show_travel_expense: ดูค่าใช้จ่ายในการเดินทาง
+  permission_view_easy_money: เข้าถึงโมดูลงบประมาณ (ทั่วไป)
+  project_default_page:
+    easy_money: งบประมาณ
+  project_module_easy_money: งบประมาณ
+  tab_easy_money_expected_expense_custom_field: งบประมาณ - ค่าใช้จ่ายตามแผน
+  tab_easy_money_expected_revenue_custom_field: งบประมาณ - รายรับตามแผน
+  tab_easy_money_other_expense_custom_field: งบประมาณ - ค่าใช้จ่ายตามจริง
+  tab_easy_money_other_revenue_custom_field: งบประมาณ - รายรับตามจริง
+  tab_easy_money_other_settings: การตั้งค่าอื่นๆ
+  tab_easy_money_rate_priorities: อัตราลำดับชั้น
+  tab_easy_money_rate_role: อัตราตามหน้าที่
+  tab_easy_money_rate_time_entry_activity: อัตราตามกิจกรรม
+  tab_easy_money_rate_user: อัตราตามผู้ใช้
+  tab_easy_money_travel_cost_custom_field: งบประมาณ - ต้นทุนค่าเดินทาง
+  tab_easy_money_travel_expense_custom_field: งบประมาณ - ค่าใช้จ่าย- เงินคืน ค่าเดินทาง
+  text_easy_money_rate_priorities_settings: กิจกรรม, ผู้ใช้, หรือหน้าที่บางอย่าง อาจจะไม่มีการกำหนดอัตรา
+    ตามลำดับชั้นนี้อัตราที่ถูกกรอกในครั้งแรกจะถูกใช้สำหรับรายงาน
+  title_close: โดยคลิกปิดแผงนี้
+  title_easy_modal_selector_trigger:
+    easy_money_expected_expense: คลิกเพื่อเลือกค่าใช้จ่ายตามแผนจากรายการ
+    easy_money_expected_payroll_expense: คลิกเพื่อเลือกต้นทุนบุคลากรตามแผนจากรายการ
+    easy_money_expected_revenue: คลิกเพื่อเลือกรายรับตามแผน
+    easy_money_other_expense: คลิกเพื่อเลือกค่าใช้จ่ายตามจริง
+    easy_money_other_revenue: คลิกเพื่อเลือกรายรับตามจริง
+    easy_money_travel_expense: คลิกเพื่อเลือกค่าใช้จ่ายในการเดินทาง
+  title_easy_money_expected_profit: กำไรตามแผนของโครงการ %{project} คือ %{value}.
+  title_easy_money_link_to_project: ไปที่งบประมาณของ %{project}.
+  title_easy_money_link_to_subproject: ไปที่งบประมาณของ %{subproject}.
+  title_easy_money_net_margin_formula: "%{net_margin} = %{profit} / (%{incomes} -
+    %{purchases})"
+  title_easy_money_other_profit: กำไรของโครงการ %{project} คือ %{value}.
+  title_easy_money_other_repeating_expense_show: แสดงค่าใช้จ่ายที่เกี่ยวข้อง
+  title_easy_money_other_repeating_revenue_show: แสดงรายรับที่เกี่ยวข้อง
+  title_easy_money_priorities_use_in_all_projects: ใช้การจัดลำดับอัตราในทุกโครงการ
+  title_easy_money_priorities_use_in_all_subprojects: ใช้การจัดลำดับอัตราในโครงการย่อยทั้งหมด
+  title_easy_money_profit_margin_formula: "%{profit_margin} = %{profit} / %{incomes}"
+  title_easy_money_project_expected_expenses: แสดงค่าใช้จ่ายตามแผนของโครงการ
+  title_easy_money_project_expected_revenues: แสดงรายรับตามแผนของโครงการ
+  title_easy_money_project_expenses_per_month: โดยการคลิกคุณสามารถแสดงค่าใช้จ่ายในโครงการต่อเดือน
+  title_easy_money_project_index_show_empty: แสดงฟิลด์ว่าง
+  title_easy_money_project_new_expense: เพิ่มค่าใช้จ่ายใหม่
+  title_easy_money_project_new_revenue: เพิ่มรายรับใหม่
+  title_easy_money_project_other_expenses: แสดงค่าใช้จ่ายตามจริงของโครงการ
+  title_easy_money_project_other_revenues: แสดงรายรับตามจริงของโครงการ
+  title_easy_money_project_revenues_per_month: โดยการคลิกคุณสามารถแสดงรายรับต่อเดือนของโครงการ
+  title_easy_money_project_time_entry_expenses: แสดงต้นทุนบุคลากรตามจริงของโครงการ
+  title_easy_money_project_travel_costs: แสดงต้นทุนค่าเดินทางของโครงการ
+  title_easy_money_project_travel_expenses: แสดงค่าใช้จ่าย - จ่ายเงินคืนการเดินทางของโครงการ
+  title_easy_money_rate_use_in_all_projects: บันทึกอัตราและนำไปใช้กับทุกโครงการ
+  title_easy_money_rate_use_in_all_subprojects: บันทึกอัตราและนำไปใช้กับโครงการย่อยทั้งหมด
+  title_easy_money_rates_save: บันทึกอัตรา
+  title_easy_money_settings: ไปที่การตั้งค่าการเงินของโครงการ
+  title_easy_money_sum_expected_expenses: ผลรวมของค่าใช้จ่ายตามแผนของโครงการ %{project}
+    คือ %{value}.
+  title_easy_money_sum_expected_payroll_expenses: ผลรวมของต้นทุนบุคลากรตามแผนของโครงการ
+    %{project} คือ %{value}.
+  title_easy_money_sum_expected_revenues: ผลรวมของรายได้ตามแผนของโครงการ %{project}
+    คือ %{value}.
+  title_easy_money_sum_other_expenses: ผลรวมของค่าใช้จ่ายตามจริงในโครงการ %{project}
+    คือ %{value}.
+  title_easy_money_sum_other_revenues: ผลรวมของรายรับตามจริงในโครงการ%{project} คือ %{value}
+  title_easy_money_sum_time_entry_expenses: ผลรวมของต้นทุนบุคลากรในโครงการ %{project}
+    คือ %{value}.
+  title_easy_money_sum_travel_costs: ผลรวมของต้นทุนในการเดินทางของโครงการ %{project}
+    คือ %{value}.
+  title_easy_money_sum_travel_expenses: ผลรวมของค่าใช้จ่ายในการเดินทางของโครงการ%{project}
+    คือ %{value}.
+  title_easy_money_update_all_projects_time_entry_expenses: คำนวณต้นทุนบุคลากรในทุกโครงการอีกครั้ง
+  title_easy_money_update_project_and_subprojects_time_entry_expenses: คลิกเพื่อเริ่มการแปลงต้นทุนบุคลากรของโครงการและโครงการย่อยทั้งหมด
+    (อาจใช้เวลาหลายนาที)
+  title_easy_money_update_project_time_entry_expenses: คำนวณต้นทุนบุคลากรในโครงการอีกครั้ง
+  tooltip_real_hourly_rate: โครงการจะขึ้นอยู่กับอัตราเฉลี่ยรายชั่วโมง %{average_hourly_rate}
+    / ชม.
+  warning_easy_money_all_projects:
+    expenses_type: 'ค่าใช้จ่ายที่ป้อนก่อนหน้านี้ทั้งหมดสำหรับโครงการต่อไปนี้จะถูกลบ:
+      %{projects}'
+    question: คุณแน่ใจว่าจะใช้การตั้งค่าเหล่านี้ในทุกโครงการหรือไม่?
+    revenues_type: 'รายรับที่ป้อนก่อนหน้านี้ทั้งหมดสำหรับโครงการต่อไปนี้จะถูกลบ: %{projects}'
+  warning_easy_money_settings:
+    expenses_type: คุณกำลังเปลี่ยนวิธีป้อนค่าใช้จ่าย (ค่าใช้จ่ายทั้งหมดที่ป้อนก่อนหน้านี้จะถูกลบ!)
+    global_question: คุณต้องการบันทึกการตั้งค่าระดับโลกหรือไม่?
+    project_question: คุณต้องการบันทึกการตั้งค่าในโครงการหรือไม่?
+    revenues_type: คุณกำลังเปลี่ยนวิธีป้อนข้อมูลรายรับ (รายรับทั้งหมดที่ป้อนก่อนหน้านี้จะถูกลบ!)

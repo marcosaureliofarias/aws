@@ -1,0 +1,10 @@
+<div style="text-align: right;">
+  <%= link_to(l(:button_save_as_planned_revenue), new_easy_money_expected_revenue_path({
+        :easy_money => {
+          :revenue_type => 'expected_revenue',
+          :entity_type => 'Project',
+          :entity_id => project.id,
+          :price1 => calculation.total_amount_sum,
+          :price2 => calculation.discounted_price_sum
+        }}), :class => 'icon icon-save button') %><%# #modal class: save-to-revenues %>
+</div>

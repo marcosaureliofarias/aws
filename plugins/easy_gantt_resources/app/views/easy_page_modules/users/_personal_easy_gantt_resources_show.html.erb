@@ -1,0 +1,18 @@
+<% query = easy_page_modules_data[:query] %>
+
+<% if query %>
+  <%= render 'easy_gantt_resources/index', project: nil,
+                                           query: query,
+                                           show_query: false %>
+
+  <script type="text/javascript">
+    window.ysy = window.ysy || {};
+    ysy.settings = ysy.settings || {};
+    EasyGem.extend(ysy.settings, {
+      withoutUnassigned: true
+    });
+  </script>
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+

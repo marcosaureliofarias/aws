@@ -1,0 +1,491 @@
+%cke-reset{
+  background: transparent !important;
+  @extend %box-shadow-none;
+  border: none !important;
+  font-family: $font-family !important;
+  a, div, p, span, table {
+    font-family: $font-family !important;
+  }
+}
+body{
+  --ck-color-panel-background: #{$color-foreground};
+  --ck-color-panel-border: #{$color-border};
+  --ck-z-modal: 9999;
+  --ck-color-input-background:#{$form-field-background};
+  --ck-color-input-border: #{$color-border-minor};
+  --ck-color-button-default-hover-background: #{$color-foreground};
+}
+
+.cke,#cke{ //editor
+  a, span, div, p {font-family: $font-family !important;}
+  &_chrome,&_top,&_bottom,&_toolgroup,&_inner{
+    @extend %cke-reset;
+  }
+  &_chrome{
+  }
+  &_top{
+    padding: 4px 0 !important;
+  }
+  &_bottom{
+    position: absolute !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+  }
+  &_reset{
+    max-width: 100%;
+    font: initial !important;
+    &.cke_source {
+      font-family: 'Courier New',Monospace !important;
+      font-size: $font-small !important;
+    }
+  }
+  &_inner{
+    position: relative !important;
+  }
+  &_contents{
+    border: 1px solid $color-border !important;
+    @extend %box-shadow-input-inset;
+    background: $color-foreground !important;
+    padding-bottom: 26px !important;
+  }
+  &_wysiwyg_frame, &_wysiwyg_div{
+    background: none !important;
+  }
+  &_wysiwyg_frame{
+  }
+  &_toolgroup {
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  &_toolbox, &_toolbar, &_toolgroup {
+    @extend %flex;
+    @extend %flex-wrap-wrap;
+  }
+  &_toolbar {
+    padding: 0 6px !important;
+    border-left: 2px solid darken($color-border,10%) !important;
+    margin: 3px 0 !important;
+    align-items: center !important;
+    &:first-of-type {
+      border-left: none !important;
+      padding-left: 0 !important;
+      margin-left: -2px !important;
+    }
+    &_separator {
+      margin: 0 2px !important;
+      border-left: 2px solid darken($color-border,10%) !important;
+      box-shadow: none !important;
+      width: 0 !important;
+    }
+  }
+  a.cke_button, a.cke_button.cke_button_expandable {
+    padding: 0 !important;
+  }
+  &_button {
+    height: 20px !important;
+    &:hover {
+      background: mix($color-text, $color-foreground, 20%) !important;
+      border: none !important;
+    }
+    &_arrow {
+      margin: 8px 3px 0 0 !important;
+      border-top-color: $color-text !important;
+    }
+    &_on {
+      background: mix($color-text, $color-foreground, 20%) !important;
+      box-shadow: none !important;
+      border: 1px solid $color-border;
+    }
+  }
+  &_button_icon.cke_button_icon {
+    padding: 0 3px 2px;
+    margin-top: 1px !important;
+    background: none !important;
+    font-size: 17px;
+    width: 22px !important;
+    height: 20px !important;
+    color: $color-text;
+    box-sizing: border-box;
+    &.cke_button__bold_icon {
+      @include icon-parent(bold);
+    }
+    &.cke_button__italic_icon {
+      @include icon-parent(italic);
+    }
+    &.cke_button__underline_icon {
+      @include icon-parent(underline);
+    }
+    &.cke_button__strike_icon {
+      @include icon-parent(strikethrough);
+    }
+    &.cke_button__numberedlist_icon {
+      @include icon-parent(list-numbered);
+      background: none !important;
+    }
+    &.cke_button__bulletedlist_icon {
+      @include icon-parent(list-bulleted);
+      background: none !important;
+    }
+    &.cke_button__subscript_icon {
+      @include icon-parent(subscript);
+    }
+    &.cke_button__superscript_icon {
+      @include icon-parent(superscript);
+    }
+    &.cke_button__outdent_icon {
+      @include icon-parent(indent-increase);
+      background: none !important;
+    }
+    &.cke_button__indent_icon {
+      @include icon-parent(indent-decrease);
+      background: none !important;
+    }
+    &.cke_button__blockquote_icon {
+      @include icon-parent(quote-close);
+    }
+    &.cke_button__textcolor_icon {
+      @include icon-parent(color-text);
+    }
+    &.cke_button__bgcolor_icon {
+      @include icon-parent(color-background);
+    }
+    &.cke_button__justifyleft_icon {
+      @include icon-parent(align-left);
+    }
+    &.cke_button__justifycenter_icon {
+      @include icon-parent(align-center);
+    }
+    &.cke_button__justifyright_icon {
+      @include icon-parent(align-right);
+    }
+    &.cke_button__justifyblock_icon {
+      @include icon-parent(align-justify);
+    }
+    &.cke_button__link_icon {
+      @include icon-parent(link);
+    }
+    &.cke_button__unlink_icon {
+      @include icon-parent(unlink);
+    }
+    &.cke_button__anchor_icon {
+      @include icon-parent(flag);
+      background: none !important;
+    }
+    &.cke_button__base64image_icon {
+      @include icon-parent(image);
+    }
+    &.cke_button__table_icon {
+      @include icon-parent(table);
+    }
+    &.cke_button__horizontalrule_icon {
+      @include icon-parent(horizontal-line);
+    }
+    &.cke_button__emojipanel_icon {
+      @include icon-parent(emoticon);
+    }
+    &.cke_button__specialchar_icon {
+      @include icon-parent(omega);
+    }
+    &.cke_button__showblocks_icon {
+      @include icon-parent(show-blocks);
+      background: none !important;
+    }
+    &.cke_button__cut_icon {
+      @include icon-parent(cut);
+      background: none !important;
+    }
+    &.cke_button__copy_icon {
+      @include icon-parent(copy);
+      background: none !important;
+    }
+    &.cke_button__paste_icon {
+      @include icon-parent(cke-paste);
+      background: none !important;
+    }
+    &.cke_button__pastetext_icon {
+      @include icon-parent(paste-text);
+      background: none !important;
+    }
+    &.cke_button__pastefromword_icon {
+      @include icon-parent(paste-word);
+      background: none !important;
+    }
+    &.cke_button__print_icon {
+      @include icon-parent(print);
+    }
+    &.cke_button__undo_icon {
+      @include icon-parent(undo);
+      background: none !important;
+    }
+    &.cke_button__redo_icon {
+      @include icon-parent(redo);
+      background: none !important;
+    }
+    &.cke_button__find_icon {
+      @include icon-parent(search);
+      background: none !important;
+    }
+    &.cke_button__replace_icon {
+      @include icon-parent(replace);
+    }
+    &.cke_button__selectall_icon {
+      @include icon-parent(select-all);
+    }
+    &.cke_button__removeformat_icon {
+      @include icon-parent(remove-format);
+    }
+    &.cke_button__source_icon {
+      @include icon-parent(source);
+      background: none !important;
+    }
+    &.cke_button__preview_icon {
+      @include icon-parent(cke-preview);
+      background: none !important;
+    }
+    &.cke_button__templates_icon {
+      @include icon-parent(cke-templates);
+      background: none !important;
+    }
+    &.cke_button__pagebreak_icon {
+      @include icon-parent(page-break);
+      background: none !important;
+    }
+    &.cke_button__codesnippet_icon {
+      @include icon-parent(code-tags);
+      background: none !important;
+    }
+  }
+  &_button_label {
+    padding: 0 3px 0 0;
+    line-height: 20px !important;
+    color: $color-text !important;
+  }
+  &_combo {
+    &_button {
+      line-height: 18px !important;
+      height: 18px !important;
+      margin-left: 2px !important;
+      margin-bottom: 0 !important;
+      background: $color-foreground !important;
+      border-radius: 0 !important;
+      border: 1px solid $color-border ! important;
+      color: $color-text !important;
+      box-shadow: none !important;
+    }
+    &_text {
+      line-height: 18px !important;
+      height: 18px !important;
+      color: $color-text !important;
+    }
+    &_open {
+
+    }
+    &_arrow {
+      margin-top: 6px !important;
+    }
+  }
+  &_autocomplete_panel {
+    border: 1px solid $color-border !important;
+    background: lighten($color-foreground,20%) !important;
+    z-index: 9999 !important;
+    & > li {
+      background: lighten($color-foreground,10%) !important;
+      &:hover, &.cke_autocomplete_selected {
+        background: $color-highlight !important;
+      }
+    }
+  }
+  &_source {
+    background: $color-foreground !important;
+  }
+  &_dialog {
+    &_background_cover {
+      background: $color-foreground !important;
+    }
+    &_close_button {
+      @include icon-parent(cancel-alt);
+      background: none !important;
+      font-size: 20px !important;
+      top: 8px !important;
+      right: 6px !important;
+    }
+    &_body {
+      background: $color-foreground !important;
+      border: 1px solid $color-border !important;
+      //border-radius: 0 !important;
+      * {
+        font-family: $font-family !important;
+        color: $color-text !important;
+        border-color: $color-border !important;
+      }
+    }
+    &_title {
+      background: $color-foreground !important;
+      //color: $color-text !important;
+      //border-radius: 0 !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      padding: $gap 2*$gap !important;
+      font-size: $font-size !important;
+      border-bottom: none !important;
+    }
+    &_tabs {
+      margin-top: .5*$gap !important;
+      height: 34px !important;
+      //left: 0 !important;
+    }
+    &_tab {
+      background: $color-foreground !important;
+      //border: none !important;
+      line-height: 34px !important;
+      height: auto !important;
+      padding: 0 2*$gap !important;
+      //padding: $gap !important;
+      //border-bottom: none !important;
+      &_selected {
+        background: $form-background !important;
+        border-bottom: 1px solid $form-background !important;
+      }
+    }
+    &_contents {
+      background: $form-background !important;
+      margin-top: 41px !important;
+      //color: $color-text !important;
+      input, select {
+        background: $color-foreground !important;
+        border-color: $color-border-minor !important;
+      }
+    }
+    &_footer {
+      background: $color-foreground !important;
+      outline: none !important;
+      padding: $gap !important;
+      text-align: center !important;
+      box-shadow: none !important;
+      border-top: 1px solid $color-border ! important;
+    }
+    &_ui_button {
+      background: $color-background !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      border: none !important;
+      &_ok {
+        background: $color-positive !important;
+        color: $button-positive-color !important;
+      }
+      span {
+        background: transparent !important;
+        color: inherit !important;
+      }
+    }
+  }
+  &_dark_background {
+    background: $color-background !important;
+  }
+  &_specialchar:hover {
+    background: $color-foreground !important;
+  }
+}
+//safari fix
+a.cke_button {
+  .cke_button__bold_icon,
+  .cke_button__italic_icon,
+  .cke_button__underline_icon,
+  .cke_button__strike_icon,
+  .cke_button__numberedlist_icon,
+  .cke_button__bulletedlist_icon,
+  .cke_button__subscript_icon,
+  .cke_button__superscript_icon,
+  .cke_button__outdent_icon,
+  .cke_button__indent_icon,
+  .cke_button__blockquote_icon,
+  .cke_button__textcolor_icon,
+  .cke_button__bgcolor_icon,
+  .cke_button__justifyleft_icon,
+  .cke_button__justifycenter_icon,
+  .cke_button__justifyright_icon,
+  .cke_button__justifyblock_icon,
+  .cke_button__link_icon,
+  .cke_button__unlink_icon,
+  .cke_button__anchor_icon,
+  .cke_button__base64image_icon,
+  .cke_button__table_icon,
+  .cke_button__horizontalrule_icon,
+  .cke_button__emojipanel_icon,
+  .cke_button__specialchar_icon,
+  .cke_button__showblocks_icon,
+  .cke_button__cut_icon,
+  .cke_button__copy_icon,
+  .cke_button__paste_icon,
+  .cke_button__pastetext_icon,
+  .cke_button__pastefromword_icon,
+  .cke_button__print_icon,
+  .cke_button__undo_icon,
+  .cke_button__redo_icon,
+  .cke_button__find_icon,
+  .cke_button__replace_icon,
+  .cke_button__selectall_icon,
+  .cke_button__removeformat_icon,
+  .cke_button__source_icon,
+  .cke_button__preview_icon,
+  .cke_button__templates_icon,
+  .cke_button__pagebreak_icon {
+    background: none! important;
+    background-image: none !important;
+  }
+}
+.cke_ltr {
+  a[id^="cke"] {
+    .cke_button__numberedlist_icon,
+    .cke_button__bulletedlist_icon,
+    .cke_button__outdent_icon,
+    .cke_button__indent_icon,
+    .cke_button__anchor_icon,
+    .cke_button__showblocks_icon,
+    .cke_button__cut_icon,
+    .cke_button__copy_icon,
+    .cke_button__paste_icon,
+    .cke_button__pastetext_icon,
+    .cke_button__pastefromword_icon,
+    .cke_button__undo_icon,
+    .cke_button__redo_icon,
+    .cke_button__find_icon,
+    .cke_button__source_icon,
+    .cke_button__preview_icon,
+    .cke_button__templates_icon,
+    .cke_button__pagebreak_icon {
+      background: none ! important;
+      background-image: none !important;
+    }
+  }
+}
+.cke_hidpi .cke_ltr, .cke_ltr.cke_hidpi {
+  a[id^="cke"] {
+    .cke_button__numberedlist_icon,
+    .cke_button__bulletedlist_icon,
+    .cke_button__outdent_icon,
+    .cke_button__indent_icon,
+    .cke_button__anchor_icon,
+    .cke_button__showblocks_icon,
+    .cke_button__cut_icon,
+    .cke_button__copy_icon,
+    .cke_button__paste_icon,
+    .cke_button__pastetext_icon,
+    .cke_button__pastefromword_icon,
+    .cke_button__undo_icon,
+    .cke_button__redo_icon,
+    .cke_button__find_icon,
+    .cke_button__source_icon,
+    .cke_button__preview_icon,
+    .cke_button__templates_icon,
+    .cke_button__pagebreak_icon {
+      background: none! important;
+      background-image: none !important;
+    }
+  }
+}
+.hljs {
+  display: inline-block !important;
+}

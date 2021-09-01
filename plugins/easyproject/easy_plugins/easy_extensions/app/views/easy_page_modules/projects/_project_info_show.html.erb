@@ -1,0 +1,25 @@
+<% project = @easy_page_modules_data[block_name].try(:[], :project) %>
+<div class="project-info-module">
+  <% if project.nil? -%>
+    <%= render :partial => 'easy_page_modules/page_module_cannot_be_displayed', :locals => { :page_module => page_module } %>
+  <% else -%>
+    <% if settings['action'] == 'description' -%>
+      <div class="wiki"><%= textilizable(project.description || '') %></div>
+    <% elsif settings['action'] == 'customfields' && (cf_values = project.visible_custom_field_values).any? -%>
+      <div id="entity-info" class="multieditable-container" data-url="<%= update_custom_fields_form_project_path(project, :format => 'json') %>">
+        <table class="attributes">
+          <tbody>
+            <% cf_values = cf_values.select{ |value| value.custom_field.easy_group && value.custom_field.easy_group.name == settings['group'] } if settings['group'].present? && settings['group'] != 'all' %>
+            <%= render :partial => 'custom_fields/two_columns_list_table', :locals =>
+              {
+                :custom_field_values => cf_values,
+                :inline_editable => User.current.allowed_to?(:edit_project_custom_fields, project)
+              }
+            %>
+          </tbody>
+        </table>
+      </div>
+    <% end -%>
+    <%= call_hook(:view_project_info_show_bottom, settings: settings, project: @project, block_name: block_name, page_module: page_module) %>
+  <% end -%>
+</div>

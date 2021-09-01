@@ -1,0 +1,24 @@
+<% Rys::Feature.on('easy_twofa') do %>
+  <p>
+    <label><%= l('easy_twofa.twofa') %></label>
+
+    <% if @user.easy_twofa_active? %>
+      <%
+        scheme_key = @user.easy_twofa_scheme.scheme_key
+        scheme_name = l("easy_twofa.schemes.#{scheme_key}.name")
+      %>
+
+      <%= l('easy_twofa.scheme_is_active', name: scheme_name) %>
+      <br>
+      <%= link_to l('easy_twofa.disable_scheme', name: scheme_name), disable_easy_twofa_path, method: 'POST' %>
+      <br><br>
+      <%= link_to l('easy_twofa.remembered_devices'), remembers_easy_twofa_path(user_id: user.id) %>
+
+    <% else %>
+      <% EasyTwofa::Auth.enabled_schemes.each do |key, scheme| %>
+        <%= link_to l('easy_twofa.activate_scheme', name: l("easy_twofa.schemes.#{key}.name")), setup_easy_twofa_path(key), method: 'POST' %>
+        <br>
+      <% end %>
+    <% end %>
+  </p>
+<% end %>

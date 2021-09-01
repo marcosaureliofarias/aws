@@ -1,0 +1,16 @@
+<%= title l(:heading_easy_currency_edit) %>
+<%= labelled_form_for(@easy_currency, :html => {:class => 'tabular form-box'}) do |f| -%>
+  <%= error_messages_for @easy_currency %>
+  <%= hidden_field_tag('back_url', params[:back_url]) unless params[:back_url].blank? %>
+  <div class="gray-background">
+    <%= render :partial => 'form', locals: {f: f} -%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_update), :class => 'button-positive' %>
+  </div>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+    <%= render :partial => 'easy_currencies/sidebar_links' %>
+<% end %>

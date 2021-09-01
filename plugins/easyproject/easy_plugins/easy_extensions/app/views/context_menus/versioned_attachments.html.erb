@@ -1,0 +1,37 @@
+<ul>
+  <% if @attachments && @attachments.any? %>
+    <% if @att_v.present? -%>
+      <% @att_v.each do |att_version| -%>
+        <li class="folder <%= 'current-version' if att_version.attachment.version == att_version.version || att_version.attachment.version.nil? -%>">
+          <%= link_to_attachment att_version, :class => 'icon icon-attachment' -%>
+          <span class="size">(<%= number_to_human_size att_version.filesize %>)</span>
+          <span class="author"><%= att_version.author -%>, <%= format_time(att_version.updated_at) -%></span>
+          - v<%= att_version.version %>
+          <ul>
+            <%= content_tag :li, link_to_attachment(att_version, text: l(:button_download), class: 'icon icon-attachment', download: true ) -%>
+            <%= content_tag :li, link_to(l(:button_delete), destroy_version_attachment_path(:id => att_version, back_url: params[:back_url]), data: {confirm: l(:text_are_you_sure)}, title: l(:button_delete), class: 'icon icon-del') if att_version.container.attachments_deletable? -%>
+            <%= content_tag :li do -%>
+              <%= link_to l(:label_revert_to_version), revert_to_version_attachment_path(id: att_version.attachment, version_num: att_version.version, back_url: params[:back_url]), class: 'icon icon-move' -%>
+            <% end unless (att_version.attachment.version == att_version.version || att_version.attachment.version.nil? || !att_version.container.attachments_editable?) -%>
+          </ul>
+        </li>
+      <% end %>
+    <% end %>
+    <% if @attachments.size > 1 %>
+      <%= content_tag :li do %>
+        <%= link_to(attachments_bulk_download_as_zip_path(ids: @attachment_ids), method: :get, class: 'icon icon-downloads') do %>
+          <span class="tooltip"><%= l(:button_download_as_zip) %></span>
+        <% end %>
+      <% end %>
+      <% if @can[:destroy] %>
+        <%= content_tag :li do %>
+          <%= link_to(attachments_bulk_destroy_path(ids: @attachment_ids, back_url: params[:back_url]), method: :delete, data: { confirm: l(:text_are_you_sure) }, title: l(:button_delete), class: 'icon icon-del') do %>
+            <span class="tooltip"><%= l(:button_delete) %></span>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= content_tag :li, l('attachments.no_more_versions') %>
+  <% end %>
+</ul>

@@ -1,0 +1,46 @@
+<p>
+  <%= search_field_tag('projects_search', nil, :class => 'block', :placeholder => l(:projects, :scope => [:search_field_placeholders])) %>
+</p>
+
+<div class="splitcontent">
+  <div class="splitcontentleft size-7">
+    <div id="projects-selection">
+      <%= render :partial => 'principal_memberships/membership_projects_list' %>
+    </div>
+    <script type="text/javascript">
+      EASY.schedule.late(function(){
+        $("#projects_search").keyup(function(event) {
+          if (event.keyCode === 13) {
+            event.preventDefault();
+            return false;
+          }
+          if (event.target.value.length > 2) {
+            $("#projects-selection li").hide();
+            $("#projects .project-item").each(function() {
+              var self = $(this);
+              if (self.data('name').toString().toLowerCase().indexOf(event.target.value.toLowerCase()) > -1) {
+                self.parents('li').show();
+              };
+            });
+
+          } else if (event.target.value.length === 0) {
+            $("#projects-selection li").show();
+          }
+        });
+      });
+    </script>
+  </div>
+  <div class="splitcontentright size-3">
+    <div id="roles-selection">
+      <fieldset>
+        <legend>
+          <%= link_to('', 'javascript:void(0)', :onclick => "toggleCheckboxesBySelector('#roles-selection input')", :title => "#{l(:button_check_all)} / #{l(:button_uncheck_all)}", :class => 'contextual icon icon-checked') %>
+          <%= l(:label_role_plural) %>
+        </legend>
+        <% Role.givable.all.sorted.each do |role| %>
+          <%= label_tag("membership_role_id_#{role.id}", check_box_tag('membership[role_ids][]', role.id, false, :id => "membership_role_id_#{role.id}") << h(role), :class => 'checkbox block') %>
+        <% end %>
+      </fieldset>
+    </div>
+  </div>
+</div>

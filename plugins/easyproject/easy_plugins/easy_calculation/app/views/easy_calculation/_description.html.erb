@@ -1,0 +1,6 @@
+<h3 class="title"><%= l(:title_calculation_description) %></h3>
+
+<%= form_tag(easy_calculation_update_path(project), :method => 'put', :class => 'form-box') do |f| %>
+  <%= text_area_tag("easy_calculation[#{position}_description]", easy_calculation.send("#{position}_description") , :rows => 30) %>
+  <%= wikitoolbar_for("easy_calculation_#{position}_description", preview_text_path, {:height => 300, :toolbar => 'Full'}) %>
+<% end %>

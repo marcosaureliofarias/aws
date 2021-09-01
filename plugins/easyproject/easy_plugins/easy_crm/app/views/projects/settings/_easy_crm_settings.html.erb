@@ -1,0 +1,77 @@
+<div class="box">
+  <h3 class="icon icon-stack">
+    <%= l(:heading_easy_crm_mailboxes_index) %>
+    <div class="module-heading-links">
+      <%= link_to l(:button_easy_crm_add_mailbox), { :controller => 'easy_rake_tasks', :action => :new, :type => 'EasyRakeTaskEasyCrmReceiveMail', :back_url => original_url, :'easy_rake_task[project_id]' => @project.id }, :class => 'button-positive icon icon-add', :title => l(:button_easy_crm_add_mailbox) %>
+    </div>
+  </h3>
+  <div>
+    <%= render :partial => 'easy_rake_tasks/index', :locals => {:tasks => @tasks} %>
+    <%= context_menu(:controller => 'context_menus', :action => 'easy_rake_tasks')%>
+  </div>
+</div>
+
+<div class="box">
+  <h3 class="icon icon-message">
+    <%= l(:heading_easy_crm_case_mail_template_index) %>
+    <div class="module-heading-links">
+      <%= link_to l(:button_easy_crm_add_mail_template), easy_crm_settings_project_path(@project, :back_url => original_url, :template => 'easy_crm_case_mail_templates/new'), :class => 'button-positive icon icon-add', :title => l(:button_easy_crm_add_mail_template) %>
+    </div>
+  </h3>
+  <div>
+    <%= render :partial => 'easy_crm_case_mail_templates/index', :locals => { :easy_crm_case_mail_templates => @easy_crm_case_mail_templates, :project => @project } %>
+  </div>
+</div>
+
+<%= call_hook(:view_easy_crm_settings_before_others, :project => @project, :easy_crm_case_statuses => @easy_crm_case_statuses) %>
+
+<div class="box">
+  <h3 class="icon icon-settings"><%= l(:label_others) %></h3>
+  <div>
+    <%= form_tag(save_easy_crm_settings_project_path(@project), :class => 'tabular settings', :method => :put) do %>
+      <p>
+        <%= label_tag 'easy_setting[crm_default_assignee]', l(:label_easy_crm_default_account_manager) %>
+        <%= select_tag 'easy_setting[crm_default_assignee]', options_for_select([[]] + @project.assignable_users.collect{|u| [u.name, u.id]}, EasySetting.value('crm_default_assignee', @project)) %>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[crm_default_external_assignee]', l(:label_easy_crm_default_external_account_manager) %>
+        <%= select_tag 'easy_setting[crm_default_external_assignee]', options_for_select([[]] + @project.assignable_users.collect{|u| [u.name, u.id]}, EasySetting.value('crm_default_external_assignee', @project)) %>
+      </p>
+      <% if false %>
+        <p>
+          <%= label_tag 'easy_setting[crm_currency_rate]', l(:label_crm_currency_rate) %>
+          <%= text_field_tag 'easy_setting[crm_currency_rate]', EasySetting.value('crm_currency_rate', @project), :size => 5 %>
+        </p>
+      <% end %>
+      <p>
+        <%= hidden_field_tag 'easy_setting[easy_crm_use_items]', '0', :id => nil %>
+        <%= check_box_tag 'easy_setting[easy_crm_use_items]', '1', EasySetting.value('easy_crm_use_items', @project) %>
+        <%= label_tag 'easy_setting[easy_crm_use_items]', l(:label_easy_crm_use_items) %>
+      </p>
+
+      <p>
+        <%= hidden_field_tag 'easy_setting[easy_crm_case_query_includes_descendants]', '0', :id => nil %>
+        <%= check_box_tag 'easy_setting[easy_crm_case_query_includes_descendants]', '1', EasySetting.value('easy_crm_case_query_includes_descendants', @project) %>
+        <%= label_tag 'easy_setting[easy_crm_case_query_includes_descendants]', l(:label_easy_crm_case_query_includes_descendants) %>
+      </p>
+
+      <p>
+        <%= hidden_field_tag 'easy_setting[show_easy_entity_activity_on_crm_case]', '0', :id => nil %>
+        <%= check_box_tag 'easy_setting[show_easy_entity_activity_on_crm_case]', '1', EasySetting.value('show_easy_entity_activity_on_crm_case', @project) %>
+        <%= label_tag('easy_setting_show_easy_entity_activity_on_crm_case', l(:setting_show_easy_entity_activity_on_crm_case)) %>
+      </p>
+
+      <p>
+        <%= hidden_field_tag 'easy_setting[show_description_on_crm_case]', '0', :id => nil %>
+        <%= check_box_tag 'easy_setting[show_description_on_crm_case]', '1', EasySetting.value('show_description_on_crm_case', @project) %>
+        <%= label_tag('easy_setting_show_description_on_crm_case', l(:setting_show_description_on_crm_case)) %>
+      </p>
+
+      <%= call_hook(:view_easy_crm_settings_others, :project => @project, :easy_crm_case_statuses => @easy_crm_case_statuses) %>
+
+      <p class="buttons">
+        <%= submit_tag l(:button_update) %>
+      </p>
+    <% end %>
+  </div>
+</div>

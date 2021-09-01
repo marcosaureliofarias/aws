@@ -1,0 +1,8 @@
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <% entity.visible_custom_field_values.each_with_index do |custom_value, index| -%>
+      <%=raw '</div><div class="splitcontentright">' if index == entity.visible_custom_field_values.count / 2 %>
+      <%= render :partial => 'custom_fields/non_primary_custom_field', :locals => {:entity_name => entity_name, :custom_value => custom_value, :entity_id => entity.id, :entity_type => entity.class} %>
+    <% end -%>
+  </div>
+</div>

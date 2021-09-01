@@ -1,0 +1,125 @@
+#menu_admin_dashboard{
+  ul{
+    @extend %list-reset;
+    @extend %clearfix;
+  }
+  li{
+    text-align: center;
+    //margin: 0.5*$gap 0;
+    @include respond-to(max-small-screen){
+      float: left;
+      width: 50%;
+    }
+    @include respond-to(only-medium-screen){
+      float: left;
+      width: 33.3%;
+      &:nth-of-type(3n + 1){
+        clear: left;
+      }
+    }
+    @include respond-to(min-medium-screen){
+      float: left;
+      width: 20%;
+      &:nth-of-type(5n + 1){
+        clear: left;
+      }
+    }
+    a{
+      display: block;
+      overflow: hidden;
+      margin: 0 $gap $gap;
+      //background: $color-foreground;
+      span{
+        display: block;
+      }
+      &:hover{
+        .dashboard-item-icon{
+          opacity: 1;
+        }
+      }
+    }
+    .dashboard-item-icon{
+      font-size: 2em;
+      color: $color-important;
+      line-height: 1.25;
+      opacity: 0.8;
+    }
+    .dashboard-item-label{
+      margin-top: $gap/2;
+      margin-bottom: $gap;
+    }
+  }
+  .dashboard-container{
+    padding: 0.5*$gap;
+  }
+}
+
+#custom_menu_settings {
+  .top-item::after{
+    display: block;
+    content: "";
+    margin-bottom: $gap;
+    border-bottom: 1px solid $color-uberlight-border;
+  }
+  .splitcontent {
+    .button, .button-icon-only {
+      margin-bottom: $gap;
+    }
+    &left ~ .splitcontentleft {
+      p {
+        @include respond-to(min-small-screen) {
+          padding-left: 4*$gap;
+        }
+      }
+    }
+  }
+  .nested-fields ~ .nested-fields{
+    .splitcontentleft:first-of-type{
+      label{
+        @extend %pseudo-indent;
+        &:before{
+          left: 80%;
+          @include respond-to(max-small-screen){
+            left: 5*$gap;
+          }
+        }
+      }
+    }
+  }
+}
+
+#admin-menu{
+  li{
+    //display: inline-block;
+  }
+  a{
+    @extend %button-base;
+  }
+  padding-bottom: $box-padding;
+}
+#easy_plugins_form > .autoscroll__wrapper {
+  margin-bottom: 40px;
+}
+.bundeled-plugins{
+  .module-heading{
+    padding-top: 2.5*$gap;
+    padding-right: 80px !important;
+    min-height: 80px;
+    img {
+      width: 70px;
+      position: absolute;
+      top: 4*$gap;
+      right: 0;
+    }
+    & > div{
+      width: 100%;
+    }
+  }
+  .plugin-bundle{
+    &-description{
+      margin-top: $gap;
+      overflow: hidden;
+      font-weight: normal;
+    }
+  }
+}

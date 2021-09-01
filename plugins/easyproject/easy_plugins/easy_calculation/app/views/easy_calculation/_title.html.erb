@@ -1,0 +1,11 @@
+<% if easy_calculation.title %>
+  <h3 id="calculation-header_label"><%= l(:label_easy_calculation) %></h3>
+<% end %>
+<div id="caltulation_title">
+  <h2>
+    <% title = easy_calculation.title ? easy_calculation.title.to_s : l(:label_easy_calculation) %>
+    <span class="calculation-title-editable" data-type="text" data-url="<%= easy_calculation_update_path(project, :format => 'json') %>" data-name="easy_calculation[title]" data-value="<%= title %>">
+      <%= title %>
+    </span>
+  </h2>
+</div>

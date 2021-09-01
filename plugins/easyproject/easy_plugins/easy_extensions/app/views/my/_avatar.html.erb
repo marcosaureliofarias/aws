@@ -1,0 +1,22 @@
+<h3><%= l(:label_avatar) %></h3>
+<div class="box tabular avatar-edit">
+
+  <% if Setting.gravatar_enabled == '1' || Setting.gravatar_enabled.try(:to_boolean) %>
+    <div class="nodata">
+      <%= l(:text_avatar_not_available_because_gravatar) %>
+    </div>
+  <% else %>
+    <%= avatar(user, :no_link => true, :style => :medium) %>
+    <% if Redmine::SudoMode.enabled? %>
+      <%= link_to l(:button_change_avatar), my_change_avatar_path(back_url: my_account_path), remote: true, class: 'button-positive' %>
+    <% else %>
+      <div style="margin-left: 80px;">
+        <div>
+          <%= file_field_tag 'user[easy_avatar]' %>
+        </div>
+        <div><%= link_to(l(:button_delete_avatar), easy_avatar_path(:style => :medium, :entity_id => user.id, :entity_type => user.class.name), :class => 'icon icon-del', :remote => true, :method => :delete, :data => {:confirm => l(:are_you_sure_delete_avatar)}) %></div>
+      </div>
+      <div class="clear"></div>
+    <% end %>
+  <% end -%>
+</div>

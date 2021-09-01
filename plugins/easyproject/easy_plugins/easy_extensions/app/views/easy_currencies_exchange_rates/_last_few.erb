@@ -1,0 +1,26 @@
+<div class="autoscroll">
+  <table class="list history-log-currencies">
+    <thead>
+    <tr>
+      <th><%= l(:label_updated_on) %></th>
+      <th><%= l(:label_valid_on) %></th>
+      <th><%= l(:base_currency) %></th>
+      <th><%= l(:easy_exchange_rates_rate) %></th>
+      <th><%= l(:target_currency) %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @last_exchange_tables.each do |rates| %>
+      <tr>
+        <td><%= format_date(rates.updated_at) %></td>
+        <td><%= rates.valid_on %></td>
+        <td>1&nbsp;<%= rates.base_code %>&nbsp;=</td>
+        <td><%= rates.rate %></td>
+        <td><%= rates.to_code %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+

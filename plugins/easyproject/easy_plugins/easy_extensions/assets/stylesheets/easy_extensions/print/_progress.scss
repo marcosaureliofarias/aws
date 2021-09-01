@@ -1,0 +1,14 @@
+table.progress{
+  tr {
+    @extend %flex;
+    @extend %align-items-center;
+    height: 2em;
+  }
+  td {
+    padding: 0;
+    height: 6px !important;
+    &.todo{
+      border-color: $color-print !important;
+    }
+  }
+}

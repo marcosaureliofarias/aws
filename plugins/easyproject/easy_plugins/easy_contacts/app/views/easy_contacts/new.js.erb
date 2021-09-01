@@ -1,0 +1,19 @@
+$("#ajax-modal").html("<%=j render(:template => 'easy_contacts/new', :formats => [:html]) %>");
+$("#ajax-modal h2").hide();
+
+EASY.modalSelector.showModal();
+$("#ajax-modal").dialog("option", {
+  "title": $("#ajax-modal h2").text(),
+  buttons: [
+    {
+      text: '<%=j l(:button_close) %>',
+      click: function() {$(this).dialog("close");},
+      'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_save) %>',
+      click: function() {$(this).find('form').submit()}, 'class': 'button-positive'
+    }
+  ]
+});
+$("#ajax-modal h2").remove();

@@ -1,0 +1,70 @@
+<%#= content_for :header_tags do %>
+<% custom_design_active = EasyScheduler.easy_theme_designer? && EasyThemeDesign.in_use %>
+<% if EasyScheduler.easy_extensions? && !custom_design_active %>
+  <%= stylesheet_link_tag('easy_scheduler', media: 'all') %>
+<% elsif custom_design_active %>
+
+<% else %>
+  <%= stylesheet_link_tag('generated/easy_scheduler', plugin: :easy_scheduler, media: 'all') %>
+<% end %>
+<%# end %>
+<%#= content_for :body_bottom do %>
+<% if EasyScheduler.combine_by_pipeline?(params) %>
+  <%= javascript_include_tag('easy_scheduler', defer: true) %>
+<% else %>
+  <%= javascript_include_tag(
+          'dhtmlx_manager',
+          plugin: :easy_scheduler) %>
+  <%= javascript_include_tag(
+          'dhtmlxscheduler',
+          'dhtmlx_date',
+          'dhtmlx_templates',
+          'dhtmlx_localstorage',
+          'dhtmlx_modal',
+          'dhtmlx_patch',
+          'dhtmlx_toolmodal',
+          # 'ext/dhtmlxscheduler_limit',
+          # 'ext/dhtmlxscheduler_recurring',
+          'ext/dhtmlxscheduler_agenda_view',
+          'ext/dhtmlxscheduler_year_view',
+          'ext/dhtmlxscheduler_active_links',
+          'ext/dhtmlxscheduler_key_nav',
+          'ext/dhtmlxscheduler_url',
+          # 'ext/dhtmlxscheduler_readonly',
+          # 'ext/dhtmlxscheduler_serialize',
+          # 'ext/dhtmlxscheduler_multiselect',
+          'ext/dhtmlxscheduler_minical',
+          # 'ext/dhtmlxscheduler_quick_info',
+          # 'ext/dhtmlxscheduler_tooltip',
+          plugin: :easy_scheduler) %>
+  <%= javascript_include_tag(
+          'calendar_main',
+          'logger',
+          'utils',
+          'event_bus',
+          'init_scheduler',
+          'scheduler_modal',
+          'external_dnd',
+          'loader',
+          'saver',
+          'repainter',
+          'assignee_data',
+          'assignee_view',
+          'task_data',
+          'task',
+          'task_data_view',
+          'task_view',
+          'task_modal',
+          'task_handler',
+          'resize_sensor',
+          'meetings',
+          'log_time',
+          plugin: :easy_scheduler) %>
+<% end %>
+<script type="application/javascript">
+  <%= render partial: 'easy_scheduler/locale' %>
+</script>
+<!--<script type="application/javascript">
+  $(ysy.initGantt);
+</script>-->
+<%# end %>

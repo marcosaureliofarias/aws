@@ -1,0 +1,223 @@
+---
+pl:
+  activerecord:
+    attributes:
+      display_closed_tasks_in_last_n_days: Liczba dni
+  attribute_undefined: Nie określono
+  button_agile_board: Tablica Agile
+  button_create_sprint: Utwórz sprint
+  button_delete_sprint: Usuń sprint
+  button_global_easy_sprint_query: Globalne zestawienie sprintów
+  button_recalculate_agile_board: Przelicz ponownie statusy
+  button_scrum_board: Tablica Scrum
+  easy_agile_board_button_go_to: Idź do
+  easy_agile_board_overview: Pulpit sprintów
+  easy_agile_board_plugin_description: Funkcjonalności dla zwinnego zarządzania
+  easy_agile_board_plugin_name: Tablica Agile
+  easy_agile_board_query: Tablica Scrum
+  easy_agile_board:
+    label_search_tasks_for_backlog: Szukaj zadań do backlogu
+    text_you_are_offline: Jesteś offline
+  easy_agile_default_settings: Domyślne ustawienia Scrum/Kanban
+  easy_agile_default_settings_kanban: Domyślne ustawienia Kanban
+  easy_agile_default_settings_scrum: Domyślne ustawienia Scrum
+  easy_agile_issue_rating_mode_names:
+    disabled: Wyłączony - nie używaj oceniania zadań
+    easy_story_points: Story points
+    estimated_hours: Szacowany czas
+    estimated_time: Szacowany czas
+    estimated_time_minus_spent_time: Szacowany czas minus użycie czasu
+    remaining_timeentries: Szacowany czas minus użycie czasu
+    value_from_custom_field: Użyj wartości z własnego pola
+  easy_agile_show_resalloc: Pokaż alokacje zasobów
+  easy_agile_show_sprint_fullscreen: Pokaż sprint w trybie pełnoekranowym
+  easy_pages:
+    module_category:
+      easy_agile_board: Scrum/Kanban
+    modules:
+      current: Bieżące sprinty
+      easy_kanban_board: Tablica Kanban
+      easy_sprint_query: Zestawienie sprintu
+      personal_easy_agile_board: Tablica Scrum
+  easy_query:
+    name:
+      easy_agile_board_query: Scrum/Kanban
+      easy_sprint_query: Sprinty
+    sidebar_filters:
+      personal:
+        easy_agile_board_query: Filtry osobiste na tablicy Agile
+      public:
+        easy_agile_board_query: Filtry publiczne dla tablicy kanban
+  easy_sprint:
+    label_easy_story_points:
+      backlog: Story pointy w backlogu
+      done: Story pointy w zakończonych zadaniach
+      progress: Story pointy w zadaniach w toku
+    label_estimated_time:
+      backlog: Szacowany czas w backlogu
+      done: Szacowany czas w zakończonych zadaniach
+      progress: Szacowany czas w zadaniach w toku
+    label_spent_time:
+      all: Całkowite użycie czasu
+      backlog: Użycie czasu w backlogu
+      done: Użycie czasu w zakończonych zadaniach
+      progress: Użycie czasu w zadaniach w toku
+  error_agile_board_sprint_is_already_closed: Sprint jest już zamknięty
+  error_assign_closed_issues_to_project_backlog: W backlogu projektu dozwolone są
+    jedynie otwarte zadania
+  error_assign_issue_to_closed_easy_sprint: Zadanie może zostać przypisane wyłącznie
+    do otwartego sprintu
+  error_default_server_error: Wewnętrzny błąd serwera, skontaktuj się z działem wsparcia
+    technicznego.
+  error_effective_date_must_be_lower_than_due_date: Termin realizacji (%{due_date})
+    musi być wcześniejszy lub równy terminowi kamienia milowego (%{effective_date})
+  error_start_date_must_be_lower_than_due_date: Data rozpoczęcia (%{start_date}) musi
+    być wcześniejsza niż termin realizacji (%{due_date})
+  field_closed: Zamknięte
+  field_cross_project: Wyświetlaj zadania z innych projektów
+  field_easy_agile_board_cross_project: Użyj zadań ze wszystkich projektów
+  field_easy_agile_board_display_closed_tasks_in_last_n_days: Pokaż zadania zamknięte
+    w ciągu ostatnich „n”
+  field_easy_sprint: Sprint
+  field_easy_sprint_close_all_tasks: Zamknij wszystkie zadania w sprincie wg wybranego
+    statusu
+  field_easy_story_points: Story pointy
+  field_goal: Cel
+  field_kanban_phase: Etap Kanban
+  field_scrum_backlog: Backlog Scrum
+  field_scrum_phase: Etap Scrum
+  field_sprint_capacity: Pojemność
+  field_sprint_title: Nazwa sprintu
+  field_sum_estimated_time_closed_false: Szacowany czas
+  field_sum_estimated_time_closed_true: Szacowany czas w zamkniętych zadaniach
+  field_sum_story_points_closed_false: Story pointy
+  field_sum_story_points_closed_true: Story pointy w zamkniętych zadaniach
+  heading_easy_agile_sprint_edit: Edytuj sprint
+  heading_easy_sprint_close: Zamknij sprint
+  heading_easy_sprints_overview: Pulpit sprintów
+  heading_populate_backlog_modal: Nowe zadanie lub grupa zadań
+  label_add_estimate: Dodaj szacunek
+  label_add_new_issues_to_project_kanban: Dodaj nowe zadania do Kanbanu
+  label_agile_add_status: Nowy stan
+  label_agile_backlog: Backlog sprintu
+  label_agile_board: Scrum/Kanban
+  label_agile_done: Ukończono
+  label_agile_filter_sprints_by_assignee: Filtruj wg przypisanej osoby
+  label_agile_fullness: Wydajność sprintu na podstawie oceny zadania
+  label_agile_go_to_sprint: Idź do sprinta
+  label_agile_in_progress: W toku
+  label_agile_new: Nowy
+  label_agile_realization: Realizacja
+  label_agile_remove_status: Usuń stan
+  label_agile_sprint: Sprint
+  label_agile_sprint_new: Nowy sprint
+  label_agile_sprint_reload: Pokaż sprint
+  label_agile_state_name: Stan postępu
+  label_agile_state_return_to: 'i zmień przypisaną osobę na:'
+  label_agile_state_return_to_author: Przypisz do autora
+  label_agile_state_state_statuses: 'zawiera te statusy zadania:'
+  label_agile_state_status_id: Status zadania
+  label_agile_story_points: Story pointy
+  label_agile_to_check: Do sprawdzenia
+  label_chart_real: Rzeczywisty
+  label_create_columns_by: Kanban zgrupowany wg
+  label_create_task_for_backlog: Utwórz zadanie w backlogu
+  label_current_load: Aktualne obciążenie
+  label_current_sprint: Bieżący sprint
+  label_easy_agile_board_chart_burndown: Wykres spalania
+  label_easy_agile_board_chart_ideal_work_remaining: Linia idealna
+  label_easy_agile_board_chart_issues_completed: Ukończone zadania
+  label_easy_agile_board_chart_issues_remaining: Pozostałe zadania
+  label_easy_agile_board_chart_real_work_remaining: Rzeczywista pozostała praca
+  label_easy_agile_board_chart_unlimited_end: Oblicz zakończone opóźnione zadania
+    do ostatniego dnia
+  label_easy_agile_board_charts: Wykresy
+  label_easy_agile_board_move_task_all: Przenieś zadania ze wszystkich sprintów
+  label_easy_agile_board_move_task_no: Nie przenoś zadań
+  label_easy_agile_board_move_task_selected: Przenieś zadania z wybranego sprintu
+  label_easy_agile_board_project_cf: Wybierz własne pole projektu do wyświetlenia
+    na zadaniu
+  label_easy_agile_board_select_sprint: Wybierz sprint...
+  label_easy_agile_number_of_issues: Liczba zadań
+  label_easy_agile_settings: Ustawienia Agile
+  label_easy_agile_sprint_close: Zamknij sprint
+  label_easy_agile_sprint_open: Otwórz sprint
+  label_easy_agile_sum_issue_rating: Pozostała praca
+  label_easy_agile_use_workflow_on_kanban: Zastosuj workflow na Kanban
+  label_easy_agile_use_workflow_on_sprint: Zastosuj workflow na sprincie
+  label_easy_kanban_sort_by_priority: Sortuj wg priorytetu
+  label_easy_scrum_board_sprint_history_chart: Historyczna wydajność sprintu
+  label_easy_sprint_goal: Cel tego sprintu
+  label_easy_sprints: Sprinty
+  label_filter_group_easy_agile_board_query: Zadania
+  label_filter_group_easy_sprint_query: Sprinty
+  label_issue_rating: Ocena zadania
+  label_issues_for_backlog: Zadania dla backlogu
+  label_kanban: Kanban
+  label_kanban_board: Tablica Kanban
+  label_kanban_visible_groups: Grupy widoczne w widoku Kanban
+  label_load_history_sprints: Załaduj historię
+  label_main_attribute: Napis
+  label_not_assigned: Nie przypisano
+  label_permissions_easy_agile_board: Tablica Agile (Scrum/Kanban)
+  label_personal_easy_agile_board_heading: Nagłówek
+  label_personal_easy_agile_board_only_me: Wyświetl tylko moje zadania
+  label_project_backlog: Backlog projektu
+  label_project_backlog_loading_finished: Gratulacje, dotarłeś na koniec Internetu.
+  label_project_backlog_loading_issues: Ładowanie następnego zestawu zadań...
+  label_save_to: Zapisz do
+  label_scrum_board: Tablica Scrum
+  label_sprints_project: Projekt sprintu
+  label_summable_column: Informacje o wartości
+  label_swimlane: Tor
+  label_without_category: Zadanie nie ma kategorii
+  label_without_milestone: Zadania nienależące do kamienia milowego
+  label_without_parent: Zadania bez zadania nadrzędnego
+  label_without_swimlane: Brak toru
+  notice_agile_board_sprint_was_successfully_closed: Sprint został zamknięty
+  notice_agile_board_sprint_was_successfully_opened: Sprint został otwarty
+  notice_agile_board_statuses_were_recalculated: Statusy Scrum/Kanban zostały ponownie
+    obliczone
+  permission_edit_easy_agile_board: Edytowanie tablicy Agile
+  permission_edit_easy_kanban_board: Edytowanie tablicy Kanban
+  permission_edit_easy_scrum_board: Edytowanie tablicy Scrum
+  permission_manage_easy_scrum_overview: Zarządzanie globalnym zestawieniem Scrum
+  permission_manage_sprint_backlog: Zarządzaj backlogiem sprintu
+  permission_view_easy_agile_board: Wyświetlanie tablicy Agile
+  permission_view_easy_kanban_board: Wyświetlanie tablicy Kanban
+  permission_view_easy_scrum_board: Wyświetlanie tablicy Scrum
+  permission_view_easy_scrum_overview: Wyświetlanie globalnego zestawienia Scrumu
+  permission_view_global_easy_sprints: Wyświetlanie globalnego zestawienia sprintów
+  project_default_page:
+    easy_agile_board: Tablica Agile
+    easy_kanban_board: Tablica Kanban
+    easy_scrum_board: Tablica Scrum
+  project_module_easy_agile_board: Tablica Agile
+  project_module_easy_kanban_board: Easy Tablica Kanban
+  project_module_easy_scrum_board: Easy Tablica Scrum
+  text_add_new_issues_to_project_kanban: Nowo utworzone zadania są automatycznie dodawane
+    do Kanbanu projektu
+  text_capacity_units: Używane do pojemności sprintu i w wykresie spalania
+  text_easy_agile_board_sprint_due_date_is_empty: Termin realizacji jest pusty
+  text_easy_agile_board_sprint_loading: Poczekaj chwilę, sprint się ładuje...
+  text_easy_agile_board_version: Wszystkie zadania w sprincie będą również powiązane
+    z tym kamieniem milowym.
+  text_easy_agile_use_workflow_on_kanban: Sprawdź, czy workflow powinien być zastosowany
+    w Kanbanie
+  text_easy_agile_use_workflow_on_sprint: Sprawdź, czy workflow powinien być zastosowany
+    w sprincie
+  text_easy_sprint_capacity_zero: 0 oznacza brak limitu
+  title_easy_agile_board_drag_coworker: Klikając na awatar, odfiltrujesz zadania przypisane
+    tylko do %{user_name}. Przeciągając awatar do zadania, zmienisz przypisaną osobę
+    na %{user_name}.
+  title_easy_agile_board_show: Kliknij, aby wyświetlić szczegóły sprintu %{sprint_name}.
+  title_easy_agile_board_toggle_swimlane: Przełącz na widok toru
+  title_easy_agile_hide_goal: Ukryj cel tego sprintu
+  title_easy_agile_show_goal: Pokaż cel tego sprintu
+  title_edit_sprint: Edytuj sprint
+  title_kanban_settings: Ustawienia Kanbanu
+  title_reorder_project_backlog: Uporządkuj backlog projektu wg priorytetu zadania
+  title_reorder_sprint_backlog: Uporządkuj backlog sprintu wg priorytetu zadania
+  title_sprint_settings: Ustawienia Scrum
+  warning_missing_setting: Scrum/Kanban nie został jeszcze skonfigurowany
+  warning_sprint_over_capacity: Pojemność sprintu została przekroczona!

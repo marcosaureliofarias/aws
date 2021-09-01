@@ -1,0 +1,7 @@
+<% if easy_earned_value.data.empty? %>
+  <p>
+    <%= l(:text_easy_earned_values_no_data) %>
+  </p>
+<% else %>
+  <%= render 'easy_earned_values/graph', local_assigns %>
+<% end %>

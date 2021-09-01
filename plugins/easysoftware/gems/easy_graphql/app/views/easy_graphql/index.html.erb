@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Easy GraphQL</title>
+
+  <%= stylesheet_link_tag 'easy_graphql/main' %>
+  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <h1>Easy GraphQL</h1>
+
+    <h2 id="links">
+      <a href="#links">Links</a>
+    </h2>
+
+    <ul>
+      <li>Official page <a href="https://graphql.org" target="_blank" rel="noopener">https://graphql.org</a></li>
+      <li>Ruby implementation <a href="https://graphql-ruby.org" target="_blank" rel="noopener">https://graphql-ruby.org</a></li>
+    </ul>
+
+    <ul>
+      <li><code>POST <%= easy_graphql_execute_path %></code></li>
+      <li>IDE for exploring <%= link_to easy_graphiql_path, easy_graphiql_path %></li>
+      <li>Schema discovery <%= link_to easy_graphql_voyager_path, easy_graphql_voyager_path %></li>
+    </ul>
+
+    <h2 id="links">
+      <a href="#links">Learn</a>
+    </h2>
+
+    <ul>
+      <li>Fullstack tutorial <a href="https://www.howtographql.com" target="_blank" rel="noopener">https://www.howtographql.com</a></li>
+      <li>Weekly newsletter <a href="https://www.graphqlweekly.com" target="_blank" rel="noopener">https://www.graphqlweekly.com</a></li>
+    </ul>
+
+    <h2 id="usage">
+      <a href="#usage">Usage</a>
+    </h2>
+
+<pre><code># POST <%= easy_graphql_execute_path %>
+
+{
+  allIssues(limit: 100,
+    filter: {
+      subject: { notMatch: "test" }
+      estimatedHours: { gteq: 10 }
+      dueDate:{ gteq:"20180101" }
+    },
+    sort: {
+      dueDate: ASC
+    }
+  ){
+    subject
+    startDate
+    dueDate
+    estimatedHours
+    assignedTo {
+      name
+    }
+    journals(commentsCount: 10) {
+      id
+      notes
+      createdOn
+      details {
+        id
+        propKey
+        property
+        oldValue
+        value
+      }
+      user {
+        name
+      }
+    }
+  }
+}
+</code></pre>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<div class="contextual">
+  <%= link_to(l(:button_back), easy_entity_import_path(@easy_entity_import)) %>
+</div>
+<div id="import_output">
+  <% if @output.present? %>
+    <%= render(partial: 'easy_entity_imports/import', locals: { output: @output }) %>
+  <% else %>
+    <p style="padding: 40px 0;display:none"><i class="indicator icon-loading icon-spin"></i></p>
+  <% end %>
+</div>

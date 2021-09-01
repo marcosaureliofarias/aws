@@ -1,0 +1,24 @@
+<script type="application/javascript">
+  EASY.schedule.late(function() {
+    $('a.timesheet-locking').click(
+      function(event){
+        event.preventDefault();
+        if (confirm($(this).data('confirmation'))) {
+          var lock_description = prompt($(this).data('prompt'), "");
+          $.ajax(
+            $(this).attr('href'),
+            {
+              type: 'POST',
+              data: {'lock_description': lock_description},
+              complete: function(data){
+
+                showFlashMessage('notice', '<%= l(:notice_successful_update) %>').delay(1000).fadeOut(function(){window.location.reload();});
+              }
+            }
+          );
+        }
+        return false;
+      }
+    );
+  });
+</script>

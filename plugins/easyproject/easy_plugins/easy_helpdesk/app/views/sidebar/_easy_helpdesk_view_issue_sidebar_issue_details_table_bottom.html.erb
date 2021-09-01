@@ -1,0 +1,5 @@
+<% if @issue.display_easy_helpdesk_info? && @issue.easy_helpdesk_mailbox_username %>
+    <tr>
+      <td><%= l(:label_issue_bottom_from_easy_helpdesk, :easy_helpdesk_mailbox_username => @issue.easy_helpdesk_mailbox_username) %></td>
+    </tr>
+<% end %>

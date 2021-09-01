@@ -1,0 +1,343 @@
+---
+sk:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: Telo emailu (HTML)
+        body_plain: Telo emailu (jednoduchý text)
+        easy_crm_case_status: Stav
+        project: Projekt
+        subject: Predmet
+      easy_crm_case_status:
+        is_closed: Uzatvorený?
+        is_default: Je predvolený?
+        is_easy_contact_required: Je kontakt povinný?
+        is_paid: Zaplatený?
+        is_provisioned: S províziou?
+        is_provisioning: S prozíviou‌?
+        is_won: Vyhraný?
+        name: Názov
+        only_for_admin: Len pre administrátorov
+        show_in_search_results: Vyhľadateľný?
+      easy_crm_case:
+        account_manager: Obchodník
+        accounted_by: Obchodník je partner
+        assigned_to: 'Priradený:'
+        author: Autor
+        closed_on: Uzatvorené
+        contract_date: Dátum zmluvy‌
+        created_at: Vytvorené
+        currency: Mena
+        description: Popis
+        easy_closed_by: Uzatvorené
+        easy_contacts: Kontakty
+        easy_crm_case_items:
+          amount: Suma
+          description: Popis
+          discount: Zľava
+          easy_crm_case: Obchodný prípad
+          name: Názov
+          price_per_unit: Cena za jednotku
+          product_code: Kód produktu‌
+          total_price: Celková suma
+          unit: Jednotka
+        easy_crm_case_status: Stav
+        email: Email
+        external_account_manager: Externý obchodník
+        is_canceled: Zrušený?
+        is_finished: Hotový?
+        lead_value: Hodnota leadu
+        main_easy_contact_id: Zákazník
+        name: Názov
+        need_reaction: Reagovať?
+        next_action: Ďalšia aktivita
+        price: Cena
+        probability: Pravdepodobnosť
+        project: Projekt
+        send_to_external_mails: Poslať komentár zákazníkovi?
+        telephone: Telefón
+        updated_at: Aktualizované‌
+      easy_lead_score:
+        country: Krajina
+        created_at: Vytvorené
+        updated_at: Aktualizované
+      easy_user_target:
+        currency: Mena
+        target: Cieľ
+        valid_from: Od
+        valid_to: Do
+    models:
+      easy_crm_case_mail_template: Šablóna emailu
+      easy_mail_campaign_easy_crm_case: Obchodný prípad‌
+  button_change_easy_crm_cases_status: Presunúť a odstrániť
+  button_easy_crm_add_item: Pridať položku
+  button_easy_crm_add_mail_template: Pridať šablónu
+  button_easy_crm_add_mailbox: Pridať schránku
+  button_easy_crm_add_or_create_related_contact: Pridať súvisiaci kontakt
+  button_easy_crm_add_or_create_related_invoice: Pridať alebo vytvoriť súvisiacu faktúru
+  button_easy_crm_add_or_create_related_issue: Pridať alebo vytvoriť súvisiacu úlohu
+  button_easy_crm_add_related_contact: Priradiť kontakt
+  button_easy_crm_add_related_invoice: Priradiť faktúru
+  button_easy_crm_add_related_issue: Priradiť úlohu
+  button_easy_crm_add_sales_activity: Pridať predajnú aktivitu
+  button_easy_crm_add_status: Pridať stav
+  button_easy_crm_country_value_new: Vytvoriť novú hodnotu
+  button_easy_crm_create_related_contact: Vytvoriť nový kontakt
+  button_easy_crm_create_related_invoice: Vytvoriť novú faktúru
+  button_easy_crm_create_related_issue: Vytvoriť novú úlohu
+  button_easy_crm_merge_cases: Zlúčiť
+  button_easy_crm_merge_cases_inteligent_merge: Zlúčiť obchodné prípady
+  button_easy_crm_merge_cases_quick_merge: Rýchle zlúčenie obchodných prípadov
+  button_easy_crm_new_case: Nový obchodný prípad
+  button_easy_crm_related_case: Pridať súvisiaci obchodný prípad
+  button_easy_crm_view_sales_activities: Prehľad predajných aktivít
+  button_easy_lead_score_new: Nové skóre leadu
+  button_easy_user_target_add_all_users_of_type: Pridať všetkých používateľov typu
+  button_easy_user_target_add_users: Pridať používateľov
+  button_easy_user_target_add_users_from_group: Pridať používateľov zo skupiny
+  button_manage_user_targets: Spravovať ciele obchodníkov‌
+  button_merge_and_follow: Zlúčiť a nasledovať‌
+  button_set_easy_user_target_currency: Nastaviť menu
+  easy_contacts_toolbar:
+    assign_to_crm_case: Priradiť k obchodnému prípadu
+  easy_crm_plugin_author: Easy Software
+  easy_crm_plugin_author_url: http://www.easyredmine.com
+  easy_crm_plugin_description: ''
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: Predajná aktivita bola zmenená
+  easy_entity_activity_destroyed: Predajná aktivita bola odstránená‌
+  easy_entity_activity_is_planned: "%{category} je naplánovaná na %{time}"
+  easy_entity_activity_was_finished: "%{category} v %{time} dokončená"
+  easy_entity_activity_was_reported: "%{category} bolo vykonané %{time}"
+  easy_invoice_already_has_crm_case: Faktúra už má obchodný prípad‌
+  easy_lookup:
+    easy_crm_case:
+      label: Obchodné prípady‌
+  easy_mail_template_token:
+    caption:
+      crm_case_id: ID obchodného prípadu
+      crm_case_name: Názov obchodného prípadu
+      crm_case_note: Posledný komentár v obchodnom prípade
+    title:
+      crm_case_id: Kliknutím vložíte variabilný znak reprezentujúci ID obchodného
+        prípadu‌
+      crm_case_name: Kliknutím vložíte variabilný znak reprezentujúci meno obchodného
+        prípadu
+      crm_case_note: Kliknutím vložíte variabilný znak reprezentujúci poslednú poznámku
+        v obchodnom prípade
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: Obchodné prípady podľa filtra
+      easy_crm_cases_create_new: Nový obchodný prípad
+      easy_crm_create_easy_crm_case_button: Tlačidlo nový obchodný prípad
+      easy_crm_pie_chart_from_custom_field: Koláčový graf na mieru‌
+      easy_crm_user_performance: Výkony členov
+      easy_crm_user_target: Ciele používateľov
+      easy_entity_activity_crm_case_query: Predajné aktivity podľa filtra
+    pages_description:
+      easy_crm_overview: Prehľad CRM
+      easy_crm_project_overview: Prehľad CRM na projekte
+    pages:
+      easy_crm_overview: Prehľad CRM
+      easy_crm_project_overview: Prehľad CRM na projekte
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: Pridať nový obchodný prípad‌
+        description: Pridať nový obchodný prípad
+    easy_crm_settings:
+      index:
+        caption: Nastavenie CRM
+        description: Správa nastavení CRM
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: Obchodné prípady‌
+          related_easy_crm_case: Súvisiaci obchodný prípad‌
+    name:
+      easy_crm_case_item_query: Položky obchodného prípadu
+      easy_crm_case_query: Obchodné prípady
+      easy_crm_contact_query: CRM kontakty
+      easy_crm_country_value_query: Hodnoty špecifické pre štáty (CRM)
+      easy_lead_score_query: Skóre leadu
+      easy_user_target_query: Používateľské ciele
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: Súkromné filtre obchodných prípadov‌
+        easy_crm_contact_query: Súkromné filtre CRM kontaktov
+      public:
+        easy_crm_case_query: Verejné filtre obchodných prípadov
+        easy_crm_contact_query: Verejné filtre CRM kontaktov
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: Schránka CRM
+  error_can_not_delete_easy_crm_status: Tento stav sa používa a nemôže byť odstránený.
+  error_easy_crm_case_can_not_assign_custom_field: Obchodný prípad vo vlasntom poli
+    nemôže byť priradený, pretože nepatrí k tomuto projektu.
+  error_easy_crm_case_could_not_merge: Obchodné prípady sa nepodarilo zlúčiť‌
+  field_easy_crm_case: Obchodný prípad
+  field_easy_crm_case_contract_date: Dátum zmluvy
+  field_easy_crm_case_created_date: Dátum vytvorenia
+  field_easy_crm_case_next_action: Ďalšia akcia
+  field_easy_crm_cases: Obchodný prípad
+  field_easy_crm_cases_visibility: Viditeľnosť obchodných prípadov
+  field_easy_lead_score: Skóre leadu
+  heading_easy_crm_case_edit: Úpraviť obchodný prípad
+  heading_easy_crm_case_item_index: Položky obchodného prípadu
+  heading_easy_crm_case_mail_template_edit: Upraviť emailovú šablónu
+  heading_easy_crm_case_mail_template_index: Emailové šablóny
+  heading_easy_crm_case_mail_template_new: Nová emailová šablóna
+  heading_easy_crm_case_new: Nový obchodný prípad
+  heading_easy_crm_case_sidebar_filters_by_member: Obchodné prípady členov
+  heading_easy_crm_case_status_edit: Úpraviť stavy obchodných prípadov
+  heading_easy_crm_case_status_index: Stavy obchodných prípadov
+  heading_easy_crm_case_status_new: Nový stav obchodného prípadu
+  heading_easy_crm_country_value_new: Nová hodnota špecifická pre štát (CRM)
+  heading_easy_crm_mailboxes_index: Schránky‌
+  heading_easy_crm_related_case: Súvisiaci obchodný prípad‌
+  heading_easy_crm_related_case_plural: Súvisiace obchodné prípady‌
+  heading_easy_crm_related_contacts: Súvisiace kontakty
+  heading_easy_crm_related_issues: Súvisiace úlohy
+  heading_easy_lead_score_edit: Upraviť skóre leadu‌
+  heading_easy_lead_score_new: Nové skóre leadu‌
+  label_advanced_custom_fields: Pokročilé používateľské polia‌
+  label_assign_to_easy_crm_case: Priradiť obchodnému prípadu‌
+  label_attribute_of_easy_crm_cases: "%{name} obchodného prípadu‌"
+  label_bulk_edit_selected_easy_crm_case: Hromadná úprava vybraných obchodných prípadov‌
+  label_change_crm_cases_status_explanation: 'Zmeniť stav obch. prípadu‌ na:'
+  label_chart_target: Používateľský cieľ
+  label_crm_currency_rate: Kurz k základnej mene
+  label_crm_fields_permissions: Práva k poliam obchodných prípadov
+  label_easy_contact_customer_business: Obchodné prípady tohto zákazníka
+  label_easy_contact_easy_crm_cases: Obchodné prípady
+  label_easy_contact_indirect_business: Nepriame obchodné prípady
+  label_easy_contact_managed_easy_crm_cases: Spravované obchodné prípady‌
+  label_easy_crm: CRM
+  label_easy_crm_case: Obchodný prípad
+  label_easy_crm_case_account_manager: Obchodník tohto obchodného prípadu
+  label_easy_crm_case_accounted_by: Spracovaný %{name}
+  label_easy_crm_case_added: Obchodný prípad bol pridaný
+  label_easy_crm_case_assignee: Priradený na obchodnom prípade
+  label_easy_crm_case_customer: Zákazník‌
+  label_easy_crm_case_customer_query_group_custom_fields: Používateľské polia zákazníka‌
+  label_easy_crm_case_default_values: Predvolené hodnoty‌
+  label_easy_crm_case_filters: Filter
+  label_easy_crm_case_is_associated_to_easy_invoice: Má priradený obchodný prípad?
+  label_easy_crm_case_main_contact: Hlavný kontakt
+  label_easy_crm_case_need_reaction: Reagovať!
+  label_easy_crm_case_new: Nový obchodný prípad
+  label_easy_crm_case_plural: Obchodné prípady
+  label_easy_crm_case_query_includes_descendants: Zobraziť prípady aj z podprojektov‌
+  label_easy_crm_case_searchable_all: Hľadať vo všetkých stavoch obchodných prípadov
+  label_easy_crm_case_status: Stav obchodného prípadu‌
+  label_easy_crm_case_updated: Obchodný prípad bol aktualizovaný‌
+  label_easy_crm_case_watchers_heading: Spolupracovníci‌
+  label_easy_crm_cases: Obchodné prípady‌
+  label_easy_crm_cases_merge_into: 'Obchodné prípady zlúčené do:'
+  label_easy_crm_cases_visibility_all: Všetky obchodné prípady na projektoch používateľa‌
+  label_easy_crm_cases_visibility_own: Obchodné prípady vytvorené, sledované alebo
+    priradené používateľovi‌
+  label_easy_crm_country_values: Hodnoty špecifické pre štáty (CRM)
+  label_easy_crm_default_account_manager: Obchodník pre nové prípady‌
+  label_easy_crm_default_assignee: Riešiteľ pre nový prípad
+  label_easy_crm_default_external_account_manager: Externý obchodník pre nové prípady
+  label_easy_crm_find_by_worker: Hľadať pracovníka
+  label_easy_crm_kanban: Zobrazenie v kanbane
+  label_easy_crm_kanban_columns_name: Názov stĺpca
+  label_easy_crm_kanban_drop_in: Pustiť do stavu
+  label_easy_crm_kanban_settings: Nastavenie Kanbanu‌
+  label_easy_crm_kanban_status_not_uniq: Kanban stĺpce musia sledovať rôzne stavy‌
+  label_easy_crm_kanban_statuses: Stavy stĺpcov
+  label_easy_crm_kanban_sum_column: Súčtový stĺpec
+  label_easy_crm_new_kanban_column: Pridať nový stĺpec‌
+  label_easy_crm_project: CRM projekt
+  label_easy_crm_related_case: Súvisiaci obchodný prípad‌
+  label_easy_crm_search_fo_easy_contact: Vyhľadať kontakt
+  label_easy_crm_search_for_easy_invoice: Hľadať faktúru‌
+  label_easy_crm_search_for_issue: Hľadať úlohu‌
+  label_easy_crm_settings: Nastavenia CRM
+  label_easy_crm_use_items: Použiť položky CRM
+  label_easy_lead_score: Skóre leadu
+  label_easy_lead_scores: Skóre leadov
+  label_easy_money_sidebar:
+    easy_crm_case: Používať rozpočet na obchodných prípadoch
+  label_easy_user_target: Používateľské ciele
+  label_easy_user_target_currency: Mena
+  label_easy_user_with_targets: Používatelia s cieľmi‌
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: Kontakt
+  label_filter_group_easy_crm_contact_query_custom_fields: Používateľské polia kontaktov‌
+  label_filter_group_easy_crm_main_contact_query: Hlavný kontakt
+  label_filter_group_easy_crm_main_contact_query_custom_fields: Používateľské polia
+    hlavného kontaktu‌
+  label_filter_group_easy_user_target_query: Používateľské ciele‌
+  label_filter_group_sales_activity_additional_filters: Dodatočné filtre obchodu
+  label_filter_sales_activity_not_in: Žiadny(a) %{category} v čase‌
+  label_merge_to_entities:
+    easy_crm_case: obchodného prípadu‌
+  label_page_module_compare: Porovnať‌
+  label_prefix_easy_contacts_query_filter: Kontakty‌
+  label_set_crm_fields_permissions: Nastaviť práva stĺpcov podľa stavu‌
+  label_show_assigned_crm_cases: Zobraziť obchodné prípady priradené používateľovi
+    %{username}.
+  label_statuses_not_selected: Žiadny stav nebol vybraný. Prosím vyberte aspoň jeden.
+  label_unknown_user: Neznámy
+  label_use_values_from_crm_case: Použiť hodnoty z
+  label_validation_only_for_admin: Iba admin môže používať tento stav‌
+  mail:
+    subject:
+      easy_crm_case_add: "[%{projectname}] Obchodný prípad pridaný -%{name}"
+      easy_crm_case_edit: "[%{projectname}] Obchodný prípad upravený -%{name} (%{status})"
+      my_easy_crm_case_add: ">>> Môj obchodný prípad [%{projectname}] bol pridaný
+        -%{name}"
+      my_easy_crm_case_edit: ">>> Môj obchodný prípad [%{projectname}] bol aktualizovaný
+        -%{name} (%{status})"
+  notice_easy_crm_case_successful_create: Obchodný prípad %{id} vytvorený.
+  notice_easy_crm_update_conflict: Obchodný prípad bol aktualizovaný iným používateľom,
+    keď ste ho upravovali.
+  notice_failed_to_save_easy_crm_cases: Nepodarilo sa uložiť %{count} obchodných prípadov
+    z %{total} vybraných:%{titles}
+  permission_add_crm_case_notes: Pridávanie komentárov‌
+  permission_add_easy_crm_case_watchers: Pridávať pozorovateľov na obchodné prípady
+  permission_add_easy_crm_cases: Vytvárať obchodné prípady
+  permission_delete_easy_crm_case_watchers: Odstrániť pozorovateľov z obchodných prípadov
+  permission_delete_easy_crm_cases: Odstrániť obchodné prípady
+  permission_edit_crm_case_notes: Upraviť komentáre
+  permission_edit_easy_crm_cases: Upraviť obchodné prípady
+  permission_edit_easy_crm_country_values: Upraviť hodnoty štátov CRM
+  permission_edit_own_crm_case_notes: Upraviť vlastné komentáre
+  permission_edit_own_easy_crm_cases: Upraviť vlastné obchodné prípady‌
+  permission_manage_easy_crm_page: Spravovať CRM stránky‌
+  permission_manage_easy_crm_settings: Spravovať nastavenia CRM
+  permission_manage_easy_lead_scores: Spravovať skóre leadu
+  permission_manage_easy_user_targets: Spravovať používateľské ciele
+  permission_view_easy_crm_case_watchers: Zobraziť pozorovateľov obchodných prípadov
+  permission_view_easy_crm_country_values: Zobraziť hodnoty štátov CRM
+  permission_view_easy_crms: Zobraziť obchodné prípady
+  permission_view_easy_lead_scores: Zobraziť skóre lead
+  permission_view_own_easy_crms: Zobraziť vlastné obchodné prípady‌
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: Odstrániť‌
+  remove_related_invoice: Odstrániť faktúru‌
+  setting_show_description_on_crm_case: Zobraziť popis položiek obchodného prípadu
+  setting_show_easy_entity_activity_on_crm_case: Zobraziť predajné aktivity na obchodných
+    prípadoch
+  sidebar_crm_case_button_move: Presunúť obchodný prípad
+  text_are_you_sure_remove_user: Naozaj chcete odstrániť používateľa zo všetkých kvartálov?
+  text_easy_crm_case_updated: Obchodný prípad %{id} bol aktualizovaný používateľom
+    %{user}.
+  title_easy_crm_case_delete: Odstrániť obchodný prípad
+  title_easy_crm_country_value_new: Kliknutím vytvoríte novú hodnotu pre konkrétnu
+    krajinu
+  title_easy_crm_new_case: Kliknite pre vytvorenie nového obchodného prípadu
+  title_easy_lead_score_new: Kliknutím vytvoríte nové skóre leadu
+  title_easy_user_target_modal_easy_user_type: Vybrať používateľov podľa typu
+  title_easy_user_target_modal_group: Vybrať používateľov podľa skupiny
+  title_easy_user_target_remove_user: Odstrániť používateľa
+  title_kanban_settings: Nastavenia Kanbanu

@@ -1,0 +1,28 @@
+<% available_global_filters = @easy_page_modules_data[block_name][:available_global_filters] %>
+<div class="tabular">
+  <%= back_url_hidden_field_tag %>
+  <p>
+    <%= label_tag "#{block_name}[name]", l(:field_name) %>
+    <%= text_field_tag "#{block_name}[name]", settings['name'] ? settings['name'] : l('easy_pages.modules.top_user_utilization') %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}[count]", l(:field_count) %>
+    <%= text_field_tag "#{block_name}[count]", settings['count'] || '10', size: 3 %>
+  </p>
+  <p>
+    <%= hidden_field_tag "#{block_name}[reverse]", '0' %>
+    <%= label_tag "#{block_name}[reverse]", l(:label_from_least_utilized) %>
+    <%= check_box_tag "#{block_name}[reverse]", '1', settings['reverse'].to_s.to_boolean %>
+  </p>
+</div>
+<fieldset>
+  <div>
+    <%= render 'easy_page_modules/global_filters',
+               modul_uniq_id: block_name,
+               block_name: block_name,
+               page_params: page_params,
+               query_params: settings,
+               available_global_filters: available_global_filters,
+               page_module: page_module %>
+  </div>
+</fieldset>

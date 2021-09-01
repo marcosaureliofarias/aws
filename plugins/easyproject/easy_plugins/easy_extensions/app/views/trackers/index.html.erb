@@ -1,0 +1,48 @@
+<%= title l(:label_tracker_plural) %>
+
+<div class="autoscroll">
+  <table class="list reorder">
+  <thead><tr>
+      <th></th>
+      <th><%= l(:label_tracker) %></th>
+      <th><%= l(:field_default_status) %></th>
+      <th><%= l(:field_description) %></th>
+      <th></th>
+      <th></th>
+    </tr></thead>
+  <tbody>
+    <% @trackers.each do |tracker| %>
+      <tr class="<%= tracker.easy_color_scheme %>">
+        <td class="center reorder-handler"><%= render_reorder_handle(tracker, 'tracker', url_options: {page: params[:page]}) %></td>
+        <td class="name"><%= link_to tracker.name, edit_tracker_path(tracker) %></td>
+        <td><%= tracker.default_status.name %></td>
+        <td class="description"><%= tracker.description %></td>
+        <td align="center">
+          <% unless tracker.workflow_rules.exists? %>
+            <span class="icon icon-warning">
+              <%= l(:text_tracker_no_workflow) %> (<%= link_to l(:button_edit), workflows_edit_path(:tracker_id => tracker) %>)
+            </span>
+          <% end %>
+        </td>
+        <td class="buttons">
+          <%= delete_link tracker_path(tracker) %>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>
+</div>
+
+<span class="pagination"><%#= pagination_links_full @tracker_pages %></span>
+
+<%#= render :partial => 'common/infinite_scroll' %>
+
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:label_tracker_plural)) -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_tracker_new), new_tracker_path, :class => 'button-positive' %>
+  <%= link_to l(:field_summary), fields_trackers_path, :class => 'button' %>
+<% end %>

@@ -1,0 +1,11 @@
+<% redmine_sass = false %>
+
+@import "easy_extensions/common_assets";
+@import "_gantt";
+
+<% if redmine_sass %>
+  @include loadFontFace--non-rails('Material Icons','./../plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont','','',normal,normal);
+<% else %>
+  @include loadFontFace('Material Icons','./../plugin_assets/easy_extensions/easy_fonts/materialdesignicons-webfont','','',normal,normal);
+<% end %>
+

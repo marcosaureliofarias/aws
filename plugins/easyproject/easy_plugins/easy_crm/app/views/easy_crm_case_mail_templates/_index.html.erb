@@ -1,0 +1,25 @@
+<% if easy_crm_case_mail_templates.blank? %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% else %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= EasyCrmCaseMailTemplate.human_attribute_name(:subject) -%></th>
+        <th><%= EasyCrmCaseMailTemplate.human_attribute_name(:easy_crm_case_status) -%></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% easy_crm_case_mail_templates.each do |easy_crm_case_mail_template| %>
+        <tr>
+          <td><%= easy_crm_case_mail_template.subject -%></td>
+          <td><%= easy_crm_case_mail_template.easy_crm_case_status && easy_crm_case_mail_template.easy_crm_case_status.name -%></td>
+          <td class="easy-additional-ending-buttons">
+            <%= link_to(l(:button_edit), edit_easy_crm_case_mail_template_path(easy_crm_case_mail_template, :project_id => project, :back_url => original_url), :class => 'icon icon-edit', :title => l(:button_edit)) %>
+            <%= link_to(l(:button_delete), easy_crm_case_mail_template_path(easy_crm_case_mail_template, :project_id => project, :back_url => original_url), :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:button_delete)) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

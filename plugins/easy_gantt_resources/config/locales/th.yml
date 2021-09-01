@@ -1,0 +1,177 @@
+---
+th:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: มีการจัดสรรอยู่แล้ว
+  button_hide_planned_tasks: ภารกิจตามแผน
+  button_top_menu_easy_gantt_resources: การจัดการทรัพยากร
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: มุมมองการจัดการทรัพยากรใหม่สำหรับ Easy Gantt
+  easy_gantt_resources_plugin_name: การจัดการทรัพยากร
+  easy_gantt_resources:
+    allocator:
+      evenly: สม่ำเสมอ (ช้า)
+      from_end: จากสิ้นสุด
+      from_start: จากเริ่มต้น
+      future_evenly: สม่ำเสมอในอนาคต
+      future_from_end: อนาคตจากสิ้นสุด
+      future_from_start: อนาคตจากเริ่มต้น
+      label_allocator: จัดสรร
+      random: แบบสุ่ม
+    buttons:
+      button_project_menu: การจัดการทรัพยากร
+      rm_balance: คงเหลือ
+      rm_hide_reservations: ซ่อนการจอง
+      rm_hide_tasks: ภารกิจ
+      rm_reservations: การจอง
+      rm_with_milestones: เหตุการณ์สำคัญ
+      rm_with_projects: โครงการ
+    context:
+      heading_allocator_setting: ตั้งค่าการจัดสรร
+      label_maximal_hours: ชั่วโมงสูงสุด/วัน
+      pseudo_even_allocation: การจัดสรรแบบสมมุติ
+      text_setting_for: ตั้งค่าเพื่อ
+    errors:
+      assigned_to_is_blank: ต้องกำหนดผู้รับมอบหมาย
+      estimated_hours_is_blank: เวลาโดยประมาณไม่ถูกต้อง
+      issue_is_closed: ภารกิจถูกปิดอยู่
+      negative_allocation: มีจำนวนชั่วโมงที่จัดสรรติดลบในวันที่ %{date}
+      no_rights_for_allocation: คุณไม่มีสิทธิ์ในการจัดสรรใน %{issue}
+      non_member_assignee: ภารกิจ %{issue} ของโครงการ %{project} และผู้ใช้ %{assignee}
+        ไม่ใช่สมาชิกของมัน
+      over_allocation: มีเวลาจัดสรรมากกว่าที่เป็นไปได้เมื่อ %{date}
+      project_is_baseline: โครงการเป็น baseline
+      save_error: 'การจัดสรร [%{allocations}] ของภารกิจ "%{name}" สำหรับ %{assignee}
+        ไม่ได้ถูกบันทึกเนื่องจาก: %{reason}'
+      start_or_due_is_required: ต้องระบุวันเริ่มต้นหรือวันครบกำหนด
+      under_estimation: ประมาณการต่ำเกินไป เพิ่มการประมาณการอย่างน้อย %{over} ชั่วโมง
+    event_types:
+      generic: เหตุการณ์
+      holiday: วันหยุด
+      meeting: ประชุม
+      symbols:
+        holiday_short: ชม.
+        meeting_short: ประชุม
+        nonworking_attendance_short: N
+        unapproved_nonworking_attendance_short: U
+    global_resource_title: การจัดการทรัพยากรทั่วโลก
+    label_allocations_sum: การจัดสรรภารกิจ
+    label_events: เหตุการณ์
+    label_other_allocations_sum: การจัดสรรภารกิจที่มองไม่เห็น
+    label_reservations_sum: การจัดสรรการจอง
+    label_whole_day: ทั้งวัน
+    legend:
+      day_custom_allocation: การจัดสรรที่ปรับแต่งด้วยตนเอง
+      day_over_allocation: ผู้ใช้งานมากเกินไปในบางวัน
+      full_allocations: ผู้ใช้มีปริมาณงานที่เหมาะสม
+      no_allocations: ผู้ใช้ไม่มีงานที่มอบหมาย
+      over_allocations: ผู้ใช้มีงานมากเกินไป
+      reservation: การจอง
+      some_allocations: ผู้ใช้มีเวลาว่าง
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: การจัดการทรัพยากร
+    text_easy_resources_footer: Redmine Resource management powered by Easy
+    title_rm_short: RM
+  easy_gantt:
+    button:
+      rm_reallocate: จัดสรรใหม่
+    title:
+      rm_reallocate: คำนวณการจัดสรรใหม่ในทุกภารกิจ
+  easy_pages:
+    modules:
+      easy_gantt_resources: การจัดการทรัพยากร
+      personal_easy_gantt_resources: การจัดการทรัพยากรส่วนบุคคล
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: การจัดการทรัพยากร
+        description: ไปที่การจัดการทรัพยากรทั่วโลก
+  easy_query:
+    name:
+      easy_light_resource_query: การจัดสรร
+      easy_resource_easy_query: การจัดการทรัพยากร
+  error_allocation_uniqueness: ทรัพยากรมีอยู่แล้ว
+  error_epm_resource_already_active: โมดูลหน้าบนหน้าใช้งานอยู่แล้ว
+  error_invalid_dates: วันที่ที่ผ่านมาไม่ถูกต้อง
+  error_resources_not_authorized: ไม่ได้บันทึกทรัพยากร, คุณไม่มีสิทธิ์แก้ไขทรัพยากรที่ร้องขอทั้งหมด
+  field_advance_hours_definition: กำหนดชั่วโมงด้วยตัวเอง
+  field_advance_hours_per_days: ปรับชั่วโมงต่อวัน
+  field_assigned_to_admin: ผู้ดูแล
+  field_assigned_to_created_on: สร้างเมื่อ
+  field_assigned_to_email: อีเมล
+  field_assigned_to_firstname: ชื่อ
+  field_assigned_to_lastname: นามสกุล
+  field_assigned_to_login: เข้าสู่ระบบ
+  field_assigned_to_status: สถานะ
+  field_change_allocator_enabled: เปลี่ยนตัวจัดสรร
+  field_decimal_allocation: การจัดสรรทศนิยม
+  field_default_allocator: ตัวจัดสรรเริ่มต้น
+  field_easy_gantt_show_task_latest_due: แสดงวันที่ครบกำหนดล่าสุด
+  field_hide_planned_tasks_enabled: ปุ่มสลับภารกิจที่วางแผนไว้
+  field_hide_unassigned: ซ่อนที่ไม่ได้มอบหมาย
+  field_hours_in_hour: เวลาโดยประมาณ
+  field_hours_in_percent: เวลาโดยประมาณ
+  field_hours_per_day: ชั่วโมงทำงานต่อวัน
+  field_max_allocation: 'การจัดสรรเวลาสูงสุด:'
+  field_resource_allocator: การจัดสรรทรัพยากร
+  field_show_groups: แสดงกลุ่ม
+  field_show_total_project_allocations: แสดงการจัดสรรกลุ่มทั้งหมด
+  field_watchdog_enabled: จับตาดู
+  heading_easy_gantt_resources_index: แหล่งที่มา
+  help_easy_gantt_resources_users_estimated_ratios: เวลาโดยประมาณของภารกิจที่มอบหมายให้กับผู้ใช้จะถูกคูณด้วยค่าคงที่นี้ในการจัดสรร
+  help_easy_gantt_resources_users_hours_limits: ชั่วโมงการทำงานของผู้ใช้รายวันสำหรับการจัดสรรจะถูกจำกัดด้วยค่านี้
+  help_easy_gantt_resources_users_hours_limits_blank: เว้นว่างเอาไว้เพื่อใช้ค่าเริ่มต้น
+  label_allocated_dates: วันที่จัดสรร
+  label_allocated_hours: ชั่วโมงที่จัดสรร
+  label_easy_gantt_allocations: การจัดสรร
+  label_easy_gantt_original_allocations: จัดสรรเต็มรูปแบบ
+  label_easy_gantt_period: ระยะเวลา
+  label_easy_gantt_resources_balance: คงเหลือ
+  label_easy_gantt_resources_get_from_users: นับจากผู้ใช้
+  label_easy_gantt_resources_get_from_users_for_all_groups: นับจากผู้ใช้ทั้งหมด
+  label_easy_gantt_resources_global_query_filters: ตัวกรองเริ่มต้นทั่วโลก
+  label_easy_gantt_resources_groups_holidays_enabled: เปิดใช้งานวันหยุดสำหรับกลุ่ม
+  label_easy_gantt_resources_groups_selection: การเลือกกลุ่ม
+  label_easy_gantt_resources_hours_from_calendar: ชั่วโมงจากปฏิทิน
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: ชั่วโมงจากปฏิทินสำหรับผู้ใช้ทั้งหมด
+  label_easy_gantt_resources_new_reservation: การจองใหม่
+  label_easy_gantt_resources_reservation_enabled: เปิดใช้งานการจอง
+  label_easy_gantt_resources_settings: การตั้งค่าทรัพยากร
+  label_easy_gantt_resources_show_free_capacities: ความจุที่เหลืออยู่
+  label_easy_gantt_resources_user_unassigned: ยังไม่ได้มอบหมาย
+  label_easy_gantt_resources_users_estimated_ratios: อัตราส่วนเวลาโดยประมาณ
+  label_easy_gantt_resources_users_hours_limits: จำกัด ชั่วโมงต่อวัน
+  label_easy_gantt_resources_users_selection: การเลือกผู้ใช้
+  label_easy_gantt_resources_with_projects: แสดงการจัดสรรโครงการตามค่าเริ่มต้น
+  label_easy_meeting_easy_resource_dont_allocate: ไม่ต้องจัดสรร
+  project_module_easy_gantt: Easy Gantt & การจัดการทรัพยากร
+  text_easy_gantt_resources_advance_hours_definition: สามารถกำหนดชั่วโมงสำหรับทุกวันในสัปดาห์
+  text_easy_gantt_resources_advance_hours_per_days: จำนวนชั่วโมงที่จัดสรรได้สูงสุดต่อวันในสัปดาห์
+  text_easy_gantt_resources_change_allocator_enabled: อนุญาตให้เปลี่ยนตัวจัดสรรในการแก้ไขภารกิจ
+  text_easy_gantt_resources_change_default_allocator: ด้วยเหตุผลด้านประสิทธิภาพ,การเปลี่ยนตัวเลือกนี้จะไม่ส่งผลต่อตัวจัดสรรเริ่มต้นที่มีอยู่ในภารกิจ.
+    สำหรับการจอง, ตัวจัดสรรเริ่มต้นจะเท่ากันเสมอ, แต่สามารถเปลี่ยนแปลงได้หลังจากสร้างการจองแล้ว.
+  text_easy_gantt_resources_decimal_allocation: ชั่วโมงจะถูกจัดสรรโดยตัวเลขทศนิยม
+    (0.5)
+  text_easy_gantt_resources_default_allocator: วิธีการจัดสรรชั่วโมงงานโดยประมาณ (ประเภทที่สม่ำเสมออาจช้า)
+  text_easy_gantt_resources_default_zoom: ซูมเริ่มต้นสำหรับการจัดการทรัพยากรระดับโลก
+  text_easy_gantt_resources_groups_holidays_enabled: การจัดสรรจะลดลงหากสมาชิกในกลุ่มมีวันหยุด
+  text_easy_gantt_resources_hide_planned_tasks_enabled: แสดงสลับ "ภารกิจตามแผน" ในการจัดการทรัพยากร
+  text_easy_gantt_resources_hours_per_day: จำนวนชั่วโมงที่จัดสรรได้สูงสุดต่อวัน
+  text_easy_gantt_resources_overloaded_assigned: ชั่วโมงโดยประมาณของภารกิจนี้จะถูกจัดสรรในวันที่ที่ผู้รับมอบหมายทำงานมากเกินไป:%{errors}
+    ตรวจสอบ%{link} เพื่อทำการเปลี่ยนแปลงที่เหมาะสม
+  text_easy_gantt_resources_reservation_enabled: เปิดใช้งานการจองชั่วโมงสำหรับผู้ใช้
+  text_easy_gantt_resources_show_free_capacities: เปิดใช้งานการสลับการแสดงผลความจุที่เหลืออยู่แทนชั่วโมงที่จัดสรรสำหรับภารกิจที่มอบหมายในการจัดการทรัพยากร
+  text_easy_gantt_resources_show_groups: แสดงกลุ่มเกี่ยวกับการจัดการทรัพยากรระดับโลก
+  text_easy_gantt_resources_show_total_project_allocations: แสดงจำนวนชั่วโมงทั้งหมดที่จัดสรรให้กับการจัดการทรัพยากรโครงการ
+  text_easy_gantt_resources_watchdog_enabled: ดูผู้ใช้ที่ได้รับมอบหมายภารกิจมากเกินไปในระหว่างการแก้ไขภารกิจ
+  text_easy_gantt_resources_with_projects: เปิดตัวเลือก "กับโครงการ" ใน Global RM
+    ตามค่าเริ่มต้น
+  text_easy_gantt_show_task_latest_due: แสดงวันที่ล่าสุดที่ถูกต้องสำหรับภารกิจที่ถูกกำหนดโดยความสัมพันธ์หรือหลัก
+  text_easy_meeting_easy_resource_dont_allocate: การประชุมจะไม่ลดความสามารถในการจัดการทรัพยากร
+  title_easy_gantt_personal_resources: ทรัพยากรของฉัน
+  title_easy_gantt_resources_settings: การจัดการทรัพยากรโดยEasy
+  title_easy_gantt_resources_users_settings: การตั้งค่าผู้ใช้ส่วนบุคคล

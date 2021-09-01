@@ -1,0 +1,9 @@
+<ul>
+<% if @easy_crm_country_value && !@easy_crm_country_value.new_record? %>
+  <li><%= link_to l(:button_edit), edit_polymorphic_path([@project, @easy_crm_country_value]), title: l(:button_edit), class: 'icon icon-edit' %></li>
+<% end %>
+<% if @easy_crm_country_value.nil? %>
+  <li><%= link_to l(:button_easy_crm_country_value_new), new_polymorphic_path([@project, :easy_crm_country_value]), title: l(:title_easy_crm_country_value_new), class: 'icon icon-add button button-positive' %></li>
+<% end %>
+  <li><%= link_to l(:label_easy_crm_country_values), polymorphic_path([@project, :easy_crm_country_values], set_filter: '1'), title: l(:label_easy_crm_country_values), class: 'icon icon-folder button' %></li>
+</ul>

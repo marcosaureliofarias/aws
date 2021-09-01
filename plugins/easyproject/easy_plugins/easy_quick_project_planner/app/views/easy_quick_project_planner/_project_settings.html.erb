@@ -1,0 +1,7 @@
+<div id="project-settings" class="box">
+  <%= form_for @project, :url => project_path(@project), :html => {:method => :put, :id => 'project-settings-form', :class => 'flash warning', :remote => true} do |f| %>
+    <p>
+      <%= f.check_box :is_planned %><em><%= l(:text_project_is_planned) %></em>
+    </p>
+  <% end -%>
+</div>

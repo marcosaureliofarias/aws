@@ -1,0 +1,32 @@
+<%= content_for :header_tags do %>
+  <% if EasyMindmup.easy_extensions? %>
+    <% if !Redmine::Plugin.installed?(:easy_theme_designer) || !EasyThemeDesign.in_use %>
+      <%= stylesheet_link_tag('easy_wbs', media: 'all') %>
+    <% end %>
+  <% else %>
+    <%= stylesheet_link_tag('generated/easy_wbs', plugin: 'easy_wbs', media: 'all') %>
+  <% end %>
+<% end %>
+<%= content_for :body_bottom do %>
+  <% if EasyMindmup.combine_by_pipeline?(params) %>
+    <%= javascript_include_tag('easy_wbs', defer: true) %>
+  <% else %>
+    <%= javascript_include_tag(
+            'wbs_main',
+            'wbs_context_menu',
+            'wbs_loader',
+            'wbs_vue_modal_patch',
+            'wbs_node_patch',
+            'wbs_saver',
+            'wbs_modals',
+            'wbs_money',
+            'wbs_styles',
+            'wbs_validator',
+            'wbs_money_modal',
+            'wbs_storage',
+            plugin: 'easy_wbs'
+        ) %>
+  <% end %>
+<% end %>
+<% include_galereya_tags if defined?(include_galereya_tags) %>
+<% include_galereya_headers_tags if defined?(include_galereya_headers_tags) %>

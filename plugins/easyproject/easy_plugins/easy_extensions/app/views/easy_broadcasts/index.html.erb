@@ -1,0 +1,7 @@
+<%= render @query %>
+<%= context_menu context_menu_easy_broadcasts_path %>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+    <%= render :partial => 'easy_broadcasts/sidebar' %>
+    <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} %>
+<% end %>

@@ -1,0 +1,4 @@
+<%= form_for(@easy_checklist_item, :url => easy_checklist_items_path(:id => @easy_checklist), :remote => true, :html => {:id => "easy_checklist#{@easy_checklist.id}_item_form"}) do |f| %>
+
+  <%= render :partial => 'easy_checklist_items/form', :locals => {:f => f, :options => {:display_submit_button => true}} %>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="autoscroll">
+  <table class="list" id="issue-list">
+    <thead>
+      <tr>
+        <% @quick_planner_columns.each do |column, field| %>
+          <th class="<%= column.css_classes %>"><%= label_for_quick_planner_column_header(field) if field %></th>
+        <% end %>
+        <th><%= l(:label_for_quick_planner_last_column) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="new-issue odd">
+        <%= render 'easy_quick_project_planner/new_issue_row', project: @project, query: @query, issue: @issue, quick_planner_columns: @quick_planner_columns, editable_quick_planner_fields: @editable_quick_planner_fields %>
+      </tr>
+      <% easy_query_entity_list(@issues) do |issue, level| %>
+        <%= render 'issue_row', :issue => issue, :query => @query, quick_planner_columns: @quick_planner_columns %>
+      <% end -%>
+    </tbody>
+  </table>
+</div>
+

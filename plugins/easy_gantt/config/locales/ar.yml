@@ -1,0 +1,238 @@
+---
+ar:
+  button_print: طباعة
+  button_project_menu_easy_gantt: Easy Gantt
+  button_top_menu_easy_gantt: جانت العالمي
+  button_use_actual_delay: استخدم التأجيل الحقيقي
+  easy_gantt_toolbar:
+    day: أيام
+    month: أشهر
+    week: أسابيع
+  easy_gantt:
+    button:
+      close_all: إغلاق الكل
+      close_all_parent_issues: إغلاق كل المهام الأصلية
+      create_baseline: خطوط الأساس
+      critical_path: المسار الحرج
+      day_zoom: أيام
+      delayed_project_filter: المشروعات المؤجلة فقط
+      jump_today: القفز إلى اليوم
+      load_sample_data: تحميل عينة البيانات
+      month_zoom: أشهر
+      print_fit: ضبط حسب الصفحة
+      problem_finder: مشكلات
+      reload: إعادة تحميل (حفظ)
+      remove_delay: إزالة التأجيل
+      resource_management: إدارة الموارد
+      tool_panel: أدوات
+      week_zoom: أسابيع
+    critical_path:
+      disabled: موقوف
+      last: أخير
+      last_text: المهام التي لا ينبغي تاخيرها
+      longest: الأطول
+      longest_text: عرض التسلسل الأطول للمهام‌
+    errors:
+      change_link_length: التأخير بين {{source_task}} و{{target_task}} تم تغييره إلى
+        الحد الأدنى للطول من {{minimum_link_length}}
+      duplicate_link: لا يمكن إنشاء الرابط المزدوج
+      fresh_milestone: لا يمكن إضافة مهمة للعلامات المميزة غير المحفوظة. احفظ العلامة
+        المميزة أولًا.
+      integrity:
+        ends_too_late: النهاية متأخرة جدًا
+        gantt_is_too_long: الرسم البياني لمخطط جانت عريض جدًا (أكثر من {{limit}} أيام)
+        out_of_limits: بعض الكيانات تم حذفها لأنها خارج الحدود من {{minLimit}} إلى {{maxLimit}}
+        starts_too_early: يبدأ مبكرًا جدًا
+        truncated: مقطوع
+      link_target_new: لا يمكن إنشاء الرابط للمهمة غير المحفزظة. احفظ التغييرات أولًا.
+      link_target_readonly: مهمة هدف للقراءة فقط
+      loop_link: لا يمكن إنشاء الرابط الملفوف
+      no_rest_api: يحتاج جانت Easy إلى تفعيل REST API. قم بتشغيله من إدارة > إعدادات
+        > API > تفعيل خدمة الويب REST
+      overdue: لا بد أن ينتهي في المستقبل أو يجب أن يتم غلقه بالفعل. 
+      overmile: لا بد أن ينتهي في %{effective_date} لكي تحافظ على العلامة المميزة
+      progress_date_overdue: خارج الجدول بمقدار %{days} أيام
+      project_link: لا يمكن إنشاء الرابط للمشروع
+      reservation_for_unassignee: لا يمكن إنشاء حجز لغير المحال إليه
+      save_gantt: يرجى حفظ مخطط جانت قبل المغادرة.
+      short_delay: لا بد أن يكون أطول بمقدار %{diff} أيام 
+      subproject_precedes_parent: المشروع الفرعي سابق للمشروع الأصلي
+      too_short: لا يحتوي على أيام كافية لباقي الساعات %{rest} للوقت المقدر.
+      unsaved_parent: لا يمكن إضافة مهمة للأصلية غير المحفوظة. احفظ التغييرات أولًا.
+      unsupported_link_type: نوع رابط غير مدعوم.
+    gateway:
+      entity_save_failed: "%{entityType} %{entityName} لم ينجح الحفظ بسبب وجود خطأ"
+      send_failed: لم ينجح الطلب
+    label_pro_upgrade: التحديث للإصدار PRO
+    legend:
+      heading: أسطورة مخطط جانت
+      heading_tips: النصائح والحيل
+      label_dates_calculated: تاريخ البداية وتاريخ الانتهاء محسوبان من المهام
+      label_dates_set_manually: تارخ البداية وتاريخ الانتهاء يتم ضبطهما يدويًا‌
+      label_milestone: العلامة المميزة
+      label_milestone_shared: العلامة المميزة المشتركة‌
+      label_project: "مشروع\r\n\r\n "
+      label_project_done: تصور اكتمال المشروع (% done)
+      label_project_problem: توجد مشكلة في المشروع
+      label_relation_fixed: علاقة مقفلة (مثبتة)
+      label_relation_unfixed: علاقة مقتوحة (مرنة)
+      label_relations_handle: تداول لعلاقات الرسم
+      label_task: مهمة
+      label_task_delay: "ارقم يشير إلى التأخير - عدد الأيام ما بين المهام.\r\n\r\nالرقم
+        في الأقواس يشير إلى ضبط التأجيل لعطلات نهاية الأسبوع والأجازات"
+      label_task_done: تصور اكتمال المهمة (% done)
+      label_task_due_missing: المهمة مع إيقاف الضبط لتاريخ النهاية
+      label_task_movers: يتناول نقل تاريخ البداية /تاريخ النهاية
+      label_task_parent_dates_missing: المهمة الأصلية لهذه المهمة تم إلغاء ضبط تاريخ
+        البداية والنهاية
+      label_task_problem: المهمة بها مشكلة
+      label_task_start_missing: لم يتم ضبط تاريخ البداية للمهمة
+      label_today: تصور اليوم الحالي
+      notice_due_date_set: لم يتم ضبط تاريخ البداية، وتم ضبط تارخ النهاية
+      notice_future_due_date: إذا حركت المشروع بوضع تاريخ بداية في الماضي، فسيظل التاريخ
+        الجديد هو نفسه تاريخ الانتهاء - وستصير مدة المشروع يوم واحد
+      notice_future_start_date: إذا حركت تاريخ البداية إلى المستقبل، فسيتم ضبط تاريخ
+        النهاية في مثل موعد تاريخ البداية - وستصبح مدة المشروع يوم واحد
+      notice_move_expanded_project: لا يمكن نقل المشروع الذي تم تمديده - قم بتقليص
+        مدة المشروع، وأعد تنشيط الصفحة، ثم انقل المشروع
+      notice_past_due_date: إذا حركت المشروع، سيتم ضبط تاريخ البداية إلى اليوم الحالي
+        (اليوم)
+      notice_past_start_date: إذا حركت تاريخ البداية للماضي، سيتم ضبط تاريخ الانتهاء
+        على اليوم الحالي (اليوم)
+      notice_project_needs_task: لا يمكن تحريك المشروع وحفظه إن لم يكن يحتوي على مهمة
+        واحدة على الأقل. أضف المهمة للمشروع أو المشروع الفرعي التابع له لتتمكن من
+        تحريكه.
+      notice_start_date_set: تم ضبط تاريخ البداية، ولم يتم تحديد تاريخ النهاية.
+    link_dir:
+      link_end: كالسابق
+      link_start: "كالتالي\r\n\r\n "
+    popup:
+      add_task:
+        heading: خاصية إضافة مهمة
+        text: خاصية المهمة الجديدة/العلامة المميزة متوفرة فقط في إصدار Easy Gantt
+          PRO Check for update!
+      baseline:
+        heading: خاصية خطوط الأساس
+        text: Easy Gantt PRO Check for update!تتوفر خاصية خطوط الأساس فقط في إصدار 
+      critical:
+        heading: خاصية المسار الحرج
+        text: Easy Gantt PRO Check for update! خاصية المسار الحرج متاحة فقط في إصدار 
+      resource:
+        easy_text: إضافة إدارة الموارد لم يتم تثبيتها - احصل عليها
+        heading: خاصية مدير الموارد
+        text: Easy Redmineخاصية إدارة الموارد متوفرة فقط في 
+    reload_modal:
+      label_errors: أخطاء
+      text_reload_appeal: هل تريد إغفال البنود غير المحفوظة وإعادة تحميل البيانات
+        من الخادم؟
+      title: لم ينجح مخطط جانت في الحفظ بالشكل المطلوب
+    sample_global_free:
+      text: لا يمكن إغلاق عينة البيانات. مخطط جانت على كل المشروعات متوفر فقط في إصدار
+        PRO
+      video:
+        text: يمكنك هنا عرض معظم خصائص مخطط جانت على كل المشروعات.
+        title: فيديو عينة لمخطط جانت على كل المشروعات
+        video_id: zd3M0KYxcXM
+    sample:
+      close_label: اغلق هذه النافذة وقم بتحميل بيانات المشروع الحقيقية
+      header: عينات البيانات تم تحميلها!
+      text: لقد جهزنا بعض عينات البيانات منك لتجربة كل خصائص Easy Gantt  بدون ضغط.
+        كما نشجعك على مشاهدة فيديو توضيحي يعرض كل الحيل المفيدة. بغلق النافذة يتم
+        تحميل البيانات الحقيقية للمشروع.
+      video_label: عرض الفيديو التعليمي
+      video:
+        text: هنا يمكنك رؤية معظم الخصائص لبرنامج  GAntt
+        title: فيديو العينة
+        video_id: UHgqfsrD59Q
+    scheme_by:
+      label_by_priority: ''
+      label_by_tracker: ''
+    text_blocker_milestone: العلامة المميزة تغلق المهمة وتمنعها من التنقل وراء هذا
+      التاريخ
+    text_blocker_move_end: مهمة واحدة على الأقل سيتم تأجيلها إذا تحركت بعد هذا التاريخ
+    text_blocker_move_pre: للمهمة علاقة تمنع من نقل المهمة بعد هذا التاريخ
+    title:
+      button_test: زر الاختبار (فقط للاختبار)
+      day_zoom: تقريب لمقياس اليوم
+      jump_today: عرض الخط الزمني اليوم
+      month_zoom: التقريب لمقياس الشهر
+      print_fit: مقياس جانت لصفحة واحدة
+      week_zoom: تقريب لمقياس الأسبوع
+  easy_printable_templates_categories:
+    easy_gantt: Easy Gantt
+  easy_query:
+    name:
+      easy_gantt_easy_issue_query: Easy Gantt
+      easy_gantt_easy_project_query: مخطط جانت العالمي
+  error_easy_gantt_view_permission: ليس لديك تصريح للاطلاع على Easy Gantt
+  error_epm_easy_gantt_already_active: Easy gantt على الصفحة نشط بالفعل
+  error_small_screen: حجم الشاشة في جهازك أصغر مما يجب لعرض مخطط جانت
+  error_start_date_before_end_date: ينبغي أن يكون تاريخ النهاية أكبر من تاريخ البداية
+  field_easy_gantt_default_zoom: التقريب الأساسي
+  field_easy_gantt_fixed_delay: التأجيل الثابت
+  field_easy_gantt_relation_delay_in_workdays: علاقة التأجيلات في أيام العمل
+  field_easy_gantt_show_holidays: عرض الأجازات
+  field_easy_gantt_show_project_progress: عرض تقدم المشروع
+  field_easy_gantt_show_task_soonest_start: عرض أقرب بداية
+  field_keep_link_delay_in_drag: تأخير مستمر في الرابط أثناء السحب
+  field_relation: علاقة
+  heading_delay_popup: تعريف التأخير بالأيام
+  heading_demo_feature_popup: قريبًا
+  heading_easy_gantts_issues: Easy Gantt مجاني
+  label_easy_gantt: Easy Gantt
+  label_easy_gantt_critical_path: المسار الحرج
+  label_easy_gantt_global: عالمي
+  label_easy_gantt_issue_loaded: تم تحميل كل المهام
+  label_easy_gantt_load: تحميل
+  label_easy_gantt_next_level_close: اختر المستوى التالي
+  label_easy_gantt_next_level_open: فتح المستوى التالي
+  label_easy_gantt_recalculate_fixed_delay: إعادة حساب التأجيل الثابت
+  label_easy_gantt_settings: إعدادات مخطط جانت
+  label_filter_group_easy_gantt_easy_issue_query: حقول المهمة
+  label_finish_to_finish: أتمم للإنهاء
+  label_not_available: غير متاح
+  label_parent_issue_plural: مهام أصلية
+  label_start_to_finish: ابدأ لتنتهي
+  label_start_to_start: ابدأ لتبدأ
+  link_easy_gantt_plugin: https://www.easyredmine.com/easy-gantt-upgrade-to-pro
+  notice_easy_gantt_fixed_delay_recalculated: تم إعادة حساب التأجيل الثابت لكل العلاقات
+  permission_edit_easy_gantt: تعديل Easy Gantt على مشروع
+  permission_edit_global_easy_gantt: تعديل مخطط جانت العالمي
+  permission_edit_personal_easy_gantt: تعديل Easy Gantt الشخصي
+  permission_view_easy_gantt: عرض Easy Gantt على مشروع
+  permission_view_global_easy_gantt: عرض مخطط جانت العالمي
+  permission_view_personal_easy_gantt: عرض Easy Gantt الشخصي
+  project_default_page:
+    easy_gantt: Easy Gantt
+  project_module_easy_gantt: مخطط جانت
+  sample_global_free:
+    text: لا يمكن إغلاق عينة البيانات. Gantt  على كل المشروعات يتوفر في إصدار PRO
+    video:
+      text: يمكنك أن ترى هنا أغلب الخصائص لGantt  على كل المشروعات
+      title: عينة فيديو لGantt  على كل المشروعات
+      video_id: UHgqfsrD59Q
+  sample:
+    close_label: اغلق هذه النافذة وقم بتحميل بيانات المشروع الحقيقية
+    header: تم تحميل عينة البيانات!
+    text: لقد قمنا بتجهيز بعض عينات البيانات لك لتجرب كل خصائص Gantt  بدون ضغط. كما
+      نريد أن تشجعك على مساعدة فيديو توجيهي يعرض النصائح المفيدة. بإغلاق هذه النافذة
+      ستقوم بتحميل بيانات المشروع الحقيقية.
+    video_label: عرض الفيديو التعليمي
+    video:
+      text: يمكنك هنا رؤية معظم خصائص هذا البرنامج من Gantt 
+      title: عينة فيديو
+      video_id: UHgqfsrD59Q
+  text_demo_feature_popup: هذه الخاصية ستتوفر قريبًا
+  text_easy_gantt_fixed_delay: حافظ على تأجيل العلاقة ثابتًا عند سحب المهمة
+  text_easy_gantt_footer: Redmine Gantt مشغل من Easy
+  text_easy_gantt_keep_link_delay_in_drag: حافظ على علاقة التأجيل ثابتة عند سحب المهمة
+    للخلف
+  text_easy_gantt_print_easy_gantt_current: عرض Easy Gantt الحالي (يعمل فقط من الصفحة
+    التي يتم تحميل Easy Gantt منها)
+  text_easy_gantt_relation_delay_in_workdays: لا تعد أيام الأجازات في علاقة التأجيل
+  text_easy_gantt_show_holidays: عرض الأجازات من التقويم للمستخدم الحالي
+  text_easy_gantt_show_project_progress: عرض النسبة المئوية المكتملة على شريط المشروع
+    (قد يكون بطيئًا في التحميل)
+  text_easy_gantt_show_task_soonest_start: عرض التواريخ السارية للمهام المعرفة بالعلاقات
+    أو الأصلية
+  title_easy_gantt_settings: إعدادات مخطط جانت

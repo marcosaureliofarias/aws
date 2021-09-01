@@ -1,0 +1,28 @@
+<%= breadcrumb([
+    link_to(l(:heading_easy_helpdesk_index), {:controller => 'easy_helpdesk', :action => :index}, :title => l(:heading_easy_helpdesk_index)),
+    link_to(l(:heading_easy_helpdesk_projects_index), {:controller => 'easy_helpdesk_projects', :action => :index}, :title => l(:heading_easy_helpdesk_projects_index)),
+    link_to(l(:heading_easy_helpdesk_projects_edit), {:controller => 'easy_helpdesk_projects', :action => :edit, :id => @easy_helpdesk_project}, :title => l(:heading_easy_helpdesk_projects_edit))]) %>
+
+<h2><%= l(:heading_easy_helpdesk_projects_edit) -%></h2>
+
+<%= form_for(@easy_helpdesk_project, :html => {:class => 'tabular form-box', :id => 'easy_helpdesk_project_form'}) do |f| -%>
+  <%= error_messages_for @easy_helpdesk_project %>
+  <%= hidden_field_tag('back_url', params[:back_url]) unless params[:back_url].blank? %>
+
+  <div class="gray-background" id="easy_helpdesk_project_form_container">
+    <%= render :partial => 'form' -%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_update), :class => 'button-positive' %>
+    <%= link_to(l(:button_delete), {:controller => 'easy_helpdesk_projects', :action => 'destroy', :id => @easy_helpdesk_project}, :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'button icon icon-del', :title => l(:button_delete)) %>
+  </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_helpdesk_index), l(:heading_easy_helpdesk_projects_index), l(:heading_easy_helpdesk_projects_edit)) -%>
+
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+<% end %>

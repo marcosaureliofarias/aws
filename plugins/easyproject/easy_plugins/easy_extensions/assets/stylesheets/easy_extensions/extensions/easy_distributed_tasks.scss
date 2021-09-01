@@ -1,0 +1,21 @@
+#easy_distributed_tasks{
+  &_table{
+    th,td{
+      display: table-cell;
+      background: none;
+      padding: 0.5*$gap 0;
+    }
+    th,td,tr{
+      border: none !important;
+    }
+    tbody{
+      background: none;
+    }
+    td{
+      width: $tabular-offset;
+      &+td{
+        width: auto;
+      }
+    }
+  }
+}

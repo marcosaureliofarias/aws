@@ -1,0 +1,27 @@
+<div id="alerts-type">
+  <h2><%= l(:title_alerts_type_new) %></h2>
+
+  <%= form_for(@type, :html => {:id => "alert-form", :class => 'tabular'}) do |f| %>
+    <%= error_messages_for @type %>
+
+    <%= render :partial => 'form', :locals => {:f => f}  %>
+
+    <p><%= f.submit l(:button_save), :class => 'button-positive' %></p>
+  <% end %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_alerts_manage_types), { :controller => 'alert_types', :action => 'index' }, :title => l(:title_alerts_manage_types), :class => 'button' -%>
+  <%= link_to l(:button_alerts_my_alerts), { :controller => 'alerts', :action => 'index' }, :title => l(:title_alerts_my_alerts), :class => 'button' -%>
+  <%= link_to l(:button_alerts_reports), { :controller => 'alert_reports', :action => 'index' }, :title => l(:title_alerts_reports), :class => 'button' -%>
+<% end %>
+
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>
+
+<% content_for :sidebar do %>
+    <%= render :partial => 'sidebar/alerts' %>
+<% end %>

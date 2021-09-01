@@ -1,0 +1,22 @@
+<% if query %>
+  <div style="max-width: 960px; overflow-x: auto">
+    <table>
+      <%= l(:label_alerts_query_columns) %>:<br />
+      <% columns = query.inline_columns %>
+      <tr>
+        <th></th>
+        <% columns.each do |column| %>
+          <%= easy_query_column_header(query, column, {disable_sort: true}) %>
+        <% end %>
+      </tr>
+      <tr>
+        <td>
+          <%= link_to(l(:label_link), url_to_entity(report.entity, :only_path => false), :title => report.entity.to_s) if report.entity %>
+        </td>
+        <% columns.each do |column| %>
+          <td><%= entity_attribute(report.entity, column, true) %></td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+<% end %>

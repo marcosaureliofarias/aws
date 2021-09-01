@@ -1,0 +1,22 @@
+<table>
+  <tbody>
+    <tr>
+      <th><%= l(:field_synchronized_at) %>:</th>
+      <td><%= format_time(ical.synchronized_at) %></td>
+    </tr>
+    <tr>
+      <th><%= l(:field_running_status) %>:</th>
+      <td><%= l("statuses.#{ical.status}", scope: [:easy_icalendar]) %></td>
+    </tr>
+    <tr>
+      <th><%= l(:field_last_run_at) %>:</th>
+      <td><%= format_time(ical.last_run_at) %></td>
+    </tr>
+    <% if ical.failed? %>
+      <tr>
+        <th><%= l(:field_error) %>:</th>
+        <td><%= ical.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

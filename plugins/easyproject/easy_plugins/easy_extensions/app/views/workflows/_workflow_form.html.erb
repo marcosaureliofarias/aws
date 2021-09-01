@@ -1,0 +1,30 @@
+<p><%=l(:text_workflow_edit)%>:</p>
+
+<%= form_tag({}, :method => 'get', :class => 'form-box') do %>
+  <div class="splitcontent tabular">
+    <div class="splitcontentleft">
+      <p>
+        <label><%=l(:label_role)%>:</label>
+        <span class="input-append">
+          <%= options_for_workflow_select 'role_id[]', Role.sorted, @roles, :id => 'role_id', :class => 'expandable' %>
+          <a href="#" data-expands="#role_id"><i class="icon icon-add"></i></a>
+        </span>
+      </p>
+    </div>
+    <div class="splitcontentright">
+      <p>
+        <label><%=l(:label_tracker)%>:</label>
+        <span class="input-append">
+          <%= options_for_workflow_select 'tracker_id[]', Tracker.sorted, @trackers, :id => 'tracker_id', :class => 'expandable' %>
+          <a href="#" data-expands="#tracker_id"><i class="icon icon-add"></i></a>
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= hidden_field_tag 'used_statuses_only', '0' %>
+    <label class="inline"><%= check_box_tag 'used_statuses_only', '1', @used_statuses_only %> <%= l(:label_display_used_statuses_only) %></label>
+    </br>
+    <%= submit_tag l(:button_edit), :name => nil, :class => 'button-positive' %>
+  </div>
+<% end %>

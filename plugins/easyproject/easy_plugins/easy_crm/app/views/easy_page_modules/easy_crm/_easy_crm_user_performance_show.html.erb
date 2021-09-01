@@ -1,0 +1,73 @@
+<% include_jqplot_scripts %>
+
+<div id="<%= modul_uniq_id %>_chart_options"class=" toolbar">
+  <% if settings['autorefresh'].to_i > 0 %>
+    <div>
+      <%= l(:label_page_module_chart_countdown) %> <span id="<%= block_name %>_next_update"></span>s
+    </div>
+  <% end %>
+  <div class="easy-chart-listing-links next-prev-links">
+    <%= link_to(content_tag(:span, "<< #{l(:label_previous)}"), '#', class: 'change_date prev', title: "<< #{l(:label_previous)}", data: { value: -1 }) %>
+    <span class="button-group">
+      <%= link_to(l(:button_gantt_zoom_month), '#', class: 'change_period button', title: l(:button_gantt_zoom_month), data: { value: 'months' } ) %>
+      <%= link_to(l(:button_gantt_zoom_week), '#', class: 'change_period button', title: l(:button_gantt_zoom_week), data: { value: 'weeks' } ) %>
+      <%= link_to(l(:button_gantt_zoom_day), '#', class: 'change_period button', title: l(:button_gantt_zoom_day), data: { value: 'days' } ) %>
+    </span>
+    <%= link_to(content_tag(:span, "#{l(:label_next)} >>"), '#', class: 'change_date next', title: "#{l(:label_next)} >>", data: { value: 1 }) %>
+  </div>
+  </div>
+
+  <div id="<%= modul_uniq_id %>_chart" data-renderchart="true"></div>
+
+<script type="text/javascript">
+
+  EASY.schedule.require(function () {
+    $('#<%= modul_uniq_id %>_chart').easy_chart({
+      dataUrl: '<%= url_for(:controller => 'easy_crm_charts', :action => 'user_performance_chart', :uuid => page_module.uuid, :format => 'json') %>',
+      dataParams: {
+        uuid: '<%= page_module.uuid %>',
+        period: '<%= settings['period'] %>',
+        shift: '<%= settings['season'] == 'past' ? '-1' : '0' %>'
+      }
+    });
+
+    $('#<%= modul_uniq_id %>_chart_options .change_period').on('click', function(event){
+      event.preventDefault();
+      var $chart_obj = $('#<%= modul_uniq_id %>_chart');
+      $chart_obj.easy_chart('setDataParam', 'period', $(this).data('value'));
+      $chart_obj.easy_chart('reload');
+    });
+    $('#<%= modul_uniq_id %>_chart_options .change_date').on('click', function(event){
+      event.preventDefault();
+      var shift = parseInt($(this).data('value'));
+      var $chart_obj = $('#<%= modul_uniq_id %>_chart');
+      var val = parseInt($chart_obj.easy_chart('getDataParam', 'shift'));
+      if (isNaN(val)) {
+        val = shift;
+      } else {
+        val += shift;
+      }
+      $chart_obj.easy_chart('setDataParam', 'shift', val);
+      $chart_obj.easy_chart('reload');
+    });
+    <% if settings['autorefresh'].to_i > 0 %>
+    $('#<%= block_name %>_next_update').html(<%= settings['autorefresh'].to_i * 60 %>);
+    <% end %>
+
+    <% if settings['autorefresh'].to_i > 0 %>
+    setInterval(function () {
+      $('#<%= modul_uniq_id %>_chart').easy_chart('reload');
+      $('#<%= block_name %>_next_update').html(<%= settings['autorefresh'].to_i * 60 %>);
+    }, <%= settings['autorefresh'].to_i * 60000 %>);
+
+    setInterval(function () {
+      var last_time = parseInt($('#<%= block_name %>_next_update').html());
+      if (isNaN(last_time)) {
+        $('#<%= block_name %>_next_update').html(<%= settings['autorefresh'].to_i * 60 %>);
+      } else {
+        $('#<%= block_name %>_next_update').html(last_time - 1);
+      }
+    }, 1000);
+    <% end %>
+  }, jQueryPluginGetter("easy_chart"));
+</script>

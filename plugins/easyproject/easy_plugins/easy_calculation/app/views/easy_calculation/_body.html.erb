@@ -1,0 +1,45 @@
+<% distance = 0 %>
+<% @calculation.body[:phases].each_with_index do |phase, index| %>
+  <% if @calculation.show_phases? %>
+    <% distance += 1 %>
+    <%= render :partial => 'phase_row', :locals => {:phase => phase} %>
+  <% end -%>
+  <tbody>
+  <% phase.solutions.each do |solution| %>
+    <% if solution.type == :issue %>
+      <%= render :partial => 'issue_solution_row', :locals => {:solution => solution, :phase => phase, :distance => distance} %>
+    <% else %>
+      <%= render :partial => 'item_solution_row', :locals => {:solution => solution, :phase => phase, :distance => distance} %>
+    <% end -%>
+  <% end -%>
+  </tbody>
+
+  <% if @calculation.show_phases? %>
+    <% if phase.discount_amount.try(:>, 0) %>
+      <tr class="phase-sum">
+        <td class="hide-when-print"></td>
+        <td class="hide-when-print"></td>
+        <td class="<%= 'hide-when-print' if phase.solution_discount_sum.zero? %>"></td>
+        <td class='calculation-label' colspan="4">
+          <% if phase.discount_percent.try(:>, 0) %>
+            <%= l('calculation.phase_discount', :percent => phase.discount_percent) %>
+          <% else %>
+            <%= l('calculation.absolute_discount') %>
+          <% end -%>
+        </td>
+        <td class="phase-discount-amount"><%= format_easy_calculation_price(-phase.discount_amount, @calculation.project) %></td>
+      </tr>
+      <% distance += 1 %>
+    <% end -%>
+    <tr class="phase-sum">
+      <td class="hide-when-print"></td>
+      <td class="hide-when-print"></td>
+      <td class="<%= 'hide-when-print' if phase.solution_discount_sum.zero? %>"></td>
+      <td class='calculation-label' colspan="4"><%= l('calculation.phase_total') %></td>
+      <td class="text-right"><%= format_easy_calculation_price(phase.discounted_price_sum, @calculation.project) %></td>
+    </tr>
+    <% distance += 1 %>
+  <% end -%>
+  <% distance += phase.solutions.size %>
+<% end -%>
+<%= render :partial => 'easy_calculation_items/form', :locals => {:item => EasyCalculationItem.new} unless @calculation.show_phases? %>

@@ -1,0 +1,158 @@
+//Size
+$spacing: 12px !default; //text
+$spacing_coeficient: 2 !default; //text
+$roundiness: 0.2 !default; //text
+
+//Type
+$font-family: 'Ubuntu', 'Open Sans', sans-serif !default; //text
+$headings-font-family: inherit !default; //text
+
+$font-size: 14px !default; //text
+$font-h1: 1.8em !default; //text
+$font-h2: 1.5em !default; //text
+$font-h3: 1.25em !default; //text
+$font-h4: 1.125em !default; //text
+$font-small: .89em !default; //text
+$font-smallest: 10px !default; //text
+$font-size--menu: 0.9375em !default; //text
+
+$base-line-height: 1.5 !default; //text
+
+//Colors
+$color-main: #50596f !default; //color
+$color-muted: #9aaab8 !default; //color
+$color-background: #ededed !default; //color
+$color-foreground: #ffffff !default; //color
+
+$color-text: #50596f !default; //color
+$color-text-muted: #a0a8ba !default; //color
+$color-links: #ae1400 !default; //color
+
+$color-important: $color-links !default; //color
+$color-positive: #00c8a9 !default; //color
+$color-negative: $color-links !default; //color
+
+$color-highlight: mix($color-background,$color-foreground) !default; //color
+$color-notice: darken($color-highlight,30%) !default; //color
+
+$color-border: darken($color-background, 15%) !default; //color
+$color-border-minor: darken($color-background,5%) !default; //color
+$color-main-border: darken($color-main, 10%) !default; //color
+$color-important-border: darken($color-important, 10%) !default; //color
+$color-positive-border: darken($color-positive, 10%) !default; //color
+$color-negative-border: darken($color-negative, 10%) !default; //color
+$color-highlight-border: darken($color-highlight, 15%) !default; //color
+
+$color-print: #000 !default; //color
+
+$color-step: 5 !default; //text
+
+//Palette
+$color-palette-1: #edd84c !default; //color
+$color-palette-2: #e79d5c !default; //color
+$color-palette-3: #dc7c7c !default; //color
+$color-palette-4: #cd6fae !default; //color
+$color-palette-5: #b05ecc !default; //color
+$color-palette-6: #7f7fe4 !default; //color
+$color-palette-7: #76a5e4 !default; //color
+$color-palette-8: #8fd7ce !default; //color
+$color-palette-9: #92cc82 !default; //color
+$color-palette-10: #c6db5e !default; //color
+$color-palette-11: #b7b5a5 !default; //color
+$color-palette-12: #b19f8d !default; //color
+$color-palette-13: #eed63a !default; //color
+
+//Top
+$color-top-background: $color-main !default; //color
+$color-top-border: darken($color-top-background, 10%) !default; //color
+$color-top-text: $color-foreground !default; //color
+$color-top-active: $color-positive !default; //color
+
+//Menus
+$topmenu__height: 60px !default; //text
+$menumore__width: 240px !default; //text
+$leftmenu__width: 480px !default; //text
+$mainmenu__height: 30px !default; //text
+
+//More
+$color-more-background: #50596f !default; //color
+$color-more-foreground: $color-foreground !default; //color
+$color-more-text: $color-text !default; //color
+$color-more-text-muted: rgba($color-more-text,.25) !default; //color
+$color-more-border: darken($color-more-background, 2%) !default; //color
+
+//Service
+$servicebar__width: $topmenu__height !default; //text
+$servicebar__height: 75px !default; //text
+
+$servicebar-color: $color-text-muted !default; //color
+$servicebar-background: $color-foreground !default; //color
+$servicebar-border: $color-border !default; //color
+
+$servicebar-component__width: 400px !default; //text
+$servicebar-component-background: #50596f; //color
+$servicebar-component-foreground: $color-foreground; //color
+$servicebar-component-border: $servicebar-component-background; //text
+
+//Calendars
+$color__calendar--hilight: #fcf8e3 !default; //color
+
+//Forms
+$form-background: mix($color-foreground, $color-background) !default; //color
+
+$form-field-background: $color-foreground; //color
+$form-field-border: $color-border-minor; //color
+
+$form-field__max-width: 350px !default; //text
+$form-field__height: 36px !default; //text
+
+$tabular__offset: 140px !default; //text
+$tabular__offset--large: 240px !default; //text
+
+//Buttons
+$button__height: $form-field__height !default; //text
+$button__height--small: .8*$button__height !default; //text
+$button__height--mini: .5*$button__height !default; //text
+
+$button-base-background: $color-background !default; //color
+$button-base-color: $color-text !default; //color
+$button-main-background: $color-main !default; //color
+$button-main-color: $color-foreground !default; //color
+$button-important-background: $color-important !default; //color
+$button-important-color: $color-foreground !default; //color
+$button-positive-background: $color-positive !default; //color
+$button-positive-color: $color-foreground !default; //color
+$button-negative-background: $color-negative !default; //color
+$button-negative-color: $color-foreground !default; //color
+
+//Modal
+$modal__color--backdrop: $color-main !default; //color
+$modal__opacity--backdrop: .8 !default; //text
+
+//Tabs
+$tab__height: 36px !default; //text
+
+//Avatar
+$avatar__size: 32px !default; //text
+
+//Scrollbars
+$scrollbar-background: $color-background !default; //color
+$scrollbar-background-border: darken($color-border-minor,15%) !default; //text
+$scrollbar-foreground: $color-border !default; //color
+$scrollbar-foreground-border: darken($scrollbar-foreground,0%) !default; //text
+$scrollbar__width: 12px !default; //text
+$scrollbar__radius: 6px !default; //text
+
+//Mailer
+$mailer__color--back: $color-background !default; //color
+$mailer__color--front: $color-foreground !default; //color
+$mailer__color--text: $color-text !default; //color
+$mailer__color--heading: $mailer__color--text !default; //color
+$mailer__color--mixed: mix($mailer__color--back,$mailer__color--front) !default; //color
+$mailer__color--border: $color-border !default; //color
+$mailer__color--links: $color-links !default; //color
+$mailer__color--muted: $color-muted !default; //color
+$mailer__color--positive: $color-positive !default; //color
+$mailer__color--negative: $color-negative !default; //color
+$mailer__width: 800px !default; //text
+$mailer__padding: 24px !default; //text

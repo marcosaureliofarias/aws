@@ -1,0 +1,46 @@
+<%= render :partial => 'easy_meetings/header_scripts' %>
+
+<h2><%= l(:label_rooms_availability) %></h2>
+<% @easy_rooms.each do |room| %>
+    <div class="box">
+    <%= toggling_container('availability_calendar_for_room_' + room.id.to_s, User.current, {:heading => room.name_with_capacity, :module_heading_links => link_to('', easy_room_path(room, :format => :qr), :remote => true, :title => l(:title_other_formats_links_qr), :class => 'icon icon-qr')}) do %>
+      <div class="easy-calendar-header">
+        <div class="toolbar">
+          <div class="button-group">
+            <%= render :partial => 'easy_calendar/zoom_buttons', :locals => {:settings => {:default_view => 'agendaWeek'}} %>
+          </div>
+          <div class="easy-cal-date-selection easy-calendar-listing-links">
+            <a class="prev easy-cal-prev"></a>
+            <span class="easy-cal-title"></span>
+            <a class="next easy-cal-next"></a>
+          </div>
+        </div>
+      </div>
+      <div id="room-cal-<%= room.id %>" class="easy-calendar"></div>
+
+      <script type="text/javascript">
+        EASY.schedule.require(function () {
+          $("#room-cal-<%= room.id %>").easyCalendar({
+            enabledCalendars: <%= (['room_meetings']).to_json.html_safe %>,
+            calendarTypes: <%= EasyCalendar::AdvancedCalendar.calendars_data(self).to_json.html_safe %>,
+            events: <%= {:url => room_meetings_feed_path(:room_id => room)}.to_json.html_safe %>,
+            roomId: <%= room.id %>,
+            roomName: '<%= j room.name %>',
+            columnFormat: <%= { month: "dddd", week: "#{to_js_date_format(short_date_format)}", day: "dddd, #{to_js_date_format(short_date_format)}" }.to_json.html_safe %>,
+            height: 740
+          });
+        }, jQueryPluginGetter("easyCalendar"));
+      </script>
+    <% end -%>
+     </div>
+  <% end -%>
+
+<% content_for :sidebar do %>
+  <h3><%= l(:label_rooms_availability) %></h3>
+
+  <% if User.current.admin? %>
+    <ul>
+      <li><%= link_to l(:label_settings), easy_rooms_path, :class => 'button' %></li>
+    </ul>
+  <% end %>
+<% end %>

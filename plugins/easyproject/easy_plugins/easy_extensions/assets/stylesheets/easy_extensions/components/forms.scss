@@ -1,0 +1,767 @@
+form {
+  .contextual &{
+    display: inline-block;
+  }
+  &.fileover{
+    position: relative;
+    &:before{
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+      border: 2px dashed $color-important;
+    }
+  }
+}
+.form{
+  padding: 0 $box-padding;
+  margin: 0 (-$box-padding);
+  &-box{
+    @extend %form-box;
+  }
+}
+fieldset {
+  //@extend %form-box;
+  margin-bottom: $gap;
+  border: none;
+  border-top: 1px solid $color-border-minor !important;
+  margin: 0 (-$box-padding) !important;
+  padding: $box-padding !important;
+  position: relative;
+  min-width: 0; //hack to get 100% width of parent to fieldset
+  &.notop{
+    padding-top: 0 !important;
+    border-top: none !important;
+  }
+  &.box{
+   @extend %reset-box;
+  }
+  form > &{
+    &:first-child{
+      margin-top: (-$box-padding - 1);
+    }
+  }
+  .splitcontent &{
+    margin: 0 !important;
+    padding: $box-padding 0 !important;
+  }
+  & &{
+    border-bottom: 1px solid $color-border-minor !important;
+    margin-bottom: $gap !important;
+  }
+  &.collapsible {
+    border-width: 1px 0 0 0;
+    position: relative;
+    &.collapsed{
+      padding-bottom: 0;
+      &>legend{
+        &:after{
+          @include icon(chevron-down);
+        }
+      }
+    }
+    & > div{
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+    }
+    &>legend{
+      .nested-fields &{
+        padding-left: 0.25*$tabular-offset;
+      }
+      &.icon{
+        &:before{
+          margin-right: 0.5*$gap;
+        }
+      }
+      @extend %pseudo-after;
+      position: static;
+      &:hover{
+        cursor: pointer;
+      }
+      &:after{
+        @include icon(chevron-up);
+        @extend %button-icon;
+        background: $color-uberlight;
+        border: 1px solid $color-border-minor;
+        right: $box-padding;
+        top: 0;
+        @at-root {
+          @-moz-document url-prefix() {
+            & {
+              top: -$box-padding !important;
+            }
+          }
+        }
+        @include small;
+
+        .splitcontent &{
+          right: 0;
+        }
+      }
+      &.icon{
+        &:after{
+          .splitcontent &{
+            right: $box-padding;
+          }
+        }
+      }
+    }
+  }
+
+  &#date-range p {
+    margin: 2px 0 2px 0;
+  }
+}
+
+// Groups of fields with labels on top (legends)
+legend {
+  // Small
+  font-weight: bold;
+  padding: 0 $gap;
+  margin-left: -$gap;
+  small {
+	font-size: 0.9em;
+  }
+  &.button{
+    text-align: inherit;
+  }
+  a{
+    &.icon{
+      @extend %button-link;
+      @extend %tooltip-left;
+      &:before{
+        background: $color-foreground;
+        border: 1px solid $color-border-minor;
+      }
+    }
+  }
+  .legend-actions{
+    font-size: $font-size;
+    position: absolute;
+    right: 4*$box-padding;
+    top: 0;
+    label{
+      background: $color-foreground;
+      border: 1px solid $color-border-minor;
+      font-weight: normal;
+      padding-left: $gap;
+      margin: 0 $gap;
+    }
+    select{
+      @extend %box-shadow-none;
+      border: none;
+      margin-top: -1px;
+      line-height: 16px;
+      height: 18px;
+    }
+  }
+}
+
+[disabled]{
+  opacity: 0.5;
+}
+
+// Set font for forms
+label,
+input,
+button,
+select,
+textarea {
+  //#font > .shorthand(@baseFontSize,normal,@baseLineHeight); // Set size, weight, line-height here
+}
+input,
+button,
+select,
+textarea {
+  //font-family: @baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
+}
+
+label{
+  //display: block;
+  @include small;
+  input + &{
+    display: inline-block;
+  }
+  &.required{
+    color: $color-negative;
+  }
+  &.checkbox, &.radio{
+    //white-space: nowrap;
+    padding: (0.5*$gap + 1) 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    select, input[type=text]{
+      @extend %input-inline;
+    }
+    br{
+      & + select, & + input[type=text]{
+        margin-left: $box-padding + 0.5*$gap;
+        &.normalize{
+          width: 80%;
+          width: calc(100% - #{$box-padding + 0.5*$gap});
+          max-width: $form-field-max-width - ($box-padding + 0.5*$gap);
+        }
+      }
+    }
+  }
+  &.inline{
+    display: inline-flex !important;
+    //float: left; //breaks sefault redmine labels (inputs not wrapped in them)
+    margin-right: 0.5*$gap !important;
+    //overflow: initial;
+  }
+  &.block{
+    display: block !important;
+    white-space: normal;
+  }
+}
+
+// Form controls
+// -------------------------
+
+// Shared size and type resets
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input,
+.easy-lookup-values-wrapper{
+  @extend %form-field;
+}
+select{
+  @extend %form-select;
+  optgroup{
+    padding-top: 0.5*$gap;
+  }
+}
+.easy-lookup{
+  &-values{
+    display: block;
+    //line-height: $tab-height - 7;
+    &-wrapper{
+      padding-left: 3px;
+      padding-right: 3px;
+      height: $form-field-height - 2px !important;
+    }
+    .icon-del{
+      color: $color-links;
+      position: relative !important;
+      &:hover{
+        color: darken($color-links, 10%);
+      }
+    }
+  }
+  &-selected-value{
+    &-wrapper{
+      border: 1px solid $color-border;
+      background: mix($color-background, $color-foreground);
+      padding: 0.4*$gap 0.8*$gap;
+      display: inline-block;
+      line-height: 1;
+      @extend %border-radius-small;
+      @include small;
+    }
+  }
+  &-modal-selector-container{
+    padding-bottom: 3*$box-padding;
+    & > .modal-selected-values{
+      position: fixed;
+      bottom: 5*$gap;
+      right: 0;
+      left: 0;
+      padding: $gap;
+      border-top: 1px solid $color-border;
+      background: mix($color-foreground,$color-background);
+      display: block;
+      text-align: center;
+    }
+  }
+}
+.easy-icon-select{
+  @extend %material-icon; ////@extend %easy-icon;
+  font-family: "Material Icons" !important; //"EasyIcons" !important;
+  overflow: hidden !important;
+}
+// Position radios and checkboxes better
+input[type="radio"],
+input[type="checkbox"] {
+  margin: $gap 0.5*$gap;
+  //*margin-top: 0; /* IE7 */ // todo: muze jebat print
+  //margin-top: 1px \9; /* IE8-9 */ // todo: muze jebat print
+  line-height: normal;
+  flex-shrink: 0;
+  label &{
+    margin: 0.3*$gap;
+  }
+}
+
+textarea{
+  max-width: 100%;
+  padding: 0.5*$gap;
+  line-height: $base-line-height;
+  height: auto;
+  overflow: auto;
+  table.list &{
+    resize:vertical;
+  }
+  p &{
+    max-width: $form-field-max-width;
+    &.wiki-edit{
+      max-width: 100%;
+      @include respond-to(max-sidebar-collapse) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// DISABLED STATE
+// --------------
+
+// Disabled and read-only inputs
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+  cursor: not-allowed;
+  background-color: $color-background;
+}
+
+// Explicitly reset the colors here
+input[type="radio"][disabled],
+input[type="checkbox"][disabled],
+input[type="radio"][readonly],
+input[type="checkbox"][readonly] {
+  background-color: transparent;
+}
+
+.input{
+  &--success{
+    border-color: $color-positive;
+  }
+  &--error{
+    border-color: $color-negative;
+  }
+  &--warning{
+    border-color: $color-important;
+  }
+  .input--range{
+    @extend %flex;
+    @extend %flex-direction-row;
+    @extend %flex-wrap-wrap;
+  }
+  &-prepend {
+    @extend %flex;
+  }
+  &-append{
+    width: 100%;
+    max-width: $form-field-max-width;
+    z-index: 0;
+    position: relative;
+    @include display(inline-flex !important);
+    @extend %align-items-center;
+    &--time-values, .datetime & {
+      @extend %flex-wrap-wrap;
+    }
+    .input--range & {
+      width: auto;
+      @include respond-to(max-small-screen){
+        width: calc(100% - 3*#{$gap});
+        @include flex-wrap(nowrap);
+      }
+      span {
+        width: auto !important;
+      }
+      span:first-child {
+        min-width: 35px;
+        text-align: right;
+      }
+      input[type=text] {
+        @extend %flex-grow-1;
+      }
+    }
+
+    .new-issue-custom-field & {
+      @extend %flex-wrap-wrap;
+
+      .ui-datepicker-trigger {
+        &  ~ input, & ~ select, & ~ .timerange{
+          width: auto;
+          @extend %flex-grow-1;
+        }
+      }
+    }
+    input[type="text"], input[type="time"] {
+      @extend %flex-shrink-0;
+      @extend %flex-grow-1;
+    }
+    input[type="time"] {
+      padding-right: 0;
+      &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+        padding: 7px 0;
+      }
+    }
+    &--range {
+      padding: 0 0 0 1px !important;
+      width: auto !important;
+      @extend %flex-shrink-1;
+      @extend %flex-grow-1;
+      @extend %flex;
+      @extend %flex-direction-row;
+      @extend %flex-wrap-nowrap;
+      & > span {
+        padding: 0 .5*$gap;
+      }
+    }
+
+    & > input,& > select, & > .timerange, & > .easy-lookup-values-wrapper{
+      width: 80%; /* fallback if needed */
+      width: calc(100% - #{$form-field-height});
+
+      //@include respond-to(max-small-screen) {
+      //  @include flex-grow(1);
+      //}
+    }
+
+    & > span {
+      width: auto;
+      .nosidebar & {
+        @include respond-to(max-small-screen) {
+          width: 100%;
+        }
+      }
+      @include respond-to(max-sidebar-collapse) {
+        width: 100%;
+      }
+    }
+    & > input[type="radio"], > input.inline{
+      width: auto;
+    }
+    &.inline{
+      max-width: initial;
+      width: auto;
+    }
+
+    input[type="radio"], input[type="checkbox"]{
+      margin-top: .5*$gap - 1;
+      margin-bottom: .5*$gap - 1;
+    }
+    //& > input, & > select{
+    //  @extend %input-append;
+    //}
+    &__addon{
+      @extend %button-append;
+      width: auto !important;
+    }
+    & > a {
+      @extend %button-append;
+      width: $form-field-height + 4px;
+      @extend %tooltip-left;
+    }
+    & > button{
+      @extend %button-append;
+      width: $form-field-height + 4px;
+      font-weight: normal;
+    }
+    & > span{
+      padding: 0 .5*$gap;
+      line-height: $form-field-height - 2;
+      //border: 1px solid $color-border;
+      //background: mix($color-background, $color-foreground);
+    }
+    & > input, & > select,& > button,& > a, &>span{
+      margin-left: -1px;
+      input[type="radio"] + &{
+        margin-top: -1 - .5*$gap;
+      }
+      &:last-child{
+        @include border-radius(0 $border-radius $border-radius 0);
+      }
+      &:first-child{
+        margin-left: 0;
+        @include border-radius($border-radius 0 0 $border-radius);
+      }
+    }
+    a.icon {
+      position: absolute;
+      right: 0;
+    }
+    //& > input, & > select,& > button,& > a{
+    //  & ~ input, & ~ select, & ~ button,& ~ a{
+    //    margin-left: -1px;
+    //  }
+    //}
+    &.easy-autocomplete-tag{
+      button{
+        right: 1.5*$box-padding + 1;
+      }
+    }
+    & > select, button {
+      min-width: $form-field-height;
+      //max-width: 2*$box-padding;
+    }
+    & > .date {
+      min-width: 4*$box-padding + 8;
+    }
+    .datetime & {
+      .datetime_cf {
+        width: calc(100% - #{$form-field-height} - 4px) !important;
+        min-width: initial !important;
+      }
+      .flex-center {
+        flex-basis: 50%;
+        flex-grow: 1;
+        padding: 0 .5*$gap 0 0;
+        select {
+          flex-grow: 1;
+          margin-right: .5*$gap;
+        }
+      }
+    }
+  }
+}
+input{
+  &.autocomplete{
+    background-image: url(/images/magnifier.png);
+    padding-left: $box-padding;
+    background-repeat: no-repeat;
+    background-position: 3px center;
+  }
+}
+.disabled,*:disabled{
+  opacity: 0.5;
+  cursor: default;
+}
+//.timerange{
+//  @extend %button-base;
+//  padding: 0 .5*$gap;
+//  height: $tab-height - 2;
+//  line-height: $tab-height - 2;
+//  input, select{
+//    margin: -2px 0.5*$gap 0;
+//    @extend %input-inline;
+//  }
+//  button{
+//    margin-right: 0.5*$gap;
+//  }
+//}
+input[type="checkbox"], input[type="radio"] {
+  border: none;
+}
+
+.attribute{
+  position: relative;
+}
+
+.jst{
+  &Editor{
+    margin-bottom: $gap;
+  }
+}
+
+.easy-autocomplete-tag{
+  @extend %form-field;
+  overflow: visible;
+  padding: 0;
+  border: none;
+  @extend %box-shadow-none;
+  & > input{
+    //margin-top: -1px;
+    @extend %form-select-arrow;
+    @extend %input-block;
+  }
+  &.input-append {
+    .ui-autocomplete-input {
+      //background-position: calc(100% - 3*#{$gap}) center;
+    }
+  }
+  &:hover{
+    & > input{
+      @extend %form-select-arrow-hover;
+    }
+  }
+  &.block{
+    & > input{
+      @extend %input-block;
+    }
+  }
+  &>button{
+	position: absolute;
+	right: 1px;
+	top: 0px;
+	bottom: 0px;
+	font-size: 1em;
+	line-height: 2.25;
+	margin: 0;
+	padding: 0;
+	display: block;
+	background: none !important;
+	border: none !important;
+    width: 18px;
+    &>span{
+      display: none !important;
+    }
+
+	//&:after{
+	//  @include icon(arrow);
+     // position: absolute;
+     // top: 0;
+     // left: 0;
+     // right: 0;
+     // bottom: 0;
+     // text-align: center;
+     // @extend %rotate-90cw;
+	//}
+	span{
+	  //display: none;
+	}
+  }
+}
+
+select{
+  &.select-color{
+    option{
+      border: 1px solid;
+      @extend %palette-background;
+    }
+  }
+  &.select-small{
+    min-width: 50px;
+  }
+}
+
+.form-actions{
+  @extend %form-actions;
+  [class*='button']{
+    @extend %button-large;
+    margin-bottom: 0 !important;
+    vertical-align: middle;
+  }
+}
+
+.help{
+  font-family: $font-family;
+  @include box-sizing(border-box);
+  padding: 0.5*$gap;
+  margin: 0.25*$gap 0;
+  display: inline-block;
+  @include small;
+  min-height: $tab-height - $gap - 2;
+  vertical-align: middle;
+  position: relative;
+  background: none;
+  border-left: 3px solid $color-notice;
+  //@include icon-parent(before,help);
+  //&:before{
+  //  color: $color-notice;
+  //  margin-right: 0.5*$gap;
+  //}
+  &-block{ // todo deprecated
+    @extend %flash-info;
+    padding: $gap;
+    display: block;
+    margin-top: $gap;
+    @include small;
+    &:before{
+      display: none;
+    }
+  }
+}
+
+.easy-setting-plugin-form {
+  span.advance-hours-definition {
+    @include display(inline-flex);
+    @extend %flex-wrap-nowrap;
+    @extend %align-items-center;
+    @extend %justify-content-center;
+  }
+}
+
+.values-period-days-container {
+  @extend %flex;
+  @extend %flex-wrap-wrap;
+  @extend %flex-direction-row;
+  @extend %align-items-center;
+  @extend %justify-content-flex-start;
+  margin-left: calc(1.8rem - 4px);
+  input {
+    margin-right: $gap;
+  }
+  .help {
+    margin-left: $gap !important;
+  }
+}
+.span_values_arrival {
+  .flex-center:first-child {
+    @include flex-wrap(wrap);
+    input[type=radio] ~ select {
+      flex-shrink: 0;
+      @include respond-to(max-sidebar-collapse){
+        width: calc(100% - 3*#{$gap});
+      }
+    }
+  }
+}
+
+@include respond-to(max-small-screen) {
+  #ui-datepicker-div {
+    box-sizing: border-box;
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100%;
+    .ui-datepicker {
+      &-calendar, &-buttonpane {
+        background: $color-foreground;
+      }
+      &-buttonpane {
+        &:after {
+          content:"";
+          display:table;
+          clear:both;
+        }
+      }
+    }
+  }
+}
+td.values {
+  .flex-center {
+    padding-left: 0;
+  }
+}
+#crm-detail {
+  .list {
+    .entity-activity-end {
+      word-break: break-word;
+    }
+    .input-append {
+      &-date, &-time {
+        padding-left: 0;
+        flex-wrap: nowrap;
+      }
+      &--time-values {
+        max-width: initial !important;
+      }
+    }
+  }
+}
+@import "forms-attachments";
+@import "forms-tabular";

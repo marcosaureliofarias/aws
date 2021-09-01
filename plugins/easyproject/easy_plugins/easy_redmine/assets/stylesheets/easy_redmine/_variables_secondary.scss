@@ -1,0 +1,362 @@
+//-- Secondary parameters --
+//Type
+$font-smallest: px2rem($font-smallest); //text
+//Colors
+$white: #ffffff !default;
+$gray: #dbdbdb !default;
+$black: #000000 !default;
+
+$rails-env: '' !default;
+
+$color-print: #000;
+$color-print--background: #fff;
+$color-print--accent: #f0f0f0;
+
+$color-uberlight: mix($color-foreground,$color-highlight) !default;
+$color-uberlight-border: $color-border-minor !default;//darken($color-uberlight, 10%) !default;
+
+$color-calendar-background-today: #fcf8e3 !default;
+$color-calendar-background-weekend: rgba(mix($color-palette-6, $color-foreground),0.25) !default;
+$color-calendar-background-holiday: rgba(mix($color-positive,$color-foreground),0.25) !default;
+$color-calendar-background-exception: rgba(mix($color-important,$color-foreground),0.25) !default;
+
+$color-login-text: $color-text;
+$color-login-background: $color-background;
+
+$color-trial-background: darken($color-foreground,5%);
+//Scaffolding
+$px: px2rem(1px);
+$gap: px2rem($spacing); //12px
+$gap-const: px2rem(12px);
+
+$login-height: 320px;
+$sidebar-width: 280px !default;
+$topmenu-height: px2rem($topmenu__height);//68px;
+
+$servicebar-width: 60px !default;
+$servicebar-height: 75px !default;
+$servicebar-component-width: 400px !default;
+
+$menumore-width: px2rem($menumore__width);
+$leftmenu-width: px2rem($leftmenu__width);
+$mainmenu-height: px2rem($mainmenu__height);
+$topmenu-height: 60px !default;
+
+$breadcrumb-height: 40px !default;
+$header-height: $gap + $mainmenu-height + $breadcrumb-height !default;
+
+$z-priority: body,main,newissue,sidebar,content,scrollbar,servicebar,topmenu,ui-widget,context-menu,sidemenu,modal,draggable,ajax !default;
+
+$border-fade: 0.1 !default;
+$border-radius: $roundiness*$gap !default;
+$border-radius-small: 0.5*$border-radius !default;
+$border-radius-large: 1.25*$border-radius !default;
+
+//shade
+$shade-width: .25*$gap;
+$shade-width--elevated: 2*$shade-width;
+$shade-width-minor: .2*$gap;
+$shade-color: rgba($black,0.2);
+
+//Header
+$header-color-background: $color-background;
+$header-color-border: darken($color-border-minor,15%);
+$header-color-text: darken($color-important,15%);
+
+//Type
+$headings-level: 6;
+
+//Forms
+$form-field-max-width: px2rem($form-field__max-width);
+$form-field-height: px2rem($form-field__height);
+
+$tabular-offset: px2rem($tabular__offset);
+$tabular-offset-large: px2rem($tabular__offset--large);
+
+//Tabs
+$tab-height: px2rem($tab__height);
+
+//Buttons
+$button-height: px2rem($button__height);
+$button-mini-height: px2rem($button__height--small);
+$button-small-height: px2rem($button__height--mini);
+
+//Toolbars
+$toolbar-height: 3*$gap;
+$toolbar-background: $color-foreground;
+
+//Boxes
+$box-padding: $spacing_coeficient*$gap;
+$box-margin: $box-padding;
+$box-heading-height: $toolbar-height;
+$box-background: $color-background;
+$box-foreground: $color-foreground;
+$box-border: $color-border;
+
+$retrace-constant: .5;
+$retrace-constant-tables: .5;
+$retrace: $retrace-constant*$box-padding;
+$retrace-mod: (1-$retrace-constant)*$box-padding;
+$retrace-constant--headings: .875;
+$retrace--headings: $retrace-constant--headings*$box-padding;
+
+//Attributes
+$attributes-background: mix($color-background, $color-foreground);
+
+//Breadcrumbs
+$breadcrumb-color-background: $color-background; //mix($color-foreground,$color-background);
+$breadcrumb-color-foreground: mix($color-foreground,$color-background);
+$breadcrumb-color-border: $color-border-minor;
+
+//Avatars
+$avatar-width-big: 25%;
+$avatar-border: $color-border;
+$avatar-size: px2rem($avatar__size);
+
+//Journal
+$journal-foreground: $color-foreground;
+$journal-border: $color-border;
+$journal-avatar-width: 30px;
+
+//Tooltips
+$tooltip-background: $color-foreground;
+$tooltip-border: $color-border;
+$tooltip-color: $color-text;
+
+//Menu tooltips
+$menu__background--hover: rgba(mix($color-important, $color-foreground, 35%), 0.5);
+$menu__color--active: $color-important;
+
+//Badges
+$badge-radius: 500px;
+
+//Tags
+$tag-background: lighten($color-background,5%);
+$tag-border: $color-border;
+$tag-size: 1.5*$gap;
+
+//Service
+$color-service-border: $servicebar-border;
+
+//Calendar
+$color-calendar-background-today: $color__calendar--hilight;
+$color-calendar-background-weekend: rgba(mix($color-palette-6, $color-foreground),0.25);
+$color-calendar-background-holiday: rgba(mix($color-positive,$color-foreground),0.25);
+$color-calendar-background-exception: rgba(mix($color-important,$color-foreground),0.25);
+
+//Scrollbars
+$scrollbar-width: px2rem($scrollbar__width);
+
+//gantt
+$gantt-row-height: 25px;
+$gantt-task-height: 20px;
+$gantt-background-menu: mix($color-foreground, mix($color-foreground, $color-background));
+
+//Mup
+$mup-background-menu: mix($color-foreground, mix($color-foreground, $color-background));
+//responsive
+$media-collapse-xxxlarge: 2500px !default;
+$media-collapse-xxlarge: 1900px !default;
+$media-collapse-xlarge: 1400px !default;
+$media-collapse-large: 1200px !default;
+$media-collapse-medium: 960px !default;
+$media-collapse-small: 480px !default; //$leftmenu-width !default;
+$media-collapse-xsmall: 320px !default;
+$media-collapse-menu: $media-collapse-medium !default;
+$media-collapse-sidebar: 640px !default;
+$media-collapse-medium-height: 768px !default;
+
+$media-highres-breakpoint: 100dpi !default;
+
+$calendar-collapse: small-screen;
+
+$table-cols-on-mobile: (
+  name,subject,issue,checkbox,total,login,text-right,contact_name,group-name,filename,filesize,number,totalsum-description,spent_on
+);
+// ------------------------------
+// Palette
+// ------------------------------
+$color-palette-main: $color-main;
+$palette: (
+  $color-palette-1,
+  $color-palette-2,
+  $color-palette-3,
+  $color-palette-4,
+  $color-palette-5,
+  $color-palette-6,
+  $color-palette-7,
+  $color-palette-8,
+  $color-palette-9,
+  $color-palette-10,
+  $color-palette-11,
+  $color-palette-12,
+) !default;
+$palette-light: () !default;
+@for $i from 1 through length($palette) {
+  $palette-light: append($palette-light, mix(nth($palette,$i), white, 30%),comma)
+}
+$pallete-entities: (
+        "issue": nth($palette-light, 1),
+        "crm": nth($palette-light, 12),
+        "meeting": nth($palette-light, 4),
+        "attendance": nth($palette-light, 6)
+);
+$pallete-timeline: map-merge($pallete-entities,(
+        "issue-edit": nth($palette-light, 1),
+        "issue-note": nth($palette-light, 1),
+        "issue-closed": nth($palette-light, 1),
+        "time-entry": nth($palette-light, 3)
+));
+$palette-iterations: length($palette) !default;
+$palette-length: length($palette);
+@for $i from 1 through $palette-iterations {
+  $palette: append($palette, darken(nth($palette,$i),25%),comma)
+}
+@for $i from 1 through $palette-iterations {
+  $palette: append($palette, lighten(nth($palette,$i),25%),comma)
+}
+
+$palette-lighten-factor: 0.40 !default;
+
+$chart-palette: (
+ #f67d7d,
+ #bab9ae,
+ #78d5c9,
+ #fba050,
+ #eed63a,
+ #69aef3,
+ #7777e4,
+ #b95dd8,
+ #e461b9,
+ #bfd74b,
+ #8bd078,
+ #aa9b8c
+);
+//$chart-palette: (
+//) !default;
+//@for $i from 1 through $palette-length/4 {
+//  $chart-palette: append($chart-palette, nth($palette,$i ),comma);
+//  $chart-palette: append($chart-palette, nth($palette,$i + $palette-length*1/4),comma);
+//  $chart-palette: append($chart-palette, nth($palette,$i + $palette-length*2/4),comma);
+//  $chart-palette: append($chart-palette, nth($palette,$i + $palette-length*3/4),comma);
+//}
+
+$schemes: (
+  1: $color-negative,
+  3: $color-positive,
+  5: $color-main,
+  7: #fba050,
+  9: $color-important,
+) !default;
+$schemes-lighten-factor: 49% !default;
+$schemes-flattened: null;
+@for $i from 1 through length($schemes) {
+  $schemes-flattened: append($schemes-flattened, "#{nth(map-keys($schemes),$i)}:'#{nth(map-values($schemes),$i)}'",comma)
+}
+//grid
+$grid: (
+  1:  10%,
+  2:  20%,
+  3:  30%,
+  4:  40%,
+  5:  50%,
+  6:  60%,
+  7:  70%,
+  8:  80%,
+  9:  90%,
+  25: 25%,
+  33: 33.33%,
+  66: 66.66%,
+) !default;
+
+$breakpoints: (
+  xxxlarge: $media-collapse-xxxlarge,
+  xxlarge: $media-collapse-xxlarge,
+  xlarge: $media-collapse-xlarge,
+  large: $media-collapse-large,
+  medium: $media-collapse-medium,
+  small: $media-collapse-small,
+  xsmall: $media-collapse-xsmall,
+  menu: $media-collapse-menu,
+  sidebar: $media-collapse-sidebar
+);
+
+$api-js: (
+  rails-env: $rails-env,
+  font-size: $font-size,
+  base-spacing: $box-padding,
+  topmenu-height: $topmenu-height,
+  color-main: $color-main,
+  color-positive: $color-positive,
+  color-negative: $color-negative,
+  color-important: $color-important,
+  palette: #{$palette},
+  chart-palette: #{$chart-palette},
+  palette-lighten-factor: $palette-lighten-factor,
+  schemes: #{$schemes-flattened},
+  schemes-lighten-factor: $schemes-lighten-factor,
+  gantt-row-height: $gantt-row-height,
+  gantt-task-height: $gantt-task-height,
+  resource-color-some-allocations: mix($color-palette-13, $color-foreground,33%),
+  resource-color-over-allocations: mix($color-negative, $color-foreground,33%),
+  resource-color-no-allocations: mix($color-palette-12, $color-foreground,33%),
+  resource-color-full-allocations: mix($color-positive, $color-foreground,33%),
+  resource-color-text-over-allocations: $color-negative,
+  resource-color-text-fixed: mix($color-palette-5,$color-text),
+  resource-color-text: $color-text,
+  media-collapse-menu: $media-collapse-menu,
+  breakpoint-xxxlarge: $media-collapse-xxxlarge,
+  breakpoint-xxlarge: $media-collapse-xxlarge,
+  breakpoint-xlarge: $media-collapse-xlarge,
+  breakpoint-large: $media-collapse-large,
+  breakpoint-medium: $media-collapse-medium,
+  breakpoint-small: $media-collapse-small,
+  breakpoint-xsmall: $media-collapse-xsmall,
+  breakpoint-menu: $media-collapse-menu,
+  breakpoint-sidebar: $media-collapse-sidebar,
+  modal-zindex: z($z-priority,modal)
+);
+
+$css-variables:(
+  size:(
+    gap: $gap,
+    box-padding: $box-padding,
+  ),
+  type:(
+    font-size: $font-size,
+  ),
+  color:(
+    main: $color-main,
+    positive: $color-positive,
+    negative: $color-negative,
+    important: $color-important,
+  ),
+  media:(
+    breakpoint-xxxlarge: $media-collapse-xxxlarge,
+    breakpoint-xxlarge: $media-collapse-xxlarge,
+    breakpoint-xlarge: $media-collapse-xlarge,
+    breakpoint-large: $media-collapse-large,
+    breakpoint-medium: $media-collapse-medium,
+    breakpoint-small: $media-collapse-small,
+    breakpoint-xsmall: $media-collapse-xsmall,
+    breakpoint-menu: $media-collapse-menu,
+    breakpoint-sidebar: $media-collapse-sidebar
+  ),
+);
+$css-vars:();
+$css-colors: map-get($css-variables, color);
+@each $key, $val in $css-colors {
+  @for $i from 1 through 4{
+    $css-colors: map-merge($css-colors, (
+      #{$key}-darker-#{$i}: darken($val, $i*$color-step),
+      #{$key}-lighter-#{$i}: lighten($val, $i*$color-step),
+      #{$key}-opaque-#{$i}: rgba($val, 1-.25*$i)
+    )) !global;
+  }
+}
+$css-variables: map-merge($css-variables, (colors:$css-colors));
+
+$internal-brand: '' !default;
+@if $internal-brand == 'easy_dark_theme' {
+  $color-links: $color-negative;
+}

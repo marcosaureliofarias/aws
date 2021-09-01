@@ -1,0 +1,11 @@
+<% Rys::Feature.on('custom_builtin_role') do %>
+  <%
+    roles = Role.givable.sorted.map { |role| [role.name, role.id] }
+  %>
+
+  <p>
+    <%= f.select :builtin_role_id, roles, include_blank: true, label: l('custom_builtin_role.builtin_role') %>
+    <br>
+    <em class="help"><%= l('custom_builtin_role.help_builtin_role') %></em>
+  </p>
+<% end %>

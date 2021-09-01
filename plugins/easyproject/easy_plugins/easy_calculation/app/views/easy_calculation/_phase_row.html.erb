@@ -1,0 +1,14 @@
+<tr clas="phase-row">
+  <td class="entity hide-when-print">
+    <%= easy_reorder_links('phase', {:action => 'order', :id => @project.id, 'phase[id]' => phase}, {method: :put}) %>
+  </td>
+  <td class="entity">
+    <%= link_to(phase, project_path(phase.project)) %>
+  </td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td class="<%= 'hide-when-print' if phase.solution_discount_sum.zero? %>"></td>
+  <td></td>
+  <td class="calculation-item-actions hide-when-print"></td>
+</tr>

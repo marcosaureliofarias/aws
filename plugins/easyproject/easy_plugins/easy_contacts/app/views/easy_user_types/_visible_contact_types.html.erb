@@ -1,0 +1,4 @@
+<p>
+  <%= label_tag 'easy_user_type_easy_contact_type_ids__autocomplete', l(:easy_user_type_visible_contact_types) %>
+  <%= autocomplete_field_tag('easy_user_type[easy_contact_type_ids][]', easy_contact_types_for_select, easy_user_type.easy_contact_type_ids.presence) %>
+</p>

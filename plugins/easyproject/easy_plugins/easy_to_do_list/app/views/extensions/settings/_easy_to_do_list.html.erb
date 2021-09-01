@@ -1,0 +1,5 @@
+<p>
+  <%= hidden_field_tag 'settings[enable_more_to_do_lists]', '0', id: nil %>
+  <%= label_tag 'settings_enable_more_to_do_lists', l(:label_easy_to_do_list_settings_enable_more_to_do_lists) -%>
+  <%= check_box_tag 'settings[enable_more_to_do_lists]', '1', Setting.plugin_easy_to_do_list['enable_more_to_do_lists'] == '1', id: 'settings_enable_more_to_do_lists' -%>
+</p>

@@ -1,0 +1,92 @@
+---
+it:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: È già presente un foglio
+                presenze in questo periodo
+  button_copy_easy_time_sheet: Copia righe in un nuovo timesheet
+  button_easy_timesheet_by_easy_query: Timesheet per filtro salvato
+  button_easy_timesheet_delete_with_time_entries: Rimuovi riga e tempo trascorso
+  button_easy_timesheet_delete_without_time_entries: Rimuovi solo la riga
+  button_easy_timesheets_approve: Approva
+  button_easy_timesheets_lock: Blocca
+  button_easy_timesheets_new_row: Nuova riga
+  button_easy_timesheets_reject: Rifiuta
+  button_easy_timesheets_unlock: Sblocca
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Resoconto personale - Timesheet
+        description: Visualizza timesheet
+  easy_query:
+    name:
+      easy_timesheet_query: Timesheet
+  easy_timesheets_date_must_be_first_day_of_week: Deve corrispondere al primo giorno
+    della settimana. (%{day})
+  easy_timesheets_periods:
+    day: Settimanale
+    month: Mensile
+    week: Settimanale
+  easy_timesheets_plugin_name: Timesheet
+  error_timesheet_invalid_time_entries: 'Impossibile creare il timesheet a causa di
+    inserimenti di tempo non validi: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: ID campo personalizzato per straordinario
+    label_new_monhly_timesheet: Nuovo foglio presenze mensile
+    label_overtime: Straordinario
+    label_set_cf_overtime_id_in_rys_plugins: La funzione di lavoro straordinario è
+      attiva. Selezionare il campo personalizzato di straordinario %{link}.
+  field_easy_timesheet_period: Periodo
+  heading_easy_timesheets_edit: Modifica timesheet
+  heading_easy_timesheets_new: Nuovo timesheet
+  heading_easy_timesheets_show: Timesheet %{start_date} - %{end_date}
+  label_easy_timesheet: Timesheet
+  label_easy_timesheet_approved: Approvato?
+  label_easy_timesheet_approved_by: Approvato da
+  label_easy_timesheet_end_date: Data finale
+  label_easy_timesheet_lock_description: Motivo approvazione/rifiuto
+  label_easy_timesheet_lock_prompt: Ragione dell'approvazione
+  label_easy_timesheet_locked_at: Approvato/respinto
+  label_easy_timesheet_rejected_by: Respinto da
+  label_easy_timesheet_unlock_prompt: Ragione della respinta
+  label_easy_timesheets: Timesheet
+  label_enable_timesheet_over_time: Abilita funzione lavoro straordinario
+  label_enabled_timesheet_periods: Periodi abilitati
+  label_filter_group_easy_timesheet_query: Timesheet
+  notice_easy_timesheet_both_periods: Se si scelgono entrambi, è possibile che alcuni
+    record vengano mescolati o non funzionino correttamente se i periodi si sovrappongono.
+  notice_extended_timesheet_period_not_enabled: Il foglio presenze %{period} non è
+    attivo
+  permission_create_easy_timesheets_for_other_user: Aggiungi timesheet per altri utenti
+  permission_edit_easy_timesheets: Modifica timesheet
+  permission_edit_own_easy_timesheets: Modifica timesheet personali
+  permission_view_easy_timesheets: Visualizza timesheet
+  project_module_easy_timesheets: Timesheet
+  text_easy_timesheet_destroy_cell_are_you_sure: Vuoi rimuovere il tempo trascorso?
+  text_easy_timesheet_destroy_row_are_you_sure: Stai per rimuovere una riga del foglio
+    presenze. Non devi eliminare automaticamente il tempo trascorso su questa riga.
+    Come vuoi procedere?
+  text_easy_timesheet_prompt_text: Aggiungi ora
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: La data di inizio
+    sarà automaticamente allineata all'inizio della settimana selezionata
+  text_time_sheet_copy_from: Le righe verranno precompilate a partire dal foglio presenze %{entity}
+  text_warning_after_time_sheet_copied: Se non salvi almeno una cella nella riga, l'intera
+    riga andrà persa.
+  title_easy_timesheet_destroy: Rimuovi foglio presenze
+  title_easy_timesheet_edit_with_period: Modifica foglio presenze di %{period}
+  title_easy_timesheet_new_with_period: Nuovo foglio presenze di %{period}
+  title_easy_timesheet_show: Mostra foglio presenze
+  title_next_time_sheet: Mostra il foglio presenze successivo di %{user}
+  title_previous_time_sheet: Mostra il foglio presenze precedente di %{user}
+  validation_entry_already_exists: Esiste già un foglio presenze tra il (%{start_date})
+    e il (%{end_date}).
+  validation_greater_than_start_date: "(%{end_date}) deve essere maggiore della data
+    di inizio (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: Alcune ore immesse non possono essere
+    eliminate
+  validation_week_period: Il periodo tra (%{start_date}) e (%{end_date}) deve essere
+    una settimana

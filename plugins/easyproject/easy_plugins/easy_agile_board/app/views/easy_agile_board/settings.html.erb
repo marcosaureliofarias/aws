@@ -1,0 +1,7 @@
+<h2><%=l(:title_sprint_settings)%></h2>
+
+<%= render partial: 'easy_agile_board/settings_form' %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'easy_agile_board/sidebar', locals: { project: @project, easy_sprint: @project.current_easy_sprint } if @project %>
+<% end %>

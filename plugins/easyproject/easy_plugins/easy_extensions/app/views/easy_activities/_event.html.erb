@@ -1,0 +1,35 @@
+<%
+  options ||= {}
+  new_day = options[:new_day]
+  show_last_event = options[:show_last_event]
+  event_datetime = event.event_datetime
+  header_html_options = { class: "easy-activity-feed__activity-event-header small" }
+  header_html_options[:data] = { date: format_date(event_datetime), title: format_activity_title(event.event_title) }
+%>
+
+<%= content_tag(:div, class: "easy-activity-feed__activity-event #{event.event_type} #{new_day ? 'new-day' : ''}") do %>
+  <%= content_tag(:div, header_html_options) do %>
+    <!--    <span class="date">-->
+    <%#= format_date(event_datetime) %>
+    <!--    </span>-->
+    <div>
+      <span class="time">
+        <%= format_time(event_datetime, false) %>
+      </span>
+      <% if (author = event.event_author) %>
+        <span class="author">
+            <%= avatar(author, size: '24') %>
+          <span class="name"><%= link_to_user(author) %></span>
+        </span>
+      <% end %>
+      <%= content_tag('span', h(event.project), class: 'project') %>
+    </div>
+    <%= link_to format_activity_title(event.event_title), event.event_url %>
+  <% end %>
+  <%= render partial: 'easy_activities/event_journal', locals: { description: event.event_description } %>
+  <% if show_last_event && event.respond_to?(:journals) && (journal = event.journals.visible.with_notes.last) && (journal.notes.present?) %>
+    <div>
+      <%= render partial: 'easy_activities/event_journal', locals: { description: journal.notes } %>
+    </div>
+  <% end %>
+<% end %>

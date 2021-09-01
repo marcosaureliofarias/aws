@@ -1,0 +1,84 @@
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_log_time),
+    new_easy_time_entry_path(project_id: @project, issue_id: @issue),
+    :class => 'icon icon-time-add button-positive' if User.current.allowed_to?(:log_time, @project, :global => true) %>
+  <%= link_to l(:button_clear), {:params => request.query_parameters.merge(:criteria => nil)}, :class => 'icon icon-reload button' %></p>
+<% end %>
+
+<%= render_timelog_breadcrumb %>
+
+<%= render :partial => 'timelog/filter_and_tabs', :locals => {:additional_elements_to_serialize => '$(\'#timeentry_report_form\')'} %>
+
+<%= form_tag(_report_time_entries_path(@project, nil), :method => :get, :id => 'timeentry_report_form') do %>
+  <% @report.criteria.each do |criterion| %>
+    <%= hidden_field_tag 'criteria[]', criterion, :id => nil %>
+  <% end %>
+  <%= hidden_field_tag('only_me', params[:only_me], :id => nil) if params[:only_me] %>
+  <%= hidden_field_tag('issue_id', params[:issue_id], :id => nil) if params[:issue_id] %>
+  <% if @entity %>
+    <%= hidden_field_tag('entity_id', @entity.id, :id => nil) %>
+    <%= hidden_field_tag('entity_type', @entity.class.name, :id => nil) %>
+  <% end %>
+
+  <div class="splitcontent tabular">
+    <div class="splitcontentleft">
+      <p>
+        <label for='columns'><%= l(:label_details) %>:</label>
+        <%= select_tag 'columns', options_for_select([[l(:label_year), 'year'],
+          [l(:label_month), 'month'],
+          [l(:label_week), 'week'],
+          [l(:label_day_plural).titleize, 'day']], @report.columns),
+          :onchange => "this.form.submit();" %>
+      </p>
+    </div>
+    <div class="splitcontentright">
+      <p>
+        <label for='criterias'><%= l(:button_add) %>:</label>
+        <%= select_tag('criteria[]', options_for_select([[]] + (@report.available_criteria.keys - @report.criteria).collect{|k| [l_or_humanize(@report.available_criteria[k][:label]), k]}.compact.sort),
+          :onchange => "this.form.submit();",
+          :disabled => (@report.criteria.length >= 3),
+          :id => 'criterias') %>
+      </p>
+    </div>
+  </div>
+
+<% end %>
+
+<% unless @report.criteria.empty? %>
+  <% if @report.hours.empty? %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% else %>
+    <div class="autoscroll">
+      <table class="list" id="time-report">
+        <thead>
+          <tr>
+            <% @report.criteria.each do |criteria| %>
+              <th><%= l_or_humanize(@report.available_criteria[criteria][:label]) %></th>
+            <% end %>
+            <% columns_width = (40 / (@report.periods.length+1)).to_i %>
+            <% @report.periods.each do |period| %>
+              <th class="period" style="width:<%= columns_width %>%;"><%= period %></th>
+            <% end %>
+                <th class="total" style="width:<%= columns_width %>%;"><%= l(:label_total_time) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => 'report_criteria', :locals => {:criterias => @report.criteria, :hours => @report.hours, :level => 0} %>
+        <tr class="total">
+          <td><%= l(:label_total_time) %></td>
+          <%= ('<td></td>' * (@report.criteria.size - 1)).html_safe %>
+          <% total = 0 -%>
+          <% @report.periods.each do |period| -%>
+            <% sum = sum_hours(select_hours(@report.hours, @report.columns, period.to_s)); total += sum -%>
+            <td class="hours nowrap"><%= easy_format_hours(sum) if sum > 0 %></td>
+          <% end -%>
+          <td class="hours nowrap"><%= easy_format_hours(total) if total > 0 %></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+  <% end %>
+<% end %>
+
+<% html_title l(:label_spent_time), l(:label_report) %>

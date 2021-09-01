@@ -1,0 +1,197 @@
+---
+tr:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: Tahsis zaten var
+  button_hide_planned_tasks: Planlanan işler
+  button_top_menu_easy_gantt_resources: Kaynak yönetimi
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: Easy Gantt için yeni Kaynak Yönetimi görünümü
+  easy_gantt_resources_plugin_name: Kaynak yönetimi
+  easy_gantt_resources:
+    allocator:
+      evenly: Dengeli (yavaş)
+      from_end: Sondan
+      from_start: Baştan
+      future_evenly: Dengeli gelecek
+      future_from_end: Sondan gelecek
+      future_from_start: Baştan gelecek
+      label_allocator: Tahsis eden
+      random: Rastgele
+    buttons:
+      button_project_menu: Kaynak yönetimi
+      rm_balance: Dengeleme
+      rm_hide_reservations: Rezervasyonları gizle
+      rm_hide_tasks: İşler
+      rm_reservations: Rezervasyonlar
+      rm_with_milestones: Kilometre taşları
+      rm_with_projects: Projeler
+    context:
+      heading_allocator_setting: Tahsis ayarı
+      label_maximal_hours: Maksimum saat / gün
+      pseudo_even_allocation: Sözde-eşit tahsisler
+      text_setting_for: Ayarlar
+    errors:
+      assigned_to_is_blank: Atanan belirlenmeli
+      estimated_hours_is_blank: Tahmini süre geçerli değil
+      issue_is_closed: İş kapatıldı
+      negative_allocation: "%{date} tarihinde tahsis edilmiş negatif saat sayısı var"
+      no_rights_for_allocation: "%{issue} için tahsis yetkiniz yok"
+      non_member_assignee: "%{issue} işi %{project} projesine ait ve %{assignee} projenin
+        bir üyesi değil"
+      over_allocation: "%{date} tarihinde mümkün olandan daha fazla saat tahsis edilmiş"
+      project_is_baseline: Proje temel çizgisidir.
+      save_error: '%{assignee} için "%{name}" konusunun [%{allocations}] dağıtımları
+        şu sebeplerden dolayı kaydedilmedi: %{reason}'
+      start_or_due_is_required: Başlangıç veya hedef tarihi gerekli
+      under_estimation: azımsanmış. Tahmini en az %{over} saat artırın.
+    event_types:
+      generic: Etkinlik
+      holiday: Tatil
+      meeting: Toplantı
+      symbols:
+        holiday_short: T
+        meeting_short: t
+        nonworking_attendance_short: N
+        unapproved_nonworking_attendance_short: U
+    global_resource_title: Global Kaynak yönetimi
+    label_allocations_sum: İş tahsisi
+    label_events: Ekinlikler
+    label_other_allocations_sum: Görünmeyen işlerin tahsisi
+    label_reservations_sum: Rezervasyon dağıtımları
+    label_whole_day: Tüm gün
+    legend:
+      day_custom_allocation: manuel olarak ayarlanan tahsis
+      day_over_allocation: kullanıcı belirlenen günde aşırı yoğun
+      full_allocations: kullanıcı optimum iş yüküne sahip
+      no_allocations: kullanıcının atanmış işi yok
+      over_allocations: kullanıcı aşırı yoğun
+      reservation: rezervasyon
+      some_allocations: kullanıcı boş kapasiteye sahip
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: Kaynak yönetimi
+    text_easy_resources_footer: Redmine Kaynak yönetimi Easy tarafından desteklenmektedir
+    title_rm_short: KY
+  easy_gantt:
+    button:
+      rm_reallocate: Yeniden tahsis et
+    title:
+      rm_reallocate: Her işteki tahsisleri yeniden hesapla
+  easy_pages:
+    modules:
+      easy_gantt_resources: Kaynak yönetimi
+      personal_easy_gantt_resources: Personel Kaynakları Yönetimi
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: Kaynak yönetimi
+        description: Global Kaynak yönetimine gidin
+  easy_query:
+    name:
+      easy_light_resource_query: Dağıtımlar
+      easy_resource_easy_query: Kaynak yönetimi
+  easy_rake_tasks:
+    easy_rake_task_issue_allocations_recalculation:
+      caption: İş tahsislerini yeniden hesapla
+  error_allocation_uniqueness: Kaynak zaten var.
+  error_epm_resource_already_active: Sayfadaki sayfa modülü zaten etkin
+  error_invalid_dates: Geçersiz tarihler
+  error_resources_not_authorized: Kaynaklar kaydedilmedi, istenen kaynakların tümünü düzenleme
+    yetkiniz yok.
+  field_advance_hours_definition: Manuel saat tanımı
+  field_advance_hours_per_days: Günlük saati ayarlayın
+  field_assigned_to_admin: Yönetici
+  field_assigned_to_created_on: Yaratılma tarihi
+  field_assigned_to_email: E-posta
+  field_assigned_to_firstname: İsim
+  field_assigned_to_lastname: Soyad
+  field_assigned_to_login: Oturum aç
+  field_assigned_to_status: Durum
+  field_change_allocator_enabled: Tahsisi değiştir
+  field_decimal_allocation: Ondalık tahsis
+  field_default_allocator: Varsayılan tahsis
+  field_easy_gantt_show_task_latest_due: Son bitirme tarihini göster
+  field_hide_planned_tasks_enabled: Planlanan işler geçiş düğmesi
+  field_hide_unassigned: Atanmamışları gizle
+  field_hours_in_hour: Tahmini süre
+  field_hours_in_percent: Tahmini süre
+  field_hours_per_day: Günde saat
+  field_max_allocation: 'Maksimum tahsis süresi:'
+  field_resource_allocator: Kaynak tahsisi
+  field_show_groups: Grupları göster
+  field_show_total_project_allocations: Toplam proje tahsisini göster
+  field_watchdog_enabled: Watchdog
+  heading_easy_gantt_resources_index: Kaynaklar
+  help_easy_gantt_resources_users_estimated_ratios: Kullanıcıya atanan işlerin tahmini
+    süresi, dağıtımlardaki bu sabit ile çarpılır
+  help_easy_gantt_resources_users_hours_limits: Kullanıcı dağıtımları için günlük
+    çalışma saatleri bu değerle sınırlıdır
+  help_easy_gantt_resources_users_hours_limits_blank: Varsayılan değeri kullanmak
+    için boş bırakın
+  label_allocated_dates: Tahsis edilen tarihler
+  label_allocated_hours: Tahsis edilen saatler
+  label_easy_gantt_allocations: Tahsisler
+  label_easy_gantt_original_allocations: Tam tahsisler
+  label_easy_gantt_period: Dönem
+  label_easy_gantt_resources_balance: Dengeleme
+  label_easy_gantt_resources_get_from_users: kullanıcılardan say
+  label_easy_gantt_resources_get_from_users_for_all_groups: Tüm kullanıcılardan say
+  label_easy_gantt_resources_global_query_filters: Global varsayılan filtreler
+  label_easy_gantt_resources_groups_holidays_enabled: Gruplar için tatilleri etkinleştir
+  label_easy_gantt_resources_groups_selection: Grup seçimi
+  label_easy_gantt_resources_hours_from_calendar: Takvimden saatler
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: Tüm kullanıcılar için
+    takvimden saatler
+  label_easy_gantt_resources_new_reservation: Yeni rezervasyon
+  label_easy_gantt_resources_reservation_enabled: Rezervasyonları etkinleştir
+  label_easy_gantt_resources_settings: Kaynak ayarları
+  label_easy_gantt_resources_show_free_capacities: Boş kapasite
+  label_easy_gantt_resources_user_unassigned: Atanmayan
+  label_easy_gantt_resources_users_estimated_ratios: Tahmini süre oranı
+  label_easy_gantt_resources_users_hours_limits: Günlük saat sınırı
+  label_easy_gantt_resources_users_selection: Kullanıcılar seçimi
+  label_easy_gantt_resources_with_projects: Proje tahsislerini varsayılan olarak göster
+  label_easy_meeting_easy_resource_dont_allocate: Tahsis etme
+  project_module_easy_gantt: Easy Gantt
+  text_easy_gantt_resources_advance_hours_definition: Haftanın her günü için saatler
+    tanımlanabilir
+  text_easy_gantt_resources_advance_hours_per_days: Haftada gün başına maksimum dağıtılabilir saat
+  text_easy_gantt_resources_change_allocator_enabled: İş düzenleme sırasında tahsisleri değiştirmeye
+    izin ver
+  text_easy_gantt_resources_change_default_allocator: Performans nedenleriyle, bu
+    seçeneğin değiştirilmesi mevcut varsayılan görev tahsisini etkilemeyecektir
+  text_easy_gantt_resources_decimal_allocation: Saatler ondalık sayılar halinde tahsis
+    edilecektir (0.5)
+  text_easy_gantt_resources_default_allocator: İşler için tahmini saatlerin nasıl
+    tahsis edileceği. (Eşit tip yavaş olabilir)
+  text_easy_gantt_resources_default_zoom: Global kaynak yönetimi için varsayılan yakınlaştırma
+  text_easy_gantt_resources_groups_holidays_enabled: Grup üyeleri tatilde olursa tahsisler
+    azalır.
+  text_easy_gantt_resources_hide_planned_tasks_enabled: Kaynak yönetiminde "Planlanan
+    işler" seçimini göster
+  text_easy_gantt_resources_hours_per_day: Günde maksimum dağıtılabilir saat
+  text_easy_gantt_resources_overloaded_assigned: 'Bu işteki tahmini saatler, atananın aşırı
+    yüklendiği günlere tahsis edilmiş: %{errors}. Uygun değişiklikleri yapmak için
+    %{link} adresini kontrol edin.'
+  text_easy_gantt_resources_reservation_enabled: Kullanıcılar üzerinde saat rezervasyonu
+    etkinleştirin.
+  text_easy_gantt_resources_show_free_capacities: Kaynak yönetimi ile ilgili işler
+    için ayrılan saatler yerine boş kapasiteleri görüntülemeyi etkinleştir
+  text_easy_gantt_resources_show_groups: Grupları global kaynak yönetiminde göster
+  text_easy_gantt_resources_show_total_project_allocations: Proje kaynak yönetiminde toplam tahsis
+    edilen saati göster
+  text_easy_gantt_resources_watchdog_enabled: İş düzenleme sırasında atananın aşırı
+    yüklenmesini takip edin
+  text_easy_gantt_resources_with_projects: Global kaynak yönetiminde "Projelerle"
+    seçeneğini varsayılan olarak açın
+  text_easy_gantt_show_task_latest_due: İlişkiler veya ana iş tarafından tanımlanan
+    işler için en son geçerli tarihleri göster
+  text_easy_meeting_easy_resource_dont_allocate: Toplantı kaynak yönetimi tahsisatını
+    azaltmayacak
+  title_easy_gantt_personal_resources: Benim kaynaklarım
+  title_easy_gantt_resources_settings: Easy'den Kaynak yönetimi
+  title_easy_gantt_resources_users_settings: Bireysel kullanıcı ayarları

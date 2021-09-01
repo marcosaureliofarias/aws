@@ -1,0 +1,84 @@
+<%= form_tag(easy_imports_import_path, multipart: true, class: 'form-box', id: 'projects_and_tasks_form') do %>
+  <%= hidden_field_tag 'tab', tab[:name] %>
+  <p>
+    <%= l('easy_imports.title_choose_source_software') %>
+  </p>
+
+  <p class="easy-imports__radio-group">
+    <span class="easy-imports__radio-item">
+      <label>
+        <%= radio_button_tag 'source', 'excel', true, onchange: "EASY.easyImports.set_file_types('.xls,.xlsx')" %>
+        <span class="easy-imports__radio-fake"></span>
+        <%= image_tag('easy_imports/excel-logo.svg', plugin: :easy_extensions, size: '100x50') %>
+      </label>
+      <%= link_to l(:label_help), easy_imports_help_path(help: :excel), target: '_blank' %><br/>
+      <%= link_to l('easy_imports.download_sample_data'), easy_imports_download_sample_file_path(file_name: 'excel_sample_import_file.xlsx') %>
+    </span>
+
+    <span class="easy-imports__radio-item">
+      <label>
+        <%= radio_button_tag 'source', 'jira', false, onchange: "EASY.easyImports.set_file_types('.xml')" %>
+        <span class="easy-imports__radio-fake"></span>
+        <%= image_tag('easy_imports/jira-logo.svg', plugin: :easy_extensions, size: '100x50') %>
+      </label>
+      <%= link_to l(:label_help), easy_imports_help_path(help: :jira), target: '_blank' %>
+    </span>
+
+    <span class="easy-imports__radio-item">
+      <label>
+        <%= radio_button_tag 'source', 'ms_project', false, onchange: "EASY.easyImports.set_file_types('.xml')" %>
+        <span class="easy-imports__radio-fake"></span>
+        <%= image_tag('easy_imports/ms-project-logo.svg', plugin: :easy_extensions, size: '100x50') %>
+      </label>
+      <%= link_to l(:label_help), easy_imports_help_path(help: :ms_project), target: '_blank' %>
+    </span>
+
+    <span class="easy-imports__radio-item">
+      <label>
+        <%= radio_button_tag 'source', 'asana', false, onchange: "EASY.easyImports.set_file_types('.csv')" %>
+        <span class="easy-imports__radio-fake"></span>
+        <%= image_tag('easy_imports/asana-logo.svg', plugin: :easy_extensions, size: '100x50') %>
+      </label>
+      <%= link_to l(:label_help), easy_imports_help_path(help: :asana), target: '_blank' %>
+    </span>
+  </p>
+
+  <p class="easy-imports__upload">
+    <%= file_field_tag 'file', accept: '.xls,.xlsx', id: 'easy_imports_file_tag' %>
+  </p>
+
+  <div class="form-actions"><%= submit_tag l(:button_xml_data_import), class: 'button-positive' %></div>
+<% end -%>
+
+<script type="application/javascript">
+  window.EASY = window.EASY || {};
+  EASY.easyImports = EASY.easyImports || {};
+
+  /**
+   *
+   * @param {string} types
+   */
+  EASY.easyImports.set_file_types = function (types){
+    $('#easy_imports_file_tag').attr('accept', types)
+  };
+
+  EASY.easyImports.validate_project_and_tasks_form = function (){
+    $('#projects_and_tasks_form').submit(function (evt) {
+      var fileTag =  $('#easy_imports_file_tag')[0];
+      var fileSize = fileTag.files.length > 0 ? fileTag.files[0].size : 0;
+
+      if(fileSize > 5242880){
+        evt.preventDefault();
+        fileTag.value = '';
+        showFlashMessage('error', '<%=j l('easy_imports.file_is_too_big', mail: mail_to('support@easyproject.com')).html_safe %>').delay(5000).fadeOut();
+      } else if (fileSize == 0){
+        evt.preventDefault();
+        showFlashMessage('error', '<%=j l('easy_imports.no_file_uploaded') %>').delay(2500).fadeOut();
+      } else {
+        $('#import-entities-container').hide();
+        $('#easy-imports-progress-container').show();
+        $('.ui-dialog-titlebar-close').hide();
+      }
+    });
+  }();
+</script>

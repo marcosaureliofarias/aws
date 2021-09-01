@@ -1,0 +1,37 @@
+<% if @addresses.present? %>
+  <table class="list email-addresses">
+    <thead>
+      <tr>
+        <th><%= l(:field_mail) %></th>
+        <th><%= l(:field_mail_notification) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td class="email"><%= address.address %></td>
+        <td>
+          <%= check_box_tag '', '', address.notify?, :onchange => "$.ajax({ type: 'PUT', url: '#{user_email_address_path(address.user, address, :notify => (address.notify? ? '0' : '1'), :format => :js)}' })", :title => (address.notify? ? l(:label_disable_notifications) : l(:label_enable_notifications)) %>
+        </td>
+        <td class="buttons">
+          <%= delete_link user_email_address_path(@user, address), :remote => true %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% unless @addresses.size >= Setting.max_additional_emails.to_i %>
+  <div>
+  <%= form_for @address, :url => user_email_addresses_path(@user), :remote => true do |f| %>
+    <p><%= l(:label_email_address_add) %></p>
+    <%= error_messages_for @address %>
+    <p>
+      <%= f.text_field :address, :size => 40 %>
+      <%= submit_tag l(:button_add) %>
+    </p>
+  <% end %>
+  </div>
+<% end %>

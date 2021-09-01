@@ -1,0 +1,2 @@
+EasyExtensions::ActionProposer.add({ controller: 'easy_crm_cases', action: 'new' })
+EasyExtensions::ActionProposer.add({ controller: 'easy_crm_settings', action: 'index', tab: 'easy_crm_case_statuses' })

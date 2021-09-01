@@ -1,0 +1,4 @@
+<label>
+  <%= l(:label_clone_module_choose_target_tab) %>
+  <%= select_tag :tab_id, options_from_collection_for_select(page_module.easy_page_tabs_available, 'id', 'name') %>
+</label>

@@ -1,0 +1,3 @@
+<% if Rys::Feature.active?('easy_computed_field_from_query') && @easy_contact.available_custom_fields.any? { |cf| cf.field_format == 'easy_computed_from_query' } %>
+  <%= content_tag(:li, link_to(l(:button_recalculate_computed_from_query), recalculate_cf_easy_contact_path(@easy_contact), class: 'icon icon-refresh' )) %>
+<% end %>

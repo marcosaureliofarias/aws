@@ -1,0 +1,3 @@
+<% if !easy_money_periodical_entity.view_overview_item.blank? %>
+  <%= render :partial => easy_money_periodical_entity.view_overview_item, :locals => {:easy_money_periodical_entity => easy_money_periodical_entity, :period_date => period_date, :edit => edit} %>
+<% end %>

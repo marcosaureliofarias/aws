@@ -1,0 +1,6 @@
+<% if permission_tooltip = l('permission_tooltip_' + name.to_s, default: nil) %>
+  <span class="permission-tooltip" style="display: inline-block; padding-left: 10px; padding-right: 10px;">
+    <span class='icon icon-help-bubble' style="font-size: initial; line-height: initial;"></span>
+    <span class="tooltip" style="display: none;"><em style="max-width: 300px; display: block;"><%= permission_tooltip %></em></span>
+  </span>
+<% end %>

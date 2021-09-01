@@ -1,0 +1,58 @@
+---
+cs:
+  activerecord:
+    attributes:
+      user:
+        supervisor_user_id: Nadřízený
+    errors:
+      models:
+        user:
+          attributes:
+            supervisor_user_id:
+              children_exists: podřízený již existuje
+              missing_in_tree: by měl být v organizační struktuře
+              root_changed: by měl zůstat prázdný, protože uživatel je nejvyšší úrovni
+                a neměl by být přiřazen pod jiného nadříženého
+  button_easy_org_chart_collapse: Zabal vše
+  button_easy_org_chart_expand: Rozbal vše
+  button_easy_org_chart_export: Export
+  easy_org_chart_plugin_description: ''
+  easy_org_chart_plugin_menu_caption: Organizační struktura
+  easy_org_chart_plugin_name: Organizační struktura
+  easy_org_chart_subordinates_access:
+    direct_subordinates: Přímý podřízení
+    forbidden: Zakázán‌
+    subordinates_tree: Strom podřízených
+  easy_pages:
+    modules:
+      org_chart: Organizační struktura
+  field_assigned_to_id_supervisor: Nadřízený řešitele
+  field_author_id_supervisor: Nadřízený autora
+  field_easy_org_chart_node_background: 'Styl pozadí uzlu:'
+  field_easy_org_chart_node_background_color: Barva pozadí pracovníka
+  field_easy_org_chart_node_width: Šířka uzlu
+  field_easy_org_chart_parent_node_background_color: Barva pozadí manažera (rodičovský
+    uzel)
+  field_easy_org_chart_root_node_background_color: Barva pozadí ředitele (vrchní uzel)
+  field_easy_org_chart_share_subordinates_access: Sdílet přístup podřízeného nadřízenému‌
+  field_easy_org_chart_show_avatar: Zobrazit avatar
+  field_easy_org_chart_show_custom_fields: Zobrazit uživatelská pole
+  field_easy_org_chart_show_fields_names: Zobrazit názvy polí
+  field_easy_org_chart_show_user_fields: Zobrazit nativní pole
+  field_subordinates_of_supervisor: Podřízení nadřízeného
+  field_supervisor: Nadřízený
+  label_easy_org_chart_legend_node: Pracovník
+  label_easy_org_chart_legend_parent_node: Manažer
+  label_easy_org_chart_legend_root_node: Ředitel
+  label_my_page_org_chart_root_user_id: Zvolte hlavní uzel pro organizační strukturu
+  label_my_page_org_chart_vertical_depth: Kompaktné zobrazení od úrovně
+  label_my_subordinates: Moji podřízení
+  label_my_subordinates_tree: Strom mých podřízených
+  permission_edit_easy_attendance_approval_for_inferiors: Schvalování/zamítání docházky
+    podřízených
+  title_easy_org_chart: Organizační struktura
+  title_easy_org_chart_drag_for_create: Přidání uživatelů do organizační struktury
+    pomocí Drag & Drop.
+  title_easy_org_chart_drop_for_delete: Přetáhněte sem pro odstranění z organizační
+    struktury
+  title_easy_org_chart_settings: Nastavení organizační struktury

@@ -1,0 +1,171 @@
+---
+tr:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: boş olamaz veya mevcut değil
+              empty: boş olamaz veya mevcut değil
+        easy_data_template:
+          attributes:
+            type:
+              blank: boş olamaz veya mevcut değil
+              empty: boş olamaz veya mevcut değil
+  button_easy_data_template_assignment: alan atamaları
+  button_easy_data_template_edit: Şablonu düzenle
+  button_easy_data_template_export_data: Verileri Dışa Aktar
+  button_easy_data_template_import: içe aktar
+  button_easy_data_template_import_data: Verileri İçe Aktar
+  button_easy_data_template_import_preview: ön izleme
+  button_easy_data_template_new_export: CSV’yi Dışa Aktar
+  button_easy_data_template_new_import: CSV'yi içe aktar
+  button_easy_data_template_new_msproject: MS Projesinden İçe Aktar‌
+  button_easy_data_template_settings: ayarlama
+  button_new_advance_import: Gelişmiş içe aktarma
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Hayır
+    xyes: Evet
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: isim çözücü
+      assigned_to_id: kimlik çözücü
+      assigned_to_lastname: soyadı çözücü
+      assigned_to_login: giriş çözücü
+      assigned_to_mail: e-posta çözücü
+      author_firstname: yazarın adı
+      author_id: yazarın kimliği
+      author_lastname: soyadı
+      author_login: yazarın girişi
+      author_mail: yazara eposta at
+      description: işin açıklaması
+      due_date: İşin sonu (tarih)
+      estimated_hours: tahmini iş süresi (saat)
+      id: iş kimliği
+      priority_id: kimlik önceliği
+      priority_name: öncelik başlığı
+      project_id: proje kimliği
+      project_name: proje ismi
+      start_date: İşin başlangıcı (tarih)
+      subject: İşin konusu
+      tracker_id: iş tipi kimliği
+      tracker_name: iş tipinin adı
+    Project:
+      description: projenin açıklaması
+      enabled_modules: ''
+      id: proje kimliği
+      is_public: herkese açık (E / H)
+      name: proje ismi
+      parent_id: ana proje kimliği
+      parent_name: ana projenin adı
+      trackers_ids: iş tipi kimliği
+      trackers_names: iş tipinin ismi
+    TimeEntry:
+      activity: aktivite
+      activity_id: aktivitelerin kimliği
+      activity_name: aktivite ismi
+      comments: yorum
+      easy_range_from: rapor başı
+      easy_range_to: rapor sonu
+      hours: saat
+      issue: iş
+      issue_id: iş kimliği
+      issue_subject: iş başlığı
+      project: proje
+      project_id: proje kimliği
+      project_name: proje ismi
+      spent_on: tarih
+      user: kullanıcı
+      user_id: kullanıcı kimliği
+    User:
+      admin: Yönetici (E /N)
+      firstname: kullanıcı adı
+      id: kullanıcı kimliği
+      language: kullanıcının dili
+      lastname: kullanıcının soyadı
+      login: Kullanıcı girişi
+      mail: kullanıcılara eposta at
+      password: şifre
+      send_mail: e-posta göndermek için oturum aç (E / H)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: İş
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Proje
+    EasyDataTemplateTimeEntry: Raporlanan zaman
+    EasyDataTemplateUser: Kullanıcı
+  easy_data_templates_plugin_description: "- CSV formatında veri aktarmak için veri
+    şablonları"
+  easy_data_templates_plugin_name: Veri şablonları
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Veri şablonları
+        description: Veri şablonlarını yönet
+  error_during_import: İçe aktarmada hata oluştu. Lütfen girilen verileri kontrol
+    edin.
+  error_easy_data_template_attachment_not_uploaded: İçe aktarılacak ek kaydedilmemiş
+  error_easy_data_template_ms_project_not_valid_xml: Ekli dosya, MS Project 2010 ve
+    daha üstü geçerli bir XML değil.
+  field_easy_data_template_allowed_import: İçe aktar
+  field_easy_do_not_export: Dışa aktarMA
+  label_check_preview: Lütfen 'Önizleme'yi kullanarak verileri kontrol edin.
+  label_easy_data_template_assignment: Alan atamaları
+  label_easy_data_template_author_name: Yazar
+  label_easy_data_template_edit: Şablonları düzenleme
+  label_easy_data_template_entity_type: Varlık
+  label_easy_data_template_export_new: Yeni dışa aktarım şablonu
+  label_easy_data_template_import_file: Bir dosyayı içe aktar
+  label_easy_data_template_import_new: Yeni içe aktarma şablonu
+  label_easy_data_template_import:
+    assignments:
+      all: atanmış pozisyon sütunları
+      entity_attribute_name: sütun adı varlıkları
+      file_column_position: sütunun csv içindeki konumu
+      new: Atama sütunu konumları
+    errors:
+      erow: satırdaki hata
+      errors_count: hata sayısı
+      errors_rows: hatalı satırlar
+      errors_rows_count: hatalı satır sayısı
+      errors_sum: toplamda
+      row: yanlış satır numarası
+      show: hatalı satırları göster
+    preview:
+      row: satır numarası
+      table: ön izleme
+    settings:
+      col_sep: alan ayırıcı
+      encoding: kodlama
+      import_all: Hepsi veya hiçbiri
+      new: Ayarlama
+      preview_rows: önizlenecek satır sayısı
+      project_template: Bir tasarım şablonu kullan
+      quote_char: ayırıcı metin
+      return_headers: ilk satır sütunun adını içerir
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(bir işe atanmış)"
+    other: "(%{count} işe atanmış)"
+    zero: "(atanmamış)"
+  label_easy_data_template_ms_project_resource_name_in_msp: MSP'deki isim
+  label_easy_data_template_ms_project_user_name_in_ep: Dahili İsim
+  label_easy_data_template_name: İsim
+  label_easy_data_template_public: genel
+  label_easy_data_template_template_type: Tip
+  label_easy_data_template_template_type_export: dışa aktar
+  label_easy_data_template_template_type_import: içe aktar
+  label_easy_data_template_user_name: Sahip
+  label_easy_data_templates: Veri şablonları
+  label_easy_data_templates_choose_project: Bir proje seç
+  label_easy_data_templates_choose_query: Filtre seç
+  label_easy_data_templates_source_settings: Bir Veri Kaynağı Seçin
+  label_easy_data_templates_target_settings: Hedef verinin seçilmesi
+  label_import_summaries_as_milestones: Özet işleri kilometre taşları olarak içe aktar
+  notice_easy_data_templates_import_ok: İçe aktarma başarılı
+  text_easy_data_template_ms_project_upload_file: Dosyanın XML formatında olması gerekir
+    (MS Project'te üst menüdeki, Dosya -> Farklı Kaydet -> XML olarak kaydet'e tıklayın).
+  title_easy_data_templates_apply_to_all_rows: Bu değeri tüm benzer satırlarda ayarlamak
+    için tıklayın.

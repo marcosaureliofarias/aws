@@ -1,0 +1,169 @@
+---
+th:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: ไม่สามารถเว้นว่างหรือไม่มีอยู่
+              empty: ไม่สามารถเว้นว่างหรือไม่มีอยู่
+        easy_data_template:
+          attributes:
+            type:
+              blank: ไม่สามารถเว้นว่างหรือไม่มีอยู่
+              empty: ไม่สามารถเว้นว่างหรือไม่มีอยู่
+  button_easy_data_template_assignment: ฟิลด์การมอบหมายงาน
+  button_easy_data_template_edit: แก้ไขเทมเพลต
+  button_easy_data_template_export_data: ส่งออกข้อมูล
+  button_easy_data_template_import: นำเข้า
+  button_easy_data_template_import_data: นำเข้าข้อมูล
+  button_easy_data_template_import_preview: ดูตัวอย่าง
+  button_easy_data_template_new_export: ส่งออก CSV
+  button_easy_data_template_new_import: นำเข้า CSV
+  button_easy_data_template_new_msproject: นำเข้าจาก MS Project
+  button_easy_data_template_settings: การปรับปรุง
+  button_new_advance_import: การนำเข้าขั้นสูง
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: ไม่
+    xyes: ใช่
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: แก้ไขชื่อ
+      assigned_to_id: แก้ไข ID
+      assigned_to_lastname: นามสกุล Solver
+      assigned_to_login: แก้ไขการเข้าสู่ระบบ
+      assigned_to_mail: แก้ไขอีเมล
+      author_firstname: ชื่อผู้เขียน
+      author_id: ID ผู้เขียน
+      author_lastname: นามสกุล
+      author_login: ผู้เขียนเข้าสู่ระบบ
+      author_mail: ส่งอีเมลถึงผู้เขียน
+      description: รายละเอียดของภารกิจ
+      due_date: สิ้นสุดภารกิจ (วันที่)
+      estimated_hours: เวลาของภารกิจโดยประมาณ (ชั่วโมง)
+      id: รหัสงาน
+      priority_id: ID ของลำดับความสำคัญ
+      priority_name: ชื่อของลำดับความสำคัญ
+      project_id: ID ของโครงการ
+      project_name: ชื่อโครงการ
+      start_date: จุดเริ่มต้นของภารกิจ (วันที่)
+      subject: หัวข้อภารกิจ
+      tracker_id: ID ของประเภทภารกิจ
+      tracker_name: ชื่อของประเภทภารกิจ
+    Project:
+      description: รายละเอียดของโครงการ
+      enabled_modules: ชื่อโมดูล
+      id: ID ของโครงการ
+      is_public: สาธารณะ (ใช่/ไม่)
+      name: ชื่อโครงการ
+      parent_id: ID ของโครงการหลัก
+      parent_name: ชื่อของโครงการหลัก
+      trackers_ids: ID ของประเภทภารกิจ
+      trackers_names: ชื่อของประเภทงาน
+    TimeEntry:
+      activity: กิจกรรม
+      activity_id: ID กิจกรรม
+      activity_name: ชื่อของกิจกรรม
+      comments: ความคิดเห็น
+      easy_range_from: รายงานจาก
+      easy_range_to: รายงานต่อ
+      hours: นาฬิกา
+      issue: ภารกิจ
+      issue_id: ID ภารกิจ
+      issue_subject: ชื่อภารกิจ
+      project: โครงการ
+      project_id: ID โครงการ 
+      project_name: ชื่อโครงการ
+      spent_on: วันที่
+      user: ผู้ใช้
+      user_id: ID ผู้ใช้
+    User:
+      admin: ผู้ดูแล (ใช่/ไม่ใช่)
+      firstname: ชื่อผู้ใช้
+      id: ID ผู้ใช้
+      language: ภาษาของผู้ใช้
+      lastname: นามสกุลของผู้ใช้
+      login: การเข้าสู่ระบบของผู้ใช้
+      mail: ผู้ใช้อีเมล
+      password: รหัสผ่าน
+      send_mail: เข้าสู่ระบบเพื่อส่งอีเมล (ใช่/ไม่ใช่)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: ภารกิจ
+    EasyDataTemplateMsProject: โครงการ MS
+    EasyDataTemplateProject: โครงการ
+    EasyDataTemplateTimeEntry: เวลารายงาน
+    EasyDataTemplateUser: ผู้ใช้
+  easy_data_templates_plugin_description: "- เทมเพลตข้อมูลเพื่อนำเข้าและส่งออกข้อมูลในรูปแบบ
+    CSV"
+  easy_data_templates_plugin_name: เทมเพลตข้อมูล
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: เทมเพลตข้อมูล
+        description: จัดการเทมเพลตข้อมูล
+  error_during_import: เกิดข้อผิดพลาดระหว่างการนำเข้า กรุณาตรวจสอบข้อมูลที่ป้อน
+  error_easy_data_template_attachment_not_uploaded: บันทึกแล้ว ไม่มีส่วนเสริมที่จะนำเข้า
+  error_easy_data_template_ms_project_not_valid_xml: ไฟล์ที่แนบมานั้นไม่ใช่ไฟล์ XML
+    ที่ถูกต้องจาก MS Project 2010 และสูงกว่า
+  field_easy_data_template_allowed_import: นำเข้า
+  field_easy_do_not_export: ห้ามส่งออก
+  label_check_preview: โปรดตรวจสอบข้อมูลโดยใช้ 'ดูตัวอย่าง'
+  label_easy_data_template_assignment: ฟิลด์การมอบหมาย
+  label_easy_data_template_author_name: ผู้เขียน
+  label_easy_data_template_edit: การแก้ไขเทมเพลต
+  label_easy_data_template_entity_type: เอนทิตี้
+  label_easy_data_template_export_new: เทมเพลตการส่งออกใหม่
+  label_easy_data_template_import_file: นำเข้าไฟล์
+  label_easy_data_template_import_new: เทมเพลตการนำเข้าใหม่
+  label_easy_data_template_import:
+    assignments:
+      all: คอลัมน์ตำแหน่งที่ได้รับมอบหมาย
+      entity_attribute_name: เอนทิตี้ชื่อคอลัมน์
+      file_column_position: ตำแหน่งของคอลัมน์ใน csv
+      new: ตำแหน่งคอลัมน์ที่ได้รับมอบหมาย
+    errors:
+      erow: ข้อผิดพลาดในบรรทัด
+      errors_count: จำนวนข้อผิดพลาด
+      errors_rows: ความผิดพลาดของบรรทัด
+      errors_rows_count: จำนวนบรรทัดที่ผิดพลาด
+      errors_sum: รวมกัน
+      row: หมายเลขบรรทัดไม่ถูกต้อง
+      show: แสดงบรรทัดที่ผิดพลาด
+    preview:
+      row: หมายเลขบรรทัด
+      table: ดูตัวอย่าง
+    settings:
+      col_sep: ตัวแบ่งฟิลด์
+      encoding: การเข้ารหัส
+      import_all: ทั้งหมดหรือไม่เลย
+      new: การปรับปรุง
+      preview_rows: จำนวนบรรทัดที่จะดูตัวอย่าง
+      project_template: ใช้เทมเพลตดีไซน์
+      quote_char: ข้อความคั่น
+      return_headers: บรรทัดแรกมีชื่อของคอลัมน์
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(มอบหมายให้หนึ่งภารกิจ)"
+    other: "(มอบหมายให้ %{count}ภารกิจ)"
+    zero: "(ไม่ได้รับมอบหมาย)"
+  label_easy_data_template_ms_project_resource_name_in_msp: ชื่อใน MSP
+  label_easy_data_template_ms_project_user_name_in_ep: ชื่อภายใน
+  label_easy_data_template_name: ชื่อ
+  label_easy_data_template_public: สาธารณะ
+  label_easy_data_template_template_type: แบบ
+  label_easy_data_template_template_type_export: ส่งออก
+  label_easy_data_template_template_type_import: นำเข้า
+  label_easy_data_template_user_name: เจ้าของ
+  label_easy_data_templates: เทมเพลตข้อมูล
+  label_easy_data_templates_choose_project: เลือกโครงการ
+  label_easy_data_templates_choose_query: เลือกตัวกรอง
+  label_easy_data_templates_source_settings: เลือกแหล่งข้อมูล
+  label_easy_data_templates_target_settings: การเลือกข้อมูลปลายทาง
+  label_import_summaries_as_milestones: นำเข้าสรุปของภารกิจเป็นเหตุการณ์สำคัญ
+  notice_easy_data_templates_import_ok: นำเข้าได้
+  text_easy_data_template_ms_project_upload_file: ไฟล์จะต้องอยู่ในรูปแบบ XML (ใน MS
+    Project จากเมนูด้านบน คลิกไฟล์ -> บันทึกเป็น -> บันทึกเป็น XML)
+  title_easy_data_templates_apply_to_all_rows: คลิกเพื่อตั้งค่านี้ในบรรทัดเดียวกันทั้งหมด

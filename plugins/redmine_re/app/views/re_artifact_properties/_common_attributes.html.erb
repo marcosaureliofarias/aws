@@ -1,0 +1,60 @@
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag 'jquery.autogrowtextarea.js', defer: true %>
+<% end %>
+
+<fieldset class="tabular">
+  <legend><%= t(:re_common_attributes) %></legend>
+
+  <p>
+		<%= f.label :name, t(:re_artifact_name) %>
+
+		<%= f.text_field :name, { :required => true, :class => "full_width" } %>
+  </p>
+  <%= late_javascript_tag "$('#artifact_name').focus();" %>
+
+  <%
+    re_users = []
+    re_users << User.current
+    re_users.concat User.all.sort_by { |u| u.lastname }
+    re_users.uniq!
+
+    selectable_users =  re_users.collect { |u| [u.firstname+" "+ u.lastname, u.id] }
+    if !@re_artifact_properties.nil? &&  !@re_artifact_properties.responsible.nil?
+      select_user_id = @re_artifact_properties.responsible.id
+    else
+      select_user_id = -1;
+    end
+  %>
+  <p>
+    <%= f.label :responsible_id, t(:re_artifact_responsible) %>
+    <%= f.select :responsible_id, options_for_select(selectable_users, select_user_id), :include_blank => true %>
+  </p>
+    <p>
+    <%= f.label :re_status_id, t(:re_status) %>
+    <%= f.select :re_status_id, options_for_select(ReStatus.where(project: @project).pluck(:alias_name, :id), @re_artifact_properties.re_status.try(:id)), :include_blank => true %>
+  </p>
+  <p>
+     <%= f.label :description %>
+    <span id='update-description' class='redmine-re'>
+      <%= f.text_area :description,
+                      :cols => 60,
+                      :rows => (@re_artifact_properties.description.blank? ? 10 : [[10, @re_artifact_properties.description.length / 50].max, 100].min),
+                      :accesskey => accesskey(:edit),
+                      :class => 'wiki-edit' %>
+      <%= wikitoolbar_for ('re_artifact_properties_description').html_safe %>
+      <%= late_javascript_tag do %>
+        $("textarea.wiki-edit").autoGrow();
+      <% end %>
+    </span>
+  </p>
+
+  <% if @re_artifact_properties.has_acceptance_criteria? %>
+    <p>
+      <%= f.label :acceptance_criteria %>
+      <span id='update-acceptance_criteria' class='redmine-re'>
+        <%= f.text_area :acceptance_criteria, :cols => 60, :rows => 5, :class => 'wiki-edit' %>
+        <%= wikitoolbar_for ('re_artifact_properties_acceptance_criteria').html_safe %>
+      </span>
+    </p>
+  <% end %>
+</fieldset>

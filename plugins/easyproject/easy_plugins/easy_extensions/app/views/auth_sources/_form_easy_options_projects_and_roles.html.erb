@@ -1,0 +1,27 @@
+<% unless projects_and_roles.blank? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_project) %></th>
+        <th><%= l(:field_role) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% projects_and_roles.each do |project_id, role_ids|
+        project = Project.find_by(:id => project_id)
+        next if project.nil? %>
+        <tr>
+          <td><%= project.name %></td>
+          <td>
+            <% role_ids.each do |role_id| %>
+              <%= hidden_field_tag("auth_source[easy_options][projects_and_roles][#{project_id}][]", role_id) %>
+            <% end %>
+            <%= Role.where(:id => role_ids).pluck(:name).join(', ') %>
+          </td>
+          <td><%= link_to_function(l(:button_delete), '$(this).closest(\'tr\').remove()', :class => 'icon icon-del', :title => l(:button_delete))  %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

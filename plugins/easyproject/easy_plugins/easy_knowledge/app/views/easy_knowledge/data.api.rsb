@@ -1,0 +1,72 @@
+ @columns_output.each do |entity, columns|
+   api.array entity.to_sym do
+     case entity
+     when 'EasyKnowledgeCategory'
+       @categories.each do |category|
+         entity_columns = {}
+         columns.each do |column|
+           if category.safe_attribute?(column)
+             entity_columns[column] = category.send(column)
+           end
+         end
+         entity_columns['id'] = category.id
+         api.category (entity_columns)
+       end
+     when 'EasyKnowledgeStory'
+       @stories.each do |story|
+         entity_columns = {}
+         columns.each do |column|
+           if story.safe_attribute?(column)
+             entity_columns[column] = story.send(column)
+           end
+           if column == 'can_edit'
+            entity_columns[column] = story.editable?
+           end
+           if column == 'issues'
+            entity_columns[column] = story.issues.to_a.map { |issue| { id: issue.id, name: issue.to_s } }
+           end
+           if column == 'projects'
+            entity_columns[column] = story.projects.to_a.map { |project| { id: project.id, name: project.to_s } }
+           end
+         end
+         entity_columns['id'] = story.id
+         entity_columns['updated_on'] = story.updated_on
+         entity_columns['categories'] = story.easy_knowledge_categories.map(&:id)
+         api.story (entity_columns)
+       end
+     when 'User'
+       @users.uniq.each do |user|
+         entity_columns = {}
+         columns.each do |column|
+           if user.safe_attribute?(column)
+             entity_columns[column] = user.send(column)
+           end
+         end
+         entity_columns['id'] = user.id
+         entity_columns['avatar_url'] = user.mail && avatar_url(user)
+         api.user (entity_columns)
+       end
+     when 'EasyKnowledgeProjects'
+       Array(@projects).each do |project|
+         api.project do
+           api.id project[0]
+           api.name project[1]
+         end
+       end
+     when 'StoriesWithoutCategory'
+       Array(@stories_without_category).each do |story|
+         api.story do
+           api.id story[0]
+           api.name story[1]
+         end
+       end
+     when 'ProjectStoriesWithoutCategory'
+       Array(@project_stories_without_category).each do |story|
+         api.story do
+           api.id story[0]
+           api.name story[1]
+         end
+       end
+     end
+   end
+ end

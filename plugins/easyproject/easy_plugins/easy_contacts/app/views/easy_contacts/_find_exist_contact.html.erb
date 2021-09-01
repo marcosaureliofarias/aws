@@ -1,0 +1,8 @@
+<fieldset>
+<%= content_tag :legend, l(:title_maybe_you_can) %>
+<ul class="small tags inline">
+  <% easy_contacts.each do |contact|  %>
+    <%= content_tag :li, link_to(highlight_tokens(contact.name, tokens), contact, :remote => true) %>
+  <%end -%>
+</ul>
+</fieldset>

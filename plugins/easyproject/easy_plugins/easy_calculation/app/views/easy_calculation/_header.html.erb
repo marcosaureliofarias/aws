@@ -1,0 +1,74 @@
+<div id="calculation-header" class="easy-entity-details-header">
+
+  <div id="calculation_pdf_logo_container" class="easy-entity-details-avatar">
+    <% if logo = @theme.try(:logo) %>
+      <% begin; image_data = IO.binread(logo) %>
+        <%= image_tag("data:image/jpeg;base64,#{Base64.encode64(image_data)}") %>
+      <% rescue Errno::ENOENT; nil; end %>
+    <% end %>
+  </div>
+
+  <%= render partial: 'title', locals: {easy_calculation: @easy_calculation, project: @project} %>
+  <div class="autoscroll">
+    <table class="easy-table-summary">
+      <tbody>
+        <tr>
+          <th><%= l(:label_project) %></th>
+          <td colspan="3"><%= @calculation.header[:project] %></td>
+        </tr>
+        <tr>
+            <th><%= l('calculation.client') %></th>
+            <td colspan="3">
+              <div class="easy-dropper-target easy-drop-client" data-drop-action="easy_calculation_project_client" data-project-id="<%= @project.id %>" style="width: 100%; height: 100%;" id="calculation_header_client_container">
+                <% if @calculation.header[:client] %>
+                  <% if Redmine::Plugin.installed?(:easy_contacts) %>
+                    <%= link_to(@calculation.header[:client].to_s, easy_contact_path(@calculation.header[:client], :back_url => original_url)) %>
+                    <%= link_to_function('', "$.ajax('#{j project_path(@project, :format => 'json')}', {'type': 'PUT', data: {'project[client_id]': ''}, complete: function(data){$('#calculation_header_client_container').html('')}});", :class => 'icon-del floatright hide-when-print') %>
+                  <% else %>
+                    <%= @calculation.header[:client] %>
+                  <% end -%>
+                <% else %>
+                  &nbsp;
+                <% end -%>
+              </div>
+            </td>
+          </tr>
+
+        <tr class="compensate">
+          <th><%= l(:label_date) %></th>
+          <td colspan="3">
+            <span class="calculation-date" data-type="dateui" data-url="<%= project_path(@project, :format => 'json') %>" data-name="project[calculation_date]" data-value="<%= @project.calculation_date %>">
+              <%= format_date(@calculation.header[:date]) %>
+            </span>
+          </td>
+        </tr>
+
+        <tr class="<%= 'hide-when-print' if @easy_calculation.project_status.blank? %>">
+          <th class="muted"><%= l(:'calculation.project_status') %></th>
+          <td colspan="3">
+            <span class="calculation-header-setting" data-type="text" data-url="<%= easy_calculation_update_path(@project, :format => 'json') %>" data-name="easy_calculation[project_status]" data-value="<%= @easy_calculation.project_status.to_s %>">
+              <b><%= @easy_calculation.project_status.to_s %></b>
+            </span>
+          </td>
+        </tr>
+
+        <tr class="<%= 'hide-when-print' if @easy_calculation.supplier_name.blank? && @easy_calculation.manager_name.blank? %> compensate">
+          <%= render partial: 'header_item', locals: {attribute: 'supplier_name'} %>
+          <%= render partial: 'header_item', locals: {attribute: 'manager_name'} %>
+        </tr>
+
+        <tr class="<%= 'hide-when-print' if @easy_calculation.supplier_tel.blank? && @easy_calculation.manager_tel.blank? %>">
+          <%= render partial: 'header_item', locals: {attribute: 'supplier_tel'} %>
+          <%= render partial: 'header_item', locals: {attribute: 'manager_tel'} %>
+        </tr>
+
+        <tr class="<%= 'hide-when-print' if @easy_calculation.supplier_mail.blank? && @easy_calculation.manager_mail.blank? %>">
+          <%= render partial: 'header_item', locals: {attribute: 'supplier_mail'} %>
+          <%= render partial: 'header_item', locals: {attribute: 'manager_mail'} %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+

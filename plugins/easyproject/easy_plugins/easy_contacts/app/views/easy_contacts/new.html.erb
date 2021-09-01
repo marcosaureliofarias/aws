@@ -1,0 +1,29 @@
+<div class="easy-contact-form-container">
+  <h2 class="title"><%= @easy_contact_reference ? "#{@easy_contact_reference.name} >> " : '' %> <%= l(:title_easy_contact_type_new) %></h2>
+
+  <%= labelled_form_for(@easy_contact, :html => {:id => 'easy-contact-form', :class => 'form-box', :multipart => true, :remote => @modal}) do |f| %>
+  <div class="gray-background" >
+    <%= error_messages_for @easy_contact -%>
+    <%= render :partial => 'form', :locals => {:f => f, :contact => @easy_contact} -%>
+  </div>
+
+  <div id="easy-contact-form-new-reference">
+    <% @easy_contact.references_by.each do |reference| %>
+      <% next unless reference.new_record? %>
+      <fieldset>
+        <%= content_tag(:legend, l(:label_add_subcontact)) %>
+      </fieldset>
+    <% end -%>
+  </div>
+  <% unless @modal %>
+    <div class="form-actions">
+      <%= f.submit(l(:button_save), :class => 'button-positive') -%>
+      &nbsp;
+      <%= submit_tag(l(:button_save_contact_and_add_reference), :name => 'add_new_subcontact', :class => 'button') -%>
+      &nbsp;
+      <%= link_to l(:button_back), params[:back_url] || polymorphic_path([@project, :easy_contacts]), :class => 'button' unless request.xhr? -%>
+    </div>
+  <% end -%>
+
+  <% end %>
+</div>

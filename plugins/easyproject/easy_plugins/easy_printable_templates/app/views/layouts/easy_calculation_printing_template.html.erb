@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset='utf-8'>
+    <title><%= html_title %></title>
+    <%= csrf_meta_tag %>
+    <%= favicon %>
+    <%#= easy_theme_tag(:media => 'all') -%>
+    <%#= stylesheet_link_tag('easy_extensions', :media => 'all') %>
+
+    <%#= heads_for_theme %>
+
+    <%#= easy_stylesheet_link_tag %>
+
+    <%= stylesheet_link_tag('easy_print', :media => 'all') -%>
+
+    <style type="text/css">
+        @media all {
+
+            #calculation_title{
+                margin-bottom: 10px;
+            }
+
+            #calculation-header table td{
+              background: #EFEFEF !important;
+            }
+
+            #calculation tbody tr.phase-sum td {
+              background: none !important;
+            }
+            .easy-page-brake-before {
+                border-top: 1px dashed black;
+            }
+            .easy-calculation-template-pages.a4 {
+                width: 210mm;
+                min-height: 297mm;
+            }
+            .easy-calculation-template-pages.a4.landscape {
+                width: 297mm;
+                min-height: 210mm;
+            }
+            .easy-calculation-template-pages.a3 {
+                width: 297mm;
+                min-height: 420mm;
+            }
+            .easy-calculation-template-pages.a3.landscape {
+                width: 420mm;
+                min-height: 297mm;
+            }
+            .entity.entity-subject {
+                display: block;
+            }
+
+            <% if @theme %>
+              #calculation-header table th, #calculation th,
+              #easy_calculation_top_desc_container table thead th,
+              #easy_calculation_bottom_desc_container table thead th,
+              #easy_calculation_bottom_desc_container table tbody tr:last-child td:first-child
+              {
+                  background-color: <%= @theme.header_hex_color %> !important;
+                  color: <%= @theme.header_font_hex_color %> !important;
+              }
+
+            <% end %>
+        }
+    </style>
+
+    <%= yield :header_tags -%>
+</head>
+<body>
+    <div id="main">
+        <div id="content">
+            <div class="easy-calculation-template-pages <%= "#{@pages_size.to_s.downcase} #{@pages_orientation}" %>" id="pages_content">
+                <%= yield %>
+            </div>
+        </div>
+    </div>
+</body>
+

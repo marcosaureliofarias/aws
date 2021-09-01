@@ -1,0 +1,8 @@
+// changes timer buttons on issue page
+$("#timer_buttons_for_<%=j dom_id(@issue) %>").html(" <%= j (link_to(l(:button_easy_issue_timer_resume), easy_issue_timer_play_path(@issue, timer_id: @easy_issue_timer), remote: true, class: 'button-mini icon icon-play', method: :post, title: l(:title_easy_issue_timer_button_play), onclick: "$(this).css({'z-index': -1})")) %>");
+
+// changes timer buttons in side bar
+$("a#<%=j dom_id(@easy_issue_timer) %>").parent().html(" <%= j (link_to(l(:button_easy_issue_timer_resume), easy_issue_timer_play_path(@issue, timer_id: @easy_issue_timer), remote: true,  class: 'icon icon-play button-mini-positive', method: :post, title: l(:title_easy_issue_timer_button_resume), onclick: "$(this).css({'z-index': -1})", id: dom_id(@easy_issue_timer))) %>");
+$("a#<%=j dom_id(@easy_issue_timer) %>").parent().next().remove();
+
+showFlashMessage('notice', '<%=j l(:notice_successful_update) %>').delay(1500).fadeOut();

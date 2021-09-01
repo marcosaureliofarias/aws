@@ -1,0 +1,71 @@
+<%= form_tag({:action => 'edit', :tab => 'authentication'}, :class => 'form-box') do %>
+  <div class="box tabular settings">
+    <p>
+      <%= setting_select :login_required, [[l(:label_login_required_yes), "1"],
+                                        [l(:label_login_required_no), "0"]] %>
+      <em class="info"><%= t(:text_login_required_html, anonymous_role_path: edit_role_path(Role.anonymous)) %></em>
+    </p>
+
+    <p><%= setting_select :autologin, [[l(:label_disabled), 0]] + [1, 7, 30, 365].collect { |days| [l('datetime.distance_in_words.x_days', :count => days), days.to_s] } %></p>
+
+    <p><%= setting_select :self_registration, [[l(:label_disabled), "0"],
+                                               [l(:label_registration_activation_by_email), "1"],
+                                               [l(:label_registration_manual_activation), "2"],
+                                               [l(:label_registration_automatic_activation), "3"]] %></p>
+    <p>
+      <%= label_tag(:easy_setting_self_registered_user_to_group_id, l(:label_easy_setting_self_registered_user_to_group_id)) %>
+      <%= select_tag('easy_setting[self_registered_user_to_group_id]', options_for_select(Group.givable.sorted.map { |g| [g.name, g.id.to_s] }, EasySetting.value('self_registered_user_to_group_id')), :include_blank => true) %>
+    </p>
+
+    <p><%= setting_text_field :password_min_length, :size => 6 %></p>
+
+    <p><%= setting_multiselect :password_required_char_classes, Setting::PASSWORD_CHAR_CLASSES.keys.collect {|c| [l("label_password_char_class_#{c}"), c]} , :inline => true %></p>
+
+    <p>
+      <%= label_tag('easy_setting[unique_password_counter]', l(:label_unique_password_counter)) %>
+      <%= number_field_tag 'easy_setting[unique_password_counter]', EasySetting.value('unique_password_counter'), size: 6 %>
+    </p>
+
+    <p>
+      <%= setting_select :password_max_age, [[l(:label_disabled), 0]] + [7, 30, 60, 90, 180, 365].collect { |days| [l('datetime.distance_in_words.x_days', :count => days), days.to_s] } %>
+    </p>
+
+    <p><%= setting_check_box :lost_password %></p>
+
+    <p><%= setting_check_box :openid, :disabled => !Object.const_defined?(:OpenID) %></p>
+
+  </div>
+
+  <fieldset class="box tabular">
+    <legend><%= l(:label_setting_sso) %></legend>
+
+    <p>
+      <%= hidden_field_tag('easy_setting[enable_sso]', '0', :id => nil) -%>
+      <%= check_box_tag('easy_setting[enable_sso]', '1', EasySetting.value('enable_sso')) -%>
+      <%= label_tag('easy_setting_enable_sso', l(:setting_enable_sso)) %>
+    </p>
+
+    <p>
+      <%= label_tag('easy_setting[sso_login_env_variable]', l(:setting_sso_login_env_variable)) %>
+      <%= text_field_tag 'easy_setting[sso_login_env_variable]', EasySetting.value('sso_login_env_variable') %>
+      <em class="info"><%= l(:text_enable_sso) %></em>
+    </p>
+  </fieldset>
+
+  <% if Rails.application.config.redmine_verify_sessions != false %>
+    <fieldset class="box">
+      <legend><%= l(:label_session_expiration) %></legend>
+      <div class="tabular settings">
+        <p><%= setting_select :session_lifetime, session_lifetime_options %></p>
+        <p><%= setting_select :session_timeout, session_timeout_options %></p>
+        <p><em class="info"><%= l(:text_session_expiration_settings) %></em></p>
+      </div>
+    </fieldset>
+  <% end %>
+
+  <%= call_hook(:view_settings_authentication_form) %>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+<% end %>

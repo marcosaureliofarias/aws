@@ -1,0 +1,66 @@
+<%
+  show_attached = defined?(show_attached) && show_attached == true
+  desc_required = !!EasySetting.value('attachment_description_required')
+  container ||= nil
+  attachment_param ||= 'attachments'
+  tag_name ||= attachment_param
+  multiple = true unless defined?(multiple) && multiple == false
+  description = (defined?(description) && description == false ? false : EasySetting.value('attachment_description'))
+  css_class = (defined?(filedrop) && filedrop == false ? '' : 'filedrop')
+  show_add = multiple
+  disable_image_paste ||= false
+  only_one_file ||= false
+%>
+<%= call_hook(:view_attachments_form_top, {container: container}) %>
+
+<span class="attachments-container<%= defined?(append_box) ? ' box' : '' %> <%= css_class %>" data-tag-name="<%= tag_name %>">
+  <span id="attachments_fields"<%= disable_image_paste ? ' class="already_attached"'.html_safe : '' %>>
+    <% if container %>
+      <%= hidden_field_tag 'container_id', container.id if container.respond_to?(:id) %>
+      <%
+         attachments = (Array(container.saved_attachments) + Array(container.unsaved_attachments))
+         attachments += container.attachments if show_attached
+         show_add |= attachments.blank?
+      %>
+      <% attachments.each_with_index do |attachment, i| %>
+        <span id="attachments_<%= attachment.try(:id) || i %>" class="attachment">
+          <%= hidden_field_tag("#{tag_name}[p#{i}][custom_version_for_attachment_id]", params[:custom_version_for_attachment_id]) if params[:custom_version_for_attachment_id].present? %>
+          <%= text_field_tag("#{tag_name}[p#{i}][filename]", attachment.filename, :class => "filename #{EasySetting.value('attachment_description') ? 'half' : 'full'}")%>
+
+          <%= link_to('&nbsp;'.html_safe, attachment_path(attachment.new_record? ? i : attachment, :attachment_id => attachment.try(:id) || i, :format => 'js'), :method => 'delete', :remote => true, :class => 'remove-upload icon icon-del') %>
+          <%= link_to('', download_named_attachment_url(attachment, attachment.filename), :class => 'icon icon-export', :title => l(:button_download)) if show_attached %>
+          <%= (description ? text_field_tag("#{tag_name}[p#{i}][description]", attachment.description, :maxlength => 255, :placeholder => desc_required ? l(:label_required_description) : l(:label_optional_description), :class => 'description', :required => desc_required) : '')%>
+          <%= hidden_field_tag "#{tag_name}[p#{i}][token]", "#{attachment.token}" %>
+          <%= hidden_field_tag "#{tag_name}[p#{i}][id]", attachment.try(:id) unless attachment.new_record? %>
+
+          <%= render :partial => 'attachments/form_custom_fields', :locals => { :tag_name => tag_name, :attachment_id => "p#{i}", :attachment => attachment } %>
+        </span>
+      <% end %>
+    <% end %>
+  </span>
+  <span class="add_attachment file" style="<%= show_add ? nil : 'display:none;' %>">
+    <%= file_field_tag "#{tag_name}[dummy][file]",
+                       :id => nil,
+                       :class => "file_selector #{css_class}",
+                       :title => l(:button_select_file),
+                       :multiple => multiple,
+                       :onchange => 'addInputFiles(this);',
+                       :data => {
+                           :max_file_size => Setting.attachment_max_size.to_i.kilobytes,
+                           :max_file_size_message => l(:error_attachment_too_big, :max_size => number_to_human_size(Setting.attachment_max_size.to_i.kilobytes)),
+                           :max_concurrent_uploads => Redmine::Configuration['max_concurrent_ajax_uploads'].to_i,
+                           :upload_path => uploads_path(:format => 'js'),
+                           :param => tag_name,
+                           :description => description,
+                           :description_placeholder => desc_required ? l(:label_required_description) : l(:label_optional_description),
+                           :description_is_required => desc_required,
+                           :description_is => !!EasySetting.value('attachment_description'),
+                           :custom_version_for_attachment_id => params[:custom_version_for_attachment_id],
+                           :only_one_file => only_one_file
+                       } %>
+  </span>
+  <%= call_hook(:view_attachments_form_bottom, {}) %>
+  <span class="info">(<%= l(:label_max_size) %>: <%= number_to_human_size(Setting.attachment_max_size.to_i.kilobytes) %>)</span>
+</span>
+
+<% include_attachment_tags %>

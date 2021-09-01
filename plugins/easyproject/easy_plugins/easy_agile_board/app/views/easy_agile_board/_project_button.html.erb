@@ -1,0 +1,3 @@
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_scrum_board), easy_agile_board_path(project), class: 'button-positive icon icon-agile' %>
+<% end if User.current.allowed_to?(:view_easy_scrum_board, project) %>

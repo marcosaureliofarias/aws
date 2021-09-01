@@ -1,0 +1,101 @@
+.legend{
+  margin: 0;
+  padding: $box-padding 0 !important;
+  overflow: hidden;
+  text-align: right;
+  &-label{
+    float: left;
+    font-weight: bold;
+  }
+  &-item{
+    padding: 0 0.5*$gap;
+    &:before{
+      content: "";
+      display: inline-block;
+      width: $gap;
+      height: $gap;
+      border: 1px solid transparent;
+      margin-right: 0.5*$gap;
+    }
+    &.today{
+      &:before {
+        background: $color-calendar-background-today;
+        border-color: darken($color-calendar-background-today, 10%);
+      }
+    }
+    &.weekend{
+      &:before {
+        background: $color-calendar-background-weekend;
+        border-color: darken($color-calendar-background-weekend, 10%);
+      }
+    }
+    &.holiday{
+      &:before {
+        background: $color-calendar-background-holiday;
+        border-color: darken($color-calendar-background-holiday, 10%);
+      }
+    }
+    &.exception{
+      &:before {
+        background: $color-calendar-background-exception;
+        border-color: darken($color-calendar-background-exception, 10%);
+      }
+    }
+  }
+
+
+  .starting,.ending{
+    &:before{
+      margin-right: 0.5*$gap;
+    }
+  }
+  &>span{
+    margin-left: $gap;
+  }
+}
+.starting{
+  $size: 0.5*$gap;
+  &:before{
+    content: "";
+    display: inline-block;
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: 1+$size solid transparent;
+    border-left: $size solid $color-positive;
+  }
+
+}
+.ending{
+  $size: 0.5*$gap;
+  &:before{
+    content: "";
+    display: inline-block;
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: 1+$size solid $color-negative;
+    border-left: $size solid transparent;
+  }
+}
+.starting.ending{
+  $size: 0.5*$gap;
+  &:before{
+    content: "";
+    display: inline-block;
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: 1+$size solid $color-negative;
+    border-left: $size solid $color-positive;
+  }
+  &.approval-status-<%= EasyAttendance::APPROVAL_WAITING %>{
+    &:before{
+      border-left-color: darken($color-border, 10%);
+      border-right-color: darken($color-border, 10%);
+    }
+  }
+  &.approval-status-<%= EasyAttendance::APPROVAL_REJECTED %>,&.approval-status-<%= EasyAttendance::CANCEL_APPROVED %>{
+    &:before{
+      border-left-color: darken($color-border, 50%);
+      border-right-color: darken($color-border, 50%);
+    }
+  }
+}

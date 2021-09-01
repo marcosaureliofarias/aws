@@ -1,0 +1,23 @@
+EASY.schedule.require(function ($, knowledgeUtils) {
+
+  EASY.modalSelector.closeModal();
+  $("#easy_knowledge_toolbar_container .clicker-panel *").click();
+  $("#easy_knowledge_toolbar_list").html("<%=j render(:partial => 'easy_knowledge/easy_knowledge_toolbar_list_item', :collection => [@story], :as => :easy_knowledge_story) %>");
+
+  var key = 'notice'
+  var val = '<%= l(:notice_successful_create) %>'
+  var f = $("<div/>").attr({"class": "flash " + key}).html($("<span/>").text(val));
+  f.append($("<a/>").attr({
+    "class": "icon-close",
+    "href": "javascript:$(this).closest('.flash').fadeOut(500, function(){$(this).remove()})"
+  }))
+  if ($("#content .flash")[0]) {
+    $("#content .flash").replaceWith(f);
+  } else {
+    $("#content").prepend(f);
+  }
+  knowledgeUtils.initDroppable();
+}, 'jQuery', function () {
+  return EASY.knowledge;
+});
+

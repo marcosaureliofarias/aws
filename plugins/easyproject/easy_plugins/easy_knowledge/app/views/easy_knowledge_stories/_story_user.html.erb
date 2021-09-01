@@ -1,0 +1,6 @@
+<%= content_tag :h3, l(:field_description), :class => 'sidebar-style-h3' %>
+<div class="wiki">
+  <%= textilizable(story, :description, {:attachments => story.attachments}) -%>
+</div>
+
+<%= link_to_attachments(story, :thumbnails => true, :enable_toggling => true) -%>

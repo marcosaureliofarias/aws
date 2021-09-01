@@ -1,0 +1,8 @@
+$("#<%= dom_id(@easy_timesheet) -%> tfoot [data-sum-day='<%= @spent_on %>']").html("<%= j easy_format_hours(@tfoot_hours, format: 'short') %>");
+$("#<%= dom_id(@easy_timesheet) -%> tfoot .row-sum.total-sum").html("<%= j easy_format_hours(@easy_timesheet.total, format: 'short') %>");
+var content = "<%=j render('easy_timesheet_rows/row', easy_timesheet: @easy_timesheet, row: @row) -%>";
+$("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %> input:focus")
+$("#<%= dom_id(@easy_timesheet) %> #<%= @row.dom_id %>").replaceWith(content);
+var head = "<%= j format_date @easy_timesheet.start_date %> - <%= j format_date @easy_timesheet.end_date %> (<%= j html_hours(@easy_timesheet.total) -%>)";
+$('span.easy-calendar-title.easy-cal-title').html(head);
+showFlashMessage('notice', '<%=j l(:notice_successful_update) %>').delay(1000).fadeOut();

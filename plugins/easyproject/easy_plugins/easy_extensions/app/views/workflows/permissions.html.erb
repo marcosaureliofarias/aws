@@ -1,0 +1,126 @@
+<%= render :partial => 'action_menu' %>
+
+<%= title l(:label_workflow) %>
+<%= render :partial => 'tabs' %>
+
+<div class="tab-content">
+  <%= render(:partial => 'workflows/workflow_form') %>
+
+  <% if @trackers && @roles && @statuses.any? %>
+    <%= form_tag({}, :id => 'workflow_form', :class => 'form' ) do %>
+      <%= @trackers.map {|tracker| hidden_field_tag 'tracker_id[]', tracker.id, id: nil}.join.html_safe %>
+      <%= @roles.map {|role| hidden_field_tag 'role_id[]', role.id, id: nil }.join.html_safe %>
+      <%= hidden_field_tag 'used_statuses_only', params[:used_statuses_only], id: nil %>
+      <div class="autoscroll autoscroll">
+        <table class="list workflows fields_permissions">
+          <thead>
+            <tr>
+              <th>
+              </th>
+              <th colspan="<%= @statuses.length %>"><%=l(:label_issue_status)%></th>
+            </tr>
+            <tr>
+              <td></td>
+              <% for status in @statuses %>
+                <td style="width:<%= 75 / @statuses.size %>%;">
+                  <%= status.name %>
+                </td>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group open">
+              <td colspan="<%= @statuses.size + 1 %>">
+                <span class="row-control">
+                  <span class="expander" onclick="toggleRowGroup(this);"></span>
+                </span>
+                <%= l(:field_core_fields) %>
+              </td>
+            </tr>
+            <% @fields.each do |field, name| %>
+              <tr>
+                <td class="name">
+                  <%= name %> <%= content_tag('span', '*', :class => 'required') if field_required?(field) %>
+                </td>
+                <% for status in @statuses -%>
+                  <td class="<%= @permissions[status.id][field].try(:join, ' ') %>" title="<%= name %> (<%= status.name %>)">
+                    <% unless status == @statuses.last %>
+                      <span class="input-append">
+                    <% end %>
+                    <%= field_permission_tag(@permissions, status, field, @roles) %>
+                    <% unless status == @statuses.last %>
+                        <a href="#" class="repeat-value">&#187;</a>
+                      </span>
+                    <% end %>
+                  </td>
+                <% end -%>
+              </tr>
+            <% end %>
+            <% if @custom_fields.any? %>
+              <tr class="group open">
+                <td colspan="<%= @statuses.size + 1 %>">
+                  <span class="row-control">
+                    <span class="expander" onclick="toggleRowGroup(this);"></span>
+                  </span>
+                  <%= l(:label_custom_field_plural) %>
+                </td>
+              </tr>
+              <% @custom_fields.each do |field| %>
+                <tr>
+                  <td class="name">
+                    <%= content_tag(:span, h(field.translated_name)) %> <%= content_tag('span', '*', :class => 'required') if field_required?(field) %>
+                  </td>
+                  <% for status in @statuses -%>
+                    <td align="center" class="<%= @permissions[status.id][field.id.to_s].try(:join, ' ') %>" title="<%= field.name %> (<%= status.name %>)">
+                      <% unless status == @statuses.last %>
+                        <span class="input-append">
+                      <% end %>
+                      <%= field_permission_tag(@permissions, status, field, @roles) %>
+                      <% unless status == @statuses.last %>
+                          <a href="#" class="repeat-value">&#187;</a>
+                        </span>
+                      <% end %>
+                    </td>
+                  <% end -%>
+                </tr>
+              <% end %>
+              <script type="text/javascript">
+                EASY.schedule.late(function(){
+                  new easyClasses.EasyTooltip($('.tooltiptext').html(), $('.cf_tooltiped'), 0, -60);
+                }, -5);
+              </script>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-actions">
+      <%= submit_tag l(:button_save), :class => 'button-positive' %>
+      </div>
+
+    <% end %>
+  <% end %>
+
+  <script type="text/javascript">
+    EASY.schedule.late(function(){
+      $("a.repeat-value").click(function(e) {
+        e.preventDefault();
+        var td = $(this).closest('td');
+        var selected = td.find("select").find(":selected").val();
+        td.nextAll('td').find("select").val(selected);
+      });
+
+      $("a[data-expands]").click(function(e) {
+        e.preventDefault();
+        var target = $($(this).attr("data-expands"));
+        if (target.attr("multiple")) {
+          target.attr("multiple", false);
+          target.find("option[value=all]").show();
+        } else {
+          target.attr("multiple", true);
+          target.find("option[value=all]").attr("selected", false).hide();
+        }
+      });
+    });
+  </script>
+</div>
+

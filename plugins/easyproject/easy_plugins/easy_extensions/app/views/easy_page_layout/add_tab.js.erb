@@ -1,0 +1,48 @@
+<% prepare_easy_page_for_render(@tab) %>
+<% page_params = easy_page_context[:page_params] %>
+<% if @tabs.size == 1 %>
+  <% params[:t] = @tab.position %>
+
+  (() => {
+    const firstTab = $("#easy_jquery_tab_panel-0")
+    firstTab.attr("id", "easy_jquery_tab_panel-<%= @tab.id %>")
+    firstTab.prepend("<%=j render('easy_page_tabs/edit') %>")
+  })();
+
+	$('#main').prepend("<%= j render_easy_page_editable_tabs %>");
+	PageLayout.initEditableTabs({activeID: <%= @tab.id %>, elementID: 'main'});
+
+  <% if EasyExtensions.global_filters_enabled %>
+    $(".definition-global-filters").globalFilters("tabIdChanged", 0, <%= @tab.id %>)
+  <% end %>
+
+<% else %>
+  <%
+    content = ''
+    content << render('easy_page_tabs/show_or_edit', local_assigns)
+    content << render('global_filters/show_or_edit', local_assigns)
+    content << render("layouts/#{@layout_style}", local_assigns)
+  %>
+
+	var $zalozka = $("<li></li>",{id:"easy_jquery_tab_<%= @tab.id %>", 'class': 'easy_jquery_tab'})
+	  .html("<%= j render(:partial => 'common/easy_page_editable_tabs_inline_show', :locals => {:tab => @tab, :editable => true, :selected_tab => @tabs.count, :is_preloaded => true}) %>");
+	$('#easy_jquery_tabs_panels').append($("<div></div>", {'class': 'easy_jquery_tab easy_jquery_tab_panel', 'id': 'easy_jquery_tab_panel-<%= @tab.id %>'})
+    .append("<%=j content.html_safe %>"));
+	$('#easy_page_tabs ul').append($zalozka);
+<% end %>
+
+PageLayout.refreshTabs();
+PageLayout.current_tab = <%= @tab.position %>;
+PageLayout.tab_element.easytabs( "select", '#easy_jquery_tab_panel-<%= @tab.id %>' );
+$(function() {
+  <% page_params[:page].zones.each do |page_zone| %>
+    <% zone = page_zone.zone_definition -%>
+    PageLayout.initSortable({
+      tab_id: <%= @tab.id %>,
+      tabPos: <%= (params[:t] || @tab.position).to_i %>,
+      zoneName: "<%= zone.zone_name.dasherize %>",
+      updateUrl: "<%= url_for(page_params[:url_order_module].merge(:zone_id => page_zone.id, :t => params[:t])).html_safe %>"
+    });
+  <% end %>
+  PageLayout.refreshAddModule();
+});

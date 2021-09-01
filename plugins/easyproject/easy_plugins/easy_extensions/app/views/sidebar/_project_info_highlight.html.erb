@@ -1,0 +1,29 @@
+<% if project.module_enabled?(:time_tracking) && User.current.allowed_to?(:view_time_entries, project)
+     estimated_hours = project.sum_of_issues_estimated_hours
+     spent_hours = TimeEntry.sum_total_spent_hours(project)
+     if spent_hours < estimated_hours
+       completion_css_class = " color-positive"
+     elsif spent_hours > estimated_hours
+       completion_css_class = " color-negative"
+     end
+-%>
+  <tr>
+    <td class="bigger<%= completion_css_class if completion_css_class.present? %>">
+      <%= format_locale_number(project.completed_percent_with_easy_extensions(:formula => 'time_spending', :include_subprojects => true), :percentage => true, :precision => 0) -%></td>
+    <th class="highlight-desc">
+      <label><%= l(:by_spent_time, :scope => [:label_project_completion]) %></label>
+    </th>
+  </tr>
+  <tr>
+    <td class="big"><%= easy_format_hours(estimated_hours, :format => 'simple') -%></td>
+    <th class="highlight-desc">
+      <label><%= l(:label_estimated_time_total) %></label>
+    </th>
+  </tr>
+  <tr>
+    <td class="big"><%= easy_format_hours(spent_hours, :format => 'simple') -%></td>
+    <th class="highlight-desc">
+      <label><%= l(:label_overall_spent_time) %></label>
+    </th>
+  </tr>
+<% end -%>

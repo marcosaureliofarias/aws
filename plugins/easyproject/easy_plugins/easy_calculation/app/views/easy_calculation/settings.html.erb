@@ -1,0 +1,19 @@
+<h2><%= l(:project_module_easy_calculation) %></h2>
+<%= form_tag({:action => :save_settings}, :class => 'tabular form-box', :id => 'easy_calculation_settings_form') do %>
+  <fieldset>
+    <legend>
+      <%= link_to_function('', "$(this).closest('fieldset').find('input:checkbox').prop('checked', function(idx, chck) {return !chck;})", :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", :class => 'icon icon-checked') %>
+      <%= l(:label_tracker_plural) %>
+    </legend>
+    <% Tracker.sorted.all.each do |tracker| %>
+      <label class="inline">
+        <%= check_box_tag "calculation_settings[tracker_ids][]", tracker.id, @settings[:tracker_ids] && @settings[:tracker_ids].include?(tracker.id) %>
+        <%= tracker.name %>
+      </label>
+    <% end %>
+    <%= hidden_field_tag "calculation_settings[tracker_ids][]", '' %>
+  </fieldset>
+  <div class="form-actions">
+    <%= submit_tag(l(:button_save), :class => 'button-positive') %>
+  </div>
+<% end -%>

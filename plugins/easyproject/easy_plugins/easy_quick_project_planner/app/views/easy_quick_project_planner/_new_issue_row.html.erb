@@ -1,0 +1,12 @@
+<% if project.available_trackers.any? %>
+  <%= call_hook(:view_quick_project_planner_new_issue_form, { :issue => @issue }) %>
+
+  <% quick_planner_columns.each do |column, field| %>
+    <td class="<%= column.css_classes %>"><%= quick_planner_edit_tag_for_field(field, project, issue) if field && editable_quick_planner_fields.include?(field) %></td>
+  <% end %>
+
+  <td class="easy-additional-ending-buttons">
+    <a id="issue-dialog-button" class="icon icon-tracker"><span class="tooltip"><%= l(:button_quick_planner_more_fields) %></span></a>
+    <a id="create-issue-button" class="icon icon-add"><span class="tooltip"><%= l(:button_create) %></span></a>
+  </td>
+<% end %>

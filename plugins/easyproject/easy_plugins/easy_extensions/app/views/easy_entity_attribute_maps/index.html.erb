@@ -1,0 +1,35 @@
+<% new_easy_entity_attribute_path_with_params = new_easy_entity_attribute_map_path(:entity_from => params[:entity_from], :entity_to => params[:entity_to]) %>
+<%= title(l(:title_easy_entity_attribute_map_entity_a_to_b, :a => @entity_from_name, :b => @entity_to_name)) %>
+<% if params[:url].present? && params[:remote].blank? %>
+  <%= form_tag(params[:url], :method => params[:method] || 'GET', :id => 'entity_map_form') %>
+<% end %>
+
+<% if params[:entity_from].blank? || params[:entity_to].blank? %>
+  <p class="nodata">
+    <%= l(:text_easy_entity_attributue_entity_missing) %>
+  </p>
+<% else %>
+  <div id="easy_entity_attribute_maps_container">
+    <% if @easy_entity_attribute_maps.blank? %>
+      <p class="nodata">
+        <%= l(:label_no_data) %>
+        <%= link_to('', new_easy_entity_attribute_path_with_params, :class => 'icon icon-add', :title => l(:label_new), :remote => true) %>
+      </p>
+    <% end %>
+
+    <table class="list table-striped entity-from-<%= params[:entity_from] %> entity-to-<%= params[:entity_to] %>" id="easy_entity_attribute_maps" style="<%= 'display:none' if @easy_entity_attribute_maps.blank? %>">
+      <thead>
+        <tr>
+          <th><%= @entity_from_name %></th>
+          <th>&nbsp;</th>
+          <th><%= @entity_to_name %></th>
+          <th><%= link_to(l(:label_new), new_easy_entity_attribute_path_with_params, :class => 'icon icon-add', :title => l(:label_new), :remote => true) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render(@easy_entity_attribute_maps) %>
+      </tbody>
+      <tfoot><!-- form will render here --></tfoot>
+    </table>
+  </div>
+<% end %>

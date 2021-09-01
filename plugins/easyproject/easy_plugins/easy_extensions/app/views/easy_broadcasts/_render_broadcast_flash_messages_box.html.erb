@@ -1,0 +1,8 @@
+<% if User.current.logged? || !Setting.login_required? %>
+  <script type="text/javascript">
+    // $(document).ready(function () {
+    //   // This should be part of EasyBackgroundService now
+    //   EasyBroadcasting('<%= active_broadcasts_easy_broadcasts_path(format: 'json') %>', '<%= mark_as_read_easy_broadcasts_path(format: 'json') %>');
+    // });
+  </script>
+<% end %>

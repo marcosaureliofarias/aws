@@ -1,0 +1,12 @@
+User-agent: Googlebot
+Disallow: /
+Allow: /*.ics
+
+User-agent: *
+Disallow: /
+Allow: /issues.ics
+<% @projects.each do |p| -%>
+Allow: /projects/<%= p.to_param %>/issues.ics
+<% end -%>
+
+<%= call_hook(:robots_bottom, request: request) %>

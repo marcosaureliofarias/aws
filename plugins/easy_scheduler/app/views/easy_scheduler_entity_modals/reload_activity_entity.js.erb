@@ -1,0 +1,6 @@
+<%
+locals = { type: params[:entity_type] || 'EasyCrmCase', entity: nil, editable: true }
+output = render partial: 'easy_entity_activity_entity', locals: locals
+output += call_hook :view_easy_scheduler_activity_entity_id_bottom, locals
+-%>
+$('.easy-scheduler-activity-entity-id').html("<%= j(output)%>");

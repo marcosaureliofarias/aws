@@ -1,0 +1,14 @@
+<%= title l(:heading_test_case_issue_execution_edit) %>
+
+<%= form_for([@project, @test_case_issue_execution], html: {multipart: true, id: 'test_case_issue_execution_form', class: 'tabular'}) do |f| %>
+  <%= error_messages_for @test_case_issue_execution %>
+
+  <div class="box">
+    <%= render partial: 'form', locals: {test_case_issue_execution: @test_case_issue_execution} %>
+  </div>
+
+<% end %>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'test_case_issue_executions/sidebar' %>
+<% end %>

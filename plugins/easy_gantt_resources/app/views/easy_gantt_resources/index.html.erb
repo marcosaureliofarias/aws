@@ -1,0 +1,19 @@
+<%= render 'index', query: @query, project: @project, show_query: true %>
+
+<script type="application/javascript">
+  EASY.schedule.main(function () {
+    // Query patch
+    // Period filter must be range
+    window._buildFilterRow = buildFilterRow;
+    window.buildFilterRow = function(field, operator, values){
+      _buildFilterRow(field, operator, values);
+      if (field === "period") {
+        var operatorOptions = $("#tr_period td.operator select option");
+        var validOperators = <%= EasyResourceQuery::VALID_PERIOD_OPERATORS.to_s.html_safe %>;
+        operatorOptions.filter(function(i) {
+          return validOperators.indexOf(this.value) < 0
+        }).remove();
+      }
+    }
+  });
+</script>

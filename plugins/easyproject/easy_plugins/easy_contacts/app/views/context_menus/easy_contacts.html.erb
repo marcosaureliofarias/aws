@@ -1,0 +1,49 @@
+<ul>
+  <%= content_tag :li, context_menu_link(l(:button_edit), bulk_edit_easy_contacts_path(:ids => params[:ids], :back_url => back_url),
+    :class => 'icon icon-edit', disabled: !@can[:edit]
+  ) if @easy_contacts -%>
+  <%= content_tag :li, easy_contacts_send_mail_link if User.current.allowed_to_globally?({:controller => 'easy_contacts', :action => 'send_contact_by_mail'}, {}) -%>
+
+  <% if @easy_contacts.size > 1 && User.current.allowed_to_globally?({:controller => 'easy_contacts', :action => 'merge'}, {}) -%>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-integrate">
+        <%= easy_autocomplete_tag(
+          'easy_contact[merge_to_id]',
+          { name: l(:button_merge_to), id: nil },
+          @easy_contacts.map { |a| { label: a.name,
+            id: link_to(a.name, merge_easy_contacts_path(:ids => @easy_contact_ids, :back_url => @back, :easy_contact => {:merge_to_id => a.id}), method: 'post')
+            } },
+          html_options: {
+            id: "merge_to_context_menu_easy_contact",
+            placeholder: l(:button_merge_to)
+          },
+          easy_autocomplete_options: {
+            activate_on_input_click: 'true'
+          },
+          onchange: "
+          if(!event.toElement || !($(event.toElement).find('a').length > 0)) {
+            return;
+          };
+          $(event.toElement).find('a')[0].click();
+          ",
+          render_item: '
+            function (ul, item) {
+              return $("<li>")
+              .data("item.autocomplete", item)
+              .append(item.id)
+              .appendTo(ul);
+            }'
+        ) %>
+      </a>
+    </li>
+  <% end -%>
+
+  <%= content_tag :li, easy_contacts_assign_contacts_to_projects_link if User.current.allowed_to_globally?({:controller => 'easy_contacts', :action => 'assign_entities'}, {})  -%>
+  <%= content_tag :li, easy_contacts_assign_contacts_to_group_link if User.current.allowed_to_globally?({:controller => 'easy_contacts', :action => 'assign_entities'}, {})  -%>
+  <%= content_tag :li, link_to(l(:field_anonymize), bulk_anonymize_easy_contacts_path(ids: params[:ids], back_url: easy_contacts_path), method: :post, data: {confirm: l(:text_are_you_sure)}, class: 'icon icon-lock') if User.current.allowed_to_globally?(:anonymize_easy_contacts) -%>
+  <%= content_tag :li, link_to(l(:button_assign_to_me), assign_entities_easy_contacts_path(:ids => params[:ids], :entity_type => 'User', :entity_ids => [User.current.id], :back_url => easy_contacts_path, :project_id => @project), :method => :post, :class => 'icon icon-star') -%>
+  <%= content_tag :li, link_to(l(:button_remove_from_me), remove_from_entity_easy_contacts_path(ids: params[:ids], entity_type: 'User', entity_id: User.current.id, back_url: easy_contacts_path, project_id: @project), method: :delete, class: 'icon-fav-off') %>
+  <%= content_tag :li, easy_contacts_reference_link({:class => 'icon icon-link'}) -%>
+  <%= content_tag :li, link_to_function( l('easy_contact_action.destroy'), "if (confirm('#{j l(:text_are_you_sure_easy_contact_destroy)}')) {EASY.utils.submitForm('easy-query-list-easy-contact','#{j url_for(:controller => :easy_contacts, :action => :destroy_items, :project_id => @project, :back_url => back_url)}') }", :class => 'icon icon-del', disabled: !@can[:delete]) -%>
+  <%= call_hook(:view_easy_contacts_context_menu_end, {easy_contacts: @easy_contacts, back: @back, ids: @easy_contact_ids}) %>
+</ul>

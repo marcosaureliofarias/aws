@@ -1,0 +1,42 @@
+<%= title l('internal_server_error.title') %>
+<%= content_tag :div, l('internal_server_error.description'), class: 'error_description' %>
+<div class="standart-user">
+  <h3><%= l('internal_server_error.label_standart_user') %></h3>
+  <p><%= l('internal_server_error.label_standart_user_instruction') %></p>
+  <p>
+    <button onclick="history.go(-1);" class="button-positive"><%= l('internal_server_error.label_get_back_to_work') %></button>
+  </p>
+</div>
+<hr>
+<div class="server-admin-user">
+  <div id="instruction">
+    <h3><%= l('internal_server_error.label_server_admin') %></h3>
+    <p><%= l('internal_server_error.label_server_admin_workaround', knowledge_link: link_to(l('internal_server_error.knowledge_link_label'), l('internal_server_error.knowledge_link_url'))).html_safe %></p>
+    <p><%= l('internal_server_error.label_server_admin_instruction', support_email: mail_to(l('internal_server_error.email_link_label'), l('internal_server_error.email_link_url'))).html_safe %></p>
+  </div>
+  <% if ActionMailer::Base.perform_deliveries %>
+    <%= link_to_function l('internal_server_error.button_send_error_dialog'), 'toggleDiv("instruction");toggleDiv("message-box")', class: 'button' %>
+    <div id="message-box" style="display: none">
+      <%= form_tag send_internal_error_email_path do %>
+        <p>
+          <%= l(:field_description) %>
+          <%= text_area_tag :message, l('internal_server_error.message_placeholder'), size: '56x12' %>
+          <%= hidden_field_tag :filename, @filename %>
+          <%= hidden_field_tag :cache_key, @cache_key %>
+        </p>
+        <%= submit_tag l(:label_report_error) %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= button_to l('internal_server_error.button_download_error_details'), download_error_path, method: :post, params: {filename: @filename}, class: 'button error_details'%>
+</div>
+<div class="error-footer">
+  <%= l('internal_server_error.footer') %>
+</div>
+
+<script type="application/javascript">
+  function toggleDiv(id) {
+    var div = document.getElementById(id);
+    div.style.display = div.style.display == "none" ? "block" : "none";
+  }
+</script>

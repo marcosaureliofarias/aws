@@ -1,0 +1,16 @@
+<%= title l('easy_service_manager.service_manager') %>
+
+<table class="attributes">
+  <tr>
+    <th><%= l('easy_service_manager.valid_for') %></th>
+    <td><%= @service.valid_for %> <%= l('easy_service_manager.minutes') %></td>
+  </tr>
+  <tr>
+    <th><%= l('easy_service_manager.token') %></th>
+    <td><textarea rows="5"><%= @token %></textarea></td>
+  </tr>
+</table>
+
+<div class="form-actions">
+  <%= link_to l(:label_new), easy_service_manager_master_path, class: 'button' %>
+</div>

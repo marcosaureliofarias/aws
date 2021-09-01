@@ -1,0 +1,91 @@
+<%
+  modul_uniq_id ||= ''
+  options ||= Hash.new
+  modal_selector = (options[:modal_selector].to_s == 'true')
+%>
+<div class="autoscroll">
+  <%= form_tag do %>
+  <table id="projects_table" class="list projects" data-hascontextmenu="true">
+    <thead>
+      <tr>
+        <th class="hidden hide-when-print"> <!--Hidden th for ids checkbox --> </th>
+        <% query.inline_columns.each do |column| %>
+          <%= easy_query_column_header(query, column) if !in_mobile_view? || column.name == :name %>
+        <% end %>
+        <th class="hide-when-print"></th>
+      </tr>
+      <% easy_query_first_sumable_index = -1 %>
+      <% if query.show_sum_row? && query.inline_columns.detect{|i| easy_query_first_sumable_index += 1; i.sumable? } %>
+        <% easy_query_first_sumable_index = 1 if easy_query_first_sumable_index < 1
+           sumable_colspan = easy_query_first_sumable_index
+        %>
+        <tr id="totalsum-summary">
+          <td id="summary-table-bottom-first-cell" colspan="<%= sumable_colspan %>">
+            <div id="totalsum-description">
+              <%= options[:label_sumable_header_total] || l(:label_total_total) %>
+            </div>
+          </td>
+          <%= content_tag(:td, nil, class: 'hide-when-print') if options[:hascontextmenu].to_s == 'true' %>
+          <% query.inline_columns[(easy_query_first_sumable_index)..(query.inline_columns.size - 1)].each do |column| %>
+
+            <% if column.sumable_header? %>
+              <%= content_tag :td, format_html_entity_attribute(query.entity, column, query.entity_sum(column, entities: projects), project: query.project).html_safe, class: column.css_classes %>
+            <% else %>
+              <%= content_tag :td %>
+            <% end %>
+          <% end %>
+          <td class="hide-when-print"></td>
+        </tr>
+      <% end %>
+    </thead>
+
+    <tbody>
+      <% uniq_prefix = "#{controller_name}_#{action_name}_#{modul_uniq_id}" %>
+      <% projects.each_with_index do |project, i| %>
+        <% uniq_id = uniq_prefix + "project-#{project.id}" %>
+        <tr id="<%= uniq_id %>"
+            class=" hascontextmenu
+              <%= project.css_project_classes(uniq_prefix, level: project.easy_level, inline_editable: !modal_selector) %>
+              <%= easy_query_custom_formatting_css(query, project) if EasySetting.value('show_easy_custom_formatting') %>"
+            data-url="<%= project_path(project, format: 'json') %>" data-level="<%= project.easy_level %>">
+          <%# hidden because bulk actions do not use non admins %>
+          <%= content_tag :td, check_box_tag('ids[]', project.id), class: 'checkbox hidden' %>
+          <% query.inline_columns.each_with_index do |column, index| %>
+            <% next if in_mobile_view? && column.name != :name %>
+            <td class="<%= column.css_classes %> <%= 'has-expander' if !project.leaf? && column.name == :name %>">
+              <% if column.name == :name %>
+                <div class="row-control">
+                <% if project.has_visible_children? && !project.leaf? %>
+                  <%= project_parent_plus_button(project.id, uniq_prefix) %>
+                <% else %>
+                  <span class="expander-placeholder icon icon-project"></span>
+                <% end %>
+                </div>
+              <% end %>
+              <%= format_html_entity_attribute(project.class, column, column.value(project, {params: params}), entity: project, inline_editable: !modal_selector) %>
+            </td>
+          <% end %>
+          <% buttons = easy_query_additional_ending_buttons(query, project, options) %>
+          <td class="easy-query-additional-ending-buttons hide-when-print">
+            <div class="ending-buttons-fixed <%= 'hidden' if buttons.blank? %> <%= 'u__opacity--1' if project.favorited %>">
+              <%= buttons %>
+            </div>
+          </td>
+        </tr>
+        <% query.block_columns.each do |column|
+          if (text = format_html_entity_attribute(project.class, column, column.value(project, {params: params}), {entity: project})) && text.present? %>
+            <tr class="<%= current_cycle %>">
+              <% if modal_selector || options[:hascontextmenu].to_s == 'true' %>
+                <td class="hide-when-print"></td>
+              <% end %>
+              <td colspan="<%= ((query.full_rows_columns? ? ((query.inline_columns.size / query.full_rows_columns.size) - 1) : query.inline_columns.size)).to_i + 1 %>" class="<%= column.css_classes %>"><%= text %></td>
+            </tr>
+          <% end %>
+        <% end #block columns %>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>
+<%= context_menu(context_menus_projects_path(back_url: projects_path), '#projects_table') %>
+

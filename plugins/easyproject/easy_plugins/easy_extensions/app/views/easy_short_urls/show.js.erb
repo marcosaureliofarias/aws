@@ -1,0 +1,11 @@
+$("#ajax-modal").html("<%=j render(:template => 'easy_short_urls/show', :formats => [:html]) %>");
+showModal('ajax-modal', '70%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    }
+  ],
+  title: '<%= j(l(:heading_easy_short_urls_show)) %>'
+});

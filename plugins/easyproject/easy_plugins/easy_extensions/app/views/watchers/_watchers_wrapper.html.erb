@@ -1,0 +1,6 @@
+
+<% if defined?(watched) && !watched.nil? %>
+  <div id="watchers">
+    <%= render :partial => 'watchers/watchers_list', :locals => {:watched => watched} %>
+  </div>
+<% end %>

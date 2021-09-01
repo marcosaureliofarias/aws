@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  function toggleSenderMail(mailboxType) {
+    var field = $("#easy_rake_task_settings_" + mailboxType + "_sender_mail");
+    field.closest('.easy_rake_task_header_sender_container').toggle();
+    field.attr({disabled: !field.prop('disabled')}).focus();
+  }
+  function toggleVerifyCert(mailboxType) {
+    var field = $("#easy_rake_task_settings_" + mailboxType + "_dont_verify_server_cert");
+    field.closest('.easy_rake_task_header_cert_container').toggle();
+  }
+</script>
+<p>
+  <%= hidden_field_tag('easy_rake_task[settings][skip_ignored_emails_headers_check]', '0', :class => 'skip_ignored_emails_headers_check', :id => nil) %>
+  <% box = check_box_tag('easy_rake_task[settings][skip_ignored_emails_headers_check]', '1', task.settings['skip_ignored_emails_headers_check'] == '1') %>
+  <%= label_tag('easy_rake_task[settings][skip_ignored_emails_headers_check]', box + l(:'label_easy_helpdesk_skip_ignored_emails_headers_check'), :class => 'checkbox inline') %>
+</p>
+<p>
+  <% radio = radio_button_tag('easy_rake_task[settings][connection_type]', 'imap', task.settings['connection_type'] == 'imap', :id => 'settings_connection_type_imap', :onchange => "$('#settings_pop3').hide();$('#settings_imap').show();$(document).trigger('erui_interface_change_vertical');") %>
+  <%= label_tag 'settings_connection_type_imap', radio + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.imap.label'), :class => 'radio inline' %>
+  <% radio = radio_button_tag('easy_rake_task[settings][connection_type]', 'pop3', task.settings['connection_type'] == 'pop3', :id => 'settings_connection_type_pop3', :onchange => "$('#settings_pop3').show();$('#settings_imap').hide();$(document).trigger('erui_interface_change_vertical');") %>
+  <%= label_tag 'settings_connection_type_pop3', radio + l(:'easy_rake_tasks.easy_rake_task_easy_helpdesk_receive_mail.settings.pop3.label'), :class => 'radio inline' %>
+</p>
+
+<%= call_hook :view_easy_rake_tasks_receive_mail_before_type_settings, :task => task %>
+
+<div id="settings_imap" style="<%= 'display:none' if task.settings['connection_type'] != 'imap' -%>">
+  <%= render :partial => 'easy_rake_tasks/settings/imap', :locals => {:task => task} %>
+</div>
+
+<div id="settings_pop3" style="<%= 'display:none' if task.settings['connection_type'] != 'pop3' -%>">
+  <%= render :partial => 'easy_rake_tasks/settings/pop3', :locals => {:task => task} %>
+</div>

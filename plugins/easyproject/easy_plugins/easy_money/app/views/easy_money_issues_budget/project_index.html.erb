@@ -1,0 +1,7 @@
+<% content_for :easy_page_layout_service_box do %>
+  <%= render 'sidebar/saved_easyqueries_by_type', query_class: @query.class, project: @project -%>
+<% end %>
+
+<% view_options = {:go_to_url => {:controller => 'issues', :action => 'show'}, :render_query_tooltip_box => true} %>
+
+<%= render @query, :easy_query_name => project_heading(@project, l(:label_issue_index)), :options => view_options, :form_options => {:free_search_options => {:free_search_after_done => "EASY.utils.initProjectEdit();initEasyAutocomplete();", :free_search_additional_parameters => view_options}} %>

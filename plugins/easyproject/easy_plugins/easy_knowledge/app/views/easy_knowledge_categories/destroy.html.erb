@@ -1,0 +1,47 @@
+<%= content_tag(:h2, l(:title_easy_knowledge_category_destroy)) %>
+<p>
+  <%= content_tag(:strong, l(:text_easy_knowledge_category_destroy  , :count => @category.easy_knowledge_stories.count)) %>
+</p>
+<p>
+  <%= l(:text_easy_knowledge_category_destroy_hint) %>
+</p>
+<%= form_tag({:action => 'destroy', :confirmed => true, :id => @category}, {:id => 'easy_knowledge_category_destroy_confirm_form', :method => 'delete'}) do %>
+  <div class="box tabular">
+    <% if @category.stories_editable? %>
+     <p>
+        <%= radio_button_tag(:destroy_option, :all) %>
+        <%= label_tag(:destroy_option_all, l(:label_easy_knowledge_destroy_all), :class => 'inline') %>
+        <%= content_tag(:span, l(:text_easy_knowledge_category_destroy_hint_all), :class => 'hint change-dependent', :style => 'display:none') %>
+     </p>
+     <p>
+        <%= radio_button_tag(:destroy_option, :orphan, true, :data => {:change => "$(this).parent().find('.hint').toggle()"}) %>
+        <%= label_tag(:destroy_option_orphan, l(:label_easy_knowledge_destroy_orphan), :class => 'inline') %>
+     </p>
+     <p>
+        <%= radio_button_tag(:destroy_option, :move, false, :data => {:change => "$(this).parent().find('select, .hint').toggle()"}) %>
+        <%= label_tag(:destroy_option_move, l(:label_easy_knowledge_destroy_move), :class => 'inline') %>
+        <%= select_tag(:move_to, grouped_options_for_select(get_grouped_categories),{ :include_blank => true, :style => 'display:none', :class => 'change-dependent'} ) %>
+        <%= content_tag(:span, l(:text_easy_knowledge_category_destroy_hint_move), :class => 'hint change-dependent', :style => 'display:none') %>
+     </p>
+    <% end %>
+     <p>
+        <%= radio_button_tag(:destroy_option, :none, false, :data => {:change => "$(this).parent().find('.hint').toggle()"}) %>
+        <%= label_tag(:destroy_option_none, l(:label_easy_knowledge_destroy_none), :class => 'inline') %>
+        <%= content_tag(:span, l(:text_easy_knowledge_category_destroy_hint_none), :class => 'hint change-dependent', :style => 'display:none') %>
+     </p>
+  </div>
+  <p class="buttons">
+    <%= submit_tag(l(:button_submit), :class => 'button-positive') %>
+    <%= button_tag(l(:button_cancel), :type => 'button', :class => 'button', :onclick => 'EASY.modalSelector.closeModal()') %>
+  </p>
+<% end -%>
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $("#easy_knowledge_category_destroy_confirm_form input:radio").change(function(e) {
+      $("#easy_knowledge_category_destroy_confirm_form .change-dependent").hide();
+      if ($(e.target).data().change) {
+        eval($(e.target).data().change);
+      }
+    })
+  });
+</script>

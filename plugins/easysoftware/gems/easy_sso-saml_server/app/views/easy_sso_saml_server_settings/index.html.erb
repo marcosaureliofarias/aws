@@ -1,0 +1,80 @@
+<%= easy_breadcrumb([
+                        link_to(l(:heading_easy_sso, scope: :easy_sso),
+                                easy_sso_path,
+                                title: l(:heading_easy_sso, scope: :easy_sso)),
+                        link_to(l(:heading_settings, scope: :easy_sso_saml_server),
+                                easy_sso_saml_server_settings_path,
+                                title: l(:heading_settings, scope: :easy_sso_saml_server))
+                    ]) %>
+
+<%= title(l(:heading_settings, scope: :easy_sso_saml_server)) %>
+
+<%= form_for @saml_settings, url: easy_sso_saml_server_settings_path do |f| %>
+  <%= hidden_field_tag('back_url', params[:back_url]) %>
+  <div class="box tabular">
+    <fieldset>
+      <legend><%= l(:label_ids_settings, scope: :easy_sso_saml_server) %></legend>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_server_x509_certificate]',
+                      l(:label_x509_certificate, scope: :easy_sso_saml_server), class: 'required' %>
+        <%= text_area_tag 'easy_setting[easy_sso_saml_server_x509_certificate]',
+                          EasySso::SamlServer::Settings.x509_certificate, size: "50x10" %>
+        <em class="help"><%= l(:text_x509_certificate, scope: :easy_sso_saml_server) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_server_secret_key]',
+                      l(:label_secret_key, scope: :easy_sso_saml_server), class: 'required' %>
+        <%= text_area_tag 'easy_setting[easy_sso_saml_server_secret_key]',
+                          EasySso::SamlServer::Settings.secret_key, size: "50x10" %>
+        <em class="help"><%= l(:text_secret_key, scope: :easy_sso_saml_server) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_server_password]',
+                      l(:label_password, scope: :easy_sso_saml_server) %>
+        <%= text_field_tag 'easy_setting[easy_sso_saml_server_password]',
+                           EasySso::SamlServer::Settings.password %>
+        <em class="help"><%= l(:text_password, scope: :easy_sso_saml_server) %></em>
+      </p>
+      <p>
+        <%= label_tag 'easy_setting[easy_sso_saml_server_algorithm]',
+                      l(:label_algorithm, scope: :easy_sso_saml_server) %>
+        <%= text_field_tag 'easy_setting[easy_sso_saml_server_algorithm]',
+                           EasySso::SamlServer::Settings.algorithm %>
+        <em class="help"><%= l(:text_algorithm, scope: :easy_sso_saml_server) %></em>
+      </p>
+    </fieldset>
+    <fieldset>
+      <legend><%= l(:label_my_settings, scope: :easy_sso_saml_server) %></legend>
+      <em><%= l(:text_my_settings, scope: :easy_sso_saml_server) %></em>
+      <p>
+        <%= label_tag 'login_url', l(:label_login_url, scope: :easy_sso_saml_server) %>
+        <%= text_field_tag 'login_url', EasySso::SamlServer::Settings.login_url %>
+      </p>
+      <p>
+        <%= label_tag 'metadata_url', l(:label_metadata_url, scope: :easy_sso_saml_server) %>
+        <%= text_field_tag 'metadata_url', EasySso::SamlServer::Settings.metadata_url %>
+      </p>
+      <p>
+        <%= label_tag 'issuer', l(:label_issuer, scope: :easy_sso_saml_server) %>
+        <%= text_field_tag 'issuer', EasySso::SamlServer::Settings.issuer %>
+      </p>
+    </fieldset>
+    <fieldset>
+      <legend><%= l(:heading_service_providers, scope: :easy_sso_saml_server) %>
+        <%= link_to_add_association l(:button_add_sp, scope: :easy_sso_saml_server), f, :service_providers,
+                                    force_non_association_create:        true,
+                                    'data-association-insertion-method': 'after',
+                                    class:                               'icon icon-add' %></legend>
+
+      <%= f.fields_for :service_providers do |form_service_provider| %>
+        <%= render partial: 'easy_sso_saml_server_settings/service_provider_fields', locals: { f: form_service_provider } %>
+      <% end %>
+    </fieldset>
+  </div>
+  <p class="buttons">
+    <%= submit_tag l(:button_update), class: 'button-positive' %>
+  </p>
+<% end %>
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+<% end %>

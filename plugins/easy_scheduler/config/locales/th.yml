@@ -1,0 +1,101 @@
+---
+th:
+  easy_pages:
+    modules:
+      scheduler: Easy Scheduler
+  easy_query:
+    name:
+      easy_scheduler_easy_query: Easy Scheduler
+  easy_scheduler:
+    button_save_with_meeting: บันทึกด้วยการประชุม
+    drag_to_create: ลากเพื่อสร้าง
+    drag_to_move: ลากเพื่อย้าย
+    error_in_the_past: ไม่สามารถวางแผนการจัดสรรในอดีตได้
+    error_invalid_date: วันที่ไม่ถูกต้อง
+    error_invalid_due_date: วันที่ครบกำหนดไม่ถูกต้อง
+    error_invalid_estimated_hours: ชั่วโมงโดยประมาณไม่ถูกต้อง
+    error_invalid_start_date: วันที่เริ่มต้นไม่ถูกต้อง
+    error_issue_is_required: จำเป็นต้องมีภารกิจ
+    error_not_in_filtered: ไม่พบภารกิจในข้อมูลที่กรอง
+    error_out_of_task_limits: การจัดสรรมีการวางแผนนอกระยะเวลาของภารกิจ
+    error_permission_delete_missing: คุณไม่มีสิทธิ์ลบเหตุการณ์ในปฏิทินนี้
+    errors:
+      no_rest_api: Easy Scheduler ต้องการเปิดใช้งาน REST API เปิดใช้งานใน จัดการ ->
+        ตั้งค่า -> API -> เปิดใช้งานบริการเว็บ REST
+    label_add_and_close: เพิ่มและปิด
+    label_add_comment: เพิ่มความคิดเห็น
+    label_add_external_calendar: เพิ่มปฏิทินภายนอก
+    label_agenda: ระเบียบวาระการประชุม
+    label_allocation: การจัดสรร
+    label_allocation_plulal: การจัดสรร
+    label_attendance: การเข้าร่วม
+    label_calendar_display_range: แสดงช่วง
+    label_calendar_url: ปฏิทิน url
+    label_calendar_url_name: ชื่อปฏิทิน
+    label_calendar_url_settings: ติดตามไปยังปฏิทิน
+    label_choose_query: เลือกประเภทเอนทิตี้
+    label_copy_calendar_to_clipboard: คัดลอก url ปฏิทิน
+    label_day_singular: วัน
+    label_delete_further: ลบการจัดสรรเพิ่มเติม
+    label_end: สิ้นสุด
+    label_from_working_calendar: จากปฏิทินการทำงาน
+    label_fullscreen: เต็มจอ
+    label_go_to_entity: แสดงรายละเอียด
+    label_good_allocation: การจัดสรรที่ดี
+    label_hide_tasks: ซ่อน
+    label_holiday: วันหยุด
+    label_ical_event: เหตุการณ์ Ical
+    label_issue: ภารกิจ
+    label_make_room: ทำห้องสำหรับจัดกิจกรรม
+    label_manager_view: ผู้จัดการ
+    label_manual: ด้วยตัวเอง
+    label_meeting: การประชุม
+    label_meeting_plural: การประชุม
+    label_new: ใหม่
+    label_new_allocation: การจัดสรร
+    label_new_attendance: การเข้าร่วม
+    label_new_sales_activity: กิจกรรมการขาย
+    label_overallocation: มากกว่าการจัดสรร
+    label_personal_view: ส่วนบุคคล
+    label_sales_activity: กิจกรรมการขาย
+    label_sales_activity_plural: กิจกรรมการขาย
+    label_save_and_close: บันทึกและปิด
+    label_save_comment: บันทึกความคิดเห็น
+    label_save_current_filters: บันทึกตัวกรองปัจจุบัน
+    label_save_filter: บันทึกตัวกรอง
+    label_scheduler_type: ประเภทกำหนดการ
+    label_settings: ตั้งค่า
+    label_show: แสดง
+    label_show_negative_allocations: แสดงการจัดสรรเชิงลบ
+    label_show_tasks: แสดงภารกิจ
+    label_show_weekends: แสดงวันหยุดสุดสัปดาห์
+    label_start: เริ่มต้น
+    label_tab_attachments: ไฟล์แนบ
+    label_tab_comments: ความคิดเห็น
+    label_tab_description: รายละเอียด
+    label_tab_details: รายละเอียด
+    label_tasks_title: ภารกิจ
+    label_tasks_toggle: แสดงภารกิจ
+    label_tasks_toggle_calendar: ปฏิทิน
+    label_tasks_toggle_plan: แผนงาน
+    label_tasks_toggle_tasks: ภารกิจ
+    label_underallocation: ภายใต้การจัดสรร
+    label_users: ผู้ใช้
+    label_users_and_groups: ผู้ใช้และกลุ่ม
+    label_weekends: วันหยุดสุดสัปดาห์
+    notice_allocation_last_save_at: บันทึกล่าสุดเมื่อ%{save_at}
+    notice_everything_saved: บันทึกทุกอย่างแล้ว
+    notice_issue_successfully_created: สร้างภารกิจ %{issue_subject} สำเร็จ
+    notice_notifications_sent: ส่งการแจ้งเตือนแล้ว
+    notice_successful_update: อัพเดตสำเร็จ
+    sales_activity_warning: กิจกรรมนี้ได้รับการบันทึกแล้ว หากคุณบันทึกอีกครั้งจะเป็นการสร้างอีกครั้ง
+      เพียงเติมการประชุมและคลิกบันทึกบนแท็บการประชุม
+    title_remaining_time: เวลาที่เหลือ {{rest}} = เวลาโดยประมาณ {{estimated}} - (เวลาที่ใช้ไป
+      {{spent}} + ชั่วโมงที่กำหนดไว้แล้ว {{allocated}})
+  permission_edit_easy_gantt: แก้ไข Easy Gantt และตัวจัดการกำหนดการในโครงการ
+  permission_edit_global_easy_gantt: แก้ไข global Gantt และตัวจัดการกำหนดการ
+  permission_edit_personal_easy_gantt: แก้ไข Easy Gantt และตัวจัดการกำหนดการส่วนตัว
+  permission_view_easy_gantt: ดู Easy Gantt และตัวจัดการกำหนดการในโครงการ
+  permission_view_global_easy_gantt: ดู global Gantt และตัวจัดการกำหนดการ
+  permission_view_personal_easy_gantt: ดู Easy Gantt และตัวจัดการกำหนดการส่วนตัว
+  project_module_easy_gantt: Easy Gantt & การจัดการทรัพยากร & กำหนดการ

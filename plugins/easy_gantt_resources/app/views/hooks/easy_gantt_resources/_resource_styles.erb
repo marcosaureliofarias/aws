@@ -1,0 +1,31 @@
+<script type="text/javascript">
+  window.ysy = window.ysy || {};
+  ysy.settings = ysy.settings || {};
+  EasyGem.extend(true, ysy.settings, {
+    styles: {
+      resource: {
+        wrong: "#ff0000",
+        fixed: "#bb00bb",
+        normal: "#484848",
+        fontBold: "bold 12px Courier",
+        fontNormal: "12px Courier",
+        fontSizeSmall: "9px",
+
+        noAllocations: "#f2f2f2",
+        someAllocations: "#ffffdd",
+        fullAllocations: "#beece1",
+        overAllocations: "#ffcdd6"
+      }
+    }
+  });
+  EASY.schedule.late(() => {
+  const styles = ysy.settings.styles.resource;
+  styles.someAllocations = EASY.getSassData("resource-color-some-allocations", styles.someAllocations , false);
+  styles.overAllocations = EASY.getSassData("resource-color-over-allocations", styles.overAllocations , false);
+  styles.noAllocations = EASY.getSassData("resource-color-no-allocations", styles.noAllocations , false);
+  styles.fullAllocations = EASY.getSassData("resource-color-full-allocations", styles.fullAllocations , false);
+  styles.wrong = EASY.getSassData("resource-color-text-over-allocations", styles.wrong , false);
+  styles.normal = EASY.getSassData("resource-color-text", styles.normal , false);
+  //styles.fixed = EASY.getSassData("resource-color-text-fixed", styles.fixed , false);
+  });
+</script>

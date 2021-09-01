@@ -1,0 +1,15 @@
+<%= easy_breadcrumb([
+                        link_to(l(:heading_easy_action_sequence_templates, scope: :easy_actions),
+                                easy_action_sequence_templates_path,
+                                title: l(:heading_easy_action_sequence_templates, scope: :easy_actions)),
+                        link_to(@entity.name,
+                                easy_action_sequence_template_path(@entity),
+                                title: @entity.name),
+                        link_to(l(:button_edit),
+                                edit_easy_action_sequence_template_path(@entity),
+                                title: l(:button_edit))
+                    ]) %>
+
+<%= title(l(:heading_edit_easy_action_sequence_template, scope: :easy_actions)) unless request.xhr? %>
+
+<%= render template: 'easy/redmine/basic/edit', formats: [:html] %>

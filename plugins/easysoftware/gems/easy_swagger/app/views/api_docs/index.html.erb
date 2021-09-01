@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+  <title><%= EasyExtensions::EasyProjectSettings.app_name %> API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag 'easy_swagger/application' %>
+  <%= javascript_include_tag 'easy_swagger/jquery-3.5.1-ui-1.12.1-ujs-5.2.4.5' %>
+  <%= javascript_include_tag 'easy_swagger/application' %>
+  <script type="text/javascript">
+    $(function () {
+      window.swaggerUi = SwaggerUIBundle({
+        url: "<%= easy_swagger_url format: "json" %>",
+        dom_id: '#swagger-ui-container',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      });
+    });
+  </script>
+</head>
+<body>
+<div class="swagger-ui">
+  <div class="information-container wrapper">
+    <div class="block col-12">
+      <p><%= I18n.t :label_api_access_key %>&nbsp;<code><%= User.current.api_key %></code></p>
+    </div>
+  </div>
+</div>
+<div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+<p style="text-align: right">
+  <b>v3.38.0</b>&nbsp;(https://github.com/swagger-api/swagger-ui/releases/tag/v3.38.0)
+</p>
+</body>
+
+</html>

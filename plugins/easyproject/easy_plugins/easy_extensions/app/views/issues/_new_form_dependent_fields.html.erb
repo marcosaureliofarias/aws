@@ -1,0 +1,37 @@
+<% project = (@project || @issue.project) %>
+<% issue ||= @issue; object_name ||= 'issue'; %>
+
+<div class="splitcontent" id="issue_updatable_fields">
+  <div class="splitcontentleft size-6">
+    <div class="tabular box">
+      <div id="attributes" class="attributes">
+          <%= render :partial => 'issues/new_form_updatable_attributes', :locals => {:priorities => @priorities, :allowed_statuses => @allowed_statuses, :issue => @issue, :project => project, :default_button_state => true} %>
+      </div>
+    </div>
+    <% unless in_mobile_view? %>
+      <%= render :partial => 'issues/easy_distributed_tasks', :locals => {:issue => @issue, :project => project} %>
+      <%= call_hook(:view_issue_new_form_atachments_after, {:issue => @issue, :project => project}) %>
+    <% end -%>
+
+    <div id="custom_fields_container">
+      <%= render :partial => 'issues/new_form_custom_fields', :locals => {:issue => @issue, :object_name => object_name} %>
+    </div>
+
+    <% if (EasySetting.value('display_issue_relations_on_new_form') || issue.relation) && User.current.allowed_to?(:manage_issue_relations, project) %>
+      <div class="tabular box">
+        <%= render :partial => 'issue_relations/new_form', :locals => {:issue => issue} %>
+      </div>
+    <% end %>
+  </div>
+  <div class="splitcontentright size-4">
+    <% if User.current.allowed_to?(:add_issue_watchers, project) %>
+      <div id="issue_watchers_container" class="issue_others_static_fields tabular box">
+        <%= labelled_fields_for @issue do |f| %>
+          <%= toggling_container("issue-watcher-toggle-container-#{params[:format]}", User.current, {:heading => l(:label_issue_watchers_heading), :default_button_state => !in_mobile_view?, :wrapping_heading_element_classes => ' icon icon-group'}) do  %>
+            <%= render :partial => 'watchers/watchers_avatar_and_checkbox_with_groups', :locals => {:watchable => @issue, :project => project, :object_name => 'issue'} -%>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<p id="<%= "#{entity_name}_#{custom_value.custom_field_id}_container" %>" class="custom-field <%= 'non-' if !custom_value.custom_field.is_primary? %>primary-cf">
+  <% append ||= nil %>
+  <% unless custom_value.custom_field.is_primary? %>
+    <% append = link_to('', { controller: entity_name&.pluralize,
+                              action: 'remove_custom_field',
+                              custom_field_id: custom_value.custom_field_id,
+                              entity_id: entity_id,
+                              entity_type: entity_type }.compact,
+                        method: :delete,
+                        remote: true,
+                        class: 'icon-del') %>
+    <% end %>
+  <%= custom_field_tag_with_label(entity_name, custom_value, {}, { append: append }) %>
+</p>
+

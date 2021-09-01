@@ -1,0 +1,11 @@
+<%= fields_for 'expected_expenses' do |f| %>
+    <%= link_to l(:button_easy_money_project_expected_expenses), {controller: 'easy_money_expected_expenses', action: 'index', project_id: project.id, easy_money: {entity_type: entity_type, entity_id: entity_id}, easy_currency_code: easy_currency_code}, title: l(:title_easy_money_project_expected_expenses), class: 'expected-revenue-index-link index-link' %>
+
+    <%= f.text_field(:price, :value => sum_expected_expenses, :size => 15) -%>
+    <%= f.hidden_field(:easy_currency_code, value: easy_currency_code) %>
+
+    <% if User.current.allowed_to?(:easy_money_manage_expected_expense, project) %>
+        <%= submit_tag(l(:button_save)) -%>
+    <% end -%>
+<% end %>
+

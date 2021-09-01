@@ -1,0 +1,59 @@
+---
+en:
+  activerecord:
+    attributes:
+      user:
+        supervisor_user_id: Supervisor
+    errors:
+      models:
+        user:
+          attributes:
+            supervisor_user_id:
+              children_exists: subordinates exist
+              missing_in_tree: should be in the organizational chart
+              root_changed: should be empty because user is root and can't be assigned
+                to another supervisor
+  button_easy_org_chart_collapse: Collapse All
+  button_easy_org_chart_expand: Expand All
+  button_easy_org_chart_export: Export
+  easy_org_chart_plugin_author: Easy Software
+  easy_org_chart_plugin_author_url: https://www.easysoftware.com/
+  easy_org_chart_plugin_description: ''
+  easy_org_chart_plugin_menu_caption: Organisational chart
+  easy_org_chart_plugin_name: Organisational chart
+  easy_org_chart_subordinates_access:
+    direct_subordinates: Direct subordinates
+    forbidden: Forbidden
+    subordinates_tree: Subordinates tree
+  easy_pages:
+    modules:
+      org_chart: Organisational chart
+  field_assigned_to_id_supervisor: Assignee's supervisor
+  field_author_id_supervisor: Author's supervisor
+  field_easy_org_chart_node_background: 'Node background style:'
+  field_easy_org_chart_node_background_color: Worker background color
+  field_easy_org_chart_node_width: Node width
+  field_easy_org_chart_parent_node_background_color: Manager background color (Parent
+    Node)
+  field_easy_org_chart_root_node_background_color: CEO background color (Root Node)
+  field_easy_org_chart_share_subordinates_access: Share subordinates access to supervisor
+  field_easy_org_chart_show_avatar: Show Avatar
+  field_easy_org_chart_show_custom_fields: Show custom fields
+  field_easy_org_chart_show_fields_names: Show fields names
+  field_easy_org_chart_show_user_fields: Show native fields
+  field_subordinates_of_supervisor: Subordinates of supervisor
+  field_supervisor: Supervisor
+  label_easy_org_chart_legend_node: Worker
+  label_easy_org_chart_legend_parent_node: Manager
+  label_easy_org_chart_legend_root_node: CEO
+  label_my_page_org_chart_root_user_id: Select organisational structure root
+  label_my_page_org_chart_vertical_depth: Compact display from level
+  label_my_subordinates: My subordinates
+  label_my_subordinates_tree: My subordinates tree
+  permission_edit_easy_attendance_approval_for_inferiors: Approve/reject attendance
+    for subordinates
+  title_easy_org_chart: Organisational chart
+  title_easy_org_chart_drag_for_create: Add users to organisational chart via Drag
+    & Drop.
+  title_easy_org_chart_drop_for_delete: Drop here to remove from organisational chart
+  title_easy_org_chart_settings: Organisational chart settings

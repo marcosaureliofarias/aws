@@ -1,0 +1,216 @@
+---
+ar:
+  activerecord:
+    attributes:
+      display_closed_tasks_in_last_n_days: عدد الأيام
+  attribute_undefined: لم يتم الإعداد
+  button_agile_board: "مجلس إدارة أجايل\r\n\r\n "
+  button_create_sprint: إنشاء سبرينت
+  button_delete_sprint: حذف سبرينت
+  button_global_easy_sprint_query: نظرة عامة على السبرينت العالمي
+  button_recalculate_agile_board: إعادة الحساب والحالات
+  button_scrum_board: لوحة سكرم
+  easy_agile_board_button_go_to: اذهب إلى
+  easy_agile_board_overview: لوحة التحكم سبرينت
+  easy_agile_board_plugin_description: خصائص إدارة أجايل
+  easy_agile_board_plugin_name: لوحة أجايل
+  easy_agile_board_query: لوحة سكرم
+  easy_agile_board:
+    label_search_tasks_for_backlog: مهام البحث للسجل الخلفي
+    text_you_are_offline: أنت غير متصل 
+  easy_agile_default_settings: السكرم الأساسي/ إعدادات كانبان
+  easy_agile_default_settings_kanban: إعدادات كانبان الأساسية
+  easy_agile_default_settings_scrum: إعدادات سكرم الأساسية
+  easy_agile_issue_rating_mode_names:
+    disabled: تم الإيقاف - لا تستخدم تصنيف المهمة
+    easy_story_points: نقاط القصة
+    estimated_hours: الوقت المقدر
+    estimated_time: الوقت المقدر
+    estimated_time_minus_spent_time: الوقت المقدر ناقص الوقت المستغرق
+    remaining_timeentries: الوقت المقدر ناقص الوقت المستغرق
+    value_from_custom_field: استخدم القيمة من الحقل المخصص
+  easy_agile_show_resalloc: عرض مخصصات الموارد
+  easy_agile_show_sprint_fullscreen: عرض سبرينت على الشاشة بالكامل
+  easy_pages:
+    module_category:
+      easy_agile_board: سكرم/كانبان
+    modules:
+      current: السبرينتات الحالية
+      easy_kanban_board: لوحة كانبان
+      easy_sprint_query: نظرة عامة على السبرينت
+      personal_easy_agile_board: لوحة سكرم
+  easy_query:
+    name:
+      easy_agile_board_query: سكرم/كانبان
+      easy_sprint_query: سبرينتات‌
+    sidebar_filters:
+      personal:
+        easy_agile_board_query: الفلاتر الشخصية على لوحة أجيل
+      public:
+        easy_agile_board_query: الفلاتر العامة على لوحة أجايل
+  easy_sprint:
+    label_easy_story_points:
+      backlog: نقاط القصة في السجل الخلفي
+      done: نقاط القصة على المهام المنتهية
+      progress: نقاط القصة على المهام الجارية
+    label_estimated_time:
+      backlog: الوقت المقدر في السجل الخلفي
+      done: الوقت المقدر على المهام المنتهية
+      progress: الوقت المقدر على المهام الجارية
+    label_spent_time:
+      all: إجمالي الوقت المستغرق
+      backlog: الوقت المستغرق في السجل الخلفي
+      done: الوقت المستغرق على المهام المنتهية
+      progress: الوقت المستغرق على المهام الجارية‌
+  error_agile_board_sprint_is_already_closed: السبرينت مقفل بالفعل
+  error_assign_closed_issues_to_project_backlog: فتح المهام مسموح به فقط في السجل
+    الخلفي للمشروع
+  error_assign_issue_to_closed_easy_sprint: يمكن إحالة المهمة للسبرينت الفتوح فقط
+  error_default_server_error: خطأ داخلي في الخادم، يرجى الاتصال بالدعم
+  error_effective_date_must_be_lower_than_due_date: تاريخ التسليم (%{due_date}) ينبغي
+    أن يكون أقل أو يساوي التاريخ الفعال للعلامة المميزة (%{effective_date})
+  error_start_date_must_be_lower_than_due_date: تاريخ البداية (%{start_date})  ينبغي
+    أن يكون أقل من تاريخ التسليم (%{due_date})
+  field_closed: مغلق
+  field_cross_project: مشروع متبادل
+  field_easy_agile_board_cross_project: استخدم المهام لكل المشروعات
+  field_easy_agile_board_display_closed_tasks_in_last_n_days: عرض المهام المغلقة في
+    آخر "ن"
+  field_easy_sprint: سبرينت
+  field_easy_sprint_close_all_tasks: غلق كل المهام داخل السبرينت من خلال الحالة المختارة
+  field_easy_story_points: نقاط القصة
+  field_goal: الهدف
+  field_kanban_phase: مرحلة كانبان
+  field_scrum_backlog: السجل الخلفي لسكرم
+  field_scrum_phase: مرحلة سكرم
+  field_sprint_capacity: السعة
+  field_sprint_title: اسم السبرينت
+  field_sum_estimated_time_closed_false: "الوقت المقدر\r\n\r\n "
+  field_sum_estimated_time_closed_true: الوقت المقدر على المهام المغلقة
+  field_sum_story_points_closed_false: نقاط القصة
+  field_sum_story_points_closed_true: نقاط القصة على المهام المغلقة
+  heading_easy_agile_sprint_edit: تعديل سبرينت
+  heading_easy_sprint_close: غلق السبرينت
+  heading_easy_sprints_overview: لوحة التحكم في السبرينت
+  heading_populate_backlog_modal: المهمة الجديدة أو مجموعة المهام
+  label_add_estimate: إضافة تقدير
+  label_add_new_issues_to_project_kanban: إضافة مهام جديدة لكانبان
+  label_agile_add_status: حالة جديدة
+  label_agile_backlog: السجل الخلفي للسبرينت
+  label_agile_board: سكرم/كانبان
+  label_agile_done: تم
+  label_agile_filter_sprints_by_assignee: فلتر بحسب المحال إليه
+  label_agile_fullness: قدرة سبرينت معتمدة على تصنيف المهمة
+  label_agile_go_to_sprint: اذهب إلى سبرينت
+  label_agile_in_progress: جاري
+  label_agile_new: جديد
+  label_agile_realization: تحقيق
+  label_agile_remove_status: حذف الحالة
+  label_agile_sprint: سبرينت
+  label_agile_sprint_new: سبرينت جديد
+  label_agile_sprint_reload: عرض سبرينت
+  label_agile_state_name: حالة التقدم
+  label_agile_state_return_to: 'وتغيير المحال إليه إلي:'
+  label_agile_state_return_to_author: إحالة إلى المؤلف
+  label_agile_state_state_statuses: 'يحتوي على حالات المهام هذه:'
+  label_agile_state_status_id: حالة المهمة
+  label_agile_story_points: نقاط القصة
+  label_agile_to_check: للتحقق
+  label_chart_real: حقيقي
+  label_create_columns_by: كانبان مجمع بحسب
+  label_create_task_for_backlog: إنشاء المهمة للسجل الخلفي
+  label_current_load: الحمل الحالي
+  label_current_sprint: السبرينت الحالي
+  label_easy_agile_board_chart_burndown: مخطط الاحتراق
+  label_easy_agile_board_chart_ideal_work_remaining: العمل المثالي المتبقي
+  label_easy_agile_board_chart_issues_completed: المهام التي تمت
+  label_easy_agile_board_chart_issues_remaining: المهام المتبقية
+  label_easy_agile_board_chart_real_work_remaining: العمل الحقيقي المتبقي
+  label_easy_agile_board_chart_unlimited_end: احسب المهام المنتهية التي تخطت تاريخ
+    التسليم لليوم الأخير
+  label_easy_agile_board_charts: مخططات
+  label_easy_agile_board_move_task_all: نق المهام من كل السبرينتات
+  label_easy_agile_board_move_task_no: لا تنقل المهام
+  label_easy_agile_board_move_task_selected: نقل المهام من السبرينت المختار
+  label_easy_agile_board_project_cf: اختر حقل تخصيص المشروع للعرض على المهمة
+  label_easy_agile_board_select_sprint: اختر السبرينت
+  label_easy_agile_number_of_issues: عدد المهام
+  label_easy_agile_settings: إعدادات أجايل
+  label_easy_agile_sprint_close: غلق السبرينت
+  label_easy_agile_sprint_open: فتح السبرينت
+  label_easy_agile_sum_issue_rating: العمل المتبقي
+  label_easy_agile_use_workflow_on_kanban: تطبيق تدفق العمل على كانبان
+  label_easy_agile_use_workflow_on_sprint: تطبيق تدفق العمل على سبرينت
+  label_easy_kanban_sort_by_priority: ترتيب بحسب الأولوية
+  label_easy_scrum_board_sprint_history_chart: إداء سبرينت التاريخي
+  label_easy_sprint_goal: الهدف من هذا السبرينت
+  label_easy_sprints: سبرينتات
+  label_filter_group_easy_agile_board_query: المهام
+  label_filter_group_easy_sprint_query: سبرينتات
+  label_issue_rating: تصنيف المهمة
+  label_issues_for_backlog: المهام في السجل الخلفي
+  label_kanban: كانبان
+  label_kanban_board: لوحة كانبان
+  label_kanban_visible_groups: المجموعات المرئية في عرض كانبان
+  label_load_history_sprints: تحميل التاريخ
+  label_main_attribute: الحاشية
+  label_not_assigned: غير محال
+  label_permissions_easy_agile_board: لوحة أجايل (سكرم/كانبان)
+  label_personal_easy_agile_board_heading: عنوان
+  label_personal_easy_agile_board_only_me: عرض فقط على مهامي
+  label_project_backlog: السجل الخلفي للمشروع
+  label_project_backlog_loading_finished: تهانينا، لقد وصلت إلى نهاية الإنترنت.
+  label_project_backlog_loading_issues: تحميل المجموعة التالية من المهام...
+  label_save_to: "الحفظ إلى\r\n\r\n "
+  label_scrum_board: لوحة سكرم
+  label_sprints_project: مشروع سبرينت
+  label_summable_column: معلومات القيمة
+  label_swimlane: التقسيم في عواميد
+  label_without_category: المهام التي ليست في الفئة
+  label_without_milestone: المهام ليست في العلامة المميزة
+  label_without_parent: المهام بدون مهمة أصلية
+  label_without_swimlane: لا توجد عواميد في المخطط
+  notice_agile_board_sprint_was_successfully_closed: تم إغلاق السبرينت بنجاح
+  notice_agile_board_sprint_was_successfully_opened: تم فتح السبرينت بنجاح
+  notice_agile_board_statuses_were_recalculated: تم إعادة حساب حالات سكرم/كانبان 
+  permission_edit_easy_agile_board: تعديل لوحة أجايل
+  permission_edit_easy_kanban_board: تعديل لوحة كانبان
+  permission_edit_easy_scrum_board: تعديل لوحة سكرم
+  permission_manage_easy_scrum_overview: إدارة النظرة العامة على سكرم العالمي
+  permission_manage_sprint_backlog: إدارة السجل الخلفي للسبرينت
+  permission_view_easy_agile_board: عرض لوحة أجايل
+  permission_view_easy_kanban_board: عرض لوحة كانبان
+  permission_view_easy_scrum_board: عرض لوحة سكرم
+  permission_view_easy_scrum_overview: عرض نظرة سريعة على سكرم العالمي
+  permission_view_global_easy_sprints: عرض قائمة سبرينت العالمية
+  project_default_page:
+    easy_agile_board: لوحة أجايل
+    easy_kanban_board: لوحة كانبان
+    easy_scrum_board: لوحة سكرم
+  project_module_easy_agile_board: لوحة أجايل
+  project_module_easy_kanban_board: لوحة كانبان Easy
+  project_module_easy_scrum_board: لوحة سكرم Easy
+  text_add_new_issues_to_project_kanban: المهام المنشأة حديثًا تتم إضافتها تلقائيًا
+    لمشروع كانبان
+  text_capacity_units: يستخدم لسعة سبرينت ومخطط  Burn Down
+  text_easy_agile_board_sprint_due_date_is_empty: تاريخ التسليم فارغ
+  text_easy_agile_board_sprint_loading: يرجى الانتظار، جاري تحميل سبرينت
+  text_easy_agile_board_version: كل المهام في سبرينت سيتم إرفاقها بهذه العلامة المميزة.
+  text_easy_agile_use_workflow_on_kanban: تحقق من أن تدفق العمل يجب أن يطبق على كانبان
+  text_easy_agile_use_workflow_on_sprint: تحقق من أن تدفق العمل ينبغي أن يطبق على
+    سبرينت
+  text_easy_sprint_capacity_zero: 0 تعني لا يوجد حد
+  title_easy_agile_board_drag_coworker: بالضغط على الصورة الرمزية ستقوم بفلترة المهام
+    فقط بمعرفة %{user_name}. وبسحب الصورة الرمزية للمهمة ستقوم بتغيير المحال إليه
+    إلى %{user_name}.. 
+  title_easy_agile_board_show: بالضغط يتم عرض تفاصيل سبرينت %{sprint_name}
+  title_easy_agile_board_toggle_swimlane: التنقل بين عرض العواميد
+  title_easy_agile_hide_goal: إخفاء الهدف من هذا السبرينت
+  title_easy_agile_show_goal: عرض الهدف من هذا السبرينت
+  title_edit_sprint: تعديل سبرينت
+  title_kanban_settings: إعدادات كانبان
+  title_reorder_project_backlog: أعد ترتيب السجل الخلفي للمشروع بحسب أولوية المهمة
+  title_reorder_sprint_backlog: أعد ترتيب السجل الخلفي لسبرينت  بحسب أولوية المهمة
+  title_sprint_settings: إعدادات سبرينت
+  warning_missing_setting: سكرم/كانبان غير معدّ حتى الآن
+  warning_sprint_over_capacity: هذا السبرينت ذو سعة زائدة!

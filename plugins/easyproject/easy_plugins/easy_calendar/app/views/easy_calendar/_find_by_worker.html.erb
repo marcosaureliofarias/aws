@@ -1,0 +1,8 @@
+<h3 class="title"><%= l(:button_easy_calendar_by_user) %></h3>
+<%= render :partial => 'common/freetext_quick_search', :locals => {:free_search_options => {
+    :free_search_url => url_for({:controller => 'easy_calendar', :action => 'find_by_worker'}),
+    :free_search_element_to_update => 'find_by_worker_container', :free_search_params => 'q', :placeholder => l(:button_easy_calendar_by_user),
+    :free_search_always_fire => true, :free_search_field_name => 'modal_entity_q'}} %>
+<div id="find_by_worker_container">
+  <%= render :partial => 'find_by_worker_list', :locals => {:users => users} %>
+</div>

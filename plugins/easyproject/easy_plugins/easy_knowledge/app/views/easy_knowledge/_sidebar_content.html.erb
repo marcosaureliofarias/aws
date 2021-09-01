@@ -1,0 +1,31 @@
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_easy_knowledge_new_story), new_easy_knowledge_story_path, :class => 'button-positive icon icon-add' if @can[:create_global_stories] -%>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:label_easy_knowledge_new_global_category), new_easy_knowledge_global_path, :class => 'button-positive icon icon-add', :title => l(:label_easy_knowledge_new_global_category) if User.current.allowed_to_globally?(:manage_global_categories) %>
+  <%= link_to l(:label_easy_knowledge_new_personal_category), new_easy_knowledge_user_path(entity_type: 'User'), :class => 'button-positive icon icon-add', :title => l(:label_easy_knowledge_new_personal_category) if User.current.allowed_to_globally?(:manage_own_personal_categories) %>
+  <%= link_to(l(:label_easy_knowledge_stories_all), easy_knowledge_stories_path({:set_filter => 0}), :class => 'icon icon-adressbook button') -%>
+  <%= link_to(l(:label_easy_knowledge_manage_categories), easy_knowledge_categories_path, :title => l(:label_easy_knowledge_manage_categories), :class => 'icon icon-bulb button') if User.current.allowed_to_globally?(:manage_global_categories) || User.current.allowed_to_globally?(:manage_own_personal_categories) -%>
+
+  <%= link_to(l(:button_show_favorite_stories), easy_knowledge_stories_path(set_filter: 1, favorited: 1), :class => 'icon icon-star button') %>
+  <%= link_to(l(:label_easy_knowledge_manage_user_category), easy_knowledge_users_path, title: l(:label_easy_knowledge_manage_user_category), :class => 'icon icon-user button') if @can[:manage_own_personal_categories] -%>
+
+
+  <div class="box">
+    <%= toggling_container('easy_knowledge_sidebar_categories_tree', User.current, {heading: l(:label_easy_knowledge_categories)}) do %>
+      <div id="knowledge-categories" class="list-group">
+        <!--AJAX loaded-->
+      </div>
+    <% end -%>
+  </div>
+
+  <div id="easy_knowledge_tree_view_sidebar"></div>
+<% end if User.current.allowed_to_globally?(:view_easy_knowledge) %>
+
+<% include_knowledge_headers_tags %>
+
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    $("#knowledge-categories").load('<%= easy_knowledge_sidebar_categories_path %>');
+  });
+</script>

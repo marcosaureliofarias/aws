@@ -1,0 +1,198 @@
+<%
+user ||= User.current; block_name ||= ''; uniq_id ||= ''; page_module ||= nil; selected_values ||= []
+groups_url ||= {params: request.query_parameters.except('group_to_load')}
+modul_uniq_id ||= "#{controller_name}_#{action_name}"; uniq_id ||= modul_uniq_id
+
+options ||= Hash.new
+options[:block_name] ||= block_name; options[:uniq_id] ||= uniq_id
+options[:page_module] ||= page_module
+modal_selector = (options[:modal_selector].to_s == 'true')
+no_scroll = options[:no_scroll] || params[:easy_query_q]
+show_ending_buttons = options[:show_ending_buttons]
+
+easy_query ||= local_assigns[:query]
+easy_query = present(easy_query, options: options)
+options = easy_query.options[:options]
+view_options = options.respond_to?(:to_unsafe_hash) ? options.to_unsafe_hash : options
+
+
+# available *options*
+# * :disable_sort  => true - change header from sorting_link to plain text
+# * :modal_selector => true - display view as lookup window, with selectable rows. Require parameters for modal selector
+# * :go_to_url => {:controller => ...} - set rows clickable, jump to url...
+# * :hide_sums_in_group_by => true - This hide sums and count of records in group by row.
+# * :hascontextmenu => true/false
+# * :modal_selector => true/false
+-%>
+<div class="clear"></div>
+<%= form_tag({}, :id => "easy-query-list-#{easy_query.entity.name.underscore.dasherize}") do -%>
+  <%= hidden_field_tag(:tab, params[:tab]) %>
+  <div class="autoscroll easy-entity-list__wrapper easy-query-list list">
+
+    <table class="list easy-entity-list entities <%= easy_query.entity.name.pluralize.downcase %> <%= modul_uniq_id %> <%= sort_css_classes %> <%= options[:table_class] %> <%='list--with_totalrow' if easy_query.show_sum_row? %>" data-hascontextmenu="<%= easy_query.has_contextmenu? -%>">
+    <% if !(request.xhr? && params[:page].present?) %>
+      <thead>
+        <% if easy_query.period_columns? %>
+          <tr>
+            <%= content_tag(:th, nil) -%>
+            <th class="hide-when-print">&nbsp;</th>
+            <% easy_query.non_period_inline_columns.each do |column| -%>
+              <th>&nbsp;</th>
+            <% end -%>
+            <% 0.upto(easy_query.number_of_periods_by_zoom - 1) do |idx| %>
+              <th class="period" colspan="<%= easy_query.period_columns.size %>"><%= query_period_name(easy_query, idx) %></th>
+            <% end %>
+            <%= content_tag(:th, nil, :class => 'hide-when-print') if modal_selector -%>
+            <th class="hide-when-print">&nbsp;</th>
+          </tr>
+        <% end %>
+        <tr>
+          <%= content_tag(:th, easy_query.has_contextmenu? ? link_to('', 'javascript:void(0)', :onclick => 'EASY.contextMenu.toggleIssuesSelection(this)', :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", :class => 'icon icon-checked') : '', :class => 'hide-when-print checkbox') %>
+          <% if modal_selector %>
+            <%= content_tag(:th, nil, :class => 'hide-when-print') %>
+          <% end -%>
+          <th class="easy-query-additional-beginning-buttons hide-when-print" data-resizable-column-id="easy-query-additional-beginning-buttons">&nbsp;</th>
+          <% easy_query.inline_columns.each do |column| -%>
+            <%= easy_query_column_header(easy_query, column, options) %>
+          <% end -%>
+          <% if !modal_selector || show_ending_buttons %>
+            <th class="easy-query-additional-ending-buttons <%= 'hide-when-print' unless show_ending_buttons %>">&nbsp;</th>
+          <% end %>
+        </tr>
+        <% if easy_query.show_sum_row? %>
+          <tr id="totalsum-summary">
+            <% if easy_query.first_sumable_index > 0 %>
+              <% colspan = easy_query.first_sumable_index %>
+              <%= content_tag(:td, nil, :class => 'hide-when-print') -%>
+              <td class="totalsum-description" <%= "colspan=#{colspan}" %>>
+                <%= options[:label_sumable_header_total] || l(:label_total_total) %>
+              </td>
+            <% end %>
+            
+            <%= content_tag(:td, nil, :class => 'hide-when-print') -%>
+            <%= content_tag(:td, nil, :class => 'hide-when-print') if modal_selector -%>
+            <% easy_query.inline_columns[easy_query.first_sumable_index...easy_query.inline_columns.size].each do |column| %>
+              <% if column.sumable_header? %>
+                <%= content_tag :td, format_html_entity_attribute(easy_query.entity, column, easy_query.entity_sum(column, entities: entities), project: easy_query.project).html_safe, :class => column.css_classes -%>
+              <% else %>
+                <%= content_tag :td -%>
+              <% end %>
+            <% end %>
+            <% unless modal_selector %>
+              <td class="hide-when-print">&nbsp;</td>
+            <% end %>
+          </tr>
+        <% end %>
+      </thead>
+    <% end %>
+      <tbody>
+        <% if easy_query.grouped? && !params[:easy_query_q] %>
+          <%= render 'easy_queries/easy_query_groups', easy_query: easy_query, groups: entities, selected_values: selected_values, modul_uniq_id: modul_uniq_id, user: user, options: options %>
+        <% else %>
+          <%= render 'easy_queries/easy_query_entities', easy_query: easy_query, entities: entities, selected_values: selected_values, modul_uniq_id: modul_uniq_id, user: user, options: options %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%#= render :partial => 'easy_queries/easy_query_tooltip_box', :locals => {:block_name => options[:block_name], :uniq_id => options[:uniq_id]} -%>
+<% end -%>
+
+<%= render partial: 'easy_queries/easy_query_tooltip_box' if options[:render_query_tooltip_box] %>
+<%= render partial: 'easy_page_modules/easy_query_show_all_button', locals: {easy_query: easy_query, page_module: page_module, entity_count: easy_query.grouped? ? easy_query.groups_count : easy_query.entity_count} if page_module %>
+
+<p style="display: none;" class="infinite-scroll-load-next-page-trigger-container hide-when-print">
+  <a class="button button-main button-rounded button-outlined infinite-scroll-load-next-page-trigger"><%= l(:button_load_additional_records) %><i class="icon-arrow"></i></a>
+</p>
+
+<% if local_assigns[:entity_pages] && local_assigns[:entity_count] %>
+  <span class="pagination" style="display: none">
+    <% request.query_parameters
+       .merge!(:view_options => options.respond_to?(:permit!) ? options.permit! : options)
+       .merge!(easy_query.to_params)
+       .merge!(params.permit(:entity_attribute, :entity_custom_field, :multiple, :field_name, :field_id, :tab).to_h)
+    -%>
+    <%= pagination_links_full(entity_pages, entity_count) %>
+  </span>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    var modulId = '<%= modul_uniq_id %>'.length === 0 ? '' : ('.' + '<%= modul_uniq_id %>');
+    var $table = $('table.entities' + modulId);
+    $table.easygrouploader({
+      loadUrl: '<%= url_for(groups_url.merge(:view_options => view_options, only_path: true)).html_safe %>',
+      easy_query: '<%= easy_query.type %>',
+      load_opened: <%= !!easy_query.load_groups_opened? %>,
+      next_button_cols: '<%= easy_query.inline_columns.count + 3 %>',
+      callback: function(){
+        $table.closest('#easy_modal').dialog('option', 'position', {my: "center", at: "center", of: window , collision: 'fit'});
+        <% if modal_selector %>
+          EASY.modalSelector.initContextMenu();
+        <% end %>
+      }
+    });
+
+    <% unless modal_selector || no_scroll %>
+      initEasyInlineEdit();
+
+      if (typeof EASY.utils.setInfiniteScrollDefaults === 'function')
+      {
+        EASY.utils.setInfiniteScrollDefaults();
+        $('table.list.entities.<%= easy_query.entity.name.pluralize.downcase -%>:first > tbody').infinitescroll({
+          navSelector: '.pagination',
+          nextSelector: '.pagination .next > a',
+          itemSelector: 'table.list.entities.<%= easy_query.entity.name.pluralize.downcase -%>:first > tbody > tr, .pagination .next > a',
+          previousSelect: '.pagination .previous > a'
+          //binder: $('#main')
+        }, function(data, opts) {
+          var $sumary_was = $(data[0]).prevAll('tr.summary').first();
+          var $sumary_is;
+          for (var i = 0; i < data.length; ++i) {
+            $sumary_is = $(data[i]);
+            if ($sumary_is.hasClass('summary'))
+              break;
+          }
+          if ($sumary_is && $sumary_was && $sumary_is.data('uniq_id') === $sumary_was.data('uniq_id'))
+            $sumary_was.remove();
+
+          var a = $(data.pop());
+          if (a.is('a')) {
+            opts.path = [a.attr('href')];
+            a.remove();
+          } else {
+            data.push(a[0]);
+            opts.state.isPaused = true;
+            $(".infinite-scroll-load-next-page-trigger").parent().hide();
+          }
+          initEasyInlineEdit();
+          EASY.utils.initProjectEdit();
+          initEasyAutocomplete();
+          LazyLoader.refresh();
+          $('table.entities' + modulId).easygrouploader('load_groups');
+        });
+      }
+    if (<%= User.current.pref.disable_automatic_loading %>){
+      $(window).unbind('.infscr');
+    }
+    <% end %>
+    $(document).off('click', '.infinite-scroll-load-next-page-trigger');
+    $(document).on('click', '.infinite-scroll-load-next-page-trigger', function(e) {
+      var selector = $('<%= '#modal-selector-entities ' if modal_selector %>table.list.entities.<%= easy_query.entity.name.pluralize.downcase -%>:first > tbody');
+      selector.infinitescroll('retrieve', {});
+    });
+  });
+
+
+  EASY.schedule.late(()=> {
+    var modulId = '<%= modul_uniq_id %>'.length === 0 ? '' : ('.' + '<%= modul_uniq_id %>');
+    const entity = "<%= easy_query.entity.name %>";
+    // Initialize table resizer only on Issue query
+    if (entity === "Issue") {
+      new TableResizer(`table${modulId}`, {observeTableChange: true})
+    }
+    <% if modal_selector %>
+      EASY.modalSelector.initContextMenu();
+    <% end %>
+  });
+
+</script>

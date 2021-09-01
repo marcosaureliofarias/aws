@@ -1,0 +1,4 @@
+<%= format_time(easy_attendance.arrival) %>
+<%= format_time(easy_attendance.departure) %>
+<%= easy_attendance.description %>
+<%= easy_attendance.attendance_status if easy_attendance.cancel_waiting? %>

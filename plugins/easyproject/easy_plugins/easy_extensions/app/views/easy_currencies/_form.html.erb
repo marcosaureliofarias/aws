@@ -1,0 +1,33 @@
+<div class="tabular settings">
+  <p>
+    <%= f.text_field :name, :size => 50, label: EasyCurrency.human_attribute_name(:name), required: true %>
+  </p>
+  <p>
+    <%= f.text_field :iso_code, :size => 3, label: EasyCurrency.human_attribute_name(:iso_code), disabled: !f.object.new_record?, required: true %>
+  </p>
+  <p>
+    <%= f.text_field :symbol, label: EasyCurrency.human_attribute_name(:symbol) %>
+  </p>
+  <% if false %>
+  <p>
+    <%= f.number_field :digits_after_decimal_separator, :size => 3, label: EasyCurrency.human_attribute_name(:digits_after_decimal_separator) %>
+  </p>
+  <% end %>
+  <% if @easy_currency.activated? %>
+    <p>
+      <%= f.check_box :is_default %>
+    </p>
+  <% end %>
+</div>
+<div>
+  <% if @projects.any? %>
+    <%= toggling_fieldset(l(:label_project_plural), :id => 'easy_currency_project_ids') do %>
+      <% project_ids = @easy_currency.projects.pluck(:id) %>
+      <%= render_project_nested_lists(@projects) do |p|
+        content_tag('label', check_box_tag('easy_currency[project_ids][]', p.id, project_ids.include?(p.id), :id => nil) + ' ' + h(p))
+      end %>
+      <%= hidden_field_tag('easy_currency[project_ids][]', '', :id => nil) %>
+      <p><%= check_all_links 'easy_currency_project_ids' %></p>
+    <% end %>
+  <% end %>
+</div>

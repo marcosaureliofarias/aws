@@ -1,0 +1,18 @@
+<% entity = @issue || @journal.journalized %>
+<% editor = entity.class.name.underscore %>
+
+$(".update-button").removeClass("button-positive").addClass("button");
+if (EASY.utils.showUpdate) {
+  EASY.utils.showUpdate();
+}
+$("textarea#<%= editor %>_notes").val("<%= raw j(@content) %>");
+
+EASY.utils.showAndScrollTo("update", -130, "update input:submit");
+$(".sidebar-link_to-update").removeClass("button-positive").addClass("button");
+
+<%
+  # when quoting a private journal, check the private checkbox
+  if @journal && @journal.private_notes?
+%>
+$("#issue_private_notes").prop("checked", true);
+<% end %>

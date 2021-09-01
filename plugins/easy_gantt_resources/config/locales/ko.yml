@@ -1,0 +1,166 @@
+---
+ko:
+  activerecord:
+    errors:
+      models:
+        easy_gantt_resource:
+          attributes:
+            date:
+              allocation_exists: 이미 할당되어 있습니다
+  button_hide_planned_tasks: 계획한 일감 숨기기
+  button_top_menu_easy_gantt_resources: 리소스 관리
+  easy_gantt_resources_author: Easy Software Ltd
+  easy_gantt_resources_description: Easy Gantt를 위한 새로운 리소스 관리 보기
+  easy_gantt_resources_plugin_name: 리소스 관리
+  easy_gantt_resources:
+    allocator:
+      evenly: 균일하게 (느림)
+      from_end: 끝에서 부터
+      from_start: 시작에서 부터
+      future_evenly: 미래에는 균등하게 진행
+      future_from_end: 오늘 이후는 끝에서부터
+      future_from_start: 오늘 이후는 시작에서 부터
+      label_allocator: 할당기
+    buttons:
+      button_project_menu: 리소스 관리
+      rm_balance: 균등하게 분배
+      rm_hide_reservations: 예약된 일감 숨기기
+      rm_hide_tasks: 일감 숨기기
+      rm_reservations: 예약된 일감 보기
+      rm_with_milestones: 마일스톤 보이기
+      rm_with_projects: 프로젝트 확인
+    context:
+      heading_allocator_setting: 할당기 설정
+      label_maximal_hours: 최대 시간/날
+      pseudo_even_allocation: 유사한 균등 할당
+      text_setting_for: 설정
+    errors:
+      assigned_to_is_blank: 할당된 사람은 반드시 설정되어야 합니다
+      estimated_hours_is_blank: 예상 시간이 유효하지 않습니다
+      issue_is_closed: 문제가 해결되었습니다
+      negative_allocation: "%{date} 보다 적게 할당된 시간이 있습니다"
+      no_rights_for_allocation: "%{issue}에 대한 할당에 대한 권한이 없습니다"
+      non_member_assignee: "%{issue} 는 프로젝트 %{project} 에 소속되어 있으며 사용자 %{assignee}는
+        이곳에 포함되어 있지 않습니다"
+      over_allocation: "%{date} 보다 더 많은 시간이 할당되었습니다"
+      project_is_baseline: 프로젝트가 기준입니다
+      save_error: '%{assignee}를 위해 "%{name}" 가 지정한 [%{allocations}]는 다음 사유로 저장되지 않았습니다:
+        %{reason}'
+      start_or_due_is_required: 시작 또는 완료일은 필수입니다.
+      under_estimation: 추정시간이 최소%{over}시간 이상으로 늘어나야 합니다.
+    event_types:
+      generic: 이벤트
+      holiday: 휴일
+      meeting: 미팅
+    global_resource_title: 글로벌 리소스 관리
+    label_allocations_sum: 일감 할당
+    label_events: 이벤트
+    label_other_allocations_sum: 보이지 않는 문제 할당
+    label_reservations_sum: 예약 할당
+    label_whole_day: 종일
+    legend:
+      day_custom_allocation: 직접 할당 조정
+      day_over_allocation: 많은 업무들이 몰려있습니다
+      full_allocations: 할당량 적정
+      no_allocations: 할당량 없음
+      over_allocations: 할당량 초과
+      some_allocations: 할당량 적음
+    link_easy_resources_plugin: https://www.easyredmine.com/redmine-resource-management
+    resource_management: 리소스 관리
+    text_easy_resources_footer: Easy가 운영하는 Redmine Resource 관리
+    title_rm_short: 리소스 관리
+  easy_gantt:
+    button:
+      rm_reallocate: 재할당
+    title:
+      rm_reallocate: 모든 일감에 대한 할당 재계산
+  easy_pages:
+    modules:
+      easy_gantt_resources: 리소스 관리
+      personal_easy_gantt_resources: 개별 리소스 관리
+  easy_proposer:
+    easy_gantt_resources:
+      index:
+        caption: 리소스 관리
+        description: 글로벌 리소스 관리로 이동
+  easy_query:
+    name:
+      easy_resource_easy_query: 리소스 관리
+  error_allocation_uniqueness: 리소스가 이미 존재합니다
+  error_epm_resource_already_active: 이 페이지의 모듈은 이미 활성화 되었습니다
+  error_invalid_dates: 불가능한 날짜 넘기기
+  error_resources_not_authorized: 리소스가 저장되지 않았습니다. 요청하신 리소스를 수정하실 권한이 없습니다.
+  field_advance_hours_definition: 수동 시간 관리
+  field_advance_hours_per_days: 하루 작업 시간 조정
+  field_assigned_to_admin: 관리자
+  field_assigned_to_created_on: 제작됨
+  field_assigned_to_email: 이메일
+  field_assigned_to_firstname: 이름
+  field_assigned_to_lastname: 성
+  field_assigned_to_login: 로그인
+  field_assigned_to_status: 상태
+  field_change_allocator_enabled: 할당기 변경
+  field_decimal_allocation: 소수점 자리 할당
+  field_default_allocator: 영구 할당기
+  field_hide_planned_tasks_enabled: 예정된 작업 버튼 숨기기
+  field_hide_unassigned: 비할당량 숨기기
+  field_hours_per_day: 일 당 시간
+  field_resource_allocator: 리소스 할당기
+  field_show_groups: 그룹 보기
+  field_show_total_project_allocations: 총 프로젝트 할당 확인
+  field_watchdog_enabled: 감시 장치
+  heading_easy_gantt_resources_index: 리소스
+  help_easy_gantt_resources_users_estimated_ratios: 사용자에게 할당 된 작업의 예상 시간에 할당 값이 곱해지게
+    됩니다
+  help_easy_gantt_resources_users_hours_limits: 할당을 위한 사용자 일일 근무 시간은 이 값보다 작아야 합니다
+  help_easy_gantt_resources_users_hours_limits_blank: 기본값으로 사용하려면 빈칸으로 두세요
+  label_easy_gantt_allocations: 할당
+  label_easy_gantt_period: 기간
+  label_easy_gantt_resources_balance: 균등하게 분배
+  label_easy_gantt_resources_get_from_users: 사용자 수
+  label_easy_gantt_resources_get_from_users_for_all_groups: 모든 사용자의 수
+  label_easy_gantt_resources_global_query_filters: 글로벌 기본 필터
+  label_easy_gantt_resources_groups_holidays_enabled: 그룹에게 휴일을 사용할 수 있도록 허용
+  label_easy_gantt_resources_groups_selection: 그룹 선택
+  label_easy_gantt_resources_hours_from_calendar: 달력에서 시간 확인
+  label_easy_gantt_resources_hours_from_calendar_for_all_users: 모든 사용자의 달력에서 시간 확인
+  label_easy_gantt_resources_reservation_enabled: 예약된 일감 활성화
+  label_easy_gantt_resources_settings: 리소스 설정
+  label_easy_gantt_resources_show_free_capacities: 할당되지 않은 시간 보이기
+  label_easy_gantt_resources_users_estimated_ratios: 예상 시간 비율
+  label_easy_gantt_resources_users_hours_limits: 일 당 시간 제한
+  label_easy_gantt_resources_users_selection: 사용자 선택
+  label_easy_gantt_resources_with_projects: 기본 설정으로 프로젝트 할당 표시
+  label_easy_meeting_easy_resource_dont_allocate: 할당하지 않기
+  permission_edit_easy_gantt_resources: 프로젝트에서 리소스 관리 편집
+  permission_edit_global_easy_gantt_resources: 글로벌 리소스 관리 수정
+  permission_edit_personal_easy_gantt_resources: 개별 리소스 관리 수정
+  permission_manage_user_easy_gantt_resources: 사용자의 예상시간 비율 / 시간제한 관리
+  permission_view_easy_gantt_resources: 프로젝트에서 리소스 관리 보기
+  permission_view_global_easy_gantt_resources: 글로벌 리소스 관리 보기
+  permission_view_personal_easy_gantt_resources: 개별 리소스 관리 보기
+  project_module_easy_gantt: Easy Gantt
+  text_easy_gantt_resources_advance_hours_definition: 한 주에 일할 수 있는 시간 설정
+  text_easy_gantt_resources_advance_hours_per_days: 한 주에 일일 최대로 일할 수 있는 시간 설정
+  text_easy_gantt_resources_change_allocator_enabled: 작업 수정에 할당기 수정하기
+  text_easy_gantt_resources_change_default_allocator: 성능상의 이유로, 이 설정을 변경해도 기존의 작업의
+    기본 할당에는 영향을 미치지 않습니다
+  text_easy_gantt_resources_decimal_allocation: 시간은 소수점 단위로 할당 될 것입니다 (0.5)
+  text_easy_gantt_resources_default_allocator: 작업에 대한 예상 시간이 할당되는 방법. (균등하게 느릴 수 있습니다)
+  text_easy_gantt_resources_default_zoom: Default zoom for global resource management
+  text_easy_gantt_resources_groups_holidays_enabled: 그룹의 구성원이 휴일 이라면 할당량이 줄어듭니다.
+  text_easy_gantt_resources_hide_planned_tasks_enabled: 리소스 관리에 "계획된 일감들" 보이기
+  text_easy_gantt_resources_hours_per_day: 하루에 최대 할당할 수 있는 시간
+  text_easy_gantt_resources_overloaded_assigned: 이 작업은 %{errors}에게 과하게 지정되었습니다. 사용자는
+    %{link}에서 변경하실 수 있습니다.
+  text_easy_gantt_resources_show_free_capacities: 리소스 관리에서 일감에 할당 된 시간 대신 디스플레이 용량을
+    표시하도록 설정
+  text_easy_gantt_resources_show_groups: 글로벌 리소스 관리에서 그룹 보기
+  text_easy_gantt_resources_show_total_project_allocations: 프로젝트 리소스 관리에 총 할당된 시간
+    보이기
+  text_easy_gantt_resources_watchdog_enabled: 작업 수정을 하는 동안 동안 너무 많은 작업이 할당된 사용자를 확인하세요
+  text_easy_gantt_resources_with_projects: 글로벌 RM 기본 설정인 "프로젝트와 함께" 옵션 켜기
+  text_easy_meeting_easy_resource_dont_allocate: 미팅은 리소스 관리 할당을 줄이지 못할 것입니다
+  title_easy_gantt_personal_resources: 내 리소스
+  title_easy_gantt_resources_settings: Resource management by Easy
+  title_easy_gantt_resources_users_settings: 개별 사용자 설정

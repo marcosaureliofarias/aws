@@ -1,0 +1,4 @@
+var assignment = $("#easy_entity_import_att_<%= @easy_entity_import_attributes_assignment.entity_attribute.tr('.','-') %>");
+assignment.find('.icon-del').remove();
+assignment.find('.easy-entity-import-attribute-is-custom-toggle').prop('checked', false);
+assignment.find('input:text, input:hidden').val('');

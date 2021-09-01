@@ -1,0 +1,659 @@
+/* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
+#outlook a {
+  padding: 0;
+}
+
+/* Force Outlook to provide a "view in browser" message */
+.ReadMsgBody {
+  width: 100%;
+}
+
+.ExternalClass {
+  width: 100%;
+}
+
+/* Force Hotmail to display emails at full width */
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+  line-height: 100%;
+}
+
+/* Force Hotmail to display normal line spacing */
+body, table, td, p, a, li, blockquote {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Prevent WebKit and Windows mobile changing default text sizes */
+table, td {
+  mso-table-lspace: 0pt;
+  mso-table-rspace: 0pt;
+}
+
+/* Remove spacing between tables in Outlook 2007 and up */
+img {
+  -ms-interpolation-mode: bicubic;
+}
+
+/* Allow smoother rendering of resized image in Internet Explorer */
+/* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border: 0;
+  height: auto;
+  line-height: 100%;
+  outline: none;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse !important;
+}
+
+body, #bodyTable, #bodyCell {
+  height: 100% !important;
+  margin: 0;
+  padding: 0;
+  width: 100% !important;
+}
+
+/* /\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */
+/* ========== Page Styles ========== */
+#bodyCell {
+  padding: 24px;
+}
+
+#templateContainer {
+  min-width: 320px;
+  width: 80%;
+  max-width: 800px;
+}
+
+/**
+* @tab Page
+* @section background style
+* @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+* @theme page
+*/
+#bodyTable {
+  /*@editable*/
+  background-color: #ededed;
+}
+
+/**
+* @tab Page
+* @section background style
+* @tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
+* @theme page
+*/
+#bodyCell {
+  /*!*@editable*! border-top:4px solid $mailer__color--border;*/
+}
+
+/**
+* @tab Page
+* @section email border
+* @tip Set the border for your email.
+*/
+#templateContainer {
+  /*@editable border:1px solid $mailer__color--border;*/
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid #c7c7c7;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  padding-left: 24px;
+}
+
+/**
+* @tab Page
+* @section heading 1
+* @tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+* @style heading 1
+*/
+h1 {
+  /*@editable*/
+  color: #50596f !important;
+  display: block;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 26px;
+  /*@editable*/
+  font-style: normal;
+  /*@editable*/
+  font-weight: bold;
+  /*@editable*/
+  line-height: 120%;
+  /*@editable*/
+  letter-spacing: normal;
+  margin-top: 10px;
+  margin-right: 0;
+  margin-bottom: 24px;
+  margin-left: 0;
+  /*@editable*/
+  text-align: left;
+}
+
+/**
+* @tab Page
+* @section heading 2
+* @tip Set the styling for all second-level headings in your emails.
+* @style heading 2
+*/
+h2 {
+  /*@editable*/
+  color: #50596f !important;
+  display: block;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 20px;
+  /*@editable*/
+  font-style: normal;
+  /*@editable*/
+  font-weight: bold;
+  /*@editable*/
+  line-height: 120%;
+  /*@editable*/
+  letter-spacing: normal;
+  margin-top: 10px;
+  margin-right: 0;
+  margin-bottom: 10px;
+  margin-left: 0;
+  /*@editable*/
+  text-align: left;
+}
+
+/**
+* @tab Page
+* @section heading 3
+* @tip Set the styling for all third-level headings in your emails.
+* @style heading 3
+*/
+h3 {
+  /*@editable*/
+  color: #50596f !important;
+  display: block;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 16px;
+  /*@editable*/
+  font-style: normal;
+  /*@editable*/
+  font-weight: normal;
+  /*@editable*/
+  line-height: 120%;
+  /*@editable*/
+  letter-spacing: normal;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 10px;
+  margin-left: 0;
+  /*@editable*/
+  text-align: left;
+}
+
+/**
+* @tab Page
+* @section heading 4
+* @tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+* @style heading 4
+*/
+h4 {
+  /*@editable*/
+  color: #50596f !important;
+  display: block;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 14px;
+  /*@editable*/
+  font-style: normal;
+  /*@editable*/
+  font-weight: normal;
+  /*@editable*/
+  line-height: 120%;
+  /*@editable*/
+  letter-spacing: normal;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 10px;
+  margin-left: 0;
+  /*@editable*/
+  text-align: left;
+}
+
+/* ========== Header Styles ========== */
+/**
+* @tab Header
+* @section preheader style
+* @tip Set the background color and bottom border for your email's preheader area.
+* @theme header
+*/
+#templatePreheader {
+  /*@editable*/
+  background-color: #ededed;
+  /*@editable border-bottom:1px solid $mailer__color--border;*/
+}
+
+/**
+* @tab Header
+* @section preheader text
+* @tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
+*/
+.preheaderContent {
+  /*@editable*/
+  color: #9aaab8;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 11px;
+  /*@editable*/
+  line-height: 125%;
+  /*@editable*/
+  text-align: center;
+}
+
+/**
+* @tab Header
+* @section preheader link
+* @tip Set the styling for your email's preheader links. Choose a color that helps them stand out from your text.
+*/
+.preheaderContent a:link, .preheaderContent a:visited, .preheaderContent a .yshortcuts {
+  /*@editable*/
+  color: #ae1400;
+  /*@editable*/
+  font-weight: normal;
+  /*@editable*/
+  text-decoration: none;
+}
+
+/**
+* @tab Header
+* @section header style
+* @tip Set the background color and borders for your email's header area.
+* @theme header
+*/
+#templateHeader {
+  /*@editable*/
+  background-color: #f6f6f6;
+  /*@editable*/
+  border-top: 1px solid #ffffff;
+  /*@editable*/
+  border-bottom: 1px solid #c7c7c7;
+}
+
+/**
+* @tab Header
+* @section header text
+* @tip Set the styling for your email's header text. Choose a size and color that is easy to read.
+*/
+.headerContent {
+  /*@editable*/
+  color: #50596f;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 20px;
+  /*@editable*/
+  font-weight: bold;
+  /*@editable*/
+  line-height: 100%;
+  /*@editable*/
+  padding-top: 0;
+  /*@editable*/
+  padding-right: 0;
+  /*@editable*/
+  padding-bottom: 0;
+  /*@editable*/
+  padding-left: 0;
+  /*@editable*/
+  text-align: left;
+  /*@editable*/
+  vertical-align: middle;
+}
+
+/**
+* @tab Header
+* @section header link
+* @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+*/
+.headerContent a:link, .headerContent a:visited, .headerContent a .yshortcuts {
+  /*@editable*/
+  color: #ae1400;
+  /*@editable*/
+  font-weight: normal;
+  /*@editable*/
+  text-decoration: underline;
+}
+
+#headerImage {
+  height: auto;
+  max-width: 800px;
+}
+
+/* ========== Body Styles ========== */
+/**
+* @tab Body
+* @section body style
+* @tip Set the background color and borders for your email's body area.
+*/
+#templateBody {
+  /*@editable*/
+  background-color: #ffffff;
+  /*@editable*/
+  border-top: 1px solid #ffffff;
+  /*@editable*/
+  border-bottom: 1px solid #c7c7c7;
+}
+
+/**
+* @tab Body
+* @section body text
+* @tip Set the styling for your email's main content text. Choose a size and color that is easy to read.
+* @theme main
+*/
+.bodyContent {
+  /*@editable*/
+  color: #50596f;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 14px;
+  /*@editable*/
+  line-height: 150%;
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  /*@editable*/
+  text-align: left;
+}
+
+/**
+* @tab Body
+* @section body link
+* @tip Set the styling for your email's main content links. Choose a color that helps them stand out from your text.
+*/
+.bodyContent a:link, .bodyContent a:visited, .bodyContent a .yshortcuts {
+  /*@editable*/
+  color: #ae1400;
+  /*@editable*/
+  font-weight: normal;
+  /*@editable*/
+  text-decoration: underline;
+}
+
+.bodyContent img {
+  display: inline;
+  height: auto;
+  max-width: 560px;
+}
+
+/* ========== Footer Styles ========== */
+/**
+* @tab Footer
+* @section footer style
+* @tip Set the background color and borders for your email's footer area.
+* @theme footer
+*/
+#templateFooter {
+  /*@editable*/
+  background-color: #f6f6f6;
+  /*@editable border-top:1px solid $mailer__color--front;*/
+}
+
+#templateFooter tr + tr > td {
+  /*@editable background-color:$mailer__color--back;*/
+  /*@editable*/
+  border-top: 1px dashed #c7c7c7;
+  /*@editable text-align:center;*/
+}
+
+/**
+* @tab Footer
+* @section footer text
+* @tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
+* @theme footer
+*/
+.footerContent {
+  /*@editable*/
+  color: #9aaab8;
+  /*@editable*/
+  font-family: Helvetica, Arial, Sans-Serif;
+  /*@editable*/
+  font-size: 11px;
+  /*@editable*/
+  line-height: 150%;
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  /*@editable*/
+  text-align: left;
+}
+
+/**
+* @tab Footer
+* @section footer link
+* @tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+*/
+.footerContent a:link, .footerContent a:visited, .footerContent a .yshortcuts, .footerContent a span {
+  /*@editable*/
+  color: #50596f;
+  /*@editable*/
+  font-weight: normal;
+  /*@editable*/
+  text-decoration: underline;
+}
+
+table.list {
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-size: 0.9em;
+  border-top: 1px solid #c7c7c7;
+  border-bottom: 1px solid #c7c7c7;
+  width: 100%;
+}
+
+table.list tr:nth-of-type(odd) {
+  background: #f6f6f6;
+}
+
+table.list tr + tr {
+  border-top: 1px solid #f6f6f6;
+}
+
+table.list th {
+  background: #f6f6f6;
+  border-bottom: 1px solid #c7c7c7;
+  text-align: left;
+}
+
+table.list td, table.list th {
+  padding: 5px;
+}
+
+table.list .project,
+table.list .subject {
+  min-width: 160px;
+}
+
+table.list .closed_on,
+table.list .created_on,
+table.list .updated_on,
+table.list .due_date,
+table.list .start_date {
+  min-width: 100px;
+}
+
+table.progress {
+  border: 1px solid #c7c7c7;
+  border-collapse: collapse;
+}
+
+table.list td, th {
+  padding: 5px;
+}
+
+table.progress td {
+  height: 5px;
+  border: 1px solid #c7c7c7;
+  background: #f6f6f6;
+  padding: 0;
+}
+
+table.progress td.closed {
+  border-color: #ae1400;
+  background-color: #ae1400;
+}
+
+.progress-parent {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+a.wiki-anchor {
+  display: none;
+}
+
+.overdue {
+  color: #ae1400 !important;
+}
+
+.private {
+  color: #ae1400 !important;
+  float: right;
+  line-height: 1.2;
+}
+
+.journal-details-container h4 {
+  font-style: italic;
+}
+
+.journal-details-container .details {
+  font-size: 0.9em;
+  margin-bottom: 24px;
+}
+
+.attributes-wrapper {
+  margin-top: 0px;
+  margin-bottom: 24px;
+}
+
+.attributes {
+  font-family: Helvetica;
+  font-size: 14px;
+  color: #505050;
+  line-height: 120%;
+  width: 100%;
+  background-color: #f6f6f6;
+  border: 1px solid #c7c7c7;
+}
+
+.attribute th {
+  width: auto;
+}
+
+.attributes th, .attributes td {
+  padding: 2px 12px;
+}
+
+.attributes th {
+  width: 25%;
+  font-size: 0.89em;
+  font-weight: normal;
+  text-align: left;
+}
+
+.separator > td {
+  border: none;
+  padding-top: 12px;
+  border-bottom: 1px dashed #c7c7c7;
+}
+
+.spacer > td {
+  border: none;
+  height: 12px;
+  padding: 0;
+}
+
+.spacer + .spacer > td {
+  border: none;
+  border-top: 1px dashed #c7c7c7;
+}
+
+.footerActions {
+  text-align: center !important;
+}
+
+.actionButtons {
+  border-collapse: separate !important;
+  margin: auto;
+  font-family: Helvetica;
+  font-size: 14px;
+}
+
+.actionButtons a {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.actionButtons td {
+  border: 1px solid #00c8a9;
+  background-color: #00c8a9;
+}
+
+.actionButtons td.negative {
+  background-color: #ae1400;
+  border-color: #ae1400;
+}
+
+.actionButtons td a {
+  font-weight: bold !important;
+  display: inline-block;
+  padding: 12px 24px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  text-decoration: none !important;
+}
+
+.actionButtons a:link, .actionButtons a:visited, .actionButtons a span {
+  color: #ffffff !important;
+}
+
+.attachments a {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.attachments li {
+  margin-bottom: 3px;
+}
+
+.bodyAttributes {
+  font-size: 12px !important;
+}
+
+.bodyAttributes b {
+  width: 30% !important;
+  display: inline-block !important;
+}
+
+/*# sourceMappingURL=_mailer_inline.css.map */

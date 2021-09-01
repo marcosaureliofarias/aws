@@ -1,0 +1,54 @@
+<% if watchable.is_a?(Issue) %>
+  <% select_user_ids, select_group_ids = params[:issue][:watcher_user_ids], params[:issue][:watcher_group_ids] if params[:issue]
+     available_watcher_groups ||= watchable.available_groups.first(EasyWatchersListAutocomplete.setting(:watchers_groups_limit).to_i)
+     available_watcher_users ||= watchable.addable_watcher_users.first(EasyWatchersListAutocomplete.setting(:watchers_users_limit).to_i)
+     available_watcher_users = available_watcher_users.reject { |principal| select_user_ids.include?(principal.id.to_s)} if select_user_ids
+     available_watcher_groups = available_watcher_groups.reject { |principal| select_group_ids.include?(principal.id.to_s)} if select_group_ids
+  %>
+
+  <%= text_field_tag 'search', '', id: 'watchers-search-field', placeholder: l(:label_search) %>
+  <div class="selected_assignable_watchers_container">
+    <% if select_user_ids.present? || select_group_ids.present? %>
+      <%= render partial: 'easy_watchers_list_autocomplete/selected_watchers_avatar_and_checkbox', locals: {principals: easy_watchers_list_autocomplete_select_users_and_groups(watchable.addable_watcher_users, watchable.available_groups, select_user_ids, select_group_ids), watchable: watchable, checked: true, object_name: 'issue' } %>
+    <% end %>
+  </div>
+
+  <div class="easy_watchers_updatable_container">
+    <%= render partial: 'easy_watchers_list_autocomplete/watchers_avatar_and_checkbox_with_groups_original', locals: { watchable: watchable, project: project, object_name: 'issue', available_watcher_groups: available_watcher_groups, available_watcher_users: available_watcher_users } %>
+  </div>
+<% else %>
+  <%= render partial: 'easy_watchers_list_autocomplete/watchers_avatar_and_checkbox_with_groups_original', locals: { watchable: watchable, project: project, object_name: object_name, available_watcher_groups: available_watcher_groups, available_watcher_users: available_watcher_users } %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    var timer, delay = 500;
+    $("body").on('keyup', '#watchers-search-field', function() {
+      var _this = this;
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        var selected_watcher_ids = $('.selected_assignable_watchers_container input').map(function() { return _this.value }).get();
+        $.ajax({
+          type: 'POST',
+          url: '<%= easy_watchers_list_autocomplete_assignable_watchers_path %>',
+          data: {
+                filter_string: _this.value,
+                project_id: '<%= project.try(:id) %>',
+                entity_klass: '<%= watchable.class.to_s %>',
+                selected_watcher_ids: selected_watcher_ids,
+                format: 'js'
+          }
+        });
+      }, delay);
+    });
+  });
+  EASY.schedule.main(function() {
+    $('body').on('change', 'li.form-entity-watcher-container', function () {
+      if ($('input', this).prop("checked")) {
+          $('.selected_assignable_watchers_container').prepend(this);
+      } else {
+        $('.easy_watchers_updatable_container').append(this);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,3 @@
+<% query_settings_name = "#{@block_name}[query_settings]" %>
+var content = "<%= j(render 'easy_scheduler/common/query_filters', query: @query, modul_uniq_id: @block_name, block_name: query_settings_name)%>";
+$('.<%= @block_name %>-query-filters').html(content);

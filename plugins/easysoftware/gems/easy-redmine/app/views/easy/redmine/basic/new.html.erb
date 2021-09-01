@@ -1,0 +1,16 @@
+<%= entity_form_with(@entity) do |f| %>
+
+  <%= error_messages_for @entity %>
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+  <%= hidden_field_tag('type', @entity.type) if @entity.respond_to?(:type) %>
+
+  <div class="box tabular">
+    <%= content_tag(:div, id: form_container_id(@entity)) do %>
+      <%= render_form_view(@entity) %>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_create), class: 'button-positive' %>
+  </div>
+<% end %>

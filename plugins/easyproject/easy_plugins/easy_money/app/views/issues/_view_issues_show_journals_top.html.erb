@@ -1,0 +1,9 @@
+<% if User.current.allowed_to?(:view_easy_money, project) && issue.easy_money_visible? %>
+  <div class="clear"></div>
+  <% easy_currency_code = project.easy_currency_code
+     easy_money_issue = issue.easy_money(easy_currency_code).decorate(self)
+     heading = easy_money_issue.issue_budget_box_heading %>
+  <%= render_module_easy_box('issue_easy_money_inner', heading, { wrapping_heading_element: 'div' }) do |m| %>
+    <%= render 'easy_money/entity_overview', project: project, entity: issue, easy_currency_code: easy_currency_code %>
+  <% end %>
+<% end -%>

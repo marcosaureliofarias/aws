@@ -1,0 +1,42 @@
+<%= title @attachment.filename %>
+
+<div class="attachments">
+  <p><%= ("#{@attachment.description} - ") unless @attachment.description.blank? %>
+  <span class="author"><%= link_to_user(@attachment.author) %>, <%= format_time(@attachment.created_on) %></span></p>
+  <p><%= link_to_attachment @attachment, :text => l(:button_download), :download => true -%>
+  <span class="size">(<%= number_to_human_size @attachment.filesize %>)</span></p>
+</div>
+
+<% if @attachment.content_type == 'application/vnd.ms-outlook' %>
+  <em class="help-block"><%= l(:notice_msg_format) %></em>
+<% end %>
+&nbsp;
+
+<table class="filecontent message-preview">
+  <thead>
+    <tr class="even">
+      <%= content_tag(:th, Redmine::CodesetUtil.replace_invalid_utf8(@email.subject), {:class => 'subject', :colspan => '2'}) %>
+    </tr>
+    <tr class="odd">
+      <th>
+        <%= content_tag(:div, (l(:label_preview_external_email_mail_sender) << ': ' << Redmine::CodesetUtil.replace_invalid_utf8(Array(@email.from).map{|m| mail_to(m)}.join(', '))).html_safe) if @email.from %>
+        <%= content_tag(:div, (l(:label_preview_external_email_mail_recepient) << ': ' << Redmine::CodesetUtil.replace_invalid_utf8(Array(@email.to).map{|m| mail_to(m)}.join(', '))).html_safe) if @email.to %>
+        <%= content_tag(:div, (l(:label_preview_external_email_mail_cc) << ': ' << Redmine::CodesetUtil.replace_invalid_utf8(Array(@email.cc).map{|m| mail_to(m)}.join(', '))).html_safe) if @email.cc %>
+      </th>
+      <th>
+        <%= content_tag(:div, l(:label_mail_received_at) << ': ' << format_time(@email.date)) if @email.date %>
+      </th>
+    </tr>
+    <tr class="odd">
+      <%= content_tag(:th, (l(:field_attachments) << ': ' << @attachments.map{|a| link_to(a.filename.to_s, url_for(params.to_unsafe_hash.merge(:cid => a.cid, :content_filename => a.filename)))}.join(', ')).html_safe, :colspan => '2') if @attachments.any? %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td colspan="2">
+      <%= textilizable(replace_cid_links(@content)) %>
+    </td>
+    </tr>
+  </tbody>
+</table>
+

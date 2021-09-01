@@ -1,0 +1,298 @@
+---
+nl:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: Mail body (HTML)
+        body_plain: Mail body (PLATTE TEKST)
+        easy_crm_case_status: Status
+        project: Project
+        subject: Onderwerp
+      easy_crm_case_status:
+        is_closed: Gesloten?
+        is_default: Standaard?
+        is_easy_contact_required: Contact vereist?
+        is_paid: Betaald?
+        is_won: Gewonnen?
+        name: Naam
+        show_in_search_results: Zoekbaar?
+      easy_crm_case:
+        assigned_to: Toegewezen aan
+        author: Auteur
+        closed_on: Gesloten op
+        contract_date: Contractdatum
+        created_at: Aangemaakt op
+        currency: Valuta
+        description: Beschrijving
+        easy_closed_by: Gesloten door
+        easy_contacts: Contacten
+        easy_crm_case_items:
+          amount: Bedrag
+          description: Beschrijving
+          discount: Korting
+          easy_crm_case: CRM zaak
+          name: Naam
+          price_per_unit: Prijs per unit
+          product_code: Product code
+          total_price: Totale Prijs
+          unit: Unit
+        easy_crm_case_status: Status
+        email: E-mail
+        is_canceled: Geannuleerd?
+        is_finished: Afgerond?
+        lead_value: Lead waarde
+        name: Naam
+        need_reaction: Reactie nodig?
+        next_action: Volgende actie
+        price: Prijs
+        probability: Waarschijnlijkheid
+        project: Project
+        send_to_external_mails: Update sturen naar extern e-mailadres?
+        telephone: Telefoonnummer
+        updated_at: Bijgewerkt op
+      easy_lead_score:
+        country: Land
+        created_at: Aangemaakt op
+        updated_at: Bijgewerkt op
+      easy_user_target:
+        currency: Valuta
+        target: Doel
+        valid_from: Van
+        valid_to: Aan
+    models:
+      easy_crm_case_mail_template: Mail sjabloon
+      easy_mail_campaign_easy_crm_case: CRM zaak
+  button_change_easy_crm_cases_status: Opnieuw toewijzen en verwijderen
+  button_easy_crm_add_item: Item toevoegen
+  button_easy_crm_add_mail_template: Sjabloon toevoegen
+  button_easy_crm_add_mailbox: Mailbox toevoegen
+  button_easy_crm_add_or_create_related_contact: Gerelateerd contact toevoegen
+  button_easy_crm_add_or_create_related_invoice: Gerelateerde factuur toevoegen
+  button_easy_crm_add_or_create_related_issue: Gerelateerde taak toevoegen
+  button_easy_crm_add_related_contact: Contact toewijzen
+  button_easy_crm_add_related_invoice: Factuur toewijzen
+  button_easy_crm_add_related_issue: Taak toewijzen
+  button_easy_crm_add_sales_activity: Sales activiteit toevoegen
+  button_easy_crm_add_status: Status toevoegen
+  button_easy_crm_country_value_new: Maak nieuwe waarde
+  button_easy_crm_create_related_contact: Nieuw contact aanmaken
+  button_easy_crm_create_related_invoice: Nieuwe factuur aanmaken
+  button_easy_crm_create_related_issue: Nieuwe taak aanmaken
+  button_easy_crm_merge_cases: Zaken samenvoegen
+  button_easy_crm_merge_cases_inteligent_merge: Voeg CRM zaken samen
+  button_easy_crm_merge_cases_quick_merge: CRM zaken snel samenvoegen
+  button_easy_crm_new_case: Nieuwe CRM zaak
+  button_easy_crm_related_case: Gerelateerde CRM zaak toevoegen
+  button_easy_crm_view_sales_activities: Sales activiteiten overzicht
+  button_easy_lead_score_new: Nieuwe Easy Lead Score
+  button_easy_user_target_add_all_users_of_type: Voeg alle gebruikers toe met type
+  button_easy_user_target_add_users: Voeg gebruikers toe
+  button_easy_user_target_add_users_from_group: Voeg alle gebruikers toe uit groep
+  button_manage_user_targets: Beheer gebruikersdoelen
+  button_merge_and_follow: Samenvoegen en volgen
+  button_set_easy_user_target_currency: Stel valuta in
+  easy_crm_plugin_author: Easy Software
+  easy_crm_plugin_author_url: http://www.easyproject.cz/nl
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: Sales activiteit is gewijzigd
+  easy_entity_activity_destroyed: Sales activiteit is gewijzigd
+  easy_entity_activity_is_planned: "%{category} is gepland om %{time}"
+  easy_entity_activity_was_finished: "%{category} om %{time} afgerond"
+  easy_entity_activity_was_reported: "%{category} is gerapporteerd op  %{time}"
+  easy_invoice_already_has_crm_case: Factuur heeft al een CRM zaak
+  easy_lookup:
+    easy_crm_case:
+      label: CRM zaken
+  easy_mail_template_token:
+    caption:
+      crm_case_id: CRM zaak ID
+      crm_case_name: CRM  zaaknaam
+      crm_case_note: CRM zaak laatste agenda update
+    title:
+      crm_case_id: Klik om waarde van de CRM zaak ID toe te voegen
+      crm_case_name: Klik om de waarde van de CRM zaak naam (Onderwerp) toe te voegen
+      crm_case_note: Klik om content toe te voegen aan laatste agenda update van de
+        CRM zaak
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: CRM zaken op filter
+      easy_crm_create_easy_crm_case_button: Nieuwe CRM zaak button
+      easy_crm_pie_chart_from_custom_field: Aangepaste taartgrafiek
+      easy_crm_user_performance: Lid performance
+      easy_crm_user_target: Gebruiker targets
+      easy_entity_activity_crm_case_query: Sales activiteiten op filter
+    pages_description:
+      easy_crm_overview: CRM overzicht
+      easy_crm_project_overview: CRM project overzicht
+    pages:
+      easy_crm_overview: CRM overzicht
+      easy_crm_project_overview: CRM project overzicht
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: Voeg nieuwe CRM case toe
+        description: Maak een nieuwe CRM case
+    easy_crm_settings:
+      index:
+        caption: CRM instellingen
+        description: Beheer CRM instellingen
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: CRM zaken
+          related_easy_crm_case: Gerelateerde CRM zaak
+    name:
+      easy_crm_case_item_query: CRM zaak items
+      easy_crm_case_query: CRM zaken
+      easy_crm_contact_query: CRM contacten
+      easy_crm_country_value_query: CRM land specifieke waarden
+      easy_lead_score_query: Easy Lead Scores
+      easy_user_target_query: Gebruikersdoelen
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: Privé filters op CRM zaken
+        easy_crm_contact_query: Privé filters op CRM contacten
+      public:
+        easy_crm_case_query: Publieke filters op CRM zaken
+        easy_crm_contact_query: Publieke filters op CRM contacten
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: CRM mailbox
+  error_can_not_delete_easy_crm_status: Deze status bevat CRM en kan niet verwijderd
+    worden.
+  error_easy_crm_case_can_not_assign_custom_field: CRM zaak in aangepast veld kan
+    niet toegewezen worden omdat het niet behoort aan dit project.
+  error_easy_crm_case_could_not_merge: CRM zaken kunnen niet worden samengevoegd.
+  field_easy_crm_case: CRM zaak
+  field_easy_crm_case_contract_date: Contract datum
+  field_easy_crm_case_created_date: Aanmaakdatum
+  field_easy_crm_case_next_action: Volgende actie
+  field_easy_crm_cases: CRM zaak
+  field_easy_lead_score: Lead Score
+  heading_easy_crm_case_edit: CRM zaak aanpassen
+  heading_easy_crm_case_item_index: CRM zaak items
+  heading_easy_crm_case_mail_template_edit: E-mail sjabloon bewerken
+  heading_easy_crm_case_mail_template_index: Mail sjablonen
+  heading_easy_crm_case_mail_template_new: Nieuw mail sjabloon
+  heading_easy_crm_case_new: Nieuwe CRM zaak
+  heading_easy_crm_case_sidebar_filters_by_member: Zaken van leden
+  heading_easy_crm_case_status_edit: CRM zaak status bewerken
+  heading_easy_crm_case_status_index: CRM zaak statussen
+  heading_easy_crm_case_status_new: Nieuwe CRM zaak status
+  heading_easy_crm_country_value_new: Nieuwe CRM land specifieke waarde
+  heading_easy_crm_mailboxes_index: Mailboxen
+  heading_easy_crm_related_case: Gerealteerde CRM zaak
+  heading_easy_crm_related_case_plural: Gerelateerde CRM cases
+  heading_easy_crm_related_contacts: Gerelateerde contacten
+  heading_easy_crm_related_issues: Gerelateerde taken
+  heading_easy_lead_score_edit: Bewerk Easy Lead Score
+  heading_easy_lead_score_new: Nieuwe Easy Lead Score
+  label_advanced_custom_fields: Geavanceerde aangepaste velden
+  label_assign_to_easy_crm_case: Toewijzen aan CRM zaak
+  label_attribute_of_easy_crm_cases: CRM zaak %{name}
+  label_bulk_edit_selected_easy_crm_case: Geselecteerde CRM zaken in bulk bewerken
+  label_change_crm_cases_status_explanation: 'Wijzig CRM zaak status naar:'
+  label_chart_target: Gebruiker target
+  label_crm_currency_rate: Tarief naar basisvaluta
+  label_crm_fields_permissions: CRM velden permissies
+  label_easy_contact_easy_crm_cases: CRM zaken
+  label_easy_crm: CRM
+  label_easy_crm_case: CRM
+  label_easy_crm_case_added: CRM zaak toegevoegd
+  label_easy_crm_case_assignee: CRM zaak toegewezene
+  label_easy_crm_case_default_values: Standaard waarden
+  label_easy_crm_case_filters: Filter
+  label_easy_crm_case_is_associated_to_easy_invoice: Heeft verbonden CRM zaak?
+  label_easy_crm_case_need_reaction: Reactie nodig!
+  label_easy_crm_case_new: Nieuwe CRM zaak
+  label_easy_crm_case_plural: CRM zaken
+  label_easy_crm_case_query_includes_descendants: Toon CRM zaken van alle subprojecten
+  label_easy_crm_case_searchable_all: Zoek alle CRM statussen
+  label_easy_crm_case_status: CRM zaak status
+  label_easy_crm_case_updated: CRM zaak bijgewerkt
+  label_easy_crm_case_watchers_heading: Collega's
+  label_easy_crm_cases: CRM zaken
+  label_easy_crm_cases_merge_into: 'Samengevoegde CRM zaken met:'
+  label_easy_crm_country_values: CRM land specifieke waarden
+  label_easy_crm_default_assignee: Toegewezene voor nieuwe zaak
+  label_easy_crm_find_by_worker: Zoek naar medewerker
+  label_easy_crm_kanban: Kanban weergave
+  label_easy_crm_kanban_columns_name: Naam kolom
+  label_easy_crm_kanban_drop_in: Drop in status
+  label_easy_crm_kanban_settings: Kanban weergave instellingen
+  label_easy_crm_kanban_status_not_uniq: Kanban kolommen moeten verschillende statussen
+    volgen
+  label_easy_crm_kanban_statuses: Kolom statussen
+  label_easy_crm_kanban_sum_column: Kolom som veld
+  label_easy_crm_new_kanban_column: Nieuwe kolom toevoegen
+  label_easy_crm_project: CRM project
+  label_easy_crm_related_case: Gerelateerde zaak
+  label_easy_crm_search_fo_easy_contact: Zoek naar contact
+  label_easy_crm_search_for_easy_invoice: Zoek naar factuur
+  label_easy_crm_search_for_issue: Zoek naar taak
+  label_easy_crm_settings: Crm instellingen
+  label_easy_crm_use_items: Gebruik CRM items
+  label_easy_lead_score: Easy Lead Score
+  label_easy_lead_scores: Easy Lead Scores
+  label_easy_money_sidebar:
+    easy_crm_case: Money voor CRM zaak
+  label_easy_user_target: Gebruikersdoelen
+  label_easy_user_target_currency: Valuta
+  label_easy_user_with_targets: Gebruikers met targets
+  label_filter_group_easy_crm_case_item_query: CRM
+  label_filter_group_easy_crm_case_query: CRM
+  label_filter_group_easy_crm_contact_query: Contact
+  label_filter_group_easy_user_target_query: Gebruikersdoelen
+  label_page_module_compare: Vergelijk
+  label_set_crm_fields_permissions: Stel CRM velden toestemmingen in op status
+  label_show_assigned_crm_cases: Toon CRM zaken toegewezen aan gebruiker %{username}.
+  label_statuses_not_selected: Geen statussen geselecteerd. Kies er tenminste èèn.
+  label_unknown_user: Onbekend
+  label_use_values_from_crm_case: Gebruik waardes van
+  mail:
+    subject:
+      easy_crm_case_add: "[%{projectname}] CRM zaak toegevoegd - %{name}"
+      easy_crm_case_edit: "[%{projectname}] CRM zaak bijgewerkt - %{name} (%{status})"
+      my_easy_crm_case_add: ">>> Mijn CRM zaak [%{projectname}] toegevoegd - %{name}"
+      my_easy_crm_case_edit: ">>> Mijn CRM zaak [%{projectname}] bijgewerkt - %{name}
+        (%{status})"
+  notice_failed_to_save_easy_crm_cases: 'Opslaan %{count} CRM za(a)k(en) mislukt op
+    %{total} geselecteerde: %{titles}'
+  permission_add_crm_case_notes: Voeg notities toe
+  permission_add_easy_crm_case_watchers: Voeg CRM zaak kijkers toe
+  permission_add_easy_crm_cases: Voeg CRM zaken toe
+  permission_delete_easy_crm_case_watchers: Verwijder CRM zaak kijkers
+  permission_delete_easy_crm_cases: Verwijder CRM zaken
+  permission_edit_crm_case_notes: Bewerk notities
+  permission_edit_easy_crm_cases: Pas CRM zaken aan
+  permission_edit_own_crm_case_notes: Bewerk eigen notities
+  permission_edit_own_easy_crm_cases: Bewerk eigen CRM zaken
+  permission_manage_easy_crm_page: Beheer CRM pagina's
+  permission_manage_easy_crm_settings: Beheer CRM instelling
+  permission_manage_easy_lead_scores: Beheer Easy Lead Scores
+  permission_manage_easy_user_targets: Beheer gebruiker targets
+  permission_view_easy_crm_case_watchers: Bekijk CRM zaak kijkers
+  permission_view_easy_crms: Bekijk CRM zaken
+  permission_view_easy_lead_scores: Bekijk Easy Lead Scores
+  permission_view_own_easy_crms: Bekijk eigen CRM zaken
+  project_default_page:
+    easy_crm: CRM
+  project_module_easy_crm: CRM
+  remove_related_crm_case: Verwijder
+  remove_related_invoice: Verwijder Factuur
+  setting_show_easy_entity_activity_on_crm_case: Toons sales activiteiten voor CRM
+    zaak
+  sidebar_crm_case_button_move: Verplaats CRM zaak
+  text_are_you_sure_remove_user: Wilt u deze gebruiker echt verwijderen uit alle kwartalen?
+  text_easy_crm_case_updated: CRM zaak %{id} is bijgewerkt door %{user}.
+  title_easy_crm_case_delete: Verwijder CRM zaak
+  title_easy_crm_country_value_new: Klik om nieuwe land specifieke waarde te maken
+  title_easy_crm_new_case: Klik hier om nieuwe CRM zaak aan te maken.
+  title_easy_lead_score_new: Klik hier om  nieuwe Easy Lead Score aan te maken
+  title_easy_user_target_modal_easy_user_type: Selecteer gebruikers op type
+  title_easy_user_target_modal_group: Selecteer gebruikers per groep
+  title_easy_user_target_remove_user: Verwijder gebruiker
+  title_kanban_settings: Kanban instellingen

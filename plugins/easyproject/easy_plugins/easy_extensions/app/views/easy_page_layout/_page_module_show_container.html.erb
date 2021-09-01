@@ -1,0 +1,41 @@
+<%
+  modul_uniq_id = "module_inside_#{page_module.uuid.dasherize}"
+  user = (page_params[:user] || User.current)
+
+  if page_module.chart_included?
+    include_jqplot_scripts
+  end
+
+  cache_expires_in = [1, page_module.settings['cache_for_days'].to_i].max
+  cache_force_reload = (params[:page_module_force_reload] == '1')
+  collapsible = page_module.module_definition.collapsible?
+%>
+
+<div id="module_<%= page_module.uuid.dasherize %>" class="easy-page-module easy-page__module box <%= 'collapsible' if collapsible %> <%= 'push-left' if page_module.floating? %> <%= page_module.css_class %>">
+
+  <%= Rails.cache.easy_fetch_if(page_module.cache_on?, page_module.module_cache_key(user), expires_in: cache_expires_in.days, force: cache_force_reload) do %>
+    <%
+      pmtc_options = {
+        easy_page_modules_data: @easy_page_modules_data[page_module.module_name],
+        modul_uniq_id: modul_uniq_id,
+        block_name: page_module.module_name,
+        user: user,
+        no_expander: !collapsible
+      }
+      tc_options = get_page_module_toggling_container_options(page_module, pmtc_options)
+    %>
+
+    <% page_module_toggling_container(page_module, page_params, modul_uniq_id, user, tc_options) do %>
+      <%= render(partial: 'easy_page_layout/page_module_show', locals: { page_params: page_params, page_module: page_module }) %>
+    <% end %>
+  <% end %>
+</div>
+
+<% if request.xhr? %>
+  <script type="text/javascript">
+    EASY.schedule.late(function(){
+      initEasyAutocomplete();
+      initEasyInlineEdit();
+    });
+  </script>
+<% end %>

@@ -1,0 +1,79 @@
+<% last = nil; groups_count = entities.keys.first.count %>
+<div class="clear"></div>
+<div class="autoscroll">
+<table class="list report">
+<thead>
+  <tr>
+    <% (groups_count-1).times do %>
+      <th></th>
+    <% end %>
+    <% output.top_line.each do |column_heading| %>
+      <th colspan="<%= output.sum_column.count %>"><%= output.format_group(groups_count-1, output.top_line_names[column_heading], output.top_line_entities[column_heading]) %></th>
+    <% end %>
+    <th colspan="<%= output.sum_column.count %>"><%= l(:label_total) %></th>
+  </tr>
+  <% if output.sum_column.count > 1 %>
+  <tr>
+    <% (groups_count-1).times do %>
+      <th></th>
+    <% end %>
+    <% (output.top_line + [:any]).each do |column_heading| %>
+      <% output.sum_column.each do |sum_col| %>
+        <th><%= sum_col && sum_col.caption || l(:field_count) %></th>
+      <% end %>
+    <% end %>
+  </tr>
+  <% end %>
+</thead>
+<tbody>
+  <% output.groups.each do |group, top_groups| %>
+    <% right_total = output.sum_column.map{|sc| 0} %>
+    <tr>
+      <% diff = 0; group.each_with_index do |val, i| %>
+        <% column_group = output.column_group(top_groups.first, group) %>
+        <% diff += 1 and next if last && val == last[i] %>
+        <% last = nil %>
+        <% if diff > 0 %>
+          <td colspan="<%= diff %>"></td>
+          <% diff = 0 %>
+        <% end %>
+        <td>
+          <%= output.format_group(i, output.group_name(column_group)[i], output.group_entity(column_group)) %>
+        </td>
+      <% end %>
+      <% top_groups = output.sort_top_line(top_groups) %>
+      <% i = 0; output.top_line.each do |column_heading| %>
+        <% if i >= top_groups.length || top_groups[i] != column_heading %>
+          <td colspan="<%= output.sum_column.count %>"> - </td>
+        <% else %>
+          <% (0...output.sum_column.count).step do |col_idx| %>
+            <td>
+              <% col_group = output.column_group( column_heading, group )
+                 val = output.column_value( col_group, col_idx )
+                 output.fixed_value_column_indexes.include?(col_idx) ? right_total[col_idx] = val : right_total[col_idx] += val
+                 bottom_total[column_heading][col_idx] += val.nil? ? 0 : val %>
+              <%= output.format_value(val, col_group, col_idx) %>
+            </td>
+          <% end %>
+          <% i += 1 %>
+        <% end %>
+      <% end %>
+      <% (0...output.sum_column.count).step do |col_idx| %>
+        <% bottom_total[:total][col_idx] += right_total[col_idx] %>
+        <td><%= output.format_value(right_total[col_idx], output.column_group(:any, group), col_idx ) %></td>
+      <% end %>
+    </tr>
+    <% last = group %>
+  <% end %>
+  <tr>
+    <% bottom_total.each_with_index do |(key, value), idx| %>
+      <% value.each_with_index do |val, i| %>
+        <td colspan="<%= output.left_report_group_by.count if idx == 0 %>">
+          <%= key == :label ? val : output.format_value(val, nil, i) %>
+        </td>
+      <% end %>
+    <% end %>
+  </tr>
+</tbody>
+</table>
+</div>

@@ -1,0 +1,314 @@
+//-- Secondary parameters --
+$internal-brand: '' !default;
+
+//Scaffolding
+$gap-const: 12px;
+
+//Colors
+$white: #ffffff !default;
+$gray: #dbdbdb !default;
+$black: #000000 !default;
+
+$color-print: #000;
+$color-print--background: #fff;
+$color-print--accent: #f0f0f0;
+
+$color-uberlight: mix($color-foreground,$color-highlight) !default;
+$color-uberlight-border: $color-border-minor !default;//darken($color-uberlight, 10%) !default;
+
+$color-calendar-background-today: #fcf8e3 !default;
+$color-calendar-background-weekend: rgba(mix($color-background,$color-foreground),0.5) !default;
+$color-calendar-background-holiday: rgba(mix($color-positive,$color-foreground),0.25) !default;
+$color-calendar-background-exception: rgba(mix($color-important,$color-foreground),0.25) !default;
+
+$color-login-text: $color-top-text;
+$color-login-background: rgba($color-top-background, .95);
+
+$color-trial-background: darken($color-foreground,5%);
+$color-more-text: $color-text;
+
+//$color-uberlight: mix($color-foreground,lighten($color-important, 40%)) !default;
+//$color-uberlight-border: darken($color-uberlight, 10%) !default;
+//Scaffolding
+$login-height: 320px;
+$sidebar-width: 280px !default;
+$servicebar-height: 75px !default;
+$servicebar-width: 40px !default;
+$servicebar-component-width: 320px !default;
+$leftmenu-width: 480px !default;
+$topmenu-height: 50px !default;
+$mainmenu-height: 30px !default;
+$breadcrumb-height: 40px !default;
+$header-height: $gap + $mainmenu-height + $breadcrumb-height !default;
+
+$z-priority: body,main,newissue,sidebar,content,scrollbar,servicebar,topmenu,ui-widget,context-menu,sidemenu,modal,draggable,ajax !default;
+
+$border-fade: 0.1 !default;
+$roundiness: 0.2 !default;
+$border-radius: $roundiness*$gap !default;
+$border-radius-small: 0.5*$border-radius !default;
+$border-radius-large: 1.25*$border-radius !default;
+//Header
+$header-color-background: $color-background !default;
+$header-color-border: darken($color-border-minor,15%) !default;
+$header-color-text: darken($color-important,15%) !default;
+
+//Scrollbars
+$scrollbar-background: $color-background !default;
+$scrollbar-background-border: $header-color-border !default;
+$scrollbar-foreground: rgba($color-main,.25) !default;
+$scrollbar-foreground-border: darken($scrollbar-foreground,0%) !default;
+$scrollbar-width: $gap !default;
+
+//Type
+$font-family: 'Open Sans', sans-serif !default;
+$headings-font-family: "Open Sans", sans-serif !default;
+$headings-level: 6 !default;
+$font-h1: 1.8em !default;
+$font-h2: 1.5em !default;
+$font-h3: 1.25em !default;
+$font-h4: 1.125em !default;
+$font-small: .89em !default;
+$font-smallest: 10px !default;
+
+//Forms
+$form-field-max-width: 350px;
+$form-field-height: 3*$gap;
+$color-input-border: $color-border;
+$tabular-offset: 140px !default;
+$tabular-offset-large: 240px !default;
+$form-background: mix($color-foreground, mix($color-background, $color-foreground)) !default;
+$form-field-background: $color-foreground !default;
+//Tabs
+$tab-height: 3*$gap !default;
+
+//Buttons
+$button-height: $breadcrumb-height - $gap !default;
+$button-mini-height: 0.8*$button-height !default;
+$button-small-height: $breadcrumb-height - $gap !default;
+
+$button-base-background: $color-background !default;
+$button-base-color: $color-text !default;
+$button-main-background: darken($color-main, 10%) !default;
+$button-main-color: $white !default;
+$button-important-background: $color-important !default;
+$button-important-color: $white !default;
+$button-positive-background: $color-positive !default;
+$button-positive-color: $white !default;
+$button-negative-background: $color-negative !default;
+$button-negative-color: $white !default;
+
+//Toolbars
+$toolbar-height: $button-height + 2*$gap !default;
+$toolbar-background: $color-foreground !default;
+
+//Boxes
+$box-padding: 2*$gap !default;
+$box-margin: 2*$gap !default;
+$box-heading-height: $toolbar-height !default;
+$box-background: $color-background !default;
+$box-foreground: $color-foreground !default;
+$box-border: $color-border !default;
+
+$retrace-constant: .75;
+$retrace-constant-tables: 1;
+$retrace: $retrace-constant*$box-padding;
+$retrace-mod: (1-$retrace-constant)*$box-padding;
+$retrace-constant--headings: .875;
+$retrace--headings: $retrace-constant--headings*$box-padding;
+
+//Forms
+$tabular-offset: 140px !default;
+$tabular-offset-large: 240px !default;
+$form-background: darken($color-foreground, 5%) !default;
+$color-form-background: mix($color-foreground, $color-background) !default; //text
+$color-form-field-background: $color-foreground; //text
+$form-field-border: $color-border-minor; //text
+
+//Avatars
+$avatar-width-big: 25% !default;
+$avatar-border: $color-border !default;
+$avatar-size: 32px !default; //text
+
+//Breadcrumbs
+$breadcrumb-color-background: $color-background; //mix($color-foreground,$color-background);
+$breadcrumb-color-foreground: mix($color-foreground,$color-background);
+$breadcrumb-color-border: $color-border-minor;
+
+//Journal
+$journal-foreground: $color-foreground !default;
+$journal-border: $color-border !default;
+$journal-avatar-width: 30px !default;
+
+//Tooltips
+$tooltip-background: $color-foreground !default;
+$tooltip-border: $color-border !default;
+$tooltip-color: $color-text !default;
+
+//Menu tooltips
+$menu__background--hover: rgba(mix($color-important, $color-foreground, 35%), 0.5);
+$menu__color--active: $color-positive;
+
+//Badges
+$badge-radius: 500px !default;
+
+//Tags
+$tag-background: lighten($color-background,5%) !default;
+$tag-border: $color-border !default;
+$tag-size: 1.6*$gap !default;
+
+//Mailer
+$mailer__color--back: $color-background !default; //color
+$mailer__color--front: $color-foreground !default; //color
+$mailer__color--text: $color-text !default; //color
+$mailer__color--heading: $mailer__color--text !default; //color
+$mailer__color--mixed: mix($mailer__color--back,$mailer__color--front) !default; //color
+$mailer__color--border: $color-border !default; //color
+$mailer__color--links: $color-links !default; //color
+$mailer__color--muted: $color-text-muted  !default; //color
+$mailer__color--positive: $color-positive !default; //color
+$mailer__color--negative: $color-negative !default; //color
+$mailer__width: 800px !default; //text
+$mailer__padding: 24px !default; //text
+
+//gantt
+$gantt-row-height: 25px;
+$gantt-task-height: 20px;
+$gantt-background-menu: mix($color-foreground, mix($color-foreground, $color-background));
+
+//Mup
+$mup-background-menu: mix($color-foreground, mix($color-foreground, $color-background));
+//responsive
+$media-collapse-xxxlarge: 2500px !default;
+$media-collapse-xxlarge: 1900px !default;
+$media-collapse-xlarge: 1400px !default;
+$media-collapse-large: 1200px !default;
+$media-collapse-medium: 960px !default;
+$media-collapse-small: 480px !default; //$leftmenu-width !default;
+$media-collapse-xsmall: 320px !default;
+$media-collapse-menu: $media-collapse-medium !default;
+$media-collapse-sidebar: 640px !default;
+$media-collapse-medium-height: 768px !default;
+
+$media-highres-breakpoint: 100dpi !default;
+
+$calendar-collapse: small-screen;
+
+$table-cols-on-mobile: (
+        name,subject,issue,checkbox,total,login,text-right,contact_name,group-name,filename,filesize,number,totalsum-description,spent_on
+);
+// ------------------------------
+// Palette
+// ------------------------------
+$color-palette-main: $color-main !default;
+$palette: (
+        $color-main,
+        #62c1e8,
+        #4bab9d,
+        $color-positive,
+        #95c78a,
+        #c1ca59,
+        #e4d100,
+        #e4bb2e,
+        #efa126,
+        #f35612,
+        $color-important,
+        #d66b91,
+        #945da2,
+        #64489a,
+        #4555c7,
+        #1676c1,
+
+) !default;
+$palette-light: () !default;
+@for $i from 1 through length($palette) {
+        $palette-light: append($palette-light, mix(nth($palette,$i), white, 30%),comma)
+}
+$pallete-entities: (
+        "issue": nth($palette-light, 1),
+        "crm": nth($palette-light, 12),
+        "meeting": nth($palette-light, 4),
+        "attendance": nth($palette-light, 6),
+        "version": nth($palette-light, 9)
+);
+$pallete-timeline: map-merge($pallete-entities,(
+        "issue-edit": nth($palette-light, 1),
+        "issue-note": nth($palette-light, 1),
+        "issue-closed": nth($palette-light, 1),
+        "time-entry": nth($palette-light, 3)
+));
+$palette-iterations: length($palette) !default;
+$palette-length: length($palette);
+@for $i from 1 through $palette-iterations {
+        $palette: append($palette, darken(nth($palette,$i),25%),comma)
+}
+@for $i from 1 through $palette-iterations {
+  $palette: append($palette, lighten(nth($palette,$i),25%),comma)
+}
+
+$palette-lighten-factor: 0.40 !default;
+
+$chart-palette: (
+) !default;
+@for $i from 1 through $palette-length/4 {
+        $chart-palette: append($chart-palette, nth($palette,$i ),comma);
+        $chart-palette: append($chart-palette, nth($palette,$i + $palette-length*1/4),comma);
+        $chart-palette: append($chart-palette, nth($palette,$i + $palette-length*2/4),comma);
+        $chart-palette: append($chart-palette, nth($palette,$i + $palette-length*3/4),comma);
+
+}
+
+$schemes: (
+        1: $color-negative,
+        3: $color-positive,
+        5: $color-main,
+        7: lighten($color-important,10%),
+        9: $color-important,
+) !default;
+$schemes-lighten-factor: 49% !default;
+$schemes-flattened: null;
+@for $i from 1 through length($schemes) {
+        $schemes-flattened: append($schemes-flattened, "#{nth(map-keys($schemes),$i)}:'#{nth(map-values($schemes),$i)}'",comma)
+}
+//grid
+$grid: (
+        1:  10%,
+        2:  20%,
+        3:  30%,
+        4:  40%,
+        5:  50%,
+        6:  60%,
+        7:  70%,
+        8:  80%,
+        9:  90%,
+        25: 25%,
+        33: 33.33%,
+        66: 66.66%,
+) !default;
+
+$api-js: (
+        base-spacing: $box-padding,
+        topmenu-height: $topmenu-height,
+        color-main: $color-main,
+        color-positive: $color-positive,
+        color-negative: $color-negative,
+        color-important: $color-important,
+        palette: #{$palette},
+        chart-palette: #{$chart-palette},
+        palette-lighten-factor: $palette-lighten-factor,
+        schemes: #{$schemes-flattened},
+        schemes-lighten-factor: $schemes-lighten-factor,
+        gantt-row-height: $gantt-row-height,
+        gantt-task-height: $gantt-task-height,
+        font-size: $font-size,
+        modal-zindex: z($z-priority,modal),
+        breakpoint-large: $media-collapse-large,
+        breakpoint-medium: $media-collapse-medium,
+        breakpoint-menu: $media-collapse-medium,
+        breakpoint-sidebar: $media-collapse-sidebar,
+        breakpoint-small: $media-collapse-small,
+        breakpoint-xlarge: $media-collapse-xlarge,
+        breakpoint-xsmall: $media-collapse-xsmall,
+        breakpoint-xxlarge: $media-collapse-xxxlarge,
+        breakpoint-xxxlarge: $media-collapse-xxxlarge
+)

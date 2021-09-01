@@ -1,0 +1,84 @@
+<% user_target_data = prepare_user_targets_data
+   months_in_quarter = user_target_data[:months_in_quarter]
+   easy_user_target_map = user_target_data[:easy_user_target_map]
+   currency = EasySetting.value('user_target_currency')
+   back_url = url_for(params.to_unsafe_hash.merge(date: months_in_quarter.first[:from], move: '')) %>
+
+<h3 class="multieditable-container" data-url="<%= set_user_target_currency_easy_user_targets_path(format: 'json') %>">
+  <%= EasyUserTarget.human_attribute_name(:currency) %>:
+  <span class="multieditable"
+        data-name="easy_setting[user_target_currency]"
+        data-type="select"
+        data-value="<%= currency %>"
+        data-source="<%= EasyCurrency.activated.collect { |s| {text: s.name, value: s.iso_code} }.to_json %>">
+        <%= EasyCurrency.find_by(iso_code: currency).try(:name) %>
+  </span>
+</h3>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= easy_modal_selector_link_with_submit('User', 'name', 'user_ids', 'ids5', '', form_url: {controller: 'easy_user_targets', action: 'add_user', back_url: back_url}, trigger_options: {name: l(:button_easy_user_target_add_users), html: {class: 'button-positive'}}) %>
+  <%= link_to l(:button_easy_user_target_add_all_users_of_type), add_user_easy_user_targets_path(entity: 'easy_user_type'), class: 'button-positive', remote: true %>
+  <%= link_to l(:button_easy_user_target_add_users_from_group), add_user_easy_user_targets_path(entity: 'group'), class: 'button-positive', remote: true %>
+<% end %>
+
+
+<div class="toolbar">
+  <div class="easy-cal-date-selection easy-calendar-listing-links">
+    <%= link_to '', {move: 'prev_month', tab: 'easy_user_targets', date: months_in_quarter.first[:from]}, class: 'prev' %>
+    <h3><%= month_name(months_in_quarter.first[:from].month) %>
+      - <%= month_name(months_in_quarter.last[:from].month) %> <%= months_in_quarter.last[:from].year %></h3>
+    <%= link_to '', {move: 'next_month', tab: 'easy_user_targets', date: months_in_quarter.last[:to]}, class: 'next' %>
+  </div>
+</div>
+
+<% if @users.present? %>
+  <div id="easy_user_target_no_data" class="autoscroll">
+    <%= form_tag(bulk_update_easy_user_targets_path, method: 'post') do %>
+      <%= hidden_field_tag 'back_url', back_url %>
+      <table id="easy_user_targets" class="list">
+        <thead>
+        <tr>
+          <th>
+            <%= l(:label_user_plural) %>
+          </th>
+          <% months_in_quarter.each do |month| %>
+            <th>
+              <%= month_name(month[:from].month) %>
+            </th>
+          <% end %>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr id="<%= dom_id(user) %>" class="easy-user-targets-user">
+            <td class="name">
+              <%= user.name %>
+            </td>
+            <% months_in_quarter.each do |date_range| %>
+              <% user_target = easy_user_target_map[user.id]["#{date_range[:from]}-#{date_range[:to]}"] || EasyUserTarget.new %>
+              <td>
+                <%= hidden_field_tag "user_targets[#{user.id}][][easy_user_target_id]", user_target.id %>
+                <%= hidden_field_tag "user_targets[#{user.id}][][valid_from]", date_range[:from] %>
+                <%= hidden_field_tag "user_targets[#{user.id}][][valid_to]", date_range[:to] %>
+                <%= text_field_tag "user_targets[#{user.id}][][target]", user_target.target, placeholder: '0.0', size: 20 %>
+              </td>
+            <% end %>
+            <td class="easy-additional-ending-buttons">
+              <%= link_to('', remove_user_easy_user_targets_path(user_id: user.id), remote: true, method: :delete, class: 'icon icon-del', title: l(:title_easy_user_target_remove_user), data: {confirm: l(:text_are_you_sure_remove_user)}) %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <div class="form-actions">
+        <%= submit_tag l(:button_update), class: 'button-positive' %>
+      </div>
+    <% end %>
+  </div>
+
+  <span class="pagination"><%= pagination_links_full @easy_user_target_pages %></span>
+
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>

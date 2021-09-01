@@ -1,0 +1,49 @@
+.wiki{
+  &-page{
+    h1{
+      padding: $box-padding;
+      padding-top: 0;
+      border-bottom: 1px solid $color-border;
+      margin-left: -$box-padding;
+      margin-right: -$box-padding;
+    }
+  }
+  &-anchor{
+    opacity: 0;
+    &:hover{
+      opacity: 1;
+    }
+    @for $i from 1 through 6 {
+      h#{$i} &{
+        &:hover{
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+.toc{
+  padding: $gap;//9.5px;
+  margin: 0 0 $box-margin;//10px;
+  background: $color-highlight;
+  border: 1px solid $color-border-minor;
+  display: inline-block;
+  &.left{
+    float: left;
+    margin-right: $gap;
+    margin-left: 0;
+    width: auto;
+  }
+  &.right{
+    float: right;
+    margin-left: $gap;
+    margin-right: 0;
+    width: auto;
+  }
+  a{
+    color: $color-text;
+  }
+  &, ul{
+    list-style: none;
+  }
+}

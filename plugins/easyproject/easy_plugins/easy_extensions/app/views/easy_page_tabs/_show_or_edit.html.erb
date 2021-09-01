@@ -1,0 +1,12 @@
+<%
+  edit = easy_page_context[:page_params][:edit]
+%>
+
+<% if edit %>
+  <%= render 'easy_page_tabs/edit', local_assigns %>
+<% else  %>
+  <%
+    # Nothing yet
+    # TODO: Move global filters here
+  %>
+<% end %>

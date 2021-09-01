@@ -1,0 +1,21 @@
+<% include_map_scripts %>
+
+<div id="<%= modul_uniq_id %>_map" class="easy-query-map" data-uuid="<%= easy_query.page_module && easy_query.page_module.uuid %>" style="height: 400px">
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    // L.mapbox.accessToken = 'pk.eyJ1IjoiZXpybyIsImEiOiJjaXQxZ202ODQwMDhzMm9vM2p3b3FsNGd0In0.FifnTONqTmhf-XG-6s5FPQ';
+    var map = L.map('<%= modul_uniq_id %>_map').setView([50.5, 14.25], 5);
+    L.tileLayer('<%= raw output.map_tiles_url %>', <%= raw output.map_tile_layer_options.to_json %>).addTo(map);
+    $.ajax('<%= raw output.api_data_path(project_id: @project) %>').done(function(data){
+      var markerClusters = new L.MarkerClusterGroup();
+      for (var i = data.data.length - 1; i >= 0; i--) {
+        var link = data.data[i].link;
+        var title = data.data[i].title;
+        markerClusters.addLayer( L.marker( data.data[i].coordinates, {title: title} ).bindPopup(link) );
+      }
+      map.addLayer(markerClusters);
+    });
+  });
+</script>

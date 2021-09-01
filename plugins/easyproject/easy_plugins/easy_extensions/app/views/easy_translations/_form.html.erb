@@ -1,0 +1,39 @@
+<% original_value = @entity.send(@entity_column, {:translated => false}) %>
+<%= form_tag(update_easy_translations_path(@entity.class.name, @entity, @entity_column), :method => :put, :remote => true) do %>
+  <div class="box tabular" id="easy_translation_used_translation_container">
+    <div class='splitcontent'>
+      <div class="splitcontentleft">
+        <p id="easy_translation_original_value_field">
+          <%= label_tag(:easy_translations_original_value, l(:label_easy_translation_original_value)) %>
+          <%= text_field_tag('easy_translations[original_value]', original_value) %>
+        </p>
+      </div>
+      <div class="splitcontentright">
+        <% if original_value.present? %>
+          <p id="easy_translation_add_translation_select" style="<%= 'display:none' if @available_locales.empty? %>">
+            <%= label_tag(:add_translation, l(:text_easy_translation_add_translation)) %>
+            <%= select_tag(:add_translation,
+                           options_for_select(@available_locales.collect { |i| [@translated_langs_from_cache[i], i] }),
+                           include_blank: true) %>
+          </p>
+        <% else %>
+          <p><em class="info text-center"><%= l(:error_translations_original_value_is_missing) %></em></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <hr />
+    <div class="form_translated_field splitcontent">
+      <%= render(:partial => 'form_translated_field', :collection => @translations, :as => :t) %>
+    </div>
+  </div>
+<% end -%>
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $("#add_translation").change(function(event) {
+      if(event.target.value !== '') {
+        $.post("<%=j create_easy_translations_path(@entity.class.name, @entity, @entity_column) %>", {lang: event.target.value});
+      }
+    });
+  });
+</script>

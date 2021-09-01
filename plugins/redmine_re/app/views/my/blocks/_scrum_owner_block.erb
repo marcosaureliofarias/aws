@@ -1,0 +1,51 @@
+<h3><%= link_to_function l(:open_requirements), "Effect.toggle('open_reqs')" %> </h3>
+<div id="open_reqs">
+ <% project = Project.find(:all).each do |project| %>
+ <h4><%= link_to_function project.name, "Effect.toggle('myTableOR#{project.id}')" %></h4>
+<table class="list" id="myTableOR<%=project.id%>">
+  <thead>
+  <tr>
+    <th>Requirements</th>
+    <th colspan="2">Connected Issues </th>
+  </tr>
+  </thead>
+  <tbody>
+   <tr style="font-weight: bold;">
+     <td> </td>
+     <td>Subject</td>
+     <td>Dates</td>
+   </tr>
+  <% ReRealization.openartifacts_by_due_date(project).each do |artifact| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+
+        <td>
+          <%= link_to '#'+artifact.id.to_s+' '+ artifact.artifact_type+":  " + artifact.name, :controller => 're_artifact_properties', :action => 'edit', :id =>artifact.id %>&nbsp;
+          <br/>
+        </td>
+
+        <td>
+          <% artifact.issues.each do |issue| %>
+              <% unless issue.assigned_to_id.blank? %>
+                <% assignee=User.find(issue.assigned_to_id); assigneename=assignee.firstname + assignee.lastname; %>
+              <% else %>
+                <% assigneename="- " %>
+              <% end %>
+              <%= link_to ('#'+issue.id.to_s+' '+issue.subject), issue_path(issue) %> &nbsp;
+              (Assignee: <%=assigneename%>)
+              <br/>
+          <% end %>
+        </td>
+
+        <td>
+          <% artifact.issues.each do |issue| %>
+              <%= issue.start_date.to_s.blank? ? "n/a" : issue.start_date.to_s %> until <%= issue.due_date.to_s.blank? ? "n/a" : issue.due_date.to_s %> (Done: <%=  issue.status_id>4?"100":issue.done_ratio%>%)
+              <br/>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+<% end %>
+</div>

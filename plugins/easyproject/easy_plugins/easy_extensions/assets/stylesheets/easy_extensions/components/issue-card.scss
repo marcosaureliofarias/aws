@@ -1,0 +1,20 @@
+.issue-card {
+  max-width: 300px;
+
+  &__attr {
+    line-height: 1.25;
+  }
+
+  &__label {
+    @include small;
+    vertical-align: top;
+    font-weight: bold;
+    padding-right: .5*$gap;
+  }
+
+  &__value {
+    vertical-align: top;
+    max-height: 250px;
+    overflow: hidden;
+  }
+}

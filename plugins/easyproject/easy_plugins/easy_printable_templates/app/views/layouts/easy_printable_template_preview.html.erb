@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale -%>">
+<head>
+  <meta charset='utf-8'>
+  <title><%= html_title %></title>
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'rtl', :media => 'all' if l(:direction) == 'rtl' %>
+  <%= stylesheet_link_tag 'context_menu' %>
+  <%= favicon %>
+  <%= stylesheet_link_tag 'easy_jquery_ui/jquery-ui.css' %>
+  <%#= easy_theme_tag(:media => 'all') -%>
+  <%= stylesheet_link_tag 'easy_extensions', :media => 'all' %>
+  <%= javascript_include_tag('easy_extensions_blocking') %>
+  <%= javascript_include_tag('easy_extensions', defer: true) %>
+  <%= javascript_heads %>
+
+  <% include_calendar_headers_tags %>
+  <% include_filters_bottom_tags %>
+  <% heads_for_wiki_formatter -%>
+
+  <%= stylesheet_link_tag('easy_print', :media => 'all') -%>
+
+  <style type="text/css">
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        overflow: visible !important;
+      }
+    }
+
+    @media screen {
+      .easy-printable-toolbar-container + #main {
+        top: 65px;
+        overflow: visible !important;
+      }
+      .easy-page-brake-before {
+        border-top: 1px dashed black;
+      }
+      .easy-printable-template-page{
+        border: 1px dashed #ddd;
+      }
+      .easy-printable-template-page .padding{
+        padding: 10mm; /* PDFKit add 10mm by default */
+        box-sizing: border-box;
+      }
+    }
+
+  </style>
+  <script type="text/javascript">
+    ERUI.isMobile = <%= is_mobile_device? %>;
+
+    window.momentjsFormat = '<%= j momentjs_date_format %>';
+
+    window.urlPrefix = '<%= j get_easy_absolute_uri_for.to_s %>';
+
+    window.I18n = {
+      titleInlineEditable: '<%= j l(:title_inline_editable) %>',
+      titleInlineEditableAll: '<%= j l(:title_inline_editable_all) %>',
+      buttonSave: '<%= j l(:button_save) %>',
+      buttonCancel: '<%= j l(:button_cancel) %>',
+      buttonClear: '<%= j l(:button_clear) %>',
+      meetingDestroyConfirmation: '<%= j l(:text_meeting_destroy_confirmation) %>',
+      meetingAccept: '<%= j l(:button_meeting_accept) %>',
+      meetingDecline: '<%= j l(:button_meeting_decline) %>',
+      textWarnLeavingUnsaved: '<%= l(:text_warn_on_leaving_unsaved) %>'
+    };
+    window.saveButtonSettingsUrl = '<%= url_for({:controller => 'users', :action => 'save_button_settings'}) %>';
+
+    EASY.schedule.main(function () {
+      EASY.shortcut.add('Alt+Shift+N', function() {
+        window.location.href = '<%= j url_for(:controller => 'issues', :action => 'new') %>';
+      });
+      EASY.shortcut.add('Alt+Shift+F', EASY.utils.toggleSidebar);
+      moment.locale('<%= j momentjs_locale %>');
+      if (top.location !== self.location) {
+        $("#header, #top-menu").remove();
+        $("body").addClass('in-iframe');
+      }
+      $('#pages_orientation').change(function () {
+        var pages_orientation_old_value = $(this).data('previous-value');
+        $('#pages_content').removeClass(pages_orientation_old_value);
+        $('#pages_content').addClass($(this).val());
+        $(this).data('previous-value', $(this).val());
+        psf_submit('<%= "#{preview_easy_printable_template_path(@easy_printable_template)}" %>', 'post');
+      });
+      $('#pages_size').change(function () {
+        var pages_size_old_value = $(this).data('previous-value');
+        $('#pages_content').removeClass(pages_size_old_value);
+        $('#pages_content').addClass($(this).val());
+        $(this).data('previous-value', $(this).val());
+        psf_submit('<%= "#{preview_easy_printable_template_path(@easy_printable_template)}" %>', 'post');
+      });
+
+      // Some additional tokens can bring stylesheets which are handeled
+      // by CKEDITOR very strangely :-)
+      // Be sure to clone it beucase wkhtmltopdf need it too
+      $(".easy-printable-template-page link[rel='stylesheet']").clone().appendTo("head");
+
+      // Scale elements to fit to page width
+      EASY.schedule.require(function () {
+        CKEDITOR.on("instanceReady", function(event){
+          $(".easy-print-page-fitting").each(function(){
+            var $this = $(this);
+            var $page = $(".easy-printable-template-page .padding");
+
+            // Reset previous settings
+            $this.attr("style", "");
+
+            var scale = $page.width() / $this.width();
+            if (scale < 1) {
+              // Must be set as attribute because wkhtmltopdf will use it
+              $this.attr("style", "-ms-transform: scale("+scale+");" +
+                                  "-ms-transform-origin: 0 0;" +
+                                  "-webkit-transform: scale("+scale+");" +
+                                  "-webkit-transform-origin: 0 0;" +
+                                  "-transform: scale("+scale+");" +
+                                  "-transform-origin: 0 0;" +
+                                  "height: "+($this.height()*scale)+"px;" +
+                                  "width: "+($this.width()*scale)+"px");
+            }
+          });
+        });
+      }, "CKEDITOR");
+    });
+
+    function psf_submit(action, method, values) {
+      var $pages_settings_form = $('#pages_settings_form');
+      $pages_settings_form.attr('action', action);
+      $pages_settings_form.attr('method', method);
+
+      $pages_settings_form.find('.added_dynamic').remove();
+      $pages_settings_form.removeAttr('data-submitted');
+
+      if (values) {
+        for (var i = 0; i < values.length; i++) {
+          var input = $("<input>")
+            .attr("type", "hidden")
+            .attr("class", "added_dynamic")
+            .attr("name", values[i][0]).val(values[i][1]);
+          $pages_settings_form.append($(input));
+        }
+      }
+
+      if (method != 'get') {
+        $("#textarea.additional_tokens").detach().appendTo($pages_settings_form);
+
+        for (var i in CKEDITOR.instances) {
+          var input = $("<input>")
+            .attr("type", "hidden")
+            .attr("class", "added_dynamic")
+            .attr("name", 'page_content[' + i + ']').val(CKEDITOR.instances[i].getData());
+          $pages_settings_form.append($(input));
+        }
+      }
+
+      $pages_settings_form.submit();
+    }
+
+    function blurCkeditors() {
+      for (var cke in CKEDITOR.instances) {
+        CKEDITOR.instances[cke].focusManager.blur(true);
+      }
+    }
+
+  </script>
+
+  <%= call_hook :view_layouts_base_html_head %>
+
+  <%= yield :header_tags -%>
+</head>
+<body>
+<div class="easy-printable-toolbar-container main-background-color toolbar-top">
+  <% unless @render_pdf %>
+  <%= link_to_function(l(:button_print), 'window.print()', :class => 'icon icon-print button-positive', :title => l(:button_print)) %>
+  <%= link_to_function(l(:button_pdf), "psf_submit('#{save_to_pdf_easy_printable_template_path(@easy_printable_template, :format => :pdf)}', 'post')", :class => 'icon icon-pdf button-positive', :title => l(:title_other_formats_links_pdf)) %>
+  <% unless params[:additional_tokens] %>
+    <%= easy_modal_selector_link_with_submit('EasyPrintableTemplateToDocuments', 'title', 'document_id', '', '[]', :multiple => '0',
+                                           :form_url => {:controller => 'easy_printable_templates', :action => 'save_to_document', :id => @easy_printable_template, :back_url => params[:back_url]},
+                                           :url => {:serializable_attributes => {:entity_type => params[:entity_type], :entity_id => params[:entity_id], :modal_project_id => params[:project_id], :selected_ids => params[:selected_ids], :entity_settings => params[:entity_settings]}, :easy_printable_template_id => @easy_printable_template.id},
+                                           :trigger_options => {:name => l(:button_easy_printable_templates_save_to_documents), :html => {:title => l(:title_easy_printable_templates_save_to_documents), :class => 'icon icon-new-document button'}, hide_main_submit_button: true}) %>
+  <% end %>
+  <%= link_to_function(l(:button_easy_printable_templates_save_to_attachments), "psf_submit('#{save_to_attachment_easy_printable_template_path(@easy_printable_template)}', 'post')", :class => 'icon icon-attachment button', :title => l(:button_easy_printable_templates_save_to_attachments), :back_url => params[:back_url]) if @entity.present? && ((!@entity.is_a?(Project) && @entity.respond_to?(:attachments)) || (@entity.is_a?(Project) && @entity.module_enabled?(:files))) %>
+  <%# link_to_function(l(:button_copy), "psf_submit('#{new_easy_printable_template_path}', 'get', [['copy_from', '#{@easy_printable_template.id}']])", :title => l(:button_copy), :class => 'icon icon-copy') %>
+  <%= link_to_function(l(:button_easy_printable_templates_edit), "psf_submit('#{edit_easy_printable_template_path(@easy_printable_template)}', 'get', [['back_url2', '#{j url_for(request.query_parameters.except(:additional_tokens, :page_content))}']])", :class => 'icon icon-edit button', :title => l(:button_easy_printable_templates_edit)) if @easy_printable_template.editable? %>
+  <%= link_to_function(l(:button_easy_printable_templates_copy), "psf_submit('#{copy_with_pages_easy_printable_template_path(@easy_printable_template)}', 'get', [['back_url2', '#{j url_for(request.query_parameters.except(:additional_tokens, :page_content))}']])", :class => 'icon icon-copy button', :title => l(:button_easy_printable_templates_copy)) if @easy_printable_template.editable? %>
+  <%= link_to(l(:button_back), params[:back_url], :class => 'icon icon-move button', :title => l(:button_back)) if params[:back_url] %>
+
+  <%= form_tag({}, :id => 'pages_settings_form', :class => 'inline') do %>
+    <%= hidden_field_tag('entity_type', params[:entity_type]) if params[:entity_type] -%>
+    <%= hidden_field_tag('entity_id', params[:entity_id]) if params[:entity_id] -%>
+    <%= hidden_field_tag('entity_settings', params[:entity_settings]) if params[:entity_settings] -%>
+    <%= hidden_field_tag('project_id', params[:project_id]) if params[:project_id] -%>
+    <%= hidden_field_tag('selected_ids', params[:selected_ids]) if params[:selected_ids] -%>
+    <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] -%>
+    <%# hidden_field_tag('back_url2', original_url) -%>
+    <%= select_tag('pages_orientation', options_for_select(easy_printable_template_pages_orientation, @pages_orientation), :id => 'pages_orientation', :class => 'inline', :data => {:previous_value => @pages_orientation}) %>
+
+    <%= select_tag('pages_size', options_for_select(easy_printable_template_pages_size, @pages_size), :id => 'pages_size', :class => 'inline', :data => {:previous_value => @pages_size}) %>
+
+    <% if @pages_size == 'custom' %>
+      <%= text_field_tag 'pages_height', @pages_height, size: 3 %> x
+      <%= text_field_tag 'pages_width', @pages_width, size: 3 %>px
+      <%= link_to_function l(:button_test), "psf_submit('#{preview_easy_printable_template_path(@easy_printable_template)}', 'post')", class: 'icon icon-reload button' %>
+    <% else %>
+      <%= hidden_field_tag 'pages_height', @pages_height %>
+      <%= hidden_field_tag 'pages_width', @pages_width %>
+    <% end %>
+  <% end %>
+
+  <% # Must be hidden because is used only via POST %>
+  <% if params[:additional_tokens].is_a?(Hash) %>
+    <% params[:additional_tokens].each do |name, value| %>
+      <textarea name="additional_tokens[<%= name %>]" class="hidden added_dynamic additional_tokens">
+        <%= value %>
+      </textarea>
+    <% end %>
+  <% end %>
+  <% end %>
+</div>
+<div id="main">
+  <div id="content">
+    <div class="easy-printable-template-pages" id="pages_content" style="<%= "width: #{@pages_width}px; height: #{@pages_height}px" if @pages_size == 'custom' %>">
+      <%= yield %>
+    </div>
+  </div>
+  <div id="ajax-modal" style="display:none;"></div>
+</div>
+</body>
+</html>

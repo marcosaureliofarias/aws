@@ -1,0 +1,71 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    ports:
+      - 6379
+
+  db:
+    image: mariadb
+    env_file: .env
+    ports:
+      - 3306
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app-migration:
+    image: ${APP_IMAGE}
+    volumes:
+      - gem_cache:/usr/local/bundle/gems
+      - app_files:/opt/easy/files
+    environment:
+      RAILS_SERVE_STATIC_FILES: 1
+      RAILS_LOG_TO_STDOUT: 1
+    env_file: .env
+    links:
+      - db
+      - redis
+    depends_on:
+      - db
+      - redis
+    command: install
+
+  app:
+    image: ${APP_IMAGE}
+    restart: on-failure:5
+    volumes:
+      - gem_cache:/usr/local/bundle/gems
+      - app_files:/opt/easy/files
+    ports:
+      - 3000:3000
+    environment:
+      RAILS_SERVE_STATIC_FILES: 1
+      RAILS_LOG_TO_STDOUT: 1
+    env_file: .env
+    links:
+      - db
+      - redis
+    depends_on:
+      - app-migration
+      - db
+      - redis
+    command: server
+
+  sidekiq:
+    image: ${APP_IMAGE}
+    volumes:
+      - gem_cache:/usr/local/bundle/gems
+    env_file: .env
+    links:
+      - db
+      - redis
+    depends_on:
+      - db
+      - redis
+      - app
+    command: sidekiq
+
+volumes:
+  db_data:
+  app_files:
+  gem_cache:

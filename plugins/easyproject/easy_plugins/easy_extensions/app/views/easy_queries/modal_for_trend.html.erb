@@ -1,0 +1,97 @@
+<%
+  query_form_project = @project unless @query.dont_use_project
+  easy_query_apply_url ||= modal_for_trend_easy_queries_path(project_id: query_form_project, set_filter: '1', type: @query.class.name, original_url: original_url)
+  modul_uniq_id = 'modal_for_trend'
+  entities_uniq_id = 'modal_for_trend_entities'
+  presenter = easy_query_to_presenter(@query, options: { disable_sort: true, no_scroll: true, hascontextmenu: false, editable: false }, **local_assigns)
+
+  # If I put it on the controller => "presenter for *Query is not registered"
+  @query.display_outputs_select_on_index = false
+%>
+
+<div id="<%= modul_uniq_id %>">
+  <%= form_tag('', id: "#{modul_uniq_id}_form", method: 'GET') do %>
+    <%= hidden_field_tag 'set_filter', '1' %>
+    <%= hidden_field_tag 'project_id', @project.id if @project.present? %>
+
+    <div class="easy-query-filter-container">
+      <%= render 'easy_queries/easy_query_index_form',
+                 query: @query,
+                 modul_uniq_id: modul_uniq_id,
+                 show_free_search: false,
+                 show_heading_buttons: true,
+                 show_query_heading: false,
+                 entity_count: @entity_count,
+                 options: {
+                   show_tagged_queries: false,
+                   hide_heading_counts: !@entity_count,
+                 } %>
+
+      <div id="<%= modul_uniq_id %>filter_buttons" class="text-center" style="display: none;">
+        <%= submit_tag l("easy_query.button_apply.#{@query.entity.name.underscore}", default: :button_apply), class: 'button-positive' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="clear"></div>
+
+<div id="<%= entities_uniq_id %>">
+  <% presenter.outputs.each do |o| %>
+    <%= o.render_data %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(() => {
+
+    $("#<%= modul_uniq_id %>_form").on("submit", () => {
+      $.ajax({
+        method: "GET",
+        url: "<%= j easy_query_apply_url %>",
+        data: EASY.query.getFiltersForURL("<%= modul_uniq_id %>")
+      })
+      .done((data) => {
+        $("#ajax-modal #<%= entities_uniq_id %> table.entities tbody:first").infinitescroll("unbind")
+        $("#ajax-modal").html(data)
+        $(document).trigger("easy-query:after-search")
+      })
+
+      return false;
+    });
+
+    EASY.utils.setInfiniteScrollDefaults()
+
+    $.extend($.infinitescroll.defaults.loading, {
+      selector: "#<%= entities_uniq_id %>",
+      binder: $("#<%= entities_uniq_id %>").closest("#ajax-modal"),
+      msgText: "",
+      finishedMsg: ""
+    })
+
+    const $tbody = $("#ajax-modal #<%= entities_uniq_id %> table.entities tbody:first")
+    const $nextPageTrigger = $("#ajax-modal .infinite-scroll-load-next-page-trigger").parent()
+
+    $tbody.infinitescroll({
+      navSelector: "#ajax-modal .pagination",
+      nextSelector: "#ajax-modal .pagination .next > a",
+      itemSelector: "#<%= entities_uniq_id %> table.entities tbody:first tr",
+      binder: $("#ajax-modal"),
+      pathParse: undefined,
+      localMode: true,
+
+      path(page) {
+        const infScroll = $tbody.data().infinitescroll
+        const path = $(infScroll.options.nextSelector).attr("href")
+        return infScroll._determinepath(path).join(page)
+      }
+    }, (data, opts) => {
+      const page = $(opts.navSelector + " li[class='page']:last").text()
+      if (parseInt(page) == opts.state.currPage) {
+        opts.state.isPaused = true;
+        $nextPageTrigger.hide();
+      }
+    })
+
+    $nextPageTrigger.parent().show();
+  })
+</script>

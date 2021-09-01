@@ -1,0 +1,38 @@
+<!-- __EP_.O.K.__ SITE: <%= Setting.host_name %> -->
+<!DOCTYPE html>
+<html lang="<%= current_language %>">
+<%= render partial: 'layouts/base_html_header' %>
+<body class="<%= body_css_classes %> status-402 nosidebar">
+<div id="wrapper">
+  <div id="wrapper2">
+    <div id="wrapper3">
+      <div id="main">
+        <div id="content">
+          <div class="easy-content-page">
+            <table id="login_form_container">
+              <tr>
+                <td>
+                  <i class="icon icon-warning red" style="font-size: 48pt"></i>
+                  <h2><%= l('payment_require_page.notice') %></h2>
+                  <p><%= l('payment_require_page.heading') %></p>
+                  <div id="login-form">
+                    <hr>
+                    <h3><%= l 'payment_require_page.subheading' %></h3>
+                    <p><%= l 'payment_require_page.note_text' %></p>
+                    <p>
+                      <%= link_to(l('button_pricing_page'), l('pricing_page_url'), class: 'button-positive') %>
+                      <%= mail_to(l('contact_support_email'), l('payment_require_page.button'), class: 'button-positive') %>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

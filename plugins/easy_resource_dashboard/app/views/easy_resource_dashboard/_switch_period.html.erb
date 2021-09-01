@@ -1,0 +1,8 @@
+<div class="text-center">
+  <span class="entity-array">
+    <% query_params = request.query_parameters %>
+    <% ['7', '30', '90'].each do |days| %>
+      <%= link_to "#{days} #{l(:label_days)}", update_my_page_module_view_path(page_module.uuid, query_params.merge({page_module.module_name => { days: days }, with_container: true})), remote: true %>
+    <% end %>
+  </span>
+</div>

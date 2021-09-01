@@ -1,0 +1,17 @@
+<%= labelled_form_for @user do %>
+  <div id="user_group_ids">
+    <% user_group_ids = @user.group_ids %>
+    <% Group.givable.sort.each do |group| %>
+      <label class="block">
+        <%= check_box_tag 'user[group_ids][]', group.id, user_group_ids.include?(group.id), id: nil %>
+        <%= group %>
+      </label>
+    <% end %>
+    <%= hidden_field_tag 'user[group_ids][]', '' %>
+  </div>
+  <p><%= check_all_links 'user_group_ids' %></p>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), class: 'button-positive' %>
+  </div>
+<% end %>

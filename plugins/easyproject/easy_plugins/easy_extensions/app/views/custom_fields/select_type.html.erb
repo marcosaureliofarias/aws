@@ -1,0 +1,15 @@
+<%= custom_field_title @custom_field %>
+
+<% selected = params[:selected] || custom_field_type_options.first.last %>
+<%= form_tag new_custom_field_path, :method => 'get', :class => 'form-box' do %>
+  <div class="box">
+    <p class="kicker"><%= l(:label_custom_field_select_type) %>:</p>
+    <p class="cols-5">
+    <% custom_field_type_options.each do |name, type| %>
+      <% radio = radio_button_tag(:type, type, type == selected) %>
+      <%= label_tag(:"type_#{type}", radio + name, :class => 'radio inline') %>
+    <% end %>
+    </p>
+  </div>
+  <div class="form-actions"><%= submit_tag l(:label_next).html_safe + " &#187;".html_safe, :name => nil, :class => 'button-positive' %></div>
+<% end %>

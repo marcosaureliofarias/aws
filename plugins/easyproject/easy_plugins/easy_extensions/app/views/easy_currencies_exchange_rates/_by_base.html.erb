@@ -1,0 +1,38 @@
+<% lock_date = Date.today.advance(months: @easy_currency_settings['locked_after_months'].to_i * -1) unless @easy_currency_settings['locked_after_months'].blank? %>
+ <h2><span class="space-one">1</span><%= select_tag 'easy_currency_id', options_from_collection_for_select(EasyCurrency.order(:iso_code).all, :id, :name, @base.id) %><span class="space-one">=</span></h2>
+<%= form_tag({controller: :easy_currencies_exchange_rates, action: :bulk_update}, :method => :post, class: 'currency_top_select') do %>
+  <%= hidden_field_tag(:base, @base.id) %>
+  <table class="easy-table">
+    <thead>
+    <th class="currency-header"><%= l(:currency_dates) %></th>
+    <% @currencies.reject { |x| x == @base }.each do |curr| %>
+      <th class="currency-header"><%= curr.iso_code %></th>
+    <% end %>
+    </tr>
+    </thead>
+    <tbody>
+    <% @exchange_table_month.each do |date, rates| %>
+      <tr class="<%= "today_border" if date.month == Date.today.month && date.year == Date.today.year %>">
+        <td class="currency-header"> <%= format_date(date) %></td>
+        <% rates.each do |rate_pair| %>
+          <td><%= text_field_tag "rate[#{date}][#{rate_pair.id}]", rate_pair.rate, readonly: rate_pair.base_code == rate_pair.to_code, class: :rate_input, readonly: lock_date.present? && date < lock_date %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="form-actions">
+    <%= submit_tag l(:button_update), class: 'button-positive' %>
+  </div>
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $(document).on('change', '#easy_currency_id', function (evt) {
+      var base = this.value;
+      if (base !== undefined || base != null) {
+        window.location = 'easy_currencies_exchange_rates?tab=EasyCurrencyExchangeRateByBase&base=' + base;
+      }
+    });
+  });
+</script>

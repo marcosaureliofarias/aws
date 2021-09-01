@@ -1,0 +1,22 @@
+<% if page_params[:edit] %>
+  <%= render :partial => 'common/calendar', :locals => {:calendar => @easy_page_modules_data[block_name][:calendar] } %>
+<% else
+    formid = "my-calendar-form-#{page_module.uuid.dasherize}"
+    calendar = @easy_page_modules_data[block_name][:calendar]
+  %>
+  <div class='calendar-container'>
+    <div class="easy-calendar-header">
+      <div class="toolbar">
+        <%= render :partial => 'easy_page_modules/calendar_listing_links', :locals => {:formid => formid, :divid => modul_uniq_id, :calendar => calendar, :period => :week, :page_module => page_module, :user => user} %>
+      </div>
+    </div>
+
+    <%= render :partial => 'common/calendar', :locals => {:calendar => @easy_page_modules_data[block_name][:calendar] } %>
+
+    <%= form_tag({}, {:id => formid, :class => 'hidden'}) do -%>
+      <%= hidden_field_tag :uuid, page_module.uuid.dasherize -%>
+      <%= hidden_field_tag "#{block_name}[start_date]", calendar.startdt, :id => "start-date-#{page_module.uuid.dasherize}" -%>
+      <%= hidden_field_tag "#{block_name}[user_id]", user.id -%>
+    <% end -%>
+  </div>
+<% end %>

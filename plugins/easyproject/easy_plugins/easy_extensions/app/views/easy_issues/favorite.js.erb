@@ -1,0 +1,3 @@
+$('#favorite_issue_<%= @issue.id %>')
+  .toggleClass('icon-fav-off icon-fav favorited')
+  .attr('title', '<%= @favorited ? l(:label_unfavorite) : l(:label_favorite) %>');

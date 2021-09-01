@@ -1,0 +1,175 @@
+<div class="contextual">
+  <ul id="bulk-selection">
+    <% (@easy_crm_cases - [@target_crm_case]).each do |easy_crm_case| %>
+      <%= content_tag(:li, bulk_edit_link_to_easy_crm_case(easy_crm_case), :class => 'crm-case-bulk-edit-link') %>
+    <% end %>
+  </ul>
+</div>
+<h2>
+  <%= l(:label_easy_crm_cases_merge_into) %> <%= link_to @target_crm_case.name, easy_crm_case_path(@target_crm_case) %>
+</h2>
+<%= error_messages_for (@target_crm_case) %>
+<%= merge_select_tags_builder(@target_crm_case, url: merge_easy_crm_cases_path, method: 'PUT', html: {class: 'form-box'}, source_easy_crm_cases: @easy_crm_cases ) do |f| %>
+
+  <%= f.hidden_field :lock_version %>
+  <% @easy_crm_cases.each do |easy_crm_case| %>
+    <%= hidden_field_tag 'ids[]', easy_crm_case.id %>
+  <% end %>
+  <%= hidden_field_tag 'merge_to_id', @target_crm_case.id %>
+  <%= back_url_hidden_field_tag %>
+  <div class="splitcontent tabular toggle-box box easy-crm-case-merge-container">
+    <div class="splitcontentleft size-6">
+
+      <p>
+        <%= f.select :project_id, options_from_collection_for_select(@available_projects, :id, :name, @target_crm_case.project), {required: true, include_blank: false, label: EasyCrmCase.human_attribute_name(:project)} %>
+        <%= f.easy_crm_case_merge_select_tag(:project) %>
+      </p>
+
+      <p>
+        <%= f.text_field :email, label: EasyCrmCase.human_attribute_name(:email) -%>
+        <%= f.easy_crm_case_merge_select_tag(:email) %>
+      </p>
+
+      <p>
+        <%= f.text_field :telephone, label: EasyCrmCase.human_attribute_name(:telephone) -%>
+        <%= f.easy_crm_case_merge_select_tag(:telephone) %>
+      </p>
+
+      <p>
+        <%= f.select :easy_crm_case_status_id, options_from_collection_for_select(EasyCrmCaseStatus.sorted, :id, :name, @target_crm_case.easy_crm_case_status_id), {required: true, include_blank: false, label: EasyCrmCase.human_attribute_name(:easy_crm_case_status)} %>
+        <%= f.easy_crm_case_merge_select_tag(:easy_crm_case_status) %>
+      </p>
+
+      <p>
+        <%= f.select :assigned_to_id, options_from_collection_for_select(@assignables, :id, :name, @target_crm_case.assigned_to_id), {include_blank: true, label: EasyCrmCase.human_attribute_name(:account_manager)} %>
+        <%= f.easy_crm_case_merge_select_tag(:assigned_to) %>
+      </p>
+
+      <% if EasyUserType.easy_type_partner.any? %>
+        <p>
+          <%= f.select :external_assigned_to_id, options_from_collection_for_select(@assignables_external, :id, :name, @target_crm_case.external_assigned_to_id), {include_blank: true, label: EasyCrmCase.human_attribute_name(:external_account_manager)} %>
+          <%= f.easy_crm_case_merge_select_tag(:external_assigned_to) %>
+        </p>
+      <% end %>
+
+      <p>
+        <%= f.text_field :created_at, value: @target_crm_case.created_at.to_date, readonly: true,  size: 10, label: EasyCrmCase.human_attribute_name(:created_at), class: 'read_only' -%>
+        <%= f.easy_crm_case_merge_select_tag(:created_at) %>
+      </p>
+
+      <p>
+        <%= f.label(:contract_date) %>
+        <%= f.text_field :contract_date, value: @target_crm_case.contract_date, size: 10, no_label: true -%>
+        <%= calendar_for('easy_crm_case_contract_date') %>
+        <%= f.easy_crm_case_merge_select_tag(:contract_date) %>
+      </p>
+
+      <p data-type="datetime">
+        <%= f.label(:next_action) %>
+         <%= text_field_tag 'easy_crm_case[next_action][date]', @target_crm_case.next_action_date.to_s, size: 10 %>
+        <%= render(partial: 'common/form_field_time_select', locals: {field_name_prefix: 'easy_crm_case', attribute: 'next_action', value: @target_crm_case.next_action_in_zone}) %>
+        <%= calendar_for('easy_crm_case_next_action_date') %>
+        <%= f.easy_crm_case_merge_select_tag(:next_action) %>
+      </p>
+
+      <p>
+        <%= f.text_field :price, size: 10, label: EasyCrmCase.human_attribute_name(:price) -%>
+        <%= f.easy_crm_case_merge_select_tag(:price) %>
+      </p>
+
+      <p>
+        <%= f.select(:currency, options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, @target_crm_case.currency)) if EasyCurrency.activated.any? %>
+        <%= f.easy_crm_case_merge_select_tag(:currency) %>
+      </p>
+
+      <p data-type="check_box">
+        <%= f.check_box :is_canceled, :label => EasyCrmCase.human_attribute_name(:is_canceled) -%>
+        <%= f.easy_crm_case_merge_select_tag(:is_canceled) %>
+      </p>
+
+      <p data-type="check_box">
+        <%= f.check_box :is_finished, :label => EasyCrmCase.human_attribute_name(:is_finished) -%>
+        <%= f.easy_crm_case_merge_select_tag(:is_finished) %>
+      </p>
+
+      <% @easy_format_custom_fields.each do |custom_field| %>
+        <p data-type="<%= custom_field.field_format != 'bool' ? custom_field.field_format : (custom_field[:format_store] ? custom_field[:format_store][:edit_tag_style] : '') %>">
+
+          <%= custom_field_tag_with_label(:easy_crm_case, @target_crm_case.custom_field_values.detect { |c| c.custom_field.id == custom_field.id }) %>
+
+          <%= select_tag("custom_field_#{custom_field.id}", options_for_select(@easy_crm_cases.map { |c| [merge_input_custom_field_name(c, custom_field), c.id] }), { id: "source_easy_crm_case_custom_field_values_#{custom_field.id}",  class: 'push-right source'}) %>
+        </p>
+      <% end %>
+      <%= toggling_fieldset l(:label_advanced_custom_fields) do -%>
+        <% @advanced_format_custom_fields.each do |custom_field| %>
+          <p>
+            <%= custom_field_tag_with_label(:easy_crm_case, @target_crm_case.custom_field_values.detect { |c| c.custom_field.id == custom_field.id }) %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="splitcontentright size-3">
+      <h2><%= l(:label_use_values_from_crm_case) %></h2>
+      <% @easy_crm_cases.each do |crm_case| %>
+        <p>
+          <%= link_to_function crm_case, "valuesFromCrm(#{crm_case.id})" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_merge), :class => 'button' %>
+    <%= f.submit l(:button_merge_and_follow), name: 'follow', :class => 'button-positive' %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    var json_crm_case_map = <%= @crm_cases_map.to_json.html_safe %>;
+
+    var easyCrmCaseMergePresenter = {
+      datetime: function (container, value) {
+        var inputs = container.querySelectorAll('span input, span select');
+
+        inputs[0].value = value[0]; // First input is always DATE
+        if (inputs.length > 2) {
+          inputs[1].value = value[1].replace(/^0/, '');
+          inputs[2].value = value[2];
+        } else if (inputs[1]) {
+          var time = value.slice(1.2);
+          inputs[1].value = time.join(':');
+        }
+      },
+      radio: function (container, value) {
+        var inputs = container.querySelectorAll('span input');
+        if (value === '1') {
+          inputs[1].checked = true;
+        } else if (value === '') {
+          inputs[0].checked = true;
+        } else {
+          inputs[2].checked = true;
+        }
+      },
+      check_box: function (container, value) {
+        var input = container.querySelector('input[type=checkbox]');
+        input.checked = !!(value === '1' || value === true);
+      }
+    };
+
+    $(document).on("change", ".easy-crm-case-merge-container select.source", function (event) {
+      var target = event.target;
+      var parent = target.parentElement;
+      var value = json_crm_case_map[target.value][event.target.name];
+      if (typeof(easyCrmCaseMergePresenter[parent.dataset.type]) === "function") {
+        easyCrmCaseMergePresenter[parent.dataset.type](parent, value)
+      } else {
+        var source = parent.querySelector("input, textarea, select");
+        $(source).val(value)
+      }
+    });
+
+    function valuesFromCrm(crmId) {
+      $('.source').val(crmId).change();
+    }
+  });
+</script>

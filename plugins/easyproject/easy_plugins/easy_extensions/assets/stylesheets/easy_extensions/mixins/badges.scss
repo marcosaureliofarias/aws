@@ -1,0 +1,99 @@
+%badge-common{
+  position: relative;
+  display: inline-block;
+  margin-left: 0.5*$gap;
+  line-height: 1;
+  padding: 0.14em 0.5em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid $color-text;
+  color: $color-text;
+  @include border-radius($badge-radius);
+  //$local-color: rgba($color-text,0.25 );
+  //@for $i from 1 through (length($palette) - 1) {
+  //  $local-color: rgba(palete-color($palette,$i),0.30);
+  //  &:nth-of-type(#{$i}){
+  //    background: lighten($local-color,10%);
+  //    border: 1px solid $local-color;
+  //  }
+  //  .icon-close{
+  //    color: darken($local-color,15%);
+  //    &:hover{
+  //      color: darken($local-color,30%);
+  //    }
+  //  }
+  //}
+  .icon-close{
+    display: inline-block;
+    text-shadow: none;
+  }
+  &:hover {
+    text-decoration: none;
+  }
+}
+@mixin badge($background:false,$color: $color-text,$size: $font-small){
+  @extend %badge-common;
+  font-size: $size;
+  @if($background) {
+    background: lighten($background, 10%) !important;
+    border: 1px solid $color;
+    .icon-close{
+      color: darken($background,15%);
+      &:hover{
+        color: darken($background,30%);
+      }
+    }
+  }
+  color: $color;
+  .icon-close{
+    margin-left: 0.5*$size;
+    margin-right: -0.5*$size;
+  }
+}
+
+@mixin badge-negative($size:0.89em){
+  @include badge(transparent,$color-negative,$size);
+}
+@mixin badge-positive($size:0.89em){
+  @include badge(transparent,$color-positive,$size);
+}
+@mixin badge-important($size:0.89em){
+  @include badge(transparent,$color-important,$size);
+}
+@mixin badge-notice($size:0.89em){
+  @include badge(transparent,$color-notice,$size);
+}
+@mixin badge-muted($size:0.89em){
+  @include badge(transparent,$color-text-muted,$size);
+}
+@mixin badge-maincolor($size:0.89em){
+  @include badge(transparent,$color-main,$size);
+}
+@mixin badge-purple($size:0.89em){
+  @include badge(transparent,purple,$size);
+}
+
+%badge{
+  @include badge;
+}
+%badge-positive{
+  @include badge-positive;
+}
+%badge-negative{
+  @include badge-negative;
+}
+%badge-important{
+  @include badge-important;
+}
+%badge-notice{
+  @include badge-notice;
+}
+%badge-muted{
+  @include badge-muted;
+}
+%badge-maincolor{
+  @include badge-maincolor;
+}
+%badge-purple{
+  @include badge-purple;
+}

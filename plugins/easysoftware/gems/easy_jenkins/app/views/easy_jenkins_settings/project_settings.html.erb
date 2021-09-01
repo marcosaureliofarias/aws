@@ -1,0 +1,5 @@
+<h2><%=l(:label_settings)%></h2>
+
+<%= render_tabs project_settings_tabs, params[:tab], :default_url => {:controller => 'projects', :action => 'settings', :id => @project} %>
+
+<% html_title(l(:label_settings)) -%>

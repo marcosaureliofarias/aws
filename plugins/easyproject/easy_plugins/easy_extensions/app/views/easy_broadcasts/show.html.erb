@@ -1,0 +1,31 @@
+<%= title @easy_broadcast.message.truncate(20) %>
+<div class="easy-entity-details-header-attributes">
+  <div id="issue-detail-attributes" class="easy-entity-details-attributes">
+    <div class="attributes">
+      <%= issue_fields_rows do |rows| %>
+          <% rows.right ::EasyBroadcast.human_attribute_name(:start_at), format_object(@easy_broadcast.start_at) %>
+          <% rows.left ::EasyBroadcast.human_attribute_name(:end_at), format_object(@easy_broadcast.end_at) %>
+          <% rows.right ::EasyBroadcast.human_attribute_name(:author_id), format_object(@easy_broadcast.author) %>
+      <% end %>
+      <%= call_hook(:view_easy_broadcasts_show_details_bottom, :easy_broadcast => @easy_broadcast) %>
+    </div>
+  </div>
+</div>
+
+<% if !@easy_broadcast.message.blank? %>
+    <div class="description">
+      <p><strong><%= ::EasyBroadcast.human_attribute_name(:message) %></strong></p>
+      <div class="wiki">
+        <%= textilizable @easy_broadcast, :message %>
+      </div>
+    </div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+    <ul>
+      <li><%= link_to l(:button_edit), edit_easy_broadcast_path, remote: true, title: l(:title_easy_broadcast_edit), class: 'icon icon-edit button button-positive' %></li>
+      <li><%= link_to l(:button_delete), easy_broadcasts_path(id: @easy_broadcast), method: :delete, data: {confirm: l(:text_are_you_sure)}, class: 'button-3 icon icon-del'%></li>
+    </ul>
+    <%= render :partial => 'easy_broadcasts/sidebar' %>
+<% end %>

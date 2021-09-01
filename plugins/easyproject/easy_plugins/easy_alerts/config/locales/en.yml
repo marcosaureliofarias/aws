@@ -1,0 +1,280 @@
+---
+en:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: What exactly are you doing? Carry them to the timesheet.
+      b: Your timesheet is sad, don't you think?
+      c: Don't work for free. Fill out a timesheet.
+      d: Do you have a holiday today?
+      e: Wake-up call! Timesheet needs to feed!
+  alerts_plugin_author: Easy Software
+  alerts_plugin_author_url: https://www.easysoftware.com/
+  alerts_plugin_description: "- Automatic notification according to defined parameters"
+  alerts_plugin_name: Alerts - Early warning system
+  alerts_rule_project_filters: 'Limit to project:'
+  alerts_type_alert: Alarm
+  alerts_type_notice: Notice
+  alerts_type_warning: Warning
+  button_alerts_add_new_alert: New alert
+  button_alerts_add_new_context: New context
+  button_alerts_add_new_type: New type
+  button_alerts_manage_contexts: Manage contexts
+  button_alerts_manage_types: Manage the alarm types
+  button_alerts_my_alerts: My alerts
+  button_alerts_report: Report
+  button_alerts_report_archive: Archive
+  button_alerts_report_unarchive: Unarchive
+  button_alerts_reports: My reports
+  button_alerts_reports_archive: Archived
+  button_issue_sidebar_add_alert: New alert
+  button_manage_alerts_for_all: Public alerts
+  easy_alert:
+    issue_providing_rule_required_error: This kind of reports can not be send to such
+      a target
+  easy_alerts_context:
+    helpdesk: Help desk
+    invoice: Invoice
+    issue: Task
+    milestone: Milestone
+    project: Project
+    timeentry: Spent time
+  easy_alerts_rule:
+    easy_invoice_query: Saved filter
+    easy_issue_query: Saved filter
+    easy_project_query: Saved filter
+    easy_version_query: Saved filter
+    helpdesk_monitor_due_time: Help desk - task due time according to SLA
+    helpdesk_monitor_due_time_assignee: Help desk - time to complete my task according
+      to SLA
+    helpdesk_monitor_due_time_manager: Help desk - time of completion of the task
+      according to SLA
+    helpdesk_monitor_hours_to_response: Help desk - time to beginning of solving task
+      according to SLA
+    helpdesk_monitor_prepaid_hours: Help desk - monthly prepaid time
+    invoice_due_date: Due date
+    issue_due_date: Due date
+    issue_updated_date: Updated date
+    project_due_date: Due date
+    project_estimated_hours: Sum of estimated hours
+    timeentry_time_watcher: Spent time interval
+    timeentry_time_watcher_previous_day: Previous day spent time
+    timeentry_time_watcher_previous_period: Previous period spent time
+    version_due_date: Due date
+  easy_pages:
+    modules:
+      easy_alerts: Alerts - reports
+  easy_proposer:
+    alert_reports:
+      index:
+        caption: Alerts - My reports
+        description: View my reports
+    alerts:
+      new:
+        caption: Alerts - New alert
+        description: Create a new alert
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: Alerts - evaluation
+  field_alert_is_for: Evaluation for
+  field_alert_mail_for: Email to
+  field_alerts_report_text: State
+  field_alerts_rule: Watch
+  field_budget: budget
+  field_context: where
+  field_custom_hours: Clock
+  field_date: date
+  field_delta: number of days
+  field_entity_count: number of tasks
+  field_period_from: From
+  field_period_to: To
+  field_query_id: filter
+  field_rule: Watch
+  field_time_check: Checking in
+  field_version_ids: milestone
+  label_alert_condition_was_satisfied: Alert condition was satisfied
+  label_alerts: Alerts - Early Warning System
+  label_alerts_active_projects_only: Only active projects (not closed and not archived)
+  label_alerts_additional_settings: Other settings
+  label_alerts_context: 'Where:'
+  label_alerts_contexts: List of contexts
+  label_alerts_executing_settings: Time execution
+  label_alerts_for_all: All users'
+  label_alerts_for_group: Group's
+  label_alerts_for_only_me: Only the author's
+  label_alerts_hourstimecheck_after_time: hours
+  label_alerts_hourstimecheck_before_time: Check it every day in
+  label_alerts_hourstimecheck_whenever: Anytime &lt;&lt; &gt;&gt;
+  label_alerts_issue_select_after: ''
+  label_alerts_issue_select_before: 'on task(s):'
+  label_alerts_mail_group: 'Alert will be sent to:'
+  label_alerts_mail_group_all: All participants (see above)
+  label_alerts_mail_group_assignees: Task assignees
+  label_alerts_mail_group_coworkers: Task coworkers
+  label_alerts_mail_group_custom: 'To custom email(s) (comma separated, space after
+    comma):'
+  label_alerts_mail_group_only_group: 'Only group members:'
+  label_alerts_manage_alerts_for: 'Whose data will be evaluated:'
+  label_alerts_my: 'My alerts by type:'
+  label_alerts_my_alerts: My alerts
+  label_alerts_my_reports: My reports
+  label_alerts_my_reports_archive: My reports (archive)
+  label_alerts_name: 'Name of alert:'
+  label_alerts_project_select_after: ''
+  label_alerts_project_select_before: 'on project:'
+  label_alerts_projects: 'Alert''s projects:'
+  label_alerts_query_columns: Filter columns
+  label_alerts_report: Report
+  label_alerts_rule: 'Watched entity:'
+  label_alerts_select_context: 'Select context:'
+  label_alerts_select_rule: 'Select rule:'
+  label_alerts_type: 'Severity:'
+  label_alerts_type_name: Name
+  label_alerts_types: Alert types
+  label_choose_type: 'Choose when the alert will evaluate:'
+  label_day_singular: day
+  label_easy_alerts_easy_query_permissions_warning: Warning, selected users can receive
+    records, which they are not permitted to see.
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: due time on task (according
+    to SLA).
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: Watch when current time
+    is more or equal to
+  label_easy_alerts_helpdesk_monitor_due_time_report: Due time of task is at %{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_after: of hours to response
+    on task (according to SLA).
+  label_easy_alerts_helpdesk_monitor_hours_to_response_form_before: Watch when current
+    time is more or equal to
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: Task had to be solved
+    in %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: prepaid hours.
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: Watch when monthly
+    spent time on project is more or equal to
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: Spent %{sum_time_entries}
+    from %{prepaid_hours}
+  label_easy_alerts_project_estimated_hours_form_after: of estimated time
+  label_easy_alerts_project_estimated_hours_form_before: Watch when spent time is
+    on
+  label_easy_alerts_project_estimated_hours_report: Time spending is on %{current_percentage}%
+    - %{sum_time_entries} from %{sum_estimated_hours}
+  label_invoice_due_date_invoice_select_after: ''
+  label_invoice_due_date_invoice_select_before: on invoice(s)
+  label_invoice_due_date_warning_date_after: ''
+  label_invoice_due_date_warning_date_before: 'Warn on:'
+  label_invoice_due_date_warning_delta_after: days (+) after due date, (-) before
+  label_invoice_due_date_warning_delta_before: Warn
+  label_invoice_query_after: records.
+  label_invoice_query_before: 'Warn if the number of invoices in the filter:'
+  label_invoice_query_middle: will be greater than
+  label_invoice_query_report: exceeded the determined number of invoices in the filter
+  label_issue_due_date_report: term task has been exceeded
+  label_issue_due_date_warning_date_after: ''
+  label_issue_due_date_warning_date_before: 'Warn on:'
+  label_issue_due_date_warning_delta_after: days (+) after the deadline, (-) before
+    the deadline
+  label_issue_due_date_warning_delta_before: Warn
+  label_issue_due_date_where_iam: 'Only where I am:'
+  label_issue_due_date_where_iam_assignee: Assignee of task
+  label_issue_due_date_where_iam_author: Author of task
+  label_issue_overdrawn_budget_before: 'Warn the exhaustion of the budget:'
+  label_issue_overdrawn_budget_report: exhausted from %{costs} %{budget}
+  label_issue_query_after: records.
+  label_issue_query_before: 'Warn if the number of tasks in filter:'
+  label_issue_query_middle: will be greater than
+  label_issue_query_report: exceeded the determined number of tasks in the filter
+  label_issue_updated_date_warning_date_after: ''
+  label_issue_updated_date_warning_date_before: 'Warn on:'
+  label_issue_updated_date_warning_delta_after: days (+) after the deadline, (-) before
+    the deadline
+  label_issue_updated_date_warning_delta_before: Warn
+  label_milestone_due_date_milestone_select_after: ''
+  label_milestone_due_date_milestone_select_before: on milestone(s)
+  label_milestone_due_date_report: term milestone has been exceeded
+  label_milestone_due_date_warning_date_after: ''
+  label_milestone_due_date_warning_date_before: 'Warn on:'
+  label_milestone_due_date_warning_delta_after: days (+) after the deadline, (-) before
+    the deadline
+  label_milestone_due_date_warning_delta_before: Warn
+  label_project_due_date_not_overdue: 'Days over due:'
+  label_project_due_date_overdue: 'Days until due:'
+  label_project_due_date_report: The project deadline has been exceeded
+  label_project_due_date_warning_date_after: ''
+  label_project_due_date_warning_date_before: 'Warn on:'
+  label_project_due_date_warning_delta_after: days (+) after the deadline, (-) before
+    the deadline
+  label_project_due_date_warning_delta_before: Warn
+  label_project_overdrawn_budget_before: 'Warn the exhaustion of the budget:'
+  label_project_overdrawn_budget_report: exhausted from %{costs} %{budget}
+  label_project_query_after: records.
+  label_project_query_before: 'Warn if the number of projects in the filter:'
+  label_project_query_middle: will be greater than
+  label_project_query_report: exceeded the determined number of projects in the filter
+  label_select_project: 'Choose a project:'
+  label_show_alerts: Show alerts
+  label_timeentry_time_watcher_after: hours.
+  label_timeentry_time_watcher_before: I want to check that spent time
+  label_timeentry_time_watcher_before_from: from
+  label_timeentry_time_watcher_before_to: to
+  label_timeentry_time_watcher_mail_body: 'Your timesheet, you can fill out here:'
+  label_timeentry_time_watcher_mail_body_link: your timesheet
+  label_timeentry_time_watcher_middle: is smaller than or equal to
+  label_timeentry_time_watcher_previous_day_after_time: hours
+  label_timeentry_time_watcher_previous_day_before: I want to check if the spent time
+    from previous business day is
+  label_timeentry_time_watcher_previous_day_before_calendar: smaller than to the labor
+    pool (working time of user or default working time template).
+  label_timeentry_time_watcher_previous_day_before_custom: smaller than or equal to
+  label_timeentry_time_watcher_previous_day_before_time: Check it every day at
+  label_timeentry_time_watcher_previous_day_mail_body: Did you log all hours yesterday?
+    Check your timesheet.
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'These people filled
+    too few hours yesterday:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: A
+    list of these people, you can check here.
+  label_timeentry_time_watcher_previous_day_mail_body_link: your timesheet
+  label_timeentry_time_watcher_previous_day_mail_subject: Did you log all hours yesterday?
+    Check your timesheet.
+  label_timeentry_time_watcher_previous_period_before: I want to check if the spent
+    time from previous business
+  label_timeentry_time_watcher_previous_report: Yesterday you posted a few hours.
+  label_timeentry_time_watcher_previous_week_mail_body_for_group: 'These people filled
+    too few hours last week:'
+  label_timeentry_time_watcher_previous_week_report: Last week you entered too few
+    hours.
+  label_timeentry_time_watcher_report: has inadequately reported time from %{from}
+    to %{to}
+  label_version_query_after: records.
+  label_version_query_before: 'Warn if the number of milestones in the filter:'
+  label_version_query_middle: is greater than
+  label_version_query_report: exceeded the determined number of milestones in the
+    filter
+  label_week_singular: week
+  permission_manage_alert_contexts: Managing contexts
+  permission_manage_alert_types: Managing types of alerts
+  permission_manage_alerts_for_all: Create alerts for all users
+  permission_view_alerts: View alerts
+  project_default_page:
+    easy_alerts: Alerts
+  project_module_easy_alerts: Alerts
+  text_alerts_is_for_all: E.g. in saved filter value <<me>> will be replaced by each
+    user; or spent time alert will watch all users spent time.
+  title_alert_type_color: Select a color
+  title_alerts_add_new_alert: Create a new alert
+  title_alerts_alert_edit: Edit alerts
+  title_alerts_alert_new: New alert
+  title_alerts_context_edit: Editing context
+  title_alerts_context_new: New context
+  title_alerts_edit_alert: Modify an alert
+  title_alerts_manage_contexts: Manage contexts
+  title_alerts_manage_types: Manage the alert types
+  title_alerts_my_alerts: View my alerts
+  title_alerts_report: View reports on the alert
+  title_alerts_report_entity_invoice: Show Invoice %{entityname}
+  title_alerts_report_entity_issue: Show Task %{entityname}
+  title_alerts_report_entity_project: View Project %{entityname}
+  title_alerts_report_entity_user: View user %{entityname}
+  title_alerts_reports: View my reports
+  title_alerts_reports_archive: View archived reports.
+  title_alerts_show_alert: Display alert %{alertname}
+  title_alerts_sidebar_type: View reports by type %{typename}
+  title_alerts_type_edit: Modification of the type
+  title_alerts_type_new: New type
+  title_manage_alerts_for_all: Click to view alerts for all

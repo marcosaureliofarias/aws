@@ -1,0 +1,9 @@
+<%= fields_for :custom_field, custom_field do |f| %>
+  <fieldset>
+    <%= content_tag(:legend, l(:label_easy_contact_types)) %>
+    <% EasyContactType.sorted.each do |contact_type| %>
+      <%= check_box_tag "custom_field[contact_type_ids][]", contact_type.id, (custom_field.contact_types.include? contact_type), :id => "custom_field_contact_type_ids_#{contact_type.id}" %>
+      <%= label_tag("custom_field_contact_type_ids_#{contact_type.id}", contact_type.name, :class => 'inline') %>
+    <% end %>
+  </fieldset>
+<% end -%>

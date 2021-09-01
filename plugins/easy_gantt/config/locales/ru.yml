@@ -1,0 +1,252 @@
+---
+ru:
+  button_print: Печать
+  button_project_menu_easy_gantt: Гантт Easy
+  button_top_menu_easy_gantt: Гантт по портфелю
+  button_use_actual_delay: Использовать фактическую задержку
+  easy_gantt_toolbar:
+    day: Дни
+    month: Месяцы
+    week: Недели
+  easy_gantt:
+    button:
+      close_all: Закрыть все
+      close_all_parent_issues: Закрыть все родительские задачи
+      create_baseline: Базовые планы
+      critical_path: Критический путь
+      day_zoom: Дни
+      delayed_project_filter: Только просроченные проекты
+      jump_today: Сегодня
+      load_sample_data: Загрузить демо-данные
+      month_zoom: Месяцы
+      print_fit: Подогнать
+      problem_finder: Ошибки
+      reload: Перезагрузить (сохранить)
+      remove_delay: Удалить задержку
+      resource_management: Управление ресурсами
+      tool_panel: Инструменты
+      week_zoom: Недели
+    critical_path:
+      disabled: Выключен
+      last: Последний
+      last_text: Первоочередные задачи
+      longest: Самый длинный
+      longest_text: Самая длинная последовательность задач
+    errors:
+      change_link_length: Интервал между {{source_task}} и {{target_task}} изменён
+        на минимальное значение {{minimum_link_length}}
+      duplicate_link: Невозможно создать дублирующую ссылку
+      fresh_milestone: Нельзя добавить задачу к несохранённой вехе. Сначала сохраните
+        веху.
+      integrity:
+        ends_too_late: заканчивается слишком поздно
+        gantt_is_too_long: Диаграмма Гантта слишком большая (больше {{limit}} дней)
+        out_of_limits: Некоторые объекты пропущены, так как не входят в диапазон от
+          {{minLimit}} до {{maxLimit}}
+        starts_too_early: начинается слишком рано
+        truncated: усечено
+      link_target_new: Нельзя добавить связь к несохранённой задаче. Сначала сохраните
+        изменения.
+      link_target_readonly: Задача доступна только для чтения
+      loop_link: Невозможно создать цикличную связь
+      no_rest_api: Для работы диаграммы Гантта Easy требуется REST API. Перейдите
+        в Администрирование -> Настройки -> API -> Включить веб-службу REST
+      overdue: должна заканчиваться в будущем или должна быть уже закрыта
+      overmile: должна завершаться %{effective_date} в соответствии с вехой
+      progress_date_overdue: отстаёт от графика на %{days} дней
+      project_link: Не удалось создать ссылку на проект.
+      reservation_for_unassignee: Нельзя создать резервирование для пользователя,
+        за которым не закреплены задачи.
+      save_gantt: Сохраните диаграмму Гантта, перед тем как уйти.
+      short_delay: должна быть больше на %{diff} дней
+      subproject_precedes_parent: Подпроект предшествует родительскому проекту
+      too_short: недостаточно дней для %{rest} часов расчётного времени
+      unsaved_parent: Нельзя добавить задачу к несохранённой родительской задаче.
+        Сначала сохраните изменения.
+      unsupported_link_type: Неподдерживаемый тип связи
+    gateway:
+      entity_save_failed: "%{entityType} %{entityName} не удалось сохранить из-за
+        ошибки"
+      send_failed: Ошибка запроса
+    label_pro_upgrade: Обновление до PRO
+    legend:
+      heading: Легенда диаграммы Гантта
+      heading_tips: Полезные советы
+      label_dates_calculated: Дата начала и дата завершения рассчитываются из задач
+      label_dates_set_manually: Дата начала и дата завершения устанавливаются вручную
+      label_milestone: Веха
+      label_milestone_shared: Совместная веха
+      label_project: Проект
+      label_project_done: Визуализация хода проекта (готовность %)
+      label_project_problem: Проект с проблемой
+      label_relation_fixed: Заблокированная (фиксированная) связь
+      label_relation_unfixed: Разблокированная (гибкая) связь
+      label_relations_handle: Манипулятор для рисования связей
+      label_task: Задача
+      label_task_delay: Число отражает задержку, то есть количество дней между задачами.
+        Число в скобках отражает задержку с учётом выходных и праздников.
+      label_task_done: Визуализация выполнения задачи (готовность %)
+      label_task_due_missing: Задача без даты завершения
+      label_task_movers: Перемещение даты начала / даты завершения
+      label_task_parent_dates_missing: Даты начала и завершения родительской задачи
+        не заданы
+      label_task_problem: Задача с проблемой
+      label_task_start_missing: Задача без даты начала
+      label_today: Визуализация текущего дня
+      notice_due_date_set: Дата начала не установлена, дата завершения установлена‌
+      notice_future_due_date: При перемещении проекта, дата начала которого уже прошла, новая
+        дата начала совместится с датой завершения, а продолжительность проекта составит
+        один день.
+      notice_future_start_date: При перемещении даты начала в будущее дата завершения
+        и дата начала совместятся, а продолжительность проекта составит один день.
+      notice_move_expanded_project: Развёрнутый проект нельзя переместить. Сверните
+        проект, обновите страницу, а потом переместите проект.
+      notice_past_due_date: При перемещении проекта дата начала будет установлена
+        на текущий день (сегодня).
+      notice_past_start_date: При перемещении даты начала в прошлое дата завершения
+        будет установлена на текущий день (сегодня).
+      notice_project_needs_task: Проект нельзя переместить и сохранить, если он не
+        содержит ни одной задачи. Добавьте задачу к проекту или подпроекту, чтобы
+        переместить проект.
+      notice_start_date_set: Дата начала установлена, дата завершения не установлена
+    link_dir:
+      link_end: как в предыдущем случае
+      link_start: как в следующем случае
+    popup:
+      add_task:
+        heading: Функция «Создать задачу»
+        text: "Функция «Создать задачу/веху» доступна только в Easy Gantt PRO\r\n\r\n<a
+          href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Проверьте
+          наличие обновлений!</a>"
+      baseline:
+        heading: Функция «Базовый план»
+        text: "Функция «Базовый план» доступна только в Easy Gantt PRO\r\n\r\n<a href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Проверьте
+          наличие обновлений!</a>"
+      critical:
+        heading: Функция «Критический путь»
+        text: "Функция «Критический путь» доступна только в Easy Gantt PRO\r\n\r\n<a
+          href=\"https://www.easyredmine.com/easy-gantt-upgrade-to-pro\">Проверьте
+          наличие обновлений!</a>"
+      resource:
+        easy_text: Плагин «Управление ресурсами» не установлен, для установки перейдите
+          по <a href="https://www.easyredmine.com/pricing-buy">ссылке!</a>
+        heading: Функция «Управление ресурсами»
+        text: Плагин «Управление ресурсами» доступен только в <a href="https://www.easyredmine.com/">
+          Easy Redmine</a>
+    reload_modal:
+      label_errors: Ошибки
+      text_reload_appeal: Вы точно хотите проигнорировать несохранённые элементы и
+        перезагрузить сервер?
+      title: Не удалось сохранить диаграмму Гантта
+    sample_global_free:
+      text: Нельзя удалить демо-данные. Диаграмма Гантта для портфеля доступна только
+        в версии PRO.
+      video:
+        text: Здесь представлены основные возможности диаграммы Гантта для портфеля
+        title: Видео о возможностях диаграммы Гантта для портфеля
+        video_id: zd3M0KYxcXM
+    sample:
+      close_label: Закройте окно и загрузите данные по реальному проекту.
+      header: Демо-данные загружены!
+      text: Мы подготовили демо-данные, чтобы познакомить вас с возможностями диаграммы Гантта
+        Easy. Также предлагаем вам посмотреть видео, где мы рассказываем о всяких
+        полезных опциях. Чтобы перейти к загрузке данных по реальному проекту, просто
+        закройте это окно.
+      video_label: Смотреть видео-инструкцию
+      video:
+        text: Здесь вы можете познакомиться с большинством функций диаграммы Гантта.
+        title: Демо-видео
+        video_id: UHgqfsrD59Q
+    text_blocker_milestone: Веха блокирует перемещение задачи за эту дату
+    text_blocker_move_end: Как минимум одна последующая задача будет отложена при
+      переносе на более позднюю дату
+    text_blocker_move_pre: У задачи есть связь, которая не позволяет передвинуть задачу
+      за эту дату
+    title:
+      button_test: Тест (только для тестирования)
+      day_zoom: Отобразить шкалу по дням
+      jump_today: Показать на графике сегодня
+      month_zoom: Отобразить шкалу по месяцам
+      print_fit: Вписать диаграмму в страницу
+      week_zoom: Отобразить шкалу по неделям
+  easy_printable_templates_categories:
+    easy_gantt: Гантт Easy
+  easy_query:
+    name:
+      easy_gantt_easy_issue_query: Гантт Easy
+      easy_gantt_easy_project_query: Гантт по портфелю
+  error_easy_gantt_view_permission: У вас нет доступа для просмотра диаграммы Гантта
+    Easy
+  error_epm_easy_gantt_already_active: Диаграмма Гантта Easy уже активна на этой странице
+  error_small_screen: Вся диаграмма Гантта не помещается на экране вашего устройства
+  error_start_date_before_end_date: Дата завершения не может предшествовать дате начала
+  field_easy_gantt_default_zoom: Масштаб по умолчанию
+  field_easy_gantt_fixed_delay: Фиксированная задержка
+  field_easy_gantt_relation_delay_in_workdays: Задержка в рабочих днях
+  field_easy_gantt_show_holidays: Показать нерабочие дни
+  field_easy_gantt_show_project_progress: Показать прогресс проекта
+  field_easy_gantt_show_task_soonest_start: Показать ближайшую дату начала
+  field_keep_link_delay_in_drag: Сохранять задержку при перетаскивании
+  field_relation: Связь
+  heading_delay_popup: Задать задержку (в днях)
+  heading_demo_feature_popup: Скоро
+  heading_easy_gantts_issues: Бесплатная диаграмма Гантта Easy
+  label_easy_gantt: Гантт Easy
+  label_easy_gantt_critical_path: Критический путь
+  label_easy_gantt_global: Гантт для портфеля
+  label_easy_gantt_issue_loaded: Все задачи загружены
+  label_easy_gantt_load: Загрузить
+  label_easy_gantt_next_level_close: Закрыть следующий уровень
+  label_easy_gantt_next_level_open: Открыть следующий уровень
+  label_easy_gantt_recalculate_fixed_delay: пересчитать фиксированную задержку
+  label_easy_gantt_settings: Настройки Гантта
+  label_filter_group_easy_gantt_easy_issue_query: Поля задачи
+  label_finish_to_finish: Финиш-финиш
+  label_not_available: Нет данных
+  label_parent_issue_plural: Родительские задачи
+  label_start_to_finish: Старт-финиш
+  label_start_to_start: Старт-старт
+  link_easy_gantt_plugin: https://www.easyredmine.com/easy-gantt-upgrade-to-pro
+  notice_easy_gantt_fixed_delay_recalculated: Фиксированная задержка пересчитана по
+    всем связям
+  permission_edit_easy_gantt: Редактировать настройки Гантта Easy на проекте
+  permission_edit_global_easy_gantt: Редактировать глобальную диаграмму Гантта
+  permission_edit_personal_easy_gantt: Редактировать личные настройки Гантта Easy
+  permission_view_easy_gantt: Смотреть диаграмму Гантта Easy по проекту
+  permission_view_global_easy_gantt: Смотреть глобальную диаграмму Гантта
+  permission_view_personal_easy_gantt: Смотреть личную диаграмму Гантта Easy
+  project_default_page:
+    easy_gantt: Гантт Easy
+  project_module_easy_gantt: Диаграмма Гантта
+  sample_global_free:
+    text: Демо-данные нельзя закрыть. Глобальная диаграмма Гантта доступна только
+      в версии PRO.
+    video:
+      text: Здесь представлено большинство функций глобальной диаграммы Гантта
+      title: Демо-видео о глобальной диаграмме Гантта
+      video_id: UHgqfsrD59Q
+  sample:
+    close_label: Закройте это окно и загрузите данные реального проекта
+    header: Демо-данные загружены!
+    text: Мы подготовили демо-данные, чтобы вы могли познакомиться с функциями диаграммы
+      Гантта. Также рекомендуем посмотреть видео с полезными советами. После закрытия
+      окна будут загружены данные реального проекта.
+    video_label: Смотреть обучающее видео
+    video:
+      text: Здесь показано большинство функций диаграммы Гантта
+      title: Демо-видео
+      video_id: UHgqfsrD59Q
+  text_demo_feature_popup: Эта функция скоро будет доступна.
+  text_easy_gantt_fixed_delay: Сохранять постоянную задержку при перетаскивании задачи
+  text_easy_gantt_footer: Диаграмма Гантта Redmine на базе Easy
+  text_easy_gantt_keep_link_delay_in_drag: Сохранять постоянную задержку при перетаскивании
+    задачи назад
+  text_easy_gantt_print_easy_gantt_current: Показать текущую диаграмму Гантта (только
+    для страниц с модулем Гантта Easy)
+  text_easy_gantt_relation_delay_in_workdays: Не учитывать нерабочие дни в задержке
+  text_easy_gantt_show_holidays: Показать праздники из календаря пользователя
+  text_easy_gantt_show_project_progress: Показать процент готовности на диаграмме
+    (для загрузки может потребоваться время)
+  text_easy_gantt_show_task_soonest_start: Показать самые ранние даты начала выполнения
+    задач с учётом связей или родительской задачи
+  title_easy_gantt_settings: Настройки диаграммы Гантта

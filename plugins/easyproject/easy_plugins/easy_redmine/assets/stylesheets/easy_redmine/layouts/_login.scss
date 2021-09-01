@@ -1,0 +1,32 @@
+body.action-login, body.action-easy_support_login, body.action-logout {
+  h1{
+    color: $color-login-text;
+  }
+  #top-menu {
+    #logo {
+      a {
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  #login_form_container{
+
+    a{
+      color: $color-login-text;
+    }
+
+  }
+}
+.demo-login{
+  &-tabs {
+    @include tab-parent(transparent, rgba($color-login-text, 0.4), $color-login-text, $tab-height, $gap, $color-login-text);
+  }
+
+  &-type-toggle{
+    a {
+      color: $color-login-text;
+    }
+  }
+}

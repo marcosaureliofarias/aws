@@ -1,0 +1,24 @@
+<% settings['attributes'] ||= {} %>
+<fieldset>
+  <div class="tabular">
+    <p>
+      <%= label_tag "#{block_name}_heading", l(:label_heading) %>
+      <%= page_module_settings_text_field_tag(page_module, %w[heading], value: settings['heading'] || l('easy_pages.modules.iframe')) %>
+    </p>
+
+    <p>
+      <%= label_tag "#{block_name}_attributes_src", l(:field_src,  scope: [:epm_iframe]) %>
+      <%= text_field_tag "#{block_name}[attributes][src]", settings['attributes']['src'] %>
+    </p>
+
+    <p>
+      <%= label_tag "#{block_name}_attributes_width", l(:field_width,  scope: [:epm_iframe]) %>
+      <%= text_field_tag "#{block_name}[attributes][width]", settings['attributes']['width'] %>
+    </p>
+
+    <p>
+      <%= label_tag "#{block_name}_attributes_height", l(:field_height,  scope: [:epm_iframe]) %>
+      <%= text_field_tag "#{block_name}[attributes][height]", settings['attributes']['height'] %>
+    </p>
+  </div>
+</fieldset>

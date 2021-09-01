@@ -1,0 +1,183 @@
+---
+th:
+  activerecord:
+    attributes:
+      easy_crm_case_mail_template:
+        body_html: เนื้อหาจดหมาย (HTML)
+        body_plain: เนื้อหาจดหมาย (ข้อความธรรมดา)
+        easy_crm_case_status: สถานะ
+        project: โครงการ
+        subject: เรื่อง
+      easy_crm_case_status:
+        is_closed: ถูกปิด?
+        is_default: เป็นค่าเริ่มต้น?
+        is_easy_contact_required: จำเป็นต้องมีผู้ติดต่อหรือไม่?
+        is_paid: ชำระเงินแล้ว?
+        is_provisioned: เป็นการเตรียม?
+        is_provisioning: เป็นการเตรียม?
+        is_won: ได้รับรางวัล?
+        name: ชื่อ
+        only_for_admin: สำหรับผู้ดูแลเท่านั้น
+        show_in_search_results: ค้นหาได้?
+      easy_crm_case:
+        account_manager: ผู้จัดการบัญชี
+        accounted_by: บัญชีตามคู่ค้า
+        assigned_to: ได้รับมอบหมายให้
+        author: ผู้เขียน
+        closed_on: ปิดเมื่อ
+        contract_date: วันที่ทำสัญญา
+        created_at: สร้างเมื่อ
+        currency: เงินตรา
+        description: รายละเอียด
+        easy_closed_by: ปิดโดย
+        easy_contacts: ผู้ติดต่อ
+        easy_crm_case_items:
+          amount: จำนวนเงิน
+          description: รายละเอียด
+          discount: ส่วนลด
+          easy_crm_case: กรณี CRM
+          name: ชื่อ
+          price_per_unit: ราคาต่อหน่วย
+          product_code: รหัสสินค้า
+          total_price: ราคารวม
+          unit: หน่วย
+        easy_crm_case_status: สถานะ
+        email: อีเมล
+        email_cc: อีเมล cc
+        external_account_manager: ผู้จัดการบัญชีภายนอก
+        is_canceled: ถูกยกเลิก?
+        is_finished: เสร็จแล้ว?
+        lead_value: ค่า Lead
+        main_easy_contact_id: ลูกค้า
+        name: ชื่อ
+        need_reaction: ต้องการตอบสนอง?
+        next_action: การดำเนินการถัดไป
+        price: ราคา
+        probability: ความน่าจะเป็น
+        project: โครงการ
+        send_to_external_mails: ส่งการอัพเดตถึงลูกค้า?
+        telephone: โทรศัพท์
+        updated_at: " อัพเดตเมื่อ"
+      easy_lead_score:
+        country: ประเทศ
+        created_at: สร้างเมื่อ
+        updated_at: อัพเดตเมื่อ
+      easy_user_target:
+        currency: สกุลเงิน
+        target: เป้าหมาย
+        valid_from: จาก
+        valid_to: ถึง
+    models:
+      easy_crm_case_mail_template: เทมเพลตเมล
+      easy_mail_campaign_easy_crm_case: กรณี CRM
+  button_change_easy_crm_cases_status: กำหนดใหม่และลบ
+  button_easy_crm_add_item: เพิ่มรายการ
+  button_easy_crm_add_mail_template: เพิ่มเทมเพลต
+  button_easy_crm_add_mailbox: เพิ่มกล่องจดหมาย
+  button_easy_crm_add_or_create_related_contact: เพิ่มผู้ติดต่อที่เกี่ยวข้อง
+  button_easy_crm_add_or_create_related_invoice: เพิ่มใบแจ้งหนี้ที่เกี่ยวข้อง
+  button_easy_crm_add_or_create_related_issue: เพิ่มภารกิจที่เกี่ยวข้อง
+  button_easy_crm_add_related_contact: กำหนดผู้ติดต่อ
+  button_easy_crm_add_related_invoice: กำหนดใบแจ้งหนี้
+  button_easy_crm_add_related_issue: มอบหมายภารกิจ
+  button_easy_crm_add_sales_activity: เพิ่มกิจกรรมการขาย
+  button_easy_crm_add_status: เพิ่มสถานะ
+  button_easy_crm_country_value_new: สร้างค่าใหม่
+  button_easy_crm_create_related_contact: สร้างผู้ติดต่อใหม่
+  button_easy_crm_create_related_invoice: สร้างใบแจ้งหนี้ใหม่
+  button_easy_crm_create_related_issue: สร้างภารกิจใหม่
+  button_easy_crm_merge_cases: รวมกรณี CRM
+  button_easy_crm_merge_cases_inteligent_merge: รวมกรณี CRM
+  button_easy_crm_merge_cases_quick_merge: ผสานกรณี CRM ด่วน
+  button_easy_crm_new_case: กรณี CRM ใหม่
+  button_easy_crm_related_case: เพิ่มกรณี CRM ที่เกี่ยวข้อง
+  button_easy_crm_view_sales_activities: ภาพรวมกิจกรรมการขาย
+  button_easy_lead_score_new: คะแนน Easy Lead ใหม่
+  button_easy_user_target_add_all_users_of_type: เพิ่มผู้ใช้ทุกประเภท
+  button_easy_user_target_add_users: เพิ่มผู้ใช้
+  button_easy_user_target_add_users_from_group: เพิ่มผู้ใช้จากกลุ่ม
+  button_manage_user_targets: จัดการเป้าหมายผู้ใช้
+  button_merge_and_follow: ผสานและติดตาม
+  button_set_easy_user_target_currency: กำหนดสกุลเงิน
+  easy_contacts_toolbar:
+    assign_to_crm_case: มอบหมายให้กับกรณี CRM
+  easy_crm_plugin_author: Easy Software
+  easy_crm_plugin_author_url: http://www.easyproject.cz/en
+  easy_crm_plugin_name: CRM
+  easy_entity_activity_changed: กิจกรรมการขายมีการเปลี่ยนแปลง
+  easy_entity_activity_destroyed: กิจกรรมการขายถูกลบไปแล้ว
+  easy_entity_activity_is_planned: "%{category} ถูกวางแผนไว้เมื่อ %{time}"
+  easy_entity_activity_was_finished: "%{category} เสร็จเมื่อ %{time} "
+  easy_entity_activity_was_reported: "%{category} ถูกรายงานเมื่อ %{time}"
+  easy_invoice_already_has_crm_case: ใบแจ้งหนี้มีกรณี CRM อยู่แล้ว
+  easy_lookup:
+    easy_crm_case:
+      label: กรณี CRM
+  easy_mail_template_token:
+    caption:
+      crm_case_id: รหัสกรณี CRM
+      crm_case_name: ชื่อกรณี CRM
+      crm_case_note: ความคิดเห็นจากบันทึกล่าสุดของกรณี CRM
+    title:
+      crm_case_id: คลิกเพื่อเพิ่มค่าของรหัสกรณี CRM
+      crm_case_name: คลิกเพื่อเพิ่มค่าของชื่อกรณี CRM (หัวข้อ)
+      crm_case_note: คลิกเพื่อเพิ่มเนื้อหาของกรณี CRM ที่มีการบันทึกอัพเดตล่าสุด
+  easy_pages:
+    module_category:
+      easy_crm: CRM
+    modules:
+      easy_crm_case_query: กรณี CRM ตามตัวกรอง
+      easy_crm_cases_create_new: CRM ใหม่
+      easy_crm_create_easy_crm_case_button: ปุ่มกรณี CRM ใหม่
+      easy_crm_pie_chart_from_custom_field: แผนภูมิวงกลมที่กำหนดเอง
+      easy_crm_user_performance: ประสิทธิภาพของสมาชิก
+      easy_crm_user_target: เป้าหมายผู้ใช้
+      easy_entity_activity_crm_case_query: กิจกรรมการขายตามตัวกรอง
+    pages_description:
+      easy_crm_overview: ภาพรวม CRM
+      easy_crm_project_overview: ภาพรวมโครงการ CRM
+    pages:
+      easy_crm_overview: ภาพรวม CRM
+      easy_crm_project_overview: ภาพรวมโครงการ CRM
+  easy_proposer:
+    easy_crm_cases:
+      new:
+        caption: เพิ่มกรณี CRM ใหม่
+        description: สร้างกรณี CRM ใหม่
+    easy_crm_settings:
+      index:
+        caption: การตั้งค่า CRM
+        description: จัดการการตั้งค่า CRM
+  easy_query:
+    easy_lookup:
+      name:
+        easy_crm_case:
+          default: กรณี CRM
+          related_easy_crm_case: กรณี CRM ที่เกี่ยวข้อง
+    name:
+      easy_crm_case_item_query: รายการกรณี CRM
+      easy_crm_case_query: กรณี CRM
+      easy_crm_contact_query: ผู้ติดต่อ CRM
+      easy_crm_country_value_query: ค่าเฉพาะประเทศ CRM
+      easy_lead_score_query: คะแนน Easy Lead
+      easy_user_target_query: เป้าหมายผู้ใช้
+    sidebar_filters:
+      personal:
+        easy_crm_case_query: ตัวกรองส่วนตัวในกรณี CRM
+        easy_crm_contact_query: ตัวกรองส่วนตัวของผู้ติดต่อ CRM
+      public:
+        easy_crm_case_query: ตัวกรองสาธารณะของกรณี CRM
+        easy_crm_contact_query: ตัวกรองสาธารณะของผู้ติดต่อ CRM
+  easy_rake_tasks:
+    easy_rake_task_easy_crm_receive_mail:
+      caption: กล่องจดหมาย CRM 
+  error_can_not_delete_easy_crm_status: สถานะนี้มีกรณี CRM และไม่สามารถลบได้
+  error_easy_crm_case_can_not_assign_custom_field: ไม่สามารถกำหนดกรณี CRM ในฟิลด์ที่กำหนดเอง
+    เนื่องจากไม่ได้เป็นของในโครงการนี้
+  error_easy_crm_case_could_not_merge: ผสานกรณี CRM ไม่ได้
+  field_easy_crm_case: กรณี CRM
+  field_easy_crm_case_contract_date: วันที่ทำสัญญา
+  field_easy_crm_case_created_date: วันที่สร้าง
+  field_easy_crm_case_next_action: การดำเนินการถัดไป
+  field_easy_crm_cases: กรณี CRM
+  field_easy_crm_cases_visibility: กรณี CRM ที่มองเห็น

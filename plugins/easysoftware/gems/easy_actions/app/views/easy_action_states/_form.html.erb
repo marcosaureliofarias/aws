@@ -1,0 +1,8 @@
+<%= labelled_fields_for :easy_action_state, entity do |f| %>
+  <p>
+    <%= f.text_field :name, class: 'required' %>
+  </p>
+  <p>
+    <%= f.check_box :initial %>
+  </p>
+<% end %>

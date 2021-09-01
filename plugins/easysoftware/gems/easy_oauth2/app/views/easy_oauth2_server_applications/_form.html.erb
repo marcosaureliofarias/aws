@@ -1,0 +1,25 @@
+<%= labelled_fields_for :easy_oauth2_application, entity do |f| %>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <p>
+        <%= f.text_field :app_url, class: 'required' %>
+      </p>
+      <p>
+        <%= f.text_field :name, class: 'required' %>
+      </p>
+      <p>
+        <%= f.check_box :active %>
+      </p>
+    </div>
+    <div class="splitcontentright">
+      <% if entity.persisted? %>
+        <p>
+          <%= f.text_field :app_id, class: 'required' %>
+        </p>
+        <p>
+          <%= f.text_field :app_secret, class: 'required' %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

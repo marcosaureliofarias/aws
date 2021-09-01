@@ -1,0 +1,6 @@
+<% gantt_pro_jasmine_tests = [
+  'grid_context'
+]
+  gantt_pro_jasmine_tests.concat ['cashflow_formatter', 'cashflow_tooltip'] if EasyGantt.easy_money?
+%>
+<%= javascript_include_tag(*gantt_pro_jasmine_tests.map { |test| 'easy_gantt_pro/jasmine/' + test }, plugin: 'easy_gantt_pro') %>

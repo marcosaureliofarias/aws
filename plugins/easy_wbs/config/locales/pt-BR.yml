@@ -1,0 +1,202 @@
+---
+pt-BR:
+  easy_printable_templates_categories:
+    easy_wbs: EAP
+  easy_query:
+    name:
+      easy_wbs_easy_issue_query: Easy EAP
+  easy_wbs:
+    button_actions: Outras ações
+    button_add_child: Adicionar criança
+    button_add_comment: Adicionar comentário
+    button_add_parent: Adicionar pai
+    button_add_sibling: Adicionar irmão
+    button_all_icons: Ícones
+    button_budget: Abrir Orçamento
+    button_collapse: Colapsar
+    button_collapse_all: Colapsar tudo
+    button_cut: Cortar
+    button_display: Configurações de visualização
+    button_edit_data: Editar dados
+    button_expand: Expandir
+    button_expand_all: Expandir tudo
+    button_expand_collapse: Expandir/Colapso
+    button_legend: Legenda
+    button_one_side: Um lado
+    button_paste: Colar
+    button_project_menu: Easy EAP
+    button_redo: Refazer
+    button_remove_comment: Remover comentário
+    button_remove_node: Remover nódulo
+    button_show_links: Mostrar links
+    button_undo: Desfazer
+    edit_issue: Editar tarefa
+    error_create: não pode ser criado
+    error_delete: não pode ser apagado
+    error_update: não pode ser atualizado
+    errors:
+      not_subtaskable: Tarefa "%{task_name}" não pode ser sub tarefa, devido à configuração
+        do seu rastreador
+    free:
+      button_upgrade: Obter versão completa
+      button_upgrade_href: https://www.easyredmine.com/redmine-wbs-plugin
+      feature_coloring: Colorir nódulos por propriedade
+      feature_context_menu: Mudar propriedades de nódulo
+      feature_filtering: Filtrar nódulos por propriedades
+      header_not_available: Disponível apenas na versão completa
+      text_not_available: está disponível na versão completa de Easy EAP.
+    hotkeys:
+      info_mac_metakey: Em Mac OSX, teclas Ctrl e Cmd pode ser usado para atalhos
+        marcados Ctrl em baixo - alguns browsers evitar certas combinações de teclas.
+        Então, por exemplo, se Cmd+Space não funcionar no browser, tente Ctrl+Space.
+      keyboard:
+      - title: Manipulação de nós
+        hotkeys:
+        - hotkey: Enter
+          info: Adiciona nó irmão
+        - hotkey: Shift+Enter
+          info: Adiciona nó irmão acima ou quebra de linha (ao renomear nó)
+        - hotkey: Tab ou Insert
+          info: Adiciona nó filho
+        - hotkey: Shift+Tab
+          info: Insere nó pai
+        - hotkey: Espaço
+          info: Renomeia um nó
+        - hotkey: Shift+Espaço
+          info: Edita os dados de um nó
+        - hotkey: Backspace ou Delete
+          info: Remove um nó
+        - hotkey: Ctrl+Up/Down
+          info: Move um nó para cima/para baixo
+      - title: Edição
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Salvar
+        - hotkey: Ctrl+X ou C
+          info: Cortar
+        - hotkey: Ctrl+C ou Y
+          info: Copiar
+        - hotkey: Ctrl+V ou P
+          info: Colar
+        - hotkey: U ou Ctrl+Z
+          info: Desfazer
+        - hotkey: R ou Ctrl+Y ou Ctrl+Shift+Z
+          info: Refazer
+      - title: Seleção
+        hotkeys:
+        - hotkey: Setas
+          info: Seleciona o nó acima/abaixo/esquerda/direita do nó atualmente selecionado
+        - hotkey: Shift + Setas
+          info: Adiciona um nó acima/abaixo/esquerda/direita da seleção (útil para
+            selecionar vários nós irmãos)
+        - hotkey: "{"
+          info: Seleciona o nó atual e toda a sub-árvore abaixo dele
+        - hotkey: "["
+          info: Seleciona somente a sub-árvore abaixo do nó atual (não o próprio o
+            nó)
+        - hotkey: "="
+          info: Seleciona todos os irmãos do nó atual (os que possuem o mesmo pai)
+        - hotkey: "."
+          info: Cancela a seleção múltipla e seleciona somente o nó atual novamente
+        - hotkey: 1 - 9
+          info: 'Seleciona todos os nós de um determinado nível (ex.: 1 seleciona
+            todos os nós de primeiro nível)'
+      - title: Navegação e tela
+        hotkeys:
+        - hotkey: "/ ou F"
+          info: Expande ou encolhe nós (dobra ou desdobra os nós filhos)
+        - hotkey: Ctrl + ou Z
+          info: Aumentar tela
+        - hotkey: Ctrl - ou Shift+Z
+          info: Diminuir tela
+        - hotkey: Esc, 0, Ctrl+0
+          info: Redefinir visão de mapa – seleciona um nó raiz e o leva para o centro
+            da tela
+      mouse:
+      - action: Mover mapa
+        gesture: Clique e arraste o nó central, clique e arraste o plano de fundo
+          ou role com o touchpad.
+      - action: Selecionar nó
+        gesture: Toque ou clique nele
+      - action: Selecionar vários nós
+        gesture: Shift+clique
+      - action: Reordenar nós
+        gesture: Arraste um nó entre seus irmãos, horizontalmente perto da posição
+          de reordenamento. Uma ponta de seta preta surgirá durante o reordenamento.
+      - action: Posicionar um nó manualmente
+        gesture: Apenas arraste um nó até que a ponta de seta de reordenamento apareça.
+          Para forçar o posicionamento manual mesmo com a ponta da seta presente,
+          segure Shift enquanto arrasta o nó. Observe que os filhos do nó raiz podem
+          ser levados para qualquer direção, mas os nós de nível inferior só podem
+          ser posicionados na direção de seu pai em relação à raiz.
+      - action: Renomear nó
+        gesture: Clique ou toque duplo no nó
+      - action: Exibir menu de contexto com operações
+        gesture: 'Clique com o botão direito (do mouse) em um nó ou dê dois toques
+          no plano de fundo ou pressione e segure um nó: exibir (em dispositivos com
+          toque)'
+      - action: Alterar nó pai
+        gesture: Arraste e solte um nó em outro nó (não é permitido soltar um nó em
+          um de seus filhos ou descendentes)
+      - action: Abrir questão ou projeto em uma janela separada
+        gesture: Alt+clique
+      title_key_shortcuts: Operações de teclado
+      title_mouse_shortcuts: Operações de mouse e toque
+      title_shortcuts: Atalhos
+    info_all_saved: Tudo foi salvo com êxito
+    info_any_failed: 'Algumas das solicitações falharam:'
+    info_no_permission: Você não tem as permissões necessárias para fazer isso
+    label_additional_data: Dados adicionais
+    label_all: Todos
+    label_basic_data: Dados básicos
+    label_budget: Orçamento
+    label_color_by: Colorir por
+    label_currency: Moeda
+    label_detail_budget_issue: Orçamento de tarefa
+    label_detail_budget_project: Orçamento de Projeto
+    label_go_to: Ir a
+    label_money_negative_value: Negativo
+    label_money_neutral_value: Neutro
+    label_money_positive_value: Positivo
+    label_or: ou
+    label_planned_costs: Despesas totais planejadas
+    label_planned_profit: Lucro planejado
+    label_planned_revenue: Rendas planejadas
+    label_real_costs: Despesas
+    label_real_profit: Lucro real
+    label_real_revenue: Rendas reais
+    label_show: Mostrar
+    label_task_cumulative: Incluir orçamento de sub-tarea
+    last_state_modal:
+      label_differencies: Diferenças no servidor
+      message_changed: têm diferentes atributos (browser => servidor) ({{changes}})
+      message_missing: está ausente do pai "{{from}}"
+      message_moved: é criança de "{{to}}", não "{{from}}"
+      message_present: no momento é criança de "{{to}}"
+      text_reload_appeal: Você quer recarregar estado desdo servidor?
+      title: Último cliente de WBS é diferente do estado do servidor
+    name_an_entity_first: Nomeie uma entidade primeiro
+    reload_modal:
+      label_errors: Erros
+      text_reload_appeal: Você quer ignorar itens que não foram salvos e recarregar
+        os dados do servidor?
+      title: EAP não foi salvo corretamente
+    stored_modal:
+      text_load_appeal: Você quer carregá-lo? Em vez do estado recente a partir do
+        servidor?
+      title: Estado  não salvos foram encontrados
+    text_issue_not_saved: Tarefa não salva. Salve-a primeiro.
+    warning_delete_node: Deseja mesmo apagar o nó {{name}} e todos os seus descendentes?
+    warning_not_saved: não foi salvado corretamente
+  heading_easy_wbs_issues: EAP
+  label_easy_wbs: Easy EAP
+  label_filter_group_easy_wbs_easy_issue_query: Tarefas
+  label_filter_group_easy_wbs:
+    easy_issue_query: Tarefas
+  permission_edit_easy_wbs: Editar WBS
+  permission_view_easy_wbs: Visualizar WBS
+  project_default_page:
+    easy_wbs: Easy EAP
+  project_module_easy_wbs: Easy EAP
+  text_easy_wbs_print_easy_wbs_current: Mostrar Easy WBS atual (funciona apenas a
+    partir da página onde o Easy WBS está carregado)

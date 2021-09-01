@@ -1,0 +1,18 @@
+EASY.modalSelector.closeModal();
+
+<% if params[:easy_attendance][:range].present? %>
+  window.location.reload()
+<% else %>
+
+//    prepare for replace day hours, now blocked time formats
+//
+  <%# hours = EasyAttendance.where(arrival: @easy_attendance.arrival, user: @easy_attendance.user).inject(0.0) {|sum, a| sum + a.spent_time } %>
+//  $('#el-<%#= params[:item_uniq_id] %>').closest('.easy-calendar-inside').find('.calendar-hours-info').html("<p><%#=j easy_format_hours(hours) %></p>")
+
+  $('#el-<%= params[:item_uniq_id] %>').closest('.day-content').append("<%=j render partial: 'easy_attendances/calendar_event', locals: { event: @easy_attendance, day: @easy_attendance.arrival.to_date } -%>");
+
+  $('#el-<%= params[:item_uniq_id] %>').closest('.easy-attendance').remove();
+<% end %>
+
+
+

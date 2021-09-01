@@ -1,0 +1,125 @@
+<%
+  queries = EasyQuery.constantized_subclasses.select{|q| q.chart_support? }.collect { |klass| [klass.translated_name, klass.name] }.sort
+  query ||= @easy_page_modules_data[block_name][:query]
+  additional_queries ||= @easy_page_modules_data[block_name][:additional_queries]
+%>
+
+<div id="<%= modul_uniq_id %>basic_attrs" class="tabular" data-to-serialize="true">
+  <p>
+    <%= label_tag "#{block_name}[easy_query_type]", l(:field_entity) %>
+    <%= select_tag("#{block_name}[easy_query_type]", options_for_select([[l(:actionview_instancetag_blank_option), '']] + queries, query && query.outputs.include?('chart') ? settings['easy_query_type'] : nil), id: "#{modul_uniq_id}_easy_query_type", class: 'easy-query-type' ) %>
+
+
+    <% if query %>
+      <% query_name = if settings['query_name'].blank?
+                        query_text = l("easy_page_module.#{query.entity.name.downcase}_query.adhoc_query_default_text",
+                                       default: l('easy_page_module.issue_query.adhoc_query_default_text'))
+                        page_module.module_definition.translated_name + ' - ' + query_text
+                      else
+                        CGI::unescape(settings['query_name'])
+                      end %>
+
+      <%= page_module_settings_text_field_tag(page_module, %w[query_name],
+                                              value: query_name,
+                                              onchange: "EASY.utils.setNameToModuleHead(this)") %>
+
+    <% end %>
+  </p>
+</div>
+
+<% if query && query.outputs.include?('chart') %>
+  <% page_module.module_definition.set_primary_renderer(settings) %>
+  <% settings['group_by'] = [] %>
+  <% query.group_by = [] %>
+  <div class="basic-query">
+    <%= render 'easy_page_modules/easy_query_edit', local_assigns %>
+  </div>
+
+  <% if settings['chart_settings']['primary_renderer'] != 'pie' %>
+    <% settings['chart_settings']['additional_queries'] ||= {} %>
+    <% settings['chart_settings']['additional_queries']['0'] ||= {} %>
+    <p>
+      <a href="javascript:void(0)" class="additional-data-series <%= additional_queries['0'] ? 'icon-remove' : 'icon-add' %>"><%= l("label_page_module_chart_#{additional_queries['0'] ? 'remove' : 'add'}_additional_data_serie") %></a>
+    </p>
+    <div id="<%= modul_uniq_id %>_easy_query_type2_container" class="tabular" data-to-serialize="true" style="<%= 'display: none;' unless additional_queries['0'] %>">
+      <p>
+        <%= label_tag "#{block_name}[chart_settings][additional_queries][0][easy_query_type]", l(:field_entity) %>
+        <%= select_tag("#{block_name}[chart_settings][additional_queries][0][easy_query_type]", options_for_select([[l(:actionview_instancetag_blank_option), '']] + queries, settings['chart_settings']['additional_queries']['0']['easy_query_type']), id: "#{modul_uniq_id}_easy_query_type2", class: 'easy-query-type' ) %>
+      </p>
+    </div>
+    <% if additional_queries['0'] %>
+      <div id="<%= modul_uniq_id %>secondary_query">
+        <% settings['chart_settings']['additional_queries']['0']['group_by'] = [] %>
+        <% additional_queries['0'].group_by = [] %>
+        <%= render 'easy_page_modules/easy_query_edit', local_assigns.merge(settings: settings['chart_settings']['additional_queries']['0'], query: additional_queries['0'], block_name: "#{block_name}[chart_settings][additional_queries][0]", modul_uniq_id: "#{modul_uniq_id}secondary_query", secondary_query: true) %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if page_module.caching_available? %>
+    <fieldset class="collapsible collapsed tabular">
+      <legend onclick="toggleFieldset(this);"><%= l(:label_caching) %> <sup class="experimental"><%= l(:label_experimental) %></sup></legend>
+
+      <div style="display: none;">
+        <p>
+          <%= label_tag "#{block_name}[cache_on]", l(:label_enable_caching) %>
+          <%= hidden_field_tag "#{block_name}[cache_on]", '', id: nil %>
+          <%= check_box_tag "#{block_name}[cache_on]", '1', (settings['cache_on'] == '1') %>
+        </p>
+
+        <p>
+          <%= label_tag "#{block_name}[cache_for_days]", l(:label_days) %>
+          <%= number_field_tag "#{block_name}[cache_for_days]", settings['cache_for_days'], min: 1, size: 5 %>
+          <em class="help"><%= l(:text_page_module_cache_for_days) %></em>
+        </p>
+      </div>
+    </fieldset>
+  <% end %>
+
+<% else %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<style type="text/css">
+  <%= '#' + modul_uniq_id %> .easy-query-type-settings-container-static-attributes{ display: none;  }
+  <%= '#' + modul_uniq_id %> .easy-query-type-settings-container{ margin-top: 0;  }
+  <%= '#' + modul_uniq_id %> .chart-options-container .chart-type-select{ display: none;  }
+</style>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $("#<%= modul_uniq_id %> .easy-query-type-settings-container-static-attributes input[name='<%= block_name %>[query_name]']").attr('disabled', true);
+    var $currency = $("#<%= modul_uniq_id %> .basic-query .easy-query-type-settings-container-static-attributes .currency");
+    if( $currency.length > 0 ) {
+      $("#<%= modul_uniq_id %>basic_attrs").append( "<hr/>" ).append($currency);
+    }
+    var $currency2 = $("#<%= modul_uniq_id %>secondary_query .easy-query-type-settings-container-static-attributes .currency");
+    if( $currency2.length > 0 ) {
+      $("#<%= modul_uniq_id %>_easy_query_type2_container").append( "<hr/>" ).append($currency2);
+    }
+
+    $("#<%= modul_uniq_id %> .easy-query-type").change(function (evt) {
+      var targetUrl = "<%= raw update_my_page_module_view_path(page_module.uuid, template: page_module.is_a?(EasyPageTemplateModule) ? '1' : '0', block_name: block_name, edit: true, modal_edit: page_params[:modal_edit], with_container: false) %>";
+      var module = $("#<%= modul_uniq_id %>");
+
+      $.post(targetUrl, module.find(".easy-page-module-form").serialize(), function (data) {
+        module.html(data);
+        module.find(".easy-page-module-form").attr('data-changed', true);
+      });
+    });
+
+    $("#<%= modul_uniq_id %> .additional-data-series").click(function(evt) {
+      if($(this).hasClass('icon-add')) {
+        $(this).text('<%= l('label_page_module_chart_remove_additional_data_serie') %>');
+      } else {
+        $(this).text('<%= l('label_page_module_chart_add_additional_data_serie') %>');
+        <% if additional_queries['0'] %>
+        $('#<%= modul_uniq_id %>_easy_query_type2_container select')[0].selectedIndex = 0;
+        $('#<%= modul_uniq_id %>_easy_query_type2_container select').change();
+        <% end %>
+      }
+      $('#<%= modul_uniq_id %>_easy_query_type2_container').toggle();
+      $(this).toggleClass('icon-add').toggleClass('icon-remove');
+    });
+  });
+</script>

@@ -1,0 +1,10 @@
+<% if @confirm %>
+  $('#ajax-modal').html("<%= j(render(:template => 'easy_attendance_activities/move_attendances', :formats => [:html])) %>");
+  $('#ajax-modal h2').remove();
+  EASY.modalSelector.showModal();
+  $('#ajax-modal').dialog({title: '<%=j flash[:error] %>'});
+<% else %>
+  tr = $("#easy-attendance-activity-<%= @easy_attendance_activity.id %>");
+  tr.fadeOut();
+  tr.remove();
+<% end %>

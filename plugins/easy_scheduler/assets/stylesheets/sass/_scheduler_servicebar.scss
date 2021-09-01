@@ -1,0 +1,62 @@
+#easy_servicebar_component_body {
+  #scheduler_calendar_quick {
+    .easy-calendar {
+      &__calendar {
+        &-resolution-wrapper {
+          display: none;
+        }
+        &-navs {
+          height: auto !important;
+          padding-bottom: .5*$gap;
+          padding-right: 36px;
+        }
+        &-call-group {
+          padding-top: .5*$gap;
+        }
+        &-listing {
+          padding-top: $gap !important;
+          margin: 0 auto !important;
+        }
+        &-cont{
+          grid-column-start: 1;
+          grid-column-end: 3;
+          margin: 0 !important;
+          &:before {
+            //background-color: $calendar-background;
+          }
+        }
+      }
+      &__assignees-wrap {
+        display: none !important;
+      }
+      &__tasks{
+        display: none !important;
+        &-toggler {
+          display: none;
+        }
+      }
+    }
+  }
+  .text-right {
+    position: absolute;
+    right: $gap;
+    top: 2*$gap;
+    z-index: 4;
+  }
+  .scheduler-settings {
+    .type, .show-weekends, .filters {
+      display: none !important;
+      border: 1px solid red !important;
+    }
+    & + .form-actions {
+      margin: 0 -12px;
+    }
+    p {
+      padding-left: 0;
+      .icon {
+        white-space: nowrap;
+      }
+    }
+  }
+}
+

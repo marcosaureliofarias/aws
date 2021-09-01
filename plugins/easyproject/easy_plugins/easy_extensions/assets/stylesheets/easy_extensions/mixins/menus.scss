@@ -1,0 +1,145 @@
+%menu-tooltip-item{
+  padding: 0;
+  padding-left: 3*$gap-const;
+  border: 1px solid transparent;
+  border-left: none;
+  border-right: none;
+  position: relative;
+  @extend %base-font;
+  line-height: 1.25;
+  &:hover{
+    border-color: $menu__background--hover !important;
+    background: $menu__background--hover !important;
+    z-index: 1;
+  }
+  a{
+    padding: 0.25*$box-padding 0.5*$box-padding;
+    padding-left: 4*$gap-const;
+    margin-left: -3*$gap-const;
+    display: block;
+    text-decoration: none;
+    @extend %hyphenate;
+    &.active{
+      color: $menu__color--active;
+      background: none;
+      border: none;
+      &:before{
+        color: $menu__color--active;
+      }
+    }
+    &[class*=icon-]:before{
+      position: absolute;
+      left: 0;
+      width: 3*$gap-const;
+      text-align: center;
+      padding-top: 1px;
+      color: $color-text;
+    }
+    &.submenu{
+      padding-right: 0 !important;
+      background: none !important;
+      position: relative;
+      &:after {
+        @include icon(arrow-alt);
+        @extend %input-button-absolute;
+        left: auto;
+        //font-size: $font-smallest;
+        text-align: left;
+        line-height: 1.9;
+      }
+    }
+    &~span{
+      @include small;
+    }
+  }
+}
+%menu-tooltip-list{
+  z-index: z($z-priority, context-menu);
+  @extend %tooltip-content;
+  @extend %material__elevation--depth_4 !optional;
+  margin: 0;
+  list-style: none;
+  font-size: $font-h4;
+  min-width: 200px;
+  padding: .5*$gap 0;
+  white-space: normal !important;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: auto;
+    left: 3*$gap-const;
+    border-left: 1px solid $color-border-minor;
+    z-index: 0;
+  }
+  li{
+    @extend %menu-tooltip-item;
+    & > .menu-children{
+      @extend %tooltip-content-right;
+      display: none;
+      white-space: normal;
+      top: 6px;
+      left: 99%;
+      width: 150px;
+      & > li{
+        & + li{
+          border-top: 1px dashed $color-border-minor;
+        }
+        a{
+          text-decoration: none;
+          display: block;
+          padding: 0.5em;
+          &:hover{
+            text-decoration: underline;
+          }
+          &:before{
+            color: $color-positive;
+            text-decoration: none;
+            margin-right: 0.5*$gap;
+          }
+        }
+      }
+    }
+    &:hover{
+      & > .menu-children{
+        display: inline-block;
+      }
+    }
+  }
+}
+%menu-tooltip{
+  position: relative;
+  ul{
+    @extend %menu-tooltip-list;
+  }
+}
+
+%menu-tooltip-parent{
+  @extend %menu-tooltip;
+  & > ul{
+    display: none;
+    &.u-active{
+      display: block !important;
+    }
+  }
+  &.w-toggleable:hover > ul{
+    display: none;
+  }
+  &:hover > ul{ //changed to toggleable
+    display: block;
+  }
+}
+
+%menu-horizontal{
+  & > li{
+    display: inline-block;
+  }
+}
+%menu-buttons{
+  & > li{
+    & > a{
+      @extend %button-base;
+    }
+  }
+}

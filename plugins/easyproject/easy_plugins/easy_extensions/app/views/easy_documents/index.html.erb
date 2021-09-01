@@ -1,0 +1,17 @@
+<%= render :partial => 'easy_queries/easy_query_index', :locals => {:query => @query, :easy_query_name =>  l(:label_document_global), :free_search_options => {:free_search_element_to_update => 'easy_documents', :free_search_url => documents_path}} %>
+
+<div id="easy_documents">
+  <%= render :partial => 'easy_documents/easy_documents' %>
+</div>
+<span class="pagination"><%= pagination_links_full @entity_pages, @entity_count %></span>
+
+<%= render :partial => 'easy_documents/side_bar' %>
+<% include_attachment_tags %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $(document).on('easy-query:after-search', function(e) {
+      $("#easy-query-heading-count").remove();
+    });
+  });
+</script>

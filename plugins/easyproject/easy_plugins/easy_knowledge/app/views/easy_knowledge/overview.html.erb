@@ -1,0 +1,5 @@
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= render_easy_page_bottom_buttons(layout_easy_knowledge_path(t: params[:t])) if @page_editable %>
+
+<%= render( partial: 'easy_knowledge/sidebar_content' ) %>

@@ -1,0 +1,27 @@
+.tag {
+  border-radius: 200px;
+  background: $color-front;
+  box-shadow: 0px 0 2px rgba(black,.25);
+  font-size: $font-size--small;
+  padding: $input-padding $gap;
+  font-weight: bold;
+  display: inline-block;
+  margin-right: .5*$gap;
+  &:nth-of-type(2):not(.tag--no-background){
+    background: #ffa012;
+    color: white;
+  }
+  &:nth-of-type(3):not(.tag--no-background) {
+    background: #49dc00;
+    color: white;
+  }
+
+  &--no-background {
+    background: none !important;
+    box-shadow: 0px 0 2px rgba(black, 0.5) !important;
+  }
+
+  &--multiline {
+    margin: $gap/2;
+  }
+}

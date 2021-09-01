@@ -1,0 +1,13 @@
+<div id="easy-attendance-new">
+  <%= title l(:new, :scope => :easy_attendance) -%>
+  <%= form_for(@easy_attendance, :html => {:class => 'form-box'}) do |f| %>
+    <% back_url = params[:back_url].presence || easy_attendances_path %>
+    <%= render(:partial => 'form', :locals => {:f => f, :easy_attendance  => @easy_attendance, :modul_uniq_id => ''}) -%>
+
+    <div class="form-actions">
+      <%= f.submit(l(:button_create), class: 'button-positive easy-calendar__modal-button') -%>&nbsp;
+      <%= link_to(l(:button_back), back_url, :class => 'button') -%>
+    </div>
+  <% end -%>
+</div>
+<%= late_javascript_tag('EASY.initEasyAttendanceActivityChanger();') %>

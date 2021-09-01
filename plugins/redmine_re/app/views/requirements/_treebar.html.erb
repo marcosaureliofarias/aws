@@ -1,0 +1,119 @@
+<%= content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'jstree/default/style.css', :media => 'all' %>
+  <%= javascript_include_tag 'jstree.js', defer: true %>
+  <%= javascript_include_tag 're_treebar.js', defer: true %>
+<% end %>
+
+<div id="treebar">
+
+  <%= render :partial => 'requirements/filter' %>
+
+  <fieldset class="collapsible">
+    <legend onclick="toggleFieldset(this);"><%= l(:re_specification_overview) %></legend>
+    <div id="tree"></div>
+  </fieldset>
+
+  <fieldset id="baselines" class="collapsible">
+    <%= render partial: 'requirements/baselines', locals: { project: @project } %>
+  </fieldset>
+
+  <hr>
+
+    <div>
+      <ul class="navigation">
+        <% if User.current.allowed_to?(:administrate_requirements, @project) %>
+          <li><%= link_to l(:re_configure_plugin), {
+            :controller => "re_settings",
+            :action => "edit",
+            :project_id => @project.id }, :class => 'button' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+    function create_submenu(name, current_artifact, mod, alias, action) {
+        var option_name = name + '_submenu';
+        var current_artifact_key = current_artifact + '_' + mod;
+
+        window.re_options[option_name] = window.re_options[option_name] || {};
+        window.re_options[option_name][current_artifact_key] = {
+            'label': alias,
+            'action': function (node) {
+                var reference_id = $(node.reference).attr("data-id");
+                window.location.pathname  = create_link('<%= @project.id %>', current_artifact, action, reference_id);
+            },
+            'icon' : current_artifact + '-icon'
+        };
+    }
+
+    function createChangeStatusSubmenu(currentArtifact, alias) {
+        var optionName = 'change_status_submenu';
+        var currentArtifactKey = currentArtifact + '_in';
+
+        window.re_options[optionName] = window.re_options[optionName] || {};
+        window.re_options[optionName][currentArtifactKey] = {
+            'label': alias,
+            'action': function (node) {
+              $.ajax({
+                  async: false,
+                  type: 'PATCH',
+                  url: window.re_options.bulkChangeStatusLink,
+                  data: {
+                    ids: $('#' + $('#tree').jstree('get_checked').join(',#')).map(function(){return $('a', this).attr('data-id');}).get(),
+                    status_id: currentArtifact
+                  },
+                  success: function(data) {
+                    $('#tree').jstree(true).settings.core.data = data;
+                    $('#tree').jstree(true).refresh();
+                  }
+              });
+            },
+            'icon' : currentArtifact + '-icon'
+        };
+    }
+
+    function create_link(identifier, name, action, node_id) {
+        return window.re_options.base_url + 'projects/' + identifier + '/requirements/artifact/new/' + name + '/' + action + '/' + node_id;
+    }
+
+    window.re_options = window.re_options || {};
+
+    window.re_options.form_authenticity_token = '<%= form_authenticity_token.to_s.html_safe %>';
+
+    window.re_options.base_url = "<%= url_for :controller => 'welcome' %>";
+    window.re_options.project_id = "<%= @project.id %>";
+    window.re_options.artifact_settings = <%= @re_artifact_settings.to_json.html_safe %>;
+    window.re_options.artifact_types = <%= @re_artifact_order.to_json.html_safe %>;
+
+    window.re_options.allowed_to_edit = <%= User.current.allowed_to?(:edit_requirements, @project) %>;
+    window.re_options.allowed_to_view = <%= User.current.allowed_to?(:view_requirements, @project) %>;
+    window.re_options.bulk_edit = false;
+
+    window.re_options.create_in_str = "<%= t('re_create_in') %>";
+    window.re_options.create_below_str = "<%= t('re_create_below') %>";
+    window.re_options.edit_str = "<%= t(:re_edit) %>";
+    window.re_options.changeStatusStr = "<%= t(:re_status) %>";
+    window.re_options.tree_loading_str = '<%= t(:re_tree_loading) %>';
+    window.re_options.delete_str = '<%= t(:re_delete) %>';
+
+    <% @re_artifact_settings.each do |currentArtifact, currentArtifactSetting| %>
+        create_submenu('new', '<%= currentArtifact %>', 'in', "<%= currentArtifactSetting["alias"] %>", 'inside_of');
+        create_submenu('sibling', '<%= currentArtifact %>', 'below', "<%= currentArtifactSetting["alias"] %>", 'below_of');
+    <% end %>
+
+    <% ReStatus.where(project: @project).each do |status| %>
+        createChangeStatusSubmenu('<%= status.id %>', "<%= status.label %>");
+    <% end %>
+
+    window.re_options.edit_link = '<%= re_artifact_properties_path %>';
+    window.re_options.delete_link = '<%= re_artifact_properties_path %>';
+    window.re_options.tree_root_link = '<%= url_for :project_id => @project.id, :controller => :requirements, :action => :tree, :mode => "root" %>';
+    window.re_options.tree_close_link = '<%= url_for :project_id => @project.id, :controller => :requirements, :action => :tree, :mode => "close", :id => nil %>';
+    window.re_options.tree_open_link = '<%= url_for :project_id => @project.id, :controller => :requirements, :action => :tree, :mode => "open", :id => nil %>';
+    window.re_options.delegate_tree_drop_link = '<%= url_for :controller => :requirements, :action => :delegate_tree_drop %>';
+    window.re_options.bulkChangeStatusLink = '<%= requirements_bulk_change_status_path(@project) %>';
+</script>

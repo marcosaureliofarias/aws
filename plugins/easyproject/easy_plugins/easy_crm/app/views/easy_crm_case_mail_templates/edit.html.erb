@@ -1,0 +1,14 @@
+<%= title l(:heading_easy_crm_case_mail_template_edit) %>
+
+<%= form_for([@project, @easy_crm_case_mail_template], :html => {:id => 'easy_crm_case_mail_template_form', :class => 'tabular'}) do |f| %>
+  <%= error_messages_for @easy_crm_case_mail_template %>
+  <%= hidden_field_tag('back_url', params[:back_url], :id => nil) unless params[:back_url].blank? %>
+
+  <div class="box">
+    <%= render :partial => 'form', :locals => {:f => f, :easy_crm_case_mail_template => @easy_crm_case_mail_template, :project => @project} %>
+  </div>
+
+  <p class="buttons">
+    <%= submit_tag l(:button_update), :title => l(:button_update) %>
+  </p>
+<% end %>

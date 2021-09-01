@@ -1,0 +1,19 @@
+<%= title l(:label_easy_timesheet) %>
+<%= render :partial => 'timelog/tabs' %>
+<div id="easy_timesheet_form_container">
+  <%= render :partial => 'show', :locals => {:easy_timesheet => @easy_timesheet} %>
+</div>
+<p>
+  <%#= link_to('Timelog', {:controller => 'budgetsheet', :set_filter => 1, :xproject_id => "=#{@easy_timesheet.time_entries.pluck(:project_id).join('|')}", :activity_id => "=#{@easy_timesheet.time_entries.pluck(:activity_id).join('|')}", :spent_on => "#{@easy_timesheet.start_date}|#{@easy_timesheet.end_date}", :user_id => @easy_timesheet.user_id}) %>
+</p>
+
+<% content_for :easy_page_layout_service_box_primary_actions do -%>
+  <% if User.current.allowed_to_globally?(controller: 'easy_timesheets', action: 'new') %>
+    <%= link_to(l(:heading_easy_timesheets_new), new_easy_timesheet_path, title: l(:heading_easy_timesheets_new), remote: true, class: 'icon icon-add button-positive') if EasyTimesheet.weekly_calendar_enabled? %>
+    <%= link_to(l('extended_timesheet.label_new_monhly_timesheet'), monthly_new_easy_timesheets_path, title: l('extended_timesheet.label_new_monhly_timesheet'), remote: true, class: 'icon icon-add button-positive') if EasyTimesheet.monthly_calendar_enabled? %>
+   <% end %>
+<% end -%>
+
+<% content_for :body_bottom do -%>
+  <%= render partial: 'easy_timesheets/include_tags' %>
+<% end %>

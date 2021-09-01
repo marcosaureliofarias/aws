@@ -1,0 +1,14 @@
+<%= title l(:heading_easy_button_edit) + " (#{l("label_#{@easy_button.entity_type.underscore}")})" %>
+
+<%= form_for(@easy_button, method: :put, html: { id: 'easy_button_form' }) do |f| %>
+  <%= error_messages_for f.object %>
+  <%= hidden_field_tag('back_url', params[:back_url]) if params[:back_url] %>
+
+  <div id="easy_button_container">
+    <%= render 'form', easy_button: @easy_button %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit l(:button_update), :class => 'button-positive' %>
+  </div>
+<% end %>

@@ -1,0 +1,173 @@
+---
+hr:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: ne može biti prazno ili ne postoji
+              empty: ne može biti prazno ili ne postoji
+        easy_data_template:
+          attributes:
+            type:
+              blank: ne može biti prazno ili ne postoji
+              empty: ne može biti prazno ili ne postoji
+  button_easy_data_template_assignment: terenski zadaci
+  button_easy_data_template_edit: Izmjeni predložak
+  button_easy_data_template_export_data: Izvoz podataka
+  button_easy_data_template_import: uvoz
+  button_easy_data_template_import_data: Uvoz podataka
+  button_easy_data_template_import_preview: pregled
+  button_easy_data_template_new_export: Izvoz CSV
+  button_easy_data_template_new_import: Uvoz CSV
+  button_easy_data_template_new_msproject: Uvoz iz MS Project
+  button_easy_data_template_settings: prilagodba
+  button_new_advance_import: Napredni uvoz
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Ne
+    xyes: Da
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: ime rješavatelja
+      assigned_to_id: id dodijeljenog djelatnika
+      assigned_to_lastname: prezime rješavatelja
+      assigned_to_login: login rješavatelja
+      assigned_to_mail: e-mail rješavatelja
+      author_firstname: autorovo ime
+      author_id: id autora
+      author_lastname: prezime
+      author_login: prijava autora
+      author_mail: pošalji e-mail autoru
+      description: opis zadatka
+      due_date: Kraj zadatka (datum)
+      estimated_hours: procjenjeno vrijeme zadatka (sati)
+      id: id zadatka
+      priority_id: id prioritet
+      priority_name: naziv prioriteta
+      project_id: id projekta
+      project_name: ime projekta
+      start_date: početak zadatka (datum)
+      subject: predmet zadatka
+      tracker_id: id vrste zadatka
+      tracker_name: naziv vrste zadatka
+    Project:
+      description: opis projekta
+      enabled_modules: ime modula
+      id: id projekta
+      is_public: javno (A / N)
+      name: ime projekta
+      parent_id: id nadređenog projekta
+      parent_name: ime nadređenog projekta
+      trackers_ids: id vrste zadatka
+      trackers_names: ime vrste zadatka
+    TimeEntry:
+      activity: aktivnost
+      activity_id: id aktivnosti
+      activity_name: ime aktivnosti
+      comments: komentar
+      easy_range_from: prijavljeno od
+      easy_range_to: prijavljeno do
+      hours: sat
+      issue: zadatak
+      issue_id: id zadatka
+      issue_subject: naziv zadatka
+      project: projekt
+      project_id: id projekta
+      project_name: ime projekta
+      spent_on: datum
+      user: korisnik
+      user_id: id korisnika
+    User:
+      admin: Administrator (A / N)
+      firstname: korisničko ime
+      id: id korisnika
+      language: jezik korisnika
+      lastname: prezime korisnika
+      login: prijava korisnika
+      mail: e-mail korisnici
+      password: zaporka
+      send_mail: prijavi se da bi poslao e-mail (A/N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Zadatak
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Projekt
+    EasyDataTemplateTimeEntry: Prijavljeno vrijeme
+    EasyDataTemplateUser: Korisnik
+  easy_data_templates_plugin_author: Easy Software
+  easy_data_templates_plugin_author_url: http://www.easyredmine.com
+  easy_data_templates_plugin_description: "- Predlošci podataka za uvoz i izvoz podataka
+    u CSV formatu"
+  easy_data_templates_plugin_name: Predlošci podataka
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Predlošci podataka
+        description: Upravljanje predlošcima podataka
+  error_during_import: Prilikom uvoza se dogodila greška. Molimo provjerite unesene
+    podatke.
+  error_easy_data_template_attachment_not_uploaded: Nema zabilježenih dodataka za
+    uvoz
+  error_easy_data_template_ms_project_not_valid_xml: Datoteka koja je priložena nije
+    valjani XML iz MS Project 2010 ili viših verzija.
+  field_easy_data_template_allowed_import: Uvoz
+  label_check_preview: Molimo provjerite podatke koristeći 'Pregled'
+  label_easy_data_template_assignment: Terenski zadaci
+  label_easy_data_template_author_name: Autor
+  label_easy_data_template_edit: Promjena predložaka
+  label_easy_data_template_entity_type: Entitet
+  label_easy_data_template_export_new: Novi predložak za izvoz
+  label_easy_data_template_import_file: Uvoz datoteke
+  label_easy_data_template_import_new: Novi predložak za uvoz
+  label_easy_data_template_import:
+    assignments:
+      all: stupci dodijeljene pozicije
+      entity_attribute_name: entiteti naziva stupaca
+      file_column_position: pozicija stupca u csv
+      new: Pozicije stupca dodjeljivanja
+    errors:
+      erow: greška u liniji
+      errors_count: broj grešaka
+      errors_rows: neispravne linije
+      errors_rows_count: broj pogrešnih linija
+      errors_sum: sveukupno
+      row: nevaljan broj linije
+      show: prikaži pogrešne linije
+    preview:
+      row: broj linije
+      table: pregled
+    settings:
+      col_sep: razdjelnik polja
+      encoding: encoding
+      import_all: Sve ili ništa
+      new: Prilagodba
+      preview_rows: broj linija za pregled
+      project_template: Koristi predložak dizajna
+      quote_char: razdjelnik teksta
+      return_headers: prva linija sadrži naziv stupca
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Dodijeljen jednom zadatku)"
+    other: "(Dodijeljen na %{count} zadatka)"
+    zero: "(Nije dodijeljen)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Ime u MSP
+  label_easy_data_template_ms_project_user_name_in_ep: Interno ime
+  label_easy_data_template_name: Ime
+  label_easy_data_template_public: javno
+  label_easy_data_template_template_type: Vrsta
+  label_easy_data_template_template_type_export: izvoz
+  label_easy_data_template_template_type_import: uvoz
+  label_easy_data_template_user_name: Vlasnik
+  label_easy_data_templates: Predlošci podataka
+  label_easy_data_templates_choose_project: Odaberi projekt
+  label_easy_data_templates_choose_query: Odaberi filter
+  label_easy_data_templates_source_settings: Odaberi izvor podataka
+  label_easy_data_templates_target_settings: Odabiranje odredišnih podataka
+  notice_easy_data_templates_import_ok: Uvoz je uspješan.
+  text_easy_data_template_ms_project_upload_file: Datoteka mora biti u XML formatu
+    (u MS Project iz glavnog / najgornjeg izbornika odaberite File (Datoteka) -&gt;
+    Save As (Spremi Kao) -&gt; Save as type XML (Spremi kao XML)).
+  title_easy_data_templates_apply_to_all_rows: Klikni da bi postavio ovu vrijednost
+    na svim sličnim linijama.

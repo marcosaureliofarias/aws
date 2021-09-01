@@ -1,0 +1,3 @@
+<% unless @role.anonymous? %>
+  <p class="view_easy_crms_shown"><%= form.select :easy_crm_cases_visibility, Role::EASY_CRM_CASES_VISIBILITY_OPTIONS.collect { |v| [l(v.last), v.first] } %></p>
+<% end %>

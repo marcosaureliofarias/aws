@@ -1,0 +1,14 @@
+<tr class='nested-fields'>
+  <td><%= autocomplete_field_tag "#{f.object_name}[external_name]", autocomplete_jobs_project_easy_jenkins_settings_path(@project, format: :json), [f.object.external_name], id: "job_easy_jenkins_#{f.object.object_id}", preload: true %></td>
+  <td><%= autocomplete_field_tag "#{f.object_name}[issue_ids][]", autocomplete_issues_project_easy_jenkins_settings_path(@project, format: :json), f.object.issues.pluck(:id), id: "issue_easy_jenkins_#{f.object.object_id}", preload: true %></td>
+  <td><%= f.check_box :for_all_tasks, label: l('easy_jenkins.field_for_all_tasks') %></td>
+  <td><%= autocomplete_field_tag "#{f.object_name}[tracker_ids][]", Tracker.pluck(:name, :id), f.object.trackers.pluck(:id), id: "tarcker_easy_jenkins_#{f.object.object_id}", preload: true %></td>
+  <td><%= autocomplete_field_tag "#{f.object_name}[status_ids][]", IssueStatus.pluck(:name, :id), f.object.statuses.pluck(:id), id: "status_easy_jenkins_#{f.object.object_id}", preload: true %></td>
+  <td><%= link_to_remove_association '', f, class: 'button button-3 icon-remove' %></td>
+</tr>
+
+<%= late_javascript_tag do %>
+  EASY.schedule.late(function() {
+    initEasyAutocomplete();
+  });
+<% end %>

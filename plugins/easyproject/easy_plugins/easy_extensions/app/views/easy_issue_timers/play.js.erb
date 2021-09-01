@@ -1,0 +1,31 @@
+EASY.schedule.late(function () {
+// changes timer buttons on issue page
+  $("#timer_buttons_for_<%=j dom_id(@issue) %>").html(
+      "<%= j (link_to(l(:button_easy_issue_timer_stop), easy_issue_timer_stop_path(@issue, timer_id: @easy_issue_timer), class: 'button-mini icon icon-checked-circle', method: :post, title: l(:title_easy_issue_timer_button_stop), onclick: "$(this).css({'z-index': -1})")) %>"
+      + "<%= j (link_to(l(:button_easy_issue_timer_pause), easy_issue_timer_pause_path(@issue, timer_id: @easy_issue_timer), remote: true, class: 'button-mini icon icon-pause', method: :post, title: l(:title_easy_issue_timer_button_pause), onclick: "$(this).css({'z-index': -1})")) %>"
+  );
+
+// changes timer buttons in the side bar
+  var $issueTimerFirstSpan = $("a#<%=j dom_id(@easy_issue_timer) %>").parent();
+  $issueTimerFirstSpan.html(" <%= j (link_to(l(:button_easy_issue_timer_stop), easy_issue_timer_stop_path(@issue, timer_id: @easy_issue_timer), class: 'icon icon-checked-circle button-mini-positive', method: :post, title: l(:title_easy_issue_timer_button_stop), onclick: "$(this).css({'z-index': -1})", id: dom_id(@easy_issue_timer))) %>");
+  $issueTimerFirstSpan.parent().append("<span> <%= j (link_to(l(:button_easy_issue_timer_pause), easy_issue_timer_pause_path(@issue, timer_id: @easy_issue_timer), remote: true, class: 'icon icon-pause button-mini-negative', method: :post, title: l(:title_easy_issue_timer_button_pause), onclick: "$(this).css({'z-index': -1})")) %></span>");
+
+// changes buttons for the last paused  timer in the side bar
+  <% if @last_paused_easy_issue_timer %>
+  <% issue_with_running_timer = @last_paused_easy_issue_timer.issue %>
+  $issueTimerFirstSpan = $("a#<%=j dom_id(@last_paused_easy_issue_timer) %>").parent();
+  $issueTimerFirstSpan.html(" <%= j (link_to(l(:button_easy_issue_timer_resume), easy_issue_timer_play_path(issue_with_running_timer, timer_id: @last_paused_easy_issue_timer), remote: true,  class: 'icon icon-play button-mini-positive', method: :post, title: l(:title_easy_issue_timer_button_resume), onclick: "$(this).css({'z-index': -1})", id: dom_id(@last_paused_easy_issue_timer))) %>");
+  $issueTimerFirstSpan.next().remove();
+
+// changes timer buttons on issue page, when on issue page of the last paused timer
+  $("#timer_buttons_for_<%=j dom_id(issue_with_running_timer) %>").html(" <%= j (link_to(l(:button_easy_issue_timer_resume), easy_issue_timer_play_path(issue_with_running_timer, timer_id: @last_paused_easy_issue_timer), remote: true, class: 'button-mini icon icon-play', method: :post, title: l(:title_easy_issue_timer_button_play), onclick: "$(this).css({'z-index': -1})")) %>");
+  <% end %>
+
+  showFlashMessage('notice', '<%=j l(:notice_successful_update) %>').delay(1500).fadeOut();
+
+  if ($("#easy_issue_timers_list_trigger").length == 0) {
+    $("#easy_servicebar ul").append('<li><a class="icon-timer reverse easy-issue-timers-list-trigger has-sign fast timer-active" id="easy_issue_timers_list_trigger" title="Task timer" style="visibility: inherit;" data-remote="true" href="/easy_issue_timers"><span class="sign count">1</span></a></li>');
+  } else {
+    $("#easy_issue_timers_list_trigger span").text("<%= EasyIssueTimer.running(User.current.id).size %>");
+  }
+});

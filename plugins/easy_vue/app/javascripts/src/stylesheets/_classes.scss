@@ -1,0 +1,71 @@
+.hidden {
+  display: none;
+}
+.save-button {
+  background-color: green;
+  color: #fff;
+}
+.cancel-button {
+  background-color: orangered;
+  color: #fff;
+}
+.choosen {
+  background-color: rgba(28, 28, 78, 0.5);
+}
+.success {
+  background-color: $color-positive;
+}
+.vue-error, .error {
+  background-color: $color-negative;
+}
+.padding-level {
+  &-1 {
+    padding-left: 15px;
+  }
+  &-2 {
+    padding-left: 25px;
+  }
+  &-3 {
+    padding-left: 35px;
+  }
+  &-4 {
+    padding-left: 45px;
+  }
+  &-5 {
+    padding-left: 55px;
+  }
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.3s ease-in-out;
+}
+.v-enter,
+.leave-to {
+  opacity: 0;
+}
+.pulse-active {
+  animation: heartbeat 0.8s linear 0.5s 2;
+}
+
+.gradient {
+  @extend %faker;
+}
+
+.flash-enter-active {
+  animation: flash 1.25s;
+}
+
+.editable:hover {
+    border: 1px dashed mix($color-border, $color-text) !important;
+}
+.slide-fade-enter-active {
+  transition: transform 0.3s cubic-bezier(.31,.61,.91,1.39);
+}
+.slide-fade-leave-active {
+  transition: transform 0.3s cubic-bezier(.31,.61,.91,1.39);
+}
+.slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(50px);
+  opacity: 0;
+}

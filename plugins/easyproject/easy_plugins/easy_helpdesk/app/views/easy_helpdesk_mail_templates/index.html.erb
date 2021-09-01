@@ -1,0 +1,24 @@
+<%= breadcrumb([
+    link_to(l(:heading_easy_helpdesk_index), {:controller => 'easy_helpdesk', :action => :index}, :title => l(:heading_easy_helpdesk_index)),
+    link_to(l(:heading_easy_helpdesk_mail_templates_index), {:controller => 'easy_helpdesk_mail_templates', :action => :index}, :title => l(:heading_easy_helpdesk_mail_templates_index))]) %>
+
+<h2><%= l(:heading_easy_helpdesk_mail_templates_index) -%></h2>
+<div class="autoscroll list">
+  <%= render :partial => 'easy_helpdesk_mail_templates/index', :locals => {:easy_helpdesk_mail_templates => @easy_helpdesk_mail_templates} %>
+</div>
+
+<span class="pagination" style="display: none"><%= pagination_links_full @easy_helpdesk_mail_templates_pages %></span>
+
+<%= render :partial => 'common/infinite_scroll' %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_helpdesk_index), l(:heading_easy_helpdesk_mail_templates_index)) -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_easy_helpdesk_add_mail_template), {:action => :new}, :class => 'button-positive icon icon-add', :title => l(:button_easy_helpdesk_add_mail_template)) -%>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_helpdesk/sidebar_links' %>
+<% end %>

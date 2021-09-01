@@ -1,0 +1,32 @@
+<%= breadcrumb_category(@category) -%>
+
+<%= render :partial => 'easy_queries/easy_query_index', :locals => {:query => @query, :easy_query_name =>  l(:label_easy_knowledge_categories) + " - #{@category.name}", :free_search_options => {:free_search_after_function => "$('.other-formats').remove()", :free_search_url => url_for({:action => 'show', :id => @category})}} %>
+<%= textilizable(@category.description) %>
+<%= render @query, :entities => @stories, :easy_query_name => l(:label_easy_knowledge_categories) + " - #{@category.name}", :options => {:go_to_url => {:controller => 'easy_knowledge_stories', :action => 'show'}, :allow_avatar => true, :render_index => false} %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:label_user_plural)) -%>
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:label_easy_knowledge_new_story), new_polymorphic_path([@project, :easy_knowledge_story], {:easy_knowledge_story => {:easy_knowledge_category_ids => [@category.id]}}), :class => 'button-positive icon icon-add') if @project ? User.current.allowed_to?(:create_project_stories, @project) :  User.current.allowed_to_globally?(:create_global_stories) -%>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <% entity_params = @category.entity_id ? {:entity_type => @category.entity_type, :entity_id => @category.entity_id} : {}
+     entity_params[:easy_knowledge_category] = {:parent_id => @category.id} if @category %>
+  <% if @category.editable? %>
+    <%= link_to l(:button_easy_knowledge_edit_category), {:action => 'edit', :id => @category, :back_url => original_url}, :class => 'button-positive icon icon-edit' -%>
+  <% end %>
+  <%= link_to(l(:label_easy_knowledge_stories_all), easy_knowledge_stories_path({:set_filter => 0}), :class => 'icon icon-adressbook button') -%>
+  <%= link_to(l(:label_easy_knowledge_manage_categories), easy_knowledge_categories_path, :title => l(:label_easy_knowledge_manage_categories), :class => 'icon icon-bulb button') if User.current.allowed_to_globally?(:manage_global_categories) || User.current.allowed_to_globally?(:manage_own_personal_categories)-%>
+  <%= link_to(l(:button_easy_knowledge_back_to_overview), easy_knowledge_overview_path, :class => 'button-2 icon icon-arrow', :title => l(:button_easy_knowledge_back_to_overview)) if User.current.allowed_to_globally?(:view_easy_knowledge) -%>
+<% end %>
+
+<% content_for :sidebar do %>
+  <div class="box">
+    <%= render(:partial => 'easy_knowledge_categories/sidebar_categories_tree', :locals => {:current_category => @category}) %>
+  </div>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} %>
+<% end %>
+
+<%= context_menu context_menus_easy_knowledge_stories_path(:project_id => @project, :back_url => url_for({})) %>
+<% html_title(l(:label_easy_knowledge_categories)) -%>

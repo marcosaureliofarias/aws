@@ -1,0 +1,62 @@
+@include keyframes(icon-blink) {
+  from {
+    opacity: 0.25;
+    @include scale(1);
+  }
+  to {
+    opacity: 1;
+    @include scale(1.25);
+  }
+}
+@include keyframes(spin) {
+  from   {  transform: rotate(0deg); }
+  to     {  transform: rotate(360deg); }
+}
+@include keyframes(spin-inverse) {
+  from   {  transform: rotate(0deg); }
+  to     {  transform: rotate(-360deg); }
+}
+@include keyframes(translate-x) {
+  100% {
+    @include translate(0,0);
+  }
+}
+@include keyframes(translate-y) {
+  100% {
+    @include translate(0,0);
+  }
+}
+
+@include keyframes(blip) {
+  66%{
+    @include scale(.975);
+  }
+  100% {
+    @include scale(1);
+  }
+}
+
+@include keyframes(shake) {
+  100% {
+    @include rotate(1deg);
+  }
+}
+
+.change-color-event {
+  &:before{
+    color: $color-negative !important;
+    @include animation(icon-blink 0.5s infinite alternate);
+  }
+}
+.transition{
+  &-delay{
+    @include transition(all 1s);
+  }
+}
+.icon{
+  &-spin{
+    &:before{
+      @include animation(spin 1s infinite linear);
+    }
+  }
+}

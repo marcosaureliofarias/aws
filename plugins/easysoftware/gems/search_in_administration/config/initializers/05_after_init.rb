@@ -1,0 +1,1 @@
+require 'search_in_administration/easy_administration_search'

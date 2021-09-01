@@ -1,0 +1,99 @@
+%user-select-none {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+%calendar__sign--issue{
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: $black;
+  //opacity: .3;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: sub;
+  //left:2px;
+  @include transform(#{scale(.8)});
+}
+%calendar__sign--meeting{
+  content: "";
+  display: block;
+  position: absolute;
+  width: $gap;
+  height: $gap;
+  border-radius: 50%;
+  //opacity: .3;
+  left:2px;
+  background-color: $black;
+  @include transform(#{scale(.8)});
+
+}
+%calendar__sign--generic{
+  content: "";
+  display: block;
+  position: absolute;
+  width: .750*$gap;
+  height: .750*$gap;
+  //opacity: .3;
+  background-color: $black;
+  @include transform(#{rotate(45deg) scale(.8)});
+  left:3px;
+  top: 3px;
+}
+
+@mixin display($value) {
+  @if $value == "flex" {
+    // 2009
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    // 2012
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox; // 2011 (IE 10)
+    display: flex;
+  } @else if $value == "inline-flex" {
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    display: inline-box;
+
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  } @else {
+    display: $value;
+  }
+}
+
+@mixin align-items ($direction: stretch){
+  -ms-flex-align: $direction;
+  -webkit-align-items: $direction;
+  -webkit-box-align: $direction;
+  align-items: $direction;
+}
+
+%flexbox-base{
+   display: -webkit-box;      //* OLD - iOS 6-, Safari 3.1-6
+   display: -moz-box;         //* OLD - Firefox 19- (buggy but mostly works)
+   display: -ms-flexbox;      //* TWEENER - IE 10
+   display: -webkit-flex;     //* NEW - Chrome
+   display: flex;             //* NEW, Spec - Opera 12.1, Firefox 20+
+ }
+
+%priority{
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  margin-top: -1px;
+  left: 0;
+  width: .25*$gap;
+}

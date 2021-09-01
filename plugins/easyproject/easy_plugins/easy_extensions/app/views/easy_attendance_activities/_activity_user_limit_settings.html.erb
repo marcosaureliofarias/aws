@@ -1,0 +1,36 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name %>
+<div class="easy-user-working-time-activity-limit-settings-container">
+  <% if user -%>
+    <div class="box">
+      <%= toggling_container(modul_uniq_id + '_easy_user_working_time_activity_limit_settings', User.current, {:heading => l(:label_easy_user_working_time_activity_limit_settings), :container_html => {:class => 'easy-user-working-time-activity-limit-settings'}}) do %>
+        <% form_tag(set_user_attendace_activity_limits_easy_attendance_activities_path, :class => 'form-box') do -%>
+          <%= hidden_field_tag 'back_url', original_url -%>
+          <%= hidden_field_tag 'user_id', user.id -%>
+          <p><%= l(:text_easy_user_working_time_activity_limit_settings) %></p>
+
+          <div class="splitcontent tabular">
+            <% EasyAttendanceActivity.where(:at_work => false).order(:position).all.each do |activity| %>
+              <div class="splitcontentleft">
+                <p>
+                  <%= label_tag("easy_attendance_activity_user_limit_#{activity.id}", activity.name) %>
+                  <%= text_field_tag("easy_attendance_activity_user_limit[#{activity.id}]", activity.user_vacation_limit_in_days_with_empty(user).to_s, :size => 5) %>
+                  <%= label_tag("easy_attendance_activity_accumulated_days_#{activity.id}", l(:label_easy_attendance_accumulated_days), :class => 'inline') %>
+                  <%= text_field_tag("easy_attendance_activity_accumulated_days[#{activity.id}]", activity.easy_attendance_activity_user_limit(user).try(:accumulated_days).to_s, :size => 5, :class => 'inline') %>
+                </p>
+              </div>
+            <% end -%>
+          </div>
+
+          <div class="help-block">
+            <em><%= l(:label_easy_user_working_time_activity_limit_settings_description) %></em>
+          </div>
+
+          <div class="form-actions">
+            <%= submit_tag l(:button_save), :class => 'button-positive' -%>
+          </div>
+
+        <% end -%>
+      <% end -%>
+    </div>
+  <% end %>
+</div>

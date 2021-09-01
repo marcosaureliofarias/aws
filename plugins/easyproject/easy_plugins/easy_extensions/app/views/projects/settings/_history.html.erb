@@ -1,0 +1,23 @@
+<div>
+  <div class="box">
+    <%= toggling_container('project-easy-journal-history', User.current, {:heading => l(:label_history), :default_button_state => true}) do -%>
+      <%= easy_journal_render_history(@journals, {:collapsible => false, :entity => @project, :reply_links => false}) -%>
+    <% end %>
+
+    <%= labelled_form_for @project, :url => update_history_project_path(@project), :html => {:method => :put, :id => 'project-form', :class => 'form-box'} do |f| %>
+      <p>
+        <h3 class="module-title"><%= l(:label_comment) %></h3>
+        <%= text_area_tag :notes, '', :cols => 60, :rows => 10 %>
+        <%= wikitoolbar_for('notes') %>
+      </p>
+
+      <div class="form-actions">
+        <%= submit_tag l(:button_save), :class => 'button-positive', :id => nil %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.main(function(){EASY.journals.collapseUnnecessary();});
+</script>

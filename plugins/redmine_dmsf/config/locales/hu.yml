@@ -1,0 +1,386 @@
+---
+hu:
+  activerecord:
+    errors:
+      messages:
+        error_contains_invalid_character: érvénytelen karaktereket tartalmaz
+  button_edit_content: Tartalom szerkesztése
+  comment_copied_from: Másolva  %{source}
+  comment_moved_from: Elmozgatva %{source}
+  dmsf: DMS
+  dmsf_and: ÉS
+  dmsf_new_step: Új lépés
+  dmsf_new_step_or_approver: Új lépés vagy új jóváhagyó
+  dmsf_or: VAGY
+  easy_pages:
+    module_category:
+      easy_dms: Easy DMS
+    modules:
+      dmsf_locked_documents: Lezárt dokumentumaim
+      dmsf_open_approvals: Nyitott jóváhagyásaim
+  error_at_least_one_revision_must_be_present: Legalább egy verziónak szükséges lennie
+  error_cannot_renumber_steps: Lépéseket nem lehet úraszámozni
+  error_cannot_start_workflow: Workflow nem kezdhető el
+  error_contains_invalid_character: érvénytelen karaktereket tartalmaz
+  error_create_cycle_in_folder_dependency: hurok létrehozása a könyvtárstruktúrában
+  error_email_to_must_be_entered: E-mail fogadóját be kell írni
+  error_empty_note: A feljegyzés nem lehet üres
+  error_entry_project_does_not_match_current_project: Az állomány projektje nem egyezik
+    a jelenlegi projekttel
+  error_file_can_not_be_created: A fájl nem hozható létre a tárolómappában
+  error_file_commit_require_uploaded_file: Fájl beíratáshoz szükséges a feltöltött
+    fájl
+  error_file_is_locked: Fájl zárolva
+  error_file_storage_directory_does_not_exist: A fájl tárolómappa nem létezik és nem
+    hozható létre
+  error_file_tmpdir_does_not_exist: Temporary file path doesn't exist and can't be
+    created
+  error_folder_cannot_be_copied: Mappa nem másolható
+  error_folder_creation_failed: Mappa létrehozása nem sikerült
+  error_folder_is_locked: Mappa zárolva
+  error_folder_is_not_empty: Mappa nem üres
+  error_folder_title_is_already_used: A címet már használják
+  error_folder_title_must_be_entered: Cím beírása kötelező
+  error_lock_exclusively: Nem lehetséges kivételként zárolni egy már zárolt erőforrást
+  error_max_email_filesize_exceeded: Túllépte a maximum fájlméretet ami e-mailen küldhető.
+    (%{number} MB)
+  error_max_files_exceeded: Túllépte az egyszerre letölthető fájlok %{number} számának
+    korlátozását
+  error_maximum_upload_filecount: Nem több, mint %{filecount} fájl tölthető fel.
+  error_minimum_filesize: A fájl %{file} 0 bájt, ezért nem lesz csatolva.
+  error_only_user_that_locked_file_can_unlock_it: Csak az tudja kinyitni a fájlt aki
+    bezárta
+  error_only_user_that_locked_folder_can_unlock_it: Önnek nincs jogosultsága a mappa
+    megnyitásához
+  error_parent_folder: A szülő mappa nem létezik
+  error_parent_locked: Zárolás sikertelen - erőforrás szülő zárolva
+  error_resource_locked: Zárolás sikertelen - erőforrás zárolva
+  error_resource_or_parent_locked: Zárolás sikertelen - erőforrás(vagy szülő)  zárolva
+  error_target_folder_same: A cél mappa és a projekt ugyanaz, mint a jelenlegi
+  error_tmpfile_can_not_be_created: Files can't be created in temporary file path
+    directory
+  error_unable_delete_dmsf_workflow: Workflow törlése nem lehetséges
+  error_unlock_parent_locked: Feloldás sikertelen - szülő erőforrás zárolva
+  error_user_has_not_right_delete_file: Felhasználónak nincs jogosultsága a fájl törléséhez.
+  error_user_has_not_right_delete_folder: A felhasználónak nincs jogosultsága a mappa
+    törléséhez
+  error_workflow_assign: Hiba lépet fel a kiosztás során
+  error_wrong_zip_encoding: Nem megfelelő Zip kódolás
+  field_dmsf_not_inheritable: Not inheritable
+  field_dmsf_tree_view: Mappák közötti navigálás fastruktúrában
+  field_external_url: URL
+  field_folder: Mappa
+  field_label_dmsf_workflow: Elfogadott Workflow
+  field_label_dmsf_workflow_name: Jóváhagyási workflow neve
+  field_target_file: Forrás file
+  field_target_folder: Cél mappa
+  field_target_project: Célprojekt
+  header_minimum_filesize: Fájl hiba.
+  heading_access_downloads_emails: Letöltések/E-mailek
+  heading_access_first: Első
+  heading_access_last: Utolsó
+  heading_new_folder: Új mappa
+  heading_new_revision: Új változat
+  heading_revisions: Verziók
+  heading_send_documents_by_email: Dokumentumok küldése e-mailen
+  heading_uploaded_files: Feltöltött fájlok
+  info_changed_by_user: "%{changed} általa"
+  info_file_locked: Fájl zárolva!
+  info_revision: r%{rev}
+  label_act_as_attachable: Act as attachable
+  label_action: Akció
+  label_basic_attachments: Egyszerű mellékletek
+  label_changed: Változtatott
+  label_created: Létrehozott
+  label_default_notifications: Fájl alapértelmezett értesítések
+  label_description: Leírás
+  label_display_notified_recipients: Értesített címzettek megjelenítése
+  label_dmsf_attachments: DMS Csatolmányok
+  label_dmsf_downloaded: Letöltött
+  label_dmsf_fast_links: Fast links
+  label_dmsf_file_plural: DMS Dokumentumok
+  label_dmsf_file_revision_access_plural: Dokumentum hozzáférései
+  label_dmsf_file_revision_plural: Dokumtum felülvizsgálata
+  label_dmsf_folder_plural: DMS Mappák‌
+  label_dmsf_keep_documents_locked: Keep documents locked
+  label_dmsf_plural: Dokumentumok és mappák (%{files}  másolása a %{folders} mappákba
+  label_dmsf_updated: Frissített
+  label_dmsf_version: Verzió
+  label_dmsf_wokflow_action_approve: Jóváhagyás
+  label_dmsf_wokflow_action_assign: Jóváhagyási workflow hozzárendelése
+  label_dmsf_wokflow_action_delegate: Kioszt
+  label_dmsf_wokflow_action_reject: Visszautasít
+  label_dmsf_wokflow_action_start: Workflow kezdés
+  label_dmsf_workflow_add_approver: 'Új jóváhagyó hozzáadása logikai funkcióval:'
+  label_dmsf_workflow_approval: Jóváhagyás
+  label_dmsf_workflow_approval_plural: Jóváhagyások
+  label_dmsf_workflow_new: Új jóváhagyási workflow
+  label_dmsf_workflow_plural: Jóváhagyási folyamatok
+  label_dmsf_workflow_plural_num: Jóváhagyási workflow-k (%{count})
+  label_dmsf_workflow_step: Lépés
+  label_dmsf_workflow_step_plural: Lépések
+  label_document_url: Url
+  label_email_body: Szövegrész
+  label_email_cc: CC
+  label_email_documents: Dokumentumok
+  label_email_from: Valakitől
+  label_email_from_override: From
+  label_email_reply_to: Reply-to
+  label_email_send: Küldés
+  label_email_subject: Tárgy
+  label_email_to: Valakinek
+  label_enable_cjk_ngrams: Enable generation of n-grams from CJK text
+  label_external: Külső
+  label_file: Fájl
+  label_file_storage_directory: Fájl tárolókönyvtár
+  label_filename: Fájlnév
+  label_full_text: Full-text search
+  label_index_database: Index database
+  label_inherited_permissions: Örökölt engedélyek
+  label_last_approver: Legutolsó jóváhagyó
+  label_last_revision_id: Revision
+  label_link_from: Hivatkozás
+  label_link_name: Link elnevezése
+  label_link_to: Hivatkozás ide
+  label_links_only: csak linkek
+  label_maximum_email_filesize: E-mailhez csatolható fájl maximum mérete.
+  label_maximum_files_download: Maximálisan feltölthető fájlok
+  label_mime: Mime
+  label_my_locked_documents: Zárt dokumentumaim
+  label_my_open_approvals: Folyamatban lévő jóváhagyásaim
+  label_new_content: Új tartalom
+  label_note: Feljegyzés
+  label_notifications: Értesítések
+  label_notifications_off: Értesítések kikapcsolva
+  label_notifications_on: Értesítések bekapcsolva
+  label_number_of_documents: Dokumentumok
+  label_number_of_folders: Mappák
+  label_or: vagy
+  label_physical_file_delete: Fizikai fájl törölve lett
+  label_public_urls: Public URLs valid to
+  label_size: Méret
+  label_source_folder: Forrás mappa
+  label_source_project: Forrás projekt
+  label_stem_strategy: Csonkolási stratégia
+  label_stemming_language: Törzs nyelv
+  label_target_folder: Cél mappa
+  label_target_project: Cél projekt
+  label_title: Cím
+  label_title_format: Cím formátum
+  label_tmpdir: Temporary file path
+  label_upload: Feltöltés
+  label_user_search_add: Felhasználó keresése a hozzáadáshoz
+  label_webdav: WebDAV
+  label_webdav_disable_versioning: No versioning files patterns
+  label_webdav_ignore: Ignored files patterns
+  label_webdav_strategy: Webdav stratégia
+  label_webdav_use_project_names: Use project name for project folder
+  link_author: Szerző
+  link_create_folder: Mappa létrehozása
+  link_details: "%{title} részletek"
+  link_documents: Dokumentumok
+  link_edit: "%{title} szerkesztése"
+  link_extension: Ext
+  link_modified: Módosított
+  link_size: Méret
+  link_title: Cím
+  link_trash_bin: Lomtár
+  link_user_preferences: Easy DMS projekt preferenciák
+  link_ver: Verzió
+  link_workflow: Workflow
+  locked_documents: Locked documents
+  menu_dmsf: DMS
+  message_dmsf_wokflow_note: Saját jegyzet
+  note_display_notified_recipients: A felhasználó tájékoztatást kap a címzettekről.
+  note_dmsf_act_as_attachable: Allows to attach documents to objects e.g. issues.
+  note_dmsf_keep_documents_locked: Documents will be kept locked when approved
+  note_global: "(global)"
+  note_maximum_email_filesize: Korlátozza a maximális fájlméretet, amely küldhető
+    e-mailben. A 0 korlátlan méretet jelent, az érték MB-ban kerül megadásra.
+  note_maximum_number_of_files_downloaded: Maximálisan letölthető zip fájlok, vagy
+    e-mailek. 0 korlátlan letöltést jelent.
+  note_pass_none_to_disable_stemming: hagyja 'none' beállításon a csonkolás kikapcsolásához
+  note_possible_values: Lehetséges értékek
+  note_stem_some: Search for stemmed forms of terms except for those which start with
+    a capital letter, or are followed by certain characters, or are used with operators
+    which need positional information. Stemmed terms are prefixed with 'Z'.
+  note_webdav: Webdav aktiválása után itt található %{protocol}://%{domain}/dmsf/webdav/[projekt
+    azonosító]
+  note_webdav_disable_versioning: A regular expression that disables versioning for
+    matching files.
+  note_webdav_ignore: A regular expresion with filenames to ignore by PUT requests.
+  note_webdav_strategy: Engedélyezi az adminisztrátornak, hogy dönthessen a felhasználók‌
+  note_webdav_use_project_names: Use project names instead of project identifier for
+    project folders.
+  notice_dmsf_file_restored: A dokumentum sikeresen vissza lett állítva
+  notice_dmsf_folder_restored: A mappa sikeresen vissza lett állítva
+  notice_dmsf_link_restored: Link visszaállítása sikeres
+  notice_entries_deleted: Állományok törölve
+  notice_file_copied: Fájl másolva
+  notice_file_deleted: Törölt fájl
+  notice_file_locked: Fájl lezárva
+  notice_file_moved: Fájl áthelyezve
+  notice_file_notifications_activated: Fájl értesítések aktiválva
+  notice_file_notifications_deactivated: Fájl értesítések kikapcsolva
+  notice_file_revision_created: Fájl verzió létrehozva
+  notice_file_unlocked: Fájl kinyitva
+  notice_folder_copied: Mappa másolásra került
+  notice_folder_created: Mappa létrehozása sikerült
+  notice_folder_deleted: Mappa törlésre került
+  notice_folder_details_were_saved: Mappa részletei mentésre kerültek
+  notice_folder_locked: A mappa sikeresen lett zárolva
+  notice_folder_notifications_activated: Mappa értesítések bekapcsolva
+  notice_folder_notifications_deactivated: Mappa értesítések ki vannak kapcsolva
+  notice_folder_unlocked: A mappa sikeresen feloldva
+  notice_revision_deleted: Verzió törölve
+  notice_revision_obsoleted: Revision obsoleted
+  notice_workflow_started: Jóváhagyási workflow sikeresen elkezdődött
+  notice_your_preferences_were_not_saved: Preferenciái nem lettek mentve
+  notice_your_preferences_were_saved: A preferenciái mentése kerültek
+  open_approvals: Nyitott jóváhagyások
+  option_stem_all: Teljes csonkolás
+  option_stem_none: Nincs csonkolás (alapértelmezett)
+  option_stem_some: Részleges csonkolás
+  option_version_custom: Egyedi
+  option_version_major: Fő
+  option_version_minor: Kisebb
+  option_version_same: Ugyanaz
+  parent_directory: Szülő könyvtár
+  permission_display_system_folders: Display system folders
+  permission_email_documents: E-mail dokumentumok
+  permission_file_approval: File approval
+  permission_file_delete: Dokumentumok törlése
+  permission_file_manipulation: Fájl manipulálás
+  permission_folder_manipulation: Mappa manipulálás
+  permission_force_file_unlock: Fájl kényszerített feloldása
+  permission_manage_workflows: Munkamenet kezelése
+  permission_user_preferences: Preferenciák használata
+  permission_view_dmsf_file_revision_accesses: Letöltések megjelenítése a tevékenységi
+    listában
+  permission_view_dmsf_file_revisions: Verziók megjelenítése a tevékenységi listában
+  permission_view_dmsf_files: Dokumentumok megtekintése
+  permission_view_dmsf_folders: Dokumentumok böngészése
+  project_module_dmsf: DMS
+  select_option_activated: Aktivált
+  select_option_deactivated: Deaktivált
+  select_option_default: Alapértelmezett
+  select_option_webdav_readonly: Csak-olvasásra
+  select_option_webdav_readwrite: Olvas/Ír
+  submit_save: Mentés
+  text_dmsf_fast_links_info: You will be able to manually enter a target folder's
+    ID when creating links in order to speed up the process of creating links.
+  text_email_doc_deleted: éppen most lettek törölve a dokumentumok
+  text_email_doc_deleted_subject: Törölt dokumentumok
+  text_email_doc_follows: következőként
+  text_email_doc_updated: éppen most frissültek a dokumentumok
+  text_email_doc_updated_subject: Frissített dokumentumok
+  text_email_finished_approved: A '%{name}' jóváhagyási workflow amely a '%{filename}'
+    dokumentumhoz került hozzárendelésre, befejeződött és a dokumentum jóváhagyásra
+    került.
+  text_email_finished_delegated: A '%{name}' jóváhagyási workflow amely a '%{filename}'
+    dokumentumhoz került hozzárendelésre, Önhöz került az alábbi megjegyzés '%{notice}'
+    miatt és a jelenlegi lépésben az Ön jóváhagyására vár.
+  text_email_finished_rejected: 'A ''%{name}'' jóváhagyási workflow amely a ''%{filename}''
+    dokumentumhoz került hozzárendelésre, befejeződött és visszautasításra került
+    a következő üzenettel: ''%{notice}''.'
+  text_email_finished_step: A '%{name}' jóváhagyási workflow-ban amely a '%{filename}'
+    dokumentumhoz került hozzárendelésre, egy lépés teljesült és a következő lépésben
+    lépésben az Ön jóváhagyására vár.
+  text_email_finished_step_short: A '%{name}' jóváhagyási workflow-ban amely a '%{filename}'
+    dokumentumhoz került hozzárendelésre, egy lépés teljesült a folyamatban.
+  text_email_from_override: A felhasználó jelenleg bejelentkezett
+  text_email_started: A '%{name}' jóváhagyási workflow amely a '%{filename}' dokumentumhoz
+    került hozzárendelésre, elindult és a jelenlegi lépésben az Ön jóváhagyására vár.
+  text_email_subject_approved: elfogadott
+  text_email_subject_delegated: delegált
+  text_email_subject_rejected: visszautasított
+  text_email_subject_requires_approval: Ön jóváhagyása szükséges
+  text_email_subject_started: elkezdett
+  text_email_subject_updated: frissített
+  text_email_to_proceed: A folytatáshoz kattintson a négyzetre a dokumentum mellett
+  text_email_to_see_history: Ha meg akarja nézni a jóváhagyási előzményeket, akkor
+    kattintson a dokumentumon belül a workflow státuszra
+  text_email_to_see_status: Ha meg szeretné nézni a jóváhagyási folyamatot kattintson
+    a dokumentumon belül a workflow státuszra
+  text_enable_cjk_ngrams: 'With this enabled, spans of CJK characters are split into
+    unigrams and bigrams, with the unigrams carrying positional information. Non-CJK
+    characters are split into words as normal. The corresponding option needs to have
+    been used at index time. e.g: XAPIAN_CJK_NGRAM=true ruby plugins/redmine_dmsf/extra/xapian_indexer.rb
+    -fv'
+  text_memcached_servers: Csak egy szerver támogatott, ha üres, akkor a gyorsítótárazás
+    le van tiltva. Ennek megváltoztatása után újra kell indítani az alkalmazást!
+  text_stemming_info: 'This controls how the query parser will apply the stemming
+    algorithm. The default value is STEM_NONE. The possible values are: STEM_NONE
+    -  Don''t perform any stemming, STEM_SOME - Search for stemmed forms of terms
+    except for those which start with a capital letter, or are followed by certain
+    characters (currently:''/@<>=*[{"''), or are used with operators which need positional
+    information. Stemmed terms are prefixed with ''Z'', STEM_ALL - Search for stemmed
+    forms of all words (note: no ''Z'' prefix is added).'
+  text_title_format: 'Dokumentum címformátum a letöltéshez (%t - cím, %f - fájl, %d
+    - dátum, %v - verzió, %i - ID, %r - revízió) Például: t_%v'
+  title_approval: Jóváhagyás
+  title_approved: Elfogadva
+  title_assigned: Kiosztott
+  title_assignment: Kiosztás
+  title_check_for_restore_or_delete: Kijelölés visszaállításra vagy törlésre tömörítésre,
+    letöltésre vagy e-mailben küldésre
+  title_check_for_zip_download_or_email: Kijelölés tömörítésre, letöltésre vagy e-mailben
+    küldésre
+  title_check_uncheck_all_for_zip_download_or_email: 'Kijelöl/Visszavon mindent ehhez:
+    zip, letöltés vagy email'
+  title_copy: Másolás
+  title_copy_or_move: Másolás/Elmozgatás
+  title_create_link: Szimbolikus link létrehozása (symlink)
+  title_delegation: Delegálás
+  title_delete: Törlés
+  title_delete_checked: Ellenőrzöttek törlése
+  title_delete_revision: Verzió törlése
+  title_dmsf_workflow_log: Jóváhagyási workflow napló
+  title_download: Letöltés
+  title_download_checked: Ellenőrzött letöltése a Zip archívumba
+  title_download_entries: Bejegyzések letöltése
+  title_filename_for_download: Letöltéshez vagy .zip tömörített állományhoz használt
+    fájlnév
+  title_items: Elemek
+  title_lock_file: Zárolás, hogy más felhasználók nem tudjank változtatni rajta
+  title_lock_folder: Mappa zárolása, hogy más felhasználók ne tudjanak változtatást
+    végrehajtani
+  title_locked_by_user: Zárolva %{user}
+  title_none: Egyik sem
+  title_notifications_active: Értesítések bekapcsolva
+  title_notifications_active_deactivate: 'Értesítések bekapcsolva: Kikapcsolás'
+  title_notifications_not_active_activate: 'Értesítések nincsnek bekapcsolva: Bekapcsolás'
+  title_obsolete: Obsolete
+  title_obsolete_revision: Obsolete revision
+  title_rejected: Visszautasított
+  title_rejection: Visszautasítás
+  title_restore: Helyreállít
+  title_restore_checked: Visszaállítás ellenőrizve
+  title_save_preferences: Preferenciák mentése
+  title_send_checked_by_email: Kijelöltek küldése e-mailben
+  title_start: Kezdés
+  title_title_version_version_download: "%{title} verzió %{version} letöltés"
+  title_total_size_of_all_files: Ebbe a mappába tartozó összes fájl mérete
+  title_unlock_file: Zárolás megszüntetése, hogy más felhasználók is változtatni tudjanak
+  title_unlock_folder: Feloldás, hogy mások is szerkeszteni tudjanak
+  title_waiting_for_approval: Elfogadásra vár
+  user_is_not_project_member: Ön nem tagja a csoportnak
+  warning_email_notifications: E-mail értesítés lett küldve %{to}
+  warning_file_already_locked: Fájlt már lezárták
+  warning_file_not_locked: Fájl nincs lezárva
+  warning_file_notifications_already_activated: File értesítések már bekapcsolva
+  warning_file_notifications_already_deactivated: Fájl értesítések már bekapcsolva
+  warning_folder_already_locked: Ez a mappa már zárolva
+  warning_folder_not_locked: Sajnos, a mappát nem lehet zárolni
+  warning_folder_notifications_already_activated: Mappa értesítések már be vannak
+    kapcsolva
+  warning_folder_notifications_already_deactivated: Mappa értesítések már ki vannak
+    kapcsolva
+  warning_no_entries_selected: Verzió törölve
+  warning_no_project_to_copy_file_to: Nincs projekt ahová másolható a fájl
+  warning_no_project_to_copy_folder_to: Nincs projekt ahova a mappa másolható
+  warning_one_of_files_locked: Az egyik fájl zárolva van
+  warning_some_entries_were_not_deleted: Néhány állomány nem került törlésre %{entries}
+  warning_some_files_were_not_commited: 'Néhány fájl nem került beíratásra validálási
+    hibák miatt: %{files}'
+  warning_xapian_not_available: Xapian nem elérhető

@@ -1,0 +1,9 @@
+<% EasyExtensions::IdentityProviders.registered_with_login_button.each do |k, v| %>
+  <tr id="login_submit_field" class="centered-fields">
+    <td colspan="2">
+      <%= link_to v.login_path, class: 'button', style: 'text-align: center; width: 100% !important;' do %>
+        <i class="icon icon-unlock"></i><%= v.title %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

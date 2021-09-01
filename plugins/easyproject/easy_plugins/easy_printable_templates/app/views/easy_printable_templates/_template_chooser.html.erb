@@ -1,0 +1,18 @@
+<%
+  in_modal ||= false
+  groups_url = {:set_filter => '1', :column_names => [:name, :description, :author], :show_sum_row => '0', :load_groups_opened => '0', :show_avatars => '0', :group_by => 'category_caption', :controller => 'easy_printable_templates', :action => 'index'}
+%>
+<h3 class="title"><%= l(:heading_easy_printable_templates_template_chooser) -%></h3>
+
+<div id="easy_printable_templates">
+  <p>
+    <%= render :partial => 'easy_queries/easy_query_entities_list', :locals => {:query => @query, :entities => @entities, :groups_url => groups_url, :options => {:easy_printable_templates => {:show_print_button => true, :back_url => params[:back_url], :entity_type => params[:entity_type], :entity_id => params[:entity_id].presence || params[:query_id], :entity_settings => params[:entity_settings], :project_id => params[:project_id], :selected_ids => params[:selected_ids]}, :no_scroll => in_modal}} %>
+  </p>
+  <span class="pagination">
+    <%= pagination_links_full @entity_pages, @entity_count %>
+  </span>
+  <p class="toolbar">
+    <%= link_to(l(:button_easy_printable_templates_add), {:controller => 'easy_printable_templates', :action => 'new', :back_url => params[:back_url], :entity_type => params[:entity_type], :entity_id => params[:entity_id].presence || params[:query_id], :continue_to => 'preview', :entity_settings => params[:entity_settings], :project_id => params[:project_id], :selected_ids => params[:selected_ids]}, :class => 'button-positive', :title => l(:button_easy_printable_templates_add)) %>
+    <%= link_to(l(:heading_easy_printable_templates_index), {:controller => 'easy_printable_templates', :action => 'index'}, :class => 'button', :title => l(:heading_easy_printable_templates_index)) %>
+  </p>
+</div>

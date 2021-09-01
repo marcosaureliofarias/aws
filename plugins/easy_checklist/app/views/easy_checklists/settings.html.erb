@@ -1,0 +1,32 @@
+<div class="easy-content-page">
+  <h2><%= l(:label_easy_checklist_settings) -%></h2>
+
+  <%= form_for(:easy_setting, :html => {:method => :put, :class => 'settings form-box'}) do |f| %>
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <p>
+          <%= hidden_field_tag 'easy_setting[easy_checklist_enable_history_changes]', '0', id: '' %>
+          <% box = check_box_tag 'easy_setting[easy_checklist_enable_history_changes]', '1', EasySetting.value('easy_checklist_enable_history_changes') %>
+          <%= label_tag 'easy_setting[easy_checklist_enable_history_changes]', box + l(:label_easy_checklist_enable_history_changes), :class => 'checkbox inline' %>
+        </p>
+      </div>
+      <div class="splitcontentright">
+        <p>
+          <%= hidden_field_tag 'easy_setting[easy_checklist_enable_change_done_ratio]', '0', id: '' %>
+          <% box = check_box_tag 'easy_setting[easy_checklist_enable_change_done_ratio]', '1', EasySetting.value('easy_checklist_enable_change_done_ratio') %>
+          <%= label_tag 'easy_setting[easy_checklist_enable_change_done_ratio]', box + l(:label_easy_checklist_enable_change_done_ratio), :class => 'checkbox inline' %>
+        </p>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= submit_tag(l(:button_save), :class => 'button-positive') %>
+    </div>
+  <% end %>
+</div>
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_checklist_settings)) -%>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render :partial => 'easy_checklists/sidebar_links' %>
+<% end %>

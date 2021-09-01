@@ -1,0 +1,32 @@
+<p>
+  <%= f.text_field :name, required: true, size: 20 %>
+</p>
+<p>
+  <%= f.text_field :url, required: true, size: 40, readonly: f.object.persisted? %>
+  <% if f.object.persisted? %>
+    <span class="icon-help" id="icalendar_info_<%= f.object.id %>"></span>
+  <% end %>
+  <%= link_to '', sync_easy_icalendar_path(f.object), remote: true, class: "icon icon-refresh", title: l(:button_update) if f.object.persisted? && !f.object.in_progress? %>
+  <%= link_to_remove_association l(:button_delete), f, class: 'icon icon-del' unless f.object.in_progress? %>
+</p>
+<p>
+  <label><%= l(:field_visibility) %></label>
+  <% EasyIcalendar.visibilities.keys.each do |perm| %>
+    <%= f.label "visibility_#{perm}" do %>
+      <%= f.radio_button :visibility, perm.to_sym %>
+      <%= l("field_#{perm}") %>
+    <% end %>
+  <% end %>
+</p>
+<% if f.object.persisted? %>
+  <div id="tooltip_<%= f.object.id %>" class="tooltip hidden">
+    <%= render 'external_calendars/easy_icalendar_tooltip', ical: f.object %>
+  </div>
+
+  <script type="application/javascript">
+    EASY.schedule.late(function(){
+      var id = "<%= f.object.id %>";
+      new easyClasses.EasyTooltip($('#tooltip_' + id).html(), $('#icalendar_info_' + id), 0, 0);
+    }, -5);
+  </script>
+<% end %>

@@ -1,0 +1,7 @@
+<%= title(l(:title_kanban_settings)) %>
+
+<%= render partial: 'easy_kanban/settings_form' %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'easy_kanban/sidebar', locals: { project: @project } if @project %>
+<% end %>

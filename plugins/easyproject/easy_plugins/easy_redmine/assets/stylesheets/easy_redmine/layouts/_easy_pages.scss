@@ -1,0 +1,30 @@
+#easy_page_tabs {
+  &:first-child{
+    background: $color-foreground;
+  }
+  ul > li > a{
+    padding-top: .5*$gap;
+    padding-bottom: .5*$gap;
+  }
+}
+
+%palette-background--trends{
+  @for $i from 1 through (length($palette) - 1) {
+    $curent-color: palete-color($palette,$i);
+    $curent-color: mix($curent-color,$color-foreground);
+    &.palette-#{$i}{
+      background: $curent-color !important;
+      &, h1,h2,h3,h4,h5,h6,a{
+        color: check-background-set-color($curent-color, 60, #50596f, $white) !important;
+      }
+    }
+  }
+}
+
+.easy-page{
+  &__module{
+    &--trend{
+      @extend %palette-background--trends;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<% modal ||= false %>
+<% if modal %>
+if ($('#qr_popup').length == 1) {
+  $('#qr_popup').empty();
+} else {
+  $('body').append('<div id="qr_popup" style="display: none"></div>');
+}
+<% end %>
+$('#qr_popup').html('<%= j render(:partial => 'easy_qr/easy_qr_modal', :locals => {:easy_qr => @easy_qr, :modul_uniq_id => 'easy_qr_container'}, :formats => [:html]) %>');
+var a = $(window).height() - 100;
+var b = $('#easy_qr_container table tr').length;
+var qr_size = Math.floor(a/b);
+if ( qr_size > 10) {
+  qr_size = 10;
+}
+$('#easy_qr_container').addClass('size-' + qr_size);
+<% if modal %>
+  showModal('qr_popup', '70%');
+<% end %>

@@ -1,0 +1,5 @@
+<% if !@project || @project.module_enabled?(:easy_knowledge) %>
+  EasyVue.showGenericModal({ header: "<%= j l(:label_easy_knowledge_new_story_knowledgebase) %>", body: "<%=j render(:template => 'easy_knowledge_stories/new', :formats => [:html]) %>" });
+<% else %>
+  EasyVue.showGenericModal({ buttons: false, body: "<%=j content_tag(:p, l(:error_module_not_enabled, :project_name => @project.name)) %>" });
+<% end %>

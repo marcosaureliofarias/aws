@@ -1,0 +1,13 @@
+<div class="splitcontent custom_fields">
+  <div class="splitcontentleft">
+    <% visible_custom_field_values = @time_entry.visible_custom_field_values %>
+    <% split_on = (visible_custom_field_values.count / 2.0).round %>
+    <% visible_custom_field_values.each_with_index do |value, i| %>
+      <% if i == split_on -%>
+      </div>
+      <div class="splitcontentright">
+      <% end -%>
+      <p><%= custom_field_tag_with_label :time_entry, value %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<p>
+  <%= f.label :source_url %>
+  <%= f.text_field :source_url %>
+</p>
+<p>
+  <%= f.label :valid_to %>
+  <%= f.text_field :valid_to %>
+  <%= calendar_for("#{f.object_name}_valid_to") %>
+</p>
+<p>
+  <%= f.label :allow_external %>
+  <%= f.check_box :allow_external %><br>
+  <em>(<%= l(:text_short_url_allow_external) %>)</em>
+</p>

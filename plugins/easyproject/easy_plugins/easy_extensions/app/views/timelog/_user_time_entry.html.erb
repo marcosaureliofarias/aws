@@ -1,0 +1,53 @@
+<%
+  timelog_comment_force_textfield ||= false
+  modal ||= false
+  editor_enabled = project ? EasyGlobalTimeEntrySetting.value('timelog_comment_editor_enabled', User.current.roles_for_project(project)) : false
+  split_content = !modal && !editor_enabled
+  require_timelog_comment = project ? EasyGlobalTimeEntrySetting.value('required_time_entry_comments', User.current.roles_for_project(project)) : false
+%>
+
+<div <%= 'class="splitcontent"'.html_safe if split_content %>>
+  <div class="timeentry-hours-inputs<%= ' splitcontentleft' if split_content %>">
+    <p class="timeentry-hours">
+      <% if User.current.user_time_entry_setting_hours? -%>
+        <%= hours_selector(time_entry, tag_name_prefix)  %>
+      <% end -%>
+      <% if User.current.user_time_entry_setting_range? -%>
+        <% if EasyGlobalTimeEntrySetting.value('show_time_entry_range_select', User.current.roles_for_project(project)) %>
+          <% selected_easy_time_entry_range_from, selected_easy_time_entry_range_to = '', '' -%>
+          <% selected_easy_time_entry_range_from = User.current.user_time_in_zone(time_entry.easy_range_from).strftime('%H:%M') if time_entry && !time_entry.easy_range_from.nil? -%>
+          <% selected_easy_time_entry_range_from = easy_range_to_string(params["#{tag_name_prefix}"][:easy_time_entry_range][:from]) if params["#{tag_name_prefix}"] && !params["#{tag_name_prefix}"][:easy_time_entry_range].blank? -%>
+          <% selected_easy_time_entry_range_to = User.current.user_time_in_zone(time_entry.easy_range_to).strftime('%H:%M') if time_entry && !time_entry.easy_range_to.nil? %>
+          <% selected_easy_time_entry_range_to = easy_range_to_string(params["#{tag_name_prefix}"][:easy_time_entry_range][:to]) if params["#{tag_name_prefix}"] && !params["#{tag_name_prefix}"][:easy_time_entry_range].blank? %>
+          <%= label_for_field(:easy_range_from, { :required => required }) %> <%= select_tag("#{tag_name_prefix}[easy_time_entry_range][from]", hourstimecheck_collection_for_select_options(selected_easy_time_entry_range_from, :first_option => ['','']), :class => 'inline') %>
+          <%= label_for_field(:easy_range_to, {:label => :field_easy_range_form_to, :required => required, :class => 'inline' }) -%> <%= select_tag("#{tag_name_prefix}[easy_time_entry_range][to]", hourstimecheck_collection_for_select_options(selected_easy_time_entry_range_to, :first_option => ['','']), :class => 'inline') -%>
+        <% else %>
+          <% from_value = User.current.user_time_in_zone(time_entry.easy_range_from).strftime('%H:%M') if time_entry && !time_entry.easy_range_from.nil? %>
+          <% from_value = params["#{tag_name_prefix}"][:easy_time_entry_range][:from] if params["#{tag_name_prefix}"] && !params["#{tag_name_prefix}"][:easy_time_entry_range].blank? %>
+          <% to_value = User.current.user_time_in_zone(time_entry.easy_range_to).strftime('%H:%M') if time_entry && !time_entry.easy_range_to.nil? %>
+          <% to_value = params["#{tag_name_prefix}"][:easy_time_entry_range][:to] if params["#{tag_name_prefix}"] && !params["#{tag_name_prefix}"][:easy_time_entry_range].blank? %>
+          <%= label_for_field(:easy_range_from, { :required => required, :class => 'inline' }) %><%= tag(:input, :type => 'time', :value => from_value, :placeholder => from_value, :name => "#{tag_name_prefix}[easy_time_entry_range][from]", :id => "#{tag_name_prefix}_easy_time_entry_range_from", :size => 3, :class => 'input-type-time') %>
+          <%= label_for_field(:easy_range_to, {:label => :field_easy_range_form_to, :required => required, :class => 'inline' }) %><%= tag(:input, :type => 'time', :value => to_value, :placeholder => to_value, :name => "#{tag_name_prefix}[easy_time_entry_range][to]", :id => "#{tag_name_prefix}_easy_time_entry_range_to", :size => 3, :class => 'input-type-time') %>
+        <% end %>
+      <% end -%>
+    </p>
+  </div>
+  <div class="timeentry-comments<%= ' splitcontentleft' if split_content %>">
+    <p>
+      <%= label_for_field("#{tag_name_prefix}[comments]", {:label => l(:field_comments), :required => require_timelog_comment }) -%>
+      <%= timelog_comment_tag("#{tag_name_prefix}[comments]", time_entry && time_entry.comments, {:force_text_field => timelog_comment_force_textfield, :project => project, :class => 'block', :modal => modal, :editor_enabled => editor_enabled}) -%>
+    </p>
+    <%= call_hook :view_time_entries_user_time_entry_middle, {:time_entry => time_entry, :tag_name_prefix => tag_name_prefix} %>
+  </div>
+</div>
+<% if project && issue && (project.fixed_activity?) %>
+    <% if issue.activity_id %>
+        <%= hidden_field_tag( "#{tag_name_prefix}[activity_id]", issue.activity_id) -%>
+    <% else %>
+        <%= content_tag(:div, l(:warning_issue_without_set_fixed_activity), :class => 'warning') %>
+    <% end %>
+<% else
+     rand_container_id = rand(Time.now.to_i)
+%>
+    <%= render :partial => 'timelog/time_entry_activity', :locals => {:tag_name_prefix => tag_name_prefix, :entity => time_entry, :activity_collection => activities, :project => project, :container_id => "timeentry-activity-container-#{rand_container_id}", :options => {}} -%>
+<% end %>

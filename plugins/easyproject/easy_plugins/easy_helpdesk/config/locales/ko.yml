@@ -1,0 +1,380 @@
+---
+ko:
+  activerecord:
+    attributes:
+      easy_helpdesk_auto_issue_closer:
+        auto_action_modes: 설정
+      easy_helpdesk_mail_template:
+        body_html: 메일 본문(HTML)
+        body_plain: 메일 본문(일반 텍스트)
+        issue_status_id: 일감 상태
+        mailboxes: 메일박스 사용
+        reply_to: '답장 :'
+        sender: 보내는 사람
+        subject: 제목
+      easy_helpdesk_project_matching:
+        domain_name: 도메인 이름
+    models:
+      easy_helpdesk_mail_template: 메일 템플릿
+  aggregated_periods:
+    half-yearly: 반년마다
+    quarterly: 분기마다
+    yearly: 연간
+  button_easy_helpdesk_add_domain_name: 이메일 또는 도메인 추가
+  button_easy_helpdesk_add_mail_template: 메일 템플릿 추가
+  button_easy_helpdesk_add_mailbox: 메일박스 추가
+  button_easy_helpdesk_add_project: 프로젝트 추가
+  button_easy_helpdesk_add_project_from_sidebar: 헬프 데스크에 추가
+  button_easy_helpdesk_add_signature: 서명 추가
+  button_easy_helpdesk_add_sla: SLA 추가
+  button_easy_helpdesk_all_mail_templates_index: 모든 이메일 템플릿
+  button_easy_helpdesk_all_mailboxes_index: 모든 메일박스
+  button_easy_helpdesk_all_projects_index: 모든 헬프 데스크 프로젝트
+  button_easy_helpdesk_mail_templates_index: 팀플릿 리스트
+  button_easy_helpdesk_mailboxes_index: 메일박스 리스트
+  button_easy_helpdesk_projects_index: 프로젝트 리스트
+  button_easy_helpdesk_reports_index: 리포트
+  button_easy_helpdesk_settings_index: 헬프 데스크 설정
+  confirm_edit_remaining_hours: 이 필드는 백그라운드로 계산됩니다. 수동으로 편집 하시겠습니까?
+  easy_helpdesk_author: Easy Software Ltd
+  easy_helpdesk_name: 헬프 데스크
+  easy_helpdesk_plugin_description: "- 복잡한 헬프 데스크 솔루션"
+  easy_pages:
+    module_category:
+      easy_helpdesk: 헬프 데스크
+    modules:
+      easy_helpdesk_create_mail_template_button: 메일 템플릿 버튼 만들기
+      easy_helpdesk_create_mailbox_button: 메일박스 버튼 만들기
+      easy_helpdesk_mailboxes: 헬프 데스크 메일박스
+      easy_helpdesk_mailtemplates: 헬프 데스크 메일 템플릿
+      easy_helpdesk_project_query: 필터에서 헬프 데스크 프로젝트
+  easy_proposer:
+    easy_helpdesk_mail_templates:
+      index:
+        caption: 이지 헬프데스크 메일 템플릿
+        description: 이지 헬프데스크 메일 템플릿
+    easy_helpdesk_mailboxes:
+      index:
+        caption: 이지 헬프데스크 사서함
+        description: 이지 헬프데스크 사서함 보기
+    easy_helpdesk:
+      index:
+        caption: 안내 데스크
+        description: 안내 데스크 데쉬보드 보기
+  easy_query:
+    name:
+      easy_helpdesk_project_query: 헬프 데스크 - 프로젝트
+      easy_helpdesk_report_monthly_query: 헬프 데스크 - 월간 보고서
+      easy_helpdesk_report_yearly_query: 헬프 데스크 - 연간 보고서
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: 헬프 데스크에서 프로젝트의 개인 필터
+        easy_helpdesk_report_monthly_query: 헬프 데스크에서 월간 보고서의 개인 필터
+        easy_helpdesk_report_yearly_query: 헬프 데스크에서 연간 보고서의 개인 필터
+      public:
+        easy_helpdesk_project_query: 헬프 데스크에서 프로젝트의 공용 필터
+        easy_helpdesk_report_monthly_query: 헬프 데스크에서 월간 보고서의 공용 필터
+        easy_helpdesk_report_yearly_query: 헬프 데스크에서 연간 보거서의 공용 필터
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: 헬프 데스크 - 집계 시간 계산
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: 헬프 데스크 -  티켓 자동 업데이트
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: 헬프 데스크 - 메일 수신
+      settings:
+        imap:
+          allow_override: 일감 속성을 업데이트 할 수 있습니다.
+          allow_override_example: '예 : 추적자, 우선순위 - 이 속성이 메일에 의해 변경 될 수 있습니다'
+          application_section_label: 기타 설정
+          category_example: '예 : 카테고리 - 신규 일감은 Category라는 카테고리가집니다.'
+          email_section_label: 메일박스 설정
+          folder: 폴더
+          folder_example: '읽기 위해 IMAP 폴더 사용 (기본값 :  INBOX,  다른 폴더를 선택하기 위해서는  "/"를
+            사용함.  예: inbox/sales)'
+          folders: 읽기 위한 폴더
+          folders_example: '읽기 위해 IMAP 폴더 사용 (라인당 하나)  (기본값 :  INBOX,  다른 폴더를 선택하기
+            위해서는  "/"를 사용함.  예: inbox/sales)'
+          host: 호스트
+          host_example: '예: mail.company.com'
+          label: IMAP
+          move_on_failure: 실패시 이동
+          move_on_failure_example: 무시된 메일은 MAILBOX 폴더로 이동합니다.
+          move_on_success: 성공시 이동
+          move_on_success_example: 성공적으로 수신된 메일은 MAILBOX  폴더로 이동합니다. 그 외는 삭제됩니다.
+          no_permission_check: 사용자 권한을 확인하지 안습니다.
+          password: 비밀번호
+          password_example: '예: 비밀 암호'
+          port: 포트
+          port_example: '예: 143'
+          priority_example: '예: High - 신규 일감은 High 우선순위를 가집니다.'
+          project_example: '예: 205 - 신규 일감은 프로젝트 ID 205에 만들어집니다.'
+          sender_mail: 보내는 사람
+          sender_mail_example: '예: support@company.com'
+          ssl: SSL
+          ssl_example: SSL 인증 사용
+          status_example: '예: New - 신규 일감은 New 상태입니다'
+          tracker_example: '예: Bug - 신규 일감은 추적이 Bug입니다.'
+          unknown_user: 알 수없는 사용자
+          unknown_user_example: accept - 익명의 사용자가 사용합니다.; create  - 사용자가 메일에서 생성됩니다;
+            concrete login - 이 사용자가 사용합니다
+          use_custom_sender: 다른 보내는 사람 사용
+          username: 사용자
+          username_example: '예: accessuser@domain.com'
+        pop3:
+          allow_override: 일감 속성이 업데이트 가능합니다.
+          allow_override_example: '예: 추적자, 우선순위 - 이들 속성은 메일로 변경할 수 있습니다.'
+          apop: APOP
+          apop_example: APOP 인증 사용
+          application_section_label: 기타 설정
+          category_example: '예: Category - 신규 일감은 Category 종류를 가집니다.'
+          delete_unprocessed: 처리되지 않은 것은 삭제
+          delete_unprocessed_example: 처리 할 수없는 메일은 삭제합니다.
+          email_section_label: 메일박스 설정
+          host: 호스트
+          host_example: '예: mail.company.com'
+          label: POP3
+          no_permission_check: 사용자 권한을 확인하지 안습니다.
+          password: 비밀번호
+          password_example: '예: 비밀 암호'
+          port: 포트
+          port_example: '예: 110'
+          priority_example: '예: High - 신규 일감은 우선순위가 High입니다.'
+          project_example: '예: 205 - 신규 일감은 프로젝트 ID 205에 만들어집니다.'
+          sender_mail: 보내는 사람
+          sender_mail_example: support@company.com
+          status_example: '예: New - 신규 일감은 상태가 New입니다.'
+          tracker_example: '예: Bug - 신규 일감은 추적이 Bug입니다.'
+          unknown_user: 알 수없는 사용자
+          unknown_user_example: accept - 익명의 사용자가 사용할 것입니다; create - 사용자가 메일에서 생성됩니다;
+            concrete login - 이 사용자가 사용합니다.
+          use_custom_sender: 다른 보내는 사람이 사용
+          username: 사용자
+          username_example: '예: accessuser@domain.com'
+  error_update_easy_setting_helpdesk: 설정을 저장할 수 없습니다
+  field_aggregated_hours: 헬프 데스크 총 시간
+  field_aggregated_hours_period: 총 기간
+  field_aggregated_hours_remaining: 남은 헬프 데스크 시간
+  field_aggregated_hours_start_date: 시작 날짜 합계
+  field_automatically_issue_closer_enable: 자동 티켓 업데이트를 사용 하시겠습니까?
+  field_default_for_mailbox: 메일박스에 대한 기본
+  field_easy_helpdesk_has_sla: SLA를 가집니다
+  field_easy_helpdesk_need_reaction: 반응을 필요로합니다!
+  field_easy_helpdesk_project_keyword: 프로젝트 키워드
+  field_easy_helpdesk_project_matching:
+    domain_name: 메일 또는 도메인
+    email_field_from: FROM 필드에서 가져옵니다
+    email_field_to: TO 필드에서 가져옵니다
+  field_easy_helpdesk_project_monthly_hours: 계약상의  헬프 데스크 월 시간
+  field_easy_helpdesk_project_sla:
+    blank_keyword: SLA 이름 누락
+    hours_to_response: 응답에 필요한 시간
+    hours_to_solve: 해결에 필요한 시간
+    keyword: SLA 키워드
+    title: SLA 이름
+  field_easy_helpdesk_project_spent_time_current_month: HD(이번 달) 근무시간
+  field_easy_helpdesk_project_spent_time_last_month: HD(지난 달) 근무시간
+  field_easy_helpdesk_project_spent_time_total: HD에서 총 소요 시간
+  field_easy_reopen_at: 에서 다시 열림
+  field_easy_response_date_time: SLA (응답)
+  field_easy_time_to_solve_paused_at: SLA 일시 정지
+  field_email_footer: 메일 바닥 글
+  field_email_header: 메일 머리 글
+  field_hide_sla_data: SLA데이터 숨기기
+  field_hours_mode_from: SLA 근무 시간
+  field_hours_to_response: SLA (응답)
+  field_hours_to_solve: SLA (솔루션)
+  field_is_under_helpdesk: 헬프 데스크 아래
+  field_issue_closer_done_issue_status: 의 상태 변경
+  field_issue_closer_done_issue_user: 그리고 할당에
+  field_issue_closer_inactive_interval: 그리고 이내에 업데이트가 없습니다
+  field_issue_closer_observe_issue_status_id: 상태에
+  field_monitor_due_date: 지원 티켓을 기한 감시
+  field_monitor_spent_time: 지원 티켓 소유시간 감시
+  field_monthly_hours: 헬프 데스크 월 시간 계약
+  field_use_working_time: 근무 시간에 따라 SLA를 계산합니다
+  heading_easy_helpdesk_index: 헬프 데스크
+  heading_easy_helpdesk_mail_templates_edit: 메일 템플릿 편집
+  heading_easy_helpdesk_mail_templates_index: 메일 템플릿
+  heading_easy_helpdesk_mail_templates_new: 신규 메일 템플릿
+  heading_easy_helpdesk_mail_templates_show: 메일 템플릿의 세부 사항
+  heading_easy_helpdesk_mailboxes_edit: 메일 박스 편집
+  heading_easy_helpdesk_mailboxes_index: 헬프 데스크 메일박스
+  heading_easy_helpdesk_mailboxes_new: 신규 메일박스
+  heading_easy_helpdesk_projects_edit: 신규 프로젝트
+  heading_easy_helpdesk_projects_index: 헬프 데스크 프로젝트
+  heading_easy_helpdesk_projects_new: 신규 헬프 데스크 프로젝트
+  heading_easy_helpdesk_projects_show: 프로젝트 세부사항
+  heading_easy_helpdesk_reports_index: 헬프 데스크 - 보고서
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: 선불 시간의 월간 보고서
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: 선불 시간의 연간 보고서
+  heading_easy_helpdesk_settings: 설정
+  issue_closer_inactive_interval_units:
+    days: 일(day)
+    hours: 시간
+  label_automatically_issue_closer: 일 때 티켓이 작동적으로 업데이트합니다.
+  label_copy_settings_sla_from_project: 프로젝트에서 SLA 설정 복사하기
+  label_easy_hekodesk_additional_task_info_received_emails: 처리된 메일들
+  label_easy_helpdesk: 헬프 데스크
+  label_easy_helpdesk_actual_budget: 이번달에 소요한 헬프 데스크 시간
+  label_easy_helpdesk_actual_budget_to_spend: 남은 시간
+  label_easy_helpdesk_aggregated_from_last_period: 마지막 시기부터 누적
+  label_easy_helpdesk_alerts: 알림 설정
+  label_easy_helpdesk_allow_custom_sender: 사용자 지정 보낸 사람 허용 (프로젝트 당)
+  label_easy_helpdesk_allow_override: 태스크 속성 업데이트 가능합니다.
+  label_easy_helpdesk_client_response_status: 에 대한 클라이언트의 응답 후 상태 변경
+  label_easy_helpdesk_domain_name: 메일 도메인
+  label_easy_helpdesk_emails: 메일 설정 - 머리글과 바닥 글
+  label_easy_helpdesk_enable_email_footer: 이 프로젝트에 바닥 글을 변경하시겠습니까 ?
+  label_easy_helpdesk_enable_email_header: 이 프로젝트에 머리 글을 변경하시겠습니까 ?
+  label_easy_helpdesk_hours_comulated: 시간 누적
+  label_easy_helpdesk_hours_comulated_range: "%{from}로부터  %{to}까지"
+  label_easy_helpdesk_hours_per_month: 이번달 근무 시간
+  label_easy_helpdesk_ignore_cc: 수신 된 이메일의 CC를 무시
+  label_easy_helpdesk_mail_signature: 헬프 데스크 - 서명
+  label_easy_helpdesk_matching: 메일, 도메인, 키워드를 이 프로젝트에 저장합니다.
+  label_easy_helpdesk_message_above_variables: 일감 주석은 메일 템플릿 위에 표시합니다.
+  label_easy_helpdesk_need_reaction: 반응을 필요로합니다!
+  label_easy_helpdesk_project_helpdesk_tab: 헬프 데스크
+  label_easy_helpdesk_project_managed_by_helpdesk: 헬프 데스크 설정
+  label_easy_helpdesk_project_plural: 안내 데스크 프로젝트
+  label_easy_helpdesk_projects_sla_working_time_calendar: SLA 근무 일
+  label_easy_helpdesk_reopen_resets_start_time_for_sla: 일감이 재개 된 후 SLA 재설정
+  label_easy_helpdesk_sender: 보낸 사람
+  label_easy_helpdesk_sender_current_user: 현재 로그인 사용자
+  label_easy_helpdesk_sender_is_user: 보낸 사람이 로그온 사용자
+  label_easy_helpdesk_sender_mailbox_address: 메일박스 주소
+  label_easy_helpdesk_sender_redmine_default: 메일 알림의 기본
+  label_easy_helpdesk_signature: 서명
+  label_easy_helpdesk_signature_name: 서명 이름
+  label_easy_helpdesk_skip_ignored_emails_headers_check: 자동 생성 된 메일을 접수
+  label_easy_helpdesk_sla: SLA 설정 - 티켓을 해결하기 위한 우선순위와 시간
+  label_easy_helpdesk_sla_start_states: 상태 인 경우 티켓에 대한 SLA를 계산
+  label_easy_helpdesk_sla_stop_states: 티켓 상태가 되면 SLA를 일시 정지
+  label_filter_group_easy_helpdesk_project_query: 헬프 데스크 - 프로젝트
+  label_filter_group_easy_helpdesk_report_monthly_query: 헬프 데스크 - 보고서
+  label_filter_group_easy_helpdesk_report_query: 헬프 데스크 - 보고서
+  label_filter_group_easy_helpdesk_report_yearly_query: 헬프 데스크 - 보고서
+  label_filter_show_spent_time_current_month_equal_to_zero: HD(이번 달)  근무 시간은 0입니다
+  label_filter_show_spent_time_last_month_equal_to_zero: HD(지난 달)  근무 시간은 0입니다
+  label_issue_bottom_from_easy_helpdesk: 헬프 데스크에서 만든 일감 (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: 월별 계약 시간
+  label_sla_calendar_settings: 달력 설정
+  permission_manage_easy_helpdesk: 헬프 데스크 관리
+  permission_manage_easy_helpdesk_project: 헬프 데스크 프로젝트 관리
+  permission_manage_easy_sla_events: SLA 이벤트 관리
+  permission_view_easy_helpdesk_sla: 일감의 SLA보기
+  permission_view_easy_sla_events: SLA 이벤트 보기
+  project_module_easy_helpdesk: 헬프 데스크
+  setting_easy_helpdesk_custom_sender: 헬프 데스크 보낸 사람
+  text_easy_helpdesk_change_default_sender: 이 설정은 회신 필드를 변경하지 않습니다.
+  text_easy_helpdesk_custom_sender: 기본인 헬프 데스크 보낸 사람을 덮어쓰세요. 이 기능은 사용 못하게 빈체로 남겨두세요.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: 현재 양수인
+    date: 현재 날짜
+    spent_time: 일감에서 보낸 시간
+    task_closed_on: 날짜에 일감 마감
+    task_description: 일감 설명
+    task_done_ratio: 일감 종료 비율
+    task_due_date: 일감 기한
+    task_estimated_hours: 일감 추정 시간
+    task_history: 일감의 모든 주석의 히스토리
+    task_id: 현재 일감 ID
+    task_id_without_hash: 해시(hash)없이 현재의 일감 ID
+    task_last_journal: 일감의 마지막 공개 의견 수렴
+    task_note: 일감의 마지막 주석
+    task_priority: 일감 우선순위
+    task_project: 프로젝트 이름
+    task_public_url: 일감 공용 URL
+    task_start_date: 일감 시작일
+    task_status: 일감 상태
+    task_subject: 현재 일감 제목
+    task_tracker: 일감 추적
+    user_first_name: 현재 사용자 이름
+    user_last_name: 현재 사용자 성(last name)
+    user_name: 현재 사용자 전체 이름
+    user_signature: 현재 사용자 서명
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - '제목과 편지에 동적인 텍스트를 포함할 수 있음:'
+  - "% task_id % (현재 작업 ID 대체)"
+  - "% task_subject % (현재 작업 제목 대체)"
+  - "% task_note % (마지막 작업의 대체 작업에 대한 댓글) "
+  - "% task_history % (작업의 비공개 코멘트 내역 대체) "
+  - "% time_spent % (작업의 소요 시간 대체) "
+  - "% assignee % % task_project % (프로젝트 이름 대체) "
+  - "% user_signature % (현재 사용자 서명 대체) "
+  - "% date % (현재 날짜 대체) "
+  - "% task_tracker % (작업 트래커 대체) "
+  - "%task_project% (프로그램명 대체)"
+  - "%task_description% (작업 설명 대체)"
+  - "% task_status % (작업 우선 순위 대체) "
+  - "%task_priority% (작업 우선순위 대체)"
+  - "% task_estimated_hours % (작업 예상 시간 대체) "
+  - "%task_done_ratio% (작업 완료율 대체)"
+  - "% task_status % "
+  - "% task_public_url % (작업 공개 URL 대체) "
+  - "% task_closed_on % (날짜에 가까워진 작업 대체) "
+  - "% task_due_date % (작업 만료일 변경) "
+  - "%task_start_date% (작업 시작 날짜 대체)"
+  - "%user_name% (현재 사용자 전체 이름 대체)"
+  - "%user_first_name% (현재 사용자 이름 대체)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: '제목과 메일 본문은 동적 텍스트를 포함 할
+    수 있습니다 :'
+  text_easy_helpdesk_mail_template_issue_status_id: 특정 작업 상태에 사서함 템플릿을 결합 할 수 있습니다.
+  text_easy_helpdesk_mail_template_replacement_for: 교체
+  text_easy_helpdesk_mail_template_reply_to: "(Mr.  예)이 - 메일은 여기에 허용되지 않습니다"
+  text_easy_helpdesk_mail_template_reply_to2: 필드 "회신"과 "보낸 사람"은 하나의 작업 내에서 소통을 유지하기
+    위해 사서함 템플릿에서 가져옵니다.
+  text_easy_helpdesk_non_default_mailboxes_warning_below: 프로젝트에 메일박스를 할당해야합니다. 그렇게하지
+    않으면 수신되는 메일중 알 수없는(unknow) 것은 처리되지 않습니다!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 메일박스는 기본 프로젝트를 가지지 않습니다.
+  text_easy_helpdesk_projects_alerts_list: '구성된 알림 목록 :'
+  text_easy_helpdesk_projects_alerts_list_to_edit: '알림 목록에 받는 사람 설정 :'
+  text_easy_helpdesk_projects_is_default: 알 수없는 발신자가 보낸 이메일이 도착하면, 여기에 티켓이 생성됩니다.
+  text_easy_helpdesk_projects_keyword_description: 메일 제목이 정의된 문자열을 포함하면, 티켓이 이프로젝트에
+    할당됩니다. 키워드는 대소 문자를 구분합니다.
+  text_easy_helpdesk_projects_keywords: 메일 제목이 정의된 문자열을 포함하면 특정한 우선순위와 만기 일자가 설정됩니다.
+    (*모든 제목을 의미함) 수작업으로 생성한 티켓의 SLA 설정은 비워둡니다.
+  text_easy_helpdesk_projects_monitor_due_date: 이 사전 정의된 경고는 당신의 이메일 알림으로 보내질 것입니다,
+    SLA 위반 티켓인 경우 - SLA에서 정의된 기간 내에 해결되지 않은 것입니다.
+  text_easy_helpdesk_projects_monitor_spent_time: 만약 특정 월에 초과된 총 소요 시간은 선불 지원 시간(Pre-paid
+    support hours)을 초과하면 이 사전 정의된 경고는 당신의 이메일 알림으로 보내집니다.
+  text_easy_helpdesk_projects_new_priority: 키워드가 지정되지 않은 경우는 선택된 우선 순위에 따라 SLA가 설정될
+    것입니다.
+  text_easy_helpdesk_projects_priority: SLA는 선택된 우선 순위에 따라 설정 될것입니다.
+  text_easy_helpdesk_projects_sla_hours_to_response: 시간의 최대 금액은 티켓 (제 1 상태 변화)에 대한
+    작업을 시작하기 전에 허용됩니다.
+  text_easy_helpdesk_projects_sla_hours_to_solve: 티켓을 해결하는 시간의 최대 금액(닫힌 상태)
+  text_easy_rake_task_helpdesk_issue_closer_failed: 어떤 일감들 (%{count}/%{total}) 은 변경할
+    수 없습니다.
+  text_isseu_closer_close_notice: 이 일감은 안내 데스크에 의해 자동적으로 변경되었습니다.
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: 응답은 %{time}까지
+    처리되어야 합니다.'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: 응답은 %{time}까지
+    처리되어야만 합니다.'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: 해결은 %{time}까지
+    처리되어야 합니다.'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: 해결은 %{time}까지
+    처리되어야만 합니다.'
+  title_easy_helpdesk_add_project_from_sidebar: 클릭하면 프로젝트를 안내 데스크로 추가합니다.
+  title_easy_helpdesk_allow_custom_sender: 프로젝트 당 사용자 정의 발송자 설정 허용
+  title_easy_helpdesk_allow_override: 메세지로 부터 일감 속성 재정의 허용
+  title_easy_helpdesk_client_response_status: 상태를 바꾸는 것은 그것이 변경 되었을 때 티켓이 바뀌게 되는 것입니다.
+  title_easy_helpdesk_ignore_cc: 이메일이 수신되었을 때, CC에 있는 모든 이메일은 관찰자로 추가되어집니다. 외부 이메일과
+    자동 회신은 그들에게 보내지게 됩니다. 이 옵션은 사용하지 않습니다.
+  title_easy_helpdesk_message_above_variables: 템플릿 메시지는 위의 템플릿 변수가 될 것입니다
+  title_easy_helpdesk_sender: "'from' 필드에 있는사람이 될겁니다."
+  title_easy_helpdesk_sender_current_user: 현재 로그온 한 사용자
+  title_easy_helpdesk_sender_is_user: "'from'필드는 로그인 된 사용자가 될겁니다."
+  title_easy_helpdesk_sender_mailbox_address: 사서함에서 메일 주소
+  title_easy_helpdesk_sender_redmine_default: 기본 배출 이메일 주소
+  title_easy_helpdesk_skip_ignored_emails_headers_check: '경고 : 안내 데스크는 다른 시스템에서 메일을
+    수신하고 그것을 무한 메일로 교환 될 수 있습니다!'
+  title_easy_helpdesk_sla_start_states: 상태 선택, SLA를 측정할 때 위의 설정에 의해 일시 정지된 후에 재개 되는
+    것입니다.
+  title_easy_helpdesk_sla_stop_states: SLA 측정되지 않은 경우 상태를 선택합니다. 예를 들어, 티켓이 닫혔거나 클라이언트의
+    응답을 기다리고 있을 때 입니다.
+  title_sla_waiting_for_client: SLA 중단
+  tooltip_easy_helpdesk_reopen_resets_start_time_for_sla:
+    disabled: 비 활성화-일감이 닫힌 후에 SLA는 중지됩니다. 일감이 다시 열렸을 때, SLA는 원래 생성 된 시간부터 계산됩니다
+    enabled: 활성화 - 일감이 닫힌 후에는 SLA가 중지됩니다.일감이 다시 열렸을 때, SLA는 재개 된 시간부터 계산됩니다

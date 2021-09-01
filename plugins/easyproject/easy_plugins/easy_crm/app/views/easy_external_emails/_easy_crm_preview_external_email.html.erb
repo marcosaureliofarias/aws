@@ -1,0 +1,7 @@
+<% mail_template_options = EasyCrmCaseMailTemplate.find_all_for_easy_crm_case(entity)
+selected = @easy_crm_case_mail_template || mail_template_options.where(:easy_crm_case_status_id => entity.easy_crm_case_status_id).first %>
+<p>
+  <%= label_tag 'easy_crm_case_mail_template', l(:'activerecord.models.easy_crm_case_mail_template') %>
+  <%= select_tag 'easy_crm_case_mail_template', options_for_select(mail_template_options.collect{|t| [t.caption, t.id]}, selected && selected.id),
+    :include_blank => true, :onchange => "$.ajax({url: '#{j(url_for(preview_external_email_easy_crm_case_path(entity, :format => :js))).html_safe}', type: 'POST', data: $(this).closest('form').serialize()})" %>
+</p>

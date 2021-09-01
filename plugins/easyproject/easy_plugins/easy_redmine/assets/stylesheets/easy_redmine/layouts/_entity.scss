@@ -1,0 +1,23 @@
+.easy-entity{
+  &-details{
+    &-header{
+      &-attributes {
+        clear: both;
+        margin: 0 (-$retrace-constant*$box-padding);
+        padding: $gap (1-$retrace-constant)*$box-padding $box-padding+4;
+        border-top: initial;
+        border-bottom: initial;
+      }
+    }
+    &-description{
+      border-top: initial;
+      border-bottom: initial;
+    }
+  }
+}
+
+.more-attributes-toggler{
+ @extend %inline-flex;
+  font-size: 11px;
+  line-height: 1.4;
+}

@@ -1,0 +1,46 @@
+<tr class="entity-activity__form">
+  <%= call_hook :view_easy_entity_activity_form_top, f: f %>
+  <td>
+    <%= f.hidden_field :entity_type %>
+    <%= f.hidden_field :entity_id %>
+    <span class="input-append input-append--time-values">
+      <span class="input-append-date">
+        <%= text_field_tag "#{f.object_name}[start_time][date]", f.object.date, size: 10, id: :easy_entity_activity_start_time_date, onchange: "$('##{f.object_name}_end_time_date').val($(this).val());" -%>
+        <%= calendar_for("#{f.object_name}_start_time_date") -%>
+      </span>
+      <span class="input-append-time">
+        <%= tag :input, type: 'time', value: f.object.user_start_time, placeholder: f.object.user_start_time.presence || '00:00', name: "#{f.object_name}[start_time][time]", class: "time-select time-select-start_time", size: 4 %>
+        <span class="easy-attendance-time-delimiter">-</span>
+        <%= hidden_field_tag 'easy_entity_activity[end_time][date]', f.object.date %>
+        <%= tag :input, type: 'time', value: f.object.user_end_time, placeholder: f.object.user_end_time.presence || '00:00', name: "#{f.object_name}[end_time][time]", class: "time-select time-select-end_time", size: 4 %>
+      </span>
+    </span>
+    <span class="all-day">
+      <% box = f.check_box :all_day %>
+      <%= label_tag("#{f.object_name}_all_day", box + l(:field_all_day), :class => 'checkbox inline') %>
+    </span>
+  </td>
+  <td>
+    <%= f.select :category_id, f.object.categories %>
+  </td>
+  <td>
+    <%= f.check_box :is_finished %>
+  </td>
+  <td>
+    <div class="entity-activity__attendees-col">
+      <div class="entity-activity__attendees entity-activity__attendees--principals">
+        <%= label_tag :easy_entity_activity_attendees_Principal_, l(:label_user_plural) %>
+        <%= autocomplete_field_tag('easy_entity_activity_attendees[Principal][]', easy_autocomplete_path('users'), f.object.user_attendees, rootElement: 'users', preload: false) %>
+      </div>
+      <%= call_hook :view_issues_easy_entity_activity_form_bottom, f: f %>
+    </div>
+  </td>
+  <td>
+    <%= f.submit l(:button_save), class: 'button-positive' %>
+  </td>
+</tr>
+<tr class="entity-activity__form">
+  <td colspan="5">
+    <%= f.text_area :description %>
+  </td>
+</tr>

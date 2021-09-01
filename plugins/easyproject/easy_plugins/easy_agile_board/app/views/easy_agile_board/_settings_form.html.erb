@@ -1,0 +1,26 @@
+<%= form_tag(@project ? easy_agile_board_settings_path(@project) : save_global_easy_agile_settings_path(tab: 'scrum'), class: 'form-box') do %>
+  <%= render 'easy_agile_board/settings_columns', project: @project, easy_setting_name: 'agile_board_statuses' %>
+
+  <fieldset>
+    <legend class="icon icon-bullet-list"><%= l(:label_others) %></legend>
+
+    <%
+      summable_columns = [[l('disabled', scope: :easy_agile_issue_rating_mode_names), '']]
+      summable_columns.concat( %w(estimated_hours remaining_timeentries easy_story_points).collect{|c| [l(c, scope: :easy_agile_issue_rating_mode_names), c] } )
+      summable_columns.concat( IssueCustomField.sorted.to_a.select{|cf| cf.summable? }.map {|cf| [ cf.name, "cf_#{cf.id}" ] } )
+    %>
+
+    <%= render 'easy_queries/kanban_output_settings', query: @query, easy_setting_name: 'scrum_output_setting', modul_uniq_id: '', summable_columns: summable_columns %>
+
+    <p>
+      <%= hidden_field_tag 'easy_setting[easy_agile_use_workflow_on_sprint]', '0', id: '' %>
+      <% box = check_box_tag 'easy_setting[easy_agile_use_workflow_on_sprint]', '1', EasySetting.value('easy_agile_use_workflow_on_sprint', @project) %>
+      <%= label_tag 'easy_setting[easy_agile_use_workflow_on_sprint]', box + l(:label_easy_agile_use_workflow_on_sprint), title: l(:text_easy_agile_use_workflow_on_sprint), class: 'inline checkbox' %>
+    </p>
+  </fieldset>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_update), class: 'button-positive' %>
+    <%= link_to l(:button_recalculate_agile_board), easy_agile_board_recalculate_path(@project), method: :post, class: 'button' if @project %>
+  </div>
+<% end %>

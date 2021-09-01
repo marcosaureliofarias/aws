@@ -1,0 +1,92 @@
+---
+tr:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Bu dönem için başka bir
+                zaman çizelgesi mevcut.
+  button_copy_easy_time_sheet: Satırları yeni zaman çizelgesine kopyala
+  button_easy_timesheet_by_easy_query: Kaydedilen filtreye göre zaman çizelgeleri
+  button_easy_timesheet_delete_with_time_entries: Satırı ve harcanan zamanı kaldır
+  button_easy_timesheet_delete_without_time_entries: Yalnızca satırı kaldır
+  button_easy_timesheets_approve: Onayla
+  button_easy_timesheets_lock: Kilitle
+  button_easy_timesheets_new_row: Yeni satır
+  button_easy_timesheets_reject: Reddet
+  button_easy_timesheets_unlock: Kilidi kaldır
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Personel bildirimi - Zaman çizelgeleri
+        description: Zaman çizelgelerini görüntüle
+  easy_query:
+    name:
+      easy_timesheet_query: Zaman çizelgeleri
+  easy_timesheets_date_must_be_first_day_of_week: Haftanın ilk günü olmalı. (%{day})
+  easy_timesheets_periods:
+    day: Haftalık
+    month: Aylık
+    week: Aylık
+  easy_timesheets_plugin_name: Zaman çizelgeleri
+  error_timesheet_invalid_time_entries: 'Geçersiz zaman girdileri nedeniyle zaman
+    çizelgesi oluşturulamıyor: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: Özel alan fazla mesai kimliği
+    label_new_monhly_timesheet: Yeni aylık zaman çizelgesi
+    label_overtime: Fazla mesai
+    label_set_cf_overtime_id_in_rys_plugins: Fazla mesai işlevi etkin. Lütfen fazla
+      mesai özel alanını seçiniz %{link}.
+  field_easy_timesheet_period: Dönem
+  heading_easy_timesheets_edit: Zaman çizelgesini düzenle
+  heading_easy_timesheets_new: Yeni haftalık zaman çizelgesi
+  heading_easy_timesheets_show: "%{start_date} - %{end_date} zaman çizelgesi"
+  label_easy_timesheet: Zaman çizelgesi
+  label_easy_timesheet_approved: Onaylandı?
+  label_easy_timesheet_approved_by: Onaylayan
+  label_easy_timesheet_end_date: Bitiş tarihi
+  label_easy_timesheet_lock_description: Onaylandı / Reddedildi sebebi
+  label_easy_timesheet_lock_prompt: Onaylama nedeni
+  label_easy_timesheet_locked_at: Onaylandı / Reddedildi
+  label_easy_timesheet_rejected_by: Reddeden
+  label_easy_timesheet_unlock_prompt: Reddetme sebebi
+  label_easy_timesheets: Zaman çizelgeleri
+  label_enable_timesheet_over_time: Fazla mesaiyi etkinleştir
+  label_enabled_timesheet_periods: Etkin dönemler
+  label_filter_group_easy_timesheet_query: Zaman çizelgesi
+  notice_easy_timesheet_both_periods: Her ikisini de seçerseniz, dönemler çakıştığında
+    bazı kayıtlar karışabilir veya düzgün çalışmayabilir.
+  notice_extended_timesheet_period_not_enabled: "%{period} zaman çizelgesi etkin değil"
+  permission_create_easy_timesheets_for_other_user: Diğer kullanıcılar için zaman
+    çizelgesi oluştur
+  permission_edit_easy_timesheets: Zaman çizelgelerini düzenle
+  permission_edit_own_easy_timesheets: Kendi zaman çizelgelerini düzenle
+  permission_view_easy_timesheets: Zaman çizelgelerini görüntüle
+  project_module_easy_timesheets: Zaman çizelgeleri
+  text_easy_timesheet_destroy_cell_are_you_sure: Gerçekten harcanan zamanı çıkarmak
+    istiyor musunuz?
+  text_easy_timesheet_destroy_row_are_you_sure: Bir zaman çizelgesi satırını kaldıracaksınız.
+    Bu satırda harcanan zamanı otomatik olarak silmek zorunda değilsiniz. Nasıl devam
+    etmek istersiniz?
+  text_easy_timesheet_prompt_text: Zaman ekle
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: Başlangıç tarihi,
+    seçilen haftanın başlangıcıyla otomatik olarak hizalanacaktır
+  text_time_sheet_copy_from: Satırlar %{entity} zaman çizelgesinden önden doldurulacak
+  text_warning_after_time_sheet_copied: Satırdaki en az bir hücreyi kaydetmezseniz,
+    satır kaybolur.
+  title_easy_timesheet_destroy: Zaman çizelgesini kaldır
+  title_easy_timesheet_edit_with_period: "%{period} zaman çizelgesini düzenle"
+  title_easy_timesheet_new_with_period: Yeni %{period} zaman çizelgesi
+  title_easy_timesheet_show: Zaman çizelgesini göster
+  title_next_time_sheet: "%{user} kullanıcısının bir sonraki zaman çizelgesini göster"
+  title_previous_time_sheet: "%{user} kullanıcısının bir önceki zaman çizelgesini
+    göster"
+  validation_entry_already_exists: "(%{start_date}) ve (%{end_date}) arasındaki zaman
+    çizelgesi zaten var"
+  validation_greater_than_start_date: "(%{end_date}) başlangıç tarihinden (%{start_date})
+    daha büyük olmalıdır"
+  validation_timesheet_cant_destroy_time_entries: Bazı zaman girişleri imha edilemedi
+  validation_week_period: "(%{start_date}) ve (%{end_date}) arasındaki süre bir hafta
+    olmalıdır"

@@ -1,0 +1,33 @@
+<% if @relations.blank? %>
+  <%= content_tag(:h3, l(:label_related_issues), :class => 'icon icon-relation') %>
+<% end %>
+<%#= error_messages_for 'relation' %>
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <label><%= l(:label_issue_new_relation_before) -%></label>
+      <span class="relation-type">
+        <%= f.select :relation_type, collection_for_relation_type_select, {}, :onchange => "setPredecessorFieldsVisibility();" %>
+      </span>
+    </p>
+  </div>
+  <div class="splitcontentright">
+    <p>
+      <label class="label-after"><%= l(:label_issue_new_relation_after) -%></label>
+      <span class="issues-selector"><label style="display:none;" for="relation_issue_to_id_lookup_trigger_container"><%= l(:label_related_issues) %></label><%= issues_relations_field_tag 'relation[issue_to_id]', 'relation_issue_to_id', [], :url => {:modal_project_id => @issue.project.id, :query_name => 'issue_relation'} %></span>
+      <span class="predecessor-fields" id="predecessor_fields" style="display:none;">
+        <%= l(:field_delay) %>: <%= f.text_field :delay, :size => 3 %> <%= l(:label_day_plural) %>
+      </span>
+    </p>
+  </div>
+</div>
+<div class="form-actions">
+  <%= link_to_function l(:button_add), 'if ($(this).closest("form").attr("data-submitted")) {event.preventDefault();} else {$("#new-relation-form").submit()}', :class => 'button-positive' %>
+  <%= toggle_link l(:button_cancel), 'new-relation-form', :class => 'button' %>
+</div>
+
+<script type="application/javascript">
+  EASY.schedule.late(function() {
+    setPredecessorFieldsVisibility();
+  });
+</script>

@@ -1,0 +1,11 @@
+<div class="splitcontent">
+  <div class="splitcontentleft">
+  </div>
+  <div class="splitcontentright">
+  </div>
+</div>
+<% if easy_money.description.present? %>
+  <p>
+    <span title="<%= j l(:field_description) %>" class="description"><%= Sanitize.clean(easy_money.description, :output => :html).truncate(300).to_s.html_safe %></span>
+  </p>
+<% end %>

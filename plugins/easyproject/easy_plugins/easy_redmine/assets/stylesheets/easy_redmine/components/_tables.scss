@@ -1,0 +1,31 @@
+.autoscroll{
+  margin-left: initial;
+  margin-right: initial;
+  &__wrapper{
+    @include respond-to(screen-only){
+      margin-left: -$retrace-constant-tables*$box-padding;
+      margin-right: -$retrace-constant-tables*$box-padding;
+      padding-left: initial;
+      padding-right: initial;
+      padding-bottom: 0;
+      margin-bottom: $retrace-constant-tables*$box-padding;
+      border-left: 1px solid $color-border-minor;
+      border-right: 1px solid $color-border-minor;
+      border-top: 1px solid $color-border-minor;
+    }
+  }
+}
+
+.table.list{
+  th{
+    border: none !important;
+  }
+}
+.affix-cell-wrap{
+  &:after, &:before{
+    border-bottom-color: $color-border-minor !important;
+  }
+  &:before{
+    top: -1px !important;
+  }
+}

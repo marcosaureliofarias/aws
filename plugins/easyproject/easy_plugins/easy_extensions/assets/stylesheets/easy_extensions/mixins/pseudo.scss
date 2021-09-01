@@ -1,0 +1,188 @@
+//pseudo
+%pseudo-block{
+  content: "";
+  display: block;
+  z-index: 1;
+}
+%pseudo-parent{
+  position: relative;
+}
+%pseudo-after{
+  @extend %pseudo-parent;
+  &:after{
+	position: absolute;
+	@extend %pseudo-block;
+  }
+}
+%pseudo-before{
+  @extend %pseudo-parent;
+  &:before{
+	position: absolute;
+	@extend %pseudo-block;
+  }
+}
+%pseudo-afterlight{
+  @extend %pseudo-after;
+  &:after{
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: $box-margin;
+    @extend %gradient-vertical-fade-background;
+    z-index: 3;
+  }
+}
+%pseudo-beforelight{
+  @extend %pseudo-before;
+  &:before{
+    left: 0;
+    right: 0;
+    top: 0;
+    height: $box-margin;
+    @extend %gradient-vertical-background-fade;
+    z-index: 3;
+  }
+}
+%pseudo-rightlight-foreground{
+  @extend %pseudo-after;
+  &:after{
+    top: 0;
+    bottom: 0;
+    right: -$box-margin - 1;
+    width: $box-margin;
+    @extend %gradient-horizontal-foreground-fade;
+  }
+}
+%pseudo-draggable{
+  $constant: 2px;
+  &:before{
+    @extend %pseudo-block;
+    height: 9*$constant;
+    width: $constant;
+    border-right: $constant dotted $color-text;
+    border-left: $constant dotted $color-text;
+    margin: 2*$constant;
+  }
+}
+%pseudo-indent{
+  @extend %pseudo-before;
+  &:before{
+    $size: 0.5*$gap;
+    content: "";
+    display: block;
+    width: $size;
+    height: $size;
+    top: 50%;
+    position: absolute;
+    border-left: 2px solid $color-border;
+    border-bottom: 2px solid $color-border;
+    float: left;
+    margin-top: (-1 - 0.5 * $size);
+    margin-left: (-4 * $size - 1);
+  }
+}
+
+@mixin pseudo-before() {
+  @extend %pseudo-before;
+  &:before{
+    @content;
+  }
+}
+@mixin pseudo-after() {
+  @extend %pseudo-after;
+  &:before{
+    @content;
+  }
+}
+@mixin triangle-top-borders ($size, $border, $hv-ratio: 1){
+  border-left: floor($size) solid transparent;
+  border-right: floor($size) solid transparent;
+  border-bottom: floor($size*$hv-ratio) solid $border;
+  border-top: none;
+}
+@mixin triangle-bottom-borders ($size, $border, $hv-ratio: 1){
+  border-left: floor($size) solid transparent;
+  border-right: floor($size) solid transparent;
+  border-top: floor($size*$hv-ratio) solid $border;
+  border-bottom: none;
+}
+@mixin triangle-left-borders ($size, $border, $hv-ratio: 1){
+  border-top: floor($size) solid transparent;
+  border-bottom: floor($size) solid transparent;
+  border-right: floor($size*$hv-ratio) solid $border;
+  border-left: none;
+}
+@mixin triangle-right-borders ($size, $border, $hv-ratio: 1){
+  border-top: floor($size) solid transparent;
+  border-bottom: floor($size) solid transparent;
+  border-left: floor($size*$hv-ratio) solid $border;
+  border-right: none;
+}
+@mixin triangle-left($size, $background, $border, $offset: 0px, $hv-ratio: 1){
+  @extend %pseudo-before;
+  @extend %pseudo-after;
+  &:before{
+    left: -$size;
+    right: auto;
+    top: $offset;
+    @include triangle-left-borders($size, $border, $hv-ratio)
+  }
+  &:after{
+    left: 1-$size;
+    right: auto;
+    top: $offset;
+    @include triangle-left-borders($size, $background, $hv-ratio)
+  }
+}
+@mixin triangle-right($size, $background, $border, $offset: 0px, $hv-ratio: 1){
+  @extend %pseudo-before;
+  @extend %pseudo-after;
+  &:before{
+    right: -$size;
+    left: auto;
+    top: $offset;
+    @include triangle-right-borders($size, $border, $hv-ratio)
+  }
+  &:after{
+    right: 1-$size;
+    left: auto;
+    top: $offset;
+    @include triangle-right-borders($size, $background, $hv-ratio)
+  }
+}
+@mixin triangle-top($size, $background, $border, $offset: 0px, $hv-ratio: 1){
+  @extend %pseudo-before;
+  @extend %pseudo-after;
+  &:before{
+    top: -$size;
+    bottom: auto;
+    left: $offset;
+    right: auto;
+    @include triangle-top-borders($size, $border, $hv-ratio)
+  }
+  &:after{
+    top: 1-$size;
+    left: $offset;
+    bottom: auto;
+    right: auto;
+    @include triangle-top-borders($size, $background, $hv-ratio)
+  }
+}
+@mixin triangle-bottom($size, $background, $border, $offset: 0px, $hv-ratio: 1){
+  @extend %pseudo-before;
+  @extend %pseudo-after;
+  &:before{
+    bottom: -$size;
+    top: auto;
+    left: $offset;
+    right: auto;
+    @include triangle-bottom-borders($size, $border, $hv-ratio)
+  }
+  &:after{
+    bottom: 1-$size;
+    top: auto;
+    left: $offset;
+    right: auto;
+    @include triangle-bottom-borders($size, $background, $hv-ratio)
+  }
+}

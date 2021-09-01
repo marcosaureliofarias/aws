@@ -1,0 +1,14 @@
+$("#ajax-modal").html("<%=j(render partial: 'description', locals: {project: @project, easy_calculation: @easy_calculation, position: params[:position]}) %>");
+showModal('ajax-modal', '800');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_update) %>',
+      click: function() {$(this).find('form:first').submit();}, 'class': 'button-positive'
+    }
+  ]
+});

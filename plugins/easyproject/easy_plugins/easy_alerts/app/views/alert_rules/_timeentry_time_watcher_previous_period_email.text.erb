@@ -1,0 +1,1 @@
+<%= report.alert.name -%> - <%= report.alert.rule_settings[:time_period] == 'week' ? l(:label_timeentry_time_watcher_previous_week_report) : l(:label_timeentry_time_watcher_previous_report) %> - <%= url_for(:controller => 'users', :action => 'show', :id => report.entity_id, :only_path => false) -%>

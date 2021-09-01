@@ -1,0 +1,10 @@
+<% if task.is_a?(EasyRakeTaskEasyCrmReceiveMail) %>
+  <p>
+    <%= label_tag '', l(:field_project) %>
+    <% selected_project_value = (task.project.nil? ? {:name => '', :id => ''} : {:name => task.project.name, :id => task.project.id}) %>
+    <%= easy_select_tag(
+      "easy_rake_task[project_id]", selected_project_value, nil,
+      easy_autocomplete_path('easy_crm_projects'),
+      :html_options => {:id => "easy_rake_task_project_id"}, :root_element => 'projects') -%>
+  </p>
+<% end %>

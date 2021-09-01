@@ -1,0 +1,50 @@
+table.list.workflows{
+  thead{
+    td{
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+      &:last-child{
+        padding-right: $box-padding;
+      }
+      a{
+        display: block;
+      }
+    }
+  }
+  th+th{
+    text-align: center;
+  }
+  td{
+    width: 75px;
+    &.name{
+      &~td{
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+        &:last-child{
+          padding-right: $box-padding;
+        }
+        select{
+          min-width: 75px;
+        }
+        .input-append{
+          & > a{
+            margin-right: $gap;
+            @extend %border-radius-none;
+          }
+        }
+        &.enabled{
+          select{
+            width:auto;
+            margin-right: $gap;
+          }
+        }
+      }
+    }
+    &.enabled{
+        background: rgba($color-positive,0.1);
+    }
+  }
+
+}

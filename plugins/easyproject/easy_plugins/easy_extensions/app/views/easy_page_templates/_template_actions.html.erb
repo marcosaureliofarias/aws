@@ -1,0 +1,14 @@
+<% template_params = { page_template_id: page_template.id,
+                       back_url: params[:back_url] || url_for({ page_id: page.id }) } %>
+
+<% if page.page_scope == 'user' %>
+  <%= link_to l(:label_template_to_selected_users), easy_page_layout_layout_from_template_selecting_users_path(template_params),
+              title: l(:title_template_to_selected_users) %>
+<% elsif page.page_scope == 'project' %>
+  <%= link_to l(:label_template_to_selected_projects), easy_page_layout_layout_from_template_selecting_projects_path(template_params),
+              title: l(:title_template_to_selected_projects) %>
+<% else %>
+  <%= link_to l(:title_easy_page_apply_template), easy_page_layout_layout_from_template_path(template_params),
+              title: l(:title_easy_page_apply_template) %>
+<% end %>
+<%= call_hook :view_easy_page_template_actions, { page: page, page_template: page_template } %>

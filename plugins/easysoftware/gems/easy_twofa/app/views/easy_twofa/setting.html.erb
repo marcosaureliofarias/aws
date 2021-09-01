@@ -1,0 +1,9 @@
+<%= title l('easy_twofa.plugin_name_long') %>
+
+<%= form_tag save_setting_easy_twofa_path do %>
+  <%= render 'easy_twofa/setting' %>
+
+  <div>
+    <%= submit_tag l(:button_save) %>
+  </div>
+<% end %>

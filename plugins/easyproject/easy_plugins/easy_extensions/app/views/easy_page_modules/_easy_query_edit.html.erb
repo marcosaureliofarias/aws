@@ -1,0 +1,161 @@
+<%
+  if !defined?(secondary_query)
+    secondary_query = false
+  end
+
+  settings['query_type'] ||= '2'
+  query ||= @easy_page_modules_data[block_name][:query]
+  epm_queries = epm_easy_queries(page_module, query.class, @project).map { |q| [q.name, q.id] }
+  original_block_name ||= block_name
+  presenter ||= EasyExtensions::EasyQueryHelpers::EasyQueryPresenter.new(query, self, settings: settings, modul_uniq_id: modul_uniq_id, block_name: original_block_name, page_module: page_module, user: user, options: { secondary_query: secondary_query })
+  query_params ||= settings
+%>
+
+  <div id="<%= modul_uniq_id -%>_accordion" class="easy-query-type-settings-container tabular">
+    <div class="easy-query-type-settings-container-static-attributes">
+
+      <h3><%= l(:label_issue_static_attributes_heading) %></h3>
+
+      <div data-to-serialize="true">
+        <%= hidden_field_tag 'edit', 'true' %>
+        <%= hidden_field_tag "#{block_name}[set_filter]", '1' %>
+        <% if page_params[:modal_edit] %>
+          <%= hidden_field_tag "#{block_name}[fields][]", '' %>
+          <%= hidden_field_tag 'back_url', params[:back_url] || page_params[:back_url] %>
+        <% end %>
+
+        <% if epm_queries.any? %>
+          <p>
+            <%= label_tag("#{modul_uniq_id}query_type_1", l("label_my_page_#{query.entity.name.downcase}_query_select", :default => l(:label_my_page_issue_query_select))) -%>
+            <span class="input-prepend">
+              <%= radio_button_tag "#{block_name}[query_type]", '1', settings['query_type'] != '2', :id => modul_uniq_id + 'query_type_1', :class => modul_uniq_id + 'content_switch' %>
+              <%= select_tag "#{block_name}[query_id]", options_for_select([[l(:actionview_instancetag_blank_option), '']] + epm_queries, settings['query_id'].to_i), :disabled => settings['query_type'] != '1', onchange: "EASY.utils.setNameToModuleHead(this)" -%>
+            </span>
+          </p>
+        <% end %>
+
+        <p>
+          <%= label_tag(modul_uniq_id + 'query_type_2', l("easy_page_module.#{query.entity.name.downcase}_query.adhoc_query", :default => l('easy_page_module.issue_query.adhoc_query'))) -%>
+          <span class="input-prepend">
+            <%= radio_button_tag("#{block_name}[query_type]", '2', settings['query_type'] == '2', :id => modul_uniq_id + 'query_type_2', :class => modul_uniq_id + 'content_switch') %>
+            <% query_name = if settings['query_name'].blank?
+                              l("easy_page_module.#{query.entity.name.downcase}_query.adhoc_query_default_text",
+                                default: l('easy_page_module.issue_query.adhoc_query_default_text'))
+                            else
+                              CGI::unescape(settings['query_name'])
+                            end %>
+            <% if settings['query_type'] != '2' %>
+                <%= text_field_tag("#{block_name}[query_name]", query_name,
+                                   disabled: true,
+                                   onchange: "EASY.utils.setNameToModuleHead(this)") %>
+            <% else %>
+              <%= page_module_settings_text_field_tag(page_module, %w[query_name],
+                                                      value: query_name,
+                                                      onchange: "EASY.utils.setNameToModuleHead(this)") %>
+            <% end %>
+          </span>
+        </p>
+
+        <% if settings['query_type'] == '2' %>
+          <hr/>
+          <div class="easy-query-output-list">
+            <%= presenter.outputs.render_edit_selects(:radio_button) %>
+          </div>
+        <% end %>
+
+        <% hide_row_limit_field = (settings['query_type'] == '2') && !(presenter.outputs.list? || presenter.outputs.tiles?) %>
+        <div class="list-row-limit toggle-output-switch" data-active="list tiles" style="<%= 'display: none;' if hide_row_limit_field %>">
+          <hr/>
+
+          <p>
+            <%= label_tag "#{block_name}[row_limit]", l(:label_my_page_results_row_count) %>
+            <%= number_field_tag("#{block_name}[row_limit]", (settings['row_limit'].presence || 10).to_i, size: 5, min: 0, max: page_module.max_row_limit) %>
+            <em class="help"><%= l(:text_page_module_max_row_limit, limit: page_module.max_row_limit) %></em>
+          </p>
+        </div>
+      </div>
+
+      <% if path = page_module.module_definition.additional_basic_attributes_path %>
+        <%= render :partial => path, :locals => {:block_name => block_name, :settings => settings} %>
+      <% end %>
+
+      <% if query.currency_columns? && EasyCurrency.activated.any? %>
+        <hr/>
+
+        <p class="currency">
+          <%= label_tag "#{block_name}_easy_currency_code", l(:field_currency) %>
+          <%= select_tag "#{block_name}[easy_currency_code]", options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, query.easy_currency_code), include_blank: true %>
+        </p>
+      <% end %>
+    </div>
+
+    <% if settings['query_type'] == '2' %>
+      <div id="<%= modul_uniq_id -%>filters" class="easy-query-filters-field in-a-inner-box">
+        <h3 class="easy-query-type-settings-container-filters"><%= l(:label_filter_plural) %></h3>
+        <%= render_with_fallback partial: 'filters', prefixes: query, locals: {query: query, modul_uniq_id: modul_uniq_id, block_name: block_name} %>
+      </div>
+
+      <%= render 'easy_page_modules/global_filters', modul_uniq_id: modul_uniq_id,
+                                                     block_name: block_name,
+                                                     page_params: page_params,
+                                                     query_params: query_params,
+                                                     query: query,
+                                                     page_module: page_module %>
+
+      <% presenter.outputs.each(:available) do |output| %>
+        <% next if output.key == 'tiles' %>
+        <div class="easy-query-output-container toggle-output-switch <%= output.key %>-options" data-active="<%= output.key %>" style="<%= 'display: none;' unless output.enabled? %>">
+
+          <h3><%= l(output.key, :scope => [:label_easy_query_output_options]) %></h3>
+          <div class="tabular" data-to-serialize="true">
+            <div id="<%= modul_uniq_id + '_' + output.key %>" class=" in-a-inner-box">
+              <%= output.render_edit_form %>
+            </div>
+          </div>
+
+        </div>
+      <% end %>
+      <%= render partial: 'easy_queries/settings_snapshot', locals: { query: query, modul_uniq_id: modul_uniq_id, block_name: block_name } if page_module.snapshot_supported? %>
+    <% end %>
+
+  </div>
+
+<script type="text/javascript">
+
+  before_submit_<%= modul_uniq_id.underscore -%> = function () {
+    if ($('#<%= modul_uniq_id %>query_type_2').is(":checked")) {
+      EASY.modalSelector.selectAllOptions('<%= modul_uniq_id %>selected_columns');
+    }
+  };
+
+  EASY.schedule.late(function () {
+    $(".<%= modul_uniq_id %>content_switch").change(function (evt) {
+      var targetUrl = "<%= update_my_page_module_view_path(page_module.uuid, project_id: query.project, template: page_module.is_a?(EasyPageTemplateModule) ? '1' : '0', block_name: block_name, set_filter: '1', back_url: params[:back_url], inline_edit: page_params[:inline_edit], with_container: false, modal_edit: page_params[:modal_edit]).html_safe %>";// + EASY.query.getEasyQueryFiltersForURL('<%= modul_uniq_id -%>')
+
+      var $module = $("#<%= modul_uniq_id %>");
+
+      $.post(targetUrl, $("div[data-to-serialize] input, div[data-to-serialize] select", $module).serialize(), function (data) {
+        $module.html(data);
+        toggleEasyQueryType($module.find('[id$="query_type_2"]'));
+        $module.find(".easy-page-module-form").attr('data-changed', true);
+      });
+    });
+
+    $("#<%= modul_uniq_id %> .output_switch").change(function (evt) {
+      var active_output = $(this).val();
+      if(active_output === 'tiles'){
+        active_output = 'list';
+      }
+      $("#<%= modul_uniq_id %>").find('.toggle-output-switch').each(function(){
+        var self = $(this);
+        self.toggle(self.data('active').indexOf(active_output) > -1);
+      });
+      $("#<%= modul_uniq_id %>").find('.easy_query_snapshot').toggle(<%=
+        presenter.outputs.available_outputs.select(&:displays_snapshot?).map(&:key).to_json.html_safe
+      -%>.includes(active_output));
+    });
+    if ($("#<%= modul_uniq_id %>output_tiles").is(':checked')) {
+      $("#<%= modul_uniq_id %>_accordion").find('.list-options').show();
+    }
+  });
+</script>

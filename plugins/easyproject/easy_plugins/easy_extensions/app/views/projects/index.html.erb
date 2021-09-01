@@ -1,0 +1,51 @@
+<% if @query.display_as_tree? %>
+  <div id="projects-index">
+    <%= render partial: 'easy_queries/easy_query_index', locals: { query: @query, easy_query_name: l(:label_project_index), show_free_search: true } %>
+    <% if @query.valid? %>
+      <% presenter = present(@query) %>
+      <% presenter.outputs.each do |o| %>
+        <% if o.key.to_s == 'list' %>
+          <div id="projects" class="project-tree">
+            <% if @projects.empty? %>
+              <%= content_tag(:p, l(:label_no_data), class: 'nodata') %>
+            <% else %>
+              <%= render partial: 'projects', locals: { query: @query, projects: @projects } %>
+            <% end %>
+          </div>
+
+          <% if @entity_pages %>
+            <span class="pagination" style="display:none;">
+              <%= pagination_links_full @entity_pages, @entity_count %>
+            </span>
+          <% end %>
+        <% else %>
+          <%= o.render_data %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <%= render @query, easy_query_name: project_heading(@project, l(:label_project_index)), options: { hascontextmenu: false } %>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= render_menu :projects_easy_page_layout_service_box %>
+
+  <% if params[:favorited] %>
+    <%= link_to(l(:button_show_all_projects), projects_path(set_filter: 0), class: 'icon icon-fav-off button') %>
+  <% else %>
+    <%= link_to(l(:button_show_favorite_projects), projects_path(set_filter: 1, favorited: 1), class: 'icon icon-fav button') %>
+  <% end %>
+
+  <%= call_hook(:view_projects_index_service_box_bottom, locals: { query: @query }) %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render partial: 'sidebar/saved_easyqueries_by_type', locals: { query_class: @query.class, project: @project } %>
+<% end %>
+
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag('projectindex', defer: true) %>
+<% end %>

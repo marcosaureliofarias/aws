@@ -1,0 +1,31 @@
+<tbody class="<%= dom_id(easy_entity_activity) %> entity-activity__item-wrapper">
+<tr class="<%= easy_entity_activity.tr_css_classes %>">
+  <td><%= format_object(User.current.user_time_in_zone(easy_entity_activity.start_time)) if easy_entity_activity.start_time %></td>
+  <td><%= format_object(easy_entity_activity.category) %></td>
+  <% if !easy_entity_activity.is_finished? && easy_entity_activity.planned? %>
+    <td><%= link_to '', easy_entity_activity_path(easy_entity_activity, easy_entity_activity: {is_finished: true}), remote: true, method: :patch, class: 'icon icon-calendar', title: l(:field_is_planned) %></td>
+  <% else %>
+    <td class="tick"><%= checked_image easy_entity_activity.is_finished? %></td>
+  <% end %>
+  <td class="entity-array">
+    <% easy_entity_activity.easy_entity_activity_attendees.to_a.sort_by(&:to_s).each do |attendee| %>
+      <span><%= attendee.entity&.visible? ? link_to_entity(attendee.entity) : '-' %></span>
+    <% end %>
+  </td>
+  <td class="easy-query-additional-ending-buttons">
+    <div class="ending-buttons-fixed">
+      <span>
+      <%= link_to('', edit_easy_entity_activity_path(easy_entity_activity), :class => 'icon-edit xl-icon', title: l(:button_edit), remote: true) %>
+      </span>
+      <span>
+      <%= link_to('', easy_entity_activity, :class => 'icon-del xl-icon', title: l(:button_delete), method: :delete, :data => {:confirm => l(:text_are_you_sure)}, remote: true) %>
+    </span>
+    </div>
+  </td>
+</tr>
+<% if easy_entity_activity.description.present? %>
+  <tr class="entity-activity__item--desc <%= easy_entity_activity.tr_css_classes %>">
+    <td colspan="5"><%= simple_format_without_paragraph easy_entity_activity.description %></td>
+  </tr>
+<% end %>
+</tbody>

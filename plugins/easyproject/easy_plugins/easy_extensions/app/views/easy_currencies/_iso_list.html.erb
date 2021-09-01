@@ -1,0 +1,30 @@
+<h3><%= l(:easy_curremcy_currency_to_add) %></h3>
+
+<% if @limit_hit %>
+  <div class="warning">
+    <%= l(:easy_currency_activated_limit_warning, limit: EasyCurrency::ACTIVATED_CURRENCY_LIMIT) %>
+  </div>
+<% end %>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th><%= EasyCurrency.human_attribute_name(:name) -%></th>
+    <th><%= EasyCurrency.human_attribute_name(:iso_code) -%></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% EasyCurrency.get_currency_list.each do |easy_currency| %>
+    <tr>
+      <td><%= easy_currency["CcyNm"] -%></td>
+      <td><%= easy_currency["Ccy"] -%></td>
+      <td class="buttons">
+        <% unless @limit_hit %>
+          <%= link_to(l(:button_add), easy_currencies_path(easy_currency: {name: easy_currency["CcyNm"], iso_code: easy_currency["Ccy"], digits_after_decimal_separator: easy_currency["CcyMnrUnts"]}, :back_url => original_url), :class => 'icon icon-add', :title => l(:button_add), method: :post) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

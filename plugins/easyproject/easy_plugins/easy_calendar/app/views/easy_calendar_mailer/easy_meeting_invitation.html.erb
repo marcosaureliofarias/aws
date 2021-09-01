@@ -1,0 +1,49 @@
+<% title = l(:text_meeting_created, :author => h(@easy_meeting.author), :name => h(@easy_meeting.name)) %>
+
+<h1>
+    <% if @external %>
+    	<%= title %>
+    <% else %>
+      <%= link_to(title, easy_meeting_url(@easy_meeting)) %>
+    <% end -%>
+</h1>
+
+<div class="attributes-wrapper">
+  <table class="attributes">
+    <tr class="spacer"><td colspan="4"></td></tr>
+    <tr>
+      <th class="label"><%= l(:field_start_time) %>:</th><td class="value"><%= format_date(@user.user_time_in_zone(@easy_meeting.start_time).try(:to_date)) %> <%= @user.user_time_in_zone(@easy_meeting.start_time).try(:strftime, '%H:%M') unless @easy_meeting.all_day? %></td>
+      <th class="label"><%= l(:field_end_time) %>:</th><td class="value"><%= format_date(@user.user_time_in_zone(@easy_meeting.end_time).try(:to_date)) %> <%= @user.user_time_in_zone(@easy_meeting.end_time).try(:strftime, '%H:%M') unless @easy_meeting.all_day? %></td>
+    </tr>
+    <tr class="spacer"><td colspan="4"></td></tr>
+  </table>
+</div>
+<% if (description = textilizable(@easy_meeting, :description, {:only_path => false})).present? %>
+  <h2><%= l(:label_meeting_agenda) %>:</h2>
+  <div class="description">
+    <%= description -%>
+  </div>
+<% end -%>
+<% if @invited_user %>
+    <%  content_for :email_actions do %>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="center">
+              <table border="0" cellspacing="5" cellpadding="0" class="actionButtons">
+                <tr>
+                  <td align="center">
+                    <%= link_to(l(:button_meeting_accept), accept_easy_meeting_url(@easy_meeting)) %>
+                  </td>
+                  <td align="center" class="negative">
+                    <%= link_to(l(:button_meeting_decline), decline_easy_meeting_url(@easy_meeting)) %>
+                  </td>
+                  <%= call_hook(:view_mailer_easy_meeting_invitation_actions, easy_meeting: @easy_meeting, invited_user: @invited_user, external: @external) %>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+    <% end %>
+<% end -%>
+
+<%= call_hook(:view_mailer_easy_meeting_invitation_html_bottom, easy_meeting: @easy_meeting, invited_user: @invited_user, external: @external) %>

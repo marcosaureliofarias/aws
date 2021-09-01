@@ -1,0 +1,113 @@
+<div class="easy-entity-details">
+  <% if @project.status != Project::STATUS_PLANNED %>
+    <div id="project-settings-container" class="hide-when-print">
+      <h3><%= l(:label_quick_planner_project_settings) %></h3>
+      <div id="project-settings">
+        <%= form_for @project, :url => project_path(@project), :html => {:method => :put, :id => 'project-settings-form', :class => 'notice warning', :remote => true} do |f| %>
+          <label class="checkbox inline">
+            <%= l(:field_is_planned) %>
+            <%= f.check_box :is_planned %>
+          </label>
+            <em class="small"><%= l(:text_project_is_planned) %></em>
+        <% end -%>
+      </div>
+    </div>
+  <% end -%>
+  <div id="calculation_container">
+    <div id="discount_editable" style="display:none;">
+      <div id="discount_fields">
+        <%= text_field_tag '', nil, :class => 'discount-text', :id => nil, :size => 20 %>
+        <label><%= radio_button_tag '', 1, nil, :class => 'discount-radio1', :id => nil %> %</label>
+        <label><%= radio_button_tag '', 0, nil, :class => 'discount-radio2', :id => nil %> <%= l(:'calculation.price') %></label>
+      </div>
+    </div>
+
+    <div id="unit_editable" style="display:none;">
+      <div id="unit_fields" class="nowrap">
+        <%= text_field_tag '', nil, :class => 'value-text', :id => nil, :size => 12, :placeholder => l('calculation.count') %>
+        <%= text_field_tag '', nil, :class => 'unit-text', :id => nil, :size => 12, :placeholder => l('calculation.units') %>
+      </div>
+    </div>
+    <%= render :partial => 'header' %>
+
+    <div id="easy_calculation_top_desc_container">
+      <div class="kicker">
+        <%= textilizable @easy_calculation.top_description %>
+      </div>
+      <div class="toolbar hide-when-print">
+        <%= link_to(l(:button_edit_calculation_description), easy_calculation_description_path(@project, {:position => 'top'}), :remote => true, :class => 'icon icon-edit button') %>
+      </div>
+    </div>
+    <div class="autoscroll">
+      <table id="calculation" class="list reorder">
+      <thead>
+        <tr>
+          <% if @calculation.show_phases? %>
+            <th><%= l('calculation.phase') %></th>
+          <% end -%>
+          <th class='hide-when-print'></th>
+          <th><%= l('calculation.item') %></th>
+          <th class='hide-when-print'><%= l('calculation.activity') %></th>
+          <th class="text-right"><%= l('calculation.units') %></th>
+          <th class="text-right"><%= l('calculation.rate') %></th>
+          <th class="text-right <%= 'hide-when-print' if @calculation.solution_discount_sum.zero? %>"><%= l('calculation.absolute_discount') %></th>
+          <th class="text-right"><%= l('calculation.price') %></th>
+          <th class='hide-when-print'></th>
+        </tr>
+      </thead>
+
+      <%= render :partial => 'body' %>
+
+      <tfoot>
+        <tr class="group <%= 'hide-when-print' if @calculation.discount_amount.zero? %>">
+          <th class='hide-when-print'></th>
+          <th class='hide-when-print'></th>
+          <th class="<%= 'hide-when-print' if @calculation.solution_discount_sum.zero? %>"></th>
+          <th class='calculation-label' colspan="<%= @calculation.show_phases? ? 4 : 3 %>">
+            <% if @calculation.discount_percent.try(:>, 0) %>
+              <%= l('calculation.discount', :percent => @calculation.discount_percent) %>
+            <% else %>
+              <%= l('calculation.absolute_discount') %>
+            <% end -%>
+          </th>
+          <td class="text-right">
+            <span class="calculation-project-discount-editable"
+                  data-url="<%= project_path(@calculation.project, :format => 'json') %>"
+                  data-value='<%= @calculation.project.calculation_discount %>,<%= @calculation.discount_percent? %>'
+                  data-name='project[calculation_discount],project[calculation_discount_is_percent],project[calculation_discount_is_percent]'>
+              <%= format_easy_calculation_price(-@calculation.discount_amount, @calculation.project) %>
+            </span>
+          </td>
+          <th class='hide-when-print'></th>
+        </tr>
+        <tr class="group">
+          <th class='hide-when-print'></th>
+          <th class='hide-when-print'></th>
+          <th class="<%= 'hide-when-print' if @calculation.solution_discount_sum.zero? %>"></th>
+          <th class='calculation-label' colspan="<%= @calculation.show_phases? ? 4 : 3 %>"><%= l('calculation.total') %></th>
+          <td class="text-right"><%= format_easy_calculation_price(@calculation.discounted_price_sum, @calculation.project) %></td>
+          <th class='hide-when-print'></th>
+        </tr>
+      </tfoot>
+    </table>
+    </div>
+    <div id="easy_calculation_bottom_desc_container"><br/>
+      <%= textilizable @easy_calculation.bottom_description %>
+      <div class="toolbar hide-when-print">
+        <%= link_to(l(:button_edit_calculation_description), easy_calculation_description_path(@project, {:position => 'bottom'}), :remote => true, :class => 'icon icon-edit button') %>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= call_hook(:easy_calculation_exports_bottom, :project => @project, :calculation => @calculation) %>
+  <%= call_hook(:easy_calculation_actions_bottom, :project => @project, :calculation => @calculation) %>
+<% end -%>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_calculation' %>
+  <%= javascript_include_tag 'easy_calculation', defer: true %>
+<% end -%>

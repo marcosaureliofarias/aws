@@ -1,0 +1,94 @@
+---
+ru:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Есть ещё один табель учёта
+                времени за этот период
+  button_copy_easy_time_sheet: Скопировать строки в новый лист
+  button_easy_timesheet_by_easy_query: Табели времени по сохранённому фильтру
+  button_easy_timesheet_delete_with_time_entries: Удалить строку и затраченное время
+  button_easy_timesheet_delete_without_time_entries: Удалить только строку
+  button_easy_timesheets_approve: Утвердить
+  button_easy_timesheets_lock: Заблокировать
+  button_easy_timesheets_new_row: Новая строка
+  button_easy_timesheets_reject: Отклонить
+  button_easy_timesheets_unlock: Разблокировать
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Личная ведомость – Табели учёта времени
+        description: Просмотр табелей учёта времени
+  easy_query:
+    name:
+      easy_timesheet_query: Табели учёта времени
+  easy_timesheets_date_must_be_first_day_of_week: Дата должна приходиться на первый
+    день недели. (%{day})
+  easy_timesheets_periods:
+    day: Еженедельно
+    month: Ежемесячно
+    week: Ежемесячно
+  easy_timesheets_plugin_name: Табели учёта времени
+  error_timesheet_invalid_time_entries: 'Невозможно создать табель из-за неправильных
+    записей времени: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: Настраиваемое поле сверхурочных
+    label_new_monhly_timesheet: Новый табель за месяц
+    label_overtime: Сверхурочные
+    label_set_cf_overtime_id_in_rys_plugins: Функция расчёта сверхурочных активна.
+      Выберите настраиваемое поле сверхурочных %{link}.
+  field_easy_timesheet_period: Период
+  heading_easy_timesheets_edit: Редактировать табель
+  heading_easy_timesheets_new: Создать недельный табель времени
+  heading_easy_timesheets_show: Табель учёта времени с %{start_date} по %{end_date}
+  label_easy_timesheet: Табель учёта времени
+  label_easy_timesheet_approved: Утверждено?
+  label_easy_timesheet_approved_by: Утверждено пользователем
+  label_easy_timesheet_end_date: Дата окончания
+  label_easy_timesheet_lock_description: Причина утверждения/отклонения
+  label_easy_timesheet_lock_prompt: Причина утверждения
+  label_easy_timesheet_locked_at: Утверждено/отклонено
+  label_easy_timesheet_rejected_by: Отклонено пользователем
+  label_easy_timesheet_unlock_prompt: Причина  отклонения
+  label_easy_timesheets: Табели учёта времени
+  label_enable_timesheet_over_time: Активируйте функцию сверхурочной работы
+  label_enabled_timesheet_periods: Активные периоды
+  label_filter_group_easy_timesheet_query: Табель учёта времени
+  notice_easy_timesheet_both_periods: Если выбрать оба периода, некоторые записи могут
+    перепутаться или работать некорректно в связи с наложением дат.
+  notice_extended_timesheet_period_not_enabled: Табель учёта времени за период %{period}
+    неактивен
+  permission_create_easy_timesheets_for_other_user: Создавать табели времени для других
+    пользователей
+  permission_edit_easy_timesheets: Редактировать табели учёта времени
+  permission_edit_own_easy_timesheets: Редактировать свои табели учёта времени
+  permission_view_easy_timesheets: Просматривать табели учёта времени
+  project_module_easy_timesheets: Табели
+  text_easy_timesheet_destroy_cell_are_you_sure: Вы точно хотите удалить затраченное
+    время?
+  text_easy_timesheet_destroy_row_are_you_sure: Вы собираетесь удалить строку в табеле
+    учёта времени. Затраченное время из этой строки можно не удалять. Как вы хотите
+    поступить?
+  text_easy_timesheet_prompt_text: Добавить время
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: Дата начала задаётся
+    автоматически как начало выбранной недели
+  text_time_sheet_copy_from: Строки будут скопированы из табеля времени %{entity}
+  text_warning_after_time_sheet_copied: Если вы не сохраните хотя бы одну ячейку в
+    строке, то вся строка не сохранится.
+  title_easy_timesheet_destroy: Удалить табель учёта времени
+  title_easy_timesheet_edit_with_period: 'Редактировать табель за период: %{period}'
+  title_easy_timesheet_new_with_period: Создать табель учёта времени за период %{period}
+  title_easy_timesheet_show: Показать табель учёта времени
+  title_next_time_sheet: Показать следующий табель пользователя %{user}
+  title_previous_time_sheet: Показать предыдущий табель пользователя %{user}
+  validation_entry_already_exists: Табель учёта времени за период с (%{start_date})
+    по (%{end_date}) уже существует
+  validation_greater_than_start_date: Дата завершения (%{end_date}) должна быть позже
+    даты начала (%{start_date})
+  validation_timesheet_cant_destroy_time_entries: Не удалось удалить некоторые записи
+    времени
+  validation_week_period: Период с (%{start_date}) по (%{end_date}) должен соответствовать
+    одной неделе

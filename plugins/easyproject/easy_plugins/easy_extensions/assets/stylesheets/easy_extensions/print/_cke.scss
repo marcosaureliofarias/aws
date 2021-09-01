@@ -1,0 +1,23 @@
+.cke_show_borders table.cke_show_border, .cke_show_borders table.cke_show_border > tr > td, .cke_show_borders table.cke_show_border > tr > th, .cke_show_borders table.cke_show_border > tbody > tr > td, .cke_show_borders table.cke_show_border > tbody > tr > th, .cke_show_borders table.cke_show_border > thead > tr > td, .cke_show_borders table.cke_show_border > thead > tr > th, .cke_show_borders table.cke_show_border > tfoot > tr > td, .cke_show_borders table.cke_show_border > tfoot > tr > th{
+  border: none !important;
+}
+.cke_anchor,.wiki-anchor{
+  display: none !important;
+}
+.cke{
+  &_top,&_bottom{
+    display: none;
+  }
+  &_contents{
+    border: none;
+  }
+  &_chrome{
+    background: white !important;
+    right: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+    text-align: center !important;
+    box-shadow: none;
+    border: 1px solid $color-print;
+  }
+}

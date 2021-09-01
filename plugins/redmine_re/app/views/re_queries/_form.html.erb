@@ -1,0 +1,117 @@
+<% content_for :body_bottom do %>
+  <%= javascript_include_tag 'query_form', defer: true %>
+  <%= late_javascript_tag do %>
+    // Auto-assign collapse fieldset behavior
+    $('fieldset.collapsible legend').click(function() { toggleFieldset(this); });
+
+    // Prepare fields
+    prepareFields();
+
+    // Sink artifacts mode
+    determineOtherFieldsVisibility('#re_query_sink_ids_mode');
+    determineOtherFieldsVisibility('#re_query_issue_ids_mode');
+
+    // Make specific fields suggestible
+    $('select.artifacts').suggestible(suggestibleOptions({
+      suggestionsUrl: '<%= suggest_artifacts_re_queries_path(@project.id) %>',
+      suggestionsLayout: function(helpers) {
+      return new ArtifactsSuggestBoxItems(helpers);
+    },
+    bitsUrl: '<%= artifacts_bits_re_queries_path(@project.id) %>'
+    }));
+
+    $('select.issues').suggestible(suggestibleOptions({
+      suggestionsUrl: '<%= suggest_issues_re_queries_path %>',
+      suggestionsLayout: function(helpers) {
+      return new IssuesSuggestBoxItems(helpers);
+    },
+    bitsUrl: '<%= issues_bits_re_queries_path(@project.id) %>'
+    }));
+
+    $('select.users').suggestible(suggestibleOptions({
+      suggestionsUrl: '<%= suggest_users_re_queries_path(@project.id) %>',
+      suggestionsLayout: function(helpers) {
+      return new UsersSuggestBoxItems(helpers);
+    },
+    bitsUrl: '<%= users_bits_re_queries_path(@project.id) %>'
+    }));
+
+    <% if @found_artifacts and @found_artifacts.count > 0 %>
+      $('fieldset.collapsible.filters, fieldset.collapsible.filter_settings')
+      .addClass('collapsed').children('div').hide();
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= form_for @query, :url => re_query_form_url(@query, mode), :html => { :class => 'filters' } do |f| %>
+<%= hidden_field_tag(:id, @project.id) %>
+  <% if mode == :persist %>
+    <fieldset class="collapsible filter_settings">
+      <legend>Settings</legend>
+      <div>
+        <div class="group header">
+          <div class="fields">
+            <%= render 'form_persistable_fields', :form => f %>
+          </div>
+        </div>
+        <!-- Buttons -->
+        <div class="group buttons">
+          <% if mode == :apply %>
+            <%= submit_tag l(:re_filter_apply) %>
+          <% else %>
+            <%= submit_tag l(:re_filter_save) %>
+          <% end %>
+        </div>
+      </div>
+    </fieldset>
+  <% end %>
+
+  <fieldset class="collapsible filters">
+    <legend>Filters</legend>
+    <div>
+
+      <!-- Source Artifact -->
+      <div class="group">
+        <div class="label"><%= l(:re_filter_source_artifacts) %></div>
+        <div class="fields">
+          <%= render 'form_source_artifact_fields', :form => f %>
+        </div>
+      </div>
+
+      <!-- Sink Artifact -->
+      <div class="group">
+        <div class="label"><%= l(:re_filter_sink_artifacts) %></div>
+        <div class="fields">
+          <%= render 'form_sink_artifact_fields', :form => f %>
+        </div>
+      </div>
+
+      <!-- Issues -->
+      <div class="group">
+        <div class="label"><%= l(:re_filter_related_issues) %></div>
+        <div class="fields">
+          <%= render 'form_issue_fields', :form => f %>
+        </div>
+      </div>
+
+      <!-- Order -->
+      <div class="group order">
+        <div class="label"><%= l(:re_filter_order) %></div>
+        <div class="fields">
+          <%= render 'form_order_fields', :form => f %>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="group buttons">
+        <% if mode == :apply %>
+          <%= submit_tag l(:re_filter_apply) %>
+        <% else %>
+          <%= submit_tag l(:re_filter_save) %>
+        <% end %>
+      </div>
+
+    </div>
+  </fieldset>
+
+<% end %>

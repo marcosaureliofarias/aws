@@ -1,0 +1,27 @@
+span.private {
+  //@include badge-negative;
+}
+.badge{
+  @extend %badge;
+  &-positive {
+    @extend %badge-positive;
+  }
+  &-negative {
+    @extend %badge-negative;
+  }
+  &-important {
+    @extend %badge-important;
+  }
+  &-notice {
+    @extend %badge-notice;
+  }
+  &-muted {
+    @extend %badge-muted;
+  }
+  &-main {
+    @extend %badge-maincolor;
+  }
+  &-purple {
+    @extend %badge-purple;
+  }
+}

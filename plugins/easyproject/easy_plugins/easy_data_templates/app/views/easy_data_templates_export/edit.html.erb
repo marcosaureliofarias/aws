@@ -1,0 +1,23 @@
+<div id="data-template-container">
+  <h2><%= l(:label_easy_data_template_edit) %></h2>
+
+  <%= labelled_form_for(@datatemplate, :url => {:controller => 'easy_data_templates_export', :action => 'update', :id => @datatemplate}, :html => {:id => "easy_data_templates_form", :method => :put, :class => 'tabular form-actions'}) do |f| %>
+    <%= error_messages_for @datatemplate %>
+
+    <%= render :partial => 'form', :locals => {:f => f}  %>
+
+    <div class="form-actions"><%= f.submit l(:button_update), :class => 'button-positive' %></div>
+  <% end %>
+
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= render :partial => 'easy_data_templates/sidebar_buttons', :locals => {:datatemplate => @datatemplate} %>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_data_templates', :plugin => 'easy_data_templates' %>
+  <%= javascript_include_tag 'easy_data_templates', :plugin => 'easy_data_templates' %>
+<% end %>

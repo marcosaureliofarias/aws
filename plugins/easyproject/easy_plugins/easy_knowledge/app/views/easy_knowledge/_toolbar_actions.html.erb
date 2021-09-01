@@ -1,0 +1,82 @@
+<script type="text/javascript">
+//<![CDATA[
+  EASY.schedule.require(function (registerDropAction) {
+
+  registerDropAction('user', {
+    url: '<%= j assign_entities_easy_knowledge_stories_path(:entity_type => 'User', :format => 'json') %>',
+    label: '<%= j l(:button_easy_knowledge_stories_assign_to_user) %>',
+    getAttributes: function (zoneData, itemData) {
+        return {
+            'recipients[]': zoneData.userId,
+            'ids[]': itemData.easyKnowledgeStoryId
+        };
+    }
+  });
+  registerDropAction('project', {
+    url: '<%= j assign_entities_easy_knowledge_stories_path(:entity_type => 'Project', :format => 'json') %>',
+    label: '<%= j l(:button_easy_knowledge_stories_assign_to_project) %>',
+    getAttributes: function (zoneData, itemData) {
+      return {
+        'entity_ids[]': zoneData.projectId,
+        'ids[]': itemData.easyKnowledgeStoryId
+      };
+    }
+  });
+  registerDropAction('issue', {
+    url: '<%= j assign_entities_easy_knowledge_stories_path(:entity_type => 'Issue', :format => 'json') %>',
+    label: '<%= j l(:button_easy_knowledge_stories_assign_to_issue) %>',
+    ajaxParams: {complete: function() {
+      window.location.reload();
+    }},
+    getAttributes: function (zoneData, itemData) {
+      var params = {'entity_ids[]': (zoneData.issueId || zoneData.entityId), 'ids[]': itemData.easyKnowledgeStoryId};
+      return params
+    }
+  });
+  registerDropAction('easy_knowledge_category', {
+    url: '<%= j assign_entities_easy_knowledge_stories_path(:entity_type => 'EasyKnowledgeCategory', :format => 'json') %>',
+    label: '<i class="icon-plus"></i>  <%= j l(:button_easy_knowledge_stories_assign_to_easy_kb_category) %>',
+    getAttributes: function (zoneData, itemData) {
+      return {
+        'entity_ids[]': zoneData.easyKnowledgeCategoryId,
+        'ids[]': itemData.easyKnowledgeStoryId
+      };
+    }
+  });
+  registerPanelHandlerTarget({
+    containerName: 'easy_knowledge_toolbar_container',
+    easyServicebarTrigger: '#easy_knowledge_toolbar_trigger',
+    allowedEntity: function(entity) {
+      return $.inArray(entity.toLowerCase(), ['issue', 'journal']) != -1;
+    },
+    handlerAllowed: function(handler) {
+      return (handler.data().entityType == 'Issue' || handler.data().entityType == 'Journal');
+    },
+    dataAttributes: function(handler) {
+      var data = {"easy_knowledge_story": {"name": (handler.data().entityType == 'Journal' ? $("h2.issue-detail-header").text() : handler.text()), "entity_type": handler.data().entityType, "entity_id": handler.data().entityId}}
+      return {
+        "title": "<%=j l(:title_easy_panel_handler) %>",
+        "data-action": "<%=j new_easy_knowledge_story_path(:format => 'js') %>",
+        "data-new-easy-knowledge-story": $.param(data)
+      }
+    },
+    connectToSortable: function() {return EASY.knowledge.initDroppable().selector}
+  });
+  EASY.knowledge.easyKnowledgeToolbarLocalize = function () {
+    return {
+      sortablePlaceholder: '<%=j l(:label_easy_knowledge_new_story) %>'
+    }
+  }
+
+  <% if @unread_easy_knowledge_stories && @unread_easy_knowledge_stories.any? %>
+    $("#easy_knowledge_toolbar_trigger").addClass("change-color-event");
+    $("#easy_knowledge_toolbar_trigger").click(function(){
+      $(this).removeClass("change-color-event");
+    });
+  <% end %>
+  //]]>
+  }, function () {
+    return EASY.knowledge && EASY.knowledge.registerDropAction;
+  });
+</script>
+

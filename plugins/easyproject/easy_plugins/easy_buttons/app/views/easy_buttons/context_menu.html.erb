@@ -1,0 +1,8 @@
+<ul>
+  <li>
+    <%= context_menu_link l(:button_delete), bulk_destroy_easy_buttons_path(ids: @easy_buttons.map(&:id), back_url: back_url),
+                                             method: :delete,
+                                             data: { confirm: l(:text_are_you_sure) },
+                                             class: 'icon icon-del' %>
+  </li>
+</ul>

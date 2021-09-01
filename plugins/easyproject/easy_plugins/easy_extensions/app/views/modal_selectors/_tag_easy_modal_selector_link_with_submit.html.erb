@@ -1,0 +1,58 @@
+<%= form_tag(form_url, form_options) do %>
+  <div id="<%= field_id -%>-form-hook-hiddens"></div>
+  <div id="<%= field_id -%>-form-hiddens"></div>
+<% end -%>
+
+<%= link_to(trigger_options[:name].to_s, "javascript:void(0)", trigger_options[:html]) -%>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    window.<%=raw "beforeCloseModalSelectorWindow_#{field_id}" %> = function(){
+      var fieldForm = $('#<%= field_id -%>-form')[0];
+      var modalHookForm = $('#<%= field_id -%>-modal-hook-form');
+
+      $('#ajax-indicator').show();
+      EASY.modalSelector.copySelectedModalEntities("<%= field_id -%>-modal-selected-values-container", "<%= field_id -%>-form-hiddens");
+
+      if (fieldForm.action.indexOf('?') >= 0) {
+        fieldForm.action = fieldForm.action + '&' + modalHookForm.serialize();
+      }
+      else {
+        fieldForm.action= fieldForm.action + '?' + modalHookForm.serialize();
+      }
+      $(fieldForm).submit();
+    };
+
+    $("#<%= trigger_options[:html][:id] -%>").click(function(event) {
+      $.post("<%=j url.html_safe %>&" + $(<%=raw js_serialize_elements_collection %>).serialize(), {'selected_values': <%= raw selected_values.keys.map(&:to_s) %>}, function(data) {
+        if($('#easy_modal').length === 0)
+          $("#ajax-modal").parent().append($("<div/>").attr({id: "easy_modal"}).hide());
+        var modal = $('#easy_modal');
+        modal.html(data);
+
+        if ($("#selected_columns")[0]) {
+          EASY.modalSelector.selectAllOptions("selected_columns");
+        }
+        EASY.modalSelector.showEasyModal(function() {
+          return ['<%=j(url).html_safe -%>&' + $('#modal_selector_query_form, .modal-selected-values form').serialize() + '&page=', ''];
+          });
+        var btns = [];
+        var show_save_button = '<%= !trigger_options[:hide_main_submit_button] %>';
+        if (show_save_button == 'true') {
+          btns.push({text: '<%=j options[:button_selector_assign_label] || l(:button_save) -%>',
+                   click: function() {EASY.modalSelector.saveAndCloseModal('<%= field_id -%>')},
+                   'class': 'button-positive'});
+        }
+        btns.push({text: '<%=j l(:button_close) -%>',
+                 click: function() {$(this).dialog('close');},
+                 'class': 'button'});
+        <%= call_hook(:view_easy_modal_selector_link_additional_buttons, {:field_id => field_id, :field_name => field_name, :entity_type => entity_type, :options => options}) %>
+
+        modal.dialog("option", "title", $(event.target).text());
+        modal.dialog("option","buttons", btns);
+        recalculateModalHeight(modal, $('.ui-dialog-buttonpane'));
+      });
+    });
+  });
+
+</script>

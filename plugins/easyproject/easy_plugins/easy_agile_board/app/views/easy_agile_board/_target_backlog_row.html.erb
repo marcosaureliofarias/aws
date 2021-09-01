@@ -1,0 +1,12 @@
+<div>
+  <label class="target-backlog-label"><%= l(:label_save_to) %>:</label>
+  <label class="inline target-backlog-radio">
+    <%= radio_button_tag 'target_backlog', 'sprint_backlog', true %>
+    <%= l(:label_agile_backlog) %>
+  </label>
+  <label class="inline target-backlog-radio">
+    <%= radio_button_tag 'target_backlog', 'project_backlog' %>
+    <%= l(:label_project_backlog) %>
+  </label>
+  <hr/>
+</div>

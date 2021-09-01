@@ -1,0 +1,15 @@
+<%= render @query, :easy_query_name => l(:label_easy_versions), :options => {:back_url => easy_versions_path}, :form_options => {:free_search_options => {:free_search_element_to_update => 'versions', :free_search_url => easy_versions_path}} %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <% if User.current.allowed_to?(:manage_global_versions, @project, :global => true) %>
+    <%= link_to l(:label_version_new), new_easy_version_path, :class => 'button-positive icon icon-add' %>
+  <% end %>
+<% end -%>
+
+<% content_for(:sidebar) do %>
+  <%= render(:partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project}) %>
+<% end %>
+
+<%= context_menu({:controller =>'context_menus', :action => 'versions', :back_url => easy_versions_path}) -%>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="<%= current_language %>">
+<%= render partial: 'layouts/base_html_header' %>
+<body class="<%= body_css_classes %> status-307 nosidebar">
+<div id="wrapper">
+  <div id="wrapper2">
+    <div id="wrapper3">
+      <div id="main">
+        <div id="content">
+          <div class="easy-content-page">
+            <table id="login_form_container">
+              <tr>
+                <td>
+                  <i class="icon icon-move red" style="font-size: 48pt"></i>
+                  <h2><%= l('move_in_progress_page.notice') %></h2>
+                  <p><%= l('move_in_progress_page.heading') %></p>
+                  <div id="login-form">
+                    <hr>
+                    <h3><%= l 'move_in_progress_page.subheading' %></h3>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+

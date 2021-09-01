@@ -1,0 +1,11 @@
+$("#<%= "#{@block_name}-contact-type-attributes" %>").html("<%= j(render partial: 'easy_page_modules/contacts/easy_contact_create_new_form_attributes',
+  locals: {
+    block_name: @block_name,
+    easy_contact: @easy_contact,
+    shown_fields: @shown_fields,
+    only_selected: @only_selected,
+    custom_field_values: @custom_field_values,
+    shown_custom_field_ids: @shown_custom_field_ids
+    }) %>");
+
+initEasyAutocomplete();

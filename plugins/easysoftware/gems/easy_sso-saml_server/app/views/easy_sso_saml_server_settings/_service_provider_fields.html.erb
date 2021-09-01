@@ -1,0 +1,15 @@
+<div class="nested-fields box">
+  <p>
+    <%= f.label :identifier %>
+    <%= f.text_field :identifier %>
+  </p>
+  <p>
+    <%= f.label :metadata_url %>
+    <%= f.text_field :metadata_url %>
+  </p>
+  <p>
+    <%= f.label :acs_url %>
+    <%= f.text_field :acs_url %>
+  </p>
+  <%= link_to_remove_association l(:button_remove_sp, scope: :easy_sso_saml_server), f, class: 'icon icon-remove' %>
+</div>

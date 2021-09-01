@@ -1,0 +1,20 @@
+<% type ||= 'start_date' %>
+<p>
+  <label><%= l("field_#{type}".to_sym) %></label>
+  <span class="bulk-type-right-group">
+    <span class="bulk_type_setting block">
+      <%= radio_button_tag "issue[#{type}_type]", 'unchanged', true, :onchange => "$('#issue_#{type}_change').attr('value', '');$('#issue_#{type}_change_by').attr('value', '');" %>
+      <label class="bulk-type-label-1 inline" for="issue_<%= type %>_type_unchanged"><%= l(:label_no_change) %></label>
+    </span>
+    <span class="bulk_type_setting block">
+      <%= radio_button_tag "issue[#{type}_type]", 'change', false, data: {disables: "#issue_#{type}_change_by"} %>
+      <label class="bulk-type-label-2 inline" for="issue_<%= type %>_type_change"><%= l(:label_change_to) %></label>
+      <%= date_field_tag "issue[#{type}]", '', :id => "issue_#{type}_change", :size => 10, :onchange => "$('#issue_#{type}_type_change').click();" %><%= calendar_for("issue_#{type}_change") %>
+    </span>
+    <span class="bulk_type_setting block">
+      <%= radio_button_tag "issue[#{type}_type]", 'change_by', false, data: {disables: "#issue_#{type}_change"} %>
+      <label class="bulk-type-label-2 inline" for="issue_<%= type %>_type_change_by"><%= l(:label_move) %></label>
+      <%= number_field_tag "issue[#{type}]", '', :id => "issue_#{type}_change_by", :size => 2, :onchange => "$('#issue_#{type}_type_change_by').prop('checked',true);" %>&nbsp;<label class="no-css"><%= l(:label_days) %></label>
+    </span>
+  </span>
+</p>

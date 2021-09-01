@@ -1,0 +1,1 @@
+<%= link_to l(:label_easy_contact_group), polymorphic_path([@project, :easy_contact_groups]), :class => 'button  icon icon-group' if User.current.allowed_to_globally?(:manage_easy_contact_groups, {})  -%>

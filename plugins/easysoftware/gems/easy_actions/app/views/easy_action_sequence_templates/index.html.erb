@@ -1,0 +1,16 @@
+<%= easy_breadcrumb([
+                   link_to(l(:heading_easy_action_sequence_templates, scope: :easy_actions),
+                           easy_action_sequence_templates_path,
+                           title: l(:heading_easy_action_sequence_templates, scope: :easy_actions))
+               ]) %>
+
+<%= render template: 'easy/redmine/basic/index' %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:heading_new_easy_action_sequence_template, scope: :easy_actions),
+              new_easy_action_sequence_template_path,
+              title: l(:heading_new_easy_action_sequence_template, scope: :easy_actions),
+              class: 'icon icon-add button-positive') %>
+<% end %>

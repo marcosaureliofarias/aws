@@ -1,0 +1,61 @@
+<%= title @test_case %>
+<div class="issue">
+  <div class="attributes">
+    <%= issue_fields_rows do |rows| %>
+      <% rows.left ::TestCase.human_attribute_name(:name), @test_case.name %>
+      <% rows.right ::TestCase.human_attribute_name(:author_id), link_to_user(@test_case.author) %>
+    <% end %>
+    <%= test_case_render_half_width_custom_fields_rows(@test_case, except: ['test_case_expected_result']) %>
+    <%= call_hook(:view_test_cases_show_details_bottom, :test_case => @test_case) %>
+  </div>
+
+  <% if @test_case.scenario.present? %>
+    <hr />
+    <div class="description">
+      <p><strong><%= ::TestCase.human_attribute_name(:scenario) %></strong></p>
+      <div class="wiki">
+        <%= textilizable @test_case, :scenario, attachments: @test_case.attachments %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @test_case.expected_result_cf.present? %>
+      <hr />
+      <div class="description">
+        <p><strong><%= ::TestCase.human_attribute_name(:expected_result) %></strong></p>
+        <div class="wiki">
+          <%= textilizable @test_case, :expected_result_cf, attachments: @test_case.attachments %>
+        </div>
+      </div>
+  <% end %>
+
+
+  <% if @test_case.attachments.any? -%>
+    <hr />
+    <%= link_to_attachments @test_case, :thumbnails => true %>
+  <% end %>
+  <%= render_full_width_custom_fields_rows(@test_case) %>
+
+  <% if User.current.allowed_to?(:view_test_plans, @test_case.project) %>
+    <%= render_easy_entity_assignments(@test_case,
+                                       TestPlan,
+                                       easy_query_class: TestPlanQuery,
+                                       project: @test_case.project,
+                                       heading: l(:label_test_plans)) %>
+  <% end %>
+
+  <%= render_easy_entity_assignments @test_case, Issue, project: @test_case.project %>
+
+  <% if User.current.allowed_to?(:view_test_case_issue_executions, @test_case.project) %>
+    <%= render_easy_entity_assignments(@test_case,
+                                       TestCaseIssueExecution,
+                                       easy_query_class: TestCaseIssueExecutionQuery,
+                                       project: @test_case.project,
+                                       heading: l(:label_test_case_issue_executions)) %>
+  <% end %>
+
+</div>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'test_cases/sidebar' %>
+<% end %>

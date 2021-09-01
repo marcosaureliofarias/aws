@@ -1,0 +1,19 @@
+<div class="autoscroll">
+  <table class="list">
+    <tr>
+      <td></td>
+      <% parent_cf.possible_values.each do |value| %>
+        <td><%= value %></td>
+      <% end %>
+    </tr>
+    <% custom_field.possible_values.each_with_index do |value, index| %>
+      <tr>
+        <td><%= value %></td>
+        <% parent_cf.possible_values.each_with_index do |dependent_value, dep_index| %>
+          <% checked = custom_field.dependency_settings.dig(dep_index.to_s, index.to_s) == '1' %>
+          <td><%= check_box_tag "custom_field[settings][dependency_settings][#{dep_index}][#{index}]", '1', checked %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

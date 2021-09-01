@@ -1,0 +1,20 @@
+<% Rys::Feature.on('issue_duration') do %>
+  <% if issue.safe_attribute? 'easy_duration' %>
+    <p id="easy_duration_area">
+      <%= form.number_field :easy_duration,
+                            size: 10,
+                            required: issue.required_attribute?('easy_duration'),
+                            label: l('issue_duration.field_easy_duration'),
+                            min: 1
+      %>
+      <%= easy_select_tag 'issue[easy_duration_time_unit]',
+                          'day',
+                          options_for_select(IssueEasyDuration.time_units, @issue.easy_duration_time_unit),
+                          nil,
+                          { html_options: { class: 'inline', id: 'issue_easy_duration_time_units'} }
+      %>
+    </p>
+
+    <%= javascript_include_tag 'issue_duration/issue_easy_duration.js', defer: true %>
+  <% end %>
+<% end %>

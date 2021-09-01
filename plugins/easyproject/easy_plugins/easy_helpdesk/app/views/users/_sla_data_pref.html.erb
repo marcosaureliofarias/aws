@@ -1,0 +1,3 @@
+<% if User.current.admin? %>
+  <p><%= f.check_box :hide_sla_data %></p>
+<% end %>

@@ -1,0 +1,53 @@
+#easy_attendance{
+  &_reports{
+    td{
+      &.user-name{
+        border-right: 1px solid $color-border-minor;
+      }
+    }
+
+    tr.odd + tr.even, tr.even + tr.odd{
+      &, & +  tr{
+        border-top-width: 2px;
+      }
+    }
+  }
+}
+div.easy-attendance{
+  clear: both;
+  text-align: left;
+  border: 1px solid $color-border-minor;
+  &+&{
+    margin-top: .5*$gap;
+  }
+  &:before {
+    float: left;
+    margin-top: .615*$gap;
+    margin-left: .5*$gap;
+    .easy-activity-feed__activity-event-wrapper & {
+      margin-top: 0;
+      margin-left: 0;
+    }
+  }
+  &-calendar-item {
+    padding: .5*$gap;
+    padding-left: calc(.5*#{$box-padding} + 12px);
+    @include small;
+    &+&{
+      margin-top: .5*$gap;
+    }
+    & > a {
+      display: inline-block;
+      width: 100%;
+      text-align: start;
+      color: $color-text !important;
+    }
+    & > em {
+      margin-left: px2rem(5px);
+    }
+  }
+
+  &-year-sum{
+    background: $color-uberlight;
+  }
+}

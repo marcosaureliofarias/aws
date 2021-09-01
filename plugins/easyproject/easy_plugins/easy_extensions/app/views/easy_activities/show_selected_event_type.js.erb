@@ -1,0 +1,15 @@
+$("#<%= @activity_feed_page_module.uuid %>_all_activities").html("<%= j render partial: 'easy_activities/module_list_activity', locals: {events: @events} %>");
+$("#module_inside_<%= @activity_feed_page_module.uuid %> .activity-feed-type-selector").removeClass('easy-activity-selected');
+$("#<%= @activity_feed_page_module.uuid %>_<%= params[:event_type_id] %>").addClass('easy-activity-selected');
+
+<% if @settings['load_more'] %>
+  <% events_count = @events.reduce(0) { |sum, (_date, events)| sum + events.size } %>
+  <% if params[:current_limit].to_i < events_count %>
+    $("#<%= @activity_feed_page_module.uuid %>_button_load_more").attr('data-current-limit', <%= events_count %>);
+  <% else %>
+    $("#<%= @activity_feed_page_module.uuid %>_button_load_more").hide();
+  <% end %>
+<% else %>
+  $("#<%= @activity_feed_page_module.uuid %>_button_load_more").attr('data-current-limit', <%= @settings['row_limit'] %>);
+$("#<%= @activity_feed_page_module.uuid %>_button_load_more").show();
+<% end %>

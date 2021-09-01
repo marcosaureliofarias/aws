@@ -1,0 +1,25 @@
+<div class="nested-fields">
+  <p>
+    <%= auto_issue_closer.label(:observe_issue_status_id, l(:field_issue_closer_observe_issue_status_id)) %>
+    <%= auto_issue_closer.select(:observe_issue_status_id, options_from_collection_for_select(@issue_statuses.where(is_closed: false), :id, :name, auto_issue_closer.object.observe_issue_status_id), {}, :class => 'inline') %>
+  </p>
+  <p>
+    <%= auto_issue_closer.label(:inactive_interval, l(:field_issue_closer_inactive_interval)) %>
+    <%= auto_issue_closer.text_field(:inactive_interval, :size => 3, :placeholder => 3) %>
+    <%= auto_issue_closer.select(:inactive_interval_unit, options_for_select(EasyHelpdeskAutoIssueCloser.inactive_interval_units.keys.map{|u| [l(u, :scope => :issue_closer_inactive_interval_units), u]}, auto_issue_closer.object.inactive_interval_unit), {}, :class => 'inline') %>
+  </p>
+  <% EasyHelpdeskAutoIssueCloser::MODES.each do |mode| %>
+    <p>
+      <% checked = auto_issue_closer.object.auto_update_modes.include?(mode) %>
+      <% mode_id = "#{auto_issue_closer.object_name.gsub(/\[|\]/, '')}_auto_update_modes_#{mode}" %>
+      <%= label_tag mode_id, l(mode, scope: :label_easy_helpdesk_auto_issue_closer_settings), class: 'checkbox' %>
+      <%= check_box_tag "#{auto_issue_closer.object_name}[auto_update_modes][]", mode, checked, id: mode_id, class: 'easy_helpdesk_project_easy_helpdesk_auto_issue_closers_settings', onclick: "$(this).parent().next('.helpdesk_auto_issue_closer_settings').toggle();" %>
+    </p>
+    <%= render "easy_helpdesk_projects/auto_issue_closer_#{mode}", f: auto_issue_closer, checked: checked %>
+  <% end %>
+  <%#= link_to_remove_association '', auto_issue_closer, :class => 'icon icon-del push-right', :title => l(:button_delete) %>
+  <p>
+    <%= link_to_remove_association l(:button_delete), auto_issue_closer, :class => 'icon icon-del button push-right', :title => l(:button_delete) %>
+  </p>
+  <hr/>
+</div>

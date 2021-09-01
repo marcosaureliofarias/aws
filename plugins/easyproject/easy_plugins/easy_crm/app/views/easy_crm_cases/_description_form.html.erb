@@ -1,0 +1,12 @@
+<%= form_for(@easy_crm_case, id: 'easy_crm_case_description_form', class: 'form-box') do %>
+  <%= label_tag 'easy_crm_case_description_textarea', l(:field_description), class: 'hidden-for-sighted' %>
+  <%= text_area_tag 'easy_crm_case[description]', @easy_crm_case.description, id: "easy_crm_case_description_textarea", class: 'wiki-edit',
+                    rows: (@easy_crm_case.description.blank? ? 10 : [[10, @easy_crm_case.description.length / 50].max, 100].min) %>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+    <%= link_to l(:button_cancel), 'javascript:void(0);',
+                onclick: "$('#easy_crm_case_description_form').remove(); $('#show_easy_crm_case_description').show(); $('.easy-contextual').show(); return false;",
+                class: 'button' %>
+  </div>
+<% end %>
+<%= wikitoolbar_for('easy_crm_case_description_textarea') unless in_mobile_view? %>

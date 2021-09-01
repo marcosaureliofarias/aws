@@ -1,0 +1,9 @@
+@if($api-js) {
+  $temp: '';
+  @for $i from 1 through length($api-js) {
+    $key: nth(map-keys($api-js),$i);
+    $value: nth(map-values($api-js),$i);
+    $temp: $temp+"\"#{$key}\":\"#{$value}\","
+  }
+  head { font-family: '#{$temp}'; }
+}

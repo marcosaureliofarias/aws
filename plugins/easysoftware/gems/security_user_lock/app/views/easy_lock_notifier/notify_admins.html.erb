@@ -1,0 +1,21 @@
+<div>
+  <p>
+    <%=
+      if @locking_time == 0
+        user_lock_l('locked_forever', user_name: @user.name)
+      else
+        user_lock_l('locked_till', user_name: @user.name, datetime: @user.blocked_at + @locking_time)
+      end
+    %>
+  </p>
+
+  <p>
+    <%= link_to(l(:button_unlock), user_url(id: @user.id), class: 'button icon-unlock') %>
+  </p>
+
+  <% %w(remote_ip browser device platform).each do |name| %>
+    <p>
+      <%= user_lock_l(name) %>: <%= @options[name.to_sym] %>
+    </p>
+  <% end %>
+</div>

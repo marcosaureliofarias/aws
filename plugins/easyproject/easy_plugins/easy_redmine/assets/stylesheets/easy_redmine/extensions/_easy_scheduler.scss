@@ -1,0 +1,30 @@
+.easy-calendar{
+  &__task-list {
+    top: 3.5*$gap;
+  }
+}
+#scheduler_calendar_quick {
+  .easy-calendar__calendar-navs {
+    background: transparent;
+    margin-right: calc(2*#{$gap} + #{$gap-const});
+    padding-right: 0 !important;
+  }
+}
+#easy_servicebar_component_body {
+  .easy-calendar__control {
+    top: 0;
+    .easy-calendar__control-users, .easy-calendar__control-fullscreen {
+      display: none;
+    }
+  }
+}
+
+.servicebar-content.easy-calendar__wrapper-parent {
+  padding-bottom: 0 !important;
+  .ps__rail-y {
+    width: $gap !important;
+    .ps__thumb-y {
+      width: calc(#{$gap} - 2px) !important;
+    }
+  }
+}

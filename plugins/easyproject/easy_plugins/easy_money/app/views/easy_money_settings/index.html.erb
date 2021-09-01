@@ -1,0 +1,12 @@
+<h2><%= l(:label_easy_money_settings) -%></h2>
+
+<%= render_tabs easy_money_settings_tabs %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% html_title(l(:label_easy_money_settings)) -%>
+
+<% content_for :header_tags do -%>
+    <%= stylesheet_link_tag 'easy_money' -%>
+    <%= javascript_include_tag 'easy_money', defer: true -%>
+<% end -%>

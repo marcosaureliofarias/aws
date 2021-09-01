@@ -1,0 +1,30 @@
+<% Rys::Feature.on('issue_duration') do %>
+  <% if @safe_attributes.include?('easy_duration') %>
+    <p id="easy_duration_area">
+      <%= label_tag('issue_easy_duration', l('issue_duration.field_easy_duration')) %>
+      <%= number_field_tag 'issue[easy_duration]',
+                           @issue_params[:easy_duration],
+                            size: 10,
+                            label: l('issue_duration.field_easy_duration'),
+                            min: 1
+      %>
+      <%= easy_select_tag 'issue[easy_duration_time_unit]',
+                          'day',
+                          options_for_select(IssueEasyDuration.time_units, @issue_params[:easy_duration_time_unit]),
+                          nil,
+                          { html_options: { class: 'inline', id: 'issue_easy_duration_time_units'} }
+      %>
+    </p>
+
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const nextElement = document.getElementById('issue_due_date_type_unchanged').closest('p');
+        const easyDurationArea = document.getElementById('easy_duration_area');
+
+        if (nextElement) {
+          nextElement.parentNode.insertBefore(easyDurationArea, nextElement);
+        }
+      });
+    </script>
+  <% end %>
+<% end %>

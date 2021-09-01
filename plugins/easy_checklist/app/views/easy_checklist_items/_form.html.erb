@@ -1,0 +1,23 @@
+<div class="nested-fields">
+  <%= error_messages_for @easy_checklist_item %>
+
+  <% options ||= {} %>
+  <% options[:display_submit_button] = false if options[:display_submit_button].nil? %>
+  <% options[:display_link_to_remove_item_association] = false if options[:display_link_to_remove_item_association].nil? %>
+
+    <p>
+      <% if options[:display_link_to_remove_item_association] %>
+        <span class="input-append">
+          <%= f.text_field :subject, :class => 'easy_checklist_subject', :label => '', :placeholder => l(:label_easy_checklist_item_placeholder) %>
+          <%= link_to_remove_association(content_tag(:span, l(:button_remove_easy_checklist_item), :class => 'tooltip'), f, :class => 'icon-del') %>
+          <%= f.hidden_field :done %>
+        </span>
+      <% else %>
+        <span class="input-append">
+          <%= f.text_field :subject, :class => 'easy_checklist_subject', :label => '', :placeholder => l(:label_easy_checklist_item_placeholder) %>
+          <%= link_to_function '', "$('#easy_checklist#{@easy_checklist.id}_item_form').submit()", :class => 'icon-save button-positive', :title => l(:button_save) if options[:display_submit_button] %>
+          <%= link_to_function '', "$(this).closest('form').remove();$('#easy_checklist#{@easy_checklist.id} .easy-checklist-add-item').toggle();", :class => 'icon-cancel', :title => l(:button_cancel) %>
+        </span>
+      <% end %>
+    </p>
+</div>

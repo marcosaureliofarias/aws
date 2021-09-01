@@ -1,0 +1,7 @@
+<%= l("label_timeentry_time_watcher_previous_#{@period}_mail_body_for_group") %>
+<% if @reports_with_time %>
+  <% @reports_with_time.each do |report, time, from, to| %>
+    *<%= report.entity.name %>* - <%= easy_time_entries_url(:user_id => report.entity.id, :from => from.to_s, :to => to.to_s) %> (<%= easy_format_hours(time, :no_html => true) -%>)
+  <% end %>
+<% end %>
+<%= link_to(@alert.caption, {:controller => 'alerts', :action => 'show', :id => @alert, :only_path => false}, :title => l(:title_alerts_show_alert, :alertname => @alert.caption)) %>

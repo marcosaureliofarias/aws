@@ -1,0 +1,95 @@
+<%
+  earned_values = @project.easy_earned_values.preload(:baseline).reorder(:updated_at).reverse_order
+  back_url = settings_project_path(@project, 'easy_earned_values')
+  edit_baseline = User.current.allowed_to?(:edit_baselines, @project)
+  baselines = Project.where(easy_baseline_for: @project).reorder(:updated_on)
+%>
+
+<fieldset>
+  <legend><%= l(:label_easy_earned_values) %></legend>
+
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= l(:field_name) %></th>
+          <th><%= l(:field_type) %></th>
+          <th><%= l('easy_earned_values.baseline') %></th>
+          <th><%= l(:label_default) %></th>
+          <th><%= l(:field_created_on) %></th>
+          <th style="width: 200px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% earned_values.each do |earned_value| %>
+          <tr>
+            <td>
+              <%= link_to earned_value.name, easy_earned_value_path(earned_value) %>
+              <% if !earned_value.data_initilized %>
+                <br>
+                <small>(<%= l(:text_easy_earned_values_no_data) %>)</small>
+              <% end %>
+            </td>
+            <td><%= earned_value.type_name %></td>
+            <td><%= earned_value.baseline.presence || '-' %></td>
+            <td><%= checked_image earned_value.project_default? %></td>
+            <td><%= format_date earned_value.created_at %></td>
+            <td class="buttons">
+              <%= link_to l(:button_edit), edit_easy_earned_value_path(earned_value), class: 'icon icon-edit' %>
+              <%= delete_link easy_earned_value_path(earned_value) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend><%= l(:label_easy_baselines) %></legend>
+
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= l(:field_name) %></th>
+          <th><%= l(:field_created_on) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% baselines.each do |baseline| %>
+          <tr>
+            <td><%= baseline.name %></td>
+            <td><%= format_time baseline.updated_on %></td>
+            <td>
+              <% if edit_baseline %>
+                <%= delete_link project_easy_baseline_path(@project, baseline, back_url: back_url) %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend><%= l(:label_create_easy_baseline) %></legend>
+
+  <% if edit_baseline %>
+    <%= form_tag project_easy_baselines_path(@project) do %>
+      <%= hidden_field_tag 'back_url', back_url %>
+
+      <p>
+        <%= label_tag 'easy_baseline[name]', l(:field_name), required: true %>
+        <%= text_field_tag 'easy_baseline[name]', '', required: true, placeholder: "#{@project} #{format_time(Time.now)}" %>
+        <%= submit_tag l(:button_create) %>
+      </p>
+    <% end %>
+  <% end %>
+</fieldset>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_new), new_project_easy_earned_value_path(@project), class: 'icon icon-add button-positive' %>
+<% end %>

@@ -1,0 +1,4 @@
+<%= l(:title_baseline_from_project_not_created_with_errors, project_name: @baseline.name) %>
+<% @errors.each do |error| %>
+  <%= error %>
+<% end %>

@@ -1,0 +1,14 @@
+
+<% if ehp = EasyHelpdeskProject.where(:project_id => project.id).first %>
+  <% if User.current.allowed_to?(:manage_easy_helpdesk_project, project) %>
+    <li>
+      <%= link_to(l(:label_easy_helpdesk_project_managed_by_helpdesk), settings_project_path(project, :tab => 'helpdesk'), :title => l(:label_easy_helpdesk_project_managed_by_helpdesk), :class => 'button icon icon-help-bubble') -%>
+    </li>
+  <% end %>
+  <%= call_hook(:view_sidebar_helpdesk_project_info_bottom, :project => project, :ehp => ehp) %>
+<% elsif User.current.allowed_to?(:manage_easy_helpdesk_project, project) || User.current.allowed_to?(:manage_easy_helpdesk, nil, :global => true) %>
+  <li>
+    <%= link_to(l(:button_easy_helpdesk_add_project_from_sidebar), {:controller => 'easy_helpdesk_projects', :action => 'new',
+        :'easy_helpdesk_project[project_id]' => project.id}, :title => l(:title_easy_helpdesk_add_project_from_sidebar), :class => 'button icon icon-help-bubble') -%>
+  </li>
+<% end %>

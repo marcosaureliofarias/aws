@@ -1,0 +1,7 @@
+<%= form_tag original_url do %>
+  <%= render partial: 'extensions/settings/easy_quick_project_planner' %>
+
+  <%= hidden_field_tag 'commit_action', '' %>
+  <%= submit_tag l(:button_save), onclick: "$('#commit_action').val('save')" %>
+  <%= submit_tag l(:button_apply_to_all_projects), onclick: "$('#commit_action').val('apply_all')" %>
+<% end %>

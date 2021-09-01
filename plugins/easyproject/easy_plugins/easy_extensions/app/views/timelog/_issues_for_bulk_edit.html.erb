@@ -1,0 +1,4 @@
+<label><%= l(:field_issue) %></label>
+<%= easy_select_tag('time_entry[issue_id]', @selected_visible_issue, nil,
+  url_for(params.to_unsafe_hash.merge({:action => 'change_issues_for_bulk_edit', :format => 'json'})),
+  {:include_blank => true, :root_element => 'issues', :onchange => "updateBulkEditFrom('#{j(url_for(:action => 'bulk_edit', :format => 'js'))}')", :html_options => {:id => 'time_entry_issue_id'}}) %>

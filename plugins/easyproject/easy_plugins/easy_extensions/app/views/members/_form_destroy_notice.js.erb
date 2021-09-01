@@ -1,0 +1,15 @@
+$('#ajax-modal').html("<%=j render partial: 'members/form_destroy_notice', formats: [:html]  %>");
+
+showModal('ajax-modal', '550px','<%= l(:label_confirmation) %>');
+$('#ajax-modal').dialog( {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+    {
+      text: '<%=j l(:button_apply) %>',
+      click: function() {$(this).find('form').submit();}, 'class': 'button-positive'
+    }
+  ]
+});

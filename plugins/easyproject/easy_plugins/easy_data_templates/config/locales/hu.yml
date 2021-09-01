@@ -1,0 +1,172 @@
+---
+hu:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: nem lehet üres vagy nem létezõ
+              empty: nem lehet üres vagy nem létezõ
+        easy_data_template:
+          attributes:
+            type:
+              blank: nem lehet üres vagy nem létezõ
+              empty: nem lehet üres vagy nem létezõ
+  button_easy_data_template_assignment: mezõ hozzárendelések
+  button_easy_data_template_edit: Sablon szerkesztése
+  button_easy_data_template_export_data: Adatok exportálása
+  button_easy_data_template_import: importálás
+  button_easy_data_template_import_data: Adatok importálása
+  button_easy_data_template_import_preview: elõnézet
+  button_easy_data_template_new_export: Exportálás CSV formátumba
+  button_easy_data_template_new_import: Importálás CSV formátumból
+  button_easy_data_template_new_msproject: Import MS Projectből
+  button_easy_data_template_settings: beállítás
+  button_new_advance_import: Haladó import
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Nem
+    xyes: Igen
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: Megoldó munkatárs neve
+      assigned_to_id: Megoldó munkatárs azonosítója
+      assigned_to_lastname: Megoldó munkatárs vezetékneve
+      assigned_to_login: Megoldó munkatárs login neve
+      assigned_to_mail: Megoldó munkatárs e-mail címe
+      author_firstname: szerzõ neve
+      author_id: szerzõ azonosítója
+      author_lastname: szerzõ vezetékneve
+      author_login: szerzõ login neve
+      author_mail: szerzõ e-mail címe
+      description: feladat leírása
+      due_date: Feladat vége (dátum)
+      estimated_hours: becsült feladatra fordítantó idõ (órák)
+      id: feladat azonosítója
+      priority_id: prioritás azonosítója
+      priority_name: prioritás neve
+      project_id: projekt azonosítója
+      project_name: projekt neve
+      start_date: feladat kezdése (dátum)
+      subject: feladat témája
+      tracker_id: feladat típusazonosítója
+      tracker_name: feladattípus neve
+    Project:
+      description: Projekt leírása
+      enabled_modules: modul név
+      id: projekt azonosító
+      is_public: közös (I / N)
+      name: projekt név
+      parent_id: id Szülőprojekt
+      parent_name: Szülőprojekt neve
+      trackers_ids: feladattípus azonosító
+      trackers_names: feladat típus neve
+    TimeEntry:
+      activity: tevékenység
+      activity_id: tevékenység azonosítók
+      activity_name: tevékenység neve
+      comments: megjegyzés
+      easy_range_from: jelentve ettõl
+      easy_range_to: jelentve eddig
+      hours: óra
+      issue: feladat
+      issue_id: feladat azonosító
+      issue_subject: feladat címe
+      project: projekt
+      project_id: projekt azonosító
+      project_name: projekt név
+      spent_on: dátum
+      user: felhasználó
+      user_id: felhasználói azonosító
+    User:
+      admin: Adminisztrátor (I / N)
+      firstname: felhasználónév
+      id: felhasználó azonosítója
+      language: felhasználó által használt nyelv
+      lastname: felhasználó vezetékneve
+      login: felhasználó login neve
+      mail: felhasználó e-mail címe
+      password: jelszó
+      send_mail: Bejelentkezés e-mail küldéshez (I / N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Feladat
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Projekt
+    EasyDataTemplateTimeEntry: Jelentett idõ
+    EasyDataTemplateUser: Felhasználó
+  easy_data_templates_plugin_description: "- Adat sablonok CSV formátumú importáláshoz
+    / exportáláshoz"
+  easy_data_templates_plugin_name: Adat sablonok
+  easy_proposer:
+    easy_data_templates:
+      index:
+        caption: Adatsablonok
+        description: Adatsablonok kezelése
+  error_during_import: Hiba az importálás során. Kérem ellenõrizze a betöltött adatokat.
+  error_easy_data_template_attachment_not_uploaded: Nem lett csatolva melléklet az
+    importáláshoz
+  error_easy_data_template_ms_project_not_valid_xml: A csatolt fájl érvénytelen (MS
+    Project 2010-es vagy újabb verziójában készített) XML fájl.
+  field_easy_data_template_allowed_import: Importálás
+  field_easy_do_not_export: Ne exportálja
+  label_check_preview: Please check the data using the 'Elõnézet'
+  label_easy_data_template_assignment: Mezõ hozzárendelése
+  label_easy_data_template_author_name: Szerzõ
+  label_easy_data_template_edit: Sablonok szerkesztése
+  label_easy_data_template_entity_type: Blokk
+  label_easy_data_template_export_new: Új exportálási sablon
+  label_easy_data_template_import_file: Fájl importálása
+  label_easy_data_template_import_new: Új importálási sablon
+  label_easy_data_template_import:
+    assignments:
+      all: elrendezett helyû oszlopok
+      entity_attribute_name: blokk tulajdonság neve
+      file_column_position: az oszlop helye a csv-ben
+      new: Oszlopok helyének elrendezése
+    errors:
+      erow: hiba a sorban
+      errors_count: hibák száma
+      errors_rows: hibás sorok
+      errors_rows_count: hibás sorok száma
+      errors_sum: összesen
+      row: helytelen sorszám
+      show: hibás sorok megjelenítése
+    preview:
+      row: sor száma
+      table: elõnézet
+    settings:
+      col_sep: mezõ elválasztó
+      encoding: kódolás
+      import_all: Mindegyik vagy egyik sem
+      new: Beállítás
+      preview_rows: Sorok számának elõnézete
+      project_template: Tervezõi sablon használata
+      quote_char: elválasztó karakter
+      return_headers: az elsõ sor tartalmazza az oszlop nevét
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Hozzárendelve egy feladathoz)"
+    other: "(Hozzárendelve %{count} feladathoz)"
+    zero: "(Nincs hozzárendelés)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Név MS Project-ben
+  label_easy_data_template_ms_project_user_name_in_ep: Belsõ név
+  label_easy_data_template_name: Név
+  label_easy_data_template_public: nyilvános
+  label_easy_data_template_template_type: Típus
+  label_easy_data_template_template_type_export: exportálás
+  label_easy_data_template_template_type_import: importálás
+  label_easy_data_template_user_name: Tulajdonos
+  label_easy_data_templates: Adat sablonok
+  label_easy_data_templates_choose_project: Projekt kiválasztása
+  label_easy_data_templates_choose_query: Szûrõ kiválasztása
+  label_easy_data_templates_source_settings: Adatforrás kiválasztása
+  label_easy_data_templates_target_settings: Céladat kiválasztása
+  label_import_summaries_as_milestones: Gyűjtő feladatok (summary task) importálása
+    mérföldkőként
+  notice_easy_data_templates_import_ok: Importálás sikeres.
+  text_easy_data_template_ms_project_upload_file: Csak XML formátumú fájl használható
+    (MS Project-ben a menüsoron File -&gt; Save As -&gt; Save as type XML).
+  title_easy_data_templates_apply_to_all_rows: Kattintson az érték beállításához az
+    összes hasonló sorban.

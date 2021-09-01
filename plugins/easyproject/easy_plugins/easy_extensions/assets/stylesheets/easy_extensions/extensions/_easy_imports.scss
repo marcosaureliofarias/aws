@@ -1,0 +1,48 @@
+.easy-imports{
+  &__radio{
+    &-item{
+      @extend %flex-grow-1;
+      text-align: center;
+      margin: $gap;
+      label{
+        height: 40px;
+        @extend %flex;
+        @extend %align-items-center;
+        border: 1px solid $color-border-minor;
+        padding: $box-padding;
+        position: relative;
+        margin-bottom: $gap;
+      }
+      a{
+        color: $color-text-muted;
+      }
+      img{
+        margin: 0 $gap;
+        z-index: 1;
+      }
+      input{
+        z-index: 1;
+      }
+    }
+    &-group{
+      @extend %flex;
+      @extend %justify-content-space-between;
+      @extend %flex-wrap-wrap;
+      margin: 0 (-$gap);
+    }
+    &-fake{
+      input:checked + &{
+        background: $color-foreground;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 0;
+      }
+    }
+  }
+  &__upload{
+    text-align: center;
+  }
+}

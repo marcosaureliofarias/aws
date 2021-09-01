@@ -1,0 +1,17 @@
+<h2><%= l(:label_easy_money_project_name) -%><%= @project.name -%></h2>
+
+<div id="entity_overview_container">
+  <%= render :partial => 'easy_money_periodical_entities/entities_overview', :locals => { :project => @project, :entities => @entities, :period_date => @period_date, :url_params => { :project_id => @project }, :edit => @edit } %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :header_tags do -%>
+  <%= stylesheet_link_tag 'easy_money' -%>
+  <%= javascript_include_tag 'easy_money', defer: true -%>
+<% end -%>
+
+<%= content_for :sidebar do -%>
+  <%= link_to('Monthly closing', {:controller => 'easy_money_periodical_entities', :action => 'toggle_entities_overview', :id => @project, :edit => '1'}, :remote => true, :class => 'button-positive') -%>
+  <%= link_to(l(:label_easy_money_project_cache), {:controller => 'easy_money_periodical_entities', :action => 'index'}, :title => l(:label_easy_money_project_cache), :class => 'button') %>
+<% end -%>

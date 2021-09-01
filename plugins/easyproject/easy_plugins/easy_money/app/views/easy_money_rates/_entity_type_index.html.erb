@@ -1,0 +1,59 @@
+<%
+  entity_type_underscored = entity_type.underscore
+  show_all_rates = easy_money_settings.show_rate?('all')
+  easy_money_rate_types = show_all_rates ? EasyMoneyRateType.rate_type_cache : [EasyMoneyRateType.rate_type_cache.first].compact
+  easy_currency_code = project.try(:easy_currency_code) || EasyCurrency.default_code
+  options_for_easy_currency = EasyCurrency.activated.map { |easy_currency| [easy_currency.name, easy_currency.iso_code] }
+-%>
+<%= hidden_field_tag('entity_type', entity_type) -%>
+<div class="easy-money-entity-rates-container">
+  <h3><%= l("easy_money_rate_entity.#{entity_type_underscored}") -%></h3>
+  <% if entity_scope.empty? -%>
+    <p class="nodata"><%= l(:label_no_data) -%></p>
+  <% else -%>
+    <div class="autoscroll">
+      <table class="list">
+        <thead>
+          <tr>
+            <th><%= l("field_easy_money_rate_entity_#{entity_type_underscored}_name") -%></th>
+            <% if show_all_rates %>
+              <% EasyMoneyRateType.rate_type_cache.each do |rate_type| %>
+                <th><%= rate_type.translated_name -%></th>
+              <% end %>
+            <% else %>
+              <th><%= l('easy_money_rate_type.one') -%></th>
+            <% end %>
+            <% if options_for_easy_currency.any? %>
+              <th><%= l('field_currency') %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% entity_scope.each do |entity| -%>
+            <tr>
+              <td class="entity-item-name"><%= entity.name %></td>
+              <% easy_money_rate_currency = nil %>
+              <% easy_money_rate_types.each do |rate_type| -%>
+                <% easy_money_rate = EasyMoneyRate.find_rate(rate_type.id, entity.class.base_class.to_s, entity.id, project&.id) %>
+                <% easy_money_rate_currency ||= easy_money_rate&.easy_currency_code %>
+                <td class="entity-item-rate-type">
+                  <%= text_field_tag "easy_money_rates[#{entity.class.base_class}][#{entity.id}][#{rate_type.id}]", easy_money_rate&.unit_rate, size: 15, placeholder: l(:label_easy_money_using_next_rates) %>
+                  <% if easy_money_rate && easy_money_rate.easy_currency_code != easy_currency_code %>
+                    <span>
+                      (<%= format_easy_money_price easy_money_rate.unit_rate(easy_currency_code), project, easy_currency_code %>)
+                    </span>
+                  <% end %>
+                </td>
+              <% end -%>
+              <% if options_for_easy_currency.any? %>
+                <td class="entity-item-rate-currency">
+                  <%= select_tag "easy_money_rates[#{entity.class.base_class}][#{entity.id}][easy_currency_code]", options_for_select(options_for_easy_currency, easy_money_rate_currency || easy_currency_code) %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end -%>
+</div>

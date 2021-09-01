@@ -1,0 +1,24 @@
+$('#update').html("<%= j render(:partial => 'edit', :locals => {:project => @project, :easy_crm_case => @easy_crm_case, :time_entry => @time_entry}) %>");
+setupFileDrop();
+EASY.utils.initFileUploads();
+<% unless params[:no_scroll] %>
+    EASY.utils.showAndScrollTo('update', -130);
+<% end %>
+$(".sidebar-link_to-update").removeClass('button-positive').addClass('button');
+
+<% if params[:show_hidden_attributes] == '1' %>
+  EASY.crm.toggleHiddableAttributes($('#easy_crm_case_form a.issue-edit-hidden-attributes'));
+<% end %>
+
+$('#easy_crm_case_currency').change(function() {
+  var items_container = $('#easy_crm_case_items_container');
+  var items = items_container.find('.easy-autocomplete-tag[data-easy-autocomplete]');
+  for(var i = 0, len = items.length;i< len; i++) {
+    var function_string = $.base64.decode($(items[i]).data().easyAutocomplete, true).replace(/currency=[A-Z]{3}/, 'currency='.concat(this.value));
+    eval(function_string);
+    $(items[i]).data('easyAutocomplete', $.base64.encode(function_string));
+    $(items[i]).parent().next().next().find('span').text(this.value);
+    $(items[i]).parent().next().next().next().find('span').text(this.value)
+  }
+});
+initEasyAutocomplete();

@@ -1,0 +1,21 @@
+<%
+  entity ||= easy_checklist_item.easy_checklist.entity
+  can_delete = User.current.allowed_to?(:delete_easy_checklist_items, entity.project)
+  can_edit = User.current.allowed_to?(:edit_easy_checklist_items, entity.project)
+  easy_checklist_item_title = l(:label_easy_checklist_tootip_message, :user => easy_checklist_item.changed_by.name, :time => format_date(easy_checklist_item.last_done_change)) if easy_checklist_item.last_done_change && easy_checklist_item.changed_by
+  easy_checklist_item_title ||= ''
+%>
+
+<li id="easy_checklist_item<%= easy_checklist_item.id %>" class="multieditable-container tooltip-parent easy-checklist-item" data-name="easy_checklist_item[subject]" data-value="<%= easy_checklist_item.subject %>" data-url="<%= update_item_easy_checklist_path(:id =>easy_checklist_item.easy_checklist, :easy_checklist_item_id =>easy_checklist_item) %>">
+
+  <span id="easy_checklist_item_container<%= easy_checklist_item.id  %>" class="easy-checklist-item-container">
+    <%= check_box_tag "easy_checklist_done#{easy_checklist_item.id}", '', easy_checklist_item.done?, :onchange => ((easy_checklist_item.can_change?) ? "$.ajax({url: '#{j update_item_easy_checklist_path(:id => easy_checklist_item.easy_checklist, :easy_checklist_item_id => easy_checklist_item, :format => :js)}', data: {done: this.checked ? '1' : '0'}, type: 'put'})" : ''), :disabled => !easy_checklist_item.can_change?, :class => 'easy_checklist_item' %>
+    <%= label_tag "easy_checklist_done#{easy_checklist_item.id}", textilizable(h(easy_checklist_item.subject).to_str), :id => "easy_checklist_done_label#{easy_checklist_item.id}", :title => easy_checklist_item.subject, :class => 'inline' + (can_edit ? ' multieditable' : '')%>
+    <% if can_delete %>
+      <%= link_to '', delete_item_easy_checklist_path(:id => easy_checklist_item.easy_checklist, :easy_checklist_item_id => easy_checklist_item), :method => :delete, :remote => true, :class => 'icon icon-del button-icon easy-checklist-item-delete', :data => {:confirm => l(:text_are_you_sure)}, :id => "easy_checklist_item_delete#{easy_checklist_item.id}", :style => 'display: none;' %>
+    <% end %>
+  </span>
+  <% if easy_checklist_item.last_done_change.present? %>
+    <span class="tooltip"><%= easy_checklist_item_title %></span>
+  <% end %>
+</li>

@@ -1,0 +1,12 @@
+<tr id="easy_timesheet_<%= easy_timesheet.id %>_sum_row" class="sum_row">
+  <td colspan="3">&nbsp;</td>
+  <% easy_timesheet.sum_row.each_cell do |cell| %>
+    <th class="timesheet-summary time-entry-hour column-sum" data-sum-day="<%= cell.spent_on %>" data-sum-day="<%= cell.spent_on %>" data-sum-value="<%= cell.sum_hours %>"><%= easy_format_hours(cell.sum_hours, format: 'short') %></th>
+  <% end %>
+  <td class="time-entry-hour row-sum total-sum">
+    <%= easy_format_hours(easy_timesheet.total_hours, format: 'short') %>
+  </td>
+  <td class="buttons">
+    <%= link_to('', row_easy_timesheet_path(easy_timesheet), class: 'icon-add xl-icon', remote: true) if easy_timesheet.addable? -%>
+  </td>
+</tr>

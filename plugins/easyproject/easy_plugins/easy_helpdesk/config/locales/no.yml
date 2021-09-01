@@ -1,0 +1,364 @@
+---
+'no':
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: E-post-melding (HTML)
+        body_plain: E-post-melding (REN TEKST)
+        issue_status_id: Oppgavestatus
+        mailboxes: 'Bruk for postboks:'
+        reply_to: Svar til
+        sender: Avsender
+        subject: Emne
+    models:
+      easy_helpdesk_mail_template: E-post-mal
+  aggregated_periods:
+    half-yearly: Halvårlig
+    quarterly: Kvatalsvis
+    yearly: Årlig
+  button_easy_helpdesk_add_domain_name: Legg til e-post eller domene
+  button_easy_helpdesk_add_mail_template: Legg til e-post-mal
+  button_easy_helpdesk_add_mailbox: Legg til postboks
+  button_easy_helpdesk_add_project: Legg til prosjekt
+  button_easy_helpdesk_add_project_from_sidebar: Legg til i Brukerstøtte
+  button_easy_helpdesk_add_signature: Legg til signatur
+  button_easy_helpdesk_add_sla: Legg til SLA
+  button_easy_helpdesk_all_mail_templates_index: Alle e-post-maler
+  button_easy_helpdesk_all_mailboxes_index: Alle postbokser
+  button_easy_helpdesk_all_projects_index: Alle brukerstøtte-prosjekter
+  button_easy_helpdesk_mail_templates_index: Malliste
+  button_easy_helpdesk_mailboxes_index: Postboksliste
+  button_easy_helpdesk_projects_index: Prosjektliste
+  button_easy_helpdesk_reports_index: Rapporter
+  button_easy_helpdesk_settings_index: Innstillinger
+  confirm_edit_remaining_hours: Dette feltet er beregnet av bakgrunnsdata, er du sikker
+    på at du vil redigere det manuelt?
+  easy_helpdesk_author: Easy Software
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_name: Brukerstøtte
+  easy_helpdesk_plugin_description: "- kompleks Brukerstøtte-løsning"
+  easy_pages:
+    module_category:
+      easy_helpdesk: Brukerstøtte
+    modules:
+      easy_helpdesk_create_mail_template_button: Opprett knapp for e-post-mal
+      easy_helpdesk_create_mailbox_button: Opprett knapp for postboks
+      easy_helpdesk_mailboxes: Brukerstøtte-postbokser
+      easy_helpdesk_mailtemplates: Brukerstøtte e-post-maler
+      easy_helpdesk_project_query: Brukerstøtte-prosjekter fra filtre
+  easy_query:
+    name:
+      easy_helpdesk_project_query: Brukerstøtte - prosjekter
+      easy_helpdesk_report_monthly_query: Brukerstøtte - månedlige rapporter
+      easy_helpdesk_report_yearly_query: Brukerstøtte - årlige rapporter
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: Private filtre på prosjekter i Brukerstøtte
+        easy_helpdesk_report_monthly_query: Private filtre på månedlige rapporter
+          i Brukerstøtte
+        easy_helpdesk_report_yearly_query: Private filtre på årlige rapporter i Brukerstøtte
+      public:
+        easy_helpdesk_project_query: Felles filre på prosjekter i Brukerstøtte
+        easy_helpdesk_report_monthly_query: Felles filtre på månedlige rapporter i
+          Brukerstøtte
+        easy_helpdesk_report_yearly_query: Felles filtre på årlige rapporter i Brukerstøtte
+  easy_rake_tasks:
+    easy_rake_task_compute_aggregated_hours:
+      caption: Brukerstøtte - beregn akkumulerte timer
+    easy_rake_task_easy_helpdesk_issue_closer_automat:
+      caption: Brukerstøtte - automatisk lukking av feilmeldinger
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: Brukerstøtte - innkommende e-post
+      settings:
+        imap:
+          allow_override: Tillat overstyring av verdier
+          allow_override_example: 'Eksempel: oppgavetype,prioritet - disse attributtene
+            overstyres av e-post'
+          application_section_label: Andre innstillinger
+          category_example: 'Eksempel: Kategori - ny oppgave får kategorien Kategori'
+          email_section_label: Postboksinnstillinger
+          folder: Mappe
+          folder_example: 'IMAP-mappe å lese fra (standard: INBOX, for å velge mappe
+            bruk "." eksempel: inbox.salg)'
+          host: Vert
+          host_example: 'Eksempel: mail.company.com'
+          label: IMAP
+          move_on_failure: Om mislykket, flytt til
+          move_on_failure_example: flytt e-poster som har blitt ignorert til mappen
+            POSTBOKS
+          move_on_success: Om vellykket, flytt til
+          move_on_success_example: flytt e-poster som har blitt mottatt til mappen
+            POSTBOKS, ellers vil de bli slettet
+          no_permission_check: Ingen sjekk på brukertillatelser
+          password: Passord
+          password_example: 'Eksempel: hemmeligpassord'
+          port: Port
+          port_example: 'Eksempel: 143'
+          priority_example: 'Eksempel: Høy - ny oppgave får prioriteten Høy'
+          project_example: 'Eksempel: 205 - ny oppgave blir opprettet på prosjekt-ID
+            205'
+          sender_mail: Avsender
+          sender_mail_example: 'Eksempel: support@company.com'
+          ssl: SSL
+          ssl_example: Bruk SSL-autentifikasjon
+          status_example: 'Eksempel: Ny - ny oppgave får status Ny'
+          tracker_example: 'Eksempel: Feil - ny oppgave får oppgavetype Feil'
+          unknown_user: Ukjent bruker
+          unknown_user_example: aksepter - Anonym bruker blir brukt; opprett - bruker
+            blir opprettet fra e-post; konkret innlogging - denne brukeren blir brukt
+          use_custom_sender: Bruk en annen avsender
+          username: Bruker
+          username_example: 'Eksempel: brukernavn'
+        pop3:
+          allow_override: Tillat overstyring av verdier
+          allow_override_example: 'Eksempel: oppgavetype,prioritet - disse attributtene
+            blir overstyrt av e-post'
+          apop: APOP
+          apop_example: Bruk APOP-autentifisering
+          application_section_label: Andre innstillinger
+          category_example: 'Eksempel: Kategori - nye oppgaver vil få kategorien Kategori'
+          delete_unprocessed: Slett ubehandlede
+          delete_unprocessed_example: Slett e-poster som ikke kan behandles
+          email_section_label: Postboksinnstillinger
+          host: Vert
+          host_example: 'Eksempel: mail.company.com'
+          label: POP3
+          no_permission_check: Ingen sjekk på brukertillatelser
+          password: Passord
+          password_example: 'Eksempel: hemmeligpassord'
+          port: Port
+          port_example: 'Eksempel: 110'
+          priority_example: 'Eksempel: Høy - nye oppgaver får prioritet Høy'
+          project_example: 'Eksempel: 205 - nye oppgaver blir opprettet til prosjekt-ID
+            205'
+          sender_mail: Avsender
+          sender_mail_example: support@company.com
+          status_example: 'Eksempel: Ny - nye oppgaver får status Ny'
+          tracker_example: 'Eksempel: Feil - nye oppgaver får oppgavetype Feil'
+          unknown_user: Ukjent bruker
+          unknown_user_example: aksepter - Anonym bruker blir brukt; opprett - bruker
+            blir opprettet fra e-post; konkret innlogging - denne brukeren blir brukt
+          use_custom_sender: Bruk en annen avsender
+          username: Bruker
+          username_example: 'Eksempel: brukernavn'
+  error_update_easy_setting_helpdesk: Innstillingen kan ikke lagres
+  field_aggregated_hours: Akkumulerte timer
+  field_aggregated_hours_period: Akkumulert periode
+  field_aggregated_hours_remaining: Gjenværende timer
+  field_aggregated_hours_start_date: Akkumulert startdato
+  field_automatically_issue_closer_enable: Slå på automatisk lukking av feilmeldinger?
+  field_default_for_mailbox: Standard for postboks
+  field_easy_helpdesk_has_sla: Har SLA
+  field_easy_helpdesk_project_keyword: Nøkkelord
+  field_easy_helpdesk_project_matching:
+    domain_name: E-post eller domene
+    email_field_from: er tatt fra feltet FRA
+    email_field_to: er tatt fra feltet TIL
+  field_easy_helpdesk_project_monthly_hours: Kontraktsfestede månedlige timer
+  field_easy_helpdesk_project_sla:
+    hours_to_response: Tid for respons
+    hours_to_solve: Tid for å løse
+    keyword: Nøkkelord
+  field_easy_helpdesk_project_spent_time_current_month: Timer arbeidet på Brukerstøtte
+    (denne måned)
+  field_easy_helpdesk_project_spent_time_last_month: Timer arbeidet på Brukerstøtte
+    (forrige måned)
+  field_easy_response_date_time: SLA (respons)
+  field_email_footer: E-post-bunntekst
+  field_email_header: E-post-topptekst
+  field_hours_mode_from: SLA-arbeidstid
+  field_hours_to_response: SLA (respons)
+  field_hours_to_solve: SLA (løsning)
+  field_is_under_helpdesk: Er under brukerstøtte
+  field_issue_closer_done_issue_status: Lukk til status
+  field_issue_closer_inactive_interval: og det ikke er noen oppdateringer innen
+  field_issue_closer_observe_issue_status_id: i status
+  field_monitor_due_date: Overvåk supportmeldingenes ferdigdato
+  field_monitor_spent_time: Overvåk supportmeldingenes tidsbruk
+  field_monthly_hours: Kontraktsfestede månedlige timer
+  field_use_working_time: Tell SLA basert på arbeidstid
+  heading_easy_helpdesk_index: Brukerstøtte
+  heading_easy_helpdesk_mail_templates_edit: Rediger e-post-mal
+  heading_easy_helpdesk_mail_templates_index: E-post-mal
+  heading_easy_helpdesk_mail_templates_new: Ny e-post-mal
+  heading_easy_helpdesk_mail_templates_show: Detaljer for e-post-mal
+  heading_easy_helpdesk_mailboxes_edit: Rediger postboks
+  heading_easy_helpdesk_mailboxes_index: Postbokser
+  heading_easy_helpdesk_mailboxes_new: Ny postboks
+  heading_easy_helpdesk_projects_edit: Rediger prosjekt
+  heading_easy_helpdesk_projects_index: Prosjekter
+  heading_easy_helpdesk_projects_new: Nytt prosjekt
+  heading_easy_helpdesk_projects_show: Prosjektdetaljer
+  heading_easy_helpdesk_reports_index: Brukerstøtte - rapporter
+  heading_easy_helpdesk_reports_monthly_prepaid_hours: Månedlig rapport over forhåndsbetalte
+    timer
+  heading_easy_helpdesk_reports_yearly_prepaid_hours: Årlig rapport over forhåndsbetalte
+    timer
+  heading_easy_helpdesk_settings: Innstillinger
+  issue_closer_inactive_interval_units:
+    days: dager
+    hours: timer
+  label_automatically_issue_closer: Lukk feilmeldinger automatisk når de er
+  label_easy_hekodesk_additional_task_info_received_emails: Behandlet e-post
+  label_easy_helpdesk: Brukerstøtte
+  label_easy_helpdesk_actual_budget: Timer å bruke denne måneden
+  label_easy_helpdesk_actual_budget_to_spend: Gjenværende timer
+  label_easy_helpdesk_aggregated_from_last_period: Akkumulert fra forrige periode
+  label_easy_helpdesk_alerts: Varselinnstillinger
+  label_easy_helpdesk_allow_custom_sender: Tillat tilpasset avsender
+  label_easy_helpdesk_allow_override: Tillat overstyring av verdier
+  label_easy_helpdesk_client_response_status: Endre status etter kundens svar på
+  label_easy_helpdesk_domain_name: E-post-domene
+  label_easy_helpdesk_emails: E-post-innstillinger - topptekst og bunntekst
+  label_easy_helpdesk_enable_email_footer: Endre bunntekst for dette prosjektet?
+  label_easy_helpdesk_enable_email_header: Endre topptekst for dette prosjektet?
+  label_easy_helpdesk_hours_comulated: Akkumulerte timer
+  label_easy_helpdesk_hours_comulated_range: fra %{from} til %{to}
+  label_easy_helpdesk_hours_per_month: Timer arbeidet denne måneden
+  label_easy_helpdesk_ignore_cc: Overse kopifelt fra mottatte e-poster
+  label_easy_helpdesk_mail_signature: Brukerstøtte - signatur
+  label_easy_helpdesk_matching: E-poster, domener, nøkkelord behandlet i dette prosjektet
+  label_easy_helpdesk_message_above_variables: Oppgavekommentar vises ikke over e-postmalen
+  label_easy_helpdesk_project_helpdesk_tab: Brukerstøtte
+  label_easy_helpdesk_project_managed_by_helpdesk: Brukerstøtteinnstillinger
+  label_easy_helpdesk_projects_sla_working_time_calendar: Arbeidsdager
+  label_easy_helpdesk_sender: Avsender
+  label_easy_helpdesk_sender_current_user: Gjeldende bruker
+  label_easy_helpdesk_sender_is_user: Avsender er avlegget
+  label_easy_helpdesk_sender_mailbox_address: Postboks-adresse
+  label_easy_helpdesk_sender_redmine_default: Standard fra e-post-varsel
+  label_easy_helpdesk_signature: Signatur
+  label_easy_helpdesk_signature_name: Signaturnavn
+  label_easy_helpdesk_skip_ignored_emails_headers_check: Godta autogenererte e-poster
+  label_easy_helpdesk_sla: SLA-innstillinger - prioriteter, tid for å løse en feilmelding
+  label_easy_helpdesk_sla_start_states: Tell SLA fra feilmelding når status er
+  label_easy_helpdesk_sla_stop_states: Utsett SLA for feilmelding når status er
+  label_filter_group_easy_helpdesk_project_query: Brukerstøtte - prosjekt
+  label_filter_group_easy_helpdesk_report_monthly_query: Brukerstøtte - rapport
+  label_filter_group_easy_helpdesk_report_query: Brukerstøtte - rapport
+  label_filter_group_easy_helpdesk_report_yearly_query: Brukerstøtte - rapport
+  label_issue_bottom_from_easy_helpdesk: Oppgaven ble opprettet fra brukerstøtte (%{easy_helpdesk_mailbox_username})
+  label_prepaid_this_month: Kontraktsfestede månedlige timer
+  label_sla_calendar_settings: Kalender-innstillinger
+  permission_manage_easy_helpdesk: Administrer brukerstøtte
+  setting_easy_helpdesk_custom_sender: Brukerstøtte-avsender
+  text_easy_helpdesk_change_default_sender: Denne innstillingen endrer ikke svar-til-feltet
+  text_easy_helpdesk_custom_sender: Overstyr standard brukerstøtte-avsender. Behold
+    feltet tom for å slå av denne funksjonen.
+  text_easy_helpdesk_mail_template_dynamic_replacement:
+    assignee: den som er tildelt oppgaven
+    date: gjeldende dato
+    spent_time: tid brukt på oppgaven
+    task_closed_on: datoen oppgaven ble lukket
+    task_description: oppgavebeskrivelse
+    task_done_ratio: oppgavens ferdigstillingsgrad
+    task_due_date: oppgavens ferdigdato
+    task_estimated_hours: estimert tid for oppgaven
+    task_id: gjeldende oppgave-ID
+    task_note: siste kommentar på oppgaven
+    task_priority: oppgaveprioritet
+    task_project: prosjektets navn
+    task_public_url: oppgavens eksterne url
+    task_start_date: oppgavens startdato
+    task_status: oppgavestatus
+    task_subject: gjeldende oppgave-emne
+    task_tracker: oppgavetype
+    user_first_name: gjeldende brukers fornavn
+    user_last_name: gjeldende brukers etternavn
+    user_name: gjeldende brukers fulle navn
+    user_signature: gjeldende bruker-signatur
+  text_easy_helpdesk_mail_template_dynamic_text:
+  - 'Emne og melding kan inneholde dynamisk tekst:'
+  - "%task_id% (erstatter gjeldende oppgave-ID)"
+  - "%task_subject% (erstatter gjeldende oppgave-emne)"
+  - "%task_note% (erstatter siste kommentar på oppgaven)"
+  - "%time_spent% (erstatter tid brukt på oppgaven)"
+  - "%assignee% (erstatter den som er tildelt oppgaven)"
+  - "%user_signature% (erstatter gjeldende bruker-signatur)"
+  - "%date% (erstatter gjeldende dato)"
+  - "%task_tracker% (erstatter oppgavetype)"
+  - "%task_project% (erstatter prosjektets navn)"
+  - "%task_description% (erstatter oppgavebeskrivelse)"
+  - "%task_status% (erstatter oppgavestatus)"
+  - "%task_priority% (erstatter oppgaveprioritet)"
+  - "%task_estimated_hours% (erstatter estimert tid for oppgaven)"
+  - "%task_done_ratio% (erstatter oppgavens ferdigstillingsgrad)"
+  - "%task_public_url% (erstater oppgavens eksterne url)"
+  - "%task_closed_on% (erstatter datoen oppgaven ble lukket)"
+  - "%task_due_date% (erstatter oppgavens ferdigdato)"
+  - "%task_start_date% (erstatter oppgavens startdato)"
+  - "%user_name% (erstatter gjeldende brukers fulle navn)"
+  - "%user_first_name% (erstatter gjeldende brukers fornavn)"
+  - "%user_last_name% (erstatter gjeldende brukers etternavn)"
+  text_easy_helpdesk_mail_template_dynamic_text_heading: 'Emne og melding kan inneholde
+    dynamisk tekst:'
+  text_easy_helpdesk_mail_template_issue_status_id: Tillater å binde en postboksmal
+    til en bestemt oppgavestatus
+  text_easy_helpdesk_mail_template_replacement_for: erstatter
+  text_easy_helpdesk_mail_template_reply_to: "(Hr. Eksempel) - e-post er ikke tillatt
+    her"
+  text_easy_helpdesk_mail_template_reply_to2: Feltene "Svar til" og "Avsender" er
+    tatt fra postboksmal for å beholde kommunikasjonen innenfor en oppgave
+  text_easy_helpdesk_non_default_mailboxes_warning_below: Du bør tildele disse postboksene
+    til prosjekter. Hvis du ikke gjør det ville ikke ukjent innkommende e-poster bli
+    behandlet!
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 'Disse postboksene har ikke
+    standardprosjekt:'
+  text_easy_helpdesk_projects_alerts_list: 'Liste over konfigurerte varsler:'
+  text_easy_helpdesk_projects_alerts_list_to_edit: 'Liste over varsler som det må
+    settes mottaker på:'
+  text_easy_helpdesk_projects_is_default: hvis det kommer e-post fra ukjent avsender
+    blir feilmelding opprettet her.
+  text_easy_helpdesk_projects_keyword_description: Hvis e-post-emnet inneholder angitt
+    tekst vil feilmeldingen bli tildelt dette prosjektet. Nøkkelord er skiller på
+    små og store bokstaver.
+  text_easy_helpdesk_projects_keywords: Hvis e-post-emnet inneholder angitt tekst
+    blir en bestemt prioritet og ferdigdato satt.(* betyr alle emner)
+  text_easy_helpdesk_projects_monitor_due_date: Dette forhåndsdefinerte varselet vil
+    sende deg e-post-varsel hvis en feilmelding brøt SLA - ikke ble løst innen perioden
+    definert i SLA
+  text_easy_helpdesk_projects_monitor_spent_time: Dette forhåndsdefinerte varselet
+    vil sende deg e-post-varsel hvis total tid brukt i en kalendermåned er mer enn
+    forhåndsbetalte supporttimer.
+  text_easy_helpdesk_projects_new_priority: Hvis nøkkelord ikke det er angitt vil
+    SLA settes i henhold til den valgte prioriteten
+  text_easy_helpdesk_projects_priority: SLA settes i henhold til valgt prioritet
+  text_easy_helpdesk_projects_sla_hours_to_response: Maksimal tid tillatt før du starter
+    arbeidet på feilmeldingen (første statusendring).
+  text_easy_helpdesk_projects_sla_hours_to_solve: Maksimal tid for å løse feilmeldingen
+    (lukket status). Brukerstøtte-feilmelding kan visualiseres i et Gantt-diagram
+    - hvis 75 % av tid for å løse feilmeldingen har gått er den farget oransje, hvis
+    den er over tiden er den farget rød.
+  text_easy_rake_task_helpdesk_issue_closer_failed: 'Noen saker (%{count}/%{total})
+    kunne ikke lukkes:'
+  text_isseu_closer_close_notice: Denne saken ble automatisk lukket av brukerstøtte
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: 'SLA: respons
+    skulle ha vært innen %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: 'SLA: respons
+    må være innen %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: 'SLA: skulle vært
+    løst innen %{time}'
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: 'SLA: må løses
+    innen %{time}'
+  title_easy_helpdesk_add_project_from_sidebar: Klikk for å legge prosjekt til i Brukerstøtte
+  title_easy_helpdesk_allow_custom_sender: Tillat å sette tilpasset avsender pr. prosjekt
+  title_easy_helpdesk_allow_override: Tillat at oppgaveattributter overstyres fra
+    melding
+  title_easy_helpdesk_client_response_status: Velg hvilken status en feilmelding vil
+    få når den oppdateres via e-post.
+  title_easy_helpdesk_ignore_cc: Når e-post blir mottatt blir alle e-poster i kopi
+    lagt til hos overvåkere, ekstern e-post og automatisk svar blir sendt dem, dette
+    alternativet slår av dette.
+  title_easy_helpdesk_message_above_variables: Mal-melding kommer over mal-variabler
+  title_easy_helpdesk_sender: Hvem skal stå i 'fra'-feltet
+  title_easy_helpdesk_sender_current_user: Gjeldende bruker
+  title_easy_helpdesk_sender_is_user: Felt 'fra' settes til brukeren
+  title_easy_helpdesk_sender_mailbox_address: E-post-adresse fra postboks
+  title_easy_helpdesk_sender_redmine_default: Standard adresse for e-post-utsendelse
+  title_easy_helpdesk_skip_ignored_emails_headers_check: 'ADVARSEL: Brukerstøtte vil
+    motta e-poster fra andre systemer og det kan føre til en uendelig e-postutveksling!'
+  title_easy_helpdesk_sla_start_states: Velg statuser når SLA-måling blir gjenopptatt
+    etter å ha vært satt i pause av innstillingen over.
+  title_easy_helpdesk_sla_stop_states: Velg statuser når SLA ikke måles. For eksempel
+    lukkede billetter eller når du venter på et svar fra kunden.
+  title_sla_waiting_for_client: Venter på kunde

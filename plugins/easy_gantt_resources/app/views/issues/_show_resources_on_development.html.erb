@@ -1,0 +1,53 @@
+<%= toggling_fieldset('Allocations (for development purposes)', collapsed: false) do %>
+  <h4>Regular allocations</h4>
+  <div class="issue-resources">
+    <% issue.easy_gantt_resources.where('hours > 0').reorder(:date).each do |resource| %>
+      <div class="issue-resource <%= 'issue-resource-custom' if resource.custom %>">
+        <span class="date"><%= resource.date.strftime('%d.%m') %></span>
+        <span class="hours"><%= resource.hours %>h</span>
+      </div>
+    <% end %>
+  </div>
+
+  <h4>Original allocations</h4>
+  <div class="issue-resources">
+    <% issue.easy_gantt_resources.where('original_hours > 0').reorder(:date).each do |resource| %>
+      <div class="issue-resource <%= 'issue-resource-custom' if resource.custom %>">
+        <span class="date"><%= resource.date.strftime('%d.%m') %></span>
+        <span class="hours"><%= resource.original_hours %>h</span>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<style>
+  .issue-resources{
+    /*font-size: 0;*/
+  }
+
+  .issue-resource{
+    display: inline-block;
+    /*font-size: 13px;*/
+    padding: 2px 5px;
+    font-family: monospace;
+  }
+
+  .issue-resource .date, .issue-resource .hours{
+    display: block;
+    padding: 0 4px;
+    text-align: center;
+  }
+
+  .issue-resource .date{
+    background: #FBF3DD;
+  }
+
+  .issue-resource .hours{
+    /*background: #fff;*/
+  }
+
+  .issue-resource-custom .hours {
+    background: #3465A4;
+    color: #fff;
+  }
+</style>

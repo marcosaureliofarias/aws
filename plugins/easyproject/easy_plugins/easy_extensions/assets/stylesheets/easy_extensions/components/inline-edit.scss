@@ -1,0 +1,60 @@
+%edit-icon {
+  @extend %button-icon;
+  background: $color-foreground;
+  color: $color-text;
+  border-color: darken($color-border-minor,10%);
+
+  font-size: 80%;
+  opacity: 0;
+  position: absolute;
+  right: -2em;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+
+  &:before {
+    line-height: inherit;
+    width: auto !important;
+    border: none;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .attributes:hover & {
+    opacity: 1;
+  }
+}
+
+.multiedit-on-h2 {
+  .multieditable {
+    &-parent {
+      display: initial;
+    }
+  }
+}
+
+.multieditable,
+.editable {
+  &-parent {
+    position: relative;
+    display: inline-block;
+  }
+
+  &:hover {
+    & + span.icon-edit {
+      opacity: 1;
+    }
+  }
+
+  &-empty {
+    &:before{
+      content: '--';
+    }
+  }
+
+  & + span.icon-edit {
+    @extend %edit-icon;
+  }
+}

@@ -1,0 +1,20 @@
+$(".<%= dom_id(@easy_entity_activity)%> tr.entity-activity__form").remove();
+
+var prev = $(".<%= dom_id(@easy_entity_activity)%>").first().prev();
+if(prev.length == 0) {
+  prev = $(".<%= dom_id(@easy_entity_activity)%>").parent();
+  $(".<%= dom_id(@easy_entity_activity)%>").remove();
+  prev.prepend("<%= j render(:partial => '/easy_entity_activities/item_tr', locals: {easy_entity_activity: @easy_entity_activity}) %>");
+} else {
+  $(".<%= dom_id(@easy_entity_activity)%>").remove();
+  prev.after("<%= j render(:partial => '/easy_entity_activities/item_tr', locals: {easy_entity_activity: @easy_entity_activity}) %>");
+}
+
+<%= fields_for @new_easy_entity_activity, remote: true do |f| %>
+$('.tab-easy-entity-activity-content .entity-activity__new').html("<%= j render(:partial => '/easy_entity_activities/form', locals: {f: f}) %>")
+<% end %>
+
+$('.tab-easy-entity-activity-content form').attr('action', "<%= easy_entity_activities_path %>");
+$('.tab-easy-entity-activity-content form').attr('method', 'post');
+
+window.showFlashMessage('notice',"<%= l(:notice_successful_update) %>", 1000);

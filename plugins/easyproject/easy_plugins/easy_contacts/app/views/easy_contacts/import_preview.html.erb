@@ -1,0 +1,102 @@
+<h2><%= l(:label_easy_contacts_import) %></h2>
+<% if @errors && @errors.any? %>
+  <div id="errorExplanation">
+    <ul>
+    <% @errors.each do |error| %>
+      <li><%= error.is_a?(Symbol) ? l(error) : error %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= content_tag(:div, :id => "import_file_for_easy_contacts", :style=> ("display:none" if @saved_filename) ) do %>
+  <p>
+    <%= l(:text_easy_contacts_import_help) %>
+  </p>
+
+  <div class="wiki">
+    <%= content_tag(:pre, @importer.importable_fields.map(&:name).join(l(:general_csv_separator))) %>
+  </div>
+
+  <%= form_tag({},{:multipart => true}) do %>
+    <div class="tabular settings">
+      <p>
+        <%= label_tag(:import_file, l(:field_filename)) %>
+        <%= file_field_tag(:import_file) %>
+        <span class="hint">(<%= l(:label_max_size) %>: <%= number_to_human_size(Setting.attachment_max_size.to_i.kilobytes) %>)</span>
+      </p>
+      <p>
+        <%= easy_encoding_select_tag('import_file_for_easy_contacts', :title => l(:text_easy_contacts_encoding_help)) %>
+      </p>
+      <p>
+        <%= label_tag(:csv_has_headers, l(:field_csv_has_headers)) %>
+        <%= check_box_tag(:csv_has_headers, 'true', true) %>
+      </p>
+      <div class="buttons">
+        <%= submit_tag(l(:button_submit), :class => 'button-positive') %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @saved_filename %>
+  <p><%= l(:text_easy_contacts_import_preview) %></p>
+  <p>
+    <%= link_to(l(:button_ok_continue_import), {:action => 'import', :filename => @saved_filename, :encoding => @encoding, :csv_has_headers => @csv_has_headers}, :class => 'button-positive') %>
+    <span id="import_file_toggle_button" class="button"><!--i class="icon-toggler"></i--><%= l(:label_new_import_file_toggling_button) %></span>
+  </p>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      $("#import_file_toggle_button").click(function(e){
+        $("#import_file_for_easy_contacts").toggle();
+        $(this).toggleClass('open');
+      });
+    });
+  </script>
+<% end %>
+<% if @import_data %>
+  <table id="easy_imported_contacts" class="list">
+    <thead>
+      <tr>
+        <th></th>
+        <% @importer.importable_fields.each do |field| %>
+          <th><%= field.name %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @import_data.each do |contact| %>
+      <tr class="easy_imported_contact<%= ' error' unless contact.valid? %>">
+        <td><i class="<%= "icon-#{contact.valid? ? 'true' : 'false'}" %>">&nbsp;</i></td>
+        <% @importer.importable_fields.each do |field| %>
+          <%= content_tag(:td, field.value(contact)) %>
+        <% end -%>
+      </tr>
+      <% unless contact.valid? %>
+      <tr class="easy_contact_import_error" style="display:none;">
+        <td colspan="<%= @importer.importable_fields.count + 1 %>" style="text-align:center"><%= contact.errors.full_messages.join(', ') %></td>
+      </tr>
+      <% end %>
+
+      <% end if @import_data %>
+    </tbody>
+  </table>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      $('.easy_imported_contact.error').click(function(e){
+        $(this).next().toggle();
+      });
+    });
+  </script>
+<% end %>
+<% content_for :sidebar do %>
+  <div class="box fixed-sidebar-box grid_3 alpha omega">
+    <%= link_to(params[:back_url] || polymorphic_path([@project, :easy_contacts]), :class => 'button back') do %>
+      <i class="xl-icon icon-arrow left floatleft"></i>
+      <%= l('easy_contacts_toolbar.contact_exit') %>
+    <% end -%>
+  </div>
+<% end %>
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_contacts', :plugin => 'easy_contacts' -%>
+<%end%>

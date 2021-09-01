@@ -1,0 +1,3 @@
+<% if page_module.module_definition.get_row_limit(page_module.settings['row_limit'].to_i) <= entity_count %>
+  <div class="toolbar"><%= link_to l(:button_show_all_issues), easy_query.path, class: 'button' %></div>
+<% end %>

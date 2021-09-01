@@ -1,0 +1,21 @@
+<%= render @query, :easy_query_name => l(:heading_easy_printable_templates_index) %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:heading_easy_printable_templates_index)) -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <% if User.current.allowed_to_globally?(:manage_easy_printable_templates) || User.current.allowed_to_globally?(:manage_own_easy_printable_templates) %>
+    <%= link_to(l(:button_easy_printable_templates_add), {:action => :new}, :class => 'button-positive', :title => l(:button_easy_printable_templates_add)) -%>
+    <%= link_to l(:label_easy_printable_template_import),
+                easy_xml_data_import_settings_path(back_url: Addressable::URI.unescape(request.fullpath)),
+                remote: true,
+                class: 'icon icon-import button-positive' %>
+  <% end %>
+<% end %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+<% end -%>
+
+<%= context_menu({:controller =>'context_menus', :action => 'easy_printable_templates' }) -%>

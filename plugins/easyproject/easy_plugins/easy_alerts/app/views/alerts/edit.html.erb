@@ -1,0 +1,33 @@
+<div id="alerts">
+  <h2><%= l(:title_alerts_alert_edit) %></h2>
+
+  <%= labelled_form_for(@alert, :url => {:controller => 'alerts', :action => 'update'}, :html => {:id => "alert-form", :method => :put, :class => 'tabular long2 form-box'}) do |f| %>
+    <%= error_messages_for @alert %>
+
+    <div>
+      <%= render :partial => 'form', :locals => {:f => f}  %>
+    </div>
+
+    <div class="form-actions"><%= f.submit l(:button_save), :class => 'button-positive' %></div>
+  <% end %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% include_calendar_headers_tags %>
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:button_alerts_add_new_alert), { :controller => 'alerts', :action => 'new', :for_all => params[:for_all] }, :title => l(:title_alerts_add_new_alert), :class => 'button-positive' -%>
+<% end %>
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:button_alerts_my_alerts), { :controller => 'alerts', :action => 'index' }, :title => l(:title_alerts_my_alerts), :class => 'button' -%>
+  <%= link_to l(:button_alerts_reports), { :controller => 'alert_reports', :action => 'index' }, :title => l(:title_alerts_reports), :class => 'button' -%>
+  <%= link_to(l(:button_manage_alerts_for_all), { :controller => 'alerts', :action => 'index', :for_all => 1 }, :title => l(:title_manage_alerts_for_all), :class => 'button') if User.current.allowed_to?(:manage_alerts_for_all, nil, :global => true) -%>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'alerts', :plugin => 'easy_alerts' %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'sidebar/alerts' %>
+<% end %>

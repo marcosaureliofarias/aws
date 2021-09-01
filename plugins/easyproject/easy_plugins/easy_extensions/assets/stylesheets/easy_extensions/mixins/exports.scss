@@ -1,0 +1,24 @@
+%exports-label{
+  font-weight: bold;
+  float: left;
+}
+%exports{
+  @include small;
+  //text-align: center;
+  padding: $box-margin 0;
+  a{
+	color: rgba($color-text,0.5);
+    &:before{
+      margin-right: 0.25*$gap;
+    }
+    white-space: nowrap;
+    & + a{
+      margin-left: 0.5*$gap;
+    }
+  }
+  h6{
+    float: none;
+    margin: 0;
+    line-height: $base-line-height;
+  }
+}

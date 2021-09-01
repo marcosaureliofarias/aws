@@ -1,0 +1,74 @@
+---
+ru:
+  easy_twofa:
+    activate_scheme: Активировать %{name}
+    address: Адрес
+    authentificate: Аутентификация
+    code_was_resend: Код отправлен повторно
+    continue: Продолжить
+    device_will_be_rememberd_for_x_days: Устройство будет добавлено в список надёжных
+      устройств на %{count} дней
+    disable_scheme: Отключить %{name}
+    disabled: Отключено
+    disabling_twofa: Отключение двухфакторной аутентификации
+    enabled_scheme: Активная схема
+    expired_at: Просрочено
+    global_settings: Глобальные настройки
+    http_method: Метод HTTP
+    mode: Режим
+    optional: Опционально
+    plain_key: Простой ключ
+    please_enter_verification_key: Введите проверочный ключ
+    plugin_name: Easy Twofa
+    plugin_name_long: Двухфакторная аутентификация Easy
+    provider: Поставщик
+    remember_device: Запомнить устройство
+    remembered_devices: Надёжные устройства
+    required: Обязательно
+    scheme_is_active: Схема %{name} активна
+    schemes:
+      sms:
+        errors:
+          missing_provider: Провайдер sms-аутентификации отсутствует
+          missing_telephone: Телефон не указан
+        name: SMS
+        providers:
+          custom:
+            body: Текст сообщения
+            name: Пользовательский
+            telephone: Телефон
+          messagebird:
+            name: MessageBird
+        small_description: Аутентификация по SMS. Вам необходимо указать номер телефона
+          в настройках.
+      totp:
+        disable_title: Отключить TOTP
+        name: TOTP
+        setup_info: Отсканируйте QR-код или введите простой текстовый ключ в приложение
+          TOTP (например, Google Authenticator, Authy, Duo Mobile). Затем введите
+          код в поле ниже, чтобы активировать двухфакторную аутентификацию.
+        setup_title: Настроить TOTP
+        small_description: Аутентификация по одноразовому паролю на основе времени
+          посредством приложения TOTP (например, Google Authenticator).
+    select_scheme: Выбрать схему
+    select_scheme_is_required: Требуется настроить двухфакторную аутентификацию. Чтобы
+      продолжить, выберите схему. Потом вы сможете изменить её в настройках.
+    send_new_code: Отправить новый код
+    setting_enabled_schemes_info: Необходимо выбрать хотя бы одну схему. Если схема
+      не выбрана, активны будут все.
+    successfully_disabled: Отключено
+    successfully_verified: Проверка прошла успешно
+    telephone_cf: Настраиваемое поле «телефон»
+    text_activation: Выбранная схема пока не активирована. Вам надо ее подтвердить,
+      чтобы в дальнейшем не возникло проблем при входе в систему.
+    text_disable: Схема всё ещё активна. Подтвердите свою личность. Если не можете,
+      свяжитесь с администратором.
+    too_much_attempts: Превышено количество возможных попыток
+    twofa: Двухфакторная аутентификация
+    twofa_is_required: Требуется двухфакторная аутентификация
+    twofa_verification_failed: Не удалось подтвердить двухфакторную аутентификацию
+    twofa_was_saved: Настройки двухфакторной аутентификации сохранены.
+    user_agent: User-Agent
+    verification_failed_contact_administrator: Не удалось подтвердить двухфакторную
+      аутентификацию. Свяжитесь с администратором.
+    verify_code: Проверить код

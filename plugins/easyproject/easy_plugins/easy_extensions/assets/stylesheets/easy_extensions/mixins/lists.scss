@@ -1,0 +1,59 @@
+%list-reset{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+%list-item-actions{
+  float: right;
+  a{
+    @extend %tooltip-left;
+    @extend %button-link
+  }
+}
+%list-item{
+  @extend %flex;
+  padding: 0.75em 0;
+  overflow: hidden;
+  &:first-child{
+    #sidebar &,#easy_grid_sidebar &{
+      padding-top: 0;
+    }
+  }
+  input[type="checkbox"], input[type="radio"]{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+%list{
+  & &{
+   // @extend %list-reset;
+  }
+  li{
+    @extend %list-item;
+  }
+  & > li{
+    & + li{
+      border-top: 1px solid $color-border;
+    }
+  }
+  ul{
+    @include small;
+    margin-top: 0.75em;
+  }
+}
+%list-heading{
+  //padding: 0 $gap + 1;
+}
+%list-group{
+  //background: $list-background;
+  //border: 1px solid $list-border;
+  //padding: $gap;
+  @extend %clearfix;
+}
+%list-horizontal{
+  @extend %list;
+  display: inline;
+  li{
+    display: inline;
+  }
+}

@@ -1,0 +1,64 @@
+<% if !easy_query.grouped? && easy_query.columns.any? %>
+  <div class='splitcontent'>
+    <% output.entities.each do |entity| %>
+      <div class="easy-entity-card-container splitcontentleft <%= output.card_size_class -%> <%= dom_id(entity) %>">
+        <div class="easy-entity-card">
+          <div class="contextual easy-entity-card-actions">
+            <%#= easy_entity_card.link_to_entity_contextual_links %>
+            <%= output.header_links(entity) %>
+            <%#= call_hook(:view_easy_entity_cards_common_bottom_links, :easy_entity_card => easy_entity_card) %>
+          </div>
+
+          <%= avatar(output.tile_avatar_column.try(:value), :style => :small, :no_link => true) if output.tile_avatar_column.try(:value) -%>
+          <h4>
+            <%= link_to_entity(entity) %>
+          </h4>
+
+          <div class="easy-entity-card-detail">
+            <% #easy_query.columns.each do |column|   -%>
+            <% easy_query.columns.in_groups_of(easy_query.columns.count.fdiv(2).ceil).each do |group| -%>
+              <div>
+                <table class="attributes">
+                  <tbody>
+                  <% group.compact.each do |column| %>
+                    <tr>
+                      <th style="vertical-align: top"><%= content_tag(:strong, column.caption) %></th>
+                      <td style="vertical-align: top">
+                        <%= format_html_entity_attribute(entity.class, column, column.value(entity, {:params => params}), {:entity => entity, :allow_avatar => easy_query.show_avatars, :editable => false, :modal => false, :no_progress_bar => true, :users_as_avatars => true}).presence || '—' %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
+          </div>
+
+          <%# if easy_entity_card.footer? %>
+          <div>
+            <hr/>
+            <div class="splitcontent">
+              <div class="splitcontentleft">
+                <%= output.tag_list(entity) %>
+              </div>
+              <div class="splitcontentright contextual">
+                <%= output.export_links(entity) %>
+              </div>
+            </div>
+            <div class="clear"></div>
+            <%#= easy_entity_card.footer_bottom %>
+          </div>
+          <%# end %>
+
+        </div>
+      </div>
+    <% end %>
+    <% if output.entity_count > output.class::MAX_LIMIT %>
+      <em>
+        <%= l(:text_additional_entities, count: output.entity_count - output.class::MAX_LIMIT) %>
+      </em>
+    <% end %>
+    <div class='clear'></div>
+  </div>
+<% end %>
+

@@ -1,0 +1,141 @@
+<%= easy_breadcrumb([
+                   link_to(l(:heading_easy_action_sequence_templates, scope: :easy_actions),
+                           easy_action_sequence_templates_path,
+                           title: l(:heading_easy_action_sequence_templates, scope: :easy_actions)),
+                   link_to(@entity.name,
+                           easy_action_sequence_template_path(@entity),
+                           title: @entity.name)
+               ]) %>
+
+<%= title(@entity.name) %>
+
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <fieldset>
+      <legend>States <%= link_to('',
+                                 new_easy_action_sequence_template_easy_action_state_path(@entity, back_url: easy_action_sequence_template_path(@entity)),
+                                 remote: true,
+                                 class:  'icon icon-add') %></legend>
+      <table class="list">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @entity.states.each do |state| %>
+          <tr>
+            <td><%= state.name %></td>
+            <td>
+              <%= link_to('',
+                          edit_easy_action_sequence_template_easy_action_state_path(@entity, state, back_url: easy_action_sequence_template_path(@entity)),
+                          remote: true,
+                          class:  'icon icon-edit') %>
+              <%= link_to('',
+                          easy_action_sequence_template_easy_action_state_path(@entity, state, back_url: easy_action_sequence_template_path(@entity)),
+                          method: :delete,
+                          data:   { confirm: l(:text_are_you_sure) },
+                          class:  'icon icon-del') %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Transitions <%= link_to('',
+                                      new_easy_action_sequence_template_easy_action_transition_path(@entity, back_url: easy_action_sequence_template_path(@entity)),
+                                      remote: true,
+                                      class:  'icon icon-add') %></legend>
+      <table class="list">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>From</th>
+          <th>To</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @entity.transitions.each do |transition| %>
+          <tr>
+            <td><%= transition.name %></td>
+            <td><%= transition.state_from&.name %></td>
+            <td><%= transition.state_to&.name %></td>
+            <td>
+              <%= link_to('',
+                          edit_easy_action_sequence_template_easy_action_transition_path(@entity, transition, back_url: easy_action_sequence_template_path(@entity)),
+                          remote: true,
+                          class:  'icon icon-edit') %>
+              <%= link_to('',
+                          easy_action_sequence_template_easy_action_transition_path(@entity, transition, back_url: easy_action_sequence_template_path(@entity)),
+                          method: :delete,
+                          data:   { confirm: l(:text_are_you_sure) },
+                          class:  'icon icon-del') %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Actions <%= link_to('',
+                                  new_easy_action_sequence_template_easy_action_state_action_path(@entity, back_url: easy_action_sequence_template_path(@entity)),
+                                      remote: true,
+                                      class:  'icon icon-add') %></legend>
+      <table class="list">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @entity.state_actions.each do |state_action| %>
+          <tr>
+            <td><%= state_action.name %></td>
+            <td>
+              <%= link_to('',
+                          edit_easy_action_sequence_template_easy_action_state_action_path(@entity, state_action, back_url: easy_action_sequence_template_path(@entity)),
+                          remote: true,
+                          class:  'icon icon-edit') %>
+              <%= link_to('',
+                          easy_action_sequence_template_easy_action_state_action_path(@entity, state_action, back_url: easy_action_sequence_template_path(@entity)),
+                          method: :delete,
+                          data:   { confirm: l(:text_are_you_sure) },
+                          class:  'icon icon-del') %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </fieldset>
+  </div>
+  <div class="splitcontentright">
+    <%= render partial: 'easy_action_sequence_templates/chart', locals: { easy_action_sequence_template: @entity } %>
+  </div>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:button_edit), edit_easy_action_sequence_template_path(@entity), title: l(:button_edit), class: 'icon icon-edit button-positive') %>
+  <%= link_to l(:button_delete),
+              easy_action_sequence_template_path(@entity),
+              title:  l(:button_delete),
+              method: :delete,
+              data:   { confirm: l(:text_are_you_sure) },
+              class:  'icon icon-del button' %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%# link_to(l(:button_new_instance, scope: :easy_actions),
+              new_easy_action_sequence_template_easy_action_sequence_instance_path(@entity),
+              title: l(:button_new_instance, scope: :easy_actions),
+              class: 'icon icon-add button-positive') %>
+  <%# link_to(l(:heading_easy_action_sequence_instances, scope: :easy_actions),
+              easy_action_sequence_easy_action_sequence_instances_path(@entity),
+              title: l(:heading_easy_action_sequence_instances, scope: :easy_actions),
+              class: 'button') if @entity.is_template? %>
+<% end %>

@@ -1,0 +1,4 @@
+<li id="toolbar_<%= dom_id(easy_knowledge_story) %>" class="easy-knowledge-story-toolbar-item movable-list-item ui-state-default list-item" data-easy-knowledge-story-id="<%= easy_knowledge_story.id %>">
+  <%= link_to(easy_knowledge_story.name, easy_knowledge_story, {:class => 'icon icon-' + (easy_knowledge_story.is_favorite? ? 'fav' : 'bulb')}) %>
+  <%= content_tag(:span, l(:label_unread_entity), :class => 'upper easy-knowledge-indicator') if easy_knowledge_story.unread? %>
+</li>

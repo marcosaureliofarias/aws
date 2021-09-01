@@ -1,0 +1,56 @@
+<%
+  entity_type, mapping_entities, _existing_entities = @mapping_data.first
+
+  is_easy_page = entity_type == 'easy_page'
+  if is_easy_page
+    name_attribute = 'user_defined_name'
+    label_for_name = :field_title
+  else
+    name_attribute = 'template_name'
+    label_for_name = :field_name
+  end
+%>
+
+<h2><%= l("label_#{entity_type}_mapping") %></h2>
+<%= form_tag(action: 'import') do %>
+  <%= hidden_field_tag 'back_url', params['back_url'] if params['back_url'] %>
+
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_name) %></th>
+        <th><%= l(:label_enumeration_new) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= l(label_for_name) %></td>
+        <td><%= text_field_tag("map[#{entity_type}][#{name_attribute}]", mapping_entities.first[name_attribute.to_sym], id: 'project_name') %></td>
+      </tr>
+      <tr>
+        <% if is_easy_page %>
+          <td><%= l(:field_identifier) %></td>
+          <td><%= text_field_tag("map[#{entity_type}][identifier]", nil, id: 'project_identifier', maxlength: EasyPage::IDENTIFIER_MAX_LENGTH, pattern: '^(?!\d+$)[a-z0-9\-_]*$', title: "#{l(:label_easy_allowed_characters)}: a-z, 0-9, -, _") %></td>
+        <% else %>
+          <td><%= l(:field_description) %></td>
+          <td><%= text_field_tag("map[#{entity_type}][description]", mapping_entities.first[:description]) %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= submit_tag l(:button_xml_data_continue), class: 'button big' %>
+<% end -%>
+
+<% if entity_type == 'easy_page'%>
+  <script type="application/javascript">
+    EASY.schedule.late(function(){
+      var $projectIdentifier = $('#project_identifier');
+      $projectIdentifier.val(generateProjectIdentifier($('#project_name').val(), parseInt($projectIdentifier.attr('maxlength'))));
+    });
+  </script>
+
+  <% content_for :header_tags do %>
+      <%= javascript_include_tag 'project_identifier', defer: true %>
+  <% end %>
+<% end %>

@@ -1,0 +1,14 @@
+<%
+modul_uniq_id ||= controller_name + '_' + action_name
+easy_query_label ||= l(:label_easy_project_attachments)
+%>
+
+<% if @query&.is_a?(EasyProjectAttachmentQuery) %>
+  <div class="box doc-group attachment-links show_context_menu" id="doc_query">
+    <%= toggling_container(modul_uniq_id + dom_id(@query), User.current, { heading: l(:label_easy_project_attachments), wrapping_heading_element: 'h2', wrapping_heading_element_classes: 'icon icon-attachment' }) do %>
+
+      <%= render @query, easy_query_name: easy_query_label, options: { hascontextmenu: true } %>
+      <%= context_menu context_menus_versioned_attachments_path(back_url: original_url), '.attachment-links.show_context_menu table.attachments' %>
+    <% end %>
+  </div>
+<% end %>

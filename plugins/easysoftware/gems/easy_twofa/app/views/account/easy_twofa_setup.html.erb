@@ -1,0 +1,27 @@
+<div class="easy-twofa-setup easy-twofa-select-scheme--login">
+  <%= title @easy_twofa_scheme.t_setup_title %>
+
+  <%= form_tag easy_twofa_verification_account_path, method: 'POST' do %>
+    <div class="box">
+      <p>
+        <%= @easy_twofa_scheme.t_setup_info %>
+      </p>
+
+      <%= render @easy_twofa_scheme.setup_partial_path, scheme: @easy_twofa_scheme %>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l('easy_twofa.continue') %>
+    </div>
+  <% end %>
+
+  <% if session[:easy_twofa_selection] == 1 %>
+    <p>
+      <%= link_to l('easy_twofa.select_scheme'), easy_twofa_select_scheme_account_path, class: 'button' %>
+    </p>
+  <% end %>
+</div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_twofa' %>
+<% end %>

@@ -1,0 +1,114 @@
+<%= error_messages_for 'tracker' %>
+<div class="splitcontent" id="tracker_edit">
+  <div class="tabular splitcontentleft size-4">
+    <div class="box ">
+      <!--[form:tracker]-->
+      <p><%= f.text_field :name, :required => true %></p>
+      <p></p>
+      <p><%= f.easy_icon_select(:easy_icon) %></p>
+      <p><%= f.select :default_status_id,
+              IssueStatus.sorted.map {|s| [s.name, s.id]},
+              :include_blank => @tracker.default_status.nil?,
+              :required => true %>
+      </p>
+      <p><%= f.text_area :description, rows: 4 %></p>
+      <p><%= f.check_box :is_in_roadmap %></p>
+      <p><%= f.check_box :easy_send_invitation %></p>
+      <p><%= f.check_box :easy_do_not_allow_close_if_subtasks_opened %></p>
+      <p><%= f.check_box :easy_do_not_allow_close_if_no_attachments %></p>
+      <p><%= f.check_box :easy_distributed_tasks %></p>
+
+      <%= call_hook(:view_tracker_form_attributes, tracker: @tracker, f: f) %>
+
+      <%= toggling_fieldset(l(:field_core_fields)) do %>
+        <p>
+          <% Tracker::CORE_FIELDS.each do |field| %>
+            <label class="block">
+              <%= check_box_tag 'tracker[core_fields][]', field, @tracker.core_fields.include?(field), :id => nil %>
+              <%= l("field_#{field}".sub(/_id$/, '')) %>
+            </label>
+          <% end %>
+        </p>
+        <%= hidden_field_tag 'tracker[core_fields][]', '' %>
+      <% end %>
+
+      <% if @tracker.new_record? && @trackers.any? %>
+        <p>
+          <%= label_tag(:copy_workflow_from, l(:label_copy_workflow_from)) %>
+          <%= select_tag(:copy_workflow_from, options_from_collection_for_select(@trackers, :id, :name), include_blank: true) %>
+        </p>
+      <% end %>
+      <% if !@tracker.new_record? && @trackers.any? %>
+        <p>
+          <%= label_tag(:override_workflow_by, l(:label_override_workflow_from)) %>
+          <%= select_tag(:override_workflow_by, options_from_collection_for_select(@trackers, :id, :name), include_blank: true) %>
+        </p>
+      <% end %>
+      <%= toggling_fieldset(l(:label_easy_color_schemes)) do %>
+        <p>
+        <%= easy_color_scheme_select_tag( 'tracker[easy_color_scheme]', :selected => @tracker.easy_color_scheme, :class => @tracker.easy_color_scheme) -%>
+        </p>
+        <% if EasySetting.value('issue_color_scheme_for') != 'tracker' %>
+        <p class="help">
+          <%= l(:easy_color_scheme_not_available, :current => l("label_#{EasySetting.value('issue_color_scheme_for')}_plural") ) -%>
+          <%= link_to(l(:label_my_page_issue_query_new_link), {:controller => 'settings', :tab => 'issues'}) -%>
+        </p>
+      <% end %>
+      <% end %>
+      <!--[eoform:tracker]-->
+    </div>
+  </div>
+
+  <div class="splitcontentright size-6">
+    <div class="splitcontent">
+      <div class="splitcontentleft">
+        <% if @projects.any? %>
+          <%= toggling_fieldset( l(:label_project_plural), :id => 'tracker_project_ids') do %>
+            <% project_ids = @tracker.project_ids.to_a %>
+            <%= render_project_nested_lists(@projects) do |p|
+              content_tag('label', check_box_tag('tracker[project_ids][]', p.id, project_ids.include?(p.id), :id => nil) + ' ' + h(p))
+            end %>
+            <%= hidden_field_tag('tracker[project_ids][]', '', :id => nil) %>
+            <p><%= check_all_links 'tracker_project_ids' %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="splitcontentright">
+        <% @issue_custom_fields = IssueCustomField.sorted %>
+        <% if @issue_custom_fields.present? %>
+          <%= toggling_fieldset( l(:label_custom_field_plural), :id => 'custom-fields') do %>
+            <% tracker_custom_fields = @tracker.custom_fields.to_a %>
+            <% @issue_custom_fields.each do |field| %>
+              <label class="block">
+                <%= check_box_tag 'tracker[custom_field_ids][]', field.id, tracker_custom_fields.include?(field), :id => nil %>
+                <%= field.name %>
+              </label>
+            <% end %>
+          <%= hidden_field_tag 'tracker[custom_field_ids][]', '' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form-actions">
+  <%= submit_tag l(@tracker.new_record? ? :button_create : :button_save), :class => 'button-positive' %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    var h = $('#tracker_edit').children()[0].offsetHeight;
+    var max = window.innerHeight;
+    $('#tracker_project_ids, #custom-fields').css({
+      'max-height': h - 60 + 'px', //( h < max ? h : max )
+      'overflow': 'hidden',
+      'position': 'relative'
+    });
+
+    $(".button-positive").on("click", function () {
+      if ($("#override_workflow_by").val() !== "") {
+        return confirm("<%= l(:tracker_confirm_override) %>");
+      }
+    });
+  });
+</script>

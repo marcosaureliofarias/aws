@@ -1,0 +1,24 @@
+<%
+   modul_uniq_id = "module_inside_#{page_module.uuid.dasherize}"
+   default_button_state ||= page_module.new_on_page ? true : false
+   if page_params[:modal_edit]
+    modul_uniq_id = "module_inside_modal_#{page_module.uuid.dasherize}"
+    default_button_state = true
+   end
+   user = (page_params[:user] || User.current)
+   pmtc_options = {
+    easy_page_modules_data: @easy_page_modules_data[page_module.module_name],
+    modul_uniq_id: modul_uniq_id,
+    block_name: page_module.module_name,
+    user: user,
+    default_button_state: default_button_state,
+    edit: true
+   }
+
+   tc_options = get_page_module_toggling_container_options(page_module, pmtc_options)
+%>
+<div id="module_<%= 'modal_' if page_params[:modal_edit] %><%= page_module.uuid.dasherize -%>" class="easy-page-module box">
+  <%= page_module_toggling_container(page_module, page_params, modul_uniq_id, user, tc_options) do %>
+    <%= render(:partial => 'easy_page_layout/page_module_edit', :locals => {:page_params => page_params, :page_module => page_module, modul_uniq_id: modul_uniq_id}) -%>
+  <% end %>
+</div>

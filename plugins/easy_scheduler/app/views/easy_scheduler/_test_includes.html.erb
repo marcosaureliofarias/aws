@@ -1,0 +1,23 @@
+<%
+  tags = get_jasmine_tags
+  mocked_data = tags.include?(:personal) || tags.include?(:manager)
+%>
+<%=
+  javascript_include_tag_safe(
+      # test framework
+      'jasmine/helpers/scheduler_test',
+
+      # common tests
+      'jasmine/init_test',
+      'jasmine/free_space',
+      'jasmine/lang',
+      'jasmine/tasks',
+      'jasmine/users',
+      'jasmine/saver',
+      ('jasmine/common' if mocked_data),
+      ('jasmine/event_actions' if mocked_data),
+      ('jasmine/personal' if tags.include? :personal),
+      ('jasmine/manager' if tags.include? :manager),
+
+      plugin: :easy_scheduler, defer: true)
+%>

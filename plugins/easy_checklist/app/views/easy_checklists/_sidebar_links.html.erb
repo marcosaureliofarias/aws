@@ -1,0 +1,11 @@
+<%= link_to(l(:button_new_easy_checklist_template),
+  new_easy_checklist_path,
+  :title => l(:label_easy_checklist_new_template),
+  :class => 'icon icon-add button-1 button-positive') %>
+
+<%= link_to(l(:label_easy_checklist_templates), easy_checklists_path,
+  :class => 'button-2 icon icon-workflow') %>
+
+<%= link_to(l(:button_settings_easy_checklist),
+  settings_easy_checklists_path, :title => l(:label_easy_checklist_settings),
+  :class => 'icon icon-controls button-2 button') %>

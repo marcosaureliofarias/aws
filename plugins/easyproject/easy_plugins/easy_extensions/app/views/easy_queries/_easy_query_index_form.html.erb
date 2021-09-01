@@ -1,0 +1,233 @@
+<%
+  modul_uniq_id ||= ''
+  block_name ||= ''
+  filter_active ||= ''
+  query_heading ||= query.name
+  options ||= {}
+  entity_count ||= nil
+  modal_selector ||= false
+  if options[:page_module].nil?
+    show_sort_criteria = local_assigns.fetch(:show_sort_criteria, false)
+    show_columns_criteria = local_assigns.fetch(:show_columns_criteria, options.fetch(:show_columns_criteria, true) )
+    show_group_by_criteria = local_assigns.fetch(:show_group_by_criteria, options.fetch(:show_group_by_criteria, true) )
+    show_settings_criteria = local_assigns.fetch(:show_settings_criteria, options.fetch(:show_settings_criteria, true) )
+    show_query_heading = local_assigns.fetch(:show_query_heading, options.fetch(:show_query_heading, true) )
+  end
+  show_filters_opened = local_assigns.fetch(:show_filters_opened, false)
+  show_custom_formatting = local_assigns.fetch(:show_custom_formatting, options.fetch(:show_custom_formatting, true)) && EasySetting.value('show_easy_custom_formatting')
+  show_custom_formatting_opened = local_assigns.fetch(:show_custom_formatting_opened, false)
+  easy_page_zone_module_uuid = local_assigns.fetch(:easy_page_zone_module_uuid, nil)
+  show_free_search = options.fetch(:show_free_search, local_assigns.fetch(:show_free_search, false))
+  show_heading_buttons = local_assigns.fetch(:show_heading_buttons, true)
+  presenter = present(query,
+    block_name: block_name,
+    modul_uniq_id: modul_uniq_id,
+    show_sort_criteria: show_sort_criteria,
+    show_columns_criteria: show_columns_criteria,
+    show_group_by_criteria: show_group_by_criteria,
+    show_settings_criteria: show_settings_criteria
+  )
+  show_tagged_queries = options.fetch(:show_tagged_queries, true) && !modal_selector
+%>
+
+<div class="easy-query-heading">
+  <% if options[:page_module].nil? %>
+    <div class="buttons contextual" <%= 'style="display: none"'.html_safe unless show_heading_buttons %>>
+      <% if show_free_search %>
+        <div class="freetext-search-contextual">
+          <%= render(:partial => 'common/freetext_quick_search', :locals => free_search_options) %>
+        </div>
+      <% end %>
+      <div class="filters<%= ' open' if show_filters_opened -%>" id="<%= modul_uniq_id -%>easy-query-toggle-button-filters">
+        <a href="javascript:void(0);">
+          <i class="icon-toggler"></i>
+          <%= l(:label_filter_plural) -%>
+          <% if query.default_filter_options? -%>
+            <%= content_tag :span, :class => 'default-filter' do -%>
+              <%= l(:filter_default) -%>
+            <% end -%>
+          <% elsif query.filters_active? -%>
+            <%= content_tag :span, :class => 'active-filter' do -%>
+              <%= l(:filter_active) -%>
+            <% end -%>
+          <% end -%>
+        </a>
+
+      </div>
+      <%= late_javascript_tag do %>
+        $("#<%= modul_uniq_id -%>easy-query-toggle-button-filters").bind('click', function(e, el) {
+          EASY.utils.toggleDivAndChangeOpen('<%= modul_uniq_id -%>filters', "#<%= modul_uniq_id -%>easy-query-toggle-button-filters");
+          EASY.query.toggleFilterButtons('<%= modul_uniq_id -%>filter_buttons', '.<%= modul_uniq_id -%>easy-query-filter-toggle');
+        });
+      <% end %>
+      <% if show_custom_formatting %>
+        <div class="<%= 'open' if show_custom_formatting_opened -%>" id="<%= modul_uniq_id -%>easy-query-toggle-button-custom-formatting">
+          <a href="javascript:void(0);">
+            <i class="icon-toggler"></i>
+            <%= l(:label_custom_formatting) -%>
+          </a>
+        </div>
+        <%= late_javascript_tag do %>
+          $("#<%= modul_uniq_id -%>easy-query-toggle-button-custom-formatting").bind('click', function(e, el) {
+              EASY.utils.toggleDivAndChangeOpen('<%= modul_uniq_id -%>custom_formatting', $("#<%= modul_uniq_id -%>easy-query-toggle-button-custom-formatting"));
+              EASY.query.toggleFilterButtons('<%= modul_uniq_id -%>filter_buttons', '.<%= modul_uniq_id -%>easy-query-filter-toggle');
+          });
+        <% end %>
+      <% end %>
+      <% if (show_sort_criteria || show_columns_criteria || show_group_by_criteria || show_settings_criteria) && (query.display_filter_sort_on_index || query.display_filter_columns_on_index || query.display_filter_group_by_on_index || query.display_filter_settings_on_index) -%>
+        <div class="settings" id="<%= modul_uniq_id -%>easy-query-toggle-button-settings">
+          <a href="javascript:void(0);">
+            <i class="icon-toggler"></i>
+            <%= l(:label_options) -%>
+          </a>
+        </div>
+        <%= late_javascript_tag do %>
+          $("#<%= modul_uniq_id -%>easy-query-toggle-button-settings").bind('click', function(e, el) {
+              EASY.utils.toggleDivAndChangeOpen('<%= modul_uniq_id -%>filters_settings', "#<%= modul_uniq_id -%>easy-query-toggle-button-settings");
+              EASY.query.toggleFilterButtons('<%= modul_uniq_id -%>filter_buttons', '.<%= modul_uniq_id -%>easy-query-filter-toggle');
+          });
+        <% end %>
+      <% end -%>
+    </div>
+  <% end %>
+
+  <% if show_query_heading %>
+    <h2>
+      <span class="easy-query-heading-wrapper">
+        <%= query_heading.dup %>
+        <% unless options[:hide_heading_counts] %>
+          <span id="easy-query-heading-count" class="easy-query-heading-count"><%= entity_count || query.entity_count %></span>
+        <% end %>
+        <% if !query.new_record? && query.editable_by?(User.current) %>
+          <span class="tooltip">
+            <%= link_to('', edit_easy_query_path(query, :project_id => @project, :back_url => back_url), :class => 'icon icon-edit', :title => l(:title_edit_projectquery)) %>
+            <%= link_to('', easy_query_path(query, :project_id => @project, :back_url => back_url), :data => {:confirm => l(:text_are_you_sure)}, :method => 'delete', :class => 'icon icon-del', :title => l(:title_delete_projectquery)) %>
+            <%= link_to('', easy_query_load_users_for_copy_path(query, :back_url => back_url), :class => 'icon icon-group', :title => l(:title_copy_projectquery), :remote => true) %>
+          </span>
+        <% end %>
+      </span>
+      <% if show_tagged_queries && (tagged_queries = query.class.tagged_queries(User.current, @project, { ignore_admin: true }.merge(options[:tagged_queries_options] || {}))).present? %>
+        <span class="entity-array">
+          <% tagged_queries.each do |t_q| %>
+            <% t_q.project = (@project && !query.dont_use_project) ? @project : nil %>
+            <% t_q_class = ['icon', t_q.settings['tagged_icon'], t_q.settings['tagged_color']].compact.join(' ') %>
+            <%= link_to(tagged_query_heading(t_q, options[:hide_heading_counts]), url_for(t_q.path({:tab => params[:tab], :project => @project}.merge(options[:additional_tagged_url_options] || {}))).html_safe, :class => t_q_class) %>
+          <% end %>
+        </span>
+      <% end %>
+    </h2>
+  <% end %>
+  <%= content_tag(:h3, options[:query_sub_heading]) unless options[:query_sub_heading].blank? %>
+
+  <% if presenter.render_zoom_links? %>
+    <% if query.outputs.include?('chart') %>
+      <% path_method ||= :url_for %>
+      <div class="clear"></div>
+      <div class="button-group easy-query-heading-controls">
+        <% query.all_periods.each do |period| %>
+          <% base_url = query.to_params.except(:period_start_date, :period_end_date).merge(:tab => params[:tab]) %>
+          <%= link_to(content_tag(:span, query_period_zoom_name(period), :class => 'tooltip'), presenter.switch_period_url(period, path_method, base_url, block_name), :class => "icon icon-calendar-#{period}#{' active' if (query.period_zoom == period)}", :title => query_period_zoom_name(period)) %>
+        <% end %>
+      </div>
+
+      <% if presenter.render_zoom_listing_links? %>
+        <div class="easy-query-listing-links easy-calendar-listing-links next-prev-links">
+          <%= link_to('', presenter.previous_period_url(path_method, query.to_params.merge(:period_date_period => 'all', :tab => params[:tab]), block_name), :title => l(:label_previous), :class => 'prev') %>
+          <%= content_tag(:span, format_date(query.period_start_date) + ' - ' + format_date(query.period_end_date),:class => 'period') %>
+          <%= link_to('', presenter.next_period_url(path_method, query.to_params.merge(:period_date_period => 'all', :tab => params[:tab]), block_name), :title => l(:label_next), :class => 'next') %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="clear"></div>
+      <div class="button-group easy-query-heading-controls">
+        <% query.all_periods.each do |period| %>
+          <%= link_to(content_tag(:span, query_period_zoom_name(period), :class => 'tooltip'), url_for(query.to_params.merge(:period_start_date => query.beginning_of_period_zoom(query.period_start_date, period), :period_end_date => query.period_end_date, :period_zoom => period, :tab => params[:tab])), :class => "icon icon-calendar-#{period}#{' active' if (query.period_zoom == period)}", :title => query_period_zoom_name(period)) %>
+        <% end %>
+      </div>
+
+      <% if presenter.render_zoom_listing_links? %>
+        <div class="easy-query-listing-links easy-calendar-listing-links next-prev-links">
+          <%= link_to('', url_for(query.to_params.merge(:period_start_date => query.period_start_date - (query.period_end_date - query.period_start_date) - 1, :period_end_date => query.period_start_date - 1.day, :period_date_period => 'all', :period_date_period_type => '2', :tab => params[:tab])), :title => l(:label_previous), :class => 'prev') %>
+          <%= content_tag(:span, format_date(query.period_start_date) + ' - ' + format_date(query.period_end_date),:class => 'period') %>
+          <%= link_to('', url_for(query.to_params.merge(:period_start_date => query.period_end_date + 1.day, :period_end_date => query.period_end_date + (query.period_end_date - query.period_start_date) + 1, :period_date_period => 'all', :period_date_period_type => '2', :tab => params[:tab])), :title => l(:label_next), :class => 'next') %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<% if options[:page_module].nil? %>
+  <div class="easy-query-filter-settings">
+    <div id="<%= modul_uniq_id -%>filters" class="<%= modul_uniq_id -%>easy-query-filter-toggle gray-background filters collapsible<%= ' collapsed' if !show_filters_opened -%>" style="<%= 'display: none;' if !show_filters_opened -%>">
+      <%= render_with_fallback :partial => 'filters', :prefixes => query, :locals => {:query => query, :modul_uniq_id => modul_uniq_id, :block_name => block_name} %>
+    </div>
+    <% if show_custom_formatting %>
+      <div id="<%= modul_uniq_id -%>custom_formatting" class="<%= modul_uniq_id -%>easy-query-filter-toggle gray-background collapsible<%= ' collapsed' if !show_custom_formatting_opened -%>" style="<%= 'display: none;' if !show_custom_formatting_opened -%>">
+        <%= render_with_fallback :partial => 'filters_custom_formatting', :prefixes => query, :locals => {:query => query, :modul_uniq_id => modul_uniq_id, :block_name => block_name} %>
+      </div>
+    <% end %>
+    <div id="<%= modul_uniq_id -%>filters_settings" class="<%= modul_uniq_id -%>easy-query-filter-toggle gray-background others collapsible collapsed" style="display: none;">
+      <% if !modal_selector && query.display_outputs_select_on_index %>
+        <div id="<%= modul_uniq_id %>outputs_select" class="outputs_select tabular">
+          <%= presenter.outputs.render_edit_selects %>
+        </div>
+      <% end %>
+      <div id="<%= modul_uniq_id %>outputs_settings">
+        <% presenter.outputs.each(:available) do |output| %>
+          <div class="<%= output.key %>_settings output-settigs-box" data-output="<%= output.key %>" style="<%= 'display: none;' unless output.enabled? %>">
+            <%= output.render_edit_form('index') %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end -%>
+
+<% export_links = render(partial: 'easy_queries/easy_query_export_format_links',
+                         locals: { query: query,
+                                   options: { no_container: true }}) -%>
+<% if export_links.present? %>
+  <% content_for :sidebar_exports do %>
+    <div class="other-formats links">
+        <h6 class="floating"><%= l(:label_easy_query_export_links) -%></h6>
+        <%= export_links -%>
+    </div>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    function toggleOutputFields(output, state) {
+      var $box = $('#<%= modul_uniq_id %>outputs_settings .'+ output +'_settings');
+      if( output != 'list' && !state )
+        $box.find(':input').prop('disabled', true);
+      else
+        $box.find(':input').prop('disabled', false);
+    }
+
+    $('#<%= modul_uniq_id %>outputs_select .output_switch').each(function(){
+      var $self = $(this);
+      toggleOutputFields($self.val(), $self.is(':checked'));
+    });
+
+    var tiles = $("#<%= modul_uniq_id %>output_tiles");
+    $("#<%= modul_uniq_id %>outputs_select .output_switch").change(function () {
+      var $self = $(this);
+      if ($self.val() === 'tiles' || $self.val() === 'list') {
+        var list = $("#<%= modul_uniq_id %>output_list");
+        var $box = $('#<%= modul_uniq_id %>outputs_settings .list_settings');
+        var is_checked = tiles.is(':checked') || list.is(':checked');
+        toggleOutputFields('list', is_checked);
+        $box.toggle(is_checked);
+      } else {
+        var $box = $('#<%= modul_uniq_id %>outputs_settings .' + $self.val() + '_settings');
+        toggleOutputFields($self.val(), $self.is(':checked'));
+        $box.toggle($self.is(':checked'));
+      }
+      $(document).trigger('erui_interface_change_vertical');
+    });
+    if (tiles.is(':checked')) {
+      $('.list_settings.output-settigs-box').show();
+    }
+  });
+</script>

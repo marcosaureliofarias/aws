@@ -1,0 +1,65 @@
+<%= form_for @entity_activity, remote: true, html: {class: "form-box"} do |f| %>
+  <div class="tabular box">
+    <p>
+      <%= label_tag :easy_entity_activity_entity_type, l(:field_type) %>
+      <% @decorated_obj.types.each do |type, label| -%>
+        <%= label_tag "#{f.object_name}_entity_type_#{type}", radio_button_tag("#{f.object_name}[entity_type]", type, type == @decorated_obj.default_type, disabled: @decorated_obj.persisted?) + label, class: 'inline' -%>
+      <% end %>
+    </p>
+    <p class="easy-scheduler-activity-entity-id">
+      <%= render partial: 'easy_entity_activity_entity', locals: {type: @decorated_obj.default_type, entity: @decorated_obj.entity, editable: @decorated_obj.new_record?} %>
+      <%= call_hook :view_easy_scheduler_activity_entity_id_bottom, type: @decorated_obj.default_type, entity: @decorated_obj.entity, editable: @decorated_obj.new_record? %>
+    </p>
+    <p>
+      <span class="input-append input-append--time-values">
+        <%= text_field_tag "#{f.object_name}[start_time][date]", @decorated_obj.date, size: 5, id: :easy_entity_activity_start_time_date, onchange: "$('##{f.object_name}_end_time_date').val($(this).val());" -%>
+        <%= calendar_for("#{f.object_name}_start_time_date") -%>
+        <span class="input-append--range">
+          <%= tag :input, type: 'time', value: @decorated_obj.user_start_time, placeholder: @decorated_obj.user_start_time.presence || '00:00', name: "#{f.object_name}[start_time][time]", class: "time-select time-select-start_time", size: 4 %>
+          <span class="easy-attendance-time-delimiter">-</span>
+          <%= hidden_field_tag 'easy_entity_activity[end_time][date]', @decorated_obj.date %>
+          <%= tag :input, type: 'time', value: @decorated_obj.user_end_time, placeholder: @decorated_obj.user_end_time.presence || '00:00', name: "#{f.object_name}[end_time][time]", class: "time-select time-select-end_time", size: 4 %>
+        </span>
+      </span>
+    </p>
+    <p>
+      <%= label_tag :all_day, l(:field_all_day) %>
+      <%= f.check_box :all_day%>
+    </p>
+    <p>
+      <%= label_tag :is_finished, l(:field_easy_entity_activity_finished) %>
+      <%= f.check_box :is_finished %>
+    </p>
+    <p>
+      <%= label_tag :category_id, l(:field_category) %>
+      <%= f.select :category_id, EasyEntityActivityCategory.sorted.collect{|x| [x.name, x.id]} %>
+    </p>
+    <p>
+      <%= label_tag :easy_entity_activity_attendees_Principal_, l(:label_user_plural) %>
+      <%= autocomplete_field_tag 'easy_entity_activity_attendees[Principal][]', easy_autocomplete_path('users'),
+                                 @decorated_obj.user_attendees, rootElement: 'users' %>
+    </p>
+    <p class="easy-scheduler-contacts-attendees">
+      <%= render partial: 'easy_contacts_attendees', locals: {selected: @decorated_obj.contacts_attendees} %>
+    </p>
+    <p>
+      <%= label_tag :description, l(:field_description) %>
+      <%= f.text_area :description %>
+    </p>
+  </div>
+
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    window.reloadContacts = function (type, id) {
+      var url = "<%= easy_scheduler_reload_contacts_path %>";
+      $.get(url, {id: id, entity_type: type});
+    }
+
+    $("input[name='easy_entity_activity[entity_type]']").on('change', function(){
+      var url = "<%= easy_scheduler_reload_activity_entity_path %>";
+      $.get(url, {entity_type: $(this).val()});
+    });
+  });
+</script>

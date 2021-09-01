@@ -1,0 +1,9 @@
+<div class="box">
+  <%= toggling_container('easy_query_types', User.current, {:heading => l(:label_easy_query_management_query_types), :default_button_state => true, :class => :autoscrol}) do %>
+    <ul>
+      <% @easy_query_types.each do |x| %>
+        <li class="name saved-queries"><%= link_to(x[1], edit_easy_query_management_path(type: x[0])) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

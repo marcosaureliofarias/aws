@@ -1,0 +1,9 @@
+<% if settings['output_type'].blank? || %w(list, table).include?(settings['output_type']) %>
+  <%= render :partial => 'easy_page_modules/timelog/timelog_simple_show_list', :locals => {:block_name => block_name, :modul_uniq_id => modul_uniq_id, :user => user, :settings => settings} %>
+<% elsif settings['output_type'] == 'chart' %>
+  <div class="chart-grid">
+    <% @easy_page_modules_data[block_name][:workers].each do |worker, worker_data| %>
+        <%= render :partial => 'common/charts/gauge_meter', :locals => {:modul_uniq_id => "#{block_name}_#{worker.id}", :value => worker_data[0], :max_value => worker_data[1], :chart_label => worker.name} %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,33 @@
+<%
+  options ||= {}
+  options[:include_cocoon] ||= false
+%>
+
+<%= labelled_form_for(@easy_checklist, :as => 'easy_checklist', :url => (@easy_checklist.new_record? ? easy_checklists_path(:back_url => back_url) : easy_checklist_path(@easy_checklist, :back_url => back_url)), :html => {:class => 'form-box tabular'}) do |f| %>
+
+  <%= hidden_field_tag 'entity_type', f.object.type %>
+
+  <div class="splitcontent box" id="easy_checklist_form_container">
+    <div class="splitcontentleft">
+      <%= render :partial => 'easy_checklists/easy_checklist_form_attributes', :locals => {:f => f, :easy_checklist => @easy_checklist, :options => options} %>
+    </div>
+    <div class="splitcontentright">
+      <%= f.check_box :is_default_for_new_projects, label: l(:label_easy_checklist_use_for_new_projects) %>
+      <% if @projects.present? %>
+        <fieldset class="box" id="easy_checklist_project_ids">
+          <legend><%= l(:label_project_plural) %></legend>
+          <%= render_project_nested_lists(@projects) do |p|
+            content_tag('label', check_box_tag('easy_checklist[project_ids][]', p.id, @easy_checklist.projects.to_a.include?(p), :id => nil) + ' ' + h(p) + (p.easy_is_easy_template? ? ' ' + l(:label_menu_project_template) : ''))
+          end %>
+          <%= hidden_field_tag('easy_checklist[project_ids][]', '', :id => nil) %>
+          <p><%= check_all_links 'easy_checklist_project_ids' %></p>
+        </fieldset>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit(l(:button_save), :class => 'button-positive', :title => l(:button_save)) %>
+  </div>
+<% end %>
+
+<%= render :partial => 'easy_checklists/easy_checklist_form_bottom', :locals => {:options => options} %>

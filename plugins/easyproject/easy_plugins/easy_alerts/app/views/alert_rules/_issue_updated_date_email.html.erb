@@ -1,0 +1,3 @@
+<span><%= link_to(report.alert.name, alert_url(report.alert_id, :only_path => false), :title => l(:title_alerts_show_alert, :alertname => report.alert.name)) -%></span>
+<span><%= link_to(report.entity.subject, issue_url(report.entity_id, :only_path => false), :title => l(:title_alerts_report_entity_issue, :entityname => report.entity.subject)) -%></span>
+<span><%= time_ago_in_words_ex(report.entity.updated_on, l(:label_project_due_date_overdue), l(:label_project_due_date_not_overdue)) -%></span>

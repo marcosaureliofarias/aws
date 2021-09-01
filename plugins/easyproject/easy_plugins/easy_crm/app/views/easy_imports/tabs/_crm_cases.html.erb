@@ -1,0 +1,3 @@
+<% mail = Redmine::Plugin.installed?(:easy_project_com) ? 'support@easyproject.com' : 'support@easyredmine.com' %>
+<h2><%= l('easy_imports.coming_soon') %>...</h2>
+<p><%= l('easy_imports.contact_support_and_get_help', mail: "<a href='mailto:#{mail}'>#{mail}</a>").html_safe %></p>

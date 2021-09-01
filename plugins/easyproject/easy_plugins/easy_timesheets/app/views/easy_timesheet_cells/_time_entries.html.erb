@@ -1,0 +1,19 @@
+<table class="list time_entries">
+  <tbody>
+    <% time_entries.each do |time_entry| %>
+      <tr id="<%= dom_id(time_entry) %>">
+        <%= content_tag(:td, time_entry.project) %>
+        <%= content_tag(:td, time_entry.issue) %>
+        <%= content_tag(:td, time_entry.activity) %>
+        <%= content_tag(:td, html_hours(time_entry.hours)) %>
+        <%= content_tag(:td, textilizable(time_entry.comments)) %>
+        <td>
+          <% if time_entry.editable_by?(User.current) %>
+            <%= link_to('', edit_easy_time_entry_path(time_entry, modal: true), class: 'icon-edit', title: l(:button_edit), remote: true) %>
+            <%= link_to('', 'javascript:void(0)', onclick: "if(confirm('#{l(:text_are_you_sure)}')) { $.ajax({url: '#{time_entry_path(time_entry, format: 'json')}', type: 'DELETE', complete: function(data) { $('##{dom_id(time_entry)}').remove(); }}) }", class: 'icon-del') %>
+          <% end %>
+        </td>
+      </tr>
+    <% end -%>
+  </tbody>
+</table>

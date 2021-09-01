@@ -1,0 +1,18 @@
+<div class="tabs">
+  <% url_params = @free_period ? { :from => @from, :to => @to } : { :period => params.to_unsafe_hash[:period] }
+  url_params[:entity_id] = params[:entity_id]; url_params[:entity_type] = params[:entity_type] %>
+  <ul>
+    <% if !!@only_me -%>
+      <li><%= link_to(l(:label_details), url_params.merge({:controller => 'easy_time_entries', :action => 'index', :project_id => @project, :issue_id => @issue, :only_me => @only_me}),
+          :class => (action_name == 'index' ? 'selected' : nil)) %></li>
+      <li><%= link_to(l(:label_report), url_params.merge({:controller => 'easy_time_entries', :action => 'report', :project_id => @project, :issue_id => @issue, :only_me => @only_me}),
+          :class => (action_name == 'report' ? 'selected' : nil)) %></li>
+    <% else -%>
+      <li><%= link_to(l(:label_details), url_params.merge({:controller => 'easy_time_entries', :action => 'index', :project_id => @project, :issue_id => @issue}),
+          :class => (action_name == 'index' ? 'selected' : nil)) %></li>
+      <li><%= link_to(l(:label_report), url_params.merge({:controller => 'easy_time_entries', :action => 'report', :project_id => @project, :issue_id => @issue}),
+          :class => (action_name == 'report' ? 'selected' : nil)) %></li>
+    <% end -%>
+    <%= call_hook :view_timelog_index_additional_tabs, {:url_params => url_params, :only_me => @only_me, :entries => @entries, :easy_attendance_report => @easy_attendance_report, :issue => @issue, :project => @project} %>
+  </ul>
+</div>

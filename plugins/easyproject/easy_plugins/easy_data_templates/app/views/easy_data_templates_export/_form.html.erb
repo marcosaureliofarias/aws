@@ -1,0 +1,5 @@
+<%= hidden_field_tag 'easy_data_template[format_type]', 'csv' %>
+<%= hidden_field_tag 'easy_data_template[template_type]', 'export' %>
+<p><%= f.text_field :name, :label => l(:label_easy_data_template_name) -%></p>
+<p><%= f.select :type, entity_type_options, {:label => l(:label_easy_data_template_entity_type)}, {:disabled => !@datatemplate.new_record?} -%></p>
+<p><%= f.check_box :is_public, :label => l(:label_easy_data_template_public) -%></p>

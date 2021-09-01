@@ -1,0 +1,92 @@
+.journal{
+ @extend %journal;
+  &-details{
+    &-toggler{
+      @extend %journal-details-toggler;
+    }
+    &-container{
+      @extend %journal-details-container;
+      &:hover {
+        .easy-panel-handler {
+          opacity: 1;
+          z-index: 1;
+        }
+      }
+      .icon-watcher:before {
+        color: $color-negative;
+      }
+    }
+    &-headline {
+      @extend %flex;
+      @extend %align-items-center;
+      padding-right: 2*$gap;
+      &-wrap {
+        @extend %flex-wrap-wrap;
+      }
+      &-nowrap {
+        @extend %flex-wrap-nowrap;
+      }
+      .avatar-container {
+        width: 2*$gap + 2px;
+      }
+    }
+  }
+  &-tools{
+    @extend %journal-toolbar;
+    position: absolute;
+    right: 0;
+    top: .5*$gap;
+  }
+  &-timestamp{
+    //float: right;
+    white-space: nowrap;
+  }
+  &-byline{
+    @extend %h6;
+    @include smaller;
+    @include display(flex);
+    @extend %align-items-center;
+    float: left;
+    margin: 0 0 $gap 0;
+    line-height: 1.75;
+    span.private {
+      font-weight: normal;
+      font-style: italic;
+      padding-right: .25*$gap;
+    }
+    .icon-message {
+      margin-left: .25*$gap;
+    }
+  }
+  &.has-notes {
+    padding-bottom: 0;
+  }
+}
+.message{
+  @extend %journal;
+  &-body{
+    @extend %journal-details-container;
+  }
+  &-tools{
+    @extend %journal-toolbar;
+  }
+  &-timestamp{
+    //float: right;
+  }
+  &-authoring{
+    @extend %h6;
+    @include smaller;
+    float: left;
+    margin: 0;
+    line-height: 1.75;
+  }
+  .easygitcommits & {
+    background: transparent;
+  }
+}
+.tab-history-content{
+  .journals_link_show_all {
+    margin: 0 auto $box-padding;
+    display: table;
+  }
+}

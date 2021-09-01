@@ -1,0 +1,23 @@
+api.easy_resource_data do
+  api.resources_start_date @period[:from]
+  api.resources_end_date @period[:to]
+
+  api.array :issues do
+    @issues.each do |issue|
+      api.issue do
+        api.id issue.id
+        api.assigned_to_id issue.assigned_to_id
+        api.spent issue.spent_hours
+        api.resources @issues_resources[issue.id]
+        api.allocator issue.resource_allocator
+        api.permissions do
+          api.allocator_editable issue.custom_resource_allocator_enabled?
+        end
+      end
+    end
+  end
+
+  api_render_projects(api, @projects)
+  api_render_users(api, @users)
+  api_render_reservations(api, @reservations) if @reservations
+end

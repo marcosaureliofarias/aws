@@ -1,0 +1,62 @@
+<%= labelled_form_for([project, easy_crm_case], :html => {:multipart => true, :id => 'easy_crm_case_form', :class => 'tabular'}) do |f| %>
+  <%= f.hidden_field :lock_version %>
+  <%= hidden_field_tag 'last_journal_id', params[:last_journal_id] || easy_crm_case.last_journal_id %>
+  <%= error_messages_for easy_crm_case %>
+  <%= render :partial => 'conflict' if @conflict %>
+
+  <% if easy_crm_case.editable? %>
+    <p><%= link_to_function l(:label_change_properties), "EASY.crm.toggleHiddableAttributes(this);", :class => 'issue-edit-hidden-attributes icon icon-edit button' %></p>
+
+    <%= render :partial => 'form', :locals => {:easy_crm_case => easy_crm_case, :project => project, :f => f} %>
+
+    <% if User.current.allowed_to?(:log_time, project) %>
+      <div id="issue_timeentry_fields" class="tabular box">
+        <%= toggling_container('easy_crm_case_timeentry_fields', User.current, {:heading => l(:label_time_entry_plural), :wrapping_heading_element_classes => ' icon icon-time-add', :default_button_state => false, :ajax_call => false}) do %>
+          <% time_entry.custom_field_values.each do |value| %>
+            <p><%= custom_field_tag_with_label :time_entry, value %></p>
+          <% end %>
+          <% if EasyGlobalTimeEntrySetting.value('time_entry_spent_on_at_issue_update_enabled', User.current.roles_for_project(project)) %>
+            <%= content_tag :p, :class => 'issue-edit-time-entry-spent_on' do %>
+              <%= label_for_field(:spent_on, {:required => true}) %>
+              <%= text_field_tag :time_entry_spent_on, (@time_entry && @time_entry.spent_on) || User.current.today, :size => 10, :required => true -%><%= calendar_for('time_entry_spent_on') -%>
+            <% end %>
+          <% end %>
+          <div class="issue-timelog-fields">
+            <%= render :partial => 'timelog/user_time_entry', :locals => {:required => false, :tag_name_prefix => 'time_entry', :time_entry => time_entry, :activities => activity_collection(User.current, params['user_role_id_time_entry'], project), :project => project, :issue => nil} %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="box">
+    <%= toggling_container('edit_easy_crm_case_notes', User.current, {:heading => l(:description_notes), :wrapping_heading_element_classes => ' icon icon-edit', :default_button_state => true, :ajax_call => false}) do %>
+      <div>
+        <%= f.text_area :notes, :cols => 60, :rows => 10, :class => 'wiki-edit', :no_label => true %>
+        <%= wikitoolbar_for('easy_crm_case_notes', preview_text_path, :attachment_reminder => true) %>
+      </div>
+
+      <div id="easy-crm-case-attachments-container">
+        <%= render :partial => 'attachments/form', :locals => {:container => easy_crm_case} %>
+      </div>
+    <% end -%>
+  </div>
+  <div class="easy-crm-case-edit-submit-buttons form-actions">
+    <%= f.check_box :need_reaction, :label => EasyCrmCase.human_attribute_name(:need_reaction)  %>
+    <% if User.current.internal_client? %>
+      <%= f.check_box :send_to_external_mails, :label => EasyCrmCase.human_attribute_name(:send_to_external_mails) %>
+    <% end %>
+    <br/>
+    <%= submit_tag l(:button_save), :class => 'button-positive', :title => l(:button_update) %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    $(".easy-crm-case-edit-submit-buttons input[type='submit']").on('click', function () {
+      var lock_version = $('#easy_crm_case_lock_version');
+      if (window.easy_lock_version && (parseInt(lock_version.val()) < parseInt(window.easy_lock_version)))
+        lock_version.val(window.easy_lock_version);
+     });
+   });
+</script>

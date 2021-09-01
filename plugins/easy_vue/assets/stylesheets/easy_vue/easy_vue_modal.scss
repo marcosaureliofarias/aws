@@ -1,0 +1,28 @@
+$gap: $gap;
+$font-size--small: $font-small;
+$base-line-height: $base-line-height ;
+$color-text: $color-text;
+$color-text--muted: $color-text-muted;
+$color-positive: $color-positive;
+$color-negative: $color-negative;
+$color-front: $color-foreground;
+$color-border: $color-border;
+$color-background: $color-background;
+$color-background__label: darken($color-background, 5%);
+$color-background__atributes: mix($color-background, $color-background__label);
+$color-background__button: darken($color-background__atributes,5%);
+$color-background__button--hover: darken($color-background__button,5%);
+$input-height: px2rem(32px); //$form-field-height;
+$input-padding: .25*$gap;
+$input-radius: $border-radius;
+$border-radius: $gap;
+$headline-height: px2rem(68px);
+$breakpoint--small: $media-collapse-sidebar;
+$left-offset: px2rem(40px);
+$backdrop__color: $modal__color--backdrop;
+$backdrop__opacity: $modal__opacity--backdrop;
+$sidebar-width: 190px;
+
+.u__with-theme{
+  @import "../../../app/javascripts/src/stylesheets/main";
+}

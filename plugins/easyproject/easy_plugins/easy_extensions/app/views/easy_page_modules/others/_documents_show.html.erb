@@ -1,0 +1,17 @@
+<% modul_uniq_id ||= controller_name + '_' + action_name
+   modul_uniq_id << "_"
+   documents = @easy_page_modules_data[block_name][:documents] %>
+
+  <%# easy_cache("my_page_others_documents_user_#{user.id}") do %>
+    <div class="documents-on-my-page">
+      <% documents.keys.sort_by(&:to_s).each do |group| %>
+        <div class="box doc-group">
+          <%= toggling_container(modul_uniq_id + (group.try(:id) || group).to_s, User.current, {:heading => group.to_s, :wrapping_heading_element=> 'h4', :wrapping_heading_element_classes => 'icon icon-folder doc-group-heading'}) do %>
+            <%= render( :partial => 'documents/document', :collection => documents[group] )-%>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <%# end %>
+
+<%= include_attachment_tags %>

@@ -1,0 +1,93 @@
+---
+en:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: There is another timesheet
+                in this period
+  button_copy_easy_time_sheet: Copy rows to new timesheet
+  button_easy_timesheet_by_easy_query: Timesheets by saved filter
+  button_easy_timesheet_delete_with_time_entries: Remove row and spent time
+  button_easy_timesheet_delete_without_time_entries: Remove row only
+  button_easy_timesheets_approve: Approve
+  button_easy_timesheets_lock: Lock
+  button_easy_timesheets_new_row: New row
+  button_easy_timesheets_reject: Reject
+  button_easy_timesheets_unlock: Unlock
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Personal statement - Timesheets
+        description: View timesheets
+  easy_query:
+    name:
+      easy_timesheet_query: Timesheets
+  easy_timesheets_date_must_be_first_day_of_week: Must be the first day of week. (%{day})
+  easy_timesheets_periods:
+    day: Weekly
+    month: Monthly
+    week: Weekly
+  easy_timesheets_plugin_author: Easy Software
+  easy_timesheets_plugin_author_url: https://www.easysoftware.com/
+  easy_timesheets_plugin_description: ''
+  easy_timesheets_plugin_name: Timesheets
+  error_timesheet_invalid_time_entries: 'Can not create timesheet because of invalid
+    time entries: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: Custom field overtime id
+    label_new_monhly_timesheet: New monthly timesheet
+    label_overtime: Overtime
+    label_set_cf_overtime_id_in_rys_plugins: Overtime function is active. Please select
+      overtime custom field %{link}.
+  field_easy_timesheet_period: Period
+  heading_easy_timesheets_edit: Edit timesheet
+  heading_easy_timesheets_new: New weekly timesheet
+  heading_easy_timesheets_show: Timesheet %{start_date} - %{end_date}
+  label_easy_timesheet: Timesheet
+  label_easy_timesheet_approved: Approved?
+  label_easy_timesheet_approved_by: Approved by
+  label_easy_timesheet_end_date: End date
+  label_easy_timesheet_lock_description: Reason approved/rejected
+  label_easy_timesheet_lock_prompt: Reason to approve
+  label_easy_timesheet_locked_at: Approved/rejected
+  label_easy_timesheet_rejected_by: Rejected by
+  label_easy_timesheet_unlock_prompt: Reason to reject
+  label_easy_timesheets: Timesheets
+  label_enable_timesheet_over_time: Enable overtime function
+  label_enabled_timesheet_periods: Enabled periods
+  label_filter_group_easy_timesheet_query: Timesheet
+  notice_easy_timesheet_both_periods: If you choose both, some records might get mixed
+    up or not work properly if the periods overlap.
+  notice_extended_timesheet_period_not_enabled: "%{period} timesheet is not active"
+  permission_create_easy_timesheets_for_other_user: Create timesheet for other users
+  permission_edit_easy_timesheets: Edit timesheets
+  permission_edit_own_easy_timesheets: Edit own timesheets
+  permission_view_easy_timesheets: View timesheets
+  project_module_easy_timesheets: Timesheets
+  text_easy_timesheet_destroy_cell_are_you_sure: Do you really want to remove spent
+    time?
+  text_easy_timesheet_destroy_row_are_you_sure: You are going to remove a timesheet
+    row. You don't have to automatically delete the spent time on this row. How would
+    you like to continue?
+  text_easy_timesheet_prompt_text: Add time
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: Start date will
+    be automaticaly aligned to beginning of the chosen week
+  text_time_sheet_copy_from: Rows will by pre-filled from timesheet %{entity}
+  text_warning_after_time_sheet_copied: If you don't save at least one cell in row,
+    row will be lost.
+  title_easy_timesheet_destroy: Remove timesheet
+  title_easy_timesheet_edit_with_period: Edit %{period} timesheet
+  title_easy_timesheet_new_with_period: New %{period} timesheet
+  title_easy_timesheet_show: Show timesheet
+  title_next_time_sheet: Show following timesheet of %{user}
+  title_previous_time_sheet: Show previous timesheet of %{user}
+  validation_entry_already_exists: Timesheet between (%{start_date}) and (%{end_date})
+    already exists
+  validation_greater_than_start_date: "(%{end_date}) must be greater than start date
+    (%{start_date})"
+  validation_timesheet_cant_destroy_time_entries: Some time entries could not be destroyed
+  validation_week_period: Period between (%{start_date}) and (%{end_date}) must be
+    a week

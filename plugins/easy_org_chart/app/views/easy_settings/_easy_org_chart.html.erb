@@ -1,0 +1,63 @@
+<%= title l(:title_easy_org_chart_settings) %>
+
+<div class="box tabular">
+  <p>
+    <%= form.label :node_width, l(:field_easy_org_chart_node_width) %>
+    <%= form.text_field :node_width, size: 10 %>
+  </p>
+  <p>
+    <%= form.label :node_background_color, l(:field_easy_org_chart_node_background) %>
+    <label class="block">
+      <%= form.color_field :node_background_color, style: 'width: 80px;' %>
+      <%= l(:field_easy_org_chart_node_background_color) %>
+    </label>
+    <label class="block">
+      <%= form.color_field :parent_node_background_color, style: 'width: 80px;' %>
+      <%= l(:field_easy_org_chart_parent_node_background_color) %>
+    </label>
+    <label class="block">
+      <%= form.color_field :root_node_background_color, style: 'width: 80px;' %>
+      <%= l(:field_easy_org_chart_root_node_background_color) %>
+    </label>
+  </p>
+  <hr>
+  <p>
+    <%= form.label :show_fields_names, l("field_easy_org_chart_show_fields_names") %>
+    <label class="inline checkbox">
+      <%= form.check_box :show_fields_names %>
+    </label>
+  </p>
+  <p>
+    <%= form.label :show_avatar, l("field_easy_org_chart_show_avatar") %>
+    <label class="inline checkbox">
+      <%= form.check_box :show_avatar %>
+    </label>
+  </p>
+  <p>
+    <label><%= l(:field_easy_org_chart_show_user_fields) %></label>
+    <label class="inline checkbox">
+      <%= form.check_box :show_email %>
+      <%= User.human_attribute_name(:mail) %>
+    </label>
+    <label class="inline checkbox">
+      <%= form.check_box :show_user_type %>
+      <%= User.human_attribute_name(:easy_user_type) %>
+    </label>
+  </p>
+  <p>
+    <%= form.label :show_custom_fields, l(:field_easy_org_chart_show_custom_fields) %>
+    <%= form.fields_for :show_custom_fields do |custom_field_form| %>
+      <% easy_org_chart_show_custom_fields = EasySetting.value(:easy_org_chart_show_custom_fields) %>
+      <% UserCustomField.all.each do |user_cf| %>
+        <label class="inline checkbox" >
+          <%= custom_field_form.check_box user_cf.id, checked: easy_org_chart_show_custom_fields[user_cf.id.to_s] == '1' %>
+          <%= user_cf.name %>
+        </label>
+      <% end %>
+    <% end %>
+  </p>
+  <p>
+    <%= form.label :share_subordinates_access, l(:field_easy_org_chart_share_subordinates_access) %>
+    <%= form.select :share_subordinates_access, User.subordinates_access_permissions.map { |perm| [l(perm, scope: :easy_org_chart_subordinates_access), perm] } %>
+  </p>
+</div>

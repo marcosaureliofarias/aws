@@ -1,0 +1,10 @@
+<p id="errorExplanation">
+  <%= l('easy_money.warning_budgets_are_not_allowed_for_tasks') %>
+  <% if User.current.allowed_to?({ controller: :easy_money_settings, action: :project_settings }, @budget_project) %>
+    <br/>
+    <%= l('easy_money.text_you_can_change_it_here') %>
+    <%= link_to(l(:button_easy_money_project_settings),
+                project_easy_money_settings_project_settings_path(@budget_project, tab: 'EasyMoneyOtherSettings', anchor: 'settings_use_easy_money_for_issues'),
+                target: '_blank') %>
+  <% end %>
+</p>

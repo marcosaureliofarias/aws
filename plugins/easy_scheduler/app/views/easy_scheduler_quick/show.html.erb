@@ -1,0 +1,17 @@
+<div class="servicebar-content easy-calendar__wrapper-parent">
+  <div class="easy-calendar__control">
+    <%= link_to '', easy_scheduler_quick_setting_path(is_toolbar: @is_toolbar), class: 'icon icon-settings easy-calendar__control-setting', remote: true, title: l('easy_scheduler.label_settings') %>
+    <%= link_to '', '#', class: 'icon icon-user easy-calendar__control-users', title: l('easy_scheduler.label_users') %>
+    <%= link_to '', '#', class: 'icon icon-fullscreen easy-calendar__control-fullscreen', title: l('easy_scheduler.label_fullscreen') %>
+  </div>
+  <%= render(template: 'easy_scheduler/index',
+             layout: false,
+             locals: {
+               query: @query,
+               settings: @scheduler_settings,
+               container_id: 'scheduler_calendar_quick'
+             }) %>
+</div>
+<% # It isn't very nice but this partial is loaded without layout %>
+<%= yield :header_tags %>
+<%= yield :body_bottom %>

@@ -1,0 +1,686 @@
+@import "../mixins/agile";
+@import "agile_schemes";
+
+%agile__stickafter {
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -5px;
+    right: -5px;
+    height: 1px;
+    background: $color-border;
+  }
+}
+.agile {
+  $tile-height: calc(2*#{$gap} + #{$gap-const});
+  $agile__col-width--min: 200px;
+  $agile__col-width--min-adjusted: 100px;
+  @include respond-to(max-sidebar-collapse){
+    overflow: auto;
+  }
+  padding: 0 .25*$box-padding $box-padding;
+  //margin: $gap 0 0;
+  margin: $gap (-1.5*$gap) 0;
+
+  background: mix($color-background, $color-foreground);
+  border-top: 1px solid $color-border-minor;
+  @include respond-to(max-sidebar-collapse){
+    overflow: auto;
+  }
+
+  .agile__epic_backlog & {
+    margin: 2*$gap auto;
+    overflow: hidden;
+  }
+
+  .agile__backlog & {
+    max-width: 640px;
+    margin: auto;
+  }
+
+  &__group-select {
+    margin-top: $gap;
+    text-align: center;
+    .module-content &{
+      margin-top: -$gap;
+      @extend %translateX-correction;
+      position: relative;
+      left: 50%;
+      top: .25*$gap;
+      @include display(inline-flex);
+      @include respond-to(min-large-screen){
+        margin-top: $gap;
+        position: absolute;
+      }
+      #list-left &, #list-right & {
+        @include respond-to(min-medium-screen){
+          margin-top: -$gap;
+          position: relative;
+        }
+        @include respond-to(min-xxlarge-screen){
+          margin-top: $gap;
+          position: absolute;
+        }
+      }
+      .agile__swimline-select, .agile__sprint-select {
+        width: 50%;
+        margin-right: .5*$gap;
+      }
+    }
+  }
+  &__sprint-select, &__swimline-select{
+    display: inline-flex;
+    &-label{
+      line-height: $form-field-height;
+      margin-right: .5*$gap;
+    }
+  }
+
+  .sprint-col {
+    &:first-of-type {
+      border-left: none;
+    }
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+
+  &__row {
+    @extend %flex;
+    @extend %align-items-stretch;
+    @extend %justify-content-space-between;
+    @extend %box-sizing-border-box;
+    padding-bottom: .5*$gap;
+    &:last-child {
+      @extend %flex-grow-1;
+    }
+    &::-webkit-scrollbar{
+      height: .5*$gap;
+    }
+    .agile__main-col & {
+      overflow-x: auto;
+    }
+    &.row0.sticky{
+      $scroll-height: .75*$gap;
+      position: sticky;
+      top: calc(100% - #{$agile-item-height} - #{$scroll-height} - #{$tile-height}) !important;
+      margin-bottom: $agile-item-height;
+      padding-bottom: 0;
+      z-index: 101;
+      border-top: 1px solid $color-border-minor;
+      @include respond-to(max-menu-collapse){
+        top: calc(100% - #{$agile-item-height} - #{$scroll-height} - #{$tile-height} - #{$servicebar-height}) !important;
+      }
+      + .agile__row{
+        margin-top: calc(-#{$agile-item-height} - 4*#{$gap} + 2px);
+      }
+      &::-webkit-scrollbar{
+        height: $scroll-height;
+      }
+    }
+    &.sticky {
+      @extend %agile__stickafter;
+      top: $topmenu-height !important;
+      &.row0.stuck{
+        display: none !important;
+      }
+    }
+  }
+
+  &__capacity {
+
+    &__div {
+      right: 10px;
+      float: right;
+      display: inline-flex;
+      bottom: 10px;
+      position: absolute;
+    }
+    &__input {
+      width: 50px !important;
+    }
+  }
+
+  &__col {
+    @extend %flex;
+    @extend %flex-grow-1;
+    @include flex-direction(column);
+    @extend %align-items-stretch;
+    @include flex-basis(0);
+    @include agile-col-widths ($agile__col-width--min,$agile__col-width--min-adjusted);
+    &:only-child {
+      border: none;
+    }
+
+    &--side .agile__list {
+      background: rgba($color-main, 0.1);
+    }
+
+    &--indent {
+      margin-top: $tile-height;
+    }
+
+    //&--indent > &__title{
+    //  padding: .5*$tile-height 0;
+    //}
+
+    &__title {
+      @extend %flex;
+      @extend %align-items-center;
+      @extend %justify-content-center;
+      @extend %flex-wrap-wrap;
+      height: $tile-height;
+      text-align: center;
+      font-size: $font-size*.8;
+      font-weight: bold;
+      line-height: 1;
+      padding-left: 5px;
+      padding-right: 5px;
+      background: mix($color-background, $color-foreground);
+
+      &.stuck {
+        @extend %agile__stickafter;
+        top: $topmenu-height !important;
+        &.sticky80 {
+          top: calc(#{$topmenu-height}) !important;
+        }
+      }
+
+      &__details {
+        position: relative;
+        margin-left: .3*$gap;
+        font-weight: normal;
+        color: $color-text-muted;
+        .tooltip {
+          position: absolute;
+          background-color: $color-foreground;
+          top: 26px;
+          left: 0;
+          z-index: 5000;
+          padding: 3px;
+          white-space: nowrap;
+          display: none;
+        }
+      }
+      &-right_icon {
+        padding-left: $gap;
+      }
+      &-icon {
+        padding-right: $gap;
+        cursor: pointer;
+      }
+    }
+
+    &__contents {
+      @extend %flex;
+      @extend %flex-grow-1;
+      padding: 0 .5*$gap;
+    }
+
+    &-sort {
+      @include small;
+      cursor: pointer;
+      @extend %pseudo-before;
+      @extend %pseudo-after;
+      @extend %tooltip-parent;
+      z-index: 1;
+      &:after, &:before {
+        right: -$box-padding;
+        opacity: .3;
+      }
+      &:hover {
+        &:after, &:before {
+          opacity: 1;
+        }
+      }
+      &:after {
+        @include triangle-bottom-borders(.4*$gap, $color-text, 1.2);
+        bottom: 0;
+      }
+      &:before {
+        @include triangle-top-borders(.4*$gap, $color-text, 1.2);
+        top: 0;
+      }
+      .tooltip {
+        top: -.5*$gap;
+        right: 0;
+      }
+    }
+    hr {
+      margin: 0;
+      .row0 & {
+        display: none;
+      }
+    }
+  }
+
+  &__main-col {
+    @include flex-grow(2);
+    @extend %flex-shrink-0;
+    //@include flex-basis(100%);
+    .easy-col + & {
+      @include agile-col-widths ($agile__col-width--min,$agile__col-width--min-adjusted, true);
+    }
+  }
+
+  &__main-col &__col{
+    width: 100%;
+    max-width: none;
+  }
+
+  &__user-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: $gap/2;
+  }
+
+  &__user-name {
+    display: none;
+    position: absolute;
+    -webkit-box-shadow: 0px 0px 2px 1px $color-border;
+    -moz-box-shadow: 0px 0px 2px 1px $color-border;
+    box-shadow: 0px 0px 2px 1px $color-border;
+    background: $color-foreground;
+    padding: 0.5*$gap;
+    white-space: nowrap;
+  }
+  &__avatar-container {
+    &:hover {
+      .agile__user-name {
+        display: inline-flex;
+        z-index: 999999;
+      }
+    }
+  }
+
+  &__item {
+    @extend %agile__item;
+    margin: .15*$box-padding;
+  }
+
+  &__list {
+    @extend %agile__list;
+
+    &--drop {
+      &-valid {
+        @extend %agile__list--drop-valid;
+      }
+      &-valid-hover {
+        @extend %agile__list--drop-valid-hover;
+      }
+      &-invalid {
+        @extend %agile__list--drop-invalid;
+      }
+    }
+    &::before{
+      .agile__main-col &{
+        content: attr(data-column-name);
+        text-align: center;
+        font-size: $font-size*.8;
+        font-weight: bold;
+        line-height: 1;
+        display: inline-block;
+        width: 100%;
+      }
+    }
+  }
+
+  &__card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: $gap/2;
+    @extend %box-sizing-border-box;
+    padding-bottom: 25px;
+    border: none;
+    overflow: visible !important;
+    &--selected {
+      @include box-shadow(inset 0px 0px 250px 0px rgba(mix($color-background, $color-foreground), 1));
+      &.priority-default {
+        box-shadow: inset 0 0 0 1px $color-main;
+      }
+    }
+
+    &__drop-hover {
+      background-color: mix(mix($color-positive, $color-foreground), $color-foreground);
+      transition: background-color 0.5s ease-out;
+    }
+    &-droppable {
+      border : 1px dashed $color-positive;
+    }
+
+    &--error {
+      border-right: 2px solid $button-negative-background;
+      @extend %pseudo-after;
+      &:after {
+        right: 0;
+        position: absolute;
+        background: $button-negative-background;
+        top: 49%;
+        z-index: 1;
+        padding: 4px;
+        padding-left: 6px;
+        color: $button-negative-color;
+        @include translateY(-50%);
+        @include icon(error);
+        @include border-radius($border-radius 0 0 $border-radius);
+      }
+    }
+
+    &__title {
+      position: relative;
+      font-size: $font-size;
+      font-weight: normal;
+      color: inherit;
+      margin: 0 0 3px 0;
+      overflow: hidden;
+      max-height: 3*1.125em;
+    }
+
+    &__subtitle {
+      @include smaller;
+      margin: 0;
+      color: $color-text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__info {
+      @extend %flex;
+      @extend %align-items-center;
+      @extend %justify-content-space-between;
+      position: absolute;
+      bottom: $gap/2;
+      left: $gap/2;
+      width: calc(100% - #{$gap});
+      height: 25px;
+
+      .gravatar {
+        width: 25px;
+      }
+
+      .avatar-container {
+        margin: 0;
+      }
+
+      &__item {
+        line-height: 1.125;
+      }
+    }
+
+    &__summable {
+      @include smaller;
+      float: right;
+      margin-left: .4*$gap;
+      line-height: 1.4;
+      max-width: 32px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__context-menu {
+      float: right;
+      position: relative;
+      margin-left: 6px;
+      line-height: 1.4;
+      max-width: 32px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    &__avatar {
+      width: auto;
+    }
+
+    &__dates {
+      line-height: 1.15;
+      @extend %flex;
+      @extend %flex-wrap-wrap;
+    }
+
+    &__date {
+      display: block;
+      @include smallest;
+      color: $color-text;
+      padding: 0 2px;
+      margin: 0 2px;
+      //outline: rgba(0, 0, 0, 0.1) solid thin;
+    }
+
+    &__icons {
+      line-height: 1;
+    }
+
+    &__icon {
+      display: block;
+    }
+
+    //@for $i from 1 through length($schemes) {
+    //  &.scheme-#{nth(map_keys($schemes), $i) - 1} {
+    //    @include color-scheme(nth(map_values($schemes), $i), true, false);
+    //  }
+    //}
+  }
+
+  &__backlog & {
+    @extend %flex;
+    @extend %justify-content-center;
+    & > .agile__row {
+      max-width: 100%;
+    }
+
+  }
+
+  &__dash {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 3px;
+    background: $color-border;
+    border-radius: $border-radius;
+    &--highlight {
+      background: $color-important;
+    }
+  }
+  &__sticky {
+    &-lane {
+      position: sticky;
+      position: -webkit-sticky;
+      bottom: 0;
+      height: $agile-item-height;
+      margin-top: auto;
+      flex-grow: 0 !important;
+      z-index: 100;
+      background: $color-foreground;
+      border: 1px solid $color-border;
+      overflow: hidden !important;
+      @include respond-to(max-menu-collapse){
+        bottom: $servicebar-height;
+      }
+      @include respond-to(max-sidebar-collapse){
+        bottom: .75*$servicebar-height;
+      }
+      @include respond-to(max-small-screen){
+        display: none !important;
+      }
+      .agile {
+        &__list {
+          min-height: 49px;
+          border-color: $color-positive;
+        }
+        &__item {
+          display: none;
+        }
+      }
+      &--drop {
+        border-top: 2px solid $color-important-border;
+        border-left: 2px solid $color-important-border;
+        border-right: 2px solid $color-important-border;
+        bottom: -1px;
+        //height: $agile-item-height + $box-padding;
+        .agile {
+          &__sticky {
+            &-cols {
+              margin-bottom: $gap/2;
+            }
+          }
+        }
+      }
+    }
+    &-autocomplete{
+      min-width: auto;
+    }
+    &-selector {
+      position: absolute;
+      left: -1px;
+      right: -1px;
+      bottom: 0;
+      transition: opacity 600ms ease;
+      height: $agile-item-height/2;
+      opacity: 1;
+      z-index: 1;
+      background: $color-foreground;
+      border: 1px solid $color-important;
+      border-top-width: 3px;
+      border-bottom-width: 0px;
+      box-sizing: border-box;
+      text-align: center;
+      display: flex;
+      padding: .5*$gap;
+      overflow: hidden !important;
+      justify-content: center;
+      & > button {
+        margin-left: .5*$gap;
+      }
+    }
+    &-lane--drop &-selector {
+      opacity: 0;
+    }
+    &-autocomplete {
+      //display: block;
+      //margin: $gap/2;
+    }
+    &-cols {
+      margin-top: $gap/2;
+    }
+  }
+
+  &__close {
+    &__button {
+      border: none;
+      background-color: inherit;
+      &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
+
+.agile__main-col {
+  .agile__row.agile__sticky-cols {
+    .agile__list:before {
+      display:none;
+    }
+  }
+}
+
+#sticky_agile_backlog_autocomplete + .agile__backlog { //for backlog with 2-3 cols and no main-col
+  .agile__row {
+    overflow-x: auto;
+  }
+  .epic__row {
+    overflow: visible;
+  }
+}
+
+.sticky {
+  //position: -webkit-sticky;
+  //position: sticky;
+  //top: 50px;
+  z-index: 100;
+  &80 {
+    //position: -webkit-sticky;
+    //position: sticky;
+    //top: 80px;
+    z-index: 100;
+    // anchor for close icon
+    position: relative;
+  }
+  &_agile_backlog_autocomplete_wrap {
+    @extend %flex;
+    @extend %align-items-center;
+    @extend %justify-content-center;
+    margin: 0 auto;
+    background-color: $color-foreground; //mix($color-foreground, $color-background);
+    max-width: 100% !important;
+    padding: .25*$gap .5*$gap;
+    &.stuck {
+      top: 0 !important;
+    }
+    label {
+      padding-right: .5*$gap;
+      white-space: nowrap;
+    }
+  }
+  &_swimlane {
+    cursor: pointer;
+  }
+}
+
+#sticky_agile_backlog_autocomplete {
+  text-align: center;
+  position: sticky;
+  top: $topmenu-height !important;
+  z-index: z($z-priority,topmenu)-1;
+  margin: 0;
+  @include respond-to(max-small-screen){
+    position: initial;
+  }
+}
+
+label.target-backlog-label {
+  position: absolute;
+  left: 1em;
+}
+
+span#new_issue_tabs .tab-container{
+  margin-top: 0;
+}
+
+#easy_sprint_head, .easy-query-heading h2 {
+  @include respond-to(max-medium-screen){
+    margin: .5*$box-padding 0 .25*$box-padding;
+  }
+}
+#agile_board_container {
+  .easy-query-heading {
+    @include respond-to(max-menu-collapse){
+      margin-bottom: .25*$box-padding;
+    }
+  }
+  .contextual {
+    .filters {
+      margin: 0 auto;
+    }
+  }
+  fieldset {
+    padding: 0 2*$gap !important;
+  }
+}
+.stickyClones {
+  .agile__row {
+    overflow-x: auto;
+  }
+  @include respond-to(max-small-screen){
+    display: none;
+  }
+}
+.scrum-actions {
+  white-space: nowrap;
+}

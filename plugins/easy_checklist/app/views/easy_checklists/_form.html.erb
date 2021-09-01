@@ -1,0 +1,10 @@
+<%= error_messages_for @easy_checklist %>
+
+<%
+  options ||= {}
+  options[:show_checklist_name] = true if options[:show_checklist_name].nil?
+%>
+
+<%= f.text_field(:name, :label => l(:field_easy_checklist_name), :placeholder => l(:field_easy_checklist_name), :required => true, :class => 'easy-checklist-name') if options[:show_checklist_name] %>
+<%= f.hidden_field :entity_type %>
+<%= f.hidden_field :entity_id %>

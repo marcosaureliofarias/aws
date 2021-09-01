@@ -1,0 +1,274 @@
+body{
+  @extend %base-font;
+}
+
+a{
+  color: $color-links;
+  text-decoration: none;
+  &:hover{
+    text-decoration: underline;
+	//color: $color-important;
+  }
+}
+
+//h1,h2,h3,h4,h5,h6{@extend %heading;}
+h1,.h1{@extend %h1;}
+h2,.h2{@extend %h2;}
+h3,.h3{@extend %h3;}
+h4,.h4{@extend %h4;}
+h5,.h5{@extend %h5;}
+h6,.h6{@extend %h5;}
+
+small,.small{
+  @include small;
+}
+
+p{
+  margin: 0;
+  margin-bottom: $gap;
+}
+ul, ol {
+  margin: $box-margin $gap;
+}
+ul {
+  padding-left: $gap;
+  &.inline {
+    li {
+      display: inline;
+    }
+  }
+}
+
+.cols {
+  @for $i from 2 through 6 {
+    &-#{$i} {
+      @extend %clearfix;
+      @extend %list-style-none;
+
+      > label.inline, & > li {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100%;
+        @include box-sizing(border-box);
+
+        @include respond-to(min-small-screen) {
+          float: left;
+          width: 50%;
+        }
+
+        @include respond-to(min-medium-screen) {
+          width: 100%/$i;
+        }
+
+        @extend %truncate;
+      }
+      & + & {
+        border-top: 1px solid $color-border-minor;
+        padding-top: $gap;
+        margin-top: $gap;
+      }
+
+      .link-list-item {
+        &:nth-child(-n+#{$i}) {
+          border-top: none;
+        }
+      }
+    }
+  }
+  &-1 {
+    @extend %list-style-none;
+  }
+}
+.wiki, body.cke_editable{
+  ul, ol {
+    padding-left: 2*$gap;
+    ul, ol{
+      margin: 0 $gap;
+      font-size: .95em;
+      padding-left: $gap;
+    }
+    & > li{
+      margin-top: .75*$gap;
+      margin-bottom: .75*$gap;
+    }
+  }
+  h1{
+    font-size: 1.75em;
+  }
+  h2{
+    padding-bottom: $gap;
+    border-bottom: 1px solid $color-border-minor;
+    margin-top: 1.5*$box-padding;
+  }
+  p{
+    margin-bottom: $gap;
+  }
+  table{
+    margin-top: $box-margin;
+    margin-bottom: $box-margin;
+    width: auto;
+  }
+}
+.wiki{
+  margin-bottom: $box-padding;
+  overflow-x: auto;
+  &-preview {
+    padding: $gap;
+    p {
+      padding-left: 0;
+    }
+  }
+}
+body.cke_editable{
+  ol{
+    list-style-position: initial;
+  }
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  @include box-sizing(border-box);
+}
+
+hr{
+  margin: $gap 0;
+  border: none;
+  border-bottom: 1px solid $color-border-minor;
+  #sidebar &, #sidebarClone &, #easy_grid_sidebar &, #easy_grid_sidebarClone &{
+    border-bottom-color: $color-border;
+  }
+  &.clear{
+    clear: both;
+  }
+}
+
+input, textarea, keygen, select, button{
+  @extend %base-font;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #fff;
+  background-color: #333;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+pre{
+  display: block;
+  padding: $gap;//9.5px;
+  margin: 0 0 $box-margin;//10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: lighten($color-text, 10%);//#333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: mix($color-foreground, mix($color-foreground, $color-background));//#f5f5f5;
+  border: 1px solid $color-border-minor;//#ccc;
+  border-radius: 4px;
+  overflow-x: auto;
+  .line-code > &{
+    background: none;
+    border: none;
+    padding: 0px;
+  }
+}
+blockquote{
+  background: rgba($color-border, 0.1);
+  border: 1px solid rgba($color-border, 0.3);
+  border-left: 0.5*$gap solid rgba($color-border, 0.3);
+  margin: $gap 0;
+  padding: $gap;
+  padding-left: 5*$gap;
+  quotes: "\201C""\201D""\2018""\2019";
+  position: relative;
+  @extend %border-radius;
+  &:before {
+    color: rgba($color-border, 0.5);
+    content: open-quote;
+    font-size: 6em;
+    line-height: 1;
+    margin-right: $gap;
+    float: left;
+    position: absolute;
+    left: 10px;
+    top: 0;
+  }
+  //p,div{
+  //  display: inline;
+  //}
+}
+caption{
+  margin-bottom: $box-padding;
+}
+
+
+[hidden]{
+  display: none !important;
+}
+
+.kicker{
+  font-size: 1.125em;
+  margin-bottom: $box-padding;
+}
+.floating{
+  float: left;
+  margin-right: $gap;
+  &.right{
+    float: right;
+    margin-left: $gap;
+  }
+}
+.inline{
+  display: inline;
+  p,div{
+    display: inline;
+  }
+}
+.block{
+  display: block;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.u-text--bold{
+  font-weight: bold;
+}
+.color-important{
+  color: $color-important;
+}
+.color-positive{
+  color: $color-positive;
+}
+.color-negative, .overdue, .red{
+  color: $color-negative;
+}
+a.closed{
+  text-decoration: line-through;
+}
+.big{
+  font-size: 1.5em;
+  line-height: 1;
+}
+.bigger{
+  font-size: 1.75em;
+  line-height: 1;
+}
+.price{
+  text-align: right;
+  white-space: nowrap;
+}

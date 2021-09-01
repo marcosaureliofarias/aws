@@ -1,0 +1,15 @@
+<ul>
+  <% if @task %>
+    <%= content_tag :li, context_menu_link(l(:button_execute), {:controller => 'easy_rake_tasks', :action => :execute, :id => @task, :back_url => @back_url}, :class => 'icon icon-play', :title => l(:button_execute)) -%>
+    <%= content_tag :li, context_menu_link(l(:button_settings), {:controller => 'easy_rake_tasks', :action => :edit, :id => @task, :back_url => @back_url}, :class => 'icon icon-settings', :title => l(:button_settings)) unless @task.is_one_time? -%>
+    <%= content_tag :li, context_menu_link(l(:button_history), {:controller => 'easy_rake_tasks', :action => :task_infos, :id => @task, :back_url => @back_url}, :class => 'icon icon-stats', :title => l(:button_history)) -%>
+    <%= content_tag :li, context_menu_link(l(:button_delete), {:controller => 'easy_rake_tasks', :action => :destroy, :id => @task, :back_url => @back_url}, :class => 'icon icon-del', :method => :delete, :data => {:confirm => task_delete_confirmation(@task)}, :title => l(:button_delete)) if @task.deletable? -%>
+    <% unless @task.is_one_time? %>
+      <% if @task.active? %>
+        <%= content_tag :li, context_menu_link(l(:field_deactive), {:controller => 'easy_rake_tasks', :action => :update, :id => @task, :'easy_rake_task[active]' => '0', :back_url => @back_url}, :method => :put, :class => 'icon icon-cancel', :title => l(:field_deactive)) -%>
+      <% else %>
+        <%= content_tag :li, context_menu_link(l(:field_active), {:controller => 'easy_rake_tasks', :action => :update, :id => @task, :'easy_rake_task[active]' => '1', :back_url => @back_url}, :method => :put, :class => 'icon icon-checked', :title => l(:field_active)) -%>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>

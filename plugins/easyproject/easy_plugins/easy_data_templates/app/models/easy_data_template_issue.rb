@@ -1,0 +1,3 @@
+class EasyDataTemplateIssue < EasyDataTemplate
+
+end

@@ -1,0 +1,22 @@
+<%= render(:partial => 'common/freetext_quick_search', :locals => {:free_search_field_placeholder => l(:easy_knowledge_stories, :scope => [:search_field_placeholders]), :free_search_options => {:free_search_element_to_update => 'easy_knowledge_toolbar_list', :free_search_url => easy_knowledge_search_path, :free_search_field_name => 'easy_knowledge_toolbar_q', :free_search_after_function => 'EASY.knowledge.initDroppable();', :free_search_reset_type => :clear }}) %>
+<small id="easy_knowledge_toolbar_hint" class="hint">
+  <i class="icon-help floatleft"></i><%= content_tag(:em, l(:text_easy_knowledge_panel_hint)) %>
+</small>
+<div class="servicebar-content">
+  <div class="ui-widget-content">
+    <% if @unread_easy_knowledge_stories.any? %>
+      <div class="contextual mark-all-eks-as-read">
+        <%= link_to('', easy_knowledge_story_mark_as_read_path(ids: @unread_easy_knowledge_stories.map(&:id)), title: l(:title_easy_knowledge_stories_mark_all_as_read), class: 'icon-watcher xl-icon', remote: true, method: :post) %>
+      </div>
+    <% end -%>
+    <ul id="easy_knowledge_toolbar_list" class="link-list">
+      <!-- Easy Knowledge Stories -->
+      <%= render(partial: 'easy_knowledge_toolbar_list_item', collection: @unread_easy_knowledge_stories, as: :easy_knowledge_story) %>
+    </ul>
+  </div>
+</div>
+<div class="servicebar-actions">
+  <% if @project ? User.current.allowed_to?(:create_project_stories, @project) : User.current.allowed_to_globally?(:create_global_stories) %>
+    <%= link_to(l(:label_easy_knowledge_new_story), new_polymorphic_path([@project, :easy_knowledge_story]), remote: true, title: l(:label_easy_knowledge_new_story), class: 'icon icon-add button-positive') %>
+  <% end %>
+</div>

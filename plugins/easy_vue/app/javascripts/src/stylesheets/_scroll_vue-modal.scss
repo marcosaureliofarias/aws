@@ -1,0 +1,850 @@
+@import "variables";
+@import "mixins/popup";
+@import "mixins/faker";
+%legend {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+// custom fields uses modal, so it needs to have biggest z-index
+
+.vueModalOpened {
+  //.ui-datepicker {
+  //  z-index: 9999 !important;
+  //}
+  //
+  //.ui-dialog.modal {
+  //  z-index: 9999 !important;
+  //}
+}
+
+.vue {
+  &-table {
+    //border: 1px solid $color-border;
+    tbody,
+    th,
+    td {
+      background: none !important;
+      font-size: 1em;
+      div,
+      span,
+      a {
+        font-size: 1em !important;
+      }
+    }
+    tbody,
+    thead {
+      tr {
+        border-bottom: 0px solid $color-border !important;
+        border-top: 1px solid $color-border !important;
+        &:last-child {
+          border-bottom: 1px solid $color-border !important;
+        }
+      }
+      th,
+      td {
+        z-index: initial !important;
+        padding: 0.75 * $gap 0.75 * $gap 0.75 * $gap $gap !important;
+        @media only screen and (max-width: $breakpoint--small) {
+          padding: 0.25 * $gap 0.25 * $gap 0.25 * $gap $gap !important;
+        }
+        input[type="checkbox"],
+        input[type="radio"] {
+          margin: 0;
+        }
+        &:last-child {
+          padding-right: $gap !important;
+        }
+      }
+    }
+    &-label {
+      @extend %legend;
+    }
+    @media only screen and (max-width: $breakpoint--small) {
+      &,
+      &__row,
+      &__element,
+      &__body,
+      &__footer {
+        display: block;
+      }
+      &__head {
+        display: none;
+      }
+      &__row {
+        border-top: none;
+      }
+      &__element {
+        display: flex;
+        &-label {
+          display: inline-block !important;
+          width: 30%;
+        }
+      }
+    }
+    &__buttons {
+      height: 100%;
+      display: flex;
+      justify-content: flex-end;
+      span a.icon {
+        display: inline-flex;
+        width: 2 * $gap;
+        min-width: 20px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &__element {
+      word-break: normal;
+    }
+  }
+  &-modal {
+    $block: #{&};
+    & {
+      @import "_classes";
+
+      @import "elements/avatar";
+      @import "elements/tags";
+      @import "elements/popup";
+      @import "elements/cf-form";
+
+      @import "components/close-button";
+      @import "components/comments";
+      @import "components/attachments";
+      @import "components/activity";
+      @import "components/forms";
+      @import "components/sidebar";
+      @import "components/merge-requests";
+      @import "components/coworkers";
+      @import "components/tags";
+      @import "components/notices";
+      @import "components/checklists";
+      @import "components/progressbar";
+      @import "components/custom-fields";
+      @import "components/vdatetime";
+      @import "components/editable-inputs";
+      @import "components/ckeditor";
+      @import "components/attributes";
+      @import "components/short-url";
+      @import "components/onlineedit";
+      @import "components/editorbox";
+      @import "components/confirm";
+      @import "components/task-list";
+      @import "components/list";
+      @import "components/collapsible";
+      @import "components/repeating";
+      @import "components/duration";
+      @import "components/new-sales-activity";
+      @import "components/new-attendance";
+      @import "components/time-entries";
+      @import "components/modal-form";
+      @import "components/reallocatespenttime";
+
+      input,
+      select,
+      textarea {
+        border-color: $color-border;
+      }
+
+      hr {
+        border-color: rgba($color-border, 0.5);
+      }
+
+      label {
+        font-size: 1em;
+      }
+      &__pointer {
+        cursor: pointer;
+      }
+
+      &__mask {
+        position: fixed;
+        z-index: 1301;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        background: radial-gradient(
+          circle,
+          rgba(0, 0, 0, 0.25) 33%,
+          rgba(0, 0, 0, 0.75) 100%
+        );
+        display: table;
+        transition: opacity 0.3s ease;
+        & * {
+          box-sizing: border-box;
+        }
+        a[target] {
+          word-break: break-word;
+        }
+      }
+
+      &__wrapper {
+        --ck-color-base-background: #{$color-front};
+        --ck-color-base-border: #{$color-border};
+        --ck-color-focus-border: #{$color-border};
+        --ck-color-toolbar-background: #{$color-front};
+        --ck-color-toolbar-border: #{$color-border};
+        --ck-color-text: #{$color-text};
+        --ck-color-button-default-hover-background: #{$color-border};
+
+        display: table-cell;
+        vertical-align: middle;
+        input {
+          box-shadow: none;
+        }
+      }
+
+      &__drag-and-drop-wrapper {
+        position: absolute;
+        background: $color-background__atributes;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 5rem;
+
+        & > span {
+          text-align: center;
+          pointer-events: none;
+          & > p {
+            font-size: 2rem;
+          }
+        }
+      }
+
+      &__container {
+        width: 100%;
+        max-width: 960px;
+        height: 90vh;
+        display: flex;
+        margin: 0px auto;
+        background-color: $color-background;
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+        transition: all 0.3s ease;
+        text-align: left;
+        position: relative;
+        border: 1px solid rgba($color-border, 0.5);
+        .button {
+          background: $color-background__button;
+          &:hover {
+            background: $color-background__button--hover;
+          }
+        }
+        @media only screen and (max-width: $breakpoint--small) {
+          max-width: 100vw;
+        }
+        &--attendance {
+          $button-panel-height: 70px;
+          .vue-modal {
+            height: calc(100% - #{$button-panel-height});
+            &__popup {
+              padding: 0px 10px;
+              overflow-y: hidden;
+              .vue-modal__section {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                padding-bottom: $button-panel-height;
+              }
+            }
+            &__attendanceoverview-wrapper {
+              overflow-y: auto;
+              padding-bottom: 10px;
+              height: 100%;
+            }
+            &__editorbox {
+              height: 30%;
+              textarea {
+                height: 100%;
+              }
+            }
+          }
+          .attendanceoverview-list {
+            margin-bottom: 25px;
+          }
+        }
+        .with-buttons-panel {
+          padding-bottom: 70px;
+        }
+
+        &--new {
+          height: auto;
+          max-height: 90vh;
+          @import "new_modal";
+        }
+
+        &--sales-activity {
+          .vue-modal__attribute.activity-attribute {
+            $detail-button-width: 40px;
+            $button-left-margin: 60px;
+            width: calc(50% - #{$padding-modal-main});
+            align-items: flex-end;
+            flex-wrap: nowrap;
+            & > .vue-modal__attribute {
+              padding: 0;
+              margin: 0;
+              width: calc(100% - #{$detail-button-width} - #{$button-left-margin});
+            }
+            & > .activity-attribute-with-button {
+              &--input {
+                width: auto;
+                flex-grow: 1;
+              }
+              &--input-full {
+                width: 100% !important;
+              }
+              &__button-wrapper {
+                max-width: calc(35%);
+                display: flex;
+                align-items: flex-end;
+                margin-bottom: -1px;
+                & > a.button {
+                  width: 100%;
+                  font-size: 10px;
+                  text-align: center;
+                  padding: $gap/4 $gap/2;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+        }
+        &--meeting {
+          .vue-modal__attribute.meeting-attribute {
+            width: calc(50% - #{$padding-modal-main});
+            align-items: flex-end;
+            flex-wrap: nowrap;
+            & > .vue-modal__attribute {
+              padding: 0;
+              margin: 0;
+            }
+            & > .meeting-attribute-with-button {
+              &--input {
+                width: auto;
+                flex-grow: 1;
+              }
+              &--input-full {
+                width: 100% !important;
+              }
+              &__button-wrapper {
+                max-width: calc(35%);
+                display: flex;
+                align-items: flex-end;
+                margin-bottom: -1px;
+                & > a.button {
+                  width: 100%;
+                  font-size: 10px;
+                  text-align: center;
+                  padding: $gap/4 $gap/2;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
+              }
+            }
+          }
+          &.meeting .mx-icon-clear {
+            display: none !important;
+          }
+        }
+      }
+      &__form-step {
+        display: flex;
+        flex-wrap: wrap;
+        &--active {
+          position: relative;
+          margin: $gap 0;
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: -$gap;
+            bottom: 0;
+            left: 0px;
+            right: 0px;
+            background: rgba($color-positive, 0.1);
+          }
+        }
+      }
+
+      &__contextual {
+        align-self: flex-end;
+        float: right;
+        width: auto;
+      }
+      &__modal-content {
+        $button-panel-height: 58px;
+        outline: none;
+        max-height: calc(100% - #{$headline-height});
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0 $padding-modal-main 0 ($padding-modal-main + $left-offset);
+        #{$block}__button-panel + & {
+          margin-bottom: $button-panel-height;
+          max-height: calc(
+            100% - #{$headline-height} - 2px - #{$button-panel-height}
+          );
+        }
+        //margin-right: -2px;
+
+        h2:first-child {
+          //margin-top: -2 * $gap;
+        }
+        &::-webkit-scrollbar {
+          width: 3px;
+        }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+          border-left: 1px solid $color-border;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: $color-border;
+        }
+        @media only screen and (max-width: $breakpoint--small) {
+          padding-left: 2 * $gap;
+        }
+      }
+      &__description {
+        overflow-x: auto;
+        width: 100%;
+        &-editor {
+          margin-bottom: $gap;
+        }
+      }
+
+      &__members {
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+
+        .gravatar {
+          max-height: 2.5 * $gap;
+          max-width: 2.5 * $gap;
+        }
+
+        & > li {
+          flex-basis: 50%;
+          margin: $gap 0;
+
+          @media only screen and (max-width: $breakpoint--small) {
+            flex-basis: 100%;
+          }
+        }
+      }
+
+      &__main {
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        width: calc(100% - 190px);
+        padding: 0;
+        overflow: hidden;
+        background: mix($color-front, $color-background);
+        @media only screen and (max-width: $breakpoint--small) {
+          width: 100%;
+        }
+      }
+
+      &__headline {
+        display: flex;
+        justify-content: space-between;
+        padding: $gap $padding-modal-main $gap
+          (
+            0.5 * ($left-offset + $padding-modal-main - $width-heading-icon) - 2 *
+              $input-padding
+          );
+        margin: 0 0 0 0;
+        border-bottom: 1px solid $color-border;
+        border-left: 0.75 * $gap solid transparent;
+        //border-left: 0.75 * $gap solid $color-border; //possible? Imo looks better
+        box-sizing: border-box;
+        font-weight: bold;
+        line-height: ($headline-height - 2*$gap);
+        &--faker{
+          height: 62px;
+        }
+
+        .editable-input__wrapper {
+          height: $headline-height - 2 * $gap;
+          line-height: $headline-height - 2 * $gap;
+          margin: 0 (-$gap) 0 (-0.75 * $gap);
+          width: calc(90% + #{$padding-modal-main});
+        }
+        .u-showing {
+          //padding-left: .5*$gap;
+        }
+        input {
+          font-size: 1em;
+          width: 100%;
+          padding-left: 0.5 * $gap !important;
+        }
+
+        &--static {
+          width: 100%;
+          padding: $input-padding;
+          border: 1px solid transparent;
+          align-items: center;
+          margin: auto 0;
+          line-height: 1;
+          height: 100%;
+          min-height: 3 * $gap;
+          display: flex;
+          align-items: center;
+
+          @media only screen and (max-width: $breakpoint--small) {
+            font-size: 1.25rem;
+          }
+
+          & > a {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        &.priority--1 {
+          border-left: 0.75 * $gap solid $color-positive;
+        }
+
+        @media only screen and (max-width: $breakpoint--small) {
+          padding-right: 6 * $gap;
+        }
+      }
+
+      &__icons {
+        display: flex;
+        align-items: center;
+
+        .icon-watcher {
+          transition: all 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+          color: $backdrop__color !important;
+          opacity: 0.3;
+          &.private {
+            opacity: 1;
+          }
+        }
+      }
+
+      &__heading {
+        margin-bottom: $gap;
+        position: relative;
+
+        &-action {
+          position: absolute;
+          right: 10px;
+          cursor: pointer;
+        }
+
+        &:before {
+          position: absolute;
+          left: -0.5 *
+            ($left-offset + $padding-modal-main + $width-heading-icon);
+          opacity: 0.5;
+          @media only screen and (max-width: $breakpoint--small) {
+            display: none;
+          }
+        }
+      }
+
+      &__legend {
+        @extend %legend;
+        &.reference {
+          padding: $gap $gap $gap 2px;
+          margin: (-$gap) (-$gap) 0 0;
+          height: $headline-height;
+          display: flex;
+          align-items: center;
+          position: sticky;
+          top: -$gap;
+          z-index: 2;
+          background: $color-background;
+          a {
+            padding: $gap 2 * $gap $gap 0;
+          }
+        }
+      }
+
+      &__controls {
+        padding: 0;
+        margin: 0;
+      }
+
+      &__overview {
+        @include sticky;
+        background: $color-background__atributes;
+        top: 0;
+        z-index: 2;
+        border-bottom: 1px solid $color-border;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 (-$padding-modal-main) 0 (-$padding-modal-main);
+        padding: $gap $padding-modal-main 0 $padding-modal-main;
+        @media only screen and (min-width: $breakpoint--small) {
+          padding: $gap $padding-modal-main $gap 0.5 *
+            ($left-offset + $padding-modal-main - $width-heading-icon);
+          margin: 0 (-$padding-modal-main) 0
+            (-($padding-modal-main + $left-offset));
+          z-index: 4;
+        }
+        @media only screen and (max-width: $breakpoint--small) {
+          flex-direction: column;
+          position: relative;
+          //padding-left: 6 * $gap;
+          ul {
+            padding-left: 0;
+          }
+        }
+
+        &-avatar {
+          margin: -3px 0;
+          width: 30px;
+          z-index: 1;
+          &--coworker {
+            width: 1.5 * $gap;
+          }
+        }
+        &-item {
+          text-transform: uppercase;
+          display: inline-flex;
+          align-items: center;
+          padding: 0 $input-padding;
+          @media only screen and (max-width: $breakpoint--small) {
+            margin-bottom: $gap;
+            &:last-child {
+              position: absolute;
+              right: $gap;
+            }
+          }
+          &.editable:hover {
+            outline: 1px dashed mix($color-border, $color-text) !important;
+          }
+        }
+        &-label {
+          margin-top: 0;
+          margin-right: $gap;
+          @media only screen and (max-width: $breakpoint--small) {
+            width: 50%;
+          }
+        }
+        @media only screen and (max-width: $breakpoint--small) {
+          flex-direction: column;
+          position: relative;
+          margin-left: -2 * $gap;
+          //padding-left: 6 * $gap;
+          ul {
+            padding-left: 0;
+          }
+        }
+      }
+      &__section {
+        padding-bottom: $gap;
+        word-break: break-word;
+      }
+      &__section#detail {
+        position: relative;
+        padding-bottom: 0;
+      }
+      &__section#custom_fields {
+        padding-bottom: 0;
+      }
+    }
+    &__notification {
+      &-wrapper {
+        position: sticky;
+        bottom: 0;
+        right: 0;
+        width: calc(190px - 2 *#{$gap} - 3px);
+        z-index: 4;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        @media only screen and (max-width: $breakpoint--small) {
+          width: 100%;
+        }
+        &--withBackdrop {
+          @include popup__backdrop;
+        }
+      }
+      &-text {
+        width: 100%;
+        padding: $gap 1.5 * $gap $gap $gap;
+        margin: 0;
+        font-size: 14px;
+      }
+      &-icon--close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #e0e0e0;
+      }
+      &--beforeSubmit {
+        position: absolute;
+        top: 50px;
+        left: 2 * $gap;
+        right: 2 * $gap;
+      }
+    }
+    &-icon-favorite {
+      font-size: 30px;
+      margin-right: $gap / 2;
+      transition: all 2s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      h2 & {
+        color: $color-negative !important;
+      }
+    }
+    &__fake-data {
+      display: flex;
+      margin-top: $gap;
+      flex-direction: column;
+      height: 50%;
+      position: relative;
+
+      &__header {
+        width: 200px;
+        height: 30px;
+        background: $color-background__atributes;
+        margin-bottom: $gap;
+        margin-top: 1.5 * $gap;
+
+        &--journal {
+          height: 30px;
+          width: 200px;
+          margin-top: 3 * $gap;
+        }
+
+        &:before {
+          content: "";
+          position: absolute;
+          display: block;
+          left: -34px;
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          @extend %faker;
+        }
+      }
+
+      &__body {
+        width: 100%;
+        background: $color-background__atributes;
+        height: 200px;
+
+        &--journal {
+          height: 100px;
+        }
+      }
+      &__buttons {
+        height: 50px;
+        display: flex;
+        margin-top: 0.5 * $gap;
+        &:before {
+          content: "";
+          display: block;
+          margin-right: $gap;
+          width: 60px;
+          @extend %faker;
+        }
+        &:after {
+          content: "";
+          display: block;
+          margin-right: $gap;
+          width: 60px;
+          @extend %faker;
+        }
+      }
+    }
+
+    & figure.table {
+      & > table {
+        width: auto;
+        td,
+        th {
+          border: 1px solid $color-border;
+          padding: 0.25 * $gap 0.5 * $gap;
+        }
+      }
+    }
+
+    &--empty {
+      #{$block} {
+        &__headline {
+          display: flex;
+          align-items: center;
+          min-height: 6 * $gap;
+          padding-right: 4 * $gap;
+          border-left: 0;
+        }
+        &__container {
+          height: auto;
+          max-height: 90vh;
+        }
+        &__modal-content {
+          padding: 2 * $gap;
+          padding-bottom: 2 * $gap + 4 * $gap;
+        }
+
+        .form-box {
+          padding: 0;
+          margin: 0;
+          background: transparent;
+        }
+      }
+    }
+
+    &__button-panel{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      padding: $gap 0.5 * $gap;
+      background: mix($color-background, $color-front);
+      z-index: 1;
+      width: calc(100% - #{$sidebar-width});
+      @media only screen and (max-width: $breakpoint--small) {
+        width: 100%;
+      }
+      .vue-modal--no-sidebar &,
+      .vue-modal__popup & {
+        width: 100%;
+      }
+
+      & > button {
+        margin-left: 0.5 * $gap;
+      }
+    }
+    &--no-sidebar {
+      .vue-modal__main {
+        width: 100%;
+      }
+      .vue-modal__sidebar-wrapper {
+        width: 0;
+      }
+    }
+
+    & .entity-array > span {
+      margin-right: $gap * 0.375;
+    }
+    &__fake-ck{
+      &__full-width{
+          width: 100% !important;
+          max-width: 100% !important;
+          height: 3rem !important;
+      }
+    }
+  }
+}
+@import "components/vue-select";
+@import "components/datepicker";
+@import "_utils";

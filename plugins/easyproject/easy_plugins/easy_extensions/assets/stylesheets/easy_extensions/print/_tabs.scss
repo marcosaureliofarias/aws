@@ -1,0 +1,14 @@
+.tabs{
+  & > ul{
+    margin: 0;
+    padding: 0;
+    & > li > a{
+      @extend .h2;
+      display: none;
+      &.selected, &.active{
+        display: block;
+      }
+    }
+  }
+
+}

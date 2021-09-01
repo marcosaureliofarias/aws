@@ -1,0 +1,34 @@
+<% if easy_invoices.any? %>
+  <div class="autoscroll">
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= l('field_easy_invoicing_invoice_number') %></th>
+          <th><%= l('field_easy_invoicing_client_name') %></th>
+          <th><%= l('field_easy_invoicing_issued_at') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% easy_invoices.each do |easy_invoice| %>
+          <tr>
+            <td class="number">
+              <%= link_to_easy_invoice(easy_invoice) %>
+            </td>
+            <td class="client_name">
+              <%= easy_invoice.client %>
+            </td>
+            <td class="issued_at">
+              <%= format_date(easy_invoice.issued_at) unless easy_invoice.issued_at.nil? %>
+            </td>
+            <% if easy_invoice.easy_crm_case %>
+              <td><%= l(:easy_invoice_already_has_crm_case) %></td>
+            <% else %>
+              <td class="buttons"><%= link_to(l(:button_easy_crm_add_related_invoice), add_related_easy_invoice_easy_crm_case_path(easy_crm_case, :easy_invoice_id => easy_invoice), :method => :post, :class => 'button-positive', :title => l(:button_easy_crm_add_related_invoice)) %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end -%>

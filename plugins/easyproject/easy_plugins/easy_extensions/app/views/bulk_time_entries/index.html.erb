@@ -1,0 +1,12 @@
+<%= content_tag(:h2, @time_entry.new_record? ? l(:label_bulk_time_entries) : l(:label_bulk_time_entries_edit)) %>
+<input type="text" id="focus_me_hack" style="display: none;" />
+
+  <%= render :partial => 'bulk_time_entries/form', :locals => { :modal => false} %>
+  <div id="user-spent-time">
+    <%= render :partial => 'timelog/user_spent_time', :locals => {:spent_on => @time_entry.spent_on, :user => @time_entry.user, :back_url => new_easy_time_entry_path(:spent_on => @time_entry.spent_on)} %>
+  </div>
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% include_calendar_headers_tags %>
+
+<% html_title l(:label_bulk_time_entries) %>

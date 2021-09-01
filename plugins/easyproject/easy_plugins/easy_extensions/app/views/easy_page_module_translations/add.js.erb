@@ -1,0 +1,7 @@
+$("#add_translation :selected").remove();
+$("#easy_translation_used_translation_container")
+  .find('.form_translated_field')
+  .append("<%=j render(partial: 'easy_page_module_translations/form_translated_field', locals: { input_name: @input_name, translation: @translation.to_a.flatten }) %>")
+if ($("#add_translation option").length <= 1) {
+  $("#easy_translation_add_translation_select").hide();
+}

@@ -1,0 +1,18 @@
+<ul>
+  <% if @easy_timesheet %>
+    <li>
+      <%= link_to(l(:button_show), easy_timesheet_path(@easy_timesheet), :class => 'icon icon-details') -%>
+    </li>
+    <li>
+      <%= link_to((@is[:locked] ? l(:button_easy_timesheets_reject) : l(:button_easy_timesheets_approve)), resolve_lock_easy_timesheet_path(@easy_timesheet, :lock => (!@is[:locked]).to_s), :method => 'post', :class => "timesheet-locking icon icon-#{@is[:locked] ? 'unlock' : 'lock'}", :data => (!@is[:locked] ? {:confirmation => l(:text_are_you_sure), :prompt => l(:label_easy_timesheet_lock_prompt)} : {:confirmation => l(:text_are_you_sure), :prompt => l(:label_easy_timesheet_unlock_prompt)})) if (@is[:locked] && @can[:locking]) || (!@is[:locked] && @can[:unlocking]) -%>
+    </li>
+    <%= content_tag(:li, link_to(l(:button_edit), edit_easy_timesheet_path(@easy_timesheet), :class => 'icon icon-edit', :remote => true)) if @easy_timesheet.editable? -%>
+    <%= content_tag(:li, link_to(l(:button_delete), @easy_timesheet, :method => 'delete', :data => { :confirm => l(:text_are_you_sure) }, :class => 'icon icon-del')) if @easy_timesheet.editable? -%>
+  <% elsif @easy_timesheets && @can[:delete_all] %>
+    <%= content_tag(:li, link_to(l(:button_delete), bulk_delete_easy_timesheets_path(:ids => params[:ids]), :method => 'delete', :data => { :confirm => l(:text_are_you_sure) }, :class => 'icon icon-del')) %>
+  <% else %>
+    <%= content_tag(:li, l(:label_none)) %>
+  <% end %>
+</ul>
+
+<%= render :partial => 'easy_timesheets/lock_description_prompt_js' %>

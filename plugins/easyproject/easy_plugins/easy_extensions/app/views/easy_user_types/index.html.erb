@@ -1,0 +1,38 @@
+<%= content_tag :h2, l(:label_easy_user_type_plural)%>
+<div class="autoscroll">
+  <div style="overflow: auto">
+    <table class="list reorder">
+      <thead><tr>
+        <th></th>
+          <th><%=l(:label_easy_user_type)%></th>
+          <th><%= l(:field_description) %></th>
+          <th></th>
+        </tr></thead>
+      <tbody>
+        <% @types.each do |type| %>
+          <tr>
+            <td class="center reorder-handler"><%= render_reorder_handle(type, 'easy_user_type') %></td>
+            <td class="name"><%= content_tag('span', link_to(type.name, edit_easy_user_type_path(type))) %></td>
+            <td class="description"><%= type.description %></td>
+            <td class="buttons">
+              <%= link_to l(:button_copy), edit_easy_user_type_path(type, is_copy: true) %>
+              <%= delete_link easy_user_type_path(type) if !type.is_default? %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<span class="pagination" style="display: none"><%= pagination_links_full @pages %></span>
+
+<%= render :partial => 'common/infinite_scroll' %>
+
+<% ### PAGE CUSTOMS ########################################################## -%>
+
+<% html_title(l(:label_easy_user_type_plural)) -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_easy_user_type_new), {:action => 'new'}, :class => 'button-positive icon icon-add' %>
+<% end %>

@@ -1,0 +1,57 @@
+<% parent_val = EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(easy_contact.parent, display_name: :name) || {} %>
+<%= hidden_field_tag(:only_selected, only_selected) %>
+<% shown_fields.each do |field| %>
+  <%= hidden_field_tag('shown_fields[]', field) %>
+<% end %>
+<% shown_custom_field_ids.each do |cf_id| %>
+  <%= hidden_field_tag('shown_custom_field_ids[]', cf_id) %>
+<% end %>
+
+<div class="splitcontent">
+  <%= labelled_fields_for :easy_contact, easy_contact do |f| %>
+    <div class="splitcontentleft">
+      <% if easy_contact.field_enabled?('firstname') && EasyContact.firstname_field_visible? %>
+        <p style="<%= 'display:none;' if shown_fields.exclude?(:firstname) %>">
+          <% label_name = easy_contact.field_enabled?('lastname') ? :field_firstname : :field_name %>
+          <%= f.text_field :firstname, required: true, size: nil, autofocus: !request.xhr?, label: l(label_name) %>
+        </p>
+      <% end %>
+
+      <% if easy_contact.field_enabled?('lastname') && EasyContact.lastname_field_visible? %>
+        <p style="<%= 'display:none;' if shown_fields.exclude?(:lastname) %>">
+          <%= f.text_field :lastname, required: true %>
+        </p>
+      <% end %>
+    </div>
+    <div class="splitcontentright">
+      <% if EasyContact.parent_id_field_visible? %>
+        <p class='easy-autocomplete-parent-id' style="<%= 'display:none;' if shown_fields.exclude?(:parent_id) %>">
+          <label><%= l(:field_easy_contacts_parent) %></label>
+          <%= easy_modal_selector_field_tag('EasyContact', 'link_with_name', 'easy_contact[parent_id]', "#{block_name}_easy_contact_parent_id", parent_val, display_name: Proc.new {|easy_contact| link_to_easy_contact(easy_contact)}, multiple: false, hide_create_contact: true) %>
+        </p>
+      <% end %>
+      <% if EasyContact.assigned_to_id_field_visible? %>
+        <p style="<%= 'display:none;' if shown_fields.exclude?(:assigned_to_id) %>">
+          <%= f.auto_complete(:assigned_to_id, User.active.non_system_flag.easy_type_internal.sorted.map {|u| [u.name, u.id]}, label: EasyContact.human_attribute_name(:account_manager)) %>
+        </p>
+      <% end %>
+      <% if EasyContact.external_assigned_to_id_field_visible? && EasyUserType.easy_type_partner.any? %>
+        <p style="<%= 'display:none;' if shown_fields.exclude?(:external_assigned_to_id) %>">
+          <%= f.auto_complete(:external_assigned_to_id, User.active.non_system_flag.easy_type_internal.sorted.map {|u| [u.name, u.id]}, label: EasyContact.human_attribute_name(:external_account_manager)) %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<hr/>
+
+<% if easy_contact.safe_attribute? 'custom_field_values' %>
+  <%= render partial: 'easy_page_modules/entity_create_new_shown_custom_fields',
+             locals: {
+                 entity: easy_contact,
+                 block_name: block_name,
+                 only_selected: only_selected,
+                 custom_field_values: custom_field_values,
+                 shown_custom_field_ids: shown_custom_field_ids
+             } %>
+<% end %>

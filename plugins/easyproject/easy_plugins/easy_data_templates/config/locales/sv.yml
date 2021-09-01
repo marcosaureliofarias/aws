@@ -1,0 +1,166 @@
+---
+sv:
+  activerecord:
+    errors:
+      models:
+        easy_data_template_assignment:
+          attributes:
+            easy_data_template_id:
+              blank: kan inte vara tomt eller inte existerar
+              empty: kan inte vara tomt eller inte existerar
+        easy_data_template:
+          attributes:
+            type:
+              blank: kan inte vara tomt eller inte existerar
+              empty: kan inte vara tomt eller inte existerar
+  button_easy_data_template_assignment: fält uppdrag
+  button_easy_data_template_edit: Redigera mall
+  button_easy_data_template_export_data: Exportera data
+  button_easy_data_template_import: importera
+  button_easy_data_template_import_data: Importera data
+  button_easy_data_template_import_preview: preview
+  button_easy_data_template_new_export: Export CSV
+  button_easy_data_template_new_import: Importera CSV
+  button_easy_data_template_new_msproject: Importera från MS Project
+  button_easy_data_template_settings: justering
+  eady_data_template_encoding: UTF-8
+  easy_data_template_allowed_import_select:
+    xno: Ingen
+    xyes: Ja
+  easy_data_template_entity_attributes_select:
+    Issue:
+      assigned_to_firstname: namn solver
+      assigned_to_id: id solver
+      assigned_to_lastname: efternamn lösare
+      assigned_to_login: logga solver
+      assigned_to_mail: e-post lösare
+      author_firstname: författarens namn
+      author_id: id författare
+      author_lastname: efternamn
+      author_login: logga författare
+      author_mail: e-post författaren
+      description: beskrivning av uppgiften
+      due_date: Slut på uppgiften (datum)
+      estimated_hours: beräknade uppgiften tid (timmar)
+      id: uppgift id
+      priority_id: id prioritet
+      priority_name: prioritet titel
+      project_id: id projektet
+      project_name: projektnamn
+      start_date: början av uppgiften (datum)
+      subject: ämne för uppgiften
+      tracker_id: id uppgift typ
+      tracker_name: namnet på uppgiften typ
+    Project:
+      description: beskrivning av projektet
+      enabled_modules: modul namn
+      id: id projektet
+      is_public: allmänheten (A / N)
+      name: projektnamn
+      parent_id: id föräldraprojekt
+      parent_name: namnet på moderföretaget projektet
+      trackers_ids: id uppgift typ
+      trackers_names: namnet på uppgiften typ
+    TimeEntry:
+      activity: aktivitet
+      activity_id: id aktiviteter
+      activity_name: namn på aktiviteten
+      comments: kommentar
+      easy_range_from: rapporterats från
+      easy_range_to: rapporteras till
+      hours: klocka
+      issue: uppgift
+      issue_id: uppgift id
+      issue_subject: uppgift titel
+      project: projekt
+      project_id: id projektet
+      project_name: projektnamn
+      spent_on: datum
+      user: användare
+      user_id: användarnamn
+    User:
+      admin: Handläggare (A / N)
+      firstname: användarnamn
+      id: användarnamn
+      language: användarens språk
+      lastname: efternamn på användaren
+      login: Användare inloggning
+      mail: e-postanvändare
+      password: lösenord
+      send_mail: inloggning för att skicka e-post (A / N)
+  easy_data_template_entity_type_select:
+    EasyDataTemplateIssue: Uppgift
+    EasyDataTemplateMsProject: MS Project
+    EasyDataTemplateProject: Projekt
+    EasyDataTemplateTimeEntry: Rapporterad tid
+    EasyDataTemplateUser: Användare
+  easy_data_templates_plugin_author: Easy Software
+  easy_data_templates_plugin_author_url: http://www.easyredmine.com
+  easy_data_templates_plugin_description: "- Data mallar för att importera och exportera
+    data i CSV-format"
+  easy_data_templates_plugin_name: Data mallar
+  error_during_import: När du importerar felet uppstod. Vänligen kontrollera de inmatade
+    uppgifterna.
+  error_easy_data_template_attachment_not_uploaded: Spelats in utan tillägg för att
+    importera
+  error_easy_data_template_ms_project_not_valid_xml: Den bifogade filen är inte giltig
+    XML från MS Project 2010 och högre.
+  field_easy_data_template_allowed_import: Import
+  label_check_preview: Vänligen kontrollera uppgifterna med hjälp av "Preview"
+  label_easy_data_template_assignment: Field uppdrag
+  label_easy_data_template_author_name: Författare
+  label_easy_data_template_edit: Redigera mallar
+  label_easy_data_template_entity_type: Entity
+  label_easy_data_template_export_new: Ny exportmall
+  label_easy_data_template_import_file: Importera en fil
+  label_easy_data_template_import_new: Ny import mall
+  label_easy_data_template_import:
+    assignments:
+      all: tilldelat läge kolumner
+      entity_attribute_name: kolumnnamn enheter
+      file_column_position: ställning av kolonnen i csv
+      new: Uppdrag kolumn positioner
+    errors:
+      erow: fel i linje
+      errors_count: antal fel
+      errors_rows: felaktiga linjer
+      errors_rows_count: antalet felaktiga rader
+      errors_sum: helt och hållet
+      row: felaktigt radnummer
+      show: visa felaktiga linjer
+    preview:
+      row: radnummer
+      table: preview
+    settings:
+      col_sep: fältseparator
+      encoding: kodning
+      import_all: Allt eller inget
+      new: Justering
+      preview_rows: antal rader för att förhandsgranska
+      project_template: Använd en mall
+      quote_char: separator text
+      return_headers: Första raden innehåller namnet på den kolumn
+      utf: UTF-8
+      windows: WINDOWS-1250
+  label_easy_data_template_ms_project_assigned_user:
+    one: "(Tilldelade en uppgift)"
+    other: "(Tilldelad %{count} uppgifter)"
+    zero: "(Inte tilldelat)"
+  label_easy_data_template_ms_project_resource_name_in_msp: Namn på MSP
+  label_easy_data_template_ms_project_user_name_in_ep: Internt namn
+  label_easy_data_template_name: Namn
+  label_easy_data_template_public: offentlig
+  label_easy_data_template_template_type: Typ
+  label_easy_data_template_template_type_export: exportera
+  label_easy_data_template_template_type_import: importera
+  label_easy_data_template_user_name: Ägare
+  label_easy_data_templates: Data mallar
+  label_easy_data_templates_choose_project: Välj ett projekt
+  label_easy_data_templates_choose_query: Välj ett filter
+  label_easy_data_templates_source_settings: Välj en datakälla
+  label_easy_data_templates_target_settings: Välja destinationsdata
+  notice_easy_data_templates_import_ok: Import var bra.
+  text_easy_data_template_ms_project_upload_file: Filen måste vara i XML-format (i
+    MS Project från toppmenyn, klicka på Arkiv -> Spara som -> Spara som XML).
+  title_easy_data_templates_apply_to_all_rows: Klicka för att ställa in detta värde
+    på alla liknande linjer.

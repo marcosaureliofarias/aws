@@ -1,0 +1,14 @@
+$("#easy_servicebar_component_body").html("<%= j render(partial: 'easy_to_do_list') -%>");
+$("#easy_servicebar_component").easy_to_do_list({
+  "newIssueUrl": "<%=j url_for({controller: 'easy_issues', action: 'new_for_dialog', project_id: params[:project_id]}) %>",
+  "moreToDoLists" : <%= Setting.plugin_easy_to_do_list['enable_more_to_do_lists'] == '1' -%>,
+  "newIssueTitle": "<%=j l(:label_issue_new) %>",
+  "createButton": "<%=j l(:button_create) %>",
+  "closeButton": "<%=j l(:button_close) %>",
+  "dropZoneUser": "<%=j l(:field_assigned_to) %>",
+  "dropZoneOther": "<%=j l(:label_issue_new) %>",
+  "dropZoneCalendar": "<%=j "#{l(:field_start_date)} / #{l(:field_due_date)}" %>",
+  "lang": {
+    "pushSortbale": "<%=j l(:label_push_it_here) %>"
+  }
+});

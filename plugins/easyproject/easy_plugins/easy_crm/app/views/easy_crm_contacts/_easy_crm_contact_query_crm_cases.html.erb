@@ -1,0 +1,15 @@
+<table class="easy_crm_cases" style="display:none">
+  <tbody>
+    <% easy_crm_cases.each do |easy_crm_case| %>
+      <tr>
+        <td class="name"><%= link_to(easy_crm_case, easy_crm_case_path(easy_crm_case)) %></td>
+        <td class="price"><%= format_price(easy_crm_case.price, easy_crm_case.currency) %></td>
+        <td class="account_manager"><%= link_to_user(easy_crm_case.assigned_to.nil? ? '-' : easy_crm_case.assigned_to) %></td>
+        <% if EasyUserType.easy_type_partner.any? %>
+          <td class="external_account_manager"><%= link_to_user(easy_crm_case.external_assigned_to.nil? ? '-' : easy_crm_case.external_assigned_to) %></td>
+        <% end %>
+        <td class="contract_date"><%= format_date(easy_crm_case.contract_date) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,184 @@
+---
+it:
+  easy_mindmup:
+    button_add_child: Aggiungi attività figlio
+    button_add_parent: Aggiungi attività padre
+    button_add_sibling: Aggiungi attività parallela
+    button_all_icons: Icone
+    button_collapse: Comprimi
+    button_collapse_all: Comprimi tutto
+    button_cut: Taglia
+    button_edit_data: Modifica dati
+    button_expand: Espandi
+    button_expand_all: Espandi tutto
+    button_expand_collapse: Espandi/Comprimi
+    button_hotkeys: Tasti di scelta rapida
+    button_legend: Legenda
+    button_one_side: Da una parte
+    button_paste: Incolla
+    button_project_menu: Easy MindMup
+    button_redo: Ripeti
+    button_remove_node: Rimuovi Nodo
+    button_show_links: Mostra collegamenti
+    button_undo: Annulla
+    error_create: creazione non riuscita
+    error_delete: cancellazione non riuscita
+    error_update: aggiornamento non riuscito
+    errors:
+      no_rest_api: L'API REST è disabilitata. Si prega di abilitarla in Amministrazione.
+      not_subtaskable: Il task "%{task_name}" non può essere un sottotask a causa
+        dell’impostazione del suo tracker
+    free:
+      button_upgrade: Ottieni la Versione Completa
+      feature_coloring: Colorazione dei nodi per proprietà
+      feature_context_menu: Modifica delle proprietà del nodo dal menu di scelta rapida
+      feature_dnd_property: Modifica delle proprietà del nodo mediante trascinamento
+      feature_filtering: Filtro dei nodi per proprietà
+      header_not_available: Disponibile solo nella Versione Completa
+    hotkeys:
+      info_mac_metakey: In caso di sistemi Mac, i tasti Ctrl e Cmd possono essere
+        utilizzati per le scorciatoie in cui si utilizza Ctrl. Alcuni browser impediscono
+        alcune combinazioni di tasti. Quindi, se ad esempio nel tuo browser Cmd+Spazio
+        non funziona, prova Ctrl+Spazio.
+      keyboard:
+      - title: Manipulazione di nodi
+        hotkeys:
+        - hotkey: Inserisci
+          info: Aggiungi attività parallela
+        - hotkey: Shift+Invio
+          info: Aggiungi attività parallela sopra o interruzione di riga (quando si
+            rinomina un nodo)
+        - hotkey: Tab o INS
+          info: Aggiungi attività figlio
+        - hotkey: Shift+Tab
+          info: Aggiungi attività padre
+        - hotkey: Spazio
+          info: Rinomina nodo
+        - hotkey: Shift+Spazio
+          info: Modifica dati del nodo
+        - hotkey: Backspace o CANC
+          info: Rimuovi nodo
+        - hotkey: Ctrl+freccia su/giù
+          info: Sposta nodo su/giù
+      - title: Modifica
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Salva
+        - hotkey: Ctrl+X o C
+          info: Taglia
+        - hotkey: Ctrl+C o Y
+          info: Copia
+        - hotkey: Ctrl+V o P
+          info: Incolla
+        - hotkey: U o Ctrl+Z
+          info: Annulla
+        - hotkey: R o Ctrl+Y o Ctrl+Shift+Z
+          info: Ripeti
+      - title: Selezione
+        hotkeys:
+        - hotkey: Tasti freccia
+          info: Seleziona il nodo su/giù/a destra/sinistra di quello attualmente selezionato
+        - hotkey: Shift + tasti freccia
+          info: Aggiungi nodo su/giù/a sinistra/a destra alla selezione (utile per
+            selezionare più fratelli)
+        - hotkey: "{"
+          info: Selezione multipla del nodo corrente e l’intero albero sottostante
+        - hotkey: "["
+          info: Selezione multipla del sottoalbero sotto il nodo corrente (non il
+            nodo stesso)
+        - hotkey: "="
+          info: Selezione multipla di tutti i fratelli del nodo corrente (aventi lo
+            stesso padre)
+        - hotkey: "."
+          info: Annulla la selezione multipla e seleziona di nuovo solo il nodo corrente
+        - hotkey: 1 - 9
+          info: Seleziona tutti i nodi di un livello specifico (ad es. 1 seleziona
+            tutti i nodi del primo livello)
+      - title: Navigazione e schermo
+        hotkeys:
+        - hotkey: "/ o F"
+          info: Espandere o comprimere il nodo il nodo (ripiegatura e apertura dei
+            nodi)
+        - hotkey: Ctrl + o Z
+          info: Zoom avanti
+        - hotkey: Ctrl - o Shift Z
+          info: Zoom indietro
+        - hotkey: Esc, 0, Ctrl+0
+          info: 'Ripristino vista della mappa: seleziona il nodo radice e portalo
+            al centro dello schermo'
+      mouse:
+      - action: Sposta la mappa
+        gesture: clicca e trascina il nodo centrale, clicca e trascina lo sfondo o
+          scorri con la rotella/touchpad.
+      - action: Seleziona un nodo
+        gesture: tocca o cliccaci sopra
+      - action: Seleziona nodi multipli
+        gesture: Shift+click
+      - action: Riordina nodi
+        gesture: trascina un nodo tra i suoi fratelli, orizzontalmente vicino alla
+          posizione di riordino. Un puntatore nero a forma di freccia mostrerà dove
+          riordinare.
+      - action: Posiziona manualmente un nodo
+        gesture: basta trascinare un nodo finché non appare la freccia per il riordino.
+          Per forzare il posizionamento manuale anche quando viene mostrata la freccia
+          nera, tieni premuto Shift mentre trascini. Considera che i figli del nodo
+          radice possono essere spostati in ogni direzione, ma i nodi di livello inferiore
+          possono essere posizionati solo in direzione del proprio padre relativo
+          alla radice.
+      - action: Rinonima un nodo
+        gesture: Fai doppio clic/tocco
+      - action: Mostra il menu contestuale con le operazioni
+        gesture: 'Clicca col destro su un nodo (col mouse) o fai un doppio tocco sullo
+          sfondo, oppure tieni premuto a lungo sul nodo: mostra (su dispositivi touch)'
+      - action: Cambia nodo padre
+        gesture: trascina e rilascia un nodo su un altro nodo (i rilasci circolari
+          non sono permessi, quindi non puoi rilasciare un nodo su uno dei suoi figli
+          o discendenti)
+      - action: Apri questione o progetto in una finestra separata
+        gesture: Alt+click
+      title_key_shortcuts: Operazioni tramite tastiera
+      title_mouse_shortcuts: Operazioni tramite mouse e tocco
+      title_shortcuts: Tasti di scelta rapida
+    info_all_saved: Tutto è stato salvato correttamente
+    info_any_failed: 'Alcune richieste non sono andate a buon fine:'
+    info_no_permission: Non hai i permessi necessari per eseguire questa operazione.
+    label_color_by: Colora di
+    label_go_to: Vai a
+    label_hide_unused: Nascondi inutilizzato
+    label_less: Meno
+    label_or: oppure
+    label_save_progress: Si prega di attendere, tutte le entità sono in fase di salvataggio.
+    label_show_unused: Mostra non utilizzato
+    label_tooltip_display_info: " Nella legenda sono visualizzati tutti gli stati,
+      ma è possibile che non sia consentito utilizzarne alcuni."
+    last_state_modal:
+      label_differencies: Differenze sul server
+      message_changed: ha attributi diversi (browser => server) ({{changes}})
+      message_missing: manca dal padre "{{from}}"
+      message_moved: è figlio di "{{to}}", non di "{{from}}"
+      message_present: è presente come figlio di "{{to}}"
+      text_reload_appeal: Desideri ricaricare lo stato del server?
+      title: L’ultimo stato del client della Mappa Mentale è diverso dallo stato del
+        server.
+    reload_modal:
+      label_errors: Errori
+      text_reload_appeal: Desideri ignorare gli elementi non salvati e ricaricare
+        i dati dal server?
+      title: La Mappa mentale non è stata salvata correttamente.
+    save_info:
+      at: alle
+      autosaved: Salvato automaticamente
+      loaded: Caricato
+      saved: Salvato
+    stored_modal:
+      button_local: Versione locale
+      button_server: Versione server
+      text_load_appeal: Desideri caricarla? O desideri caricare un nuovo stato dal
+        server?
+      title: Sono state trovate versioni locali non salvate
+    title_node_changed: Questo nodo è stato modificato e verrà salvato.
+    warning_delete_node: Desideri davvero eliminare il nodo {{name}} e tutti i discendenti
+      corrispondenti?
+    warning_delete_nodes: Desideri davvero eliminare questi nodi e tutti i discendenti
+      corrispondenti?
+    warning_not_saved: non è stato salvato correttamente

@@ -1,0 +1,104 @@
+<% users = @easy_page_modules_data[block_name][:users]
+   period = settings['period'] || 'month'
+   data_from = settings['data_from'] || 'crm_case'
+   compare = settings['compare'] || 'price' %>
+
+<p>
+  <%= label_tag "#{block_name}[name]", l(:field_name) %>
+  <%= text_field_tag "#{block_name}[name]", settings['name'], :size => 30 %>
+</p>
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <fieldset>
+      <legend><%= l(:label_page_module_compare) %></legend>
+      <div class="splitcontentleft">
+        <%= l(:field_easy_crm_case) %>
+        <p>
+          <% EasyUserTarget::CRM_CASE_COMPARE_COLUMNS.each do |column| %>
+            <%= radio_button_tag "#{block_name}[compare]", column, settings['compare'] == column.to_s || compare, onchange: "showFieldSet(this, 'crm_case', 'invoice')", id: "#{block_name}_compare_crm_#{column}", class:  "#{block_name}" %>
+            <%= label_tag "#{block_name}_compare_crm_#{column}", EasyCrmCase.human_attribute_name(column) %>
+          <% end %>
+        </p>
+      </div>
+      <div class="splitcontentright">
+        <% if Redmine::Plugin.installed?(:easy_invoicing) %>
+          <%= l(:field_easy_invoice) %>
+          <p>
+            <% EasyUserTarget::INVOICE_COMPARE_COLUMNS.each do |column| %>
+              <%= radio_button_tag "#{block_name}[compare]", column, settings['compare'] == column.to_s, onchange: "showFieldSet(this, 'invoice', 'crm_case')", id: "#{block_name}_compare_invoice_#{column}", class: "#{block_name}" %>
+              <%= label_tag "#{block_name}_compare_invoice_#{column}", EasyInvoice.human_attribute_name(column) %>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    </fieldset>
+    <% if Redmine::Plugin.installed?(:easy_invoicing) %>
+      <fieldset id="fieldset_invoice_<%= block_name %>" style=" <%= EasyUserTarget::INVOICE_COMPARE_COLUMNS.include?(settings['compare']) ? '' : 'display: none' %>">
+        <legend><%= l(:enumeration_easy_invoice_status) %></legend>
+        <% Enumeration.where(type: 'EasyInvoiceStatus').each do |status| %>
+          <p class="floating">
+            <%= check_box_tag "#{block_name}[easy_invoice_status_id][]", status.id, settings['easy_invoice_status_id'] && settings['easy_invoice_status_id'].include?(status.id.to_s), :id => "#{block_name}_easy_invoice_status_id_#{status.id}" %>
+            <%= label_tag "#{block_name}_easy_invoice_status_id_#{status.id}", status.name %>
+          </p>
+        <% end %>
+      </fieldset>
+    <% end %>
+    <fieldset id="fieldset_crm_case_<%= block_name %>" style=" <%= !EasyUserTarget::INVOICE_COMPARE_COLUMNS.include?(settings['compare']) ? '' : 'display: none' %>">
+      <legend><%= "#{l(:label_easy_crm_case_filters)} #{l(:field_easy_crm_case)}" %></legend>
+      <% EasyCrmCaseStatus::STATUS_FIELDS.each do |state| %>
+        <p class="floating">
+          <%= check_box_tag "#{block_name}[easy_crm_case_status_state][]", state, settings['easy_crm_case_status_state'] && settings['easy_crm_case_status_state'].include?(state), :id => "#{block_name}_easy_crm_case_status_state_#{state}" %>
+          <%= label_tag "#{block_name}_easy_crm_case_status_state_#{state}", EasyCrmCaseStatus.human_attribute_name(state) %>
+        </p>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="splitcontentright">
+    <fieldset>
+      <legend><%= l(:label_easy_user_with_targets) %></legend>
+
+        <div>
+          <%= link_to_function(" #{l(:button_check_all)}/#{l(:button_uncheck_all)}", "checkUncheckAll('div.#{block_name}-target-users input[type=checkbox]', this)", :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}", :class => 'icon icon-checked')  %>
+        </div>
+          <%= hidden_field_tag "#{block_name}[users][]", '0' %>
+          <div class="<%= block_name %>-target-users ">
+            <ul class="cols-3">
+          <% users.each do |user| %>
+            <li><%= check_box_tag "#{block_name}[users][]", user.id, settings['users'].present? ? settings['users'].include?(user.id.to_s) : false, id: "#{block_name}_#{dom_id(user)}" %>
+              <%= label_tag "#{block_name}_#{dom_id(user)}", user.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </fieldset>
+  </div>
+  <div class="splitcontentleft">
+    <fieldset>
+      <legend><%= l(:label_page_module_chart_settings) %></legend>
+      <p>
+        <%= l(:label_page_module_default_period) %>:
+        <%= radio_button_tag "#{block_name}[period]", 'month', period == 'month' %>
+        <%= label_tag "#{block_name}_period_month", l(:button_gantt_zoom_month) %>
+        <%= radio_button_tag "#{block_name}[period]", 'quarter', period == 'quarter' %>
+        <%= label_tag "#{block_name}_period_quarter", l(:button_gantt_zoom_quarter) %>
+        <%= radio_button_tag "#{block_name}[period]", 'year', period == 'year' %>
+        <%= label_tag "#{block_name}_period_year", l(:button_gantt_zoom_year) %>
+      </p>
+      <%= hidden_field_tag "#{block_name}[data_from]", data_from, id: "data_from_#{block_name}" %>
+    </fieldset>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  function showFieldSet(_this, showType, hideType) {
+    $('#fieldset_' + showType + '_' + _this.className).show();
+    $('#fieldset_' + hideType + '_' + _this.className).hide();
+    $('#data_from_' + _this.className).val(showType)
+  }
+
+  function checkUncheckAll(selector, _this) {
+    toggleCheckboxesBySelector(selector);
+    $(_this).closest(".easy-page-module-form").attr('data-changed', true);
+  }
+
+</script>

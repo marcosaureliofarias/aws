@@ -1,0 +1,27 @@
+<%
+  if easy_page_context[:page_params][:edit]
+    zone = page_params[:page].zones[zone_idx]
+
+    allowed_modules = page_params[:page].available_modules.collect do |p|
+      [
+        p.module_definition.translated_name,
+        l("easy_pages.module_category.#{p.module_definition.category_name.underscore}",
+          :default => [p.module_definition.category_name, p.module_definition.category_name.humanize]
+         ),
+        p.id
+      ] if p.module_definition.module_allowed?
+    end.compact.sort{|a,b| a[0].casecmp(b[0]) }.group_by{|p| p[1]}
+  end
+%>
+<%= content_tag(:div, :id => "tab#{tab_pos}-list-#{zone_name.dasherize}", :class => 'easy-page-zone') do %>
+  <% if easy_page_context[:page_params][:edit] && zone %>
+    <div class="add-module-edit-content">
+      <%= form_tag({}, :id => "block-form-zone-#{zone.id}") do %>
+        <%= select_tag 'module_id', grouped_options_for_select(allowed_modules, nil, :prompt => l(:label_easy_page_module_select)), class: 'add-module-select', id: nil,
+          data: { url: url_for(page_params[:url_add_module].merge(:zone_id => zone.id, :t => tab_pos, :back_url => params[:back_url])).html_safe }
+        %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= content %>
+<% end %>

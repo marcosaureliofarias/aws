@@ -1,0 +1,5 @@
+<p>
+  <%= hidden_field_tag('easy_rake_task[settings][force]', '0', id: nil) %>
+  <% box = check_box_tag('easy_rake_task[settings][force]', '1', task.settings['skip_ignored_emails_headers_check'] == '1') %>
+  <%= label_tag('easy_rake_task[settings][force]', box + l(:label_force_reload), class: 'checkbox inline') %>
+</p>

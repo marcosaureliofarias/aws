@@ -1,0 +1,31 @@
+var modal = $("#ajax-modal");
+
+<%
+  result = toggling_container('issue_preview', nil, heading: l(:field_description), ajax_call: false, default_button_state: @last_journal.nil?) do
+    textilizable(@issue.description, {attachments: @issue.attachments})
+  end
+
+  if @last_journal
+    result << render(partial: 'journals/journal', locals: {
+      entity: @issue,
+      journal: @last_journal,
+      reply_links: false,
+      editable: false,
+      hook_enabled: false
+    })
+  end
+%>
+
+modal.html("<%= j(result) %>");
+
+showModal('ajax-modal', '50%');
+modal.dialog({
+  title: '<%= l(:label_preview) %>'
+});
+var toggler = $("#ajax-modal").find(".journal span.expander.issue-journal-details-toggler");
+toggler.click(function(event) {
+    var expander = $(event.target);
+    EASY.journals.toggleDetails(expander.closest(".journal"));
+});
+toggler.parent().addClass('open');
+LazyLoader.refresh();

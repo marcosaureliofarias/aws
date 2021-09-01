@@ -1,0 +1,10 @@
+<%= f.hidden_field :entity_type %>
+<div class="tabular">
+  <%= error_messages_for f.object %>
+  <p>
+    <%= f.select :easy_query_id, options_for_select(@easy_query_type.preload(:user).sorted.map { |object| ["#{object.name}" << (object.user ? " - #{object.user.name}" : ''), object.id] }, f.object.easy_query_id), {:class => 'mapped_query_id'} %>
+  </p>
+  <p>
+    <%= f.select(:role_id, options_from_collection_for_select(Role.sorted, :id, :name, f.object.role_id)) %>
+  </p>
+</div>

@@ -1,0 +1,216 @@
+---
+sv:
+  alert_reports_email_subject:
+    timeentry_time_watcher:
+      a: Vad exakt är det du gör? Bär dem till tidrapporten.
+      b: Din tidrapport är sorgligt, tycker du inte?
+      c: Arbeta inte gratis. Fyll i en tidrapport.
+      d: Har du en semester idag?
+      e: Wake-up call! Tidrapport måste föda!
+  alerts_plugin_author: Easy Software
+  alerts_plugin_author_url: http://www.easyredmine.com
+  alerts_plugin_description: "- Automatisk anmälan enligt definierade parametrar"
+  alerts_rule_project_filters: 'Gräns ​​för projektet:'
+  alerts_type_alert: Alarm
+  alerts_type_notice: Lägg märke till
+  alerts_type_warning: Varning
+  button_alerts_add_new_alert: Ny varning
+  button_alerts_add_new_context: Nya förutsättningar
+  button_alerts_add_new_type: Ny typ
+  button_alerts_manage_contexts: Hantera sammanhang
+  button_alerts_manage_types: Hantera alarmtyper
+  button_alerts_my_alerts: Mina varningar
+  button_alerts_report: Rapport
+  button_alerts_report_archive: Arkiv
+  button_alerts_report_unarchive: Hämta dessa
+  button_alerts_reports: Mina rapporter
+  button_alerts_reports_archive: Arkiverad
+  button_issue_sidebar_add_alert: Ny varning
+  button_manage_alerts_for_all: Offentliga varningar
+  easy_alerts_context:
+    helpdesk: Helpdesk
+    issue: Uppgift
+    milestone: Milestone
+    project: Projekt
+    timeentry: Tillbringade tid
+  easy_alerts_rule:
+    easy_issue_query: Sparad fråga
+    easy_project_query: Sparad fråga
+    easy_version_query: Sparad fråga
+    helpdesk_monitor_due_time: Helpdesk - fråga rätt tid enligt SLA
+    helpdesk_monitor_due_time_assignee: Helpdesk - tid att slutföra min uppgift enligt
+      SLA
+    helpdesk_monitor_due_time_manager: Helpdesk - tidpunkten för genomförandet av
+      uppdraget enligt SLA
+    helpdesk_monitor_hours_to_response: Helpdesk - tid till början av lösa uppgiften
+      enligt SLA
+    helpdesk_monitor_prepaid_hours: Helpdesk - månatlig förbetald tid
+    issue_due_date: Förfallodagen
+    issue_updated_date: Uppdaterat datum
+    project_due_date: Förfallodagen
+    project_estimated_hours: Summan av beräknade timmar
+    timeentry_time_watcher: Tillbringade tidsintervall
+    timeentry_time_watcher_previous_day: Föregående dag tillbringade tid
+    version_due_date: Förfallodagen
+  easy_pages:
+    modules:
+      easy_alerts: Varningar - rapporter
+  easy_rake_tasks:
+    easy_rake_task_alert_daily_maintenance:
+      caption: Varningar - utvärdering
+  field_alert_is_for: Utvärdering för
+  field_alert_mail_for: E till
+  field_alerts_report_text: State
+  field_alerts_rule: Titta
+  field_budget: budget
+  field_context: där
+  field_custom_hours: Klocka
+  field_date: datum
+  field_delta: antal dagar
+  field_entity_count: antal uppgifter
+  field_period_from: Från
+  field_period_to: Till
+  field_query_id: filtrera
+  field_rule: Titta
+  field_time_check: Checkar in
+  field_version_ids: milstolpe
+  label_alerts_additional_settings: Övriga inställningar
+  label_alerts_context: 'Var:'
+  label_alerts_contexts: Lista på sammanhang
+  label_alerts_for_all: För alla
+  label_alerts_for_group: 'För gruppen:'
+  label_alerts_for_only_me: Endast för alert författare
+  label_alerts_hourstimecheck_after_time: timmar
+  label_alerts_hourstimecheck_before_time: Kolla in det varje dag i
+  label_alerts_hourstimecheck_whenever: När som helst << >>
+  label_alerts_issue_select_before: 'på uppgiften (s):'
+  label_alerts_mail_group: Utvärdering av registreringar kommer att skickas via e-post
+  label_alerts_mail_group_all: Alla deltagare (se ovan)
+  label_alerts_mail_group_custom: 'Till anpassad post:'
+  label_alerts_mail_group_only_group: 'Endast gruppmedlemmar:'
+  label_alerts_manage_alerts_for: 'Denna varning kommer att utvärderas för användare:'
+  label_alerts_my: 'Mina aviseringar efter typ:'
+  label_alerts_my_alerts: Mina varningar
+  label_alerts_my_reports: Mina rapporter
+  label_alerts_my_reports_archive: Mina rapporter (arkiv)
+  label_alerts_name: 'Namn:'
+  label_alerts_project_select_before: 'på projekt:'
+  label_alerts_report: Rapport
+  label_alerts_rule: 'Titta:'
+  label_alerts_select_context: 'Välj sammanhanget:'
+  label_alerts_select_rule: 'Välj regel:'
+  label_alerts_type: 'Severity:'
+  label_alerts_type_name: Namn
+  label_alerts_types: Varningstyper
+  label_choose_type: 'Välj när varningen kommer att utvärdera:'
+  label_easy_alerts_helpdesk_monitor_due_time_form_after: tid på uppgiften (enligt
+    SLA).
+  label_easy_alerts_helpdesk_monitor_due_time_form_before: Watch att aktuell tid är
+    mer eller lika med
+  label_easy_alerts_helpdesk_monitor_due_time_report: Tid för uppgiften är %{due_time}
+  label_easy_alerts_helpdesk_monitor_hours_to_response_report: Uppgift måste lösas
+    i %{due_time}
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_after: förbetalda timmar.
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_form_before: Watch att månatliga
+    spenderat tid på projekt är mer eller lika med
+  label_easy_alerts_helpdesk_monitor_prepaid_hours_report: Använt %{sum_time_entries}
+    från %{prepaid_hours}
+  label_easy_alerts_project_estimated_hours_form_after: kontra tillbringade tid
+  label_easy_alerts_project_estimated_hours_form_before: Watch att beräknade tiden
+    är på
+  label_easy_alerts_project_estimated_hours_report: Tid utgifterna är på%{current_percentage}%
+    -%{sum_time_entries} från %{sum_estimated_hours}
+  label_issue_due_date_report: Uttrycket uppgift har överskridits
+  label_issue_due_date_warning_date_before: 'Varna på:'
+  label_issue_due_date_warning_delta_after: dagar (+) efter deadline, (-) innan tidsfristen
+  label_issue_due_date_warning_delta_before: Warn
+  label_issue_due_date_where_iam: 'Bara var jag är:'
+  label_issue_due_date_where_iam_assignee: Innehavare av uppgiften
+  label_issue_due_date_where_iam_author: Författare av uppgiften
+  label_issue_overdrawn_budget_before: 'Varna konsumtion av budgeten:'
+  label_issue_overdrawn_budget_report: uttömd från %{costs}%{budget}
+  label_issue_query_after: register.
+  label_issue_query_before: 'Varna om antalet uppgifter i filtret:'
+  label_issue_query_middle: kommer att vara större än
+  label_issue_query_report: översteg antalet uppgifter i filtret
+  label_issue_updated_date_warning_date_before: 'Varna på:'
+  label_issue_updated_date_warning_delta_after: dagar (+) efter deadline, (-) innan
+    tidsfristen
+  label_issue_updated_date_warning_delta_before: Warn
+  label_milestone_due_date_milestone_select_before: på milstolpe (er)
+  label_milestone_due_date_report: Uttrycket milstolpe har överskridits
+  label_milestone_due_date_warning_date_before: 'Varna på:'
+  label_milestone_due_date_warning_delta_after: dagar (+) efter deadline, (-) innan
+    tidsfristen
+  label_milestone_due_date_warning_delta_before: Warn
+  label_project_due_date_not_overdue: 'Dagar över grund:'
+  label_project_due_date_overdue: 'Dagar till grund:'
+  label_project_due_date_report: Projektet har tidsfristen överskridits
+  label_project_due_date_warning_date_before: 'Varna på:'
+  label_project_due_date_warning_delta_after: dagar (+) efter deadline, (-) innan
+    tidsfristen
+  label_project_due_date_warning_delta_before: Warn
+  label_project_overdrawn_budget_before: 'Varna konsumtion av budgeten:'
+  label_project_overdrawn_budget_report: uttömd från %{costs}%{budget}
+  label_project_query_after: register.
+  label_project_query_before: 'Varna om antalet projekt i filtret:'
+  label_project_query_middle: kommer att vara större än
+  label_project_query_report: översteg antalet projekt i filtret
+  label_select_project: 'Välj ett projekt:'
+  label_timeentry_time_watcher_after: timmar.
+  label_timeentry_time_watcher_before: Jag vill kontrollera att spenderat tid
+  label_timeentry_time_watcher_before_from: från
+  label_timeentry_time_watcher_before_to: till
+  label_timeentry_time_watcher_mail_body: 'Din tidrapport, kan du fylla i här:'
+  label_timeentry_time_watcher_mail_body_link: din tidrapport
+  label_timeentry_time_watcher_middle: är större än eller lika med
+  label_timeentry_time_watcher_previous_day_before: Jag vill kontrollera att den förbrukade
+    tiden från föregående bankdag
+  label_timeentry_time_watcher_previous_day_before_calendar: större än eller lika
+    med arbetskraften.
+  label_timeentry_time_watcher_previous_day_before_custom: större än eller lika med
+  label_timeentry_time_watcher_previous_day_before_time: Kolla in det varje dag på
+  label_timeentry_time_watcher_previous_day_mail_body: Skrev du går alla timmar? Kontrollera
+    din tidrapport.
+  label_timeentry_time_watcher_previous_day_mail_body_for_group: 'Dessa människor
+    fyllde för få timmar igår:'
+  label_timeentry_time_watcher_previous_day_mail_body_for_group_link_to_budgetsheet: En
+    lista över dessa människor, kan du kolla här.
+  label_timeentry_time_watcher_previous_day_mail_body_link: din tidrapport
+  label_timeentry_time_watcher_previous_day_mail_subject: Skrev du går alla timmar?
+    Kontrollera din tidrapport.
+  label_timeentry_time_watcher_previous_report: Igår du postat några timmar.
+  label_timeentry_time_watcher_report: har otillräckligt rapporterat tid från %{from}
+    till %{to}
+  label_version_query_after: register.
+  label_version_query_before: 'Berätta om antalet milstolpar i filtret:'
+  label_version_query_middle: är större än
+  label_version_query_report: översteg antalet milstolpar i filtret
+  permission_manage_alert_contexts: Hantera kontexter
+  permission_manage_alert_types: Hantering typer av registreringar
+  permission_manage_alerts_for_all: Det kan generera varningar för alla användare
+  permission_view_alerts: Visning varningar
+  project_default_page:
+    easy_alerts: Varningar
+  project_module_easy_alerts: Varningar
+  title_alert_type_color: Välj en färg
+  title_alerts_add_new_alert: Skapa ett nytt meddelande
+  title_alerts_alert_edit: Redigera varningar
+  title_alerts_alert_new: Ny varning
+  title_alerts_context_edit: Redigera sammanhang
+  title_alerts_context_new: Nya förutsättningar
+  title_alerts_edit_alert: Ändra en varning
+  title_alerts_manage_contexts: Hantera sammanhang
+  title_alerts_manage_types: Hantera varningstyper
+  title_alerts_my_alerts: Visa mina varningar
+  title_alerts_report: Se rapporter på alerten
+  title_alerts_report_entity_issue: Visa Task %{entityname}
+  title_alerts_report_entity_project: Visa Project %{entityname}
+  title_alerts_report_entity_user: Visa användare %{entityname}
+  title_alerts_reports: Visa mina rapporter
+  title_alerts_reports_archive: Visa arkiverade rapporter.
+  title_alerts_show_alert: "%{alertname} Visa en varning"
+  title_alerts_sidebar_type: Visa rapporter från typ %{typename}
+  title_alerts_type_edit: Modifiering av den typ
+  title_alerts_type_new: Ny typ
+  title_manage_alerts_for_all: Klicka för att visa varningar för alla

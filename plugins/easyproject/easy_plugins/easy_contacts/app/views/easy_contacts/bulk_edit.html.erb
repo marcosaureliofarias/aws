@@ -1,0 +1,28 @@
+<div class="contextual">
+  <ul id="bulk-selection">
+    <% @easy_contacts.each do |easy_contact| %>
+      <%= content_tag 'li', link_to_user(easy_contact) %>
+    <% end %>
+  </ul>
+</div>
+<h2><%= l(:label_bulk_edit_selected_contacts) %></h2>
+
+<% if @saved_contacts && @unsaved_contacts.present? %>
+  <div id="errorExplanation">
+    <span>
+      <%= l(:notice_failed_to_save_contacts,
+        :count => @unsaved_contacts.size,
+        :total => @saved_contacts.size,
+        :ids => @unsaved_contacts.map {|i| "##{i.id}"}.join(', ')) %>
+    </span>
+    <ul>
+      <% bulk_edit_error_messages(@unsaved_contacts).each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<%= render :partial => 'bulk_form' -%>
+

@@ -1,0 +1,187 @@
+<%
+  query ||= @easy_page_modules_data[block_name][:query]
+  query_to_compare ||= @easy_page_modules_data[block_name][:query_to_compare].presence || query
+  settings['use_query_to_compare'] ||= 'false'
+  modul_uniq_id_query_to_compare = modul_uniq_id + '_query_to_compare'
+  use_query_to_compare = settings['use_query_to_compare'].to_boolean
+  block_name_query_to_compare = "#{block_name}[query_to_compare]"
+  registered_queries_with_summable_columns = @easy_page_modules_data[block_name][:available_query_subclasses].map{|q| [q.translated_name, q.name] }.sort
+%>
+
+<div class="tabular" data-to-serialize="true">
+  <%= hidden_field_tag 'project_id', @project.id if @project %>
+  <p>
+    <%= label_tag "#{block_name}[easy_query_type]", l(:field_entity) %>
+    <%= select_tag("#{block_name}[easy_query_type]", options_for_select([[l(:actionview_instancetag_blank_option), '']] + registered_queries_with_summable_columns, settings['easy_query_type']), id: "#{modul_uniq_id}_easy_query_type", class: 'easy-query-type' ) %>
+  </p>
+  <% if settings['easy_query_type'].present? && query %>
+    <%= hidden_field_tag("#{block_name}[use_query_to_compare]", settings['use_query_to_compare'], id: "checkbox_use_query_to_compare_for_#{modul_uniq_id}") %>
+    <p>
+      <%= label_tag "#{block_name}[name]", l(:field_name) %>
+      <%= page_module_settings_text_field_tag(page_module, %w[name], value: settings['name'], placeholder: EpmTrends.default_trend_name(page_module)) %>
+    </p>
+    <p>
+      <%= label_tag "#{block_name}[description]", l(:field_description) %>
+      <%= page_module_settings_text_field_tag(page_module, %w[description], placeholder: EpmTrends.default_trend_name(page_module)) %>
+    </p>
+    <p>
+      <%= easy_icon_select_tag("#{block_name}[easy_icon]", settings['easy_icon'], label: l(:field_easy_icon)) %>
+    </p>
+    <% colors = Array.new
+       1.upto(35) do |i|
+         colors << ["palette-#{i}", "palette-#{i}", {class: "palette-#{i}"}]
+       end
+    %>
+    <p>
+      <%= label_tag "#{block_name}[color]", l(:field_color) %>
+      <%= select_tag "#{block_name}[color]", options_for_select(colors, settings['color']), class: 'select-color inline' %>
+    </p>
+    <% if query.sumable_columns? %>
+      <p>
+        <%= label_tag modul_uniq_id + '_type', l(:button_show) %>
+
+        <%= radio_button_tag "#{block_name}[type]", 'count', settings['type'] == 'count', id: modul_uniq_id + '_type_count', class: 'serialize' %>
+        <%= label_tag modul_uniq_id + '_type_count', l(:label_page_module_chart_axis_y_count), class: 'inline' %>
+        <% if query.sumable_columns.present? %>
+          <br />
+          <%= radio_button_tag "#{block_name}[type]", 'sum', settings['type'] == 'sum' || settings['type'].blank?, id: modul_uniq_id + '_type_sum', class: 'serialize' %>
+          <%= label_tag modul_uniq_id + '_type_sum', l(:label_page_module_chart_axis_y_sum), class: 'inline' %>
+          <%= select_tag "#{block_name}[column_to_sum]", options_from_collection_for_select(query.sumable_columns, 'name', 'caption', settings['column_to_sum']), class: 'serialize' %>
+        <% end %>
+      </p>
+    <% end %>
+    <%= call_hook(:edit_trend_module_form_bottom, {block_name: block_name, modul_uniq_id: modul_uniq_id, settings: settings}) %>
+  <% end %>
+
+  <% if settings['easy_query_type'].present? && query %>
+    <% settings['group_by'] = [] %>
+    <% query.group_by = [] %>
+    <%= render 'easy_page_modules/easy_query_edit', local_assigns.merge(original_block_name: block_name, block_name: block_name + '[query]', query: query, query_params: settings['query']) %>
+
+    <%
+      unless use_query_to_compare
+        button_classes = 'icon-add button-positive'
+        button_label = l(:label_page_module_chart_add_additional_data_serie)
+      else
+        button_classes = 'icon icon-remove button-negative'
+        button_label = l(:label_page_module_chart_remove_additional_data_serie)
+      end
+    %>
+    <span class="<%= button_classes %>" id="query_to_compare_toggle_button_for_<%= modul_uniq_id %>" title=<%= l(:label_page_module_chart_remove_additional_data_serie) %> onclick="window.toggleFilterToCompareHooks['<%= modul_uniq_id %>']()"><%= button_label %></span>
+    <span id="<%= "#{modul_uniq_id}_compare_to_previous_period_paragraph" %>">
+      <%= hidden_field_tag "#{block_name}[compere_to_previous_period]", '0' %>
+      <label>
+        <%= check_box_tag "#{block_name}[compere_to_previous_period]", '1', settings['compere_to_previous_period'].to_boolean %>
+        <%= l('easy_page_module.trends.label_compere_to_previous_period') %>
+     </label>
+    </span>
+
+    <div id="<%= modul_uniq_id_query_to_compare %>_accordion" class="easy-query-type-settings-container <%= 'hidden' unless use_query_to_compare %>">
+      <div class="easy-trend tabular">
+        <div class="easy-trend__options_compare_query">
+          <p>
+            <%= label_tag "#{block_name}[operator]", l(:label_select_trend_operation) %>
+            <%= select_tag "#{block_name}[operator]", options_for_select(EpmTrends::OPERATORS, settings['operator'] || '>'),
+                           class: 'inline select-small',
+                           onchange: "(function(that){$(that).next().toggleClass('hidden', that.value !== '/')})(this);" %>
+            <span id="<%= "#{modul_uniq_id}_show_as_percentage_paragraph" %>" class="<%= 'hidden' if settings['operator'] != '/' %>">
+              <%= hidden_field_tag "#{block_name}[show_as_percentage]", '0' %>
+                <label>
+                 <%= check_box_tag "#{block_name}[show_as_percentage]", '1', settings['show_as_percentage'].to_boolean %>
+                  <%= l('easy_page_module.trends.label_show_as_percentage') %>
+                </label>
+             </span>
+          </p>
+          <p>
+            <%= label_tag "#{block_name}[easy_query_type_to_compare]", l(:field_entity) %>
+            <%= select_tag("#{block_name}[easy_query_type_to_compare]", options_for_select([[l(:actionview_instancetag_blank_option), '']] + registered_queries_with_summable_columns, settings['easy_query_type_to_compare'].presence || settings['easy_query_type']), id: "#{modul_uniq_id}_easy_query_type_to_compare", class: 'easy-query-type' ) %>
+          </p>
+          <div>
+            <% if query_to_compare && query_to_compare.sumable_columns? %>
+              <p>
+                <%= label_tag modul_uniq_id + '_type_to_compare', l(:button_show) %>
+
+                <%= radio_button_tag "#{block_name}[type_to_compare]", 'count', settings['type_to_compare'] == 'count', id: modul_uniq_id + '_type_count_to_compare', class: 'serialize' %>
+                <%= label_tag modul_uniq_id + '_type_count_to_compare', l(:label_page_module_chart_axis_y_count), class: 'inline' %>
+                <% if query_to_compare.sumable_columns.present? %>
+                  <br />
+                  <%= radio_button_tag "#{block_name}[type_to_compare]", 'sum', settings['type_to_compare'] == 'sum' || settings['type_to_compare'].blank?, id: modul_uniq_id + '_type_sum_to_compare', class: 'serialize' %>
+                  <%= label_tag modul_uniq_id + '_type_sum_to_compare', l(:label_page_module_chart_axis_y_sum), class: 'inline' %>
+                  <%= select_tag "#{block_name}[column_to_sum_to_compare]", options_from_collection_for_select(query_to_compare.sumable_columns, 'name', 'caption', settings['column_to_sum_to_compare']), class: 'serialize' %>
+                <% end %>
+              </p>
+
+              <% if query_to_compare.currency_columns? && EasyCurrency.activated.any? %>
+                <hr/>
+
+                <p class="currency">
+                  <%= label_tag "#{block_name_query_to_compare}_easy_currency_code", l(:field_currency) %>
+                  <%= select_tag "#{block_name_query_to_compare}[easy_currency_code]", options_from_collection_for_select(EasyCurrency.activated, :iso_code, :name, query_to_compare.easy_currency_code), include_blank: true %>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <h3></h3>
+      <% if settings['query_type'] == '2' %>
+        <div id="<%= modul_uniq_id_query_to_compare -%>filters" class="easy-query-filters-field in-a-inner-box">
+          <h3 class="easy-query-type-settings-container-filters"><%= l(:label_filter_plural) %></h3>
+          <%= render_with_fallback partial: 'filters', prefixes: query, locals: {query: @easy_page_modules_data[block_name][:query_to_compare] || query, modul_uniq_id: modul_uniq_id_query_to_compare, block_name: block_name_query_to_compare} %>
+        </div>
+
+        <%= render 'easy_page_modules/global_filters', modul_uniq_id: modul_uniq_id_query_to_compare,
+                                                       block_name: block_name_query_to_compare,
+                                                       page_params: page_params,
+                                                       query_params: settings['query_to_compare'],
+                                                       query: query_to_compare,
+                                                       page_module: page_module %>
+
+      <% end %>
+    </div>
+
+  <% end %>
+</div>
+<style type="text/css">
+  <%= '#' + modul_uniq_id %> .easy-query-type-settings-container-static-attributes > * { display: none; }
+  <%= '#' + modul_uniq_id %> .easy-query-type-settings-container-static-attributes .currency { display: block; }
+  <%= '#' + modul_uniq_id %> .easy-query-type-settings-container,
+  <%= '#' + modul_uniq_id %> .easy-query-type-settings-container > div:first-child { margin-top: 0px ; }
+  <%= '#' + modul_uniq_id %> .chart-options-container .chart-type-select{ display: none; }
+  <%= '#' + modul_uniq_id %> .easy-query-output-container.toggle-output-switch{ display: none; }
+</style>
+
+<script type="text/javascript">
+    EASY.schedule.late(function(){
+        $("#<%= modul_uniq_id %> .easy-query-type-settings-container-static-attributes input[name='<%= block_name %>[query_name]']").attr('disabled', true);
+
+        $("#<%= modul_uniq_id %> .easy-query-type").change(function (evt) {
+            var targetUrl = "<%= raw update_my_page_module_view_path(page_module.uuid, template: page_module.is_a?(EasyPageTemplateModule) ? '1' : '0', block_name: block_name, edit: true, modal_edit: page_params[:modal_edit], with_container: 'false') %>";
+            var module = $("#<%= modul_uniq_id %>");
+
+            $.post(targetUrl, module.find(".easy-page-module-form").serialize(), function (data) {
+                module.html(data);
+                module.find(".easy-page-module-form").attr('data-changed', true);
+            });
+        });
+
+        $("#<%= modul_uniq_id %> .icon-add .button-positive").click(function(evt) {
+            $('#<%= modul_uniq_id %>_easy_query_type2_container').show();
+            $(this).hide();
+        });
+      initEasyAutocomplete();
+    }, 2);
+
+    window.toggleFilterToCompareHooks = window.toggleFilterToCompareHooks || {};
+    window.toggleFilterToCompareHooks["<%= modul_uniq_id %>"] = function(){
+        var $button = $("#query_to_compare_toggle_button_for_<%= modul_uniq_id %>");
+        $button.closest(".easy-page-module-form").attr('data-changed', true);
+        $("#<%= modul_uniq_id_query_to_compare %>_accordion").toggleClass('hidden');
+        $(document).trigger("erui_new_dom");
+        $button.toggleClass("icon icon-remove button-negative").toggleClass("icon-add button-positive");
+        $button.text($button.text() == "<%= l(:label_page_module_chart_remove_additional_data_serie) %>" ? "<%= l(:label_page_module_chart_add_additional_data_serie) %>" : "<%= l(:label_page_module_chart_remove_additional_data_serie) %>");
+        var $checkbox = $("#checkbox_use_query_to_compare_for_<%= modul_uniq_id %>");
+        $checkbox.val(( $checkbox.val()) == 'false' ? 'true' : 'false');
+    }
+
+</script>

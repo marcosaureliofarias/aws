@@ -1,0 +1,6 @@
+<ul>
+  <% if @easy_broadcast -%>
+      <li><%= context_menu_link l(:button_edit), edit_easy_broadcast_path(@easy_broadcast), remote: true, class: 'icon icon-edit', disabled: !@can[:edit] %></li>
+  <% end %>
+  <li><%= context_menu_link l(:button_delete), easy_broadcasts_path(id: @easy_broadcasts, back_url: @back), method: :delete, data: {confirm: l(:text_are_you_sure)}, class: 'icon icon-del', disabled: !@can[:delete] %></li>
+</ul>

@@ -1,0 +1,23 @@
+<script>
+  EASY.schedule.require(function () {
+    c3.generate({
+      bindto: "#<%= graph_id %>",
+      data: {
+        columns: [
+          ["data", <%= hours %>]
+        ],
+        type: "gauge"
+      },
+      gauge: {
+        max: <%= max_hours %>
+      },
+      color: {
+        pattern: ["#FF0000", "#F97600", "#F6C600", "#60B044"],
+        threshold: {
+          max: <%= max_hours %>,
+          values: [30, 60, 90, 100]
+        }
+      }
+    });
+  }, jQueryPluginGetter("easy_chart"));
+</script>

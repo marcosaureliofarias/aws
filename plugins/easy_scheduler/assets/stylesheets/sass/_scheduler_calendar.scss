@@ -1,0 +1,420 @@
+$resolution-width: px2rem(80px);
+&__calendar {
+  &-cont {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background: $scheduler__color-background;
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      grid-row-start: 3;
+      margin-right: -$retrace;
+      padding: 0 $retrace-mod $retrace-mod;
+    }
+    visibility: hidden;
+    @include pseudo-before{
+      top: 0;
+      bottom: 0;
+      background: $scheduler__color-background;
+      z-index: 0;
+      left: 0;
+      right: 0;
+      @include respond-to(min-#{$scheduler__breakpoint}) {
+        left: -$gap;
+        right: -$retrace;
+      }
+    }
+
+  }
+
+  &-listing{
+    @extend %calendar-listing-links;
+    position: static !important;
+    @extend %order-2;
+    height: min-content;
+    @extend %flex-grow-1;
+    //max-width: 300px;
+    @include display(flex);
+    @include justify-content(center !important);
+
+    padding: 0;
+
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      @include flex-basis(100%)
+    }
+
+    .easy-calendar__split &{
+      margin: 0 0 $gap 0!important;
+      @include respond-to(min-#{$scheduler__breakpoint}) {
+        margin: 0 0 0 ($box-padding + $resolution-width) !important;
+      }
+    }
+
+    .prev, .next{
+      height: 2 * $gap;
+      @include respond-to(max-#{$scheduler__breakpoint}) {
+        width: fit-content;
+        margin: 0 !important;
+        padding: 0;
+      }
+    }
+    &-date{
+      width: auto !important;
+      position: static !important;
+    }
+    .dhx_scheduler_agenda &{
+      display: none;
+    }
+  }
+
+  &-call-group {
+    @include respond-to(max-menu-collapse){
+      display: none;
+    }
+    order: 99;
+    @extend %menu-tooltip-parent;
+    & > .easy-zoom-buttons > .button-positive{
+      @include triangle-bottom(.33*$gap, $color-positive, transparent);
+      padding-right: 1.5*$box-padding;
+      &:after{
+        margin-top: -.1*$gap;
+        top:50%;
+        right: $gap;
+        bottom: auto;
+        left: auto;
+      }
+      &:before{
+        top: 50%;
+        margin-top: -0.65em;
+      }
+    }
+    &>ul{
+      left: auto;
+      right: 0;
+    }
+  }
+  &-navs{
+    @extend %flex;
+    @extend %justify-content-space-between;
+    //width: 100% !important;
+    @extend %flex-wrap-wrap;
+
+    margin-bottom: $gap;
+    background: $color-foreground;
+    margin-left: -$retrace-mod;
+    margin-right: -$retrace-mod;
+    padding-left: $retrace-mod;
+    padding-right: $retrace-mod;
+    @include respond-to(min-#{$scheduler__breakpoint}) {
+      height: 4.5*$gap !important;
+      padding-left: $box-padding;
+      padding-right: $retrace;
+      margin-left: -$box-padding;
+      margin-right: -$retrace;
+    }
+
+    @include respond-to(max-small-screen) {
+      justify-content: center;
+      padding-top: 0.25*$gap + px2rem(1px);
+      padding-bottom: 0.25*$gap;
+    }
+
+    .easy-calendar-listing-links{
+      padding: .25*$gap 0 !important;
+    }
+  }
+}
+&__heading{
+  .easy-page__module &{
+    .easy-query-heading{
+      margin: 0 !important;
+    }
+  }
+}
+&__legend{
+  &--mobile{
+    //position: sticky;
+    bottom: 2*$box-padding + px2rem(1px);
+    margin-left: -$box-padding;
+    margin-right: -$box-padding;
+    background: $color-foreground;
+    z-index: 3;
+    @include small;
+    p{
+      padding: $gap 0 !important;
+    }
+    .push-right{
+      display: none !important;
+    }
+  }
+}
+&__tagged_queries{
+  margin-bottom: $gap;
+  display: none;
+  .w-mobile-header-toggle--active &{
+    display: block;
+  }
+  @include respond-to(max-#{$scheduler__breakpoint}) {
+    text-align: center;
+  }
+  .tagged_query{
+    &.active{
+      border: 1px solid $color-positive !important;
+      &:after{
+        border-color: $color-positive !important;
+      }
+      &:before{
+        color: $color-positive !important;
+      }
+    }
+  }
+}
+
+&__split{
+  //min-height: px2rem(780px);
+  display: grid;
+  grid-template-columns: unquote("[tasks]30% [calendar]auto");
+  grid-template-rows: min-content min-content auto;
+
+  grid-column-gap: $gap;
+
+  @include respond-to(min-#{$scheduler__breakpoint}) {
+    margin-bottom: $retrace-mod;
+  }
+
+  @include respond-to(max-#{$scheduler__breakpoint}) {
+    grid-template-columns: unquote("[tasks]50% [calendar]50%");
+    grid-column-gap: 0;
+    //min-height: px2rem(940px);
+  }
+}
+
+&__calendar-resolution{
+  &-wrapper{
+    @include respond-to(max-#{$scheduler__breakpoint}) {
+      display: none;
+    }
+    @extend %list-style-none;
+    @extend %border-radius-small;
+
+    @extend %flex;
+    @extend %flex-direction-column;
+    position: absolute;
+  }
+  & > a{
+    @extend %flex-grow-1;
+    @extend %border-radius-none;
+    display: none;
+    order: 1;
+    width: $resolution-width;
+    z-index: 1;
+  }
+  &_picked.button {
+    display: block;
+    text-align: center;
+    width: $resolution-width;
+    @include triangle-bottom(.33*$gap, $color-foreground, transparent);
+    &.u-active{
+      @include triangle-top(.33*$gap, $color-foreground, transparent);
+    }
+    &:after, &.u-active:after {
+      margin-top: -.1*$gap;
+      top: 50%;
+      right: $gap;
+      bottom: auto;
+      left: auto;
+    }
+  }
+  &.u-active{
+    @extend %material__elevation--depth_4;
+    & > a{
+      display: block;
+    }
+  }
+}
+
+&__dropper{
+  $dropper_size: 30px;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 1000px;
+  width: $dropper_size;
+  height: $dropper_size;
+  margin-left: -$dropper_size/2;
+  margin-top: -$dropper_size/2;
+  text-align: center;
+  border: 2px solid black;
+  pointer-events: none;
+  font-weight: bold;
+  z-index: 100000;
+  &_notice{
+    $notice-width: 180px;
+    @extend %flash-error;
+    display: none;
+    width: $notice-width;
+    padding-left: 1.5em !important;
+    top: $gap;
+    left: -$notice-width/2 + $dropper_size/2 ;
+    @extend %box-sizing-border-box;
+    &:before{
+      position: static !important;
+      display: block !important;
+      width: auto !important;
+      margin-top: 10px;
+      padding: 0;
+    }
+    .wrong > &{
+      display: block;
+    }
+  }
+}
+
+$non-working: rgba(0, 0, 0, 0.05);
+$droppable: rgba(0, 255, 0, 0.1);
+$non-droppable: rgba(255, 0, 0, 0.1);
+@mixin cell-color($color) {
+  .dhx_month_body {
+    background-color: $color;
+  }
+  .dhx_month_head {
+    background-color: darken($color, 10);
+  }
+}
+
+&__month-cell {
+  &--nonworking {
+    @include cell-color($non-working);
+  }
+  &--droppable {
+    @include cell-color($droppable);
+  }
+  &--non_droppable {
+    @include cell-color($non-droppable);
+  }
+  &--droppable#{&}--nonworking {
+    @include cell-color(mix($droppable, $non-working));
+  }
+  &--non_droppable#{&}--nonworking {
+    @include cell-color(mix($non-droppable, $non-working));
+  }
+}
+
+@mixin calendar-grid($color-grid: $color-border,$color-background: transparent, $size: $gap, $thickness: 1px) {
+  background-image:
+    linear-gradient(darken($color-grid, 0) 1px, $color-background 1px),
+    linear-gradient(lighten($color-grid, 5) 1px, $color-background 1px);
+  background-size: 1px $size;
+  background-repeat: repeat;
+  background-position: 0 -1px, 0 $size/2-1px;
+}
+
+&__day-cell {
+  $non-working: rgba(0, 0, 0, 0.025);
+  $droppable: rgba(0, 255, 0, 0.05);
+  $non-droppable: rgba(255, 0, 0, 0.05);
+  $grid: $color-border-minor;
+
+  @include calendar-grid($grid, transparent, $size: 44px);
+
+  &--nonworking {
+    @include calendar-grid($grid, $non-working, 44px);
+  }
+  &--droppable {
+    @include calendar-grid($grid, $droppable, 44px);
+  }
+  &--non_droppable {
+    @include calendar-grid($grid, $non-droppable, 44px);
+  }
+  &--nonworking#{&}--droppable {
+    @include calendar-grid($grid, mix($droppable, $non-working),  44px);
+  }
+  &--nonworking#{&}--non_droppable {
+    @include calendar-grid($grid, mix($non-droppable, $non-working), 44px);
+  }
+}
+&__modal-link {
+  cursor: pointer;
+}
+@include respond-to(max-#{$scheduler__breakpoint}) {
+  &--tasks{
+    &-hidden{
+      .easy-calendar__tasks{
+        display: none !important;
+      }
+      .easy-calendar{
+        &__calendar-cont{
+          grid-column-start: 1;
+          margin-left: -$retrace;
+          .easy-calendar__tasks-show{
+            display: block;
+          }
+          .easy-calendar__calendar-resolution-wrapper, .easy-calendar__calendar-call-group{
+            display: flex !important;
+            order: 0;
+
+          }
+          .easy-calendar__calendar-listing{
+            margin-top: $gap !important;
+            & + span{
+              width: calc(100% - 140px);
+            }
+          }
+          .easy-calendar__calendar-navs{
+            justify-content: flex-end;
+          }
+          .easy-calendar__calendar-resolution-wrapper{
+            left: $retrace-mod;
+
+          }
+        }
+        &-cont &-call-group{
+          order: 0;
+        }
+      }
+    }
+    &-only{
+      .easy-calendar__calendar-cont{
+        display: none !important;
+      }
+      .easy-calendar__tasks{
+        grid-column-end: 3;
+        height: 600px;
+      }
+    }
+  }
+}
+
+//&__mobile-header-toggler{
+//  display: block;
+//  position: absolute;
+//  right: 2.5*$box-padding;
+//  top: .75*$gap;
+//  width: 2*$box-padding;
+//  line-height: 2*$box-padding;
+//  text-align: center;
+//  &:hover{
+//    cursor: pointer;
+//  }
+//  .w-mobile-header-toggle--active &{
+//    color: $color-text;
+//    opacity: .75;
+//  }
+//  @include respond-to(min-small-screen) {
+//    //display: none;
+//    top: .75*$gap;
+//    right: 120px;
+//  }
+//}
+&__date{
+  &-separator{
+    //margin: -1px 0;
+    //background: $scheduler__color-background;
+    padding: .5*$gap $gap .25*$gap;
+    & > div{
+      //width: 100%;
+      background: transparent;
+      flex-basis: auto;
+      width: auto;
+    }
+  }
+}

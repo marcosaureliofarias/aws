@@ -1,0 +1,5 @@
+api.array :test_case_issue_executions, api_meta(total_count: @entity_count, offset: @offset, limit: @limit) do
+  @entities.each do |test_case_issue_execution|
+    render_api_test_case_issue_execution(api, test_case_issue_execution)
+  end
+end

@@ -1,0 +1,123 @@
+.vue-modal__headline{
+  .vue-modal__attribute{
+    margin: 0 4*$gap 0 0;
+    font-size: $font-size--big !important;
+  }
+  .vue-modal__attribute-label{
+    position: static !important;
+    display: inline-flex;
+    align-items: center;
+    flex-basis: 25%;
+  }
+  .editable-input__wrapper{
+    flex-basis: 75%;
+  }
+}
+.vue-modal__main {
+  width: 100%;
+}
+.vue-modal__attribute,
+.vue-modal__form-step > div {
+  flex: 1 1 45%;
+}
+.vue-modal__attributes--new{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.vue-modal__modal-content {
+  padding: 2*$gap ($padding-modal-main - .5*$gap);
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  background: mix($color-background__atributes, $color-background);
+}
+.editable-input__wrapper {
+  input,
+  select,
+  textarea,
+  .vs__dropdown-toggle {
+    padding: 0.5 * $gap;
+    line-height: calc(#{$input-height} - #{$gap} - 2px);
+  }
+}
+.vue-modal__attribute, .vue-modal__custom-field {
+  margin:  2*$gap $gap $gap;
+
+  //&, input, select, textarea{
+  //  font-size: $font-size--big !important;
+  //}
+
+  .editable-input__wrapper{
+    border-bottom-color: $color-main !important;
+    input::placeholder{
+      display: none;
+    }
+    //&.required:after{
+    //  content: "!";
+    //  color: $color-negative;
+    //  display: block;
+    //  //border-radius: 20px;
+    //  //background-color: $color-negative;
+    //  width: 1rem;
+    //  height: 1rem;
+    //  line-height: 1rem;
+    //  font-size: 1rem;
+    //  text-align: center;
+    //  position: absolute;
+    //  top: 50%;
+    //  right: 0;
+    //  margin-top: -.5rem;
+    //}
+    &.u-editing, &.u-editing:hover{
+      border-color: $color-main !important;
+      &:after{
+        display: none;
+      }
+    }
+    &.u-hasValue,
+    &.editable-input__wrapper--static, &.editable-input__wrapper--static:hover{
+      border-bottom-color: $color-border !important;
+      &:after{
+        display: none;
+      }
+    }
+    &.u-hasValue:hover{
+      border-color: mix($color-border, $color-text) !important;
+    }
+    &.u-editing, &.u-hasValue, &.editable-input__wrapper--static{
+      & + .vue-modal__attribute-label, & + .vue-modal__custom-field-label{
+        top: -2*$gap;
+        font-size: $font-size--small;
+        color: $color-text;
+      }
+    }
+  }
+  &-label{
+    //font-size: $font-size--big;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: .625*$gap;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+
+  }
+}
+
+&.meeting {
+  .meeting-room {
+    align-items: flex-end;
+
+    .button  {
+      margin-bottom: $gap;
+    }
+
+  }
+}

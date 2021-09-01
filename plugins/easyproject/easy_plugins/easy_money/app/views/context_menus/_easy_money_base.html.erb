@@ -1,0 +1,46 @@
+<% if @can[:edit] %>
+  <li>
+    <%= context_menu_link(l(:button_edit), @easy_money_entity ?
+        {:controller => @easy_money_entity_type.underscore.pluralize, :action => 'edit', :project_id => @project, :id => params[:ids], :back_url => params[:back_url]} :
+        {:controller => @easy_money_entity_type.underscore.pluralize, :action => 'bulk_edit', :project_id => @project, :ids => params[:ids], :back_url => params[:back_url]}, :class => 'icon icon-edit') -%>
+  </li>
+
+  <% if !@project || User.current.allowed_to?(:easy_money_move, @project) %>
+    <li class="context-menu-autocomplete">
+      <a class="icon icon-project" >
+        <%= easy_autocomplete_tag(
+                'tp_project_id',
+                { name: l(:label_project), id: nil },
+                url_for({:controller => 'easy_money', :action => 'projects_to_move', :format => 'json'}),
+                html_options: {
+                    id: 'project_for_context_menu_issue'
+                },
+                easy_autocomplete_options: {
+                    activate_on_input_click: 'true'
+                },
+                root_element: 'projects',
+                onchange: "if(!ui['item']) { return };
+                                  $('.context-menu-container > form:first').append('<input name=\"to_project_id\" type=\"hidden\" value=\"'+ui['item'].id+'\" />').attr('action', '#{url_for({:controller => 'easy_money', :action => 'move_to_project', :from_project_id => @project, :easy_money_type => @easy_money_entity_type})}').submit();".html_safe
+            ) %>
+      </a>
+    </li>
+    <% if @easy_money_entity_target %>
+      <li>
+        <%= link_to_entity_mapper(l(@opts[:label_copy]), polymorphic_path([@project, 'change_easy_money_type'], :ids => @ids, :easy_money_type => @easy_money_entity_type, :easy_money_target_type => @easy_money_entity_target), @easy_money_entity_type, @easy_money_entity_target, :class => 'icon icon-copy', :method => :post) %>
+      </li>
+      <li>
+        <%= link_to_entity_mapper(l(@opts[:label_move]), polymorphic_path([@project, 'change_easy_money_type'], :ids => @ids, :easy_money_type => @easy_money_entity_type, :easy_money_target_type => @easy_money_entity_target, :move => true), @easy_money_entity_type, @easy_money_entity_target, :class => 'icon icon-move', :method => :post) %>
+      </li>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if @can[:delete] -%>
+  <li>
+    <%= context_menu_link(l(:button_delete), @easy_money_entity ?
+        { controller: @easy_money_entity_type.underscore.pluralize, action: 'destroy', project_id: @project, id: params[:ids], back_url: params[:back_url] } :
+        { controller: @easy_money_entity_type.underscore.pluralize, action: 'bulk_delete', project_id: @project, ids: params[:ids], back_url: params[:back_url] },
+        data: { confirm: l(:text_are_you_sure) }, method: 'delete', class: 'icon icon-del')
+    -%>
+  </li>
+<% end -%>

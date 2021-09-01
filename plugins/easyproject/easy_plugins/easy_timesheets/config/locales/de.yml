@@ -1,0 +1,94 @@
+---
+de:
+  activerecord:
+    errors:
+      models:
+        easy_timesheet:
+          attributes:
+            base:
+              error_timesheet_already_exists_in_this_week: Es gibt ein weiteres Zeitkonto
+                in diesem Zeitraum
+  button_copy_easy_time_sheet: Zeilen in neues Zeitkonto kopieren
+  button_easy_timesheet_by_easy_query: Zeitkonten nach gespeichertem Filter
+  button_easy_timesheet_delete_with_time_entries: Zeile und Zeitaufwand entfernen
+  button_easy_timesheet_delete_without_time_entries: Nur Zeile entfernen
+  button_easy_timesheets_approve: Genehmigen
+  button_easy_timesheets_lock: Sperren
+  button_easy_timesheets_new_row: Neue Zeile
+  button_easy_timesheets_reject: Ablehnen
+  button_easy_timesheets_unlock: Entsperren
+  easy_proposer:
+    easy_timesheets:
+      index:
+        caption: Personalangabe - Zeitkonten
+        description: Zeitkonten anzeigen
+  easy_query:
+    name:
+      easy_timesheet_query: Zeitkonten
+  easy_timesheets_date_must_be_first_day_of_week: Muss der erste Tag einer Woche sein.
+    (%{day})
+  easy_timesheets_periods:
+    day: Wöchentlich
+    month: Monatlich
+    week: Wöchentlich
+  easy_timesheets_plugin_name: Zeitkonten
+  error_timesheet_invalid_time_entries: 'Zeitkonto kann wegen ungültiger Zeiteinträge
+    nicht erstellt werden: %{errors}'
+  extended_timesheet:
+    field_custom_field_overtime_id: Benutzerdefiniertes Feld Überstunden-ID
+    label_new_monhly_timesheet: Neues monatliches Zeitkonto
+    label_overtime: Überstunden
+    label_set_cf_overtime_id_in_rys_plugins: Überstundenfunktion ist aktiv. Wählen
+      Sie bitte das benutzerdefinierte Feld Überstunden %{link}.
+  field_easy_timesheet_period: Zeitraum
+  heading_easy_timesheets_edit: Zeitkonto bearbeiten
+  heading_easy_timesheets_new: Neues Zeitkonto
+  heading_easy_timesheets_show: Zeitkonto %{start_date} - %{end_date}
+  label_easy_timesheet: Zeitkonto
+  label_easy_timesheet_approved: Genehmigt?
+  label_easy_timesheet_approved_by: Genehmigt von
+  label_easy_timesheet_end_date: Enddatum
+  label_easy_timesheet_lock_description: Grund genehmigt/abgelehnt
+  label_easy_timesheet_lock_prompt: Grund für die Genehmigung
+  label_easy_timesheet_locked_at: Genehmigt/abgelehnt
+  label_easy_timesheet_rejected_by: Abgelehnt von
+  label_easy_timesheet_unlock_prompt: Grund für die Ablehnung
+  label_easy_timesheets: Zeitkonten
+  label_enable_timesheet_over_time: Überstundenfunktion aktivieren
+  label_enabled_timesheet_periods: Aktivierte Zeiträume
+  label_filter_group_easy_timesheet_query: Zeitkonten
+  notice_easy_timesheet_both_periods: Wenn Sie beide wählen, können einige Datensätze
+    durcheinander geraten oder nicht richtig funktionieren, wenn sich die Zeiträume
+    überschneiden.
+  notice_extended_timesheet_period_not_enabled: "%{period} Zeitkonto ist nicht aktiv"
+  permission_create_easy_timesheets_for_other_user: Zeitkonto für andere Benutzer
+    erstellen
+  permission_edit_easy_timesheets: Zeitkonten bearbeiten
+  permission_edit_own_easy_timesheets: Eigene Zeitkonten bearbeiten
+  permission_view_easy_timesheets: Zeitkonten anzeigen
+  project_module_easy_timesheets: Zeitkonten
+  text_easy_timesheet_destroy_cell_are_you_sure: Möchten Sie den Zeitaufwand wirklich
+    entfernen?
+  text_easy_timesheet_destroy_row_are_you_sure: Sie werden eine Zeile aus dem Zeitkonto
+    entfernen. Sie müssen den Zeitaufwand für diese Zeile nicht automatisch löschen.
+    Wie möchten Sie fortfahren?
+  text_easy_timesheet_prompt_text: Zeit hinzufügen
+  text_easy_timesheet_start_date_will_align_to_beginning_of_period: Anfangsdatum wird
+    automatisch auf den Beginn der gewählten Woche abgestimmt
+  text_time_sheet_copy_from: Die Zeilen werden aus dem Zeitkonto %{entity} vorab ausgefüllt
+  text_warning_after_time_sheet_copied: Wenn Sie nicht mindestens eine Zelle pro Zeile
+    speichern, geht die Zeile verloren.
+  title_easy_timesheet_destroy: Zeitkonto entfernen
+  title_easy_timesheet_edit_with_period: Zeitkonto %{period} bearbeiten
+  title_easy_timesheet_new_with_period: Neues %{period} Zeitkonto
+  title_easy_timesheet_show: Zeitkonto anzeigen
+  title_next_time_sheet: Folgendes Zeitkonto von %{user} anzeigen
+  title_previous_time_sheet: Vorheriges Zeitkonto von %{user} anzeigen
+  validation_entry_already_exists: Zeitkonto zwischen (%{start_date}) und (%{end_date})
+    existiert bereits
+  validation_greater_than_start_date: "(%{end_date}) muss größer als das Anfangsdatum
+    (%{start_date}) sein"
+  validation_timesheet_cant_destroy_time_entries: Einige Zeiteinträge konnten nicht
+    gelöscht werden
+  validation_week_period: Zeitraum zwischen (%{start_date}) und (%{end_date}) muss
+    eine Woche sein

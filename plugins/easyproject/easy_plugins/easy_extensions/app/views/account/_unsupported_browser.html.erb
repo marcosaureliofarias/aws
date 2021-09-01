@@ -1,0 +1,11 @@
+<!--[if lt IE 9]>
+<style>
+  .unsupported {
+    display: block;
+  }
+</style>
+<![endif]-->
+<div class="unsupported">
+  <span><%= l(:unsupported_browser, app_name: EasyExtensions::EasyProjectSettings.app_name).html_safe %></span>
+  <a href="javascript:void(0);" onclick="this.parentNode.style.display = 'none';" class="icon icon-close"></a>
+</div>

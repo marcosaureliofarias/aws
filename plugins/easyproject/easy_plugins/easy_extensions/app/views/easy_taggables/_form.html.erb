@@ -1,0 +1,37 @@
+<%
+  suffix ||= nil
+  id = 'entity_tag_list'
+  id << "_#{suffix}" if suffix
+  tag_field_name = 'entity[tag_list][]'
+%>
+
+<div class="easy-tag-list-field">
+  <p>
+    <%= autocomplete_field_tag(tag_field_name,
+                               autocomplete_easy_taggables_path(format: :json),
+                               entity.tag_list.map{|tag| { id: tag, value: tag } },
+                               { id: id, preload: true, combo: true }) %>
+  </p>
+  <p>
+    <%= link_to l(:button_save),
+                'javascript:void(0)',
+                onclick: "$.post('#{save_entity_easy_taggables_path(klass: entity.class.name.underscore, id: entity)}', "\
+                                 "addCommaSeparatedParams($(this).closest('.easy-tag-list-field').find('input').serialize(), "\
+                                                         "$('##{id}').val(), "\
+                                                         "'#{tag_field_name}'))",
+                class: 'my-tag-button button-positive' %>
+  </p>
+</div>
+<script type="text/javascript">
+  function addCommaSeparatedParams(param1, commaSeparatedStr, fieldName) {
+    var namesArr = commaSeparatedStr.split(',');
+    var paramsArr = namesArr.reduce(function(result, name) {
+      name = name.trim();
+      if(name !== "") {
+        result.push(fieldName + '=' + name);
+      }
+      return result;
+    }, []);
+    return [param1].concat(paramsArr).join('&');
+  }
+</script>

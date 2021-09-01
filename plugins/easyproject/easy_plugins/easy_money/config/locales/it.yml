@@ -1,0 +1,643 @@
+---
+it:
+  button_easy_money_copy_to_expected: Copia in previsto
+  button_easy_money_copy_to_other: Copia in effettivo
+  button_easy_money_crm_cases_budget: Budget su casi CRM
+  button_easy_money_issues_budget: Budget di task
+  button_easy_money_move: Cambia progetto per selezionato
+  button_easy_money_move_to_expected: Sposta in previsto
+  button_easy_money_move_to_other: Sposta in effettivo
+  button_easy_money_priorities_use_in_all_projects: Usa priorità tariffe per tutti
+    i progetti
+  button_easy_money_priorities_use_in_all_subprojects: Usa le priorità della tariffa
+    in tutti i sottoprogetti
+  button_easy_money_project_expected_expenses: 'Spese:'
+  button_easy_money_project_expected_revenues: 'Redditi:'
+  button_easy_money_project_expenses: 'Costi totali:'
+  button_easy_money_project_index_show_details: Mostra dettagli
+  button_easy_money_project_index_show_empty: Mostra campi vuoti
+  button_easy_money_project_new_expense: Nuova spesa
+  button_easy_money_project_new_revenue: Nuova entrata
+  button_easy_money_project_other_expenses: 'Spese:'
+  button_easy_money_project_other_revenues: 'BAC (budget al completamento):'
+  button_easy_money_project_settings: Impostazioni budget
+  button_easy_money_project_time_entry_expenses: 'Costi personale:'
+  button_easy_money_project_time_entry_hours: 'Tempo trascorso:'
+  button_easy_money_project_travel_costs: 'Costi di trasferta:'
+  button_easy_money_project_travel_expenses: 'Spese di trasferta - Rimborsi:'
+  button_easy_money_rate_use_in_all_projects: Utilizza tariffa per tutti i progetti
+  button_easy_money_rate_use_in_all_subprojects: Utilizza tariffa in tutti i sottoprogetti
+  button_easy_money_save_expected_expense: Salva spesa prevista
+  button_easy_money_save_expected_hours: Salva ore previste
+  button_easy_money_save_expected_revenue: Salva entrata prevista
+  button_easy_money_save_in_all_projects: Utilizza in tutti i progetti
+  button_easy_money_save_in_all_subprojects: Utilizza in tutti i sottoprogetti
+  button_easy_money_save_other_expense: Salva spesa effettiva
+  button_easy_money_save_other_revenue: Salva entrata effettiva
+  button_easy_money_update_all_projects_time_entry_expenses: Ricalcola costi del personale su
+    tutti i progetti
+  button_easy_money_update_project_and_subprojects_time_entry_expenses: Ricalcola
+    costi del personale sul progetto e tutti i sottoprogetti
+  button_easy_money_update_project_time_entry_expenses: Ricalcola costi del personale sul progetto
+  button_new_easy_entity_csv_import: Nuova importazione CSV
+  easy_lookup:
+    easy_money_expected_expense:
+      label: Spese previste
+    easy_money_expected_payroll_expense:
+      label: Costi personale previsti
+    easy_money_expected_revenue:
+      label: Redditi previsti
+    easy_money_other_expense:
+      label: Spese effettive
+    easy_money_other_revenue:
+      label: Redditi reali
+    easy_money_travel_expense:
+      label: Spese di trasferta
+  easy_money_date_greater_or_equal: "%{due_date} deve essere uguale o posteriore alla
+    data di inizio %{start_date}"
+  easy_money_entity:
+    role: Ruolo
+    time_entry_activity: Attività
+    user: Utente
+  easy_money_expected_expense_custom_field: Spese previste
+  easy_money_expected_payroll_expense_type:
+    amount: costi personale (somma totale)
+    estimated_hours: costi personale (tempo stimato per tutti i task del progetto
+      * paga oraria prevista)
+    hours: costi personale (ore attese per l'intero progetto * paga oraria prevista)
+    planned_hours_and_rate: task senza assegnatari (ore stimate * paga oraria prevista),
+      task con assegnatari (ore stimate * tariffa secondo gerarchia)
+  easy_money_expected_revenue_custom_field: Redditi previsti
+  easy_money_expenses_type:
+    list: elenco dettagliato
+    sum: spese totali
+  easy_money_other_expense_custom_field: Spese effettive
+  easy_money_other_revenue_custom_field: Redditi effettivi
+  easy_money_other_settings_default_currency_format: Predefinito - secondo la lingua
+  easy_money_other_settings_expected_count_price:
+    price1: importo totale
+    price2: importo senza IVA
+  easy_money_other_settings_expected_rate_type:
+    external: tariffe esterne
+    internal: tariffe interne
+  easy_money_other_settings_price_visibility:
+    all: importo senza IVA e totale
+    price1: solo importo totale
+    price2: solo importo senza IVA
+  easy_money_other_settings_rate_type:
+    all: tariffa interna ed esterna
+    internal: solo una tariffa
+  easy_money_period:
+    daily: Giornaliero
+    monthly: Mensile
+    weekly: Settimanale
+    yearly: Annuale
+  easy_money_periodical_entity_invoiced_custom_field: Bilancio - Fatturato
+  easy_money_periodical_entity_project_booking_custom_field: Bilancio - Ingaggio
+  easy_money_plugin_description: "- monitoraggio e gestione dei risultati finanziari
+    attesi ed effettivi dei progetti"
+  easy_money_plugin_name: Bilancio
+  easy_money_rate_entity:
+    role: Tariffe per ruolo
+    time_entry_activity: Tariffe per attività
+    user: Tariffe per utente
+  easy_money_rate_type:
+    external: Costi esterni del personale
+    internal: Costi interni del personale
+    one: Tariffa
+  easy_money_revenues_type:
+    change_confirm: Attenzione: Salvando questa impostazione, tutte le voci di budget
+      esistenti verranno eliminate. È consigliabile esportare le voci di budget correnti
+      nel progetto per evitare la perdita di dati.
+    list: elenco dettagliato
+    sum: reddito complessivo
+  easy_money_travel_cost_custom_field: Costo di trasferta
+  easy_money_travel_expense_custom_field: Spesa di trasferta
+  easy_money:
+    text_you_can_change_it_here: 'E’ possibile autorizzarlo qui:'
+    warning_budgets_are_not_allowed_for_tasks: I budget per i task non sono consentiti.
+  easy_pages:
+    categories:
+      easy_money: Bilancio
+    module_category:
+      easy_money: Bilancio
+    modules:
+      easy_money_expected_expense_query: Spese previste
+      easy_money_expected_revenue_query: Redditi previsti
+      easy_money_other_expense_query: Spese effettive
+      easy_money_other_revenue_query: Redditi reali
+      easy_money_project_cache_query: Panoramica portfolio
+      easy_money_travel_cost_query: Costi di trasferta
+      easy_money_travel_expense_query: Spese di trasferta
+    pages_description:
+      easy_money_projects_overview: Bilancio - homepage
+    pages:
+      easy_money_projects_overview: Bilancio - homepage
+  easy_proposer:
+    easy_money_cash_flow:
+      index:
+        caption: Bilancio - Cashflow
+        description: Visualizza cashflow
+    easy_money_settings:
+      index:
+        caption: Bilancio
+        description: Gestisci impostazioni di Bilancio
+  easy_query:
+    columns:
+      easy_money_query:
+        actual_expenses: Costi reali
+        actual_incomes: Redditi reali
+        actual_personal_costs: Costi personale reali
+        actual_profit: Profitto reale
+        actual_total_expenses: Costi totali reali
+        net_margin: Margine netto
+        planned_expenses: Costi previsti
+        planned_incomes: Redditi previsti
+        planned_personal_costs: Costi personali previsti
+        planned_profit: Profitto previsto
+        planned_total_expenses: Costi totali previsti
+        profit_margin: Margine di profitto
+    name:
+      easy_money_cash_flow_query: Cash flow
+      easy_money_crm_cases_budget_query: Panoramica portfolio (budget casi CRM)
+      easy_money_expected_expense_query: Spese previste
+      easy_money_expected_revenue_query: Redditi previsti
+      easy_money_issues_budget_query: Profilo di portfolio (budget di task)
+      easy_money_other_expense_query: Spese effettive
+      easy_money_other_revenue_query: Redditi reali
+      easy_money_project_cache_query: Panoramica portfolio (Budget di progetto)
+      easy_money_travel_cost_query: Costi di trasferta
+      easy_money_travel_expense_query: Spese di trasferta
+    sidebar_filters:
+      personal:
+        easy_money_expected_expense_query: Filtri personali su spese previste
+        easy_money_expected_revenue_query: Filtri personali su redditi previsti
+        easy_money_other_expense_query: Filtri personali su spese effettive
+        easy_money_other_revenue_query: Filtri personali su redditi reali
+        easy_money_project_cache_query: Filtri personali su panoramica budget
+        easy_money_travel_cost_query: Filtri personali su costi di trasferta
+        easy_money_travel_expense_query: Filtri personali su spese di trasferta
+      public:
+        easy_money_expected_expense_query: Filtri pubblici su spese previste
+        easy_money_expected_revenue_query: Filtri pubblici su redditi previsti
+        easy_money_other_expense_query: Filtri pubblici su spese effettive
+        easy_money_other_revenue_query: Filtri pubblici su redditi reali
+        easy_money_project_cache_query: Filtri pubblici su panoramica budget
+        easy_money_travel_cost_query: Filtri pubblici su costi di trasferta
+        easy_money_travel_expense_query: Filtri pubblici su spese di trasferta
+    suffixes:
+      easy_money_query:
+        with_vat: "(IVA inclusa)"
+        without_vat: "(VAT esclusa)"
+  easy_rake_tasks:
+    easy_rake_task_easy_money_project_cache:
+      caption: Ricalcolo panoramica budget dei progetti
+  easy_reports_categories:
+    easy_money: Bilancio
+  easy_reports_fields:
+    _project_other_profit: Profitto
+    _project_recovery: Ripristino
+    _project_timeentry_average_hourly_expense: Costo Orario Medio
+    _time_entry_externalrate: Costi personale - Tariffa esterna
+    _time_entry_internalrate: Costi personali - Tariffa interna
+    easy_money_expected_expense_id: Spese previste
+    easy_money_expected_expense_name: Spese previste - Nome
+    easy_money_expected_expense_price1: Spese previste - Prezzo totale
+    easy_money_expected_expense_price2: Spese previste - Prezzo IVA escl.
+    easy_money_expected_revenue_id: Redditi previsti
+    easy_money_expected_revenue_name: 'Redditi previsti: nome'
+    easy_money_expected_revenue_price1: Redditi previsti - Prezzo totale
+    easy_money_expected_revenue_price2: Redditi previsti - Prezzo IVA escl.
+    easy_money_other_expense_id: Costi effettivi
+    easy_money_other_expense_name: Spense effettive - Nome
+    easy_money_other_expense_price1: Spese effettive - Prezzo totale
+    easy_money_other_expense_price2: Spese effettive - Prezzo IVA escl.
+    easy_money_other_revenue_id: Redditi effettivi
+    easy_money_other_revenue_name: Redditi effettivi - Nome
+    easy_money_other_revenue_price1: 'Redditi reali: prezzo totale'
+    easy_money_other_revenue_price2: 'Redditi reali: prezzo IVA escl.'
+    project_expected_hours: Ore lavorative previste
+    project_expected_payroll_expense: Costi personali previsti
+  easy_scheduler_tasks:
+    ep_update_projects_time_entry_expenses: conversione dei costi personali
+  error_easy_money_cant_copy_repeating: Questo elemento non può essere spostato/copiato
+    perché è impostato come reiterato. Disabilita prima la reiterazione sull'entità
+    e riprova.
+  error_easy_money_project_selector_select_values: Non ci sono valori selezionati
+  field_average_hourly_rate_price_1: Tariffa oraria media (IVA incl.)
+  field_average_hourly_rate_price_2: Tariffa oraria media (IVA escl.)
+  field_cost_ratio: Rapporto di costo
+  field_easy_money_days_count: Numero di giorni
+  field_easy_money_expected_expense: Spesa prevista
+  field_easy_money_expected_expense_description: 'Descrizione:'
+  field_easy_money_expected_expense_name: 'Nome:'
+  field_easy_money_expected_expense_price1: 'Importo totale:'
+  field_easy_money_expected_expense_price2: 'Importo IVA escl.:'
+  field_easy_money_expected_expense_spent_on: 'Data:'
+  field_easy_money_expected_expense_vat: 'IVA:'
+  field_easy_money_expected_revenue: Reddito previsto
+  field_easy_money_expected_revenue_description: 'Descrizione:'
+  field_easy_money_expected_revenue_name: 'Nome:'
+  field_easy_money_expected_revenue_price1: 'Importo totale:'
+  field_easy_money_expected_revenue_price2: 'Importo IVA escl.:'
+  field_easy_money_expected_revenue_spent_on: 'Data:'
+  field_easy_money_expected_revenue_vat: 'IVA:'
+  field_easy_money_metric_units: Unità
+  field_easy_money_other_expense_description: 'Descrizione:'
+  field_easy_money_other_expense_name: 'Nome:'
+  field_easy_money_other_expense_price1: 'Importo totale:'
+  field_easy_money_other_expense_price2: 'Importo IVA escl.:'
+  field_easy_money_other_expense_spent_on: 'Data:'
+  field_easy_money_other_expense_vat: 'IVA:'
+  field_easy_money_other_revenue_description: 'Descrizione:'
+  field_easy_money_other_revenue_name: 'Nome:'
+  field_easy_money_other_revenue_price1: 'Importo totale:'
+  field_easy_money_other_revenue_price2: 'Importo IVA escl.:'
+  field_easy_money_other_revenue_spent_on: 'Data:'
+  field_easy_money_other_revenue_vat: 'IVA:'
+  field_easy_money_price_per_day: Costo al giorno
+  field_easy_money_price_per_unit: Costo per unità
+  field_easy_money_project_cache: Panoramica del progetto
+  field_easy_money_rate_entity_role_name: Nome ruolo
+  field_easy_money_rate_entity_time_entry_activity_name: Nome attività
+  field_easy_money_rate_entity_user_name: Nome utente
+  field_easy_money_rate_type_external: Fatturazione (tariffa esterna)
+  field_easy_money_rate_type_internal: Costi personali (tariffa interna)
+  field_easy_money_sum_other_expenses: Spese
+  field_easy_money_sum_other_profit: Profitto
+  field_easy_money_sum_other_revenues: Redditi
+  field_easy_money_sum_time_entry_expenses: Costi personale
+  field_easy_money_travel_cost: Costo di trasferta
+  field_easy_money_travel_cost_description: 'Descrizione:'
+  field_easy_money_travel_cost_name: 'Nome:'
+  field_easy_money_travel_cost_price1: 'Importo totale:'
+  field_easy_money_travel_cost_spent_on: 'Data:'
+  field_easy_money_travel_expense: Spesa di trasferta
+  field_easy_money_travel_expense_description: 'Descrizione:'
+  field_easy_money_travel_expense_name: 'Nome:'
+  field_easy_money_travel_expense_price1: 'Importo totale:'
+  field_easy_money_travel_expense_spent_on: 'Data:'
+  field_easy_money_travel_expense_spent_on_from: 'Data da:'
+  field_easy_money_travel_expense_spent_on_to: 'Data a:'
+  field_easy_money_travel_expenses_user: 'Utente:'
+  field_empe_cashflow_expected_expenses_price1: Spese previste (IVA incl.)
+  field_empe_cashflow_expected_expenses_price2: Spese previste (IVA escl.)
+  field_empe_cashflow_expected_payroll_expenses_price: Costi personali previsti
+  field_empe_cashflow_expected_revenues_price1: Redditi previsti (IVA incl.)
+  field_empe_cashflow_expected_revenues_price2: Redditi previsti (IVA escl.)
+  field_empe_cashflow_history_price1: Profitto effettivo (IVA incl.)
+  field_empe_cashflow_history_price2: Profitto effettivo (IVA escl.)
+  field_empe_cashflow_other_expenses_price1: Spese effettive (IVA incl.)
+  field_empe_cashflow_other_expenses_price2: Spese effettive (IVA escl.)
+  field_empe_cashflow_other_revenues_price1: Redditi effettivi (IVA incl.)
+  field_empe_cashflow_other_revenues_price2: Redditi effettivi (IVA escl.)
+  field_empe_cashflow_prediction_price1: Profitto previsto (IVA incl.)
+  field_empe_cashflow_prediction_price2: Profitto previsto (IVA escl.)
+  field_empe_cashflow_time_entry_expenses_price: Costi personali effettivi
+  field_empe_cashflow_total_costs_price1: Costi totali (IVA incl)
+  field_empe_cashflow_travel_costs_price1: Costi di trasferta
+  field_empe_cashflow_travel_expenses_price1: Spese di trasferta
+  field_expected_profit_price_1: Profitto previsto (IVA incl.)
+  field_expected_profit_price_2: Profitto previsto (IVA escl.)
+  field_inherit_easy_money_settings: Eredita impostazioni
+  field_other_profit_price_1_external: Profitto (IVA incl. - tariffa esterna)
+  field_other_profit_price_1_internal: Profitto (IVA incl. - tariffa interna)
+  field_other_profit_price_2_external: Profitto (IVA escl. - tariffa esterna)
+  field_other_profit_price_2_internal: Profitto (IVA escl. - tariffa interna)
+  field_price1: Importo totale
+  field_price2: Importo IVA escl.
+  field_profit_margin: Margine di profitto
+  field_spent_hours: Ore lavorate
+  field_sum_of_all_expected_expenses_price_1: Spese totale previste (IVA incl.)
+  field_sum_of_all_expected_expenses_price_2: Spese totale previste (IVA escl.)
+  field_sum_of_all_expected_revenues_price_1: Redditi totali previsti (IVA incl.)
+  field_sum_of_all_expected_revenues_price_2: Redditi totali previsti (IVA escl.)
+  field_sum_of_all_other_expenses_price_1_external: Costi totali (IVA incl. - tariffa
+    esterna)
+  field_sum_of_all_other_expenses_price_1_internal: Costi totali (IVA incl. - tariffa
+    interna)
+  field_sum_of_all_other_expenses_price_2_external: Costi totali (IVA escl. - tariffa
+    esterna)
+  field_sum_of_all_other_expenses_price_2_internal: Costi totali (IVA escl. - tariffa
+    interna)
+  field_sum_of_all_other_revenues_price_1: Redditi totali (IVA incl.)
+  field_sum_of_all_other_revenues_price_2: Redditi totali (IVA escl.)
+  field_sum_of_all_travel_costs_price_1: Costi di trasferta
+  field_sum_of_all_travel_expenses_price_1: Spese di trasferta
+  field_sum_of_expected_expenses_price_1: Spese previste (IVA incl.)
+  field_sum_of_expected_expenses_price_2: Spese previste (IVA escl.)
+  field_sum_of_expected_hours: Ore pianificate
+  field_sum_of_expected_payroll_expenses: Costi personali previsti
+  field_sum_of_expected_revenues_price_1: Redditi previsti (IVA incl.)
+  field_sum_of_expected_revenues_price_2: Redditi previsti (IVA escl.)
+  field_sum_of_other_expenses_price_1: Spese effettive (IVA incl.)
+  field_sum_of_other_expenses_price_2: Spese effettive (IVA escl.)
+  field_sum_of_other_revenues_price_1: Redditi effettivi (IVA incl.)
+  field_sum_of_other_revenues_price_2: Redditi effettivi (IVA escl.)
+  field_sum_of_time_entries_expenses_external: Costi personali (tariffa esterna)
+  field_sum_of_time_entries_expenses_internal: Costi personali (tariffa interna)
+  field_vat: IVA
+  heading_easy_money_mapping_setting: Campi di mappatura per spostamento/copia di
+    somme tra budget effettivo e previsto
+  heading_easy_money_other_settings_prices_and_rates: Prezzi e tariffe
+  heading_easy_money_other_settings_project_overview: Impostazioni Bilancio
+  label_easy_money: Bilancio
+  label_easy_money_affected_projects: Progetti interessati
+  label_easy_money_all_project: Bilancio per tutti i progetti
+  label_easy_money_all_projects: Salva su tutti i progetti
+  label_easy_money_attachments: 'Allegati:'
+  label_easy_money_cash_flow: Flussi di cassa
+  label_easy_money_cash_flow_change_price_type: Quale importo visualizzare?
+  label_easy_money_cash_flow_history: Storico flussi di cassa
+  label_easy_money_cash_flow_prediction: Previsione flussi di cassa
+  label_easy_money_create_to: Crea per
+  label_easy_money_currency: 'Valuta:'
+  label_easy_money_currency_format: Formato valuta
+  label_easy_money_currency_visible: 'Consenti modifica della valuta per progetto:'
+  label_easy_money_entity_overview: Panoramica progetto/task/milestone
+  label_easy_money_expected_budget: Previsto
+  label_easy_money_expected_expense: Spesa prevista
+  label_easy_money_expected_expense_added: Spesa prevista aggiunta
+  label_easy_money_expected_expense_edit: Modifica spesa prevista
+  label_easy_money_expected_expense_new: Nuova spesa prevista
+  label_easy_money_expected_expense_plural: Spese previste
+  label_easy_money_expected_expense_show: Spesa prevista
+  label_easy_money_expected_expense_updated: Spesa prevista aggiornata
+  label_easy_money_expected_expenses: Panoramica spese previste
+  label_easy_money_expected_payroll_expense_per_hours: Tariffa oraria prevista
+  label_easy_money_expected_payroll_expenses: 'Costi personali:'
+  label_easy_money_expected_revenue: Reddito previsto
+  label_easy_money_expected_revenue_added: Reddito previsto aggiunto
+  label_easy_money_expected_revenue_edit: Modifica reddito previsto
+  label_easy_money_expected_revenue_new: Nuovo reddito previsto
+  label_easy_money_expected_revenue_plural: Redditi previsti
+  label_easy_money_expected_revenue_show: Reddito previsto
+  label_easy_money_expected_revenue_updated: Reddito previsto aggiornato
+  label_easy_money_expected_revenues: Panoramica redditi previsti
+  label_easy_money_hour: "%{hours} ore."
+  label_easy_money_mapping_setting: Mappatura da %{from} a %{to}
+  label_easy_money_mass_copy_rates: Costi da tariffe
+  label_easy_money_net_margin: Margine netto
+  label_easy_money_new_expense_description: spesa
+  label_easy_money_new_expense_text: Spesa
+  label_easy_money_new_expense_text_new: Nuova spesa
+  label_easy_money_new_revenue_description: reddito
+  label_easy_money_new_revenue_text: Reddito
+  label_easy_money_new_revenue_text_new: Nuovo reddito
+  label_easy_money_new_travel_cost_description: costo di trasferta
+  label_easy_money_new_travel_cost_text: Costo di trasferta
+  label_easy_money_other_expense: Spesa effettiva
+  label_easy_money_other_expense_added: Spesa effettiva aggiunta
+  label_easy_money_other_expense_edit: Modifica della spesa
+  label_easy_money_other_expense_new: Nuova spesa effettiva
+  label_easy_money_other_expense_plural: Spese effettive
+  label_easy_money_other_expense_show: Spesa
+  label_easy_money_other_expense_updated: Spesa effettiva aggiornata
+  label_easy_money_other_expenses: Panoramica spese effettive
+  label_easy_money_other_revenue: Reddito effettivo
+  label_easy_money_other_revenue_added: Reddito effettivo aggiunto
+  label_easy_money_other_revenue_edit: Modifica del reddito
+  label_easy_money_other_revenue_new: Nuovo reddito effettivo
+  label_easy_money_other_revenue_plural: Redditi effettivi
+  label_easy_money_other_revenue_show: Reddito
+  label_easy_money_other_revenue_updated: Reddito effettivo aggiornato
+  label_easy_money_other_revenues: Panoramica redditi effettivi
+  label_easy_money_other_settings: Altre impostazioni
+  label_easy_money_other_settings_expected_count_price: Calcola redditi e spese utilizzando
+  label_easy_money_other_settings_expected_payroll_expense_type: Modalità di determinazione
+    delle costi personali previsti
+  label_easy_money_other_settings_expected_rate_type: Calcola costi personali utilizzando
+  label_easy_money_other_settings_expenses_type: Funzione delle spese
+  label_easy_money_other_settings_include_childs: Includi gli importi dei sottoprogetti
+    nel totale del progetto
+  label_easy_money_other_settings_price_visibility: Modalità inserimento importo
+  label_easy_money_other_settings_project_expected_visibility: Abilita previsioni
+    di budget
+  label_easy_money_other_settings_project_use_easy_money_for_easy_crm_cases: Utilizza
+    bilancio sui casi CRM
+  label_easy_money_other_settings_project_use_easy_money_for_issues: Utilizza bilancio
+    sui task
+  label_easy_money_other_settings_project_use_easy_money_for_versions: Utilizza bilancio
+    sulle milestone
+  label_easy_money_other_settings_rate_type: 'Per i costi di personale:'
+  label_easy_money_other_settings_revenues_type: Funzione dei redditi
+  label_easy_money_other_settings_travel_cost_price_per_unit: Costo di trasferta -
+    Costo per unità
+  label_easy_money_other_settings_travel_expense_price_per_day: Spesa di trasferta
+    - Costo al giorno
+  label_easy_money_other_settings_travel_metric_unit: Unità per la distanza
+  label_easy_money_other_settings_use_travel_costs: Utilizza costi di trasferta
+  label_easy_money_other_settings_use_travel_expenses: Utilizza spese di trasferta
+    - rimborsi
+  label_easy_money_other_settings_vat: 'Se si visualizza solo l''importo totale, l''IVA
+    è fissata al:'
+  label_easy_money_overview: Panoramica del bilancio
+  label_easy_money_price_per_day: Costo al giorno
+  label_easy_money_profit_margin: Margine di profitto
+  label_easy_money_project_cache: Panoramica portfolio
+  label_easy_money_project_index: Bilancio
+  label_easy_money_project_index_estimated_hours: 'Tempo stimato:'
+  label_easy_money_project_index_profit: 'Profitto:'
+  label_easy_money_project_index_sum_hours: 'Ore previste:'
+  label_easy_money_project_issues_time_entry_expenses: Costi personali per task del
+    progetto
+  label_easy_money_project_name: 'Bilancio del progetto:'
+  label_easy_money_project_purchases: Spese
+  label_easy_money_project_time_entry_expenses: Costi personali esclusivamenti del
+    progetto
+  label_easy_money_project_usage_type: 'Usa sul progetto:'
+  label_easy_money_rate_priorities_settings: Configurazione costi per tariffe
+  label_easy_money_real_budget: Effettivo
+  label_easy_money_round_money_on_list: Arrotonda i valori nell'elenco
+  label_easy_money_save_options: Salva opzioni
+  label_easy_money_select_project: Seleziona un progetto
+  label_easy_money_settings: Impostazioni Bilancio
+  label_easy_money_settings_use_global_activity_rates: Per l’attività vengono utilizzate
+    tariffe globali
+  label_easy_money_settings_use_global_role_rates: Per il ruolo vengono utilizzate
+    le tariffe globali
+  label_easy_money_settings_use_global_setting: Usa le impostazioni globali
+  label_easy_money_settings_use_global_user_rates: Per l’utente vengono utilizzate
+    tariffe globali
+  label_easy_money_sidebar:
+    issue: Bilancio per task
+    project: Bilancio del progetto
+    version: Bilancio per milestone
+  label_easy_money_subproject_explication: "*) (previsto / effettivo)"
+  label_easy_money_subproject_profit: Risultato*
+  label_easy_money_subproject_sum_expenses: Spese*
+  label_easy_money_subproject_sum_payroll_expenses: Costi personali*
+  label_easy_money_subproject_sum_revenues: Redditi*
+  label_easy_money_subproject_sum_travel_costs: Costi di trasferta
+  label_easy_money_subproject_sum_travel_expenses: Spese di trasferta
+  label_easy_money_subprojects: Panoramica sottoprogetti
+  label_easy_money_time_entry_expenses: Panoramica costi personali
+  label_easy_money_total: 'totale:'
+  label_easy_money_travel_cost: Costo di trasferta
+  label_easy_money_travel_cost_added: Costo di trasferta aggiunto
+  label_easy_money_travel_cost_edit: Modifica costo di trasferta
+  label_easy_money_travel_cost_new: Nuovo costo di trasferta
+  label_easy_money_travel_cost_plural: Costi di trasferta
+  label_easy_money_travel_cost_show: Costo di trasferta
+  label_easy_money_travel_cost_updated: Costo di trasferta aggiornato
+  label_easy_money_travel_costs: Panoramica costi di trasferta
+  label_easy_money_travel_expense: Spesa di trasferta
+  label_easy_money_travel_expense_added: Spesa di trasferta aggiunta
+  label_easy_money_travel_expense_edit: Modifica spesa di trasferta
+  label_easy_money_travel_expense_new: Nuova spesa di trasferta
+  label_easy_money_travel_expense_plural: Spese di trasferta
+  label_easy_money_travel_expense_show: Spesa di trasferta
+  label_easy_money_travel_expense_spent_on_from: Data di inizio
+  label_easy_money_travel_expense_spent_on_to: Data finale
+  label_easy_money_travel_expense_updated: Spesa di trasferta aggiornata
+  label_easy_money_travel_expenses: Panoramica spese di trasferta - rimborsi
+  label_easy_money_use_vat: Tieni conto dell'IVA
+  label_easy_money_using_global_settings: Salva su progetti che utilizzano impostazioni
+    globali
+  label_easy_money_using_next_rates: Uso di tariffe successive
+  label_filter_group_easy_money_budget_entities: Campi di budget
+  label_filter_group_easy_money_expected_expense_query: Spese previste
+  label_filter_group_easy_money_expected_revenue_query: Redditi previsti
+  label_filter_group_easy_money_other_expense_query: Spese effettive
+  label_filter_group_easy_money_other_revenue_query: Redditi effettivi
+  label_filter_group_easy_money_project_cache_expenses: Costi
+  label_filter_group_easy_money_project_cache_profit: Profitto
+  label_filter_group_easy_money_project_cache_query: Altri
+  label_filter_group_easy_money_project_cache_revenues: Redditi
+  label_filter_group_easy_money_project_cache_travel: Trasferta
+  label_filter_group_easy_money_travel_cost_query: Costi di trasferta
+  label_filter_group_easy_money_travel_expense_query: Spese di trasferta - rimborsi
+  label_ignore_changes: Ignora modifiche
+  label_save_for_this_project: Salva per questo progetto
+  label_save_for_this_project_and_descendants: Salva per questo progetto e tutti i
+    sottoprogetti
+  label_update_project_rates_for_selected_users: Aggiorna le tariffe per gli utenti
+    selezionati
+  menu_easy_money: Budgets
+  notice_easy_money_recalculate: Gli importi saranno ricalcolati entro il prossimo
+    accesso alla pagina riassuntiva.
+  permission_easy_budgetsheet_view_external_rates: Mostra tariffe esterne
+  permission_easy_budgetsheet_view_internal_rates: Mostra tariffe interne
+  permission_easy_money_cash_flow_history: Visualizza flusso di cassa storico
+  permission_easy_money_cash_flow_prediction: Visualizza previsione flussi di cassa
+  permission_easy_money_manage_expected_expense: Aggiungi spese previste
+  permission_easy_money_manage_expected_payroll_expense: Aggiungi costi personali
+    previsti
+  permission_easy_money_manage_expected_revenue: Aggiungi redditi previsti
+  permission_easy_money_manage_other_expense: Aggiungi spese effettive
+  permission_easy_money_manage_other_revenue: Aggiungi redditi effettivi
+  permission_easy_money_manage_travel_cost: Aggiungi costi di trasferta
+  permission_easy_money_manage_travel_expense: Aggiungi spese di trasferta
+  permission_easy_money_move: Sposta denaro tra progetti
+  permission_easy_money_settings: Accedi alle Impostazioni per bilancio
+  permission_easy_money_show_expected_expense: Mostra spese previste
+  permission_easy_money_show_expected_payroll_expense: Mostra costi personali previsti
+  permission_easy_money_show_expected_profit: Mostra profitto previsto
+  permission_easy_money_show_expected_revenue: Mostra redditi previsti
+  permission_easy_money_show_other_expense: Mostra spese effettive
+  permission_easy_money_show_other_profit: Mostra profitto effettivo
+  permission_easy_money_show_other_revenue: Mostra i redditi effettivi
+  permission_easy_money_show_time_entry_expenses: Mostra costi personali effettivi
+  permission_easy_money_show_travel_cost: Mostra costi di trasferta
+  permission_easy_money_show_travel_expense: Mostra spese di trasferta
+  permission_view_easy_money: Accedi al modulo Bilancio (generale)
+  project_default_page:
+    easy_money: Bilancio
+  project_module_easy_money: Bilancio
+  tab_easy_money_expected_expense_custom_field: 'Budget: spese previste'
+  tab_easy_money_expected_revenue_custom_field: 'Budget: redditi previsti'
+  tab_easy_money_other_expense_custom_field: 'Budget: spese effettive'
+  tab_easy_money_other_revenue_custom_field: 'Budget: redditi reali'
+  tab_easy_money_other_settings: Altre impostazioni
+  tab_easy_money_rate_priorities: Gerarchia tariffe
+  tab_easy_money_rate_role: Tariffe per ruolo
+  tab_easy_money_rate_time_entry_activity: Tariffe per attività
+  tab_easy_money_rate_user: Tariffe per utente
+  tab_easy_money_travel_cost_custom_field: 'Budget: costi di trasferta'
+  tab_easy_money_travel_expense_custom_field: 'Budget: spese di trasferta: rimborsi'
+  text_easy_money_rate_priorities_settings: Alcune attività, utenti o ruoli potrebbero
+    non avere una tariffa impostata. Secondo questa gerarchia, per i report verrà
+    considerata la prima tariffa diversa da zero.
+  title_close: Clicca per chiudere questa scheda.
+  title_easy_modal_selector_trigger:
+    easy_money_expected_expense: Clicca per selezionare le spese previste dall'elenco
+    easy_money_expected_payroll_expense: Clicca per selezionare i costi del personale
+      pianificati dall'elenco
+    easy_money_expected_revenue: Clicca per selezionare i redditi previsti
+    easy_money_other_expense: Clicca per le selezionare le spese effettive
+    easy_money_other_revenue: Clicca per selezionare i redditi reali
+    easy_money_travel_expense: Clicca per selezionare le spese di trasferta
+  title_easy_money_expected_profit: Il profitto previsto sul progetto %{project} è
+    %{value}.
+  title_easy_money_link_to_project: Vai al budget del progetto %{project}.
+  title_easy_money_link_to_subproject: Vai al budget di %{subproject}.
+  title_easy_money_net_margin_formula: "%{net_margin} = %{profit} / (%{incomes} -
+    %{purchases})"
+  title_easy_money_other_profit: Il profitto sul progetto %{project} è %{value}.
+  title_easy_money_other_repeating_expense_show: Mostra spese ripetute
+  title_easy_money_other_repeating_revenue_show: Mostra redditi ricorrenti
+  title_easy_money_priorities_use_in_all_projects: Utilizza ordinamento di tariffe
+    in tutti i progetti
+  title_easy_money_priorities_use_in_all_subprojects: Utilizza ordinamento di tariffe
+    in tutti i sottoprogetti
+  title_easy_money_profit_margin_formula: "%{profit_margin} = %{profit} / %{incomes}"
+  title_easy_money_project_expected_expenses: Mostra spese previste del progetto
+  title_easy_money_project_expected_revenues: Mostra redditi previsti del progetto
+  title_easy_money_project_expenses_per_month: Cliccando è possibile visualizzare
+    le spese mensili del progetto.
+  title_easy_money_project_index_show_empty: Mostra i campi vuoti.
+  title_easy_money_project_new_expense: Aggiungi nuova spesa
+  title_easy_money_project_new_revenue: Aggiungi nuova entrata
+  title_easy_money_project_other_expenses: Mostra spese effettive del progetto
+  title_easy_money_project_other_revenues: Mostra redditi reali del progetto
+  title_easy_money_project_revenues_per_month: Cliccando è possibile visualizzare i
+    redditi mensili del progetto.
+  title_easy_money_project_time_entry_expenses: Mostra costi personali effettivi del
+    progetto
+  title_easy_money_project_travel_costs: Mostra costi di trasferta del progetto
+  title_easy_money_project_travel_expenses: Mostra spese di trasferta - rimborsi del
+    progetto
+  title_easy_money_rate_use_in_all_projects: Salva le tariffe e applicale a tutti
+    i progetti
+  title_easy_money_rate_use_in_all_subprojects: Salva le tariffe e applicale a tutti
+    i sottoprogetti
+  title_easy_money_rates_save: Salva tariffe
+  title_easy_money_settings: Vai alle impostazioni finanziarie del progetto.
+  title_easy_money_sum_expected_expenses: La somma delle spese previste sul progetto
+    %{project} è %{value}.
+  title_easy_money_sum_expected_payroll_expenses: La somma dei costi personali previsti
+    sul progetto %{project} è %{value}.
+  title_easy_money_sum_expected_revenues: La somma dei redditi previsti sul progetto
+    %{project} è %{value}.
+  title_easy_money_sum_other_expenses: La somma delle spese effettive sul progetto
+    %{project} è %{value}.
+  title_easy_money_sum_other_revenues: La somma dei redditi reali sul progetto %{project}
+    è %{value}.
+  title_easy_money_sum_time_entry_expenses: La somma dei costi personali sul progetto
+    %{project} è %{value}.
+  title_easy_money_sum_travel_costs: La somma dei costi di trasferta del progetto
+    %{project} è %{value}.
+  title_easy_money_sum_travel_expenses: La somma delle spese di trasferta del progetto
+    %{project} è %{value}.
+  title_easy_money_update_all_projects_time_entry_expenses: Ricalcola costi personali
+    di tutti i sottoprogetti.
+  title_easy_money_update_project_and_subprojects_time_entry_expenses: Clicca per
+    iniziare la conversione dei costi personali del progetto e di tutti i sottoprogetti
+    (l'operazione può richiedere diversi minuti).
+  title_easy_money_update_project_time_entry_expenses: Ricalcola costi personali del
+    progetto.
+  tooltip_real_hourly_rate: Il progetto ha una tariffa oraria media di %{average_hourly_rate}
+    / ora.
+  warning_easy_money_all_projects:
+    expenses_type: 'Le spese precedentemente caricate per i seguenti progetti verranno
+      eliminate: %{projects}'
+    question: Sei sicuro di voler utilizzare queste impostazioni per tutti i progetti?
+    revenues_type: 'I redditi precedentemente caricati per i seguenti progetti verranno
+      eliminati: %{projects}'
+  warning_easy_money_settings:
+    expenses_type: Stai modificando il metodo di inserimento delle spese (tutte le
+      spese caricate precedentemente verranno eliminate!)
+    global_question: Vuoi salvare le impostazioni globali?
+    project_question: Vuoi salvare le impostazioni nel progetto?
+    revenues_type: Stai modificando il metodo di inserimento dei redditi (tutti i
+      redditi caricati precedentemente verranno eliminati!)

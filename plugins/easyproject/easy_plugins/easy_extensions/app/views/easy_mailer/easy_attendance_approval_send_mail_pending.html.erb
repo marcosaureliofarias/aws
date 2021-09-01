@@ -1,0 +1,30 @@
+<% ids = [] %>
+<% start_date = nil %>
+
+<table style='border: 1px solid black;border-spacing: 0px;'>
+  <thead>
+    <tr>
+      <th style='border: 1px solid black;'><%= l(:label_date_from) %></th>
+      <th style='border: 1px solid black;'><%= l(:label_date_to) %></th>
+      <th style='border: 1px solid black;'><%= l(:field_user) %></th>
+      <th style='border: 1px solid black;'><%= l(:field_easy_attendance_activity) %></th>
+      <th style='border: 1px solid black;'><%= l(:field_description) %></th>
+      <% if @any_canceled -%>
+        <th style='border: 1px solid black;'><%= l(:field_status) %></th>
+      <% end -%>
+    </tr>
+  </thead>
+  <tbody>
+    <% @easy_attendances.values.each do |attendances| %>
+      <% start_date ||= attendances.first.arrival %>
+      <%= render :partial => 'pending_list', :collection => attendances, :as => 'easy_attendance' %>
+      <% ids.concat(attendances.collect(&:id)) %>
+    <% end %>
+  </tbody>
+</table>
+<p>
+  <%= link_to l(:'easy_attendance.pending_detail'), approval_easy_attendances_url( :ids => ids) %>
+</p>
+<p>
+  <%= link_to l(:'easy_attendance.attendance_overview'), easy_attendances_url(:set_filter => '0', :start_date => start_date.try(:to_date).to_s) %>
+</p>

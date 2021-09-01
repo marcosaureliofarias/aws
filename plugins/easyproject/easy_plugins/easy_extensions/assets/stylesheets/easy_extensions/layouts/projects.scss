@@ -1,0 +1,21 @@
+ul.projects{
+  @extend %list-reset;
+  & &{
+    padding-left: $box-padding;
+  }
+  &.root{
+    max-height: 550px;
+    overflow: auto;
+  }
+}
+
+.project{
+  table.list &{
+    &.closed{
+      .name{
+        text-decoration: line-through;
+        opacity: 0.5;
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+%reset-tabular-label{
+  float: none;
+  text-align: left;
+  margin-left: auto;
+  width: auto;
+  line-height: inherit;
+  max-width: 100%;
+}
+%tabular-label{
+  @include respond-to(min-small-screen) {
+    float: left;
+    text-align: right;
+    margin-left: -$tabular-offset;
+    width: $tabular-offset - $gap;
+    margin-right: $gap;
+    vertical-align: middle;
+  }
+  .tabular.fake-responsive &, #sidebar &, #easy_grid_sidebar &{
+    @extend %reset-tabular-label;
+  }
+  display: block;
+  padding: floor(0.6*$gap) 0;
+  cursor: pointer;
+  @include small;
+}
+%tabular-content{
+  @include respond-to(min-small-screen) {
+    padding-left: $tabular-offset; /* width of left column containing the label elements */
+  }
+
+  .tabular.fake-responsive &, #sidebar &, #easy_grid_sidebar &{
+    padding-left: 0;
+  }
+  clear: left;
+  position: relative;
+  margin-bottom: $gap;
+
+  & > input[type="radio"], input[type="checkbox"]{
+    &:first-child{
+      & + span {
+        input, select, textarea{
+          padding-left: $box-padding;
+        }
+      }
+    }
+  }
+}

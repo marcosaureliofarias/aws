@@ -1,0 +1,83 @@
+<%= call_hook :view_account_login_top %>
+<h1><%= l(:label_welcome, app_name: EasyExtensions::EasyProjectSettings.app_name) %></h1>
+<table id="login_form_container">
+  <tr>
+    <td>
+      <div id="login-form">
+        <%= form_tag(signin_path, onsubmit: 'return keepAnchorOnSignIn(this);') do %>
+            <%= hidden_field_tag(:load_iframe, true) if params[:load_iframe] || User.current.in_iframe %>
+            <%= back_url_hidden_field_tag %>
+            <table>
+              <tr>
+                <td class="hidden">
+                  <div><label for="username" class="icon-user"><%#=l(:field_login)%></label></div>
+                </td>
+                <td colspan="2">
+                  <div><%= text_field_tag 'username', params[:username], :placeholder => l(:field_login), :tabindex => '1' %></div>
+                </td>
+              </tr>
+              <tr>
+                <td class="hidden">
+                  <div><label for="password" class="icon-lock"><%#=l(:field_password)%></label></div>
+                </td>
+                <td colspan="2">
+                  <div><%= password_field_tag 'password', nil, :placeholder => l(:field_password), :tabindex => '2' %></div>
+                </td>
+              </tr>
+              <% if Setting.openid? %>
+                  <tr>
+                    <td class="hidden">
+                      <div><label for="openid_url" class="icon-linux"><%#=l(:field_identity_url)%></label></div>
+                    </td>
+                    <td colspan="2">
+                      <div><%= text_field_tag "openid_url", nil, :placeholder => l(:field_identity_url), :tabindex => '3' %></div>
+                    </td>
+                  </tr>
+              <% end %>
+              <tr>
+                <% if Setting.autologin? %>
+                    <td id="autologin_field"><%= check_box_tag 'autologin', 1, false, :tabindex => 4 %>
+                      <%= label_tag(:autologin, l(:label_stay_logged_in)) %>
+                    </td>
+                <% end -%>
+                <td id="lost_password_field">
+                  <%= link_to( l(:label_password_lost), lost_password_path) if Setting.lost_password? %>
+                  <% if Setting.login_required? && Setting.self_registration? %>
+                      <%= link_to( l(:label_register), register_path) %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr id="login_submit_field" class="centered-fields">
+                <td colspan="2">
+                  <button type="submit" name="login" value="" tabindex="5"><i class="icon icon-unlock"></i> <%=l(:button_login)%></button>
+                </td>
+              </tr>
+              <%= call_hook :view_account_login_after_submit %>
+            </table>
+        <% end %>
+        <br/>
+        <%= call_hook :view_account_login_bottom %>
+        <div id="easy_quote_container" style="display:none">
+
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<% if params[:username].present? %>
+    <%= late_javascript_tag "$('#password').focus();" %>
+<% else %>
+    <%= late_javascript_tag "$('#username').focus();" %>
+<% end %>
+<% unless EasySetting.value(:hide_login_quotes) %>
+    <script type="text/javascript">
+      EASY.schedule.main(function(){
+        $.ajax({url: '<%= login_quotes_path(:format => 'text') %>', type:'GET', noLoader: true, success: function(response) {
+          $("#easy_quote_container").show().html($("<div/>").append(response));
+        }
+        });
+      });
+    </script>
+<% end -%>
+<%= call_hook :view_account_login_page_bottom %>

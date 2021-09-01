@@ -1,0 +1,6 @@
+<% if User.current.allowed_to_globally?(:manage_easy_helpdesk_project, {}) %>
+  <%= link_to(l(:button_easy_helpdesk_reports_index), budgetsheet_path(
+      {:set_filter => '1', :is_under_helpdesk => true, :group_by => 'tmonth', :spent_on => '90_days',
+        :easy_query => {:column_names => ['project', 'issue', 'user', 'activity', 'hours', 'easy_money_rate_type_external']}
+      }), :class => 'button icon icon-tracker', :title => l(:button_easy_helpdesk_reports_index)) %>
+<% end %>

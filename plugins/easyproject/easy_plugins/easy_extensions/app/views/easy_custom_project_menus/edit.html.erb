@@ -1,0 +1,15 @@
+<%= title l(:heading_easy_custom_project_menu_edit) %>
+<%= form_for [@project, @easy_custom_project_menu],:html => {:class => 'tabular form-box', :remote => request.xhr?} do |f| %>
+  <%= error_messages_for @easy_custom_project_menu %>
+  <%= back_url_hidden_field_tag %>
+
+  <div>
+    <%= render :partial => 'form', :locals => {:f => f, :project => @project, :easy_custom_project_menu => @easy_custom_project_menu} %>
+  </div>
+
+  <% if !request.xhr? %>
+    <div class="form-actions">
+      <%= f.submit l(:button_create), :class => 'button-positive' %>
+    </div>
+  <% end %>
+<% end %>

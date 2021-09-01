@@ -1,0 +1,47 @@
+<%
+  include_jqplot_scripts
+  block_name ||= ''
+  query_params = {}
+  block_params = params[block_name]
+  if block_params
+    custom_period = block_params.has_key?('switch_period_zoom') || block_params.has_key?('period_zoom')
+  end
+
+  unless defined?(autostart_chart_rendering)
+    autostart_chart_rendering = true
+  end
+
+  unless defined?(load_chart_now)
+    load_chart_now = false
+  end
+
+  if easy_query.new_record? || custom_period
+    url = chart_easy_queries_path(project_id: easy_query.project, format: 'json')
+    query_params = easy_query.to_params
+  else
+    url = chart_easy_queries_path(easy_query_type: easy_query.type, id: easy_query.id, project_id: easy_query.project, format: 'json')
+  end
+
+  if load_chart_now
+    api = EasyExtensions::Views::Builders::LocalJson.new
+    output.render_json_data(api)
+    data = api.__to_hash
+  end
+
+  if EasyExtensions.chart_onclick_enabled
+    onclick_settings = easy_query.chart_settings['onclick']
+  end
+%>
+
+<div id="<%= block_name %>_chart" class="easy_query_chart" data-url="<%= raw url %>" data-renderchart="<%= autostart_chart_rendering %>" data-uuid="<%= easy_query.page_module && easy_query.page_module.uuid %>" data-onclick="<%= onclick_settings.to_json %>">
+  <%= l(:label_chart_is_loading) %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.require(function () {
+    $("#<%= block_name %>_chart").easy_chart({
+      data: <%= data.to_json.html_safe %>,
+      dataParams: <%= query_params.to_json.html_safe %>
+    });
+  }, jQueryPluginGetter("easy_chart"));
+</script>

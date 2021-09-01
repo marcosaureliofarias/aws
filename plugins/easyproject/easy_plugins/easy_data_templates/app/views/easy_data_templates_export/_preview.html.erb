@@ -1,0 +1,31 @@
+<div>
+  Pridat sloupce
+</div>
+<div class="autoscroll">
+  <table class="list preview">
+    <thead>
+      <tr>
+        <% allowed_columns_array = allowed_columns_for_export_for_select(datatemplate) %>
+        <% datatemplate.settings['selected_columns'].each do |column_name| %>
+          <th>
+            <%= select_tag 'easy_data_template[settings][selected_columns][]', options_for_select(allowed_columns_array, column_name) %>
+            <%= link_to_remote '',
+              {:url => {:controller => 'easy_data_templates_export', :action => 'export_settings', :id => @datatemplate},
+              :with => 'Form.serialize(\'easy_data_templates_form\')',
+              :update => 'easy_data_templates_export_preview_container'},
+              :title => '', :class => 'icon icon-del' %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% datarows.each do |row| %>
+        <tr>
+          <% row.each do |column_value| %>
+            <td><%= column_value %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

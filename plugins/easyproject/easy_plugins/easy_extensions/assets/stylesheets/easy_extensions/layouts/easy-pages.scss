@@ -1,0 +1,360 @@
+.easy-page{
+  &-content.edit{
+  #easy_grid_sidebar, #easy_grid_content{
+    //bottom: $toolbar-height;
+  }
+  .contextual{
+    position: absolute;
+    bottom: $gap;
+    left: $gap;
+    input{
+
+    }
+  }
+  .layout-buttons{
+    @extend %toolbar;
+  }
+  .close-icon-container{
+    position: absolute;
+    top: 2*$gap - 1;
+    right:  5*$gap;
+    a.icon-close{
+    @extend %button-link;
+    @include icon-parent(del);
+    z-index: 2;
+    }
+  }
+  }
+  &-zone{
+    @extend %clearfix;
+    @extend %box-sizing-border-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -$box-padding;
+    width: 100%;
+    .edit &{
+      margin-right: 0;
+    }
+    @include respond-to(max-small-screen) {
+      margin-right: 0;
+    }
+  //@include respond-to(min-medium-screen){
+  //  margin-right: -$box-padding;
+  //}
+  #easy_grid_sidebar &{
+    margin-right: 0;
+  }
+  .edit & {
+    @extend %page-zone;
+  }
+  .add-module-edit-content{
+    text-align: center;
+    margin: ($box-padding - $gap) 0;
+    width: 100%;
+  }
+  }
+  &-toolbar{
+  .edit &{
+    @extend %toolbar;
+    margin-top: -$box-margin;
+  }
+  }
+  &-empty-zone{
+  @extend %page-zone;
+  @extend %box-inset;
+  text-align: center;
+  padding: 10*$gap;
+  font-size: 4em;
+  }
+  &-content{
+  //@extend %toolbar-fixed-bottom-parent;
+    padding: 0;
+  }
+  &-add-module{
+    $column-width: 300px;
+    @extend %transition-all-quick-easeout;
+    position: fixed !important;
+    overflow: visible !important;
+    top: $topmenu-height - 1;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: $column-width;
+    background: $color-foreground;
+    @include translate(-$column-width, 0);
+    &__content{
+      padding: 0 !important;
+    }
+    &__wrapper{
+      height: 100%;
+      //overflow: auto;
+    }
+    &__item{
+      position: static !important;
+      width: auto !important;
+      font-weight: bold;
+      border-bottom: 1px solid $color-border-minor;
+      @extend %flex;
+      @extend %align-items-center;
+      &:hover{
+        background: mix($color-background,$color-foreground);
+        cursor: move;
+      }
+      &-name{
+        display: block;
+        padding: $gap $gap $gap 0;
+      }
+      &-image{
+        font-size: 1.5em;
+        padding: $gap;
+        @include icon-parent(chart);
+      }
+      &-description{
+        @include small;
+        font-weight: normal;
+        display: block;
+      }
+    }
+    &__controls{
+      position: absolute;
+      left: $column-width - 1;
+      background: $color-foreground;
+      border: 1px solid $color-border;
+      padding: .5*$gap;
+      bottom: -1px;
+      @extend %flex;
+      @extend %flex-wrap-nowrap;
+      @include border-radius(0 .5*$gap 0 0);
+      a{
+        margin: .5*$gap;
+      }
+    }
+    &_active{
+      @extend %translate-reset;
+    }
+    &__easy-page-content_activated{
+      margin-left: $column-width;
+    }
+  }
+  &-editable-tabs{
+  li{
+    position: relative;
+    & > span{
+    @include small;
+        text-align: center;
+        display: none;
+        line-height: $tab-height - 2;
+    //position: absolute;
+    //top: 2px;
+    //right: 2px;
+    //left: 2px;
+    //background: $color-foreground;
+    //border: 1px solid $color-border-minor;
+    //display: none;
+    }
+    &:hover{
+    & > a + span {
+      display: inline-block;
+    }
+    }
+  }
+  }
+  &__module{
+    #easy_grid_sidebar &{
+      width: 100% !important;
+      float: none !important;
+      padding: 0 $box-padding;
+    }
+    &--gauge.push-left{
+      @include respond-to(min-small-screen){
+        width: 360px;
+      }
+    }
+    &--trend{
+      cursor: pointer;
+      @extend %flex;
+      @extend %flex-direction-column;
+      padding-bottom: 0;
+      margin-right: $box-padding !important;
+      @include respond-to(max-menu-collapse) {
+        margin-right: .5*$box-padding !important;
+      }
+      @include respond-to(max-small-screen) {
+        margin-right: 0 !important;
+      }
+      .module-toggle-button {
+        margin-bottom: 0;
+      }
+      .module-toggle-button + div{
+        margin-top: 0;
+      }
+      .module-heading{
+        padding-right: 4*$gap; //$retrace--headings;
+        padding-bottom: .5*$gap;
+        &-links{
+          @include display(flex !important);
+          @extend %flex-direction-column;
+          right: -$gap;
+          top: -5%;
+          opacity: 0;
+          padding: 0;
+          font-size: 1rem;
+          @include respond-to(max-menu-collapse) {
+            right: -.5*$gap;
+          }
+        }
+        & > span{
+          max-width: 100%;
+          height: 2.25em;
+          overflow: hidden;
+        }
+      }
+      &:hover{
+        transform: scale(1.05);
+        cursor: pointer;
+        .module-heading-links{
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .module-content {
+        height: auto;
+        margin-bottom: 0 !important;
+        @extend %flex-grow-1;
+      }
+      &.push-left{
+        float: none;
+        min-width: 200px;
+        @extend %box-sizing-border-box;
+        @include respond-to(min-small-screen) {
+          float: left;
+          width: calc(100% / 2 - #{$gap});
+        }
+        @include respond-to(min-medium-screen) {
+          width: calc(100% / 3 - #{$box-padding});
+        }
+        @include respond-to(min-large-screen) {
+          width: calc(100% / 4 - #{$box-padding});
+        }
+        @include respond-to(min-xlarge-screen) {
+          width: calc(100% / 5 - #{$box-padding});
+        }
+        @include respond-to(min-xxlarge-screen) {
+          width: calc(100% / 6 - #{$box-padding});
+        }
+        @include respond-to(min-xxxlarge-screen) {
+          width: calc(100% / 8 - #{$box-padding});
+        }
+        .splitcontent &{
+          @include respond-to(min-small-screen) {
+            width: calc(100% / 2 - #{$gap});
+          }
+          @include respond-to(min-medium-screen) {
+            width: calc(100%);
+          }
+          @include respond-to(min-xlarge-screen) {
+            width: calc(100% / 2 - #{$box-padding});
+          }
+          @include respond-to(min-xxlarge-screen) {
+            width: calc(100% / 3 - #{$box-padding});
+          }
+          @include respond-to(min-xxxlarge-screen) {
+            width: calc(100% / 4 - #{$box-padding});
+          }
+        }
+        #easy_grid_sidebar &{
+          margin-bottom: $box-margin;
+          border-top: none;
+          padding: 0 $box-padding;
+          min-height: 155px;
+          .module-heading{
+            &-links{
+              background: none;
+            }
+          }
+        }
+      }
+      &[class*=palette]{
+        .expander{
+          $expander__color: rgba($color-text,.5);
+          $expander__color--hover: rgba($color-text,1);
+
+          &:before{
+            border-top-color: $expander__color;
+            border-bottom-color: $expander__color;
+            &:hover{
+              border-top-color: $expander__color--hover;
+              border-bottom-color: $expander__color--hover;
+            }
+          }
+          &:after{
+            border-left-color: $expander__color;
+            border-right-color: $expander__color;
+            &:hover{
+              border-left-color: $expander__color--hover;
+              border-right-color: $expander__color--hover;
+            }
+          }
+          &:hover{
+            &:before{
+              border-top-color: $expander__color--hover;
+              border-bottom-color: $expander__color--hover;
+            }
+            &:after{
+              border-left-color: $expander__color--hover;
+              border-right-color: $expander__color--hover;
+            }
+          }
+        }
+      }
+      @extend %palette-background;
+    }
+  }
+  &-module{
+    margin-right: 0; //$box-padding;
+    @extend %box-sizing-border-box;
+    width: 100%;
+    //margin-left: $gap;
+    @include respond-to(max-small-screen) {
+      margin-right: 0;
+    }
+    .edit &{
+      margin-right: 0;
+    }
+    @include respond-to(min-medium-screen){
+    //margin-right: $box-padding;
+    }
+    &-form{
+      @extend %form-box;
+    }
+    .easy-query-map{
+      margin-bottom: 2*$gap;
+    }
+  }
+}
+#easy_page_tabs {
+  margin-bottom: 0;
+  order: 1;
+  //@extend %tab-parent;
+  //& + #content{
+  //  padding-top: 0;
+  //}
+  &:first-child{
+    background: mix($color-background, $color-foreground);
+  }
+  .ps__rail-x{
+    display: none !important; //TODO: nahredit za funkcni
+  }
+}
+#easy-page-layout-service-box-bottom{
+  padding-top: $box-margin;
+  //text-align: center;
+  z-index: 2;
+}
+
+.add-module-edit-content{
+  & ~ div{
+    margin-top: $box-margin;
+    margin-bottom: 0;
+  }
+}

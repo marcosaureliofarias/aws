@@ -1,0 +1,14 @@
+<% query.filters.each do |field_id, filter_options| %>
+  <p>
+    <%= query.label_for(field_id) %>
+    <% if filter_options[:operator] == 'date_period_1' %>
+      <% values = query.values_for(field_id) %>
+      <%= values['period'] %>: <%= values['period_days'] %>
+    <% elsif filter_options[:operator] == 'date_period_2' %>
+      <% values = query.values_for(field_id) %>
+      <%= l(query.operators['=']) %> <%= format_date(values['from'].presence) %> - <%= format_date(values['to'].presence) %>
+    <% else %>
+      <%= l(query.operators[filter_options[:operator]]) %> <%= easy_query_selected_values(query, field_id) %>
+    <% end -%>
+  </p>
+<% end %>

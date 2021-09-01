@@ -1,0 +1,83 @@
+<script type='text/javascript' defer>
+  function initDiagrams() {
+    var finishedReplace = [];
+
+    CKEDITOR.on( 'instanceCreated', function( ev ){
+      var editor = ev.editor;
+
+      editor.on( 'pluginsLoaded', function() {
+        CKEDITOR.dialog.add( 'diagramDialog', function ( editor ) {
+          return {
+            title: "<%= l(:diagram_header) %>",
+            minWidth: 400,
+            minHeight: 200,
+            contents: [
+              {
+                  id: 'tab',
+                  label: '',
+                  elements: [
+                      {
+                          type: 'text',
+                          id: 'diagram_title',
+                          label: "<%= l(:diagram_title) %>",
+                          validate: CKEDITOR.dialog.validate.notEmpty( 'Title cannot be empty.' )
+                      }
+                  ]
+              }
+            ],
+            onOk: function() {
+              var dialog = this;
+              var title = dialog.getValueOf( 'tab', 'diagram_title' );
+
+              $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                data: { title: title },
+                url: '<%= j(generate_diagrams_path) %>',
+
+                success: function(data){
+                  editor.insertText('{{include_diagram('+ data.identifier +')}}');
+
+                  var path = data.path;
+
+                  var win = window.open(path, '_blank');
+                  if (win) {
+                      win.focus();
+                  } else {
+                      alert('Please allow popups for this website');
+                  }
+                }
+              });
+            }
+          };
+        });
+        editor.addCommand( 'diagramDialogCmd', new CKEDITOR.dialogCommand( 'diagramDialog' ) );
+      });
+    });
+
+    CKEDITOR.on( 'instanceReady', function( ev ) {
+      if(finishedReplace[ev.editor.id]) { return false; }
+
+      var editor = ev.editor;
+      var instanceName = editor.name;
+      var editorConfig = editor.config;
+
+      editor.config['toolbar_' + editor.config.toolbar].push(['DiagramsButton'])
+      editor.destroy(true);
+      editor = CKEDITOR.replace(instanceName, editorConfig);
+
+      finishedReplace[editor.id] = true;
+
+      editor.ui.addButton('DiagramsButton', {
+          label: 'Diagram',
+          command: 'diagramDialogCmd',
+          toolbar: 'insert',
+          icon: 'source'
+      });
+    });
+  }
+
+  EASY.schedule.require(function () {
+    initDiagrams();
+  }, "CKEDITOR");
+</script>

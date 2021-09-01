@@ -1,0 +1,77 @@
+<div id="version-summary" class="easy-entity-details">
+  <div class="easy-entity-details-header">
+    <div class="contextual">
+      <%= call_hook(:view_versions_show_contextual, {:version => @version, :project => @project}) %>
+    </div>
+
+    <h2><%= @version.name %></h2>
+    <% if @version.easy_version_category %>
+      <p>
+        <%= content_tag(:strong, l(:field_easy_version_category)) %>: <%= @version.easy_version_category.name %>
+      </p>
+    <% end %>
+    <div class="easy-entity-details-description kicker">
+      <div id="roadmap" class="gray-background <%= @version.css_classes %>">
+        <%= render :partial => 'versions/overview', :locals => {:version => @version} %>
+        <%= call_hook :view_versions_show_header_bottom, :version => @version %>
+      </div>
+
+      <%= render(:partial => "wiki/content", :locals => {:content => @version.wiki_page.content}) if @version.wiki_page %>
+    </div>
+  </div>
+  <% content_for (:easy_page_layout_service_box) do %>
+    <div class="easy-entity-details-sidebar-attributes">
+      <% show_estimated_hours = @version.visible_fixed_issues.estimated_hours > 0 && User.current.allowed_to?(:view_estimated_hours, @project)
+         show_spent_hours = @version.spent_hours > 0 && User.current.allowed_to?(:view_time_entries, @project)
+         if show_estimated_hours || show_spent_hours %>
+        <fieldset class="time-tracking">
+          <legend><%= l(:label_time_tracking) %></legend>
+          <table class="highlight">
+            <% if show_estimated_hours %>
+              <tr>
+                <td class="estimated-hours bigger"><%= easy_format_hours(@version.visible_fixed_issues.estimated_hours, :format => 'simple') %></td>
+                <th><label><%= l(:field_estimated_hours) %></label></th>
+              </tr>
+            <% end %>
+            <% if show_spent_hours %>
+              <tr>
+                <td class="spent-hours bigger"><%= easy_format_hours(@version.spent_hours, :format => 'simple') %></td>
+                <th><label><%= l(:label_spent_time) %></label></th>
+              </tr>
+            <% end %>
+          </table>
+        </fieldset>
+        <hr/>
+      <% end %>
+      <div id="status_by">
+        <%= render_issue_status_by(@version, params[:status_by]) if @version.fixed_issues.exists? %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% if @issues.present? %>
+  <%= render(:partial => 'versions/issues', :locals => {:issues => @issues, :project => @project}) -%>
+<% end %>
+
+<%= call_hook :view_versions_show_before_history, :version => @version, :project => @project %>
+
+<%= easy_journal_render_history(@journals, {:collapsible => true, :entity => @version}) -%>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){EASY.journals.collapseUnnecessary();});
+</script>
+
+<%= call_hook :view_versions_show_bottom, :version => @version %>
+
+<% content_for (:easy_page_layout_service_box_primary_actions) do %>
+  <%= link_to(l(:button_edit), edit_version_path(@version, :back_url => original_url), :class => 'button-positive icon icon-edit') if User.current.allowed_to?(:manage_versions, @version.project) %>
+  <%= delete_link(versions_bulk_destroy_path(ids: @version, project_id: @project), class: 'button-negative icon icon-del') %>
+<% end %>
+
+<% content_for (:easy_page_layout_service_box) do %>
+  <%= link_to(l(:button_manage_versions), {:controller => 'projects', :action => 'settings', :id => @version.project, :tab => 'versions'}, :class => 'icon icon-settings button') if User.current.allowed_to?(:manage_versions, @version.project) %>
+  <%= link_to_if_authorized(l(:button_edit_associated_wikipage, :page_title => @version.wiki_page_title), {:controller => 'wiki', :action => 'edit', :project_id => @version.project, :id => Wiki.titleize(@version.wiki_page_title)}, :class => 'button') unless @version.wiki_page_title.blank? || @version.project.wiki.nil? %>
+<% end %>
+
+<% html_title @version.name %>

@@ -1,0 +1,64 @@
+%toolbar {
+  text-align: center;
+  //height: $toolbar-height - 2*$gap;
+  padding: 0.75*$box-padding 0;
+  //background: $toolbar-background;
+  border: 1px solid transparent;
+  .box &, .easy-content-page &{
+    margin-left: -$box-padding;
+    margin-right: -$box-padding;
+    padding: $gap $box-padding;
+  }
+  //@extend %box-shadow-minor;
+  //[class*=button] {
+  //margin-bottom: 0;
+  //}
+  .button-group{
+	margin-bottom: 0;
+  }
+  &:first-child{
+    //margin-top: -$gap - 1;
+    //margin-bottom: $gap;
+    //border-bottom: 1px solid $color-border;
+  }
+  &:last-child{
+    //margin-bottom: -$gap - 1;
+    //border-top: 1px solid $color-border;
+  }
+  #sidebar &,#easy_grid_sidebar &{
+   // text-align: inherit;
+  }
+  @extend %box-last-bottom-negativ-margin;
+}
+%toolbar-bottom{
+  @extend %toolbar;
+  border-top-color: $color-border;
+  .box &, .easy-content-page &{
+    //margin-bottom: -$box-padding;
+  }
+}
+%toolbar-top{
+  @extend %toolbar;
+  //border-bottom-color: $color-border;
+}
+%toolbar-fixed{
+  @extend %toolbar;
+  @extend %fixed-maincol;
+  z-index: z($z-priority,modal);
+  margin-left: 0;
+  margin-right: 0;
+}
+%toolbar-fixed-bottom-parent{
+  padding-bottom: $toolbar-height - $gap + 2;
+}
+%toolbar-fixed-bottom{
+  @extend %toolbar-fixed;
+  @extend %toolbar-bottom;
+  @extend %fixed-bottom;
+  margin-bottom: -1px !important;
+  background: $color-foreground;
+  border-top: 1px solid $color-border-minor;
+  & + div{
+    @extend %toolbar-fixed-bottom-parent;
+  }
+}

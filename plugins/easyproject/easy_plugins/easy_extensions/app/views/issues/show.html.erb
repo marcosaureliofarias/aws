@@ -1,0 +1,363 @@
+<% more_attributes_collapsed = !toggle_button_expanded?('hide_more_attributes_issue', User.current, false); editable = @issue.editable? %>
+
+<div id="issue-detail" class="multieditable-container" data-entity-type="Issue" data-entity-id="<%= @issue.id %>" data-url="<%= url_to_entity(@issue, :format => 'json') %>">
+  <div class="easy-entity-details issue details">
+    <div id="issue_detail_header" class="easy-dropper-target easy-drop-issue easy-entity-details-header" data-drop-action="issue" data-issue-id="<%= @issue.id %>" data-issue-show="1">
+      <div class="contextual">
+        <%= call_hook(:view_issues_show_top_contextual_before_progress, :issue => @issue) %>
+      </div>
+      <%= heading_issue(@issue, @issue.safe_attribute?('subject')) %>
+
+      <div class="easy-entity-details-header-attributes<%= ' open' unless more_attributes_collapsed %>">
+        <div id="issue-detail-attributes" class="easy-entity-details-attributes">
+          <div class="attributes">
+            <%= issue_fields_rows do |rows|
+              rows.left l(:field_status), @issue.status.name, :class => 'status', :text_options => {
+                :class => ('multieditable' if @issue.safe_attribute?('status_id')),
+                'data-name' => 'issue[status_id]',
+                'data-value' => @issue.status_id,
+                'data-type' => 'select',
+                'data-source' => easy_autocomplete_path('allowed_issue_statuses', :issue_id => @issue)
+              }
+
+              rows.right l(:field_priority), @issue.priority.name, :class => "priority-#{@issue.priority.position} #{@issue.priority.easy_color_scheme}", :text_options => {
+                :class => ('multieditable' if @issue.safe_attribute?('priority_id')),
+                'data-name' => 'issue[priority_id]',
+                'data-value' => @issue.priority_id,
+                'data-type' => 'select',
+                'data-source' => easy_autocomplete_path('issue_priorities')
+              }
+
+              unless @issue.disabled_core_fields.include?('assigned_to_id')
+                rows.left l(:field_assigned_to), (@issue.assigned_to ? link_to_user(@issue.assigned_to) : '-'), :class => 'assigned-to', :text_options => {
+                  :class => ('multieditable' if @issue.safe_attribute?('assigned_to_id') && !@issue.tracker.easy_distributed_tasks?),
+                  'data-name' => 'issue[assigned_to_id]',
+                  'data-value' => @issue.assigned_to_id,
+                  'data-type' => 'easy_autocomplete',
+                  'data-tpl' => render_issue_attribute_for_inline_edit_assigned_to_id(@issue)
+                }
+              end
+
+              unless @issue.disabled_core_fields.include?('due_date')
+                rows.right l(:field_due_date), format_date_or_time(@issue.due_date), id: 'due_date_row', :class => "due-date #{'overdue' if @issue.overdue?}", :text_options => {
+                  :class => ('multieditable' if @issue.safe_attribute?('due_date')),
+                  'data-name' => 'issue[due_date]',
+                  'data-type' => 'dateui',
+                  'data-value' => @issue.due_date
+                }
+              end
+
+              unless @issue.disabled_core_fields.include?('author_id')
+                rows.left l(:field_author), link_to_user(@issue.author), :class => 'author_id', :text_options => {
+                  :class => ('multieditable' if @issue.safe_attribute?('author_id') && !@issue.tracker.easy_distributed_tasks?),
+                  'data-name' => 'issue[author_id]',
+                  'data-value' => @issue.author_id,
+                  'data-type' => 'select',
+                  'data-source' => easy_autocomplete_path('issue_author_values', :issue_id => @issue)
+                }
+              end
+
+              unless @issue.disabled_core_fields.include?('start_date')
+                rows.right l(:field_start_date), format_date(@issue.start_date), id: 'start_date_row', :class => 'start-date', :text_options => {
+                  :class => ('multieditable' if @issue.safe_attribute?('start_date')),
+                  'data-name' => 'issue[start_date]',
+                  'data-type' => 'dateui',
+                  'data-value' => @issue.start_date
+                }
+              end
+
+              if !@issue.disabled_core_fields.include?('estimated_hours') && User.current.allowed_to?(:view_estimated_hours, @project)
+                rows.left l(:field_estimated_hours), issue_estimated_hours_details(@issue), :class => 'estimated-hours', text_options: {
+                  :class => ('multieditable' if @issue.safe_attribute?('estimated_hours') && !@issue.tracker.easy_distributed_tasks?),
+                  data: {
+                    type: 'hours',
+                    name: 'issue[estimated_hours]',
+                    value: (@issue.estimated_hours.nil? ? '' : @issue.estimated_hours)
+                  }
+                }
+              end
+
+              if @issue.project.module_enabled?(:time_tracking) && User.current.allowed_to?(:view_time_entries, @issue.project)
+                rows.right l(:label_spent_time), issue_spent_hours_details(@issue), :class => 'spent-time'
+              end
+
+              rows.left l(:field_tracker), @issue.tracker.name, :class => 'category'
+
+              rows.right l(:field_created_at), format_time(@issue.created_on), :class => 'created-on'
+
+              unless @issue.disabled_core_fields.include?('easy_email_to')
+                rows.left l(:field_easy_email_to), @issue.easy_email_to, :class => 'email', :text_options => {
+                    :class => ('multieditable' if @issue.safe_attribute?('easy_email_to')),
+                    'data-name' => 'issue[easy_email_to]',
+                    'data-value' => @issue.easy_email_to,
+                    'data-type' => 'text'
+                }
+              end
+
+              unless @issue.disabled_core_fields.include?('easy_email_cc')
+                rows.right l(:field_email_cc), @issue.easy_email_cc, :class => 'email', :text_options => {
+                    :class => ('multieditable' if @issue.safe_attribute?('easy_email_to')),
+                    'data-name' => 'issue[easy_email_cc]',
+                    'data-value' => @issue.easy_email_cc,
+                    'data-type' => 'text'
+                }
+              end
+
+
+              if @issue.closed_on
+                rows.right l(:field_closed_on), format_time(@issue.closed_on), :class => 'closed-on'
+              end
+
+              unless @issue.disabled_core_fields.include?('category_id') || (@issue.category.nil? && @issue.project.issue_categories.none?)
+                rows.right l(:field_category), render_issue_category_with_tree(@issue.category), :class => 'category'
+              end
+
+              if EasySetting.value('display_project_field_on_issue_detail', @issue.project)
+                rows.left l(:field_project), format_html_issue_attribute(Issue, EasyEntityAttribute.new('project'), @issue.project, {:entity => @issue, :editable => @issue.safe_attribute?('project_id')})
+              end
+
+              unless @issue.disabled_core_fields.include?('fixed_version_id') || (@issue.fixed_version.nil? && @issue.assignable_versions.none?)
+                rows.right l(:field_fixed_version), link_to_version(@issue.fixed_version), :class => 'fixed-version', :title => l(:title_version_detail), :text_options => {
+                  :class => ('multieditable' if @issue.safe_attribute?('fixed_version_id')),
+                  'data-name' => 'issue[fixed_version_id]',
+                  'data-value' => @issue.fixed_version_id,
+                  'data-type' => 'select',
+                  'data-source' => easy_autocomplete_path('assignable_versions', :issue_id => @issue)
+                }
+              end
+              call_hook(:view_issues_show_details_rows_bottom, issue: @issue, rows: rows)
+            end %>
+
+          </div>
+        </div>
+        <% custom_field_values = @issue.visible_custom_field_values %>
+        <% if custom_field_values.any? %>
+          <hr />
+          <div id="issue_detail_custom_fields" class="custom-fields">
+            <%= render_show_entity_custom_fields(@issue, @issue.grouped_custom_field_values(custom_field_values), EasySetting.value('show_issue_custom_field_values_layout'), inline_editable: @issue.attributes_editable?) -%>
+          </div>
+        <% end %>
+        <%= call_hook(:view_issues_show_details_bottom, :issue => @issue) %>
+
+        <%= render_more_attributes_button('hide_more_attributes_issue', User.current.id, more_attributes_collapsed) %>
+
+      </div>
+
+      <% if @issue.safe_attribute?('description') || @issue.notes_addable? %>
+        <div class="easy-contextual">
+          <% if @issue.notes_addable? && @issue.description.present? %>
+            <%= link_to(content_tag(:span, l(:button_quote), class: 'tooltip'), quoted_issue_path(@issue),
+                        remote: true, method: 'post', title: l(:button_quote), class: 'icon icon-comment') %>
+          <% end %>
+          <% if @issue.safe_attribute?('description')  %>
+            <%= link_to_in_place_notes_editor(content_tag(:span, l(:button_edit), class: 'tooltip'), '',
+                                              easy_issues_description_edit_path(id: @issue, format: 'js'),
+                                              title: l(:button_edit), accesskey: accesskey(:edit), class: 'icon icon-edit') %>
+          <% end %>
+        </div>
+      <% end %>
+      <div <% if @issue.description.present? %> class="wiki easy-entity-details-description kicker"<% end %> id="show_issue_description">
+        <%= textilizable(@issue, :description, { attachments: @issue.attachments }) %>
+      </div>
+    </div>
+
+    <%= call_hook(:view_issues_show_description_bottom, :issue => @issue) %>
+
+    <% if @issue.has_attachments? %>
+      <%= link_to_attachments( @issue, :thumbnails => true, :enable_toggling => true, :only_mails => true, :label => l(:label_email_address_plural), :toggling_uniq_id => "emails") %>
+      <%= link_to_attachments( @issue, :thumbnails => true, :enable_toggling => true, :without_mails => true, :toggling_uniq_id => "attachments") %>
+    <% end -%>
+
+    <% if @issue.child? %>
+      <%#= cache_if(User.current.admin?, [@issue, User.current, @issue.ancestors]) do %>
+      <%= render_module_easy_box('issue_parents_inner', l(:label_parenttask_plural), icon: 'icon-tracker', class: {container: 'issue-parents'}) do |m| %>
+        <div class="autoscroll">
+          <%= render_ancestors_tree(@issue) %>
+        </div>
+      <% end %>
+      <%# end %>
+    <% end %>
+    <% unless @issue.leaf? %>
+      <%#= cache_if(User.current.admin?, [@issue, User.current, @issue.descendants]) do %>
+      <%= render_module_easy_box('issue_childs_inner', l(:label_subtask_plural), icon: 'icon-tracker', class: {container: 'issue-childs'}) do |m| %>
+        <div class="autoscroll">
+          <%= render_descendants_tree(@issue) %>
+        </div>
+      <% end %>
+      <%# end %>
+    <% end %>
+
+    <% if User.current.allowed_to?(:edit_issues, @project) %>
+      <div id="merge-to-container">
+        <%= render :partial => 'merge_to' %>
+      </div>
+    <% end %>
+
+    <% if @relations.present? || User.current.allowed_to?(:manage_issue_relations, @project) %>
+      <div id="relations">
+        <%= render :partial => 'relations' %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= call_hook(:view_issues_show_journals_top, :issue => @issue, :project => @project) %>
+
+  <%= render partial: 'common/entity_tabs', locals: {tabs: easy_issue_tabs(@issue), tabs_container: 'issue-detail'} %>
+
+  <%= call_hook(:view_issues_show_journals_bottom, :issue => @issue) %>
+
+  <% if editable %>
+    <div id="update" class="easy-entity-update" style="display:none">
+    </div>
+  <% end %>
+</div>
+
+
+<% if editable %>
+  <% content_for :body_bottom do %>
+    <script type="text/javascript">
+      EASY.schedule.late(function () {
+        var delayBinding = "<%= params[:edit] %>" !== "true";
+        var updateHtml;
+        function load_update_form(async, no_loader) {
+          $.ajax({
+            url: '<%= edit_issue_path(@issue) -%>',
+            type: 'GET',
+            noLoader: no_loader && <%= !params[:edit] %>,
+            async: async
+          }).done(function (html) {
+            if(!delayBinding){
+              afterLoad(html);
+            }else{
+              updateHtml = html;
+            }
+            // rating stars
+            //        $('input[type=radio].star').rating();
+          });
+        }
+
+        function afterLoad(html){
+          if (typeof CKEDITOR !== 'undefined') {
+            var n; (n = CKEDITOR.instances['issue_notes']) && n.destroy();
+          }
+          $('#update').show().html(html);
+          setupFileDrop();
+          EASY.utils.initFileUploads();
+          EASY.utils.showAndScrollTo('update', -50);
+          EASY.utils.warnLeaveUnsaved();
+          initEasyAutocomplete();
+        }
+
+        EASY.utils.showUpdate = function show_update(targ) {
+          if (targ) {
+            const isClicked = targ.classList.contains("button");
+            if (isClicked) {
+              EASY.utils.showAndScrollTo('update', -50);
+              return;
+            }
+          }
+          delayBinding = false;
+          if (window.issue_was_changed) {
+            if (typeof CKEDITOR !== 'undefined') {
+              var n; (n = CKEDITOR.instances['issue_notes']) && n.destroy();
+            }
+            $("#update").empty();
+            load_update_form(false, false);
+          } else if(updateHtml) {
+            afterLoad(updateHtml);
+          }
+
+          $(document).trigger("erui_new_dom");
+          EASY.responsivizer.gridFakeResponsive();
+          EASY.responsivizer.tabularFakeResponsive();
+          $(targ).removeClass('button-positive').addClass('button');
+        };
+
+        load_update_form(true, true);
+
+        $(".multieditable").next().on('click', function () {
+          $("form.editableform").on('submit', function () {
+            window.issue_was_changed = true;
+          });
+        });
+
+      }, -15);
+    </script>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    EASY.utils.contentHeightSwitchable('easy_long_note', '<%= j l(:label_note_show_more) %>', '<%= j l(:label_note_show_less) %>');
+    EASY.journals.collapseUnnecessary();
+  });
+</script>
+
+<% ### PAGE CUSTOMS ##########################################################   %>
+
+<% html_title @issue.to_s %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= call_hook(:view_issue_sidebar_top, :issue => @issue) %>
+
+  <div class="easy-entity-details-sidebar-attributes multieditable-container" data-entity-type="Issue" data-entity-id="<%= @issue.id %>" data-url="<%= url_to_entity(@issue, :format => 'json') %>">
+    <table class="highlight">
+      <% if @issue.project.module_enabled?(:time_tracking) && User.current.allowed_to?(:view_time_entries, @issue.project) %>
+        <% if @issue.estimated_hours.to_f > 0 %>
+          <tr>
+            <td class="bigger estimated-time<%= ' color-positive' if @issue.total_spent_hours < @issue.estimated_hours.to_f %><%= ' color-negative' if @issue.total_spent_hours > @issue.estimated_hours.to_f %>">
+              <%= format_locale_number(@issue.total_spent_estimated_timeentries, :precision => 0, :percentage => true) -%></td>
+            <th class="highlight-desc">
+              <label><%= l(:label_spent_to_estimated_time_ratio) %></label>
+            </th>
+          </tr>
+        <% end %>
+        <tr>
+          <td class="big spent-time"><%= easy_link_to_spent_hours(@issue, @issue.total_spent_hours, {:format => 'simple'}) -%></td>
+          <th class="highlight-desc">
+            <label><%= l(:label_spent_time_total) %></label>
+            <%= easy_issue_timer_button(@issue) %>
+          </th>
+        </tr>
+      <% end %>
+      <% unless @issue.disabled_core_fields.include?('done_ratio') %>
+        <tr>
+          <td class="progress"><%= progress_bar(@issue.done_ratio, :legend => "#{@issue.done_ratio}%", :width => '100%') %></td>
+          <th><%= content_tag :label, "#{l(:label_progress)}" %></th>
+        </tr>
+      <% end %>
+      <%= call_hook(:view_issue_sidebar_issue_details_table_bottom, :issue => @issue) %>
+    </table>
+  </div>
+
+  <%= render :partial => 'sidebar/issue_info', :locals => {:issue => @issue} %>
+  <%= call_hook(:view_issue_sidebar_under_issue_info, :issue => @issue) %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <%= render :partial => 'easy_taggables/easy_taggables', :locals => {:entity => @issue} %>
+  <% if User.current.allowed_to?(:add_issue_watchers, @issue.project) || User.current.allowed_to?(:view_issue_watchers, @issue.project) %>
+    <%= render :partial => 'sidebar/issue_watchers', :locals => {:watched => @issue} %>
+  <% end %>
+  <%= call_hook(:view_issue_sidebar_bottom, :issue => @issue) %>
+<% end %>
+
+<% content_for :sidebar_exports do %>
+  <div class="other-formats links">
+    <h6 class="floating"><%= l(:label_easy_query_export_links) -%></h6>
+    <% easy_other_formats_links(no_container: true, utm_content: 'issue') do |f| %>
+      <%= f.link_to 'PDF', title: l(:title_other_formats_links_pdf) %>
+      <%= f.link_to 'Atom', url: {key: User.current.rss_key}, title: l(:title_other_formats_links_atom) %>
+      <%= f.link_to 'ICS', title: l(:title_other_formats_links_ics), caption: 'iCal' %>
+      <%= f.link_to 'QR', remote: true, class: 'qr', title: l(:title_other_formats_links_qr) %>
+      <%= call_hook(:view_issue_other_formats_link_bottom, {issue: @issue, f: f}) %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= auto_discovery_link_tag(:atom, {:format => 'atom', :key => User.current.rss_key}, :title => "#{@issue.project} - #{@issue.tracker} ##{@issue.id}: #{@issue.subject}") %>
+<% end %>
+<% include_calendar_headers_tags %>
+<% include_attachment_tags %>
+

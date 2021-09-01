@@ -1,0 +1,62 @@
+<%
+  if @default_filter && @default_filter.easy_query
+    query_link = link_to("#{@default_filter.easy_query.name}" << (@default_filter.easy_query.user ? " - #{@default_filter.easy_query.user.name}" : ''), edit_easy_query_path(@default_filter.easy_query))
+  else
+    query_link = '-'
+  end
+%>
+
+<%= title l("easy_query.name.#{@easy_query_type.name.underscore}", :default => @easy_query_type.name.underscore) %>
+<div class="multieditable-container" data-entity-type="DefaultQueryMapping" data-entity-id="<%= @default_filter && @default_filter.id %>" data-url="<%= update_default_easy_query_management_path(:type => @easy_query_type.name, :format => 'json') %>">
+  <h3 class="inline"><%= l(:title_default_query) %>:</h3>
+  <%= link_to('', destroy_default_easy_query_management_path(:type => @easy_query_type.name), :method => :delete, :class => 'icon icon-del') if @default_filter %>
+
+  <%= content_tag(:span, query_link, {
+      :class => 'multieditable',
+      'data-name' => 'easy_default_query_mapping[easy_query_id]',
+      'data-value' => @default_filter && @default_filter.easy_query_id,
+      'data-type' => 'select',
+      'data-source' => easy_autocomplete_path('saved_filters', :entity_type => @easy_query_type.name)
+  }).html_safe %>
+
+  <% if @default_query_mappings.any? %>
+    <table class="list reorder">
+      <thead>
+        <tr>
+          <th></th>
+          <th><%= l(:field_role) %></th>
+          <th><%= l(:label_saved_query_name) %></th>
+          <th><%= l(:field_author) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @default_query_mappings.each do |mapping| %>
+          <% query = mapping.easy_query %>
+          <tr id=<%= dom_id(mapping) %>>
+            <td class="center reorder-handler"><%= render_reorder_handle(easy_default_query_mapping_path(mapping), 'easy_default_query_mapping') %></td>
+            <td><%= mapping.default_for_role.name %></td>
+            <td><%= query.name %></td>
+            <td><%= query.user %></td>
+            <td class="easy-query-additional-ending-buttons"><%= link_to l(:button_edit), edit_easy_default_query_mapping_path(mapping), :class => 'icon icon-edit' %>
+              <%= link_to l(:button_delete), easy_default_query_mapping_path(mapping), method: :delete, data: {confirm: l(:text_are_you_sure)}, remote: true, class: 'icon icon-del' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
+<%= render @query, options: { hascontextmenu: false }, form_options: {free_search_options: {free_search_url: edit_easy_query_management_path}}%>
+
+<% content_for :sidebar do %>
+  <% render partial: 'easy_query_management/easy_query_type_list' %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to l(:label_query_new), new_easy_query_path(type: @easy_query_type.name, back_url: edit_easy_query_management_path(type: @easy_query_type.name)), :class => 'icon icon-add button-positive' %>
+  <% if EasyQuery.exists?(type: @easy_query_type.name) %>
+    <%= link_to l(:label_default_query_mapping_new), new_easy_default_query_mapping_path(type: @easy_query_type.name), :class => 'icon icon-add button-positive' %>
+  <% end %>
+<% end %>

@@ -1,0 +1,147 @@
+<%= title @easy_entity_import.to_s %>
+<%= form_tag('', { multipart: true, data: { remote: true, fetch_url: fetch_preview_easy_entity_import_path(@easy_entity_import), import_url: import_easy_entity_import_path(@easy_entity_import) }, class: 'form-box' }) do %>
+  <div class="" id="easy_entity_import_source_inputs">
+    <div class=" tabular splitcontent">
+      <%= fields_for(@easy_entity_import, :easy_entity_import, { builder: Redmine::Views::LabelledFormBuilder }) do |f| %>
+        <div class="splitcontentleft">
+          <div class="box">
+            <%= toggling_fieldset(l(:heading_easy_entity_import_edit) + " (#{@easy_entity_import.import_format})", { ajax_call: false }) do %>
+              <div id="easy_entity_import_url" style="display:none">
+                <p>
+                  <%= label_tag(:api_url, l(:field_url)) %>
+                  <%= url_field_tag(:api_url, @easy_entity_import.api_url, style: 'width:auto', size: 40) %>
+                </p>
+                <a href="javascript:void(0)" onclick="$('#easy_entity_import_attachments').show();$(this).closest('div').hide()"><%= l(:field_easy_entity_import_example_file) %></a>
+              </div>
+              <div id="easy_entity_import_attachments" style="display:none">
+                <%= render(partial: 'attachments/form', locals: { container: @easy_entity_import, show_attached: true, max_concurrent_ajax_uploads: 100 }) %>
+                <a href="javascript:void(0)" onclick="$('#easy_entity_import_url').show();$(this).closest('div').hide()"><%= l(:field_easy_entity_import_api_url) %></a>
+              </div>
+            <% end %>
+          </div>
+          <div class="clear"></div>
+          <p id="easy_entity_import_is_automatic" title="<%= l(:heading_easy_entity_imports_cant_load_from_file) %>">
+            <%= f.check_box(:is_automatic, label: l(:field_easy_entity_import_is_automatic)) %>
+          </p>
+        </div>
+      <% end %>
+      <% if @easy_entity_import.form_path %>
+        <div class="splitcontentright">
+          <%= render(partial: "easy_entity_imports/forms/#{@easy_entity_import.form_path}", locals: { easy_entity_import: @easy_entity_import }) %>
+        </div>
+      <% end %>
+    </div>
+    <p class="buttons">
+      <%= button_tag(onclick: 'fetchPreview(this);', class: 'button-3') { content_tag(:span, l(:button_data_save_n_preview), class: 'icon icon-magnifier') } %>
+      <%= button_tag(onclick: 'submitImport(this);', class: 'button-positive import-button') { content_tag(:span, l(:button_data_import), class: 'icon icon-import') } %>
+
+      <%= link_to(l(:button_back), easy_entity_imports_path, class: 'button') %>
+    </p>
+  </div>
+  <div class="clear"></div>
+
+  <% unless @easy_entity_import.predefined? %>
+    <section id="easy_entity_import_mappings" class="splitcontent" data-update-url="<%= assign_import_attribute_easy_entity_import_path(@easy_entity_import) %>">
+      <div class="splitcontentleft">
+        <p style="padding: 40px 0;display:none"><i class="indicator icon-loading icon-spin"></i></p>
+        <%= render(partial: 'easy_entity_imports/previews/' + @easy_entity_import.preview_path, locals: { easy_entity_import: @easy_entity_import }) if @processed %>
+      </div>
+      <div class="splitcontentright">
+        <div class="tabular">
+          <% if @easy_entity_import.is_a?(EasyEntityCsvImport) %>
+            <%= fields_for('easy_entity_import', @easy_entity_import) do |f| %>
+              <p>
+                <%= f.label(:merge_by, l(:field_merge_by)) %>
+                <%= f.select(:merge_by, options_for_select(@easy_entity_import.native_entity_columns.collect { |attribute| [attribute.caption, attribute.name] }, f.object.merge_by)) %>
+              </p>
+            <% end %>
+          <% end %>
+          <% if @easy_entity_import.entity_type == 'Project' %>
+            <hr />
+            <%= fields_for('easy_entity_import[settings]') do |f| %>
+              <p>
+                <%= f.label(:template_id, l(:field_template_name)) %>
+                <%= f.select(:template_id, options_from_collection_for_select(Project.templates.order(:lft), :id, :name, @easy_entity_import.settings[:template_id]), { include_blank: true }, { onchange: "$('#template_options_fieldset').toggle(this.value !== '');" }) %>
+                <em class="help"><%= l(:text_easy_project_import_template_hint) %></em>
+              </p>
+              <div id="template_options_fieldset" style="<%= @easy_entity_import.settings[:template_id].present? ? '' : 'display:none' %>">
+                <p id="form-start-date">
+                  <%= f.label(:start_date, l(:label_template_easy_start_date)) %>
+                  <%= f.text_field(:start_date, value: @easy_entity_import.settings[:start_date] || Date.current, size: 10) %>
+                  <%= calendar_for('easy_entity_import_settings_start_date') %>
+                  <em class="help"><%= l('advanced_importer.hint_used_only_when_empty_in_import_file') %></em>
+                </p>
+                <p id="form-checkbox">
+                  <%= f.label(:update_dates, l(:label_project_templates_update_dates)) %>
+                  <%= f.check_box(:update_dates, { checked: @easy_entity_import.settings[:update_dates] == '1' }, '1') %>
+                </p>
+                <p id="form-checkbox">
+                  <%= f.label(:match_starting_dates, l(:label_match_starting_dates)) %>
+                  <%= f.check_box(:match_starting_dates, { checked: @easy_entity_import.settings[:match_starting_dates] == '1' }, '1') %>
+                </p>
+              </div>
+            <% end %>
+            <hr />
+          <% end %>
+          <%= link_to('javascript:void()', id: 'easy_entity_import_toggle_advanced', class: 'contextual') { content_tag(:i, '', class: 'icon-watch') } %>
+          <br class="clear"/>
+          <% @easy_entity_import.assignable_entity_columns.except('homepage').values.group_by(&:assoc).each do |group, columns| %>
+            <%= content_tag(:h4, h(group)) if group %>
+            <% columns.each do |att| %>
+              <%= fields_for("easy_entity_import_attribute[#{att}]") do |f| %>
+                <div id="easy_entity_import_att_<%= att.to_s.tr('.', '-') %>">
+                  <% selected = @easy_entity_import.easy_entity_import_attributes_assignments.to_a.detect { |c| c.entity_attribute == att.to_s } %>
+                  <p class="easy-entity-import-attribute-form-field" data-entity-attribute="<%= att %>" data-id="<%= selected.try(:id) %>">
+                    <%= f.label('value', "#{att.caption} =>", class: (att.is_required? ? 'required' : '')) %>
+                    <%= f.text_field(:value,
+                                     value: selected && (selected.try(:is_custom) ? selected.value : selected.source_attribute.to_s.split('/').last),
+                                     placeholder: att.name,
+                                     disabled: !selected.try(:is_custom?),
+                                     title: selected.try(:source_attribute),
+                                     class: 'attribute-value') %>
+                    <%= f.text_field(:default_value,
+                                     value: selected && selected.default_value,
+                                     placeholder: l(:field_default_value),
+                                     size: 15,
+                                     class: 'attribute-default-value',
+                                     disabled: selected.try(:is_custom?),
+                                     style: "#{'visibility:hidden' if selected.nil? || selected.is_custom?}") %>
+                    <%= f.hidden_field(:source_attribute, value: selected.try(:source_attribute), class: 'attribute-source') %>
+                    <%= f.check_box(:is_custom, { class: 'easy-entity-import-attribute-is-custom-toggle', title: l(:label_advanced), checked: selected.try(:is_custom) }, true, false) %>
+                    <%= f.label(:is_custom, l(:field_easy_entity_import_use_custom_fixed_value), class: 'inline') %>
+                    <%= link_to(destroy_import_attribute_easy_entity_import_path(selected), remote: true, method: :delete, data: { confirm: l(:text_are_you_sure) }) { content_tag(:span, '', class: 'icon-del') } if selected %>
+                  </p>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+  <div class="clear"></div>
+<% end %>
+
+<%= content_for(:header_tags) do %>
+  <%= javascript_include_tag('easy_entity_imports', plugin: 'easy_extensions', defer: true) %>
+  <%= stylesheet_link_tag('easy_entity_imports', plugin: 'easy_extensions') %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.main(function () {
+    <% if @processed %>
+      showEasyEntityPreview();
+    <% end %>
+    <% if @easy_entity_import.api_url.present? %>
+      $("#easy_entity_import_url").show();
+    <% else %>
+      $("#easy_entity_import_attachments").show();
+    <% end %>
+  });
+</script>
+
+<style type="text/css">
+  #easy_entity_import_mappings .splitcontentleft {
+    overflow: auto;
+  }
+</style>

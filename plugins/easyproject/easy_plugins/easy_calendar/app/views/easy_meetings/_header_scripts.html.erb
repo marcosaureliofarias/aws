@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag('easy_calendar') %>
+<%= javascript_include_tag('easy_calendar', defer: true) %>
+<script type="text/javascript">
+  window.easyCalendarOptions = {
+      'easy_calendar_base_url':'<%= get_easy_absolute_uri_for.to_s %>',
+      'easy_calendar_feed':'<%= easy_calendar_feed_path -%>',
+      'easy_calendar_user_availability': '<%= easy_calendar_user_availability_path -%>',
+      'easy_calendar_save_availability': '<%= easy_calendar_save_availability_path -%>',
+      'easy_calendar_save_calendars' : '<%= easy_calendar_save_calendars_path %>'
+  }
+</script>

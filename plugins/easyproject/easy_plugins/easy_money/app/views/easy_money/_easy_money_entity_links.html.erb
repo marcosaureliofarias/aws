@@ -1,0 +1,20 @@
+<% easy_money_settings = project.easy_money_settings %>
+<% if easy_money_settings.revenues_type == 'list'-%>
+  <li>
+    <% if User.current.allowed_to?(:easy_money_manage_other_revenue, project) -%>
+      <%= link_to(l(:button_easy_money_project_new_revenue), { :controller => 'easy_money_other_revenues', :action => 'new', :'easy_money[entity_type]' => entity_type, :'easy_money[entity_id]' => entity_id, :back_url => params[:back_url] }, { :title => l(:title_easy_money_project_new_revenue), :class => 'revenue-new-link icon icon-money' }) -%>
+    <% elsif User.current.allowed_to?(:easy_money_manage_expected_revenue, project) && easy_money_settings.show_expected? -%>
+      <%= link_to(l(:button_easy_money_project_new_revenue), { :controller => 'easy_money_expected_revenues', :action => 'new', :'easy_money[entity_type]' => entity_type, :'easy_money[entity_id]' => entity_id, :back_url => params[:back_url] }, { :title => l(:title_easy_money_project_new_revenue), :class => 'revenue-new-link icon icon-money' }) -%>
+    <% end -%>
+  </li>
+<% end -%>
+<% if easy_money_settings.expenses_type == 'list' -%>
+  <li>
+    <% if User.current.allowed_to?(:easy_money_manage_other_expense, project) -%>
+      <%= link_to(l(:button_easy_money_project_new_expense), { :controller => 'easy_money_other_expenses', :action => 'new', :'easy_money[entity_type]' => entity_type, :'easy_money[entity_id]' => entity_id, :back_url => params[:back_url] },{ :title => l(:title_easy_money_project_new_expense), :class => 'expense-new-link icon icon-money' }) -%>
+    <% elsif User.current.allowed_to?(:easy_money_manage_expected_expense, project) && easy_money_settings.show_expected? -%>
+      <%= link_to(l(:button_easy_money_project_new_expense), { :controller => 'easy_money_expected_expenses', :action => 'new', :'easy_money[entity_type]' => entity_type, :'easy_money[entity_id]' => entity_id, :back_url => params[:back_url] },{ :title => l(:title_easy_money_project_new_expense), :class => 'expense-new-link icon icon-money' }) -%>
+    <% end -%>
+  </li>
+<% end -%>
+<%= render partial: 'easy_money/easy_money_settings_link', locals: { project: project } %>

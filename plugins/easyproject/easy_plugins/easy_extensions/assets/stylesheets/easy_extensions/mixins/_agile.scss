@@ -1,0 +1,93 @@
+$agile-item-height: px2rem(100px);
+
+%agile__stickafter {
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -5px;
+    right: -5px;
+    height: 1px;
+    background: $color-border;
+  }
+}
+
+@mixin agile-scheme($color, $bg: false, $border: true){
+  $color-adjusted: intelighten($color, 0.95);
+  $color-adjusted: mix($color,$color-foreground, 10%);
+  &:before {
+    @extend %priority;
+    background: $color;
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem;
+    top: 1px;
+    bottom: 0;
+    left: 0;
+    width: .2rem;
+  }
+
+  @if ($border == true) {
+  }
+
+  @if ($bg == true) {
+    background-color: $color-adjusted !important;
+  }
+}
+
+%agile__item{
+  background: $color-foreground;
+  margin: .1*$box-padding;
+  border: 1px solid mix($color-border-minor, $color-border);
+  height: $agile-item-height;
+  position: relative;
+  a{
+    color: $color-text;
+  }
+}
+
+%agile__list{
+  @extend %flex-grow-1;
+  border: 1px dashed $color-border;
+  border-top: 3px solid $color-border;
+  //padding-bottom: .5*$gap;
+  min-height: $agile-item-height;
+  width: 100%;
+  //background: $color-foreground;//mix($color-background, mix($color-background, $color-foreground));
+  background: mix($color-background, $color-foreground);
+  &:hover, &.droppable-hover {
+    background: $color-background;
+  }
+  &--drop {
+    &-valid {
+      border-color: $color-positive;
+    }
+    &-valid-hover {
+      background: rgba($color-positive, .25) !important;
+    }
+    &-invalid {
+      opacity: .5;
+    }
+  }
+}
+
+@mixin agile-col-widths ($agile__col-width--min,$agile__col-width--min-adjusted,$max: false){
+  $media--half: $media-collapse-sidebar + ($media-collapse-large - $media-collapse-sidebar)/2;
+  $width--half: $agile__col-width--min-adjusted + ($agile__col-width--min - $agile__col-width--min-adjusted)/2;
+
+  min-width: $agile__col-width--min;
+  @if $max {
+    max-width: calc(100% - #{2*$agile__col-width--min});
+  }
+  @media only screen and (min-width: $media-collapse-sidebar) and (max-width: $media-collapse-large + 1) {
+    min-width: $agile__col-width--min-adjusted;
+    @if $max {
+      max-width: calc(100% - #{2*$agile__col-width--min-adjusted});
+    }
+  }
+  @media only screen and (min-width: $media--half) and (max-width: $media-collapse-large + 1) {
+    min-width: $width--half;
+    @if $max {
+      max-width: calc(100% - #{2*$width--half});
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<fieldset>
+  <legend><%= l(:label_easy_data_templates_target_settings) -%></legend>
+  <p>
+    <%= l(:label_easy_data_templates_choose_project) %>
+    <%= select_tag 'easy_data_template[settings][target_project_id]', project_tree_options_for_select(Project.visible.non_templates.sorted, :selected => settings['target_project_id']) %>
+  </p>
+</fieldset>

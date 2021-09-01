@@ -1,0 +1,37 @@
+<%= title @tag.name %>
+
+<% EasyExtensions::EasyTag.all_for(@tag) do |model, options| %>
+  <%= render_easy_entity_assignments(@tag, model, options) %>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to(l(:button_delete), destroy_easy_tag_path(@tag.name), {:method => 'delete', :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del button', :title => l(:title_delete)}) %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <div class="entity-array">
+    <% tag_cloud(ActsAsTaggableOn::Tag.order(:name), %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to "#{tag.name} (#{tag.taggings_count})", easy_tag_path(tag.name), :class => css_class %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <style type="text/css">
+    #sidebar .entity-array > a.css1, .entity-array > a.css1 {
+      font-size: 1.0em;
+    }
+
+    #sidebar .entity-array > a.css2, .entity-array > a.css {
+      font-size: 1.2em;
+    }
+
+    #sidebar .entity-array > a.css3, .entity-array > a.css3 {
+      font-size: 1.4em;
+    }
+
+    #sidebar .entity-array > a.css4, .entity-array > a.css4 {
+      font-size: 1.6em;
+    }
+  </style>
+<% end %>

@@ -1,0 +1,36 @@
+<% cal_id = "easy-calendar-#{modul_uniq_id}" %>
+
+<div class='easy-calendar-container'>
+  <div class="easy-calendar-header nowrap">
+    <div class="toolbar">
+      <div class="button-group">
+        <%= render :partial => 'easy_calendar/zoom_buttons', :locals => {:settings => settings} %>
+      </div>
+      <div class="easy-cal-date-selection easy-calendar-listing-links">
+        <a class="easy-cal-prev prev"></a>
+        <span class="easy-cal-title"></span>
+        <a class="easy-cal-next next"></a>
+      </div>
+    </div>
+  </div>
+  <div id="<%= cal_id %>" class="easy-calendar"></div>
+</div>
+
+<%= render(:partial => 'easy_meetings/header_scripts') %>
+
+<script type="text/javascript">
+  EASY.schedule.require(function () {
+    <% module_uid = modul_uniq_id.sub('module_inside_', '') %>
+    $("#<%= cal_id %>").easyCalendar({
+      enabledCalendars: <%= (settings[:enabled_calendars] || []).to_json.html_safe %>,
+      calendarTypes: <%= EasyCalendar::AdvancedCalendar.calendars_data(self).to_json.html_safe %>,
+      events: <%= {:url => project_meetings_feed_path(:project_id => @project, :module_id => module_uid)}.to_json.html_safe %>,
+      moduleId: <%= module_uid.to_json.html_safe %>,
+      minTime: <%= (settings[:display_from] || 0).to_json.html_safe %>,
+      maxTime: <%= (settings[:display_to] || 24).to_json.html_safe %>,
+      firstDay: <%= (EasyExtensions::Calendars::Calendar.first_wday || 1).to_json.html_safe %>,
+      columnFormat: <%= { month: 'dddd', week: "#{to_js_date_format(short_date_format)}", day: "dddd, #{to_js_date_format(short_date_format)}" }.to_json.html_safe %>,
+      height: <%= (settings[:height] || 740).to_json.html_safe %>
+    });
+  }, jQueryPluginGetter("easyCalendar"));
+</script>

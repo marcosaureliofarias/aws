@@ -1,0 +1,9 @@
+<div id="diagram-modal" style="display: none" label-button-create="<%= l(:button_create) %>" label-button-close="<%= l(:button_close) %>" label-insert-diagram="<%= l(:diagram_header) %>">
+  <fieldset style='border: 0px !important'>
+      <p style='text-align: center'>
+        <label for="diagram_title" style='display: block'><%= l(:diagram_title) %> <span class="required">*</span></label>
+        <input type="hidden" name="generate_diagram_path" id="generate_diagram_path" value="<%= generate_diagrams_path %>">
+        <input type="text" name="diagram_title" id="diagram_title" size="32"/>
+      </p>
+  </fieldset>
+</div>

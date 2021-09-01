@@ -1,0 +1,25 @@
+<% unless task.is_one_time? %>
+  <div class="box">
+    <p>
+      <%= f.check_box :active %>
+    </p>
+    <% unless task.new_record? %>
+      <p>
+        <%= label_tag 'easy_rake_task_interval', l(:label_easy_rake_period) %>
+        <%= f.text_field(:interval, :size => 3, :placeholder => 'x', :no_label => true, :style => 'width:auto;') %>
+        <%= f.select(:period, options_for_select(EasyRakeTask.available_periods.map { |p| [l("label_easy_rake_period_#{p}"), p] }, task.period), { no_label: true }, class: 'inline') %>
+        <em><%= l(:text_job_interval_setting) %></em>
+      </p>
+      <p>
+        <%= label_tag 'next_run_at_date', l(:field_next_run_at) %>
+        <%= text_field_tag 'next_run_at[date]', task.next_run_at && User.current.user_time_in_zone(task.next_run_at).strftime('%Y-%m-%d'), size: 10 -%><%= calendar_for('next_run_at_date') -%>
+        <span><%= select_time task.next_run_at && User.current.user_time_in_zone(task.next_run_at), { ignore_date: true, ampm: Setting.time_format != '%H:%M', prefix: 'next_run_at[time]' }, class: 'inline' -%></span>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+<% unless task.settings_view_path.blank? %>
+  <div id="easy_rake_tasks_inner_settings_container" class="box">
+    <%= render partial: @task.settings_view_path, locals: { f: f, task: task } %>
+  </div>
+<% end %>

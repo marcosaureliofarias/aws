@@ -1,0 +1,34 @@
+
+.avatar-container{
+  //float: left;
+  //clear: both;
+  margin-right: $gap;
+  margin-left: $gap;
+  @extend %online-status;
+}
+.gravatar {
+  padding: 0.2*$gap;
+  border: solid 1px $avatar-border;
+  background: $color-foreground;
+  vertical-align: middle;
+  min-width:  2*$gap;
+  @extend %border-radius-infinite;
+  @extend %box-shadow-minor;
+  overflow: hidden;
+  //@extend %box-shadow-minor;
+}
+.avatar-edit {
+  @extend %flex;
+  @extend %align-items-center;
+  padding-bottom: 2*$gap !important;
+  .avatar-container {
+    margin-right: 2*$gap;
+  }
+}
+#tab-content-avatar {
+  margin-bottom: 0;
+}
+.gantt-assignee-avatar-bullet {
+  min-width: 36px !important;
+}
+

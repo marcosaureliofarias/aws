@@ -1,0 +1,34 @@
+<%= title 'SSO Variables' %>
+<% user = EasyExtensions::Sso.get_sso_user(request) %>
+<div class="attributes">
+  <div class="attribute">
+    <div class="label">SSO enabled?</div>
+    <div class="value"><%= EasyExtensions::Sso.enabled? %></div>
+  </div>
+  <div class="attribute">
+    <div class="label">ENV variable</div>
+    <div class="value"><b><%= EasyExtensions::Sso.login_env_variable %></b></div>
+  </div>
+  <div class="attribute">
+    <div class="label">Current value</div>
+    <div class="value"><b><%= EasyExtensions::Sso.get_login_from(request) %></b></div>
+  </div>
+  <div class="attribute">
+    <div class="label">Current login</div>
+    <div class="value"><b><%= EasyExtensions::Sso.get_user_login(request) %></b></div>
+  </div>
+  <div class="attribute">
+    <div class="label">Current user in DB</div>
+    <div class="value"><%= user.nil? ? 'Not found' : "#{user.name} (ID:#{user.id})" %></div>
+  </div>
+</div>
+<h3>Additional variables</h3>
+<% request.env.each do |k, v| %>
+  <% next if %w(HTTP_COOKIE action_dispatch.secret_key_base rack.request.cookie_hash rack.request.cookie_string).include?(k) %>
+  <div class="attributes">
+    <div class="attribute">
+      <div class="label"><%= k %></div>
+      <div class="value"><%= v %></div>
+    </div>
+  </div>
+<% end %>

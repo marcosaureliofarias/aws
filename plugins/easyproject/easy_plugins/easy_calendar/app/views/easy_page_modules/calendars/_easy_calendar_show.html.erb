@@ -1,0 +1,6 @@
+<%= render partial: 'easy_calendar/calendar', locals: {
+    modul_uniq_id: modul_uniq_id,
+    cal_id: "easy-calendar-#{modul_uniq_id}",
+    users: @easy_page_modules_data[block_name][:users],
+    settings: settings
+} %>

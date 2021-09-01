@@ -1,0 +1,35 @@
+<div class="splitcontent">
+  <div class="splitcontentleft">
+    <p>
+      <%= f.text_field :name, :class => 'block', :placeholder => l(:field_easy_money_other_revenue_name) -%>
+    </p>
+    <div>
+      <%= f.text_area :description, :class => 'wiki-edit' -%>
+      <%= wikitoolbar_for('easy_money_description') %>
+    </div>
+    <%= call_hook :view_easy_money_object_after_description, form: f, easy_money_entity: f.object, project: project %>
+  </div>
+  <div class="splitcontentright tabular">
+    <%= render partial: 'easy_money/form_select_entity', locals: { f: f, project: project } %>
+    <p>
+      <%= f.label l(:field_easy_money_other_revenue_spent_on) -%>
+      <%= f.text_field :spent_on, :size => 10 -%><%= calendar_for('easy_money_spent_on') -%>
+    </p>
+    <%= render :partial => 'easy_money/form_entity_price', :locals => { :f => f, :project => project, :easy_money_entity => other_revenue } %>
+    <p class="easy-tag-list-field">
+      <%= label_tag 'easy_money_tag_list', l(:label_easy_tags) %>
+      <%= easy_tag_list_autocomplete_field_tag other_revenue, 'easy_money', id: 'easy_money_tag_list' %>
+    </p>
+    <% other_revenue.visible_custom_field_values.each do |custom_value| -%>
+      <p>
+        <%= custom_field_tag_with_label :easy_money, custom_value %>
+      </p>
+    <% end -%>
+    <%= render :partial => 'easy_money/edit_easy_money_repeat_options', locals: { object: @easy_money_object, object_name: :easy_money } %>
+    <div id="easy-money-attachments-container">
+      <%= content_tag :strong, l(:label_easy_money_attachments) -%>
+      <%= render :partial => 'attachments/form', :locals => {:container => other_revenue} %>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

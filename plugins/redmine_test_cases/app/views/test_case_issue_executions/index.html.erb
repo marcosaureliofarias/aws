@@ -1,0 +1,6 @@
+<%= render @query %>
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :sidebar do %>
+  <%= render :partial => 'test_case_issue_executions/sidebar' %>
+<% end %>
+<%= context_menu context_menu_test_case_issue_executions_path(project_id: @project) %>

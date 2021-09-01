@@ -1,0 +1,19 @@
+<%= title l(:heading_easy_broadcast_new) %>
+
+<%= labelled_form_for(@easy_broadcast,  html: { id: 'easy_broadcast_form' }) do |f| %>
+    <%= error_messages_for @easy_broadcast %>
+
+    <div class="box">
+      <%= render partial: 'form', locals: {f: f} %>
+    </div>
+
+    <div class="form-actions">
+      <%= submit_tag l(:button_create), title: l(:button_create), class: 'button-positive' %>
+    </div>
+
+<% end %>
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do %>
+    <%= render :partial => 'easy_broadcasts/sidebar' %>
+<% end %>

@@ -1,0 +1,14 @@
+<div id="add-document">
+  <h2><%=l(:label_document_new)%></h2>
+  <%= labelled_form_for @document, :url => {:controller => 'documents', :action => 'create'}, :html => {:multipart => true, :class => 'tabular form-box'} do |f| %>
+    <p>
+      <%= label_for_field(:project_id, {:required => true}) -%><%= select_tag :project_id, project_tree_options_for_select(@projects, :selected => @project), :include_blank => true, :required => true, :data => {:remote => true, :url => url_for(:action => :select_project)} -%>
+    </p>
+    <div id="document-dependent-fields"></div>
+    <div class="form-actions">
+      <%= submit_tag l(:button_create), :class => 'button-positive' %>
+    </div>
+  <% end %>
+</div>
+
+<% include_attachment_tags %>

@@ -1,0 +1,37 @@
+.mindmup-progress {
+  &-modal {
+    position: fixed;
+    z-index: 10000;
+    width: 40%;
+    height: px2rem(150px);
+    top: px2rem(150px);
+    left: 30%;
+    right: 30%;
+    padding-top: px2rem(30px);
+    background-color: $mindmup__color--front;
+    border: px2rem(1px) solid $color-border;
+    box-shadow: 6px 6px 42px 7px transparentize($color-border, 0.35);
+    h3 {
+      text-align: center;
+    }
+  }
+  &-cont {
+    height: px2rem(8px);
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: px2rem(1px) solid $color-border;
+  }
+  &-bar {
+    width: 50%;
+    height: 100%;
+    background-color: green;
+  }
+}
+.big_dialog_modal__wrap {
+  background: $mindmup__color--back !important;
+  control-switcher {
+    padding: 0 2*$mindmup__gap;
+    box-sizing: border-box;
+  }
+}

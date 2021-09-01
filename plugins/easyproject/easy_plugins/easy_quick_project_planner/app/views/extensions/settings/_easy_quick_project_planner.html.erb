@@ -1,0 +1,42 @@
+<%
+project ||= nil
+planner_fields ||= Array(EasySetting.value(:quick_planner_fields, project))
+available_custom_fields = project.all_issue_custom_fields if project
+available_custom_fields ||= IssueCustomField.all
+%>
+<h3><%= l(:label_easy_quick_planner_visible_fields) %></h3>
+<div class="box tabular">
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <%= field_set_tag l(:field_core_fields) do %>
+        <p>
+          <% EasyQuickPlanner::EasyQuickProjectPlanner.available_core_fields.each do |field| %>
+            <label class="block">
+              <%= check_box_tag 'easy_setting[quick_planner_fields][]', field, planner_fields.include?(field), :id => nil %>
+              <%= l("field_#{field}".sub(/_id$/, '')) %>
+            </label>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+
+    <% if available_custom_fields.any? %>
+      <div class="splitcontentleft">
+        <%= field_set_tag l(:label_custom_field_plural) do %>
+          <p>
+            <% available_custom_fields.each do |field| %>
+              <% field_name = "cf_#{field.id}" %>
+              <label class="block">
+                <%= check_box_tag 'easy_setting[quick_planner_fields][]',field_name, planner_fields.include?(field_name), :id => nil %>
+                <%= field.translated_name %>
+              </label>
+            <% end %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+  <%= hidden_field_tag 'easy_setting[quick_planner_fields][]', '' %>
+</div>
+

@@ -1,0 +1,27 @@
+<p><%= l(:text_group_destroy_note) %></p>
+
+<% if @group.projects.any? %>
+  <p><%= l(:text_group_projects) %></p>
+  <ul>
+    <% @group.projects.limit(GroupsHelper::DESTROY_CONFIRMATION_MAX_PROJECTS_SHOWN).each do |project| %>
+      <li><%= link_to project %></li>
+    <% end %>
+    <% if @group.projects.count > GroupsHelper::DESTROY_CONFIRMATION_MAX_PROJECTS_SHOWN %>
+      <li>&#133; <%= link_to l(:label_note_show_more), edit_group_path(@group, tab: 'memberships') %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @group.users.any? %>
+  <p><%= l(:text_group_users) %></p>
+  <ul>
+    <% @group.users.limit(GroupsHelper::DESTROY_CONFIRMATION_MAX_USERS_SHOWN).each do |user| %>
+      <li><%= link_to user %></li>
+    <% end %>
+    <% if @group.users.count > GroupsHelper::DESTROY_CONFIRMATION_MAX_USERS_SHOWN %>
+      <li>&#133; <%= link_to l(:label_note_show_more), edit_group_path(@group, tab: 'users') %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p><%= l(:text_group_destroy_confirmation) %></p>

@@ -1,0 +1,30 @@
+module RedmineTestCases
+  module IssuesControllerPatch
+
+    def self.included(base)
+      base.extend(ClassMethods)
+      base.send(:include, InstanceMethods)
+
+      base.class_eval do
+
+        alias_method_chain :index, :redmine_test_cases
+
+      end
+    end
+
+    module InstanceMethods
+
+      def index_with_redmine_test_cases
+        index_without_redmine_test_cases
+      end
+
+    end
+
+    module ClassMethods
+
+    end
+
+  end
+
+end
+RedmineExtensions::PatchManager.register_controller_patch 'IssuesController', 'RedmineTestCases::IssuesControllerPatch'

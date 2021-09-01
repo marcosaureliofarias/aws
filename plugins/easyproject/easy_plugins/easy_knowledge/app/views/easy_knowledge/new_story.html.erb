@@ -1,0 +1,17 @@
+<% tree_show ||= false %>
+<h3 class="title"><%= l(:label_easy_knowledge_new_story_knowledgebase) %></h3>
+<%= labelled_form_for(@story, :html => {:remote => true, :class => 'form-box'}) do |f| %>
+  <%= error_messages_for @story %>
+  <div class="splitcontent">
+    <div class="splitcontentleft size-7">
+      <div class="tabular">
+        <%= render(:partial => 'easy_knowledge_stories/form_basic_attributes', :locals => {:f => f, :story => f.object, tree_show: tree_show}) %>
+      </div>
+    </div>
+    <div class="splitcontentright size-3">
+      <div class="easy-knowledge-stories-form-right-panel">
+        <%= render(:partial => 'easy_knowledge_stories/form_knowledge_categories', :locals => {:f => f, :story => f.object}) %>
+      </div>
+    </div>
+  </div>
+<% end -%>

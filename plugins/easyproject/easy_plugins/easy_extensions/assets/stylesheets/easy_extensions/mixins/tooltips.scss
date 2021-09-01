@@ -1,0 +1,113 @@
+%tooltip{
+  background-color: $tooltip-background;
+  border: 1px solid $tooltip-border;
+  color: $tooltip-color;
+  padding: $gap;
+  line-height: 1.25;
+  a{
+    color: $tooltip-color;
+    text-decoration: underline;
+  }
+  //@include triangle-top($gap, rgba($color-important,0.97), darken($color-important,10%));
+  ///position: absolute;
+}
+%tooltip-triangle-right{
+  @include triangle-right(0.5*$gap, $tooltip-background, $tooltip-border, 1 + 0.5*$gap);
+}
+%tooltip-triangle-left{
+  @include triangle-left(0.5*$gap, $tooltip-background, $tooltip-border, 1 + 0.5*$gap);
+}
+%tooltip-triangle-top{
+  @include triangle-top(0.5*$gap, $tooltip-background, $tooltip-border, 50%);
+  &:before,&:after{
+    margin-left: -0.25*$gap;
+  }
+}
+%tooltip-triangle-bottom{
+  @include triangle-bottom(0.5*$gap, $tooltip-background, $tooltip-border, 50%);
+  &:before,&:after{
+    margin-left: -0.25*$gap;
+  }
+}
+%tooltip-content{
+  position: absolute;
+  background-color: $tooltip-background;
+  border: 1px solid $tooltip-border;
+  color: $tooltip-color;
+  padding: 0.5em;
+  font-size: 0.89*$font-size;
+  line-height: 1;
+  margin-top: -0.25em;
+  white-space: pre;
+  a{
+    color: $tooltip-color;
+    text-decoration: underline;
+  }
+  .input-append &{
+    font-weight: normal;
+    margin-top: 1px;
+  }
+  @extend %box-shadow-minor;
+  @extend %border-radius;
+}
+%tooltip-content-right{
+  @extend %tooltip-content;
+  @extend %tooltip-triangle-left;
+}
+%tooltip-content-bottom{
+  @extend %tooltip-content;
+  @extend %tooltip-triangle-top;
+}
+%tooltip-content-top{
+  @extend %tooltip-content;
+  @extend %tooltip-triangle-bottom;
+}
+%tooltip-parent{
+  position: relative;
+  & > .tooltip, & > .tooltip-content{
+    display: none;
+    @extend %tooltip-content;
+  }
+  &:hover{
+    & > .tooltip{
+      z-index: 1;
+      display: inline-block;
+    }
+  }
+}
+%tooltip-left{
+  @extend %tooltip-parent;
+  & > .tooltip{
+    right: 100%;
+    margin-right: $gap;
+    @extend %tooltip-triangle-right;
+  }
+}
+%tooltip-right{
+  @extend %tooltip-parent;
+  & > .tooltip{
+    left: 100%;
+    margin-left: $gap;
+    @extend %tooltip-triangle-left;
+  }
+}
+%tooltip-top{
+  @extend %tooltip-parent;
+  & > .tooltip{
+    bottom: 100%;
+    margin-bottom: $gap;
+    left: auto;
+    margin-left: -100%;
+    @extend %tooltip-triangle-bottom;
+  }
+}
+%tooltip-bottom{
+  @extend %tooltip-parent;
+  & > .tooltip{
+    top: 100%;
+    margin-top: $gap;
+    left: auto;
+    margin-left: -100%;
+    @extend %tooltip-triangle-top;
+  }
+}

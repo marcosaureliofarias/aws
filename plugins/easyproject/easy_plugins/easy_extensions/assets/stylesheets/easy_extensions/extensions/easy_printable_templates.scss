@@ -1,0 +1,28 @@
+.easy-printable-template-page{
+  padding: 2*$gap;
+  background: $color-print--background;
+  color: $color-print;
+  .autoscroll{
+    margin-left: 0;
+    margin-right: 0;
+    &__wrapper {
+      margin: 0;
+      border: 0;
+    }
+  }
+  &-wrapper {
+    overflow: auto;
+  }
+  .easy_printable_templates_preview {
+    tbody, tfoot {
+      background: $color-print--background !important;
+    }
+    th {
+      background: $color-print--accent;
+      color: $color-print;
+    }
+  }
+  h2, h3 {
+    color: $color-print;
+  }
+}

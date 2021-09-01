@@ -1,0 +1,15 @@
+<div style="<%= 'display:none;' if entity.editable_custom_field_values.empty? || shown_custom_field_ids.empty? %>">
+  <div class="custom_fields">
+    <%= toggling_container("#{block_name}-form-custom-fields-#{params[:format]}", User.current, {heading: l(:label_custom_field_plural), wrapping_heading_element_classes: 'icon icon-db-key'}) do  %>
+      <div class="box">
+        <% entity.editable_custom_field_values.each do |value| %>
+          <% cf_id = value.custom_field.id.to_s %>
+          <p class="custom-field" style="<%= 'display:none;' unless shown_custom_field_ids.include?(cf_id) %>">
+            <% value.value = custom_field_values[cf_id] if only_selected && custom_field_values[cf_id].present? %>
+            <%= custom_field_tag_with_label block_name + entity.class.name.underscore, value %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+$('#ajax-modal').html('<%= escape_javascript(render :partial => 'principal_memberships/new_modal') %>');
+showModal('ajax-modal', 700);
+
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_save) %>',
+      click: function() {$(this).find('form').trigger('submit.rails');}, 'class': 'button-positive'
+    },
+    {
+      text: '<%=j l(:button_close) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    }
+  ]
+});
+
+$('.projects-selection').on('click', 'input[type=checkbox]', function(e){
+  if (!$(this).is(':checked')) {
+    if ($(this).closest('li').find('ul input[type=checkbox]:not(:checked)').length > 0) {
+      $(this).closest('li').find('ul input[type=checkbox]:not(:checked)').attr('checked', 'checked');
+      e.preventDefault();
+    } else {
+      $(this).closest('li').find('ul input[type=checkbox]:checked').removeAttr('checked');
+    }
+  }
+});

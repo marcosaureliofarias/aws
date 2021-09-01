@@ -1,0 +1,28 @@
+<% if type == 'EasyCrmCase' %>
+  <%= label_for_field :easy_entity_activity_entity_id, label: l(:field_easy_crm_case), required: true %>
+  <%= easy_autocomplete_tag 'easy_entity_activity[entity_id]',
+                            entity.present? ? { name: entity.name, id: entity.id } : {},
+                            easy_autocomplete_path('get_visible_easy_crm_cases'),
+                            root_element: 'entities',
+                            html_options: { id: 'easy_entity_activity_entity_id', disabled: !editable },
+                            onchange: "if (ui.item) { reloadContacts('EasyCrmCase', ui.item.id); }" %>
+<% elsif type == 'EasyContact' %>
+  <%= label_for_field :easy_entity_activity_attendees_EasyContact, label: l(:field_easy_contact), required: true %>
+  <%= easy_autocomplete_tag 'easy_entity_activity[entity_id]',
+                            entity.present? ? { name: entity.name, id: entity.id } : {},
+                            easy_autocomplete_path('easy_contacts_visible_contacts'),
+                            root_element: 'easy_contacts',
+                            html_options: { id: 'easy_entity_activity_attendees_EasyContact', disabled: !editable },
+                            onchange: "initReloadContacts($(this));" %>
+
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    window.initReloadContacts = function (element) {
+      var value = $(element).siblings('input:hidden').val();
+      if (value) { reloadContacts('EasyContact', value); }
+    };
+    initEasyAutocomplete();
+  });
+</script>

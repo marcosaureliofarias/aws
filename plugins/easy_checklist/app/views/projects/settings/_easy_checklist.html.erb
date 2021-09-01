@@ -1,0 +1,48 @@
+<%
+  use_project_settings = EasySetting.value('easy_checklist_use_project_settings', @project)
+  enable_history_changes = EasySetting.value('easy_checklist_enable_history_changes', @project)
+  enable_change_done_ratio = EasySetting.value('easy_checklist_enable_change_done_ratio', @project)
+%>
+
+<%= form_tag({:action => 'settings', :tab => 'easy_checklist'}, :class => 'tabular form-box', :id => 'easy_checklist_project_settings_form') do %>
+  <div class="box">
+    <p>
+      <%= hidden_field_tag 'easy_setting[easy_checklist_use_project_settings]', '0', id: '' %>
+      <% box = check_box_tag 'easy_setting[easy_checklist_use_project_settings]', '1', use_project_settings, :onchange => 'if (this.checked) { $("#easy_checklist_project_settings").toggle(true); } else { $("#easy_checklist_project_settings").toggle(false); }' %>
+      <%= label_tag 'easy_setting[easy_checklist_use_project_settings]', box + l(:label_easy_checklist_use_project_settings) %>
+    </p>
+    <div id="easy_checklist_project_settings" style="display: none">
+      <p>
+        <%= hidden_field_tag 'easy_setting[easy_checklist_enable_history_changes]', '0', id: '' %>
+        <% box = check_box_tag 'easy_setting[easy_checklist_enable_history_changes]', '1', enable_history_changes %>
+        <%= label_tag 'easy_setting[easy_checklist_enable_history_changes]', box + l(:label_easy_checklist_enable_history_changes) %>
+      </p>
+      <p>
+        <%= hidden_field_tag 'easy_setting[easy_checklist_enable_change_done_ratio]', '0', id: '' %>
+        <% box = check_box_tag 'easy_setting[easy_checklist_enable_change_done_ratio]', '1', enable_change_done_ratio %>
+        <%= label_tag 'easy_setting[easy_checklist_enable_change_done_ratio]', box + l(:label_easy_checklist_enable_change_done_ratio) %>
+      </p>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag l(:button_save), :class => 'button-positive' %>
+  </div>
+<% end %>
+
+<script type="application/javascript">
+  EASY.schedule.late(function () {
+    $("#easy_setting_easy_checklist_use_project_settings").trigger("change");
+  }, -5);
+</script>
+
+<%= content_for(:sidebar) do %>
+    <% if User.current.allowed_to?(:manage_easy_checklist_templates, @project) %>
+      <%= content_for(:easy_page_layout_service_box_primary_actions) do %>
+        <%= link_to(l(:button_new_easy_checklist_template),
+        new_project_easy_checklist_path(@project, :back_url => request.url),
+        :title => l(:label_easy_checklist_new_template),
+        :class => 'button-positive icon icon-add') %>
+      <% end -%>
+      <%= link_to(l(:label_easy_checklist_templates), project_easy_checklists_path(@project), :class => 'button-2 icon icon-workflow') -%>
+    <% end -%>
+<% end -%>

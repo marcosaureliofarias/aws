@@ -1,0 +1,21 @@
+is_page_module ||= false
+
+api.array :categories do
+  categories.each do |category|
+    render_api_category(api, category)
+  end
+end
+
+api.array :stories_without_category do
+  stories_without_category.each do |story|
+    render_api_shell_story(api, story)
+  end
+end
+api.current_user_data do
+  api.favorite_story_ids favorite_story_ids
+end
+
+render_api_knowledge_urls(api)
+render_api_knowledge_lang_files(api)
+api.is_page_module is_page_module
+api.project_id @project && @project.id

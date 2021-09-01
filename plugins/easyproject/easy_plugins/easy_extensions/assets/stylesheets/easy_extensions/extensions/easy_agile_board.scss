@@ -1,0 +1,155 @@
+.agile{
+  &-listing-links{
+    @extend %calendar-listing-links;
+    &-actions{
+      float: right;
+      margin-left: $box-padding;
+      a{
+        @extend %button-link;
+        @extend %tooltip-left;
+      }
+    }
+  }
+}
+table.easy-sprint-table{
+  border-bottom: 1px solid $color-border;
+  td,th {
+  }
+  &>thead{
+    th, td{
+      text-align: center;
+      border: 1px solid $color-border-minor;
+      &:first-child{
+        border-left: none;
+      }
+      &:last-child{
+        border-right: none;
+      }
+    }
+    tr{
+      & + tr{
+        td,th{
+          font-weight: normal;
+        }
+      }
+    }
+  }
+  &>tbody{
+
+    &>tr{
+      border-top: 1px solid $color-border-minor;
+    }
+    td{
+      vertical-align: top;
+      height: 100%;
+      @extend %hyphenate;
+      &:first-child{
+        border-right: 1px solid $color-border-minor;
+        //background: mix($color-foreground, mix($color-foreground,$color-background));
+      }
+      &:last-child{
+        border-left: 1px solid $color-border-minor;
+        //background: mix($color-foreground, mix($color-foreground,$color-background));
+      }
+      &:only-child{
+        border-left: none;
+      }
+      &.swimlane_worker{
+        @include smaller;
+        vertical-align: middle;
+        padding: $gap;
+        background:  mix($color-foreground, mix($color-foreground,$color-background));
+      }
+    }
+  }
+}
+.sprint-col{
+  @include respond-to(min-menu-collapse){
+    width: 10%;
+  }
+}
+.agile-list{
+  @extend %page-zone;
+  list-style: none;
+  //border-color: transparent;
+  background: mix($color-foreground, mix($color-foreground,$color-background));
+  margin: 2px;
+  min-height: 98%;
+  min-height: calc(100% - 6px);
+  overflow: auto;
+  &.droppable-active{
+    border-color: $color-border-minor;
+  }
+  min-width: 150px;
+}
+.agile-issue-item{
+  @include small;
+  @extend %card-base;
+  margin: 0;
+  & + &{
+    margin-top: 0.5*$box-padding;
+  }
+  a{
+    color: $color-text;
+  }
+  .avatar-container{
+    float: right;
+    margin: 0;
+    margin-top: -0.5*$gap;
+  }
+  .project-link{
+    a{
+      color: rgba($color-text,0.75);
+    }
+    @include small;
+  }
+  .issue-link{
+
+  }
+}
+.kanban-column {
+  @extend .agile-list;
+}
+
+.kanban-item {
+  @extend .agile-issue-item;
+}
+
+.easy_tracker_icon{
+  @extend %material-icon; //@extend %easy-icon;
+}
+#coworkers_container{
+  .member{
+    border: none;
+    .list-item-content{
+      @extend %color-box-white;
+    }
+    &:first-child{
+      padding-top: 0.75em;
+    }
+  }
+}
+.project-backlog{
+  thead{
+    line-height: 1.4em;
+  }
+}
+
+.project-backlog, .easy-sprint{
+  thead{
+    a.reorder-backlog{
+      float: right;
+      margin-right: 5px;
+      font-size: 1.3em;
+
+      &:hover{
+        color: #009ee0;
+      }
+    }
+  }
+}
+.easy-sprint{
+  &.closed{
+    text-decoration: line-through;
+  }
+}

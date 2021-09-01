@@ -1,0 +1,102 @@
+&__repeating {
+  width: 100%;
+
+  &-container {
+    width: 100%;
+    height: 100%;
+    max-height: calc(100% - 50px); // 50px button-panel
+    overflow: auto;
+    padding: 10px;
+    @media only screen and (max-width: $breakpoint--small) {
+      max-height: calc(100% - 70px);
+    }
+  }
+
+  &-advanced{
+    width: 100%;
+
+    input[type="number"] {
+      max-width: 50px;
+    }
+    select {
+      max-width: 150px;
+    }
+    label{
+      position: static !important;
+    }
+
+    .editable-input__wrapper{
+      max-width: 300px;
+      flex-grow: 0;
+      &.l__w--auto{
+        input{
+          width: auto !important;
+          max-width: 120px !important;
+        }
+      }
+      .mx-datepicker{
+        width: auto !important;
+      }
+    }
+
+    .vue-modal__attribute{
+      width: 100%;
+      p{
+        width: 100%;
+      }
+    }
+
+    &__scaffold{
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      .vue-modal__attribute--rep{
+        //&-1{
+        //  width: calc(18% - #{2*$gap}) !important;
+        //  @media only screen and (max-width: $breakpoint--small) {
+        //    width: calc(40% - #{2*$gap}) !important;
+        //  }
+        //}
+        //&-2{
+        //  width: calc(50% - #{2*$gap}) !important;
+        //  @media only screen and (max-width: $breakpoint--small) {
+        //    width: calc(60% - #{2*$gap}) !important;
+        //  }
+        //}
+        //&-3{
+        //  width: calc(75% - #{2*$gap}) !important;
+        //  @media only screen and (max-width: $breakpoint--small) {
+        //    width: calc(60% - #{2*$gap}) !important;
+        //  }
+        //}
+        //&-4{ width: calc(35% - #{2*$gap}) !important; }
+      }
+      .vue-modal__attribute__boxes-wrapper{
+        padding: .75*$gap 0;
+        label{
+          white-space: nowrap;
+          padding-right: $gap;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.parent-message {
+  & > p {
+    padding: $gap;
+  }
+}
+
+.repeating-delete {
+  width: 100%;
+  padding: 10px 15px;
+}
+
+.repeating-invitations {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 10px;
+}

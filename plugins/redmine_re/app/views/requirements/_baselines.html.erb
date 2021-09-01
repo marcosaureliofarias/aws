@@ -1,0 +1,33 @@
+<legend onclick="toggleFieldset(this);"><%= l(:re_baselines) %></legend>
+
+<div class='module box re-baselines'>
+  <% ReArtifactBaseline.with_project(project).ordered.each do |baseline| %>
+    <div class='module-heading'>
+      <p><%= baseline.name %></p>
+
+      <% if User.current.allowed_to?(:edit_requirements, @project) %>
+        <span class='module-heading-links'>
+          <%= link_to preview_project_re_artifact_baseline_path(@project, baseline, format: :js), remote: true, class: 'icon icon-edit' do %>
+            <span class='tooltip'><%= l('re_artifact_baseline_edit') %></span>
+          <% end %>
+
+          <%= link_to revert_project_re_artifact_baseline_path(@project, baseline), class: 'icon icon-workflow icon-positive' do %>
+            <span class='tooltip'><%= l('re_artifact_baseline_revert') %></span>
+          <% end %>
+
+          <%= link_to project_re_artifact_baseline_path(@project, baseline), method: :delete, remote: true, class: 'icon icon-remove', data: { confirm: l(:text_are_you_sure) } do %>
+            <span class='tooltip'><%= l('re_artifact_baseline_destroy') %></span>
+          <% end %>
+        </span>
+      <% end %>
+    </div>
+    <hr>
+  <% end %>
+
+  <ul class='navigation'>
+    <% if User.current.allowed_to?(:administrate_requirements, @project) %>
+      <%= link_to l('re_create_baseline'), new_project_re_artifact_baseline_path(@project, format: :js), remote: true, class: 'icon icon-add button' %>
+    <% end %>
+  </ul>
+
+</div>

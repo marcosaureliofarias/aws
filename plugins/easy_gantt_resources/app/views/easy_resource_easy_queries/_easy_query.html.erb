@@ -1,0 +1,6 @@
+<%
+  local_assigns[:options] ||= {}
+  local_assigns[:options][:show_custom_formatting] = false
+%>
+
+<%= render 'easy_queries/easy_query', local_assigns %>

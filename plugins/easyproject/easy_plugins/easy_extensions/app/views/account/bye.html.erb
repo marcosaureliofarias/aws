@@ -1,0 +1,9 @@
+<% title l(:label_logout) %>
+<div class="logout_container">
+  <p>
+    <%= l(:text_bye_bye, app_name: EasyExtensions::EasyProjectSettings.app_name) %>
+  </p>
+  <p>
+    <%= link_to(l(:button_back), home_path, class: 'button button-positive') %>
+  </p>
+</div>

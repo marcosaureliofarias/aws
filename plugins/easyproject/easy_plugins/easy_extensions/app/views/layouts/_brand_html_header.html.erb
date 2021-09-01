@@ -1,0 +1,4 @@
+<%= easy_theme_tag(theme_file: Redmine::Plugin.installed?(:easy_redmine) && EasySetting.value('ui_theme').presence) %>
+<%= stylesheet_link_tag 'easy_extensions' %>
+<%= javascript_include_tag('easy_extensions_blocking') %>
+<%= javascript_include_tag('easy_extensions', defer: true) %>

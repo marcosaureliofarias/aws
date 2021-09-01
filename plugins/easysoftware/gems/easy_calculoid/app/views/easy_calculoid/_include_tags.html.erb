@@ -1,0 +1,9 @@
+<% embed = settings['url'].to_s.gsub('api.', 'embed.') %>
+<% if valid_uri?(embed) %>
+  <link rel="stylesheet" href="<%= embed %>/styles/main.css" />
+  <script src="<%= embed %>/scripts/combined.min.js" defer="true"></script>
+<% else %>
+  <%= late_javascript_tag do %>
+    console.log("calculoid: invalid uri: <%= j embed %>");
+  <% end %>
+<% end %>

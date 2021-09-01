@@ -1,0 +1,40 @@
+<%= labelled_fields_for :easy_oauth2_application, entity do |f| %>
+  <div class="splitcontent">
+    <div class="splitcontentleft">
+      <p>
+        <%= f.text_field :app_url, class: 'required' %>
+      </p>
+      <p>
+        <%= f.text_field :name, class: 'required' %>
+      </p>
+      <p>
+        <%= f.check_box :active %>
+      </p>
+    </div>
+    <div class="splitcontentright">
+      <p>
+        <%= f.text_field :app_id, class: 'required' %>
+      </p>
+      <p>
+        <%= f.text_field :app_secret, class: 'required' %>
+      </p>
+      <p>
+        <%= f.text_field :authorize_url %>
+      </p>
+      <p>
+        <%= f.text_field :token_url %>
+      </p>
+      <p>
+        <%= f.text_field :user_info_url %>
+      </p>
+      <p>
+        <%= f.check_box :onthefly_creation %>
+        <em class="help"><%= l(:text_onthefly_creation, scope: :easy_oauth2) %></em>
+      </p>
+      <p>
+        <%= f.check_box :login_button %>
+        <em class="help"><%= l(:text_login_button, scope: :easy_oauth2) %></em>
+      </p>
+    </div>
+  </div>
+<% end %>

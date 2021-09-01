@@ -1,0 +1,16 @@
+<% if !@easy_contact.new_record? %>
+  <%= call_hook(:view_easy_contacts_after_create_js, {:easy_contact => @easy_contact}) %>
+  EASY.modalSelector.closeModal();
+  key = 'notice'
+  val = '<%= l(:notice_successful_create) %>'
+  f = $("<div/>").attr({"class":"flash " + key}).html($("<span/>").text(val));
+  f.append($("<a/>").attr({"class" : "icon-close", "href": "javascript:$(this).closest('.flash').fadeOut(500, function(){$(this).remove()})"}))
+  if ($("#content .flash")[0]) {
+  $("#content .flash").replaceWith(f);
+  } else {
+  $("#content").prepend(f);
+  }
+<% else %>
+  $("#ajax-modal").html("<%=j render(:template => 'easy_contacts/new', :formats => [:html]) %>");
+<% end %>
+

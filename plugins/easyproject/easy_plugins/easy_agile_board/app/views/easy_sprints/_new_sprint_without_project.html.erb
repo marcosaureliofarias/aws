@@ -1,0 +1,8 @@
+<%= render partial: 'projects/project_for_new_entity', locals: {
+    entity_label: (params[:label] || :label_agile_sprint_new),
+    type: @easy_sprint.class.name.pluralize,
+    project: @project,
+    easy_new_entity_auto_complete_path: easy_autocomplete_path('projects_for_sprint'),
+    url_for: new_easy_sprint_path
+    # options: {onchange: "$('#project_id_autocomplete').closest('form').submit()"}
+} %>

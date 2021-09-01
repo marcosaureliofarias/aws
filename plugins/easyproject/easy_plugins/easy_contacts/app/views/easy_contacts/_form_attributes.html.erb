@@ -1,0 +1,99 @@
+<% parent_val = EasyExtensions::FieldFormats::EasyLookup.entity_to_lookup_values(contact.parent, display_name: :name) || {} %>
+<div class="splitcontent">
+  <%= labelled_fields_for :easy_contact, @easy_contact do |ff| %>
+    <div class="splitcontentleft">
+      <% if contact.field_enabled?('firstname') && EasyContact.firstname_field_visible? %>
+        <p>
+          <% label_name = contact.field_enabled?('lastname') ? :field_firstname : :field_name %>
+
+          <%= ff.text_field :firstname, required: true, size: nil, autofocus: !request.xhr?, label: l(label_name) -%>
+        </p>
+      <% end %>
+
+      <% if contact.field_enabled?('lastname') && EasyContact.lastname_field_visible? %>
+        <p>
+          <%= ff.text_field :lastname, required: true -%>
+        </p>
+      <% end %>
+    </div>
+    <div class="splitcontentright">
+      <% if EasyContact.parent_id_field_visible? %>
+        <p class='easy-autocomplete-parent-id'>
+          <label><%= l(:field_easy_contacts_parent) %></label>
+          <%= easy_modal_selector_field_tag('EasyContact', 'link_with_name', "easy_contact[parent_id]", "easy_contact_parent_id", parent_val, display_name: Proc.new {|easy_contact| link_to_easy_contact(easy_contact)}, multiple: false, hide_create_contact: true) %>
+        </p>
+      <% end %>
+      <% if EasyContact.assigned_to_id_field_visible? %>
+        <%= content_tag :p do %>
+            <% required_assignee = false %>
+            <%= label_tag 'easy_contact[assigned_to_id]', EasyContact.human_attribute_name(:account_manager), class: required_assignee ? 'required' : '' %>
+            <%= easy_autocomplete_tag 'easy_contact[assigned_to_id]',
+                { name: @easy_contact.assigned_to&.name, id: @easy_contact.assigned_to&.id },
+                easy_autocomplete_path('assignable_principals_easy_contact', easy_contact_id: @easy_contact.id, required: required_assignee),
+                preload: false,
+                required: required_assignee,
+                root_element: 'users',
+                html_options: { tabindex: 50, class: 'block', id: 'assigned_to_id' },
+                force_autocomplete: true,
+                easy_autocomplete_options: {
+                  no_button: true,
+                  auto_focus: false,
+                  widget: 'catcomplete',
+                  activate_on_input_click: true,
+                  delay: 50,
+                  minLength: 0
+                } %>
+        <% end %>
+      <% end %>
+      <% if EasyContact.external_assigned_to_id_field_visible? && EasyUserType.easy_type_partner.any? %>
+        <%= content_tag :p do %>
+            <% required_assignee = false %>
+            <%= label_tag 'easy_contact[external_assigned_to_id]', EasyContact.human_attribute_name(:external_account_manager), class: required_assignee ? 'required' : '' %>
+            <%= easy_autocomplete_tag 'easy_contact[external_assigned_to_id]',
+                { name: @easy_contact.external_assigned_to&.name, id: @easy_contact.external_assigned_to&.id },
+                easy_autocomplete_path('assignable_principals_easy_contact', easy_contact_id: @easy_contact.id, required: required_assignee, external: true),
+                preload: false,
+                required: required_assignee,
+                root_element: 'users',
+                html_options: { tabindex: 50, class: 'block', id: 'external_assigned_to_id' },
+                force_autocomplete: true,
+                easy_autocomplete_options: {
+                  no_button: true,
+                  auto_focus: false,
+                  widget: 'catcomplete',
+                  activate_on_input_click: true,
+                  delay: 50,
+                  minLength: 0
+                } %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<%= call_hook(:view_easy_contacts_form_before_custom_fields, { easy_contact: contact, project: @project }) %>
+<hr/>
+<%= render partial: 'custom_fields/edit_custom_fields', locals: { entity_name: 'easy_contact', entity: contact } %>
+
+<% unless @modal %>
+  <script type="text/javascript">
+    EASY.schedule.late(function () {
+      function find_easy_contact(form) {
+        $.post('<%= j(find_exist_contact_easy_contacts_path({:project_id => @project, :back_url => new_easy_contact_path({:project_id => @project, :back_url => params[:back_url]})})) %>', $(form).serialize(), function (data) {
+          $('#easy-contact-whisperer').html(data)
+        })
+      }
+
+      $('#easy_contact_firstname, #easy_contact_lastname').keyup(function (event) {
+        if ($(event.target).val().length >= 2) {
+          if (key_count_global) {
+            clearTimeout(key_count_global);
+          }
+          key_count_global = setTimeout(function () {
+            find_easy_contact(event.target.form)
+          }, 750);
+        }
+
+      });
+    });
+  </script>
+<% end -%>

@@ -1,0 +1,3 @@
+<%= render partial: 'easy_knowledge/sidebar_user_categories' if User.current.allowed_to_globally?(:manage_global_categories) -%>
+<%= render partial: 'easy_knowledge/sidebar_global_categories' if User.current.allowed_to_globally?(:read_global_stories) || User.current.allowed_to_globally?(:manage_global_categories) -%>
+<%= render partial: 'easy_knowledge/sidebar_projects_categories' if User.current.allowed_to_globally?(:manage_project_stories) || User.current.allowed_to_globally?(:read_global_stories) -%>

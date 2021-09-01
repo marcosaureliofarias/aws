@@ -1,0 +1,7 @@
+<% selected ||= false %>
+<li>
+  <a href="javascript:void(0);" class="<%= 'selected' if selected %>">
+    <%= radio_button_tag "#{money_type}_type", entity_type, selected -%>
+    <%= label_tag("#{money_type}_type_#{entity_type}".to_sym, l("label_easy_money_#{entity_type}"), :class => 'inline') %>
+  </a>
+</li>

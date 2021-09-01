@@ -1,0 +1,40 @@
+<% page_module = @zone_module.nil? ? @template_module : @zone_module %>
+<% if page_module.easy_page_tabs_available.many? %>
+  $('#ajax-modal').html("<%= j(render(partial: 'easy_page_layout/clone_module_choose_target_tab', formats: [:html], locals: { page_module: page_module })) %>");
+  $('#ajax-modal').find('select').val(PageLayout.getActiveTabId());
+  showModal('ajax-modal', '400px', '<%= l(:label_clone_module_title) %>');
+  $('#ajax-modal').dialog( {
+    buttons: [
+      {
+        text:"<%=j l(:button_duplicate) -%>",
+        title:"<%=j l(:button_duplicate) -%>",
+        click: function() {
+          var tabId = $(this).find('select').val();
+          var $cloned = $('#module_<%= page_module.uuid -%>');
+          $(this).dialog('close');
+          if (tabId == PageLayout.getActiveTabId()) {
+            var $page_zone = $cloned.closest('.easy-page-zone');
+            PageLayout.cloneModuleWithUrl($page_zone, $cloned, '<%= params[:clone_url].html_safe -%>&uuid=<%= page_module.uuid -%>');
+          } else {
+            var $tab = PageLayout.tab_element.find('span[data-tab-id=' + tabId + ']').closest('li').find('a.tab-link');
+            PageLayout.tab_element.data('easytabs').selectTab($tab, function() {
+              var $page_zone = $('#' + $tab.attr('id').replace('_', '') + '-list-<%= page_module.available_zone.zone_definition.zone_name -%>');
+              PageLayout.cloneModuleWithUrl($page_zone, $cloned, '<%= params[:clone_url].html_safe -%>&uuid=<%= page_module.uuid -%>');
+            })
+          }
+        },
+        'class': 'button-positive'
+      },
+      {
+        text: "<%=j l(:button_close) -%>",
+        title: "<%=j l(:button_close) -%>",
+        click: function() {$(this).dialog('close');},
+        'class': 'button'
+      }
+    ]
+  } );
+<% else %>
+  var $cloned = $('#module_<%= page_module.uuid -%>');
+  var $page_zone = $cloned.closest('.easy-page-zone');
+  PageLayout.cloneModuleWithUrl($page_zone, $cloned, '<%= params[:clone_url].html_safe -%>&uuid=<%= page_module.uuid -%>');
+<% end %>

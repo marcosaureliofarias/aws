@@ -1,0 +1,73 @@
+.editable-popup {
+  .editable-input {
+    @extend %flex;
+    @extend %flex-wrap-wrap;
+    min-width: 220px;
+
+    & > .easy-autocomplete-tag,
+    & > input[type="text"],
+    & > span:not(.editable-clear-x),
+    & > select {
+      margin-right: .5*$gap;
+      @extend %order-1;
+      @include flex(2 0 0);
+    }
+
+    .editable-buttons {
+      @extend %flex;
+      @extend %justify-content-center;
+      @extend %align-items-center;
+
+      button {
+        width: $form-field-height;
+        height: $form-field-height;
+        margin-right: .5*$gap;
+        text-align: center;
+        padding: 0;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+
+        .ui-button-text {
+          padding: .1em;
+        }
+      }
+
+      .editable-cancel,
+      .editable-submit {
+        & > span {
+          display: none;
+        }
+      }
+
+      .editable-cancel:before {
+        @include icon("cancel");
+      }
+      .editable-submit:before {
+        @include icon("checked");
+      }
+    }
+
+    .editable-date {
+      @include flex(0 0 100%);
+      margin-bottom: .5*$gap;
+      .ui-datepicker {
+        width: 100%;
+      }
+    }
+
+    & > .editable-buttons {
+      @extend %order-2;
+    }
+    & > .editable-clear {
+      @extend %order-3;
+    }
+
+    .editable-clear a {
+      position: relative;
+      left: 160px;
+      bottom: 40px;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+<%
+  paths = {
+    issuePage: issue_path(':issueID'),
+    projectPage: project_path(':projectID'),
+    issuePOST: issues_path(format: 'json', key: User.current.api_key),
+    issuePUT: issue_path(':issueID', format: 'json', key: User.current.api_key, validate_assignee: true),
+    issueDELETE: issue_path(':issueID', format: 'json', key: User.current.api_key),
+    projectPUT: project_path(':projectID', format: 'json', key: User.current.api_key),
+    newIssuePath: new_issue_path(key: User.current.api_key),
+    editIssuePath: edit_issue_path(':issueID', key: User.current.api_key),
+    updateLayout: project_easy_mindmup_update_layout_path(@project, format: 'json', key: User.current.api_key),
+    easyMoneyJS: EasyWbs.easy_money?(@project) ? javascript_path('easy_money') : nil,
+  }
+
+  if EasyWbs.easy_money?(@project)
+    paths[:getBudget] = project_easy_wbs_budget_path(@project)
+    paths[:getBudgetOverview] = project_easy_wbs_budget_overview_path(@project)
+    paths[:getBudgetLinks] = project_easy_wbs_budget_links_path(@project)
+    currencies = EasyCurrency.activated
+  end
+
+  appSettings = {
+    issueDoneRatioDerived: Setting.parent_issue_done_ratio == 'derived',
+    useStatusForIssueDoneRatio: Setting.issue_done_ratio == 'issue_status'
+  }
+%>
+
+<script type="text/javascript">
+  window.easyMindMupSetting = EasyGem.extend(true, window.easyMindMupSetting, <%= {
+    mindMupId: 'WBS classic',
+    menuDiv: '#wbs_menu',
+    projectID: @project.id,
+    noSave: (params[:nosave] ? true : false),
+    budgetEnabled: EasyWbs.easy_money?(@project),
+    budgetCurrencies: currencies,
+    paths: paths,
+    appSettings: appSettings,
+    labels: {
+      free: {
+        textNotAvailable: l('easy_wbs.free.text_not_available'),
+        buttonUpgradeHref: l('easy_wbs.free.button_upgrade_href')
+      },
+      errors:{
+        not_subtaskable: l('easy_wbs.errors.not_subtaskable'),
+        cannotBeEmpty: l('activerecord.errors.messages.empty'),
+        allSaved: l('easy_wbs.info_all_saved')
+      },
+      legend: {
+        budget: l('easy_wbs.label_budget'),
+        positive: l('easy_wbs.label_money_positive_value'),
+        neutral: l('easy_wbs.label_money_neutral_value'),
+        negative: l('easy_wbs.label_money_negative_value')
+      },
+      types:{
+        project: l(:field_project),
+        issue: l(:field_issue)
+      },
+      modals: {
+        new_issue: l(:label_issue_new),
+        edit_issue: l('easy_wbs.edit_issue'),
+        detail_budget_issue: l('easy_wbs.label_detail_budget_issue'),
+        detail_budget_project: l('easy_wbs.label_detail_budget_project')
+      },
+      context: {
+        tracker: l(:field_tracker),
+        priority: l(:field_priority),
+        status: l(:field_status),
+        assignee: l(:field_assigned_to),
+        doneRatio: l(:field_done_ratio),
+        budget: l('easy_wbs.button_budget')
+      },
+      links: {
+        start_to_start: l(:label_start_to_start),
+        start_to_finish: l(:label_start_to_finish),
+        finish_to_finish: l(:label_finish_to_finish),
+        precedes: l(:label_precedes),
+        relates: l(:label_relates_to),
+        copied_to: l(:label_copied_to),
+        blocks: l(:label_blocks),
+        duplicates: l(:label_duplicates)
+      },
+      title: {
+        save_and_open_task_detail: l('easy_wbs.title_save_and_open_modal'),
+        save_and_open_project_detail: l('easy_wbs.title_save_and_open_project_modal')
+
+      }
+    },
+    templates: {
+      printIncludes: %{
+        #{stylesheet_link_tag('easy_mindmup', media: 'all')}
+        #{stylesheet_link_tag('easy_wbs', plugin: 'easy_wbs', media: 'all')}
+      }
+    },
+    translations: wbs_translations
+  }.to_json.html_safe %>);
+</script>

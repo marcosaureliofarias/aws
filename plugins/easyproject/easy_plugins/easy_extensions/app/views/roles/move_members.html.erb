@@ -1,0 +1,28 @@
+<h2><%= link_to l(:label_role_plural), roles_path %> &#187; <%= @role %> &#187; <%= l(:label_role_move_members) %></h2>
+
+<%= form_tag({:action => 'move_members'}, :class => 'form-box tabular') do %>
+
+  <div id="move-role-issues">
+    <p>
+      <label><%= l(:label_role_move_members_explanation) -%></label>
+      <%= select_tag(
+        'role_to_id',
+        options_from_collection_for_select(@other_roles, 'id', 'name')
+      ) %>
+    </p>
+
+    <fieldset>
+      <legend><%= l(:label_users_be_affected) %></legend>
+      <ul class="cols-3">
+        <% User.where(:id => @role.members.select(:user_id)).sorted.each do |user| %>
+          <li><%= link_to_user(user) %><li>
+        <% end %>
+      </ul>
+    </fieldset>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag l(:button_role_move_members), :class => 'button-positive' %>
+    <%= link_to(l(:button_back), {:action => 'index'}, :class => 'button') %>
+  </div>
+
+<% end -%>

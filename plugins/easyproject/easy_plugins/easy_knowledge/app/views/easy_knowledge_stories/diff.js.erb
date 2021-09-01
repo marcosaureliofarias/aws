@@ -1,0 +1,10 @@
+$("#ajax-modal").html("<%= j(render :partial => 'diff') %>");
+showModal('ajax-modal', '80%');
+$('#ajax-modal').dialog("option", {
+  buttons: [
+    {
+      text: '<%=j l(:button_cancel) %>',
+      click: function() {$(this).dialog('close');}, 'class': 'button'
+    },
+  ]
+});

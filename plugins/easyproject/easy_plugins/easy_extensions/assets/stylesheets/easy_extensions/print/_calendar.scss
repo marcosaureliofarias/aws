@@ -1,0 +1,35 @@
+.calendar{
+ &-actions{
+   @extend %display_none;
+ }
+}
+.day-name{
+  @extend %display_none;
+}
+.fc-widget-content{
+  &>div{
+    min-height: auto !important;
+  }
+}
+.easy-calendar{
+  @at-root {
+    &, .fc-content {
+      thead{
+        border-top: 1px solid $color-print;
+      }
+      tbody {
+        td {
+          border: 1px solid $color-print;
+        }
+      }
+    }
+  }
+  &-export{
+    @extend %display_none;
+  }
+  &-listing-links{
+    a{
+      @extend %display_none;
+    }
+  }
+}

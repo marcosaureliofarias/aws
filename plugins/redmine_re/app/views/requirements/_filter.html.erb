@@ -1,0 +1,30 @@
+<% content_for :body_bottom do %>
+  <%= stylesheet_link_tag 'suggestible.css', :media => 'all' %>
+  <%= stylesheet_link_tag 'icons.css', :media => 'all' %>
+
+  <%= javascript_include_tag 'suggestible.js', defer: true %>
+  <%= javascript_include_tag 'suggestible_custom.js', defer: true %>
+  <%= javascript_include_tag 'query_form.js', defer: true %>
+
+  <%= javascript_include_tag 're_filter.js', defer: true %>
+<% end %>
+
+<script type="text/javascript">
+    window.re_options = window.re_options || {};
+    window.re_options.suggest_path = '<%= suggest_artifacts_re_queries_path(@project.id) %>';
+</script>
+
+<fieldset id="treefilter" class="collapsible">
+  <legend onclick="toggleFieldset(this);"><%= l(:re_treefilter) %></legend>
+  <div>
+    <%= form_tag re_queries_path(@project.id), :method => :get do %>
+      <%= hidden_field_tag 'source[name_mode]', 'contains' %>
+      <div id="sidebar_filter">
+        <div class="inputs">
+          <%= select_tag 'source[name]', "<option> </option>".html_safe, :id => 'sidebar_filter_input', :class => 'direct_artifacts', :multiple => true %>
+          <%= text_field_tag 'source[name]', nil, :id => 'sidebar_filter_input_nojs' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</fieldset>

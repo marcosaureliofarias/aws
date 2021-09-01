@@ -1,0 +1,11 @@
+<% if @issue %>
+
+  <ul>
+    <% if User.current.allowed_to?(:manage_test_cases, @project, :global => true) %>
+<!--&lt;!&ndash;=begin
+      <li><%#= link_to l(:button_test_case_new), _project_calendar_path(@project) %></li>
+=end&ndash;&gt;-->
+      <li><%= link_to l(:button_test_case_add), issue_test_cases_path(@issue), class: 'button icon icon-add', remote: true %></li>
+    <% end %>
+  </ul>
+<% end %>

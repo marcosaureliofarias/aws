@@ -1,0 +1,5 @@
+<% if project && project.module_enabled?('easy_crm') && project&.easy_money_settings.use_easy_money_for_easy_crm_cases? %>
+  <%= link_to l(:button_easy_money_crm_cases_budget), project_easy_money_project_crm_cases_budget_path(project),
+              title: l(:button_easy_money_crm_cases_budget),
+              class: 'button icon icon-money' %>
+<% end %>

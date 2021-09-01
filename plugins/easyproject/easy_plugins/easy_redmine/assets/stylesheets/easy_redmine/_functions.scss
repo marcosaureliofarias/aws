@@ -1,0 +1,91 @@
+// ------------------------------
+// Sets the z-index of an elementaccording to positions i definition array
+// ------------------------------
+@function z($list, $element) {
+  $z-index: 100*index($list, $element);
+
+  @if $z-index {
+	@return $z-index;
+  }
+
+  @warn 'There is no item "#{$element}" in this list; choose one of: #{$list}';
+  @return null;
+}
+// ------------------------------
+// Returns a value of a color baser on the key
+// ------------------------------
+@function color($palette,$key) {
+  @if not map-has-key($palette, $key) {
+	@warn "Key `#{$key}` not found.";
+  }
+  @return map-get($palette, $key);
+}
+
+@function map-fetch($map, $keys) {
+  $key: nth($keys, 1);
+  $length: length($keys);
+  $value: map-get($map, $key);
+  @if ($length > 1) {
+    $rest: ();
+    @for $i from 2 through $length {
+      $rest: append($rest, nth($keys, $i))
+    }
+    @return map-fetch($value, $rest)
+  } @else {
+    @return $value;
+  }
+}
+
+// ------------------------------
+// Checks the lightenss of the background and decides which color to apply
+// ------------------------------
+@function check-background-set-color($background,$breakpoint: 45,$dark-color:#50596f,$light-color:$white) {
+  @if (lightness($background) > $breakpoint) {
+    @return $dark-color;   // Lighter background, return dark color
+  } @else {
+    @return $light-color;  // Darker background, return light color
+  }
+}
+
+//
+// Lighten based on the value of the color itself and a factor
+@function intelighten($color, $factor: 1){
+  @return lighten($color, $factor * ((0.5 -(lightness($color)/ 100%)) + 0.5) * 100%);
+}
+// Lighten based on the value of the color itself and a factor
+@function intedarken($color, $factor: 1){
+  @return darken($color, $factor * (100% - (lightness($color))));
+}
+
+@function background-to-border($background, $breakpoint: 50%){
+  $light: lightness($background);
+  $bg-light: lightness($color-background);
+  $coef: 1;
+  @if ( $light > 75%) {
+    $coef: 2.5;
+  } @else if ( $light < 25%){
+    $coef: 0.5;
+  }
+  $coef: $coef + ($light - $bg-light)/100%;
+  @return intedarken($background, $coef * $light/100%);
+}
+
+@function background-to-color($background, $breakpoint: 50%, $scale: 60%){
+  @if (lightness($background) > $breakpoint) {
+    @return darken($background, $scale); // Lighter backgorund, return dark color
+  } @else {
+    @return lighten($background, $scale); // Darker background, return light color
+  }
+}
+
+@function unicode($str){
+  @return unquote("\"") + $str + unquote("\"");
+}
+
+@function palete-color($palette: $palette, $index: 0){
+  @return nth($palette,$index);
+}
+
+@function mute-color($color){
+  @return mix($color,$color-foreground);
+}

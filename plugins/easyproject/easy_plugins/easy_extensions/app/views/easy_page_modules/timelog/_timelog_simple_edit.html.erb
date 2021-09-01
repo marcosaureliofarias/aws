@@ -1,0 +1,36 @@
+<% fce_toggler = "#{block_name}_toggler" %>
+<% is_n_days_time_period = settings['time_period'].present? && settings['time_period'].include?('n_days') %>
+<div class="tabular">
+  <p>
+    <%= label_tag "#{block_name}_output_type_table", l(:label_my_page_issue_output_select) -%>
+    <%= radio_button_tag "#{block_name}[output_type]", 'table', settings['output_type'].blank? || settings['output_type'] == 'table', :id => "#{block_name}_output_type_table", :onchange => "#{fce_toggler}()" %>
+    <%= label_tag "#{block_name}_output_type_table", l(:table, :scope => [:label_my_page_issue_output]), :class => 'inline' -%>
+    <%= radio_button_tag "#{block_name}[output_type]", 'chart', settings['output_type'] == 'chart', :id => "#{block_name}_output_type_chart", :onchange => "#{fce_toggler}()" %>
+    <%= label_tag "#{block_name}_output_type_chart", l(:chart, :scope => [:label_my_page_issue_output]), :class => 'inline' -%>
+  </p>
+  <p style="<%= 'display:none' if settings['output_type'] != 'chart' %>" id="<%= block_name %>_chart_settings">
+    <% if user.allowed_to_globally_view_all_time_entries? %>
+      <%= select_tag "#{block_name}[workers_ids][]", options_for_select([["<< #{l(:label_me)} >>", 'me']] + User.active.non_system_flag.easy_type_internal.sorted.collect{|u| [u.name, u.id.to_s]}, settings['workers_ids']), :size => 5, :multiple => true %>
+    <% else %>
+      <%= select_tag "#{block_name}[workers_ids][]", options_for_select([["<< #{l(:label_me)} >>", 'me']], settings['workers_ids']) %>
+    <% end %>
+  </p>
+  <p>
+    <%= label_tag "#{block_name}_time_period", l(:label_my_page_timelog_simple_day_limit) -%>
+    <%= select_tag "#{block_name}[time_period]", options_for_period_select(settings['time_period'] || '7_days', nil, disabled_values: ['all']) %>
+    <span style="<%= 'display:none;' unless is_n_days_time_period %>" id="<%= "#{block_name}_time_period_days_container" %>">
+      <%= text_field_tag "#{block_name}[time_period_days]", settings['time_period_days'], :id => "#{block_name}_time_period_days", :size => 3 %> <%= l(:label_day_plural) %>
+      <span id="<%= "#{block_name}_time_period_days_description_container" %>" style="margin-left: 27px;" class="help"></span>
+    </span>
+  </p>
+</div>
+<script type="text/javascript">
+  function <%= fce_toggler %>() {
+    $('#<%= block_name %>_chart_settings').toggle(!$('#<%= block_name %>_output_type_table').is(':checked'));
+  }
+</script>
+<script type="text/javascript">
+  EASY.schedule.late(function() {
+    EASY.timeLog.showPeriodDaysField('#<%= "#{block_name}_time_period" %>', <%= is_n_days_time_period.to_s %>);
+  });
+</script>

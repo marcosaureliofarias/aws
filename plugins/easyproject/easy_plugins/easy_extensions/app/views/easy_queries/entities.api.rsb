@@ -1,0 +1,6 @@
+present(@easy_query) do |presenter|
+  output = EasyQueryOutput.new(presenter)
+  api.entities @entities.collect do |entity|
+      output.entity_json(entity)
+    end
+end

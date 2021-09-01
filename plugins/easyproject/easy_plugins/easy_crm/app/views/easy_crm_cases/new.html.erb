@@ -1,0 +1,21 @@
+<%= title l(:heading_easy_crm_case_new) %>
+
+<%= form_for([@project, @easy_crm_case], :html => {:multipart => true, :id => 'easy_crm_case_form', :class => 'form-box'}) do |f| %>
+  <%= error_messages_for @easy_crm_case %>
+
+  <%= render :partial => @partial_name || 'form', :locals => {:f => f, :easy_crm_case => @easy_crm_case, :project => @project} %>
+
+  <div class="form-actions">
+    <%= submit_tag l(:button_create), :class => 'button-positive', :title => l(:button_create) %>
+    <%= submit_tag l(:button_create_and_continue), :name => 'continue', :class => 'link_new icon-save-issue button', :title => l(:button_create_and_continue) %>
+    <% if User.current.internal_client? %>
+      <%= f.check_box :send_to_external_mails %>
+      <%= f.label :send_to_external_mails, :class => 'inline' %>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= easy_cocoon_tags %>
+  <%= javascript_include_tag 'easy_crm', defer: true %>
+<% end %>

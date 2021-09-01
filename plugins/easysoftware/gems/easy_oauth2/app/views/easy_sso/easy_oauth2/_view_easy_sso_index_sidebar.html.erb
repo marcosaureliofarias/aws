@@ -1,0 +1,8 @@
+<%= link_to(l(:heading_new_application, scope: [:easy_oauth2, :easy_oauth2_client_application]),
+            new_easy_oauth2_application_path(type: 'EasyOauth2ClientApplication', back_url: easy_sso_path),
+            title: l(:heading_new_application, scope: [:easy_oauth2, :easy_oauth2_client_application]),
+            class: 'icon icon-add button-positive') %>
+<%= link_to(l(:heading_new_application, scope: [:easy_oauth2, :easy_oauth2_server_application]),
+            new_easy_oauth2_application_path(type: 'EasyOauth2ServerApplication', back_url: easy_sso_path),
+            title: l(:heading_new_application, scope: [:easy_oauth2, :easy_oauth2_server_application]),
+            class: 'icon icon-add button-positive') %>

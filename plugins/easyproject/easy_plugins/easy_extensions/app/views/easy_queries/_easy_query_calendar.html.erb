@@ -1,0 +1,12 @@
+<%
+  page_module ||= @easy_page_zone_module
+  calendar ||= easy_query.build_calendar(params)
+  modul_uniq_id ||= @easy_page_zone_module ? "module_#{@easy_page_zone_module.uuid.dasherize}" : ''
+  calendar_url ||= calendar_easy_queries_path(type: easy_query.type, id: easy_query.id)
+%>
+
+<div id="<%= modul_uniq_id %>calendar-container">
+  <%= render partial: 'easy_queries/calendar_listing_links', locals: {period: calendar.period, calendar: calendar, modul_uniq_id: modul_uniq_id, url: calendar_url, page_module: page_module } %>
+
+  <%= render :partial => 'common/calendar', :locals => {:calendar => calendar } -%>
+</div>

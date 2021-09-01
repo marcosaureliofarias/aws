@@ -1,0 +1,203 @@
+<%
+  easy_extensions = EasyGantt.easy_extensions?
+  versions_path_safe = easy_extensions ? versions_path : version_path(id:'__ID').sub('/__ID','')
+
+  appSettings = {
+    issueDoneRatioDerived: Setting.parent_issue_done_ratio == 'derived',
+    useStatusForIssueDoneRatio: Setting.issue_done_ratio == 'issue_status'
+  }
+%>
+<script type="text/javascript">
+  window.ysy = window.ysy || {};
+  ysy.settings = ysy.settings || {};
+  EasyGem.extend(true, ysy.settings, <%= {
+      platform: EasyGantt.platform,
+      easyRedmine: easy_extensions,
+      isGantt: (params[:controller] == 'easy_gantt'),
+      language: I18n.locale.to_s,
+      project: ({ id: project.id, name: project.name } if project),
+      dateFormat: (Setting.date_format.presence || I18n.t('date.formats.default')),
+      nonWorkingWeekDays: EasyGantt.non_working_week_days,
+      holidays: [],
+      milestonePush: ((easy_extensions && !EasySetting.value('milestone_effective_date_from_issue_due_date')) ? true : false),
+      defaultZoom: EasySetting.value(:easy_gantt_default_zoom),
+      query_name: (query.new_record? ? nil : query.name),
+      appSettings: appSettings,
+      paths: {
+        rootPath: home_path
+      },
+      labels: {
+        buttons: {
+          button_delete: l(:button_delete),
+          button_submit: l(:button_submit),
+          button_yes: l(:general_text_Yes),
+          button_no: l(:general_text_No),
+          button_cancel: l(:button_cancel),
+          button_reload: l('easy_gantt.button.reload'),
+          button_save: l(:button_save)
+        },
+        sample_text: l('easy_gantt.sample.text').html_safe,
+        sample_global_free_text: l('easy_gantt.sample_global_free.text').html_safe,
+        label_not_available: "-",
+        date: {
+          month_full: Array(l('date.month_names')).compact,
+          month_short: Array(l('date.abbr_month_names')).compact,
+          day_full: Array(l('date.day_names')).compact,
+          day_short: Array(l('date.abbr_day_names')).compact
+        },
+        types: {
+          project: l(:field_project),
+          issue: l(:field_issue),
+          milestone: l(:field_version),
+          relation: l(:field_relation)
+        },
+        errors: Array(l('activerecord.errors.messages')).compact,
+        errors2: {
+          unsaved_parent: l('easy_gantt.errors.unsaved_parent')
+        },
+        problems: {
+          overMilestone: l('easy_gantt.errors.overmile'),
+          too_short: l('easy_gantt.errors.too_short'),
+          overdue: l('easy_gantt.errors.overdue'),
+          progressDateOverdue: l('easy_gantt.errors.progress_date_overdue'),
+          shortDelay: l('easy_gantt.errors.short_delay')
+        },
+        gateway: {
+          sendFailed: l('easy_gantt.gateway.send_failed'),
+          entitySaveFailed: l('easy_gantt.gateway.entity_save_failed'),
+          allSended: l(:notice_successful_update)
+        },
+        titles: {
+          easyGantt: l(:heading_easy_gantts_issues),
+          global: l(:label_easy_gantt_global),
+          load: l(:label_easy_gantt_load),
+          issues: l(:label_issue_plural),
+          allIssueLoaded: l(:label_easy_gantt_issue_loaded),
+        },
+        expander: {
+          open: l(:label_easy_gantt_next_level_open),
+          close: l(:label_easy_gantt_next_level_close)
+        }
+      },
+      styles: {
+        backgrounds:{
+          selected: '#fff3a1',
+          line: 'rgba(200,200,200,0.5)',
+          line_month: '#aaaaff'
+        }
+      }
+    }.to_json.html_safe %>);
+
+  ysy.view = ysy.view || {};
+  ysy.view.templates = EasyGem.extend(ysy.view.templates, <%= {
+      TaskTooltip: %{
+        {{#name}}<h3 class="gantt-tooltip-header">{{name}}</h3>{{/name}}
+        {{#problems}}
+          <div class="gantt-tooltip-problem"><span class="value">{{.}}</span></div>
+        {{/problems}}
+        <div class="gantt-tooltip-attributes {{#progress}}gantt-tooltip-attributes--progress{{/progress}}">
+          {{#start_date}}
+            <div class="gantt-tooltip-start_date gantt-tooltip-attribute"><span class="gantt-tooltip-label label">#{l(:field_start_date)}:</span> <span class="value">{{start_date}}</span></div>
+          {{/start_date}}
+          {{#end_date}}
+            <div class="gantt-tooltip-end_date gantt-tooltip-attribute"><span class="gantt-tooltip-label label">#{l(:field_due_date)}:</span> <span class="value">{{end_date}}</span></div>
+          {{/end_date}}
+          {{#milestone}}
+            <div class="gantt-tooltip-milestone gantt-tooltip-attribute"><span class="gantt-tooltip-label label">#{l(:field_version)}:</span> <span class="value">{{milestone.name}}</span></div>
+          {{/milestone}}
+          {{#progress}}
+            <div class="gantt-tooltip-progress gantt-tooltip-attribute"><span class="gantt-tooltip-label label">#{l(:label_progress)}:</span> <span class="value">{{progress}} %</span></div>
+          {{/progress}}
+          {{#duration}}
+            <div class="gantt-tooltip-duration gantt-tooltip-attribute"><span class="gantt-tooltip-label label">#{l(:field_easy_duration)}:</span> <span class="value">{{duration}} #{l(:label_day_plural)}</span></div>
+          {{/duration}}
+          {{#columns}}
+            <div class="gantt-tooltip-column-{{name}} gantt-tooltip-attribute"><span class="gantt-tooltip-label label">{{label}}:</span><span class="value">{{value}}</span></div>
+          {{/columns}}
+        </div>
+        {{#description}}
+          <div class="gantt-tooltip-description "><span class="gantt-tooltip-label label">#{l(:field_description)}:</span></br><span class="value">{{description}}</span></div>
+        {{/description}}
+      },
+      Button: %{
+        <span class="button {{active}}" title="{{title}}">
+          <a id="{{elid}}_button_in" class="gantt_button{{icon}}" href="javascript:void(0)">{{name}}</a>
+        </span>
+      },
+      LinkButton: %{
+        <a class="{{css}}" title="{{title}}" href="javascript:void(0)">{{name}}</a>
+      },
+      SuperPanel: %{},
+      # reloadModal: %{
+      #   <h3 class="title">#{l('easy_gantt.reload_modal.title')}</h3>
+      #   <h4>#{l('easy_gantt.reload_modal.label_errors')}:</h4>
+      #   <ul class="gantt-reload-modal-errors">
+      #     {{#errors}}
+      #       <li class="gantt-reload-model-error">{{.}}</li>
+      #     {{/errors}}
+      #   </ul>
+      #   <p>#{l('easy_gantt.reload_modal.text_reload_appeal')}</p>
+      # },
+      preBlocker: %{
+        <div style="left:{{pos_x}}px" class="gantt_task_relation_stop gantt_task_relation_stop_left" title="#{l('easy_gantt.text_blocker_move_pre')}">
+        </div>
+      },
+      endBlocker: %{
+        <div style="left:{{pos_x}}px" class="gantt_task_relation_stop gantt_task_relation_stop_right" title="#{l('easy_gantt.text_blocker_move_end')}">
+        </div>
+      },
+      integrityCheck: %{
+        <h3 class="title">#{l('easy_gantt.errors.integrity.gantt_is_too_long')}</h3>
+        <div class="gantt__integrity-alert__subtitle">#{l('easy_gantt.errors.integrity.out_of_limits')}:</div>
+        <div class="gantt__integrity-alert__body">
+          {{#issues}}
+            <div>#{l('label_issue')} <a href="#{issues_path}/{{entity.id}}" target="_blank">{{entity.name}} (\#{{entity.id}})</a>
+              {{#isLeft}}#{l('easy_gantt.errors.integrity.starts_too_early')} (#{l('field_start_date')}{{/isLeft}}
+              {{^isLeft}}#{l('easy_gantt.errors.integrity.ends_too_late')} (#{l('field_due_date')}{{/isLeft}}
+              {{date}})
+            </div>
+          {{/issues}}
+          {{#versions}}
+            <div>#{l('label_version')} <a href="#{versions_path_safe}/{{entity.id}}" target="_blank">{{entity.name}} (\#{{entity.id}})</a>
+              {{#isLeft}}#{l('easy_gantt.errors.integrity.starts_too_early')}{{/isLeft}}
+              {{^isLeft}}#{l('easy_gantt.errors.integrity.ends_too_late')}{{/isLeft}}
+              (#{l('field_due_date')} {{date}})
+            </div>
+          {{/versions}}
+          {{#projects}}
+            <div>#{l('label_project')} <a href="#{projects_path}/{{entity.id}}" target="_blank">{{entity.name}} (\#{{entity.id}})</a>
+              {{#isLeft}}#{l('easy_gantt.errors.integrity.starts_too_early')} (#{l('field_start_date')}{{/isLeft}}
+              {{^isLeft}}#{l('easy_gantt.errors.integrity.ends_too_late')} (#{l('field_due_date')}{{/isLeft}}
+              {{date}})
+            </div>
+          {{/projects}}
+        </div>
+      },
+      ProblemFinder: %{
+        #{l('easy_gantt.button.problem_finder')}:
+        <span class="gantt-menu-problems-count{{#count}} gantt-with-problems{{/count}}">{{count}}</span>
+      },
+      ProblemFinderList: %{
+        <ol>
+          {{#entities}}
+            <li>
+              <a href="javascript:ysy.pro.problemFinder.scrollToEntity('{{entityId}}')">
+                {{#isProject}}#{l(:field_project)}{{/isProject}}{{^isProject}}#{l(:field_issue)}{{/isProject}}: <strong>{{name}}</strong>
+                <br>
+                <span class="gantt-menu-problems-reason">{{text}}</span>
+              </a>
+            </li>
+          {{/entities}}
+          {{#relations}}
+            <li>
+              <a href="javascript:ysy.pro.problemFinder.scrollToEntity('{{entityId}}')">
+                #{l(:field_relation)}: <strong>{{sourceName}}</strong> - <strong>{{targetName}}</strong>
+                <br>
+                <span class="gantt-menu-problems-reason">{{text}}</span>
+              </a>
+            </li>
+          {{/relations}}
+        </ol>
+      }
+    }.to_json.html_safe %>)
+</script>

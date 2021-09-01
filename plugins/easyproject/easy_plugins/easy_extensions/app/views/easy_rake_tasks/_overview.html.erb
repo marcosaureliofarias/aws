@@ -1,0 +1,54 @@
+<div class="splitcontent">
+
+  <div class="splitcontentleft">
+    <div class="box">
+      <div class="autoscroll">
+        <%= render :partial => 'easy_rake_tasks/short_grouped_index', :locals => {:tasks => @tasks} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="splitcontentright">
+    <% if ers = EasyRakeTask.easy_report_setting %>
+      <div class="box">
+        <p>
+          <%= l(:'easy_rake_tasks.views.last_action') %>: <%= format_time(ers.last_run) %>
+        </p>
+      </div>
+    <% end %>
+
+    <div class="box">
+      <%= toggling_container("running_tasks", User.current, {:heading => l(:running, :scope => [:easy_rake_task_infos, :status]), :ajax_call => false, :default_button_state => true, :wrapping_heading_element_classes => 'icon icon-play'}) do  %>
+        <%= render :partial => 'easy_rake_tasks/short_index', :locals => {:tasks => @running_tasks} %>
+      <% end %>
+    </div>
+
+    <div class="box">
+      <%= toggling_container("failed_tasks", User.current, {:heading => l(:ended_failed, :scope => [:easy_rake_task_infos, :status]), :ajax_call => false, :default_button_state => true, :wrapping_heading_element_classes => 'icon icon-false'}) do  %>
+        <%= render :partial => 'easy_rake_tasks/short_index', :locals => {:tasks => @failed_tasks} %>
+      <% end %>
+    </div>
+
+    <div class="box">
+      <%= toggling_container("ok_tasks", User.current, {:heading => l(:ended_ok, :scope => [:easy_rake_task_infos, :status]), :ajax_call => false, :default_button_state => true, :wrapping_heading_element_classes => 'icon icon-checked'}) do  %>
+        <%= render :partial => 'easy_rake_tasks/short_index', :locals => {:tasks => @ok_tasks} %>
+      <% end %>
+    </div>
+
+    <div class="box">
+      <%= toggling_container("next_2hours_tasks", User.current, {:heading => l(:next_2hours, :scope => [:easy_rake_task_infos, :status]), :ajax_call => false, :default_button_state => true, :wrapping_heading_element_classes => 'icon icon-timer'}) do  %>
+        <%= render :partial => 'easy_rake_tasks/short_index', :locals => {:tasks => @next_2hours_tasks} %>
+      <% end %>
+    </div>
+
+    <div class="box">
+      <%= toggling_container("next_24hours_tasks", User.current, {:heading => l(:next_24hours, :scope => [:easy_rake_task_infos, :status]), :ajax_call => false, :default_button_state => true, :wrapping_heading_element_classes => 'icon icon-timer'}) do  %>
+        <%= render :partial => 'easy_rake_tasks/short_index', :locals => {:tasks => @next_24hours_tasks} %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+<div class="clear"></div>
+
+<%= context_menu(:controller =>'context_menus', :action => 'easy_rake_tasks')%>

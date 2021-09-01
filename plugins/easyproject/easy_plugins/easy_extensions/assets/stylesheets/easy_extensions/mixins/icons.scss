@@ -1,0 +1,84 @@
+%icon-family{
+  speak: none;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  background-image: none;
+  vertical-align: baseline;
+
+  text-decoration: none !important;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  //font-size: $box-padding;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+//Icons
+@mixin icon-family($family) {
+  @extend %icon-family;
+  font-family: $family;
+}
+%easy-icon{
+  @include icon-family("EasyIcons");
+}
+%material-icon{
+  @include icon-family("Material Icons");
+}
+%icon-parent{
+  position: relative;
+  background-repeat: no-repeat;
+  background-image: none !important;
+}
+// For adding font icons to elements using CSS pseudo-elements
+// http://jaydenseric.com/blog/fun-with-sass-and-font-icons
+@mixin icon($icon: false, $styles: true, $icons: $icons) {
+  @if $styles {
+    // Supportive icon styles required
+    //@extend %easy-icon;
+    @extend %material-icon;
+  }
+  @if $icon {
+    // A particular icon has been specified
+    $map_icon: #{map-get($icons, #{$icon})};
+    @if $map_icon != "" {
+      content: unicode($map_icon) !important;
+    }
+    @else{
+      @error "missing icon: #{$icon}";
+    }
+  }
+  // Include any extra rules supplied for the pseudo-element
+  @content;
+}
+@mixin icon-parent($icon: false, $position: before, $styles: true, $icons: $icons){
+  //@extend %icon-parent; // TODO: removed due to Chrome 4096 limit
+  @if $position == both {
+    $position: 'before, &:after';
+  }
+  // Either a :before or :after pseudo-element, or both, defaulting to :before
+  &:#{$position} {
+    @include icon($icon,$styles, $icons){
+      @content;
+    }
+  }
+}

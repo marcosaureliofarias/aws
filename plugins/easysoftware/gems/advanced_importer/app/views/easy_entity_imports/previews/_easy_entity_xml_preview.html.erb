@@ -1,0 +1,25 @@
+<% if @easy_entity_import.xml %>
+  <% node = @easy_entity_import.xml.xpath("//#{@easy_entity_import.root_node}").first || @easy_entity_import.xml.root %>
+  <% if node %>
+    <h3><%= node.name %></h3>
+    <% if node.elements.count > 250 %>
+      Too much nodes
+    <% else %>
+    <% render_easy_entity_xml_nodes(node) do |x| %>
+      <% if x.elements.blank? %>
+        <div class="easy-import-child" data-path="<%= x.path %>" data-name="<%= x.name %>" style="<%= "padding-left:#{x.ancestors.size}em" %>">
+          <<span class="node-name">&nbsp;<%= x.name %>&nbsp;</span>><%= x.text %><&sol;<span class="node-name"><%= x.name %></span>>
+        </div>
+      <% else %>
+          <% family = (x.ancestors.map(&:name) - ['document']).reverse.join('/') # document is always root of xml %>
+        <p ondblclick="var x = document.getElementById('easy_entity_import_settings_root');x.value='<%= family %>/'+this.innerText">
+          <%= content_tag(:strong, x.name, :data => {:path => x.path}, :class => 'easy-xml-import-parent-node', :style => "padding-left:#{x.ancestors.size / 2}em", :title => family) %>
+        </p>
+      <% end %>
+    <% end %>
+    <% end %>
+  <% else %>
+    <%= content_tag(:p, l(:label_no_data), :class => 'nodata') %>
+  <% end %>
+<% end %>
+

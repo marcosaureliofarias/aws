@@ -1,0 +1,566 @@
+.box.epm_onboarding {
+  margin-bottom: 0;
+  @extend %flex;
+  @include flex-direction(column);
+  background-color: $color-foreground;
+  & + #top-menu{
+    @extend %sticky;
+    & ~ #main{
+      margin-top: 0;
+    }
+  }
+  .left-menu-opened & {
+    display: none;
+  }
+  .module-toggle-button {
+    margin: -2*$gap;
+    .group {
+      display: flex;
+      @extend %clearfix;
+    }
+  }
+  .module-heading {
+    padding: .75*$gap $gap .75*$gap 1.5*$gap;
+    width: 100%;
+    &-links {
+      padding: 0;
+      position: initial;
+      background: none;
+      margin-left: 0.25*$box-padding;
+      width: 100%;
+      font-weight: normal;
+      font-size: 15px;
+      flex-direction: row;
+      @extend %flex;
+      @extend %flex-wrap-wrap;
+      @extend %flex-direction-row;
+      @extend %justify-content-flex-start;
+      @include respond-to(max-menu-collapse) {
+        @include justify-content(center);
+      }
+      @include respond-to(max-sidebar-collapse) {
+        @include flex-direction(column);
+        text-align: center;
+      }
+      a {
+        text-transform: uppercase;
+        margin: 0 2*$gap;
+      }
+
+      .onboarding_module__header {
+        &_span {
+          @include respond-to(max-menu-collapse) {
+            padding-top: .5*$gap;
+            flex-basis: 100% !important;
+            display: block;
+            text-align: center;
+            width: 100% !important;
+          }
+        }
+        &_span-important {
+          color: $color-important;
+          font-weight: 600;
+        }
+        &_pricing {
+          @extend %button;
+          @include border-radius(4px);
+          border: 1px solid $color-important;
+          margin-left: auto;
+          margin-right: $gap;
+          font-weight: normal;
+          &:hover {
+            text-decoration: underline;
+          }
+          @include respond-to(max-menu-collapse) {
+            margin: $gap $gap .5*$gap 0;
+          }
+          @include respond-to(max-sidebar-collapse) {
+            margin: $gap 0 0;
+          }
+        }
+        &_tooltip {
+          @extend %button-negative;
+          @include border-radius(4px);
+          line-height: 1.5 !important;
+          white-space: nowrap;
+          position: relative;
+          text-transform: uppercase;
+          padding-right: 4*$gap !important;
+          font-weight: normal;
+          @extend %control-arrow-down;
+          &:before {
+            position: absolute;
+            top: 50%;
+            right: 1.4*$gap;
+            border-color: $color-foreground;
+            width: $gap;
+            height: $gap;
+            margin-top: -$gap;
+          }
+          &:hover {
+            text-decoration: underline;
+          }
+          @include respond-to(max-menu-collapse) {
+            margin: $gap auto .5*$gap !important;
+          }
+          @include respond-to(max-sidebar-collapse) {
+            margin: $gap 0 0;
+          }
+        }
+        &_spacer{
+          margin-right: 0.5*$gap;
+        }
+        &_name {
+          @extend %flex;
+          @extend %flex-wrap-wrap;
+          @include align-items(center);
+          h3 {
+            margin-left: 0.5*$gap;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+    &-title {
+      font-weight: normal;
+    }
+  }
+  .expander {
+    display: none;
+  }
+  .module-content {
+    background: $color-trial-background;
+  }
+  div.onboarding_redmine {
+    margin-top: 1.5*$box-padding;
+    padding-bottom: 1.5*$box-padding;
+    @extend %flex;
+    @extend %justify-content-center;
+    @include respond-to(max-medium-screen) {
+      display: block;
+      text-align: center;
+    }
+    .epm-step {
+      margin: 0 $gap;
+      padding: 1.5*$box-padding $box-padding $box-padding;
+      @extend %flex;
+      @extend %flex-direction-column;
+      //@extend %align-content
+      background-color: $color-background;
+      @include border-radius(6px);
+      @include flex-basis(25%);
+      @include respond-to(max-medium-screen) {
+        margin: 0;
+      }
+      h3 {
+        font-size: 16px;
+        color: $color-text-muted;
+        margin: 0;
+        margin-bottom: $box-padding;
+      }
+      a, p {
+        margin-bottom: $box-padding;
+      }
+      p > a {
+        margin-bottom: 0;
+      }
+      p + a {
+        &:not(.button) {
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+      }
+      .try_dashboards {
+        @extend %button-important;
+        @include border-radius(4px);
+        border-color: $color-important;
+        text-decoration: none;
+        text-align: center;
+        font-size: 1em;
+        font-weight: normal;
+        &:hover {
+          text-align: center;
+        }
+        @include respond-to(max-menu-collapse) {
+          width: auto;
+          margin: 0 auto $gap !important;
+        }
+      }
+      .button {
+        min-width: 130px;
+        text-align: center;
+        margin-top: auto;
+        margin-bottom: 0;
+        @include border-radius(4px);
+        @extend %button-positive;
+        @include respond-to(max-menu-collapse) {
+          width: auto;
+          margin: auto;
+        }
+      }
+      &:not(.epm-step_active) {
+        //border: 1px solid rgba(154, 170, 184, 0.5);
+        a, p {
+          color: $color-text-muted;
+        }
+        .button {
+          background-color: rgba(154, 170, 184, 0.9);
+          color: $white;
+          border: 0;
+          cursor: default;
+          &:hover {
+            background-color: rgba(154, 170, 184, 0.9);
+          }
+        }
+      }
+      &_active {
+        background-color: $color-foreground;
+        h3 {
+          color: $color-text;
+        }
+      }
+    }
+    div.epm-step_active {
+      @extend %box-shadow-trial;
+    }
+    i {
+      font-size: 30px;
+      height: 100%;
+      color: rgba(154, 170, 184, 0.5);
+      @include align-self(center);
+      &.epm-step_active {
+        color: $color-positive;
+        border: 0;
+        background-color: transparent;
+      }
+      @include respond-to(max-large-screen) {
+        font-size: 20px;
+      }
+      &:before {
+        @include respond-to(max-medium-screen) {
+          @include rotate(90deg);
+        }
+      }
+    }
+  }
+}
+
+.easy-invite-colleagues{
+  &__onboard-form-container {
+    .tabular {
+      position: relative;
+      margin: 0 auto;
+      @include respond-to(max-small-screen) {
+        max-width: 90%;
+      }
+      @include respond-to(min-medium-screen) {
+        max-width: 50%;
+      }
+      @include respond-to(min-xlarge-screen) {
+        max-width: 30%;
+      }
+      .help {
+        @include respond-to(max-medium-screen) {
+          display: none;
+        }
+      }
+      .redmine_installed_wrapper {
+        & > span {
+          & > label {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+    #first_login_user_form--second_part {
+      @include respond-to(min-medium-screen) {
+        max-width: initial;
+        width: 500px;
+      }
+      p {
+        @include respond-to(min-medium-screen) {
+          max-width: initial !important;
+        }
+      }
+    }
+  }
+  &__gdpr-tooltip {
+    margin: auto;
+    background: $color-foreground;
+    padding: $gap;
+    @include material__elevation(1);
+    @include respond-to(min-small-screen){
+      width: 85%;
+    }
+    @include respond-to(min-large-screen){
+      width: 30%;
+      position: fixed;
+      top: 2.5*$box-padding;
+      right: $box-padding;
+    }
+  }
+}
+
+[class*=easy-invite-colleagues__onboard-message]{
+  margin-top: -$gap;
+}
+
+[aria-describedby="invited_colleague_change_user_type_modal"] {
+  .ui-dialog-titlebar {
+    text-align: center;
+  }
+  .ui-dialog-title {
+    width: 100%;
+    @include respond-to(min-large-screen) {
+      padding-left: $box-padding;
+    }
+  }
+}
+
+[aria-describedby="invited_colleague_onboard_modal"] {
+  .ui-dialog-title {
+    width: 100%;
+    @include respond-to(min-large-screen) {
+      padding-left: $box-padding;
+    }
+  }
+  .ui-dialog-titlebar {
+    text-align: center;
+  }
+  #marketing_phone {
+    &::-webkit-input-placeholder {
+      color: rgba($color-text, 0.5);
+    }
+    &:-moz-placeholder {
+      color: rgba($color-text, 0.5);
+    }
+    &::-moz-placeholder {
+      color: rgba($color-text, 0.5);
+    }
+    &:-ms-input-placeholder {
+      color: rgba($color-text, 0.5);
+    }
+  }
+  .tooltip {
+    @extend %tooltip-content;
+    @include respond-to(max-medium-screen) {
+      white-space: normal !important;
+      min-width: 200px;
+    }
+  }
+  .icon-help-bubble {
+    @extend %tooltip-parent;
+  }
+  .intl-tel-input {
+    margin-bottom: 0.5*$gap;
+  }
+}
+
+.easy-imports__form-wrapper {
+  #tab-content-users {
+    padding-top: $gap;
+    h2 {
+      margin-top: 0;
+      margin-bottom: 1.5*$box-padding;
+      text-align: center;
+    }
+  }
+  .tabular {
+    margin: 0 auto;
+    @include respond-to(min-medium-screen) {
+      max-width: 50%;
+    }
+    @include respond-to(min-large-screen) {
+      max-width: 40%;
+    }
+  }
+}
+
+.easy-invite-colleagues__form-container {
+  #new_easy_invite_colleague {
+    .button-positive {
+      margin-top: 0;
+    }
+  }
+}
+
+#invited_colleague_change_user_type_modal {
+  .icon-help-bubble {
+    display: none;
+    @extend %tooltip-parent;
+    @include respond-to(max-small-screen) {
+      display: none;
+    }
+  }
+  .tooltip {
+    display: none;
+    margin: $gap;
+    position: relative !important;
+    white-space: normal !important;
+  }
+}
+
+.intl-tel-input {
+  &.iti-container {
+    z-index: 1300 !important;
+  }
+}
+.iti-mobile {
+  .country-list {
+    position: initial !important;
+  }
+}
+
+.roles_overview {
+  &__wrapper {
+    @extend %flex;
+    @extend %justify-content-space-between;
+    @extend %flex-wrap-wrap;
+    div:nth-child(1), div:nth-child(2), div:nth-child(3) {
+      border-top: none;
+    }
+    @include respond-to(max-medium-screen) {
+      div:nth-child(3) {
+        border-top: solid 1px rgba($color-main, 0.6);
+      }
+    }
+    @include respond-to(max-sidebar-collapse) {
+      div:nth-child(2) {
+        border-top: solid 1px rgba($color-main, 0.6);
+      }
+    }
+  }
+  &__block {
+    ul {
+      list-style: none;
+      padding: 0;
+      padding-bottom: 1.5*$gap;
+      margin: 0;
+      a {
+        color: $color-links;
+      }
+      h3 {
+        font-weight: normal;
+        margin-top: $box-padding;
+      }
+    }
+    border-top: solid 1px rgba($color-main, 0.6);
+    width: calc(90% / 3);
+    @include respond-to(max-medium-screen) {
+      width: calc(96% / 2);
+      h3 {
+        margin-top: $gap;
+      }
+      ul {
+        padding-bottom: $gap;
+      }
+    }
+    @include respond-to(max-sidebar-collapse) {
+      width: 100%;
+      a {
+        font-size: 14px;
+      }
+      h3 {
+        margin-top: $gap;
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+#invited_colleague_finish_onboarding_modal {
+  padding: 0.5em 1em !important;
+  background: $color-foreground;
+  form > hr {
+    display: none;
+  }
+  .form-actions {
+    background: $color-foreground;
+  }
+  .optional {
+    color: $color-text-muted;
+    font-size: 13px;
+  }
+  .survey {
+    background-color: $color-background;
+    padding: $gap $gap 1.5*$box-padding;
+    .required {
+      color: $color-links;
+    }
+    &_required {
+      @extend %flex;
+      @include justify-content(flex-start);
+      span:not(.required) {
+        @extend %flex;
+        @include justify-content(space-around);
+        @include flex-basis(50%);
+        label {
+          @extend %flex;
+          @extend %align-items-center;
+        }
+      }
+      label {
+        @include flex-basis(50%);
+      }
+    }
+    & + div {
+      margin-top: 1.5*$box-padding;
+      padding: 0 $gap;
+      & > label {
+        font-size: 14px;
+        .optional {
+          font-size: 0.89em;
+        }
+      }
+    }
+  }
+  .continue_wrapper {
+    padding: $gap 0;
+    @extend %flex;
+    @include justify-content(space-between);
+    @extend %align-items-center;
+    .button {
+      @extend %flex;
+      @extend %flex-wrap-nowrap;
+      @extend %align-items-center;
+      text-transform: initial;
+      margin: 0.5*$gap 0;
+      font-size: 0.85em;
+      font-weight: normal;
+      &-outlined {
+        background-color: transparent;
+      }
+    }
+  }
+  @include respond-to(max-xxlarge-screen) {
+    .continue_wrapper {
+      @include flex-direction(column);
+      padding: $gap 0;
+      .button {
+        margin: 0.5*$gap 0;
+        width: 100%;
+      }
+    }
+  }
+  @include respond-to(max-xlarge-screen) {
+    .survey {
+      padding-bottom: $box-padding;
+      &_required {
+        @include flex-direction(column);
+        & > span {
+          margin-top: $gap;
+        }
+      }
+      & + div {
+        margin-top: $box-padding;
+      }
+    }
+  }
+  @include respond-to(max-medium-screen) {
+    .survey_required {
+      span:not(.required) {
+        width: 70%;
+      }
+    }
+  }
+}

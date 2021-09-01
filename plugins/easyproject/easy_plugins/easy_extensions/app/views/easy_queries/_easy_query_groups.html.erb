@@ -1,0 +1,40 @@
+<%
+group_limit = options[:group_limit] || @limit || controller.per_page_option
+modal_selector = (options[:modal_selector].to_s == 'true')
+%>
+<% groups.each do |group, attributes| %>
+  <% uniq_id = "#{modul_uniq_id}_#{options[:block_name]}_#{easy_query.group_by_column.name}_#{group.to_s.hash}" %>
+  <%
+     attributes[:name] = attributes[:name].blank? ? [attributes[:name]] : Array.wrap(attributes[:name]) %>
+  <%#= filter_plus_button(group.blank?, easy_query.inline_columns.size + 3, uniq_id, format_html_entity_attribute(easy_query.entity, easy_query.group_by_column, group), easy_query_group_by_title_content(easy_query, attributes[:count], attributes[:percent], attributes[:sums], :top, {:hide_sums => options[:hide_sums_in_group_by]}), user, name: attributes[:name]) %>
+  <tr class="easy-entity-list__item easy-entity-list__item-group group <%= 'preloaded' if options[:preloaded] %>" id="<%= uniq_id %>" data-group-name="<%= easy_query_data_qroup_name(group) %>"
+      data-pages="<%= Redmine::Pagination::Paginator.new(attributes[:count] || 0, group_limit, 1).last_page %>" data-entity-count="<%= attributes[:count].to_i %>">
+    <td class="easy-entity-list__item-group-control hide-when-print checkbox">
+      <div class="row-control">
+        <span class="expander icon icon-remove" alt="Expander" title="<%= l(:collapse_expand) %>" ></span>
+      </div>
+    </td>
+    <%= content_tag(:td, nil, :class => 'easy-query-additional-beginning-buttons hide-when-print') if easy_query.first_sumable_index > 0 -%>
+    <%= content_tag(:td, nil, :class => 'hide-when-print') if modal_selector -%>
+    <td class='easy-entity-list__item-group-name group-name' colspan="<%=(options[:colspan] || 0) + easy_query.first_sumable_index %>">
+      <%= format_groupby_html_entity_attribute(easy_query.entity, easy_query.group_by_column, attributes[:name], period: easy_query.group_by_period, allow_avatar: easy_query.show_avatars?, entity: attributes[:entity], editable: false, group: group, easy_query: easy_query) %>
+      <span class="easy-entity-list__item-group-count">
+        <%= easy_query_group_by_title_tags(easy_query, attributes[:count], attributes[:percent], attributes[:sums][:bottom], {:hide_sums => options[:hide_sums_in_group_by]}) %>
+      </span>
+    </td>
+
+    <% easy_query.inline_columns[easy_query.first_sumable_index...easy_query.inline_columns.size].each do |column| %>
+      <td class="easy-entity-list__item-attribute easy-entity-list__item-attribute--sum <%= column.css_classes %>">
+        <div class="easy-entity-list__item-attribute-label" style="display: none"><%= column.caption %></div>
+        <div class="easy-entity-list__item-attribute-content"><%= format_html_entity_attribute(easy_query.entity, column, attributes[:sums][:bottom][column]) if column.sumable? %></div>
+      </td>
+    <% end %>
+    <% unless modal_selector %>
+      <td class="easy-entity-list__item-actions easy-entity-list__item-actions--ending hide-when-print easy-query-additional-ending-buttons"></td>
+    <% end %>
+  </tr>
+
+  <% if options[:preloaded] && attributes[:entities] %>
+    <%= render 'easy_queries/easy_query_entities', easy_query: easy_query, entities: attributes[:entities], modul_uniq_id: modul_uniq_id, user: user, options: options %>
+  <% end %>
+<% end %>

@@ -1,0 +1,13 @@
+<% title l(:title_budgetsheet_overview) %>
+
+<%= render_easy_page_bottom_buttons(overview_layout_budgetsheet_path(t: params[:t])) if @page_editable %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <% if User.current.allowed_to_globally?(:view_budgetsheet) %>
+    <%= link_to(l(:label_easy_budget_sheet_queries_plural), budgetsheet_path , class: 'button icon icon-list') %>
+  <% end %>
+
+  <% if User.current.admin? && Redmine::Plugin.installed?(:easy_money) %>
+    <%= link_to(l(:tab_easy_money_rate_user), easy_money_settings_path(tab: 'EasyMoneyRateUser') , class: 'button icon icon-list') %>
+  <% end %>
+<% end %>

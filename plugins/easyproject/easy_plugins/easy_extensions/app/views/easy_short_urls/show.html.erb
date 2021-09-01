@@ -1,0 +1,57 @@
+<div class="splitcontent tabular">
+  <div class="splitcontentleft">
+    <p>
+      <%= label_tag 'xx', EasyShortUrl.human_attribute_name(:shortcut) %>
+      <%= text_field_tag 'xx', easy_shortcut_url(@easy_short_url.shortcut) %>
+    </p>
+    <% if @easy_short_url.valid_to %>
+      <p>
+        <%= EasyShortUrl.human_attribute_name(:valid_to) %>: <%= format_date(@easy_short_url.valid_to) %>
+      </p>
+    <% end %>
+    <p>
+      <%= label_tag 'yy', EasyShortUrl.human_attribute_name(:allow_external) %>: <%= format_object(@easy_short_url.allow_external) %>
+    </p>
+    <% if @easy_short_url.entity %>
+      <p>
+        <%= label_tag '', l(:field_entity) %>
+        <%= link_to_entity @easy_short_url.entity %>
+      </p>
+    <% end %>
+  </div>
+  <div class="splitcontentright">
+    <%= render_easy_qr easy_shortcut_url(@easy_short_url.shortcut), :size => 5 %>
+    <%= call_hook(:view_easy_short_urls_show_right, {:easy_short_url => @easy_short_url}) %>
+  </div>
+</div>
+<div class="clear"></div>
+
+<fieldset>
+  <legend><%= l(:label_accesses) %></legend>
+
+  <% if @easy_short_url.accesses.any? %>
+    <table class="list">
+      <thead>
+        <tr>
+          <th><%= l(:field_user) %></th>
+          <th><%= l(:field_ip) %></th>
+          <th><%= l(:field_count) %></th>
+          <th><%= l(:field_last_access_on) %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @easy_short_url.accesses.each do |access| %>
+          <tr>
+            <td><%= link_to_user(access.user) %></td>
+            <td><%= access.ip %></td>
+            <td><%= access.count %></td>
+            <td><%= format_date(access.updated_at) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% end %>
+</fieldset>

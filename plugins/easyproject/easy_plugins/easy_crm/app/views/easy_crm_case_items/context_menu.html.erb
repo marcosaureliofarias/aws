@@ -1,0 +1,6 @@
+<ul>
+  <% if @easy_crm_case_items.count == 1 %>
+    <li><%= context_menu_link l(:button_update), easy_crm_case_path(@easy_crm_case), :class => 'icon icon-edit' %></li>
+  <% end %>
+  <li><%= context_menu_link l(:button_delete), bulk_destroy_easy_crm_case_items_path(:ids => @easy_crm_case_items.map(&:id)), :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del' %></li>
+</ul>

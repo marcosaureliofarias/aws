@@ -1,0 +1,14 @@
+<%
+  modul_uniq_id ||= controller_name + '_' + action_name
+  modul_uniq_id = modul_uniq_id + '_sidebar_taggings'
+%>
+<% if User.current.internal_client? %>
+  <div class="box">
+    <% tc_options = {:heading => l(:label_easy_tags), :container_html => {:class => 'entity-array'}, :wrapping_heading_element_classes => 'icon icon-bookmark'} %>
+    <%= toggling_container(modul_uniq_id, User.current, tc_options) do %>
+      <% tag_cloud(query.entity.tag_counts_on(:tags), %w(css1 css2 css3 css4)) do |tag, css_class| %>
+        <%= link_to tag.name, query.entity_easy_query_path({:set_filter => '1', :tags => tag.name, :project => query.project}), :class => css_class %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<%= labelled_fields_for :easy_action_sequence_template, entity do |f| %>
+  <p>
+    <%= f.text_field :name, class: 'required' %>
+  </p>
+  <p>
+    <%= f.text_area :description,
+                    :class => 'wiki-edit' -%>
+    <%= wikitoolbar_for 'easy_action_sequence_template_description' -%>
+  </p>
+  <p>
+    <%= f.select :condition_class, [[l(:label_manual_trigger, scope: [:easy_actions]), '']] + EasyActions::Conditions.registered.map { |klass| [klass, klass] },
+                 {},
+                 onchange: "javascript:$.ajax({url: '#{j entity.new_record? ? new_polymorphic_path(entity.to_route, format: :js) : edit_polymorphic_path(entity.to_route, format: :js) }', type: 'GET', data: $(this.form).serialize(), processData: false, contentType: false, dataType: 'script'})" %>
+  </p>
+  <% if entity.condition && lookup_context.template_exists?(entity.condition.view_name, entity.condition.view_folder, true) %>
+    <fieldset>
+      <legend><%= entity.condition.model_name.human %></legend>
+      <%= render entity.condition, entity: entity %>
+    </fieldset>
+  <% end %>
+<% end %>

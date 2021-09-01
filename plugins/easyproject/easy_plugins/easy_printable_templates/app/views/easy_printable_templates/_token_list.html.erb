@@ -1,0 +1,267 @@
+<%= content_tag(:h3, l(:button_easy_printable_templates_show_tokens), :class => 'title') %>
+<%= fields_for(field_name, entity) do |f| %>
+  <div class="autoscroll">
+    <table class="list easy-printable-template-tokens-list">
+      <tbody>
+      <tr>
+        <td colspan="2"><%= l(:label_project_plural) %>:</td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%project_id%', f, l(:field_id)) -%></td>
+        <td><%= l(:field_id) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%project_name%', f, l(:field_name)) -%></td>
+        <td><%= l(:field_name) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%project_description%', f, l(:field_description)) -%></td>
+        <td><%= l(:field_description) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%project_start_date%', f, l(:field_start_date)) -%></td>
+        <td><%= l(:field_start_date) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%project_due_date%', f, l(:field_due_date)) -%></td>
+        <td><%= l(:field_due_date) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%project_author%', f, l(:field_author)) -%></td>
+        <td><%= l(:field_author) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%project_journal_comments%', f, l(:field_project_journal_comments)) -%></td>
+        <td><%= l(:field_project_journal_comments) -%></td>
+      </tr>
+      <%= call_hook(:view_easy_printable_templates_token_list_bottom, :f => f, :section => :project) %>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= l(:label_issue_plural) %>:</td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_id%', f, l(:field_id)) -%></td>
+        <td><%= l(:field_id) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_tracker%', f, l(:field_tracker)) -%></td>
+        <td><%= l(:field_tracker) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_project%', f, l(:field_project)) -%></td>
+        <td><%= l(:field_project) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_subject%', f, l(:field_subject)) -%></td>
+        <td><%= l(:field_subject) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_description%', f, l(:field_description)) -%></td>
+        <td><%= l(:field_description) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_due_date%', f, l(:field_due_date)) -%></td>
+        <td><%= l(:field_due_date) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_category%', f, l(:field_category)) -%></td>
+        <td><%= l(:field_category) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_status%', f, l(:field_status)) -%></td>
+        <td><%= l(:field_status) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_assigned_to%', f, l(:field_assigned_to)) -%></td>
+        <td><%= l(:field_assigned_to) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_priority%', f, l(:field_priority)) -%></td>
+        <td><%= l(:field_priority) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_milestone%', f, l(:field_version)) -%></td>
+        <td><%= l(:field_version) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_author%', f, l(:field_author)) -%></td>
+        <td><%= l(:field_author) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_created_on%', f, l(:field_created_on)) -%></td>
+        <td><%= l(:field_created_on) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_updated_on%', f, l(:field_updated_on)) -%></td>
+        <td><%= l(:field_updated_on) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_start_date%', f, l(:field_start_date)) -%></td>
+        <td><%= l(:field_start_date) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_done_ratio%', f, l(:field_done_ratio)) -%></td>
+        <td><%= l(:field_done_ratio) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_estimated_hours%', f, l(:field_estimated_hours)) -%></td>
+        <td><%= l(:field_estimated_hours) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%task_total_spent_hours%', f, l(:label_spent_time)) -%></td>
+        <td><%= l(:label_spent_time) -%></td>
+      </tr>
+      <%= call_hook(:view_easy_printable_templates_token_list_bottom, :f => f, :section => :issue) %>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= l(:label_custom_field_plural) -%>:</td>
+      </tr>
+      <% ProjectCustomField.all.each do |cf| %>
+        <tr>
+          <td><%= easy_printable_template_link_to_add_token("%project_cf_#{cf.id}%", f, cf.name) -%></td>
+          <td><%= cf.name -%></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <% IssueCustomField.all.each do |cf| %>
+        <tr>
+          <td><%= easy_printable_template_link_to_add_token("%task_cf_#{cf.id}%", f, cf.name) -%></td>
+          <td><%= cf.name -%></td>
+        </tr>
+        <% if cf.field_format == 'easy_lookup' %>
+          <% entity_klasses = [] %>
+          <% entity_klass = cf.settings['entity_type'].constantize rescue nil %>
+          <% entity_klass.respond_to?(:safe_attributes) && entity_klass.safe_attributes.map(&:first).flatten.each do |cf_entity_attr| %>
+            <% token_name = "task_cf_#{cf.id}_#{entity_klass.name.underscore}_#{cf_entity_attr}" %>
+            <tr>
+              <td><%= easy_printable_template_link_to_add_token("%#{token_name}%", f, token_name) -%></td>
+              <td><%= l("field_#{cf_entity_attr}") %></td>
+            </tr>
+            <% if entity_cf_klass = "#{entity_klass.name}CustomField".constantize rescue nil %>
+              <% next if entity_klasses.include?(entity_cf_klass) %>
+              <% entity_klasses << entity_cf_klass %>
+              <% entity_cf_klass.all.each do |entity_cf| %>
+                <% entity_cf_token_name = "task_cf_#{cf.id}_#{entity_klass.name.underscore}_cf_#{entity_cf.id}" %>
+                <tr>
+                  <td><%= easy_printable_template_link_to_add_token("%#{entity_cf_token_name}%", f, entity_cf.name) -%></td>
+                  <td><%= entity_cf.name %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= l(:label_easy_helpdesk) -%>:</td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%hd_monthly_hours%', f, l(:field_easy_helpdesk_project_monthly_hours)) -%></td>
+        <td><%= l(:field_easy_helpdesk_project_monthly_hours) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%hd_spent_time_last_month%', f, l(:field_easy_helpdesk_project_spent_time_last_month)) -%></td>
+        <td><%= l(:field_easy_helpdesk_project_spent_time_last_month) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%hd_spent_time_current_month%', f, l(:field_easy_helpdesk_project_spent_time_current_month)) -%></td>
+        <td><%= l(:field_easy_helpdesk_project_spent_time_current_month) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%hd_aggregated_hours%', f, l(:field_aggregated_hours)) -%></td>
+        <td><%= l(:field_aggregated_hours) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%hd_aggregated_hours_remaining%', f, l(:label_easy_helpdesk_actual_budget)) -%></td>
+        <td><%= l(:label_easy_helpdesk_actual_budget) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%hd_aggregated_from_last_period%', f, l(:label_easy_helpdesk_aggregated_from_last_period)) -%></td>
+        <td><%= l(:label_easy_helpdesk_aggregated_from_last_period) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%hd_remaining_hours%', f, l(:field_aggregated_hours_remaining)) -%></td>
+        <td><%= l(:field_aggregated_hours_remaining) -%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <%= call_hook(:view_easy_printable_templates_token_list_bottom, :f => f, :section => :plugins) %>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= l(:label_others) -%>:</td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%query%', f, l(:label_query)) -%></td>
+        <td><%= l(:label_query) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%today%', f, l(:label_easy_printable_template_today)) -%></td>
+        <td><%= l(:label_easy_printable_template_today) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%now%', f, l(:label_easy_printable_template_now)) -%></td>
+        <td><%= l(:label_easy_printable_template_now) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%year%', f, l(:label_easy_printable_template_year)) -%></td>
+        <td><%= l(:label_easy_printable_template_year) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%this_month_number%', f, l(:label_easy_printable_template_this_month_number)) -%></td>
+        <td><%= l(:label_easy_printable_template_this_month_number) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%this_month_name%', f, l(:label_easy_printable_template_this_month_name)) -%></td>
+        <td><%= l(:label_easy_printable_template_this_month_name) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%last_month_number%', f, l(:label_easy_printable_template_last_month_number)) -%></td>
+        <td><%= l(:label_easy_printable_template_last_month_number) -%></td>
+      </tr>
+      <tr>
+        <td><%= easy_printable_template_link_to_add_token('%last_month_name%', f, l(:label_easy_printable_template_last_month_name)) -%></td>
+        <td><%= l(:label_easy_printable_template_last_month_name) -%></td>
+      </tr>
+      <% EasyQuery.visible(User.current).to_a.group_by(&:visibility).each do |visibility, queries| %>
+        <%
+          v = case visibility
+          when EasyQuery::VISIBILITY_PRIVATE
+            'personal'
+          when EasyQuery::VISIBILITY_PUBLIC
+            'public'
+          else
+            'other'
+          end
+        %>
+        <tr>
+          <td colspan="2"><%= l("easy_query.sidebar_filters.#{v}.other", default: l('easy_query.sidebar_filters.other')) -%>:</td>
+          <% queries.each do |query| %>
+          <tr>
+            <td><%= easy_printable_template_link_to_add_token("%query_#{query.id}%", f, query.name) -%></td>
+            <td><%= query.name -%></td>
+          </tr>
+          <% end %>
+        </tr>
+      <% end %>
+      <%= call_hook(:view_easy_printable_templates_token_list_bottom, :f => f, :section => :others) %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

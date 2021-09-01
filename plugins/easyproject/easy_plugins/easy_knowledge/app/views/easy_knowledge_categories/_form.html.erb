@@ -1,0 +1,19 @@
+<%= error_messages_for @category -%>
+
+<div class="gray-background tabular">
+  <p><%= f.text_field :name, :label => :field_easy_knowledge_category_name, :required => true, :autofocus => true -%></p>
+
+  <% unless category.allowed_parents.compact.empty? -%>
+    <p><%= label(:easy_knowledge_category, :parent_id, l(:field_easy_knowledge_category_parent_id)) -%><%= parent_category_select_tag(category) %></p>
+  <% end -%>
+
+  <% category.custom_field_values.each do |value| -%>
+    <p><%= custom_field_tag_with_label :easy_knowledge_category, value -%></p>
+  <% end -%>
+
+  <p>
+    <%= f.text_area(:description, rows: 12) -%>
+    <%= wikitoolbar_for("#{f.object_name}_description", preview_text_path, {height: 120}) -%>
+  </p>
+  <%= back_url_hidden_field_tag %>
+</div>

@@ -1,0 +1,14 @@
+.button{
+  &, &-positive, &-negative, &-main, &-important, &-mini, &-small, &-large, &-2{
+    @extend %display_none;
+    .ui-dialog &{
+      display: inline-block !important;
+    }
+  }
+}
+.easy-zoom-buttons {
+  @extend %display_none;
+}
+.button-show-more {
+  @extend %display_none;
+}

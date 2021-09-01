@@ -1,0 +1,13 @@
+#modal_selector{
+  &filter_buttons{
+    @extend %eq-filter-buttons;
+    margin-left: -$box-padding;
+    margin-right: - $box-padding;
+    a{
+      color: $button-positive-color;
+    }
+  }
+  &filters, &custom_formatting, &filters_settings{
+    @extend %eq-filters-form;
+  }
+}

@@ -1,0 +1,35 @@
+<%= render partial: 'easy_pdf_themes/selector' %>
+<% if User.current.admin? %>
+  <%= link_to l(:label_customize_gantt_export), easy_pdf_themes_path, :class => 'button' %>
+<% end %>
+<%= select_tag 'pages_orientation', options_for_select([[l(:'pages_orientation.portrait'), 'portrait'], [l(:'pages_orientation.landscape'), 'landscape']]), :class => 'block' %>
+<%= select_tag 'pages_size', options_for_select([['A4', 'A4'], ['A3', 'A3']]), :class => 'block' %>
+<%= link_to(l(:label_preview), request.query_parameters.merge(:format => 'html', :action => 'preview'), :class => 'button icon icon-watcher calculation-export') %>
+<%= link_to(l(:title_other_formats_links_pdf), request.query_parameters.merge(:format => 'pdf', :action => 'show'), :class => 'button-positive icon icon-pdf calculation-export') %>
+
+<%= javascript_tag do %>
+EASY.schedule.late(function() {
+  $(".calculation-export").on('click', function () {
+    var url = $(this).attr('href');
+    if (url.indexOf('?') < 0) {
+      url += '?';
+    } else {
+      url += '&';
+    }
+    url += 'easy_pdf_theme=' + $('#easy_pdf_theme').val();
+
+    var orientation = $('#pages_orientation').val();
+    if (orientation !== undefined) {
+      url += '&pages_orientation=' + orientation;
+    }
+
+    var size = $('#pages_size').val();
+    if (size !== undefined) {
+      url += '&pages_size=' + size;
+    }
+
+    window.open(url);
+    return false;
+  });
+});
+<% end %>

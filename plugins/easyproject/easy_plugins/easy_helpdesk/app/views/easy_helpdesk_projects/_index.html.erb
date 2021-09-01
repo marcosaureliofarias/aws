@@ -1,0 +1,29 @@
+<% if easy_helpdesk_projects.blank? %>
+  <p class="nodata"><%= l(:label_no_data) -%></p>
+<% else %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><%= l(:field_project) -%></th>
+        <th><%= l(:field_tracker) -%></th>
+        <th><%= l(:field_assigned_to) -%></th>
+        <th><%= l(:'field_easy_helpdesk_project_matching.domain_name') -%></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% easy_helpdesk_projects.each do |easy_helpdesk_project| %>
+        <tr>
+          <td><%= link_to(easy_helpdesk_project.project, edit_easy_helpdesk_project_path(easy_helpdesk_project)) -%></td>
+          <td><%= easy_helpdesk_project.tracker -%></td>
+          <td><%= easy_helpdesk_project.assigned_to -%></td>
+          <td><%= easy_helpdesk_project.easy_helpdesk_project_matching.collect(&:domain_name).join(', ') -%></td>
+          <td class="buttons">
+            <%= link_to(l(:button_edit), edit_easy_helpdesk_project_path(easy_helpdesk_project), :class => 'icon icon-edit', :title => l(:button_edit)) %>
+            <%= link_to(l(:button_delete), easy_helpdesk_project_path(easy_helpdesk_project), :method => :delete, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :title => l(:button_delete)) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

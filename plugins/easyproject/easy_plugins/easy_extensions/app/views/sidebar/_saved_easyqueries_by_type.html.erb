@@ -1,0 +1,87 @@
+<%
+modul_uniq_id ||= ''
+modul_uniq_id = modul_uniq_id + '_user-easyquery_' + query_class.to_s
+query_link ||= Hash.new
+query_link.merge!({:tab => params[:tab]})
+
+no_data_warning ||= false
+
+unless defined?(project)
+  project = nil
+end
+
+unless defined?(get_visible_queries)
+  get_visible_queries = true
+end
+
+if get_visible_queries
+  user ||= User.current
+  visible_queries = query_class.sidebar_queries([EasyQuery::VISIBILITY_PUBLIC, EasyQuery::VISIBILITY_PRIVATE, EasyQuery::VISIBILITY_ROLES, EasyQuery::VISIBILITY_EASY_USER_TYPES], user, project, {ignore_admin: true}).to_a.group_by(&:visibility)
+
+  user_roles = project.nil? ? user.roles : user.roles_for_project(project)
+
+  private_queries = Array(visible_queries[EasyQuery::VISIBILITY_PRIVATE])
+  public_queries = Array(visible_queries[EasyQuery::VISIBILITY_PUBLIC])
+  role_queries = user_roles.inject({}) do |memo, role|
+    roleq_ids = role.easy_query_ids
+    r = Array(visible_queries[EasyQuery::VISIBILITY_ROLES]).select{|q| roleq_ids.include?(q.id) }
+    memo[role] = r if r.any?
+    memo
+  end
+  easy_user_type_queries = Array(visible_queries[EasyQuery::VISIBILITY_EASY_USER_TYPES])
+else
+  private_queries = settings[:private_queries][query_class.name]
+  public_queries = settings[:public_queries][query_class.name]
+  role_queries = settings[:role_queries][query_class.name]
+  easy_user_type_queries = settings[:easy_user_type_queries][query_class.name]
+end
+
+  q_class_name = query_class.name.underscore
+  container_classes = "#{q_class_name .tr('_', '-')} saved-queries"
+  locale_key = 'easy_query.sidebar_filters'
+  %>
+
+<% if private_queries.present? -%>
+  <%= render_module_easy_box(modul_uniq_id + '_private', l("#{locale_key}.personal.#{q_class_name}", default: l("#{locale_key}.personal.other")), {icon: 'icon-filter', class: {container: "#{container_classes} personal-filters "}}) do %>
+    <% private_queries.each do |query| -%>
+      <%= link_to(content_tag(:span, query.name), query.entity_easy_query_path({:project => @project, :query_id => query}.merge(query_link)), :title => l(:label_user_saved_query, :queryname => query.name)) -%>
+    <% end -%>
+  <% end %>
+<% end %>
+
+<% if easy_user_type_queries.present? -%>
+  <%
+    easy_user_type_name = User.current.easy_user_type.name
+    easy_user_type_name += " (#{l(:label_admin)})" if User.current.admin?
+  %>
+  <%= render_module_easy_box(modul_uniq_id + '_easy_user_type', l("#{locale_key}.easy_user_type.#{q_class_name}", default: l("#{locale_key}.easy_user_type", easy_user_type: easy_user_type_name)), {icon: 'icon-filter', class: {container: "#{container_classes} easy-user-type-filters"}}) do %>
+    <% easy_user_type_queries.each do |query| -%>
+      <%= link_to(content_tag(:span, query.name), query.entity_easy_query_path({:project => @project, :query_id => query}.merge(query_link)), :title => l(:label_user_saved_query, :queryname => query.name)) -%>
+    <% end -%>
+  <% end %>
+<% end %>
+
+<% role_queries.each do |role, queries| %>
+    <%= render_module_easy_box(modul_uniq_id + '_' + dom_id(role), l("#{locale_key}.role", :role => role.name), {icon: 'icon-filter', class: {container: "#{container_classes} role-filters"}}) do %>
+      <% queries.each do |query| -%>
+        <% next if query.name.blank? %>
+        <%= link_to(content_tag(:span, query.name), query.entity_easy_query_path({:project => @project, :query_id => query}.merge(query_link)), :title => l(:label_user_saved_query, :queryname => query.name) ) -%>
+      <% end -%>
+    <% end %>
+<% end %>
+
+<% if public_queries.present? %>
+    <%= render_module_easy_box(modul_uniq_id  + '_public', l("#{locale_key}.public.#{query_class.name.underscore}", :default => l("#{locale_key}.public.other")), {icon: 'icon-filter', class: {container: "#{container_classes} public-filters"}}) do %>
+      <% public_queries.each do |query| -%>
+        <%= link_to(content_tag(:span, query.name), query.entity_easy_query_path({:project => @project, :query_id => query}.merge(query_link)), :title => l(:label_user_saved_query, :queryname => query.name) ) -%>
+      <% end -%>
+    <% end %>
+<% end -%>
+
+<% if no_data_warning && private_queries.blank? && public_queries.blank? && role_queries.values.flatten.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% end %>
+
+<% content_for :easy_page_layout_service_box do %>
+  <%= link_to l(:label_easy_query_management), edit_easy_query_management_path(type: query_class.name), :class => 'icon icon-filter button' if User.current.easy_lesser_admin_for?(:easy_query_settings) %>
+<% end %>

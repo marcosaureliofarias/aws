@@ -1,0 +1,141 @@
+%form-field{
+  @extend %box-sizing-border-box;
+  @extend %box-shadow-input-inset;
+  @extend %appearance-none;
+  @extend %border-radius;
+  font-family: $font-family;
+  font-size: 1em;
+  width: 100%;
+  max-width: $form-field-max-width;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid $button-base-background;
+  &:focus{
+    outline: none;
+  }
+  &:hover{
+    border-color: $color-border;
+  }
+  @include placeholder{
+    color: $color-text-muted;
+    //opacity: .5;
+  }
+  padding: 1px 0.5*$gap;
+  height: $form-field-height;
+  line-height: $form-field-height - 2;
+  vertical-align: middle;
+  background-color: $color-foreground;
+  &.inline{
+    @extend %input-inline;
+  }
+  &.block{
+    @extend %input-block;
+  }
+  &[size]{
+    width: auto;
+    width: initial;
+    max-width: 100%;
+    &[type="number"]{
+      width: 100px;
+    }
+  }
+  &[size="100"]{
+    width: 100%;
+  }
+  #sidebar &,#sidebarClone &{
+    margin-bottom: 3px;
+  }
+  #easy_page_layout_service_box > .primary-actions &{
+    margin-bottom: $gap;
+  }
+  td &{
+    min-width: initial;
+  }
+}
+%form-actions{
+  background: $color-foreground;
+}
+%form-box{
+  border-top: none;
+  background-color: $form-background;//$color-highlight;//mix($color-foreground,mix($color-foreground,$color-background));
+  padding: $retrace-mod;
+  margin: -$retrace;
+  margin-top: 0;
+  margin-bottom: $retrace-mod;
+  clear: both;
+  .ui-dialog-content &{
+    &:first-child{
+      margin-top: -$box-padding - 1;
+    }
+    &:last-child{
+      margin-bottom: -$box-padding;
+    }
+    &:only-child{
+      min-height: 100%;
+    }
+  }
+  .ui-dialog-content .title + &{
+    margin-top: -$box-padding - 1;
+  }
+  //margin-bottom: $box-margin;
+  //table{
+  //  tbody{
+  //    tr{
+  //      &:first-child{
+  //        td{
+  //          border-top: none !important;
+  //
+  //        }
+  //      }
+  //    }
+  //  }
+  //}
+  td{
+    vertical-align: top;
+  }
+  table.list{
+    td{
+      vertical-align: middle;
+    }
+  }
+  .module{
+    &-toggle-button{
+      margin: 0;
+      .expander{
+        right: 0;
+        top: 0;
+      }
+      &+div{
+        margin-top: 0 !important;
+      }
+    }
+    &-heading{
+      padding: 0;
+      margin: 0;
+      margin-bottom: $box-padding;
+    }
+  }
+  .box &{
+    margin-top: 0;
+
+  }
+  .box{
+    margin: 0;
+    padding: 0%;
+    border-top: none;
+    &~.box{
+      border: none;
+    }
+  }
+  .form-actions{
+    margin: -$box-padding;
+    margin-top: $box-padding;
+  }
+}
+%input-block{
+  display: block;
+  width: 100%;
+  min-width: initial;
+  max-width: 100%;
+}

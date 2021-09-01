@@ -1,0 +1,89 @@
+<% if EasySetting.value('easy_timesheets_over_time') == '1' && EasySetting.value(:custom_field_overtime_id).present? %>
+  <div class="flash warning">
+    <%= raw l('extended_timesheet.label_set_cf_overtime_id_in_rys_plugins', link: link_to( l(:label_my_page_issue_query_new_link), edit_easy_setting_path('easy_timesheets'))) %>
+  </div>
+<% else %>
+  <%= render_timesheets_breadcrumb %>
+
+  <p class="contextual extended-timesheet-top-buttons">
+    <%= link_to(l(:button_easy_timesheets_approve), monthly_resolve_lock_path('true', id: @easy_timesheet.id), class: 'icon icon-lock timesheet-locking button-positive', data: { confirmation: l(:text_are_you_sure), prompt: l(:label_easy_timesheet_lock_prompt) }, method: 'post') if !@easy_timesheet.locked? && @easy_timesheet.can_lock? %>
+    <%= link_to(l(:button_easy_timesheets_reject), monthly_resolve_lock_path('false', id: @easy_timesheet.id), class: 'icon icon-unlock timesheet-locking button-negative', data: { confirmation: l(:text_are_you_sure), prompt: l(:label_easy_timesheet_unlock_prompt) }, method: 'post') if @easy_timesheet.locked? && @easy_timesheet.can_unlock? %>
+    <%= link_to(l(:button_copy_easy_time_sheet), monthly_new_easy_timesheets_path({copy_from_id: @easy_timesheet.id}), class: 'icon icon-copy button') if User.current.allowed_to_globally?({controller: 'easy_timesheets', action: 'new'}, {}) && @copy_from.nil? %>
+    <%= call_hook :view_timesheet_show_links, easy_timesheet: @easy_timesheet %>
+  </p>
+  <%= title l(:label_easy_timesheet) %>
+  <% if @copy_from %>
+    <div class="flash warning"><%= l(:text_warning_after_time_sheet_copied) %></div>
+  <% end %>
+  <div class="table-monthly-container">
+    <table id="<%= dom_id(@easy_timesheet) -%>" class="easy-timesheet-table table-monthly easy-timesheet-table" data-cell-prompt-text="<%=l :text_easy_timesheet_prompt_text %>" data-cell-path="<%= cell_easy_timesheet_path(@easy_timesheet) if @easy_timesheet.editable? || @easy_timesheet.addable? -%>" data-row-path="<%= row_easy_timesheet_path(@easy_timesheet) if @easy_timesheet.editable? || @easy_timesheet.addable? %>" data-text-confirm-destroy-cell="<%= l(:text_easy_timesheet_destroy_cell_are_you_sure) %>">
+      <thead>
+        <tr>
+          <th class="header-project" data-resizable-sticky data-resizable-column-id="project"><%= l(:label_project) %></th>
+          <th class="header-issue" data-resizable-sticky data-resizable-column-id="issue"><%= l(:label_issue) %></th>
+          <th class="header-activity" data-resizable-sticky data-resizable-column-id="activity"><%= l(:label_activity) %></th>
+          <% @day_range.each.with_index(1) do |day, i| %>
+            <%= content_tag(:th, sprintf('%02d', i), title: @easy_timesheet.day_title(day), class: "cell-day day-number") %>
+          <% end %>
+          <th class="cell-without-border head-row-sum"></th>
+          <th class="cell-without-border head-buttons"></th>
+        </tr>
+        <tr>
+          <th colspan="3" data-resizable-sticky></th>
+          <% @day_range.each.with_index(1) do |day, i| %>
+            <%= content_tag(:th, l('date.abbr_day_names')[day.wday], title: @easy_timesheet.day_title(day), class: "cell-day") %>
+          <% end %>
+          <th class="cell-without-border head-row-sum"></th>
+          <th class="cell-without-border head-buttons"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @easy_timesheet.rows.any? %>
+          <%= render(partial: 'easy_timesheet_rows/row', collection: @easy_timesheet.non_over_time_rows, locals: { easy_timesheet: @easy_timesheet }) -%>
+          <% if EasySetting.value('easy_timesheets_over_time') == '1' %>
+            <tr class="overtime-row">
+              <td colspan="3"><%= l('extended_timesheet.label_overtime') %></td>
+              <td colspan="<%= @day_range.count %>"></td>
+              <td colspan="2" class="cell-without-border"></td>
+            </tr>
+            <%= render(partial: 'easy_timesheet_rows/row', collection: @easy_timesheet.over_time_rows, locals: { easy_timesheet: @easy_timesheet }) -%>
+          <% end %>
+        <% else %>
+          <% if EasySetting.value('easy_timesheets_over_time') == '1' %>
+            <tr class="overtime-row">
+              <td colspan="3"><%= l('extended_timesheet.label_overtime') %></td>
+              <td colspan="<%= @day_range.count %>"></td>
+              <td colspan="2" class="cell-without-border"></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="<%= 3 + @easy_timesheet.working_days + 2 %>">
+              <p class="nodata">
+                <%= l(:label_no_data) -%>
+              </p>
+              <p class="text-center">
+                <%= link_to(l(:button_easy_timesheets_new_row), row_easy_timesheet_path(@easy_timesheet), class: 'icon icon-add button', remote: true) if @easy_timesheet.addable? -%>
+              </p>
+            </td>
+          </tr>
+        <% end -%>
+      </tbody>
+      <tfoot>
+        <%= render(partial: 'easy_timesheets/footer', locals: { easy_timesheet: @easy_timesheet }) if @easy_timesheet.rows.any? -%>
+      </tfoot>
+    </table>
+  </div>
+  <%= render 'easy_user_working_time_calendars/legend' %>
+
+  <% content_for :body_bottom do %>
+    <%= render partial: 'easy_timesheets/include_tags' %>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(() => {
+    new TableResizer("#" + "<%= dom_id(@easy_timesheet) -%>", {sticky: true, observeTableChange: true});
+  })
+</script>
+
+<%= render :partial => 'easy_timesheets/lock_description_prompt_js' %>

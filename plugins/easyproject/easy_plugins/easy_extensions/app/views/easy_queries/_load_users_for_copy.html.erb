@@ -1,0 +1,15 @@
+<%= form_tag(easy_query_copy_to_users_path(@easy_query, :back_url => params[:back_url])) do -%>
+  <%= label_tag('load_users_for_copy', l(:field_user)) %>
+  <span class="span_load">
+    <%= autocomplete_field_tag(
+      "users[]",
+      easy_autocomplete_path('users_for_query_copy', easy_query_id: @easy_query.id),
+      nil,
+      rootElement: 'users',
+      preload: false,
+      id: "load_users_for_copy",
+      class: "multi_load_users_for_copy"
+    ) %>
+  </span>
+<% end -%>
+<p><%= l(:label_users_having_filter) %> <%= @users_having_query.blank? ? '-' : @users_having_query.values.sort.join(", ") %></p>

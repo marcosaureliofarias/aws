@@ -1,0 +1,20 @@
+<%= render @query, :easy_query_name => l(:label_easy_timesheets) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :sidebar do -%>
+  <%= render :partial => 'sidebar/saved_easyqueries_by_type', :locals => {:query_class => @query.class, :project => @project} -%>
+<% end -%>
+
+<% content_for :easy_page_layout_service_box_primary_actions do -%>
+  <% if User.current.allowed_to_globally?(controller: 'easy_timesheets', action: 'new') %>
+    <%= link_to(l(:heading_easy_timesheets_new), new_easy_timesheet_path, title: l(:heading_easy_timesheets_new), remote: true, class: 'icon icon-add button-positive') if EasyTimesheet.weekly_calendar_enabled? %>
+    <%= link_to(l('extended_timesheet.label_new_monhly_timesheet'), monthly_new_easy_timesheets_path, title: l('extended_timesheet.label_new_monhly_timesheet'), remote: true, class: 'icon icon-add button-positive') if EasyTimesheet.monthly_calendar_enabled? %>
+  <% end %>
+<% end -%>
+
+<% content_for :body_bottom do -%>
+  <%= render partial: 'easy_timesheets/include_tags' %>
+<% end %>
+
+<%= context_menu(context_menu_easy_timesheets_path, '#easy_timesheets') -%>

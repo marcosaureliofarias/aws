@@ -1,0 +1,3 @@
+<a href="<%= easy_time_entries_path(:from => day, :to => day, :only_me => true) -%>" title="<%= l(:button_edit) -%>" class="timelog-link">
+  <span class="text"><%= l(:label_timelog_calendar_link_before) -%></span><span class="log"><%= easy_format_hours(sum_of_day) -%></span><span class="text"></span>
+</a>

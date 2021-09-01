@@ -1,0 +1,37 @@
+<div class="box tabular">
+  <p>
+    <%= f.label :type, l(:field_type) %>
+
+    <% if f.object.new_record? %>
+      <%= f.select :type, EasyEarnedValue.subclasses.map{|s| [s.type_name, s] } %>
+    <% else %>
+      <%= f.object.type_name %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :baseline_id, l('easy_earned_values.baseline') %>
+
+    <% if f.object.new_record? || f.object.baseline.nil? %>
+      <%= f.collection_select :baseline_id, @baselines, :id, :name, prompt: l('easy_earned_values.use_current_project') %>
+    <% else %>
+      <%= f.object.baseline.try(:name) %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.label :name, l(:field_name) %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :project_default, l(:label_default) %>
+    <%= f.check_box :project_default %>
+  </p>
+
+  <p>
+    <%= f.label :reload_constantly, l('easy_earned_values.field_reload_constantly') %>
+    <%= f.check_box :reload_constantly %>
+    <em class="help block"><%= l('easy_earned_values.help_reload_constantly') %></em>
+  </p>
+</div>

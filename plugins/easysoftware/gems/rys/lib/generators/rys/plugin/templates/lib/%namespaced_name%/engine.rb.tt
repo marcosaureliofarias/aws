@@ -1,0 +1,14 @@
+require 'rys'
+
+<%= modules_wrap <<-rb
+  class Engine < ::Rails::Engine
+    include Rys::EngineExtensions
+
+    rys_id '#{underscored_name}'
+
+    initializer '#{underscored_name}.setup' do
+      # Custom initializer
+    end
+  end
+rb
+%>

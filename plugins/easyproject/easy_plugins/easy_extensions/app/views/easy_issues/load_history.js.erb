@@ -1,0 +1,4 @@
+$("#history").html("<%=j easy_journal_render_history(@journals, {:entity => @issue}) %>");
+
+EASY.journals.collapseUnnecessary();
+EASY.utils.showAndScrollTo('preview', -130);

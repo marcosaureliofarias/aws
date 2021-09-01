@@ -1,0 +1,22 @@
+<div class="easy-twofa-select-scheme easy-twofa-select-scheme--login">
+  <h2><%= l('easy_twofa.select_scheme') %></h2>
+
+  <p>
+    <%= l('easy_twofa.select_scheme_is_required') %>
+  </p>
+
+  <ul>
+    <% EasyTwofa::Auth.enabled_schemes.each do |key, scheme_klass| %>
+      <li>
+        <%= link_to l('easy_twofa.activate_scheme', name: l("easy_twofa.schemes.#{key}.name")), easy_twofa_setup_account_path(key), method: 'POST' %>
+        <em class="info">
+          <%= l("easy_twofa.schemes.#{key}.small_description") %>
+        </em>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_twofa' %>
+<% end %>

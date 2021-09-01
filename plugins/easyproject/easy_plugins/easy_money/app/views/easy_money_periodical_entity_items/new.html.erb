@@ -1,0 +1,12 @@
+<%= form_for([@easy_money_periodical_entity, @easy_money_periodical_entity_item], :url => easy_money_periodical_entity_easy_money_periodical_entity_items_path(@easy_money_periodical_entity), :html => {:remote => request.xhr?, :class => 'tabular', :id => 'easy_money_periodical_entity_item_form'}) do |f| %>
+  <%= error_messages_for @easy_money_periodical_entity_item %>
+  <%= hidden_field_tag('back_url', params[:back_url], :id => nil) unless params[:back_url].blank? %>
+  <div>
+    <%= render :partial => 'easy_money_periodical_entity_items/form', :locals => {:easy_money_periodical_entity_item => @easy_money_periodical_entity_item} %>
+  </div>
+  <% if !request.xhr? %>
+    <p>
+      <%= f.submit l(:button_create) %>
+    </p>
+  <% end %>
+<% end %>

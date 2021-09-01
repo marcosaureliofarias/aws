@@ -1,0 +1,8 @@
+api.data do
+  api.array :columns do
+    @results.each do |key, value|
+      api.foo [key, value]
+    end
+  end
+  api.type 'pie'
+end

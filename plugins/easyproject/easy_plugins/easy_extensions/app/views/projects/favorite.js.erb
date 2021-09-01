@@ -1,0 +1,3 @@
+$('#favorite_project_<%= @project.id %>')
+  .toggleClass('icon-fav icon-fav-off favorited')
+  .attr('title', '<%= @favorited ? l(:label_unfavorite) : l(:label_favorite) %>');

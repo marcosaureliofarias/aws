@@ -1,0 +1,83 @@
+document.addEventListener("DOMContentLoaded", function () {
+  App.easy_user_channel = App.cable.subscriptions.create({
+    channel: "EasyUserChannel"
+  }, {
+    received: function (data) {
+      var helper = new window.EasyChannelHelper();
+      helper.doSomething(data);
+    },
+
+    // Called once when the subscription is created.
+    initialized: function () {
+      this.update = this.update.bind(this);
+    },
+
+    // Called when the subscription is ready for use on the server.
+    connected: function () {
+      this.install();
+      this.update();
+      if (easyUserChannelConnected) {
+        easyUserChannelConnected(this);
+      }
+    },
+
+    // Called when the WebSocket connection is closed.
+    disconnected: function () {
+      this.uninstall();
+    },
+
+    // Called when the subscription is rejected by the server.
+    rejected: function () {
+      this.uninstall();
+    },
+
+    update: function () {
+      if (this.documentIsActive()) {
+        this.appear();
+      }
+    },
+
+    appear: function () {
+      // Calls `EasyUserChannel#appear(data)` on the server.
+      this.perform("appear", {appearing_on: this.appearingOn()});
+    },
+
+    away: function () {
+      // Calls `EasyUserChannel#away` on the server.
+      this.perform("away");
+    },
+
+    dnd: function () {
+      // Calls `EasyUserChannel#dnd` on the server.
+      this.perform("dnd");
+    },
+
+    invisible: function () {
+      // Calls `EasyUserChannel#invisible` on the server.
+      this.perform("invisible");
+    },
+
+    install: function () {
+      window.addEventListener("focus", this.update);
+      window.addEventListener("blur", this.update);
+      //document.addEventListener("turbolinks:load", this.update);
+      //document.addEventListener("visibilitychange", this.update);
+    },
+
+    uninstall: function () {
+      window.removeEventListener("focus", this.update);
+      window.removeEventListener("blur", this.update);
+      //document.removeEventListener("turbolinks:load", this.update);
+      //document.removeEventListener("visibilitychange", this.update);
+    },
+
+    documentIsActive: function () {
+      return document.visibilityState == "visible" && document.hasFocus();
+    },
+
+    appearingOn: function () {
+      const element = document.querySelector("[data-appearing-on]");
+      return element ? element.getAttribute("data-appearing-on") : null
+    }
+  });
+});

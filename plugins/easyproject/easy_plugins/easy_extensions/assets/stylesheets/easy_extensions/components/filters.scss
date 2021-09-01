@@ -1,0 +1,452 @@
+%eq-toggler{
+  @extend %control-arrow-down;
+  float: left;
+  padding: 0.25em $gap !important;
+  bottom: auto;
+  left: -0.5*$gap;
+  &:before{
+    width: 0.5*$gap;
+    height: 0.5*$gap;
+  }
+}
+%eq-toggler-open{
+  @extend %control-arrow-top;
+  &:before{
+    width: 0.5*$gap;
+    height: 0.5*$gap;
+  }
+}
+%eq-filter-buttons{
+  @extend %form-actions;
+  margin-bottom: 0!important;
+  @if $rails-env != "test" {
+    @include transition(opacity 0.1666s ease-in-out);
+  }
+  opacity: 1;
+  &.collapsed{
+    opacity: 0;
+  }
+}
+%eq-filters-form{
+  @extend %form-box;
+  margin-top: 0 !important;
+  margin-bottom: 0;
+  width: 100%;
+  @if $rails-env != "test" {
+    @include transition(opacity 0.1666s ease-in-out);
+  }
+  opacity: 1;
+  &.collapsed{
+    opacity: 0;
+  }
+  & + div{
+    margin-top: -1px !important;
+  }
+}
+.easy-query{
+  &-type-settings-container{
+    margin: -$gap;
+    &>div{
+      @extend %form-box;
+      margin: 0;
+    }
+  }
+  &-filter{
+    &-container{
+      .buttons{
+        position: relative;
+        z-index: 1;
+        @extend %flex;
+        .fake-responsive &{
+          display: block;
+        }
+        .modal &{
+          float: right;
+          @include respond-to(max-sidebar-collapse){
+            float: none;
+            @include justify-content(center);
+          }
+        }
+        //margin: 0.55em 0;
+        & > div{
+          display: inline-block;
+          line-height: 2;
+          //text-decoration: underline;
+          cursor: pointer;
+          //padding: 1px 0;
+          &>a{
+            margin: 0 2px;
+            .fake-responsive &{
+              margin: 1px 0;
+            }
+          }
+
+          & ~ div{
+            //margin-left: 0.5*$gap;
+          }
+          span{
+            @extend %indicator;
+          }
+          .icon-toggler{
+            @extend %eq-toggler;
+          }
+          &.open .icon-toggler{
+            @extend %eq-toggler-open;
+            top: 0.33*$gap;
+          }
+        }
+        .freetext-search-contextual{ //todo poresit respo
+          //float: right;
+          order: 3;
+          flex-shrink: 100;
+          .fake-responsive &{
+            width: 100%;
+            display: block;
+            margin-bottom: $gap;
+            clear: both;
+          }
+          .easy-freetext-search{
+            position: relative;
+            padding-left: $gap;
+            .fake-responsive &{
+              width: auto;
+              padding-left: 0;
+            }
+            input{
+              padding: .5*$gap 2px;
+              line-height: $form-field-height - 2; //line-height: $tag-size;
+              height: $form-field-height - 2;
+              z-index: 1;
+              min-width: 0;
+              @extend %input-block;
+              &+a{
+                @extend %input-button-absolute;
+                //line-height: $tag-size;
+                color: $color-text;
+                &:before{
+                  line-height: normal;
+                }
+                z-index: 2;
+              }
+            }
+            &:hover{
+
+            }
+          }
+        }
+      }
+    }
+    &-settings{
+      &+#filter_buttons{
+        @extend %eq-filter-buttons;
+      }
+    }
+  }
+  &-form{
+
+  }
+  &-listing-links{
+    @extend %calendar-listing-links;
+    padding-top: 0.75em;
+    flex-basis: 100%;
+    &-wrapper{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    @include respond-to(max-sidebar-collapse){
+      width: 100%;
+    }
+  }
+  &-heading{
+    margin-bottom: $box-padding;
+    @extend %clearfix;
+    .fake-responsive &{
+      margin-bottom: $box-padding;
+      margin-top: $box-padding;
+    }
+
+    @include respond-to(max-sidebar-collapse) {
+      margin-top: $box-padding;
+      margin-bottom: $box-padding;
+    }
+    &-controls{
+      margin-top: 1em;
+      margin-left: $box-padding;
+      margin-right: $box-padding;
+      float: right;
+      a{
+        @extend %button-link;
+        @extend %tooltip-left;
+      }
+      @include respond-to(max-sidebar-collapse){
+        float: none;
+        margin: 0.5*$gap 0.75*$gap;
+      }
+    }
+    &-wrapper{
+      //display: inline-block;
+      .fake-responsive &{
+        //display: block;
+        //margin-bottom: $gap;
+      }
+      @extend %tooltip-top;
+      .tooltip{
+        margin-left: -1px;
+        white-space: nowrap;
+        display: inline-block;
+        padding-top: 4px;
+        padding-bottom: 3px;
+        margin-bottom: 1px;
+        left: 0;
+        bottom: calc(100% + .5*#{$gap});
+        a{
+          @extend %button-link;
+        }
+        @include respond-to(max-menu-collapse) {
+          padding-top: 4px;
+          padding-bottom: 3px;
+          margin-bottom: -3px;
+        }
+        //@include respond-to(min-menu-collapse) {
+        //  display: inline-block;
+        //  padding-top: 4px;
+        //  padding-bottom: 3px;
+        //  margin-bottom: 1px;
+        //  left: 0;
+        //}
+      }
+    }
+    h1,h2{
+      position: relative;
+      margin-right: $box-padding;
+      //margin-top: 0;
+      margin-bottom: 0;
+      line-height: calc(#{$button-height} + 4px);
+
+      .modal &{
+        margin-top: 0.25*$box-padding;
+      }
+      .entity-array {
+        font-size: $font-size;
+        a{
+          font-weight: normal;
+            &+a{
+              margin-left: 3px;
+            }
+        }
+        .fake-responsive &{
+          display: block;
+          text-align: center;
+          @include icon-parent(bookmark);
+          &:before{
+            display: block;
+          }
+          a{
+            display: none;
+          }
+
+          &:hover{
+            &:before{
+              color: $color-important;
+            }
+            a{
+              display: inline-block;
+            }
+          }
+        }
+      }
+      .fake-responsive &{
+        float: none;
+        text-align: center;
+      }
+      @include respond-to(max-sidebar-collapse) {
+        float: none;
+        text-align: center;
+      }
+      @include respond-to(min-menu-collapse) {
+        //float: left;
+        .entity-array {
+          a{
+            position: relative;
+            //top: -(floor(0.25*$tag-size));
+            //float: right;
+            //margin-left: 3px;
+            vertical-align: top;
+          }
+        }
+        & + h3{
+          clear: left;
+          float: left;
+        }
+      }
+    }
+    &-count{
+      @extend %badge !optional;
+    }
+  }
+}
+
+.filters-table{
+  //@include respond-to(max-menu-collapse)
+  @include respond-to(max-small-screen) {
+    &, & > tbody, & > thead, & > tfoot, td {
+      & > tr{
+        &>th, &>td{
+          display: block;
+          overflow: hidden;
+        }
+      }
+    }
+    .field{
+      @include respond-to(max-small-screen) {
+        padding-top: $gap/2;
+        padding-bottom: $gap/2;
+      }
+
+      @include respond-to(min-small-screen) {
+        float: left;
+      }
+    }
+    .operator{
+      @include respond-to(min-small-screen) {
+        //float: right;
+        //padding-right: 0 !important;
+      }
+    }
+    .values{
+      clear: both;
+      padding-top: 1px;
+
+      @include respond-to(max-small-screen) {
+        padding-top: $gap/2;
+        padding-bottom: $gap;
+      }
+    }
+     & > tbody > tr > td{
+      padding: 0;
+
+       &:first-child{
+         & > label{
+           text-align: left !important;
+         }
+       }
+    }
+  }
+  .splitcontent &{
+    @include respond-to(max-xlarge-screen) {
+      @include respond-to(min-medium-screen) {
+        &, & > tbody, & > thead, & > tfoot, td {
+          & > tr{
+            &>th, &>td{
+              display: block;
+              overflow: hidden;
+            }
+          }
+        }
+        .field{
+          float: left;
+        }
+        .operator{
+          //float: right;
+          //padding-right: 0 !important;
+        }
+        .values{
+          clear: both;
+          padding-top: 1px;
+        }
+      }
+    }
+  }
+  & > tbody > tr {
+    &:nth-of-type(n + 2){
+      border-top: 1px solid $color-border-minor;
+    }
+    & > td{
+      @include respond-to(min-small-screen) {
+        padding: $gap 0;
+      }
+
+      &:first-child{
+        @include respond-to(min-small-screen) {
+          width: $tabular-offset - $gap;
+          padding-right: $gap;
+        }
+
+        input[type=checkbox] {
+          float: left;
+        }
+
+        label {
+          padding: (0.5*$gap + 1) 0;
+          display: block;
+          text-align: right;
+          white-space: normal;
+        }
+      }
+
+      &.operator{
+        @include respond-to(min-small-screen) {
+          width: 100px;
+          padding-right: $gap;
+        }
+      }
+      &.value{
+        .easy-autocomplete-tag{
+          min-width: 0;
+        }
+        br + span{
+          margin-top: 0.5*$gap;
+        }
+      }
+    }
+
+    span{
+      //display: inline-block;
+    }
+    .tabular.fake-responsive &{
+      .operator{
+        padding-left: 23px;
+      }
+    }
+  }
+}
+
+table.columns{
+  //margin-left: $tabular-offset;
+  width: 100% !important;
+  .button{
+    width: $box-padding;
+    min-width: 16px;
+    text-align: center;
+    padding: 0;
+    &s{
+      vertical-align: middle;
+      text-align: center;
+      width: 5%;
+    }
+  }
+  #selected_columns,#available_columns{
+    @extend %input-block;
+  }
+}
+
+#filters,#filters_settings,#custom_formatting{ //todo ,&-filters-field in page modules edit
+  @extend %eq-filters-form;
+
+  .add-filter{
+    margin-bottom: $gap;
+  }
+  .easy_query_additional_options{
+    p{
+      float: left;
+      margin-right: $gap;
+    }
+  }
+}
+
+.button-negative + div.easy-query-type-settings-container {
+  margin-top: 3*$gap !important;
+}
+

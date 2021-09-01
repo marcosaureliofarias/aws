@@ -1,0 +1,17 @@
+<p>
+  <%= form.label l(:label_enabled_timesheet_periods) %>
+  <% EasyTimesheet.available_periods.each do |period| %>
+    <%= form.radio_button :enabled_timesheet_calendar, period, checked: EasyTimesheet.enabled_period == period %>
+    <%= label_tag "easy_setting_enabled_timesheet_calendar_#{period}", l(period, scope: [:easy_timesheets_periods]), class: 'inline' %>
+  <% end %>
+</p>
+
+<p>
+  <%= form.label l('extended_timesheet.field_custom_field_overtime_id'), for: :easy_setting_custom_field_overtime_id %>
+  <%= form.select :custom_field_overtime_id, options_for_select(TimeEntryCustomField.all.to_a.map{ |tcf| [tcf.name, tcf.id] }, selected: form.object.custom_field_overtime_id), include_blank: true %>
+</p>
+
+<p>
+  <%= form.check_box :over_time %>
+  <%= form.label :over_time, l(:label_enable_timesheet_over_time), class: 'inline' %>
+</p>

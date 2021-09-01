@@ -1,0 +1,147 @@
+---
+zh-TW:
+  activerecord:
+    attributes:
+      easy_helpdesk_mail_template:
+        body_html: 郵件主體（超文本標記語言）
+        body_plain: 郵件正文（純文本）
+        issue_status_id: 問題狀態
+        mailboxes: 使用郵箱：
+        reply_to: 回复
+        sender: 寄件人
+        subject: 主題
+    models:
+      easy_helpdesk_mail_template: 郵件模板
+  button_easy_helpdesk_add_domain_name: 添加郵件或網域
+  button_easy_helpdesk_add_mail_template: 添加郵件模板
+  button_easy_helpdesk_add_mailbox: 添加郵箱
+  button_easy_helpdesk_add_project: 添加項目
+  button_easy_helpdesk_add_sla: 加入SLA
+  button_easy_helpdesk_mail_templates_index: 模板列表
+  button_easy_helpdesk_mailboxes_index: 郵箱列表
+  button_easy_helpdesk_projects_index: 項目列表
+  easy_helpdesk_author: 易軟件
+  easy_helpdesk_author_url: http://www.easyredmine.com
+  easy_helpdesk_plugin_description: "- 複雜的幫助桌面解決方案"
+  easy_query:
+    name:
+      easy_helpdesk_project_query: 服務台 - 項目
+    sidebar_filters:
+      personal:
+        easy_helpdesk_project_query: 服務台私人過濾器項目
+      public:
+        easy_helpdesk_project_query: 公共項目的過濾器服務台
+  easy_rake_tasks:
+    easy_rake_task_easy_helpdesk_receive_mail:
+      caption: 服務台 - 接收郵件
+      settings:
+        imap:
+          allow_override: 允許重寫值
+          allow_override_example: 例：跟踪，優先級 - 這些屬性應該覆蓋的郵件
+          application_section_label: 其他設置
+          category_example: 例如：分類 - 將有新的任務類別類別
+          email_section_label: 郵箱設置
+          folder: 夾
+          folder_example: IMAP文件夾閱讀（默認值：INBOX）
+          host: 主持人
+          host_example: 例：mail.company.com
+          label: IMAP
+          move_on_failure: 在失敗的舉動
+          move_on_failure_example: 移動被忽略的郵件文件夾郵箱
+          move_on_success: 在成功上移動
+          move_on_success_example: 移動已成功接收到文件夾郵箱的郵件，否則將被刪除
+          no_permission_check: 沒有用戶的權限檢查
+          password: 密碼
+          password_example: 例如：secretPassword的
+          port: 端口
+          port_example: 例：143
+          priority_example: 例如： - 新的任務的優先級高
+          project_example: 例：205  - 新的任務將被創建以項目ID 205
+          ssl: SSL
+          ssl_example: 使用SSL認證
+          status_example: 例如：新 - 新任務新狀態
+          tracker_example: 例如：錯誤 - 新的任務將跟踪問題
+          unknown_user: 未知的用戶
+          unknown_user_example: 接受 - 匿名用戶將被用於創造 - 用戶將被從郵件創建混凝土登錄 - 用戶將使用
+          username: 用戶
+          username_example: 例：accessuser@domain.com
+        pop3:
+          allow_override: 允許重寫值
+          allow_override_example: 例：跟踪，優先級 - 這些屬性應該覆蓋的郵件
+          apop: APOP
+          apop_example: 使用APOP認證
+          application_section_label: 其他設置
+          category_example: 例如：分類 - 將有新的任務類別類別
+          delete_unprocessed: 刪除未經處理的
+          delete_unprocessed_example: 刪除不能被處理的郵件
+          email_section_label: 郵箱設置
+          host: 主持人
+          host_example: 例：mail.company.com
+          label: POP3
+          no_permission_check: 沒有用戶的權限檢查
+          password: 密碼
+          password_example: 例如：secretPassword的
+          port: 端口
+          port_example: 例：110
+          priority_example: 例如： - 新的任務的優先級高
+          project_example: 例：205  - 新的任務將被創建以項目ID 205
+          status_example: 例如：新 - 新任務新狀態
+          tracker_example: 例如：錯誤 - 新的任務將跟踪問題
+          unknown_user: 未知的用戶
+          unknown_user_example: 接受 - 匿名用戶將被用於創造 - 用戶將被從郵件創建混凝土登錄 - 用戶將使用
+          username: 用戶
+          username_example: 例：accessuser@domain.com
+  field_default_for_mailbox: 默認為郵箱
+  field_easy_helpdesk_project_matching:
+    domain_name: 郵件或網域
+    email_field_from: 取自字段
+    email_field_to: 從現場拍攝到
+  field_easy_helpdesk_project_sla:
+    hours_to_response: 小時響應
+    hours_to_solve: 小時內解決
+    keyword: 關鍵詞
+  field_email_footer: 郵件頁腳
+  field_email_header: 郵件標題
+  field_hours_mode_from: SLA的工作時間
+  field_monitor_due_date: 顯示器支持票到期日
+  field_monitor_spent_time: 顯示器支持票花費的時間
+  field_monthly_hours: 預付費支持時間
+  heading_easy_helpdesk_index: 服務台
+  heading_easy_helpdesk_mail_templates_edit: 編輯郵件模板
+  heading_easy_helpdesk_mail_templates_index: 郵件模板
+  heading_easy_helpdesk_mail_templates_new: 新郵件模板
+  heading_easy_helpdesk_mail_templates_show: 詳細的郵件模板
+  heading_easy_helpdesk_mailboxes_edit: 編輯信箱
+  heading_easy_helpdesk_mailboxes_index: 郵箱
+  heading_easy_helpdesk_mailboxes_new: 新的郵箱
+  heading_easy_helpdesk_projects_edit: 編輯項目
+  heading_easy_helpdesk_projects_index: 項目
+  heading_easy_helpdesk_projects_new: 新項目
+  heading_easy_helpdesk_projects_show: 項目詳情
+  label_easy_hekodesk_additional_task_info_received_emails: 處理的郵件
+  label_easy_helpdesk_alerts: 警報設置
+  label_easy_helpdesk_domain_name: 郵件域
+  label_easy_helpdesk_emails: 郵件設置 - 頁眉和頁腳
+  label_easy_helpdesk_enable_email_footer: 更改頁腳為這個項目嗎？
+  label_easy_helpdesk_enable_email_header: 改變這個項目的頭？
+  label_easy_helpdesk_matching: 郵件或域的設置
+  label_easy_helpdesk_sla: SLA設置 - 優先級，時間，解決一票
+  label_filter_group_easy_helpdesk_project_query: 服務台 - 項目
+  label_issue_bottom_from_easy_helpdesk: 創建任務服務台（%{easy_helpdesk_mailbox_username}）
+  text_easy_helpdesk_mail_template_issue_status_id: 允許綁定一個郵箱模板，以一個特定的任務狀態
+  text_easy_helpdesk_mail_template_reply_to: "（先生示例） - 這裡不允許"
+  text_easy_helpdesk_mail_template_reply_to2: 字段“回复”和“發件人”從郵箱模板，以保持內部溝通的一個問題
+  text_easy_helpdesk_non_default_mailboxes_warning_below: 你應該將這些郵箱分配到項目中。如果你不這樣做，未知收到的郵件將不會被處理！
+  text_easy_helpdesk_non_default_mailboxes_warning_top: 這些郵箱沒有默認的項目：
+  text_easy_helpdesk_projects_alerts_list: 警報列表：
+  text_easy_helpdesk_projects_alerts_list_to_edit: 需要設立一項須予公佈的郵件（中打開一個空白窗口）的警報的列表：
+  text_easy_helpdesk_projects_keywords: 如果郵件主題中包含定義的字符串，特別是優先級和到期日期將被設置（*為每一個主題）。
+  text_easy_helpdesk_projects_monitor_due_date: 預定義的警報，向您發送電子郵件通知，如果一票違反SLA  - 在SLA中定義的時期內沒有解決
+  text_easy_helpdesk_projects_monitor_spent_time: 這個預定義的警報會向您發送電子郵件通知，如果總花費的時間在特定月份exeeds預付費的支持時間
+  text_easy_helpdesk_projects_sla_hours_to_response: 從接收到的郵件的開始實現所需的最大時間。
+  text_easy_helpdesk_projects_sla_hours_to_solve: 的時間來解決的最大問題。幫助台票可以在可視化的甘特圖 - 如果超過75％的時間來解決的機票
+    - 機票是橙色的，如果逾期時間 - 票票是紅色的顏色。
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_after_time: SLA：反應應該是%{time}
+  text_issue_easy_helpdesk_projects_sla_hours_to_response_before_time: SLA：救災者必須以%{time}
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_after_time: "，SLA：解決應該是%{time}"
+  text_issue_easy_helpdesk_projects_sla_hours_to_solve_before_time: SLA：決心必須是%{time}

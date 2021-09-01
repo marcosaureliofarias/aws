@@ -1,0 +1,103 @@
+<%= labelled_form_for @issue, :html => {:id => 'issue-form', :multipart => true, :class => 'edit-issue-form tabular form-box', :autocomplete => 'off', :novalidate => ''} do |f| %>
+  <%= error_messages_for 'issue', 'time_entry' %>
+  <%= render :partial => 'conflict' if @conflict %>
+  <%= hidden_field_tag('back_url', params[:back_url]) unless params[:back_url].blank? %>
+  <div>
+    <div id="form-attributes" class="box">
+      <%= render :partial => 'issues/edit_form_attributes' %>
+    </div>
+    <% if User.current.allowed_to?(:log_time, @project) && !(!EasyGlobalTimeEntrySetting.value('allow_log_time_to_closed_issue', User.current.roles_for_project(@project)) && @issue.was_closed? && @issue.errors.empty?) %>
+      <div class="box">
+        <%= render :partial => 'issues/edit_issue_time_entry', :locals => {:f => f} %>
+      </div>
+    <% end %>
+    <%= call_hook(:view_issues_form_details_after_time_entries, {:issue => @issue, :form => f, :project => @project}) %>
+    <% if !params[:for_dialog] %>
+      <% with_notes = @issue.notes_addable? %>
+      <div class="box">
+        <%= toggling_container('edit_issue_notes', User.current, {:heading => with_notes ? l(:description_notes) : l(:label_issue_attachments_heading), :wrapping_heading_element_classes => ' icon icon-edit', :default_button_state => true, :ajax_call => false}) do %>
+          <div class="edit-form-bottom-split-editor-n-file">
+            <% if with_notes %>
+              <div class="fieldset-edit-textarea">
+                <div id="issue_edit_textarea">
+                  <%= f.text_area :notes, :cols => 60, :rows => 10, :class => 'wiki-edit', :no_label => true %>
+                  <% wikitoolbar_options = { attachment_reminder: true } %>
+                  <% call_hook(:view_issues_edit_notes_wikitoolbar_options, wikitoolbar_options: wikitoolbar_options) %>
+                  <%= wikitoolbar_for('issue_notes', preview_issue_path(project_id: @project, issue_id: @issue), wikitoolbar_options) %>
+                  <%= call_hook(:view_issues_edit_notes_bottom, {issue: @issue, notes: @notes, form: f}) %>
+                </div>
+              </div>
+            <% end %>
+            <div class="issue-attachments-container">
+              <%= render :partial => 'attachments/form', :locals => {:container => @issue} -%>
+            </div>
+            <%= render :partial => 'issues/edit_form_updatable_additional_attributes' -%>
+          </div>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+  <div class="issue_edit_submit_buttons easy-entity-update-actions form-actions">
+    <% if @issue.safe_attribute? 'private_notes' %>
+      <%= f.check_box(:private_notes, :class => 'inline') %>
+    <% end %>
+    <% if User.current.allowed_to?(:edit_without_notifications, @project) %>
+      <label for="issue_without_notifications" class="inline checkbox">
+        <%= f.check_box(:without_notifications, {:no_label => true}, '1', nil) %><%= l(:label_without_notifications) %>
+      </label>
+    <% end %>
+    <% if @issue.parent_id? && EasySetting.value(:issue_copy_notes_to_parent, @issue.project_id) %>
+      <label for="issue_copy_notes_to_parent" class="inline checkbox">
+        <%= f.check_box(:copy_notes_to_parent, {:no_label => true, :checked => true}, '1', nil) %><%= l(:label_copy_notes_to_parent) %>
+      </label>
+    <% end %>
+
+    <% is_repeating_child = @issue.parent && @issue.parent.easy_is_repeating %>
+    <% is_repeating = @issue.easy_is_repeating || is_repeating_child %>
+    <span id="update_repeating<%= is_repeating_child ? '_true' : '' %>" style="<%= is_repeating ? '' : 'display: none' %>">
+      <label class="checkbox inline" for="issue_update_repeat_entity_attributes" title="<%= l(:title_update_repeated) %>">
+        <%= f.check_box(:update_repeat_entity_attributes, {:no_label => true, :checked => true}, '1', nil) %><%= l(:label_update_repeated) %>
+      </label>
+    </span>
+
+    <%= labelled_fields_for :issue, @issue do |f| %>
+      <%= call_hook(:view_issues_edit_form_actions, {:issue => @issue, :form => f, :project => @issue.project, :show_on_more_form => false}) %>
+    <% end %>
+
+    <% if !@issue.disabled_core_fields.include?('easy_email_to') && User.current.internal_client? %>
+      <%= f.check_box :send_to_external_mails %>
+    <% end %>
+
+    <br/>
+
+    <%= f.hidden_field :lock_version %>
+    <%= submit_tag l(:button_save), :class => 'button-positive', :accesskey => accesskey(:issue_submit), :data => {:disable_with => l(:button_save)} %>
+    <% if request.xhr? %>
+      <%= link_to l(:button_cancel), 'javascript:void(0)', :class => 'button', :onclick => "$('#update').hide(); const updateButton = $('#sidebar').find('.update-button'); if (updateButton) { updateButton.addClass('button-positive'); updateButton.removeClass('button'); }  return false;" %>
+    <% else %>
+      <%= link_to l(:button_cancel), params[:back_url].presence || issue_path(@issue), :class => 'button' %>
+    <% end %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  EASY.schedule.late(function () {
+    $(".issue_edit_submit_buttons input[type='submit']").on('click', function () {
+      var lock_version = $('#issue_lock_version');
+      if (window.easy_lock_version && (parseInt(lock_version.val()) < parseInt(window.easy_lock_version)))
+        lock_version.val(window.easy_lock_version);
+
+      <%= "return true;" if !EasySetting.value(:close_subtask_after_parent) || @issue.descendants.size == 0 %>
+
+      var issue_status_closed = <%= IssueStatus.where(:is_closed => true).pluck(:id) %>;
+      var selected_status = $('#issue_status_id').val();
+
+      if (issue_status_closed.indexOf(parseInt(selected_status)) !== -1) {
+        var x = confirm("<%= j(l(:text_issues_close_descendants_confirmation, :count => @issue.descendants.size)) %>");
+        if (!x) {
+          return false;
+        }
+      }
+    });
+  });
+</script>

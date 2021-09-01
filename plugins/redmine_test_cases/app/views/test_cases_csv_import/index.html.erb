@@ -1,0 +1,12 @@
+<p class="warning"><%= l(:label_easy_entity_important_message) %></p>
+
+<%= render @query, easy_query_name: l(:heading_easy_entity_imports) %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<%= content_for(:easy_page_layout_service_box_primary_actions) do %>
+  <p>
+    <%= link_to(l("button_new_easy_entity_imports/easy_test_case_csv_import"), new_test_cases_csv_import_path, class: 'button-positive icon icon-import easy-test-case-csv-import', remote: true) %>
+  </p>
+<% end %>
+<%= call_hook(:view_easy_entity_imports_index_bottom) %>

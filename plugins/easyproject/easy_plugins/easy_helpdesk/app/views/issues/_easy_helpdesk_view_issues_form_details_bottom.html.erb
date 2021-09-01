@@ -1,0 +1,39 @@
+<% if issue.safe_attribute?('easy_helpdesk_need_reaction') %>
+  <p class="easy_helpdesk_need_reaction">
+    <%= form.check_box :easy_helpdesk_need_reaction, label: l(:field_easy_helpdesk_need_reaction)  %>
+  </p>
+<% end %>
+<% if issue.safe_attribute?('easy_helpdesk_ticket_owner_id') %>
+  <p class="easy_helpdesk_ticket_owner_id">
+    <%= form.select :easy_helpdesk_ticket_owner_id, grouped_options_for_select(entity_assigned_to_collection_for_select_options(issue, issue.project), issue.easy_helpdesk_ticket_owner_id, prompt: ''), {required: issue.required_attribute?('easy_helpdesk_ticket_owner_id')} %>
+  </p>
+<% end %>
+<% if !issue.disabled_core_fields.include?('easy_email_to') && User.current.internal_client? %>
+  <p>
+    <%= form.select :easy_helpdesk_mail_template, easy_helpdesk_mail_template_options_for_select(issue, nil), include_blank: true %>
+  </p>
+  <script type="text/javascript">
+    EASY.schedule.late(function(){
+      var easyEmailToHighlight = function () {
+        var $emailTo = $('#issue_easy_email_to');
+        var $emailToEntityArray = $emailTo.closest('.easy-autocomplete-tag').parent().find('.entity-array input');
+        if (($emailToEntityArray.length === 0 ? $emailTo : $emailToEntityArray).val() !== '') {
+          return;
+        };
+        $('html, body').animate({scrollTop: parseInt($emailTo.offset().top) - 80}, 2000);
+        $emailTo.focus().css('border', '1px solid #ae1400');
+      };
+      var $templateSelect = $('#issue_easy_helpdesk_mail_template');
+      var $externalMailCheckbox = $('#issue_send_to_external_mails');
+      $externalMailCheckbox.attr({'checked': false, 'disabled': false});
+      $externalMailCheckbox.change(function () {
+        if ($(this).is(':checked')) easyEmailToHighlight();
+      });
+      $templateSelect.change(function() {
+        var value = $(this).val();
+        $externalMailCheckbox.attr({'checked': value === '', 'disabled': value !== ''});
+        if (value !== '') easyEmailToHighlight();
+      });
+    });
+  </script>
+<% end %>

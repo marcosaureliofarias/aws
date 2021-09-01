@@ -1,0 +1,3 @@
+<% if params[:project] && params[:project][:easy_contact_ids] %>
+    <%= hidden_field_tag 'project[easy_contact_ids][]', params[:project][:easy_contact_ids] %>
+<% end %>

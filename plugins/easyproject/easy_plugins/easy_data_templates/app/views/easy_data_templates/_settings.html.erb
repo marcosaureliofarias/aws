@@ -1,0 +1,43 @@
+<%= form_for(datatemplate, :url => {:controller => 'easy_data_templates', :action => 'update_settings'}, :class => 'form') do |f| %>
+  <%= error_messages_for datatemplate %>
+  <%= hidden_field_tag 'id', datatemplate.id %>
+  <%= hidden_field_tag 'show_settings', show_settings, :id => 'show_settings_1' %>
+  <div class="autoscroll">
+    <table>
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= l('label_easy_data_template_import.settings.quote_char') %></td>
+          <td><%= text_field_tag "easy_data_template[settings][quote_char]", datatemplate.settings['quote_char'], :size => 5 -%></td>
+          <td><%= l('label_easy_data_template_import.settings.return_headers') %></td>
+          <td><%= select_tag "easy_data_template[settings][return_headers]", options_for_select([[l('general_text_yes'),1],[l('general_text_no'),0]],:selected => datatemplate.settings['return_headers'].to_i) -%></td>
+        </tr>
+        <tr>
+          <td><%= l('label_easy_data_template_import.settings.col_sep') %></td>
+          <td><%= text_field_tag "easy_data_template[settings][col_sep]", datatemplate.settings['col_sep'], :size => 5 -%></td>
+          <td><%= l('label_easy_data_template_import.settings.encoding') %></td>
+          <td><%= select_tag "easy_data_template[settings][encoding]", options_for_select([[l('label_easy_data_template_import.settings.windows'),"WINDOWS-1250"],[l('label_easy_data_template_import.settings.utf'),"UTF-8"]],:selected => datatemplate.settings['encoding']) -%></td>
+        </tr>
+        <tr>
+          <td><%= l('label_easy_data_template_import.settings.preview_rows') %></td>
+          <td><%= text_field_tag "easy_data_template[settings][preview_rows]", datatemplate.settings['preview_rows'], :size => 5 -%></td>
+          <% if datatemplate.template_type == "import" %>
+          <td><%= l('label_easy_data_template_import.settings.import_all') %></td>
+          <td><%= select_tag "easy_data_template[settings][import_all]", options_for_select([[l('general_text_yes'),1],[l('general_text_no'),0]],:selected => datatemplate.settings['import_all'].to_i) -%></td>
+          <% else %>
+          <td colspan="2"></td>
+          <%  end %>
+        </tr>
+        <% if datatemplate.entity_type == 'Project' -%>
+        <tr>
+          <td><%= l('label_easy_data_template_import.settings.project_template') %></td>
+          <td><%= select_tag "easy_data_template[settings][project_template]", project_tree_options_for_select(Project.templates.order(:lft), :selected => datatemplate.settings['project_template'], :include_blank => true) -%></td>
+          <td colspan="2"></td>
+        </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+  <div class="form-actions"><%= f.submit l(:button_update), :class => 'button-positive' %></div>
+<% end %>

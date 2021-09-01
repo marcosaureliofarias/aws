@@ -1,0 +1,7 @@
+<% title = l(:title_meeting_room_conflict, name: @easy_meeting.name) %>
+<% content_for :email_heading do %>
+  <%= content_tag(:h1, link_to(title, easy_meeting_url(@easy_meeting))) %>
+<% end %>
+<div class="meeting-room-conflict-notice">
+  <%= content_tag(:h4, l(:error_meeting_room_conflict, conflict: @conflict_meetings)) %>
+</div>

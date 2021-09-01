@@ -1,0 +1,15 @@
+<tr class="nested-fields">
+  <td>
+    <%= f.text_field :user_defined_name %>
+  </td>
+  <td>
+    <%= f.text_field :identifier %>
+  </td>
+  <td>
+    <%= f.select :layout_path, [['easy_page_layouts/two_column_header_three_rows_right_sidebar', 'easy_page_layouts/two_column_header_three_rows_right_sidebar'],
+      ['easy_page_layouts/two_column_header_first_wider', 'easy_page_layouts/two_column_header_first_wider']] %>
+  </td>
+  <td>
+    <%= link_to_remove_association '', f, :class => 'icon icon-del', :title => l(:button_delete) %>
+  </td>
+</tr>

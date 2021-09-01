@@ -1,0 +1,33 @@
+<p>
+  <%= f.text_area :possible_values, value: @custom_field.possible_values.to_a.join("\n"), rows: 15 %>
+  <em class="info"><%= l(:text_custom_field_possible_values_info) %></em>
+</p>
+<p><%= f.text_field(:default_value) %></p>
+<p><%= f.text_field :url_pattern, label: :label_link_values_to %></p>
+<p>
+  <%= f.select :edit_tag_style, [[l(:label_drop_down_list), '']], label: :label_display %>
+</p>
+
+<div class="box tabular">
+  <p>
+    <label><%= l('dependent_list_custom_field.parent_custom_field') %></label>
+    <%= select_tag 'custom_field[settings][dependent_custom_field]', options_for_select(CustomField.dependent_parents(@custom_field).sorted.map { |cf| [cf.name, cf.id]}, @custom_field.dependent_parent_cf_id), include_blank: true %>
+    <% if @custom_field.persisted? && @custom_field.dependency_settings.blank? %>
+      <em class="info"><%= l(:label_dependent_list_custom_field_matrix_empty) %></em>
+    <% end %>
+  </p>
+  <% if @custom_field.persisted? && @custom_field.dependent_parent_cf_id %>
+    <% parent_cf = @custom_field.dependent_parent_cf %>
+    <% if parent_cf %>
+      <%= render 'custom_fields/formats/dependent_cf_settings', parent_cf: parent_cf, custom_field: @custom_field %>
+    <% end %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  EASY.schedule.late(function(){
+    $('input#custom_field_multiple').click(function() {
+      $('select#custom_field_edit_tag_style option[value="autocomplete"]').prop({'disabled': !this.checked, 'selected': false});
+    });
+  });
+</script>

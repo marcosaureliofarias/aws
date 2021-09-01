@@ -1,0 +1,22 @@
+<% prepare_easy_page_for_render %>
+<% page_params = easy_page_context[:page_params] %>
+<script type="text/javascript">
+  EASY.schedule.main(function() {
+    <% page_params[:page].zones.each do |page_zone| %>
+      <% zone = page_zone.zone_definition -%>
+      PageLayout.initSortable({
+        tab_id: <%= @tab.id %>,
+        tabPos: <%= (params[:t] || 1).to_i %>,
+        zoneName: "<%= zone.zone_name.dasherize %>",
+        updateUrl: "<%= url_for(page_params[:url_order_module].merge(:zone_id => page_zone.id, :t => params[:t])).html_safe %>"
+      });
+    <% end %>
+  });
+  PageLayout.refreshAddModule();
+</script>
+
+<div id="easy_page_tab-<%= @tab.id %>" class="easy_jquery_tab" data-tab-id="<%= @tab.id %>">
+  <%= render 'easy_page_tabs/show_or_edit', local_assigns %>
+  <%= render 'global_filters/show_or_edit', local_assigns %>
+  <%= render :partial => "layouts/#{@layout_style}" %>
+</div>

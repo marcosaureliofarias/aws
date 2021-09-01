@@ -1,0 +1,12 @@
+<%= issue_fields_rows do |rows| %>
+  <% rows.left EasyOauth2Application.human_attribute_name(:app_url), entity.app_url %>
+  <% rows.right "", "" %>
+  <% rows.left EasyOauth2Application.human_attribute_name(:app_id), entity.app_id %>
+  <% rows.left EasyOauth2Application.human_attribute_name(:app_secret), entity.app_secret %>
+<% end %>
+<hr/>
+<%= issue_fields_rows do |rows| %>
+  <% rows.left EasyOauth2Application.human_attribute_name(:authorize_url), oauth2_authorize_url %>
+  <% rows.left EasyOauth2Application.human_attribute_name(:token_url), oauth2_token_url %>
+  <% rows.left EasyOauth2Application.human_attribute_name(:user_url), oauth2_user_url %>
+<% end %>

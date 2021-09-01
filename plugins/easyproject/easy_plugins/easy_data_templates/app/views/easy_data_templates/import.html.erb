@@ -1,0 +1,54 @@
+<h2><%= @datatemplate.name%></h2>
+<div id="template">
+  <div id="template-settings">
+    <%= link_to l('label_easy_data_template_import.settings.new'), {}, :onclick => 'toggle_settings();return false;' %>
+  </div>
+  <div id="show_settings" style="display:<%= @show_settings == '0' ? 'none' : 'block'-%>">
+    <%= render :partial => 'easy_data_templates/settings', :locals => {:datatemplate => @datatemplate, :show_settings => @show_settings} %>
+  </div>
+  <br />
+  <div id="template-assignments">
+    <%= link_to l('label_easy_data_template_import.assignments.new'), {}, :onclick => 'toggle_assignment();return false;' %>
+  </div>
+  <div id="show_assignment" style="display:<%= @show_assignment == '0' ? 'none' : 'block'-%>">
+    <%= render :partial => 'easy_data_template_assignments/assignments', :locals => {:datatemplate => @datatemplate, :datatemplatesassignment => @datatemplatesassignment, :show_assignment => @show_assignment} %>
+  </div>
+  <br />
+  <div id="import_file">
+    <%= form_tag({:controller => 'easy_data_templates', :action => 'import'}, {:multipart => true}) do %>
+      <%= link_to_attachments @datatemplate, :do_not_show_context_menu => true %><br />
+      <%= file_field_tag 'attachments[0][file]', :size => 30, :id => nil  -%>
+      <%= hidden_field_tag 'id', @datatemplate.id %>
+      <%= submit_tag l(:button_easy_data_template_import_preview) %>
+    <% end %>
+  </div>
+  <br />
+  <% unless @csv_data.blank? %>
+    <div id="preview">
+      <%= render(:partial => 'easy_data_templates/preview', :locals => {:datatemplate => @datatemplate, :csv_data => @csv_data, :my_errors=>@my_errors}) %>
+    </div>
+  <% end %>
+  <br />
+  <% unless @my_errors[:size] == 0 %>
+    <div id="errors">
+      <%= render(:partial => 'easy_data_templates/errors', :locals => {:datatemplate => @datatemplate, :csv_data => @csv_data, :my_errors=>@my_errors}) %>
+    </div>
+  <% end %>
+  <br />
+  <% if !@datatemplate.attachments.blank? && (@datatemplate.settings['import_all'] == "0" || (@datatemplate.settings['import_all'] == "1" && @my_errors[:size] == 0))%>
+    <%= form_tag({:controller => 'easy_data_templates', :action => 'import_data'}) do %>
+      <%= hidden_field_tag 'id', @datatemplate.id %>
+      <%= submit_tag l(:button_easy_data_template_import_data) %>
+    <% end %>
+  <% end %>
+</div>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_back), { :controller => 'easy_data_templates', :action => 'index'}, :class => 'icon icon-back') -%>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_data_templates', :plugin => 'easy_data_templates' %>
+  <%= javascript_include_tag 'easy_data_templates', :plugin => 'easy_data_templates' %>
+<% end %>

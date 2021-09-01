@@ -1,0 +1,38 @@
+
+<%= labelled_frm_for(@datatemplate, :url => {:controller => 'easy_data_templates_import', :action => 'import', :id => @datatemplate}, :html => {:id => 'easy_data_templates_form', :method => :post, :class => 'form'}) do |f| %>
+  <%= error_messages_for @datatemplate %>
+
+  <div class="form-box" id="easy_data_templates_import_settings_container">
+    <%= render :partial => 'easy_data_templates_import/settings', :locals => {:settings => @datatemplate.settings} %>
+  </div>
+
+  <div class="toolbar">
+    <%= link_to_remote l(:label_preview),
+      {:url => {:controller => 'easy_data_templates_import', :action => 'import_settings', :id => @datatemplate},
+      :with => 'Form.serialize(\'easy_data_templates_form\')',
+      :update => 'easy_data_templates_import_preview_container'},
+      :title => l(:label_preview), :class => 'button-positive' %>
+  </div>
+
+  <div id="check_preview" style="display:none" class="flash warning"><span><%= l(:label_check_preview) -%></span></div>
+
+  <div id="easy_data_templates_import_preview_container">
+    <%= render :partial => 'easy_data_templates_import/preview', :locals => {:datatemplate => @datatemplate, :datarows => @datarows, :target_project => @target_project} %>
+  </div>
+
+  <div class="form-actions"><%= submit_tag l(:button_easy_data_template_import_data), :class => 'button-positive' %></div>
+<% end %>
+
+<% ### PAGE CUSTOMS ########################################################## %>
+
+<% content_for :easy_page_layout_service_box_primary_actions do %>
+  <%= link_to(l(:button_easy_data_template_new_export), { :controller => 'easy_data_templates_export', :action => 'new' }, :class => 'button-positive') %>
+  <%= link_to(l(:button_easy_data_template_new_import), { :controller => 'easy_data_templates_import', :action => 'new' }, :class => 'button-positive') %>
+  <%= link_to(l(:button_edit), { :controller => 'easy_data_templates_import', :action => 'edit', :id => @datatemplate }, :class => 'button') %>
+  <%= link_to(l(:label_easy_data_templates), { :controller => 'easy_data_templates', :action => 'index' }, :class => 'button') %>
+<% end %>
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'easy_data_templates', :plugin => 'easy_data_templates' %>
+  <%= javascript_include_tag 'easy_data_templates', :plugin => 'easy_data_templates' %>
+<% end %>

@@ -1,0 +1,19 @@
+<%= content_tag(:p, l(:label_no_data), class: 'nodata') if project_members.blank? %>
+<ul class="link-list">
+  <% project_members.each do |principal| %>
+    <li class="<%= "user-#{principal.user_id}" -%> member easy-dropper-target easy-drop-user link-list-item" data-user-id="<%= principal.user_id %>" data-drop-action="user">
+      <%= avatar(principal.user, style: :small, no_link: true) %>
+      <div class="link-list-item-content two-lines">
+        <div class="member-name">
+          <%= link_to(principal.name, project_issues_path(project_id: project, set_filter: 1, assigned_to_id: principal.user_id, status_id: 'o'), title: l(:label_show_assigned_issues, username: principal.name), class: 'add-user-links', data: {id: principal.user_id}) %>
+        </div>
+        <div class="member-roles"><%= principal.roles.distinct.sort_by(&:position).collect(&:name).join(', ') %></div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<span class="pagination" >
+  <%= pagination_links_full(@principal_pages, @principal_count, per_page_links: false) do |text, parameters, options| %>
+    <% link_to text, show_more_members_project_path(project, parameters.merge(q: params[:q], format: 'js')), remote: true %>
+  <% end %>
+</span>

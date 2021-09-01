@@ -1,0 +1,177 @@
+---
+pl:
+  easy_mindmup:
+    button_add_child: Dodaj podzadanie
+    button_add_parent: Dodaj zadanie nadrzędne
+    button_add_sibling: Dodaj zadanie równorzędne
+    button_all_icons: Ikony
+    button_collapse: Zwiń
+    button_collapse_all: Zwiń/Rozwiń
+    button_cut: Wytnij
+    button_edit_data: Edytuj dane
+    button_expand: Rozwiń
+    button_expand_all: Rozwiń wszystko
+    button_expand_collapse: Rozwiń/Zwiń
+    button_hotkeys: Skróty
+    button_legend: Legenda
+    button_one_side: Jedna strona
+    button_paste: Wklej
+    button_project_menu: Easy MindMup
+    button_redo: Ponów
+    button_remove_node: Usuń węzeł
+    button_show_links: Pokaż powiązania
+    button_undo: Cofnij
+    error_create: nie można utworzyć
+    error_delete: nie można usunąć
+    error_update: nie można zaktualizować
+    errors:
+      no_rest_api: REST API jest wyłączone. Włącz je w Administracji.
+      not_subtaskable: Zadanie „%{task_name}” nie może być podzadaniem z powodu ustawień
+        jego rodzaju zadania
+    free:
+      button_upgrade: Kup pełną wersję
+      feature_coloring: Kolorowanie węzłów według właściwości
+      feature_context_menu: Zmienianie właściwości węzłów w menu kontekstowym
+      feature_dnd_property: Zmienianie właściwości węzłów przez przeciąganie i upuszczanie
+      feature_filtering: Filtrowanie węzłów według właściwości
+      header_not_available: Dostępne tylko w pełnej wersji
+    hotkeys:
+      info_mac_metakey: Na Mac OSX, Ctrl i Cmd mogą być używane do skrótów klawiszowych
+        wymienionych poniżej jako Ctrl. Niektóre przeglądarki blokują pewne skróty
+        klawiszowe. Dlatego jeżeli w Twojej przeglądarce nie działa np. Cmd+Spacja,
+        spróbuj Ctrl+Spacja.
+      keyboard:
+      - title: Manipulacja węzłami
+        hotkeys:
+        - hotkey: Enter
+          info: Dodaj rodzeństwo
+        - hotkey: Shift+Enter
+          info: Dodaj rodzeństwo powyżej lub łamanie linii (kiedy zmieniasz nazwę
+            węzła)
+        - hotkey: Tab lub Insert
+          info: Dodaj dziecko
+        - hotkey: Shift+Tab
+          info: Dodaj rodzica
+        - hotkey: Spacja
+          info: Zmień nazwę węzła
+        - hotkey: Shift+Space
+          info: Edytuj dane węzła
+        - hotkey: Backspace lub Delete
+          info: Usuń węzeł
+        - hotkey: Ctrl+Up/Down
+          info: Przenieś węzeł w górę/dół
+      - title: Edytowanie
+        hotkeys:
+        - hotkey: Ctrl+S
+          info: Zapisz
+        - hotkey: Ctrl+X lub C
+          info: Wytnij
+        - hotkey: Ctrl+C lub Y
+          info: Kopiuj
+        - hotkey: Ctrl+V lub P
+          info: Wklej
+        - hotkey: U lub Ctrl+Z
+          info: Cofnij
+        - hotkey: R lub Ctrl+Y lub Ctrl+Shift+Z
+          info: Ponów
+      - title: Zaznaczenie
+        hotkeys:
+        - hotkey: Klawisze strzałek
+          info: Zaznacz węzeł na górze/na dole/po lewej/po prawej od aktualnie wybranego
+            węzła
+        - hotkey: Shift + Klawisze strzałek
+          info: Dodaj węzeł na górze/na dole/po lewej/po prawej od aktualnie wybranego
+            węzła (przydatne przy zaznaczaniu wielu węzłów równorzędnych (rodzeństwa))
+        - hotkey: "{"
+          info: Zaznacz bieżący węzeł i całe jego poddrzewo
+        - hotkey: "["
+          info: Zaznacz tylko poddrzewo pod bieżącym węzłem (bez samego węzła)
+        - hotkey: "="
+          info: Zaznacz całe rodzeństwo bieżącego węzła (mające wspólnego rodzica)
+        - hotkey: "."
+          info: Anuluj zaznaczenie i ponownie zaznacz tylko bieżący węzeł
+        - hotkey: 1 – 9
+          info: Zaznacz wszystkie węzły danego poziomu (np. 1 zaznaczy wszystkie węzły
+            pierwszego poziomu)
+      - title: Nawigacja i ekran
+        hotkeys:
+        - hotkey: "/ lub F"
+          info: Rozwiń lub zwiń węzeł (rozwiń lub zwiń dzieci)
+        - hotkey: Ctrl + lub Z
+          info: Przybliż
+        - hotkey: Ctrl - lub Shift Z
+          info: Oddal
+        - hotkey: Esc, 0, Ctrl+0
+          info: Resetuj widok mapy – wybierz główny węzeł i przenieś go na środek
+            ekranu
+      mouse:
+      - action: Przenieś mapę
+        gesture: kliknij i przeciągnij centralny węzeł, kliknij i przeciągnij tło
+          lub  przewiń ekran przy pomocy touchpada.
+      - action: Zaznacz węzeł
+        gesture: tapnij lub kliknij w niego
+      - action: Wybierz wiele węzłów
+        gesture: Shift+kliknięcie
+      - action: Zmień kolejność węzłów
+        gesture: przeciągnij węzeł pomiędzy jego rodzeństwo, na osi poziomej, w pobliże
+          nowej pozycji. W czasie zmiany kolejności będzie widoczna czarna strzałka.
+      - action: Ręcznie ustaw pozycję węzła
+        gesture: przeciągnij węzeł, aż strzałka zmiany pozycji przestanie być widoczna.
+          Aby wymusić ręczną pozycję, kiedy strzałka jest widoczna, przytrzymaj Shift
+          podczas przeciągania. Pamiętaj, że dzieci głównego węzła można przeciągać
+          w dowolnym kierunku, ale węzły niższego poziomu można przesuwać tylko w
+          kierunku jego rodzica w odniesieniu do węzła głównego.
+      - action: Zmień nazwę węzła
+        gesture: Dwukrotnie kliknij lub tapnij węzeł
+      - action: Pokaż menu kontekstowe z działaniami
+        gesture: 'Kliknij prawym przyciskiem myszy na węzeł lub dwukrotnie tapnij
+          tło lub naciśnij i przytrzymaj węzeł: pokaż (na urządzeniach dotykowych)'
+      - action: Zmień rodzica węzła
+        gesture: Przeciągnij i upuść węzeł na inny węzeł (pętle nie są dozwolone,
+          więc nie możesz upuścić węzła na jedno z jego dzieci lub potomków)
+      - action: Otwórz zadanie lub projekt w osobnym oknie
+        gesture: Alt+kliknięcie
+      title_key_shortcuts: Funkcje klawiatury
+      title_mouse_shortcuts: Funkcje myszy i dotykowe
+      title_shortcuts: Skróty
+    info_all_saved: Wszystko pomyślnie zapisano
+    info_any_failed: 'Niektóre z żądań nie powiodły się:'
+    info_no_permission: Nie masz odpowiednich uprawnień, aby to zrobić
+    label_color_by: Koloruj wg
+    label_go_to: Idź do
+    label_hide_unused: Schowaj nieużywane
+    label_less: Mniej
+    label_or: lub
+    label_save_progress: Zaczekaj chwilę, wszystkie obiekty są zapisywane
+    label_show_unused: Pokaż nieużywane
+    label_tooltip_display_info: Legenda pokazuje wszystkie statusy, ale możesz nie
+      mieć uprawnień do używania niektórych z nich.
+    last_state_modal:
+      label_differencies: Różnice na serwerze
+      message_changed: mają różne atrybuty (przeglądarka => serwer) ({{changes}})
+      message_missing: brakuje w rodzicu {{from}}
+      message_moved: jest dzieckiem "{{to}}", nie "{{from}}"
+      message_present: jest obecne jako dziecko "{{to}}"
+      text_reload_appeal: Czy chcesz załadować ponownie stan z serwera?
+      title: Ostatni stan mapy myśli po stronie klienta różni się od stanu serwera
+    reload_modal:
+      label_errors: Błędy
+      text_reload_appeal: Czy chcesz zignorować niezapisane pozycje i ponownie załadować
+        dane z serwera?
+      title: Nie udało się poprawnie zapisać mapy myśli
+    save_info:
+      at: o
+      autosaved: Zapisano automatycznie
+      loaded: Załadowano
+      saved: Zapisano
+    stored_modal:
+      button_local: Wersja lokalna
+      button_server: Wersja serwera
+      text_load_appeal: Czy chcesz to załadować? A może wolisz załadować świeży stan
+        z serwera?
+      title: Znaleziono niezapisaną wersję lokalną
+    title_node_changed: Ten węzeł został zmieniony i zostanie zapisany
+    warning_delete_node: Czy na pewno chcesz usunąć węzeł {{name}} i wszystkich jego
+      potomków?
+    warning_delete_nodes: Czy na pewno chcesz usunąć te węzły i wszystkich potomków?
+    warning_not_saved: nie został zapisany poprawnie

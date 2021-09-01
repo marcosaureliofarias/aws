@@ -1,0 +1,256 @@
+&-sidebar {
+  %info-block {
+    background-color: #ffffaa;
+    border: px2rem(1px) solid #bfb23f;
+    padding: px2rem(5px);
+    text-align: center;
+  }
+  .navi-bar {
+    .tab-button {
+      color: $mindmup__color--text !important;
+      &.active {
+        color: $color-main !important;
+      }
+    }
+  }
+  &__empty-title {
+    @extend %info-block;
+    display: block;
+    margin-top: px2rem(10px);
+    box-sizing: border-box;
+  }
+  &__resize {
+    position: fixed;
+    width: px2rem(10px);
+    text-align: center;
+    cursor: col-resize;
+    display: block;
+    z-index: 101;
+    background-color: silver;
+    box-sizing: border-box;
+    padding-top: px2rem(8px);
+    font-size: px2rem(20px);
+    border-radius: px2rem(5px);
+  }
+  &__root {
+    display: block;
+  }
+  &__toggler {
+    position: absolute;
+    top: px2rem(1px);
+    right: px2rem(1px);
+    padding: 0;
+    z-index: 1;
+    &.active {
+      background: #d94838;
+      color: #fff;
+    }
+    &.easy-mindmup__icon {
+      padding-left: px2rem(15px);
+      &:before {
+        width: auto;
+      }
+    }
+  }
+  &__container {
+    border-left: 1px solid $color-border;
+    background: $mindmup__color--mixed;
+    padding-left: px2rem(8px);
+    overflow-y: scroll;
+  }
+  &__long-text {
+    position: relative;
+    max-height: px2rem(100px);
+    overflow: hidden;
+    min-height: px2rem(30px);
+    border: 1px solid $color-border !important;
+    &__curtain {
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: px2rem(1px);
+      background: $mindmup__color--front !important;
+    }
+    &__content {
+      padding: px2rem(3px);
+      min-height: px2rem(25px);
+      width: 100%;
+      box-sizing: border-box;
+      max-height: px2rem(100px);
+    }
+    &__textarea {
+      height: px2rem(200px);
+    }
+    &--hidden {
+      display: none;
+    }
+  }
+  &__attribute {
+    display: block;
+    overflow: hidden;
+    margin-top: px2rem(3px);
+    position: relative;
+    & .invalid {
+      border: px2rem(1px) solid red;
+      color: red;
+    }
+    &-form-field {
+      max-width: px2rem(200px) !important;
+      padding: px2rem(1px) px2rem(1px) px2rem(1px) px2rem(5px) !important;
+      line-height: normal;
+      float: right;
+      overflow-x: hidden !important;
+    }
+    &-value {
+      max-width: px2rem(197px) !important;
+      width: 100%;
+      padding: px2rem(1px) px2rem(1px) px2rem(1px) px2rem(5px) !important;
+      line-height: normal;
+      float: right;
+      margin-top: px2rem(6px);
+    }
+    &-label-disabled {
+      color: rgba(0, 0, 0, 0.38);
+    }
+    &-label {
+      display: inline-block;
+      width: px2rem(100px);
+      margin-top: px2rem(5px);
+    }
+    .spaceholder {
+      display: none;
+    }
+    .top-section {
+      margin-bottom: 0;
+    }
+    &-full-screen-icon {
+      display: block;
+      float: right;
+      cursor: pointer;
+      margin-top: px2rem(6px);
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    & .icon-edit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+  }
+  &__attributes, &-comments {
+    .panel.themeable, .panel.themeable.open {
+      background: $mindmup__color--front !important;
+      .expand-button {
+        color: $color-text-muted !important;
+      }
+    }
+  }
+  &__closed_button {
+    width: px2rem(200px);
+  }
+  &__add-comment-button {
+    a {
+      width: 100%;
+      box-sizing: border-box;
+    }
+    margin: px2rem(3px) 0 px2rem(12px) 0;
+  }
+  &__journal {
+    &-avatar-container {
+      margin-top: px2rem(6px);
+      margin-right: $mindmup__gap !important;
+    }
+    &-header {
+      margin-top: px2rem(-6px)
+    }
+    &-notes {
+      margin-top: 0;
+      background: #ffffff;
+      border: 1px solid $color-border;
+      margin-bottom: 0 !important;
+      box-sizing: border-box;
+      padding: px2rem(3px);
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &-full-screen-icon {
+      display: block;
+      float: right;
+      cursor: pointer;
+      margin-top: px2rem(25px);
+      position: absolute;
+      top: 0;
+      right: px2rem(20px);
+    }
+    &-timestamp {
+      font-weight: bold;
+      font-size: smaller;
+    }
+    &-details {
+      border-bottom: 1px solid $color-border !important;
+    }
+  }
+  &__coworkers--no_id {
+    @extend %info-block
+  }
+  &__tab {
+    margin-left: px2rem(1px);
+    margin-right: px2rem(1px);
+    header {
+      min-height: px2rem(36px) !important;
+      padding: 0 px2rem(12px) px2rem(8px) !important;
+    }
+    header.open {
+      min-height: px2rem(44px);
+    }
+    header:not(:hover) {
+      color: inherit !important;
+      background-color: unset !important;
+    }
+    header:hover {
+      color: inherit !important;
+      background: $color-highlight !important;
+    }
+
+  }
+  &__input {
+    &__name {
+      color: $mindmup__color--text;
+      font-family: $font-family !important;
+      width: 100% !important;
+      font-size: $font-h3;
+      .input {
+        max-width: none;
+        text-align: center;
+        font-weight: normal;
+        opacity: 1;
+        color: $mindmup__color--text !important;
+      }
+      .bottom-section {
+        display: none !important;
+      }
+      .baseline {
+        background-color: $mindmup__color--front;
+        @extend %material__elevation--depth_2 !optional;
+      }
+    }
+  }
+  .gravatar {
+    max-height: px2rem(32px);
+    max-width: px2rem(32px);
+  }
+  .content-wrapper {
+    margin: 0 px2rem(12px) px2rem(8px) !important;
+  }
+  .material-tab {
+    padding: 0 !important;
+  }
+  .autocomplete-option {
+    background: $mindmup__color--front !important;
+  }
+
+}

@@ -1,0 +1,22 @@
+EASY.schedule.main(function () {
+  var $html = $("<%=j render(template: 'easy_meetings/show', formats: ['html']) %>");
+  var m = $("#ajax-modal");
+  m.html($html);
+  var title = m.find("h2.title").text();
+  m.find("h2.title").remove();
+
+  showModal(m[0].id);
+  m.dialog('option', {
+    buttons: [
+      {
+        text: '<%=j l(:button_update) %>',
+        click: function() {$(this).find('form:first').submit();}, 'class': 'button-positive'
+      },
+      {
+        text: '<%=j l(:button_cancel) %>',
+        click: function() {$(this).dialog('close');}, 'class': 'button'
+      }
+    ],
+    title: title
+  });
+});

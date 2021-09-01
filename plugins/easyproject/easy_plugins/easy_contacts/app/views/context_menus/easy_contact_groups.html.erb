@@ -1,0 +1,4 @@
+<ul>
+  <%= content_tag :li, link_to(l(:button_delete), {:controller => :easy_contact_groups, :action => :destroy_items, :project_id => @project, :ids => params[:ids], :back_url => back_url}, :data => {:confirm => l(:text_are_you_sure)}, :class => 'icon icon-del', :method => 'delete') if User.current.allowed_to_globally?(:delete_easy_contact_groups, {}) -%>
+</ul>
+

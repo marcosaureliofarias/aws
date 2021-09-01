@@ -1,0 +1,178 @@
+#sidebar,#easy_grid_sidebar{
+  ul {
+    @extend %list-style-none;
+  }
+  .list-group-item{
+    ul {
+      padding: $gap 0 0 $box-padding;
+      margin-top: $gap;
+    }
+  }
+  &_inner{
+    position: relative;
+    & > .primary-actions{
+      [class*="button"]{
+        @extend %button-large;
+        margin-bottom: $gap;
+      }
+    }
+    @include respond-to(max-sidebar-collapse) {
+      position: relative !important;
+      width: auto !important;
+    }
+  }
+  &_content{
+    .ps__rail-y{
+      right: 0.5*$gap !important;
+      opacity: 1;
+    }
+    position: relative;
+    @extend %pseudo-beforelight;
+    @extend %pseudo-afterlight;
+    &:before{
+      opacity: 0;
+      z-index: -1;
+    }
+    &.scrolled{
+      &:before{
+        opacity: 1;
+        z-index: 1;
+      }
+    }
+    .easy-scroller{
+      .nosidebar &:hover{
+        margin-left: -$sidebar-width;
+        padding-left: $sidebar-width;
+        overflow: initial;
+      }
+      @include respond-to(max-sidebar-collapse) {
+        height: auto !important;
+      }
+    }
+    @include respond-to(max-sidebar-collapse) {
+      &:before, &:after {
+        display: none;
+      }
+    }
+    .button-apply {
+      padding-left: $gap !important;
+    }
+  }
+  &_footer{
+    background: $color-background;
+    @extend %pseudo-afterlight;
+    z-index: 3;
+    &:after{
+      top: -$box-margin;
+    }
+    @include respond-to(max-sidebar-collapse) {
+      position: initial !important;
+    }
+  }
+  .menu-more,.menu-manager{
+    a{
+      @extend %button-base;
+    }
+  }
+  .sidebar-control{
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(-#{$gap} - #{$gap-const});
+    width: 0;
+    z-index: 0;
+    @include respond-to(max-menu-collapse) {
+      left: calc(-#{$gap} - #{$gap-const});
+    }
+    @include respond-to(max-sidebar-collapse) {
+      display: none;
+    }
+    .nosidebar &{
+      left: calc(-#{$gap} - #{$gap-const});
+    }
+    &:before,&:after{
+      content: "";
+      display: block;
+      height: $box-padding;
+      position: absolute;
+      top: 50%;
+      margin-top: -$gap - $box-padding;
+    }
+    &:before{
+      border-top: 2+$gap solid transparent;
+      border-bottom: 2+$gap solid transparent;
+      border-left: 2+$gap solid $color-border;
+      margin-top: -2 - $gap - $box-padding;
+      margin-left: -1px;
+    }
+    a{
+      display: block;
+      text-align: center;
+      @extend %absolute;
+      left: 0;
+      width: calc(#{$gap} + #{$gap-const});
+      color: darken($color-border,10%);
+      z-index: 1;
+      &:hover{
+        color: $color-important;
+        text-decoration: none;
+      }
+      &:before{
+        content: "\00BB";
+        display: block;
+        font-size: 1.25em;
+        line-height: 1.8*$box-padding;
+        position: absolute;
+        top: 50%;
+        margin-top: -$gap - $box-padding;
+        left: 0;
+        right: 0;
+      }
+      .nosidebar &{
+        &:before{
+          content: "\00AB";
+        }
+      }
+    }
+  }
+  .nosidebar &{
+    .easy-entity-details-sidebar-attributes, .box, #sidebar_exports, .easy-autocomplete-tag{
+      @include respond-to(min-sidebar-collapse){
+        display: none;
+      }
+    }
+  }
+  .easy-autocomplete-tag{
+    &,& input{
+      display: block;
+      width: 100%;
+    }
+  }
+  .other-formats{
+    padding: 0;
+  }
+  .icon.button-mini {
+    padding-left: calc(#{$gap} + 12px) !important;
+    &:before{
+      width: calc(#{$gap} + 12px) !important;
+    }
+  }
+}
+#easy_page_layout_service_box{
+  .menu-manager > li:first-child{
+     display: block !important;
+     a[class*="button"]{
+       @extend %button-large;
+       margin-bottom: $gap;
+     }
+  }
+  .menu-manager > li{
+    a[class*="button-positive"]{
+      @extend %button-positive;
+      @extend %button-large;
+    }
+  }
+  padding-bottom: $box-margin;
+  @extend %clearfix;
+}
