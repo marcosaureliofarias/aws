@@ -9,7 +9,7 @@ docker build . -t easy
 ```
 For example build with args:
 ```bash
-docker build --build-arg BUNDLE_GEMS__EASYSOFTWARE__COM --build-arg DB=mysql . -t easy
+docker build --build-arg BUNDLE_GEMS__EASYSOFTWARE__COM --build-arg DB=mysql . -t easy    
 ```
 ## Dependencies
 By default are easy images builded against mariadb.
